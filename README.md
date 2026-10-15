@@ -1,31 +1,66 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:55:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:56:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `65`, Y: `9`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN gained`
+- **Coordenadas GPS:** X: `64`, Y: `9`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Scratch`
+- **Último Golpe Usado pelo Adversário:** `Gust`
+
+### 🔴 Adversário em Campo: **Pidgey** (Lv. 7)
+- **Tipos:** Normal/Flying
+- **HP:** **10 / 23** (43%)
+- **Stats de Batalha:** ATK: 11 | DEF: 11 | SPD: 14 | SPC: 10
+- **Os 4 Golpes do Adversário:**
+  - **Gust** (Normal) • PP: 2 • Poder: 40 • Precisão: 100%
+  - **Sand Attack** (Normal) • PP: 255 • Poder: -- • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Gust** (Normal) ➔ Dano: ~3-4 HP (1x)
+  - **Sand Attack** (Normal) ➔ Golpe de Status
+
+### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 15)
+- **Tipos:** Poison
+- **HP:** **39 / 45** (HEALTHY)
+- **Stats com Modificadores:** ATK: 25 (0) | DEF: 23 (0) | SPD: 23 (0) | SPC: 20 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **15-18 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 10 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Scratch para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **4%** | Great Ball: **7%** | Ultra Ball: **13%**
+  - *Se adormeceres o inimigo:* **~29%** | *Com HP no vermelho:* **~9%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Nidoran♀** (Lv. 15)
-- **Tipos:** Poison | **HP:** 45 / 45 ✅ (SAUDÁVEL)
+### 1. **Nidoran♀** (Lv. 15) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 39 / 45 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 21 | DEF: 23 | SPD: 23 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2228 | ATK: 2885 | DEF: 2037 | SPD: 3184 | SPC: 1759
-- **Experiência:** 2117 EXP (Progresso: 16%, faltam 418 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 2268 | ATK: 2930 | DEF: 2077 | SPD: 3240 | SPC: 1794
+- **Experiência:** 2179 EXP (Progresso: 29%, faltam 356 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 33 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -225,19 +260,19 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:55:50] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:56:01] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:56:01] `NIDORAN`
+- [17:56:00] `Enemy PIDGEY`
+- [17:55:59] `SCRATCH GROWL`
+- [17:55:58] `Wild PID`
+- [17:55:56] `Critical hit`
+- [17:55:56] `FIGHT`
+- [17:55:55] `NIDORAN`
+- [17:55:54] `Go NIDORAN`
+- [17:55:53] `999999999999999999 999999999999999999`
 - [17:55:47] `NIDORAN gained`
-- [17:55:46] `NIDORAN`
-- [17:55:45] `It didn affect`
-- [17:55:44] `NI`
-- [17:55:27] `NIDORAN`
-- [17:55:26] `Enemy JIGGLYPUFF`
-- [17:55:25] `NIDORAN`
-- [17:55:23] `Enemy JIGGLYPUFF`
-- [17:55:22] `NIDORAN`
-- [17:55:21] `Enemy JIGGLYPUFF`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Use imediatamente **Poison Sting** com o Nidoran♂ – basta um golpe para acabar com o Pidgey de "
