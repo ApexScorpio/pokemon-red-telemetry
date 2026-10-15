@@ -1,71 +1,48 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:26:30**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:26:41**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `14`, Y: `27`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `NIDORINO`
+- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
+- **Coordenadas GPS:** X: `14`, Y: `6`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `We hope to see`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
-- **Tipos:** Poison/Flying
-- **HP:** **25 / 25** (100%)
-- **Stats de Batalha:** ATK: 12 | DEF: 11 | SPD: 14 | SPC: 13
-
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 19)
-- **Tipos:** Normal
-- **HP:** **2 / 59** (HEALTHY)
-- **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **66-78 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (2/59). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **35%** | Great Ball: **52%** | Ultra Ball: **35%**
-  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 0 / 46 ❌ (FAINTED)
+### 1. **Beedrill** (Lv. 14)
+- **Tipos:** Bug/Poison | **HP:** 46 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2653 | ATK: 3032 | DEF: 2569 | SPD: 3652 | SPC: 2060
 - **Experiência:** 3139 EXP (Progresso: 63%, faltam 236 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 3 | Poder: 40 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 38 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 19)
-- **Tipos:** Poison | **HP:** 2 / 59 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 59 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3712 | ATK: 4715 | DEF: 3267 | SPD: 5133 | SPC: 2923
-- **Experiência:** 4730 EXP (Progresso: 18%, faltam 730 p/ Lv.20)
+- **Stat EXP (EVs Acumulados):** HP: 3752 | ATK: 4760 | DEF: 3302 | SPD: 5188 | SPC: 2963
+- **Experiência:** 4791 EXP (Progresso: 24%, faltam 669 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 1 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 24 | Poder: 60 | Precisão: 100%
+  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
@@ -152,46 +129,51 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis)) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-- **Lead Recomendado:** Butterfree (Confusion)
+### #1. **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **⚔️ POR VENCER**
+- **Dificuldade:** Chefe / Difícil
+- **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+- **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Rattata** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorino** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
-- **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
-
-### #2. **Team Rocket Grunt** (Mt. Moon (B2F - Saída)) • **⚔️ POR VENCER**
-- **Dificuldade:** Difícil
-- **Roster Inimigo:** Raticate (Lv. 16)
-- **Lead Recomendado:** Charmeleon / Geodude
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Nidorino** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Rattata** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Butterfree** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
-- **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Nidorino** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+
+### #2. **Líder Misty** (Ginásio de Cerulean (Chefe)) • **⚔️ POR VENCER**
+- **Dificuldade:** Chefe / Difícil
+- **Roster Inimigo:** Staryu (Lv. 18 - Water) • Starmie (Lv. 21 - Water/Psychic)
+- **Lead Recomendado:** Pikachu / Bellsprout
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Butterfree** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Nidorino** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [18:26:41] Entrou em Route 4
+- [18:26:37] Entrou em Mt Moon Pokecenter
+- [18:26:35] Entrou em Route 4
 - [18:21:58] Entrou em Mt Moon 1F
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:26:39] `We hope to see`
+- [18:26:38] `OK Wel need`
+- [18:26:37] `We heal your`
+- [18:26:33] `NIDORINO gain`
+- [18:26:32] `NIDORINO`
+- [18:26:31] `TACKLE HORN ATTACK`
+- [18:26:30] `Wild ZUBAT`
 - [18:26:25] `NIDORINO`
 - [18:26:24] `Enemy ZUBAT`
 - [18:26:23] `NIDORINO`
-- [18:26:22] `Go NIDORINO`
-- [18:26:18] `NIDORINO gained`
-- [18:26:17] `FIGHT`
-- [18:26:16] `Enemy ZUBAT`
-- [18:26:16] `TACKLE HORN ATTACK`
-- [18:26:15] `Wild ZU`
-- [18:26:13] `NIDORINO gained`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
