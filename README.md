@@ -1,35 +1,62 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:40:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:40:36**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas GPS:** X: `10`, Y: `6`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy PARAS`
+- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
+- **Coordenadas GPS:** X: `14`, Y: `29`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
-  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Rock/Ground
+- **HP:** **24 / 24** (100%)
+- **Stats de Batalha:** ATK: 18 | DEF: 21 | SPD: 9 | SPC: 10
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
+- **Tipos:** Bug/Poison
+- **HP:** **46 / 46** (HEALTHY)
+- **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~24 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-24: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 16)** [49/49 HP]
+- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14)
-- **Tipos:** Bug/Poison | **HP:** 38 / 46 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 46 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2688 | ATK: 3102 | DEF: 2624 | SPD: 3677 | SPC: 2115
 - **Experiência:** 3219 EXP (Progresso: 75%, faltam 156 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 17 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -158,21 +185,24 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [18:40:29] Entrou em Mt Moon 1F
+- [18:40:29] Entrou em Route 4
+- [18:40:24] Entrou em Mt Moon Pokecenter
 - [18:40:23] Entrou em Route 4
 - [18:39:17] Entrou em Mt Moon 1F
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:40:32] `FIGHT`
+- [18:40:31] `Go BEEDRILL`
+- [18:40:30] `Wild GE`
+- [18:40:27] `Thank you`
+- [18:40:26] `OK Wel need`
+- [18:40:25] `We heal your`
 - [18:40:20] `Enemy PARAS`
 - [18:40:19] `FURY ATTACK POISON STING`
 - [18:40:18] `BEEDRILL`
 - [18:40:16] `Wild PARAS`
-- [18:40:13] `PARAS`
-- [18:40:12] `ing nutrients from the bug host`
-- [18:40:11] `New POKDEX data will be added for`
-- [18:40:10] `PARAS was`
-- [18:40:10] `RED used`
-- [18:39:55] `FIGHT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
