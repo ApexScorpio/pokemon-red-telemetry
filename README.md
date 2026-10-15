@@ -1,55 +1,25 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:24:57**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:25:09**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `14`, Y: `16`
+- **Coordenadas GPS:** X: `14`, Y: `19`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `NIDORINO`
-- **Dinheiro:** **1696 ₽**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `RED defeated`
+- **Dinheiro:** **1846 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Tackle`
-- **Último Golpe Usado pelo Adversário:** `Tail Whip`
-
-### 🔴 Adversário em Campo: **Rattata** (Lv. 10)
-- **Tipos:** Normal
-- **HP:** **11 / 27** (41%)
-- **Stats de Batalha:** ATK: 18 | DEF: 13 | SPD: 21 | SPC: 11
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 0 • Poder: 35 • Precisão: 95%
-  - **Tail Whip** (Normal) • PP: 255 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: 33 • Poder: 40 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~5-6 HP (1x)
-  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 17)
-- **Tipos:** Poison
-- **HP:** **38 / 53** (HEALTHY)
-- **Stats com Modificadores:** ATK: 41 (0) | DEF: 30 (0) | SPD: 32 (0) | SPC: 28 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **12-15 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 11 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
-- **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14)
@@ -63,14 +33,14 @@
   - **String Shot** (Bug) — PP: 38 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 38 / 53 ✅ (SAUDÁVEL)
+### 2. **Nidorino** (Lv. 17)
+- **Tipos:** Poison | **HP:** 23 / 53 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 30 | SPD: 32 | SPC: 28
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3197 | ATK: 4038 | DEF: 2727 | SPD: 4459 | SPC: 2378
-- **Experiência:** 3419 EXP (Progresso: 44%, faltam 379 p/ Lv.18)
+- **Stat EXP (EVs Acumulados):** HP: 3297 | ATK: 4195 | DEF: 2832 | SPD: 4658 | SPC: 2468
+- **Experiência:** 3776 EXP (Progresso: 97%, faltam 22 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 22 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -188,16 +158,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:25:08] `RED defeated`
+- [18:25:07] `NIDORINO`
+- [18:25:06] `Sucked health from`
+- [18:25:05] `Enemy ZUBAT`
+- [18:25:04] `FIGHT`
+- [18:25:00] `Enemy RATTATA`
+- [18:24:59] `about to use`
+- [18:24:58] `NIDORI`
 - [18:24:56] `NIDORINO`
 - [18:24:53] `Did you come to`
-- [18:24:51] `Enemy ZUBAT`
-- [18:24:51] `FIGHT`
-- [18:24:50] `Crit`
-- [18:24:49] `NIDORINO`
-- [18:24:48] `FIGHT`
-- [18:24:47] `Enemy ZUBAT`
-- [18:24:46] `FIGHT`
-- [18:24:43] `NIDORINO gained`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
