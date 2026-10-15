@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 19:19:04**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 19:19:16**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `4`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `35`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **🗺️ Exploração Livre (🚶 A Pé)**
 - **Tempo de Jogo:** `41h 0m 18s`
 - **Dinheiro:** **2361 ₽** • **Fichas do Casino:** `0`
@@ -159,7 +159,7 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
-- [19:19:04] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [19:19:08] Entrou em Mt Moon 1F
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
