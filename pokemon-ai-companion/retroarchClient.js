@@ -232,32 +232,19 @@ class RetroArchClient extends EventEmitter {
     });
   }
 
-  normalizeResponseKey(command, address) {
-    const cmd = String(command || '').trim().toUpperCase();
-    const rawAddress = String(address || '').trim().replace(/^0X/i, '');
-    const parsedAddress = Number.parseInt(rawAddress, 16);
-    const normalizedAddress = Number.isFinite(parsedAddress)
-      ? parsedAddress.toString(16).toUpperCase()
-      : rawAddress.toUpperCase();
-    return `${cmd} ${normalizedAddress}`;
-  }
-
   sendRaw(cmd) {
     return new Promise((resolve) => {
       if (!this.socket) return resolve(null);
 
-      const parts = cmd.trim().split(/\s+/);
-      const key = this.normalizeResponseKey(parts[0], parts[1]);
+      // Restaurar a chave e o parser usados na versão em que a telemetria funcionava.
+      const parts = cmd.trim().split(' ');
+      const key = `${parts[0]} ${parts[1]}`.toUpperCase();
       let settled = false;
 
-      // O RetroArch pode demorar a responder a leituras grandes de RAM.
-      // Um prazo curto de 400 ms fazia perder respostas válidas em alguns ciclos.
       const timeout = setTimeout(() => {
-        if (this.pendingResolves.get(key) === finish) {
-          this.pendingResolves.delete(key);
-        }
+        if (this.pendingResolves.has(key)) this.pendingResolves.delete(key);
         finish(null);
-      }, 1200);
+      }, 400);
 
       const finish = (data) => {
         if (settled) return;
@@ -266,7 +253,7 @@ class RetroArchClient extends EventEmitter {
         resolve(data);
       };
 
-      this.pendingResolves.set(key, finish);
+      this.pendingResolves.set(key, (data) => finish(data));
 
       const buf = Buffer.from(cmd + '\n');
       const firstSendLog = !this.lastUdpSendLogAt;
@@ -287,7 +274,7 @@ class RetroArchClient extends EventEmitter {
             command: cmd,
             error: err.message
           }));
-          if (this.pendingResolves.get(key) === finish) this.pendingResolves.delete(key);
+          this.pendingResolves.delete(key);
           finish(null);
         }
       });
@@ -295,19 +282,17 @@ class RetroArchClient extends EventEmitter {
   }
 
   handleResponse(str, rinfo) {
-    const parts = String(str || '').trim().split(/\s+/);
+    const parts = String(str || '').trim().split(' ');
     if (parts.length < 2) return;
 
-    const key = this.normalizeResponseKey(parts[0], parts[1]);
-    const cb = this.pendingResolves.get(key);
-    if (cb) {
+    const key = `${parts[0]} ${parts[1]}`.toUpperCase();
+    if (this.pendingResolves.has(key)) {
+      const cb = this.pendingResolves.get(key);
       this.pendingResolves.delete(key);
       cb(parts.slice(2));
       return;
     }
 
-    // Se houver resposta UDP mas não corresponder ao pedido, registar o formato
-    // recebido para podermos corrigir o parser sem alterar IPs/portas do utilizador.
     const now = Date.now();
     if (!this.lastUnmatchedUdpLogAt || now - this.lastUnmatchedUdpLogAt >= 2000) {
       this.lastUnmatchedUdpLogAt = now;
