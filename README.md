@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:27:27**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:27:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `46`, Y: `8`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas GPS:** X: `20`, Y: `6`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `It su`
+- **💬 Diálogo / Mensagem no Ecrã:** `If a POKMON BOX`
 - **Dinheiro:** **2791 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -236,6 +236,9 @@
 - [17:26:04] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:27:37] `If a POKMON BOX`
+- [17:27:36] `Trained POKMON`
+- [17:27:34] `not letting`
 - [17:27:24] `It su`
 - [17:27:23] `THUNDERSHOCK GROWL`
 - [17:27:22] `Wild PIDGEY`
@@ -243,9 +246,6 @@
 - [17:27:17] `THUNDERSHOCK GROWL`
 - [17:27:15] `Wild PIDGEY`
 - [17:27:11] `Enemy JIGGLYPUFF`
-- [17:27:11] `Enem`
-- [17:27:10] `THUNDERSHOCK GROWL`
-- [17:27:03] `Choose a POKMON`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
