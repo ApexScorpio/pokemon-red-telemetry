@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:51:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:51:15**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `65`, Y: `11`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas GPS:** X: `59`, Y: `11`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy PIDGEY`
+- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -23,13 +23,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Nidoran♀** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 21 / 42 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 18 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 22 | SPD: 22 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1918 | ATK: 2675 | DEF: 1937 | SPD: 3004 | SPC: 1647
-- **Experiência:** 1949 EXP (Progresso: 80%, faltam 86 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 1998 | ATK: 2795 | DEF: 1997 | SPD: 3144 | SPC: 1709
+- **Experiência:** 2031 EXP (Progresso: 99%, faltam 4 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 26 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 22 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -237,16 +237,16 @@
 - [17:31:03] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:51:14] `NIDORAN`
+- [17:51:13] `Wi`
+- [17:51:11] `NIDORAN gained`
+- [17:51:10] `NIDORAN`
+- [17:51:09] `Enemy SPEAROW`
+- [17:51:08] `FIGHT`
+- [17:51:05] `NIDORAN gained`
+- [17:51:04] `SCRATCH TACKLE`
+- [17:51:03] `NIDORAN`
 - [17:50:58] `Enemy PIDGEY`
-- [17:50:58] `SCRATCH TACKLE`
-- [17:50:57] `NIDORAN`
-- [17:50:56] `Go NIDORAN`
-- [17:50:51] `NIDORAN`
-- [17:50:50] `Enemy PIDGEY`
-- [17:50:49] `NID`
-- [17:50:49] `Go NI`
-- [17:50:48] `999999999999999999 999999999999999999`
-- [17:50:45] `Enem`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
