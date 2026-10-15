@@ -1,13 +1,13 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:13:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:13:41**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `15`, Y: `9`
+- **Coordenadas GPS:** X: `11`, Y: `6`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Dinheiro:** **1966 ₽**
@@ -17,14 +17,14 @@
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 13)
-- **Tipos:** Bug/Flying | **HP:** 42 / 42 ✅ (SAUDÁVEL)
+### 1. **Butterfree** (Lv. 13) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Flying | **HP:** 39 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 20 | DEF: 19 | SPD: 27 | SPC: 30
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2914 | ATK: 3443 | DEF: 2840 | SPD: 3939 | SPC: 2165
-- **Experiência:** 2569 EXP (Progresso: 68%, faltam 175 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 2959 | ATK: 3473 | DEF: 2875 | SPD: 3984 | SPC: 2185
+- **Experiência:** 2681 EXP (Progresso: 88%, faltam 63 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 23 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 21 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
 
@@ -115,7 +115,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:13:29] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:13:41] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
