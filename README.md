@@ -1,17 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:10:40**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:10:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Pewter City** (ID Interno: `0x2`)
-- **Coordenadas GPS:** X: `28`, Y: `17`
+- **Localização Atual:** **Pewter Mart** (ID Interno: `0x38`)
+- **Coordenadas GPS:** X: `2`, Y: `5`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `transferred to`
-- **Dinheiro:** **3001 ₽**
+- **💬 Diálogo / Mensagem no Ecrã:** `Take your time`
+- **Dinheiro:** **1001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -92,12 +92,13 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **5 / 20 slots** (15 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **6 / 20 slots** (14 vagas livres)
 - **Potion** x4
 - **Antidote** x2
 - **Town Map** x1
 - **Item #234** x1
 - **Item #212** x1
+- **Poké Ball** x10
 
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
@@ -282,24 +283,24 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [18:10:42] Entrou em Pewter Mart
 - [18:10:40] Entrou em Pewter City
 - [18:10:24] Entrou em Route 3
 - [18:10:22] Entrou em Route 4
 - [18:06:06] Entrou em Mt Moon 1F
 - [18:06:04] Entrou em Route 4
-- [18:02:41] Entrou em Mt Moon Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:10:52] `Take your time`
+- [18:10:51] `Here you are`
+- [18:10:50] `That will be`
+- [18:10:49] `POK BALL`
+- [18:10:43] `Take your time`
+- [18:10:42] `Hi the`
 - [18:08:28] `transferred to`
 - [18:08:27] `give a nickname`
 - [18:08:26] `Do you want to`
 - [18:08:25] `perpetually dark places Uses`
-- [18:08:24] `will be added for`
-- [18:08:22] `New POKDEX data`
-- [18:08:21] `All right`
-- [18:08:20] `RED used`
-- [18:08:14] `FIGHT`
-- [18:08:13] `Sucked health from`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Batalha em curso: use **String Shot** (bug) para infligir dano crítico"
