@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:38:59**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:39:11**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -14,12 +14,12 @@
 ## ⚔️ Combate Ativo em Direto
 ### 🔴 Adversário: **Pidgey** (Lv. 5)
 - **Tipos:** Normal/Flying
-- **HP:** **20 / 20** (100%)
+- **HP:** **2 / 20** (10%)
 - **Stats de Batalha:** ATK: 10 | DEF: 9 | SPD: 10 | SPC: 9
 - **Golpes:** Gust, Sand Attack
 
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 12)
-- **Tipos:** Normal
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 12)
+- **Tipos:** Bug/Flying
 - **HP:** **39 / 39**
 - **Stats com Modificadores:** ATK: 19 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 28 (0)
 
@@ -27,8 +27,8 @@
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
 - **⭐ Melhor Decisão Matemática:** Usa **Confusion** (Psychic) ➔ Dano Estimado: **18-22 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 - **Matriz de Golpes Disponíveis:**
-  - **Confusion** (Psychic) • PP: 23/20 • Dano: 18-22 HP (DANO NORMAL ⚔️) [⚠️ RISCO DE K.O. (~60%)]
-  - **Tackle** (Normal) • PP: 33/20 • Dano: 13-16 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
+  - **Confusion** (Psychic) • PP: 19/20 • Dano: 18-22 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
+  - **Tackle** (Normal) • PP: 33/20 • Dano: 9-11 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
   - **String Shot** (Bug) • PP: 40/20 • Dano: 0-0 HP (POUCO EFETIVO 🛡️) [🛡️ GOLPE DE STATUS]
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
@@ -37,11 +37,11 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (39/39). Não precisas de gastar um turno a trocar.
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (39/39). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **4%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~8%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **8%** | Great Ball: **12%** | Ultra Ball: **23%**
+  - *Se adormeceres o inimigo:* **~33%** | *Com HP no vermelho:* **~8%**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
 ### 1. **Butterfree** (Lv. 12) ⚔️ [EM COMBATE]
@@ -50,7 +50,7 @@
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Experiência:** 1938 EXP (Progresso: 45%, faltam 259 p/ Lv.13)
 - **Golpes:**
-  - **Confusion** (Psychic) — PP: 23 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 19 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
 
