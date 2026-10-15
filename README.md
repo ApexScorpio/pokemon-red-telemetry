@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:54:18**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:54:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,7 +16,7 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #9`
-- **Último Golpe Usado por RED:** `Poison Sting`
+- **Último Golpe Usado por RED:** `Scratch`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
@@ -27,23 +27,23 @@
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
   - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 11)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 38** (HEALTHY)
-- **Stats com Modificadores:** ATK: 25 (0) | DEF: 5 (-4) | SPD: 23 (0) | SPC: 16 (0)
+### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 16)
+- **Tipos:** Fire
+- **HP:** **48 / 48** (HEALTHY)
+- **Stats com Modificadores:** ATK: 30 (0) | DEF: 26 (0) | SPD: 37 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **String Shot** (Bug) ➔ Dano: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Ember** (Fire) ➔ Dano: **10-12 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-null: Usa repetidamente String Shot
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Ember (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Ember! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
+#### 🔄 Conselheiro de Troca: **⭐ GANHAR EXP: TROCA PARA O MAIS FRACO!**
 - **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Charmeleon (Lv. 16)** [48/48 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Charmeleon para manter o controlo da batalha.
+- **Substituto Sugerido:** **Nidoran♂ (Lv. 12)** [36/36 HP]
+- **Motivo:** O adversário tem apenas 8 HP! Troca para Nidoran♂ (Lv. 12) para ele participar e recolher 50% dos pontos de EXP da vitória com risco zero!
 - **⭐ Prioridade de Treino (EXP):** **Nidoran♂ (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -58,7 +58,7 @@
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
-### 2. **Charmeleon** (Lv. 16)
+### 2. **Charmeleon** (Lv. 16) ⚔️ [EM COMBATE]
 - **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 26 | SPD: 37 | SPC: 32
 - **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
@@ -103,7 +103,7 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
-### 6. **Beedrill** (Lv. 11) ⚔️ [EM COMBATE]
+### 6. **Beedrill** (Lv. 11)
 - **Tipos:** Bug/Poison | **HP:** 0 / 38 ❌ (FAINTED)
 - **Stats Reais:** ATK: 25 | DEF: 17 | SPD: 23 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
