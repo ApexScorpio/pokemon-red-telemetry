@@ -206,8 +206,8 @@ class RetroArchClient extends EventEmitter {
   init() {
     this.socket = dgram.createSocket('udp4');
 
-    this.socket.on('message', (msg) => {
-      this.handleResponse(msg.toString().trim());
+    this.socket.on('message', (msg, rinfo) => {
+      this.handleResponse(msg.toString().trim(), rinfo);
     });
 
     this.socket.on('error', (err) => {
@@ -222,45 +222,74 @@ class RetroArchClient extends EventEmitter {
     });
   }
 
+  normalizeResponseKey(command, address) {
+    const cmd = String(command || '').trim().toUpperCase();
+    const rawAddress = String(address || '').trim().replace(/^0X/i, '');
+    const parsedAddress = Number.parseInt(rawAddress, 16);
+    const normalizedAddress = Number.isFinite(parsedAddress)
+      ? parsedAddress.toString(16).toUpperCase()
+      : rawAddress.toUpperCase();
+    return `${cmd} ${normalizedAddress}`;
+  }
+
   sendRaw(cmd) {
     return new Promise((resolve) => {
       if (!this.socket) return resolve(null);
 
-      const parts = cmd.trim().split(' ');
-      const key = `${parts[0]} ${parts[1]}`.toUpperCase();
+      const parts = cmd.trim().split(/\\s+/);
+      const key = this.normalizeResponseKey(parts[0], parts[1]);
+      let settled = false;
 
+      // O RetroArch pode demorar a responder a leituras grandes de RAM.
+      // Um prazo curto de 400 ms fazia perder respostas válidas em alguns ciclos.
       const timeout = setTimeout(() => {
-        if (this.pendingResolves.has(key)) {
+        if (this.pendingResolves.get(key) === finish) {
           this.pendingResolves.delete(key);
-          resolve(null);
         }
-      }, 400);
+        finish(null);
+      }, 1200);
 
-      this.pendingResolves.set(key, (data) => {
+      const finish = (data) => {
+        if (settled) return;
+        settled = true;
         clearTimeout(timeout);
         resolve(data);
-      });
+      };
 
-      const buf = Buffer.from(cmd + '\n');
+      this.pendingResolves.set(key, finish);
+
+      const buf = Buffer.from(cmd + '\\n');
       this.socket.send(buf, 0, buf.length, this.port, this.ip, (err) => {
         if (err) {
-          clearTimeout(timeout);
-          this.pendingResolves.delete(key);
-          resolve(null);
+          if (this.pendingResolves.get(key) === finish) this.pendingResolves.delete(key);
+          finish(null);
         }
       });
     });
   }
 
-  handleResponse(str) {
-    const parts = str.split(' ');
+  handleResponse(str, rinfo) {
+    const parts = String(str || '').trim().split(/\\s+/);
     if (parts.length < 2) return;
 
-    const key = `${parts[0]} ${parts[1]}`.toUpperCase();
-    if (this.pendingResolves.has(key)) {
-      const cb = this.pendingResolves.get(key);
+    const key = this.normalizeResponseKey(parts[0], parts[1]);
+    const cb = this.pendingResolves.get(key);
+    if (cb) {
       this.pendingResolves.delete(key);
       cb(parts.slice(2));
+      return;
+    }
+
+    // Se houver resposta UDP mas não corresponder ao pedido, registar o formato
+    // recebido para podermos corrigir o parser sem alterar IPs/portas do utilizador.
+    const now = Date.now();
+    if (!this.lastUnmatchedUdpLogAt || now - this.lastUnmatchedUdpLogAt >= 2000) {
+      this.lastUnmatchedUdpLogAt = now;
+      console.warn('[RetroArchClient] Resposta UDP sem pedido correspondente:', JSON.stringify({
+        response: String(str || '').slice(0, 180),
+        from: rinfo ? `${rinfo.address}:${rinfo.port}` : null,
+        pending: Array.from(this.pendingResolves.keys()).slice(0, 5)
+      }));
     }
   }
 
