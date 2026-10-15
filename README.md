@@ -1,17 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:21:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:21:37**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `18`, Y: `25`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `21`, Y: `17`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `47h 0m 24s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
+- **Tempo de Jogo:** `47h 0m 26s`
+- **💬 Diálogo / Mensagem no Ecrã:** `found only in certain areas`
 - **Dinheiro:** **2361 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -43,7 +43,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
-- **Tipos:** Normal | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 35 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 19 | SPD: 32 | SPC: 19
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 5723 | Def: 4165 | Spd: 6480 | Spc: 3557 | HP: 4836
@@ -90,7 +90,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **9 / 20 slots** (11 vagas livres)
-- **Poké Ball** x5
+- **Poké Ball** x2
 - **Antidote** x2
 - **Town Map** x1
 - **TM34 (Bide)** x1
@@ -103,19 +103,20 @@
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Espécies Registadas na Pokédex:** **20 / 151** (Espécies Desbloqueadas)
+- **Espécies Registadas na Pokédex:** **21 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **30 / 151**
-- **Total de Pokémon Individuais Ativos:** **13 espécimes** (6 na Equipa + 7 no PC)
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat, #46 Paras, #74 Geodude
+- **Total de Pokémon Individuais Ativos:** **14 espécimes** (6 na Equipa + 8 no PC)
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #46 Paras, #74 Geodude
 
-## 💾 6. Pokémon Guardados no PC (7 / 20 na Caixa 1) • Vagas Livres: **13**
-- #1: **Paras** (Dex: #46)
-- #2: **Geodude** (Dex: #74)
-- #3: **Zubat** (Dex: #41)
-- #4: **Jigglypuff** (Dex: #39)
-- #5: **Spearow** (Dex: #21)
-- #6: **Pidgey** (Dex: #16)
-- #7: **Charmeleon** (Dex: #5)
+## 💾 6. Pokémon Guardados no PC (8 / 20 na Caixa 1) • Vagas Livres: **12**
+- #1: **Clefairy** (Dex: #35)
+- #2: **Paras** (Dex: #46)
+- #3: **Geodude** (Dex: #74)
+- #4: **Zubat** (Dex: #41)
+- #5: **Jigglypuff** (Dex: #39)
+- #6: **Spearow** (Dex: #21)
+- #7: **Pidgey** (Dex: #16)
+- #8: **Charmeleon** (Dex: #5)
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
@@ -128,7 +129,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↙️ 9 passos Sudoeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **✅ VENCIDO**
+### #1. [↙️ 20 passos Sudoeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -141,7 +142,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember elimina ambos os insetos num só golpe.
 
-### #2. [↖️ 32 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **✅ VENCIDO**
+### #2. [↖️ 27 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -154,7 +155,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #3. [↗️ 14 passos Nordeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **✅ VENCIDO**
+### #3. [↗️ 3 passos Nordeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -167,7 +168,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #4. [↗️ 33 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **✅ VENCIDO**
+### #4. [↗️ 22 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -180,7 +181,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #5. [↘️ 12 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
+### #5. [↘️ 17 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -193,7 +194,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↖️ 13 passos Noroeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
+### #6. [↙️ 14 passos Sudoeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Rattata (Lv. 10) • Zubat (Lv. 10)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -206,7 +207,7 @@
   - **Slot #6**: **Nidorino** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #7. [↖️ 6 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #7. [↙️ 11 passos Sudoeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -227,6 +228,7 @@
 - [20:16:49] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:21:32] `found only in certain areas`
 - [20:21:16] `TACKLE TAIL WHIP`
 - [20:21:02] `THUNDERSHOCK THUNDER WAVE`
 
