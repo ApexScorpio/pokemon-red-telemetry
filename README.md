@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:25:44**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:25:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,43 +9,17 @@
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
 - **Coordenadas GPS:** X: `30`, Y: `5`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `NIDORINO`
-- **Dinheiro:** **1846 ₽**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `RED defeated`
+- **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Tackle`
-- **Último Golpe Usado pelo Adversário:** `Absorb`
-
-### 🔴 Adversário em Campo: **Oddish** (Lv. 11)
-- **Tipos:** Grass/Poison
-- **HP:** **17 / 32** (53%)
-- **Stats de Batalha:** ATK: 17 | DEF: 18 | SPD: 13 | SPC: 23
-- **Os 4 Golpes do Adversário:**
-  - **Absorb** (Grass) • PP: 3 • Poder: 20 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Absorb** (Grass) ➔ Dano: ~1-2 HP (0.5x)
-
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 18)
-- **Tipos:** Poison
-- **HP:** **12 / 56** (HEALTHY)
-- **Stats com Modificadores:** ATK: 43 (0) | DEF: 32 (0) | SPD: 34 (0) | SPC: 29 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **25-30 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (12/56). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14)
@@ -59,16 +33,16 @@
   - **String Shot** (Bug) — PP: 38 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 12 / 56 ✅ (SAUDÁVEL)
+### 2. **Nidorino** (Lv. 18)
+- **Tipos:** Poison | **HP:** 11 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 32 | SPD: 34 | SPC: 29
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3417 | ATK: 4365 | DEF: 3002 | SPD: 4788 | SPC: 2578
-- **Experiência:** 4012 EXP (Progresso: 28%, faltam 563 p/ Lv.19)
+- **Stat EXP (EVs Acumulados):** HP: 3512 | ATK: 4490 | DEF: 3092 | SPD: 4858 | SPC: 2723
+- **Experiência:** 4393 EXP (Progresso: 77%, faltam 182 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 12 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 11 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
+  - **Bite** (Normal) — PP: 24 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
@@ -133,7 +107,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Pokémon Capturados:** **19 / 151**
-- **Pokémon Vistos:** **28 / 151**
+- **Pokémon Vistos:** **29 / 151**
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat, #74 Geodude
 
 ## 💾 6. Pokémon Guardados no PC (6 / 20 na Caixa 1) • Vagas Livres: **14**
@@ -185,16 +159,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:25:54] `RED defeated`
+- [18:25:53] `NIDORINO`
+- [18:25:49] `TACKLE HORN ATTACK`
+- [18:25:48] `FIGHT`
+- [18:25:47] `Will RED`
+- [18:25:46] `NIDORINO gained`
+- [18:25:44] `Enemy ODDISH`
 - [18:25:43] `NIDORINO`
 - [18:25:42] `Enemy ODDISH`
 - [18:25:41] `TACKLE HORN ATTACK`
-- [18:25:40] `LASS sent`
-- [18:25:40] `999999999999999999 999999999999999999`
-- [18:25:39] `Wow It way`
-- [18:25:36] `It not very`
-- [18:25:35] `Enemy GEODUDE`
-- [18:25:34] `NIDORINO`
-- [18:25:33] `Enemy G`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
