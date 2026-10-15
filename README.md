@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:24:22**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:24:34**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `37`, Y: `29`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **💬 Diálogo / Mensagem no Ecrã:** `It not very`
 - **Dinheiro:** **1696 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -21,7 +21,7 @@
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
-- **HP:** **6 / 24** (25%)
+- **HP:** **5 / 24** (21%)
 - **Stats de Batalha:** ATK: 19 | DEF: 22 | SPD: 4 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
@@ -34,17 +34,16 @@
 - **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **4-5 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 70%)
-- ➔ Turno 1: Golpe #31 (Causa ~4-5 de dano)
-- ➔ Turno 2: Golpe #31 (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Golpe #31. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Golpe #31 (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Golpe #31! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 6 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 5 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
   - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
@@ -57,7 +56,7 @@
 - **Stat EXP (EVs Acumulados):** HP: 2653 | ATK: 3032 | DEF: 2569 | SPD: 3652 | SPC: 2060
 - **Experiência:** 3139 EXP (Progresso: 63%, faltam 236 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 4 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 3 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 38 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
@@ -187,6 +186,7 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:24:23] `It not very`
 - [18:24:22] `FIGHT`
 - [18:24:20] `Hit the enemy`
 - [18:24:19] `It not very`
@@ -196,7 +196,6 @@
 - [18:23:56] `Critic`
 - [18:23:56] `Enemy GEO`
 - [18:23:55] `BEEDRILL`
-- [18:23:54] `FURY ATTACK POISON STING`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
