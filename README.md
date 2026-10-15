@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:22:15**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:22:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `19`, Y: `25`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas GPS:** X: `20`, Y: `32`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Your POKMON are`
+- **💬 Diálogo / Mensagem no Ecrã:** `BEEDRILL grew`
 - **Dinheiro:** **1596 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -22,14 +22,14 @@
   - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 13)
-- **Tipos:** Bug/Poison | **HP:** 43 / 43 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 27 | SPC: 18
+### 1. **Beedrill** (Lv. 14)
+- **Tipos:** Bug/Poison | **HP:** 46 / 46 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2473 | ATK: 2907 | DEF: 2409 | SPD: 3477 | SPC: 1955
-- **Experiência:** 2716 EXP (Progresso: 95%, faltam 28 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 2513 | ATK: 2952 | DEF: 2444 | SPD: 3532 | SPC: 1995
+- **Experiência:** 2762 EXP (Progresso: 3%, faltam 613 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 19 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -93,7 +93,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **6 / 20 slots** (14 vagas livres)
-- **Potion** x5
+- **Potion** x6
 - **Antidote** x2
 - **Town Map** x1
 - **Item #234** x1
@@ -132,7 +132,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 13) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -145,7 +145,7 @@
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Nidorino** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 13) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Butterfree** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -158,6 +158,11 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:22:23] `BEEDRILL grew`
+- [18:22:22] `Enemy ZUBAT`
+- [18:22:21] `BEEDRILL`
+- [18:22:20] `FIGHT`
+- [18:22:19] `999999999999999999 999999999999999999`
 - [18:21:54] `Your POKMON are`
 - [18:21:53] `OK Wel need`
 - [18:21:52] `POKMON back to`
