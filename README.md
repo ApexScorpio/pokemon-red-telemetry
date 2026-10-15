@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:31:22**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:48:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `61`, Y: `8`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **💬 Diálogo / Mensagem no Ecrã:** `Critical hit`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -22,14 +22,14 @@
   - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 15) ⚔️ [EM COMBATE]
+### 1. **Pikachu** (Lv. 15)
 - **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4400 | ATK: 6115 | DEF: 4216 | SPD: 6869 | SPC: 3602
-- **Experiência:** 3382 EXP (Progresso: 1%, faltam 714 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4440 | ATK: 6160 | DEF: 4256 | SPD: 6925 | SPC: 3637
+- **Experiência:** 3437 EXP (Progresso: 9%, faltam 659 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -236,16 +236,16 @@
 - [17:29:20] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:48:39] `Critical hit`
+- [17:48:38] `PIKACHU`
+- [17:48:37] `FIGHT`
+- [17:31:26] `THUNDERSHOCK GROWL`
 - [17:31:19] `FIGHT`
 - [17:31:18] `Wild PIDGEY`
 - [17:31:08] `over a rocky`
 - [17:31:07] `Ouch I tripped`
 - [17:29:18] `OK Wel need`
 - [17:29:17] `Welcome to our`
-- [17:29:11] `Got away safely`
-- [17:29:10] `NIDORAN`
-- [17:29:09] `It not very`
-- [17:29:08] `Enemy GEODUDE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
