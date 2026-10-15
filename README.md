@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:19:28**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:19:39**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -14,13 +14,13 @@
 ## ⚔️ Combate Ativo em Direto
 ### 🔴 Adversário: **Sandshrew** (Lv. 11)
 - **Tipos:** Ground
-- **HP:** **33 / 33** (100%)
+- **HP:** **17 / 33** (52%)
 - **Stats de Batalha:** ATK: 23 | DEF: 25 | SPD: 15 | SPC: 13
 - **Golpes:** Scratch, Sand Attack
 
 ### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 13)
 - **Tipos:** Poison
-- **HP:** **18 / 40**
+- **HP:** **0 / 40**
 - **Stats com Modificadores:** ATK: 18 (0) | DEF: 20 (0) | SPD: 21 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática (Gen 1)
@@ -28,18 +28,18 @@
 - **⭐ Melhor Decisão Matemática:** Usa **Growl** (Normal) ➔ Dano Estimado: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
 - **Matriz de Golpes Disponíveis:**
   - **Growl** (Normal) • PP: 36/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) 
-  - **Scratch** (Normal) • PP: 31/20 • Dano: 5-6 HP (DANO NORMAL ⚔️) 
+  - **Scratch** (Normal) • PP: 28/20 • Dano: 5-6 HP (DANO NORMAL ⚔️) 
   - **Tackle** (Normal) • PP: 35/20 • Dano: 4-5 HP (DANO NORMAL ⚔️) 
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 13)
-- **Tipos:** Poison | **HP:** 18 / 40 ✅ (SAUDÁVEL)
+### 1. **Nidoran♀** (Lv. 13) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 0 / 40 ❌ (FAINTED)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Experiência:** 1297 EXP (Progresso: 10%, faltam 315 p/ Lv.14)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 28 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 36 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidoran♂** (Lv. 12)
