@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:49:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:49:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas GPS:** X: `11`, Y: `12`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas GPS:** X: `9`, Y: `12`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy SPEAROW`
+- **💬 Diálogo / Mensagem no Ecrã:** `Ouch I tripped`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -23,13 +23,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 11)
-- **Tipos:** Bug/Poison | **HP:** 13 / 38 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 17 | SPD: 23 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 1998 | ATK: 2367 | DEF: 1931 | SPD: 2877 | SPC: 1434
 - **Experiência:** 1714 EXP (Progresso: 96%, faltam 14 p/ Lv.12)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
 
 ### 2. **Nidoran♀** (Lv. 14)
@@ -75,7 +75,7 @@
 - **Stat EXP (EVs Acumulados):** HP: 4440 | ATK: 6160 | DEF: 4256 | SPD: 6925 | SPC: 3637
 - **Experiência:** 3437 EXP (Progresso: 9%, faltam 659 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -150,24 +150,24 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [17:49:34] Entrou em Route 4
+- [17:49:30] Entrou em Mt Moon Pokecenter
 - [17:49:27] Entrou em Route 4
 - [17:31:16] Entrou em Route 3
 - [17:31:03] Entrou em Route 4
 - [17:31:03] Entrou em Route 3
-- [17:29:54] Entrou em Route 4
-- [17:29:53] Entrou em Mt Moon 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:49:37] `Ouch I tripped`
+- [17:49:32] `OK Wel need`
+- [17:49:31] `POKMON back to`
+- [17:49:30] `Welcome to our`
 - [17:49:19] `Enemy SPEAROW`
 - [17:49:19] `POISON STING STRING SHOT`
 - [17:49:18] `Wild SPEAR`
 - [17:49:16] `Choose a POKMON`
 - [17:49:15] `Move POKMON`
 - [17:49:14] `Choose a P SWITCH`
-- [17:49:12] `Choose a POKMON`
-- [17:48:39] `Critical hit`
-- [17:48:38] `PIKACHU`
-- [17:48:37] `FIGHT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
