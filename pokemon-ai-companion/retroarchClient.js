@@ -206,18 +206,8 @@ class RetroArchClient extends EventEmitter {
   init() {
     this.socket = dgram.createSocket('udp4');
 
-    this.socket.on('message', (msg, rinfo) => {
-      const raw = msg.toString().trim();
-      const now = Date.now();
-      if (!this.lastUdpPacketLogAt || now - this.lastUdpPacketLogAt >= 2000) {
-        this.lastUdpPacketLogAt = now;
-        console.log('[RetroArchClient] Pacote UDP recebido:', JSON.stringify({
-          from: `${rinfo.address}:${rinfo.port}`,
-          bytes: msg.length,
-          response: raw.slice(0, 220)
-        }));
-      }
-      this.handleResponse(raw, rinfo);
+    this.socket.on('message', (msg) => {
+      this.handleResponse(msg.toString().trim());
     });
 
     this.socket.on('error', (err) => {
@@ -236,53 +226,34 @@ class RetroArchClient extends EventEmitter {
     return new Promise((resolve) => {
       if (!this.socket) return resolve(null);
 
-      // Restaurar a chave e o parser usados na versão em que a telemetria funcionava.
       const parts = cmd.trim().split(' ');
       const key = `${parts[0]} ${parts[1]}`.toUpperCase();
-      let settled = false;
 
       const timeout = setTimeout(() => {
-        if (this.pendingResolves.has(key)) this.pendingResolves.delete(key);
-        finish(null);
+        if (this.pendingResolves.has(key)) {
+          this.pendingResolves.delete(key);
+          resolve(null);
+        }
       }, 400);
 
-      const finish = (data) => {
-        if (settled) return;
-        settled = true;
+      this.pendingResolves.set(key, (data) => {
         clearTimeout(timeout);
         resolve(data);
-      };
+      });
 
-      this.pendingResolves.set(key, (data) => finish(data));
-
-      const buf = Buffer.concat([Buffer.from(cmd, 'utf8'), Buffer.from([0x0A])]);
-      const firstSendLog = !this.lastUdpSendLogAt;
+      const buf = Buffer.from(cmd + '\n');
       this.socket.send(buf, 0, buf.length, this.port, this.ip, (err) => {
-        if (firstSendLog) {
-          this.lastUdpSendLogAt = Date.now();
-          console.log('[RetroArchClient] Primeiro pedido UDP:', JSON.stringify({
-            target: `${this.ip}:${this.port}`,
-            local: `${this.socket.address().address}:${this.socket.address().port}`,
-            command: cmd,
-            bytes: buf.length,
-            sendError: err ? err.message : null
-          }));
-        }
         if (err) {
-          console.error('[RetroArchClient] Erro ao enviar UDP:', JSON.stringify({
-            target: `${this.ip}:${this.port}`,
-            command: cmd,
-            error: err.message
-          }));
+          clearTimeout(timeout);
           this.pendingResolves.delete(key);
-          finish(null);
+          resolve(null);
         }
       });
     });
   }
 
-  handleResponse(str, rinfo) {
-    const parts = String(str || '').trim().split(' ');
+  handleResponse(str) {
+    const parts = str.split(' ');
     if (parts.length < 2) return;
 
     const key = `${parts[0]} ${parts[1]}`.toUpperCase();
@@ -290,17 +261,6 @@ class RetroArchClient extends EventEmitter {
       const cb = this.pendingResolves.get(key);
       this.pendingResolves.delete(key);
       cb(parts.slice(2));
-      return;
-    }
-
-    const now = Date.now();
-    if (!this.lastUnmatchedUdpLogAt || now - this.lastUnmatchedUdpLogAt >= 2000) {
-      this.lastUnmatchedUdpLogAt = now;
-      console.warn('[RetroArchClient] Resposta UDP sem pedido correspondente:', JSON.stringify({
-        response: String(str || '').slice(0, 180),
-        from: rinfo ? `${rinfo.address}:${rinfo.port}` : null,
-        pending: Array.from(this.pendingResolves.keys()).slice(0, 5)
-      }));
     }
   }
 
