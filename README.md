@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:16:09**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:16:21**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `26`, Y: `10`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas GPS:** X: `20`, Y: `23`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Wild ZUBAT`
+- **💬 Diálogo / Mensagem no Ecrã:** `999999999999999999 999999999999999999`
 - **Dinheiro:** **1321 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -18,41 +18,46 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
-- **Tipos:** Poison/Flying
-- **HP:** **23 / 23** (100%)
-- **Stats de Batalha:** ATK: 12 | DEF: 10 | SPD: 14 | SPC: 12
+### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Rock/Ground
+- **HP:** **25 / 25** (100%)
+- **Stats de Batalha:** ATK: 20 | DEF: 21 | SPD: 9 | SPC: 11
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 12)
 - **Tipos:** Normal
 - **HP:** **12 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 14 (-2) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
+- **Stats com Modificadores:** ATK: 30 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **5-7 HP** (1x eficácia) • ~4 turnos para K.O.
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **5-6 HP** (0.5x eficácia) • ~5 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-4: Usa repetidamente Golpe #31
+- ➔ Turnos 1-5: Usa repetidamente Golpe #31
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (12/40). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 16)** [49/49 HP]
+- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Pokémon #0.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~9%**
+  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~10%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 12 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2188 | ATK: 2562 | DEF: 2079 | SPD: 3092 | SPC: 1605
-- **Experiência:** 2067 EXP (Progresso: 72%, faltam 130 p/ Lv.13)
+- **Stat EXP (EVs Acumulados):** HP: 2228 | ATK: 2607 | DEF: 2114 | SPD: 3147 | SPC: 1645
+- **Experiência:** 2121 EXP (Progresso: 84%, faltam 76 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
 
@@ -185,6 +190,9 @@
 - [18:11:39] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:16:20] `999999999999999999 999999999999999999`
+- [18:16:13] `Enemy ZUBAT`
+- [18:16:12] `BEEDRILL`
 - [18:14:32] `Wild ZUBAT`
 - [18:14:28] `RED got 210`
 - [18:14:27] `RED defeated`
@@ -192,9 +200,6 @@
 - [18:14:25] `Enemy CLEFAIRY`
 - [18:14:24] `FURY ATTACK POISON STING`
 - [18:14:23] `Enemy CLEFAIRY`
-- [18:14:22] `Critical hit`
-- [18:14:21] `FIGHT`
-- [18:14:18] `BEEDRILL`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Use **Po"
