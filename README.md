@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:56:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:56:41**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Pewter Mart** (ID Interno: `0x38`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `6`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `5`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `34h 0m 56s`
+- **Tempo de Jogo:** `34h 0m 57s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **3321 ₽** • **Fichas do Casino:** `0`
 
@@ -138,7 +138,7 @@
   - **Slot #6**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
-### #2. [↘️ 39 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **⚔️ POR VENCER**
+### #2. [↘️ 41 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **⚔️ POR VENCER**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -164,7 +164,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember do Charmeleon elimina cada inseto num só golpe.
 
-### #4. [➡️ 2 passos Este] **Lass Iris** (Mt. Moon 1F (Norte)) • **⚔️ POR VENCER**
+### #4. [↘️ 4 passos Sudeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -190,7 +190,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion é super eficaz contra Ekans (Veneno). Cuidado com Poison Sting.
 
-### #6. [↘️ 30 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **⚔️ POR VENCER**
+### #6. [↘️ 32 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -242,7 +242,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion elimina Nidoran♀ rapidamente.
 
-### #10. [↘️ 46 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
+### #10. [↘️ 48 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -268,7 +268,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para ganhar EXP com Charmeleon.
 
-### #12. [↘️ 21 passos Sudeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
+### #12. [↘️ 23 passos Sudeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Rattata (Lv. 10) • Zubat (Lv. 10)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -294,7 +294,7 @@
   - **Slot #6**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Spearow é rápido e bate forte com Peck. Pikachu derrota com facilidade.
 
-### #14. [↘️ 28 passos Sudeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **⚔️ POR VENCER**
+### #14. [↘️ 30 passos Sudeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -320,7 +320,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
 
-### #16. [↘️ 18 passos Sudeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste)) • **⚔️ POR VENCER**
+### #16. [↘️ 20 passos Sudeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste)) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -333,7 +333,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
-### #17. [↘️ 19 passos Sudeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **⚔️ POR VENCER**
+### #17. [↘️ 21 passos Sudeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Zubat (Lv. 12) • Ekans (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -346,7 +346,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
-### #18. [↘️ 37 passos Sudeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **⚔️ POR VENCER**
+### #18. [↘️ 39 passos Sudeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Raticate (Lv. 13)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -359,7 +359,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Hyper Fang. Raticate tem alta velocidade e ataque rápido.
 
-### #19. [↘️ 12 passos Sudeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **⚔️ POR VENCER**
+### #19. [↘️ 14 passos Sudeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Média
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -385,7 +385,7 @@
   - **Slot #6**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
-### #21. [➡️ 25 passos Este] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **⚔️ POR VENCER**
+### #21. [↘️ 27 passos Sudeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **⚔️ POR VENCER**
 - **Dificuldade:** Difícil
 - **Roster Inimigo:** Raticate (Lv. 16)
 - **Lead Recomendado:** Charmeleon / Geodude
