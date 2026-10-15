@@ -1,62 +1,65 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:36**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `31`, Y: `27`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
-- **Dinheiro:** **1596 ₽**
+- **Coordenadas GPS:** X: `37`, Y: `29`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `RED got 100`
+- **Dinheiro:** **1696 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Poison Sting`
-- **Último Golpe Usado pelo Adversário:** `Harden`
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Metapod** (Lv. 10)
-- **Tipos:** Bug
-- **HP:** **2 / 31** (6%)
-- **Stats de Batalha:** ATK: 10 | DEF: 51 | SPD: 12 | SPC: 11
+### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Rock/Ground
+- **HP:** **24 / 24** (100%)
+- **Stats de Batalha:** ATK: 19 | DEF: 22 | SPD: 8 | SPC: 12
 - **Os 4 Golpes do Adversário:**
-  - **Harden** (Normal) • PP: 7 • Poder: -- • Precisão: 100%
+  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Harden** (Normal) ➔ Golpe de Status
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
-- **Tipos:** Bug/Poison
-- **HP:** **43 / 46** (HEALTHY)
+### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 14)
+- **Tipos:** Normal
+- **HP:** **38 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~24 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-24: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 16)** [49/49 HP]
+- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Pokémon #0.
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 14)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 43 / 46 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 38 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2558 | ATK: 2982 | DEF: 2479 | SPD: 3577 | SPC: 2015
-- **Experiência:** 2874 EXP (Progresso: 21%, faltam 501 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 2653 | ATK: 3032 | DEF: 2569 | SPD: 3652 | SPC: 2060
+- **Experiência:** 3139 EXP (Progresso: 63%, faltam 236 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 13 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 11 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 17)
 - **Tipos:** Poison | **HP:** 53 / 53 ✅ (SAUDÁVEL)
@@ -184,16 +187,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [18:23:19] `FURY ATTACK POISON STING`
-- [18:23:18] `Enemy METAPOD`
-- [18:23:17] `BEEDRILL`
-- [18:23:16] `Enemy METAPOD`
-- [18:23:15] `BEEDRILL`
-- [18:23:14] `Enemy METAPOD`
-- [18:23:13] `BEEDRILL`
-- [18:23:12] `Enemy METAPOD`
-- [18:23:11] `BEEDRILL`
-- [18:23:10] `Will RED`
+- [18:23:34] `RED got 100`
+- [18:23:33] `RED defeated`
+- [18:23:32] `BEEDRILL`
+- [18:23:30] `FURY ATTACK POISON STING`
+- [18:23:30] `FIGHT`
+- [18:23:29] `Enemy CATERPIE`
+- [18:23:28] `BEEDRILL`
+- [18:23:27] `FIGHT`
+- [18:23:26] `Will RED`
+- [18:23:25] `Ene`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
