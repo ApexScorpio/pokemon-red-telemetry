@@ -25,6 +25,26 @@ const server = http.createServer(async (req, res) => {
 
   const url = new URL(req.url, `http://${req.headers.host}`);
 
+  // Atualização manual: pull da versão mais recente e reinício pelo supervisor start.js
+  if (url.pathname === '/api/update' && req.method === 'POST') {
+    const { execFileSync } = require('child_process');
+    try {
+      execFileSync('git', ['fetch', 'origin', 'main'], {
+        cwd: __dirname, stdio: 'pipe', timeout: 30000
+      });
+      execFileSync('git', ['pull', '--ff-only', 'origin', 'main'], {
+        cwd: __dirname, stdio: 'pipe', timeout: 30000
+      });
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: true, message: 'Pull concluído. A reiniciar o companion...' }));
+      setTimeout(() => process.exit(0), 700);
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: (err.stderr && err.stderr.toString().trim()) || err.message }));
+    }
+    return;
+  }
+
   if (url.pathname === '/api/state') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify(client.latestState));
