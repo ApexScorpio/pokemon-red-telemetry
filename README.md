@@ -1,17 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:50:16**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:50:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `27`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `32`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `34h 0m 17s`
-- **💬 Diálogo / Mensagem no Ecrã:** `POKDEX     15 TIME     3407`
+- **Tempo de Jogo:** `34h 0m 18s`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **3001 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -23,13 +23,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **NIDORAN (Nidoran♂)** (Lv. 15)
-- **Tipos:** Poison | **HP:** 43 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 31 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 22 | SPD: 24 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 3163 | Def: 2007 | Spd: 3404 | Spc: 1758 | HP: 2472
-- **Experiência:** 2045 EXP (Progresso: 2%, faltam 490 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 3208 | Def: 2042 | Spd: 3459 | Spc: 1798 | HP: 2512
+- **Experiência:** 2114 EXP (Progresso: 16%, faltam 421 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -124,7 +124,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↘️ 13 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **⚔️ POR VENCER**
+### #1. [➡️ 13 passos Este] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **⚔️ POR VENCER**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -137,7 +137,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember elimina ambos os insetos num só golpe.
 
-### #2. [↖️ 24 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **⚔️ POR VENCER**
+### #2. [↗️ 28 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -150,7 +150,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #3. [↗️ 26 passos Nordeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **⚔️ POR VENCER**
+### #3. [↗️ 36 passos Nordeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -163,7 +163,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #4. [↗️ 45 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **⚔️ POR VENCER**
+### #4. [↗️ 55 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -176,7 +176,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #5. [↘️ 20 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **⚔️ POR VENCER**
+### #5. [↗️ 22 passos Nordeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -189,7 +189,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↗️ 9 passos Nordeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **⚔️ POR VENCER**
+### #6. [↗️ 19 passos Nordeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Rattata (Lv. 10) • Zubat (Lv. 10)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -202,7 +202,7 @@
   - **Slot #6**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #7. [↗️ 12 passos Nordeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **⚔️ POR VENCER**
+### #7. [↗️ 22 passos Nordeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -225,6 +225,7 @@
 - [20:48:28] Entrou em Pallet Town
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:50:17] `TACKLE HORN ATTACK`
 - [20:48:46] `POKDEX     15 TIME     3407`
 - [20:48:28] `999979599 9199999`
 - [20:23:50] `TACKLE HORN ATTACK`
