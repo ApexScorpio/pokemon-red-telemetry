@@ -1,32 +1,33 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:14:27**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:14:46**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `19`, Y: `6`
+- **Coordenadas GPS:** X: `21`, Y: `6`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Dinheiro:** **2231 ₽**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Dinheiro:** **2321 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 35 / 44 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 21 | DEF: 21 | SPD: 29 | SPC: 32
+### 1. **Butterfree** (Lv. 15)
+- **Tipos:** Bug/Flying | **HP:** 38 / 47 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 23 | DEF: 22 | SPD: 31 | SPC: 34
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3109 | ATK: 3654 | DEF: 3019 | SPD: 4206 | SPC: 2290
-- **Experiência:** 3182 EXP (Progresso: 69%, faltam 193 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 3289 | ATK: 3764 | DEF: 3189 | SPD: 4366 | SPC: 2380
+- **Experiência:** 3657 EXP (Progresso: 39%, faltam 439 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 14 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 9 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
+  - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
 
 ### 2. **Charmeleon** (Lv. 16)
 - **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
@@ -115,7 +116,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:14:27] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:14:46] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
