@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:37:12**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:37:24**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -28,8 +28,8 @@
 - **⭐ Melhor Decisão Matemática:** Usa **Confusion** (Psychic) ➔ Dano Estimado: **18-22 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 - **Matriz de Golpes Disponíveis:**
   - **Confusion** (Psychic) • PP: 25/20 • Dano: 18-22 HP (DANO NORMAL ⚔️) [⚠️ RISCO DE K.O. (~80%)]
-  - **Tackle** (Normal) • PP: 35/20 • Dano: 8-10 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
   - **String Shot** (Bug) • PP: 40/20 • Dano: 0-0 HP (POUCO EFETIVO 🛡️) [🛡️ GOLPE DE STATUS]
+  - **Tackle** (Normal) • PP: 35/20 • Dano: 8-10 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
 - ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
@@ -50,9 +50,9 @@
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Experiência:** 1844 EXP (Progresso: 25%, faltam 353 p/ Lv.13)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
 ### 2. **Charmeleon** (Lv. 16)
 - **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
