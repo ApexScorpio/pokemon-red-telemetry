@@ -1,13 +1,13 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:51:27**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:51:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `64`, Y: `11`
+- **Coordenadas GPS:** X: `59`, Y: `11`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN`
@@ -23,13 +23,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Nidoran♂** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 41 / 41 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 33 / 41 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 23 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2237 | ATK: 2938 | DEF: 1897 | SPD: 3174 | SPC: 1640
-- **Experiência:** 1848 EXP (Progresso: 56%, faltam 187 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 2277 | ATK: 2998 | DEF: 1927 | SPD: 3244 | SPC: 1671
+- **Experiência:** 1906 EXP (Progresso: 70%, faltam 129 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -237,16 +237,16 @@
 - [17:31:03] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:51:38] `NIDORAN`
+- [17:51:37] `Enemy SPEAROW`
+- [17:51:35] `NIDORAN`
+- [17:51:34] `Go NIDORAN`
+- [17:51:33] `99999 9999`
+- [17:51:32] `NIDORAN`
+- [17:51:31] `Enemy SPEAROW`
+- [17:51:30] `NIDORAN`
+- [17:51:29] `Wild SPEAROW`
 - [17:51:25] `NIDORAN`
-- [17:51:22] `Move POKMON`
-- [17:51:21] `Choose a PSWITCH`
-- [17:51:20] `Choose a POKMON`
-- [17:51:19] `EXIT`
-- [17:51:18] `NIDORAN grew`
-- [17:51:17] `NIDORAN gained`
-- [17:51:16] `Enemy JIGG`
-- [17:51:15] `It didn affect`
-- [17:51:14] `NIDORAN`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
