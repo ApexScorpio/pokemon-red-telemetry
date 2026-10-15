@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:43**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `25`, Y: `12`
+- **Coordenadas GPS:** X: `33`, Y: `8`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `Eek Did you`
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -22,7 +22,7 @@
   - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Nidoran♂** (Lv. 14)
+### 1. **Nidoran♂** (Lv. 14) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 0 / 41 ❌ (FAINTED)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 23 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
@@ -46,7 +46,7 @@
   - **Growl** (Normal) — PP: 37 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
 
-### 3. **Rattata** (Lv. 15) ⚔️ [EM COMBATE]
+### 3. **Rattata** (Lv. 15)
 - **Tipos:** Normal | **HP:** 6 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 19 | SPD: 32 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 15 | ATK: 3 | DEF: 5 | SPD: 11 | SPC: 15 (**65% Perfeição**)
@@ -94,7 +94,7 @@
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **5 / 20 slots** (15 vagas livres)
 - **Potion** x4
-- **Poké Ball** x2
+- **Poké Ball** x1
 - **Antidote** x2
 - **Town Map** x1
 - **Item #234** x1
@@ -102,14 +102,15 @@
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Pokémon Capturados:** **14 / 151**
+- **Pokémon Capturados:** **15 / 151**
 - **Pokémon Vistos:** **21 / 151**
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #32 Nidoran♂
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #32 Nidoran♂, #39 Jigglypuff
 
-## 💾 6. Pokémon Guardados no PC (3 / 20 na Caixa 1) • Vagas Livres: **17**
-- #1: **Spearow** (Dex: #21)
-- #2: **Pikachu** (Dex: #25)
-- #3: **Pidgey** (Dex: #16)
+## 💾 6. Pokémon Guardados no PC (4 / 20 na Caixa 1) • Vagas Livres: **16**
+- #1: **Jigglypuff** (Dex: #39)
+- #2: **Spearow** (Dex: #21)
+- #3: **Pikachu** (Dex: #25)
+- #4: **Pidgey** (Dex: #16)
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
@@ -212,19 +213,19 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:24:43] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:24:55] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:24:54] `Eek Did you`
+- [17:24:51] `give a nickname`
+- [17:24:50] `JIGGLYPUFF was`
+- [17:24:49] `All right`
+- [17:24:48] `RED used`
 - [17:24:43] `FIGHT`
 - [17:24:42] `Enemy J`
 - [17:24:41] `FIGHT`
 - [17:24:39] `RATTATA`
 - [17:24:38] `Go RATTATA`
-- [17:24:34] `RATTATA`
-- [17:24:33] `TACKLE QUICK ATTACK`
-- [17:24:32] `RATTATA`
-- [17:24:32] `Enemy PIDGEY`
-- [17:24:31] `TACKLE QUICK ATTACK`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
