@@ -1,25 +1,51 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:44:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:44:15**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `10`, Y: `18`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `PIKACHU`
+- **Coordenadas GPS:** X: `5`, Y: `8`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
-  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Poison Sting`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
+
+### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
+- **Tipos:** Rock/Ground
+- **HP:** **29 / 29** (100%)
+- **Stats de Batalha:** ATK: 22 | DEF: 26 | SPD: 10 | SPC: 12
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
+- **Tipos:** Poison
+- **HP:** **56 / 59** (HEALTHY)
+- **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **5-7 HP** (0.5x eficácia) • ~5 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-5: Usa repetidamente Tackle
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (56/59). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 15)
@@ -29,12 +55,12 @@
 - **Stat EXP (EVs Acumulados):** HP: 4520 | ATK: 6250 | DEF: 4326 | SPD: 7035 | SPC: 3717
 - **Experiência:** 3575 EXP (Progresso: 28%, faltam 521 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 19)
-- **Tipos:** Poison | **HP:** 59 / 59 ✅ (SAUDÁVEL)
+### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 56 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 3792 | ATK: 4805 | DEF: 3337 | SPD: 5243 | SPC: 3003
@@ -162,16 +188,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:44:14] `TACKLE HORN ATTACK`
+- [18:44:13] `Enemy GEODUDE`
+- [18:44:12] `PIKACHU e`
+- [18:44:09] `Choose a POKMON`
+- [18:44:08] `FIGHT`
+- [18:44:07] `It doesn affect`
+- [18:44:06] `Go PIKACHU`
+- [18:44:04] `me Oh youe`
 - [18:44:01] `PIKACHU`
 - [18:44:00] `THUNDERSHOCK THUNDER WAVE`
-- [18:43:58] `It`
-- [18:43:57] `PIKACHU`
-- [18:43:55] `THUNDERSHOCK THUNDER WAVE`
-- [18:43:54] `Enemy ZUBAT`
-- [18:43:53] `PIKACHU`
-- [18:43:52] `Go PIKACHU`
-- [18:43:45] `Choose a POKMON`
-- [18:43:44] `Move POKMON`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
