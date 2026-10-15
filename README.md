@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:19:02**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:19:14**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `32`, Y: `13`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas GPS:** X: `33`, Y: `13`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
@@ -17,29 +17,27 @@
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 16)
-- **Tipos:** Bug/Flying | **HP:** 40 / 49 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
-- **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3540 | ATK: 4047 | DEF: 3414 | SPD: 4703 | SPC: 2552
-- **Experiência:** 4314 EXP (Progresso: 27%, faltam 599 p/ Lv.17)
+### 1. **Nidoran♂** (Lv. 12) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 36 / 36 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
+- **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 1452 | ATK: 2188 | DEF: 1477 | SPD: 2386 | SPC: 1212
+- **Experiência:** 1218 EXP (Progresso: 85%, faltam 43 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 1 | Poder: 50 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
+  - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
+  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
-### 2. **Charmeleon** (Lv. 16)
-- **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 30 | DEF: 26 | SPD: 37 | SPC: 32
-- **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3778 | ATK: 5185 | DEF: 3813 | SPD: 5940 | SPC: 3114
-- **Experiência:** 3033 EXP (Progresso: 85%, faltam 87 p/ Lv.17)
+### 2. **Nidoran♀** (Lv. 13)
+- **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
+- **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 1518 | ATK: 2195 | DEF: 1557 | SPD: 2416 | SPC: 1305
+- **Experiência:** 1405 EXP (Progresso: 41%, faltam 207 p/ Lv.14)
 - **Golpes & PPs:**
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
-  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 13)
 - **Tipos:** Normal | **HP:** 36 / 36 ✅ (SAUDÁVEL)
@@ -52,27 +50,29 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 4. **Nidoran♂** (Lv. 12)
-- **Tipos:** Poison | **HP:** 36 / 36 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
-- **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1452 | ATK: 2188 | DEF: 1477 | SPD: 2386 | SPC: 1212
-- **Experiência:** 1218 EXP (Progresso: 85%, faltam 43 p/ Lv.13)
+### 4. **Butterfree** (Lv. 16)
+- **Tipos:** Bug/Flying | **HP:** 40 / 49 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
+- **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 3540 | ATK: 4047 | DEF: 3414 | SPD: 4703 | SPC: 2552
+- **Experiência:** 4314 EXP (Progresso: 27%, faltam 599 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 1 | Poder: 50 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
+  - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
 
-### 5. **Nidoran♀** (Lv. 13)
-- **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
-- **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1518 | ATK: 2195 | DEF: 1557 | SPD: 2416 | SPC: 1305
-- **Experiência:** 1405 EXP (Progresso: 41%, faltam 207 p/ Lv.14)
+### 5. **Charmeleon** (Lv. 16)
+- **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 30 | DEF: 26 | SPD: 37 | SPC: 32
+- **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 3778 | ATK: 5185 | DEF: 3813 | SPD: 5940 | SPC: 3114
+- **Experiência:** 3033 EXP (Progresso: 85%, faltam 87 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 6. **Beedrill** (Lv. 11)
 - **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
@@ -116,7 +116,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:19:02] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:19:14] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
