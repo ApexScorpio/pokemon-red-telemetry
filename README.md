@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:53:46**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:53:58**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,9 +10,9 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `7`, Y: `25`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `34h 0m 39s`
-- **💬 Diálogo / Mensagem no Ecrã:** `POISON STING FURY ATTACK`
-- **Dinheiro:** **3001 ₽** • **Fichas do Casino:** `0`
+- **Tempo de Jogo:** `34h 0m 40s`
+- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
+- **Dinheiro:** **3111 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
@@ -23,11 +23,11 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison | **HP:** 37 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 34 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 2507 | Def: 2061 | Spd: 2967 | Spc: 1495 | HP: 2078
-- **Experiência:** 1853 EXP (Progresso: 27%, faltam 344 p/ Lv.13)
+- **Stat Experience (0–65.535):** Atk: 2542 | Def: 2091 | Spd: 3017 | Spc: 1515 | HP: 2118
+- **Experiência:** 1974 EXP (Progresso: 52%, faltam 223 p/ Lv.13)
 - **Golpes & PPs:**
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -61,10 +61,10 @@
 - **Tipos:** Bug/Flying | **HP:** 49 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 4047 | Def: 3414 | Spd: 4703 | Spc: 2552 | HP: 3540
-- **Experiência:** 4314 EXP (Progresso: 27%, faltam 599 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 4072 | Def: 3464 | Spd: 4738 | Spc: 2577 | HP: 3585
+- **Experiência:** 4480 EXP (Progresso: 47%, faltam 433 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 24 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Poisonpowder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
@@ -190,7 +190,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↗️ 8 passos Nordeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **⚔️ POR VENCER**
+### #6. [↗️ 8 passos Nordeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Rattata (Lv. 10) • Zubat (Lv. 10)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -226,6 +226,7 @@
 - [20:49:11] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:53:51] `CONFUSION STUN SPORE`
 - [20:53:38] `POISON STING FURY ATTACK`
 - [20:53:23] `Suspicious men are in the cave`
 - [20:52:07] `POISON STING FURY ATTACK`
@@ -235,7 +236,6 @@
 - [20:23:50] `TACKLE HORN ATTACK`
 - [20:23:06] `THUNDERSHOCK THUNDER WAVE`
 - [20:21:59] `999 999`
-- [20:21:32] `found only in certain areas`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
