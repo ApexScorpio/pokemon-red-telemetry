@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:00:57**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:01:08**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,45 +10,44 @@
 - **Coordenadas GPS:** X: `65`, Y: `9`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN`
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #6`
 - **Último Golpe Usado por RED:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Jigglypuff** (Lv. 7)
 - **Tipos:** Normal/Fairy
-- **HP:** **35 / 35** (100%)
+- **HP:** **18 / 35** (51%)
 - **Stats de Batalha:** ATK: 12 | DEF: 9 | SPD: 9 | SPC: 9
 
 ### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 15)
 - **Tipos:** Poison
-- **HP:** **39 / 45** (HEALTHY)
+- **HP:** **39 / 45** (SLEEP)
 - **Stats com Modificadores:** ATK: 23 (0) | DEF: 23 (0) | SPD: 23 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **16-19 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **16-19 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Scratch (Causa ~16-19 de dano)
-- ➔ Turno 2: Scratch (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Scratch. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
 - **Motivo:** Nidoran♀ tem a melhor rota de vitória rápida e HP estável (39/45). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **1%** | Great Ball: **2%** | Ultra Ball: **3%**
-  - *Se adormeceres o inimigo:* **~26%** | *Com HP no vermelho:* **~9%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **4%** | Ultra Ball: **6%**
+  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~9%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Nidoran♀** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 39 / 45 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 39 / 45 ⚠️ (SLEEP)
 - **Stats Reais:** ATK: 21 | DEF: 23 | SPD: 23 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2348 | ATK: 3020 | DEF: 2157 | SPD: 3352 | SPC: 1864
@@ -254,19 +253,19 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [18:00:57] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [18:01:08] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:01:06] `FIGHT`
+- [18:01:02] `NIDORAN`
+- [18:01:01] `FIGHT`
+- [18:01:00] `NI`
+- [18:00:59] `FIGHT`
+- [18:00:57] `Enemy JIGGLYPUFF`
 - [18:00:56] `NIDORAN`
 - [18:00:54] `SCRATCH GROWL`
 - [18:00:53] `Go NIDORAN`
 - [17:58:53] `NIDORAN gained`
-- [17:58:52] `NID`
-- [17:58:52] `FIGHT`
-- [17:56:06] `NIDORAN`
-- [17:56:05] `Go NIDORAN`
-- [17:56:01] `NIDORAN`
-- [17:56:00] `Enemy PIDGEY`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Use imediatamente **Poison Sting** com o Nidoran♂ – basta um golpe para acabar com o Pidgey de "
