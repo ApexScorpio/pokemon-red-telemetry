@@ -1,10 +1,10 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:37:58**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:38:30**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 22** (ID: `0x21`)
-- **Coordenadas GPS:** X: `30`, Y: `9`
+- **Coordenadas GPS:** X: `32`, Y: `9`
 - **Dinheiro:** **675 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
@@ -14,8 +14,8 @@
 ## ⚔️ Combate Ativo em Direto
 ### 🔴 Adversário: **Rattata** (Lv. 3)
 - **Tipos:** Normal
-- **HP:** **15 / 15** (100%)
-- **Stats de Batalha:** ATK: 8 | DEF: 7 | SPD: 9 | SPC: 7
+- **HP:** **1 / 15** (7%)
+- **Stats de Batalha:** ATK: 8 | DEF: 8 | SPD: 10 | SPC: 7
 - **Golpes:** Tackle, Tail Whip
 
 ### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 8)
@@ -25,24 +25,24 @@
 
 ### 🎯 Análise Tática Matemática (Gen 1)
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Decisão Matemática:** Usa **Bite** (Normal) ➔ Dano Estimado: **15-18 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Decisão Matemática:** Usa **Bite** (Normal) ➔ Dano Estimado: **13-16 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 - **Matriz de Golpes Disponíveis:**
-  - **Bite** (Normal) • PP: 25/20 • Dano: 15-18 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-  - **Tackle** (Normal) • PP: 7/20 • Dano: 9-11 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
+  - **Bite** (Normal) • PP: 22/20 • Dano: 13-16 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
   - **Leer** (Normal) • PP: 29/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **3%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~6%**
+  - **Tackle** (Normal) • PP: 7/20 • Dano: 8-10 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **6%** | Great Ball: **9%** | Ultra Ball: **17%**
+  - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~6%**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 8)
+### 1. **Nidoran♀** (Lv. 8) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 11 / 27 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 17 | DEF: 13 | SPD: 14 | SPC: 12
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Experiência:** 336 EXP (Progresso: 0%, faltam 393 p/ Lv.9)
+- **Experiência:** 384 EXP (Progresso: 0%, faltam 345 p/ Lv.9)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 7 | Poder: 35 | Precisão: 95%
+  - **Bite** (Normal) — PP: 22 | Poder: 60 | Precisão: 100%
   - **Leer** (Normal) — PP: 29 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
+  - **Tackle** (Normal) — PP: 7 | Poder: 35 | Precisão: 95%
 
 ### 2. **Nidoran♀** (Lv. 11)
 - **Tipos:** Poison | **HP:** 35 / 35 ✅ (SAUDÁVEL)
@@ -117,7 +117,9 @@
 - **Rattata** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 
 ## 🧠 Conselho Tático do Grok AI
-> "A sincronizar com a memória do Game Boy..."
+> "Bata com o **Bite** de Nidoran♀ – basta um golpe normal para acabar com o Rattata de 1 HP.  
+Não há necessidade de itens nem de troca; a sua equipa já tem a vantagem de tipo (Poison vs. Normal).  
+Continue avançando – o próximo objetivo é a Poké Mart de Pallet Town, onde podes comprar um Poké Ball extra e um Antidote para garantir que a tua equipa esteja sempre pronta."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
