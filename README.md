@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:53:31**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:53:42**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -15,13 +15,14 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Poison Sting`
+- **Turno Atual:** `Turno #6`
+- **Último Golpe Usado por RED:** `String Shot`
+- **Último Golpe Usado pelo Adversário:** `Screech`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
 - **Tipos:** Rock/Ground
 - **HP:** **8 / 36** (22%)
-- **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 17 | SPC: 15
+- **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 10 | SPC: 15
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
   - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
@@ -29,7 +30,7 @@
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 11)
 - **Tipos:** Bug/Poison
 - **HP:** **38 / 38** (HEALTHY)
-- **Stats com Modificadores:** ATK: 25 (0) | DEF: 17 (0) | SPD: 23 (0) | SPC: 16 (0)
+- **Stats com Modificadores:** ATK: 25 (0) | DEF: 8 (-2) | SPD: 23 (0) | SPC: 16 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
@@ -100,7 +101,7 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
-### 6. **Beedrill** (Lv. 11)
+### 6. **Beedrill** (Lv. 11) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 17 | SPD: 23 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
@@ -108,7 +109,7 @@
 - **Experiência:** 1648 EXP (Progresso: 80%, faltam 80 p/ Lv.12)
 - **Golpes & PPs:**
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
+  - **String Shot** (Bug) — PP: 37 | Poder: -- | Precisão: 95%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **4 / 20 slots** (16 vagas livres)
 - **Potion** x4
