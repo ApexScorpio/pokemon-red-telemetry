@@ -1,10 +1,10 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:19:51**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:20:02**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
-- **Localização Atual:** **Pewter Gym** (ID: `0x36`)
-- **Coordenadas GPS:** X: `4`, Y: `2`
+- **Localização Atual:** **Pewter Pokecenter** (ID: `0x3A`)
+- **Coordenadas GPS:** X: `3`, Y: `3`
 - **Dinheiro:** **445 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
@@ -13,22 +13,22 @@
 
 ## 👥 Equipa Atual (6/6 Pokémon)
 ### 1. **Nidoran♀** (Lv. 13)
-- **Tipos:** Poison | **HP:** 0 / 40 ❌ (FAINTED)
+- **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Experiência:** 1297 EXP (Progresso: 10%, faltam 315 p/ Lv.14)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Scratch** (Normal) — PP: 28 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 36 | Poder: -- | Precisão: 100%
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidoran♂** (Lv. 12)
-- **Tipos:** Poison | **HP:** 3 / 36 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 36 / 36 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Experiência:** 1218 EXP (Progresso: 85%, faltam 43 p/ Lv.13)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
@@ -78,7 +78,7 @@
 - **Antidote** x2
 - **Town Map** x1
 
-## 🗺️ Radar da Área: **Pewter Gym**
+## 🗺️ Radar da Área: **Área #0x3A**
 ### 🎯 Preparação Tática: **Líder Brock (Ginásio de Pewter)**
 - **Adversários:** Geodude (Lv. 12) & Onix (Lv. 14) (Nível Alvo: **Lv. 11 a 14**)
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Rattata (Lv. 13)** (*Golpes Normais são pouco eficazes (0.5x) contra a armadura do adversário.*)
