@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:20:02**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:20:14**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -8,7 +8,7 @@
 - **Dinheiro:** **445 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
-- **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
+- **Pokédex Obtidos no Savefile:** **0 / 151 Pokémon**
 - **Modo Atual:** 🗺️ **Modo Exploração Livre**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
@@ -90,8 +90,8 @@
 - **Avisos de Perigo:**
   - 🚨 CUIDADO COM O BIDE DO ONIX: Se o Onix usar Bide (acumular energia), NÃO ATAQUES com Charmeleon ou Butterfree! Usa golpes de status (Growl, Leer, String Shot) ou cura com Poção para não levares com o dobro do dano devolvido.
 - **⚔️ Previsão de Batalhas da Área (Easiest ➔ Hardest):**
-  1. **Rival Blue #2** [Fácil] — **✅ VENCIDO**: Pidgey (Lv. 9) • Squirtle (Lv. 8) • *Lead Recomendado:* Charmeleon ou Butterfree — ⚠️ OBRIGATÓRIO FAZER ANTES DO BROCK! Se derrotares o Brock primeiro, este combate desaparece para sempre. Usa Charmeleon/Butterfree para ganhar EXP fácil.
-  2. **Jr. Trainer♂** [Média] — **✅ VENCIDO**: Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra) • *Lead Recomendado:* Butterfree (Confusion) — Treinador do ginásio já derrotado com sucesso.
+  1. **Rival Blue #2** [Fácil] — **⚔️ POR VENCER (Faz Agora!)**: Pidgey (Lv. 9) • Squirtle (Lv. 8) • *Lead Recomendado:* Charmeleon ou Butterfree — ⚠️ OBRIGATÓRIO FAZER ANTES DO BROCK! Se derrotares o Brock primeiro, este combate desaparece para sempre. Usa Charmeleon/Butterfree para ganhar EXP fácil.
+  2. **Jr. Trainer♂** [Média] — **⚔️ POR VENCER**: Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra) • *Lead Recomendado:* Butterfree (Confusion) — Treinador que guarda o Brock. Ambos são Terra puro. A Confusion da Butterfree ataca a defesa especial e é imune a ataques de Terra.
   3. **Líder Brock** [Chefe / Difícil] — **⚔️ POR VENCER**: Geodude (Lv. 12 - Rocha/Terra) • Onix (Lv. 14 - Rocha/Terra) • *Lead Recomendado:* Butterfree (Confusion) & Charmeleon (Ember) — Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
 
 ## 🧠 Conselho Tático do Grok AI
