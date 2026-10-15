@@ -206,8 +206,14 @@ class RetroArchClient extends EventEmitter {
   init() {
     this.socket = dgram.createSocket('udp4');
 
-    this.socket.on('message', (msg) => {
-      this.handleResponse(msg.toString().trim());
+    this.socket.on('message', (msg, rinfo) => {
+      const raw = msg.toString().trim();
+      console.log('[RetroArchClient] UDP recebido:', JSON.stringify({
+        from: `${rinfo.address}:${rinfo.port}`,
+        bytes: msg.length,
+        response: raw.slice(0, 180)
+      }));
+      this.handleResponse(raw);
     });
 
     this.socket.on('error', (err) => {
@@ -243,7 +249,18 @@ class RetroArchClient extends EventEmitter {
 
       const buf = Buffer.from(cmd + '\n');
       this.socket.send(buf, 0, buf.length, this.port, this.ip, (err) => {
+        if (!this.lastUdpSendLogAt) {
+          this.lastUdpSendLogAt = Date.now();
+          console.log('[RetroArchClient] Primeiro envio UDP:', JSON.stringify({
+            target: `${this.ip}:${this.port}`,
+            local: `${this.socket.address().address}:${this.socket.address().port}`,
+            command: cmd,
+            bytes: buf.length,
+            sendError: err ? err.message : null
+          }));
+        }
         if (err) {
+          console.error('[RetroArchClient] Erro ao enviar UDP:', err.message);
           clearTimeout(timeout);
           this.pendingResolves.delete(key);
           resolve(null);
@@ -261,6 +278,12 @@ class RetroArchClient extends EventEmitter {
       const cb = this.pendingResolves.get(key);
       this.pendingResolves.delete(key);
       cb(parts.slice(2));
+    } else if (!this.lastUnmatchedUdpLogAt || Date.now() - this.lastUnmatchedUdpLogAt >= 2000) {
+      this.lastUnmatchedUdpLogAt = Date.now();
+      console.warn('[RetroArchClient] UDP sem pedido correspondente:', JSON.stringify({
+        response: String(str || '').slice(0, 180),
+        pending: Array.from(this.pendingResolves.keys()).slice(0, 5)
+      }));
     }
   }
 
