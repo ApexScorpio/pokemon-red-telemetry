@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:52:44**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:52:56**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -15,7 +15,7 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Confusion`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
@@ -26,27 +26,25 @@
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
   - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
 
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 13)
-- **Tipos:** Bug/Flying
-- **HP:** **23 / 42** (HEALTHY)
-- **Stats com Modificadores:** ATK: 20 (0) | DEF: 19 (0) | SPD: 27 (0) | SPC: 30 (0)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 11)
+- **Tipos:** Bug/Poison
+- **HP:** **38 / 38** (HEALTHY)
+- **Stats com Modificadores:** ATK: 25 (0) | DEF: 17 (0) | SPD: 23 (0) | SPC: 16 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **String Shot** (Bug) ➔ Dano: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-null: Usa repetidamente String Shot
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⭐ GANHAR EXP: TROCA PARA O MAIS FRACO!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Beedrill (Lv. 11)** [38/38 HP]
-- **Motivo:** O adversário tem apenas 8 HP! Troca para Beedrill (Lv. 11) para ele participar e recolher 50% dos pontos de EXP da vitória com risco zero!
-- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (38/38). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 13) ⚔️ [EM COMBATE]
+### 1. **Butterfree** (Lv. 13)
 - **Tipos:** Bug/Flying | **HP:** 23 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 20 | DEF: 19 | SPD: 27 | SPC: 30
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
@@ -102,7 +100,7 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
-### 6. **Beedrill** (Lv. 11)
+### 6. **Beedrill** (Lv. 11) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 17 | SPD: 23 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
