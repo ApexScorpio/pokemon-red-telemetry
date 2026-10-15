@@ -363,7 +363,7 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
   const scrollX = Number(video.scrollX || 0) & 0xFF;
   const scrollY = Number(video.scrollY || 0) & 0xFF;
   const bgp = Number(video.bgPalette || 0xE4);
-  const colors = ['#f8f8f8', '#aaaaaa', '#555555', '#101010'];
+  const colors = ['#e8f4d8', '#a8c878', '#568548', '#203c30'];
   const image = ctx.createImageData(160, 144);
   const pixels = image.data;
 
