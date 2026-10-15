@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atualizações • PokéVision AI</title>
+  <style>
+    :root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b1020;color:#edf2ff;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;padding:24px}
+    main{width:min(560px,100%);background:#151d32;border:1px solid #2c3958;border-radius:20px;padding:28px;box-shadow:0 20px 70px #0006}
+    h1{font-size:1.7rem;margin:0 0 8px}p{color:#b7c3dc}.status{margin:20px 0;padding:14px;border-radius:12px;background:#0b1020;border:1px solid #2c3958;min-height:54px;white-space:pre-wrap}
+    button,a{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;padding:12px 16px;font-weight:700;text-decoration:none;cursor:pointer}
+    button{background:#75e0ba;color:#08251e;width:100%;font-size:1rem}button:disabled{opacity:.55;cursor:wait}a{background:#273653;color:#edf2ff;margin-top:12px;width:100%}.hint{font-size:.9rem}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🔄 Atualizações do PokéVision</h1>
+    <p>Procura a versão mais recente no GitHub, faz o pull e reinicia o companion automaticamente.</p>
+    <div class="status" id="update-status" role="status">Pronto para verificar.</div>
+    <button id="update-button">Verificar, atualizar e reiniciar</button>
+    <a href="/">Voltar ao dashboard</a>
+    <p class="hint">Também verifica atualizações automaticamente enquanto está a correr.</p>
+  </main>
+  <script>
+    const button = document.getElementById('update-button');
+    const status = document.getElementById('update-status');
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      status.textContent = 'A procurar e instalar a versão mais recente...';
+      try {
+        const response = await fetch('/api/update', { method: 'POST' });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error(result.error || 'Não foi possível atualizar.');
+        status.textContent = result.message || 'Atualização aplicada. A reiniciar...';
+        status.textContent += '\\nAguarda alguns segundos e volta ao dashboard.';
+      } catch (error) {
+        status.textContent = 'Falha na atualização: ' + error.message;
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
