@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:16:44**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:16:56**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas GPS:** X: `12`, Y: `6`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas GPS:** X: `11`, Y: `6`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `BUTTERFREE gained`
+- **💬 Diálogo / Mensagem no Ecrã:** `We hope to see`
 - **Dinheiro:** **1321 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -23,15 +23,15 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison | **HP:** 4 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2248 | ATK: 2647 | DEF: 2164 | SPD: 3157 | SPC: 1660
 - **Experiência:** 2170 EXP (Progresso: 94%, faltam 27 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 12 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -58,13 +58,13 @@
   - **Golpe #158** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
 
 ### 4. **Butterfree** (Lv. 16)
-- **Tipos:** Bug/Flying | **HP:** 45 / 49 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 49 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 3560 | ATK: 4087 | DEF: 3464 | SPD: 4713 | SPC: 2567
 - **Experiência:** 4363 EXP (Progresso: 33%, faltam 550 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 24 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
@@ -154,14 +154,17 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [18:16:50] Entrou em Route 4
+- [18:16:45] Entrou em Mt Moon Pokecenter
 - [18:16:43] Entrou em Route 4
 - [18:13:58] Entrou em Mt Moon 1F
 - [18:13:56] Entrou em Route 4
 - [18:13:52] Entrou em Mt Moon Pokecenter
-- [18:13:48] Entrou em Route 4
-- [18:11:41] Entrou em Mt Moon 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:16:49] `We hope to see`
+- [18:16:47] `OK Wel need`
+- [18:16:46] `We heal`
 - [18:16:41] `BUTTERFREE gained`
 - [18:16:40] `BUTTERFREE`
 - [18:16:36] `CONFUSION STUN SPORE`
@@ -169,9 +172,6 @@
 - [18:16:34] `Choose a POKMON`
 - [18:16:25] `FIGHT`
 - [18:16:23] `BEEDRILL`
-- [18:16:22] `It not very`
-- [18:16:21] `BEEDRILL`
-- [18:16:20] `999999999999999999 999999999999999999`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Use **Po"
