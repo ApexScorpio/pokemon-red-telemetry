@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,19 +10,20 @@
 - **Coordenadas GPS:** X: `31`, Y: `27`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy METAPOD`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **1596 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Poison Sting`
 - **Último Golpe Usado pelo Adversário:** `Harden`
 
 ### 🔴 Adversário em Campo: **Metapod** (Lv. 10)
 - **Tipos:** Bug
-- **HP:** **21 / 31** (68%)
-- **Stats de Batalha:** ATK: 10 | DEF: 17 | SPD: 12 | SPC: 11
+- **HP:** **2 / 31** (6%)
+- **Stats de Batalha:** ATK: 10 | DEF: 51 | SPD: 12 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Harden** (Normal) • PP: 7 • Poder: -- • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
@@ -34,17 +35,16 @@
 - **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **15-18 HP** (2x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Poison Sting (Causa ~15-18 de dano)
-- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (43/46). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
@@ -54,7 +54,7 @@
 - **Stat EXP (EVs Acumulados):** HP: 2558 | ATK: 2982 | DEF: 2479 | SPD: 3577 | SPC: 2015
 - **Experiência:** 2874 EXP (Progresso: 21%, faltam 501 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 16 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 13 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -184,16 +184,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:23:19] `FURY ATTACK POISON STING`
+- [18:23:18] `Enemy METAPOD`
+- [18:23:17] `BEEDRILL`
+- [18:23:16] `Enemy METAPOD`
+- [18:23:15] `BEEDRILL`
+- [18:23:14] `Enemy METAPOD`
+- [18:23:13] `BEEDRILL`
 - [18:23:12] `Enemy METAPOD`
 - [18:23:11] `BEEDRILL`
 - [18:23:10] `Will RED`
-- [18:23:09] `Enemy CAT`
-- [18:23:08] `FIGHT`
-- [18:23:07] `BEEDRILL`
-- [18:23:06] `Go`
-- [18:23:05] `BUG CAT`
-- [18:23:04] `cave to get to`
-- [18:23:03] `Go through this`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
