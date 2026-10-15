@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:54:53**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:55:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -15,12 +15,12 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #16`
+- **Turno Atual:** `Turno #18`
 - **Último Golpe Usado por RED:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
 - **Tipos:** Rock/Ground
-- **HP:** **3 / 36** (8%)
+- **HP:** **0 / 36** (0%)
 - **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 7 | SPC: 15
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
@@ -49,8 +49,8 @@
 - **Tipos:** Bug/Flying | **HP:** 23 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 20 | DEF: 19 | SPD: 27 | SPC: 30
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2783 | ATK: 3293 | DEF: 2667 | SPD: 3748 | SPC: 2050
-- **Experiência:** 2220 EXP (Progresso: 4%, faltam 524 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 2794 | ATK: 3308 | DEF: 2720 | SPD: 3771 | SPC: 2060
+- **Experiência:** 2328 EXP (Progresso: 24%, faltam 416 p/ Lv.14)
 - **Golpes & PPs:**
   - **Confusion** (Psychic) — PP: 20 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -60,8 +60,8 @@
 - **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 26 | SPD: 37 | SPC: 32
 - **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3767 | ATK: 5170 | DEF: 3760 | SPD: 5917 | SPC: 3104
-- **Experiência:** 2925 EXP (Progresso: 67%, faltam 195 p/ Lv.17)
+- **Stat EXP (EVs Acumulados):** HP: 3778 | ATK: 5185 | DEF: 3813 | SPD: 5940 | SPC: 3114
+- **Experiência:** 3033 EXP (Progresso: 85%, faltam 87 p/ Lv.17)
 - **Golpes & PPs:**
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -94,10 +94,10 @@
 - **Tipos:** Poison | **HP:** 18 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1507 | ATK: 2180 | DEF: 1504 | SPD: 2393 | SPC: 1295
-- **Experiência:** 1297 EXP (Progresso: 10%, faltam 315 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 1518 | ATK: 2195 | DEF: 1557 | SPD: 2416 | SPC: 1305
+- **Experiência:** 1405 EXP (Progresso: 41%, faltam 207 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
