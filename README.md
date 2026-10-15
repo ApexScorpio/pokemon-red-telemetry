@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:54:21**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:54:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,8 +10,8 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `16`, Y: `25`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `34h 0m 43s`
-- **💬 Diálogo / Mensagem no Ecrã:** `9999999 9999999`
+- **Tempo de Jogo:** `34h 0m 44s`
+- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **3111 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -29,7 +29,7 @@
 - **Stat Experience (0–65.535):** Atk: 4162 | Def: 3534 | Spd: 4848 | Spc: 2657 | HP: 3665
 - **Experiência:** 4580 EXP (Progresso: 59%, faltam 333 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 22 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 18 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Poisonpowder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
@@ -104,7 +104,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **15 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **22 / 151**
+- **Espécies Vistas na Pokédex:** **23 / 151**
 - **Total de Pokémon Individuais Ativos:** **10 espécimes** (6 na Equipa + 4 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #32 Nidoran♂, #39 Jigglypuff
 
@@ -226,6 +226,7 @@
 - [20:49:11] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:54:25] `CONFUSION STUN SPORE`
 - [20:54:14] `9999999 9999999`
 - [20:53:51] `CONFUSION STUN SPORE`
 - [20:53:38] `POISON STING FURY ATTACK`
@@ -235,7 +236,6 @@
 - [20:48:46] `POKDEX     15 TIME     3407`
 - [20:48:28] `999979599 9199999`
 - [20:23:50] `TACKLE HORN ATTACK`
-- [20:23:06] `THUNDERSHOCK THUNDER WAVE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
