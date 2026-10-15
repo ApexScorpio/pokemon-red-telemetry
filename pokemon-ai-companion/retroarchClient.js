@@ -156,6 +156,8 @@ class RetroArchClient extends EventEmitter {
     this.isPolling = false;
     this.pollInterval = 700; // ms
     this.timer = null;
+    this.lastVideoReadAt = 0;
+    this.videoMemoryCache = null;
     this.isSimulatingBattle = false;
 
     this.latestState = {
@@ -289,7 +291,7 @@ class RetroArchClient extends EventEmitter {
 
   // Leitura Exaustiva de Blocos de Memória Contíguos
   async readMemoryBlock(startAddrHex, length) {
-    const CHUNK_SIZE = 160;
+    const CHUNK_SIZE = 512;
     const startAddr = parseInt(startAddrHex, 16);
     const chunks = [];
     for (let offset = 0; offset < length; offset += CHUNK_SIZE) {
@@ -398,6 +400,29 @@ class RetroArchClient extends EventEmitter {
 
     // BLOCO 5: Screen Tilemap Completo 20x18 ($C3A0..$C507, 360 bytes)
     const blockTilemap = await this.readMemoryBlock('C3A0', 360);
+
+    // Vídeo RAM do Game Boy: tiles, mapa de fundo e registos de scroll/paleta.
+    // Atualiza a cada 2,8 s para não sobrecarregar o polling principal (700 ms).
+    if (!this.videoMemoryCache || Date.now() - this.lastVideoReadAt >= 2800) {
+      const [tilePatterns, bgTileMap, videoRegisters] = await Promise.all([
+        this.readMemoryBlock('8000', 6144),
+        this.readMemoryBlock('9800', 1024),
+        this.readMemoryBlock('FF40', 8)
+      ]);
+      if (tilePatterns && tilePatterns.length >= 6144 && bgTileMap && bgTileMap.length >= 1024 && videoRegisters && videoRegisters.length >= 8) {
+        this.videoMemoryCache = {
+          tilePatterns,
+          bgTileMap,
+          lcdc: videoRegisters[0],
+          scrollY: videoRegisters[2],
+          scrollX: videoRegisters[3],
+          bgPalette: videoRegisters[7],
+          capturedAt: Date.now()
+        };
+        this.lastVideoReadAt = Date.now();
+      }
+    }
+    if (this.videoMemoryCache) this.latestState.videoMemory = this.videoMemoryCache;
 
     // =========================================================================
     // 1. DESCODIFICAÇÃO DO BLOCO DO JOGADOR, EQUIPA E MOCHILA (BLOCO 1 - $D158)
