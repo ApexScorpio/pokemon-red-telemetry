@@ -1,57 +1,61 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:14:11**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:14:23**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `14`, Y: `23`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Coordenadas GPS:** X: `16`, Y: `24`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **💬 Diálogo / Mensagem no Ecrã:** `Critical hit`
 - **Dinheiro:** **1111 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #2`
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado pelo Adversário:** `Growl`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
-- **Tipos:** Poison/Flying
-- **HP:** **8 / 22** (36%)
-- **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 14 | SPC: 11
+### 🔴 Adversário em Campo: **Clefairy** (Lv. 14)
+- **Tipos:** Fairy
+- **HP:** **16 / 45** (36%)
+- **Stats de Batalha:** ATK: 20 | DEF: 20 | SPD: 17 | SPC: 24
+- **Os 4 Golpes do Adversário:**
+  - **Pound** (Normal) • PP: 0 • Poder: 40 • Precisão: 100%
+  - **Growl** (Normal) • PP: 150 • Poder: -- • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Pound** (Normal) ➔ Dano: ~5-7 HP (1x)
+  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
 - **Tipos:** Bug/Poison
-- **HP:** **34 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 30 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
+- **HP:** **23 / 40** (HEALTHY)
+- **Stats com Modificadores:** ATK: 19 (-1) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~4 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Golpe #31 (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Golpe #31! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-4: Usa repetidamente Golpe #31
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **4%** | Great Ball: **7%** | Ultra Ball: **12%**
-  - *Se adormeceres o inimigo:* **~29%** | *Com HP no vermelho:* **~9%**
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (23/40). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 34 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 23 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2078 | ATK: 2472 | DEF: 1996 | SPD: 3002 | SPC: 1505
-- **Experiência:** 1809 EXP (Progresso: 17%, faltam 388 p/ Lv.13)
+- **Stat EXP (EVs Acumulados):** HP: 2118 | ATK: 2517 | DEF: 2031 | SPD: 3057 | SPC: 1545
+- **Experiência:** 1863 EXP (Progresso: 29%, faltam 334 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 19 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
 
@@ -126,7 +130,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Pokémon Capturados:** **19 / 151**
-- **Pokémon Vistos:** **24 / 151**
+- **Pokémon Vistos:** **25 / 151**
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat, #74 Geodude
 
 ## 💾 6. Pokémon Guardados no PC (6 / 20 na Caixa 1) • Vagas Livres: **14**
@@ -184,19 +188,19 @@
 - [18:11:39] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:14:22] `Critical hit`
+- [18:14:21] `FIGHT`
+- [18:14:18] `BEEDRILL`
+- [18:14:17] `FURY ATTACK POISON STING`
+- [18:14:17] `BEEDRILL`
+- [18:14:15] `LASS sent`
+- [18:14:13] `What I waiting`
+- [18:14:11] `BEEDRILL gained`
 - [18:14:11] `Critical hit`
 - [18:14:10] `FURY ATTACK POISON STING`
-- [18:14:05] `POISON STING FURY ATTACK`
-- [18:14:04] `Enemy ZUBAT`
-- [18:14:04] `It not ve`
-- [18:14:03] `Sucked health from`
-- [18:14:02] `Enemy ZUBAT`
-- [18:14:01] `POISON STING FURY ATTACK`
-- [18:14:00] `Go BEEDRILL`
-- [18:13:54] `Your POKMON are`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Ataque imediato: use **Poison Sting** com o Be"
+> "Use **Po"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
