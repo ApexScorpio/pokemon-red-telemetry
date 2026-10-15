@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:18:51**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:19:04**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -14,13 +14,13 @@
 ## ⚔️ Combate Ativo em Direto
 ### 🔴 Adversário: **Diglett** (Lv. 11)
 - **Tipos:** Ground
-- **HP:** **24 / 24** (100%)
+- **HP:** **17 / 24** (71%)
 - **Stats de Batalha:** ATK: 6 | DEF: 12 | SPD: 27 | SPC: 16
 - **Golpes:** Scratch
 
 ### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 12)
 - **Tipos:** Poison
-- **HP:** **23 / 37**
+- **HP:** **21 / 37**
 - **Stats com Modificadores:** ATK: 17 (0) | DEF: 19 (0) | SPD: 19 (0) | SPC: 16 (0)
 
 ### 🎯 Análise Tática Matemática (Gen 1)
@@ -28,18 +28,18 @@
 - **⭐ Melhor Decisão Matemática:** Usa **Growl** (Normal) ➔ Dano Estimado: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
 - **Matriz de Golpes Disponíveis:**
   - **Growl** (Normal) • PP: 36/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) 
-  - **Scratch** (Normal) • PP: 35/20 • Dano: 7-9 HP (DANO NORMAL ⚔️) 
+  - **Scratch** (Normal) • PP: 34/20 • Dano: 7-9 HP (DANO NORMAL ⚔️) 
   - **Tackle** (Normal) • PP: 35/20 • Dano: 6-8 HP (DANO NORMAL ⚔️) 
 
 ## 👥 Equipa Atual (6/6 Pokémon)
 ### 1. **Nidoran♀** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 23 / 37 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 21 / 37 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 17 | DEF: 19 | SPD: 19 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Experiência:** 1107 EXP (Progresso: 47%, faltam 154 p/ Lv.13)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 36 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidoran♂** (Lv. 12)
