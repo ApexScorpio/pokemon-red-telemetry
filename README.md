@@ -1,10 +1,10 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:34:35**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:37:58**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 22** (ID: `0x21`)
-- **Coordenadas GPS:** X: `33`, Y: `10`
+- **Coordenadas GPS:** X: `30`, Y: `9`
 - **Dinheiro:** **675 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
@@ -12,36 +12,37 @@
 - **Modo Atual:** ⚔️ **EM COMBATE REAL (Selvagem)**
 
 ## ⚔️ Combate Ativo em Direto
-### 🔴 Adversário: **Nidoran♀** (Lv. 2)
-- **Tipos:** Poison
-- **HP:** **6 / 13** (46%)
-- **Stats de Batalha:** ATK: 7 | DEF: 6 | SPD: 7 | SPC: 6
-- **Golpes:** Leer, Tackle
+### 🔴 Adversário: **Rattata** (Lv. 3)
+- **Tipos:** Normal
+- **HP:** **15 / 15** (100%)
+- **Stats de Batalha:** ATK: 8 | DEF: 7 | SPD: 9 | SPC: 7
+- **Golpes:** Tackle, Tail Whip
 
-### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 7)
+### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 8)
 - **Tipos:** Poison
-- **HP:** **12 / 25**
-- **Stats com Modificadores:** ATK: 15 (0) | DEF: 12 (0) | SPD: 13 (0) | SPC: 11 (0)
+- **HP:** **11 / 27**
+- **Stats com Modificadores:** ATK: 17 (0) | DEF: 13 (0) | SPD: 14 (0) | SPC: 12 (0)
 
 ### 🎯 Análise Tática Matemática (Gen 1)
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Decisão Matemática:** Usa **Leer** (Normal) ➔ Dano Estimado: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Decisão Matemática:** Usa **Bite** (Normal) ➔ Dano Estimado: **15-18 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 - **Matriz de Golpes Disponíveis:**
-  - **Leer** (Normal) • PP: 30/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
-  - **Tackle** (Normal) • PP: 11/20 • Dano: 7-9 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **5%** | Great Ball: **7%** | Ultra Ball: **13%**
-  - *Se adormeceres o inimigo:* **~30%** | *Com HP no vermelho:* **~5%**
-- **Sugestão de Troca:** Troca para **Butterfree (Lv. 12)** com golpe **String Shot** (2x super efetivo)!
+  - **Bite** (Normal) • PP: 25/20 • Dano: 15-18 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
+  - **Tackle** (Normal) • PP: 7/20 • Dano: 9-11 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
+  - **Leer** (Normal) • PP: 29/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **3%** | Ultra Ball: **5%**
+  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~6%**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 7)
-- **Tipos:** Poison | **HP:** 12 / 25 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 15 | DEF: 12 | SPD: 13 | SPC: 11
+### 1. **Nidoran♀** (Lv. 8)
+- **Tipos:** Poison | **HP:** 11 / 27 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 17 | DEF: 13 | SPD: 14 | SPC: 12
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Experiência:** 295 EXP (Progresso: 0%, faltam 217 p/ Lv.8)
+- **Experiência:** 336 EXP (Progresso: 0%, faltam 393 p/ Lv.9)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 11 | Poder: 35 | Precisão: 95%
-  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+  - **Tackle** (Normal) — PP: 7 | Poder: 35 | Precisão: 95%
+  - **Leer** (Normal) — PP: 29 | Poder: -- | Precisão: 100%
+  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
 ### 2. **Nidoran♀** (Lv. 11)
 - **Tipos:** Poison | **HP:** 35 / 35 ✅ (SAUDÁVEL)
