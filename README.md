@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:22:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `20`, Y: `33`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas GPS:** X: `32`, Y: `28`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `BEEDRILL grew`
+- **💬 Diálogo / Mensagem no Ecrã:** `RED found`
 - **Dinheiro:** **1596 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -92,13 +92,14 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **6 / 20 slots** (14 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **7 / 20 slots** (13 vagas livres)
 - **Potion** x6
 - **Antidote** x2
 - **Town Map** x1
 - **Item #234** x1
 - **Item #212** x1
 - **Poké Ball** x9
+- **Rare Candy** x1
 
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
@@ -158,6 +159,7 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:22:59] `RED found`
 - [18:22:23] `BEEDRILL grew`
 - [18:22:22] `Enemy ZUBAT`
 - [18:22:21] `BEEDRILL`
