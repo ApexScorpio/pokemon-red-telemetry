@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:51:38**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:51:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `7`, Y: `31`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `33`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `34h 0m 26s`
+- **Tempo de Jogo:** `34h 0m 27s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **3001 ₽** • **Fichas do Casino:** `0`
 
@@ -26,10 +26,10 @@
 - **Tipos:** Poison | **HP:** 31 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 22 | SPD: 24 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 3208 | Def: 2042 | Spd: 3459 | Spc: 1798 | HP: 2512
-- **Experiência:** 2114 EXP (Progresso: 16%, faltam 421 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 3253 | Def: 2077 | Spd: 3514 | Spc: 1838 | HP: 2552
+- **Experiência:** 2168 EXP (Progresso: 27%, faltam 367 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -125,7 +125,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↘️ 10 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **⚔️ POR VENCER**
+### #1. [↗️ 9 passos Nordeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **⚔️ POR VENCER**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -138,7 +138,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember elimina ambos os insetos num só golpe.
 
-### #2. [↖️ 27 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **⚔️ POR VENCER**
+### #2. [↖️ 30 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -151,7 +151,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #3. [↗️ 31 passos Nordeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **⚔️ POR VENCER**
+### #3. [↗️ 32 passos Nordeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -164,7 +164,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #4. [↗️ 50 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **⚔️ POR VENCER**
+### #4. [↗️ 51 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -177,7 +177,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #5. [➡️ 17 passos Este] **Lass Miriam** (Mt. Moon 1F (Sul)) • **⚔️ POR VENCER**
+### #5. [↗️ 18 passos Nordeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -190,7 +190,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↗️ 14 passos Nordeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **⚔️ POR VENCER**
+### #6. [↗️ 15 passos Nordeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Rattata (Lv. 10) • Zubat (Lv. 10)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -203,7 +203,7 @@
   - **Slot #6**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #7. [↗️ 17 passos Nordeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **⚔️ POR VENCER**
+### #7. [↗️ 18 passos Nordeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
