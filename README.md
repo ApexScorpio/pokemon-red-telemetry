@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:37:46**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:37:57**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `26`, Y: `10`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `49h 0m 12s`
+- **Tempo de Jogo:** `49h 0m 13s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **2361 ₽** • **Fichas do Casino:** `0`
 
@@ -31,13 +31,13 @@
   - **Quick Attack** (Normal) — PP: 24 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 20)
-- **Tipos:** Poison | **HP:** 41 / 61 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 38 / 61 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 5170 | Def: 3897 | Spd: 5393 | Spc: 3153 | HP: 3987
 - **Experiência:** 5661 EXP (Progresso: 20%, faltam 797 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 30 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Horn Attack** (Normal) — PP: 22 | Poder: 65 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
