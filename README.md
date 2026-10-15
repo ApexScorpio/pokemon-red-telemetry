@@ -1,71 +1,49 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:45:36**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:45:48**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `15`, Y: `30`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
+- **Coordenadas GPS:** X: `14`, Y: `4`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `Your POKMON are`
 - **Dinheiro:** **2361 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thunder Shock`
-
-### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
-- **Tipos:** Poison/Flying
-- **HP:** **22 / 22** (100%)
-- **Stats de Batalha:** ATK: 12 | DEF: 11 | SPD: 14 | SPC: 12
-
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 15)
-- **Tipos:** Electric
-- **HP:** **32 / 38** (HEALTHY)
-- **Stats com Modificadores:** ATK: 30 (0) | DEF: 19 (0) | SPD: 35 (0) | SPC: 25 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thunder Shock** (Electric) ➔ Dano: **40-48 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Thunder Shock (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Thunder Shock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (32/38). Não precisas de gastar um turno a trocar.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **37%** | Great Ball: **55%** | Ultra Ball: **37%**
-  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 32 / 38 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
+### 1. **Pikachu** (Lv. 16)
+- **Tipos:** Electric | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 27
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4760 | ATK: 6555 | DEF: 4601 | SPD: 7330 | SPC: 3947
-- **Experiência:** 4065 EXP (Progresso: 96%, faltam 31 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4800 | ATK: 6600 | DEF: 4636 | SPD: 7385 | SPC: 3987
+- **Experiência:** 4119 EXP (Progresso: 3%, faltam 794 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 18 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 19)
-- **Tipos:** Poison | **HP:** 13 / 59 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 59 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 3907 | ATK: 5010 | DEF: 3697 | SPD: 5353 | SPC: 3093
 - **Experiência:** 5441 EXP (Progresso: 98%, faltam 19 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 16 | Poder: 60 | Precisão: 100%
+  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
@@ -81,27 +59,27 @@
   - **Golpe #158** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
 
 ### 4. **Butterfree** (Lv. 16)
-- **Tipos:** Bug/Flying | **HP:** 0 / 49 ❌ (FAINTED)
+- **Tipos:** Bug/Flying | **HP:** 49 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 3640 | ATK: 4247 | DEF: 3664 | SPD: 4753 | SPC: 2627
 - **Experiência:** 4559 EXP (Progresso: 57%, faltam 354 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 19 | Poder: 50 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
-  - **Stun Spore** (Grass) — PP: 28 | Poder: -- | Precisão: 75%
-  - **Poison Powder** (Poison) — PP: 32 | Poder: -- | Precisão: 75%
+  - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
+  - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
 
 ### 5. **Beedrill** (Lv. 15)
-- **Tipos:** Bug/Poison | **HP:** 0 / 48 ❌ (FAINTED)
+- **Tipos:** Bug/Poison | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2888 | ATK: 3397 | DEF: 2929 | SPD: 3882 | SPC: 2295
 - **Experiência:** 3637 EXP (Progresso: 36%, faltam 459 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 10 | Poder: 40 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 6. **Nidorina** (Lv. 16)
 - **Tipos:** Poison | **HP:** 52 / 52 ✅ (SAUDÁVEL)
@@ -158,10 +136,12 @@
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Nidorino** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Rattata** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Beedrill** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Pikachu** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Nidorino** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ### #2. **Team Rocket Grunt** (Mt. Moon (B2F - Saída)) • **⚔️ POR VENCER**
@@ -170,31 +150,33 @@
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Nidorino** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #2**: **Rattata** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Beedrill** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Pikachu** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Butterfree** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [18:45:45] Entrou em Route 4
+- [18:45:42] Entrou em Mt Moon Pokecenter
+- [18:45:39] Entrou em Route 4
 - [18:40:29] Entrou em Mt Moon 1F
 - [18:40:29] Entrou em Route 4
 - [18:40:24] Entrou em Mt Moon Pokecenter
-- [18:40:23] Entrou em Route 4
-- [18:39:17] Entrou em Mt Moon 1F
-- [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:45:44] `Your POKMON are`
+- [18:45:43] `OK Wel need`
+- [18:45:43] `POKMON back to`
+- [18:45:38] `PIKACHU learned`
+- [18:45:37] `PIKAC`
+- [18:45:37] `Enemy ZUB`
 - [18:45:36] `THUNDERSHOCK THUNDER WAVE`
 - [18:45:33] `It super`
 - [18:45:32] `THUNDERSHOCK THUNDER WAVE`
 - [18:45:28] `NIDORIN`
-- [18:45:27] `NIDORINO`
-- [18:45:26] `Enemy GEODUDE`
-- [18:45:25] `NIDORINO`
-- [18:45:24] `Enemy GEODUDE`
-- [18:45:23] `FIGHT`
-- [18:45:22] `NIDORINO`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
