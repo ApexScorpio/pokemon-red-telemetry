@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:12:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:13:02**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,13 +10,13 @@
 - **Coordenadas GPS:** X: `7`, Y: `27`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `It not very`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **1111 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #3`
+- **Turno Atual:** `Turno #4`
 - **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
@@ -31,7 +31,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
 - **Tipos:** Poison
-- **HP:** **41 / 51** (HEALTHY)
+- **HP:** **38 / 51** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -64,7 +64,7 @@
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 41 / 51 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 38 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2997 | ATK: 3793 | DEF: 2472 | SPD: 4174 | SPC: 2173
@@ -189,6 +189,7 @@
 - [18:11:09] Entrou em Pewter City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:12:51] `TACKLE HORN ATTACK`
 - [18:12:49] `It not very`
 - [18:12:48] `TACKLE HORN ATTACK`
 - [18:12:47] `NIDORINO`
@@ -198,7 +199,6 @@
 - [18:12:40] `RED found`
 - [18:12:38] `BUG CATCHER You`
 - [18:12:37] `NIDORINO gained`
-- [18:12:36] `NIDORINO`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Usa **String Shot** com Beedrill – é super‑eficaz contra Zubat (Bug vs Flying).  
