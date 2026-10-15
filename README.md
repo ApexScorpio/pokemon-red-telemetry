@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:16:56**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:17:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `11`, Y: `6`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `We hope to see`
+- **💬 Diálogo / Mensagem no Ecrã:** `TOSS E`
 - **Dinheiro:** **1321 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -162,6 +162,8 @@
 - [18:13:52] Entrou em Mt Moon Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:16:59] `TOSS E`
+- [18:16:56] `EXIT`
 - [18:16:49] `We hope to see`
 - [18:16:47] `OK Wel need`
 - [18:16:46] `We heal`
@@ -170,8 +172,6 @@
 - [18:16:36] `CONFUSION STUN SPORE`
 - [18:16:36] `Go BUTTERFREE`
 - [18:16:34] `Choose a POKMON`
-- [18:16:25] `FIGHT`
-- [18:16:23] `BEEDRILL`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Use **Po"
