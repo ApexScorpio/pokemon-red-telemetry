@@ -1,25 +1,25 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:02:32**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:02:43**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas GPS:** X: `11`, Y: `12`
+- **Localização Atual:** **Mt Moon Pokecenter** (ID Interno: `0x44`)
+- **Coordenadas GPS:** X: `3`, Y: `5`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Choose a POKMON`
+- **💬 Diálogo / Mensagem no Ecrã:** `OK Wel need`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
@@ -34,13 +34,13 @@
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 16)
-- **Tipos:** Poison | **HP:** 29 / 51 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2872 | ATK: 3688 | DEF: 2357 | SPD: 4034 | SPC: 2088
 - **Experiência:** 2548 EXP (Progresso: 2%, faltam 572 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 15 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -81,13 +81,13 @@
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 6. **Nidorina** (Lv. 16)
-- **Tipos:** Poison | **HP:** 33 / 52 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 52 / 52 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 30 | SPC: 25
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2623 | ATK: 3290 | DEF: 2307 | SPD: 3638 | SPC: 2017
 - **Experiência:** 2558 EXP (Progresso: 4%, faltam 562 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 18 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -123,37 +123,42 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **⚔️ POR VENCER**
-- **Dificuldade:** Chefe / Difícil
-- **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-- **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+### #1. **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis)) • **⚔️ POR VENCER**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+- **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Butterfree** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
-- **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
-### #2. **Líder Misty** (Ginásio de Cerulean (Chefe)) • **⚔️ POR VENCER**
-- **Dificuldade:** Chefe / Difícil
-- **Roster Inimigo:** Staryu (Lv. 18 - Water) • Starmie (Lv. 21 - Water/Psychic)
-- **Lead Recomendado:** Pikachu / Bellsprout
+### #2. **Team Rocket Grunt** (Mt. Moon (B2F - Saída)) • **⚔️ POR VENCER**
+- **Dificuldade:** Difícil
+- **Roster Inimigo:** Raticate (Lv. 16)
+- **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Nidorino** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Butterfree** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
-- **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
+- **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [18:02:41] Entrou em Mt Moon Pokecenter
+- [18:02:39] Entrou em Route 4
+- [18:02:35] Entrou em Mt Moon Pokecenter
 - [18:02:27] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:02:37] `OK Wel need`
+- [18:02:36] `We heal your`
 - [18:01:58] `Choose a POKMON`
 - [18:01:57] `Move POKMON`
 - [18:01:56] `Choose a P SWITCH`
@@ -162,8 +167,6 @@
 - [18:01:52] `NIDORAN evolved`
 - [18:01:51] `What NIDORAN`
 - [18:01:49] `NIDORAN grew`
-- [18:01:48] `NIDORAN gained`
-- [18:01:47] `Enemy`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Mude já para o Pik"
