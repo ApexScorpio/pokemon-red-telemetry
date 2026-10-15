@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:11:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:12:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,23 +10,23 @@
 - **Coordenadas GPS:** X: `14`, Y: `30`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy ZUBAT`
+- **💬 Diálogo / Mensagem no Ecrã:** `It super`
 - **Dinheiro:** **1001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #3`
+- **Turno Atual:** `Turno #5`
 - **Último Golpe Usado por RED:** `Poison Sting`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
 - **Tipos:** Poison/Flying
-- **HP:** **13 / 24** (54%)
+- **HP:** **8 / 24** (33%)
 - **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 13 | SPC: 12
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
 - **Tipos:** Bug/Poison
-- **HP:** **32 / 40** (HEALTHY)
+- **HP:** **23 / 40** (HEALTHY)
 - **Stats com Modificadores:** ATK: 30 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -39,20 +39,20 @@
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 13 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **3%** | Great Ball: **5%** | Ultra Ball: **9%**
-  - *Se adormeceres o inimigo:* **~28%** | *Com HP no vermelho:* **~9%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **5%** | Great Ball: **7%** | Ultra Ball: **13%**
+  - *Se adormeceres o inimigo:* **~30%** | *Com HP no vermelho:* **~9%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 32 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 23 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2038 | ATK: 2427 | DEF: 1961 | SPD: 2947 | SPC: 1465
 - **Experiência:** 1755 EXP (Progresso: 6%, faltam 442 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 30 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
@@ -184,20 +184,20 @@
 - [18:11:09] Entrou em Pewter City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:12:00] `It super`
+- [18:12:00] `Enemy ZUBAT`
+- [18:11:59] `BEEDRILL`
+- [18:11:57] `Sucked health from`
+- [18:11:53] `It super`
+- [18:11:52] `It not very`
+- [18:11:52] `POISON STING FURY ATTACK`
 - [18:11:51] `Enemy ZUBAT`
 - [18:11:50] `BEEDRILL`
 - [18:11:49] `It super`
-- [18:11:48] `Enemy ZUBAT`
-- [18:11:47] `FIGHT`
-- [18:11:46] `Enemy ZUBAT`
-- [18:11:45] `BEEDRILL`
-- [18:11:44] `POISON STING FURY ATTACK`
-- [18:11:19] `OK Wel need`
-- [18:11:18] `POKMON back to`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Troca imediatamente para o Pikachu – o seu Thunder Shock é super‑efectivo contra o Zubat (Poison/Flying).  
-Não há necessidade de usar itens; basta usar o ataque elétrico e terminar a batalha."
+> "**Batalha:** Usa **String Shot** com Beedrill – é super‑eficaz contra Zubat (Bug vs Flying).  
+Não há necessidade de"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
