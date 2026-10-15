@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:50:40**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:50:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `64`, Y: `11`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH TACKLE`
+- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -23,13 +23,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Nidoran♀** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 42 / 42 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 32 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 22 | SPD: 22 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1798 | ATK: 2540 | DEF: 1817 | SPD: 2836 | SPC: 1542
-- **Experiência:** 1770 EXP (Progresso: 37%, faltam 265 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 1838 | ATK: 2585 | DEF: 1857 | SPD: 2892 | SPC: 1577
+- **Experiência:** 1832 EXP (Progresso: 52%, faltam 203 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -237,16 +237,16 @@
 - [17:31:03] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:50:51] `NIDORAN`
+- [17:50:50] `Enemy PIDGEY`
+- [17:50:49] `NID`
+- [17:50:49] `Go NI`
+- [17:50:48] `999999999999999999 999999999999999999`
+- [17:50:45] `Enem`
+- [17:50:43] `NIDORAN`
+- [17:50:42] `SCRATCH TACKLE`
+- [17:50:41] `Enemy PIDGEY`
 - [17:50:40] `SCRATCH TACKLE`
-- [17:50:37] `EXIT`
-- [17:50:36] `Move POKMON`
-- [17:50:34] `Choose a P SWITCH`
-- [17:50:26] `Move POKMON`
-- [17:50:25] `Choose a POKMON`
-- [17:50:24] `EXIT`
-- [17:50:23] `BEEDRILL learned`
-- [17:50:21] `BEEDRILL grew`
-- [17:50:20] `BEEDRILL gained`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
