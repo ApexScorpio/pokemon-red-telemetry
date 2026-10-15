@@ -960,7 +960,7 @@ class RetroArchClient extends EventEmitter {
     // =========================================================================
     const blockCombat = await this.readMemoryBlock('CFE0', 255);
     // O Pokémon ativo do jogador fica em $D014, fora do bloco $CFE0.
-    const blockPlayerBattle = await this.readMemoryBlock('D014', 44);
+    const blockPlayerBattle = await this.readMemoryBlock('D014', 30);
     const blockBattleMods = await this.readMemoryBlock('CC20', 280);
 
     // Ler o sinalizador diretamente: o bloco CFE0 atravessa a fronteira CFFF/D000
@@ -1153,14 +1153,16 @@ class RetroArchClient extends EventEmitter {
         rawName: pInfo.name,
         dex: pInfo.dex,
         types: pInfo.types,
+        // HP e estado são lidos da estrutura de combate; os restantes dados
+        // vêm da ficha real da equipa para evitar offsets incorretos no BattleMon.
         hp: bHp,
-        maxHp: bMaxHp || bHp || 20,
-        level: bLevel || 5,
+        maxHp: partyMon ? partyMon.maxHp : (bMaxHp || bHp || 20),
+        level: partyMon ? partyMon.level : (bLevel || 5),
         partyPos: realPartyPos,
         status: bStatusVal === 0 ? 'HEALTHY' : (bStatusVal & 0x7 ? 'SLEEP' : (bStatusVal & 0x8 ? 'POISON' : (bStatusVal & 0x40 ? 'PARALYSIS' : 'BURN'))),
-        stats: { attack: bAttack, defense: bDefense, speed: bSpeed, special: bSpecial },
+        stats: partyMon ? partyMon.stats : { attack: bAttack, defense: bDefense, speed: bSpeed, special: bSpecial },
         statMods: pMods,
-        moves: moveList,
+        moves: partyMon ? partyMon.moves : moveList,
         spriteUrl: getPokemonSpriteUrl(pInfo.name, pInfo.dex),
         artworkUrl: pInfo.dex ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pInfo.dex}.png` : ''
       };
