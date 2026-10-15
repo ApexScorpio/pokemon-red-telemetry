@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:48**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:59**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,19 @@
 - **Coordenadas GPS:** X: `37`, Y: `29`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **1696 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `String Shot`
+- **Turno Atual:** `Turno #8`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
-- **HP:** **15 / 24** (63%)
-- **Stats de Batalha:** ATK: 19 | DEF: 22 | SPD: 8 | SPC: 12
+- **HP:** **9 / 24** (38%)
+- **Stats de Batalha:** ATK: 19 | DEF: 22 | SPD: 4 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
@@ -31,34 +30,35 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
 - **Tipos:** Bug/Poison
-- **HP:** **22 / 46** (HEALTHY)
+- **HP:** **6 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~15 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-15: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Golpe #31 (Causa ~4-5 de dano)
+- ➔ Turno 2: Golpe #31 (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Golpe #31. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 15 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 9 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **67%** | Great Ball: **100%** | Ultra Ball: **67%**
-  - *Se adormeceres o inimigo:* **~70%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 22 / 46 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 6 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2653 | ATK: 3032 | DEF: 2569 | SPD: 3652 | SPC: 2060
 - **Experiência:** 3139 EXP (Progresso: 63%, faltam 236 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 7 | Poder: 40 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Golpe #31** (Normal) — PP: 5 | Poder: 40 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 38 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 17)
@@ -187,16 +187,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:23:58] `FIGHT`
+- [18:23:56] `Critic`
+- [18:23:56] `Enemy GEO`
+- [18:23:55] `BEEDRILL`
+- [18:23:54] `FURY ATTACK POISON STING`
+- [18:23:53] `Enemy GEODUD`
+- [18:23:52] `FURY ATTACK POISON STING`
+- [18:23:51] `BEEDRILL`
 - [18:23:47] `FURY ATTACK POISON STING`
 - [18:23:46] `FIGHT`
-- [18:23:46] `FURY ATTACK POISON STING`
-- [18:23:45] `It not very`
-- [18:23:44] `BEEDRILL`
-- [18:23:43] `FURY ATTACK POISON STING`
-- [18:23:42] `Enemy GEODUDE`
-- [18:23:40] `It not very`
-- [18:23:39] `FURY ATTACK POISON STING`
-- [18:23:38] `It not very`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
