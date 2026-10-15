@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:53:35**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:53:46**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,8 +10,8 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `7`, Y: `25`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `34h 0m 38s`
-- **💬 Diálogo / Mensagem no Ecrã:** `Suspicious men are in the cave`
+- **Tempo de Jogo:** `34h 0m 39s`
+- **💬 Diálogo / Mensagem no Ecrã:** `POISON STING FURY ATTACK`
 - **Dinheiro:** **3001 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -23,7 +23,7 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 37 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 2507 | Def: 2061 | Spd: 2967 | Spc: 1495 | HP: 2078
@@ -31,7 +31,7 @@
 - **Golpes & PPs:**
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
 
 ### 2. **NIDORAN (Nidoran♀)** (Lv. 15)
 - **Tipos:** Poison | **HP:** 45 / 45 ✅ (SAUDÁVEL)
@@ -226,6 +226,7 @@
 - [20:49:11] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:53:38] `POISON STING FURY ATTACK`
 - [20:53:23] `Suspicious men are in the cave`
 - [20:52:07] `POISON STING FURY ATTACK`
 - [20:50:17] `TACKLE HORN ATTACK`
@@ -235,7 +236,6 @@
 - [20:23:06] `THUNDERSHOCK THUNDER WAVE`
 - [20:21:59] `999 999`
 - [20:21:32] `found only in certain areas`
-- [20:21:16] `TACKLE TAIL WHIP`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
