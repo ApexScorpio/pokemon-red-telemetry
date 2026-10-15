@@ -1153,25 +1153,29 @@ class RetroArchClient extends EventEmitter {
           }
         });
       }
-      if (this.wasInBattle) {
-        const exitEntry = {
-          timestamp: new Date().toISOString(),
-          time: new Date().toLocaleTimeString('pt-PT'),
-          type: 'BATTLE_END',
-          summary: 'Combate terminado ou fuga com sucesso.',
-          enemy: this.lastBattleEnemy || 'Adversário'
-        };
-        if (!this.latestState.actionHistory) this.latestState.actionHistory = [];
-        this.latestState.actionHistory.unshift(exitEntry);
-        if (this.latestState.actionHistory.length > 25) this.latestState.actionHistory.pop();
-        try {
-          fs.appendFileSync('data/battle_history_log.jsonl', JSON.stringify(exitEntry) + '\n');
-        } catch (e) {}
-      }
+    }
+
+    // Só registar o fim quando há transição de combate para exploração.
+    if (!this.latestState.inBattle && this.wasInBattle) {
+      const exitEntry = {
+        timestamp: new Date().toISOString(),
+        time: new Date().toLocaleTimeString('pt-PT'),
+        type: 'BATTLE_END',
+        summary: 'Combate terminado ou fuga com sucesso.',
+        enemy: this.lastBattleEnemy || 'Adversário'
+      };
+      if (!this.latestState.actionHistory) this.latestState.actionHistory = [];
+      this.latestState.actionHistory.unshift(exitEntry);
+      if (this.latestState.actionHistory.length > 25) this.latestState.actionHistory.pop();
+      try {
+        fs.appendFileSync('data/battle_history_log.jsonl', JSON.stringify(exitEntry) + '\\n');
+      } catch (e) {}
       this.latestState.battle = null;
       this.lastBattleKey = null;
+    }
 
-      // Conselho tático proativo durante a exploração fora de combate
+    // Conselho tático proativo apenas fora de combate.
+    if (!this.latestState.inBattle) {
       const now = Date.now();
       const needsInitialAdvice = !this.latestState.aiAdvice || this.latestState.aiAdvice.includes('A sincronizar');
       const timeSinceAdvice = now - (this.lastExplorationAdviceTime || 0);
@@ -1186,7 +1190,6 @@ class RetroArchClient extends EventEmitter {
       }
     }
 
-    this.wasInBattle = !!this.latestState.inBattle;
     if (this.latestState.battle && this.latestState.battle.enemy) {
       this.lastBattleEnemy = `${this.latestState.battle.enemy.name} (Lv. ${this.latestState.battle.enemy.level})`;
     }
