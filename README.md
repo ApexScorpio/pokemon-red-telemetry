@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:41:43**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:42:30**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -9,38 +9,16 @@
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
 - **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
-- **Modo Atual:** ⚔️ **EM COMBATE REAL (Selvagem)**
-
-## ⚔️ Combate Ativo em Direto
-### 🔴 Adversário: **Rattata** (Lv. 4)
-- **Tipos:** Normal
-- **HP:** **17 / 17** (100%)
-- **Stats de Batalha:** ATK: 10 | DEF: 8 | SPD: 11 | SPC: 7
-- **Golpes:** Tackle, Tail Whip
-
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 11)
-- **Tipos:** Normal
-- **HP:** **33 / 35**
-- **Stats com Modificadores:** ATK: 16 (0) | DEF: 18 (0) | SPD: 18 (0) | SPC: 15 (0)
-
-### 🎯 Análise Tática Matemática (Gen 1)
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Decisão Matemática:** Usa **Scratch** (Normal) ➔ Dano Estimado: **15-18 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-- **Matriz de Golpes Disponíveis:**
-  - **Scratch** (Normal) • PP: 35/20 • Dano: 15-18 HP (DANO NORMAL ⚔️) [⚠️ RISCO DE K.O. (~50%)]
-  - **Tackle** (Normal) • PP: 24/20 • Dano: 13-16 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
-  - **Growl** (Normal) • PP: 40/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~7%**
+- **Modo Atual:** 🗺️ **Modo Exploração Livre**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 11)
-- **Tipos:** Poison | **HP:** 33 / 35 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 16 | DEF: 18 | SPD: 18 | SPC: 15
+### 1. **Nidoran♀** (Lv. 12)
+- **Tipos:** Poison | **HP:** 35 / 37 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 17 | DEF: 19 | SPD: 19 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Experiência:** 932 EXP (Progresso: 0%, faltam 796 p/ Lv.12)
+- **Experiência:** 989 EXP (Progresso: 0%, faltam 1208 p/ Lv.13)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 24 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 21 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
@@ -106,7 +84,7 @@
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Charmeleon (Lv. 16)** (*O teu tipo (Fire) tem fraqueza defensiva contra os golpes do Líder Brock.*)
 - **Recomendações de Equipa:**
   - **Butterfree** (👥 NA TUA EQUIPA) — *⭐ MELHOR ATACANTE!*: Confusion (Psíquico) causa dano especial contornando a defesa da rocha do Geodude e Onix. Por ser Voador, Butterfree é 100% imune a ataques de Terra!
-  - **Nidoran♀** (👥 NA TUA EQUIPA) — *⭐ APRENDE DOUBLE KICK NO LV. 12!*: No nível 12 aprende Double Kick (tipo Luta — 4x Super Efetivo contra a Rocha do Brock). Bate com enorme força!
+  - **Nidoran♀** (👥 NA TUA EQUIPA) — *⭐ COUNTER DE LUTA (Double Kick)!*: No nível 12 aprende Double Kick (tipo Luta — 4x Super Efetivo contra a Rocha do Brock). Bate com enorme força!
 - **Avisos de Perigo:**
   - ⚠️ Golpes de Fogo e Normais causam dano reduzido (0.5x) contra Rocha/Terra. Não tentes matar o Onix só com Ember; usa Butterfree ou Nidoran com Double Kick, ou usa SmokeScreen para fazer o Onix falhar ataques.
 
