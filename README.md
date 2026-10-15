@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:21:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:22:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Mt Moon Pokecenter** (ID Interno: `0x44`)
-- **Coordenadas GPS:** X: `3`, Y: `3`
+- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
+- **Coordenadas GPS:** X: `14`, Y: `31`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `POKMON back to`
+- **💬 Diálogo / Mensagem no Ecrã:** `Your POKMON are`
 - **Dinheiro:** **1596 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -23,26 +23,26 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 13)
-- **Tipos:** Bug/Poison | **HP:** 3 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 43 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 27 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2473 | ATK: 2907 | DEF: 2409 | SPD: 3477 | SPC: 1955
 - **Experiência:** 2716 EXP (Progresso: 95%, faltam 28 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 6 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 17)
-- **Tipos:** Poison | **HP:** 51 / 53 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 53 / 53 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 30 | SPD: 32 | SPC: 28
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 3037 | ATK: 3823 | DEF: 2522 | SPD: 4274 | SPC: 2228
 - **Experiência:** 3145 EXP (Progresso: 4%, faltam 653 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 24 | Poder: 60 | Precisão: 100%
+  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
@@ -154,9 +154,12 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [18:21:52] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [18:21:58] Entrou em Mt Moon 1F
+- [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:21:54] `Your POKMON are`
+- [18:21:53] `OK Wel need`
 - [18:21:52] `POKMON back to`
 
 ## 🧠 Conselho Tático do Grok AI
