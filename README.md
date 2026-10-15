@@ -1,38 +1,18 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:19:39**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:19:51**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Pewter Gym** (ID: `0x36`)
-- **Coordenadas GPS:** X: `4`, Y: `6`
-- **Dinheiro:** **225 ₽**
+- **Coordenadas GPS:** X: `4`, Y: `2`
+- **Dinheiro:** **445 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
 - **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
-- **Modo Atual:** ⚔️ **EM COMBATE REAL (Treinador)**
-
-## ⚔️ Combate Ativo em Direto
-### 🔴 Adversário: **Sandshrew** (Lv. 11)
-- **Tipos:** Ground
-- **HP:** **17 / 33** (52%)
-- **Stats de Batalha:** ATK: 23 | DEF: 25 | SPD: 15 | SPC: 13
-- **Golpes:** Scratch, Sand Attack
-
-### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 13)
-- **Tipos:** Poison
-- **HP:** **0 / 40**
-- **Stats com Modificadores:** ATK: 18 (0) | DEF: 20 (0) | SPD: 21 (0) | SPC: 17 (0)
-
-### 🎯 Análise Tática Matemática (Gen 1)
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Decisão Matemática:** Usa **Growl** (Normal) ➔ Dano Estimado: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
-- **Matriz de Golpes Disponíveis:**
-  - **Growl** (Normal) • PP: 36/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) 
-  - **Scratch** (Normal) • PP: 28/20 • Dano: 5-6 HP (DANO NORMAL ⚔️) 
-  - **Tackle** (Normal) • PP: 35/20 • Dano: 4-5 HP (DANO NORMAL ⚔️) 
+- **Modo Atual:** 🗺️ **Modo Exploração Livre**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 13) ⚔️ [EM COMBATE]
+### 1. **Nidoran♀** (Lv. 13)
 - **Tipos:** Poison | **HP:** 0 / 40 ❌ (FAINTED)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
@@ -43,12 +23,12 @@
   - **Growl** (Normal) — PP: 36 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidoran♂** (Lv. 12)
-- **Tipos:** Poison | **HP:** 36 / 36 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 3 / 36 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Experiência:** 999 EXP (Progresso: 9%, faltam 262 p/ Lv.13)
+- **Experiência:** 1218 EXP (Progresso: 85%, faltam 43 p/ Lv.13)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
@@ -111,11 +91,12 @@
   - 🚨 CUIDADO COM O BIDE DO ONIX: Se o Onix usar Bide (acumular energia), NÃO ATAQUES com Charmeleon ou Butterfree! Usa golpes de status (Growl, Leer, String Shot) ou cura com Poção para não levares com o dobro do dano devolvido.
 - **⚔️ Previsão de Batalhas da Área (Easiest ➔ Hardest):**
   1. **Rival Blue #2** [Fácil] — **✅ VENCIDO**: Pidgey (Lv. 9) • Squirtle (Lv. 8) • *Lead Recomendado:* Charmeleon ou Butterfree — ⚠️ OBRIGATÓRIO FAZER ANTES DO BROCK! Se derrotares o Brock primeiro, este combate desaparece para sempre. Usa Charmeleon/Butterfree para ganhar EXP fácil.
-  2. **Jr. Trainer♂** [Média] — **⚔️ POR VENCER**: Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra) • *Lead Recomendado:* Butterfree (Confusion) — Treinador que guarda o Brock. Ambos são Terra puro. A Confusion da Butterfree ataca a defesa especial e é imune a ataques de Terra.
+  2. **Jr. Trainer♂** [Média] — **✅ VENCIDO**: Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra) • *Lead Recomendado:* Butterfree (Confusion) — Treinador do ginásio já derrotado com sucesso.
   3. **Líder Brock** [Chefe / Difícil] — **⚔️ POR VENCER**: Geodude (Lv. 12 - Rocha/Terra) • Onix (Lv. 14 - Rocha/Terra) • *Lead Recomendado:* Butterfree (Confusion) & Charmeleon (Ember) — Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
 
 ## 🧠 Conselho Tático do Grok AI
-> "Troca imediatamente para o Rattata – ele não tem fraqueza"
+> "Troca imediatamente para o Charmeleon e acerta com **Ember** – fogo é 4× eficaz contra Sandshrew.  
+Se a batalha ficar longa"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
