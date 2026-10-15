@@ -363,8 +363,9 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
   const scrollX = Number(video.scrollX || 0) & 0xFF;
   const scrollY = Number(video.scrollY || 0) & 0xFF;
   const bgp = Number(video.bgPalette || 0xE4);
-  // Paleta quente vermelho-rosada para reproduzir o filtro/aura do SameBoy.
-  const colors = ['#fff0e8', '#f3b7b0', '#d87878', '#702d3a'];
+  // Paleta neutra clássica do Game Boy; os índices continuam a ser remapeados pelo registo BGP real.
+  // As cores SGB específicas não estão expostas por estes endereços de memória do RetroArch.
+  const colors = ['#e0f8d0', '#88c070', '#346856', '#081820'];
   const image = ctx.createImageData(160, 144);
   const pixels = image.data;
 
