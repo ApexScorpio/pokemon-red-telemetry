@@ -1,35 +1,60 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:13**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `32`, Y: `28`
+- **Coordenadas GPS:** X: `31`, Y: `27`
 - **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `RED found`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **💬 Diálogo / Mensagem no Ecrã:** `Enemy METAPOD`
 - **Dinheiro:** **1596 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
-  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado pelo Adversário:** `Harden`
+
+### 🔴 Adversário em Campo: **Metapod** (Lv. 10)
+- **Tipos:** Bug
+- **HP:** **21 / 31** (68%)
+- **Stats de Batalha:** ATK: 10 | DEF: 17 | SPD: 12 | SPC: 11
+- **Os 4 Golpes do Adversário:**
+  - **Harden** (Normal) • PP: 7 • Poder: -- • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Harden** (Normal) ➔ Golpe de Status
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
+- **Tipos:** Bug/Poison
+- **HP:** **43 / 46** (HEALTHY)
+- **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **15-18 HP** (2x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Poison Sting (Causa ~15-18 de dano)
+- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (43/46). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14)
-- **Tipos:** Bug/Poison | **HP:** 46 / 46 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 43 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2513 | ATK: 2952 | DEF: 2444 | SPD: 3532 | SPC: 1995
-- **Experiência:** 2762 EXP (Progresso: 3%, faltam 613 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 2558 | ATK: 2982 | DEF: 2479 | SPD: 3577 | SPC: 2015
+- **Experiência:** 2874 EXP (Progresso: 21%, faltam 501 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 19 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 16 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -159,15 +184,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [18:22:59] `RED found`
-- [18:22:23] `BEEDRILL grew`
-- [18:22:22] `Enemy ZUBAT`
-- [18:22:21] `BEEDRILL`
-- [18:22:20] `FIGHT`
-- [18:22:19] `999999999999999999 999999999999999999`
-- [18:21:54] `Your POKMON are`
-- [18:21:53] `OK Wel need`
-- [18:21:52] `POKMON back to`
+- [18:23:12] `Enemy METAPOD`
+- [18:23:11] `BEEDRILL`
+- [18:23:10] `Will RED`
+- [18:23:09] `Enemy CAT`
+- [18:23:08] `FIGHT`
+- [18:23:07] `BEEDRILL`
+- [18:23:06] `Go`
+- [18:23:05] `BUG CAT`
+- [18:23:04] `cave to get to`
+- [18:23:03] `Go through this`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
