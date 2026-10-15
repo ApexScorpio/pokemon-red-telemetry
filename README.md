@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:13:02**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:13:13**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #4`
+- **Turno Atual:** `Turno #5`
 - **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
-- **HP:** **12 / 24** (50%)
+- **HP:** **8 / 24** (33%)
 - **Stats de Batalha:** ATK: 19 | DEF: 22 | SPD: 8 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
@@ -31,25 +31,24 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
 - **Tipos:** Poison
-- **HP:** **38 / 51** (HEALTHY)
+- **HP:** **35 / 51** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **8-10 HP** (0.5x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **8-10 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Bite (Causa ~8-10 de dano)
-- ➔ Turno 2: Bite (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Bite. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 12 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **3%** | Great Ball: **5%** | Ultra Ball: **9%**
-  - *Se adormeceres o inimigo:* **~28%** | *Com HP no vermelho:* **~9%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **5%** | Great Ball: **7%** | Ultra Ball: **13%**
+  - *Se adormeceres o inimigo:* **~30%** | *Com HP no vermelho:* **~9%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
@@ -64,13 +63,13 @@
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 38 / 51 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 35 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2997 | ATK: 3793 | DEF: 2472 | SPD: 4174 | SPC: 2173
 - **Experiência:** 2904 EXP (Progresso: 63%, faltam 216 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 24 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 23 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -189,6 +188,8 @@
 - [18:11:09] Entrou em Pewter City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:13:11] `TACKLE HORN ATTACK`
+- [18:13:09] `Enemy GEODU`
 - [18:12:51] `TACKLE HORN ATTACK`
 - [18:12:49] `It not very`
 - [18:12:48] `TACKLE HORN ATTACK`
@@ -197,8 +198,6 @@
 - [18:12:44] `TACKLE HORN ATTACK`
 - [18:12:44] `Go NIDORINO`
 - [18:12:40] `RED found`
-- [18:12:38] `BUG CATCHER You`
-- [18:12:37] `NIDORINO gained`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Usa **String Shot** com Beedrill – é super‑eficaz contra Zubat (Bug vs Flying).  
