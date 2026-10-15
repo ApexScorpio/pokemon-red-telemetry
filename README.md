@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:15:00**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:18:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,24 +9,24 @@
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
 - **Coordenadas GPS:** X: `27`, Y: `6`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Dinheiro:** **2471 ₽**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 15)
-- **Tipos:** Bug/Flying | **HP:** 38 / 47 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 23 | DEF: 22 | SPD: 31 | SPC: 34
+### 1. **Butterfree** (Lv. 16)
+- **Tipos:** Bug/Flying | **HP:** 40 / 49 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3365 | ATK: 3877 | DEF: 3264 | SPD: 4488 | SPC: 2445
-- **Experiência:** 3905 EXP (Progresso: 74%, faltam 191 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 3460 | ATK: 3927 | DEF: 3354 | SPD: 4563 | SPC: 2490
+- **Experiência:** 4198 EXP (Progresso: 12%, faltam 715 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 6 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 3 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
+  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
 
 ### 2. **Charmeleon** (Lv. 16)
@@ -116,7 +116,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:15:00] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:18:51] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
