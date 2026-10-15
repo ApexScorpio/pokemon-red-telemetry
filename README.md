@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:19:04**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:19:16**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -12,34 +12,34 @@
 - **Modo Atual:** ⚔️ **EM COMBATE REAL (Treinador)**
 
 ## ⚔️ Combate Ativo em Direto
-### 🔴 Adversário: **Diglett** (Lv. 11)
+### 🔴 Adversário: **Sandshrew** (Lv. 11)
 - **Tipos:** Ground
-- **HP:** **17 / 24** (71%)
-- **Stats de Batalha:** ATK: 6 | DEF: 12 | SPD: 27 | SPC: 16
-- **Golpes:** Scratch
+- **HP:** **33 / 33** (100%)
+- **Stats de Batalha:** ATK: 23 | DEF: 25 | SPD: 15 | SPC: 13
+- **Golpes:** Scratch, Sand Attack
 
-### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 12)
+### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 13)
 - **Tipos:** Poison
-- **HP:** **21 / 37**
-- **Stats com Modificadores:** ATK: 17 (0) | DEF: 19 (0) | SPD: 19 (0) | SPC: 16 (0)
+- **HP:** **18 / 40**
+- **Stats com Modificadores:** ATK: 18 (0) | DEF: 20 (0) | SPD: 21 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática (Gen 1)
 - **Classificação do Confronto:** **EQUILIBRADO**
 - **⭐ Melhor Decisão Matemática:** Usa **Growl** (Normal) ➔ Dano Estimado: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
 - **Matriz de Golpes Disponíveis:**
   - **Growl** (Normal) • PP: 36/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) 
-  - **Scratch** (Normal) • PP: 34/20 • Dano: 7-9 HP (DANO NORMAL ⚔️) 
-  - **Tackle** (Normal) • PP: 35/20 • Dano: 6-8 HP (DANO NORMAL ⚔️) 
+  - **Scratch** (Normal) • PP: 31/20 • Dano: 5-6 HP (DANO NORMAL ⚔️) 
+  - **Tackle** (Normal) • PP: 35/20 • Dano: 4-5 HP (DANO NORMAL ⚔️) 
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 21 / 37 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 17 | DEF: 19 | SPD: 19 | SPC: 16
+### 1. **Nidoran♀** (Lv. 13) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 18 / 40 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Experiência:** 1107 EXP (Progresso: 47%, faltam 154 p/ Lv.13)
+- **Experiência:** 1297 EXP (Progresso: 10%, faltam 315 p/ Lv.14)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 36 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidoran♂** (Lv. 12)
@@ -115,7 +115,7 @@
   3. **Líder Brock** [Chefe / Difícil] — **⚔️ POR VENCER**: Geodude (Lv. 12 - Rocha/Terra) • Onix (Lv. 14 - Rocha/Terra) • *Lead Recomendado:* Butterfree (Confusion) & Charmeleon (Ember) — Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
 
 ## 🧠 Conselho Tático do Grok AI
-> "A sincronizar com a memória do Game Boy..."
+> "Troca imediatamente para o Rattata – ele não tem fraqueza"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
