@@ -190,6 +190,8 @@ class RetroArchClient extends EventEmitter {
     };
 
     this.lastBattleKey = null;
+    this.lastVideoReadAt = 0;
+    this.videoReadInProgress = false;
     this.pendingResolves = new Map();
   }
 
@@ -1263,6 +1265,43 @@ class RetroArchClient extends EventEmitter {
 
     if (this.latestState.battle && this.latestState.battle.enemy) {
       this.lastBattleEnemy = `${this.latestState.battle.enemy.name} (Lv. ${this.latestState.battle.enemy.level})`;
+    }
+
+    // A VRAM é recolhida em segundo plano e apenas em mapas sem imagem estática.
+    // Assim não bloqueia a leitura principal da RAM nem atrasa a telemetria normal.
+    const staticMapIds = new Set([0,1,2,3,4,12,13,14,15,16,24,25,51,54,59,60,61,68]);
+    const nowVideo = Date.now();
+    if (!staticMapIds.has(Number(this.latestState.mapId)) &&
+        !this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 8000) {
+      this.lastVideoReadAt = nowVideo;
+      this.videoReadInProgress = true;
+      (async () => {
+        try {
+          const [tilePatterns, bgTileMap, regs] = await Promise.all([
+            this.readMemoryBlock('8000', 6144),
+            this.readMemoryBlock('9800', 1024),
+            this.readMemoryBlock('FF40', 8)
+          ]);
+          if (tilePatterns && tilePatterns.length >= 6144 &&
+              bgTileMap && bgTileMap.length >= 1024 && regs && regs.length >= 8) {
+            const bytes = a => a.map(v => typeof v === 'string' ? parseInt(v, 16) : Number(v));
+            const r = bytes(regs);
+            this.latestState.videoMemory = {
+              tilePatterns: bytes(tilePatterns),
+              bgTileMap: bytes(bgTileMap),
+              lcdc: r[0] || 0,
+              scrollY: r[2] || 0,
+              scrollX: r[3] || 0,
+              bgPalette: r[7] === undefined ? 0xE4 : r[7]
+            };
+            this.emit('update', this.latestState);
+          }
+        } catch (e) {
+          // Falha de VRAM não deve interromper a telemetria normal.
+        } finally {
+          this.videoReadInProgress = false;
+        }
+      })();
     }
 
     this.emit('update', this.latestState);
