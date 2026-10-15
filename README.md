@@ -1,60 +1,33 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:42:43**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:42:54**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `25`, Y: `28`
-- **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Choose a P STATS`
+- **Coordenadas GPS:** X: `30`, Y: `28`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `ZUBAT is tough`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
-- **Tipos:** Rock/Ground
-- **HP:** **25 / 25** (100%)
-- **Stats de Batalha:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 11
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
-- **Tipos:** Bug/Poison
-- **HP:** **30 / 48** (HEALTHY)
-- **Stats com Modificadores:** ATK: 37 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-2 HP** (0.25x eficácia) • ~13 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-13: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
-
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 16)** [18/49 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **35%** | Great Ball: **52%** | Ultra Ball: **35%**
-  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 15)
 - **Tipos:** Bug/Poison | **HP:** 30 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2808 | ATK: 3272 | DEF: 2794 | SPD: 3807 | SPC: 2225
-- **Experiência:** 3455 EXP (Progresso: 11%, faltam 641 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 2828 | ATK: 3312 | DEF: 2844 | SPD: 3817 | SPC: 2240
+- **Experiência:** 3504 EXP (Progresso: 18%, faltam 592 p/ Lv.16)
 - **Golpes & PPs:**
   - **Golpe #31** (Normal) — PP: 16 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
@@ -85,13 +58,13 @@
   - **Golpe #158** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
 
 ### 4. **Butterfree** (Lv. 16)
-- **Tipos:** Bug/Flying | **HP:** 18 / 49 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 12 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3600 | ATK: 4167 | DEF: 3564 | SPD: 4733 | SPC: 2597
-- **Experiência:** 4461 EXP (Progresso: 45%, faltam 452 p/ Lv.17)
+- **Stat EXP (EVs Acumulados):** HP: 3620 | ATK: 4207 | DEF: 3614 | SPD: 4743 | SPC: 2612
+- **Experiência:** 4510 EXP (Progresso: 51%, faltam 403 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 22 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 20 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 28 | Poder: -- | Precisão: 75%
   - **Poison Powder** (Poison) — PP: 32 | Poder: -- | Precisão: 75%
@@ -193,16 +166,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:42:54] `ZUBAT is tough`
+- [18:42:48] `BUTTERFREE`
+- [18:42:47] `CONFUSION STUN SPORE`
+- [18:42:46] `FIGHT`
+- [18:42:45] `Enemy GEODUDE`
+- [18:42:44] `BUTTERFREE`
+- [18:42:44] `Enemy GEODUDE`
 - [18:42:43] `Choose a P STATS`
 - [18:42:41] `Go BEEDRILL`
 - [18:42:37] `Enemy GEODUDE`
-- [18:42:36] `Choose a P STATS`
-- [18:42:35] `Choose a POKMON`
-- [18:42:34] `Go BEEDRILL`
-- [18:42:31] `BEEDRILL grew`
-- [18:42:30] `BEEDRILL gained`
-- [18:42:29] `It not very`
-- [18:42:28] `FIGHT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
