@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:53:07**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:53:19**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -15,13 +15,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Poison Sting`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `String Shot`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
 - **Tipos:** Rock/Ground
 - **HP:** **8 / 36** (22%)
-- **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 26 | SPC: 15
+- **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 17 | SPC: 15
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
   - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
@@ -108,7 +108,7 @@
 - **Experiência:** 1648 EXP (Progresso: 80%, faltam 80 p/ Lv.12)
 - **Golpes & PPs:**
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **4 / 20 slots** (16 vagas livres)
 - **Potion** x4
