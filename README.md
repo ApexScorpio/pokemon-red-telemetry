@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:24:36**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:24:48**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -12,25 +12,26 @@
 - **Modo Atual:** 🗺️ **Modo Exploração Livre**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 13)
-- **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
-- **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Experiência:** 1297 EXP (Progresso: 10%, faltam 315 p/ Lv.14)
+### 1. **Butterfree** (Lv. 12)
+- **Tipos:** Bug/Flying | **HP:** 39 / 39 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 19 | DEF: 18 | SPD: 25 | SPC: 28
+- **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
+- **Experiência:** 1844 EXP (Progresso: 25%, faltam 353 p/ Lv.13)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
+
+### 2. **Charmeleon** (Lv. 16)
+- **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 30 | DEF: 26 | SPD: 37 | SPC: 32
+- **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
+- **Experiência:** 2925 EXP (Progresso: 67%, faltam 195 p/ Lv.17)
+- **Golpes:**
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-
-### 2. **Nidoran♂** (Lv. 12)
-- **Tipos:** Poison | **HP:** 36 / 36 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
-- **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Experiência:** 1218 EXP (Progresso: 85%, faltam 43 p/ Lv.13)
-- **Golpes:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 13)
 - **Tipos:** Normal | **HP:** 36 / 36 ✅ (SAUDÁVEL)
@@ -42,26 +43,25 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 4. **Charmeleon** (Lv. 16)
-- **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 30 | DEF: 26 | SPD: 37 | SPC: 32
-- **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
-- **Experiência:** 2925 EXP (Progresso: 67%, faltam 195 p/ Lv.17)
-- **Golpes:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
-  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-
-### 5. **Butterfree** (Lv. 12)
-- **Tipos:** Bug/Flying | **HP:** 39 / 39 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 19 | DEF: 18 | SPD: 25 | SPC: 28
-- **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Experiência:** 1844 EXP (Progresso: 25%, faltam 353 p/ Lv.13)
+### 4. **Nidoran♂** (Lv. 12)
+- **Tipos:** Poison | **HP:** 36 / 36 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
+- **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
+- **Experiência:** 1218 EXP (Progresso: 85%, faltam 43 p/ Lv.13)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
+
+### 5. **Nidoran♀** (Lv. 13)
+- **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
+- **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
+- **Experiência:** 1297 EXP (Progresso: 10%, faltam 315 p/ Lv.14)
+- **Golpes:**
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
 ### 6. **Beedrill** (Lv. 11)
 - **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
