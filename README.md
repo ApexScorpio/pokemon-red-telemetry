@@ -1,15 +1,15 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:18:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:19:02**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `27`, Y: `6`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Coordenadas GPS:** X: `32`, Y: `13`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -21,10 +21,10 @@
 - **Tipos:** Bug/Flying | **HP:** 40 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3460 | ATK: 3927 | DEF: 3354 | SPD: 4563 | SPC: 2490
-- **Experiência:** 4198 EXP (Progresso: 12%, faltam 715 p/ Lv.17)
+- **Stat EXP (EVs Acumulados):** HP: 3540 | ATK: 4047 | DEF: 3414 | SPD: 4703 | SPC: 2552
+- **Experiência:** 4314 EXP (Progresso: 27%, faltam 599 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 3 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 1 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
@@ -116,7 +116,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:18:51] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:19:02] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
