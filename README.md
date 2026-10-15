@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:46:35**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:48:02**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -22,7 +22,7 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
-### 2. **Nidoran♀** (Lv. 12)
+### 2. **Nidoran♂** (Lv. 12)
 - **Tipos:** Poison | **HP:** 18 / 36 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
@@ -84,20 +84,19 @@
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Charmeleon (Lv. 16)** (*O teu tipo (Fire) tem fraqueza defensiva contra os golpes do Líder Brock.*)
 - **Recomendações de Equipa:**
   - **Butterfree** (👥 NA TUA EQUIPA) — *⭐ MELHOR ATACANTE!*: Confusion (Psíquico) causa dano especial contornando a defesa da rocha do Geodude e Onix. Por ser Voador, Butterfree é 100% imune a ataques de Terra!
-  - **Nidoran♀** (👥 NA TUA EQUIPA) — *⭐ COUNTER DE LUTA (Double Kick)!*: No nível 12 aprende Double Kick (tipo Luta — 4x Super Efetivo contra a Rocha do Brock). Bate com enorme força!
+  - **Nidoran♀ (Escolha Principal) vs Nidoran♂** (👥 TENS OS DOIS NA EQUIPA) — *⭐ ESCOLHE APENAS UM (MANTÉM NIDORAN♀)!*: Tens ambos na equipa (Nidoran♂ Lv. 12 e Nidoran♀ Lv. 12). Precisas de apenas UM deles! Recomendamos manter a Nidoran♀: está a Lv. 12 (apenas 1 nível para Double Kick no Lv. 12) e tem maior HP (55) e Defesa (52) contra o Onix. Guarda o Nidoran♂ no PC para não teres 2 tipos Veneno repetidos e libertares espaço.
+    - 📦 *Para criar espaço no PC:* Deposita **Nidoran♂ (Lv. 12)** (Tens dois Nidoran na equipa! O macho está a Lv. 12 (precisa de 5 níveis de treino) enquanto a fêmea já está a Lv. 12 (falta 1 nível). Guarda o macho no PC.)
 - **Avisos de Perigo:**
   - ⚠️ Golpes de Fogo e Normais causam dano reduzido (0.5x) contra Rocha/Terra. Não tentes matar o Onix só com Ember; usa Butterfree ou Nidoran com Double Kick, ou usa SmokeScreen para fazer o Onix falhar ataques.
 
 ### 🌿 Fauna Selvagem Disponível na Relva/Água
-- **Nidoran♀** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
+- **Nidoran♂** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 - **Spearow** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 - **Nidoran♀** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 - **Rattata** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 
 ## 🧠 Conselho Tático do Grok AI
-> "Batalha: usa **Tackle** com o Nidoran♀ de nível 11 para acabar rapidamente – o ataque normal é 100 % eficaz contra o Nidoran♀ de nível 3, e não há risco de fraqueza.  
-Não há necessidade de itens nem troca de Pokémon; mantém o Charmeleon pronto para o próximo encontro com um tipo super‑resistente.  
-Próximo objetivo: avança para a Route 23, treina o Rattata em Pokémon Center e compra um **Poké Ball** extra quando chegar à cidade."
+> "A sincronizar com a memória do Game Boy..."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
