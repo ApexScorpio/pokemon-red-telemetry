@@ -349,10 +349,84 @@ const loadedMapImages = {};
 // Paleta quente avermelhada para aproximar o aspeto do Game Boy Color usado pelo jogador.
 // É aplicada apenas à arte do mapa; marcadores, textos e sprites da interface mantêm as cores.
 function drawMapImageTinted(ctx, ...args) {
-  ctx.save();
-  ctx.filter = 'sepia(0.32) saturate(1.28) hue-rotate(326deg) contrast(1.04)';
+  // Mantém as cores originais da cartografia; não aplicar uma tonalidade inventada.
   ctx.drawImage(...args);
-  ctx.restore();
+}
+
+function drawLiveVramMap(ctx, state, x, y, width, height) {
+  const video = state && state.videoMemory;
+  if (!ctx || !video || !video.tilePatterns || !video.bgTileMap) return false;
+
+  const tileData = video.tilePatterns;
+  const tileMap = video.bgTileMap;
+  const lcdc = Number(video.lcdc || 0);
+  const scrollX = Number(video.scrollX || 0) & 0xFF;
+  const scrollY = Number(video.scrollY || 0) & 0xFF;
+  const bgp = Number(video.bgPalette || 0xE4);
+  const colors = ['#f8f8f8', '#aaaaaa', '#555555', '#101010'];
+  const image = ctx.createImageData(160, 144);
+  const pixels = image.data;
+
+  for (let sy = 0; sy < 144; sy++) {
+    const worldY = (sy + scrollY) & 0xFF;
+    const tileY = worldY >> 3;
+    const pixelY = worldY & 7;
+    for (let sx = 0; sx < 160; sx++) {
+      const worldX = (sx + scrollX) & 0xFF;
+      const tileX = worldX >> 3;
+      const pixelX = worldX & 7;
+      const tileId = tileMap[(tileY * 32 + tileX) & 1023] || 0;
+      let tileOffset;
+      if (lcdc & 0x10) {
+        tileOffset = tileId * 16;
+      } else {
+        const signedId = tileId < 128 ? tileId : tileId - 256;
+        tileOffset = 0x1000 + signedId * 16;
+      }
+      if (tileOffset < 0 || tileOffset + pixelY * 2 + 1 >= tileData.length) continue;
+      const lo = tileData[tileOffset + pixelY * 2] || 0;
+      const hi = tileData[tileOffset + pixelY * 2 + 1] || 0;
+      const bit = 7 - pixelX;
+      const rawShade = ((lo >> bit) & 1) | (((hi >> bit) & 1) << 1);
+      const shade = (bgp >> (rawShade * 2)) & 3;
+      const rgb = colors[shade];
+      const hex = parseInt(rgb.slice(1), 16);
+      const i = (sy * 160 + sx) * 4;
+      pixels[i] = (hex >> 16) & 255;
+      pixels[i + 1] = (hex >> 8) & 255;
+      pixels[i + 2] = hex & 255;
+      pixels[i + 3] = 255;
+    }
+  }
+
+  const liveCanvas = document.createElement('canvas');
+  liveCanvas.width = 160;
+  liveCanvas.height = 144;
+  liveCanvas.getContext('2d').putImageData(image, 0, 0);
+
+  ctx.fillStyle = '#090d13';
+  ctx.fillRect(x, y, width, height);
+  const scale = Math.min(width / 160, height / 144);
+  const drawW = 160 * scale;
+  const drawH = 144 * scale;
+  const drawX = x + (width - drawW) / 2;
+  const drawY = y + (height - drawH) / 2;
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(liveCanvas, drawX, drawY, drawW, drawH);
+
+  // Marcador central: a vista reconstruída corresponde ao ecrã atual do jogo.
+  const markerX = drawX + drawW / 2;
+  const markerY = drawY + drawH / 2;
+  ctx.strokeStyle = '#00d9ff';
+  ctx.lineWidth = Math.max(1.5, scale * 1.5);
+  ctx.beginPath();
+  ctx.arc(markerX, markerY, Math.max(4, scale * 4), 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.fillStyle = '#00d9ff';
+  ctx.beginPath();
+  ctx.arc(markerX, markerY, Math.max(1.5, scale * 1.5), 0, Math.PI * 2);
+  ctx.fill();
+  return true;
 }
 
 function getMapImage(mapId) {
@@ -360,12 +434,14 @@ function getMapImage(mapId) {
   const img = new Image();
   img.src = `/maps/map_${mapId}.png?v=20261015_3`;
   loadedMapImages[mapId] = img;
-  img.onload = () => {
+  const redraw = () => {
     if (lastState && lastState.mapId === mapId) {
       renderFogMinimap(lastState);
       if (isGtaMapOpen) renderGtaFullMap(lastState);
     }
   };
+  img.onload = redraw;
+  img.onerror = redraw;
   return img;
 }
 
@@ -476,6 +552,20 @@ function renderFogMinimap(state) {
   const coords = state.coords || { x: 0, y: 0 };
   const dir = state.playerDirection || 'Sul';
   const mapImg = getMapImage(mapId);
+
+  // Muitos interiores ainda não têm arte estática. Nesses casos, reconstrói o ecrã
+  // visível a partir dos tiles e da paleta BGP lidos da VRAM real do RetroArch.
+  if (mapImg && mapImg.complete && mapImg.naturalWidth === 0 && state.videoMemory) {
+    ctxFog.fillStyle = '#03060f';
+    ctxFog.fillRect(0, 0, canvasFog.width, canvasFog.height);
+    if (drawLiveVramMap(ctxFog, state, 0, 0, canvasFog.width, canvasFog.height)) {
+      if (elMinimapTitle) elMinimapTitle.textContent = `${mapName.toUpperCase()} • VISTA RAM`;
+      if (elMinimapStats) elMinimapStats.textContent = 'Ecrã real do jogo • cores da paleta RAM';
+      if (elMinimapCoordsOverlay) elMinimapCoordsOverlay.textContent = `X:${coords.x} Y:${coords.y}`;
+      if (isGtaMapOpen) renderGtaFullMap(state);
+      return;
+    }
+  }
 
   const dims = state.mapDimensions || { width: 30, height: 30 };
   let mapW = (mapImg && mapImg.complete && mapImg.naturalWidth > 0)
@@ -664,6 +754,16 @@ function renderGtaFullMap(state) {
   const py = coords.y;
   // Corrige o ecrã preto: mapImg era usado abaixo sem ser declarado nesta função.
   const mapImg = getMapImage(mapId);
+
+  if (mapImg && mapImg.complete && mapImg.naturalWidth === 0 && state.videoMemory) {
+    ctxGta.fillStyle = '#020408';
+    ctxGta.fillRect(0, 0, cw, ch);
+    if (drawLiveVramMap(ctxGta, state, 0, 0, cw, ch)) {
+      if (elGtaHeading) elGtaHeading.textContent = `${mapName} • Vista RAM ao vivo`;
+      if (elGtaSubInfo) elGtaSubInfo.textContent = 'Vista do ecrã atual reconstruída a partir da VRAM';
+      return;
+    }
+  }
 
   const dims = state.mapDimensions || { width: 30, height: 30 };
   let mapW = (mapImg && mapImg.complete && mapImg.naturalWidth > 0)
