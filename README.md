@@ -1,10 +1,10 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:56:40**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:57:11**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 22** (ID: `0x21`)
-- **Coordenadas GPS:** X: `36`, Y: `9`
+- **Coordenadas GPS:** X: `31`, Y: `9`
 - **Dinheiro:** **675 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
@@ -16,9 +16,9 @@
 - **Tipos:** Poison | **HP:** 33 / 37 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 17 | DEF: 19 | SPD: 19 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Experiência:** 1025 EXP (Progresso: 0%, faltam 1172 p/ Lv.13)
+- **Experiência:** 1057 EXP (Progresso: 0%, faltam 1140 p/ Lv.13)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 19 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 16 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
@@ -96,7 +96,9 @@
 - **Rattata** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 
 ## 🧠 Conselho Tático do Grok AI
-> "A sincronizar com a memória do Game Boy..."
+> "Bata com o **Tackle** de Nidoran♀ – o dano é suficiente para terminar o Rattata com 1 HP.  
+Não há necessidade de itens neste momento; o seu HP está em segurança.  
+Depois da vitória, recarrega o Charmeleon com uma Potion se precisar de energia extra."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
