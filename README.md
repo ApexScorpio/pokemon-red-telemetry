@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:22:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:22:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `34`, Y: `33`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `47h 0m 30s`
+- **Tempo de Jogo:** `47h 0m 31s`
 - **💬 Diálogo / Mensagem no Ecrã:** `999 999`
 - **Dinheiro:** **2361 ₽** • **Fichas do Casino:** `0`
 
@@ -22,10 +22,10 @@
 - **Tipos:** Electric | **HP:** 42 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 21 | SPD: 39 | SPC: 28
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7245 | Def: 5121 | Spd: 8170 | Spc: 4538 | HP: 5360
-- **Experiência:** 4965 EXP (Progresso: 6%, faltam 867 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 7335 | Def: 5191 | Spd: 8280 | Spc: 4618 | HP: 5440
+- **Experiência:** 5111 EXP (Progresso: 22%, faltam 721 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 19 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
