@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:27:15**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:27:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `62`, Y: `13`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas GPS:** X: `46`, Y: `8`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Wild PIDGEY`
+- **💬 Diálogo / Mensagem no Ecrã:** `It su`
 - **Dinheiro:** **2791 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -22,14 +22,14 @@
   - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 14) ⚔️ [EM COMBATE]
+### 1. **Pikachu** (Lv. 14)
 - **Tipos:** Electric | **HP:** 36 / 36 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 18 | SPD: 33 | SPC: 24
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4280 | ATK: 5965 | DEF: 4106 | SPD: 6687 | SPC: 3501
-- **Experiência:** 3084 EXP (Progresso: 54%, faltam 291 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 4360 | ATK: 6055 | DEF: 4186 | SPD: 6799 | SPC: 3571
+- **Experiência:** 3208 EXP (Progresso: 74%, faltam 167 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -236,16 +236,16 @@
 - [17:26:04] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:27:24] `It su`
+- [17:27:23] `THUNDERSHOCK GROWL`
+- [17:27:22] `Wild PIDGEY`
+- [17:27:19] `PIKACHU`
+- [17:27:17] `THUNDERSHOCK GROWL`
 - [17:27:15] `Wild PIDGEY`
 - [17:27:11] `Enemy JIGGLYPUFF`
 - [17:27:11] `Enem`
 - [17:27:10] `THUNDERSHOCK GROWL`
 - [17:27:03] `Choose a POKMON`
-- [17:27:02] `Choose a PSWITCH`
-- [17:27:00] `Choose a POKMON`
-- [17:26:53] `PIKACHU is`
-- [17:26:52] `What    STATS`
-- [17:26:49] `What`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
