@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:41:57**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:42:08**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,48 +10,48 @@
 - **Coordenadas GPS:** X: `23`, Y: `29`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy ZUBAT`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
 - **Tipos:** Poison/Flying
-- **HP:** **19 / 31** (61%)
+- **HP:** **5 / 31** (16%)
 - **Stats de Batalha:** ATK: 15 | DEF: 12 | SPD: 18 | SPC: 14
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
 - **Tipos:** Bug/Poison
-- **HP:** **43 / 46** (HEALTHY)
+- **HP:** **33 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **16-19 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Golpe #31 (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Golpe #31! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (43/46). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 5 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **64%** | Great Ball: **97%** | Ultra Ball: **64%**
-  - *Se adormeceres o inimigo:* **~68%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 43 / 46 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 33 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2748 | ATK: 3187 | DEF: 2709 | SPD: 3742 | SPC: 2170
 - **Experiência:** 3322 EXP (Progresso: 92%, faltam 53 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 17 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 16 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -188,16 +188,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:42:00] `FURY ATTACK POISON STING`
+- [18:41:59] `Enemy ZUBAT`
+- [18:41:58] `BEEDRILL`
+- [18:41:57] `FURY ATTACK POISON STING`
 - [18:41:56] `Enemy ZUBAT`
 - [18:41:55] `BEEDRILL`
 - [18:41:54] `Go BEEDRILL`
 - [18:41:50] `BUTTERFREE gaine`
 - [18:41:47] `BUTTERFREE`
 - [18:41:46] `It didn affect`
-- [18:41:45] `Enemy GEODUDE`
-- [18:41:45] `BUTTERFREE`
-- [18:41:44] `CONFUSION STUN SPORE`
-- [18:41:42] `Enemy GEODUDE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
