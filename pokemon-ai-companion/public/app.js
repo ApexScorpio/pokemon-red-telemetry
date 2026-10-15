@@ -386,6 +386,77 @@ const btnGtaZoomOut = document.getElementById('btn-gta-zoom-out');
 const btnGtaCenter = document.getElementById('btn-gta-center');
 const btnGtaToggleFog = document.getElementById('btn-gta-toggle-fog');
 
+// Memória de entidades por mapa: mantém ghosts quando sprites/items desaparecem da RAM.
+const mapEntityHistory = new Map();
+
+function getMapEntitySnapshot(state) {
+  const mapId = state.mapId !== undefined ? state.mapId : 0;
+  if (!mapEntityHistory.has(mapId)) mapEntityHistory.set(mapId, new Map());
+  const history = mapEntityHistory.get(mapId);
+  const active = state.mapEntities || [];
+
+  active.forEach(ent => {
+    const key = `${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`;
+    history.set(key, {
+      ...ent,
+      mapId,
+      lastX: ent.x,
+      lastY: ent.y,
+      seenAt: Date.now(),
+      isGhost: false
+    });
+  });
+
+  const currentKeys = new Set(active.map(ent => `${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`));
+  const ghosts = [];
+  history.forEach((ent, key) => {
+    if (!currentKeys.has(key)) ghosts.push({ ...ent, x: ent.lastX, y: ent.lastY, isGhost: true });
+  });
+  return { active, ghosts };
+}
+
+function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
+  const ghost = forceGhost || ent.isGhost || ent.isCollected || ent.isDefeated;
+  const size = Math.max(10, 15 * scale);
+  ctx.save();
+  ctx.globalAlpha = ghost ? 0.36 : 1;
+
+  // Sprite visual: usa o ícone associado ao picture ID lido da RAM, em vez de pontos abstratos.
+  const icon = ent.icon || (ent.isItem ? '🎒' : ent.isTrainer ? '🧍' : '👤');
+  ctx.font = `${size}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  if (!ghost) {
+    ctx.fillStyle = ent.isItem ? 'rgba(255,208,0,0.28)' : ent.isTrainer ? 'rgba(255,59,92,0.22)' : 'rgba(0,240,255,0.2)';
+    ctx.beginPath();
+    ctx.arc(x, y, size * 0.72, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  if (ghost) {
+    ctx.setLineDash([2 * scale, 2 * scale]);
+    ctx.strokeStyle = ent.isItem ? '#ffd000' : ent.isTrainer ? '#ff6b83' : '#8bd8e8';
+    ctx.lineWidth = Math.max(1, scale);
+    ctx.beginPath();
+    ctx.arc(x, y, size * 0.72, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  ctx.fillText(icon, x, y);
+  if (ent.facing && !ghost && scale >= 1.2) {
+    const len = 8 * scale;
+    ctx.strokeStyle = '#ffd000';
+    ctx.lineWidth = Math.max(1, scale);
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    if (ent.facing.includes('Norte')) ctx.lineTo(x, y - len);
+    else if (ent.facing.includes('Sul')) ctx.lineTo(x, y + len);
+    else if (ent.facing.includes('Este')) ctx.lineTo(x + len, y);
+    else if (ent.facing.includes('Oeste')) ctx.lineTo(x - len, y);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
 // Renderizador do Mini-Mapa Tático com Tiles Reais do Game Boy
 function renderFogMinimap(state) {
   if (!canvasFog || !ctxFog) return;
@@ -524,53 +595,14 @@ function renderFogMinimap(state) {
     }
   });
 
-  // 5. Desenha Entidades e NPCs em TEMPO REAL (direto da Memória RAM Game Boy)
-  const entities = state.mapEntities || [];
-  entities.forEach(ent => {
-    if (ent.x !== undefined && ent.y !== undefined) {
-      const ex = camX + ent.x * tileSize + tileSize / 2;
-      const ey = camY + ent.y * tileSize + tileSize / 2;
-      if (ex >= -10 && ex <= cw + 10 && ey >= -10 && ey <= ch + 10) {
-        if (ent.isItem) {
-          // Poké Ball no chão (glowing gold)
-          ctxFog.fillStyle = '#ffd000';
-          ctxFog.beginPath();
-          ctxFog.arc(ex, ey, 4.5, 0, Math.PI * 2);
-          ctxFog.fill();
-          ctxFog.strokeStyle = '#ffffff';
-          ctxFog.lineWidth = 1.2;
-          ctxFog.stroke();
-
-          // Linha divisória da Poké Ball
-          ctxFog.strokeStyle = '#03060f';
-          ctxFog.lineWidth = 1;
-          ctxFog.beginPath();
-          ctxFog.moveTo(ex - 4.5, ey);
-          ctxFog.lineTo(ex + 4.5, ey);
-          ctxFog.stroke();
-        } else {
-          // NPC ou Treinador
-          const isTrainer = ent.isTrainer;
-          ctxFog.fillStyle = isTrainer ? (ent.isDefeated ? '#00e676' : '#ff5252') : '#00f0ff';
-          ctxFog.beginPath();
-          ctxFog.arc(ex, ey, 4, 0, Math.PI * 2);
-          ctxFog.fill();
-          ctxFog.strokeStyle = '#ffffff';
-          ctxFog.lineWidth = 1;
-          ctxFog.stroke();
-
-          // Marcador de visão para onde o NPC está virado
-          ctxFog.strokeStyle = '#ffd000';
-          ctxFog.lineWidth = 1.5;
-          ctxFog.beginPath();
-          ctxFog.moveTo(ex, ey);
-          if (ent.facing && ent.facing.includes('Norte')) ctxFog.lineTo(ex, ey - 7);
-          else if (ent.facing && ent.facing.includes('Sul')) ctxFog.lineTo(ex, ey + 7);
-          else if (ent.facing && ent.facing.includes('Este')) ctxFog.lineTo(ex + 7, ey);
-          else if (ent.facing && ent.facing.includes('Oeste')) ctxFog.lineTo(ex - 7, ey);
-          ctxFog.stroke();
-        }
-      }
+  // Entidades atuais e ghosts (última posição conhecida de sprites que desapareceram).
+  const entitySnapshot = getMapEntitySnapshot(state);
+  [...entitySnapshot.active, ...entitySnapshot.ghosts].forEach(ent => {
+    if (ent.x === undefined || ent.y === undefined) return;
+    const ex = camX + ent.x * tileSize + tileSize / 2;
+    const ey = camY + ent.y * tileSize + tileSize / 2;
+    if (ex >= -16 && ex <= cw + 16 && ey >= -16 && ey <= ch + 16) {
+      drawMapEntity(ctxFog, ent, ex, ey, 0.9, ent.isGhost);
     }
   });
 
@@ -762,69 +794,14 @@ function renderGtaFullMap(state) {
     }
   });
 
-  // 3b. Desenho de Entidades e NPCs em TEMPO REAL (RAM Game Boy)
-  const gtaEntities = state.mapEntities || [];
-  gtaEntities.forEach(ent => {
-    if (ent.x !== undefined && ent.y !== undefined) {
-      const ex = originX + ent.x * tilePx + tilePx / 2;
-      const ey = originY + ent.y * tilePx + tilePx / 2;
-      if (ex >= -30 && ex <= cw + 30 && ey >= -30 && ey <= ch + 30) {
-        if (ent.isItem) {
-          // Glow de Poké Ball no chão
-          ctxGta.fillStyle = 'rgba(255, 208, 0, 0.4)';
-          ctxGta.beginPath();
-          ctxGta.arc(ex, ey, 9 * gtaZoom, 0, Math.PI * 2);
-          ctxGta.fill();
-
-          ctxGta.fillStyle = '#ffd000';
-          ctxGta.beginPath();
-          ctxGta.arc(ex, ey, 5 * gtaZoom, 0, Math.PI * 2);
-          ctxGta.fill();
-          ctxGta.strokeStyle = '#ffffff';
-          ctxGta.lineWidth = 1.5;
-          ctxGta.stroke();
-
-          // Desenho de Poké Ball
-          ctxGta.fillStyle = '#ff3b5c';
-          ctxGta.beginPath();
-          ctxGta.arc(ex, ey, 5 * gtaZoom, Math.PI, 0, false);
-          ctxGta.fill();
-          ctxGta.strokeStyle = '#ffffff';
-          ctxGta.lineWidth = 1;
-          ctxGta.beginPath();
-          ctxGta.moveTo(ex - 5 * gtaZoom, ey);
-          ctxGta.lineTo(ex + 5 * gtaZoom, ey);
-          ctxGta.stroke();
-        } else {
-          // NPC ou Treinador
-          const isTrainer = ent.isTrainer;
-          const mainCol = isTrainer ? (ent.isDefeated ? '#00e676' : '#ff3b5c') : '#00f0ff';
-          ctxGta.fillStyle = isTrainer ? (ent.isDefeated ? 'rgba(0, 230, 118, 0.25)' : 'rgba(255, 59, 92, 0.25)') : 'rgba(0, 240, 255, 0.2)';
-          ctxGta.beginPath();
-          ctxGta.arc(ex, ey, 9 * gtaZoom, 0, Math.PI * 2);
-          ctxGta.fill();
-
-          ctxGta.fillStyle = mainCol;
-          ctxGta.beginPath();
-          ctxGta.arc(ex, ey, 5 * gtaZoom, 0, Math.PI * 2);
-          ctxGta.fill();
-          ctxGta.strokeStyle = '#ffffff';
-          ctxGta.lineWidth = 1.5;
-          ctxGta.stroke();
-
-          // Seta de visão do NPC
-          ctxGta.strokeStyle = '#ffd000';
-          ctxGta.lineWidth = 2 * gtaZoom;
-          ctxGta.beginPath();
-          ctxGta.moveTo(ex, ey);
-          const pLen = 10 * gtaZoom;
-          if (ent.facing && ent.facing.includes('Norte')) ctxGta.lineTo(ex, ey - pLen);
-          else if (ent.facing && ent.facing.includes('Sul')) ctxGta.lineTo(ex, ey + pLen);
-          else if (ent.facing && ent.facing.includes('Este')) ctxGta.lineTo(ex + pLen, ey);
-          else if (ent.facing && ent.facing.includes('Oeste')) ctxGta.lineTo(ex - pLen, ey);
-          ctxGta.stroke();
-        }
-      }
+  // Sprites da RAM em movimento + ghosts na última posição quando desaparecem.
+  const entitySnapshot = getMapEntitySnapshot(state);
+  [...entitySnapshot.active, ...entitySnapshot.ghosts].forEach(ent => {
+    if (ent.x === undefined || ent.y === undefined) return;
+    const ex = originX + ent.x * tilePx + tilePx / 2;
+    const ey = originY + ent.y * tilePx + tilePx / 2;
+    if (ex >= -32 && ex <= cw + 32 && ey >= -32 && ey <= ch + 32) {
+      drawMapEntity(ctxGta, ent, ex, ey, gtaZoom, ent.isGhost);
     }
   });
 
@@ -1687,37 +1664,6 @@ function renderAreaRadar(areaInfo) {
       </div>
     `;
     elWildEncountersList.appendChild(ifBox);
-  }
-
-  // 1b. Entidades & NPCs Ativos no Mapa em Tempo Real (Memória RAM Game Boy)
-  if (lastState && lastState.mapEntities && lastState.mapEntities.length > 0) {
-    const ents = lastState.mapEntities;
-    const entBox = document.createElement('div');
-    entBox.className = 'radar-entities-box';
-    entBox.style.cssText = 'background: rgba(0, 240, 255, 0.04); border: 1px solid rgba(0, 240, 255, 0.22); border-radius: 8px; padding: 8px; margin-bottom: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);';
-    
-    entBox.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-        <span style="font-size:0.72rem; font-weight:800; color:var(--primary-cyan); letter-spacing:0.5px;">📡 ENTIDADES & NPCS NO MAPA (RAM AO VIVO):</span>
-        <span style="font-size:0.65rem; color:var(--primary-yellow); font-weight:700;">${ents.length} NO RADAR</span>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:4px;">
-        ${ents.map(ent => `
-          <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.35); padding:5px 8px; border-radius:6px; font-size:0.7rem; border-left:3px solid ${ent.isItem ? '#ffd000' : ent.isTrainer ? (ent.isDefeated ? '#00e676' : '#ff3b5c') : '#00f0ff'};">
-            <div style="display:flex; align-items:center; gap:6px; min-width:0;">
-              <span style="font-size:0.85rem;">${ent.icon || (ent.isItem ? '🎒' : '👤')}</span>
-              <strong style="color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${ent.name}</strong>
-              <span style="font-size:0.62rem; color:var(--text-muted);">(X:${ent.x} Y:${ent.y})</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
-              ${ent.facing ? `<span style="font-size:0.62rem; color:var(--text-dim);" title="Direção em que o NPC está a olhar">${ent.facing}</span>` : ''}
-              ${ent.compass ? `<span class="compass-badge" style="font-size:0.65rem; font-weight:700; color:var(--primary-yellow); background:rgba(255,208,0,0.12); padding:1px 6px; border-radius:4px;">${ent.compass.badge}</span>` : ''}
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    `;
-    elWildEncountersList.appendChild(entBox);
   }
 
   // 2. Doações de Pokémon por NPCs na Área
