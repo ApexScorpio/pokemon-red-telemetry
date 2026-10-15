@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:06:00**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:06:12**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Mt Moon Pokecenter** (ID Interno: `0x44`)
-- **Coordenadas GPS:** X: `10`, Y: `5`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
+- **Coordenadas GPS:** X: `14`, Y: `35`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `doing this as a`
+- **💬 Diálogo / Mensagem no Ecrã:** `EXIT`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -151,12 +151,17 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [18:06:06] Entrou em Mt Moon 1F
+- [18:06:04] Entrou em Route 4
 - [18:02:41] Entrou em Mt Moon Pokecenter
 - [18:02:39] Entrou em Route 4
 - [18:02:35] Entrou em Mt Moon Pokecenter
 - [18:02:27] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:06:03] `EXIT`
+- [18:06:02] `Choose a POKMON`
+- [18:06:01] `EXIT`
 - [18:03:03] `doing this as a`
 - [18:03:01] `for just 500`
 - [18:03:00] `Il let you have`
@@ -164,9 +169,6 @@
 - [18:02:59] `MAN Hello there`
 - [18:02:53] `always in the`
 - [18:02:52] `attacks CERULEAN`
-- [18:02:51] `TEAM ROCKET`
-- [18:02:37] `OK Wel need`
-- [18:02:36] `We heal your`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Mude já para o Pik"
