@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:01:08**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:01:21**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,13 +10,13 @@
 - **Coordenadas GPS:** X: `65`, Y: `9`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #6`
+- **Turno Atual:** `Turno #14`
 - **Último Golpe Usado por RED:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Jigglypuff** (Lv. 7)
@@ -26,7 +26,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 15)
 - **Tipos:** Poison
-- **HP:** **39 / 45** (SLEEP)
+- **HP:** **39 / 45** (HEALTHY)
 - **Stats com Modificadores:** ATK: 23 (0) | DEF: 23 (0) | SPD: 23 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -253,9 +253,12 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [18:01:08] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [18:01:21] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:01:20] `NIDORAN`
+- [18:01:14] `Enemy JIGGLYPUFF`
+- [18:01:14] `NIDORAN`
 - [18:01:06] `FIGHT`
 - [18:01:02] `NIDORAN`
 - [18:01:01] `FIGHT`
@@ -263,9 +266,6 @@
 - [18:00:59] `FIGHT`
 - [18:00:57] `Enemy JIGGLYPUFF`
 - [18:00:56] `NIDORAN`
-- [18:00:54] `SCRATCH GROWL`
-- [18:00:53] `Go NIDORAN`
-- [17:58:53] `NIDORAN gained`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Use imediatamente **Poison Sting** com o Nidoran♂ – basta um golpe para acabar com o Pidgey de "
