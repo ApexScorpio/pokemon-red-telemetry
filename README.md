@@ -1,43 +1,36 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:14:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:14:34**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `16`, Y: `24`
+- **Coordenadas GPS:** X: `26`, Y: `10`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Critical hit`
-- **Dinheiro:** **1111 ₽**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `Wild ZUBAT`
+- **Dinheiro:** **1321 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado pelo Adversário:** `Growl`
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Clefairy** (Lv. 14)
-- **Tipos:** Fairy
-- **HP:** **16 / 45** (36%)
-- **Stats de Batalha:** ATK: 20 | DEF: 20 | SPD: 17 | SPC: 24
-- **Os 4 Golpes do Adversário:**
-  - **Pound** (Normal) • PP: 0 • Poder: 40 • Precisão: 100%
-  - **Growl** (Normal) • PP: 150 • Poder: -- • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Pound** (Normal) ➔ Dano: ~5-7 HP (1x)
-  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
+### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
+- **Tipos:** Poison/Flying
+- **HP:** **23 / 23** (100%)
+- **Stats de Batalha:** ATK: 12 | DEF: 10 | SPD: 14 | SPC: 12
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison
-- **HP:** **23 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 19 (-1) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
+### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 12)
+- **Tipos:** Normal
+- **HP:** **12 / 40** (HEALTHY)
+- **Stats com Modificadores:** ATK: 14 (-2) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~4 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **5-7 HP** (1x eficácia) • ~4 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
 - ➔ Turnos 1-4: Usa repetidamente Golpe #31
@@ -45,19 +38,23 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (23/40). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (12/40). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **5%**
+  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~9%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 23 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 12 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2118 | ATK: 2517 | DEF: 2031 | SPD: 3057 | SPC: 1545
-- **Experiência:** 1863 EXP (Progresso: 29%, faltam 334 p/ Lv.13)
+- **Stat EXP (EVs Acumulados):** HP: 2188 | ATK: 2562 | DEF: 2079 | SPD: 3092 | SPC: 1605
+- **Experiência:** 2067 EXP (Progresso: 72%, faltam 130 p/ Lv.13)
 - **Golpes & PPs:**
   - **Golpe #31** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -188,16 +185,16 @@
 - [18:11:39] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:14:32] `Wild ZUBAT`
+- [18:14:28] `RED got 210`
+- [18:14:27] `RED defeated`
+- [18:14:26] `BEEDRILL`
+- [18:14:25] `Enemy CLEFAIRY`
+- [18:14:24] `FURY ATTACK POISON STING`
+- [18:14:23] `Enemy CLEFAIRY`
 - [18:14:22] `Critical hit`
 - [18:14:21] `FIGHT`
 - [18:14:18] `BEEDRILL`
-- [18:14:17] `FURY ATTACK POISON STING`
-- [18:14:17] `BEEDRILL`
-- [18:14:15] `LASS sent`
-- [18:14:13] `What I waiting`
-- [18:14:11] `BEEDRILL gained`
-- [18:14:11] `Critical hit`
-- [18:14:10] `FURY ATTACK POISON STING`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Use **Po"
