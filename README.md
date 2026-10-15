@@ -1,24 +1,46 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:49:04**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:52:24**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 22** (ID: `0x21`)
-- **Coordenadas GPS:** X: `31`, Y: `8`
+- **Coordenadas GPS:** X: `33`, Y: `8`
 - **Dinheiro:** **675 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
 - **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
-- **Modo Atual:** 🗺️ **Modo Exploração Livre**
+- **Modo Atual:** ⚔️ **EM COMBATE REAL (Selvagem)**
+
+## ⚔️ Combate Ativo em Direto
+### 🔴 Adversário: **Rattata** (Lv. 3)
+- **Tipos:** Normal
+- **HP:** **5 / 15** (33%)
+- **Stats de Batalha:** ATK: 8 | DEF: 7 | SPD: 10 | SPC: 7
+- **Golpes:** Tackle, Tail Whip
+
+### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 12)
+- **Tipos:** Poison
+- **HP:** **33 / 37**
+- **Stats com Modificadores:** ATK: 17 (0) | DEF: 19 (0) | SPD: 19 (0) | SPC: 16 (0)
+
+### 🎯 Análise Tática Matemática (Gen 1)
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Decisão Matemática:** Usa **Scratch** (Normal) ➔ Dano Estimado: **12-15 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Matriz de Golpes Disponíveis:**
+  - **Scratch** (Normal) • PP: 35/20 • Dano: 12-15 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
+  - **Tackle** (Normal) • PP: 20/20 • Dano: 11-13 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
+  - **Growl** (Normal) • PP: 40/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **6%** | Great Ball: **9%** | Ultra Ball: **17%**
+  - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~6%**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
 ### 1. **Nidoran♀** (Lv. 12)
-- **Tipos:** Poison | **HP:** 35 / 37 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 33 / 37 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 17 | DEF: 19 | SPD: 19 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Experiência:** 989 EXP (Progresso: 0%, faltam 1208 p/ Lv.13)
+- **Experiência:** 1001 EXP (Progresso: 0%, faltam 1196 p/ Lv.13)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 21 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 20 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
@@ -26,9 +48,9 @@
 - **Tipos:** Poison | **HP:** 18 / 36 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Experiência:** 987 EXP (Progresso: 0%, faltam 1210 p/ Lv.13)
+- **Experiência:** 999 EXP (Progresso: 0%, faltam 1198 p/ Lv.13)
 - **Golpes:**
-  - **Tackle** (Normal) — PP: 2 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 1 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 29 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 0 | Poder: 60 | Precisão: 100%
 
