@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:50:15**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:50:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `65`, Y: `11`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `EXIT`
+- **💬 Diálogo / Mensagem no Ecrã:** `Move POKMON`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -22,15 +22,16 @@
   - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 11) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 25 | DEF: 17 | SPD: 23 | SPC: 16
+### 1. **Beedrill** (Lv. 12)
+- **Tipos:** Bug/Poison | **HP:** 33 / 40 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1998 | ATK: 2367 | DEF: 1931 | SPD: 2877 | SPC: 1434
-- **Experiência:** 1714 EXP (Progresso: 96%, faltam 14 p/ Lv.12)
+- **Stat EXP (EVs Acumulados):** HP: 2038 | ATK: 2427 | DEF: 1961 | SPD: 2947 | SPC: 1465
+- **Experiência:** 1755 EXP (Progresso: 6%, faltam 442 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidoran♀** (Lv. 14)
 - **Tipos:** Poison | **HP:** 42 / 42 ✅ (SAUDÁVEL)
@@ -128,7 +129,7 @@
 - **Lead Recomendado:** Pikachu / Butterfree
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -141,7 +142,7 @@
 - **Lead Recomendado:** Charmeleon (Ember) / Pidgey
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -154,7 +155,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -167,7 +168,7 @@
 - **Lead Recomendado:** Charmeleon (Ember)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -180,7 +181,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -193,7 +194,7 @@
 - **Lead Recomendado:** Charmeleon
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -206,7 +207,7 @@
 - **Lead Recomendado:** Pikachu (Thundershock) ou Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -219,7 +220,7 @@
 - **Lead Recomendado:** Charmeleon / Beedrill
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -236,16 +237,16 @@
 - [17:31:03] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [17:50:13] `EXIT`
-- [17:49:58] `Choose a POKMON`
-- [17:49:57] `EXIT`
-- [17:49:37] `Ouch I tripped`
-- [17:49:32] `OK Wel need`
-- [17:49:31] `POKMON back to`
-- [17:49:30] `Welcome to our`
-- [17:49:19] `Enemy SPEAROW`
-- [17:49:19] `POISON STING STRING SHOT`
-- [17:49:18] `Wild SPEAR`
+- [17:50:26] `Move POKMON`
+- [17:50:25] `Choose a POKMON`
+- [17:50:24] `EXIT`
+- [17:50:23] `BEEDRILL learned`
+- [17:50:21] `BEEDRILL grew`
+- [17:50:20] `BEEDRILL gained`
+- [17:50:19] `It super`
+- [17:50:18] `BEEDRILL`
+- [17:50:17] `Enemy SPEAROW`
+- [17:50:16] `Go BEEDRILL`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
