@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 21:02:31**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 21:02:42**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `28`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `35h 0m 23s`
+- **Tempo de Jogo:** `35h 0m 24s`
 - **💬 Diálogo / Mensagem no Ecrã:** `9989899999 99999959`
 - **Dinheiro:** **321 ₽** • **Fichas do Casino:** `0`
 
@@ -104,7 +104,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **15 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **23 / 151**
+- **Espécies Vistas na Pokédex:** **24 / 151**
 - **Total de Pokémon Individuais Ativos:** **10 espécimes** (6 na Equipa + 4 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #32 Nidoran♂, #39 Jigglypuff
 
