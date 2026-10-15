@@ -291,7 +291,7 @@ class RetroArchClient extends EventEmitter {
 
   // Leitura Exaustiva de Blocos de Memória Contíguos
   async readMemoryBlock(startAddrHex, length) {
-    const CHUNK_SIZE = 512;
+    const CHUNK_SIZE = 160;
     const startAddr = parseInt(startAddrHex, 16);
     const chunks = [];
     for (let offset = 0; offset < length; offset += CHUNK_SIZE) {
