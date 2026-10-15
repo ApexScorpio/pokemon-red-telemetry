@@ -556,7 +556,7 @@ function renderFogMinimap(state) {
 
   // Muitos interiores ainda não têm arte estática. Nesses casos, reconstrói o ecrã
   // visível a partir dos tiles e da paleta BGP lidos da VRAM real do RetroArch.
-  if (mapImg && mapImg.complete && mapImg.naturalWidth === 0 && state.videoMemory) {
+  if (state.videoMemory && ([59, 60, 61, 68].includes(Number(mapId)) || (mapImg && mapImg.complete && mapImg.naturalWidth === 0))) {
     ctxFog.fillStyle = '#03060f';
     ctxFog.fillRect(0, 0, canvasFog.width, canvasFog.height);
     if (drawLiveVramMap(ctxFog, state, 0, 0, canvasFog.width, canvasFog.height)) {
@@ -756,7 +756,7 @@ function renderGtaFullMap(state) {
   // Corrige o ecrã preto: mapImg era usado abaixo sem ser declarado nesta função.
   const mapImg = getMapImage(mapId);
 
-  if (mapImg && mapImg.complete && mapImg.naturalWidth === 0 && state.videoMemory) {
+  if (state.videoMemory && ([59, 60, 61, 68].includes(Number(mapId)) || (mapImg && mapImg.complete && mapImg.naturalWidth === 0))) {
     ctxGta.fillStyle = '#020408';
     ctxGta.fillRect(0, 0, cw, ch);
     if (drawLiveVramMap(ctxGta, state, 0, 0, cw, ch)) {
