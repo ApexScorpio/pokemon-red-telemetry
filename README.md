@@ -1,49 +1,26 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:39:26**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:41:11**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 22** (ID: `0x21`)
-- **Coordenadas GPS:** X: `33`, Y: `10`
+- **Coordenadas GPS:** X: `30`, Y: `11`
 - **Dinheiro:** **675 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
 - **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
-- **Modo Atual:** ⚔️ **EM COMBATE REAL (Selvagem)**
-
-## ⚔️ Combate Ativo em Direto
-### 🔴 Adversário: **Nidoran♀** (Lv. 2)
-- **Tipos:** Poison
-- **HP:** **14 / 14** (100%)
-- **Stats de Batalha:** ATK: 7 | DEF: 7 | SPD: 7 | SPC: 6
-- **Golpes:** Leer, Tackle
-
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 9)
-- **Tipos:** Normal
-- **HP:** **13 / 29**
-- **Stats com Modificadores:** ATK: 18 (0) | DEF: 14 (0) | SPD: 16 (0) | SPC: 13 (0)
-
-### 🎯 Análise Tática Matemática (Gen 1)
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Decisão Matemática:** Usa **Bite** (Normal) ➔ Dano Estimado: **23-28 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-- **Matriz de Golpes Disponíveis:**
-  - **Bite** (Normal) • PP: 18/20 • Dano: 23-28 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-  - **Tackle** (Normal) • PP: 5/20 • Dano: 15-18 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-  - **Leer** (Normal) • PP: 29/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **1%** | Great Ball: **2%** | Ultra Ball: **4%**
-  - *Se adormeceres o inimigo:* **~26%** | *Com HP no vermelho:* **~5%**
-- **Sugestão de Troca:** Troca para **Butterfree (Lv. 12)** com golpe **String Shot** (2x super efetivo)!
+- **Modo Atual:** 🗺️ **Modo Exploração Livre**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 9)
-- **Tipos:** Poison | **HP:** 13 / 29 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 18 | DEF: 14 | SPD: 16 | SPC: 13
+### 1. **Nidoran♀** (Lv. 12)
+- **Tipos:** Poison | **HP:** 18 / 36 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Experiência:** 498 EXP (Progresso: 0%, faltam 502 p/ Lv.10)
+- **Experiência:** 987 EXP (Progresso: 0%, faltam 1210 p/ Lv.13)
 - **Golpes:**
-  - **Bite** (Normal) — PP: 18 | Poder: 60 | Precisão: 100%
+  - **Tackle** (Normal) — PP: 2 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 29 | Poder: -- | Precisão: 100%
-  - **Tackle** (Normal) — PP: 5 | Poder: 35 | Precisão: 95%
+  - **Bite** (Normal) — PP: 0 | Poder: 60 | Precisão: 100%
 
 ### 2. **Nidoran♀** (Lv. 11)
 - **Tipos:** Poison | **HP:** 35 / 35 ✅ (SAUDÁVEL)
@@ -107,7 +84,7 @@
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Charmeleon (Lv. 16)** (*O teu tipo (Fire) tem fraqueza defensiva contra os golpes do Líder Brock.*)
 - **Recomendações de Equipa:**
   - **Butterfree** (👥 NA TUA EQUIPA) — *⭐ MELHOR ATACANTE!*: Confusion (Psíquico) causa dano especial contornando a defesa da rocha do Geodude e Onix. Por ser Voador, Butterfree é 100% imune a ataques de Terra!
-  - **Nidoran♀** (👥 NA TUA EQUIPA) — *⭐ APRENDE DOUBLE KICK NO LV. 12!*: No nível 12 aprende Double Kick (tipo Luta — 4x Super Efetivo contra a Rocha do Brock). Bate com enorme força!
+  - **Nidoran♀** (👥 NA TUA EQUIPA) — *⭐ COUNTER DE LUTA (Double Kick)!*: No nível 12 aprende Double Kick (tipo Luta — 4x Super Efetivo contra a Rocha do Brock). Bate com enorme força!
 - **Avisos de Perigo:**
   - ⚠️ Golpes de Fogo e Normais causam dano reduzido (0.5x) contra Rocha/Terra. Não tentes matar o Onix só com Ember; usa Butterfree ou Nidoran com Double Kick, ou usa SmokeScreen para fazer o Onix falhar ataques.
 
@@ -118,9 +95,9 @@
 - **Rattata** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 
 ## 🧠 Conselho Tático do Grok AI
-> "Bata com **Bite** – o ataque Normal vai acabar rapidamente com o Nidoran♀ de nível 3, pois o seu HP já está baixo e não há vantagem de tipo.  
-Não é preciso usar itens agora; guarda a Potion para a próxima luta mais difícil.  
-Depois da vitória, dirija‑se ao centro de Pokémon para comprar mais"
+> "Use **Bite** agora – 60 de dano, rápido e garante a vitória sem precisar de itens.  
+Depois de derrotar o Rattata, siga em direção à **Route 23** e procure Pokémon de tipo Água para fortalecer a equipa contra o próximo desafio.  
+Com 675 p, pode comprar mais **Poké Balls** se quiser capturar novos Pokémon"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
