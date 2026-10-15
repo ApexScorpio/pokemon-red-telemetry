@@ -1168,7 +1168,7 @@ class RetroArchClient extends EventEmitter {
       this.latestState.actionHistory.unshift(exitEntry);
       if (this.latestState.actionHistory.length > 25) this.latestState.actionHistory.pop();
       try {
-        fs.appendFileSync('data/battle_history_log.jsonl', JSON.stringify(exitEntry) + '\\n');
+        fs.appendFileSync('data/battle_history_log.jsonl', JSON.stringify(exitEntry) + '\n');
       } catch (e) {}
       this.latestState.battle = null;
       this.lastBattleKey = null;
