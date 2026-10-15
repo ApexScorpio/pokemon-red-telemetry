@@ -1,52 +1,51 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:26:18**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:26:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `21`, Y: `32`
+- **Coordenadas GPS:** X: `14`, Y: `27`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **💬 Diálogo / Mensagem no Ecrã:** `NIDORINO`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
 - **Tipos:** Poison/Flying
-- **HP:** **2 / 25** (8%)
-- **Stats de Batalha:** ATK: 14 | DEF: 12 | SPD: 16 | SPC: 13
+- **HP:** **25 / 25** (100%)
+- **Stats de Batalha:** ATK: 12 | DEF: 11 | SPD: 14 | SPC: 13
 
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
-- **Tipos:** Poison
-- **HP:** **5 / 59** (HEALTHY)
+### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 19)
+- **Tipos:** Normal
+- **HP:** **2 / 59** (HEALTHY)
 - **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **7-9 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **66-78 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (2/59). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
-  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **35%** | Great Ball: **52%** | Ultra Ball: **35%**
+  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14)
+### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 0 / 46 ❌ (FAINTED)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
@@ -57,14 +56,14 @@
   - **String Shot** (Bug) — PP: 38 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 5 / 59 ✅ (SAUDÁVEL)
+### 2. **Nidorino** (Lv. 19)
+- **Tipos:** Poison | **HP:** 2 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3632 | ATK: 4625 | DEF: 3197 | SPD: 5023 | SPC: 2843
-- **Experiência:** 4600 EXP (Progresso: 3%, faltam 860 p/ Lv.20)
+- **Stat EXP (EVs Acumulados):** HP: 3712 | ATK: 4715 | DEF: 3267 | SPD: 5133 | SPC: 2923
+- **Experiência:** 4730 EXP (Progresso: 18%, faltam 730 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 4 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 1 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 24 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -183,16 +182,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:26:25] `NIDORINO`
+- [18:26:24] `Enemy ZUBAT`
+- [18:26:23] `NIDORINO`
+- [18:26:22] `Go NIDORINO`
+- [18:26:18] `NIDORINO gained`
 - [18:26:17] `FIGHT`
 - [18:26:16] `Enemy ZUBAT`
 - [18:26:16] `TACKLE HORN ATTACK`
 - [18:26:15] `Wild ZU`
 - [18:26:13] `NIDORINO gained`
-- [18:26:11] `Enemy ZUBAT`
-- [18:26:10] `NIDORINO`
-- [18:26:09] `Wi`
-- [18:26:07] `NIDORINO gaine`
-- [18:26:07] `TACKLE HORN ATTACK`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
