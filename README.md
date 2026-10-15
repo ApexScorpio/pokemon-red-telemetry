@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:21:02**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:21:14**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,8 +9,9 @@
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `18`, Y: `25`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **🗺️ Exploração Livre (🚶 A Pé)**
-- **Tempo de Jogo:** `47h 0m 22s`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `47h 0m 23s`
+- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **2361 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -26,7 +27,7 @@
 - **Golpes & PPs:**
   - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Thunder Wave** (Electric) — PP: 19 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 19)
@@ -224,6 +225,9 @@
 - [20:17:28] Entrou em Route 4
 - [20:17:08] Entrou em Route 3
 - [20:16:49] Entrou em Route 4
+
+### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:21:02] `THUNDERSHOCK THUNDER WAVE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
