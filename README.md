@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:40:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:40:12**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `21`, Y: `21`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **💬 Diálogo / Mensagem no Ecrã:** `ing nutrients from the bug host`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -120,12 +120,12 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **9 / 20 slots** (11 vagas livres)
-- **Potion** x6
+- **Poké Ball** x9
 - **Antidote** x2
 - **Town Map** x1
 - **Item #234** x1
 - **Item #212** x1
-- **Poké Ball** x9
+- **Potion** x6
 - **Rare Candy** x1
 - **Escape Rope** x1
 - **Moon Stone** x1
@@ -133,9 +133,9 @@
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Pokémon Capturados:** **19 / 151**
+- **Pokémon Capturados:** **20 / 151**
 - **Pokémon Vistos:** **30 / 151**
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat, #74 Geodude
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat, #46 Paras, #74 Geodude
 
 ## 💾 6. Pokémon Guardados no PC (6 / 20 na Caixa 1) • Vagas Livres: **14**
 - #1: **Geodude** (Dex: #74)
@@ -188,6 +188,10 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:40:12] `ing nutrients from the bug host`
+- [18:40:11] `New POKDEX data will be added for`
+- [18:40:10] `PARAS was`
+- [18:40:10] `RED used`
 - [18:39:55] `FIGHT`
 - [18:39:49] `Hit the enemy`
 - [18:39:48] `BEEDRILL`
