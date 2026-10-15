@@ -343,6 +343,17 @@ class RetroArchClient extends EventEmitter {
     const blockPlayerParty = await this.readMemoryBlock('D158', 530);
 
     if (!blockPlayerParty || blockPlayerParty.length < 530) {
+      const now = Date.now();
+      if (!this.lastInitialReadDebugAt || now - this.lastInitialReadDebugAt >= 3000) {
+        this.lastInitialReadDebugAt = now;
+        console.error('[RetroArchClient] Falha na leitura inicial da RAM:', JSON.stringify({
+          target: `${this.ip}:${this.port}`,
+          requestedAddress: '$D158',
+          expectedBytes: 530,
+          receivedBytes: blockPlayerParty ? blockPlayerParty.length : null,
+          socketBound: !!(this.socket && this.socket.address && this.socket.address().port)
+        }));
+      }
       if (this.latestState.connected) {
         this.latestState.connected = false;
         this.emit('update', this.latestState);
