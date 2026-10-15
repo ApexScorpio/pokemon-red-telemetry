@@ -1,17 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:20:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:21:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `24`, Y: `23`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Localização Atual:** **Mt Moon Pokecenter** (ID Interno: `0x44`)
+- **Coordenadas GPS:** X: `3`, Y: `3`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy ZUBAT`
-- **Dinheiro:** **1321 ₽**
+- **💬 Diálogo / Mensagem no Ecrã:** `POKMON back to`
+- **Dinheiro:** **1596 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -23,26 +23,26 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 13)
-- **Tipos:** Bug/Poison | **HP:** 11 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 3 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 27 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2448 | ATK: 2872 | DEF: 2339 | SPD: 3432 | SPC: 1860
-- **Experiência:** 2508 EXP (Progresso: 57%, faltam 236 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 2473 | ATK: 2907 | DEF: 2409 | SPD: 3477 | SPC: 1955
+- **Experiência:** 2716 EXP (Progresso: 95%, faltam 28 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 9 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 6 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 16)
-- **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
+### 2. **Nidorino** (Lv. 17)
+- **Tipos:** Poison | **HP:** 51 / 53 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 37 | DEF: 30 | SPD: 32 | SPC: 28
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2997 | ATK: 3793 | DEF: 2472 | SPD: 4174 | SPC: 2173
-- **Experiência:** 2904 EXP (Progresso: 63%, faltam 216 p/ Lv.17)
+- **Stat EXP (EVs Acumulados):** HP: 3037 | ATK: 3823 | DEF: 2522 | SPD: 4274 | SPC: 2228
+- **Experiência:** 3145 EXP (Progresso: 4%, faltam 653 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
+  - **Bite** (Normal) — PP: 24 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
@@ -104,7 +104,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Pokémon Capturados:** **19 / 151**
-- **Pokémon Vistos:** **25 / 151**
+- **Pokémon Vistos:** **27 / 151**
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat, #74 Geodude
 
 ## 💾 6. Pokémon Guardados no PC (6 / 20 na Caixa 1) • Vagas Livres: **14**
@@ -135,8 +135,8 @@
   - **Slot #2**: **Beedrill** (Lv. 13) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Nidorino** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ### #2. **Team Rocket Grunt** (Mt. Moon (B2F - Saída)) • **⚔️ POR VENCER**
@@ -144,7 +144,7 @@
 - **Roster Inimigo:** Raticate (Lv. 16)
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Nidorino** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Nidorino** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 13) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -154,28 +154,13 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [18:20:08] Entrou em Mt Moon 1F
-- [18:19:52] Entrou em Route 4
-- [18:19:00] Entrou em Route 3
-- [18:16:50] Entrou em Route 4
-- [18:16:45] Entrou em Mt Moon Pokecenter
-- [18:16:43] Entrou em Route 4
+- [18:21:52] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [18:20:49] `Enemy ZUBAT`
-- [18:20:48] `BEEDRILL`
-- [18:20:47] `Cr`
-- [18:20:45] `FURY ATTACK POISON STING`
-- [18:20:44] `Enemy ZUBAT`
-- [18:20:43] `BEEDRILL`
-- [18:20:42] `FURY ATTACK POISON STING`
-- [18:20:40] `Enemy ZUBAT`
-- [18:20:39] `BEEDRILL`
-- [18:20:38] `Go BEEDRILL`
+- [18:21:52] `POKMON back to`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Bata com **String Shot** – o ataque Bug é super eficaz contra Zubat (Flying) e vai acabar rapidamente.  
-Não há necessidade de usar Potion nem trocar; o HP de Beedrill está ainda acima de 50 % e o"
+> "A sincronizar com a memória do Game Boy..."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
