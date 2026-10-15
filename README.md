@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:26:07**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:26:18**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `25`, Y: `31`
+- **Coordenadas GPS:** X: `21`, Y: `32`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -19,27 +19,27 @@
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Tackle`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
+### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
 - **Tipos:** Poison/Flying
-- **HP:** **7 / 26** (27%)
-- **Stats de Batalha:** ATK: 13 | DEF: 13 | SPD: 16 | SPC: 13
+- **HP:** **2 / 25** (8%)
+- **Stats de Batalha:** ATK: 14 | DEF: 12 | SPD: 16 | SPC: 13
 
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 18)
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
 - **Tipos:** Poison
-- **HP:** **8 / 56** (HEALTHY)
-- **Stats com Modificadores:** ATK: 43 (0) | DEF: 32 (0) | SPD: 34 (0) | SPC: 29 (0)
+- **HP:** **5 / 59** (HEALTHY)
+- **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **34-41 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **7-9 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 7 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
@@ -57,14 +57,14 @@
   - **String Shot** (Bug) — PP: 38 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 8 / 56 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 39 | DEF: 32 | SPD: 34 | SPC: 29
+### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 5 / 59 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3552 | ATK: 4535 | DEF: 3127 | SPD: 4913 | SPC: 2763
-- **Experiência:** 4470 EXP (Progresso: 86%, faltam 105 p/ Lv.19)
+- **Stat EXP (EVs Acumulados):** HP: 3632 | ATK: 4625 | DEF: 3197 | SPD: 5023 | SPC: 2843
+- **Experiência:** 4600 EXP (Progresso: 3%, faltam 860 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 8 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 4 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 24 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -162,7 +162,7 @@
   - **Slot #2**: **Rattata** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorino** (Lv. 18) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Nidorino** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ### #2. **Team Rocket Grunt** (Mt. Moon (B2F - Saída)) • **⚔️ POR VENCER**
@@ -170,7 +170,7 @@
 - **Roster Inimigo:** Raticate (Lv. 16)
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Nidorino** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Nidorino** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Rattata** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Butterfree** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -183,16 +183,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:26:17] `FIGHT`
+- [18:26:16] `Enemy ZUBAT`
+- [18:26:16] `TACKLE HORN ATTACK`
+- [18:26:15] `Wild ZU`
+- [18:26:13] `NIDORINO gained`
+- [18:26:11] `Enemy ZUBAT`
+- [18:26:10] `NIDORINO`
+- [18:26:09] `Wi`
+- [18:26:07] `NIDORINO gaine`
 - [18:26:07] `TACKLE HORN ATTACK`
-- [18:26:06] `Enemy ZUBAT`
-- [18:26:05] `NIDORINO`
-- [18:26:04] `Wild ZUBAT`
-- [18:26:03] `9999999999 9999999999`
-- [18:26:01] `NIDORINO`
-- [18:26:00] `But it failed`
-- [18:25:59] `TACKLE HORN ATTACK`
-- [18:25:58] `Wild ZUBAT`
-- [18:25:54] `RED defeated`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
