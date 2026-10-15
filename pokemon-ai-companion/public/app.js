@@ -1099,7 +1099,7 @@ function renderParty(party, activeBattleMon) {
     // Barra de EXP da RAM
     const expBarHtml = mon.exp ? `
       <div class="party-exp-line" title="EXP Atual: ${mon.exp.current.toLocaleString()} • Próximo Nível: ${mon.exp.next.toLocaleString()}">
-        <span class="pexp-label">EXP</span>
+        <span class="pexp-label">${mon.exp.current.toLocaleString()} XP</span>
         <div class="pexp-bar">
           <div class="pexp-fill" style="width: ${mon.exp.percent}%;"></div>
         </div>
@@ -1152,6 +1152,8 @@ function renderParty(party, activeBattleMon) {
         </div>
         <span style="min-width:40px; text-align:right;">${mon.hp}/${mon.maxHp}</span>
       </div>
+
+      ${expBarHtml}
 
       <div class="party-dvs-row" title="DVs Gen 1 (0 a 15) e Stat EXP total">
         <span>${dvsText}</span>
