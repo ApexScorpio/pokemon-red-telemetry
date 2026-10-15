@@ -1,58 +1,26 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:39:23**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:39:35**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
-- **Localização Atual:** **Route 2** (ID: `0xD`)
-- **Coordenadas GPS:** X: `5`, Y: `4`
+- **Localização Atual:** **Pewter Pokecenter** (ID: `0x3A`)
+- **Coordenadas GPS:** X: `3`, Y: `3`
 - **Dinheiro:** **445 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
 - **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
-- **Modo Atual:** ⚔️ **EM COMBATE REAL (Selvagem)**
-
-## ⚔️ Combate Ativo em Direto
-### 🔴 Adversário: **Pidgey** (Lv. 3)
-- **Tipos:** Normal/Flying
-- **HP:** **15 / 15** (100%)
-- **Stats de Batalha:** ATK: 8 | DEF: 7 | SPD: 9 | SPC: 7
-- **Golpes:** Gust
-
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 12)
-- **Tipos:** Normal
-- **HP:** **39 / 39**
-- **Stats com Modificadores:** ATK: 19 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 28 (0)
-
-### 🎯 Análise Tática Matemática (Gen 1)
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Decisão Matemática:** Usa **Confusion** (Psychic) ➔ Dano Estimado: **23-28 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-- **Matriz de Golpes Disponíveis:**
-  - **Confusion** (Psychic) • PP: 19/20 • Dano: 23-28 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-  - **Tackle** (Normal) • PP: 32/20 • Dano: 17-21 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-  - **String Shot** (Bug) • PP: 40/20 • Dano: 0-0 HP (POUCO EFETIVO 🛡️) [🛡️ GOLPE DE STATUS]
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (39/39). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **3%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~6%**
+- **Modo Atual:** 🗺️ **Modo Exploração Livre**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Butterfree** (Lv. 12) ⚔️ [EM COMBATE]
+### 1. **Butterfree** (Lv. 12)
 - **Tipos:** Bug/Flying | **HP:** 39 / 39 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 18 | SPD: 25 | SPC: 28
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Experiência:** 1977 EXP (Progresso: 53%, faltam 220 p/ Lv.13)
+- **Experiência:** 2000 EXP (Progresso: 58%, faltam 197 p/ Lv.13)
 - **Golpes:**
-  - **Confusion** (Psychic) — PP: 19 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
 ### 2. **Charmeleon** (Lv. 16)
 - **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
@@ -110,7 +78,7 @@
 - **Antidote** x2
 - **Town Map** x1
 
-## 🗺️ Radar da Área: **Route 2**
+## 🗺️ Radar da Área: **Pewter Pokécenter**
 ### 🎯 Preparação Tática: **Líder Brock (Ginásio de Pewter)**
 - **Adversários:** Geodude (Lv. 12) & Onix (Lv. 14) (Nível Alvo: **Lv. 11 a 14**)
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Rattata (Lv. 13)** (*Golpes Normais são pouco eficazes (0.5x) contra a armadura do adversário.*)
@@ -161,11 +129,6 @@
   - **Slot #5**: **Nidoran♀** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Charmeleon** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
-
-### 🌿 Fauna Selvagem Disponível na Relva/Água
-- **Pidgey** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
-- **Weedle** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
-- **Rattata** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 
 ## 🧠 Conselho Tático do Grok AI
 > "Usa **String Shot** agora – é Bug, super‑eficaz contra o Pidgey e vai acabar com ele em poucos golpes.  
