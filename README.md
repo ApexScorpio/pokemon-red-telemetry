@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:45:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:45:12**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `13`, Y: `16`
+- **Coordenadas GPS:** X: `22`, Y: `11`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `PIKACHU gained`
+- **💬 Diálogo / Mensagem no Ecrã:** `999 999`
 - **Dinheiro:** **2361 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -26,10 +26,10 @@
 - **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4620 | ATK: 6380 | DEF: 4446 | SPD: 7155 | SPC: 3812
-- **Experiência:** 3789 EXP (Progresso: 57%, faltam 307 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4700 | ATK: 6470 | DEF: 4516 | SPD: 7265 | SPC: 3892
+- **Experiência:** 3943 EXP (Progresso: 79%, faltam 153 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 24 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 22 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -162,16 +162,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:45:12] `999 999`
+- [18:45:09] `PIKACHU`
+- [18:45:08] `Go PIKACHU`
+- [18:45:05] `PIKACHU gained`
+- [18:45:04] `It super`
+- [18:45:03] `THUNDERSHOCK THUNDER WAVE`
 - [18:44:58] `PIKACHU gained`
 - [18:44:57] `PIKACHU`
 - [18:44:56] `Go PIKACHU`
 - [18:44:54] `It super`
-- [18:44:53] `THUNDERSHOCK THUNDER WAVE`
-- [18:44:52] `Wild ZUBAT`
-- [18:44:50] `RED got 350`
-- [18:44:49] `RED defeated`
-- [18:44:48] `Enemy ONIX`
-- [18:44:47] `NIDORINO`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
