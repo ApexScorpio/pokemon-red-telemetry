@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:38:12**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:38:24**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -18,8 +18,8 @@
 - **Stats de Batalha:** ATK: 9 | DEF: 7 | SPD: 10 | SPC: 6
 - **Golpes:** Tackle, Tail Whip
 
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 12)
-- **Tipos:** Normal
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 12)
+- **Tipos:** Bug/Flying
 - **HP:** **39 / 39**
 - **Stats com Modificadores:** ATK: 19 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 28 (0)
 
@@ -28,7 +28,7 @@
 - **⭐ Melhor Decisão Matemática:** Usa **Confusion** (Psychic) ➔ Dano Estimado: **28-33 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 - **Matriz de Golpes Disponíveis:**
   - **Confusion** (Psychic) • PP: 24/20 • Dano: 28-33 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-  - **Tackle** (Normal) • PP: 35/20 • Dano: 17-21 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
+  - **Tackle** (Normal) • PP: 35/20 • Dano: 11-14 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
   - **String Shot** (Bug) • PP: 40/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
@@ -37,7 +37,7 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (39/39). Não precisas de gastar um turno a trocar.
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (39/39). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **3%** | Ultra Ball: **5%**
