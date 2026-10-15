@@ -1,58 +1,59 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:12:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:12:15**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `14`, Y: `30`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas GPS:** X: `10`, Y: `25`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `It super`
+- **💬 Diálogo / Mensagem no Ecrã:** `Enemy ZUBAT`
 - **Dinheiro:** **1001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #5`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Poison Sting`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
+### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
 - **Tipos:** Poison/Flying
-- **HP:** **8 / 24** (33%)
-- **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 13 | SPC: 12
+- **HP:** **22 / 26** (85%)
+- **Stats de Batalha:** ATK: 13 | DEF: 12 | SPD: 17 | SPC: 13
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
 - **Tipos:** Bug/Poison
-- **HP:** **23 / 40** (HEALTHY)
+- **HP:** **12 / 40** (HEALTHY)
 - **Stats com Modificadores:** ATK: 30 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **12-15 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Golpe #31 (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Golpe #31! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Golpe #31 (Causa ~12-15 de dano)
+- ➔ Turno 2: Golpe #31 (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Golpe #31. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (12/40). Não precisas de gastar um turno a trocar.
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **5%** | Great Ball: **7%** | Ultra Ball: **13%**
-  - *Se adormeceres o inimigo:* **~30%** | *Com HP no vermelho:* **~9%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **3%** | Ultra Ball: **5%**
+  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~10%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 23 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 12 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2038 | ATK: 2427 | DEF: 1961 | SPD: 2947 | SPC: 1465
-- **Experiência:** 1755 EXP (Progresso: 6%, faltam 442 p/ Lv.13)
+- **Stat EXP (EVs Acumulados):** HP: 2078 | ATK: 2472 | DEF: 1996 | SPD: 3002 | SPC: 1505
+- **Experiência:** 1809 EXP (Progresso: 17%, faltam 388 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 30 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 25 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
@@ -184,16 +185,16 @@
 - [18:11:09] Entrou em Pewter City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:12:15] `Enemy ZUBAT`
+- [18:12:14] `POISON STING FURY ATTACK`
+- [18:12:13] `Enemy ZUBAT`
+- [18:12:12] `BEEDRILL`
+- [18:12:11] `FIGHT`
+- [18:12:07] `It not very`
+- [18:12:06] `FIGHT`
+- [18:12:03] `Enemy ZUBAT`
 - [18:12:00] `It super`
 - [18:12:00] `Enemy ZUBAT`
-- [18:11:59] `BEEDRILL`
-- [18:11:57] `Sucked health from`
-- [18:11:53] `It super`
-- [18:11:52] `It not very`
-- [18:11:52] `POISON STING FURY ATTACK`
-- [18:11:51] `Enemy ZUBAT`
-- [18:11:50] `BEEDRILL`
-- [18:11:49] `It super`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Usa **String Shot** com Beedrill – é super‑eficaz contra Zubat (Bug vs Flying).  
