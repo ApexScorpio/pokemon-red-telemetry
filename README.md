@@ -1,10 +1,10 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:38:30**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:39:26**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 22** (ID: `0x21`)
-- **Coordenadas GPS:** X: `32`, Y: `9`
+- **Coordenadas GPS:** X: `33`, Y: `10`
 - **Dinheiro:** **675 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
@@ -12,37 +12,38 @@
 - **Modo Atual:** ⚔️ **EM COMBATE REAL (Selvagem)**
 
 ## ⚔️ Combate Ativo em Direto
-### 🔴 Adversário: **Rattata** (Lv. 3)
-- **Tipos:** Normal
-- **HP:** **1 / 15** (7%)
-- **Stats de Batalha:** ATK: 8 | DEF: 8 | SPD: 10 | SPC: 7
-- **Golpes:** Tackle, Tail Whip
-
-### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 8)
+### 🔴 Adversário: **Nidoran♀** (Lv. 2)
 - **Tipos:** Poison
-- **HP:** **11 / 27**
-- **Stats com Modificadores:** ATK: 17 (0) | DEF: 13 (0) | SPD: 14 (0) | SPC: 12 (0)
+- **HP:** **14 / 14** (100%)
+- **Stats de Batalha:** ATK: 7 | DEF: 7 | SPD: 7 | SPC: 6
+- **Golpes:** Leer, Tackle
+
+### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 9)
+- **Tipos:** Normal
+- **HP:** **13 / 29**
+- **Stats com Modificadores:** ATK: 18 (0) | DEF: 14 (0) | SPD: 16 (0) | SPC: 13 (0)
 
 ### 🎯 Análise Tática Matemática (Gen 1)
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Decisão Matemática:** Usa **Bite** (Normal) ➔ Dano Estimado: **13-16 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Decisão Matemática:** Usa **Bite** (Normal) ➔ Dano Estimado: **23-28 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 - **Matriz de Golpes Disponíveis:**
-  - **Bite** (Normal) • PP: 22/20 • Dano: 13-16 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
+  - **Bite** (Normal) • PP: 18/20 • Dano: 23-28 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
+  - **Tackle** (Normal) • PP: 5/20 • Dano: 15-18 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
   - **Leer** (Normal) • PP: 29/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
-  - **Tackle** (Normal) • PP: 7/20 • Dano: 8-10 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **6%** | Great Ball: **9%** | Ultra Ball: **17%**
-  - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~6%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **1%** | Great Ball: **2%** | Ultra Ball: **4%**
+  - *Se adormeceres o inimigo:* **~26%** | *Com HP no vermelho:* **~5%**
+- **Sugestão de Troca:** Troca para **Butterfree (Lv. 12)** com golpe **String Shot** (2x super efetivo)!
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 8) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 11 / 27 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 17 | DEF: 13 | SPD: 14 | SPC: 12
+### 1. **Nidoran♀** (Lv. 9)
+- **Tipos:** Poison | **HP:** 13 / 29 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 18 | DEF: 14 | SPD: 16 | SPC: 13
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Experiência:** 384 EXP (Progresso: 0%, faltam 345 p/ Lv.9)
+- **Experiência:** 498 EXP (Progresso: 0%, faltam 502 p/ Lv.10)
 - **Golpes:**
-  - **Bite** (Normal) — PP: 22 | Poder: 60 | Precisão: 100%
+  - **Bite** (Normal) — PP: 18 | Poder: 60 | Precisão: 100%
   - **Leer** (Normal) — PP: 29 | Poder: -- | Precisão: 100%
-  - **Tackle** (Normal) — PP: 7 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 5 | Poder: 35 | Precisão: 95%
 
 ### 2. **Nidoran♀** (Lv. 11)
 - **Tipos:** Poison | **HP:** 35 / 35 ✅ (SAUDÁVEL)
@@ -117,9 +118,9 @@
 - **Rattata** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 
 ## 🧠 Conselho Tático do Grok AI
-> "Bata com o **Bite** de Nidoran♀ – basta um golpe normal para acabar com o Rattata de 1 HP.  
-Não há necessidade de itens nem de troca; a sua equipa já tem a vantagem de tipo (Poison vs. Normal).  
-Continue avançando – o próximo objetivo é a Poké Mart de Pallet Town, onde podes comprar um Poké Ball extra e um Antidote para garantir que a tua equipa esteja sempre pronta."
+> "Bata com **Bite** – o ataque Normal vai acabar rapidamente com o Nidoran♀ de nível 3, pois o seu HP já está baixo e não há vantagem de tipo.  
+Não é preciso usar itens agora; guarda a Potion para a próxima luta mais difícil.  
+Depois da vitória, dirija‑se ao centro de Pokémon para comprar mais"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
