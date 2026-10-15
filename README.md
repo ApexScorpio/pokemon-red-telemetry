@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:39:49**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:40:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `21`, Y: `21`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Hit the enemy`
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -30,7 +30,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
 - **Tipos:** Bug/Poison
-- **HP:** **46 / 46** (HEALTHY)
+- **HP:** **42 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -50,7 +50,7 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 46 / 46 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 42 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2653 | ATK: 3032 | DEF: 2569 | SPD: 3652 | SPC: 2060
@@ -188,6 +188,7 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:39:55] `FIGHT`
 - [18:39:49] `Hit the enemy`
 - [18:39:48] `BEEDRILL`
 - [18:39:47] `FIGHT`
