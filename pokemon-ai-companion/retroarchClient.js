@@ -1269,7 +1269,7 @@ class RetroArchClient extends EventEmitter {
 
     // A VRAM é recolhida em segundo plano e apenas em mapas sem imagem estática.
     // Assim não bloqueia a leitura principal da RAM nem atrasa a telemetria normal.
-    const staticMapIds = new Set([0,1,2,3,4,12,13,14,15,16,24,25,51,54,59,60,61,68]);
+    const staticMapIds = new Set([0,1,2,3,4,12,13,14,15,16,24,25,51,54]); // IDs 59/60/61/68 precisam de vista VRAM em tempo real.
     const nowVideo = Date.now();
     if (!staticMapIds.has(Number(this.latestState.mapId)) &&
         !this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 8000) {
