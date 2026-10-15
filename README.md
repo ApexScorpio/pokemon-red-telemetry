@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:52:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:52:25**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `27`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `34h 0m 29s`
+- **Tempo de Jogo:** `34h 0m 30s`
 - **💬 Diálogo / Mensagem no Ecrã:** `POISON STING FURY ATTACK`
 - **Dinheiro:** **3001 ₽** • **Fichas do Casino:** `0`
 
@@ -23,7 +23,7 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison | **HP:** 36 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 20 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 2427 | Def: 1961 | Spd: 2947 | Spc: 1465 | HP: 2038
@@ -31,7 +31,7 @@
 - **Golpes & PPs:**
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Fury Attack** (Normal) — PP: 18 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
 
 ### 2. **NIDORAN (Nidoran♀)** (Lv. 15)
 - **Tipos:** Poison | **HP:** 45 / 45 ✅ (SAUDÁVEL)
