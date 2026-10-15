@@ -255,7 +255,7 @@ class RetroArchClient extends EventEmitter {
 
       this.pendingResolves.set(key, (data) => finish(data));
 
-      const buf = Buffer.from(cmd + '\n');
+      const buf = Buffer.concat([Buffer.from(cmd, 'utf8'), Buffer.from([0x0A])]);
       const firstSendLog = !this.lastUdpSendLogAt;
       this.socket.send(buf, 0, buf.length, this.port, this.ip, (err) => {
         if (firstSendLog) {
