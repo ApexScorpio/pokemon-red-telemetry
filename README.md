@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:40:47**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:40:59**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `14`, Y: `29`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas GPS:** X: `30`, Y: `26`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Got away safely`
+- **💬 Diálogo / Mensagem no Ecrã:** `useful if you`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -166,6 +166,9 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:40:58] `useful if you`
+- [18:40:57] `But it can be`
+- [18:40:56] `ZUBAT is tough`
 - [18:40:38] `Got away safely`
 - [18:40:32] `FIGHT`
 - [18:40:31] `Go BEEDRILL`
@@ -173,9 +176,6 @@
 - [18:40:27] `Thank you`
 - [18:40:26] `OK Wel need`
 - [18:40:25] `We heal your`
-- [18:40:20] `Enemy PARAS`
-- [18:40:19] `FURY ATTACK POISON STING`
-- [18:40:18] `BEEDRILL`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
