@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:54:41**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:54:53**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -15,13 +15,12 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #10`
-- **Último Golpe Usado por RED:** `Scratch`
-- **Último Golpe Usado pelo Adversário:** `Screech`
+- **Turno Atual:** `Turno #16`
+- **Último Golpe Usado por RED:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
 - **Tipos:** Rock/Ground
-- **HP:** **8 / 36** (22%)
+- **HP:** **3 / 36** (8%)
 - **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 7 | SPC: 15
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
@@ -29,8 +28,8 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 13)
 - **Tipos:** Poison
-- **HP:** **40 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 18 (0) | DEF: 10 (-2) | SPD: 21 (0) | SPC: 17 (0)
+- **HP:** **18 / 40** (HEALTHY)
+- **Stats com Modificadores:** ATK: 18 (0) | DEF: 6 (-4) | SPD: 21 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
@@ -40,10 +39,9 @@
 - ➔ Turnos 1-null: Usa repetidamente Growl
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⭐ GANHAR EXP: TROCA PARA O MAIS FRACO!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Nidoran♂ (Lv. 12)** [36/36 HP]
-- **Motivo:** O adversário tem apenas 8 HP! Troca para Nidoran♂ (Lv. 12) para ele participar e recolher 50% dos pontos de EXP da vitória com risco zero!
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Nidoran♀ tem a melhor rota de vitória rápida e HP estável (18/40). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidoran♂ (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -93,13 +91,13 @@
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
 ### 5. **Nidoran♀** (Lv. 13) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 18 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 1507 | ATK: 2180 | DEF: 1504 | SPD: 2393 | SPC: 1295
 - **Experiência:** 1297 EXP (Progresso: 10%, faltam 315 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
