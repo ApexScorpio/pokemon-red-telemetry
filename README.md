@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:52:56**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:53:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,7 +16,7 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Confusion`
+- **Último Golpe Usado por RED:** `Poison Sting`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
 - **Tipos:** Rock/Ground
