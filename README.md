@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:03:33**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:03:56**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -16,7 +16,7 @@
 - **Tipos:** Poison | **HP:** 37 / 37 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 17 | DEF: 19 | SPD: 19 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Experiência:** 1107 EXP (Progresso: 0%, faltam 1090 p/ Lv.13)
+- **Experiência:** 1107 EXP (Progresso: 47%, faltam 154 p/ Lv.13)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
@@ -26,7 +26,7 @@
 - **Tipos:** Poison | **HP:** 36 / 36 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 20 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Experiência:** 999 EXP (Progresso: 0%, faltam 1198 p/ Lv.13)
+- **Experiência:** 999 EXP (Progresso: 9%, faltam 262 p/ Lv.13)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -46,7 +46,7 @@
 - **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 26 | SPD: 37 | SPC: 32
 - **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
-- **Experiência:** 2925 EXP (Progresso: 0%, faltam 1988 p/ Lv.17)
+- **Experiência:** 2925 EXP (Progresso: 67%, faltam 195 p/ Lv.17)
 - **Golpes:**
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -80,17 +80,22 @@
 
 ## 🗺️ Radar da Área: **Pewter City**
 ### 🎯 Preparação Tática: **Líder Brock (Ginásio de Pewter)**
-- **Adversários:** Geodude (Lv. 12 - Rock/Ground) & Onix (Lv. 14 - Rock/Ground) (Nível Alvo: **Lv. 11 a 14**)
-- ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Charmeleon (Lv. 16)** (*O teu tipo (Fire) tem fraqueza defensiva contra os golpes do Líder Brock.*)
+- **Adversários:** Geodude (Lv. 12) & Onix (Lv. 14) (Nível Alvo: **Lv. 11 a 14**)
+- ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Rattata (Lv. 13)** (*Golpes Normais são pouco eficazes (0.5x) contra a armadura do adversário.*)
 - **Recomendações de Equipa:**
-  - **Butterfree** (👥 NA TUA EQUIPA) — *⭐ MELHOR ATACANTE!*: Confusion (Psíquico) causa dano especial contornando a defesa da rocha do Geodude e Onix. Por ser Voador, Butterfree é 100% imune a ataques de Terra!
-  - **Nidoran♀ (Escolha Principal) vs Nidoran♂** (👥 TENS OS DOIS NA EQUIPA) — *⭐ ESCOLHE APENAS UM (MANTÉM NIDORAN♀)!*: Tens ambos na equipa (Nidoran♂ Lv. 12 e Nidoran♀ Lv. 12). Precisas de apenas UM deles! Recomendamos manter a Nidoran♀: está a Lv. 12 (apenas 1 nível para Double Kick no Lv. 12) e tem maior HP (55) e Defesa (52) contra o Onix. Guarda o Nidoran♂ no PC para não teres 2 tipos Veneno repetidos e libertares espaço.
-    - 📦 *Para criar espaço no PC:* Deposita **Nidoran♂ (Lv. 12)** (Tens dois Nidoran na equipa! O macho está a Lv. 12 (precisa de 5 níveis de treino) enquanto a fêmea já está a Lv. 12 (falta 1 nível). Guarda o macho no PC.)
+  - **Butterfree** (👥 NA TUA EQUIPA) — *⭐ MELHOR ATACANTE CONTRA BROCK!*: Confusion (Psíquico) ataca a defesa especial que é fraquíssima no Geodude e Onix (base Special de apenas 30!). No Pokémon Red original, o Brock NÃO tem ataques de tipo Rocha (o Geodude só tem Tackle/Def Curl e o Onix tem Tackle/Screech/Bide), por isso a Butterfree NÃO sofre 4x dano de Rocha neste combate.
+  - **Charmeleon** (👥 NA TUA EQUIPA) — *⚔️ ATACANTE SECUNDÁRIO*: Mesmo causando dano reduzido (0.5x), o Ember ataca no lado especial onde Geodude e Onix têm base de apenas 30 Special. Causa 8-12 de dano consistente.
+  - **Nidoran♀ vs Nidoran♂ (Regras Red)** (👥 TENS OS DOIS NA EQUIPA) — *⚠️ ESCOLHE APENAS UM (GUARDA O MACHO NO PC)*: No Pokémon Red original, o Nidoran NÃO aprende Double Kick no nível 12 (apenas no Lv. 43; o nível 12 foi apenas em Pokémon Yellow). Como ambos são tipo Veneno e sofrem contra Terra, guarda o Nidoran♂ no PC para libertares espaço útil na equipa.
+    - 📦 *Para criar espaço no PC:* Deposita **Nidoran♂ (Lv. 12)** (Não precisas de dois Pokémon de tipo Veneno repetidos na equipa. Guarda o Nidoran♂ no PC do Centro Pokémon.)
 - **Avisos de Perigo:**
-  - ⚠️ Golpes de Fogo e Normais causam dano reduzido (0.5x) contra Rocha/Terra. Não tentes matar o Onix só com Ember; usa Butterfree ou Nidoran com Double Kick, ou usa SmokeScreen para fazer o Onix falhar ataques.
+  - 🚨 CUIDADO COM O BIDE DO ONIX: Se o Onix usar Bide (acumular energia), NÃO ATAQUES com Charmeleon ou Butterfree! Usa golpes de status (Growl, Leer, String Shot) ou cura com Poção para não levares com o dobro do dano devolvido.
+- **⚔️ Previsão de Batalhas da Área (Easiest ➔ Hardest):**
+  1. **Rival Blue #2** [Fácil] — **✅ VENCIDO**: Pidgey (Lv. 9) • Squirtle (Lv. 8) • *Lead Recomendado:* Charmeleon ou Butterfree — ⚠️ OBRIGATÓRIO FAZER ANTES DO BROCK! Se derrotares o Brock primeiro, este combate desaparece para sempre. Usa Charmeleon/Butterfree para ganhar EXP fácil.
+  2. **Jr. Trainer♂** [Média] — **⚔️ POR VENCER**: Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra) • *Lead Recomendado:* Butterfree (Confusion) — Treinador que guarda o Brock. Ambos são Terra puro. A Confusion da Butterfree ataca a defesa especial e é imune a ataques de Terra.
+  3. **Líder Brock** [Chefe / Difícil] — **⚔️ POR VENCER**: Geodude (Lv. 12 - Rocha/Terra) • Onix (Lv. 14 - Rocha/Terra) • *Lead Recomendado:* Butterfree (Confusion) & Charmeleon (Ember) — Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
 
 ## 🧠 Conselho Tático do Grok AI
-> "Troca‑"
+> "A sincronizar com a memória do Game Boy..."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
