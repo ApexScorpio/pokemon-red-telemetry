@@ -948,7 +948,7 @@ class RetroArchClient extends EventEmitter {
           inBattleBeforeUpdate: !!this.latestState.inBattle
         };
         try {
-          fs.appendFileSync('data/battle_detection_debug.jsonl', JSON.stringify(diagnostic) + '\\n');
+          fs.appendFileSync('data/battle_detection_debug.jsonl', JSON.stringify(diagnostic) + '\n');
         } catch (err) {
           console.warn('[BattleDetectionDebug] Não foi possível gravar diagnóstico:', err.message);
         }
