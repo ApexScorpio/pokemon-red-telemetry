@@ -1,67 +1,39 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:44:49**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:45:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `5`, Y: `8`
+- **Coordenadas GPS:** X: `13`, Y: `16`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `RED defeated`
-- **Dinheiro:** **2011 ₽**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `PIKACHU gained`
+- **Dinheiro:** **2361 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Bite`
-- **Último Golpe Usado pelo Adversário:** `Screech`
-
-### 🔴 Adversário em Campo: **Onix** (Lv. 10)
-- **Tipos:** Rock/Ground
-- **HP:** **0 / 28** (0%)
-- **Stats de Batalha:** ATK: 15 | DEF: 38 | SPD: 20 | SPC: 12
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
-  - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~2-3 HP (1x)
-  - **Screech** (Normal) ➔ 🛡️ Reduz stats (Screech)
-
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
-- **Tipos:** Poison
-- **HP:** **37 / 59** (HEALTHY)
-- **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~20 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-20: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (37/59). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 15)
 - **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4540 | ATK: 6290 | DEF: 4376 | SPD: 7045 | SPC: 3732
-- **Experiência:** 3666 EXP (Progresso: 40%, faltam 430 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4620 | ATK: 6380 | DEF: 4446 | SPD: 7155 | SPC: 3812
+- **Experiência:** 3789 EXP (Progresso: 57%, faltam 307 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
+### 2. **Nidorino** (Lv. 19)
 - **Tipos:** Poison | **HP:** 37 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
@@ -190,16 +162,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:44:58] `PIKACHU gained`
+- [18:44:57] `PIKACHU`
+- [18:44:56] `Go PIKACHU`
+- [18:44:54] `It super`
+- [18:44:53] `THUNDERSHOCK THUNDER WAVE`
+- [18:44:52] `Wild ZUBAT`
+- [18:44:50] `RED got 350`
 - [18:44:49] `RED defeated`
 - [18:44:48] `Enemy ONIX`
 - [18:44:47] `NIDORINO`
-- [18:44:46] `Enemy ONIX`
-- [18:44:45] `NIDORINO`
-- [18:44:44] `It not very`
-- [18:44:43] `FIGHT`
-- [18:44:42] `HIKER sent`
-- [18:44:41] `NIDORINO is`
-- [18:44:39] `NIDORINO`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
