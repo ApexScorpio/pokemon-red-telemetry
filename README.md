@@ -1,10 +1,10 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:13:59**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:14:11**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Pewter Gym** (ID: `0x36`)
-- **Coordenadas GPS:** X: `4`, Y: `13`
+- **Coordenadas GPS:** X: `4`, Y: `6`
 - **Dinheiro:** **225 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
