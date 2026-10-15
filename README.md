@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:13:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:13:36**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,19 +10,19 @@
 - **Coordenadas GPS:** X: `7`, Y: `27`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **1111 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #5`
+- **Turno Atual:** `Turno #6`
 - **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
-- **HP:** **8 / 24** (33%)
+- **HP:** **4 / 24** (17%)
 - **Stats de Batalha:** ATK: 19 | DEF: 22 | SPD: 8 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
@@ -31,7 +31,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
 - **Tipos:** Poison
-- **HP:** **35 / 51** (HEALTHY)
+- **HP:** **32 / 51** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -44,11 +44,11 @@
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 4 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **5%** | Great Ball: **7%** | Ultra Ball: **13%**
-  - *Se adormeceres o inimigo:* **~30%** | *Com HP no vermelho:* **~9%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **9%** | Great Ball: **15%** | Ultra Ball: **27%**
+  - *Se adormeceres o inimigo:* **~34%** | *Com HP no vermelho:* **~9%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
@@ -63,13 +63,13 @@
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 35 / 51 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 32 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2997 | ATK: 3793 | DEF: 2472 | SPD: 4174 | SPC: 2173
 - **Experiência:** 2904 EXP (Progresso: 63%, faltam 216 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 23 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 22 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -188,6 +188,9 @@
 - [18:11:09] Entrou em Pewter City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:13:29] `FIGHT`
+- [18:13:28] `It not very`
+- [18:13:27] `NIDORINO`
 - [18:13:11] `TACKLE HORN ATTACK`
 - [18:13:09] `Enemy GEODU`
 - [18:12:51] `TACKLE HORN ATTACK`
@@ -195,13 +198,11 @@
 - [18:12:48] `TACKLE HORN ATTACK`
 - [18:12:47] `NIDORINO`
 - [18:12:45] `Enemy GEODUDE`
-- [18:12:44] `TACKLE HORN ATTACK`
-- [18:12:44] `Go NIDORINO`
-- [18:12:40] `RED found`
 
 ## 🧠 Conselho Tático do Grok AI
-> "**Batalha:** Usa **String Shot** com Beedrill – é super‑eficaz contra Zubat (Bug vs Flying).  
-Não há necessidade de"
+> "Bata com o **Bite** de Nidorino – ele termina rapidamente o Geodude e não há risco de perda de HP.  
+Não há necessidade de itens nem de troca; o seu HP está seguro.  
+Depois de vencer, siga para a saída de Mt. Moon e procure a Poké‑Café para comprar um **Potion** extra."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
