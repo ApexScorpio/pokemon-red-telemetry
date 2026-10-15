@@ -1,26 +1,46 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:18:28**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:18:40**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
-- **Localização Atual:** **Desconhecido** (ID: `0x0`)
+- **Localização Atual:** **Pewter Gym** (ID: `0x36`)
 - **Coordenadas GPS:** X: `4`, Y: `6`
 - **Dinheiro:** **225 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
 - **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
-- **Modo Atual:** 🗺️ **Modo Exploração Livre**
+- **Modo Atual:** ⚔️ **EM COMBATE REAL (Treinador)**
+
+## ⚔️ Combate Ativo em Direto
+### 🔴 Adversário: **Diglett** (Lv. 11)
+- **Tipos:** Ground
+- **HP:** **24 / 24** (100%)
+- **Stats de Batalha:** ATK: 9 | DEF: 12 | SPD: 27 | SPC: 16
+- **Golpes:** Scratch
+
+### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 12)
+- **Tipos:** Poison
+- **HP:** **28 / 37**
+- **Stats com Modificadores:** ATK: 17 (0) | DEF: 19 (0) | SPD: 19 (0) | SPC: 16 (0)
+
+### 🎯 Análise Tática Matemática (Gen 1)
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Decisão Matemática:** Usa **Growl** (Normal) ➔ Dano Estimado: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
+- **Matriz de Golpes Disponíveis:**
+  - **Growl** (Normal) • PP: 38/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) 
+  - **Scratch** (Normal) • PP: 35/20 • Dano: 7-9 HP (DANO NORMAL ⚔️) 
+  - **Tackle** (Normal) • PP: 35/20 • Dano: 6-8 HP (DANO NORMAL ⚔️) 
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 12)
-- **Tipos:** Poison | **HP:** 32 / 37 ✅ (SAUDÁVEL)
+### 1. **Nidoran♀** (Lv. 12) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 28 / 37 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 17 | DEF: 19 | SPD: 19 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Experiência:** 1107 EXP (Progresso: 47%, faltam 154 p/ Lv.13)
 - **Golpes:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 39 | Poder: -- | Precisão: 100%
+  - **Growl** (Normal) — PP: 38 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidoran♂** (Lv. 12)
 - **Tipos:** Poison | **HP:** 36 / 36 ✅ (SAUDÁVEL)
@@ -78,7 +98,7 @@
 - **Antidote** x2
 - **Town Map** x1
 
-## 🗺️ Radar da Área: **Pallet Town**
+## 🗺️ Radar da Área: **Pewter Gym**
 ### 🎯 Preparação Tática: **Líder Brock (Ginásio de Pewter)**
 - **Adversários:** Geodude (Lv. 12) & Onix (Lv. 14) (Nível Alvo: **Lv. 11 a 14**)
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Rattata (Lv. 13)** (*Golpes Normais são pouco eficazes (0.5x) contra a armadura do adversário.*)
