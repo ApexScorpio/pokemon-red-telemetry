@@ -1,54 +1,25 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:13:36**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:13:48**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `7`, Y: `27`
+- **Coordenadas GPS:** X: `15`, Y: `28`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `GEODUDE was`
 - **Dinheiro:** **1111 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #6`
-- **Último Golpe Usado por RED:** `Tackle`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
-
-### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
-- **Tipos:** Rock/Ground
-- **HP:** **4 / 24** (17%)
-- **Stats de Batalha:** ATK: 19 | DEF: 22 | SPD: 8 | SPC: 11
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
-- **Tipos:** Poison
-- **HP:** **32 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **8-10 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 4 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
-- **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **9%** | Great Ball: **15%** | Ultra Ball: **27%**
-  - *Se adormeceres o inimigo:* **~34%** | *Com HP no vermelho:* **~9%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
@@ -62,7 +33,7 @@
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
+### 2. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 32 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
@@ -127,21 +98,22 @@
 - **Town Map** x1
 - **Item #234** x1
 - **Item #212** x1
-- **Poké Ball** x10
+- **Poké Ball** x9
 
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Pokémon Capturados:** **18 / 151**
+- **Pokémon Capturados:** **19 / 151**
 - **Pokémon Vistos:** **24 / 151**
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat, #74 Geodude
 
-## 💾 6. Pokémon Guardados no PC (5 / 20 na Caixa 1) • Vagas Livres: **15**
-- #1: **Zubat** (Dex: #41)
-- #2: **Jigglypuff** (Dex: #39)
-- #3: **Spearow** (Dex: #21)
-- #4: **Pidgey** (Dex: #16)
-- #5: **Charmeleon** (Dex: #5)
+## 💾 6. Pokémon Guardados no PC (6 / 20 na Caixa 1) • Vagas Livres: **14**
+- #1: **Geodude** (Dex: #74)
+- #2: **Zubat** (Dex: #41)
+- #3: **Jigglypuff** (Dex: #39)
+- #4: **Spearow** (Dex: #21)
+- #5: **Pidgey** (Dex: #16)
+- #6: **Charmeleon** (Dex: #5)
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
@@ -188,16 +160,16 @@
 - [18:11:09] Entrou em Pewter City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:13:46] `GEODUDE was`
+- [18:13:45] `people often step or trip on them`
+- [18:13:44] `will be added for`
+- [18:13:43] `All right`
+- [18:13:42] `RED used`
 - [18:13:29] `FIGHT`
 - [18:13:28] `It not very`
 - [18:13:27] `NIDORINO`
 - [18:13:11] `TACKLE HORN ATTACK`
 - [18:13:09] `Enemy GEODU`
-- [18:12:51] `TACKLE HORN ATTACK`
-- [18:12:49] `It not very`
-- [18:12:48] `TACKLE HORN ATTACK`
-- [18:12:47] `NIDORINO`
-- [18:12:45] `Enemy GEODUDE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Bata com o **Bite** de Nidorino – ele termina rapidamente o Geodude e não há risco de perda de HP.  
