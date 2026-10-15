@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:08:10**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:08:22**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `5`, Y: `31`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `It super`
+- **💬 Diálogo / Mensagem no Ecrã:** `All right`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -21,7 +21,7 @@
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 6)
 - **Tipos:** Poison/Flying
-- **HP:** **6 / 21** (29%)
+- **HP:** **7 / 21** (33%)
 - **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 12 | SPC: 9
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
@@ -39,14 +39,14 @@
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 6 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 7 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **8%** | Great Ball: **13%** | Ultra Ball: **23%**
   - *Se adormeceres o inimigo:* **~33%** | *Com HP no vermelho:* **~8%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison | **HP:** 31 / 40 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 28 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2038 | ATK: 2427 | DEF: 1961 | SPD: 2947 | SPC: 1465
@@ -183,19 +183,19 @@
 - [18:02:27] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:08:21] `All right`
+- [18:08:20] `RED used`
+- [18:08:14] `FIGHT`
+- [18:08:13] `Sucked health from`
 - [18:08:08] `It super`
 - [18:08:07] `It`
 - [18:08:06] `It not very`
 - [18:08:05] `FIGHT`
 - [18:08:04] `Enemy ZUBAT`
 - [18:08:03] `POISON STING FURY ATTACK`
-- [18:08:02] `Enemy ZUBAT`
-- [18:08:01] `BE`
-- [18:08:00] `Enemy ZUBAT`
-- [18:08:00] `It not very`
 
 ## 🧠 Conselho Tático do Grok AI
-> "**Batalha**: Usa imediatamente **String Shot** – é Bug, super‑efetivo contra Zubat (Flying) e acab"
+> "Batalha em curso: use **String Shot** (bug) para infligir dano crítico"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
