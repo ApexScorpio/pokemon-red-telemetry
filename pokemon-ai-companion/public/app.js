@@ -345,6 +345,16 @@ function renderState(state) {
 
 // Cache de Imagens de Mapas Oficiais do Pokémon Red
 const loadedMapImages = {};
+
+// Paleta quente avermelhada para aproximar o aspeto do Game Boy Color usado pelo jogador.
+// É aplicada apenas à arte do mapa; marcadores, textos e sprites da interface mantêm as cores.
+function drawMapImageTinted(ctx, ...args) {
+  ctx.save();
+  ctx.filter = 'sepia(0.32) saturate(1.28) hue-rotate(326deg) contrast(1.04)';
+  ctx.drawImage(...args);
+  ctx.restore();
+}
+
 function getMapImage(mapId) {
   if (loadedMapImages[mapId]) return loadedMapImages[mapId];
   const img = new Image();
@@ -531,7 +541,7 @@ function renderFogMinimap(state) {
         const srcX = tx * 16;
         const srcY = ty * 16;
         if (srcX >= 0 && srcX + 16 <= mapImg.naturalWidth && srcY >= 0 && srcY + 16 <= mapImg.naturalHeight) {
-          ctxFog.drawImage(mapImg, srcX, srcY, 16, 16, sx, sy, tileSize, tileSize);
+          drawMapImageTinted(ctxFog, mapImg, srcX, srcY, 16, 16, sx, sy, tileSize, tileSize);
         } else {
           ctxFog.fillStyle = '#0c1b2c';
           ctxFog.fillRect(sx, sy, tileSize, tileSize);
@@ -682,7 +692,7 @@ function renderGtaFullMap(state) {
   if (mapImg && mapImg.complete && mapImg.naturalWidth > 0) {
     if (!gtaFogEnabled) {
       // Se névoa estiver desligada: desenha todo o mapa
-      ctxGta.drawImage(mapImg, originX, originY, mapImg.naturalWidth * gtaZoom, mapImg.naturalHeight * gtaZoom);
+      drawMapImageTinted(ctxGta, mapImg, originX, originY, mapImg.naturalWidth * gtaZoom, mapImg.naturalHeight * gtaZoom);
       // Escurece ligeiramente zonas não visitadas para dar profundidade tática
       for (let tx = 0; tx < mapW; tx++) {
         for (let ty = 0; ty < mapH; ty++) {
@@ -703,7 +713,7 @@ function renderGtaFullMap(state) {
           const srcX = tx * 16;
           const srcY = ty * 16;
           if (srcX >= 0 && srcX + 16 <= mapImg.naturalWidth && srcY >= 0 && srcY + 16 <= mapImg.naturalHeight) {
-            ctxGta.drawImage(mapImg, srcX, srcY, 16, 16, sx, sy, tilePx + 0.5, tilePx + 0.5);
+            drawMapImageTinted(ctxGta, mapImg, srcX, srcY, 16, 16, sx, sy, tilePx + 0.5, tilePx + 0.5);
           } else {
             ctxGta.fillStyle = '#0c1b2c';
             ctxGta.fillRect(sx, sy, tilePx, tilePx);
