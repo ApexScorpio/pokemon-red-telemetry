@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:50:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:50:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `65`, Y: `11`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Move POKMON`
+- **Coordenadas GPS:** X: `64`, Y: `11`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH TACKLE`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -22,18 +22,7 @@
   - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison | **HP:** 33 / 40 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
-- **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2038 | ATK: 2427 | DEF: 1961 | SPD: 2947 | SPC: 1465
-- **Experiência:** 1755 EXP (Progresso: 6%, faltam 442 p/ Lv.13)
-- **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
-
-### 2. **Nidoran♀** (Lv. 14)
+### 1. **Nidoran♀** (Lv. 14) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 42 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 22 | SPD: 22 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
@@ -43,6 +32,18 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+
+### 2. **Nidoran♂** (Lv. 14)
+- **Tipos:** Poison | **HP:** 41 / 41 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 23 | SPC: 19
+- **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 2122 | ATK: 2893 | DEF: 1877 | SPD: 3154 | SPC: 1615
+- **Experiência:** 1816 EXP (Progresso: 48%, faltam 219 p/ Lv.15)
+- **Golpes & PPs:**
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
@@ -80,17 +81,16 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
-### 6. **Nidoran♂** (Lv. 14)
-- **Tipos:** Poison | **HP:** 41 / 41 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 23 | SPC: 19
-- **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2122 | ATK: 2893 | DEF: 1877 | SPD: 3154 | SPC: 1615
-- **Experiência:** 1816 EXP (Progresso: 48%, faltam 219 p/ Lv.15)
+### 6. **Beedrill** (Lv. 12)
+- **Tipos:** Bug/Poison | **HP:** 33 / 40 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
+- **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 2038 | ATK: 2427 | DEF: 1961 | SPD: 2947 | SPC: 1465
+- **Experiência:** 1755 EXP (Progresso: 6%, faltam 442 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **5 / 20 slots** (15 vagas livres)
 - **Potion** x4
@@ -237,16 +237,16 @@
 - [17:31:03] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:50:40] `SCRATCH TACKLE`
+- [17:50:37] `EXIT`
+- [17:50:36] `Move POKMON`
+- [17:50:34] `Choose a P SWITCH`
 - [17:50:26] `Move POKMON`
 - [17:50:25] `Choose a POKMON`
 - [17:50:24] `EXIT`
 - [17:50:23] `BEEDRILL learned`
 - [17:50:21] `BEEDRILL grew`
 - [17:50:20] `BEEDRILL gained`
-- [17:50:19] `It super`
-- [17:50:18] `BEEDRILL`
-- [17:50:17] `Enemy SPEAROW`
-- [17:50:16] `Go BEEDRILL`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
