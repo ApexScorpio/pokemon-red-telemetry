@@ -236,7 +236,7 @@ class RetroArchClient extends EventEmitter {
     return new Promise((resolve) => {
       if (!this.socket) return resolve(null);
 
-      const parts = cmd.trim().split(/\\s+/);
+      const parts = cmd.trim().split(/\s+/);
       const key = this.normalizeResponseKey(parts[0], parts[1]);
       let settled = false;
 
@@ -258,7 +258,7 @@ class RetroArchClient extends EventEmitter {
 
       this.pendingResolves.set(key, finish);
 
-      const buf = Buffer.from(cmd + '\\n');
+      const buf = Buffer.from(cmd + '\n');
       this.socket.send(buf, 0, buf.length, this.port, this.ip, (err) => {
         if (err) {
           if (this.pendingResolves.get(key) === finish) this.pendingResolves.delete(key);
@@ -269,7 +269,7 @@ class RetroArchClient extends EventEmitter {
   }
 
   handleResponse(str, rinfo) {
-    const parts = String(str || '').trim().split(/\\s+/);
+    const parts = String(str || '').trim().split(/\s+/);
     if (parts.length < 2) return;
 
     const key = this.normalizeResponseKey(parts[0], parts[1]);
