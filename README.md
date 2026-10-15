@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:54:33**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:54:44**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,9 +10,9 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `16`, Y: `25`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `34h 0m 44s`
+- **Tempo de Jogo:** `34h 0m 45s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
-- **Dinheiro:** **3111 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **3321 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
@@ -26,8 +26,8 @@
 - **Tipos:** Bug/Flying | **HP:** 49 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 4162 | Def: 3534 | Spd: 4848 | Spc: 2657 | HP: 3665
-- **Experiência:** 4580 EXP (Progresso: 59%, faltam 333 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 4207 | Def: 3582 | Spd: 4883 | Spc: 2717 | HP: 3735
+- **Experiência:** 4784 EXP (Progresso: 84%, faltam 129 p/ Lv.17)
 - **Golpes & PPs:**
   - **Confusion** (Psychic_type) — PP: 18 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -177,7 +177,7 @@
   - **Slot #6**: **NIDORAN (Nidoran♂)** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #5. [↘️ 14 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **⚔️ POR VENCER**
+### #5. [↘️ 14 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
