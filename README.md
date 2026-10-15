@@ -1,15 +1,15 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:13:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:13:13**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `15`, Y: `12`
+- **Coordenadas GPS:** X: `15`, Y: `9`
 - **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Dinheiro:** **1831 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -17,14 +17,14 @@
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 13)
+### 1. **Butterfree** (Lv. 13) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 42 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 20 | DEF: 19 | SPD: 27 | SPC: 30
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2834 | ATK: 3353 | DEF: 2760 | SPD: 3827 | SPC: 2095
 - **Experiência:** 2359 EXP (Progresso: 30%, faltam 385 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 24 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
@@ -115,7 +115,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:13:01] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:13:13] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
