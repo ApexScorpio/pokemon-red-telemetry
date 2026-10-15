@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:09**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:20**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `31`, Y: `12`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas GPS:** X: `34`, Y: `12`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `RATTATA gained`
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -50,10 +50,10 @@
 - **Tipos:** Normal | **HP:** 19 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 19 | SPD: 32 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 15 | ATK: 3 | DEF: 5 | SPD: 11 | SPC: 15 (**65% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4561 | ATK: 5453 | DEF: 4015 | SPD: 6194 | SPC: 3404
-- **Experiência:** 3680 EXP (Progresso: 42%, faltam 416 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4601 | ATK: 5513 | DEF: 4045 | SPD: 6264 | SPC: 3435
+- **Experiência:** 3721 EXP (Progresso: 48%, faltam 375 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 0 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Golpe #158** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
@@ -212,9 +212,14 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:24:09] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:24:20] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:24:20] `FIGHT`
+- [17:24:18] `Enemy SPEAROW`
+- [17:24:17] `TACKLE QUICK ATTACK`
+- [17:24:11] `FIGHT`
+- [17:24:10] `Wild SPE`
 - [17:24:08] `RATTATA gained`
 - [17:24:07] `Enemy JIGGLYPUFF`
 - [17:24:06] `FIGHT`
