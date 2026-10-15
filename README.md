@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:41:33**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:41:45**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas GPS:** X: `26`, Y: `33`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
+- **💬 Diálogo / Mensagem no Ecrã:** `BUTTERFREE`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #2`
-- **Último Golpe Usado por RED:** `Confusion`
+- **Turno Atual:** `Turno #5`
+- **Último Golpe Usado por RED:** `Poison Powder`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
 - **HP:** **2 / 25** (8%)
-- **Stats de Batalha:** ATK: 20 | DEF: 22 | SPD: 9 | SPC: 11
+- **Stats de Batalha:** ATK: 20 | DEF: 22 | SPD: 1 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
@@ -31,7 +31,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 16)
 - **Tipos:** Bug/Flying
-- **HP:** **41 / 49** (HEALTHY)
+- **HP:** **29 / 49** (HEALTHY)
 - **Stats com Modificadores:** ATK: 27 (0) | DEF: 23 (0) | SPD: 33 (0) | SPC: 36 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -87,15 +87,15 @@
   - **Golpe #158** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
 
 ### 4. **Butterfree** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 41 / 49 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 29 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 3560 | ATK: 4087 | DEF: 3464 | SPD: 4713 | SPC: 2567
 - **Experiência:** 4363 EXP (Progresso: 33%, faltam 550 p/ Lv.17)
 - **Golpes & PPs:**
   - **Confusion** (Psychic) — PP: 24 | Poder: 50 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
+  - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
+  - **Stun Spore** (Grass) — PP: 28 | Poder: -- | Precisão: 75%
   - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
 
 ### 5. **Pikachu** (Lv. 15)
@@ -195,16 +195,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:41:45] `BUTTERFREE`
+- [18:41:44] `CONFUSION STUN SPORE`
+- [18:41:42] `Enemy GEODUDE`
+- [18:41:41] `FIGHT`
+- [18:41:40] `Enemy GEODUDE`
+- [18:41:37] `CONFUSION STUN SPORE`
+- [18:41:36] `Enemy GEODUDE`
+- [18:41:35] `BUTTERFREE`
 - [18:41:20] `CONFUSION STUN SPORE`
 - [18:41:19] `Enemy GEODUDE`
-- [18:41:18] `CONFUSION STUN SPORE`
-- [18:41:17] `Enemy GEODU`
-- [18:41:16] `Choose a P STATS`
-- [18:41:15] `Choose a POKMON`
-- [18:41:13] `Go BEEDRILL`
-- [18:41:11] `BEEDRILL gained`
-- [18:41:11] `BEEDRILL`
-- [18:41:10] `It super`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
