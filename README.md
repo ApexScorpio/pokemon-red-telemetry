@@ -1,16 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 19:19:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 19:19:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `25`
+- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `18`, Y: `6`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **🗺️ Exploração Livre (🚶 A Pé)**
-- **Tempo de Jogo:** `41h 0m 19s`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `41h 0m 21s`
+- **💬 Diálogo / Mensagem no Ecrã:** `999999999999999 999999999999999`
 - **Dinheiro:** **2361 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -25,10 +26,10 @@
 - **Tipos:** Electric | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6600 | Def: 4636 | Spd: 7385 | Spc: 3987 | HP: 4800
-- **Experiência:** 4119 EXP (Progresso: 3%, faltam 794 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 6735 | Def: 4741 | Spd: 7550 | Spc: 4107 | HP: 4920
+- **Experiência:** 4295 EXP (Progresso: 24%, faltam 618 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -159,7 +160,11 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
+- [19:19:39] Entrou em Route 4
 - [19:19:08] Entrou em Mt Moon 1F
+
+### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [19:19:34] `999999999999999 999999999999999`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
