@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:07:35**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:07:47**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,20 +9,44 @@
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
 - **Coordenadas GPS:** X: `5`, Y: `31`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `EXIT`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `POISON STING FURY ATTACK`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
-  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Poison Sting`
+
+### 🔴 Adversário em Campo: **Zubat** (Lv. 6)
+- **Tipos:** Poison/Flying
+- **HP:** **21 / 21** (100%)
+- **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 12 | SPC: 9
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
+- **Tipos:** Bug/Poison
+- **HP:** **40 / 40** (HEALTHY)
+- **Stats com Modificadores:** ATK: 30 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Golpe #31 (Causa ~14-17 de dano)
+- ➔ Turno 2: Golpe #31 (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Golpe #31. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (40/40). Não precisas de gastar um turno a trocar.
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **5%**
+  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~8%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 12)
+### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
@@ -104,7 +128,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Pokémon Capturados:** **17 / 151**
-- **Pokémon Vistos:** **23 / 151**
+- **Pokémon Vistos:** **24 / 151**
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff
 
 ## 💾 6. Pokémon Guardados no PC (4 / 20 na Caixa 1) • Vagas Livres: **16**
@@ -160,6 +184,9 @@
 - [18:02:27] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:07:45] `POISON STING FURY ATTACK`
+- [18:07:42] `FIGHT`
+- [18:07:41] `Go BEEDRILL`
 - [18:06:03] `EXIT`
 - [18:06:02] `Choose a POKMON`
 - [18:06:01] `EXIT`
@@ -167,9 +194,6 @@
 - [18:03:01] `for just 500`
 - [18:03:00] `Il let you have`
 - [18:03:00] `Have I got a deal`
-- [18:02:59] `MAN Hello there`
-- [18:02:53] `always in the`
-- [18:02:52] `attacks CERULEAN`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Mude já para o Pik"
