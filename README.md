@@ -1,35 +1,61 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:42:54**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:43:06**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `30`, Y: `28`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `ZUBAT is tough`
+- **Coordenadas GPS:** X: `31`, Y: `28`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `Enemy`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
-  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Confusion`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
+
+### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Rock/Ground
+- **HP:** **0 / 26** (0%)
+- **Stats de Batalha:** ATK: 18 | DEF: 23 | SPD: 9 | SPC: 10
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 16)
+- **Tipos:** Bug/Flying
+- **HP:** **9 / 49** (HEALTHY)
+- **Stats com Modificadores:** ATK: 27 (0) | DEF: 23 (0) | SPD: 33 (0) | SPC: 36 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic) ➔ Dano: **28-34 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (9/49). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 15)
-- **Tipos:** Bug/Poison | **HP:** 30 / 48 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 26 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2828 | ATK: 3312 | DEF: 2844 | SPD: 3817 | SPC: 2240
 - **Experiência:** 3504 EXP (Progresso: 18%, faltam 592 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 16 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
 
@@ -57,14 +83,14 @@
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Golpe #158** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
 
-### 4. **Butterfree** (Lv. 16)
-- **Tipos:** Bug/Flying | **HP:** 12 / 49 ✅ (SAUDÁVEL)
+### 4. **Butterfree** (Lv. 16) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Flying | **HP:** 9 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 3620 | ATK: 4207 | DEF: 3614 | SPD: 4743 | SPC: 2612
 - **Experiência:** 4510 EXP (Progresso: 51%, faltam 403 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 20 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 19 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 28 | Poder: -- | Precisão: 75%
   - **Poison Powder** (Poison) — PP: 32 | Poder: -- | Precisão: 75%
@@ -166,16 +192,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:43:06] `Enemy`
+- [18:43:05] `CONFUSION STUN SPORE`
+- [18:43:04] `Go BUTTERFREE`
+- [18:43:03] `Choose a POKMON`
+- [18:43:02] `FIGHT`
+- [18:43:00] `FURY ATTACK POISON STING`
+- [18:42:59] `It not`
+- [18:42:58] `BEEDRILL`
 - [18:42:54] `ZUBAT is tough`
 - [18:42:48] `BUTTERFREE`
-- [18:42:47] `CONFUSION STUN SPORE`
-- [18:42:46] `FIGHT`
-- [18:42:45] `Enemy GEODUDE`
-- [18:42:44] `BUTTERFREE`
-- [18:42:44] `Enemy GEODUDE`
-- [18:42:43] `Choose a P STATS`
-- [18:42:41] `Go BEEDRILL`
-- [18:42:37] `Enemy GEODUDE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
