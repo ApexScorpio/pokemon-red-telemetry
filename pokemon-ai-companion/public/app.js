@@ -363,9 +363,8 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
   const scrollX = Number(video.scrollX || 0) & 0xFF;
   const scrollY = Number(video.scrollY || 0) & 0xFF;
   const bgp = Number(video.bgPalette || 0xE4);
-  // Paleta neutra clássica do Game Boy; os índices continuam a ser remapeados pelo registo BGP real.
-  // As cores SGB específicas não estão expostas por estes endereços de memória do RetroArch.
-  const colors = ['#e0f8d0', '#88c070', '#346856', '#081820'];
+  // READ_CORE_MEMORY não expõe as paletas SGB efetivas do SameBoy. Não inventar cores: usar tons neutros até haver framebuffer/paletas SGB reais.
+  const colors = ['#f4f4f4', '#b8b8b8', '#686868', '#161616'];
   const image = ctx.createImageData(160, 144);
   const pixels = image.data;
 
@@ -431,6 +430,47 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
   return true;
 }
 
+
+function buildLiveVramMapCanvas(state) {
+  const video = state && state.videoMemory;
+  if (!video || !video.tilePatterns || !video.bgTileMap) return null;
+  const tileData = video.tilePatterns;
+  const tileMap = video.bgTileMap;
+  const lcdc = Number(video.lcdc || 0);
+  const bgp = Number(video.bgPalette ?? 0xE4);
+  const colors = [ '#f4f4f4', '#b8b8b8', '#686868', '#161616' ];
+  const image = document.createElement('canvas');
+  image.width = 256;
+  image.height = 256;
+  const ictx = image.getContext('2d');
+  const frame = ictx.createImageData(256, 256);
+  const pixels = frame.data;
+  for (let ty = 0; ty < 32; ty++) {
+    for (let tx = 0; tx < 32; tx++) {
+      const tileId = Number(tileMap[ty * 32 + tx] || 0);
+      let offset = lcdc & 0x10 ? tileId * 16 : 0x1000 + (tileId < 128 ? tileId : tileId - 256) * 16;
+      if (offset < 0 || offset + 15 >= tileData.length) continue;
+      for (let py = 0; py < 8; py++) {
+        const lo = Number(tileData[offset + py * 2] || 0);
+        const hi = Number(tileData[offset + py * 2 + 1] || 0);
+        for (let px = 0; px < 8; px++) {
+          const bit = 7 - px;
+          const raw = ((lo >> bit) & 1) | (((hi >> bit) & 1) << 1);
+          const shade = (bgp >> (raw * 2)) & 3;
+          const hex = parseInt(colors[shade].slice(1), 16);
+          const i = (((ty * 8 + py) * 256) + tx * 8 + px) * 4;
+          pixels[i] = (hex >> 16) & 255;
+          pixels[i + 1] = (hex >> 8) & 255;
+          pixels[i + 2] = hex & 255;
+          pixels[i + 3] = 255;
+        }
+      }
+    }
+  }
+  ictx.putImageData(frame, 0, 0);
+  return image;
+}
+
 function getMapImage(mapId) {
   if (loadedMapImages[mapId]) return loadedMapImages[mapId];
   const img = new Image();
@@ -448,7 +488,7 @@ function getMapImage(mapId) {
 }
 
 // Estado do Mapa Tático GTA
-let isGtaMapOpen = false;
+let isGtaMapOpen = false;\nlet gtaMapAnimationFrame = null;
 let gtaZoom = 1.75;
 let gtaPan = { x: 0, y: 0 };
 let gtaFogEnabled = true;
@@ -557,7 +597,7 @@ function renderFogMinimap(state) {
 
   // Muitos interiores ainda não têm arte estática. Nesses casos, reconstrói o ecrã
   // visível a partir dos tiles e da paleta BGP lidos da VRAM real do RetroArch.
-  if (state.videoMemory && ([59, 60, 61, 68].includes(Number(mapId)) || (mapImg && mapImg.complete && mapImg.naturalWidth === 0))) {
+  if (state.videoMemory && (!mapImg || (mapImg.complete && mapImg.naturalWidth === 0))) {
     ctxFog.fillStyle = '#03060f';
     ctxFog.fillRect(0, 0, canvasFog.width, canvasFog.height);
     if (drawLiveVramMap(ctxFog, state, 0, 0, canvasFog.width, canvasFog.height)) {
@@ -757,12 +797,32 @@ function renderGtaFullMap(state) {
   // Corrige o ecrã preto: mapImg era usado abaixo sem ser declarado nesta função.
   const mapImg = getMapImage(mapId);
 
-  if (state.videoMemory && ([59, 60, 61, 68].includes(Number(mapId)) || (mapImg && mapImg.complete && mapImg.naturalWidth === 0))) {
-    ctxGta.fillStyle = '#020408';
-    ctxGta.fillRect(0, 0, cw, ch);
-    if (drawLiveVramMap(ctxGta, state, 0, 0, cw, ch)) {
-      if (elGtaHeading) elGtaHeading.textContent = `${mapName} • Vista RAM ao vivo`;
-      if (elGtaSubInfo) elGtaSubInfo.textContent = 'Vista do ecrã atual reconstruída a partir da VRAM';
+  if (state.videoMemory && (!mapImg || (mapImg.complete && mapImg.naturalWidth === 0))) {
+    const liveMap = buildLiveVramMapCanvas(state);
+    if (liveMap) {
+      ctxGta.fillStyle = '#020408';
+      ctxGta.fillRect(0, 0, cw, ch);
+      const drawW = 256 * gtaZoom;
+      const drawH = 256 * gtaZoom;
+      ctxGta.imageSmoothingEnabled = false;
+      ctxGta.drawImage(liveMap, gtaPan.x, gtaPan.y, drawW, drawH);
+      const coordsLive = state.coords || { x: 0, y: 0 };
+      if (gtaFogEnabled) {
+        for (let tx = 0; tx < 16; tx++) for (let ty = 0; ty < 16; ty++) {
+          if (!(exploredMaps[mapId] || new Set()).has(`${tx},${ty}`)) {
+            ctxGta.fillStyle = 'rgba(2,4,10,0.78)';
+            ctxGta.fillRect(gtaPan.x + tx * 16 * gtaZoom, gtaPan.y + ty * 16 * gtaZoom, 16 * gtaZoom + 0.5, 16 * gtaZoom + 0.5);
+          }
+        }
+      }
+      const livePlayerX = gtaPan.x + coordsLive.x * 16 * gtaZoom + 8 * gtaZoom;
+      const livePlayerY = gtaPan.y + coordsLive.y * 16 * gtaZoom + 8 * gtaZoom;
+      ctxGta.fillStyle = '#00f0ff';
+      ctxGta.beginPath();
+      ctxGta.arc(livePlayerX, livePlayerY, Math.max(3, 5 * gtaZoom), 0, Math.PI * 2);
+      ctxGta.fill();
+      if (elGtaHeading) elGtaHeading.textContent = `${mapName} • VRAM completa (zoom ativo)`;
+      if (elGtaSubInfo) elGtaSubInfo.textContent = `Mapa reconstruído dos tiles atuais • Zoom: ${Math.round(gtaZoom * 100)}% • X:${coordsLive.x} Y:${coordsLive.y}`;
       return;
     }
   }
@@ -922,16 +982,20 @@ function openGtaMap() {
   if (!gtaMapModal) return;
   isGtaMapOpen = true;
   gtaMapModal.style.display = 'flex';
-
-  // Centraliza o mapa no jogador
-  if (lastState && lastState.coords) {
-    centerGtaMapOnPlayer(lastState);
-  }
+  if (lastState && lastState.coords) centerGtaMapOnPlayer(lastState);
+  const animateMap = () => {
+    if (!isGtaMapOpen) { gtaMapAnimationFrame = null; return; }
+    if (lastState) renderGtaFullMap(lastState);
+    gtaMapAnimationFrame = requestAnimationFrame(animateMap);
+  };
+  if (gtaMapAnimationFrame === null) gtaMapAnimationFrame = requestAnimationFrame(animateMap);
 }
 
 function closeGtaMap() {
   if (!gtaMapModal) return;
   isGtaMapOpen = false;
+  if (gtaMapAnimationFrame !== null) cancelAnimationFrame(gtaMapAnimationFrame);
+  gtaMapAnimationFrame = null;
   gtaMapModal.style.display = 'none';
   if (gtaTooltip) gtaTooltip.style.display = 'none';
 }
