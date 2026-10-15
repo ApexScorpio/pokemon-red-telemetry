@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:31:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:32:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,6 @@
 - **Coordenadas GPS:** X: `14`, Y: `35`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `We hope to see`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -157,24 +156,7 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [18:26:42] Entrou em Mt Moon 1F
-- [18:26:41] Entrou em Route 4
-- [18:26:37] Entrou em Mt Moon Pokecenter
-- [18:26:35] Entrou em Route 4
-- [18:21:58] Entrou em Mt Moon 1F
-- [18:21:57] Entrou em Route 4
-
-### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [18:26:39] `We hope to see`
-- [18:26:38] `OK Wel need`
-- [18:26:37] `We heal your`
-- [18:26:33] `NIDORINO gain`
-- [18:26:32] `NIDORINO`
-- [18:26:31] `TACKLE HORN ATTACK`
-- [18:26:30] `Wild ZUBAT`
-- [18:26:25] `NIDORINO`
-- [18:26:24] `Enemy ZUBAT`
-- [18:26:23] `NIDORINO`
+- [18:32:05] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
