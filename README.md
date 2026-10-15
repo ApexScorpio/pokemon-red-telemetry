@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:07:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:08:10**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,50 +10,49 @@
 - **Coordenadas GPS:** X: `5`, Y: `31`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `POISON STING FURY ATTACK`
+- **💬 Diálogo / Mensagem no Ecrã:** `It super`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #4`
 - **Último Golpe Usado por RED:** `Poison Sting`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 6)
 - **Tipos:** Poison/Flying
-- **HP:** **21 / 21** (100%)
+- **HP:** **6 / 21** (29%)
 - **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 12 | SPC: 9
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
 - **Tipos:** Bug/Poison
-- **HP:** **40 / 40** (HEALTHY)
+- **HP:** **28 / 40** (HEALTHY)
 - **Stats com Modificadores:** ATK: 30 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Golpe #31 (Causa ~14-17 de dano)
-- ➔ Turno 2: Golpe #31 (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Golpe #31. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Golpe #31 (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Golpe #31! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (40/40). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 6 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~8%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **8%** | Great Ball: **13%** | Ultra Ball: **23%**
+  - *Se adormeceres o inimigo:* **~33%** | *Com HP no vermelho:* **~8%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 12)
+- **Tipos:** Bug/Poison | **HP:** 31 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2038 | ATK: 2427 | DEF: 1961 | SPD: 2947 | SPC: 1465
 - **Experiência:** 1755 EXP (Progresso: 6%, faltam 442 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
@@ -184,19 +183,19 @@
 - [18:02:27] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [18:07:45] `POISON STING FURY ATTACK`
-- [18:07:42] `FIGHT`
-- [18:07:41] `Go BEEDRILL`
-- [18:06:03] `EXIT`
-- [18:06:02] `Choose a POKMON`
-- [18:06:01] `EXIT`
-- [18:03:03] `doing this as a`
-- [18:03:01] `for just 500`
-- [18:03:00] `Il let you have`
-- [18:03:00] `Have I got a deal`
+- [18:08:08] `It super`
+- [18:08:07] `It`
+- [18:08:06] `It not very`
+- [18:08:05] `FIGHT`
+- [18:08:04] `Enemy ZUBAT`
+- [18:08:03] `POISON STING FURY ATTACK`
+- [18:08:02] `Enemy ZUBAT`
+- [18:08:01] `BE`
+- [18:08:00] `Enemy ZUBAT`
+- [18:08:00] `It not very`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Mude já para o Pik"
+> "**Batalha**: Usa imediatamente **String Shot** – é Bug, super‑efetivo contra Zubat (Flying) e acab"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
