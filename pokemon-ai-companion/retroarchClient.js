@@ -926,34 +926,33 @@ class RetroArchClient extends EventEmitter {
     let inBattle = false;
     let battleType = 'None';
 
+    // Diagnóstico temporário: também registar falhas de leitura, que antes eram silenciosas.
+    const now = Date.now();
+    if (!this.lastBattleDebugAt || now - this.lastBattleDebugAt >= 2000) {
+      this.lastBattleDebugAt = now;
+      const diagnostic = {
+        timestamp: new Date().toISOString(),
+        requestedCombatBlock: '$CFE0',
+        combatBlockLength: blockCombat ? blockCombat.length : null,
+        requestedBattleModsBlock: '$CC20',
+        battleModsBlockLength: blockBattleMods ? blockBattleMods.length : null,
+        rawBattleFlag: blockCombat && blockCombat.length > 119 ? blockCombat[119] : null,
+        enemySpeciesRaw: blockCombat && blockCombat.length > 5 ? blockCombat[5] : null,
+        playerMode: this.latestState.playerMode || null,
+        inBattleBeforeUpdate: !!this.latestState.inBattle
+      };
+      try {
+        const debugPath = require('path').join(__dirname, 'data', 'battle_detection_debug.jsonl');
+        fs.appendFileSync(debugPath, JSON.stringify(diagnostic) + '\n');
+      } catch (err) {
+        console.warn('[BattleDetectionDebug] Não foi possível gravar diagnóstico:', err.message);
+      }
+      console.log('[BattleDetectionDebug]', JSON.stringify(diagnostic));
+    }
+
     if (blockCombat && blockCombat.length >= 255) {
-      // Diagnóstico: guardar el valor bruto leído en $D057 y bytes de combate
-      // para comprobar la detección con datos reales, sin asumir valores nuevos.
       const rawBattleFlag = blockCombat[119];
       const inBattleVal = Number.parseInt(rawBattleFlag, 16);
-      const now = Date.now();
-      if (!this.lastBattleDebugAt || now - this.lastBattleDebugAt >= 2000) {
-        this.lastBattleDebugAt = now;
-        const diagnostic = {
-          timestamp: new Date().toISOString(),
-          address: '$D057',
-          rawBattleFlag,
-          parsedBattleFlag: Number.isFinite(inBattleVal) ? inBattleVal : null,
-          blockLength: blockCombat.length,
-          enemySpeciesRaw: blockCombat[5],
-          enemyHpHighRaw: blockCombat[6],
-          enemyHpLowRaw: blockCombat[7],
-          enemyLevelRaw: blockCombat[19],
-          playerMode: this.latestState.playerMode || null,
-          inBattleBeforeUpdate: !!this.latestState.inBattle
-        };
-        try {
-          fs.appendFileSync('data/battle_detection_debug.jsonl', JSON.stringify(diagnostic) + '\n');
-        } catch (err) {
-          console.warn('[BattleDetectionDebug] Não foi possível gravar diagnóstico:', err.message);
-        }
-        console.log('[BattleDetectionDebug]', JSON.stringify(diagnostic));
-      }
       if (!this.isSimulatingBattle) {
         inBattle = inBattleVal === 1 || inBattleVal === 2;
         battleType = inBattleVal === 1 ? 'Wild' : inBattleVal === 2 ? 'Trainer' : 'None';
