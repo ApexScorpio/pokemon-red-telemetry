@@ -1,25 +1,25 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:25:53**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:26:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `37`, Y: `8`
-- **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `LASS That it`
+- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
+- **Coordenadas GPS:** X: `12`, Y: `10`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `CHARMELEON`
 - **Dinheiro:** **2791 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Lass Janice** (Rota 3 (Entrada Oeste))
-  - **Equipa Adversária:** Pidgey (Lv. 9) • Pidgey (Lv. 9)
-  - **Lead Recomendado:** Pikachu / Butterfree
-  - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Nidoran♂** (Lv. 14)
@@ -74,10 +74,10 @@
 - **Tipos:** Fire | **HP:** 50 / 50 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 27 | SPD: 40 | SPC: 34
 - **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3893 | ATK: 5230 | DEF: 3833 | SPD: 5960 | SPC: 3139
-- **Experiência:** 3261 EXP (Progresso: 21%, faltam 537 p/ Lv.18)
+- **Stat EXP (EVs Acumulados):** HP: 3933 | ATK: 5275 | DEF: 3873 | SPD: 6016 | SPC: 3174
+- **Experiência:** 3316 EXP (Progresso: 29%, faltam 482 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 32 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -123,83 +123,31 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. **Lass Janice** (Rota 3 (Entrada Oeste)) • **⚔️ POR VENCER**
-- **Dificuldade:** Muito Fácil
-- **Roster Inimigo:** Pidgey (Lv. 9) • Pidgey (Lv. 9)
-- **Lead Recomendado:** Pikachu / Butterfree
+### #1. **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **⚔️ POR VENCER**
+- **Dificuldade:** Chefe / Difícil
+- **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+- **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Charmeleon** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-- **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
+- **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
-### #2. **Bug Catcher Greg** (Rota 3 (Caminho Superior)) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Caterpie (Lv. 9) • Weedle (Lv. 9) • Caterpie (Lv. 9)
-- **Lead Recomendado:** Charmeleon (Ember) / Pidgey
+### #2. **Líder Misty** (Ginásio de Cerulean (Chefe)) • **⚔️ POR VENCER**
+- **Dificuldade:** Chefe / Difícil
+- **Roster Inimigo:** Staryu (Lv. 18 - Water) • Starmie (Lv. 21 - Water/Psychic)
+- **Lead Recomendado:** Pikachu / Bellsprout
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Charmeleon** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-- **Estratégia:** Ember do Charmeleon elimina cada inseto num só golpe.
-
-### #3. **Youngster Ben** (Rota 3 (Centro)) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Rattata (Lv. 11) • Ekans (Lv. 11)
-- **Lead Recomendado:** Butterfree (Confusion)
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Charmeleon** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-- **Estratégia:** Confusion é super eficaz contra Ekans (Veneno). Cuidado com Poison Sting.
-
-### #4. **Bug Catcher James** (Rota 3 (Labirinto)) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Weedle (Lv. 9) • Kakuna (Lv. 9) • Caterpie (Lv. 9) • Metapod (Lv. 9)
-- **Lead Recomendado:** Charmeleon (Ember)
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Charmeleon** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-- **Estratégia:** Equipa de 4 insetos. Charmeleon limpa facilmente a equipa inteira.
-
-### #5. **Lass Sally** (Rota 3 (Caminho Sul)) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Rattata (Lv. 10) • Nidoran♀ (Lv. 10)
-- **Lead Recomendado:** Butterfree (Confusion)
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Charmeleon** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-- **Estratégia:** Confusion elimina Nidoran♀ rapidamente.
-
-### #6. **Bug Catcher Colton** (Rota 3 (Perto de Mt. Moon)) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10)
-- **Lead Recomendado:** Charmeleon
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Charmeleon** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-- **Estratégia:** Combate rápido para ganhar EXP com Charmeleon.
-
-### #7. **Youngster Calvin** (Rota 3 (Saída para Mt. Moon)) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Spearow (Lv. 14)
-- **Lead Recomendado:** Pikachu (Thundershock) ou Geodude
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Charmeleon** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-- **Estratégia:** Spearow é rápido e bate forte com Peck. Pikachu derrota com facilidade.
-
-### #8. **Lass Robin** (Rota 3 (Canto Nordeste)) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Jigglypuff (Lv. 14)
-- **Lead Recomendado:** Charmeleon / Beedrill
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Charmeleon** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-- **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
+- **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:25:53] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:26:04] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:25:58] `CHARMELEON`
+- [17:25:58] `Go CHARMELEON`
 - [17:25:52] `LASS That it`
 - [17:25:51] `CHARMELEON grew`
 - [17:25:50] `Critical hit`
@@ -208,8 +156,6 @@
 - [17:25:46] `It didn a`
 - [17:25:45] `Enemy JIGGLYPUFF`
 - [17:25:45] `FIGHT`
-- [17:25:44] `It didn affect`
-- [17:25:43] `But it failed`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
