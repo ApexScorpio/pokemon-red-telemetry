@@ -1,17 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:27:39**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:27:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `20`, Y: `6`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas GPS:** X: `15`, Y: `9`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `If a POKMON BOX`
-- **Dinheiro:** **2791 ₽**
+- **💬 Diálogo / Mensagem no Ecrã:** `Quit staring if`
+- **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -22,14 +22,14 @@
   - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 14)
-- **Tipos:** Electric | **HP:** 36 / 36 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 25 | DEF: 18 | SPD: 33 | SPC: 24
+### 1. **Pikachu** (Lv. 15)
+- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4360 | ATK: 6055 | DEF: 4186 | SPD: 6799 | SPC: 3571
-- **Experiência:** 3208 EXP (Progresso: 74%, faltam 167 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 4400 | ATK: 6115 | DEF: 4216 | SPD: 6869 | SPC: 3602
+- **Experiência:** 3382 EXP (Progresso: 1%, faltam 714 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 25 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -127,7 +127,7 @@
 - **Roster Inimigo:** Pidgey (Lv. 9) • Pidgey (Lv. 9)
 - **Lead Recomendado:** Pikachu / Butterfree
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Pikachu** (Lv. 14) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -142,9 +142,9 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember do Charmeleon elimina cada inseto num só golpe.
 
@@ -155,9 +155,9 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion é super eficaz contra Ekans (Veneno). Cuidado com Poison Sting.
 
@@ -168,9 +168,9 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Equipa de 4 insetos. Charmeleon limpa facilmente a equipa inteira.
 
@@ -181,9 +181,9 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion elimina Nidoran♀ rapidamente.
 
@@ -194,9 +194,9 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para ganhar EXP com Charmeleon.
 
@@ -205,7 +205,7 @@
 - **Roster Inimigo:** Spearow (Lv. 14)
 - **Lead Recomendado:** Pikachu (Thundershock) ou Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Pikachu** (Lv. 14) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -220,9 +220,9 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
 
@@ -236,16 +236,16 @@
 - [17:26:04] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [17:27:37] `If a POKMON BOX`
-- [17:27:36] `Trained POKMON`
-- [17:27:34] `not letting`
-- [17:27:24] `It su`
-- [17:27:23] `THUNDERSHOCK GROWL`
-- [17:27:22] `Wild PIDGEY`
-- [17:27:19] `PIKACHU`
-- [17:27:17] `THUNDERSHOCK GROWL`
-- [17:27:15] `Wild PIDGEY`
-- [17:27:11] `Enemy JIGGLYPUFF`
+- [17:27:50] `Quit staring if`
+- [17:27:46] `YOUNGSTER`
+- [17:27:45] `PIKACHU grew`
+- [17:27:44] `It super`
+- [17:27:44] `THUNDERSHOCK GROWL`
+- [17:27:43] `It super`
+- [17:27:42] `Go PIKACHU`
+- [17:27:41] `YOUNGSTER se`
+- [17:27:40] `999999999999999999 999999999999999999`
+- [17:27:39] `Hey Y`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
