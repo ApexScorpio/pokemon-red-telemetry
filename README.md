@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:51:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:52:02**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `63`, Y: `8`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN grew`
+- **Localização Atual:** **Mt Moon Pokecenter** (ID Interno: `0x44`)
+- **Coordenadas GPS:** X: `13`, Y: `5`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `EXIT`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -23,25 +23,25 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Nidoran♂** (Lv. 15)
-- **Tipos:** Poison | **HP:** 35 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 43 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 22 | SPD: 24 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2472 | ATK: 3163 | DEF: 2007 | SPD: 3404 | SPC: 1758
 - **Experiência:** 2045 EXP (Progresso: 2%, faltam 490 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidoran♀** (Lv. 15)
-- **Tipos:** Poison | **HP:** 21 / 45 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 45 / 45 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 21 | DEF: 23 | SPD: 23 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2113 | ATK: 2840 | DEF: 2017 | SPD: 3164 | SPC: 1734
 - **Experiência:** 2063 EXP (Progresso: 6%, faltam 472 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -82,13 +82,13 @@
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 6. **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison | **HP:** 33 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2038 | ATK: 2427 | DEF: 1961 | SPD: 2947 | SPC: 1465
 - **Experiência:** 1755 EXP (Progresso: 6%, faltam 442 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
@@ -227,16 +227,45 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
 
+### #9. **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis)) • **⚔️ POR VENCER**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+- **Lead Recomendado:** Butterfree (Confusion)
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidoran♂** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♀** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+
+### #10. **Team Rocket Grunt** (Mt. Moon (B2F - Saída)) • **⚔️ POR VENCER**
+- **Dificuldade:** Difícil
+- **Roster Inimigo:** Raticate (Lv. 16)
+- **Lead Recomendado:** Charmeleon / Geodude
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidoran♂** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♀** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
+
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [17:51:59] Entrou em Mt Moon Pokecenter
+- [17:51:57] Entrou em Route 4
+- [17:51:54] Entrou em Mt Moon Pokecenter
+- [17:51:51] Entrou em Route 4
 - [17:50:13] Entrou em Route 3
 - [17:49:34] Entrou em Route 4
-- [17:49:30] Entrou em Mt Moon Pokecenter
-- [17:49:27] Entrou em Route 4
-- [17:31:16] Entrou em Route 3
-- [17:31:03] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:52:02] `EXIT`
+- [17:51:55] `OK Wel need`
+- [17:51:54] `Welcome to our`
 - [17:51:49] `NIDORAN grew`
 - [17:51:48] `Enemy SPEAROW`
 - [17:51:47] `FIGHT`
@@ -244,9 +273,6 @@
 - [17:51:45] `Go NIDORAN`
 - [17:51:42] `NIDORAN`
 - [17:51:41] `FIGHT`
-- [17:51:38] `NIDORAN`
-- [17:51:37] `Enemy SPEAROW`
-- [17:51:35] `NIDORAN`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
