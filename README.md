@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:14:00**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:14:11**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,51 +10,50 @@
 - **Coordenadas GPS:** X: `14`, Y: `23`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Your POKMON are`
+- **💬 Diálogo / Mensagem no Ecrã:** `Critical hit`
 - **Dinheiro:** **1111 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
 - **Tipos:** Poison/Flying
-- **HP:** **22 / 22** (100%)
+- **HP:** **8 / 22** (36%)
 - **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 14 | SPC: 11
 
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **32 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
+- **Tipos:** Bug/Poison
+- **HP:** **34 / 40** (HEALTHY)
+- **Stats com Modificadores:** ATK: 30 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **54-64 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Golpe #31 (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Golpe #31! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (32/51). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~9%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **4%** | Great Ball: **7%** | Ultra Ball: **12%**
+  - *Se adormeceres o inimigo:* **~29%** | *Com HP no vermelho:* **~9%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 34 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2078 | ATK: 2472 | DEF: 1996 | SPD: 3002 | SPC: 1505
 - **Experiência:** 1809 EXP (Progresso: 17%, faltam 388 p/ Lv.13)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 19 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -185,21 +184,19 @@
 - [18:11:39] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:14:11] `Critical hit`
+- [18:14:10] `FURY ATTACK POISON STING`
+- [18:14:05] `POISON STING FURY ATTACK`
+- [18:14:04] `Enemy ZUBAT`
+- [18:14:04] `It not ve`
+- [18:14:03] `Sucked health from`
+- [18:14:02] `Enemy ZUBAT`
+- [18:14:01] `POISON STING FURY ATTACK`
+- [18:14:00] `Go BEEDRILL`
 - [18:13:54] `Your POKMON are`
-- [18:13:53] `OK Wel need`
-- [18:13:53] `POKMON back to`
-- [18:13:46] `GEODUDE was`
-- [18:13:45] `people often step or trip on them`
-- [18:13:44] `will be added for`
-- [18:13:43] `All right`
-- [18:13:42] `RED used`
-- [18:13:29] `FIGHT`
-- [18:13:28] `It not very`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Bata com o **Bite** de Nidorino – ele termina rapidamente o Geodude e não há risco de perda de HP.  
-Não há necessidade de itens nem de troca; o seu HP está seguro.  
-Depois de vencer, siga para a saída de Mt. Moon e procure a Poké‑Café para comprar um **Potion** extra."
+> "Ataque imediato: use **Poison Sting** com o Be"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
