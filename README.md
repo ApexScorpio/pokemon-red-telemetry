@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:55:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:55:38**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `65`, Y: `9`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy JIGGLYPUFF`
+- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -253,9 +253,10 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:55:26] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:55:38] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:55:27] `NIDORAN`
 - [17:55:26] `Enemy JIGGLYPUFF`
 - [17:55:25] `NIDORAN`
 - [17:55:23] `Enemy JIGGLYPUFF`
@@ -265,7 +266,6 @@
 - [17:55:19] `FIGHT`
 - [17:55:15] `Choose a POKMON`
 - [17:55:14] `Move POKMON`
-- [17:55:13] `Choose a P SWITCH`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Use imediatamente **Poison Sting** com o Nidoran♂ – basta um golpe para acabar com o Pidgey de "
