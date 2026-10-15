@@ -555,21 +555,7 @@ function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
   ctx.font = `${size}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  if (!ghost) {
-    ctx.fillStyle = ent.isItem ? 'rgba(255,208,0,0.28)' : ent.isTrainer ? 'rgba(255,59,92,0.22)' : 'rgba(0,240,255,0.2)';
-    ctx.beginPath();
-    ctx.arc(x, y, size * 0.72, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  if (ghost) {
-    ctx.setLineDash([2 * scale, 2 * scale]);
-    ctx.strokeStyle = ent.isItem ? '#ffd000' : ent.isTrainer ? '#ff6b83' : '#8bd8e8';
-    ctx.lineWidth = Math.max(1, scale);
-    ctx.beginPath();
-    ctx.arc(x, y, size * 0.72, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.setLineDash([]);
-  }
+  // Sem auras/círculos artificiais: mostrar apenas o marcador da entidade.
   ctx.fillText(icon, x, y);
   if (ent.facing && !ghost && scale >= 1.2) {
     const len = 8 * scale;
@@ -598,7 +584,7 @@ function renderFogMinimap(state) {
 
   // Muitos interiores ainda não têm arte estática. Nesses casos, reconstrói o ecrã
   // visível a partir dos tiles e da paleta BGP lidos da VRAM real do RetroArch.
-  if (state.videoMemory && ([59, 60, 61, 68].includes(Number(mapId)) || !mapImg || (mapImg.complete && mapImg.naturalWidth === 0))) {
+  if (state.videoMemory && (!mapImg || (mapImg.complete && mapImg.naturalWidth === 0))) {
     ctxFog.fillStyle = '#03060f';
     ctxFog.fillRect(0, 0, canvasFog.width, canvasFog.height);
     if (drawLiveVramMap(ctxFog, state, 0, 0, canvasFog.width, canvasFog.height)) {
@@ -712,20 +698,10 @@ function renderFogMinimap(state) {
     }
   });
 
-  // Treinadores conhecidos: mantêm o marcador fantasma depois de derrotados.
-  const battles = state.areaInfo?.upcomingBoss?.battles || [];
-  battles.forEach(bt => {
-    if (bt.x === undefined || bt.y === undefined) return;
-    const bx = camX + bt.x * tileSize + tileSize / 2;
-    const by = camY + bt.y * tileSize + tileSize / 2;
-    if (bx >= -16 && bx <= cw + 16 && by >= -16 && by <= ch + 16) {
-      drawMapEntity(ctxFog, { ...bt, icon: bt.icon || '🧍', isTrainer: true, isGhost: !!bt.isDefeated }, bx, by, 0.85, !!bt.isDefeated);
-    }
-  });
-
-  // Entidades atuais e ghosts (última posição conhecida de sprites que desapareceram).
+  // Só mostrar entidades lidas agora da RAM. Não desenhar treinadores previstos nem ghosts
+  // de posições antigas: provocavam marcadores de treinadores que já não existem.
   const entitySnapshot = getMapEntitySnapshot(state);
-  [...entitySnapshot.active, ...entitySnapshot.ghosts].forEach(ent => {
+  entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
     const ex = camX + ent.x * tileSize + tileSize / 2;
     const ey = camY + ent.y * tileSize + tileSize / 2;
@@ -798,7 +774,7 @@ function renderGtaFullMap(state) {
   // Corrige o ecrã preto: mapImg era usado abaixo sem ser declarado nesta função.
   const mapImg = getMapImage(mapId);
 
-  if (state.videoMemory && ([59, 60, 61, 68].includes(Number(mapId)) || !mapImg || (mapImg.complete && mapImg.naturalWidth === 0))) {
+  if (state.videoMemory && (!mapImg || (mapImg.complete && mapImg.naturalWidth === 0))) {
     const liveMap = buildLiveVramMapCanvas(state);
     if (liveMap) {
       ctxGta.fillStyle = '#020408';
