@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:45:12**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:45:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,38 +9,68 @@
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
 - **Coordenadas GPS:** X: `22`, Y: `11`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `999 999`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `Enemy GEODUDE`
 - **Dinheiro:** **2361 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
-  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #7`
+- **Último Golpe Usado por RED:** `Tackle`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
+
+### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
+- **Tipos:** Rock/Ground
+- **HP:** **15 / 30** (50%)
+- **Stats de Batalha:** ATK: 24 | DEF: 26 | SPD: 10 | SPC: 11
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
+- **Tipos:** Poison
+- **HP:** **25 / 59** (HEALTHY)
+- **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **9-11 HP** (0.5x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Bite (Causa ~9-11 de dano)
+- ➔ Turno 2: Bite (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Bite. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 15 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **83%** | Great Ball: **100%** | Ultra Ball: **83%**
+  - *Se adormeceres o inimigo:* **~85%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 15)
-- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 32 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 4700 | ATK: 6470 | DEF: 4516 | SPD: 7265 | SPC: 3892
 - **Experiência:** 3943 EXP (Progresso: 79%, faltam 153 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 22 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 19 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 19)
-- **Tipos:** Poison | **HP:** 37 / 59 ✅ (SAUDÁVEL)
+### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 25 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 3887 | ATK: 4970 | DEF: 3647 | SPD: 5343 | SPC: 3078
 - **Experiência:** 5380 EXP (Progresso: 91%, faltam 80 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 16 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -162,16 +192,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [18:45:12] `999 999`
-- [18:45:09] `PIKACHU`
-- [18:45:08] `Go PIKACHU`
-- [18:45:05] `PIKACHU gained`
-- [18:45:04] `It super`
-- [18:45:03] `THUNDERSHOCK THUNDER WAVE`
-- [18:44:58] `PIKACHU gained`
-- [18:44:57] `PIKACHU`
-- [18:44:56] `Go PIKACHU`
-- [18:44:54] `It super`
+- [18:45:24] `Enemy GEODUDE`
+- [18:45:23] `FIGHT`
+- [18:45:22] `NIDORINO`
+- [18:45:21] `It not very`
+- [18:45:20] `Enemy GEODUDE`
+- [18:45:19] `Choose a P STATS`
+- [18:45:18] `Choose a POKMON`
+- [18:45:17] `Enemy GEODUDE`
+- [18:45:17] `THUNDERSHOCK THUNDER WAVE`
+- [18:45:15] `FIGHT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
