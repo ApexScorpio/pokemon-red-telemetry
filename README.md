@@ -1,15 +1,15 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:21:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:22:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `31`, Y: `12`
+- **Coordenadas GPS:** X: `33`, Y: `12`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -30,13 +30,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidoran♀** (Lv. 14)
-- **Tipos:** Poison | **HP:** 2 / 42 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 0 / 42 ❌ (FAINTED)
 - **Stats Reais:** ATK: 19 | DEF: 22 | SPD: 22 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 1798 | ATK: 2540 | DEF: 1817 | SPD: 2836 | SPC: 1542
 - **Experiência:** 1770 EXP (Progresso: 37%, faltam 265 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 16 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 37 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
@@ -45,10 +45,10 @@
 - **Tipos:** Normal | **HP:** 36 / 36 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 22 | DEF: 17 | SPD: 28 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 15 | ATK: 3 | DEF: 5 | SPD: 11 | SPC: 15 (**65% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3296 | ATK: 4118 | DEF: 3145 | SPD: 4692 | SPC: 2568
-- **Experiência:** 2465 EXP (Progresso: 49%, faltam 279 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 3376 | ATK: 4208 | DEF: 3225 | SPD: 4804 | SPC: 2638
+- **Experiência:** 2574 EXP (Progresso: 69%, faltam 170 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 27 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
@@ -118,7 +118,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:21:52] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:22:05] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
