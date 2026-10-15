@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:52:33**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:52:44**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -15,13 +15,12 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
 - **Tipos:** Rock/Ground
-- **HP:** **36 / 36** (100%)
+- **HP:** **8 / 36** (22%)
 - **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 26 | SPC: 15
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
@@ -29,31 +28,32 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 13)
 - **Tipos:** Bug/Flying
-- **HP:** **29 / 42** (HEALTHY)
+- **HP:** **23 / 42** (HEALTHY)
 - **Stats com Modificadores:** ATK: 20 (0) | DEF: 19 (0) | SPD: 27 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic) ➔ Dano: **14-17 HP** (1x eficácia) • ~3 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-3: Usa repetidamente Confusion
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (29/42). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **⭐ GANHAR EXP: TROCA PARA O MAIS FRACO!**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Beedrill (Lv. 11)** [38/38 HP]
+- **Motivo:** O adversário tem apenas 8 HP! Troca para Beedrill (Lv. 11) para ele participar e recolher 50% dos pontos de EXP da vitória com risco zero!
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Butterfree** (Lv. 13) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 29 / 42 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 23 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 20 | DEF: 19 | SPD: 27 | SPC: 30
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2783 | ATK: 3293 | DEF: 2667 | SPD: 3748 | SPC: 2050
 - **Experiência:** 2220 EXP (Progresso: 4%, faltam 524 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 22 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 20 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
