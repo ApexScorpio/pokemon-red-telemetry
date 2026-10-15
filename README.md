@@ -1,13 +1,13 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:43:17**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:43:29**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `31`, Y: `19`
+- **Coordenadas GPS:** X: `28`, Y: `17`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **💬 Diálogo / Mensagem no Ecrã:** `BEEDRILL`
@@ -16,16 +16,16 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #1`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
 - **Tipos:** Poison/Flying
-- **HP:** **31 / 31** (100%)
-- **Stats de Batalha:** ATK: 16 | DEF: 12 | SPD: 17 | SPC: 14
+- **HP:** **30 / 30** (100%)
+- **Stats de Batalha:** ATK: 17 | DEF: 12 | SPD: 17 | SPC: 16
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
 - **Tipos:** Bug/Poison
-- **HP:** **26 / 48** (HEALTHY)
+- **HP:** **21 / 48** (HEALTHY)
 - **Stats com Modificadores:** ATK: 37 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -39,20 +39,20 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (26/48). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (21/48). Não precisas de gastar um turno a trocar.
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **37%** | Great Ball: **55%** | Ultra Ball: **37%**
-  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
+  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 26 / 48 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 21 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2848 | ATK: 3352 | DEF: 2894 | SPD: 3827 | SPC: 2255
-- **Experiência:** 3553 EXP (Progresso: 25%, faltam 543 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 2888 | ATK: 3397 | DEF: 2929 | SPD: 3882 | SPC: 2295
+- **Experiência:** 3637 EXP (Progresso: 36%, faltam 459 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 11 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
 
@@ -187,16 +187,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:43:29] `BEEDRILL`
+- [18:43:27] `99999999999 99999999999`
+- [18:43:21] `BEEDRILL`
+- [18:43:20] `Enemy ZUBAT`
 - [18:43:17] `BEEDRILL`
 - [18:43:16] `FURY ATTACK POISON STING`
 - [18:43:14] `Bring out which`
 - [18:43:13] `BUTTERFREE`
 - [18:43:12] `CONFUSION STUN SPORE`
 - [18:43:12] `Enemy ZUBAT`
-- [18:43:10] `Choose a POKMON`
-- [18:43:09] `FURY ATTACK POISON STING`
-- [18:43:08] `Go BEED`
-- [18:43:06] `Enemy`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
