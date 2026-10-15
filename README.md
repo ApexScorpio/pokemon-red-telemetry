@@ -1,13 +1,13 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:20:11**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:20:23**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `34`, Y: `13`
+- **Coordenadas GPS:** X: `31`, Y: `13`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Dinheiro:** **2581 ₽**
@@ -17,14 +17,14 @@
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Nidoran♂** (Lv. 14)
-- **Tipos:** Poison | **HP:** 30 / 41 ✅ (SAUDÁVEL)
+### 1. **Nidoran♂** (Lv. 14) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 24 / 41 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 23 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2002 | ATK: 2728 | DEF: 1777 | SPD: 2958 | SPC: 1518
-- **Experiência:** 1647 EXP (Progresso: 8%, faltam 388 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 2082 | ATK: 2848 | DEF: 1837 | SPD: 3098 | SPC: 1580
+- **Experiência:** 1754 EXP (Progresso: 34%, faltam 281 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 18 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 14 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -117,7 +117,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:20:11] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:20:23] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
