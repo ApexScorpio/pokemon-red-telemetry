@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:11:05**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:11:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Pewter Mart** (ID Interno: `0x38`)
-- **Coordenadas GPS:** X: `2`, Y: `5`
+- **Localização Atual:** **Pewter City** (ID Interno: `0x2`)
+- **Coordenadas GPS:** X: `18`, Y: `25`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Take your time`
+- **💬 Diálogo / Mensagem no Ecrã:** `Is there anything`
 - **Dinheiro:** **1001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -283,14 +283,15 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [18:11:09] Entrou em Pewter City
 - [18:10:42] Entrou em Pewter Mart
 - [18:10:40] Entrou em Pewter City
 - [18:10:24] Entrou em Route 3
 - [18:10:22] Entrou em Route 4
 - [18:06:06] Entrou em Mt Moon 1F
-- [18:06:04] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:11:07] `Is there anything`
 - [18:10:52] `Take your time`
 - [18:10:51] `Here you are`
 - [18:10:50] `That will be`
@@ -300,7 +301,6 @@
 - [18:08:28] `transferred to`
 - [18:08:27] `give a nickname`
 - [18:08:26] `Do you want to`
-- [18:08:25] `perpetually dark places Uses`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Batalha em curso: use **String Shot** (bug) para infligir dano crítico"
