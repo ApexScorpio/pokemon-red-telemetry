@@ -1,48 +1,20 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:55:05**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:55:16**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Pewter Gym** (ID Interno: `0x36`)
-- **Coordenadas GPS:** X: `4`, Y: `2`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Dinheiro:** **445 ₽**
+- **Localização Atual:** **Pewter City** (ID Interno: `0x2`)
+- **Coordenadas GPS:** X: `16`, Y: `18`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Dinheiro:** **1831 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #18`
-- **Último Golpe Usado por RED:** `Tackle`
-
-### 🔴 Adversário em Campo: **Onix** (Lv. 14)
-- **Tipos:** Rock/Ground
-- **HP:** **0 / 36** (0%)
-- **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 7 | SPC: 15
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
-  - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
-
-### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 13)
-- **Tipos:** Poison
-- **HP:** **18 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 18 (0) | DEF: 6 (-4) | SPD: 21 (0) | SPC: 17 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Growl** (Normal) ➔ Dano: **0-0 HP** (0.5x eficácia) • ~null turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-null: Usa repetidamente Growl
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidoran♀ tem a melhor rota de vitória rápida e HP estável (18/40). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Nidoran♂ (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Butterfree** (Lv. 13)
@@ -90,7 +62,7 @@
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
-### 5. **Nidoran♀** (Lv. 13) ⚔️ [EM COMBATE]
+### 5. **Nidoran♀** (Lv. 13)
 - **Tipos:** Poison | **HP:** 18 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
@@ -111,11 +83,12 @@
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
   - **String Shot** (Bug) — PP: 35 | Poder: -- | Precisão: 95%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **4 / 20 slots** (16 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **5 / 20 slots** (15 vagas livres)
 - **Potion** x4
 - **Poké Ball** x2
 - **Antidote** x2
 - **Town Map** x1
+- **Item #234** x1
 
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
@@ -130,7 +103,7 @@
 - #3: **Pidgey** (Dex: #16)
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
-- **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ⚔️ [POR CONQUISTAR - Faz Agora!]
+- **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
 - **2. Cascade Badge** (Cerulean City • Misty • Tipo: Água): ⏳ [BLOQUEADA]
 - **3. Thunder Badge** (Vermilion City • Lt. Surge • Tipo: Elétrico): ⏳ [BLOQUEADA]
 - **4. Rainbow Badge** (Celadon City • Erika • Tipo: Planta): ⏳ [BLOQUEADA]
@@ -140,44 +113,9 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. **Rival Blue #2** (Rota 22 (Portão da Liga)) • **✅ VENCIDO**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Pidgey (Lv. 9) • Squirtle (Lv. 8)
-- **Lead Recomendado:** Charmeleon ou Butterfree
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Charmeleon** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Nidoran♂** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Butterfree** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Rattata** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidoran♀** (Lv. 13) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
-- **Estratégia:** ⚠️ OBRIGATÓRIO FAZER ANTES DO BROCK! Se derrotares o Brock primeiro, este combate desaparece para sempre. Usa Charmeleon/Butterfree para ganhar EXP fácil.
-
-### #2. **Jr. Trainer♂** (Ginásio de Pewter (Guardião)) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra)
-- **Lead Recomendado:** Butterfree (Confusion)
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Butterfree** (Lv. 13) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Nidoran♂** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♀** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Charmeleon** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
-- **Estratégia:** Treinador do ginásio já derrotado com sucesso.
-
-### #3. **Líder Brock** (Ginásio de Pewter (Chefe)) • **⚔️ POR VENCER**
-- **Dificuldade:** Chefe / Difícil
-- **Roster Inimigo:** Geodude (Lv. 12 - Rocha/Terra) • Onix (Lv. 14 - Rocha/Terra)
-- **Lead Recomendado:** Butterfree (Confusion) & Charmeleon (Ember)
-- **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Butterfree** (Lv. 13) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Nidoran♂** (Lv. 12) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♀** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Charmeleon** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
-- **Estratégia:** Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
-
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [16:55:12] Entrou em Pewter City
 - [16:51:37] Entrou em Pewter Gym
 - [16:51:32] Entrou em Pewter City
 - [16:51:29] Entrou em Pewter Pokecenter
