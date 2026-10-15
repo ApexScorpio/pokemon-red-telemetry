@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:21:15**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:21:41**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `34`, Y: `13`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas GPS:** X: `27`, Y: `13`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
@@ -29,16 +29,17 @@
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 2. **Nidoran♀** (Lv. 13) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 17 / 40 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
+### 2. **Nidoran♀** (Lv. 14)
+- **Tipos:** Poison | **HP:** 5 / 42 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 19 | DEF: 22 | SPD: 22 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1638 | ATK: 2330 | DEF: 1677 | SPD: 2584 | SPC: 1410
-- **Experiência:** 1569 EXP (Progresso: 88%, faltam 43 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 1718 | ATK: 2435 | DEF: 1747 | SPD: 2710 | SPC: 1476
+- **Experiência:** 1674 EXP (Progresso: 15%, faltam 361 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 19 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Growl** (Normal) — PP: 37 | Poder: -- | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 13)
 - **Tipos:** Normal | **HP:** 36 / 36 ✅ (SAUDÁVEL)
@@ -117,7 +118,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:21:15] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:21:41] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
