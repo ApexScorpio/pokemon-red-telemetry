@@ -551,47 +551,28 @@ function renderFogMinimap(state) {
     });
   }
 
-  // 3. Desenha Itens Estáticos da Base de Dados
+  // Itens conhecidos: ícone no mapa; quando recolhidos, ficam como ghost.
   const items = [
     ...(state.areaInfo?.visibleItems || []),
     ...(state.areaInfo?.hiddenItems || [])
   ];
   items.forEach(it => {
-    if (it.x !== undefined && it.y !== undefined) {
-      const ix = camX + it.x * tileSize + tileSize / 2;
-      const iy = camY + it.y * tileSize + tileSize / 2;
-      if (ix >= -10 && ix <= cw + 10 && iy >= -10 && iy <= ch + 10) {
-        if (!it.isCollected) {
-          ctxFog.fillStyle = '#ffd000';
-          ctxFog.beginPath();
-          ctxFog.arc(ix, iy, 4, 0, Math.PI * 2);
-          ctxFog.fill();
-          ctxFog.strokeStyle = '#ffffff';
-          ctxFog.lineWidth = 1;
-          ctxFog.stroke();
-        } else {
-          ctxFog.fillStyle = '#3a4b66';
-          ctxFog.fillRect(ix - 2, iy - 2, 4, 4);
-        }
-      }
+    if (it.x === undefined || it.y === undefined) return;
+    const ix = camX + it.x * tileSize + tileSize / 2;
+    const iy = camY + it.y * tileSize + tileSize / 2;
+    if (ix >= -16 && ix <= cw + 16 && iy >= -16 && iy <= ch + 16) {
+      drawMapEntity(ctxFog, { ...it, icon: it.icon || '🎒', isItem: true, isGhost: !!it.isCollected }, ix, iy, 0.85, !!it.isCollected);
     }
   });
 
-  // 4. Desenha Treinadores Estáticos da Base de Dados
+  // Treinadores conhecidos: mantêm o marcador fantasma depois de derrotados.
   const battles = state.areaInfo?.upcomingBoss?.battles || [];
   battles.forEach(bt => {
-    if (bt.x !== undefined && bt.y !== undefined) {
-      const bx = camX + bt.x * tileSize + tileSize / 2;
-      const by = camY + bt.y * tileSize + tileSize / 2;
-      if (bx >= -10 && bx <= cw + 10 && by >= -10 && by <= ch + 10) {
-        ctxFog.fillStyle = bt.isDefeated ? '#00e676' : '#ff3b5c';
-        ctxFog.beginPath();
-        ctxFog.arc(bx, by, 4.5, 0, Math.PI * 2);
-        ctxFog.fill();
-        ctxFog.strokeStyle = '#ffffff';
-        ctxFog.lineWidth = 1;
-        ctxFog.stroke();
-      }
+    if (bt.x === undefined || bt.y === undefined) return;
+    const bx = camX + bt.x * tileSize + tileSize / 2;
+    const by = camY + bt.y * tileSize + tileSize / 2;
+    if (bx >= -16 && bx <= cw + 16 && by >= -16 && by <= ch + 16) {
+      drawMapEntity(ctxFog, { ...bt, icon: bt.icon || '🧍', isTrainer: true, isGhost: !!bt.isDefeated }, bx, by, 0.85, !!bt.isDefeated);
     }
   });
 
@@ -739,58 +720,28 @@ function renderGtaFullMap(state) {
     });
   }
 
-  // 2. Desenho de Itens Estáticos
+  // Itens conhecidos na área, incluindo ghosts dos que já foram recolhidos.
   const items = [
     ...(state.areaInfo?.visibleItems || []),
     ...(state.areaInfo?.hiddenItems || [])
   ];
   items.forEach(it => {
-    if (it.x !== undefined && it.y !== undefined) {
-      const ix = originX + it.x * tilePx + tilePx / 2;
-      const iy = originY + it.y * tilePx + tilePx / 2;
-      if (ix >= -20 && ix <= cw + 20 && iy >= -20 && iy <= ch + 20) {
-        if (!it.isCollected) {
-          // Glow de item
-          ctxGta.fillStyle = 'rgba(255, 208, 0, 0.3)';
-          ctxGta.beginPath();
-          ctxGta.arc(ix, iy, 7 * gtaZoom, 0, Math.PI * 2);
-          ctxGta.fill();
-
-          ctxGta.fillStyle = '#ffd000';
-          ctxGta.beginPath();
-          ctxGta.arc(ix, iy, 4 * gtaZoom, 0, Math.PI * 2);
-          ctxGta.fill();
-          ctxGta.strokeStyle = '#ffffff';
-          ctxGta.lineWidth = 1.5;
-          ctxGta.stroke();
-        } else {
-          ctxGta.fillStyle = '#3a4b66';
-          ctxGta.fillRect(ix - 3 * gtaZoom, iy - 3 * gtaZoom, 6 * gtaZoom, 6 * gtaZoom);
-        }
-      }
+    if (it.x === undefined || it.y === undefined) return;
+    const ix = originX + it.x * tilePx + tilePx / 2;
+    const iy = originY + it.y * tilePx + tilePx / 2;
+    if (ix >= -24 && ix <= cw + 24 && iy >= -24 && iy <= ch + 24) {
+      drawMapEntity(ctxGta, { ...it, icon: it.icon || '🎒', isItem: true, isGhost: !!it.isCollected }, ix, iy, gtaZoom, !!it.isCollected);
     }
   });
 
-  // 3. Desenho de Treinadores Estáticos
+  // Treinadores conhecidos; derrotados ficam como ghosts no mapa.
   const battles = state.areaInfo?.upcomingBoss?.battles || [];
   battles.forEach(bt => {
-    if (bt.x !== undefined && bt.y !== undefined) {
-      const bx = originX + bt.x * tilePx + tilePx / 2;
-      const by = originY + bt.y * tilePx + tilePx / 2;
-      if (bx >= -20 && bx <= cw + 20 && by >= -20 && by <= ch + 20) {
-        ctxGta.fillStyle = bt.isDefeated ? 'rgba(0, 230, 118, 0.25)' : 'rgba(255, 59, 92, 0.3)';
-        ctxGta.beginPath();
-        ctxGta.arc(bx, by, 8 * gtaZoom, 0, Math.PI * 2);
-        ctxGta.fill();
-
-        ctxGta.fillStyle = bt.isDefeated ? '#00e676' : '#ff3b5c';
-        ctxGta.beginPath();
-        ctxGta.arc(bx, by, 5 * gtaZoom, 0, Math.PI * 2);
-        ctxGta.fill();
-        ctxGta.strokeStyle = '#ffffff';
-        ctxGta.lineWidth = 1.5;
-        ctxGta.stroke();
-      }
+    if (bt.x === undefined || bt.y === undefined) return;
+    const bx = originX + bt.x * tilePx + tilePx / 2;
+    const by = originY + bt.y * tilePx + tilePx / 2;
+    if (bx >= -24 && bx <= cw + 24 && by >= -24 && by <= ch + 24) {
+      drawMapEntity(ctxGta, { ...bt, icon: bt.icon || '🧍', isTrainer: true, isGhost: !!bt.isDefeated }, bx, by, gtaZoom, !!bt.isDefeated);
     }
   });
 
