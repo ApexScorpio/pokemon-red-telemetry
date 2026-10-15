@@ -1,25 +1,49 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:25:55**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:26:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `30`, Y: `5`
-- **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `RED defeated`
+- **Coordenadas GPS:** X: `25`, Y: `31`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
-  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Tackle`
+
+### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
+- **Tipos:** Poison/Flying
+- **HP:** **7 / 26** (27%)
+- **Stats de Batalha:** ATK: 13 | DEF: 13 | SPD: 16 | SPC: 13
+
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 18)
+- **Tipos:** Poison
+- **HP:** **8 / 56** (HEALTHY)
+- **Stats com Modificadores:** ATK: 43 (0) | DEF: 32 (0) | SPD: 34 (0) | SPC: 29 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **34-41 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 7 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14)
@@ -33,14 +57,14 @@
   - **String Shot** (Bug) — PP: 38 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 18)
-- **Tipos:** Poison | **HP:** 11 / 56 ✅ (SAUDÁVEL)
+### 2. **Nidorino** (Lv. 18) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 8 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 32 | SPD: 34 | SPC: 29
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3512 | ATK: 4490 | DEF: 3092 | SPD: 4858 | SPC: 2723
-- **Experiência:** 4393 EXP (Progresso: 77%, faltam 182 p/ Lv.19)
+- **Stat EXP (EVs Acumulados):** HP: 3552 | ATK: 4535 | DEF: 3127 | SPD: 4913 | SPC: 2763
+- **Experiência:** 4470 EXP (Progresso: 86%, faltam 105 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 11 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 8 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 24 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -159,16 +183,16 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:26:07] `TACKLE HORN ATTACK`
+- [18:26:06] `Enemy ZUBAT`
+- [18:26:05] `NIDORINO`
+- [18:26:04] `Wild ZUBAT`
+- [18:26:03] `9999999999 9999999999`
+- [18:26:01] `NIDORINO`
+- [18:26:00] `But it failed`
+- [18:25:59] `TACKLE HORN ATTACK`
+- [18:25:58] `Wild ZUBAT`
 - [18:25:54] `RED defeated`
-- [18:25:53] `NIDORINO`
-- [18:25:49] `TACKLE HORN ATTACK`
-- [18:25:48] `FIGHT`
-- [18:25:47] `Will RED`
-- [18:25:46] `NIDORINO gained`
-- [18:25:44] `Enemy ODDISH`
-- [18:25:43] `NIDORINO`
-- [18:25:42] `Enemy ODDISH`
-- [18:25:41] `TACKLE HORN ATTACK`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
