@@ -988,7 +988,7 @@ class RetroArchClient extends EventEmitter {
       console.log('[BattleDetectionDebug]', JSON.stringify(diagnostic));
     }
 
-    if (blockCombat && blockCombat.length >= 255) {
+    if (blockCombat && blockCombat.length > 119) {
       const rawBattleFlag = blockCombat[119];
       const inBattleVal = Number.parseInt(rawBattleFlag, 16);
       if (!this.isSimulatingBattle) {
