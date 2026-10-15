@@ -959,6 +959,8 @@ class RetroArchClient extends EventEmitter {
     // 7. LEITURA EXAUSTIVA DE COMBATE E BATALHA (BLOCOS $CFE0 E $CC20)
     // =========================================================================
     const blockCombat = await this.readMemoryBlock('CFE0', 255);
+    // O Pokémon ativo do jogador fica em $D014, fora do bloco $CFE0.
+    const blockPlayerBattle = await this.readMemoryBlock('D014', 44);
     const blockBattleMods = await this.readMemoryBlock('CC20', 280);
 
     // Ler o sinalizador diretamente: o bloco CFE0 atravessa a fronteira CFFF/D000
@@ -1092,27 +1094,27 @@ class RetroArchClient extends EventEmitter {
         }).filter(Boolean)
       };
 
-      // Pokémon Ativo do Jogador ($D014, offset 52 de blockCombat)
-      const bSpecies = parseInt(blockCombat[52], 16);
-      const bHp = (parseInt(blockCombat[53], 16) << 8) | parseInt(blockCombat[54], 16);
-      const bStatusVal = parseInt(blockCombat[56], 16);
+      // Pokémon Ativo do Jogador ($D014, bloco próprio)
+      const bSpecies = parseInt(blockPlayerBattle[0], 16);
+      const bHp = (parseInt(blockPlayerBattle[1], 16) << 8) | parseInt(blockPlayerBattle[2], 16);
+      const bStatusVal = parseInt(blockPlayerBattle[4], 16);
       const bMoves = [
-        parseInt(blockCombat[60], 16),
-        parseInt(blockCombat[61], 16),
-        parseInt(blockCombat[62], 16),
-        parseInt(blockCombat[63], 16)
+        parseInt(blockPlayerBattle[8], 16),
+        parseInt(blockPlayerBattle[9], 16),
+        parseInt(blockPlayerBattle[10], 16),
+        parseInt(blockPlayerBattle[11], 16)
       ];
-      const bLevel = parseInt(blockCombat[66], 16);
-      const bMaxHp = (parseInt(blockCombat[67], 16) << 8) | parseInt(blockCombat[68], 16);
-      const bAttack = (parseInt(blockCombat[69], 16) << 8) | parseInt(blockCombat[70], 16);
-      const bDefense = (parseInt(blockCombat[71], 16) << 8) | parseInt(blockCombat[72], 16);
-      const bSpeed = (parseInt(blockCombat[73], 16) << 8) | parseInt(blockCombat[74], 16);
-      const bSpecial = (parseInt(blockCombat[75], 16) << 8) | parseInt(blockCombat[76], 16);
+      const bLevel = parseInt(blockPlayerBattle[14], 16);
+      const bMaxHp = (parseInt(blockPlayerBattle[15], 16) << 8) | parseInt(blockPlayerBattle[16], 16);
+      const bAttack = (parseInt(blockPlayerBattle[17], 16) << 8) | parseInt(blockPlayerBattle[18], 16);
+      const bDefense = (parseInt(blockPlayerBattle[19], 16) << 8) | parseInt(blockPlayerBattle[20], 16);
+      const bSpeed = (parseInt(blockPlayerBattle[21], 16) << 8) | parseInt(blockPlayerBattle[22], 16);
+      const bSpecial = (parseInt(blockPlayerBattle[23], 16) << 8) | parseInt(blockPlayerBattle[24], 16);
       const bPPs = [
-        parseInt(blockCombat[77], 16),
-        parseInt(blockCombat[78], 16),
-        parseInt(blockCombat[79], 16),
-        parseInt(blockCombat[80], 16)
+        parseInt(blockPlayerBattle[25], 16),
+        parseInt(blockPlayerBattle[26], 16),
+        parseInt(blockPlayerBattle[27], 16),
+        parseInt(blockPlayerBattle[28], 16)
       ];
 
       // Índice da equipa combatente (offset 15 de blockBattleMods)
