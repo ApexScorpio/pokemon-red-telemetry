@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:28:14**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:28:25**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `57`, Y: `10`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
+- **Coordenadas GPS:** X: `14`, Y: `35`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **💬 Diálogo / Mensagem no Ecrã:** `Whew I better`
 - **Dinheiro:** **3001 ₽**
@@ -226,14 +226,40 @@
   - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
 
+### #9. **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis)) • **⚔️ POR VENCER**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+- **Lead Recomendado:** Butterfree (Confusion)
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+
+### #10. **Team Rocket Grunt** (Mt. Moon (B2F - Saída)) • **⚔️ POR VENCER**
+- **Dificuldade:** Difícil
+- **Roster Inimigo:** Raticate (Lv. 16)
+- **Lead Recomendado:** Charmeleon / Geodude
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
+
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [17:28:25] Entrou em Mt Moon 1F
+- [17:28:22] Entrou em Route 4
+- [17:28:21] Entrou em Mt Moon Pokecenter
+- [17:28:18] Entrou em Route 4
 - [17:27:07] Entrou em Route 3
 - [17:27:00] Entrou em Route 4
-- [17:26:40] Entrou em Mt Moon Pokecenter
-- [17:26:14] Entrou em Route 4
-- [17:26:08] Entrou em Mt Moon Pokecenter
-- [17:26:04] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [17:28:13] `Whew I better`
