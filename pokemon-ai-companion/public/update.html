@@ -26,16 +26,34 @@
     const status = document.getElementById('update-status');
     button.addEventListener('click', async () => {
       button.disabled = true;
-      status.textContent = 'A procurar e instalar a versão mais recente...';
+      status.textContent = 'Pedido de atualização enviado…';
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 20000);
       try {
-        const response = await fetch('/api/update', { method: 'POST' });
-        const result = await response.json();
-        if (!response.ok || !result.success) throw new Error(result.error || 'Não foi possível atualizar.');
-        status.textContent = result.message || 'Atualização aplicada. A reiniciar...';
-        status.textContent += '\\nAguarda alguns segundos e volta ao dashboard.';
+        status.textContent = 'A contactar o servidor local…';
+        const response = await fetch('/api/update', {
+          method: 'POST',
+          cache: 'no-store',
+          headers: { 'Content-Type': 'application/json' },
+          body: '{}',
+          signal: controller.signal
+        });
+        const raw = await response.text();
+        let result = {};
+        try { result = JSON.parse(raw); } catch {}
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || ('Servidor respondeu HTTP ' + response.status + (raw ? ': ' + raw.slice(0, 180) : '')));
+        }
+        status.textContent = (result.message || 'Atualização aplicada.') + '\\nA aguardar o reinício…';
+        setTimeout(() => { window.location.href = '/?updated=' + Date.now(); }, 2500);
       } catch (error) {
-        status.textContent = 'Falha na atualização: ' + error.message;
+        const detail = error.name === 'AbortError'
+          ? 'O servidor não respondeu em 20 segundos.'
+          : error.message;
+        status.textContent = 'Não foi possível confirmar a atualização.\\n' + detail + '\\n\\nSe o servidor estiver a reiniciar, espera 5 segundos e abre novamente o dashboard. Se nada mudar, fecha a janela do servidor e executa npm start.';
         button.disabled = false;
+      } finally {
+        clearTimeout(timeout);
       }
     });
   </script>
