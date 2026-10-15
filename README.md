@@ -1,56 +1,24 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:37:24**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:37:36**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 2** (ID: `0xD`)
-- **Coordenadas GPS:** X: `5`, Y: `3`
+- **Coordenadas GPS:** X: `0`, Y: `3`
 - **Dinheiro:** **445 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
 - **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
-- **Modo Atual:** ⚔️ **EM COMBATE REAL (Selvagem)**
-
-## ⚔️ Combate Ativo em Direto
-### 🔴 Adversário: **Pidgey** (Lv. 5)
-- **Tipos:** Normal/Flying
-- **HP:** **19 / 19** (100%)
-- **Stats de Batalha:** ATK: 10 | DEF: 10 | SPD: 11 | SPC: 9
-- **Golpes:** Gust, Sand Attack
-
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 12)
-- **Tipos:** Bug/Flying
-- **HP:** **39 / 39**
-- **Stats com Modificadores:** ATK: 19 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 28 (0)
-
-### 🎯 Análise Tática Matemática (Gen 1)
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Decisão Matemática:** Usa **Confusion** (Psychic) ➔ Dano Estimado: **18-22 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-- **Matriz de Golpes Disponíveis:**
-  - **Confusion** (Psychic) • PP: 25/20 • Dano: 18-22 HP (DANO NORMAL ⚔️) [⚠️ RISCO DE K.O. (~80%)]
-  - **String Shot** (Bug) • PP: 40/20 • Dano: 0-0 HP (POUCO EFETIVO 🛡️) [🛡️ GOLPE DE STATUS]
-  - **Tackle** (Normal) • PP: 35/20 • Dano: 8-10 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (39/39). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **3%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~7%**
+- **Modo Atual:** 🗺️ **Modo Exploração Livre**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Butterfree** (Lv. 12) ⚔️ [EM COMBATE]
+### 1. **Butterfree** (Lv. 12)
 - **Tipos:** Bug/Flying | **HP:** 39 / 39 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 18 | SPD: 25 | SPC: 28
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Experiência:** 1844 EXP (Progresso: 25%, faltam 353 p/ Lv.13)
+- **Experiência:** 1883 EXP (Progresso: 33%, faltam 314 p/ Lv.13)
 - **Golpes:**
-  - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 24 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
