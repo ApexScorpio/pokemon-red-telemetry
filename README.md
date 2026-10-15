@@ -1,15 +1,15 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:00:05**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:00:18**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
-- **Localização Atual:** **Route 2** (ID Interno: `0xD`)
-- **Coordenadas GPS:** X: `0`, Y: `6`
+- **Localização Atual:** **Pewter Pokecenter** (ID Interno: `0x3A`)
+- **Coordenadas GPS:** X: `3`, Y: `3`
 - **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Dinheiro:** **1831 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -18,13 +18,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Butterfree** (Lv. 13)
-- **Tipos:** Bug/Flying | **HP:** 23 / 42 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 42 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 20 | DEF: 19 | SPD: 27 | SPC: 30
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2834 | ATK: 3353 | DEF: 2760 | SPD: 3827 | SPC: 2095
 - **Experiência:** 2359 EXP (Progresso: 30%, faltam 385 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 19 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 25 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
@@ -63,25 +63,25 @@
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
 ### 5. **Nidoran♀** (Lv. 13)
-- **Tipos:** Poison | **HP:** 18 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 1518 | ATK: 2195 | DEF: 1557 | SPD: 2416 | SPC: 1305
 - **Experiência:** 1405 EXP (Progresso: 41%, faltam 207 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
 ### 6. **Beedrill** (Lv. 11)
-- **Tipos:** Bug/Poison | **HP:** 0 / 38 ❌ (FAINTED)
+- **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 17 | SPD: 23 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 1958 | ATK: 2307 | DEF: 1901 | SPD: 2807 | SPC: 1403
 - **Experiência:** 1648 EXP (Progresso: 80%, faltam 80 p/ Lv.12)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 35 | Poder: -- | Precisão: 95%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **5 / 20 slots** (15 vagas livres)
 - **Potion** x4
@@ -115,12 +115,12 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [17:00:11] Entrou em Pewter Pokecenter
+- [17:00:08] Entrou em Pewter City
 - [16:59:49] Entrou em Route 2
 - [16:55:12] Entrou em Pewter City
 - [16:51:37] Entrou em Pewter Gym
 - [16:51:32] Entrou em Pewter City
-- [16:51:29] Entrou em Pewter Pokecenter
-- [16:51:25] Entrou em Pewter City
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:**"
