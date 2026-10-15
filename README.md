@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:49:05**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:49:16**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `61`, Y: `8`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas GPS:** X: `62`, Y: `11`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Critical hit`
+- **💬 Diálogo / Mensagem no Ecrã:** `Choose a POKMON`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -22,16 +22,15 @@
   - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 15)
-- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
-- **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4440 | ATK: 6160 | DEF: 4256 | SPD: 6925 | SPC: 3637
-- **Experiência:** 3437 EXP (Progresso: 9%, faltam 659 p/ Lv.16)
+### 1. **Beedrill** (Lv. 11)
+- **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 25 | DEF: 17 | SPD: 23 | SPC: 16
+- **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 1958 | ATK: 2307 | DEF: 1901 | SPD: 2807 | SPC: 1403
+- **Experiência:** 1648 EXP (Progresso: 80%, faltam 80 p/ Lv.12)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
 
 ### 2. **Nidoran♀** (Lv. 14)
 - **Tipos:** Poison | **HP:** 42 / 42 ✅ (SAUDÁVEL)
@@ -69,15 +68,16 @@
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
 
-### 5. **Beedrill** (Lv. 11)
-- **Tipos:** Bug/Poison | **HP:** 38 / 38 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 25 | DEF: 17 | SPD: 23 | SPC: 16
-- **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1958 | ATK: 2307 | DEF: 1901 | SPD: 2807 | SPC: 1403
-- **Experiência:** 1648 EXP (Progresso: 80%, faltam 80 p/ Lv.12)
+### 5. **Pikachu** (Lv. 15)
+- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
+- **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 4440 | ATK: 6160 | DEF: 4256 | SPD: 6925 | SPC: 3637
+- **Experiência:** 3437 EXP (Progresso: 9%, faltam 659 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Thunder Shock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 6. **Nidoran♂** (Lv. 14)
 - **Tipos:** Poison | **HP:** 41 / 41 ✅ (SAUDÁVEL)
@@ -144,8 +144,8 @@
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember do Charmeleon elimina cada inseto num só golpe.
 
 ### #3. **Youngster Ben** (Rota 3 (Centro)) • **⚔️ POR VENCER**
@@ -157,8 +157,8 @@
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion é super eficaz contra Ekans (Veneno). Cuidado com Poison Sting.
 
 ### #4. **Bug Catcher James** (Rota 3 (Labirinto)) • **⚔️ POR VENCER**
@@ -170,8 +170,8 @@
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Equipa de 4 insetos. Charmeleon limpa facilmente a equipa inteira.
 
 ### #5. **Lass Sally** (Rota 3 (Caminho Sul)) • **⚔️ POR VENCER**
@@ -183,8 +183,8 @@
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion elimina Nidoran♀ rapidamente.
 
 ### #6. **Bug Catcher Colton** (Rota 3 (Perto de Mt. Moon)) • **⚔️ POR VENCER**
@@ -196,8 +196,8 @@
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para ganhar EXP com Charmeleon.
 
 ### #7. **Youngster Calvin** (Rota 3 (Saída para Mt. Moon)) • **⚔️ POR VENCER**
@@ -222,8 +222,8 @@
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♀** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidoran♂** (Lv. 14) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Rattata** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
 
 # 📜 PARTE C: HISTÓRICO RECENTE
@@ -236,16 +236,16 @@
 - [17:29:20] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:49:16] `Choose a POKMON`
+- [17:49:15] `Move POKMON`
+- [17:49:14] `Choose a P SWITCH`
+- [17:49:12] `Choose a POKMON`
 - [17:48:39] `Critical hit`
 - [17:48:38] `PIKACHU`
 - [17:48:37] `FIGHT`
 - [17:31:26] `THUNDERSHOCK GROWL`
 - [17:31:19] `FIGHT`
 - [17:31:18] `Wild PIDGEY`
-- [17:31:08] `over a rocky`
-- [17:31:07] `Ouch I tripped`
-- [17:29:18] `OK Wel need`
-- [17:29:17] `Welcome to our`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
