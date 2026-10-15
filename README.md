@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:32**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:43**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `25`, Y: `12`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy PIDGEY`
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -47,13 +47,13 @@
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 19 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 6 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 19 | SPD: 32 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 15 | ATK: 3 | DEF: 5 | SPD: 11 | SPC: 15 (**65% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4756 | ATK: 5618 | DEF: 4095 | SPD: 6354 | SPC: 3491
-- **Experiência:** 3833 EXP (Progresso: 64%, faltam 263 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4836 | ATK: 5723 | DEF: 4165 | SPD: 6480 | SPC: 3557
+- **Experiência:** 3936 EXP (Progresso: 78%, faltam 160 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 24 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 20 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 0 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Golpe #158** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
@@ -212,19 +212,19 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:24:32] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:24:43] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:24:43] `FIGHT`
+- [17:24:42] `Enemy J`
+- [17:24:41] `FIGHT`
+- [17:24:39] `RATTATA`
+- [17:24:38] `Go RATTATA`
+- [17:24:34] `RATTATA`
+- [17:24:33] `TACKLE QUICK ATTACK`
+- [17:24:32] `RATTATA`
 - [17:24:32] `Enemy PIDGEY`
 - [17:24:31] `TACKLE QUICK ATTACK`
-- [17:24:25] `RATTATA`
-- [17:24:24] `Go RATTATA`
-- [17:24:21] `RATTATA`
-- [17:24:20] `FIGHT`
-- [17:24:18] `Enemy SPEAROW`
-- [17:24:17] `TACKLE QUICK ATTACK`
-- [17:24:11] `FIGHT`
-- [17:24:10] `Wild SPE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
