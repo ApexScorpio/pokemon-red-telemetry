@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:49:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:50:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `9`, Y: `12`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Ouch I tripped`
+- **💬 Diálogo / Mensagem no Ecrã:** `Choose a POKMON`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -158,6 +158,8 @@
 - [17:31:03] Entrou em Route 3
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:49:58] `Choose a POKMON`
+- [17:49:57] `EXIT`
 - [17:49:37] `Ouch I tripped`
 - [17:49:32] `OK Wel need`
 - [17:49:31] `POKMON back to`
@@ -166,8 +168,6 @@
 - [17:49:19] `POISON STING STRING SHOT`
 - [17:49:18] `Wild SPEAR`
 - [17:49:16] `Choose a POKMON`
-- [17:49:15] `Move POKMON`
-- [17:49:14] `Choose a P SWITCH`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
