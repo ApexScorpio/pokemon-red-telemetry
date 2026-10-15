@@ -1,37 +1,60 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:43:40**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:43:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `28`, Y: `10`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Coordenadas GPS:** X: `15`, Y: `7`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **💬 Diálogo / Mensagem no Ecrã:** `Choose a POKMON`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
-  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
+- **Tipos:** Poison/Flying
+- **HP:** **30 / 30** (100%)
+- **Stats de Batalha:** ATK: 16 | DEF: 12 | SPD: 20 | SPC: 17
+
+### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 19)
+- **Tipos:** Normal
+- **HP:** **59 / 59** (HEALTHY)
+- **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **35-42 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Tackle (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Tackle! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (59/59). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
+  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 15)
-- **Tipos:** Bug/Poison | **HP:** 0 / 48 ❌ (FAINTED)
-- **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
-- **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2888 | ATK: 3397 | DEF: 2929 | SPD: 3882 | SPC: 2295
-- **Experiência:** 3637 EXP (Progresso: 36%, faltam 459 p/ Lv.16)
+### 1. **Pikachu** (Lv. 15) ⚔️ [EM COMBATE]
+- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
+- **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 4440 | ATK: 6160 | DEF: 4256 | SPD: 6925 | SPC: 3637
+- **Experiência:** 3437 EXP (Progresso: 9%, faltam 659 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 10 | Poder: 40 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 19)
 - **Tipos:** Poison | **HP:** 59 / 59 ✅ (SAUDÁVEL)
@@ -69,16 +92,16 @@
   - **Stun Spore** (Grass) — PP: 28 | Poder: -- | Precisão: 75%
   - **Poison Powder** (Poison) — PP: 32 | Poder: -- | Precisão: 75%
 
-### 5. **Pikachu** (Lv. 15)
-- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
-- **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4440 | ATK: 6160 | DEF: 4256 | SPD: 6925 | SPC: 3637
-- **Experiência:** 3437 EXP (Progresso: 9%, faltam 659 p/ Lv.16)
+### 5. **Beedrill** (Lv. 15)
+- **Tipos:** Bug/Poison | **HP:** 0 / 48 ❌ (FAINTED)
+- **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
+- **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
+- **Stat EXP (EVs Acumulados):** HP: 2888 | ATK: 3397 | DEF: 2929 | SPD: 3882 | SPC: 2295
+- **Experiência:** 3637 EXP (Progresso: 36%, faltam 459 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 10 | Poder: 40 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
+  - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
 
 ### 6. **Nidorina** (Lv. 16)
 - **Tipos:** Poison | **HP:** 52 / 52 ✅ (SAUDÁVEL)
@@ -136,8 +159,8 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Nidorino** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Rattata** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
@@ -147,8 +170,8 @@
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Nidorino** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Rattata** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
 
@@ -162,6 +185,9 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:43:45] `Choose a POKMON`
+- [18:43:44] `Move POKMON`
+- [18:43:44] `Choose a P SWITCH`
 - [18:43:40] `Choose a POKMON`
 - [18:43:37] `Enemy ZUBAT`
 - [18:43:36] `FIGHT`
@@ -169,9 +195,6 @@
 - [18:43:34] `It hurt itself in`
 - [18:43:33] `BEEDRILL`
 - [18:43:32] `Enemy ZUBAT`
-- [18:43:31] `BEEDRILL`
-- [18:43:30] `It su`
-- [18:43:30] `Enemy ZUBAT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
