@@ -1,23 +1,28 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:09**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `36`, Y: `12`
+- **Coordenadas GPS:** X: `31`, Y: `12`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `RATTATA gained`
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Lass Janice** (Rota 3 (Entrada Oeste))
+  - **Equipa Adversária:** Pidgey (Lv. 9) • Pidgey (Lv. 9)
+  - **Lead Recomendado:** Pikachu / Butterfree
+  - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Nidoran♂** (Lv. 14) ⚔️ [EM COMBATE]
+### 1. **Nidoran♂** (Lv. 14)
 - **Tipos:** Poison | **HP:** 0 / 41 ❌ (FAINTED)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 23 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
@@ -45,10 +50,10 @@
 - **Tipos:** Normal | **HP:** 19 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 19 | SPD: 32 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 15 | ATK: 3 | DEF: 5 | SPD: 11 | SPC: 15 (**65% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4406 | ATK: 5363 | DEF: 3955 | SPD: 6118 | SPC: 3344
-- **Experiência:** 3593 EXP (Progresso: 30%, faltam 503 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4561 | ATK: 5453 | DEF: 4015 | SPD: 6194 | SPC: 3404
+- **Experiência:** 3680 EXP (Progresso: 42%, faltam 416 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 0 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Golpe #158** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
@@ -117,9 +122,102 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
+### #1. **Lass Janice** (Rota 3 (Entrada Oeste)) • **⚔️ POR VENCER**
+- **Dificuldade:** Muito Fácil
+- **Roster Inimigo:** Pidgey (Lv. 9) • Pidgey (Lv. 9)
+- **Lead Recomendado:** Pikachu / Butterfree
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Charmeleon** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
+
+### #2. **Bug Catcher Greg** (Rota 3 (Caminho Superior)) • **⚔️ POR VENCER**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Caterpie (Lv. 9) • Weedle (Lv. 9) • Caterpie (Lv. 9)
+- **Lead Recomendado:** Charmeleon (Ember) / Pidgey
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Charmeleon** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Ember do Charmeleon elimina cada inseto num só golpe.
+
+### #3. **Youngster Ben** (Rota 3 (Centro)) • **⚔️ POR VENCER**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Rattata (Lv. 11) • Ekans (Lv. 11)
+- **Lead Recomendado:** Butterfree (Confusion)
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Charmeleon** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Confusion é super eficaz contra Ekans (Veneno). Cuidado com Poison Sting.
+
+### #4. **Bug Catcher James** (Rota 3 (Labirinto)) • **⚔️ POR VENCER**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Weedle (Lv. 9) • Kakuna (Lv. 9) • Caterpie (Lv. 9) • Metapod (Lv. 9)
+- **Lead Recomendado:** Charmeleon (Ember)
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Charmeleon** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Equipa de 4 insetos. Charmeleon limpa facilmente a equipa inteira.
+
+### #5. **Lass Sally** (Rota 3 (Caminho Sul)) • **⚔️ POR VENCER**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Rattata (Lv. 10) • Nidoran♀ (Lv. 10)
+- **Lead Recomendado:** Butterfree (Confusion)
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Charmeleon** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Confusion elimina Nidoran♀ rapidamente.
+
+### #6. **Bug Catcher Colton** (Rota 3 (Perto de Mt. Moon)) • **⚔️ POR VENCER**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10)
+- **Lead Recomendado:** Charmeleon
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Charmeleon** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Combate rápido para ganhar EXP com Charmeleon.
+
+### #7. **Youngster Calvin** (Rota 3 (Saída para Mt. Moon)) • **⚔️ POR VENCER**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Spearow (Lv. 14)
+- **Lead Recomendado:** Pikachu (Thundershock) ou Geodude
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Charmeleon** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Spearow é rápido e bate forte com Peck. Pikachu derrota com facilidade.
+
+### #8. **Lass Robin** (Rota 3 (Canto Nordeste)) • **⚔️ POR VENCER**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Jigglypuff (Lv. 14)
+- **Lead Recomendado:** Charmeleon / Beedrill
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Charmeleon** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
+
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:24:01] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:24:09] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+
+### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:24:08] `RATTATA gained`
+- [17:24:07] `Enemy JIGGLYPUFF`
+- [17:24:06] `FIGHT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
