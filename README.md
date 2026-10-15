@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:08:22**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:08:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,44 +8,21 @@
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
 - **Coordenadas GPS:** X: `5`, Y: `31`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `All right`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `transferred to`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Poison Sting`
-
-### 🔴 Adversário em Campo: **Zubat** (Lv. 6)
-- **Tipos:** Poison/Flying
-- **HP:** **7 / 21** (33%)
-- **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 12 | SPC: 9
-
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 12)
-- **Tipos:** Bug/Poison
-- **HP:** **28 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 30 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 17 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Golpe #31 (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Golpe #31! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 7 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Golpe #31 para liquidar o adversário já!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **8%** | Great Ball: **13%** | Ultra Ball: **23%**
-  - *Se adormeceres o inimigo:* **~33%** | *Com HP no vermelho:* **~8%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 12) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 12)
 - **Tipos:** Bug/Poison | **HP:** 28 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 18 | SPD: 25 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
@@ -115,9 +92,8 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **6 / 20 slots** (14 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **5 / 20 slots** (15 vagas livres)
 - **Potion** x4
-- **Poké Ball** x1
 - **Antidote** x2
 - **Town Map** x1
 - **Item #234** x1
@@ -126,15 +102,16 @@
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Pokémon Capturados:** **17 / 151**
+- **Pokémon Capturados:** **18 / 151**
 - **Pokémon Vistos:** **24 / 151**
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #39 Jigglypuff, #41 Zubat
 
-## 💾 6. Pokémon Guardados no PC (4 / 20 na Caixa 1) • Vagas Livres: **16**
-- #1: **Jigglypuff** (Dex: #39)
-- #2: **Spearow** (Dex: #21)
-- #3: **Pidgey** (Dex: #16)
-- #4: **Charmeleon** (Dex: #5)
+## 💾 6. Pokémon Guardados no PC (5 / 20 na Caixa 1) • Vagas Livres: **15**
+- #1: **Zubat** (Dex: #41)
+- #2: **Jigglypuff** (Dex: #39)
+- #3: **Spearow** (Dex: #21)
+- #4: **Pidgey** (Dex: #16)
+- #5: **Charmeleon** (Dex: #5)
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
@@ -183,16 +160,16 @@
 - [18:02:27] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:08:28] `transferred to`
+- [18:08:27] `give a nickname`
+- [18:08:26] `Do you want to`
+- [18:08:25] `perpetually dark places Uses`
+- [18:08:24] `will be added for`
+- [18:08:22] `New POKDEX data`
 - [18:08:21] `All right`
 - [18:08:20] `RED used`
 - [18:08:14] `FIGHT`
 - [18:08:13] `Sucked health from`
-- [18:08:08] `It super`
-- [18:08:07] `It`
-- [18:08:06] `It not very`
-- [18:08:05] `FIGHT`
-- [18:08:04] `Enemy ZUBAT`
-- [18:08:03] `POISON STING FURY ATTACK`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Batalha em curso: use **String Shot** (bug) para infligir dano crítico"
