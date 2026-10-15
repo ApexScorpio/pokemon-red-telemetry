@@ -207,7 +207,17 @@ class RetroArchClient extends EventEmitter {
     this.socket = dgram.createSocket('udp4');
 
     this.socket.on('message', (msg, rinfo) => {
-      this.handleResponse(msg.toString().trim(), rinfo);
+      const raw = msg.toString().trim();
+      const now = Date.now();
+      if (!this.lastUdpPacketLogAt || now - this.lastUdpPacketLogAt >= 2000) {
+        this.lastUdpPacketLogAt = now;
+        console.log('[RetroArchClient] Pacote UDP recebido:', JSON.stringify({
+          from: `${rinfo.address}:${rinfo.port}`,
+          bytes: msg.length,
+          response: raw.slice(0, 220)
+        }));
+      }
+      this.handleResponse(raw, rinfo);
     });
 
     this.socket.on('error', (err) => {
@@ -261,6 +271,11 @@ class RetroArchClient extends EventEmitter {
       const buf = Buffer.from(cmd + '\n');
       this.socket.send(buf, 0, buf.length, this.port, this.ip, (err) => {
         if (err) {
+          console.error('[RetroArchClient] Erro ao enviar UDP:', JSON.stringify({
+            target: `${this.ip}:${this.port}`,
+            command: cmd,
+            error: err.message
+          }));
           if (this.pendingResolves.get(key) === finish) this.pendingResolves.delete(key);
           finish(null);
         }
