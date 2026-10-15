@@ -363,7 +363,8 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
   const scrollX = Number(video.scrollX || 0) & 0xFF;
   const scrollY = Number(video.scrollY || 0) & 0xFF;
   const bgp = Number(video.bgPalette || 0xE4);
-  const colors = ['#e8f4d8', '#a8c878', '#568548', '#203c30'];
+  // Paleta quente vermelho-rosada para reproduzir o filtro/aura do SameBoy.
+  const colors = ['#fff0e8', '#f3b7b0', '#d87878', '#702d3a'];
   const image = ctx.createImageData(160, 144);
   const pixels = image.data;
 
