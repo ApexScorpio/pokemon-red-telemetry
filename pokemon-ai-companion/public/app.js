@@ -309,7 +309,7 @@ function renderState(state) {
     elBattleIndicatorTag.classList.add('in-battle');
 
     // Se acabou de entrar em combate ou se não estiver na aba de combate, força a mudança imediata!
-    if (!wasInBattle || currentCenterTab !== 'battle') {
+    if (!wasInBattle) {
       userManuallyChoseCenterTab = false;
       switchCenterTab('battle');
 
