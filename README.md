@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:26:33**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:26:44**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -78,7 +78,7 @@
 - **Antidote** x2
 - **Town Map** x1
 
-## 🗺️ Radar da Área: **Área #0x3A**
+## 🗺️ Radar da Área: **Pewter Pokécenter**
 ### 🎯 Preparação Tática: **Líder Brock (Ginásio de Pewter)**
 - **Adversários:** Geodude (Lv. 12) & Onix (Lv. 14) (Nível Alvo: **Lv. 11 a 14**)
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Rattata (Lv. 13)** (*Golpes Normais são pouco eficazes (0.5x) contra a armadura do adversário.*)
@@ -89,14 +89,28 @@
     - 📦 *Para criar espaço no PC:* Deposita **Nidoran♂ (Lv. 12)** (Não precisas de dois Pokémon de tipo Veneno repetidos na equipa. Guarda o Nidoran♂ no PC do Centro Pokémon.)
 - **Avisos de Perigo:**
   - 🚨 CUIDADO COM O BIDE DO ONIX: Se o Onix usar Bide (acumular energia), NÃO ATAQUES com Charmeleon ou Butterfree! Usa golpes de status (Growl, Leer, String Shot) ou cura com Poção para não levares com o dobro do dano devolvido.
-- **⚔️ Previsão de Batalhas da Área (Easiest ➔ Hardest):**
-  1. **Rival Blue #2** [Fácil] — **✅ VENCIDO**: Pidgey (Lv. 9) • Squirtle (Lv. 8) • *Lead Recomendado:* Charmeleon ou Butterfree — ⚠️ OBRIGATÓRIO FAZER ANTES DO BROCK! Se derrotares o Brock primeiro, este combate desaparece para sempre. Usa Charmeleon/Butterfree para ganhar EXP fácil.
-  2. **Jr. Trainer♂** [Média] — **✅ VENCIDO**: Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra) • *Lead Recomendado:* Butterfree (Confusion) — Treinador do ginásio já derrotado com sucesso.
-  3. **Líder Brock** [Chefe / Difícil] — **⚔️ POR VENCER**: Geodude (Lv. 12 - Rocha/Terra) • Onix (Lv. 14 - Rocha/Terra) • *Lead Recomendado:* Butterfree (Confusion) & Charmeleon (Ember) — Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
+
+### ⚔️ Batalhas da Área & Progresso na Memória RAM (Mais Fácil ➔ Mais Difícil)
+#### #1. **Rival Blue #2** (Rota 22 (Portão da Liga)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Pidgey (Lv. 9) • Squirtle (Lv. 8)
+- **Lead Recomendado:** Charmeleon ou Butterfree
+- **Estratégia:** ⚠️ OBRIGATÓRIO FAZER ANTES DO BROCK! Se derrotares o Brock primeiro, este combate desaparece para sempre. Usa Charmeleon/Butterfree para ganhar EXP fácil.
+
+#### #2. **Jr. Trainer♂** (Ginásio de Pewter (Guardião)) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra)
+- **Lead Recomendado:** Butterfree (Confusion)
+- **Estratégia:** Treinador do ginásio já derrotado com sucesso.
+
+#### #3. **Líder Brock** (Ginásio de Pewter (Chefe)) • **⚔️ POR VENCER**
+- **Dificuldade:** Chefe / Difícil
+- **Roster Inimigo:** Geodude (Lv. 12 - Rocha/Terra) • Onix (Lv. 14 - Rocha/Terra)
+- **Lead Recomendado:** Butterfree (Confusion) & Charmeleon (Ember)
+- **Estratégia:** Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
 
 ## 🧠 Conselho Tático do Grok AI
-> "Troca imediatamente para o Charmeleon e acerta com **Ember** – fogo é 4× eficaz contra Sandshrew.  
-Se a batalha ficar longa"
+> "A sincronizar com a memória do Game Boy..."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
