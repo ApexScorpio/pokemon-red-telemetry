@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:14:16**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:14:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `14`, Y: `6`
+- **Coordenadas GPS:** X: `19`, Y: `6`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Dinheiro:** **2066 ₽**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Dinheiro:** **2231 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -18,13 +18,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Butterfree** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 41 / 44 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 35 / 44 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 21 | DEF: 21 | SPD: 29 | SPC: 32
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3044 | ATK: 3538 | DEF: 2940 | SPD: 4079 | SPC: 2225
-- **Experiência:** 2904 EXP (Progresso: 25%, faltam 471 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 3109 | ATK: 3654 | DEF: 3019 | SPD: 4206 | SPC: 2290
+- **Experiência:** 3182 EXP (Progresso: 69%, faltam 193 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 17 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 14 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
 
@@ -94,7 +94,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Pokémon Capturados:** **14 / 151**
-- **Pokémon Vistos:** **19 / 151**
+- **Pokémon Vistos:** **20 / 151**
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #32 Nidoran♂
 
 ## 💾 6. Pokémon Guardados no PC (3 / 20 na Caixa 1) • Vagas Livres: **17**
@@ -115,7 +115,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:14:16] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:14:27] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
