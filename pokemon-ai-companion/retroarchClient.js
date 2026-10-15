@@ -269,7 +269,18 @@ class RetroArchClient extends EventEmitter {
       this.pendingResolves.set(key, finish);
 
       const buf = Buffer.from(cmd + '\n');
+      const firstSendLog = !this.lastUdpSendLogAt;
       this.socket.send(buf, 0, buf.length, this.port, this.ip, (err) => {
+        if (firstSendLog) {
+          this.lastUdpSendLogAt = Date.now();
+          console.log('[RetroArchClient] Primeiro pedido UDP:', JSON.stringify({
+            target: `${this.ip}:${this.port}`,
+            local: `${this.socket.address().address}:${this.socket.address().port}`,
+            command: cmd,
+            bytes: buf.length,
+            sendError: err ? err.message : null
+          }));
+        }
         if (err) {
           console.error('[RetroArchClient] Erro ao enviar UDP:', JSON.stringify({
             target: `${this.ip}:${this.port}`,
