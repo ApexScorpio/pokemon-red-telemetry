@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:01:07**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:12:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -115,15 +115,10 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:00:34] Entrou em Route 3
-- [17:00:31] Entrou em Pewter City
-- [17:00:11] Entrou em Pewter Pokecenter
-- [17:00:08] Entrou em Pewter City
-- [16:59:49] Entrou em Route 2
-- [16:55:12] Entrou em Pewter City
+- [17:12:50] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
-> "**Batalha:**"
+> "A sincronizar com a memória do Game Boy..."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
