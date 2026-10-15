@@ -1267,12 +1267,10 @@ class RetroArchClient extends EventEmitter {
       this.lastBattleEnemy = `${this.latestState.battle.enemy.name} (Lv. ${this.latestState.battle.enemy.level})`;
     }
 
-    // A VRAM é recolhida em segundo plano e apenas em mapas sem imagem estática.
-    // Assim não bloqueia a leitura principal da RAM nem atrasa a telemetria normal.
-    const staticMapIds = new Set([0,1,2,3,4,12,13,14,15,16,24,25,51,54]); // IDs 59/60/61/68 precisam de vista VRAM em tempo real.
+    // A VRAM é recolhida em segundo plano para todos os mapas, sem bloquear a leitura principal.
+    // Intervalo reduzido de 8 s para 1,5 s para atualizar a vista quase em tempo real.
     const nowVideo = Date.now();
-    if (!staticMapIds.has(Number(this.latestState.mapId)) &&
-        !this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 8000) {
+    if (!this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 1500) {
       this.lastVideoReadAt = nowVideo;
       this.videoReadInProgress = true;
       (async () => {
