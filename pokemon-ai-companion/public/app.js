@@ -488,7 +488,8 @@ function getMapImage(mapId) {
 }
 
 // Estado do Mapa Tático GTA
-let isGtaMapOpen = false;\nlet gtaMapAnimationFrame = null;
+let isGtaMapOpen = false;
+let gtaMapAnimationFrame = null;
 let gtaZoom = 1.75;
 let gtaPan = { x: 0, y: 0 };
 let gtaFogEnabled = true;
