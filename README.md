@@ -1,13 +1,13 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:22:40**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:22:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `32`, Y: `12`
+- **Coordenadas GPS:** X: `37`, Y: `12`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Dinheiro:** **2581 ₽**
@@ -45,10 +45,10 @@
 - **Tipos:** Normal | **HP:** 33 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 23 | DEF: 18 | SPD: 30 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 15 | ATK: 3 | DEF: 5 | SPD: 11 | SPC: 15 (**65% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3731 | ATK: 4583 | DEF: 3445 | SPD: 5216 | SPC: 2857
-- **Experiência:** 2889 EXP (Progresso: 23%, faltam 486 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 3811 | ATK: 4688 | DEF: 3515 | SPD: 5342 | SPC: 2923
+- **Experiência:** 2985 EXP (Progresso: 38%, faltam 390 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Quick Attack** (Normal) — PP: 17 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 13 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Golpe #158** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
@@ -119,7 +119,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:22:40] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:22:52] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
