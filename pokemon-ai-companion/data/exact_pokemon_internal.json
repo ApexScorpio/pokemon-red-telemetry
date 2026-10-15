@@ -1,0 +1,1589 @@
+{
+  "1": {
+    "name": "Rhydon",
+    "dex": 112,
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "baseHp": 105
+  },
+  "2": {
+    "name": "Kangaskhan",
+    "dex": 115,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 105
+  },
+  "3": {
+    "name": "Nidoran♂",
+    "dex": 32,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 46
+  },
+  "4": {
+    "name": "Clefairy",
+    "dex": 35,
+    "types": [
+      "Fairy"
+    ],
+    "baseHp": 70
+  },
+  "5": {
+    "name": "Spearow",
+    "dex": 21,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseHp": 40
+  },
+  "6": {
+    "name": "Voltorb",
+    "dex": 100,
+    "types": [
+      "Electric"
+    ],
+    "baseHp": 40
+  },
+  "7": {
+    "name": "Nidoking",
+    "dex": 34,
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "baseHp": 81
+  },
+  "8": {
+    "name": "Slowbro",
+    "dex": 80,
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "baseHp": 95
+  },
+  "9": {
+    "name": "Ivysaur",
+    "dex": 2,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 60
+  },
+  "10": {
+    "name": "Exeggutor",
+    "dex": 103,
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "baseHp": 95
+  },
+  "11": {
+    "name": "Lickitung",
+    "dex": 108,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 90
+  },
+  "12": {
+    "name": "Exeggcute",
+    "dex": 102,
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "baseHp": 60
+  },
+  "13": {
+    "name": "Grimer",
+    "dex": 88,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 80
+  },
+  "14": {
+    "name": "Gengar",
+    "dex": 94,
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "baseHp": 60
+  },
+  "15": {
+    "name": "Nidoran♀",
+    "dex": 29,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 55
+  },
+  "16": {
+    "name": "Nidoqueen",
+    "dex": 31,
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "baseHp": 90
+  },
+  "17": {
+    "name": "Cubone",
+    "dex": 104,
+    "types": [
+      "Ground"
+    ],
+    "baseHp": 50
+  },
+  "18": {
+    "name": "Rhyhorn",
+    "dex": 111,
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "baseHp": 80
+  },
+  "19": {
+    "name": "Lapras",
+    "dex": 131,
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "baseHp": 130
+  },
+  "20": {
+    "name": "Arcanine",
+    "dex": 59,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 90
+  },
+  "21": {
+    "name": "Mewtwo",
+    "dex": 150,
+    "types": [
+      "Psychic"
+    ],
+    "baseHp": 106
+  },
+  "22": {
+    "name": "Gyarados",
+    "dex": 130,
+    "types": [
+      "Water",
+      "Flying"
+    ],
+    "baseHp": 95
+  },
+  "23": {
+    "name": "Shellder",
+    "dex": 90,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 30
+  },
+  "24": {
+    "name": "Tentacool",
+    "dex": 72,
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "baseHp": 40
+  },
+  "25": {
+    "name": "Gastly",
+    "dex": 92,
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "baseHp": 30
+  },
+  "26": {
+    "name": "Scyther",
+    "dex": 123,
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "baseHp": 70
+  },
+  "27": {
+    "name": "Staryu",
+    "dex": 120,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 30
+  },
+  "28": {
+    "name": "Blastoise",
+    "dex": 9,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 79
+  },
+  "29": {
+    "name": "Pinsir",
+    "dex": 127,
+    "types": [
+      "Bug"
+    ],
+    "baseHp": 65
+  },
+  "30": {
+    "name": "Tangela",
+    "dex": 114,
+    "types": [
+      "Grass"
+    ],
+    "baseHp": 65
+  },
+  "31": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "32": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "33": {
+    "name": "Growlithe",
+    "dex": 58,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 55
+  },
+  "34": {
+    "name": "Onix",
+    "dex": 95,
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseHp": 35
+  },
+  "35": {
+    "name": "Fearow",
+    "dex": 22,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseHp": 65
+  },
+  "36": {
+    "name": "Pidgey",
+    "dex": 16,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseHp": 40
+  },
+  "37": {
+    "name": "Slowpoke",
+    "dex": 79,
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "baseHp": 90
+  },
+  "38": {
+    "name": "Kadabra",
+    "dex": 64,
+    "types": [
+      "Psychic"
+    ],
+    "baseHp": 40
+  },
+  "39": {
+    "name": "Graveler",
+    "dex": 75,
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseHp": 55
+  },
+  "40": {
+    "name": "Chansey",
+    "dex": 113,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 250
+  },
+  "41": {
+    "name": "Machoke",
+    "dex": 67,
+    "types": [
+      "Fighting"
+    ],
+    "baseHp": 80
+  },
+  "42": {
+    "name": "Mr. Mime",
+    "dex": 122,
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "baseHp": 40
+  },
+  "43": {
+    "name": "Hitmonlee",
+    "dex": 106,
+    "types": [
+      "Fighting"
+    ],
+    "baseHp": 50
+  },
+  "44": {
+    "name": "Hitmonchan",
+    "dex": 107,
+    "types": [
+      "Fighting"
+    ],
+    "baseHp": 50
+  },
+  "45": {
+    "name": "Arbok",
+    "dex": 24,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 60
+  },
+  "46": {
+    "name": "Paras",
+    "dex": 46,
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "baseHp": 35
+  },
+  "47": {
+    "name": "Psyduck",
+    "dex": 54,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 50
+  },
+  "48": {
+    "name": "Drowzee",
+    "dex": 96,
+    "types": [
+      "Psychic"
+    ],
+    "baseHp": 60
+  },
+  "49": {
+    "name": "Golem",
+    "dex": 76,
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseHp": 80
+  },
+  "50": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "51": {
+    "name": "Magmar",
+    "dex": 126,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 65
+  },
+  "52": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "53": {
+    "name": "Electabuzz",
+    "dex": 125,
+    "types": [
+      "Electric"
+    ],
+    "baseHp": 65
+  },
+  "54": {
+    "name": "Magneton",
+    "dex": 82,
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "baseHp": 50
+  },
+  "55": {
+    "name": "Koffing",
+    "dex": 109,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 40
+  },
+  "56": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "57": {
+    "name": "Mankey",
+    "dex": 56,
+    "types": [
+      "Fighting"
+    ],
+    "baseHp": 40
+  },
+  "58": {
+    "name": "Seel",
+    "dex": 86,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 65
+  },
+  "59": {
+    "name": "Diglett",
+    "dex": 50,
+    "types": [
+      "Ground"
+    ],
+    "baseHp": 10
+  },
+  "60": {
+    "name": "Tauros",
+    "dex": 128,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 75
+  },
+  "61": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "62": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "63": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "64": {
+    "name": "Farfetch'd",
+    "dex": 83,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseHp": 52
+  },
+  "65": {
+    "name": "Venonat",
+    "dex": 48,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseHp": 60
+  },
+  "66": {
+    "name": "Dragonite",
+    "dex": 149,
+    "types": [
+      "Dragon",
+      "Flying"
+    ],
+    "baseHp": 91
+  },
+  "67": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "68": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "69": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "70": {
+    "name": "Doduo",
+    "dex": 84,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseHp": 35
+  },
+  "71": {
+    "name": "Poliwag",
+    "dex": 60,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 40
+  },
+  "72": {
+    "name": "Jynx",
+    "dex": 124,
+    "types": [
+      "Ice",
+      "Psychic"
+    ],
+    "baseHp": 65
+  },
+  "73": {
+    "name": "Moltres",
+    "dex": 146,
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "baseHp": 90
+  },
+  "74": {
+    "name": "Articuno",
+    "dex": 144,
+    "types": [
+      "Ice",
+      "Flying"
+    ],
+    "baseHp": 90
+  },
+  "75": {
+    "name": "Zapdos",
+    "dex": 145,
+    "types": [
+      "Electric",
+      "Flying"
+    ],
+    "baseHp": 90
+  },
+  "76": {
+    "name": "Ditto",
+    "dex": 132,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 48
+  },
+  "77": {
+    "name": "Meowth",
+    "dex": 52,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "78": {
+    "name": "Krabby",
+    "dex": 98,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 30
+  },
+  "79": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "80": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "81": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "82": {
+    "name": "Vulpix",
+    "dex": 37,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 38
+  },
+  "83": {
+    "name": "Ninetales",
+    "dex": 38,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 73
+  },
+  "84": {
+    "name": "Pikachu",
+    "dex": 25,
+    "types": [
+      "Electric"
+    ],
+    "baseHp": 35
+  },
+  "85": {
+    "name": "Raichu",
+    "dex": 26,
+    "types": [
+      "Electric"
+    ],
+    "baseHp": 60
+  },
+  "86": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "87": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "88": {
+    "name": "Dratini",
+    "dex": 147,
+    "types": [
+      "Dragon"
+    ],
+    "baseHp": 41
+  },
+  "89": {
+    "name": "Dragonair",
+    "dex": 148,
+    "types": [
+      "Dragon"
+    ],
+    "baseHp": 61
+  },
+  "90": {
+    "name": "Kabuto",
+    "dex": 140,
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "baseHp": 30
+  },
+  "91": {
+    "name": "Kabuto",
+    "dex": 140,
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "baseHp": 30
+  },
+  "92": {
+    "name": "Horsea",
+    "dex": 116,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 30
+  },
+  "93": {
+    "name": "Seadra",
+    "dex": 117,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 55
+  },
+  "94": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "95": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "96": {
+    "name": "Sandshrew",
+    "dex": 27,
+    "types": [
+      "Ground"
+    ],
+    "baseHp": 50
+  },
+  "97": {
+    "name": "Sandslash",
+    "dex": 28,
+    "types": [
+      "Ground"
+    ],
+    "baseHp": 75
+  },
+  "98": {
+    "name": "Omanyte",
+    "dex": 138,
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "baseHp": 35
+  },
+  "99": {
+    "name": "Omastar",
+    "dex": 139,
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "baseHp": 70
+  },
+  "100": {
+    "name": "Jigglypuff",
+    "dex": 39,
+    "types": [
+      "Normal",
+      "Fairy"
+    ],
+    "baseHp": 115
+  },
+  "101": {
+    "name": "Wigglytuff",
+    "dex": 40,
+    "types": [
+      "Normal",
+      "Fairy"
+    ],
+    "baseHp": 140
+  },
+  "102": {
+    "name": "Eevee",
+    "dex": 133,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 55
+  },
+  "103": {
+    "name": "Flareon",
+    "dex": 136,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 65
+  },
+  "104": {
+    "name": "Jolteon",
+    "dex": 135,
+    "types": [
+      "Electric"
+    ],
+    "baseHp": 65
+  },
+  "105": {
+    "name": "Vaporeon",
+    "dex": 134,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 130
+  },
+  "106": {
+    "name": "Machop",
+    "dex": 66,
+    "types": [
+      "Fighting"
+    ],
+    "baseHp": 70
+  },
+  "107": {
+    "name": "Zubat",
+    "dex": 41,
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "baseHp": 40
+  },
+  "108": {
+    "name": "Ekans",
+    "dex": 23,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 35
+  },
+  "109": {
+    "name": "Paras",
+    "dex": 46,
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "baseHp": 35
+  },
+  "110": {
+    "name": "Poliwhirl",
+    "dex": 61,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 65
+  },
+  "111": {
+    "name": "Poliwrath",
+    "dex": 62,
+    "types": [
+      "Water",
+      "Fighting"
+    ],
+    "baseHp": 90
+  },
+  "112": {
+    "name": "Weedle",
+    "dex": 13,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseHp": 40
+  },
+  "113": {
+    "name": "Kakuna",
+    "dex": 14,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseHp": 45
+  },
+  "114": {
+    "name": "Beedrill",
+    "dex": 15,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseHp": 65
+  },
+  "115": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "116": {
+    "name": "Dodrio",
+    "dex": 85,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseHp": 60
+  },
+  "117": {
+    "name": "Primeape",
+    "dex": 57,
+    "types": [
+      "Fighting"
+    ],
+    "baseHp": 65
+  },
+  "118": {
+    "name": "Dugtrio",
+    "dex": 51,
+    "types": [
+      "Ground"
+    ],
+    "baseHp": 35
+  },
+  "119": {
+    "name": "Venomoth",
+    "dex": 49,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseHp": 70
+  },
+  "120": {
+    "name": "Dewgong",
+    "dex": 87,
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "baseHp": 90
+  },
+  "121": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "122": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "123": {
+    "name": "Caterpie",
+    "dex": 10,
+    "types": [
+      "Bug"
+    ],
+    "baseHp": 45
+  },
+  "124": {
+    "name": "Metapod",
+    "dex": 11,
+    "types": [
+      "Bug"
+    ],
+    "baseHp": 50
+  },
+  "125": {
+    "name": "Butterfree",
+    "dex": 12,
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "baseHp": 60
+  },
+  "126": {
+    "name": "Machamp",
+    "dex": 68,
+    "types": [
+      "Fighting"
+    ],
+    "baseHp": 90
+  },
+  "127": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "128": {
+    "name": "Golduck",
+    "dex": 55,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 80
+  },
+  "129": {
+    "name": "Hypno",
+    "dex": 97,
+    "types": [
+      "Psychic"
+    ],
+    "baseHp": 85
+  },
+  "130": {
+    "name": "Golbat",
+    "dex": 42,
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "baseHp": 75
+  },
+  "131": {
+    "name": "Mewtwo",
+    "dex": 150,
+    "types": [
+      "Psychic"
+    ],
+    "baseHp": 106
+  },
+  "132": {
+    "name": "Snorlax",
+    "dex": 143,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 160
+  },
+  "133": {
+    "name": "Magikarp",
+    "dex": 129,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 20
+  },
+  "134": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "135": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "136": {
+    "name": "Muk",
+    "dex": 89,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 105
+  },
+  "137": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "138": {
+    "name": "Kingler",
+    "dex": 99,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 55
+  },
+  "139": {
+    "name": "Cloyster",
+    "dex": 91,
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "baseHp": 50
+  },
+  "140": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "141": {
+    "name": "Electrode",
+    "dex": 101,
+    "types": [
+      "Electric"
+    ],
+    "baseHp": 60
+  },
+  "142": {
+    "name": "Clefable",
+    "dex": 36,
+    "types": [
+      "Fairy"
+    ],
+    "baseHp": 95
+  },
+  "143": {
+    "name": "Weezing",
+    "dex": 110,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 65
+  },
+  "144": {
+    "name": "Persian",
+    "dex": 53,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 65
+  },
+  "145": {
+    "name": "Marowak",
+    "dex": 105,
+    "types": [
+      "Ground"
+    ],
+    "baseHp": 60
+  },
+  "146": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "147": {
+    "name": "Haunter",
+    "dex": 93,
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "baseHp": 45
+  },
+  "148": {
+    "name": "Abra",
+    "dex": 63,
+    "types": [
+      "Psychic"
+    ],
+    "baseHp": 25
+  },
+  "149": {
+    "name": "Alakazam",
+    "dex": 65,
+    "types": [
+      "Psychic"
+    ],
+    "baseHp": 55
+  },
+  "150": {
+    "name": "Pidgeotto",
+    "dex": 17,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseHp": 63
+  },
+  "151": {
+    "name": "Pidgeotto",
+    "dex": 17,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseHp": 63
+  },
+  "152": {
+    "name": "Starmie",
+    "dex": 121,
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "baseHp": 60
+  },
+  "153": {
+    "name": "Bulbasaur",
+    "dex": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 45
+  },
+  "154": {
+    "name": "Venusaur",
+    "dex": 3,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 80
+  },
+  "155": {
+    "name": "Tentacruel",
+    "dex": 73,
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "baseHp": 80
+  },
+  "156": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "157": {
+    "name": "Goldeen",
+    "dex": 118,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 45
+  },
+  "158": {
+    "name": "Seaking",
+    "dex": 119,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 80
+  },
+  "159": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "160": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "161": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "162": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "163": {
+    "name": "Ponyta",
+    "dex": 77,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 50
+  },
+  "164": {
+    "name": "Rapidash",
+    "dex": 78,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 65
+  },
+  "165": {
+    "name": "Rattata",
+    "dex": 19,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 30
+  },
+  "166": {
+    "name": "Raticate",
+    "dex": 20,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 55
+  },
+  "167": {
+    "name": "Nidorino",
+    "dex": 33,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 61
+  },
+  "168": {
+    "name": "Nidorina",
+    "dex": 30,
+    "types": [
+      "Poison"
+    ],
+    "baseHp": 70
+  },
+  "169": {
+    "name": "Geodude",
+    "dex": 74,
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseHp": 40
+  },
+  "170": {
+    "name": "Porygon",
+    "dex": 137,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 65
+  },
+  "171": {
+    "name": "Aerodactyl",
+    "dex": 142,
+    "types": [
+      "Rock",
+      "Flying"
+    ],
+    "baseHp": 80
+  },
+  "172": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "173": {
+    "name": "Magnemite",
+    "dex": 81,
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "baseHp": 25
+  },
+  "174": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "175": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "176": {
+    "name": "Charmander",
+    "dex": 4,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 39
+  },
+  "177": {
+    "name": "Squirtle",
+    "dex": 7,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 44
+  },
+  "178": {
+    "name": "Charmeleon",
+    "dex": 5,
+    "types": [
+      "Fire"
+    ],
+    "baseHp": 58
+  },
+  "179": {
+    "name": "Wartortle",
+    "dex": 8,
+    "types": [
+      "Water"
+    ],
+    "baseHp": 59
+  },
+  "180": {
+    "name": "Charizard",
+    "dex": 6,
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "baseHp": 78
+  },
+  "181": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "182": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "183": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "184": {
+    "name": "Missingno.",
+    "dex": 0,
+    "types": [
+      "Normal"
+    ],
+    "baseHp": 40
+  },
+  "185": {
+    "name": "Oddish",
+    "dex": 43,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 45
+  },
+  "186": {
+    "name": "Gloom",
+    "dex": 44,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 60
+  },
+  "187": {
+    "name": "Vileplume",
+    "dex": 45,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 75
+  },
+  "188": {
+    "name": "Bellsprout",
+    "dex": 69,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 50
+  },
+  "189": {
+    "name": "Weepinbell",
+    "dex": 70,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 65
+  },
+  "190": {
+    "name": "Victreebel",
+    "dex": 71,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseHp": 80
+  }
+}

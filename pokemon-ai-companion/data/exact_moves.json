@@ -1,0 +1,1157 @@
+{
+  "1": {
+    "name": "Pound",
+    "type": "Normal",
+    "power": 40,
+    "acc": 100,
+    "pp": 35
+  },
+  "2": {
+    "name": "Karate Chop",
+    "type": "Normal",
+    "power": 50,
+    "acc": 100,
+    "pp": 25
+  },
+  "3": {
+    "name": "Doubleslap",
+    "type": "Normal",
+    "power": 15,
+    "acc": 85,
+    "pp": 10
+  },
+  "4": {
+    "name": "Comet Punch",
+    "type": "Normal",
+    "power": 18,
+    "acc": 85,
+    "pp": 15
+  },
+  "5": {
+    "name": "Mega Punch",
+    "type": "Normal",
+    "power": 80,
+    "acc": 85,
+    "pp": 20
+  },
+  "6": {
+    "name": "Pay Day",
+    "type": "Normal",
+    "power": 40,
+    "acc": 100,
+    "pp": 20
+  },
+  "7": {
+    "name": "Fire Punch",
+    "type": "Fire",
+    "power": 75,
+    "acc": 100,
+    "pp": 15
+  },
+  "8": {
+    "name": "Ice Punch",
+    "type": "Ice",
+    "power": 75,
+    "acc": 100,
+    "pp": 15
+  },
+  "9": {
+    "name": "Thunderpunch",
+    "type": "Electric",
+    "power": 75,
+    "acc": 100,
+    "pp": 15
+  },
+  "10": {
+    "name": "Scratch",
+    "type": "Normal",
+    "power": 40,
+    "acc": 100,
+    "pp": 35
+  },
+  "11": {
+    "name": "Vicegrip",
+    "type": "Normal",
+    "power": 55,
+    "acc": 100,
+    "pp": 30
+  },
+  "12": {
+    "name": "Guillotine",
+    "type": "Normal",
+    "power": 1,
+    "acc": 30,
+    "pp": 5
+  },
+  "13": {
+    "name": "Razor Wind",
+    "type": "Normal",
+    "power": 80,
+    "acc": 75,
+    "pp": 10
+  },
+  "14": {
+    "name": "Swords Dance",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "15": {
+    "name": "Cut",
+    "type": "Normal",
+    "power": 50,
+    "acc": 95,
+    "pp": 30
+  },
+  "16": {
+    "name": "Gust",
+    "type": "Normal",
+    "power": 40,
+    "acc": 100,
+    "pp": 35
+  },
+  "17": {
+    "name": "Wing Attack",
+    "type": "Flying",
+    "power": 35,
+    "acc": 100,
+    "pp": 35
+  },
+  "18": {
+    "name": "Whirlwind",
+    "type": "Normal",
+    "power": 0,
+    "acc": 85,
+    "pp": 20
+  },
+  "19": {
+    "name": "Fly",
+    "type": "Flying",
+    "power": 70,
+    "acc": 95,
+    "pp": 15
+  },
+  "20": {
+    "name": "Bind",
+    "type": "Normal",
+    "power": 15,
+    "acc": 75,
+    "pp": 20
+  },
+  "21": {
+    "name": "Slam",
+    "type": "Normal",
+    "power": 80,
+    "acc": 75,
+    "pp": 20
+  },
+  "22": {
+    "name": "Vine Whip",
+    "type": "Grass",
+    "power": 35,
+    "acc": 100,
+    "pp": 10
+  },
+  "23": {
+    "name": "Stomp",
+    "type": "Normal",
+    "power": 65,
+    "acc": 100,
+    "pp": 20
+  },
+  "24": {
+    "name": "Double Kick",
+    "type": "Fighting",
+    "power": 30,
+    "acc": 100,
+    "pp": 30
+  },
+  "25": {
+    "name": "Mega Kick",
+    "type": "Normal",
+    "power": 120,
+    "acc": 75,
+    "pp": 5
+  },
+  "26": {
+    "name": "Jump Kick",
+    "type": "Fighting",
+    "power": 70,
+    "acc": 95,
+    "pp": 25
+  },
+  "27": {
+    "name": "Rolling Kick",
+    "type": "Fighting",
+    "power": 60,
+    "acc": 85,
+    "pp": 15
+  },
+  "28": {
+    "name": "Sand-attack",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 15
+  },
+  "29": {
+    "name": "Headbutt",
+    "type": "Normal",
+    "power": 70,
+    "acc": 100,
+    "pp": 15
+  },
+  "30": {
+    "name": "Horn Attack",
+    "type": "Normal",
+    "power": 65,
+    "acc": 100,
+    "pp": 25
+  },
+  "31": {
+    "name": "Fury Attack",
+    "type": "Normal",
+    "power": 15,
+    "acc": 85,
+    "pp": 20
+  },
+  "32": {
+    "name": "Horn Drill",
+    "type": "Normal",
+    "power": 1,
+    "acc": 30,
+    "pp": 5
+  },
+  "33": {
+    "name": "Tackle",
+    "type": "Normal",
+    "power": 35,
+    "acc": 95,
+    "pp": 35
+  },
+  "34": {
+    "name": "Body Slam",
+    "type": "Normal",
+    "power": 85,
+    "acc": 100,
+    "pp": 15
+  },
+  "35": {
+    "name": "Wrap",
+    "type": "Normal",
+    "power": 15,
+    "acc": 85,
+    "pp": 20
+  },
+  "36": {
+    "name": "Take Down",
+    "type": "Normal",
+    "power": 90,
+    "acc": 85,
+    "pp": 20
+  },
+  "37": {
+    "name": "Thrash",
+    "type": "Normal",
+    "power": 90,
+    "acc": 100,
+    "pp": 20
+  },
+  "38": {
+    "name": "Double-edge",
+    "type": "Normal",
+    "power": 100,
+    "acc": 100,
+    "pp": 15
+  },
+  "39": {
+    "name": "Tail Whip",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "40": {
+    "name": "Poison Sting",
+    "type": "Poison",
+    "power": 15,
+    "acc": 100,
+    "pp": 35
+  },
+  "41": {
+    "name": "Twineedle",
+    "type": "Bug",
+    "power": 25,
+    "acc": 100,
+    "pp": 20
+  },
+  "42": {
+    "name": "Pin Missile",
+    "type": "Bug",
+    "power": 14,
+    "acc": 85,
+    "pp": 20
+  },
+  "43": {
+    "name": "Leer",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "44": {
+    "name": "Bite",
+    "type": "Normal",
+    "power": 60,
+    "acc": 100,
+    "pp": 25
+  },
+  "45": {
+    "name": "Growl",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 40
+  },
+  "46": {
+    "name": "Roar",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "47": {
+    "name": "Sing",
+    "type": "Normal",
+    "power": 0,
+    "acc": 55,
+    "pp": 15
+  },
+  "48": {
+    "name": "Supersonic",
+    "type": "Normal",
+    "power": 0,
+    "acc": 55,
+    "pp": 20
+  },
+  "49": {
+    "name": "Sonicboom",
+    "type": "Normal",
+    "power": 1,
+    "acc": 90,
+    "pp": 20
+  },
+  "50": {
+    "name": "Disable",
+    "type": "Normal",
+    "power": 0,
+    "acc": 55,
+    "pp": 20
+  },
+  "51": {
+    "name": "Acid",
+    "type": "Poison",
+    "power": 40,
+    "acc": 100,
+    "pp": 30
+  },
+  "52": {
+    "name": "Ember",
+    "type": "Fire",
+    "power": 40,
+    "acc": 100,
+    "pp": 25
+  },
+  "53": {
+    "name": "Flamethrower",
+    "type": "Fire",
+    "power": 95,
+    "acc": 100,
+    "pp": 15
+  },
+  "54": {
+    "name": "Mist",
+    "type": "Ice",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "55": {
+    "name": "Water Gun",
+    "type": "Water",
+    "power": 40,
+    "acc": 100,
+    "pp": 25
+  },
+  "56": {
+    "name": "Hydro Pump",
+    "type": "Water",
+    "power": 120,
+    "acc": 80,
+    "pp": 5
+  },
+  "57": {
+    "name": "Surf",
+    "type": "Water",
+    "power": 95,
+    "acc": 100,
+    "pp": 15
+  },
+  "58": {
+    "name": "Ice Beam",
+    "type": "Ice",
+    "power": 95,
+    "acc": 100,
+    "pp": 10
+  },
+  "59": {
+    "name": "Blizzard",
+    "type": "Ice",
+    "power": 120,
+    "acc": 90,
+    "pp": 5
+  },
+  "60": {
+    "name": "Psybeam",
+    "type": "Psychic_type",
+    "power": 65,
+    "acc": 100,
+    "pp": 20
+  },
+  "61": {
+    "name": "Bubblebeam",
+    "type": "Water",
+    "power": 65,
+    "acc": 100,
+    "pp": 20
+  },
+  "62": {
+    "name": "Aurora Beam",
+    "type": "Ice",
+    "power": 65,
+    "acc": 100,
+    "pp": 20
+  },
+  "63": {
+    "name": "Hyper Beam",
+    "type": "Normal",
+    "power": 150,
+    "acc": 90,
+    "pp": 5
+  },
+  "64": {
+    "name": "Peck",
+    "type": "Flying",
+    "power": 35,
+    "acc": 100,
+    "pp": 35
+  },
+  "65": {
+    "name": "Drill Peck",
+    "type": "Flying",
+    "power": 80,
+    "acc": 100,
+    "pp": 20
+  },
+  "66": {
+    "name": "Submission",
+    "type": "Fighting",
+    "power": 80,
+    "acc": 80,
+    "pp": 25
+  },
+  "67": {
+    "name": "Low Kick",
+    "type": "Fighting",
+    "power": 50,
+    "acc": 90,
+    "pp": 20
+  },
+  "68": {
+    "name": "Counter",
+    "type": "Fighting",
+    "power": 1,
+    "acc": 100,
+    "pp": 20
+  },
+  "69": {
+    "name": "Seismic Toss",
+    "type": "Fighting",
+    "power": 1,
+    "acc": 100,
+    "pp": 20
+  },
+  "70": {
+    "name": "Strength",
+    "type": "Normal",
+    "power": 80,
+    "acc": 100,
+    "pp": 15
+  },
+  "71": {
+    "name": "Absorb",
+    "type": "Grass",
+    "power": 20,
+    "acc": 100,
+    "pp": 20
+  },
+  "72": {
+    "name": "Mega Drain",
+    "type": "Grass",
+    "power": 40,
+    "acc": 100,
+    "pp": 10
+  },
+  "73": {
+    "name": "Leech Seed",
+    "type": "Grass",
+    "power": 0,
+    "acc": 90,
+    "pp": 10
+  },
+  "74": {
+    "name": "Growth",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 40
+  },
+  "75": {
+    "name": "Razor Leaf",
+    "type": "Grass",
+    "power": 55,
+    "acc": 95,
+    "pp": 25
+  },
+  "76": {
+    "name": "Solarbeam",
+    "type": "Grass",
+    "power": 120,
+    "acc": 100,
+    "pp": 10
+  },
+  "77": {
+    "name": "Poisonpowder",
+    "type": "Poison",
+    "power": 0,
+    "acc": 75,
+    "pp": 35
+  },
+  "78": {
+    "name": "Stun Spore",
+    "type": "Grass",
+    "power": 0,
+    "acc": 75,
+    "pp": 30
+  },
+  "79": {
+    "name": "Sleep Powder",
+    "type": "Grass",
+    "power": 0,
+    "acc": 75,
+    "pp": 15
+  },
+  "80": {
+    "name": "Petal Dance",
+    "type": "Grass",
+    "power": 70,
+    "acc": 100,
+    "pp": 20
+  },
+  "81": {
+    "name": "String Shot",
+    "type": "Bug",
+    "power": 0,
+    "acc": 95,
+    "pp": 40
+  },
+  "82": {
+    "name": "Dragon Rage",
+    "type": "Dragon",
+    "power": 1,
+    "acc": 100,
+    "pp": 10
+  },
+  "83": {
+    "name": "Fire Spin",
+    "type": "Fire",
+    "power": 15,
+    "acc": 70,
+    "pp": 15
+  },
+  "84": {
+    "name": "Thundershock",
+    "type": "Electric",
+    "power": 40,
+    "acc": 100,
+    "pp": 30
+  },
+  "85": {
+    "name": "Thunderbolt",
+    "type": "Electric",
+    "power": 95,
+    "acc": 100,
+    "pp": 15
+  },
+  "86": {
+    "name": "Thunder Wave",
+    "type": "Electric",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "87": {
+    "name": "Thunder",
+    "type": "Electric",
+    "power": 120,
+    "acc": 70,
+    "pp": 10
+  },
+  "88": {
+    "name": "Rock Throw",
+    "type": "Rock",
+    "power": 50,
+    "acc": 65,
+    "pp": 15
+  },
+  "89": {
+    "name": "Earthquake",
+    "type": "Ground",
+    "power": 100,
+    "acc": 100,
+    "pp": 10
+  },
+  "90": {
+    "name": "Fissure",
+    "type": "Ground",
+    "power": 1,
+    "acc": 30,
+    "pp": 5
+  },
+  "91": {
+    "name": "Dig",
+    "type": "Ground",
+    "power": 100,
+    "acc": 100,
+    "pp": 10
+  },
+  "92": {
+    "name": "Toxic",
+    "type": "Poison",
+    "power": 0,
+    "acc": 85,
+    "pp": 10
+  },
+  "93": {
+    "name": "Confusion",
+    "type": "Psychic_type",
+    "power": 50,
+    "acc": 100,
+    "pp": 25
+  },
+  "94": {
+    "name": "Psychic",
+    "type": "Psychic_type",
+    "power": 90,
+    "acc": 100,
+    "pp": 10
+  },
+  "95": {
+    "name": "Hypnosis",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 60,
+    "pp": 20
+  },
+  "96": {
+    "name": "Meditate",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 100,
+    "pp": 40
+  },
+  "97": {
+    "name": "Agility",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "98": {
+    "name": "Quick Attack",
+    "type": "Normal",
+    "power": 40,
+    "acc": 100,
+    "pp": 30
+  },
+  "99": {
+    "name": "Rage",
+    "type": "Normal",
+    "power": 20,
+    "acc": 100,
+    "pp": 20
+  },
+  "100": {
+    "name": "Teleport",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "101": {
+    "name": "Night Shade",
+    "type": "Ghost",
+    "power": 0,
+    "acc": 100,
+    "pp": 15
+  },
+  "102": {
+    "name": "Mimic",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 10
+  },
+  "103": {
+    "name": "Screech",
+    "type": "Normal",
+    "power": 0,
+    "acc": 85,
+    "pp": 40
+  },
+  "104": {
+    "name": "Double Team",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 15
+  },
+  "105": {
+    "name": "Recover",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "106": {
+    "name": "Harden",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "107": {
+    "name": "Minimize",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "108": {
+    "name": "Smokescreen",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "109": {
+    "name": "Confuse Ray",
+    "type": "Ghost",
+    "power": 0,
+    "acc": 100,
+    "pp": 10
+  },
+  "110": {
+    "name": "Withdraw",
+    "type": "Water",
+    "power": 0,
+    "acc": 100,
+    "pp": 40
+  },
+  "111": {
+    "name": "Defense Curl",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 40
+  },
+  "112": {
+    "name": "Barrier",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "113": {
+    "name": "Light Screen",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "114": {
+    "name": "Haze",
+    "type": "Ice",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "115": {
+    "name": "Reflect",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "116": {
+    "name": "Focus Energy",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "117": {
+    "name": "Bide",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 10
+  },
+  "118": {
+    "name": "Metronome",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 10
+  },
+  "119": {
+    "name": "Mirror Move",
+    "type": "Flying",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "120": {
+    "name": "Selfdestruct",
+    "type": "Normal",
+    "power": 130,
+    "acc": 100,
+    "pp": 5
+  },
+  "121": {
+    "name": "Egg Bomb",
+    "type": "Normal",
+    "power": 100,
+    "acc": 75,
+    "pp": 10
+  },
+  "122": {
+    "name": "Lick",
+    "type": "Ghost",
+    "power": 20,
+    "acc": 100,
+    "pp": 30
+  },
+  "123": {
+    "name": "Smog",
+    "type": "Poison",
+    "power": 20,
+    "acc": 70,
+    "pp": 20
+  },
+  "124": {
+    "name": "Sludge",
+    "type": "Poison",
+    "power": 65,
+    "acc": 100,
+    "pp": 20
+  },
+  "125": {
+    "name": "Bone Club",
+    "type": "Ground",
+    "power": 65,
+    "acc": 85,
+    "pp": 20
+  },
+  "126": {
+    "name": "Fire Blast",
+    "type": "Fire",
+    "power": 120,
+    "acc": 85,
+    "pp": 5
+  },
+  "127": {
+    "name": "Waterfall",
+    "type": "Water",
+    "power": 80,
+    "acc": 100,
+    "pp": 15
+  },
+  "128": {
+    "name": "Clamp",
+    "type": "Water",
+    "power": 35,
+    "acc": 75,
+    "pp": 10
+  },
+  "129": {
+    "name": "Swift",
+    "type": "Normal",
+    "power": 60,
+    "acc": 100,
+    "pp": 20
+  },
+  "130": {
+    "name": "Skull Bash",
+    "type": "Normal",
+    "power": 100,
+    "acc": 100,
+    "pp": 15
+  },
+  "131": {
+    "name": "Spike Cannon",
+    "type": "Normal",
+    "power": 20,
+    "acc": 100,
+    "pp": 15
+  },
+  "132": {
+    "name": "Constrict",
+    "type": "Normal",
+    "power": 10,
+    "acc": 100,
+    "pp": 35
+  },
+  "133": {
+    "name": "Amnesia",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 100,
+    "pp": 20
+  },
+  "134": {
+    "name": "Kinesis",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 80,
+    "pp": 15
+  },
+  "135": {
+    "name": "Softboiled",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 10
+  },
+  "136": {
+    "name": "Hi Jump Kick",
+    "type": "Fighting",
+    "power": 85,
+    "acc": 90,
+    "pp": 20
+  },
+  "137": {
+    "name": "Glare",
+    "type": "Normal",
+    "power": 0,
+    "acc": 75,
+    "pp": 30
+  },
+  "138": {
+    "name": "Dream Eater",
+    "type": "Psychic_type",
+    "power": 100,
+    "acc": 100,
+    "pp": 15
+  },
+  "139": {
+    "name": "Poison Gas",
+    "type": "Poison",
+    "power": 0,
+    "acc": 55,
+    "pp": 40
+  },
+  "140": {
+    "name": "Barrage",
+    "type": "Normal",
+    "power": 15,
+    "acc": 85,
+    "pp": 20
+  },
+  "141": {
+    "name": "Leech Life",
+    "type": "Bug",
+    "power": 20,
+    "acc": 100,
+    "pp": 15
+  },
+  "142": {
+    "name": "Lovely Kiss",
+    "type": "Normal",
+    "power": 0,
+    "acc": 75,
+    "pp": 10
+  },
+  "143": {
+    "name": "Sky Attack",
+    "type": "Flying",
+    "power": 140,
+    "acc": 90,
+    "pp": 5
+  },
+  "144": {
+    "name": "Transform",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 10
+  },
+  "145": {
+    "name": "Bubble",
+    "type": "Water",
+    "power": 20,
+    "acc": 100,
+    "pp": 30
+  },
+  "146": {
+    "name": "Dizzy Punch",
+    "type": "Normal",
+    "power": 70,
+    "acc": 100,
+    "pp": 10
+  },
+  "147": {
+    "name": "Spore",
+    "type": "Grass",
+    "power": 0,
+    "acc": 100,
+    "pp": 15
+  },
+  "148": {
+    "name": "Flash",
+    "type": "Normal",
+    "power": 0,
+    "acc": 70,
+    "pp": 20
+  },
+  "149": {
+    "name": "Psywave",
+    "type": "Psychic_type",
+    "power": 1,
+    "acc": 80,
+    "pp": 15
+  },
+  "150": {
+    "name": "Splash",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 40
+  },
+  "151": {
+    "name": "Acid Armor",
+    "type": "Poison",
+    "power": 0,
+    "acc": 100,
+    "pp": 40
+  },
+  "152": {
+    "name": "Crabhammer",
+    "type": "Water",
+    "power": 90,
+    "acc": 85,
+    "pp": 10
+  },
+  "153": {
+    "name": "Explosion",
+    "type": "Normal",
+    "power": 170,
+    "acc": 100,
+    "pp": 5
+  },
+  "154": {
+    "name": "Fury Swipes",
+    "type": "Normal",
+    "power": 18,
+    "acc": 80,
+    "pp": 15
+  },
+  "155": {
+    "name": "Bonemerang",
+    "type": "Ground",
+    "power": 50,
+    "acc": 90,
+    "pp": 10
+  },
+  "156": {
+    "name": "Rest",
+    "type": "Psychic_type",
+    "power": 0,
+    "acc": 100,
+    "pp": 10
+  },
+  "157": {
+    "name": "Rock Slide",
+    "type": "Rock",
+    "power": 75,
+    "acc": 90,
+    "pp": 10
+  },
+  "158": {
+    "name": "Hyper Fang",
+    "type": "Normal",
+    "power": 80,
+    "acc": 90,
+    "pp": 15
+  },
+  "159": {
+    "name": "Sharpen",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "160": {
+    "name": "Conversion",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 30
+  },
+  "161": {
+    "name": "Tri Attack",
+    "type": "Normal",
+    "power": 80,
+    "acc": 100,
+    "pp": 10
+  },
+  "162": {
+    "name": "Super Fang",
+    "type": "Normal",
+    "power": 1,
+    "acc": 90,
+    "pp": 10
+  },
+  "163": {
+    "name": "Slash",
+    "type": "Normal",
+    "power": 70,
+    "acc": 100,
+    "pp": 20
+  },
+  "164": {
+    "name": "Substitute",
+    "type": "Normal",
+    "power": 0,
+    "acc": 100,
+    "pp": 10
+  },
+  "165": {
+    "name": "Struggle",
+    "type": "Normal",
+    "power": 50,
+    "acc": 100,
+    "pp": 10
+  }
+}

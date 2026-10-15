@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PokéVision AI • Live Companion Pokémon Red</title>
+  <meta name="description" content="Dashboard estratégico com inteligência artificial Grok em tempo real para Pokémon Red sincronizado com RetroArch no iPhone.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2.2.0">
+</head>
+<body class="no-scroll-body">
+  <div class="deck-layout">
+    
+    <!-- TOP HEADER HUD (COMPACTO & INFORMATIVO) -->
+    <header class="deck-hud" id="deck-hud">
+      <div class="hud-left">
+        <div class="brand-badge">
+          <div class="pokeball-mini"></div>
+          <span class="brand-title">POKÉVISION <span class="badge-ai-mini">AI CORE</span></span>
+        </div>
+        <div class="trainer-tag">TREINADOR: <strong id="trainer-name-tag">RED</strong></div>
+      </div>
+
+      <div class="hud-center">
+        <!-- Localização & Coordenadas do Mapa (X/Y) -->
+        <div class="hud-stat-pill" title="Localização atual e coordenadas de azulejo no mapa da Game Boy">
+          <span class="pill-icon">📍</span>
+          <span class="pill-bold" id="current-location">A carregar...</span>
+          <span class="coords-tag" id="player-coords-tag">X:-- Y:--</span>
+        </div>
+
+        <!-- Tempo de Jogo da RAM -->
+        <div class="hud-stat-pill" title="Tempo de jogo decorrido (lido da RAM)">
+          <span class="pill-icon">⏱️</span>
+          <span class="pill-val" id="hud-play-time">0h 0m</span>
+        </div>
+
+        <!-- Rival -->
+        <div class="hud-stat-pill" title="Nome do Rival da RAM">
+          <span class="pill-icon">⚡</span>
+          <span class="pill-val" id="hud-rival-name">BLUE</span>
+        </div>
+
+        <!-- Dinheiro -->
+        <div class="hud-stat-pill" title="Dinheiro disponível">
+          <span class="pill-icon">💰</span>
+          <span class="pill-val" id="current-money">0 ₽</span>
+        </div>
+
+        <!-- Pokédex & Vivos -->
+        <div class="hud-stat-pill" title="Espécies registadas na Pokédex vs Pokémon vivos">
+          <span class="pill-icon">📖</span>
+          <span class="pill-val" id="hud-pokedex-stats">Dex: 0/151</span>
+        </div>
+
+        <!-- Fichas Casino (se houver) -->
+        <div class="hud-stat-pill" id="hud-coins-pill" style="display: none;" title="Fichas da Game Corner">
+          <span class="pill-icon">🎰</span>
+          <span class="pill-val" id="hud-coins-val">0</span>
+        </div>
+
+        <!-- Repel Steps (se ativo) -->
+        <div class="hud-stat-pill repel-pill" id="repel-pill" style="display: none;">
+          <span class="pill-icon">🧴</span>
+          <span class="pill-val" id="repel-steps-text">0 passos</span>
+        </div>
+
+        <!-- Insígnias Compactas -->
+        <div class="hud-badges-mini" id="badges-container">
+          <!-- Inseridas dinamicamente -->
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <button class="btn-hud-export" id="btn-export-telemetry" title="Copiar todos os dados em texto para o ChatGPT e sincronizar GitHub">
+          📋 <span id="export-btn-label">Exportar Dados</span>
+        </button>
+        <a href="https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md" target="_blank" class="hud-link-badge" id="hud-github-link" title="Ver ficheiro em direto no GitHub">
+          🌐 GitHub
+        </a>
+        <button class="btn-hud-test" id="btn-toggle-test" title="Simular batalha para testes">
+          ⚡ Simular
+        </button>
+        <div class="conn-pill" id="connection-badge" title="Estado da ligação ao iPhone">
+          <span class="pulse-dot active" id="connection-pulse"></span>
+          <span id="connection-status">LINK OK</span>
+        </div>
+        <button class="btn-hud-icon" id="btn-open-settings" title="Definições IP/Porta">⚙️</button>
+      </div>
+    </header>
+
+    <!-- BANNER DE DIÁLOGO EM TEMPO REAL DO GAME BOY -->
+    <div class="live-dialog-banner" id="live-dialog-banner" style="display: none;">
+      <span class="dialog-icon">💬</span>
+      <span class="dialog-label">DIÁLOGO NA GAME BOY:</span>
+      <strong class="dialog-text" id="live-dialog-text"></strong>
+    </div>
+
+    <!-- MOBILE TABS BAR (APENAS EM ECRÃS PEQUENOS / SMARTPHONES) -->
+    <nav class="mobile-nav-bar" id="mobile-nav-bar">
+      <button class="mobile-nav-btn active" data-tab="tab-center">
+        <span class="nav-icon">⚔️</span>
+        <span class="nav-label">Combate / Radar</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="tab-party">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">Equipa (<span id="mobile-party-count">6</span>)</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="tab-map">
+        <span class="nav-icon">🗺️</span>
+        <span class="nav-label">Mapa & Mochila</span>
+      </button>
+    </nav>
+
+    <!-- MAIN COCKPIT VIEWPORT (3 COLUNAS EM 1080P SEM SCROLL) -->
+    <main class="cockpit-viewport" id="cockpit-viewport">
+      
+      <!-- COLUNA 1: MINI-MAPA DE EXPLORAÇÃO COM NÉVOA & MOCHILA COMPACTA (300px) -->
+      <aside class="cockpit-col col-sidebar-left" id="tab-map">
+        <!-- Cartão do Mini-Mapa com Névoa de Guerra em Tempo Real -->
+        <section class="card-glass minimap-deck-card">
+          <div class="card-header-compact">
+            <div class="header-left">
+              <span class="icon-avatar">🗺️</span>
+              <div>
+                <h4 id="minimap-title">RADAR DE EXPLORAÇÃO</h4>
+                <span class="sub-small" id="minimap-stats">0% Revelado • X:-- Y:--</span>
+              </div>
+            </div>
+            <button class="btn-icon-tiny" id="btn-reset-map" title="Limpar e reiniciar névoa desta área">🔄</button>
+          </div>
+
+          <div class="minimap-canvas-container" id="minimap-canvas-container" title="Clica para abrir o Mapa Completo com Zoom e Navegação (Estilo GTA)">
+            <canvas id="fog-minimap-canvas" width="280" height="240"></canvas>
+            <div class="minimap-coords-badge" id="minimap-coords-overlay">X:-- Y:--</div>
+            <div class="minimap-expand-hint" id="btn-open-gta-map">🔍 Clica p/ Zoom GTA</div>
+          </div>
+
+          <div class="minimap-legend-row">
+            <span class="legend-chip"><span class="leg-dot player-dot"></span> Tu</span>
+            <span class="legend-chip"><span class="leg-dot trainer-dot"></span> Treinador</span>
+            <span class="legend-chip"><span class="leg-dot item-dot"></span> Item</span>
+            <span class="legend-chip"><span class="leg-dot revealed-dot"></span> Explorado</span>
+          </div>
+        </section>
+
+        <!-- Cartão Mochila / Inventário Compacto -->
+        <section class="card-glass inventory-deck-card">
+          <div class="card-header-compact">
+            <div class="header-left">
+              <span class="icon-avatar">🎒</span>
+              <div>
+                <h4>MOCHILA</h4>
+                <span class="sub-small" id="inv-count-pill">0 ITENS</span>
+              </div>
+            </div>
+          </div>
+          <div class="inventory-scroll-list" id="inventory-grid"></div>
+        </section>
+      </aside>
+
+      <!-- COLUNA 2: CENTRO TÁTICO (ARENA DE COMBATE OU RADAR DA ÁREA) -->
+      <section class="cockpit-col col-tactical-center" id="tab-center">
+        <!-- Switcher de Modos Táticos -->
+        <div class="tactical-mode-switcher">
+          <button class="mode-tab-btn" id="btn-tab-battle">
+            <span class="tab-indicator">●</span> ⚔️ ARENA DE COMBATE
+          </button>
+          <button class="mode-tab-btn active" id="btn-tab-radar">
+            🗺️ RADAR DA ÁREA & ITENS
+          </button>
+          <div class="live-status-indicator" id="battle-indicator-tag">MODO EXPLORAÇÃO</div>
+        </div>
+
+        <!-- MODO 1: BATTLE ARENA -->
+        <div class="tactical-view-pane battle-view-pane" id="view-battle" style="display: none;">
+          <div class="battle-arena-inner">
+            
+            <!-- COMBATENTE JOGADOR (ESQUERDA) -->
+            <div class="fighter-card player-fighter" id="player-combatant-card">
+              <div class="fighter-top">
+                <span class="fighter-tag-player">O TEU POKÉMON ATIVO</span>
+                <span class="level-pill" id="player-battle-level">Lv. --</span>
+              </div>
+              
+              <div class="fighter-visual">
+                <div class="sprite-wrapper" id="player-battle-sprite-wrapper">
+                  <img id="player-battle-sprite" src="" alt="Player Mon" class="fighter-sprite">
+                </div>
+                <div class="fighter-info">
+                  <h3 class="fighter-name" id="player-battle-name">--</h3>
+                  <div class="types-row" id="player-battle-types"></div>
+                  <div class="hp-gauge">
+                    <div class="hp-meta">
+                      <span>HP</span>
+                      <strong id="player-battle-hp-text">-- / --</strong>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" id="player-battle-hp-fill" style="width: 100%;"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Stat Modifiers -->
+              <div class="fighter-stats-box">
+                <div class="stat-mods-grid" id="player-stat-mods"></div>
+              </div>
+
+              <!-- Matriz de Golpes com Dano Previsto & PP -->
+              <div class="moves-matrix-box">
+                <div class="matrix-title">GOLPES & DANO MATEMÁTICO:</div>
+                <div class="moves-compact-grid" id="player-battle-moves"></div>
+              </div>
+            </div>
+
+            <!-- PAINEL CENTRAL DE ANÁLISE MATEMÁTICA -->
+            <div class="tactical-advisor-card">
+              <div class="advisor-top">
+                <span class="rec-badge">DECISÃO MATEMÁTICA ÓTIMA</span>
+                <span class="matchup-tag" id="matchup-rating-text">EQUILIBRADO</span>
+              </div>
+
+              <div class="recommendation-content">
+                <div class="rec-move-name" id="rec-move-title">A analisar...</div>
+                <div class="rec-move-detail" id="rec-move-desc">A calcular melhor decisão matemática.</div>
+              </div>
+
+              <div class="alerts-scroll-box" id="tactical-alerts"></div>
+
+              <!-- Calculadora de Captura Gen 1 -->
+              <div class="catch-gauge-card" id="catch-calculator">
+                <div class="catch-header">🎯 CÁLCULO EXATO DE CAPTURA (GEN 1)</div>
+                <div class="balls-row">
+                  <div class="ball-chip">
+                    <span class="b-icon">🔴</span>
+                    <span class="b-name">Poké Ball</span>
+                    <strong class="b-val" id="chance-pokeball">--%</strong>
+                  </div>
+                  <div class="ball-chip">
+                    <span class="b-icon">🔵</span>
+                    <span class="b-name">Great Ball</span>
+                    <strong class="b-val" id="chance-greatball">--%</strong>
+                  </div>
+                  <div class="ball-chip">
+                    <span class="b-icon">🟡</span>
+                    <span class="b-name">Ultra Ball</span>
+                    <strong class="b-val" id="chance-ultraball">--%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMBATENTE INIMIGO (DIREITA) -->
+            <div class="fighter-card enemy-fighter" id="enemy-combatant-card">
+              <div class="fighter-top">
+                <span class="fighter-tag-enemy">ADVERSÁRIO</span>
+                <span class="level-pill enemy-level" id="enemy-battle-level">Lv. --</span>
+              </div>
+
+              <div class="fighter-visual">
+                <div class="sprite-wrapper" id="enemy-battle-sprite-wrapper">
+                  <img id="enemy-battle-sprite" src="" alt="Enemy Mon" class="fighter-sprite">
+                </div>
+                <div class="fighter-info">
+                  <h3 class="fighter-name" id="enemy-battle-name">--</h3>
+                  <div class="types-row" id="enemy-battle-types"></div>
+                  <div class="hp-gauge">
+                    <div class="hp-meta">
+                      <span>HP</span>
+                      <strong id="enemy-battle-hp-text">-- / --</strong>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill enemy-fill" id="enemy-battle-hp-fill" style="width: 100%;"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Inimigo Live Stat Modifiers -->
+              <div class="fighter-stats-box">
+                <div class="stat-mods-grid" id="enemy-stat-mods"></div>
+              </div>
+
+              <!-- Golpes conhecidos do inimigo -->
+              <div class="moves-matrix-box">
+                <div class="matrix-title">GOLPES CONHECIDOS:</div>
+                <div class="enemy-moves-compact" id="enemy-moves-list"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- MODO 2: RADAR DA ÁREA (ENCONTROS & ITENS COM RAM FLAGS REAIS) -->
+        <div class="tactical-view-pane radar-view-pane" id="view-radar">
+          <!-- Secção de Batalhas e Ginásio da Área (Sempre visível em Cidades, Rotas e Ginásios) -->
+          <div id="radar-boss-container"></div>
+
+          <div class="radar-panes-grid">
+            <!-- Sub-Coluna A: Encontros Selvagens -->
+            <div class="radar-sub-card">
+              <div class="sub-card-header">
+                <span class="sub-icon">🌿</span>
+                <div>
+                  <h4>FAUNA LOCAL & CHANCE</h4>
+                  <span class="sub-sub" id="radar-wild-count">0 Espécies</span>
+                </div>
+              </div>
+              <div class="radar-scroll-list" id="wild-encounters-list"></div>
+            </div>
+
+            <!-- Sub-Coluna B: Itens da Área -->
+            <div class="radar-sub-card">
+              <div class="sub-card-header">
+                <span class="sub-icon">💎</span>
+                <div>
+                  <h4>ITENS DA ÁREA (LIVE RAM EVENT FLAGS)</h4>
+                  <span class="sub-sub">Poké Balls no chão e blocos secretos</span>
+                </div>
+              </div>
+              <div class="radar-scroll-list" id="area-items-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUNA 3: EQUIPA POKÉMON (PARTY - 330px) -->
+      <aside class="cockpit-col col-sidebar-right" id="tab-party">
+        <section class="card-glass party-deck-card">
+          <div class="card-header-compact">
+            <div class="header-left">
+              <span class="icon-avatar">👥</span>
+              <div>
+                <h4>A TUA EQUIPA</h4>
+                <span class="sub-small" id="party-count-pill">0 / 6</span>
+              </div>
+            </div>
+          </div>
+          <div class="party-scroll-stack" id="party-grid"></div>
+        </section>
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- Modal Definições -->
+  <div class="modal-backdrop" id="settings-modal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Definições do Link RetroArch</h3>
+        <button class="btn-close" id="btn-close-settings">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="cfg-iphone-ip">Endereço IP do iPhone</label>
+          <input type="text" id="cfg-iphone-ip" class="form-input" value="192.168.1.145">
+          <small>O IP nas definições de Wi-Fi do iPhone.</small>
+        </div>
+        <div class="form-group">
+          <label for="cfg-port">Porta de Comandos de Rede (UDP)</label>
+          <input type="number" id="cfg-port" class="form-input" value="55355">
+          <small>Padrão: 55355.</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-cancel-settings">Cancelar</button>
+        <button class="btn btn-primary" id="btn-save-settings">Guardar Alterações</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MAPA TÁTICO COMPLETO (ESTILO GTA COM ZOOM & PAN) -->
+  <div class="gta-map-backdrop" id="gta-map-modal" style="display: none;">
+    <div class="gta-map-window">
+      <!-- Barra Superior GTA -->
+      <div class="gta-map-toolbar">
+        <div class="gta-map-title-block">
+          <span class="gta-tag">🗺️ MAPA TÁTICO GTA</span>
+          <h3 id="gta-map-heading">Mt. Moon (1F)</h3>
+          <span class="gta-map-sub" id="gta-map-sub-info">0% Explorado • X:-- Y:--</span>
+        </div>
+        <div class="gta-map-actions">
+          <button class="btn-gta-tool" id="btn-gta-zoom-in" title="Aproximar Zoom (+)">🔍 +</button>
+          <button class="btn-gta-tool" id="btn-gta-zoom-out" title="Afastar Zoom (-)">🔍 -</button>
+          <button class="btn-gta-tool" id="btn-gta-center" title="Centralizar no Jogador">📍 Centrar</button>
+          <button class="btn-gta-tool" id="btn-gta-toggle-fog" title="Alternar Névoa de Guerra">👁️ Névoa: <span id="gta-fog-state">LIGADA</span></button>
+          <button class="btn-gta-close" id="btn-close-gta-map" title="Fechar Mapa (Esc)">✕</button>
+        </div>
+      </div>
+
+      <!-- Viewport Interativo com Canvas de Alta Resolução -->
+      <div class="gta-viewport-container" id="gta-viewport-container">
+        <canvas id="gta-fullmap-canvas"></canvas>
+        <div class="gta-map-instructions">
+          <span>🖱️ Roda do rato: <b>Zoom</b></span> • <span>Arrastar: <b>Mover Mapa</b></span> • <span>Esc: <b>Sair</b></span>
+        </div>
+        <!-- Tooltip Flutuante -->
+        <div class="gta-map-tooltip" id="gta-map-tooltip" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=2.3.0"></script>
+</body>
+</html>

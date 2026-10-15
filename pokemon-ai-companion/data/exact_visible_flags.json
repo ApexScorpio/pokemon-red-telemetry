@@ -1,0 +1,1826 @@
+[
+  {
+    "mapName": "PALLET_TOWN",
+    "mapId": 0,
+    "constant": "TOGGLE_PALLET_TOWN_OAK",
+    "toggleIndex": 0,
+    "byteIdx": 0,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "VIRIDIAN_CITY",
+    "mapId": 1,
+    "constant": "TOGGLE_LYING_OLD_MAN",
+    "toggleIndex": 1,
+    "byteIdx": 0,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "VIRIDIAN_CITY",
+    "mapId": 1,
+    "constant": "TOGGLE_OLD_MAN",
+    "toggleIndex": 2,
+    "byteIdx": 0,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "PEWTER_CITY",
+    "mapId": 2,
+    "constant": "TOGGLE_MUSEUM_GUY",
+    "toggleIndex": 3,
+    "byteIdx": 0,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "PEWTER_CITY",
+    "mapId": 2,
+    "constant": "TOGGLE_GYM_GUY",
+    "toggleIndex": 4,
+    "byteIdx": 0,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "CERULEAN_CITY",
+    "mapId": 3,
+    "constant": "TOGGLE_CERULEAN_RIVAL",
+    "toggleIndex": 5,
+    "byteIdx": 0,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "CERULEAN_CITY",
+    "mapId": 3,
+    "constant": "TOGGLE_CERULEAN_ROCKET",
+    "toggleIndex": 6,
+    "byteIdx": 0,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "CERULEAN_CITY",
+    "mapId": 3,
+    "constant": "TOGGLE_CERULEAN_GUARD_1",
+    "toggleIndex": 7,
+    "byteIdx": 0,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "CERULEAN_CITY",
+    "mapId": 3,
+    "constant": "TOGGLE_CERULEAN_CAVE_GUY",
+    "toggleIndex": 8,
+    "byteIdx": 1,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "CERULEAN_CITY",
+    "mapId": 3,
+    "constant": "TOGGLE_CERULEAN_GUARD_2",
+    "toggleIndex": 9,
+    "byteIdx": 1,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_1",
+    "toggleIndex": 10,
+    "byteIdx": 1,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_2",
+    "toggleIndex": 11,
+    "byteIdx": 1,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_3",
+    "toggleIndex": 12,
+    "byteIdx": 1,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_4",
+    "toggleIndex": 13,
+    "byteIdx": 1,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_5",
+    "toggleIndex": 14,
+    "byteIdx": 1,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_6",
+    "toggleIndex": 15,
+    "byteIdx": 1,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_7",
+    "toggleIndex": 16,
+    "byteIdx": 2,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_8",
+    "toggleIndex": 17,
+    "byteIdx": 2,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_9",
+    "toggleIndex": 18,
+    "byteIdx": 2,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_A",
+    "toggleIndex": 19,
+    "byteIdx": 2,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_B",
+    "toggleIndex": 20,
+    "byteIdx": 2,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_C",
+    "toggleIndex": 21,
+    "byteIdx": 2,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_D",
+    "toggleIndex": 22,
+    "byteIdx": 2,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_E",
+    "toggleIndex": 23,
+    "byteIdx": 2,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SAFFRON_CITY",
+    "mapId": 10,
+    "constant": "TOGGLE_SAFFRON_CITY_F",
+    "toggleIndex": 24,
+    "byteIdx": 3,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "ROUTE_2",
+    "mapId": 13,
+    "constant": "TOGGLE_ROUTE_2_ITEM_1",
+    "toggleIndex": 25,
+    "byteIdx": 3,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "ROUTE_2",
+    "mapId": 13,
+    "constant": "TOGGLE_ROUTE_2_ITEM_2",
+    "toggleIndex": 26,
+    "byteIdx": 3,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "ROUTE_4",
+    "mapId": 15,
+    "constant": "TOGGLE_ROUTE_4_ITEM",
+    "toggleIndex": 27,
+    "byteIdx": 3,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "ROUTE_9",
+    "mapId": 20,
+    "constant": "TOGGLE_ROUTE_9_ITEM",
+    "toggleIndex": 28,
+    "byteIdx": 3,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "ROUTE_12",
+    "mapId": 23,
+    "constant": "TOGGLE_ROUTE_12_SNORLAX",
+    "toggleIndex": 29,
+    "byteIdx": 3,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "ROUTE_12",
+    "mapId": 23,
+    "constant": "TOGGLE_ROUTE_12_ITEM_1",
+    "toggleIndex": 30,
+    "byteIdx": 3,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "ROUTE_12",
+    "mapId": 23,
+    "constant": "TOGGLE_ROUTE_12_ITEM_2",
+    "toggleIndex": 31,
+    "byteIdx": 3,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "ROUTE_15",
+    "mapId": 26,
+    "constant": "TOGGLE_ROUTE_15_ITEM",
+    "toggleIndex": 32,
+    "byteIdx": 4,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "ROUTE_16",
+    "mapId": 27,
+    "constant": "TOGGLE_ROUTE_16_SNORLAX",
+    "toggleIndex": 33,
+    "byteIdx": 4,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "ROUTE_22",
+    "mapId": 33,
+    "constant": "TOGGLE_ROUTE_22_RIVAL_1",
+    "toggleIndex": 34,
+    "byteIdx": 4,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "ROUTE_22",
+    "mapId": 33,
+    "constant": "TOGGLE_ROUTE_22_RIVAL_2",
+    "toggleIndex": 35,
+    "byteIdx": 4,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "ROUTE_24",
+    "mapId": 35,
+    "constant": "TOGGLE_NUGGET_BRIDGE_GUY",
+    "toggleIndex": 36,
+    "byteIdx": 4,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "ROUTE_24",
+    "mapId": 35,
+    "constant": "TOGGLE_ROUTE_24_ITEM",
+    "toggleIndex": 37,
+    "byteIdx": 4,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "ROUTE_25",
+    "mapId": 36,
+    "constant": "TOGGLE_ROUTE_25_ITEM",
+    "toggleIndex": 38,
+    "byteIdx": 4,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "BLUES_HOUSE",
+    "mapId": 39,
+    "constant": "TOGGLE_DAISY_SITTING",
+    "toggleIndex": 39,
+    "byteIdx": 4,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "BLUES_HOUSE",
+    "mapId": 39,
+    "constant": "TOGGLE_DAISY_WALKING",
+    "toggleIndex": 40,
+    "byteIdx": 5,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "BLUES_HOUSE",
+    "mapId": 39,
+    "constant": "TOGGLE_TOWN_MAP",
+    "toggleIndex": 41,
+    "byteIdx": 5,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "OAKS_LAB",
+    "mapId": 40,
+    "constant": "TOGGLE_OAKS_LAB_RIVAL",
+    "toggleIndex": 42,
+    "byteIdx": 5,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "OAKS_LAB",
+    "mapId": 40,
+    "constant": "TOGGLE_STARTER_BALL_1",
+    "toggleIndex": 43,
+    "byteIdx": 5,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "OAKS_LAB",
+    "mapId": 40,
+    "constant": "TOGGLE_STARTER_BALL_2",
+    "toggleIndex": 44,
+    "byteIdx": 5,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "OAKS_LAB",
+    "mapId": 40,
+    "constant": "TOGGLE_STARTER_BALL_3",
+    "toggleIndex": 45,
+    "byteIdx": 5,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "OAKS_LAB",
+    "mapId": 40,
+    "constant": "TOGGLE_OAKS_LAB_OAK_1",
+    "toggleIndex": 46,
+    "byteIdx": 5,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "OAKS_LAB",
+    "mapId": 40,
+    "constant": "TOGGLE_POKEDEX_1",
+    "toggleIndex": 47,
+    "byteIdx": 5,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "OAKS_LAB",
+    "mapId": 40,
+    "constant": "TOGGLE_POKEDEX_2",
+    "toggleIndex": 48,
+    "byteIdx": 6,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "OAKS_LAB",
+    "mapId": 40,
+    "constant": "TOGGLE_OAKS_LAB_OAK_2",
+    "toggleIndex": 49,
+    "byteIdx": 6,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "VIRIDIAN_GYM",
+    "mapId": 45,
+    "constant": "TOGGLE_VIRIDIAN_GYM_GIOVANNI",
+    "toggleIndex": 50,
+    "byteIdx": 6,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "VIRIDIAN_GYM",
+    "mapId": 45,
+    "constant": "TOGGLE_VIRIDIAN_GYM_ITEM",
+    "toggleIndex": 51,
+    "byteIdx": 6,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "MUSEUM_1F",
+    "mapId": 52,
+    "constant": "TOGGLE_OLD_AMBER",
+    "toggleIndex": 52,
+    "byteIdx": 6,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "CERULEAN_CAVE_1F",
+    "mapId": 228,
+    "constant": "TOGGLE_CERULEAN_CAVE_1F_ITEM_1",
+    "toggleIndex": 53,
+    "byteIdx": 6,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "CERULEAN_CAVE_1F",
+    "mapId": 228,
+    "constant": "TOGGLE_CERULEAN_CAVE_1F_ITEM_2",
+    "toggleIndex": 54,
+    "byteIdx": 6,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "CERULEAN_CAVE_1F",
+    "mapId": 228,
+    "constant": "TOGGLE_CERULEAN_CAVE_1F_ITEM_3",
+    "toggleIndex": 55,
+    "byteIdx": 6,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "POKEMON_TOWER_2F",
+    "mapId": 143,
+    "constant": "TOGGLE_POKEMON_TOWER_2F_RIVAL",
+    "toggleIndex": 56,
+    "byteIdx": 7,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "POKEMON_TOWER_3F",
+    "mapId": 144,
+    "constant": "TOGGLE_POKEMON_TOWER_3F_ITEM",
+    "toggleIndex": 57,
+    "byteIdx": 7,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "POKEMON_TOWER_4F",
+    "mapId": 145,
+    "constant": "TOGGLE_POKEMON_TOWER_4F_ITEM_1",
+    "toggleIndex": 58,
+    "byteIdx": 7,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "POKEMON_TOWER_4F",
+    "mapId": 145,
+    "constant": "TOGGLE_POKEMON_TOWER_4F_ITEM_2",
+    "toggleIndex": 59,
+    "byteIdx": 7,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "POKEMON_TOWER_4F",
+    "mapId": 145,
+    "constant": "TOGGLE_POKEMON_TOWER_4F_ITEM_3",
+    "toggleIndex": 60,
+    "byteIdx": 7,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "POKEMON_TOWER_5F",
+    "mapId": 146,
+    "constant": "TOGGLE_POKEMON_TOWER_5F_ITEM",
+    "toggleIndex": 61,
+    "byteIdx": 7,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "POKEMON_TOWER_6F",
+    "mapId": 147,
+    "constant": "TOGGLE_POKEMON_TOWER_6F_ITEM_1",
+    "toggleIndex": 62,
+    "byteIdx": 7,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "POKEMON_TOWER_6F",
+    "mapId": 147,
+    "constant": "TOGGLE_POKEMON_TOWER_6F_ITEM_2",
+    "toggleIndex": 63,
+    "byteIdx": 7,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "POKEMON_TOWER_7F",
+    "mapId": 148,
+    "constant": "TOGGLE_POKEMON_TOWER_7F_ROCKET_1",
+    "toggleIndex": 64,
+    "byteIdx": 8,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "POKEMON_TOWER_7F",
+    "mapId": 148,
+    "constant": "TOGGLE_POKEMON_TOWER_7F_ROCKET_2",
+    "toggleIndex": 65,
+    "byteIdx": 8,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "POKEMON_TOWER_7F",
+    "mapId": 148,
+    "constant": "TOGGLE_POKEMON_TOWER_7F_ROCKET_3",
+    "toggleIndex": 66,
+    "byteIdx": 8,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "POKEMON_TOWER_7F",
+    "mapId": 148,
+    "constant": "TOGGLE_POKEMON_TOWER_7F_MR_FUJI",
+    "toggleIndex": 67,
+    "byteIdx": 8,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "MR_FUJIS_HOUSE",
+    "mapId": 149,
+    "constant": "TOGGLE_MR_FUJIS_HOUSE_MR_FUJI",
+    "toggleIndex": 68,
+    "byteIdx": 8,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "CELADON_MANSION_ROOF_HOUSE",
+    "mapId": 132,
+    "constant": "TOGGLE_CELADON_MANSION_EEVEE_GIFT",
+    "toggleIndex": 69,
+    "byteIdx": 8,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "GAME_CORNER",
+    "mapId": 135,
+    "constant": "TOGGLE_GAME_CORNER_ROCKET",
+    "toggleIndex": 70,
+    "byteIdx": 8,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "WARDENS_HOUSE",
+    "mapId": 155,
+    "constant": "TOGGLE_WARDENS_HOUSE_ITEM",
+    "toggleIndex": 71,
+    "byteIdx": 8,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "POKEMON_MANSION_1F",
+    "mapId": 165,
+    "constant": "TOGGLE_POKEMON_MANSION_1F_ITEM_1",
+    "toggleIndex": 72,
+    "byteIdx": 9,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "POKEMON_MANSION_1F",
+    "mapId": 165,
+    "constant": "TOGGLE_POKEMON_MANSION_1F_ITEM_2",
+    "toggleIndex": 73,
+    "byteIdx": 9,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "FIGHTING_DOJO",
+    "mapId": 177,
+    "constant": "TOGGLE_FIGHTING_DOJO_GIFT_1",
+    "toggleIndex": 74,
+    "byteIdx": 9,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "FIGHTING_DOJO",
+    "mapId": 177,
+    "constant": "TOGGLE_FIGHTING_DOJO_GIFT_2",
+    "toggleIndex": 75,
+    "byteIdx": 9,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SILPH_CO_1F",
+    "mapId": 181,
+    "constant": "TOGGLE_SILPH_CO_1F_RECEPTIONIST",
+    "toggleIndex": 76,
+    "byteIdx": 9,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_VOLTORB_1",
+    "toggleIndex": 77,
+    "byteIdx": 9,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_VOLTORB_2",
+    "toggleIndex": 78,
+    "byteIdx": 9,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_VOLTORB_3",
+    "toggleIndex": 79,
+    "byteIdx": 9,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_ELECTRODE_1",
+    "toggleIndex": 80,
+    "byteIdx": 10,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_VOLTORB_4",
+    "toggleIndex": 81,
+    "byteIdx": 10,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_VOLTORB_5",
+    "toggleIndex": 82,
+    "byteIdx": 10,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_ELECTRODE_2",
+    "toggleIndex": 83,
+    "byteIdx": 10,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_VOLTORB_6",
+    "toggleIndex": 84,
+    "byteIdx": 10,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_ZAPDOS",
+    "toggleIndex": 85,
+    "byteIdx": 10,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_POWER_PLANT_ITEM_1",
+    "toggleIndex": 86,
+    "byteIdx": 10,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_POWER_PLANT_ITEM_2",
+    "toggleIndex": 87,
+    "byteIdx": 10,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_POWER_PLANT_ITEM_3",
+    "toggleIndex": 88,
+    "byteIdx": 11,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_POWER_PLANT_ITEM_4",
+    "toggleIndex": 89,
+    "byteIdx": 11,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "constant": "TOGGLE_POWER_PLANT_ITEM_5",
+    "toggleIndex": 90,
+    "byteIdx": 11,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "VICTORY_ROAD_2F",
+    "mapId": 194,
+    "constant": "TOGGLE_MOLTRES",
+    "toggleIndex": 91,
+    "byteIdx": 11,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "VICTORY_ROAD_2F",
+    "mapId": 194,
+    "constant": "TOGGLE_VICTORY_ROAD_2F_ITEM_1",
+    "toggleIndex": 92,
+    "byteIdx": 11,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "VICTORY_ROAD_2F",
+    "mapId": 194,
+    "constant": "TOGGLE_VICTORY_ROAD_2F_ITEM_2",
+    "toggleIndex": 93,
+    "byteIdx": 11,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "VICTORY_ROAD_2F",
+    "mapId": 194,
+    "constant": "TOGGLE_VICTORY_ROAD_2F_ITEM_3",
+    "toggleIndex": 94,
+    "byteIdx": 11,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "VICTORY_ROAD_2F",
+    "mapId": 194,
+    "constant": "TOGGLE_VICTORY_ROAD_2F_ITEM_4",
+    "toggleIndex": 95,
+    "byteIdx": 11,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "VICTORY_ROAD_2F",
+    "mapId": 194,
+    "constant": "TOGGLE_VICTORY_ROAD_2F_BOULDER",
+    "toggleIndex": 96,
+    "byteIdx": 12,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "BILLS_HOUSE",
+    "mapId": 88,
+    "constant": "TOGGLE_BILL_POKEMON",
+    "toggleIndex": 97,
+    "byteIdx": 12,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "BILLS_HOUSE",
+    "mapId": 88,
+    "constant": "TOGGLE_BILL_1",
+    "toggleIndex": 98,
+    "byteIdx": 12,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "BILLS_HOUSE",
+    "mapId": 88,
+    "constant": "TOGGLE_BILL_2",
+    "toggleIndex": 99,
+    "byteIdx": 12,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "VIRIDIAN_FOREST",
+    "mapId": 51,
+    "constant": "TOGGLE_VIRIDIAN_FOREST_ITEM_1",
+    "toggleIndex": 100,
+    "byteIdx": 12,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "VIRIDIAN_FOREST",
+    "mapId": 51,
+    "constant": "TOGGLE_VIRIDIAN_FOREST_ITEM_2",
+    "toggleIndex": 101,
+    "byteIdx": 12,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "VIRIDIAN_FOREST",
+    "mapId": 51,
+    "constant": "TOGGLE_VIRIDIAN_FOREST_ITEM_3",
+    "toggleIndex": 102,
+    "byteIdx": 12,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "MT_MOON_1F",
+    "mapId": 59,
+    "constant": "TOGGLE_MT_MOON_1F_ITEM_1",
+    "toggleIndex": 103,
+    "byteIdx": 12,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "MT_MOON_1F",
+    "mapId": 59,
+    "constant": "TOGGLE_MT_MOON_1F_ITEM_2",
+    "toggleIndex": 104,
+    "byteIdx": 13,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "MT_MOON_1F",
+    "mapId": 59,
+    "constant": "TOGGLE_MT_MOON_1F_ITEM_3",
+    "toggleIndex": 105,
+    "byteIdx": 13,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "MT_MOON_1F",
+    "mapId": 59,
+    "constant": "TOGGLE_MT_MOON_1F_ITEM_4",
+    "toggleIndex": 106,
+    "byteIdx": 13,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "MT_MOON_1F",
+    "mapId": 59,
+    "constant": "TOGGLE_MT_MOON_1F_ITEM_5",
+    "toggleIndex": 107,
+    "byteIdx": 13,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "MT_MOON_1F",
+    "mapId": 59,
+    "constant": "TOGGLE_MT_MOON_1F_ITEM_6",
+    "toggleIndex": 108,
+    "byteIdx": 13,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "MT_MOON_B2F",
+    "mapId": 61,
+    "constant": "TOGGLE_MT_MOON_B2F_FOSSIL_1",
+    "toggleIndex": 109,
+    "byteIdx": 13,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "MT_MOON_B2F",
+    "mapId": 61,
+    "constant": "TOGGLE_MT_MOON_B2F_FOSSIL_2",
+    "toggleIndex": 110,
+    "byteIdx": 13,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "MT_MOON_B2F",
+    "mapId": 61,
+    "constant": "TOGGLE_MT_MOON_B2F_ITEM_1",
+    "toggleIndex": 111,
+    "byteIdx": 13,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "MT_MOON_B2F",
+    "mapId": 61,
+    "constant": "TOGGLE_MT_MOON_B2F_ITEM_2",
+    "toggleIndex": 112,
+    "byteIdx": 14,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SS_ANNE_2F",
+    "mapId": 96,
+    "constant": "TOGGLE_SS_ANNE_2F_RIVAL",
+    "toggleIndex": 113,
+    "byteIdx": 14,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SS_ANNE_1F_ROOMS",
+    "mapId": 102,
+    "constant": "TOGGLE_SS_ANNE_1F_ROOMS_ITEM",
+    "toggleIndex": 114,
+    "byteIdx": 14,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SS_ANNE_2F_ROOMS",
+    "mapId": 103,
+    "constant": "TOGGLE_SS_ANNE_2F_ROOMS_ITEM_1",
+    "toggleIndex": 115,
+    "byteIdx": 14,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SS_ANNE_2F_ROOMS",
+    "mapId": 103,
+    "constant": "TOGGLE_SS_ANNE_2F_ROOMS_ITEM_2",
+    "toggleIndex": 116,
+    "byteIdx": 14,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SS_ANNE_B1F_ROOMS",
+    "mapId": 104,
+    "constant": "TOGGLE_SS_ANNE_B1F_ROOMS_ITEM_1",
+    "toggleIndex": 117,
+    "byteIdx": 14,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SS_ANNE_B1F_ROOMS",
+    "mapId": 104,
+    "constant": "TOGGLE_SS_ANNE_B1F_ROOMS_ITEM_2",
+    "toggleIndex": 118,
+    "byteIdx": 14,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SS_ANNE_B1F_ROOMS",
+    "mapId": 104,
+    "constant": "TOGGLE_SS_ANNE_B1F_ROOMS_ITEM_3",
+    "toggleIndex": 119,
+    "byteIdx": 14,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "VICTORY_ROAD_3F",
+    "mapId": 198,
+    "constant": "TOGGLE_VICTORY_ROAD_3F_ITEM_1",
+    "toggleIndex": 120,
+    "byteIdx": 15,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "VICTORY_ROAD_3F",
+    "mapId": 198,
+    "constant": "TOGGLE_VICTORY_ROAD_3F_ITEM_2",
+    "toggleIndex": 121,
+    "byteIdx": 15,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "VICTORY_ROAD_3F",
+    "mapId": 198,
+    "constant": "TOGGLE_VICTORY_ROAD_3F_BOULDER",
+    "toggleIndex": 122,
+    "byteIdx": 15,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B1F",
+    "mapId": 199,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B1F_ITEM_1",
+    "toggleIndex": 123,
+    "byteIdx": 15,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B1F",
+    "mapId": 199,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B1F_ITEM_2",
+    "toggleIndex": 124,
+    "byteIdx": 15,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B2F",
+    "mapId": 200,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B2F_ITEM_1",
+    "toggleIndex": 125,
+    "byteIdx": 15,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B2F",
+    "mapId": 200,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B2F_ITEM_2",
+    "toggleIndex": 126,
+    "byteIdx": 15,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B2F",
+    "mapId": 200,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B2F_ITEM_3",
+    "toggleIndex": 127,
+    "byteIdx": 15,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B2F",
+    "mapId": 200,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B2F_ITEM_4",
+    "toggleIndex": 128,
+    "byteIdx": 16,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B3F",
+    "mapId": 201,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B3F_ITEM_1",
+    "toggleIndex": 129,
+    "byteIdx": 16,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B3F",
+    "mapId": 201,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B3F_ITEM_2",
+    "toggleIndex": 130,
+    "byteIdx": 16,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B4F",
+    "mapId": 202,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B4F_GIOVANNI",
+    "toggleIndex": 131,
+    "byteIdx": 16,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B4F",
+    "mapId": 202,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_1",
+    "toggleIndex": 132,
+    "byteIdx": 16,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B4F",
+    "mapId": 202,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_2",
+    "toggleIndex": 133,
+    "byteIdx": 16,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B4F",
+    "mapId": 202,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_3",
+    "toggleIndex": 134,
+    "byteIdx": 16,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B4F",
+    "mapId": 202,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_4",
+    "toggleIndex": 135,
+    "byteIdx": 16,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B4F",
+    "mapId": 202,
+    "constant": "TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_5",
+    "toggleIndex": 136,
+    "byteIdx": 17,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SILPH_CO_2F",
+    "mapId": 207,
+    "constant": "TOGGLE_SILPH_CO_2F_1",
+    "toggleIndex": 137,
+    "byteIdx": 17,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SILPH_CO_2F",
+    "mapId": 207,
+    "constant": "TOGGLE_SILPH_CO_2F_2",
+    "toggleIndex": 138,
+    "byteIdx": 17,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SILPH_CO_2F",
+    "mapId": 207,
+    "constant": "TOGGLE_SILPH_CO_2F_3",
+    "toggleIndex": 139,
+    "byteIdx": 17,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SILPH_CO_2F",
+    "mapId": 207,
+    "constant": "TOGGLE_SILPH_CO_2F_4",
+    "toggleIndex": 140,
+    "byteIdx": 17,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SILPH_CO_2F",
+    "mapId": 207,
+    "constant": "TOGGLE_SILPH_CO_2F_5",
+    "toggleIndex": 141,
+    "byteIdx": 17,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SILPH_CO_3F",
+    "mapId": 208,
+    "constant": "TOGGLE_SILPH_CO_3F_1",
+    "toggleIndex": 142,
+    "byteIdx": 17,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SILPH_CO_3F",
+    "mapId": 208,
+    "constant": "TOGGLE_SILPH_CO_3F_2",
+    "toggleIndex": 143,
+    "byteIdx": 17,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SILPH_CO_3F",
+    "mapId": 208,
+    "constant": "TOGGLE_SILPH_CO_3F_ITEM",
+    "toggleIndex": 144,
+    "byteIdx": 18,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SILPH_CO_4F",
+    "mapId": 209,
+    "constant": "TOGGLE_SILPH_CO_4F_1",
+    "toggleIndex": 145,
+    "byteIdx": 18,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SILPH_CO_4F",
+    "mapId": 209,
+    "constant": "TOGGLE_SILPH_CO_4F_2",
+    "toggleIndex": 146,
+    "byteIdx": 18,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SILPH_CO_4F",
+    "mapId": 209,
+    "constant": "TOGGLE_SILPH_CO_4F_3",
+    "toggleIndex": 147,
+    "byteIdx": 18,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SILPH_CO_4F",
+    "mapId": 209,
+    "constant": "TOGGLE_SILPH_CO_4F_ITEM_1",
+    "toggleIndex": 148,
+    "byteIdx": 18,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SILPH_CO_4F",
+    "mapId": 209,
+    "constant": "TOGGLE_SILPH_CO_4F_ITEM_2",
+    "toggleIndex": 149,
+    "byteIdx": 18,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SILPH_CO_4F",
+    "mapId": 209,
+    "constant": "TOGGLE_SILPH_CO_4F_ITEM_3",
+    "toggleIndex": 150,
+    "byteIdx": 18,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SILPH_CO_5F",
+    "mapId": 210,
+    "constant": "TOGGLE_SILPH_CO_5F_1",
+    "toggleIndex": 151,
+    "byteIdx": 18,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SILPH_CO_5F",
+    "mapId": 210,
+    "constant": "TOGGLE_SILPH_CO_5F_2",
+    "toggleIndex": 152,
+    "byteIdx": 19,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SILPH_CO_5F",
+    "mapId": 210,
+    "constant": "TOGGLE_SILPH_CO_5F_3",
+    "toggleIndex": 153,
+    "byteIdx": 19,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SILPH_CO_5F",
+    "mapId": 210,
+    "constant": "TOGGLE_SILPH_CO_5F_4",
+    "toggleIndex": 154,
+    "byteIdx": 19,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SILPH_CO_5F",
+    "mapId": 210,
+    "constant": "TOGGLE_SILPH_CO_5F_ITEM_1",
+    "toggleIndex": 155,
+    "byteIdx": 19,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SILPH_CO_5F",
+    "mapId": 210,
+    "constant": "TOGGLE_SILPH_CO_5F_ITEM_2",
+    "toggleIndex": 156,
+    "byteIdx": 19,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SILPH_CO_5F",
+    "mapId": 210,
+    "constant": "TOGGLE_SILPH_CO_5F_ITEM_3",
+    "toggleIndex": 157,
+    "byteIdx": 19,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SILPH_CO_6F",
+    "mapId": 211,
+    "constant": "TOGGLE_SILPH_CO_6F_1",
+    "toggleIndex": 158,
+    "byteIdx": 19,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SILPH_CO_6F",
+    "mapId": 211,
+    "constant": "TOGGLE_SILPH_CO_6F_2",
+    "toggleIndex": 159,
+    "byteIdx": 19,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SILPH_CO_6F",
+    "mapId": 211,
+    "constant": "TOGGLE_SILPH_CO_6F_3",
+    "toggleIndex": 160,
+    "byteIdx": 20,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SILPH_CO_6F",
+    "mapId": 211,
+    "constant": "TOGGLE_SILPH_CO_6F_ITEM_1",
+    "toggleIndex": 161,
+    "byteIdx": 20,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SILPH_CO_6F",
+    "mapId": 211,
+    "constant": "TOGGLE_SILPH_CO_6F_ITEM_2",
+    "toggleIndex": 162,
+    "byteIdx": 20,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SILPH_CO_7F",
+    "mapId": 212,
+    "constant": "TOGGLE_SILPH_CO_7F_1",
+    "toggleIndex": 163,
+    "byteIdx": 20,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SILPH_CO_7F",
+    "mapId": 212,
+    "constant": "TOGGLE_SILPH_CO_7F_2",
+    "toggleIndex": 164,
+    "byteIdx": 20,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SILPH_CO_7F",
+    "mapId": 212,
+    "constant": "TOGGLE_SILPH_CO_7F_3",
+    "toggleIndex": 165,
+    "byteIdx": 20,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SILPH_CO_7F",
+    "mapId": 212,
+    "constant": "TOGGLE_SILPH_CO_7F_4",
+    "toggleIndex": 166,
+    "byteIdx": 20,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SILPH_CO_7F",
+    "mapId": 212,
+    "constant": "TOGGLE_SILPH_CO_7F_RIVAL",
+    "toggleIndex": 167,
+    "byteIdx": 20,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SILPH_CO_7F",
+    "mapId": 212,
+    "constant": "TOGGLE_SILPH_CO_7F_ITEM_1",
+    "toggleIndex": 168,
+    "byteIdx": 21,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SILPH_CO_7F",
+    "mapId": 212,
+    "constant": "TOGGLE_SILPH_CO_7F_ITEM_2",
+    "toggleIndex": 169,
+    "byteIdx": 21,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SILPH_CO_7F",
+    "mapId": 212,
+    "constant": "TOGGLE_SILPH_CO_7F_8",
+    "toggleIndex": 170,
+    "byteIdx": 21,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SILPH_CO_8F",
+    "mapId": 213,
+    "constant": "TOGGLE_SILPH_CO_8F_1",
+    "toggleIndex": 171,
+    "byteIdx": 21,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SILPH_CO_8F",
+    "mapId": 213,
+    "constant": "TOGGLE_SILPH_CO_8F_2",
+    "toggleIndex": 172,
+    "byteIdx": 21,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SILPH_CO_8F",
+    "mapId": 213,
+    "constant": "TOGGLE_SILPH_CO_8F_3",
+    "toggleIndex": 173,
+    "byteIdx": 21,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SILPH_CO_9F",
+    "mapId": 233,
+    "constant": "TOGGLE_SILPH_CO_9F_1",
+    "toggleIndex": 174,
+    "byteIdx": 21,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SILPH_CO_9F",
+    "mapId": 233,
+    "constant": "TOGGLE_SILPH_CO_9F_2",
+    "toggleIndex": 175,
+    "byteIdx": 21,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SILPH_CO_9F",
+    "mapId": 233,
+    "constant": "TOGGLE_SILPH_CO_9F_3",
+    "toggleIndex": 176,
+    "byteIdx": 22,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SILPH_CO_10F",
+    "mapId": 234,
+    "constant": "TOGGLE_SILPH_CO_10F_1",
+    "toggleIndex": 177,
+    "byteIdx": 22,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SILPH_CO_10F",
+    "mapId": 234,
+    "constant": "TOGGLE_SILPH_CO_10F_2",
+    "toggleIndex": 178,
+    "byteIdx": 22,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SILPH_CO_10F",
+    "mapId": 234,
+    "constant": "TOGGLE_SILPH_CO_10F_3",
+    "toggleIndex": 179,
+    "byteIdx": 22,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SILPH_CO_10F",
+    "mapId": 234,
+    "constant": "TOGGLE_SILPH_CO_10F_ITEM_1",
+    "toggleIndex": 180,
+    "byteIdx": 22,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SILPH_CO_10F",
+    "mapId": 234,
+    "constant": "TOGGLE_SILPH_CO_10F_ITEM_2",
+    "toggleIndex": 181,
+    "byteIdx": 22,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SILPH_CO_10F",
+    "mapId": 234,
+    "constant": "TOGGLE_SILPH_CO_10F_ITEM_3",
+    "toggleIndex": 182,
+    "byteIdx": 22,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SILPH_CO_11F",
+    "mapId": 235,
+    "constant": "TOGGLE_SILPH_CO_11F_1",
+    "toggleIndex": 183,
+    "byteIdx": 22,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SILPH_CO_11F",
+    "mapId": 235,
+    "constant": "TOGGLE_SILPH_CO_11F_2",
+    "toggleIndex": 184,
+    "byteIdx": 23,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SILPH_CO_11F",
+    "mapId": 235,
+    "constant": "TOGGLE_SILPH_CO_11F_3",
+    "toggleIndex": 185,
+    "byteIdx": 23,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "UNUSED_MAP_F4",
+    "mapId": 244,
+    "constant": "TOGGLE_UNUSED_MAP_F4_1",
+    "toggleIndex": 186,
+    "byteIdx": 23,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "POKEMON_MANSION_2F",
+    "mapId": 214,
+    "constant": "TOGGLE_POKEMON_MANSION_2F_ITEM",
+    "toggleIndex": 187,
+    "byteIdx": 23,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "POKEMON_MANSION_3F",
+    "mapId": 215,
+    "constant": "TOGGLE_POKEMON_MANSION_3F_ITEM_1",
+    "toggleIndex": 188,
+    "byteIdx": 23,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "POKEMON_MANSION_3F",
+    "mapId": 215,
+    "constant": "TOGGLE_POKEMON_MANSION_3F_ITEM_2",
+    "toggleIndex": 189,
+    "byteIdx": 23,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "POKEMON_MANSION_B1F",
+    "mapId": 216,
+    "constant": "TOGGLE_POKEMON_MANSION_B1F_ITEM_1",
+    "toggleIndex": 190,
+    "byteIdx": 23,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "POKEMON_MANSION_B1F",
+    "mapId": 216,
+    "constant": "TOGGLE_POKEMON_MANSION_B1F_ITEM_2",
+    "toggleIndex": 191,
+    "byteIdx": 23,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "POKEMON_MANSION_B1F",
+    "mapId": 216,
+    "constant": "TOGGLE_POKEMON_MANSION_B1F_ITEM_3",
+    "toggleIndex": 192,
+    "byteIdx": 24,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "POKEMON_MANSION_B1F",
+    "mapId": 216,
+    "constant": "TOGGLE_POKEMON_MANSION_B1F_ITEM_4",
+    "toggleIndex": 193,
+    "byteIdx": 24,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "POKEMON_MANSION_B1F",
+    "mapId": 216,
+    "constant": "TOGGLE_POKEMON_MANSION_B1F_ITEM_5",
+    "toggleIndex": 194,
+    "byteIdx": 24,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SAFARI_ZONE_EAST",
+    "mapId": 217,
+    "constant": "TOGGLE_SAFARI_ZONE_EAST_ITEM_1",
+    "toggleIndex": 195,
+    "byteIdx": 24,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SAFARI_ZONE_EAST",
+    "mapId": 217,
+    "constant": "TOGGLE_SAFARI_ZONE_EAST_ITEM_2",
+    "toggleIndex": 196,
+    "byteIdx": 24,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SAFARI_ZONE_EAST",
+    "mapId": 217,
+    "constant": "TOGGLE_SAFARI_ZONE_EAST_ITEM_3",
+    "toggleIndex": 197,
+    "byteIdx": 24,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SAFARI_ZONE_EAST",
+    "mapId": 217,
+    "constant": "TOGGLE_SAFARI_ZONE_EAST_ITEM_4",
+    "toggleIndex": 198,
+    "byteIdx": 24,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SAFARI_ZONE_NORTH",
+    "mapId": 218,
+    "constant": "TOGGLE_SAFARI_ZONE_NORTH_ITEM_1",
+    "toggleIndex": 199,
+    "byteIdx": 24,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SAFARI_ZONE_NORTH",
+    "mapId": 218,
+    "constant": "TOGGLE_SAFARI_ZONE_NORTH_ITEM_2",
+    "toggleIndex": 200,
+    "byteIdx": 25,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SAFARI_ZONE_WEST",
+    "mapId": 219,
+    "constant": "TOGGLE_SAFARI_ZONE_WEST_ITEM_1",
+    "toggleIndex": 201,
+    "byteIdx": 25,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SAFARI_ZONE_WEST",
+    "mapId": 219,
+    "constant": "TOGGLE_SAFARI_ZONE_WEST_ITEM_2",
+    "toggleIndex": 202,
+    "byteIdx": 25,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SAFARI_ZONE_WEST",
+    "mapId": 219,
+    "constant": "TOGGLE_SAFARI_ZONE_WEST_ITEM_3",
+    "toggleIndex": 203,
+    "byteIdx": 25,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SAFARI_ZONE_WEST",
+    "mapId": 219,
+    "constant": "TOGGLE_SAFARI_ZONE_WEST_ITEM_4",
+    "toggleIndex": 204,
+    "byteIdx": 25,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SAFARI_ZONE_CENTER",
+    "mapId": 220,
+    "constant": "TOGGLE_SAFARI_ZONE_CENTER_ITEM",
+    "toggleIndex": 205,
+    "byteIdx": 25,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "CERULEAN_CAVE_2F",
+    "mapId": 226,
+    "constant": "TOGGLE_CERULEAN_CAVE_2F_ITEM_1",
+    "toggleIndex": 206,
+    "byteIdx": 25,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "CERULEAN_CAVE_2F",
+    "mapId": 226,
+    "constant": "TOGGLE_CERULEAN_CAVE_2F_ITEM_2",
+    "toggleIndex": 207,
+    "byteIdx": 25,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "CERULEAN_CAVE_2F",
+    "mapId": 226,
+    "constant": "TOGGLE_CERULEAN_CAVE_2F_ITEM_3",
+    "toggleIndex": 208,
+    "byteIdx": 26,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "CERULEAN_CAVE_B1F",
+    "mapId": 227,
+    "constant": "TOGGLE_MEWTWO",
+    "toggleIndex": 209,
+    "byteIdx": 26,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "CERULEAN_CAVE_B1F",
+    "mapId": 227,
+    "constant": "TOGGLE_CERULEAN_CAVE_B1F_ITEM_1",
+    "toggleIndex": 210,
+    "byteIdx": 26,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "CERULEAN_CAVE_B1F",
+    "mapId": 227,
+    "constant": "TOGGLE_CERULEAN_CAVE_B1F_ITEM_2",
+    "toggleIndex": 211,
+    "byteIdx": 26,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "VICTORY_ROAD_1F",
+    "mapId": 108,
+    "constant": "TOGGLE_VICTORY_ROAD_1F_ITEM_1",
+    "toggleIndex": 212,
+    "byteIdx": 26,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "VICTORY_ROAD_1F",
+    "mapId": 108,
+    "constant": "TOGGLE_VICTORY_ROAD_1F_ITEM_2",
+    "toggleIndex": 213,
+    "byteIdx": 26,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "CHAMPIONS_ROOM",
+    "mapId": 120,
+    "constant": "TOGGLE_CHAMPIONS_ROOM_OAK",
+    "toggleIndex": 214,
+    "byteIdx": 26,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_1F",
+    "mapId": 192,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_1F_BOULDER_1",
+    "toggleIndex": 215,
+    "byteIdx": 26,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_1F",
+    "mapId": 192,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_1F_BOULDER_2",
+    "toggleIndex": 216,
+    "byteIdx": 27,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B1F",
+    "mapId": 159,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B1F_BOULDER_1",
+    "toggleIndex": 217,
+    "byteIdx": 27,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B1F",
+    "mapId": 159,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B1F_BOULDER_2",
+    "toggleIndex": 218,
+    "byteIdx": 27,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B2F",
+    "mapId": 160,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B2F_BOULDER_1",
+    "toggleIndex": 219,
+    "byteIdx": 27,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B2F",
+    "mapId": 160,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B2F_BOULDER_2",
+    "toggleIndex": 220,
+    "byteIdx": 27,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B3F",
+    "mapId": 161,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_1",
+    "toggleIndex": 221,
+    "byteIdx": 27,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B3F",
+    "mapId": 161,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_2",
+    "toggleIndex": 222,
+    "byteIdx": 27,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B3F",
+    "mapId": 161,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_3",
+    "toggleIndex": 223,
+    "byteIdx": 27,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B3F",
+    "mapId": 161,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_4",
+    "toggleIndex": 224,
+    "byteIdx": 28,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B4F",
+    "mapId": 162,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_1",
+    "toggleIndex": 225,
+    "byteIdx": 28,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B4F",
+    "mapId": 162,
+    "constant": "TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_2",
+    "toggleIndex": 226,
+    "byteIdx": 28,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B4F",
+    "mapId": 162,
+    "constant": "TOGGLE_ARTICUNO",
+    "toggleIndex": 227,
+    "byteIdx": 28,
+    "bitIdx": 3
+  }
+]

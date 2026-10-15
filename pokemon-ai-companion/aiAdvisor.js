@@ -1,0 +1,115 @@
+// AI Tactical Advisor via Groq API (LLaMA 3.3 70B Versatile)
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+
+async function queryGroq(messages, temperature = 0.6) {
+  try {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'qwen/qwen3.8-27b',
+        messages,
+        temperature,
+        max_tokens: 300
+      })
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error('[Groq API Error]:', errText);
+      return null;
+    }
+
+    const data = await res.json();
+    return data.choices && data.choices[0] ? data.choices[0].message.content : null;
+  } catch (err) {
+    console.error('[Groq Network Error]:', err.message);
+    return null;
+  }
+}
+
+let lastAdviceTime = 0;
+let cachedAdvice = null;
+
+async function getLiveAdvice(state, force = false) {
+  const now = Date.now();
+  if (!force && now - lastAdviceTime < 15000) {
+    return cachedAdvice;
+  }
+  lastAdviceTime = now;
+
+  const context = {
+    trainer: state.trainerName || 'RED',
+    location: state.mapName,
+    money: state.money,
+    badges: (state.badges || []).filter(b => b.obtained).map(b => b.name),
+    inventory: (state.inventory || []).map(i => `${i.name} (x${i.qty})`),
+    party: (state.party || []).map(p => ({
+      name: p.name,
+      level: p.level,
+      hp: `${p.hp}/${p.maxHp}`,
+      types: p.types,
+      moves: (p.moves || []).map(m => m.name)
+    })),
+    battle: state.inBattle && state.battle ? {
+      enemy: `${state.battle.enemy.name} (Lv. ${state.battle.enemy.level}, HP: ${state.battle.enemy.hp}/${state.battle.enemy.maxHp}, Tipos: ${state.battle.enemy.types.join('/')})`,
+      playerActive: state.battle.playerActive ? `${state.battle.playerActive.name} (HP: ${state.battle.playerActive.hp}/${state.battle.playerActive.maxHp})` : 'Nenhum',
+      type: state.battleType
+    } : null
+  };
+
+  const systemPrompt = `Ãƒâ€°s o Conselheiro EstratÃƒÂ©gico de Elite de PokÃƒÂ©mon Red (Grok/Groq AI).
+Tens visÃƒÂ£o total em tempo real da memÃƒÂ³ria RAM do jogo no telemÃƒÂ³vel do jogador.
+Regras da tua resposta:
+- Fala em portuguÃƒÂªs de Portugal ou neutro de forma entusiasmante, direta e ultra-estratÃƒÂ©gica como um campeÃƒÂ£o da Liga PokÃƒÂ©mon.
+- MantÃƒÂ©m a resposta muito concisa (mÃƒÂ¡ximo 2 a 3 frases de impacto).
+- Em batalha: diz exatamente qual o melhor golpe a usar, se deves usar itens da mochila (como Potion/Antidote) ou se deves trocar de PokÃƒÂ©mon para ter vantagem de tipo.
+- Fora de batalha: diz qual o prÃƒÂ³ximo objetivo, onde treinar ou que itens comprar com o dinheiro disponÃƒÂ­vel.
+- Se sugerires tirar um PokÃƒÂ©mon do PC ou apanhar um novo, indica SEMPRE com clareza qual PokÃƒÂ©mon da equipa atual ele deve meter no PC para criar espaÃƒÂ§o, justificando com a fraqueza de tipo ou menor utilidade contra o prÃƒÂ³ximo desafio.`;
+
+  const userPrompt = `Estado atual do jogo:\n${JSON.stringify(context, null, 2)}\n\nDÃƒÂ¡ o teu melhor conselho estratÃƒÂ©gico imediato para este momento exato.`;
+
+  const reply = await queryGroq([
+    { role: 'system', content: systemPrompt },
+    { role: 'user', content: userPrompt }
+  ]);
+
+  if (reply) cachedAdvice = reply;
+  return reply;
+}
+
+async function askAdvisor(question, state) {
+  const context = {
+    trainer: state.trainerName || 'RED',
+    location: state.mapName,
+    money: state.money,
+    badges: (state.badges || []).filter(b => b.obtained).map(b => b.name),
+    inventory: (state.inventory || []).map(i => `${i.name} (x${i.qty})`),
+    party: (state.party || []).map(p => ({
+      name: p.name,
+      level: p.level,
+      hp: `${p.hp}/${p.maxHp}`,
+      types: p.types,
+      moves: (p.moves || []).map(m => `${m.name} (${m.type})`)
+    }))
+  };
+
+  const systemPrompt = `Ãƒâ€°s o Conselheiro EstratÃƒÂ©gico de PokÃƒÂ©mon Red com telemetria direta da RAM.
+O jogador estÃƒÂ¡ a jogar no seu telemÃƒÂ³vel e fez-te uma pergunta.
+Usa todo o contexto real da equipa, itens e local para responder com a melhor estratÃƒÂ©gia de Gen 1 possÃƒÂ­vel.`;
+
+  const reply = await queryGroq([
+    { role: 'system', content: systemPrompt },
+    { role: 'user', content: `Contexto do jogo atual:\n${JSON.stringify(context, null, 2)}\n\nPergunta do Treinador: "${question}"` }
+  ]);
+
+  return reply || 'NÃƒÂ£o consegui contactar a rede neural do Grok neste momento.';
+}
+
+module.exports = {
+  getLiveAdvice,
+  askAdvisor
+};

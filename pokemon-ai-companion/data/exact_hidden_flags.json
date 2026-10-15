@@ -1,0 +1,488 @@
+[
+  {
+    "mapName": "VIRIDIAN_FOREST",
+    "mapId": 51,
+    "x": 1,
+    "y": 18,
+    "hiddenIndex": 0,
+    "byteIdx": 0,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "VIRIDIAN_FOREST",
+    "mapId": 51,
+    "x": 16,
+    "y": 42,
+    "hiddenIndex": 1,
+    "byteIdx": 0,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "MT_MOON_B2F",
+    "mapId": 61,
+    "x": 18,
+    "y": 12,
+    "hiddenIndex": 2,
+    "byteIdx": 0,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "ROUTE_25",
+    "mapId": 36,
+    "x": 38,
+    "y": 3,
+    "hiddenIndex": 3,
+    "byteIdx": 0,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "ROUTE_9",
+    "mapId": 20,
+    "x": 14,
+    "y": 7,
+    "hiddenIndex": 4,
+    "byteIdx": 0,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "SS_ANNE_KITCHEN",
+    "mapId": 100,
+    "x": 13,
+    "y": 9,
+    "hiddenIndex": 5,
+    "byteIdx": 0,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "SS_ANNE_B1F_ROOMS",
+    "mapId": 104,
+    "x": 3,
+    "y": 1,
+    "hiddenIndex": 6,
+    "byteIdx": 0,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "ROUTE_10",
+    "mapId": 21,
+    "x": 9,
+    "y": 17,
+    "hiddenIndex": 7,
+    "byteIdx": 0,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "ROUTE_10",
+    "mapId": 21,
+    "x": 16,
+    "y": 53,
+    "hiddenIndex": 8,
+    "byteIdx": 1,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B1F",
+    "mapId": 199,
+    "x": 21,
+    "y": 15,
+    "hiddenIndex": 9,
+    "byteIdx": 1,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B3F",
+    "mapId": 201,
+    "x": 27,
+    "y": 17,
+    "hiddenIndex": 10,
+    "byteIdx": 1,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "ROCKET_HIDEOUT_B4F",
+    "mapId": 202,
+    "x": 25,
+    "y": 1,
+    "hiddenIndex": 11,
+    "byteIdx": 1,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "POKEMON_TOWER_5F",
+    "mapId": 146,
+    "x": 4,
+    "y": 12,
+    "hiddenIndex": 12,
+    "byteIdx": 1,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "ROUTE_13",
+    "mapId": 24,
+    "x": 1,
+    "y": 14,
+    "hiddenIndex": 13,
+    "byteIdx": 1,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "ROUTE_13",
+    "mapId": 24,
+    "x": 16,
+    "y": 13,
+    "hiddenIndex": 14,
+    "byteIdx": 1,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "POKEMON_MANSION_B1F",
+    "mapId": 216,
+    "x": 1,
+    "y": 9,
+    "hiddenIndex": 15,
+    "byteIdx": 1,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "SAFARI_ZONE_GATE",
+    "mapId": 156,
+    "x": 10,
+    "y": 1,
+    "hiddenIndex": 16,
+    "byteIdx": 2,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SAFARI_ZONE_WEST",
+    "mapId": 219,
+    "x": 6,
+    "y": 5,
+    "hiddenIndex": 17,
+    "byteIdx": 2,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SILPH_CO_5F",
+    "mapId": 210,
+    "x": 12,
+    "y": 3,
+    "hiddenIndex": 18,
+    "byteIdx": 2,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "SILPH_CO_9F",
+    "mapId": 233,
+    "x": 2,
+    "y": 15,
+    "hiddenIndex": 19,
+    "byteIdx": 2,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "COPYCATS_HOUSE_2F",
+    "mapId": 176,
+    "x": 1,
+    "y": 1,
+    "hiddenIndex": 20,
+    "byteIdx": 2,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "CERULEAN_CAVE_1F",
+    "mapId": 228,
+    "x": 14,
+    "y": 11,
+    "hiddenIndex": 21,
+    "byteIdx": 2,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "CERULEAN_CAVE_B1F",
+    "mapId": 227,
+    "x": 27,
+    "y": 3,
+    "hiddenIndex": 22,
+    "byteIdx": 2,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "x": 17,
+    "y": 16,
+    "hiddenIndex": 23,
+    "byteIdx": 2,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "POWER_PLANT",
+    "mapId": 83,
+    "x": 12,
+    "y": 1,
+    "hiddenIndex": 24,
+    "byteIdx": 3,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B2F",
+    "mapId": 160,
+    "x": 15,
+    "y": 15,
+    "hiddenIndex": 25,
+    "byteIdx": 3,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B4F",
+    "mapId": 162,
+    "x": 25,
+    "y": 17,
+    "hiddenIndex": 26,
+    "byteIdx": 3,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "POKEMON_MANSION_1F",
+    "mapId": 165,
+    "x": 8,
+    "y": 16,
+    "hiddenIndex": 27,
+    "byteIdx": 3,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "POKEMON_MANSION_3F",
+    "mapId": 215,
+    "x": 1,
+    "y": 9,
+    "hiddenIndex": 28,
+    "byteIdx": 3,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "ROUTE_23",
+    "mapId": 34,
+    "x": 9,
+    "y": 44,
+    "hiddenIndex": 29,
+    "byteIdx": 3,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "ROUTE_23",
+    "mapId": 34,
+    "x": 19,
+    "y": 70,
+    "hiddenIndex": 30,
+    "byteIdx": 3,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "ROUTE_23",
+    "mapId": 34,
+    "x": 8,
+    "y": 90,
+    "hiddenIndex": 31,
+    "byteIdx": 3,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "VICTORY_ROAD_2F",
+    "mapId": 194,
+    "x": 5,
+    "y": 2,
+    "hiddenIndex": 32,
+    "byteIdx": 4,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "VICTORY_ROAD_2F",
+    "mapId": 194,
+    "x": 26,
+    "y": 7,
+    "hiddenIndex": 33,
+    "byteIdx": 4,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "UNUSED_MAP_6F",
+    "mapId": 111,
+    "x": 14,
+    "y": 11,
+    "hiddenIndex": 34,
+    "byteIdx": 4,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "VIRIDIAN_CITY",
+    "mapId": 1,
+    "x": 14,
+    "y": 4,
+    "hiddenIndex": 35,
+    "byteIdx": 4,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "ROUTE_11",
+    "mapId": 22,
+    "x": 48,
+    "y": 5,
+    "hiddenIndex": 36,
+    "byteIdx": 4,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "ROUTE_12",
+    "mapId": 23,
+    "x": 2,
+    "y": 63,
+    "hiddenIndex": 37,
+    "byteIdx": 4,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "ROUTE_17",
+    "mapId": 28,
+    "x": 15,
+    "y": 14,
+    "hiddenIndex": 38,
+    "byteIdx": 4,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "ROUTE_17",
+    "mapId": 28,
+    "x": 8,
+    "y": 45,
+    "hiddenIndex": 39,
+    "byteIdx": 4,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "ROUTE_17",
+    "mapId": 28,
+    "x": 17,
+    "y": 72,
+    "hiddenIndex": 40,
+    "byteIdx": 5,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "ROUTE_17",
+    "mapId": 28,
+    "x": 4,
+    "y": 91,
+    "hiddenIndex": 41,
+    "byteIdx": 5,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "ROUTE_17",
+    "mapId": 28,
+    "x": 8,
+    "y": 121,
+    "hiddenIndex": 42,
+    "byteIdx": 5,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "UNDERGROUND_PATH_NORTH_SOUTH",
+    "mapId": 119,
+    "x": 3,
+    "y": 4,
+    "hiddenIndex": 43,
+    "byteIdx": 5,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "UNDERGROUND_PATH_NORTH_SOUTH",
+    "mapId": 119,
+    "x": 4,
+    "y": 34,
+    "hiddenIndex": 44,
+    "byteIdx": 5,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "UNDERGROUND_PATH_WEST_EAST",
+    "mapId": 121,
+    "x": 12,
+    "y": 2,
+    "hiddenIndex": 45,
+    "byteIdx": 5,
+    "bitIdx": 5
+  },
+  {
+    "mapName": "UNDERGROUND_PATH_WEST_EAST",
+    "mapId": 121,
+    "x": 21,
+    "y": 5,
+    "hiddenIndex": 46,
+    "byteIdx": 5,
+    "bitIdx": 6
+  },
+  {
+    "mapName": "CELADON_CITY",
+    "mapId": 6,
+    "x": 48,
+    "y": 15,
+    "hiddenIndex": 47,
+    "byteIdx": 5,
+    "bitIdx": 7
+  },
+  {
+    "mapName": "ROUTE_25",
+    "mapId": 36,
+    "x": 10,
+    "y": 1,
+    "hiddenIndex": 48,
+    "byteIdx": 6,
+    "bitIdx": 0
+  },
+  {
+    "mapName": "MT_MOON_B2F",
+    "mapId": 61,
+    "x": 33,
+    "y": 9,
+    "hiddenIndex": 49,
+    "byteIdx": 6,
+    "bitIdx": 1
+  },
+  {
+    "mapName": "SEAFOAM_ISLANDS_B3F",
+    "mapId": 161,
+    "x": 9,
+    "y": 16,
+    "hiddenIndex": 50,
+    "byteIdx": 6,
+    "bitIdx": 2
+  },
+  {
+    "mapName": "VERMILION_CITY",
+    "mapId": 5,
+    "x": 14,
+    "y": 11,
+    "hiddenIndex": 51,
+    "byteIdx": 6,
+    "bitIdx": 3
+  },
+  {
+    "mapName": "CERULEAN_CITY",
+    "mapId": 3,
+    "x": 15,
+    "y": 8,
+    "hiddenIndex": 52,
+    "byteIdx": 6,
+    "bitIdx": 4
+  },
+  {
+    "mapName": "ROUTE_4",
+    "mapId": 15,
+    "x": 40,
+    "y": 3,
+    "hiddenIndex": 53,
+    "byteIdx": 6,
+    "bitIdx": 5
+  }
+]
