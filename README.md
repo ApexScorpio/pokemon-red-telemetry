@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:38:24**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:38:36**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -14,21 +14,21 @@
 ## ⚔️ Combate Ativo em Direto
 ### 🔴 Adversário: **Rattata** (Lv. 3)
 - **Tipos:** Normal
-- **HP:** **15 / 15** (100%)
+- **HP:** **0 / 15** (0%)
 - **Stats de Batalha:** ATK: 9 | DEF: 7 | SPD: 10 | SPC: 6
 - **Golpes:** Tackle, Tail Whip
 
 ### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 12)
 - **Tipos:** Bug/Flying
 - **HP:** **39 / 39**
-- **Stats com Modificadores:** ATK: 19 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 28 (0)
+- **Stats com Modificadores:** ATK: 19 (0) | DEF: 11 (-1) | SPD: 25 (0) | SPC: 28 (0)
 
 ### 🎯 Análise Tática Matemática (Gen 1)
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
 - **⭐ Melhor Decisão Matemática:** Usa **Confusion** (Psychic) ➔ Dano Estimado: **28-33 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 - **Matriz de Golpes Disponíveis:**
   - **Confusion** (Psychic) • PP: 24/20 • Dano: 28-33 HP (DANO NORMAL ⚔️) [🚨 PERIGO DE K.O. (100%)]
-  - **Tackle** (Normal) • PP: 35/20 • Dano: 11-14 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
+  - **Tackle** (Normal) • PP: 33/20 • Dano: 11-14 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
   - **String Shot** (Bug) • PP: 40/20 • Dano: 0-0 HP (DANO NORMAL ⚔️) [🛡️ GOLPE DE STATUS]
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
@@ -40,19 +40,16 @@
 - **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (39/39). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **3%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~6%**
-
 ## 👥 Equipa Atual (6/6 Pokémon)
 ### 1. **Butterfree** (Lv. 12) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 39 / 39 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 18 | SPD: 25 | SPC: 28
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Experiência:** 1883 EXP (Progresso: 33%, faltam 314 p/ Lv.13)
+- **Experiência:** 1907 EXP (Progresso: 38%, faltam 290 p/ Lv.13)
 - **Golpes:**
   - **Confusion** (Psychic) — PP: 24 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
 
 ### 2. **Charmeleon** (Lv. 16)
 - **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
