@@ -1,58 +1,35 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:20:38**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:20:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `26`, Y: `14`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Go BEEDRILL`
+- **Coordenadas GPS:** X: `24`, Y: `23`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `Enemy ZUBAT`
 - **Dinheiro:** **1321 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
-- **Tipos:** Poison/Flying
-- **HP:** **26 / 26** (100%)
-- **Stats de Batalha:** ATK: 13 | DEF: 11 | SPD: 15 | SPC: 14
-
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 13)
-- **Tipos:** Bug/Poison
-- **HP:** **23 / 43** (HEALTHY)
-- **Stats com Modificadores:** ATK: 32 (0) | DEF: 19 (0) | SPD: 27 (0) | SPC: 18 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **17-20 HP** (1x eficácia) • ~2 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Golpe #31 (Causa ~17-20 de dano)
-- ➔ Turno 2: Golpe #31 (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Golpe #31. Atacas primeiro em ambos os turnos.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (23/43). Não precisas de gastar um turno a trocar.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~10%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 13) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 23 / 43 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 13)
+- **Tipos:** Bug/Poison | **HP:** 11 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 27 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2368 | ATK: 2782 | DEF: 2269 | SPD: 3322 | SPC: 1780
-- **Experiência:** 2370 EXP (Progresso: 32%, faltam 374 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 2448 | ATK: 2872 | DEF: 2339 | SPD: 3432 | SPC: 1860
+- **Experiência:** 2508 EXP (Progresso: 57%, faltam 236 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 13 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 9 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -185,16 +162,16 @@
 - [18:16:43] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:20:49] `Enemy ZUBAT`
+- [18:20:48] `BEEDRILL`
+- [18:20:47] `Cr`
+- [18:20:45] `FURY ATTACK POISON STING`
+- [18:20:44] `Enemy ZUBAT`
+- [18:20:43] `BEEDRILL`
+- [18:20:42] `FURY ATTACK POISON STING`
+- [18:20:40] `Enemy ZUBAT`
+- [18:20:39] `BEEDRILL`
 - [18:20:38] `Go BEEDRILL`
-- [18:20:35] `Critical hit`
-- [18:20:34] `BEEDRILL`
-- [18:20:33] `It super`
-- [18:20:32] `BEEDRILL`
-- [18:20:31] `Go`
-- [18:20:26] `BEEDRILL`
-- [18:20:25] `Sucked health from`
-- [18:20:24] `Enemy ZUBAT`
-- [18:20:23] `BEEDRILL`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Bata com **String Shot** – o ataque Bug é super eficaz contra Zubat (Flying) e vai acabar rapidamente.  
