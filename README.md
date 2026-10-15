@@ -1,64 +1,57 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:41:45**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:41:57**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `26`, Y: `33`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas GPS:** X: `23`, Y: `29`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `BUTTERFREE`
+- **💬 Diálogo / Mensagem no Ecrã:** `Enemy ZUBAT`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #5`
-- **Último Golpe Usado por RED:** `Poison Powder`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
+- **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
-- **Tipos:** Rock/Ground
-- **HP:** **2 / 25** (8%)
-- **Stats de Batalha:** ATK: 20 | DEF: 22 | SPD: 1 | SPC: 11
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
+- **Tipos:** Poison/Flying
+- **HP:** **19 / 31** (61%)
+- **Stats de Batalha:** ATK: 15 | DEF: 12 | SPD: 18 | SPC: 14
 
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 16)
-- **Tipos:** Bug/Flying
-- **HP:** **29 / 49** (HEALTHY)
-- **Stats com Modificadores:** ATK: 27 (0) | DEF: 23 (0) | SPD: 33 (0) | SPC: 36 (0)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
+- **Tipos:** Bug/Poison
+- **HP:** **43 / 46** (HEALTHY)
+- **Stats com Modificadores:** ATK: 34 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic) ➔ Dano: **26-31 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **16-19 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Golpe #31 (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Golpe #31! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Confusion para liquidar o adversário já!
-- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 14)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (43/46). Não precisas de gastar um turno a trocar.
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
-  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **64%** | Great Ball: **97%** | Ultra Ball: **64%**
+  - *Se adormeceres o inimigo:* **~68%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14)
+### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 43 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2728 | ATK: 3147 | DEF: 2659 | SPD: 3732 | SPC: 2155
-- **Experiência:** 3273 EXP (Progresso: 84%, faltam 102 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 2748 | ATK: 3187 | DEF: 2709 | SPD: 3742 | SPC: 2170
+- **Experiência:** 3322 EXP (Progresso: 92%, faltam 53 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 18 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 17 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -86,17 +79,17 @@
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Golpe #158** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
 
-### 4. **Butterfree** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 29 / 49 ✅ (SAUDÁVEL)
+### 4. **Butterfree** (Lv. 16)
+- **Tipos:** Bug/Flying | **HP:** 21 / 49 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3560 | ATK: 4087 | DEF: 3464 | SPD: 4713 | SPC: 2567
-- **Experiência:** 4363 EXP (Progresso: 33%, faltam 550 p/ Lv.17)
+- **Stat EXP (EVs Acumulados):** HP: 3580 | ATK: 4127 | DEF: 3514 | SPD: 4723 | SPC: 2582
+- **Experiência:** 4412 EXP (Progresso: 39%, faltam 501 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 24 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 28 | Poder: -- | Precisão: 75%
-  - **Poison Powder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
+  - **Poison Powder** (Poison) — PP: 32 | Poder: -- | Precisão: 75%
 
 ### 5. **Pikachu** (Lv. 15)
 - **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
@@ -195,16 +188,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:41:56] `Enemy ZUBAT`
+- [18:41:55] `BEEDRILL`
+- [18:41:54] `Go BEEDRILL`
+- [18:41:50] `BUTTERFREE gaine`
+- [18:41:47] `BUTTERFREE`
+- [18:41:46] `It didn affect`
+- [18:41:45] `Enemy GEODUDE`
 - [18:41:45] `BUTTERFREE`
 - [18:41:44] `CONFUSION STUN SPORE`
 - [18:41:42] `Enemy GEODUDE`
-- [18:41:41] `FIGHT`
-- [18:41:40] `Enemy GEODUDE`
-- [18:41:37] `CONFUSION STUN SPORE`
-- [18:41:36] `Enemy GEODUDE`
-- [18:41:35] `BUTTERFREE`
-- [18:41:20] `CONFUSION STUN SPORE`
-- [18:41:19] `Enemy GEODUDE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
