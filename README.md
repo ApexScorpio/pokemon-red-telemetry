@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 21:04:53**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 21:05:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `28`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `35h 0m 38s`
+- **Tempo de Jogo:** `35h 0m 39s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **321 ₽** • **Fichas do Casino:** `0`
 
@@ -32,7 +32,7 @@
   - **Confusion** (Psychic_type) — PP: 22 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Poisonpowder** (Poison) — PP: 35 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
 ### 2. **NIDORAN (Nidoran♀)** (Lv. 15)
 - **Tipos:** Poison | **HP:** 45 / 45 ✅ (SAUDÁVEL)
@@ -104,7 +104,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **15 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **24 / 151**
+- **Espécies Vistas na Pokédex:** **25 / 151**
 - **Total de Pokémon Individuais Ativos:** **10 espécimes** (6 na Equipa + 4 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #32 Nidoran♂, #39 Jigglypuff
 
