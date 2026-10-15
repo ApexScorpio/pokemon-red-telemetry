@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:52:09**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:52:21**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -19,42 +19,41 @@
 - **Último Golpe Usado por RED:** `Confusion`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
-### 🔴 Adversário em Campo: **Geodude** (Lv. 12)
+### 🔴 Adversário em Campo: **Onix** (Lv. 14)
 - **Tipos:** Rock/Ground
-- **HP:** **9 / 33** (27%)
-- **Stats de Batalha:** ATK: 26 | DEF: 30 | SPD: 11 | SPC: 14
+- **HP:** **36 / 36** (100%)
+- **Stats de Batalha:** ATK: 20 | DEF: 52 | SPD: 26 | SPC: 15
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
-  - **Defense Curl** (Normal) • PP: 255 • Poder: -- • Precisão: 100%
+  - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
 
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 12)
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 13)
 - **Tipos:** Bug/Flying
-- **HP:** **26 / 39** (HEALTHY)
-- **Stats com Modificadores:** ATK: 19 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 28 (0)
+- **HP:** **29 / 42** (HEALTHY)
+- **Stats com Modificadores:** ATK: 20 (0) | DEF: 19 (0) | SPD: 27 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic) ➔ Dano: **12-15 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic) ➔ Dano: **14-17 HP** (1x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-3: Usa repetidamente Confusion
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⭐ GANHAR EXP: TROCA PARA O MAIS FRACO!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Beedrill (Lv. 11)** [38/38 HP]
-- **Motivo:** O adversário tem apenas 9 HP! Troca para Beedrill (Lv. 11) para ele participar e recolher 50% dos pontos de EXP da vitória com risco zero!
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (29/42). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 12) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 26 / 39 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 19 | DEF: 18 | SPD: 25 | SPC: 28
+### 1. **Butterfree** (Lv. 13) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Flying | **HP:** 29 / 42 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 20 | DEF: 19 | SPD: 27 | SPC: 30
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2743 | ATK: 3213 | DEF: 2567 | SPD: 3728 | SPC: 2020
-- **Experiência:** 2000 EXP (Progresso: 58%, faltam 197 p/ Lv.13)
+- **Stat EXP (EVs Acumulados):** HP: 2783 | ATK: 3293 | DEF: 2667 | SPD: 3748 | SPC: 2050
+- **Experiência:** 2220 EXP (Progresso: 4%, faltam 524 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 23 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 22 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
@@ -123,7 +122,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Pokémon Capturados:** **14 / 151**
-- **Pokémon Vistos:** **18 / 151**
+- **Pokémon Vistos:** **19 / 151**
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #32 Nidoran♂
 
 ## 💾 6. Pokémon Guardados no PC (3 / 20 na Caixa 1) • Vagas Livres: **17**
@@ -149,8 +148,8 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Charmeleon** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Butterfree** (Lv. 12) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidoran♂** (Lv. 12) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #3**: **Nidoran♂** (Lv. 12) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Butterfree** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Rattata** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Nidoran♀** (Lv. 13) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** ⚠️ OBRIGATÓRIO FAZER ANTES DO BROCK! Se derrotares o Brock primeiro, este combate desaparece para sempre. Usa Charmeleon/Butterfree para ganhar EXP fácil.
@@ -160,7 +159,7 @@
 - **Roster Inimigo:** Diglett (Lv. 11 - Terra) • Sandshrew (Lv. 11 - Terra)
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Butterfree** (Lv. 12) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Butterfree** (Lv. 13) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♂** (Lv. 12) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -173,7 +172,7 @@
 - **Roster Inimigo:** Geodude (Lv. 12 - Rocha/Terra) • Onix (Lv. 14 - Rocha/Terra)
 - **Lead Recomendado:** Butterfree (Confusion) & Charmeleon (Ember)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Butterfree** (Lv. 12) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Butterfree** (Lv. 13) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 11) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidoran♂** (Lv. 12) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -190,7 +189,7 @@
 - [16:48:31] Entrou em Route 2
 
 ## 🧠 Conselho Tático do Grok AI
-> "A sincronizar com a memória do Game Boy..."
+> "**Batalha:**"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
