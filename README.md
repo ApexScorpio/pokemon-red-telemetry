@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:44:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:44:38**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,19 +10,19 @@
 - **Coordenadas GPS:** X: `5`, Y: `8`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `It not very`
+- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Tackle`
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Bite`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
 - **Tipos:** Rock/Ground
-- **HP:** **4 / 29** (14%)
+- **HP:** **19 / 29** (66%)
 - **Stats de Batalha:** ATK: 22 | DEF: 26 | SPD: 10 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
@@ -31,20 +31,21 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
 - **Tipos:** Poison
-- **HP:** **50 / 59** (HEALTHY)
+- **HP:** **44 / 59** (HEALTHY)
 - **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **5-7 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **9-11 HP** (0.5x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Tackle (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Tackle! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Bite (Causa ~9-11 de dano)
+- ➔ Turno 2: Bite (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Bite. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 4 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Tackle para liquidar o adversário já!
+- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (44/59). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -52,23 +53,23 @@
 - **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4520 | ATK: 6250 | DEF: 4326 | SPD: 7035 | SPC: 3717
-- **Experiência:** 3575 EXP (Progresso: 28%, faltam 521 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4540 | ATK: 6290 | DEF: 4376 | SPD: 7045 | SPC: 3732
+- **Experiência:** 3666 EXP (Progresso: 40%, faltam 430 p/ Lv.16)
 - **Golpes & PPs:**
   - **Thunder Shock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 50 / 59 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 44 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3792 | ATK: 4805 | DEF: 3337 | SPD: 5243 | SPC: 3003
-- **Experiência:** 4875 EXP (Progresso: 34%, faltam 585 p/ Lv.20)
+- **Stat EXP (EVs Acumulados):** HP: 3812 | ATK: 4845 | DEF: 3387 | SPD: 5253 | SPC: 3018
+- **Experiência:** 4966 EXP (Progresso: 44%, faltam 494 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 23 | Poder: 60 | Precisão: 100%
+  - **Bite** (Normal) — PP: 22 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
@@ -188,16 +189,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:44:37] `FIGHT`
+- [18:44:36] `It not very`
+- [18:44:36] `TACKLE HORN ATTACK`
+- [18:44:35] `FIGHT`
+- [18:44:33] `Bring out which`
+- [18:44:32] `Will RED`
+- [18:44:30] `about to use`
+- [18:44:28] `It not very`
+- [18:44:27] `TACKLE HORN ATTACK`
 - [18:44:25] `It not very`
-- [18:44:24] `TACKLE HORN ATTACK`
-- [18:44:18] `FIGHT`
-- [18:44:17] `NIDORINO`
-- [18:44:16] `Enemy GEODUDE`
-- [18:44:14] `TACKLE HORN ATTACK`
-- [18:44:13] `Enemy GEODUDE`
-- [18:44:12] `PIKACHU e`
-- [18:44:09] `Choose a POKMON`
-- [18:44:08] `FIGHT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
