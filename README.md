@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:54:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:54:15**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,14 +10,14 @@
 - **Coordenadas GPS:** X: `60`, Y: `10`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `But it failed`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Tackle`
+- **Último Golpe Usado por RED:** `Poison Sting`
 - **Último Golpe Usado pelo Adversário:** `Growl`
 
 ### 🔴 Adversário em Campo: **Spearow** (Lv. 6)
@@ -260,9 +260,11 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:54:03] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:54:15] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:54:07] `TACKLE HORN ATTACK`
+- [17:54:06] `FIGHT`
 - [17:54:00] `But it failed`
 - [17:54:00] `NIDORAN`
 - [17:53:53] `TACKLE HORN ATTACK`
