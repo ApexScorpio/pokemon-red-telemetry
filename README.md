@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:13:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:14:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -115,7 +115,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:13:52] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:14:04] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
