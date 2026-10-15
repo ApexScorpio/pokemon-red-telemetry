@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:44:38**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:44:49**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,42 +10,43 @@
 - **Coordenadas GPS:** X: `5`, Y: `8`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **💬 Diálogo / Mensagem no Ecrã:** `RED defeated`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Bite`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
+- **Último Golpe Usado pelo Adversário:** `Screech`
 
-### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
+### 🔴 Adversário em Campo: **Onix** (Lv. 10)
 - **Tipos:** Rock/Ground
-- **HP:** **19 / 29** (66%)
-- **Stats de Batalha:** ATK: 22 | DEF: 26 | SPD: 10 | SPC: 12
+- **HP:** **0 / 28** (0%)
+- **Stats de Batalha:** ATK: 15 | DEF: 38 | SPD: 20 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
+  - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+  - **Tackle** (Normal) ➔ Dano: ~2-3 HP (1x)
+  - **Screech** (Normal) ➔ 🛡️ Reduz stats (Screech)
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
 - **Tipos:** Poison
-- **HP:** **44 / 59** (HEALTHY)
+- **HP:** **37 / 59** (HEALTHY)
 - **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **9-11 HP** (0.5x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~20 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Bite (Causa ~9-11 de dano)
-- ➔ Turno 2: Bite (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Bite. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-20: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (44/59). Não precisas de gastar um turno a trocar.
+- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (37/59). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -61,15 +62,15 @@
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 44 / 59 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 37 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 31
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3812 | ATK: 4845 | DEF: 3387 | SPD: 5253 | SPC: 3018
-- **Experiência:** 4966 EXP (Progresso: 44%, faltam 494 p/ Lv.20)
+- **Stat EXP (EVs Acumulados):** HP: 3887 | ATK: 4970 | DEF: 3647 | SPD: 5343 | SPC: 3078
+- **Experiência:** 5380 EXP (Progresso: 91%, faltam 80 p/ Lv.20)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Bite** (Normal) — PP: 22 | Poder: 60 | Precisão: 100%
+  - **Bite** (Normal) — PP: 16 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 15)
@@ -189,16 +190,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [18:44:37] `FIGHT`
-- [18:44:36] `It not very`
-- [18:44:36] `TACKLE HORN ATTACK`
-- [18:44:35] `FIGHT`
-- [18:44:33] `Bring out which`
-- [18:44:32] `Will RED`
-- [18:44:30] `about to use`
-- [18:44:28] `It not very`
-- [18:44:27] `TACKLE HORN ATTACK`
-- [18:44:25] `It not very`
+- [18:44:49] `RED defeated`
+- [18:44:48] `Enemy ONIX`
+- [18:44:47] `NIDORINO`
+- [18:44:46] `Enemy ONIX`
+- [18:44:45] `NIDORINO`
+- [18:44:44] `It not very`
+- [18:44:43] `FIGHT`
+- [18:44:42] `HIKER sent`
+- [18:44:41] `NIDORINO is`
+- [18:44:39] `NIDORINO`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
