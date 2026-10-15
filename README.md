@@ -1,61 +1,58 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:43:06**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:43:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `31`, Y: `28`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas GPS:** X: `31`, Y: `19`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Enemy`
+- **💬 Diálogo / Mensagem no Ecrã:** `BEEDRILL`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #2`
-- **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
 
-### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
-- **Tipos:** Rock/Ground
-- **HP:** **0 / 26** (0%)
-- **Stats de Batalha:** ATK: 18 | DEF: 23 | SPD: 9 | SPC: 10
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
+- **Tipos:** Poison/Flying
+- **HP:** **31 / 31** (100%)
+- **Stats de Batalha:** ATK: 16 | DEF: 12 | SPD: 17 | SPC: 14
 
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 16)
-- **Tipos:** Bug/Flying
-- **HP:** **9 / 49** (HEALTHY)
-- **Stats com Modificadores:** ATK: 27 (0) | DEF: 23 (0) | SPD: 33 (0) | SPC: 36 (0)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
+- **Tipos:** Bug/Poison
+- **HP:** **26 / 48** (HEALTHY)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic) ➔ Dano: **28-34 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Golpe #31** (Normal) ➔ Dano: **19-23 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Golpe #31 (Causa ~19-23 de dano)
+- ➔ Turno 2: Golpe #31 (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Golpe #31. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (9/49). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (26/48). Não precisas de gastar um turno a trocar.
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **37%** | Great Ball: **55%** | Ultra Ball: **37%**
+  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 15)
+### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 26 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 8 | ATK: 7 | DEF: 10 | SPD: 4 | SPC: 2 (**41% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2828 | ATK: 3312 | DEF: 2844 | SPD: 3817 | SPC: 2240
-- **Experiência:** 3504 EXP (Progresso: 18%, faltam 592 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 2848 | ATK: 3352 | DEF: 2894 | SPD: 3827 | SPC: 2255
+- **Experiência:** 3553 EXP (Progresso: 25%, faltam 543 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Golpe #31** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
+  - **Golpe #31** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
   - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
 
@@ -83,12 +80,12 @@
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Golpe #158** (Normal) — PP: 15 | Poder: 40 | Precisão: 100%
 
-### 4. **Butterfree** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 9 / 49 ✅ (SAUDÁVEL)
+### 4. **Butterfree** (Lv. 16)
+- **Tipos:** Bug/Flying | **HP:** 0 / 49 ❌ (FAINTED)
 - **Stats Reais:** ATK: 24 | DEF: 23 | SPD: 33 | SPC: 36
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 3620 | ATK: 4207 | DEF: 3614 | SPD: 4743 | SPC: 2612
-- **Experiência:** 4510 EXP (Progresso: 51%, faltam 403 p/ Lv.17)
+- **Stat EXP (EVs Acumulados):** HP: 3640 | ATK: 4247 | DEF: 3664 | SPD: 4753 | SPC: 2627
+- **Experiência:** 4559 EXP (Progresso: 57%, faltam 354 p/ Lv.17)
 - **Golpes & PPs:**
   - **Confusion** (Psychic) — PP: 19 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 39 | Poder: -- | Precisão: 95%
@@ -161,12 +158,11 @@
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Butterfree** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Nidorino** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Beedrill** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Nidorino** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ### #2. **Team Rocket Grunt** (Mt. Moon (B2F - Saída)) • **⚔️ POR VENCER**
@@ -178,8 +174,7 @@
   - **Slot #2**: **Beedrill** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Butterfree** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
 
 # 📜 PARTE C: HISTÓRICO RECENTE
@@ -192,16 +187,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:43:17] `BEEDRILL`
+- [18:43:16] `FURY ATTACK POISON STING`
+- [18:43:14] `Bring out which`
+- [18:43:13] `BUTTERFREE`
+- [18:43:12] `CONFUSION STUN SPORE`
+- [18:43:12] `Enemy ZUBAT`
+- [18:43:10] `Choose a POKMON`
+- [18:43:09] `FURY ATTACK POISON STING`
+- [18:43:08] `Go BEED`
 - [18:43:06] `Enemy`
-- [18:43:05] `CONFUSION STUN SPORE`
-- [18:43:04] `Go BUTTERFREE`
-- [18:43:03] `Choose a POKMON`
-- [18:43:02] `FIGHT`
-- [18:43:00] `FURY ATTACK POISON STING`
-- [18:42:59] `It not`
-- [18:42:58] `BEEDRILL`
-- [18:42:54] `ZUBAT is tough`
-- [18:42:48] `BUTTERFREE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
