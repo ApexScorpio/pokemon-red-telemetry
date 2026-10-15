@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:30:58**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:31:10**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas GPS:** X: `19`, Y: `7`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas GPS:** X: `8`, Y: `8`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `OK Wel need`
+- **💬 Diálogo / Mensagem no Ecrã:** `over a rocky`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -150,14 +150,16 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
+- [17:31:03] Entrou em Route 4
+- [17:31:03] Entrou em Route 3
 - [17:29:54] Entrou em Route 4
 - [17:29:53] Entrou em Mt Moon 1F
 - [17:29:20] Entrou em Route 4
 - [17:29:16] Entrou em Mt Moon Pokecenter
-- [17:29:14] Entrou em Route 4
-- [17:28:25] Entrou em Mt Moon 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:31:08] `over a rocky`
+- [17:31:07] `Ouch I tripped`
 - [17:29:18] `OK Wel need`
 - [17:29:17] `Welcome to our`
 - [17:29:11] `Got away safely`
@@ -166,8 +168,6 @@
 - [17:29:08] `Enemy GEODUDE`
 - [17:29:07] `NIDORAN`
 - [17:29:07] `TACKLE LEER`
-- [17:29:06] `FIGHT`
-- [17:29:05] `Enemy GEODUDE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
