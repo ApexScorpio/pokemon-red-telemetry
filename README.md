@@ -1,35 +1,63 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:53:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:53:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `61`, Y: `13`
+- **Coordenadas GPS:** X: `64`, Y: `8`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **💬 Diálogo / Mensagem no Ecrã:** `Enemy`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Lass Janice** (Rota 3 (Entrada Oeste))
-  - **Equipa Adversária:** Pidgey (Lv. 9) • Pidgey (Lv. 9)
-  - **Lead Recomendado:** Pikachu / Butterfree
-  - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Tackle`
+- **Último Golpe Usado pelo Adversário:** `Gust`
+
+### 🔴 Adversário em Campo: **Pidgey** (Lv. 6)
+- **Tipos:** Normal/Flying
+- **HP:** **0 / 20** (0%)
+- **Stats de Batalha:** ATK: 11 | DEF: 11 | SPD: 12 | SPC: 10
+- **Os 4 Golpes do Adversário:**
+  - **Gust** (Normal) • PP: 2 • Poder: 40 • Precisão: 100%
+  - **Sand Attack** (Normal) • PP: 255 • Poder: -- • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Gust** (Normal) ➔ Dano: ~3-4 HP (1x)
+  - **Sand Attack** (Normal) ➔ Golpe de Status
+
+### 🔵 O Teu Pokémon em Campo: **Nidoran♂** (Lv. 15)
+- **Tipos:** Poison
+- **HP:** **40 / 43** (HEALTHY)
+- **Stats com Modificadores:** ATK: 31 (0) | DEF: 22 (0) | SPD: 24 (0) | SPC: 20 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **26-31 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Nidoran♂ tem a melhor rota de vitória rápida e HP estável (40/43). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Nidoran♂** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 43 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 40 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 22 | SPD: 24 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2472 | ATK: 3163 | DEF: 2007 | SPD: 3404 | SPC: 1758
-- **Experiência:** 2045 EXP (Progresso: 2%, faltam 490 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 2552 | ATK: 3268 | DEF: 2077 | SPD: 3530 | SPC: 1824
+- **Experiência:** 2148 EXP (Progresso: 23%, faltam 387 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 30 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -123,7 +151,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. **Lass Janice** (Rota 3 (Entrada Oeste)) • **⚔️ POR VENCER**
+### #1. **Lass Janice** (Rota 3 (Entrada Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Pidgey (Lv. 9) • Pidgey (Lv. 9)
 - **Lead Recomendado:** Pikachu / Butterfree
@@ -136,7 +164,7 @@
   - **Slot #6**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
-### #2. **Bug Catcher Greg** (Rota 3 (Caminho Superior)) • **⚔️ POR VENCER**
+### #2. **Bug Catcher Greg** (Rota 3 (Caminho Superior)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 9) • Weedle (Lv. 9) • Caterpie (Lv. 9)
 - **Lead Recomendado:** Charmeleon (Ember) / Pidgey
@@ -149,7 +177,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember do Charmeleon elimina cada inseto num só golpe.
 
-### #3. **Youngster Ben** (Rota 3 (Centro)) • **⚔️ POR VENCER**
+### #3. **Youngster Ben** (Rota 3 (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 11) • Ekans (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -162,7 +190,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion é super eficaz contra Ekans (Veneno). Cuidado com Poison Sting.
 
-### #4. **Bug Catcher James** (Rota 3 (Labirinto)) • **⚔️ POR VENCER**
+### #4. **Bug Catcher James** (Rota 3 (Labirinto)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 9) • Kakuna (Lv. 9) • Caterpie (Lv. 9) • Metapod (Lv. 9)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -175,7 +203,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Equipa de 4 insetos. Charmeleon limpa facilmente a equipa inteira.
 
-### #5. **Lass Sally** (Rota 3 (Caminho Sul)) • **⚔️ POR VENCER**
+### #5. **Lass Sally** (Rota 3 (Caminho Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Nidoran♀ (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -188,7 +216,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion elimina Nidoran♀ rapidamente.
 
-### #6. **Bug Catcher Colton** (Rota 3 (Perto de Mt. Moon)) • **⚔️ POR VENCER**
+### #6. **Bug Catcher Colton** (Rota 3 (Perto de Mt. Moon)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10)
 - **Lead Recomendado:** Charmeleon
@@ -201,7 +229,7 @@
   - **Slot #6**: **Pikachu** (Lv. 15) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para ganhar EXP com Charmeleon.
 
-### #7. **Youngster Calvin** (Rota 3 (Saída para Mt. Moon)) • **⚔️ POR VENCER**
+### #7. **Youngster Calvin** (Rota 3 (Saída para Mt. Moon)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 14)
 - **Lead Recomendado:** Pikachu (Thundershock) ou Geodude
@@ -214,7 +242,7 @@
   - **Slot #6**: **Butterfree** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Spearow é rápido e bate forte com Peck. Pikachu derrota com facilidade.
 
-### #8. **Lass Robin** (Rota 3 (Canto Nordeste)) • **⚔️ POR VENCER**
+### #8. **Lass Robin** (Rota 3 (Canto Nordeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Jigglypuff (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -229,24 +257,10 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:53:19] Entrou em Route 3
-- [17:52:07] Entrou em Route 4
-- [17:51:59] Entrou em Mt Moon Pokecenter
-- [17:51:57] Entrou em Route 4
-- [17:51:54] Entrou em Mt Moon Pokecenter
-- [17:51:51] Entrou em Route 4
+- [17:53:40] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [17:53:24] `FIGHT`
-- [17:52:02] `RED saved`
-- [17:52:02] `EXIT`
-- [17:51:55] `OK Wel need`
-- [17:51:54] `Welcome to our`
-- [17:51:49] `NIDORAN grew`
-- [17:51:48] `Enemy SPEAROW`
-- [17:51:47] `FIGHT`
-- [17:51:46] `NIDORAN`
-- [17:51:45] `Go NIDORAN`
+- [17:53:39] `Enemy`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
