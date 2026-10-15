@@ -1,5 +1,5 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:52:24**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 15:53:21**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
@@ -34,7 +34,7 @@
   - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~6%**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Nidoran♀** (Lv. 12)
+### 1. **Nidoran♀** (Lv. 12) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 33 / 37 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 17 | DEF: 19 | SPD: 19 | SPC: 16
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
