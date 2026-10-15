@@ -1,15 +1,15 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:59:54**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:00:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 2** (ID Interno: `0xD`)
-- **Coordenadas GPS:** X: `8`, Y: `5`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Coordenadas GPS:** X: `0`, Y: `6`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Dinheiro:** **1831 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -21,10 +21,10 @@
 - **Tipos:** Bug/Flying | **HP:** 23 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 20 | DEF: 19 | SPD: 27 | SPC: 30
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2794 | ATK: 3308 | DEF: 2720 | SPD: 3771 | SPC: 2060
-- **Experiência:** 2328 EXP (Progresso: 24%, faltam 416 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 2834 | ATK: 3353 | DEF: 2760 | SPD: 3827 | SPC: 2095
+- **Experiência:** 2359 EXP (Progresso: 30%, faltam 385 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic) — PP: 20 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic) — PP: 19 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
