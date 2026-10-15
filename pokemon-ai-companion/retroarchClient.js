@@ -296,7 +296,11 @@ class RetroArchClient extends EventEmitter {
       try {
         await this.fetchGameState();
       } catch (err) {
-        // Silencioso
+        const now = Date.now();
+        if (!this.lastPollingErrorAt || now - this.lastPollingErrorAt >= 2000) {
+          this.lastPollingErrorAt = now;
+          console.error('[RetroArchClient] Erro em fetchGameState:', err && err.stack ? err.stack : err);
+        }
       }
       if (this.isPolling) {
         this.timer = setTimeout(poll, this.pollInterval);
