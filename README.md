@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:23:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:24:11**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas GPS:** X: `37`, Y: `29`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **1696 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -187,6 +187,7 @@
 - [18:21:57] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:24:05] `FURY ATTACK POISON STING`
 - [18:23:58] `FIGHT`
 - [18:23:56] `Critic`
 - [18:23:56] `Enemy GEO`
@@ -196,7 +197,6 @@
 - [18:23:52] `FURY ATTACK POISON STING`
 - [18:23:51] `BEEDRILL`
 - [18:23:47] `FURY ATTACK POISON STING`
-- [18:23:46] `FIGHT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
