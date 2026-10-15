@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:54:27**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:54:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,57 +8,24 @@
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
 - **Coordenadas GPS:** X: `64`, Y: `13`
-- **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN gained`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `NIDORAN`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Spearow** (Lv. 8)
-- **Tipos:** Normal/Flying
-- **HP:** **26 / 26** (100%)
-- **Stats de Batalha:** ATK: 16 | DEF: 9 | SPD: 18 | SPC: 9
-- **Os 4 Golpes do Adversário:**
-  - **Peck** (Flying) • PP: 2 • Poder: 35 • Precisão: 100%
-  - **Growl** (Normal) • PP: 255 • Poder: -- • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Peck** (Flying) ➔ Dano: ~5-6 HP (1x)
-  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
-
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 15)
-- **Tipos:** Normal
-- **HP:** **40 / 43** (HEALTHY)
-- **Stats com Modificadores:** ATK: 31 (0) | DEF: 22 (0) | SPD: 24 (0) | SPC: 20 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **48-57 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Bite (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Bite! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (40/43). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **2%** | Ultra Ball: **5%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~10%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Nidoran♂** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 40 / 43 ✅ (SAUDÁVEL)
+### 1. **Nidoran♂** (Lv. 15)
+- **Tipos:** Poison | **HP:** 35 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 22 | SPD: 24 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2632 | ATK: 3373 | DEF: 2147 | SPD: 3656 | SPC: 1890
-- **Experiência:** 2244 EXP (Progresso: 42%, faltam 291 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 2672 | ATK: 3433 | DEF: 2177 | SPD: 3726 | SPC: 1921
+- **Experiência:** 2310 EXP (Progresso: 55%, faltam 225 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -258,9 +225,11 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:54:27] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:54:39] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:54:29] `NIDORAN`
+- [17:54:28] `Enem`
 - [17:54:23] `NIDORAN gained`
 - [17:54:07] `TACKLE HORN ATTACK`
 - [17:54:06] `FIGHT`
@@ -269,12 +238,9 @@
 - [17:53:53] `TACKLE HORN ATTACK`
 - [17:53:48] `FIGHT`
 - [17:53:47] `Wild SPEAROW`
-- [17:53:39] `Enemy`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Batalha: usa Pikachu e lança **Thunder Shock** – Spearow é totalmente fraco a eletricidade, e o ataque garante vitória rápida sem precisar de itens.  
-
-Fora de combate: segue para a **Route 4** e treina Nidoran♂/♀ nas"
+> "Troca imediatamente para o **Pikachu"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
