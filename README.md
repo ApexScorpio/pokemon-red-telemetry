@@ -1,10 +1,10 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:13:48**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:13:59**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
-- **Localização Atual:** **Pewter City** (ID: `0x2`)
-- **Coordenadas GPS:** X: `23`, Y: `18`
+- **Localização Atual:** **Pewter Gym** (ID: `0x36`)
+- **Coordenadas GPS:** X: `4`, Y: `13`
 - **Dinheiro:** **225 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
@@ -78,7 +78,7 @@
 - **Antidote** x2
 - **Town Map** x1
 
-## 🗺️ Radar da Área: **Pewter City**
+## 🗺️ Radar da Área: **Pewter Gym**
 ### 🎯 Preparação Tática: **Líder Brock (Ginásio de Pewter)**
 - **Adversários:** Geodude (Lv. 12) & Onix (Lv. 14) (Nível Alvo: **Lv. 11 a 14**)
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Rattata (Lv. 13)** (*Golpes Normais são pouco eficazes (0.5x) contra a armadura do adversário.*)
