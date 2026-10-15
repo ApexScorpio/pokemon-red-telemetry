@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:54:30**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 16:54:41**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -15,9 +15,9 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #9`
+- **Turno Atual:** `Turno #10`
 - **Último Golpe Usado por RED:** `Scratch`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
+- **Último Golpe Usado pelo Adversário:** `Screech`
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 14)
 - **Tipos:** Rock/Ground
@@ -27,18 +27,18 @@
   - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
   - **Screech** (Normal) • PP: 45 • Poder: -- • Precisão: 85%
 
-### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 16)
-- **Tipos:** Fire
-- **HP:** **48 / 48** (HEALTHY)
-- **Stats com Modificadores:** ATK: 30 (0) | DEF: 26 (0) | SPD: 37 (0) | SPC: 32 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 13)
+- **Tipos:** Poison
+- **HP:** **40 / 40** (HEALTHY)
+- **Stats com Modificadores:** ATK: 18 (0) | DEF: 10 (-2) | SPD: 21 (0) | SPC: 17 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Ember** (Fire) ➔ Dano: **10-12 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Growl** (Normal) ➔ Dano: **0-0 HP** (0.5x eficácia) • ~null turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Ember (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Ember! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-null: Usa repetidamente Growl
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **⭐ GANHAR EXP: TROCA PARA O MAIS FRACO!**
 - **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
@@ -58,7 +58,7 @@
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
-### 2. **Charmeleon** (Lv. 16) ⚔️ [EM COMBATE]
+### 2. **Charmeleon** (Lv. 16)
 - **Tipos:** Fire | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 26 | SPD: 37 | SPC: 32
 - **Gen 1 IVs (DVs):** HP: 4 | ATK: 8 | DEF: 1 | SPD: 14 | SPC: 14 (**55% Perfeição**)
@@ -92,7 +92,7 @@
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
-### 5. **Nidoran♀** (Lv. 13)
+### 5. **Nidoran♀** (Lv. 13) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
