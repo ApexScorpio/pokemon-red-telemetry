@@ -1,31 +1,59 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:55:14**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:55:26**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `62`, Y: `8`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **💬 Diálogo / Mensagem no Ecrã:** `Move POKMON`
+- **Coordenadas GPS:** X: `65`, Y: `9`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `Enemy JIGGLYPUFF`
 - **Dinheiro:** **3001 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Scratch`
+
+### 🔴 Adversário em Campo: **Jigglypuff** (Lv. 5)
+- **Tipos:** Normal/Fairy
+- **HP:** **4 / 26** (15%)
+- **Stats de Batalha:** ATK: 10 | DEF: 7 | SPD: 7 | SPC: 8
+
+### 🔵 O Teu Pokémon em Campo: **Nidoran♀** (Lv. 15)
+- **Tipos:** Poison
+- **HP:** **45 / 45** (SLEEP)
+- **Stats com Modificadores:** ATK: 23 (0) | DEF: 23 (0) | SPD: 23 (0) | SPC: 20 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **20-24 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 4 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Scratch para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 12)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **7%** | Great Ball: **11%** | Ultra Ball: **20%**
+  - *Se adormeceres o inimigo:* **~32%** | *Com HP no vermelho:* **~7%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Nidoran♀** (Lv. 15)
-- **Tipos:** Poison | **HP:** 45 / 45 ✅ (SAUDÁVEL)
+### 1. **Nidoran♀** (Lv. 15) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 45 / 45 ⚠️ (SLEEP)
 - **Stats Reais:** ATK: 21 | DEF: 23 | SPD: 23 | SPC: 20
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2113 | ATK: 2840 | DEF: 2017 | SPD: 3164 | SPC: 1734
 - **Experiência:** 2063 EXP (Progresso: 6%, faltam 472 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -225,19 +253,19 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:55:14] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:55:26] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:55:26] `Enemy JIGGLYPUFF`
+- [17:55:25] `NIDORAN`
+- [17:55:23] `Enemy JIGGLYPUFF`
+- [17:55:22] `NIDORAN`
+- [17:55:21] `Enemy JIGGLYPUFF`
+- [17:55:20] `NIDORAN`
+- [17:55:19] `FIGHT`
+- [17:55:15] `Choose a POKMON`
 - [17:55:14] `Move POKMON`
 - [17:55:13] `Choose a P SWITCH`
-- [17:55:12] `EXIT`
-- [17:55:10] `NIDORAN evolved`
-- [17:55:09] `What NIDORAN`
-- [17:55:07] `NIDORAN grew`
-- [17:55:06] `NIDORAN`
-- [17:55:05] `Enemy PIDGEY`
-- [17:55:04] `But it failed`
-- [17:55:03] `TACKLE HORN ATTACK`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Use imediatamente **Poison Sting** com o Nidoran♂ – basta um golpe para acabar com o Pidgey de "
