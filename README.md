@@ -1,15 +1,15 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:19:37**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:19:48**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `35`, Y: `13`
+- **Coordenadas GPS:** X: `28`, Y: `13`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -18,13 +18,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Nidoran♂** (Lv. 13) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 36 / 39 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 31 / 39 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 19 | SPD: 21 | SPC: 18
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1612 | ATK: 2428 | DEF: 1597 | SPD: 2666 | SPC: 1336
-- **Experiência:** 1390 EXP (Progresso: 37%, faltam 222 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 1807 | ATK: 2578 | DEF: 1687 | SPD: 2812 | SPC: 1427
+- **Experiência:** 1510 EXP (Progresso: 71%, faltam 102 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 27 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 24 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
 
@@ -95,7 +95,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Pokémon Capturados:** **14 / 151**
-- **Pokémon Vistos:** **20 / 151**
+- **Pokémon Vistos:** **21 / 151**
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #32 Nidoran♂
 
 ## 💾 6. Pokémon Guardados no PC (3 / 20 na Caixa 1) • Vagas Livres: **17**
@@ -116,7 +116,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:19:37] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:19:48] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
