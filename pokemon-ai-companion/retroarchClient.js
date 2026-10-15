@@ -961,6 +961,11 @@ class RetroArchClient extends EventEmitter {
     const blockCombat = await this.readMemoryBlock('CFE0', 255);
     const blockBattleMods = await this.readMemoryBlock('CC20', 280);
 
+    // Ler o sinalizador diretamente: o bloco CFE0 atravessa a fronteira CFFF/D000
+    // e a leitura em bloco pode falhar antes de chegar a D057.
+    const battleFlagRead = await this.sendRaw('READ_CORE_MEMORY D057 1');
+    const directBattleFlag = battleFlagRead && battleFlagRead.length ? battleFlagRead[0] : null;
+
     let inBattle = false;
     let battleType = 'None';
 
@@ -974,7 +979,7 @@ class RetroArchClient extends EventEmitter {
         combatBlockLength: blockCombat ? blockCombat.length : null,
         requestedBattleModsBlock: '$CC20',
         battleModsBlockLength: blockBattleMods ? blockBattleMods.length : null,
-        rawBattleFlag: blockCombat && blockCombat.length > 119 ? blockCombat[119] : null,
+        rawBattleFlag: directBattleFlag,
         enemySpeciesRaw: blockCombat && blockCombat.length > 5 ? blockCombat[5] : null,
         playerMode: this.latestState.playerMode || null,
         inBattleBeforeUpdate: !!this.latestState.inBattle
@@ -988,9 +993,8 @@ class RetroArchClient extends EventEmitter {
       console.log('[BattleDetectionDebug]', JSON.stringify(diagnostic));
     }
 
-    if (blockCombat && blockCombat.length > 119) {
-      const rawBattleFlag = blockCombat[119];
-      const inBattleVal = Number.parseInt(rawBattleFlag, 16);
+    if (directBattleFlag !== null && directBattleFlag !== undefined) {
+      const inBattleVal = Number.parseInt(directBattleFlag, 16);
       if (!this.isSimulatingBattle) {
         inBattle = inBattleVal === 1 || inBattleVal === 2;
         battleType = inBattleVal === 1 ? 'Wild' : inBattleVal === 2 ? 'Trainer' : 'None';
