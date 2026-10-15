@@ -291,7 +291,7 @@ class RetroArchClient extends EventEmitter {
 
   // Leitura Exaustiva de Blocos de Memória Contíguos
   async readMemoryBlock(startAddrHex, length) {
-    const CHUNK_SIZE = 160;
+    const CHUNK_SIZE = 1024;
     const startAddr = parseInt(startAddrHex, 16);
     const chunks = [];
     for (let offset = 0; offset < length; offset += CHUNK_SIZE) {
@@ -1268,9 +1268,9 @@ class RetroArchClient extends EventEmitter {
     }
 
     // A VRAM é recolhida em segundo plano para todos os mapas, sem bloquear a leitura principal.
-    // Intervalo reduzido de 8 s para 1,5 s para atualizar a vista quase em tempo real.
+    // Amostragem da VRAM a 4 Hz; o canvas do mapa completo é redesenhado a 60 Hz.
     const nowVideo = Date.now();
-    if (!this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 1500) {
+    if (!this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 250) {
       this.lastVideoReadAt = nowVideo;
       this.videoReadInProgress = true;
       (async () => {
