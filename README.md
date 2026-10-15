@@ -1,51 +1,55 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:12:38**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:12:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `7`, Y: `25`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **💬 Diálogo / Mensagem no Ecrã:** `BUG CATCHER You`
-- **Dinheiro:** **1001 ₽**
+- **Coordenadas GPS:** X: `7`, Y: `27`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **💬 Diálogo / Mensagem no Ecrã:** `It not very`
+- **Dinheiro:** **1111 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Tackle`
-- **Último Golpe Usado pelo Adversário:** `Harden`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
-### 🔴 Adversário em Campo: **Kakuna** (Lv. 11)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 32** (0%)
-- **Stats de Batalha:** ATK: 12 | DEF: 42 | SPD: 14 | SPC: 12
+### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Rock/Ground
+- **HP:** **12 / 24** (50%)
+- **Stats de Batalha:** ATK: 19 | DEF: 22 | SPD: 8 | SPC: 11
 - **Os 4 Golpes do Adversário:**
-  - **Harden** (Normal) • PP: 3 • Poder: -- • Precisão: 100%
+  - **Tackle** (Normal) • PP: 4 • Poder: 35 • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Harden** (Normal) ➔ Golpe de Status
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
 - **Tipos:** Poison
-- **HP:** **50 / 51** (HEALTHY)
+- **HP:** **41 / 51** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~4 turnos para K.O.
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Bite** (Normal) ➔ Dano: **8-10 HP** (0.5x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-4: Usa repetidamente Bite
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Bite (Causa ~8-10 de dano)
+- ➔ Turno 2: Bite (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Bite. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (50/51). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 12 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Bite para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **3%** | Great Ball: **5%** | Ultra Ball: **9%**
+  - *Se adormeceres o inimigo:* **~28%** | *Com HP no vermelho:* **~9%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 12)
@@ -60,13 +64,13 @@
   - **Golpe #31** (Normal) — PP: 20 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 50 / 51 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 41 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
 - **Stat EXP (EVs Acumulados):** HP: 2997 | ATK: 3793 | DEF: 2472 | SPD: 4174 | SPC: 2173
 - **Experiência:** 2904 EXP (Progresso: 63%, faltam 216 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 24 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -119,7 +123,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **6 / 20 slots** (14 vagas livres)
-- **Potion** x4
+- **Potion** x5
 - **Antidote** x2
 - **Town Map** x1
 - **Item #234** x1
@@ -185,16 +189,16 @@
 - [18:11:09] Entrou em Pewter City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:12:49] `It not very`
+- [18:12:48] `TACKLE HORN ATTACK`
+- [18:12:47] `NIDORINO`
+- [18:12:45] `Enemy GEODUDE`
+- [18:12:44] `TACKLE HORN ATTACK`
+- [18:12:44] `Go NIDORINO`
+- [18:12:40] `RED found`
 - [18:12:38] `BUG CATCHER You`
 - [18:12:37] `NIDORINO gained`
 - [18:12:36] `NIDORINO`
-- [18:12:35] `Enemy KAKUNA`
-- [18:12:34] `NI`
-- [18:12:33] `Enemy KAKUN`
-- [18:12:33] `FIGHT`
-- [18:12:32] `TACKLE HORN ATTACK`
-- [18:12:31] `Bring out which`
-- [18:12:30] `NI`
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:** Usa **String Shot** com Beedrill – é super‑eficaz contra Zubat (Bug vs Flying).  
