@@ -1,16 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:16:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:16:25**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `62`, Y: `0`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **🗺️ Exploração Livre (🚶 A Pé)**
-- **Tempo de Jogo:** `46h 0m 50s`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `60`, Y: `8`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `46h 0m 51s`
+- **💬 Diálogo / Mensagem no Ecrã:** `999999999999999999 999999999999999999`
 - **Dinheiro:** **2361 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -233,12 +234,15 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
+- [20:16:16] Entrou em Route 3
+- [20:16:13] Entrou em Route 4
 - [20:16:11] Entrou em Route 3
 - [19:59:23] Entrou em Route 4
 - [19:50:53] Entrou em Mt Moon 1F
 - [19:50:46] Entrou em Route 4
-- [19:50:38] Entrou em Mt Moon Pokecenter
-- [19:50:25] Entrou em Route 4
+
+### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:16:23] `999999999999999999 999999999999999999`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
