@@ -410,13 +410,15 @@ class RetroArchClient extends EventEmitter {
         this.readMemoryBlock('FF40', 8)
       ]);
       if (tilePatterns && tilePatterns.length >= 6144 && bgTileMap && bgTileMap.length >= 1024 && videoRegisters && videoRegisters.length >= 8) {
+        // READ_CORE_MEMORY devolve bytes em texto hexadecimal (ex.: "FF").
+        // Converter para números antes de os usar no descodificador gráfico.
         this.videoMemoryCache = {
-          tilePatterns,
-          bgTileMap,
-          lcdc: videoRegisters[0],
-          scrollY: videoRegisters[2],
-          scrollX: videoRegisters[3],
-          bgPalette: videoRegisters[7],
+          tilePatterns: tilePatterns.map(value => parseInt(value, 16) || 0),
+          bgTileMap: bgTileMap.map(value => parseInt(value, 16) || 0),
+          lcdc: parseInt(videoRegisters[0], 16) || 0,
+          scrollY: parseInt(videoRegisters[2], 16) || 0,
+          scrollX: parseInt(videoRegisters[3], 16) || 0,
+          bgPalette: parseInt(videoRegisters[7], 16) || 0xE4,
           capturedAt: Date.now()
         };
         this.lastVideoReadAt = Date.now();
