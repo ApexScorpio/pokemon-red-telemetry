@@ -480,20 +480,24 @@ function renderFogMinimap(state) {
   }
   const visited = exploredMaps[mapId];
 
-  // Revela azulejos num raio de 2 azulejos à volta da posição atual
+  // Regista todos os metatiles que cabem no ecrã da Game Boy (160x144):
+  // o mapa de fundo usa metatiles de 16x16 px, logo são aprox. 10x9 visíveis.
+  // Guardamos cada tile revelado, sem substituir a imagem por uma grelha artificial.
   const px = coords.x;
   const py = coords.y;
-  for (let dx = -2; dx <= 2; dx++) {
-    for (let dy = -2; dy <= 2; dy++) {
-      const tx = px + dx;
-      const ty = py + dy;
+  const visibleLeft = px - 5;
+  const visibleTop = py - 4;
+  for (let dx = 0; dx < 10; dx++) {
+    for (let dy = 0; dy < 9; dy++) {
+      const tx = visibleLeft + dx;
+      const ty = visibleTop + dy;
       if (tx >= 0 && tx < mapW && ty >= 0 && ty < mapH) {
         visited.add(`${tx},${ty}`);
       }
     }
   }
   // Garante que o azulejo do jogador está sempre revelado
-  visited.add(`${px},${py}`);
+  if (px >= 0 && px < mapW && py >= 0 && py < mapH) visited.add(`${px},${py}`);
   saveExploredMaps();
 
   // Atualiza cabeçalho e estatísticas
@@ -648,6 +652,8 @@ function renderGtaFullMap(state) {
   const dir = state.playerDirection || 'Sul';
   const px = coords.x;
   const py = coords.y;
+  // Corrige o ecrã preto: mapImg era usado abaixo sem ser declarado nesta função.
+  const mapImg = getMapImage(mapId);
 
   const dims = state.mapDimensions || { width: 30, height: 30 };
   let mapW = (mapImg && mapImg.complete && mapImg.naturalWidth > 0)
