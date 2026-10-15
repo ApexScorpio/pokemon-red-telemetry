@@ -1,15 +1,15 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:20:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:21:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `31`, Y: `13`
+- **Coordenadas GPS:** X: `30`, Y: `13`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -17,27 +17,27 @@
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Nidoran♂** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 24 / 41 ✅ (SAUDÁVEL)
+### 1. **Nidoran♂** (Lv. 14)
+- **Tipos:** Poison | **HP:** 0 / 41 ❌ (FAINTED)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 23 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 11 | ATK: 15 | DEF: 12 | SPD: 9 | SPC: 7 (**72% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 2082 | ATK: 2848 | DEF: 1837 | SPD: 3098 | SPC: 1580
-- **Experiência:** 1754 EXP (Progresso: 34%, faltam 281 p/ Lv.15)
+- **Stat EXP (EVs Acumulados):** HP: 2122 | ATK: 2893 | DEF: 1877 | SPD: 3154 | SPC: 1615
+- **Experiência:** 1816 EXP (Progresso: 48%, faltam 219 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 14 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 4 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Bite** (Normal) — PP: 25 | Poder: 60 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 2. **Nidoran♀** (Lv. 13)
-- **Tipos:** Poison | **HP:** 40 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 20 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 18 | DEF: 20 | SPD: 21 | SPC: 17
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 0 | DEF: 5 | SPD: 15 | SPC: 5 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 1518 | ATK: 2195 | DEF: 1557 | SPD: 2416 | SPC: 1305
-- **Experiência:** 1405 EXP (Progresso: 41%, faltam 207 p/ Lv.14)
+- **Stat EXP (EVs Acumulados):** HP: 1598 | ATK: 2285 | DEF: 1637 | SPD: 2528 | SPC: 1375
+- **Experiência:** 1514 EXP (Progresso: 72%, faltam 98 p/ Lv.14)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 13)
@@ -117,7 +117,7 @@
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:20:23] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:21:03] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
