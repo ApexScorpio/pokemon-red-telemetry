@@ -1,17 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:21:49**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 20:22:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `14`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `21`, Y: `30`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `47h 0m 27s`
-- **💬 Diálogo / Mensagem no Ecrã:** `found only in certain areas`
+- **Tempo de Jogo:** `47h 0m 28s`
+- **💬 Diálogo / Mensagem no Ecrã:** `999 999`
 - **Dinheiro:** **2361 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -129,7 +129,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↙️ 26 passos Sudoeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **✅ VENCIDO**
+### #1. [↙️ 7 passos Sudoeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -142,7 +142,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember elimina ambos os insetos num só golpe.
 
-### #2. [↖️ 27 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **✅ VENCIDO**
+### #2. [↖️ 40 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -155,7 +155,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #3. [↙️ 3 passos Sudoeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **✅ VENCIDO**
+### #3. [↗️ 16 passos Nordeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -168,7 +168,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #4. [↗️ 16 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **✅ VENCIDO**
+### #4. [↗️ 35 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -181,7 +181,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #5. [⬇️ 17 passos Sul] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
+### #5. [↘️ 4 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -194,7 +194,7 @@
   - **Slot #6**: **Pikachu** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↙️ 20 passos Sudoeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
+### #6. [↖️ 21 passos Noroeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Rattata (Lv. 10) • Zubat (Lv. 10)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -207,7 +207,7 @@
   - **Slot #6**: **Nidorino** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #7. [↙️ 17 passos Sudoeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #7. [↖️ 14 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -228,6 +228,7 @@
 - [20:16:49] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:21:59] `999 999`
 - [20:21:32] `found only in certain areas`
 - [20:21:16] `TACKLE TAIL WHIP`
 - [20:21:02] `THUNDERSHOCK THUNDER WAVE`
