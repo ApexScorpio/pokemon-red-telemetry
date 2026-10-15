@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:20**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 17:24:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Route 3** (ID Interno: `0xE`)
-- **Coordenadas GPS:** X: `34`, Y: `12`
+- **Coordenadas GPS:** X: `24`, Y: `12`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `FIGHT`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `RATTATA`
 - **Dinheiro:** **2581 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
@@ -50,10 +50,10 @@
 - **Tipos:** Normal | **HP:** 19 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 25 | DEF: 19 | SPD: 32 | SPC: 19
 - **Gen 1 IVs (DVs):** HP: 15 | ATK: 3 | DEF: 5 | SPD: 11 | SPC: 15 (**65% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4601 | ATK: 5513 | DEF: 4045 | SPD: 6264 | SPC: 3435
-- **Experiência:** 3721 EXP (Progresso: 48%, faltam 375 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4756 | ATK: 5618 | DEF: 4095 | SPD: 6354 | SPC: 3491
+- **Experiência:** 3833 EXP (Progresso: 64%, faltam 263 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 0 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Golpe #158** (Normal) — PP: 14 | Poder: 40 | Precisão: 100%
@@ -212,9 +212,12 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE
 
-- [17:24:20] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [17:24:28] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:24:25] `RATTATA`
+- [17:24:24] `Go RATTATA`
+- [17:24:21] `RATTATA`
 - [17:24:20] `FIGHT`
 - [17:24:18] `Enemy SPEAROW`
 - [17:24:17] `TACKLE QUICK ATTACK`
@@ -222,7 +225,6 @@
 - [17:24:10] `Wild SPE`
 - [17:24:08] `RATTATA gained`
 - [17:24:07] `Enemy JIGGLYPUFF`
-- [17:24:06] `FIGHT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
