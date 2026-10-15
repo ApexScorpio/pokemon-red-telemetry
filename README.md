@@ -1,18 +1,50 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
-> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:36:37**
+> Sincronizado diretamente da memória RAM da Game Boy via RetroArch • Atualizado em: **15/10/2026, 16:36:49**
 
 ## 🧭 Estado Geral do Treinador
 - **Treinador:** `RED`
-- **Localização Atual:** **Pewter City** (ID: `0x2`)
-- **Coordenadas GPS:** X: `20`, Y: `12`
+- **Localização Atual:** **Route 2** (ID: `0xD`)
+- **Coordenadas GPS:** X: `5`, Y: `3`
 - **Dinheiro:** **445 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 - **Insígnias Conquistadas (0/8):** Nenhuma (A caminho do Ginásio de Pewter)
 - **Pokédex Obtidos no Savefile:** **14 / 151 Pokémon**
-- **Modo Atual:** 🗺️ **Modo Exploração Livre**
+- **Modo Atual:** ⚔️ **EM COMBATE REAL (Selvagem)**
+
+## ⚔️ Combate Ativo em Direto
+### 🔴 Adversário: **Pidgey** (Lv. 5)
+- **Tipos:** Normal/Flying
+- **HP:** **19 / 19** (100%)
+- **Stats de Batalha:** ATK: 10 | DEF: 10 | SPD: 11 | SPC: 9
+- **Golpes:** Gust, Sand Attack
+
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 12)
+- **Tipos:** Bug/Flying
+- **HP:** **39 / 39**
+- **Stats com Modificadores:** ATK: 19 (0) | DEF: 18 (0) | SPD: 25 (0) | SPC: 28 (0)
+
+### 🎯 Análise Tática Matemática (Gen 1)
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Decisão Matemática:** Usa **Confusion** (Psychic) ➔ Dano Estimado: **18-22 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Matriz de Golpes Disponíveis:**
+  - **Confusion** (Psychic) • PP: 25/20 • Dano: 18-22 HP (DANO NORMAL ⚔️) [⚠️ RISCO DE K.O. (~80%)]
+  - **Tackle** (Normal) • PP: 35/20 • Dano: 8-10 HP (DANO NORMAL ⚔️) [✅ SEGURO P/ ENFRAQUECER]
+  - **String Shot** (Bug) • PP: 40/20 • Dano: 0-0 HP (POUCO EFETIVO 🛡️) [🛡️ GOLPE DE STATUS]
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (39/39). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **2%** | Great Ball: **3%** | Ultra Ball: **5%**
+  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~7%**
 
 ## 👥 Equipa Atual (6/6 Pokémon)
-### 1. **Butterfree** (Lv. 12)
+### 1. **Butterfree** (Lv. 12) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 39 / 39 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 18 | SPD: 25 | SPC: 28
 - **Gen 1 IVs (DVs):** HP: 7 | ATK: 8 | DEF: 1 | SPD: 9 | SPC: 13 (**51% Perfeição**)
@@ -78,7 +110,7 @@
 - **Antidote** x2
 - **Town Map** x1
 
-## 🗺️ Radar da Área: **Pewter City**
+## 🗺️ Radar da Área: **Route 2**
 ### 🎯 Preparação Tática: **Líder Brock (Ginásio de Pewter)**
 - **Adversários:** Geodude (Lv. 12) & Onix (Lv. 14) (Nível Alvo: **Lv. 11 a 14**)
 - ⚠️ **Equipa Cheia (6/6):** Para dar espaço a novos membros recomendados, guarda no PC: **Rattata (Lv. 13)** (*Golpes Normais são pouco eficazes (0.5x) contra a armadura do adversário.*)
@@ -129,6 +161,11 @@
   - **Slot #5**: **Nidoran♀** (Lv. 13) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Charmeleon** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion da Butterfree ignora a carcaça de pedra (Special base 30). SE O ONIX USAR BIDE, NÃO ATAQUES: usa String Shot ou Poção para não morrer com dano devolvido!
+
+### 🌿 Fauna Selvagem Disponível na Relva/Água
+- **Pidgey** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
+- **Weedle** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
+- **Rattata** (Lv. undefined) • Taxa: **undefined%** • ✅ [CAPTURADO]
 
 ## 🧠 Conselho Tático do Grok AI
 > "**Batalha:**"
