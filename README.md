@@ -1,58 +1,35 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:43:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **15/10/2026, 18:44:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas GPS:** X: `15`, Y: `7`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **💬 Diálogo / Mensagem no Ecrã:** `Choose a POKMON`
+- **Coordenadas GPS:** X: `10`, Y: `18`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **💬 Diálogo / Mensagem no Ecrã:** `PIKACHU`
 - **Dinheiro:** **2011 ₽**
 - **Contador de Passos de Encontro:** `0` passos
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
-- **Tipos:** Poison/Flying
-- **HP:** **30 / 30** (100%)
-- **Stats de Batalha:** ATK: 16 | DEF: 12 | SPD: 20 | SPC: 17
-
-### 🔵 O Teu Pokémon em Campo: **Pokémon #0** (Lv. 19)
-- **Tipos:** Normal
-- **HP:** **59 / 59** (HEALTHY)
-- **Stats com Modificadores:** ATK: 46 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 31 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **35-42 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Tackle (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Tackle! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pokémon #0 tem a melhor rota de vitória rápida e HP estável (59/59). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Super Nerd Miguel** (Mt. Moon (B2F - Fósseis))
+  - **Equipa Adversária:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 15) ⚔️ [EM COMBATE]
+### 1. **Pikachu** (Lv. 15)
 - **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **Gen 1 IVs (DVs):** HP: 1 | ATK: 10 | DEF: 10 | SPD: 0 | SPC: 11 (**43% Perfeição**)
-- **Stat EXP (EVs Acumulados):** HP: 4440 | ATK: 6160 | DEF: 4256 | SPD: 6925 | SPC: 3637
-- **Experiência:** 3437 EXP (Progresso: 9%, faltam 659 p/ Lv.16)
+- **Stat EXP (EVs Acumulados):** HP: 4520 | ATK: 6250 | DEF: 4326 | SPD: 7035 | SPC: 3717
+- **Experiência:** 3575 EXP (Progresso: 28%, faltam 521 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thunder Shock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thunder Shock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -185,16 +162,16 @@
 - [18:33:02] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:44:01] `PIKACHU`
+- [18:44:00] `THUNDERSHOCK THUNDER WAVE`
+- [18:43:58] `It`
+- [18:43:57] `PIKACHU`
+- [18:43:55] `THUNDERSHOCK THUNDER WAVE`
+- [18:43:54] `Enemy ZUBAT`
+- [18:43:53] `PIKACHU`
+- [18:43:52] `Go PIKACHU`
 - [18:43:45] `Choose a POKMON`
 - [18:43:44] `Move POKMON`
-- [18:43:44] `Choose a P SWITCH`
-- [18:43:40] `Choose a POKMON`
-- [18:43:37] `Enemy ZUBAT`
-- [18:43:36] `FIGHT`
-- [18:43:35] `Bring out which`
-- [18:43:34] `It hurt itself in`
-- [18:43:33] `BEEDRILL`
-- [18:43:32] `Enemy ZUBAT`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
