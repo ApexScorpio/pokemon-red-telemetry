@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,45 +11,46 @@
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `61h 0m 9s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
 - **Dinheiro:** **8431 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 20 (Pikachu)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thundershock`
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado por RED:** `Horn Attack`
 - **Último Golpe Usado pelo Adversário:** `Bubblebeam`
 
 ### 🔴 Adversário em Campo: **Starmie** (Lv. 21)
 - **Tipos:** Water/Psychic
-- **HP:** **59 / 59** (100%)
+- **HP:** **43 / 59** (73%)
 - **Stats de Batalha:** ATK: 40 | DEF: 44 | SPD: 56 | SPC: 50
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
   - **Water Gun** (Water) • PP: 25 • Poder: 40 • Precisão: 100%
   - **Bubblebeam** (Water) • PP: NaN • Poder: 65 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~7-9 HP (1x)
-  - **Water Gun** (Water) ➔ Dano: ~16-19 HP (1x)
-  - **Bubblebeam** (Water) ➔ Dano: ~25-30 HP (1x)
+  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
+  - **Water Gun** (Water) ➔ 🚨 RISCO DE K.O.! (16-19 HP)
+  - **Bubblebeam** (Water) ➔ 🚨 RISCO DE K.O.! (25-30 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 20)
 - **Tipos:** Poison
-- **HP:** **61 / 61** (HEALTHY)
-- **Stats com Modificadores:** ATK: 43 (0) | DEF: 35 (0) | SPD: 38 (0) | SPC: 32 (0)
+- **HP:** **4 / 61** (HEALTHY)
+- **Stats com Modificadores:** ATK: 43 (0) | DEF: 35 (0) | SPD: 38 (-1) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **7-9 HP** (1x eficácia) • ~7 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **7-9 HP** (1x eficácia) • ~5 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-7: Usa repetidamente Tackle
+- ➔ Turnos 1-5: Usa repetidamente Tackle
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (61/61). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **⚠️ PERIGO DE MORTE: TROCA PARA Beedrill**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Beedrill (Lv. 18)** [56/56 HP]
+- **Motivo:** Nidorino corre perigo real de K.O. no próximo golpe do inimigo (4 HP). Trocar para Beedrill salva o teu Pokémon e ataca com String Shot!
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -66,13 +67,13 @@
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 20) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 61 / 61 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 32 / 61 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 4416 | Def: 3059 | Spd: 4601 | Spc: 2643 | HP: 3473
 - **Experiência:** 5782 EXP (Progresso: 32%, faltam 676 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 23 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -453,6 +454,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:03:30] **Turno #3**: Nidorino (4/61 HP) vs Starmie (Lv. 21 • 43/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bubblebeam`
+- [19:03:29] **Turno #3**: Nidorino (32/61 HP) vs Starmie (Lv. 21 • 43/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bubblebeam`
+- [19:03:28] **Turno #2**: Nidorino (32/61 HP) vs Starmie (Lv. 21 • 43/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bubblebeam`
+- [19:03:26] **Turno #2**: Nidorino (32/61 HP) vs Starmie (Lv. 21 • 59/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bubblebeam`
 - [19:03:25] **Turno #1**: Nidorino (61/61 HP) vs Starmie (Lv. 21 • 59/59 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubblebeam`
 - [19:03:21] **Turno #1**: Pikachu (0/48 HP) vs Starmie (Lv. 21 • 59/59 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubblebeam`
 - [19:03:19] **Turno #1**: Pikachu (24/48 HP) vs Starmie (Lv. 21 • 59/59 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
@@ -464,10 +469,6 @@
 - [19:02:48] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 0/49 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Peck`
 - [19:02:46] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 20/49 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [19:02:44] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 49/49 HP)
-- [19:02:38] **Turno #1**: Pikachu (33/46 HP) vs Shellder (Lv. 16 • 0/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
-- [19:02:37] **Turno #1**: Pikachu (33/46 HP) vs Shellder (Lv. 16 • 7/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
-- [19:02:36] **Turno #1**: Pikachu (40/46 HP) vs Shellder (Lv. 16 • 7/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
-- [19:02:35] **Turno #1**: Pikachu (40/46 HP) vs Shellder (Lv. 16 • 38/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubble`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
@@ -477,6 +478,7 @@
 - [19:00:43] Entrou em Route 25
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [19:03:28] `HORN ATTACK TACKLE`
 - [18:59:37] `THUNDERSHOCK THUNDER WAVE`
 - [18:59:10] `TACKLE TAIL WHIP`
 - [18:58:50] `SCRATCH GROWL`
@@ -491,7 +493,6 @@
 - [18:52:58] `it wanders around sowing its seeds`
 - [18:52:33] `FURY ATTACK POISON STING`
 - [18:50:33] `HORN ATTACK TACKLE`
-- [18:50:30] `TACKLE HORN ATTACK`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
