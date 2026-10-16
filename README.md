@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:44**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:48**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,32 +18,34 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Thundershock`
+- **Último Golpe Usado pelo Adversário:** `Peck`
 
 ### 🔴 Adversário em Campo: **Goldeen** (Lv. 19)
 - **Tipos:** Water
-- **HP:** **49 / 49** (100%)
-- **Stats de Batalha:** ATK: 33 | DEF: 30 | SPD: 31 | SPC: 27
+- **HP:** **0 / 49** (0%)
+- **Stats de Batalha:** ATK: 33 | DEF: 30 | SPD: 7 | SPC: 27
 - **Os 4 Golpes do Adversário:**
   - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
   - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
   - **Supersonic** (Normal) • PP: NaN • Poder: -- • Precisão: 55%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Peck** (Flying) ➔ Dano: ~8-10 HP (1x)
+  - **Peck** (Flying) ➔ Dano: ~4-5 HP (0.5x)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
   - **Supersonic** (Normal) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 19)
-- **Tipos:** Normal
+- **Tipos:** Electric
 - **HP:** **33 / 46** (HEALTHY)
-- **Stats com Modificadores:** ATK: 33 (0) | DEF: 23 (0) | SPD: 43 (-1) | SPC: 31 (0)
+- **Stats com Modificadores:** ATK: 33 (0) | DEF: 23 (0) | SPD: 43 (0) | SPC: 31 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **18-22 HP** (2x eficácia) • ~3 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **27-32 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-3: Usa repetidamente Thundershock
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -58,7 +60,7 @@
 - **Stat Experience (0–65.535):** Atk: 7589 | Def: 5532 | Spd: 8348 | Spc: 4780 | HP: 5457
 - **Experiência:** 7224 EXP (Progresso: 32%, faltam 776 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -473,6 +475,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:02:48] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 0/49 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Peck`
+- [19:02:46] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 20/49 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [19:02:44] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 49/49 HP)
 - [19:02:38] **Turno #1**: Pikachu (33/46 HP) vs Shellder (Lv. 16 • 0/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [19:02:37] **Turno #1**: Pikachu (33/46 HP) vs Shellder (Lv. 16 • 7/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
@@ -486,8 +490,6 @@
 - [19:02:29] **Turno #1**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 0/36 HP)
 - [18:59:43] **Turno #3**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 0/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [18:59:43] **Turno #3**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 12/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
-- [18:59:41] **Turno #3**: Pikachu (34/44 HP) vs Oddish (Lv. 13 • 10/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
-- [18:59:40] **Turno #2**: Pikachu (34/44 HP) vs Oddish (Lv. 13 • 22/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
