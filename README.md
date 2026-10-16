@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:45:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:45:32**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,17 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `27`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 14s`
+- **Tempo de Jogo:** `56h 0m 15s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 9)
 - **Tipos:** Rock/Ground
-- **HP:** **26 / 26** (100%)
+- **HP:** **24 / 26** (92%)
 - **Stats de Batalha:** ATK: 21 | DEF: 25 | SPD: 8 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -28,16 +30,16 @@
   - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
-- **Tipos:** Normal
+- **Tipos:** Bug/Poison
 - **HP:** **44 / 54** (HEALTHY)
 - **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~26 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~24 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-26: Usa repetidamente Poison Sting
+- ➔ Turnos 1-24: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
@@ -57,7 +59,7 @@
 - **Stat Experience (0–65.535):** Atk: 4339 | Def: 3661 | Spd: 4724 | Spc: 2855 | HP: 3553
 - **Experiência:** 4920 EXP (Progresso: 1%, faltam 912 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 16 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -241,6 +243,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:45:31] **Turno #1**: Beedrill (44/54 HP) vs Geodude (Lv. 9 • 24/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [17:45:30] **Turno #1**: Beedrill (44/54 HP) vs Geodude (Lv. 9 • 25/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [17:45:27] **Turno #1**: Beedrill (44/54 HP) vs Geodude (Lv. 9 • 26/26 HP)
 - [17:45:23] **Turno #2**: Beedrill (44/54 HP) vs Paras (Lv. 10 • 0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:45:22] **Turno #2**: Beedrill (41/51 HP) vs Paras (Lv. 10 • 0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
@@ -254,8 +258,6 @@
 - [17:44:22] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 8 • 0/25 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [17:44:21] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 8 • 25/25 HP)
 - [17:44:19] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 7 • 0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
-- [17:44:17] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 7 • 24/24 HP)
-- [17:44:14] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 6 • 0/21 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 
 - [17:45:11] Entrou em Mt Moon B2f
 - [17:45:04] Entrou em Mt Moon B1F
