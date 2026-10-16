@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:11:07**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:11:11**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -36,7 +36,7 @@
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 18)
 - **Tipos:** Electric
 - **HP:** **6 / 44** (HEALTHY)
-- **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (0) | SPD: 41 (0) | SPC: 30 (0)
+- **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (-1) | SPD: 41 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
