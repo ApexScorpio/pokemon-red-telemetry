@@ -299,6 +299,27 @@ function formatTelemetryMarkdown(state) {
     });
   }
 
+  // 9. Itens no Chão e Ocultos na Área Atual
+  const visItems = area.visibleItems || [];
+  const hidItems = area.hiddenItems || [];
+  if (visItems.length > 0 || hidItems.length > 0) {
+    md += `## 🎒 9. Itens da Área (${area.name || state.mapName || 'Local'})\n`;
+    if (visItems.length > 0) {
+      md += `### Itens no Chão (Poké Balls visíveis):\n`;
+      visItems.forEach(it => {
+        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: ${it.isCollected ? '✅ Já Recolhido' : '🔴 Por Apanhar'}${it.hint ? ` — *${it.hint}*` : ''}\n`;
+      });
+      md += `\n`;
+    }
+    if (hidItems.length > 0) {
+      md += `### Itens Ocultos (Invisíveis no chão):\n`;
+      hidItems.forEach(it => {
+        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: ${it.isCollected ? '✅ Já Recolhido' : '🔴 Por Apanhar'}${it.hint ? ` — *${it.hint}*` : ''}\n`;
+      });
+      md += `\n`;
+    }
+  }
+
   // =========================================================================
   // PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
   // =========================================================================
