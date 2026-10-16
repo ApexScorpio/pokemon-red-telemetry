@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:20:58**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:34:41**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `6`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `69h 0m 32s`
+- **Tempo de Jogo:** `71h 0m 1s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SLOWPOKE`
 - **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
@@ -131,6 +131,61 @@
 - **DVs Gen 1:** ATK: 5 | DEF: 2 | SPD: 2 | SPC: 5 | HP: 9
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 17
+
+## 🤝 4.3. Trocas de Pokémon com NPCs em Kanto (In-Game Trades - RAM $D737) • **0 / 9 Concluídas**
+### Rota 2 (Casa ao sul do Túnel de Diglett) • **⚪ REQUER CAPTURA**
+- **Oferece:** **Abra** (Dex #63) ➔ **Recebe:** **Mr. Mime** ("MARCEL" • Dex #122)
+- **NPC & Local:** Rapaz (Casa ao lado da saída sul do Diglett's Cave)
+- **Utilidade Tática:** ⭐ Único Mr. Mime de Kanto! Psíquico rápido com Special elevado.
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Abra
+
+### Rota 5 (Entrada do Underground Path) • **⚪ REQUER CAPTURA**
+- **Oferece:** **Nidoran♂** (Dex #32) ➔ **Recebe:** **Nidoran♀** ("SPOT" • Dex #29)
+- **NPC & Local:** Rapariga (Casa de entrada do túnel subterrâneo na Rota 5)
+- **Utilidade Tática:** Permite obter Nidoran♀ que evolui para Nidoqueen.
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Nidoran♂
+
+### Cerulean City (Casa ao lado do Centro Pokémon) • **⚪ REQUER CAPTURA**
+- **Oferece:** **Poliwhirl** (Dex #61) ➔ **Recebe:** **Jynx** ("LOLA" • Dex #124)
+- **NPC & Local:** Criança (Casa ao lado do Centro Pokémon de Cerulean)
+- **Utilidade Tática:** ⭐ Única Jynx de Kanto! Tipos Gelo/Psíquico com Lovely Kiss e Blizzard brutal.
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Poliwhirl
+
+### Vermilion City (Casa ao lado do Centro Pokémon) • **🟡 NO PC BOX 1**
+- **Oferece:** **Spearow** (Dex #21) ➔ **Recebe:** **Farfetch'd** ("DUX" • Dex #83)
+- **NPC & Local:** Rapariga (Casa ao lado do Centro Pokémon de Vermilion (X:3 Y:5))
+- **Utilidade Tática:** ⭐ Único Farfetch'd de Kanto! Excelente utilitário com Cut e Fly e alto dano com Slash crítico.
+- **Estado no Teu Jogo:** 🟡 NO PC BOX 1! Tens Spearow (Nv. 6) - Retira para trocar!
+
+### Rota 11 (Portão 2º Andar) 📍 [NESTA ÁREA] • **⚪ REQUER CAPTURA**
+- **Oferece:** **Drowzee** (Dex #96) ➔ **Recebe:** **Lickitung** ("MARC" • Dex #108)
+- **NPC & Local:** Rapaz (Andar superior do posto de controlo da Rota 11)
+- **Utilidade Tática:** ⭐ Único Lickitung do jogo! Pokémon Normal raro com grande vitalidade.
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Drowzee
+
+### Rota 18 (Portão 2º Andar) • **⚪ REQUER CAPTURA**
+- **Oferece:** **Parasect** (Dex #47) ➔ **Recebe:** **Tangela** ("CRINKLES" • Dex #114)
+- **NPC & Local:** Idosa (Andar superior do posto de controlo da Rota 18)
+- **Utilidade Tática:** Tangela de nível avançado com Bind e Mega Drain.
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Parasect
+
+### Cinnabar Island (Laboratório - Sala 1) • **⚪ REQUER CAPTURA**
+- **Oferece:** **Raichu** (Dex #26) ➔ **Recebe:** **Electrode** ("DORIS" • Dex #101)
+- **NPC & Local:** Cientista (Primeira sala do laboratório de Cinnabar)
+- **Utilidade Tática:** Electrode veloz com Thunder e Thunderbolt.
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Raichu
+
+### Cinnabar Island (Laboratório - Sala 2) • **⚪ REQUER CAPTURA**
+- **Oferece:** **Venonat** (Dex #48) ➔ **Recebe:** **Tangela** ("CRINKLES" • Dex #114)
+- **NPC & Local:** Rapariga (Segunda sala do laboratório de Cinnabar)
+- **Utilidade Tática:** Tangela pura do tipo Planta.
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Venonat
+
+### Cinnabar Island (Laboratório - Sala 3) • **⚪ REQUER CAPTURA**
+- **Oferece:** **Ponyta** (Dex #77) ➔ **Recebe:** **Seel** ("SAILOR" • Dex #86)
+- **NPC & Local:** Cientista (Terceira sala do laboratório de Cinnabar)
+- **Utilidade Tática:** Seel aquático que evolui para Dewgong (Água/Gelo).
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Ponyta
 
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
@@ -264,23 +319,6 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
-## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
-- [20:07:17] **Turno #4**: Nidorino (44/61 HP) vs Raticate (Lv. 16 • 0/46 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Quick Attack`
-- [20:07:17] **Turno #4**: Nidorino (44/61 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Quick Attack`
-- [20:07:16] **Turno #3**: Nidorino (61/61 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Hyper Fang`
-- [20:07:13] **Turno #3**: Beedrill (0/62 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
-- [20:07:12] **Turno #2**: Beedrill (11/62 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [20:07:11] **Turno #1**: Beedrill (22/62 HP) vs Raticate (Lv. 16 • 28/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [20:07:10] **Turno #1**: Beedrill (22/62 HP) vs Raticate (Lv. 16 • 34/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [20:07:10] **Turno #1**: Beedrill (22/62 HP) vs Raticate (Lv. 16 • 46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [20:07:08] **Turno #1**: Beedrill (33/62 HP) vs Raticate (Lv. 16 • 46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
-- [20:07:07] **Turno #1**: Beedrill (33/62 HP) vs Spearow (Lv. 16 • 0/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
-- [20:07:06] **Turno #1**: Beedrill (33/62 HP) vs Spearow (Lv. 16 • 23/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
-- [20:07:04] **Turno #1**: Charmeleon (33/53 HP) vs Spearow (Lv. 16 • 41/41 HP)
-- [20:07:04] **Turno #1**: Charmeleon (33/53 HP) vs Pidgey (Lv. 16 • 0/41 HP)
-- [20:06:57] **Turno #1**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [20:06:56] **Turno #3**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-
 - [20:20:55] Entrou em Route 11
 - [20:20:53] Entrou em Digletts Cave Route 11
 - [20:20:52] Entrou em Digletts Cave
@@ -289,21 +327,9 @@
 - [20:09:11] Entrou em Vermilion City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
-- [20:10:40] `SLOWPOKE`
-- [20:10:40] `GEODUDE`
-- [20:10:33] `PIKACHU`
-- [20:10:33] `WEEDLE KAKUNA`
-- [20:10:32] `BUTTERFREE WEEDLE`
-- [20:10:25] `SQUIRTLE`
-- [20:07:16] `HORN ATTACK TACKLE`
-- [20:06:46] `FURY ATTACK TWINEEDLE`
-- [20:03:36] `SCRATCH GROWL`
-- [20:02:28] `EMBER SCRATCH`
-- [20:01:54] `SCRATCH EMBER`
-- [19:59:05] `TOSS`
-- [19:57:26] `SQUIRTLE`
-- [19:24:32] `anger It could be docile one`
-- [19:24:26] `SCRATCH GROWL`
+- [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
+- [16:24:40] `We'll each take one! No being greedy!`
+- [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
