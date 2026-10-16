@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:08**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:12**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -19,6 +19,7 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Ember`
+- **Último Golpe Usado pelo Adversário:** `Water Gun`
 
 ### 🔴 Adversário em Campo: **Squirtle** (Lv. 20)
 - **Tipos:** Water
@@ -32,29 +33,29 @@
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
   - **Tackle** (Normal) ➔ Dano: ~6-8 HP (1x)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Bubble** (Water) ➔ Dano: ~10-12 HP (2x)
-  - **Water Gun** (Water) ➔ Dano: ~17-20 HP (2x)
+  - **Bubble** (Water) ➔ Dano: ~5-7 HP (1x)
+  - **Water Gun** (Water) ➔ Dano: ~11-13 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 18)
-- **Tipos:** Fire
-- **HP:** **23 / 53** (HEALTHY)
-- **Stats com Modificadores:** ATK: 34 (0) | DEF: 28 (0) | SPD: 42 (0) | SPC: 35 (0)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 19)
+- **Tipos:** Bug/Poison
+- **HP:** **59 / 59** (HEALTHY)
+- **Stats com Modificadores:** ATK: 41 (0) | DEF: 27 (0) | SPD: 38 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **8-10 HP** (1x eficácia) • ~5 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • ~8 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-5: Usa repetidamente Scratch
+- ➔ Turnos 1-8: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Charmeleon tem a melhor rota de vitória rápida e HP estável (23/53). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (59/59). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Charmeleon** (Lv. 18) ⚔️ [EM COMBATE]
+### 1. **Charmeleon** (Lv. 18)
 - **Tipos:** Fire | **HP:** 23 / 53 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 34 | DEF: 28 | SPD: 42 | SPC: 35
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
@@ -78,7 +79,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 3. **Beedrill** (Lv. 19)
+### 3. **Beedrill** (Lv. 19) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 59 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 27 | SPD: 38 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -286,6 +287,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:03:11] **Turno #1**: Beedrill (59/59 HP) vs Squirtle (Lv. 20 • 50/50 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Water Gun`
 - [20:03:01] **Turno #1**: Charmeleon (23/53 HP) vs Squirtle (Lv. 20 • 50/50 HP)
 - [20:02:40] **Turno #1**: Charmeleon (23/53 HP) vs Mankey (Lv. 16 • 0/43 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Karate Chop`
 - [20:02:38] **Turno #1**: Charmeleon (23/53 HP) vs Mankey (Lv. 16 • 8/43 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Scratch`
@@ -300,7 +302,6 @@
 - [20:02:03] **Turno #1**: Charmeleon (53/53 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:02:02] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:02:00] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 41/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
-- [20:01:58] **Turno #1**: Charmeleon (50/50 HP) vs Caterpie (Lv. 16 • 0/42 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
