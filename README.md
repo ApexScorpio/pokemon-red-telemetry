@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:17**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:21**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,19 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `30`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `74h 0m 50s`
+- **Tempo de Jogo:** `74h 0m 51s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude) | **Eficiência na Rota:** `0% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Quick Attack`
 - **Último Golpe Usado pelo Adversário:** `Absorb`
 
 ### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
 - **Tipos:** Grass/Poison
-- **HP:** **36 / 36** (100%)
+- **HP:** **8 / 36** (22%)
 - **Stats de Batalha:** ATK: 18 | DEF: 21 | SPD: 15 | SPC: 27
 - **Os 4 Golpes do Adversário:**
   - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
@@ -31,24 +32,24 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
 - **Tipos:** Electric
-- **HP:** **43 / 48** (HEALTHY)
+- **HP:** **38 / 48** (HEALTHY)
 - **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **13-16 HP** (1x eficácia) • ~3 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **13-16 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-3: Usa repetidamente Quick Attack
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (43/48). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
 ### 1. **Geodude** (Lv. 8)
@@ -61,16 +62,16 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
 ### 2. **Pikachu** (Lv. 20) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 38 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7796 | Def: 5752 | Spd: 8596 | Spc: 5055 | HP: 5637
 - **Experiência:** 8901 EXP (Progresso: 71%, faltam 360 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
 
 ### 3. **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
@@ -333,6 +334,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:10:21] **Turno #4**: Pikachu (38/48 HP) vs Oddish (Lv. 13 • 8/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
+- [21:10:19] **Turno #3**: Pikachu (38/48 HP) vs Oddish (Lv. 13 • 31/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
+- [21:10:18] **Turno #3**: Pikachu (43/48 HP) vs Oddish (Lv. 13 • 29/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
 - [21:10:17] **Turno #2**: Pikachu (43/48 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
 - [21:10:16] **Turno #1**: Pikachu (48/48 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
 - [21:10:12] **Turno #1**: Spearow (12/19 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
@@ -345,9 +349,6 @@
 - [21:07:02] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 13 • 34/34 HP)
 - [21:07:00] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 0/36 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Absorb`
 - [21:06:59] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 36/36 HP)
-- [21:06:56] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 0/35 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Absorb`
-- [21:06:54] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 35/35 HP)
-- [21:06:52] **Turno #1**: Butterfree (60/65 HP) vs Pidgey (Lv. 12 • 0/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
 
 - [21:10:00] Entrou em Route 6
 - [21:09:59] Entrou em Underground Path Route 6
@@ -365,7 +366,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Entra imediatamente no PC de Cerulean City e liberta o Spearow (Nv. 5) e o Geodude (Nv. 8), pois são demasiado fracos e sem cobertura de tipos contra os líderes restantes. Usa o dinheiro (12.140$) para comprar Super Potions e um Rare Candy extra, garantindo que o Pikachu e o Nidorino cheguem fortes a Viridian City."
+> "Usa **Thunder Wave** imediatamente para paralisar o Oddish, eliminando a ameaça dos seus golpes de Poison. Na véspera, ataca com **Thundershock** para garantir a vitória com uma vantagem de tipo esmagadora!"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
