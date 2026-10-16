@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:58:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:58:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Underground Path Route 5** (ID Interno: `0x47`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `3`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Localização Atual:** **Underground Path Route 6** (ID Interno: `0x4A`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `4`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `67h 0m 9s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SQUIRTLE`
@@ -198,25 +198,25 @@
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [🎯 0 passos No azulejo exato] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↗️ 2 passos Nordeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [⬅️ 3 passos Oeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [↖️ 3 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [⬇️ 5 passos Sul] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↘️ 5 passos Sudeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [⬆️ 2 passos Norte] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↗️ 4 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
@@ -270,12 +270,12 @@
 - [19:16:53] **Turno #8**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 10/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:51] **Turno #7**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 16/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 
+- [19:58:54] Entrou em Underground Path Route 6
+- [19:58:51] Entrou em Underground Path North South
 - [19:58:40] Entrou em Underground Path Route 5
 - [19:58:38] Entrou em Route 5
 - [19:58:34] Entrou em Cerulean City
 - [19:58:33] Entrou em Cerulean Trashed House
-- [19:58:29] Entrou em Cerulean City
-- [19:57:13] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:57:26] `SQUIRTLE`
