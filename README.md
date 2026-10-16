@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:47:40**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:47:44**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,7 +17,7 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Paras** (Lv. 10)
@@ -27,12 +27,12 @@
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Scratch** (Normal) ➔ 🚨 RISCO DE K.O.! (4-5 HP)
+  - **Scratch** (Normal) ➔ Dano: ~3-4 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 54** (HEALTHY)
-- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
+- **Tipos:** Poison
+- **HP:** **51 / 51** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
@@ -42,17 +42,16 @@
 - ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
 > **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Nidorino (Lv. 16)** [51/51 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Nidorino para manter o controlo da batalha.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 11 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **75%** | Great Ball: **95%** | Ultra Ball: **100%**
   - *Se adormeceres o inimigo:* **~84%** | *Com HP no vermelho:* **~75%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 17)
 - **Tipos:** Bug/Poison | **HP:** 0 / 54 ❌ (FAINTED)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -87,14 +86,14 @@
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 10 | Poder: 80 | Precisão: 90%
 
-### 4. **Nidorino** (Lv. 16)
+### 4. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 3649 | Def: 2382 | Spd: 3996 | Spc: 2168 | HP: 2887
 - **Experiência:** 3003 EXP (Progresso: 80%, faltam 117 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -234,6 +233,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:47:43] **Turno #4**: Nidorino (51/51 HP) vs Paras (Lv. 10 • 11/29 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
 - [17:47:39] **Turno #4**: Beedrill (0/54 HP) vs Paras (Lv. 10 • 11/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:47:39] **Turno #4**: Beedrill (2/54 HP) vs Paras (Lv. 10 • 11/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:47:38] **Turno #3**: Beedrill (2/54 HP) vs Paras (Lv. 10 • 11/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
@@ -248,7 +248,6 @@
 - [17:47:12] **Turno #1**: Beedrill (22/54 HP) vs Paras (Lv. 10 • 27/27 HP)
 - [17:47:08] **Turno #1**: Beedrill (22/54 HP) vs Zubat (Lv. 9 • 0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:47:08] **Turno #1**: Beedrill (22/54 HP) vs Zubat (Lv. 9 • 19/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [17:47:04] **Turno #1**: Beedrill (22/54 HP) vs Zubat (Lv. 9 • 28/28 HP)
 
 - [17:46:44] Entrou em Mt Moon B2f
 - [17:46:26] Entrou em Mt Moon B1F
