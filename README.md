@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:56:36**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:56:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,11 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Growl`
 
 ### 🔴 Adversário em Campo: **Clefairy** (Lv. 10)
 - **Tipos:** Fairy
-- **HP:** **34 / 34** (100%)
+- **HP:** **8 / 34** (24%)
 - **Stats de Batalha:** ATK: 14 | DEF: 17 | SPD: 12 | SPC: 17
 - **Os 4 Golpes do Adversário:**
   - **Pound** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -30,35 +32,36 @@
   - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **10 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
+- **Tipos:** Bug/Poison
+- **HP:** **5 / 51** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (-1) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • ~5 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-5: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Poison Sting (Causa ~5-7 de dano)
+- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (10/51). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **21%** | Great Ball: **40%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **59%** | Great Ball: **75%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~69%** | *Com HP no vermelho:* **~59%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 10 / 51 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 5 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4224 | Def: 3558 | Spd: 4664 | Spc: 2740 | HP: 3448
 - **Experiência:** 4723 EXP (Progresso: 77%, faltam 190 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 10 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 8 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -233,15 +236,16 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:56:39] **Turno #2**: Beedrill (5/51 HP) vs Clefairy (8/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
+- [15:56:38] **Turno #2**: Beedrill (10/51 HP) vs Clefairy (8/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Pound`
+- [15:56:37] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (16/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
+- [15:56:36] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (25/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [15:56:34] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (34/34 HP)
 - [15:56:32] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (0/40 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Pound`
 - [15:56:31] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (10/40 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Pound`
 - [15:56:30] **Turno #1**: Beedrill (15/51 HP) vs Clefairy (10/40 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Pound`
-- [15:56:29] **Turno #1**: Beedrill (15/51 HP) vs Clefairy (28/40 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Pound`
-- [15:56:24] **Turno #1**: Beedrill (15/51 HP) vs Clefairy (40/40 HP)
-- [15:56:22] **Turno #1**: Beedrill (54/51 HP) vs Clefairy (40/40 HP)
 
-- [15:56:36] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [15:56:40] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [15:56:26] `FURY ATTACK POISON STING`
