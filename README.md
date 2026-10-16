@@ -1,77 +1,48 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:21**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:25**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `30`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `28`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `74h 0m 51s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude) | **Eficiência na Rota:** `0% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Quick Attack`
-- **Último Golpe Usado pelo Adversário:** `Absorb`
-
-### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
-- **Tipos:** Grass/Poison
-- **HP:** **8 / 36** (22%)
-- **Stats de Batalha:** ATK: 18 | DEF: 21 | SPD: 15 | SPC: 27
-- **Os 4 Golpes do Adversário:**
-  - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Absorb** (Grass) ➔ Dano: ~5-6 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
-- **Tipos:** Electric
-- **HP:** **38 / 48** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **13-16 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
-- **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
-  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Sailor Dwayne** (Ginásio de Vermilion)
+  - **Equipa Adversária:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
+  - **Lead Recomendado:** Diglett (Dig)
+  - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
 ### 1. **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground | **HP:** 24 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
-- **Experiência:** 314 EXP (Progresso: 0%, faltam 105 p/ Lv.9)
+- **Stat Experience (0–65.535):** Atk: 16 | Def: 18 | Spd: 10 | Spc: 25 | HP: 15
+- **Experiência:** 362 EXP (Progresso: 46%, faltam 57 p/ Lv.9)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
-### 2. **Pikachu** (Lv. 20) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 38 / 48 ✅ (SAUDÁVEL)
+### 2. **Pikachu** (Lv. 20)
+- **Tipos:** Electric | **HP:** 33 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7796 | Def: 5752 | Spd: 8596 | Spc: 5055 | HP: 5637
-- **Experiência:** 8901 EXP (Progresso: 71%, faltam 360 p/ Lv.21)
+- **Stat Experience (0–65.535):** Atk: 7812 | Def: 5770 | Spd: 8606 | Spc: 5080 | HP: 5652
+- **Experiência:** 8949 EXP (Progresso: 75%, faltam 312 p/ Lv.21)
 - **Golpes & PPs:**
   - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 28 | Poder: 40 | Precisão: 100%
 
 ### 3. **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
@@ -89,8 +60,8 @@
 - **Tipos:** Normal/Flying | **HP:** 12 / 19 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 11 | DEF: 8 | SPD: 12 | SPC: 8
 - **DVs Gen 1 (0–15):** Ataque: 1 | Defesa: 8 | Velocidade: 0 | Especial: 6 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
-- **Experiência:** 125 EXP (Progresso: 0%, faltam 91 p/ Lv.6)
+- **Stat Experience (0–65.535):** Atk: 16 | Def: 18 | Spd: 10 | Spc: 25 | HP: 15
+- **Experiência:** 173 EXP (Progresso: 53%, faltam 43 p/ Lv.6)
 - **Golpes & PPs:**
   - **Peck** (Flying) — PP: 35 | Poder: 35 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -138,8 +109,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 10** *(Entrou a Lv. 10 • Ganhou +0 níveis!)*
 - **Custo de Retirada:** **100 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **681 EXP**
-- **Progresso para Nível 11:** Faltam **61 passos / EXP** (66%)
+- **Experiência Total:** **683 EXP**
+- **Progresso para Nível 11:** Faltam **59 passos / EXP** (68%)
 - **DVs Gen 1:** ATK: 10 | DEF: 8 | SPD: 6 | SPC: 3 | HP: 1
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 20
@@ -242,61 +213,61 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 20 passos Noroeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #1. [↖️ 18 passos Noroeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↗️ 20 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #2. [↗️ 18 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↗️ 9 passos Nordeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↗️ 7 passos Nordeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↖️ 14 passos Noroeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #4. [↖️ 12 passos Noroeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↗️ 10 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #5. [↗️ 8 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↙️ 4 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #6. [↙️ 6 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [↖️ 36 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↖️ 34 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [↖️ 39 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [↖️ 37 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [↖️ 31 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↖️ 29 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [↖️ 38 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↖️ 36 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
@@ -334,6 +305,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:10:23] **Turno #4**: Pikachu (33/48 HP) vs Oddish (Lv. 13 • 0/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
+- [21:10:22] **Turno #4**: Pikachu (33/48 HP) vs Oddish (Lv. 13 • 10/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [21:10:21] **Turno #4**: Pikachu (38/48 HP) vs Oddish (Lv. 13 • 8/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [21:10:19] **Turno #3**: Pikachu (38/48 HP) vs Oddish (Lv. 13 • 31/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
 - [21:10:18] **Turno #3**: Pikachu (43/48 HP) vs Oddish (Lv. 13 • 29/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
@@ -347,8 +320,6 @@
 - [21:07:06] **Turno #1**: Butterfree (60/65 HP) vs Abra (Lv. 10 • 25/25 HP)
 - [21:07:05] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 13 • 0/34 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Absorb`
 - [21:07:02] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 13 • 34/34 HP)
-- [21:07:00] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 0/36 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Absorb`
-- [21:06:59] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 36/36 HP)
 
 - [21:10:00] Entrou em Route 6
 - [21:09:59] Entrou em Underground Path Route 6
