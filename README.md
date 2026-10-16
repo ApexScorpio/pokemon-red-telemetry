@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:35:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:35:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,65 +9,38 @@
 - **Localização Atual:** **Mt Moon B1F** (ID Interno: `0x3C`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `26`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `51h 0m 41s`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `51h 0m 42s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **1361 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Geodude** (Lv. 7)
-- **Tipos:** Rock/Ground
-- **HP:** **23 / 23** (100%)
-- **Stats de Batalha:** ATK: 16 | DEF: 19 | SPD: 8 | SPC: 11
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~2-3 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
-- **Tipos:** Bug/Poison
-- **HP:** **36 / 46** (HEALTHY)
-- **Stats com Modificadores:** ATK: 31 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~23 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-23: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
-
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 19)** [57/57 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **38%** | Great Ball: **57%** | Ultra Ball: **38%**
-  - *Se adormeceres o inimigo:* **~44%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste))
+  - **Equipa Adversária:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 14)
 - **Tipos:** Bug/Poison | **HP:** 36 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 3218 | Def: 2646 | Spd: 3769 | Spc: 2050 | HP: 2668
-- **Experiência:** 2969 EXP (Progresso: 36%, faltam 406 p/ Lv.15)
+- **Stat Experience (0–65.535):** Atk: 3258 | Def: 2696 | Spd: 3779 | Spc: 2065 | HP: 2688
+- **Experiência:** 3012 EXP (Progresso: 42%, faltam 363 p/ Lv.15)
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 2. **Butterfree** (Lv. 19)
-- **Tipos:** Bug/Flying | **HP:** 57 / 57 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 55 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 27 | SPD: 38 | SPC: 43
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 5612 | Def: 5062 | Spd: 6168 | Spc: 3872 | HP: 4845
-- **Experiência:** 7398 EXP (Progresso: 47%, faltam 602 p/ Lv.20)
+- **Stat Experience (0–65.535):** Atk: 5652 | Def: 5112 | Spd: 6178 | Spc: 3887 | HP: 4865
+- **Experiência:** 7441 EXP (Progresso: 51%, faltam 559 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 24 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -318,6 +291,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:35:26] **Turno #1**: Butterfree (55/57 HP) vs Geodude (0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
+- [15:35:25] **Turno #1**: Butterfree (55/57 HP) vs Geodude (23/23 HP) • Golpe Inimigo: `Tackle`
 - [15:35:21] **Turno #1**: Beedrill (36/46 HP) vs Geodude (23/23 HP)
 - [15:35:19] **Turno #1**: Beedrill (36/46 HP) vs Zubat (0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:35:18] **Turno #1**: Beedrill (36/46 HP) vs Zubat (14/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
