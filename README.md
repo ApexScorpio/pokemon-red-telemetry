@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:50:22**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:50:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,9 +8,9 @@
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Daycare** (ID Interno: `0x48`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `4`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `72h 0m 42s`
+- **Tempo de Jogo:** `72h 0m 43s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SLOWPOKE`
 - **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon)
@@ -397,7 +397,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Com 12.740$ e dois Rare Candies, a prioridade é elevar o teu Butterfree (o teu único atacante Flying para enfrentar Viridian) para o nível 24, garantindo que o golpe Confusion seja letal contra os Water-types. Usa os dois Rare Candies nele imediatamente para acelerar o progresso, mantendo o Nidorino no PC se precisares de espaço futuro, mas por enquanto foca-te em fortalecer o teu melhor atacante."
+> "Vais a Viridian City: compra uma Super Potion e um Repel na loja, e usa o teu Rare Candy para subir o Charmeleon ao Nível 19, garantindo vantagem de nível antes de enfrentares a ginásio de Fire."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
