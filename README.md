@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:57:25**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:59:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `34`, Y: `27`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `29`, Y: `27`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `57h 0m 32s`
+- **Tempo de Jogo:** `57h 0m 43s`
 - **💬 Diálogo / Mensagem no Ecrã:** `and stealthily Eats the eggs of`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -22,19 +22,7 @@
   - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 18)
-- **Tipos:** Bug/Poison | **HP:** 57 / 57 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
-- **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 5355 | Def: 4485 | Spd: 5686 | Spc: 3543 | HP: 4273
-- **Experiência:** 6377 EXP (Progresso: 53%, faltam 482 p/ Lv.19)
-- **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
-  - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-
-### 2. **Pikachu** (Lv. 16)
+### 1. **Pikachu** (Lv. 16)
 - **Tipos:** Electric | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -45,6 +33,18 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+
+### 2. **Beedrill** (Lv. 18)
+- **Tipos:** Bug/Poison | **HP:** 57 / 57 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
+- **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
+- **Stat Experience (0–65.535):** Atk: 5355 | Def: 4485 | Spd: 5686 | Spc: 3543 | HP: 4273
+- **Experiência:** 6377 EXP (Progresso: 53%, faltam 482 p/ Lv.19)
+- **Golpes & PPs:**
+  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 16)
 - **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
