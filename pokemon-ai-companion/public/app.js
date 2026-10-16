@@ -6,6 +6,8 @@ let lastSpokenText = '';
 let currentCenterTab = 'radar'; // 'battle' ou 'radar'
 let userManuallyChoseCenterTab = false;
 let isAreaBattlesDrawerOpen = false;
+let areaBattlesSortMode = localStorage.getItem('areaBattlesSortMode') || 'difficulty';
+let hideDefeatedBattles = localStorage.getItem('hideDefeatedBattles') === 'true';
 
 // Elementos DOM HUD
 const elConnectionStatus = document.getElementById('connection-status');
@@ -1889,6 +1891,13 @@ function renderAreaRadar(areaInfo) {
   const giftsList = areaInfo.npcGifts || [];
   const npcItemsList = areaInfo.npcItems || [];
 
+  // Salvar scroll de todos os recipientes com scroll antes de atualizar DOM
+  const prevDrawer = document.getElementById('area-battles-drawer');
+  const savedDrawerScrollTop = prevDrawer ? prevDrawer.scrollTop : null;
+  const savedWildScrollTop = elWildEncountersList ? elWildEncountersList.scrollTop : null;
+  const prevAreaItems = document.getElementById('area-items-list');
+  const savedAreaItemsScrollTop = prevAreaItems ? prevAreaItems.scrollTop : null;
+
   elRadarWildCount.textContent = `${wildList.length} Espécies`;
   elWildEncountersList.innerHTML = '';
 
@@ -1903,6 +1912,22 @@ function renderAreaRadar(areaInfo) {
     const allDefeated = battles.length > 0 && defeatedCount === battles.length;
     const pendingBattles = battles.filter(bt => !bt.isDefeated);
     const nextBattle = pendingBattles.length > 0 ? pendingBattles[0] : null;
+
+    // Ordenação e Filtragem dos Treinadores
+    let displayBattles = battles.map((bt, origIdx) => ({ ...bt, origIdx }));
+    if (hideDefeatedBattles) {
+      displayBattles = displayBattles.filter(bt => !bt.isDefeated);
+    }
+
+    if (areaBattlesSortMode === 'proximity') {
+      displayBattles.sort((a, b) => {
+        const distA = (a.compass && typeof a.compass.dist === 'number') ? a.compass.dist : 999999;
+        const distB = (b.compass && typeof b.compass.dist === 'number') ? b.compass.dist : 999999;
+        if (distA !== distB) return distA - distB;
+        if (a.isDefeated !== b.isDefeated) return a.isDefeated ? 1 : -1;
+        return a.origIdx - b.origIdx;
+      });
+    }
 
     const bossCard = document.createElement('div');
     bossCard.className = 'upcoming-boss-card';
@@ -1927,9 +1952,24 @@ function renderAreaRadar(areaInfo) {
       </div>
 
       <div class="boss-battles-section" id="area-battles-drawer" style="display:${isAreaBattlesDrawerOpen ? 'block' : 'none'}; max-height:220px; overflow-y:auto; margin-top:6px; border-top:1px solid rgba(255,255,255,0.08); padding-top:6px;">
-        <div class="boss-battles-title" style="font-size:0.7rem; margin-bottom:4px; color:var(--text-muted);">⚔️ COMBATES NA ÁREA (DA MAIS FÁCIL À MAIS DIFÍCIL):</div>
+        <div class="boss-battles-header-row" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:4px;">
+          <div class="boss-battles-title" style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">
+            ⚔️ COMBATES NA ÁREA (${areaBattlesSortMode === 'proximity' ? '📍 MAIS PERTO PRIMEIRO' : 'DA MAIS FÁCIL À MAIS DIFÍCIL'}):
+          </div>
+          <div class="battles-sort-buttons">
+            <button type="button" class="btn-sort-battles ${areaBattlesSortMode === 'difficulty' ? 'active' : ''}" id="btn-sort-diff" title="Organizar da luta mais fácil à mais difícil">
+              ⚡ Dificuldade
+            </button>
+            <button type="button" class="btn-sort-battles ${areaBattlesSortMode === 'proximity' ? 'active' : ''}" id="btn-sort-dist" title="Organizar pelo treinador mais perto da tua posição">
+              📍 Mais Perto
+            </button>
+            <button type="button" class="btn-sort-battles ${hideDefeatedBattles ? 'active' : ''}" id="btn-hide-defeated" title="Ocultar treinadores já derrotados">
+              ${hideDefeatedBattles ? '👁️ Só Pendentes' : '👁️ Ver Todos'}
+            </button>
+          </div>
+        </div>
         <div class="boss-battles-grid" style="display:flex; flex-direction:column; gap:4px;">
-          ${battles.map((bt, idx) => `
+          ${displayBattles.map((bt, idx) => `
             <div class="area-battle-card ${bt.diffClass || ''} ${bt.isDefeated ? 'is-defeated' : bt.isMissed ? 'is-missed' : 'is-pending'}" style="padding:4px 8px; font-size:0.7rem;">
               <div class="abattle-top" style="margin-bottom:2px;">
                 <div class="abattle-title-row">
@@ -1948,6 +1988,7 @@ function renderAreaRadar(areaInfo) {
               </div>
             </div>
           `).join('')}
+          ${displayBattles.length === 0 ? `<div style="padding:10px; text-align:center; color:var(--text-muted); font-size:0.7rem;">✅ Todos os treinadores desta área já foram vencidos!</div>` : ''}
         </div>
       </div>
 
@@ -1968,6 +2009,11 @@ function renderAreaRadar(areaInfo) {
 
     if (elRadarBossContainer) {
       elRadarBossContainer.appendChild(bossCard);
+      const newDrawer = document.getElementById('area-battles-drawer');
+      if (newDrawer && savedDrawerScrollTop !== null) {
+        newDrawer.scrollTop = savedDrawerScrollTop;
+      }
+
       const btnToggle = document.getElementById('btn-toggle-area-battles');
       if (btnToggle) {
         btnToggle.addEventListener('click', (e) => {
@@ -1978,6 +2024,36 @@ function renderAreaRadar(areaInfo) {
             drawer.style.display = isAreaBattlesDrawerOpen ? 'block' : 'none';
           }
           btnToggle.textContent = isAreaBattlesDrawerOpen ? '▲ Ocultar Treinadores' : '▼ Ver Treinadores';
+        });
+      }
+
+      const btnSortDiff = document.getElementById('btn-sort-diff');
+      if (btnSortDiff) {
+        btnSortDiff.addEventListener('click', (e) => {
+          e.stopPropagation();
+          areaBattlesSortMode = 'difficulty';
+          localStorage.setItem('areaBattlesSortMode', 'difficulty');
+          renderAreaRadar(areaInfo);
+        });
+      }
+
+      const btnSortDist = document.getElementById('btn-sort-dist');
+      if (btnSortDist) {
+        btnSortDist.addEventListener('click', (e) => {
+          e.stopPropagation();
+          areaBattlesSortMode = 'proximity';
+          localStorage.setItem('areaBattlesSortMode', 'proximity');
+          renderAreaRadar(areaInfo);
+        });
+      }
+
+      const btnHideDefeated = document.getElementById('btn-hide-defeated');
+      if (btnHideDefeated) {
+        btnHideDefeated.addEventListener('click', (e) => {
+          e.stopPropagation();
+          hideDefeatedBattles = !hideDefeatedBattles;
+          localStorage.setItem('hideDefeatedBattles', hideDefeatedBattles);
+          renderAreaRadar(areaInfo);
         });
       }
     } else {
@@ -2240,6 +2316,15 @@ function renderAreaRadar(areaInfo) {
 
   if (vis.length === 0 && hid.length === 0 && npcItemsList.length === 0 && allLocked.length === 0) {
     elAreaItemsList.innerHTML = `<div style="color:var(--text-dim); text-align:center; padding:15px; font-size:0.75rem;">Sem itens registados nesta área.</div>`;
+  }
+
+  // Restaurar posições de scroll para evitar saltos visuais a cada atualização da RAM
+  if (elWildEncountersList && savedWildScrollTop !== null) {
+    elWildEncountersList.scrollTop = savedWildScrollTop;
+  }
+  const currentAreaItems = document.getElementById('area-items-list');
+  if (currentAreaItems && savedAreaItemsScrollTop !== null) {
+    currentAreaItems.scrollTop = savedAreaItemsScrollTop;
   }
 }
 

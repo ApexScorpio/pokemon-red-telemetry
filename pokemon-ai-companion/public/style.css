@@ -2141,6 +2141,33 @@ html, body {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
 }
+.battles-sort-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.btn-sort-battles {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.btn-sort-battles:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #f8fafc;
+}
+.btn-sort-battles.active {
+  background: rgba(245, 158, 11, 0.22);
+  border-color: rgba(245, 158, 11, 0.55);
+  color: #fbbf24;
+}
 .boss-compact-tactics-row {
   display: flex;
   gap: 6px;
