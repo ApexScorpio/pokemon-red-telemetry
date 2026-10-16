@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:08**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:11**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,58 +9,24 @@
 - **Localização Atual:** **Route 5** (ID Interno: `0x10`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `63h 0m 24s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TELEPORT`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra) | **Eficiência na Rota:** `10% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Pidgey** (Lv. 15)
-- **Tipos:** Normal/Flying
-- **HP:** **37 / 37** (100%)
-- **Stats de Batalha:** ATK: 19 | DEF: 20 | SPD: 25 | SPC: 15
-- **Os 4 Golpes do Adversário:**
-  - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Gust** (Normal) ➔ Dano: ~18-22 HP (1x)
-  - **Sand-attack** (Normal) ➔ Golpe de Status
-  - **Quick Attack** (Normal) ➔ Dano: ~18-22 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Abra** (Lv. 11)
-- **Tipos:** Normal
-- **HP:** **28 / 28** (HEALTHY)
-- **Stats com Modificadores:** ATK: 10 (0) | DEF: 8 (0) | SPD: 25 (0) | SPC: 29 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Teleport** (Psychic_type) ➔ Dano: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 15%)
-- ➔ ⚠️ Abra não tem nenhum golpe de dano eficaz contra o adversário! Troca imediatamente de Pokémon.
-> **Resumo Tático:** Não ataques com golpes de status que causam 0 dano. Muda imediatamente para um atacante com vantagem de tipo.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Abra tem a melhor rota de vitória rápida e HP estável (28/28). Não precisas de gastar um turno a trocar.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **52%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Abra** (Lv. 11) ⚔️ [EM COMBATE]
+### 1. **Abra** (Lv. 11)
 - **Tipos:** Psychic | **HP:** 28 / 28 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 10 | DEF: 8 | SPD: 25 | SPC: 29
 - **DVs Gen 1 (0–15):** Ataque: 5 | Defesa: 2 | Velocidade: 2 | Especial: 5 | HP: 9
 - **Stat Experience (0–65.535):** Atk: 64 | Def: 47 | Spd: 38 | Spc: 62 | HP: 65
 - **Experiência:** 903 EXP (Progresso: 70%, faltam 70 p/ Lv.12)
 - **Golpes & PPs:**
-  - **Teleport** (Psychic_type) — PP: 19 | Poder: -- | Precisão: 100%
+  - **Teleport** (Psychic_type) — PP: 18 | Poder: -- | Precisão: 100%
 
 ### 2. **Pikachu** (Lv. 20)
 - **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
