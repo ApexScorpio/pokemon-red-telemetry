@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,13 +11,14 @@
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `60h 0m 2s`
-- **💬 Diálogo / Mensagem no Ecrã:** `it wanders around sowing its seeds`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 13)
 - **Tipos:** Normal/Flying
@@ -242,6 +243,7 @@
 - [18:46:54] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:53:02] `FURY ATTACK POISON STING`
 - [18:52:58] `it wanders around sowing its seeds`
 - [18:52:33] `FURY ATTACK POISON STING`
 - [18:50:33] `HORN ATTACK TACKLE`
@@ -256,7 +258,6 @@
 - [18:09:07] `THUNDERSHOCK THUNDER WAVE`
 - [18:08:56] `TACKLE TAIL WHIP`
 - [18:08:48] `THUNDERSHOCK THUNDER WAVE`
-- [18:08:35] `TACKLE TAIL WHIP`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
