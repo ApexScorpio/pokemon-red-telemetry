@@ -1,25 +1,57 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:11**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:15**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 5** (ID Interno: `0x10`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
-- **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `8`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `63h 0m 24s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TELEPORT`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra) | **Eficiência na Rota:** `10% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Mankey** (Lv. 12)
+- **Tipos:** Fighting
+- **HP:** **32 / 32** (100%)
+- **Stats de Batalha:** ATK: 24 | DEF: 13 | SPD: 24 | SPC: 13
+- **Os 4 Golpes do Adversário:**
+  - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Scratch** (Normal) ➔ Dano: ~11-14 HP (1x)
+  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
+
+### 🔵 O Teu Pokémon em Campo: **Abra** (Lv. 11)
+- **Tipos:** Psychic
+- **HP:** **28 / 28** (HEALTHY)
+- **Stats com Modificadores:** ATK: 10 (0) | DEF: 8 (0) | SPD: 25 (0) | SPC: 29 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Teleport** (Psychic_type) ➔ Dano: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 15%)
+- ➔ ⚠️ Abra não tem nenhum golpe de dano eficaz contra o adversário! Troca imediatamente de Pokémon.
+> **Resumo Tático:** Não ataques com golpes de status que causam 0 dano. Muda imediatamente para um atacante com vantagem de tipo.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Abra tem a melhor rota de vitória rápida e HP estável (28/28). Não precisas de gastar um turno a trocar.
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **25%** | Great Ball: **48%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~35%** | *Com HP no vermelho:* **~75%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Abra** (Lv. 11)
+### 1. **Abra** (Lv. 11) ⚔️ [EM COMBATE]
 - **Tipos:** Psychic | **HP:** 28 / 28 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 10 | DEF: 8 | SPD: 25 | SPC: 29
 - **DVs Gen 1 (0–15):** Ataque: 5 | Defesa: 2 | Velocidade: 2 | Especial: 5 | HP: 9
@@ -145,6 +177,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:24:13] **Turno #1**: Abra (28/28 HP) vs Mankey (Lv. 12 • 32/32 HP)
 - [19:24:07] **Turno #1**: Abra (28/28 HP) vs Pidgey (Lv. 15 • 37/37 HP)
 - [19:23:21] **Turno #1**: Abra (28/28 HP) vs Pidgey (Lv. 13 • 37/37 HP) • Golpe RED: `Teleport`
 - [19:23:19] **Turno #1**: Abra (43/28 HP) vs Pidgey (Lv. 13 • 37/37 HP)
@@ -159,7 +192,6 @@
 - [19:16:47] **Turno #4**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Confusion`
 - [19:16:41] **Turno #3**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:40] **Turno #2**: Butterfree (50/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
-- [19:16:39] **Turno #1**: Butterfree (56/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 
 - [19:24:02] Entrou em Route 5
 - [19:23:37] Entrou em Cerulean City
