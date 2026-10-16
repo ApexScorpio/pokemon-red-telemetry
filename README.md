@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:42:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:43:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,18 +11,18 @@
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `52h 0m 31s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **1691 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Leer`
+- **Último Golpe Usado pelo Adversário:** `Poison Sting`
 
 ### 🔴 Adversário em Campo: **Ekans** (Lv. 12)
 - **Tipos:** Poison
-- **HP:** **16 / 32** (50%)
+- **HP:** **0 / 32** (0%)
 - **Stats de Batalha:** ATK: 21 | DEF: 17 | SPD: 20 | SPC: 16
 - **Os 4 Golpes do Adversário:**
   - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
@@ -39,12 +39,13 @@
 - **Stats com Modificadores:** ATK: 27 (0) | DEF: 19 (0) | SPD: 35 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **16-19 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **16-19 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Thundershock (Causa ~16-19 de dano)
+- ➔ Turno 2: Thundershock (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Thundershock. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -106,7 +107,7 @@
 - **Stat Experience (0–65.535):** Atk: 6267 | Def: 4358 | Spd: 7017 | Spc: 3712 | HP: 4520
 - **Experiência:** 3723 EXP (Progresso: 48%, faltam 373 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -231,6 +232,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:43:02] **Turno #1**: Pikachu (35/38 HP) vs Ekans (0/32 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Poison Sting`
 - [15:42:56] **Turno #1**: Pikachu (35/38 HP) vs Ekans (16/32 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 - [15:42:52] **Turno #1**: Pikachu (35/38 HP) vs Ekans (32/32 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [15:42:49] **Turno #1**: Pikachu (35/38 HP) vs Zubat (0/33 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
@@ -238,7 +240,6 @@
 - [15:42:47] **Turno #1**: Pikachu (38/38 HP) vs Zubat (33/33 HP)
 - [15:42:38] **Turno #1**: Beedrill (48/48 HP) vs Zubat (33/33 HP)
 - [15:42:11] **Turno #1**: Beedrill (48/48 HP) vs Zubat (0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:42:10] **Turno #1**: Beedrill (48/48 HP) vs Zubat (15/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 
 - [15:42:23] Entrou em Mt Moon B2f
 - [15:42:13] Entrou em Mt Moon B1F
@@ -248,6 +249,7 @@
 - [15:40:52] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [15:43:01] `THUNDERSHOCK THUNDER WAVE`
 - [15:39:05] `FURY ATTACK POISON STING`
 - [15:35:31] `CONFUSION STUN SPORE`
 - [15:35:15] `FURY ATTACK POISON STING`
