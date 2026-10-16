@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:48:05**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:48:09**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -101,12 +101,12 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 6. **Butterfree** (Lv. 22)
-- **Tipos:** Bug/Flying | **HP:** 60 / 65 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
+### 6. **Butterfree** (Lv. 23)
+- **Tipos:** Bug/Flying | **HP:** 63 / 68 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 34 | DEF: 33 | SPD: 46 | SPC: 51
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7516 | Def: 7045 | Spd: 7571 | Spc: 5329 | HP: 6313
-- **Experiência:** 12 132 EXP (Progresso: 98%, faltam 35 p/ Lv.23)
+- **Stat Experience (0–65.535):** Atk: 7556 | Def: 7115 | Spd: 7631 | Spc: 5399 | HP: 6343
+- **Experiência:** 12 433 EXP (Progresso: 16%, faltam 1391 p/ Lv.24)
 - **Golpes & PPs:**
   - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -128,19 +128,8 @@
 - **TM08 (Body Slam)** x1
 - **Max Potion** x1
 
-## 💻 4.1. Armazenamento de Itens no PC (RAM $D53A) • Capacidade: **11 / 50 slots** (39 vagas livres)
-> *Itens guardados no PC pessoal do jogador (preservam espaço na mochila mas contam como possuídos para TMs/Key Items):*
-- **Potion** x1 • 🧪 Cura/Restauração
-- **TM34 (Bide)** x1 • 💿 TM Único
-- **TM12 (Water Gun)** x1 • 💿 TM Único
-- **TM11 (BubbleBeam)** x1 • 💿 TM Único
-- **TM45 (Thunder Wave)** x1 • 💿 TM Único
-- **Nugget** x1 • 💰 Item Valioso
-- **Helix Fossil** x1 • 🔑 Key Item
-- **TM04 (Whirlwind)** x1 • 💿 TM Único
-- **TM01 (Mega Punch)** x1 • 💿 TM Único
-- **Moon Stone** x2 • 💎 Pedra de Evolução
-- **TM28 (Dig)** x1 • 💿 TM Único
+## 💻 4.1. Armazenamento de Itens no PC (RAM $D53A) • Capacidade: **0 / 50 slots** (50 vagas livres)
+*Nenhum item guardado no PC.*
 
 ## 🏡 4.2. Centro de Criação / Daycare (Rota 5 - RAM $DA48) • ⚪ VAZIO
 *Nenhum Pokémon entregue no Daycare da Rota 5 de momento.*
@@ -376,19 +365,10 @@
 
 ### 💿 TMs e HMs em Posse do Jogador (Mochila + PC):
 - **TM08 (Body Slam)** x1 [Local: 🎒 Na Mochila]
-- **TM34 (Bide)** x1 [Local: 💻 Guardado no PC]
-- **TM12 (Water Gun)** x1 [Local: 💻 Guardado no PC]
-- **TM11 (BubbleBeam)** x1 [Local: 💻 Guardado no PC]
-- **TM45 (Thunder Wave)** x1 [Local: 💻 Guardado no PC]
-- **TM04 (Whirlwind)** x1 [Local: 💻 Guardado no PC]
-- **TM01 (Mega Punch)** x1 [Local: 💻 Guardado no PC]
-- **TM28 (Dig)** x1 [Local: 💻 Guardado no PC]
 
 ### 🔑 Key Items e Pedras Raras em Posse (Mochila + PC):
 - **Town Map** x1 [Local: 🎒 Na Mochila]
 - **S.s.ticket** x1 [Local: 🎒 Na Mochila]
-- **Helix Fossil** x1 [Local: 💻 Guardado no PC]
-- **Moon Stone** x2 [Local: 💻 Guardado no PC]
 
 ### 🚩 Próximo Grande Objetivo de Jogo para Orientares o Jogador:
 > **RED possui 2 Insígnias (Boulder & Cascade)!** Já possui o **S.S. Ticket** (guardado no PC/mochila). O próximo passo é atravessar a Casa Subterrânea da Rota 5 até Vermilion City. Em Vermilion City, com o S.S. Ticket, deve embarcar no navio S.S. Anne, vencer o Rival Blue, obter o **HM01 Cut** com o Capitão do navio, cortar o arbusto do ginásio e derrotar o **Líder Lt. Surge (Thunder Badge)**!
