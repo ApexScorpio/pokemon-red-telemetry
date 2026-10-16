@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:18**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:22**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,16 +11,18 @@
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `59h 0m 38s`
-- **💬 Diálogo / Mensagem no Ecrã:** `He invented the POKMON Storage`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3116 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `String Shot`
 
 ### 🔴 Adversário em Campo: **Caterpie** (Lv. 14)
 - **Tipos:** Bug
-- **HP:** **38 / 38** (100%)
+- **HP:** **32 / 38** (84%)
 - **Stats de Batalha:** ATK: 15 | DEF: 17 | SPD: 19 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -55,7 +57,7 @@
 - **Stat Experience (0–65.535):** Atk: 4269 | Def: 3606 | Spd: 4699 | Spc: 2800 | HP: 3518
 - **Experiência:** 4820 EXP (Progresso: 89%, faltam 93 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 19 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -201,6 +203,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:49:21] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 32/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:15] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 38/38 HP)
 - [18:49:14] **Turno #1**: Beedrill (2/51 HP) vs Caterpie (Lv. 14 • 38/38 HP)
 - [18:43:32] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 0/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
@@ -215,7 +218,6 @@
 - [18:43:06] **Turno #1**: Pikachu (28/42 HP) vs Rattata (Lv. 15 • 36/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
 - [18:43:04] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 0/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
 - [18:42:58] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 15/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
-- [18:42:54] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
@@ -225,6 +227,7 @@
 - [18:29:12] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:49:18] `FURY ATTACK POISON STING`
 - [18:43:39] `He invented the POKMON Storage`
 - [18:16:07] `THUNDERSHOCK THUNDER WAVE`
 - [18:15:04] `TACKLE TAIL WHIP`
@@ -239,7 +242,6 @@
 - [18:08:25] `TACKLE TAIL WHIP`
 - [18:06:14] `THUNDERSHOCK THUNDER WAVE`
 - [18:05:57] `TACKLE TAIL WHIP`
-- [18:05:06] `SQUIRTLE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
