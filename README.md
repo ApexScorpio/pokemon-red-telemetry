@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:51:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:51:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `15`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `21`, Y: `13`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `59h 0m 52s`
 - **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
@@ -167,9 +167,9 @@
   - **Slot #5**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
-## 🎒 9. Itens da Área (Route 24)
-### Itens no Chão (Poké Balls visíveis):
-- **TM45 (Thunder Wave)** (X: undefined, Y: undefined) • Estado: 🔴 Por Apanhar — *No planalto perto do início da rota.*
+## 🎒 9. Itens da Área (Cerulean City)
+### Itens Ocultos (Invisíveis no chão):
+- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -190,12 +190,12 @@
 - [18:50:57] **Turno #1**: Nidorino (22/53 HP) vs Mankey (Lv. 18 • 45/45 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Scratch`
 - [18:50:56] **Turno #1**: Nidorino (32/53 HP) vs Mankey (Lv. 18 • 45/45 HP)
 
+- [18:51:30] Entrou em Cerulean City
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
 - [18:43:44] Entrou em Cerulean Pokecenter
 - [18:33:36] Entrou em Cerulean City
 - [18:29:24] Entrou em Cerulean Mart
-- [18:29:12] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:50:33] `HORN ATTACK TACKLE`
