@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:02:35**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:02:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,10 +18,12 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Ember`
+- **Último Golpe Usado pelo Adversário:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Mankey** (Lv. 16)
 - **Tipos:** Fighting
-- **HP:** **43 / 43** (100%)
+- **HP:** **8 / 43** (19%)
 - **Stats de Batalha:** ATK: 32 | DEF: 21 | SPD: 30 | SPC: 19
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -33,36 +35,35 @@
   - **Karate Chop** (Normal) ➔ Dano: ~8-10 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 18)
-- **Tipos:** Normal
-- **HP:** **36 / 53** (HEALTHY)
+- **Tipos:** Fire
+- **HP:** **23 / 53** (HEALTHY)
 - **Stats com Modificadores:** ATK: 34 (0) | DEF: 28 (0) | SPD: 42 (0) | SPC: 35 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **18-22 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **12-15 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Scratch (Causa ~18-22 de dano)
-- ➔ Turno 2: Scratch (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Scratch. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Charmeleon tem a melhor rota de vitória rápida e HP estável (36/53). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Scratch para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **27%** | Great Ball: **51%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~37%** | *Com HP no vermelho:* **~75%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **75%** | Great Ball: **95%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~84%** | *Com HP no vermelho:* **~75%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Fire | **HP:** 36 / 53 ✅ (SAUDÁVEL)
+- **Tipos:** Fire | **HP:** 23 / 53 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 34 | DEF: 28 | SPD: 42 | SPC: 35
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
 - **Stat Experience (0–65.535):** Atk: 5420 | Def: 4008 | Spd: 6217 | Spc: 3269 | HP: 4098
 - **Experiência:** 3976 EXP (Progresso: 23%, faltam 599 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Ember** (Fire) — PP: 21 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 20 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Scratch** (Normal) — PP: 32 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -287,6 +288,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:02:38] **Turno #1**: Charmeleon (23/53 HP) vs Mankey (Lv. 16 • 8/43 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Scratch`
+- [20:02:38] **Turno #1**: Charmeleon (36/53 HP) vs Mankey (Lv. 16 • 8/43 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Scratch`
 - [20:02:35] **Turno #1**: Charmeleon (36/53 HP) vs Mankey (Lv. 16 • 43/43 HP)
 - [20:02:32] **Turno #2**: Charmeleon (36/53 HP) vs Pidgey (Lv. 16 • 0/41 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Gust`
 - [20:02:30] **Turno #2**: Charmeleon (36/53 HP) vs Pidgey (Lv. 16 • 9/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
@@ -300,8 +303,6 @@
 - [20:01:58] **Turno #1**: Charmeleon (50/50 HP) vs Caterpie (Lv. 16 • 0/42 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:01:57] **Turno #1**: Charmeleon (50/50 HP) vs Caterpie (Lv. 16 • 42/42 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Poison Sting`
 - [20:01:56] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Poison Sting`
-- [20:01:53] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 28/41 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `String Shot`
-- [20:01:52] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 41/41 HP)
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
