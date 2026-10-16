@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:06:48**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:06:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -23,7 +23,7 @@
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 16)
 - **Tipos:** Normal/Flying
-- **HP:** **32 / 41** (78%)
+- **HP:** **3 / 41** (7%)
 - **Stats de Batalha:** ATK: 22 | DEF: 20 | SPD: 25 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -40,17 +40,16 @@
 - **Stats com Modificadores:** ATK: 43 (0) | DEF: 28 (0) | SPD: 40 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Twineedle** (Bug) ➔ Dano: **8-10 HP** (0.5x eficácia) • ~4 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Twineedle** (Bug) ➔ Dano: **8-10 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-4: Usa repetidamente Twineedle
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Twineedle (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Twineedle! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Pikachu (Lv. 20)** [12/48 HP]
-- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 3 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Twineedle para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -77,7 +76,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 3. **Beedrill** (Lv. 20)
+### 3. **Beedrill** (Lv. 20) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 49 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 28 | SPD: 40 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -86,7 +85,7 @@
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 12 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Twineedle** (Bug) — PP: 19 | Poder: 25 | Precisão: 100%
+  - **Twineedle** (Bug) — PP: 18 | Poder: 25 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 4. **Nidorino** (Lv. 20)
@@ -285,6 +284,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:06:51] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 3/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
+- [20:06:50] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 12/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
+- [20:06:48] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 23/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 - [20:06:47] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 32/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 - [20:06:45] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:06:44] **Turno #3**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
@@ -297,9 +299,6 @@
 - [20:04:19] **Turno #1**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:04:18] **Turno #1**: Charmeleon (12/53 HP) vs Pidgey (Lv. 16 • 41/41 HP)
 - [20:04:17] **Turno #1**: Charmeleon (12/53 HP) vs Butterfree (Lv. 20 • 0/57 HP)
-- [20:04:12] **Turno #6**: Pikachu (12/48 HP) vs Butterfree (Lv. 20 • 0/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
-- [20:04:11] **Turno #6**: Pikachu (25/48 HP) vs Butterfree (Lv. 20 • 15/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
-- [20:04:10] **Turno #5**: Pikachu (25/48 HP) vs Butterfree (Lv. 20 • 15/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Stun Spore`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
