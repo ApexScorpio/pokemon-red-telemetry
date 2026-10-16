@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:50:46**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:50:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,19 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `19`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `53h 0m 21s`
+- **Tempo de Jogo:** `53h 0m 22s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **2531 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Poison Sting`
 - **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
 ### 🔴 Adversário em Campo: **Rattata** (Lv. 13)
 - **Tipos:** Normal
-- **HP:** **14 / 32** (44%)
+- **HP:** **4 / 32** (13%)
 - **Stats de Batalha:** ATK: 21 | DEF: 16 | SPD: 25 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -35,26 +35,25 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison
-- **HP:** **27 / 51** (HEALTHY)
+- **HP:** **15 / 51** (HEALTHY)
 - **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (-1) | SPD: 32 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Poison Sting (Causa ~8-10 de dano)
-- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 14 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 4 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 27 / 51 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 15 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4083 | Def: 3450 | Spd: 4545 | Spc: 2635 | HP: 3308
@@ -62,7 +61,7 @@
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 12 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Butterfree** (Lv. 19)
@@ -234,14 +233,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:50:48] **Turno #3**: Beedrill (15/51 HP) vs Rattata (4/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Quick Attack`
+- [15:50:47] **Turno #3**: Beedrill (15/51 HP) vs Rattata (14/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Quick Attack`
 - [15:50:46] **Turno #2**: Beedrill (27/51 HP) vs Rattata (14/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Quick Attack`
 - [15:50:46] **Turno #2**: Beedrill (39/51 HP) vs Rattata (24/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Quick Attack`
 - [15:50:44] **Turno #1**: Beedrill (39/51 HP) vs Rattata (24/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tail Whip`
 - [15:50:34] **Turno #1**: Beedrill (39/51 HP) vs Rattata (32/32 HP)
 - [15:50:18] **Turno #2**: Butterfree (51/57 HP) vs Geodude (0/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:50:17] **Turno #2**: Butterfree (54/57 HP) vs Geodude (19/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [15:50:15] **Turno #1**: Beedrill (39/51 HP) vs Geodude (19/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [15:50:14] **Turno #1**: Beedrill (43/51 HP) vs Geodude (19/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [15:49:34] Entrou em Mt Moon B2f
 - [15:49:32] Entrou em Mt Moon B1F
