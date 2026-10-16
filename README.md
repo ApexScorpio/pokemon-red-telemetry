@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:11**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:14**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `60h 0m 22s`
+- **Tempo de Jogo:** `60h 0m 23s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
@@ -19,12 +19,12 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Karate Chop`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 15)
 - **Tipos:** Rock/Ground
-- **HP:** **39 / 39** (100%)
-- **Stats de Batalha:** ATK: 31 | DEF: 37 | SPD: 13 | SPC: 16
+- **HP:** **0 / 39** (0%)
+- **Stats de Batalha:** ATK: 31 | DEF: 55 | SPD: 13 | SPC: 16
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
   - **Defense Curl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
@@ -39,7 +39,7 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **9-11 HP** (1x eficácia) • ~4 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **5-6 HP** (1x eficácia) • ~4 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 88%)
 - ➔ Turno 1: Sleep Powder (Neutraliza o adversário sem sofrer dano)
@@ -52,14 +52,14 @@
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 21)
+### 1. **Butterfree** (Lv. 21) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 6891 | Def: 6326 | Spd: 7110 | Spc: 4732 | HP: 5765
-- **Experiência:** 9893 EXP (Progresso: 46%, faltam 755 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 6971 | Def: 6426 | Spd: 7130 | Spc: 4762 | HP: 5805
+- **Experiência:** 10 169 EXP (Progresso: 65%, faltam 479 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -221,6 +221,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:13] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 0/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
+- [18:56:12] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 12/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Defense Curl`
 - [18:56:10] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 39/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [18:56:09] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 0/48 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [18:56:08] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 48/48 HP)
@@ -234,8 +236,6 @@
 - [18:53:23] **Turno #1**: Butterfree (4/62 HP) vs Pidgey (Lv. 13 • 36/36 HP)
 - [18:53:14] **Turno #3**: Beedrill (4/56 HP) vs Pidgey (Lv. 13 • 0/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [18:53:14] **Turno #3**: Beedrill (9/56 HP) vs Pidgey (Lv. 13 • 6/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [18:53:12] **Turno #2**: Beedrill (9/56 HP) vs Pidgey (Lv. 13 • 6/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [18:53:11] **Turno #1**: Beedrill (9/56 HP) vs Pidgey (Lv. 13 • 6/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
