@@ -50,6 +50,9 @@ function checkForUpdates() {
 
     console.log('[Updater] Nova versão detetada no GitHub. A descarregar...');
     try {
+      git(['checkout', '--', ':/README.md', ':/telemetria.md', ':/public/telemetria.md', ':/public/telemetria.txt']);
+    } catch (e) {}
+    try {
       git(['checkout', '--', 'README.md', 'telemetria.md', 'public/telemetria.md', 'public/telemetria.txt']);
     } catch (e) {}
     git(['pull', '--ff-only', 'origin', 'main']);

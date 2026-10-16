@@ -174,7 +174,8 @@ class RetroArchClient extends EventEmitter {
     this.timer = null;
     this.isSimulatingBattle = false;
 
-    this.latestState = {
+    const cachedState = this.loadPersistedState();
+    this.latestState = cachedState || {
       connected: false,
       lastUpdate: null,
       romValidation: 'Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)',
@@ -207,10 +208,37 @@ class RetroArchClient extends EventEmitter {
       aiAdvice: 'A sincronizar com a memória do Game Boy...'
     };
 
+    if (cachedState) {
+      this.latestState.actionHistory = this.loadPersistedActionHistory();
+      this.latestState.dialogHistory = this.loadPersistedDialogHistory();
+    }
+
     this.lastBattleKey = null;
     this.lastVideoReadAt = 0;
     this.videoReadInProgress = false;
     this.pendingResolves = new Map();
+  }
+
+  loadPersistedState() {
+    try {
+      const p = require('path').join(__dirname, 'data', 'last_known_state.json');
+      if (fs.existsSync(p)) {
+        const saved = JSON.parse(fs.readFileSync(p, 'utf8'));
+        if (saved && saved.party && saved.party.length > 0) {
+          saved.connected = false;
+          return saved;
+        }
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  persistState(state) {
+    if (!state || !state.party || state.party.length === 0) return;
+    try {
+      const p = require('path').join(__dirname, 'data', 'last_known_state.json');
+      fs.writeFileSync(p, JSON.stringify(state, null, 2), 'utf8');
+    } catch (e) {}
   }
 
   loadPersistedActionHistory() {
@@ -1402,6 +1430,7 @@ class RetroArchClient extends EventEmitter {
       })();
     }
 
+    this.persistState(this.latestState);
     this.emit('update', this.latestState);
   }
 }
