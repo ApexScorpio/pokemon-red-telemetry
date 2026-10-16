@@ -1,56 +1,26 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:32**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:36**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `6`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `23`, Y: `8`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `60h 0m 31s`
 - **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
-- **Dinheiro:** **6831 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **7111 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Horn Attack`
-- **Último Golpe Usado pelo Adversário:** `Leer`
-
-### 🔴 Adversário em Campo: **Ekans** (Lv. 14)
-- **Tipos:** Poison
-- **HP:** **0 / 36** (0%)
-- **Stats de Batalha:** ATK: 24 | DEF: 19 | SPD: 22 | SPC: 18
-- **Os 4 Golpes do Adversário:**
-  - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
-  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Wrap** (Normal) ➔ Dano: ~2-3 HP (1x)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-  - **Poison Sting** (Poison) ➔ Dano: ~1-2 HP (0.5x)
-
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
-- **Tipos:** Poison
-- **HP:** **45 / 59** (HEALTHY)
-- **Stats com Modificadores:** ATK: 41 (0) | DEF: 33 (-1) | SPD: 36 (0) | SPC: 30 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **25-30 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Horn Attack (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Horn Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (45/59). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -65,12 +35,12 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
+### 2. **Nidorino** (Lv. 19)
 - **Tipos:** Poison | **HP:** 45 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 4196 | Def: 2815 | Spd: 4506 | Spc: 2543 | HP: 3358
-- **Experiência:** 5120 EXP (Progresso: 62%, faltam 340 p/ Lv.20)
+- **Stat Experience (0–65.535):** Atk: 4256 | Def: 2859 | Spd: 4561 | Spc: 2583 | HP: 3393
+- **Experiência:** 5306 EXP (Progresso: 83%, faltam 154 p/ Lv.20)
 - **Golpes & PPs:**
   - **Horn Attack** (Normal) — PP: 16 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
