@@ -1,21 +1,51 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:57:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:57:32**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `38`, Y: `12`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `53h 0m 47s`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `32`, Y: `18`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Tempo de Jogo:** `53h 0m 48s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Confusion`
+- **Último Golpe Usado pelo Adversário:** `Leech Life`
+
+### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
+- **Tipos:** Poison/Flying
+- **HP:** **0 / 27** (0%)
+- **Stats de Batalha:** ATK: 14 | DEF: 12 | SPD: 15 | SPC: 14
+- **Os 4 Golpes do Adversário:**
+  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Leech Life** (Bug) ➔ Dano: ~1-1 HP (0.5x)
+
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 20)
+- **Tipos:** Bug/Flying
+- **HP:** **54 / 60** (HEALTHY)
+- **Stats com Modificadores:** ATK: 30 (0) | DEF: 29 (0) | SPD: 40 (0) | SPC: 45 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **24-29 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (54/60). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 16)
@@ -30,14 +60,14 @@
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Butterfree** (Lv. 20)
+### 2. **Butterfree** (Lv. 20) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 54 / 60 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 29 | SPD: 40 | SPC: 45
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 6441 | Def: 5961 | Spd: 6714 | Spc: 4412 | HP: 5400
 - **Experiência:** 9011 EXP (Progresso: 80%, faltam 250 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 15 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 14 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 13 | Poder: -- | Precisão: 75%
@@ -132,7 +162,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↙️ 31 passos Sudoeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste)) • **✅ VENCIDO**
+### #1. [↖️ 23 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -144,7 +174,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
-### #2. [⬅️ 22 passos Oeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **✅ VENCIDO**
+### #2. [↖️ 22 passos Noroeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Zubat (Lv. 12) • Ekans (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -156,7 +186,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
-### #3. [↙️ 14 passos Sudoeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **✅ VENCIDO**
+### #3. [↖️ 4 passos Noroeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Raticate (Lv. 13)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -195,14 +225,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:57:31] **Turno #1**: Butterfree (54/60 HP) vs Zubat (0/27 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
+- [15:57:29] **Turno #1**: Beedrill (54/51 HP) vs Zubat (27/27 HP)
 - [15:57:26] **Turno #1**: Butterfree (54/60 HP) vs Zubat (0/27 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [15:57:24] **Turno #1**: Beedrill (54/51 HP) vs Zubat (27/27 HP)
 - [15:57:22] **Turno #1**: Butterfree (54/60 HP) vs Geodude (0/27 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:57:16] **Turno #1**: Beedrill (54/51 HP) vs Geodude (27/27 HP)
 - [15:57:12] **Turno #1**: Butterfree (54/60 HP) vs Geodude (0/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:57:10] **Turno #1**: Beedrill (54/51 HP) vs Geodude (28/28 HP)
-- [15:57:07] **Turno #1**: Butterfree (54/60 HP) vs Zubat (0/32 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Supersonic`
-- [15:57:06] **Turno #1**: Butterfree (54/60 HP) vs Zubat (20/32 HP) • Golpe RED: `Struggle` • Golpe Inimigo: `Supersonic`
 
 - [15:56:57] Entrou em Mt Moon B2f
 - [15:56:56] Entrou em Mt Moon B1F
@@ -210,6 +240,8 @@
 - [15:56:42] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [15:57:30] `CONFUSION STUN SPORE`
+- [15:57:29] `999999999999999999 999999999999999999`
 - [15:57:18] `CONFUSION STUN SPORE`
 - [15:56:26] `FURY ATTACK POISON STING`
 - [15:56:22] `99999999999999999 99999999999999999`
