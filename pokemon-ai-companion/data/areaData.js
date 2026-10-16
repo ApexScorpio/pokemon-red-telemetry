@@ -984,8 +984,8 @@ function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [
     // Determina o foco da área atual
     const isAtRoute3 = mapId === 14;
     const isAtRoute4West = mapId === 15 && (!coords || coords.x < 30);
-    const isAtMtMoon = [59, 60, 61, 68].includes(mapId) || isAtRoute4West;
-    const isAtCeruleanArea = [3, 41, 64, 16, 35, 36].includes(mapId) || (mapId === 15 && coords && coords.x >= 30);
+    const ceruleanMapIds = [3, 16, 35, 36, 41, 63, 64, 65, 66, 67, 72, 73, 88];
+    const isAtCeruleanArea = ceruleanMapIds.includes(mapId) || (mapId === 15 && coords && coords.x >= 30);
 
     // Contextualização tática imediata de acordo com a localização do jogador
     if (isAtRoute3 || isAtMtMoon) {
@@ -1376,7 +1376,7 @@ function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [
       }
     ];
 
-    // Batalhas de Cerulean
+    // Batalhas de Cerulean, Rota 24, Rota 25 e Ginásio de Cerulean (16 Treinadores com Event Flags Reais da ROM)
     const ceruleanBattles = [
       {
         id: 'cerulean_rival',
@@ -1385,14 +1385,342 @@ function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [
         difficulty: 'Chefe / Difícil',
         diffClass: 'diff-hard',
         difficultyScore: 11,
-        isDefeated: eventFlagsChecker ? eventFlagsChecker(0x526) : false,
-        statusLabel: (eventFlagsChecker && eventFlagsChecker(0x526)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        x: 10, y: 15,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(152) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(152)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
         badgeTag: 'RIVAL BLUE',
         enemyRoster: 'Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)',
         targetLevel: 'Lv. 18+',
         optimalLead: 'Pikachu (Pidgeotto/Wartortle)',
         idealLineup: computeIdealPartyLineup(party, 25),
         strategyText: 'Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.'
+      },
+      // Rota 24 (Ponte Nugget - 5 Treinadores + Rocket Grunt)
+      {
+        id: 'r24_bridge_1',
+        name: 'Bug Catcher Cale',
+        location: 'Rota 24 (Ponte #1)',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 5,
+        x: 11, y: 15,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1346) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1346)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'PONTE NUGGET',
+        enemyRoster: 'Caterpie (Lv. 10) • Weedle (Lv. 10)',
+        targetLevel: 'Lv. 12+',
+        optimalLead: 'Charmeleon (Ember) / Butterfree',
+        idealLineup: computeIdealPartyLineup(party, 5),
+        strategyText: 'Ataques de Fogo ou Voador derrotam os insetos instantaneamente.'
+      },
+      {
+        id: 'r24_bridge_2',
+        name: 'Lass Ali',
+        location: 'Rota 24 (Ponte #2)',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 6,
+        x: 10, y: 19,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1347) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1347)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'PONTE NUGGET',
+        enemyRoster: 'Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)',
+        targetLevel: 'Lv. 13+',
+        optimalLead: 'Pikachu / Charmeleon',
+        idealLineup: computeIdealPartyLineup(party, 25),
+        strategyText: 'Pikachu para Pidgey; Charmeleon com Ember para Oddish e Bellsprout.'
+      },
+      {
+        id: 'r24_bridge_3',
+        name: 'Youngster Timmy',
+        location: 'Rota 24 (Ponte #3)',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 7,
+        x: 11, y: 23,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1348) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1348)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'PONTE NUGGET',
+        enemyRoster: 'Sandshrew (Lv. 14) • Ekans (Lv. 14)',
+        targetLevel: 'Lv. 14+',
+        optimalLead: 'Butterfree (Confusion)',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Confusion é super eficaz contra Ekans e causa dano especial a Sandshrew.'
+      },
+      {
+        id: 'r24_bridge_4',
+        name: 'Lass Reli',
+        location: 'Rota 24 (Ponte #4)',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 8,
+        x: 10, y: 27,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1349) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1349)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'PONTE NUGGET',
+        enemyRoster: 'Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)',
+        targetLevel: 'Lv. 15+',
+        optimalLead: 'Butterfree (Confusion)',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Ambos os Nidorans são Poison; Confusion causa 2x dano super eficaz.'
+      },
+      {
+        id: 'r24_bridge_5',
+        name: 'Jr. Trainer♂ Shane',
+        location: 'Rota 24 (Ponte #5)',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 9,
+        x: 11, y: 31,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1350) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1350)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'PONTE NUGGET',
+        enemyRoster: 'Mankey (Lv. 18)',
+        targetLevel: 'Lv. 16+',
+        optimalLead: 'Butterfree (Confusion) / Pidgeotto',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Mankey é Lutador puro: fraqueza a Psíquico e Voador. Cuidado com Karate Chop.'
+      },
+      {
+        id: 'r24_rocket',
+        name: 'Team Rocket Grunt (Nugget)',
+        location: 'Rota 24 (Fim da Ponte)',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 10,
+        x: 10, y: 33,
+        isDefeated: eventFlagsChecker ? (eventFlagsChecker(1345) || eventFlagsChecker(1351)) : false,
+        statusLabel: (eventFlagsChecker && (eventFlagsChecker(1345) || eventFlagsChecker(1351))) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'TEAM ROCKET',
+        enemyRoster: 'Ekans (Lv. 15) • Zubat (Lv. 15)',
+        targetLevel: 'Lv. 16+',
+        optimalLead: 'Butterfree / Pikachu',
+        idealLineup: computeIdealPartyLineup(party, 25),
+        strategyText: 'Pikachu destrói o Zubat com Thundershock; Confusion elimina o Ekans.'
+      },
+      {
+        id: 'r24_grass_trainer',
+        name: 'Jr. Trainer♂ Ethan',
+        location: 'Rota 24 (Relva Noroeste)',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 7,
+        x: 7, y: 7,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1351) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1351)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'TREINADOR',
+        enemyRoster: 'Rattata (Lv. 14) • Ekans (Lv. 14)',
+        targetLevel: 'Lv. 14+',
+        optimalLead: 'Butterfree / Charmeleon',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Confusion e ataques normais limpam este treinador rapidamente.'
+      },
+      // Rota 25 (Caminho até Bill - 9 Treinadores)
+      {
+        id: 'r25_trainer_0',
+        name: 'Youngster Joey',
+        location: 'Rota 25 (Início)',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 6,
+        x: 14, y: 7,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1361) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1361)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Rattata (Lv. 15) • Spearow (Lv. 15)',
+        targetLevel: 'Lv. 15+',
+        optimalLead: 'Geodude / Pikachu',
+        idealLineup: computeIdealPartyLineup(party, 25),
+        strategyText: 'Pikachu derrota o Spearow; Geodude resiste aos ataques normais.'
+      },
+      {
+        id: 'r25_trainer_1',
+        name: 'Youngster Dan',
+        location: 'Rota 25 (Caminho)',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 7,
+        x: 18, y: 5,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1362) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1362)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Slowpoke (Lv. 17)',
+        targetLevel: 'Lv. 16+',
+        optimalLead: 'Pikachu (Thundershock)',
+        idealLineup: computeIdealPartyLineup(party, 25),
+        strategyText: 'Slowpoke tem HP alto mas fraqueza crítica a Electric. Pikachu vence com facilidade.'
+      },
+      {
+        id: 'r25_trainer_2',
+        name: 'Jr. Trainer♂ Flint',
+        location: 'Rota 25 (Labirinto)',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 6,
+        x: 24, y: 4,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1363) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1363)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Rattata (Lv. 14) • Ekans (Lv. 14)',
+        targetLevel: 'Lv. 15+',
+        optimalLead: 'Butterfree / Charmeleon',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Confusion e golpes fortes físicos.'
+      },
+      {
+        id: 'r25_trainer_3',
+        name: 'Lass Haley',
+        location: 'Rota 25 (Centro)',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 6,
+        x: 18, y: 7,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1364) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1364)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Oddish (Lv. 15) • Pidgey (Lv. 15) • Oddish (Lv. 15)',
+        targetLevel: 'Lv. 15+',
+        optimalLead: 'Charmeleon (Ember)',
+        idealLineup: computeIdealPartyLineup(party, 5),
+        strategyText: 'Ember elimina Oddish rapidamente. Pikachu trata do Pidgey.'
+      },
+      {
+        id: 'r25_trainer_4',
+        name: 'Hiker Franklin',
+        location: 'Rota 25 (Perto da Casa)',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 8,
+        x: 32, y: 3,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1365) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1365)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Machop (Lv. 15) • Geodude (Lv. 15)',
+        targetLevel: 'Lv. 16+',
+        optimalLead: 'Butterfree (Confusion)',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Confusion destrói o Machop e ataca a baixa Special do Geodude.'
+      },
+      {
+        id: 'r25_trainer_5',
+        name: 'Youngster Chad',
+        location: 'Rota 25',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 6,
+        x: 37, y: 4,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1366) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1366)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Ekans (Lv. 14) • Sandshrew (Lv. 14)',
+        targetLevel: 'Lv. 15+',
+        optimalLead: 'Butterfree',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Golpes psíquicos limpam ambos os alvos.'
+      },
+      {
+        id: 'r25_trainer_6',
+        name: 'Hiker Wayne',
+        location: 'Rota 25',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 8,
+        x: 40, y: 7,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1367) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1367)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Onix (Lv. 17)',
+        targetLevel: 'Lv. 16+',
+        optimalLead: 'Butterfree / Golpes Especiais',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Onix tem Defesa gigante mas Special muito baixa. Não uses golpes físicos ou elétricos!'
+      },
+      {
+        id: 'r25_trainer_7',
+        name: 'Lass Robin',
+        location: 'Rota 25',
+        difficulty: 'Fácil',
+        diffClass: 'diff-easy',
+        difficultyScore: 6,
+        x: 45, y: 3,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1368) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1368)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Bellsprout (Lv. 13) • Pidgey (Lv. 13) • Oddish (Lv. 13)',
+        targetLevel: 'Lv. 14+',
+        optimalLead: 'Charmeleon (Ember)',
+        idealLineup: computeIdealPartyLineup(party, 5),
+        strategyText: 'Ember do Charmeleon derrota a equipa toda.'
+      },
+      {
+        id: 'r25_trainer_8',
+        name: 'Hiker Nob',
+        location: 'Rota 25 (Junto à Casa de Bill)',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 8,
+        x: 51, y: 7,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(1369) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(1369)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'ROTA 25',
+        enemyRoster: 'Geodude (Lv. 13) x2 • Machop (Lv. 13)',
+        targetLevel: 'Lv. 15+',
+        optimalLead: 'Butterfree (Confusion)',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Confusion vence todos os 3 alvos facilmente.'
+      },
+      // Cerulean City: Rocket Thief com TM28 Dig
+      {
+        id: 'cerulean_rocket_thief',
+        name: 'Team Rocket Ladrão (TM28 Dig)',
+        location: 'Cerulean City (Atrás da Casa Roubada)',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 9,
+        x: 30, y: 7,
+        isDefeated: eventFlagsChecker ? eventFlagsChecker(173) : false,
+        statusLabel: (eventFlagsChecker && eventFlagsChecker(173)) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'TEAM ROCKET',
+        enemyRoster: 'Machop (Lv. 17) • Drowzee (Lv. 17)',
+        targetLevel: 'Lv. 17+',
+        optimalLead: 'Butterfree (Confusion)',
+        idealLineup: computeIdealPartyLineup(party, 12),
+        strategyText: 'Confusion é super eficaz contra o Machop. Derrota-o para recuperar o TM28 Dig!'
+      },
+      // Ginásio de Cerulean
+      {
+        id: 'cerulean_gym_swimmer',
+        name: 'Swimmer Luis',
+        location: 'Ginásio de Cerulean',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 8,
+        x: 4, y: 7,
+        isDefeated: hasCascadeBadge || (eventFlagsChecker ? eventFlagsChecker(198) : false),
+        statusLabel: (hasCascadeBadge || (eventFlagsChecker && eventFlagsChecker(198))) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'GINÁSIO',
+        enemyRoster: 'Horsea (Lv. 16) • Shellder (Lv. 16)',
+        targetLevel: 'Lv. 16+',
+        optimalLead: 'Pikachu (Thundershock)',
+        idealLineup: computeIdealPartyLineup(party, 25),
+        strategyText: 'Golpes elétricos derrotam ambos num só ataque.'
+      },
+      {
+        id: 'cerulean_gym_jr_trainer',
+        name: 'Jr. Trainer♀ Diana',
+        location: 'Ginásio de Cerulean',
+        difficulty: 'Média',
+        diffClass: 'diff-medium',
+        difficultyScore: 9,
+        x: 2, y: 3,
+        isDefeated: hasCascadeBadge || (eventFlagsChecker ? eventFlagsChecker(199) : false),
+        statusLabel: (hasCascadeBadge || (eventFlagsChecker && eventFlagsChecker(199))) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        badgeTag: 'GINÁSIO',
+        enemyRoster: 'Goldeen (Lv. 19)',
+        targetLevel: 'Lv. 18+',
+        optimalLead: 'Pikachu (Thundershock)',
+        idealLineup: computeIdealPartyLineup(party, 25),
+        strategyText: 'Usa Pikachu com Thundershock para vencer antes que a Goldeen use Horn Attack.'
       },
       {
         id: 'cerulean_gym_misty',
@@ -1401,8 +1729,9 @@ function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [
         difficulty: 'Chefe / Difícil',
         diffClass: 'diff-hard',
         difficultyScore: 12,
-        isDefeated: hasCascadeBadge || (eventFlagsChecker ? eventFlagsChecker(0x0BF) : false),
-        statusLabel: (hasCascadeBadge || (eventFlagsChecker && eventFlagsChecker(0x0BF))) ? '✅ VENCIDO' : '⚔️ POR VENCER',
+        x: 5, y: 3,
+        isDefeated: hasCascadeBadge || (eventFlagsChecker ? eventFlagsChecker(203) : false),
+        statusLabel: (hasCascadeBadge || (eventFlagsChecker && eventFlagsChecker(203))) ? '✅ VENCIDO' : '⚔️ POR VENCER',
         badgeTag: '🏆 INSÍGNIA CASCADE',
         enemyRoster: 'Staryu (Lv. 18 - Water) • Starmie (Lv. 21 - Water/Psychic)',
         targetLevel: 'Lv. 19 a 22',
@@ -1423,6 +1752,9 @@ function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [
 
     let battles = isAtRoute3 ? route3Battles :
                   isAtMtMoon ? floorMtMoonBattles :
+                  mapId === 35 ? ceruleanBattles.filter(b => b.location.includes('Rota 24')) :
+                  mapId === 36 ? ceruleanBattles.filter(b => b.location.includes('Rota 25')) :
+                  mapId === 65 ? ceruleanBattles.filter(b => b.location.includes('Ginásio')) :
                   isAtCeruleanArea ? ceruleanBattles :
                   [...route3Battles, ...mtMoonBattles, ...ceruleanBattles];
 
@@ -1441,8 +1773,86 @@ function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [
     };
   }
 
-  // 3. ANTES DA TERCEIRA INSÍGNIA (LT. SURGE - GINÁSIO DE VERMILION / S.S. ANNE)
+  // 3. APÓS A SEGUNDA INSÍGNIA (CERULEAN COMPLETO / ROTA 5-6 / VERMILION / LT. SURGE)
   if (badgeCount === 2) {
+    const ceruleanMapIds = [3, 16, 35, 36, 41, 63, 64, 65, 66, 67, 72, 73, 88];
+    const isAtCeruleanArea = ceruleanMapIds.includes(mapId) || (mapId === 15 && coords && coords.x >= 30);
+    
+    // Treinadores da Rota 6 (Vermilion Norte)
+    const route6Battles = [
+      { id: 'r6_jr_0', name: 'Jr. Trainer♂ Ricky', location: 'Rota 6', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 6, x: 9, y: 15, isDefeated: eventFlagsChecker ? eventFlagsChecker(1041) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1041)) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Squirtle (Lv. 20)', targetLevel: 'Lv. 19+', optimalLead: 'Pikachu (Thundershock)', strategyText: 'Pikachu neutraliza facilmente o Squirtle.' },
+      { id: 'r6_jr_1', name: 'Jr. Trainer♀ Nancy', location: 'Rota 6', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 6, x: 19, y: 15, isDefeated: eventFlagsChecker ? eventFlagsChecker(1042) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1042)) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Rattata (Lv. 16) • Pikachu (Lv. 16)', targetLevel: 'Lv. 18+', optimalLead: 'Geodude / Butterfree', strategyText: 'Geodude é imune a Electric e resiste a Normal.' },
+      { id: 'r6_bug_0', name: 'Bug Catcher Keigo', location: 'Rota 6', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 5, x: 19, y: 26, isDefeated: eventFlagsChecker ? eventFlagsChecker(1043) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1043)) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Butterfree (Lv. 20)', targetLevel: 'Lv. 19+', optimalLead: 'Pikachu / Charmeleon', strategyText: 'Pikachu ou fogo derrotam Butterfree.' },
+      { id: 'r6_jr_2', name: 'Jr. Trainer♂ Jeff', location: 'Rota 6', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 7, x: 9, y: 21, isDefeated: eventFlagsChecker ? eventFlagsChecker(1044) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1044)) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Spearow (Lv. 16) • Raticate (Lv. 16)', targetLevel: 'Lv. 18+', optimalLead: 'Pikachu / Geodude', strategyText: 'Cuidado com Hyper Fang do Raticate.' },
+      { id: 'r6_jr_3', name: 'Jr. Trainer♀ Izzy', location: 'Rota 6', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 7, x: 15, y: 21, isDefeated: eventFlagsChecker ? eventFlagsChecker(1045) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1045)) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)', targetLevel: 'Lv. 17+', optimalLead: 'Pikachu', strategyText: 'Pikachu limpa os três pássaros.' },
+      { id: 'r6_bug_1', name: 'Bug Catcher Elijah', location: 'Rota 6', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 5, x: 11, y: 31, isDefeated: eventFlagsChecker ? eventFlagsChecker(1046) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1046)) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)', targetLevel: 'Lv. 17+', optimalLead: 'Charmeleon', strategyText: 'Ember limpa os insetos.' }
+    ];
+
+    // Ginásio de Vermilion (Lt. Surge)
+    const surgeGymBattles = [
+      { id: 'surge_sailor', name: 'Sailor Dwayne', location: 'Ginásio de Vermilion', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 7, x: 5, y: 3, isDefeated: hasThunderBadge || (eventFlagsChecker ? eventFlagsChecker(354) : false), statusLabel: (hasThunderBadge || (eventFlagsChecker && eventFlagsChecker(354))) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Pikachu (Lv. 21) • Pikachu (Lv. 21)', targetLevel: 'Lv. 20+', optimalLead: 'Diglett (Dig)', strategyText: 'Diglett é 100% imune a ataques elétricos.' },
+      { id: 'surge_rocker', name: 'Rocker Perry', location: 'Ginásio de Vermilion', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 7, x: 2, y: 3, isDefeated: hasThunderBadge || (eventFlagsChecker ? eventFlagsChecker(355) : false), statusLabel: (hasThunderBadge || (eventFlagsChecker && eventFlagsChecker(355))) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Voltorb (Lv. 20) • Magnemite (Lv. 20)', targetLevel: 'Lv. 20+', optimalLead: 'Diglett (Dig)', strategyText: 'Dig destrói ambos num único turno.' },
+      { id: 'surge_gentleman', name: 'Gentleman Tucker', location: 'Ginásio de Vermilion', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 8, x: 5, y: 8, isDefeated: hasThunderBadge || (eventFlagsChecker ? eventFlagsChecker(356) : false), statusLabel: (hasThunderBadge || (eventFlagsChecker && eventFlagsChecker(356))) ? '✅ VENCIDO' : '⚔️ POR VENCER', enemyRoster: 'Pikachu (Lv. 23)', targetLevel: 'Lv. 21+', optimalLead: 'Diglett (Dig)', strategyText: 'Diglett vence facilmente sem sofrer dano.' },
+      { id: 'surge_leader', name: 'Líder Lt. Surge', location: 'Ginásio de Vermilion (Líder)', difficulty: 'Chefe / Difícil', diffClass: 'diff-hard', difficultyScore: 12, x: 5, y: 1, isDefeated: hasThunderBadge || (eventFlagsChecker ? eventFlagsChecker(359) : false), statusLabel: (hasThunderBadge || (eventFlagsChecker && eventFlagsChecker(359))) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: '⚡ INSÍGNIA THUNDER', enemyRoster: 'Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)', targetLevel: 'Lv. 22 a 25', optimalLead: 'Diglett / Dugtrio', strategyText: '100% Imune a Electric! Usa Dig no Raichu para aniquilar sem sofrer dano.' }
+    ];
+
+    if (isAtCeruleanArea) {
+      // Jogador ainda está em Cerulean City, Rota 24, Rota 25 ou casa de Bill
+      const ceruleanAllBattles = [
+        { id: 'cerulean_rival', name: 'Rival Blue #3', location: 'Rota 24 (Entrada da Ponte)', difficulty: 'Chefe', diffClass: 'diff-hard', difficultyScore: 11, x: 10, y: 15, isDefeated: eventFlagsChecker ? eventFlagsChecker(152) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(152)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'RIVAL BLUE', enemyRoster: 'Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)', targetLevel: 'Lv. 18+', optimalLead: 'Pikachu', strategyText: 'Pikachu neutraliza Pidgeotto e Wartortle.' },
+        { id: 'r24_bridge_1', name: 'Bug Catcher Cale', location: 'Rota 24 (Ponte #1)', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 5, x: 11, y: 15, isDefeated: eventFlagsChecker ? eventFlagsChecker(1346) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1346)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'PONTE NUGGET', enemyRoster: 'Caterpie (Lv. 10) • Weedle (Lv. 10)', targetLevel: 'Lv. 12+', optimalLead: 'Charmeleon', strategyText: 'Ember elimina os insetos.' },
+        { id: 'r24_bridge_2', name: 'Lass Ali', location: 'Rota 24 (Ponte #2)', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 6, x: 10, y: 19, isDefeated: eventFlagsChecker ? eventFlagsChecker(1347) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1347)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'PONTE NUGGET', enemyRoster: 'Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)', targetLevel: 'Lv. 13+', optimalLead: 'Pikachu', strategyText: 'Pikachu e Charmeleon limpam.' },
+        { id: 'r24_bridge_3', name: 'Youngster Timmy', location: 'Rota 24 (Ponte #3)', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 7, x: 11, y: 23, isDefeated: eventFlagsChecker ? eventFlagsChecker(1348) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1348)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'PONTE NUGGET', enemyRoster: 'Sandshrew (Lv. 14) • Ekans (Lv. 14)', targetLevel: 'Lv. 14+', optimalLead: 'Butterfree', strategyText: 'Confusion contra Ekans e Sandshrew.' },
+        { id: 'r24_bridge_4', name: 'Lass Reli', location: 'Rota 24 (Ponte #4)', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 8, x: 10, y: 27, isDefeated: eventFlagsChecker ? eventFlagsChecker(1349) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1349)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'PONTE NUGGET', enemyRoster: 'Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)', targetLevel: 'Lv. 15+', optimalLead: 'Butterfree', strategyText: 'Confusion causa 2x dano.' },
+        { id: 'r24_bridge_5', name: 'Jr. Trainer♂ Shane', location: 'Rota 24 (Ponte #5)', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 9, x: 11, y: 31, isDefeated: eventFlagsChecker ? eventFlagsChecker(1350) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1350)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'PONTE NUGGET', enemyRoster: 'Mankey (Lv. 18)', targetLevel: 'Lv. 16+', optimalLead: 'Butterfree', strategyText: 'Fraqueza a Psíquico e Voador.' },
+        { id: 'r24_rocket', name: 'Team Rocket Grunt (Nugget)', location: 'Rota 24 (Fim da Ponte)', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 10, x: 10, y: 33, isDefeated: eventFlagsChecker ? (eventFlagsChecker(1345) || eventFlagsChecker(1351)) : false, statusLabel: (eventFlagsChecker && (eventFlagsChecker(1345) || eventFlagsChecker(1351))) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'TEAM ROCKET', enemyRoster: 'Ekans (Lv. 15) • Zubat (Lv. 15)', targetLevel: 'Lv. 16+', optimalLead: 'Pikachu', strategyText: 'Pikachu e Butterfree.' },
+        { id: 'r24_grass_trainer', name: 'Jr. Trainer♂ Ethan', location: 'Rota 24 (Relva)', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 7, x: 7, y: 7, isDefeated: eventFlagsChecker ? eventFlagsChecker(1351) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1351)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'TREINADOR', enemyRoster: 'Rattata (Lv. 14) • Ekans (Lv. 14)', targetLevel: 'Lv. 14+', optimalLead: 'Butterfree', strategyText: 'Ataques rápidos.' },
+        { id: 'r25_trainer_0', name: 'Youngster Joey', location: 'Rota 25', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 6, x: 14, y: 7, isDefeated: eventFlagsChecker ? eventFlagsChecker(1361) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1361)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Rattata (Lv. 15) • Spearow (Lv. 15)', targetLevel: 'Lv. 15+', optimalLead: 'Pikachu', strategyText: 'Pikachu para Spearow.' },
+        { id: 'r25_trainer_1', name: 'Youngster Dan', location: 'Rota 25', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 7, x: 18, y: 5, isDefeated: eventFlagsChecker ? eventFlagsChecker(1362) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1362)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Slowpoke (Lv. 17)', targetLevel: 'Lv. 16+', optimalLead: 'Pikachu', strategyText: 'Fraqueza a Electric.' },
+        { id: 'r25_trainer_2', name: 'Jr. Trainer♂ Flint', location: 'Rota 25', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 6, x: 24, y: 4, isDefeated: eventFlagsChecker ? eventFlagsChecker(1363) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1363)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Rattata (Lv. 14) • Ekans (Lv. 14)', targetLevel: 'Lv. 15+', optimalLead: 'Butterfree', strategyText: 'Confusion e golpes fortes.' },
+        { id: 'r25_trainer_3', name: 'Lass Haley', location: 'Rota 25', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 6, x: 18, y: 7, isDefeated: eventFlagsChecker ? eventFlagsChecker(1364) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1364)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Oddish (Lv. 15) • Pidgey (Lv. 15) • Oddish (Lv. 15)', targetLevel: 'Lv. 15+', optimalLead: 'Charmeleon', strategyText: 'Ember elimina Oddish.' },
+        { id: 'r25_trainer_4', name: 'Hiker Franklin', location: 'Rota 25', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 8, x: 32, y: 3, isDefeated: eventFlagsChecker ? eventFlagsChecker(1365) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1365)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Machop (Lv. 15) • Geodude (Lv. 15)', targetLevel: 'Lv. 16+', optimalLead: 'Butterfree', strategyText: 'Confusion destrói Machop.' },
+        { id: 'r25_trainer_5', name: 'Youngster Chad', location: 'Rota 25', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 6, x: 37, y: 4, isDefeated: eventFlagsChecker ? eventFlagsChecker(1366) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1366)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Ekans (Lv. 14) • Sandshrew (Lv. 14)', targetLevel: 'Lv. 15+', optimalLead: 'Butterfree', strategyText: 'Golpes psíquicos.' },
+        { id: 'r25_trainer_6', name: 'Hiker Wayne', location: 'Rota 25', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 8, x: 40, y: 7, isDefeated: eventFlagsChecker ? eventFlagsChecker(1367) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1367)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Onix (Lv. 17)', targetLevel: 'Lv. 16+', optimalLead: 'Butterfree', strategyText: 'Ataca no lado Especial.' },
+        { id: 'r25_trainer_7', name: 'Lass Robin', location: 'Rota 25', difficulty: 'Fácil', diffClass: 'diff-easy', difficultyScore: 6, x: 45, y: 3, isDefeated: eventFlagsChecker ? eventFlagsChecker(1368) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1368)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Bellsprout (Lv. 13) • Pidgey (Lv. 13) • Oddish (Lv. 13)', targetLevel: 'Lv. 14+', optimalLead: 'Charmeleon', strategyText: 'Ember limpa.' },
+        { id: 'r25_trainer_8', name: 'Hiker Nob', location: 'Rota 25', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 8, x: 51, y: 7, isDefeated: eventFlagsChecker ? eventFlagsChecker(1369) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(1369)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'ROTA 25', enemyRoster: 'Geodude (Lv. 13) x2 • Machop (Lv. 13)', targetLevel: 'Lv. 15+', optimalLead: 'Butterfree', strategyText: 'Confusion.' },
+        { id: 'cerulean_rocket_thief', name: 'Team Rocket Ladrão (TM28 Dig)', location: 'Cerulean City (Atrás da Casa Roubada)', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 9, x: 30, y: 7, isDefeated: eventFlagsChecker ? eventFlagsChecker(173) : false, statusLabel: (eventFlagsChecker && eventFlagsChecker(173)) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'TEAM ROCKET', enemyRoster: 'Machop (Lv. 17) • Drowzee (Lv. 17)', targetLevel: 'Lv. 17+', optimalLead: 'Butterfree (Confusion)', strategyText: 'Confusion destrói o Machop. Recupera o TM28 Dig!' },
+        { id: 'cerulean_gym_swimmer', name: 'Swimmer Luis', location: 'Ginásio de Cerulean', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 8, x: 4, y: 7, isDefeated: hasCascadeBadge || (eventFlagsChecker ? eventFlagsChecker(198) : false), statusLabel: (hasCascadeBadge || (eventFlagsChecker && eventFlagsChecker(198))) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'GINÁSIO', enemyRoster: 'Horsea (Lv. 16) • Shellder (Lv. 16)', targetLevel: 'Lv. 16+', optimalLead: 'Pikachu (Thundershock)', strategyText: 'Golpes elétricos.' },
+        { id: 'cerulean_gym_jr_trainer', name: 'Jr. Trainer♀ Diana', location: 'Ginásio de Cerulean', difficulty: 'Média', diffClass: 'diff-medium', difficultyScore: 9, x: 2, y: 3, isDefeated: hasCascadeBadge || (eventFlagsChecker ? eventFlagsChecker(199) : false), statusLabel: (hasCascadeBadge || (eventFlagsChecker && eventFlagsChecker(199))) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: 'GINÁSIO', enemyRoster: 'Goldeen (Lv. 19)', targetLevel: 'Lv. 18+', optimalLead: 'Pikachu (Thundershock)', strategyText: 'Thundershock.' },
+        { id: 'cerulean_gym_misty', name: 'Líder Misty', location: 'Ginásio de Cerulean (Líder)', difficulty: 'Chefe', diffClass: 'diff-hard', difficultyScore: 12, x: 5, y: 3, isDefeated: hasCascadeBadge || (eventFlagsChecker ? eventFlagsChecker(203) : false), statusLabel: (hasCascadeBadge || (eventFlagsChecker && eventFlagsChecker(203))) ? '✅ VENCIDO' : '⚔️ POR VENCER', badgeTag: '🏆 INSÍGNIA CASCADE', enemyRoster: 'Staryu (Lv. 18) • Starmie (Lv. 21)', targetLevel: 'Lv. 19 a 22', optimalLead: 'Pikachu', strategyText: 'Insignia Cascade obtida!' }
+      ];
+
+      const rocketDefeated = eventFlagsChecker ? eventFlagsChecker(173) : false;
+      const billHelped = eventFlagsChecker ? eventFlagsChecker(1372) : false;
+      const pendingBattles = ceruleanAllBattles.filter(b => !b.isDefeated);
+
+      let activeBattles = mapId === 35 ? ceruleanAllBattles.filter(b => b.location.includes('Rota 24')) :
+                          mapId === 36 ? ceruleanAllBattles.filter(b => b.location.includes('Rota 25')) :
+                          mapId === 65 ? ceruleanAllBattles.filter(b => b.location.includes('Ginásio')) :
+                          ceruleanAllBattles;
+
+      return {
+        bossTitle: !rocketDefeated ? 'Cerulean City: Apanha o Rocket Ladrão (TM28 Dig)' : (!billHelped ? 'Rota 25: Visita a Casa do Bill (Obtém o S.S. Ticket)' : 'Cerulean City Concluído! Segue para Sul rumo a Vermilion'),
+        enemyRoster: pendingBattles.length > 0 ? `${pendingBattles[0].name}: ${pendingBattles[0].enemyRoster}` : '🏆 Todos os Treinadores de Cerulean Vencidos!',
+        targetLevel: 'Lv. 18 a 22',
+        partyFull: party.length >= 6,
+        defaultDepositAdvice: null,
+        recommendations: [
+          {
+            pokemon: 'Diglett / Dugtrio',
+            level: 'Apanha na Diglett\'s Cave logo à entrada de Vermilion',
+            status: 'wild',
+            statusLabel: '📍 PRÓXIMO GINÁSIO: VERMILION',
+            role: '⭐ COUNTER DO LT. SURGE',
+            reason: 'Imunidade total a Electric. Vence o Surge sozinho.'
+          }
+        ],
+        warnings: [],
+        invTactics: ['🎒 Ensina o TM28 Dig a um Pokémon ou usa-o para abrir atalhos.'],
+        battles: activeBattles
+      };
+    }
+
     const hasDiglett = party.find(p => p.dex === 50 || p.dex === 51);
     const ownsDiglett = ownedDexSet.has(50) || ownedDexSet.has(51);
 
@@ -1483,6 +1893,11 @@ function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [
       });
     }
 
+    const vermilionBattles = [
+      ...route6Battles,
+      ...surgeGymBattles
+    ];
+
     return {
       bossTitle: 'Líder Lt. Surge (Ginásio de Vermilion)',
       enemyRoster: 'Voltorb (Lv. 21), Pikachu (Lv. 18) & Raichu (Lv. 24 - Thunderbolt)',
@@ -1496,7 +1911,8 @@ function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [
           text: '🚨 Fraqueza crítica a Electric. O Thunderbolt do Raichu elimina pássaros e insetos instantaneamente. Deixa no PC durante este ginásio.'
         }
       ],
-      invTactics: ['🎒 Tem Parlyz Heals na mochila caso o Raichu use Thunder Wave.']
+      invTactics: ['🎒 Tem Parlyz Heals na mochila caso o Raichu use Thunder Wave.'],
+      battles: vermilionBattles
     };
   }
 

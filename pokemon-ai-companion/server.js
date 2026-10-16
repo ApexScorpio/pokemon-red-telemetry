@@ -32,7 +32,36 @@ const server = http.createServer(async (req, res) => {
       execFileSync('git', ['fetch', 'origin', 'main'], {
         cwd: __dirname, stdio: 'pipe', timeout: 30000
       });
-      // Descarta ficheiros gerados em runtime para permitir pull sem conflitos
+
+      // Verifica se existem ficheiros de código (.js, .html, .css, etc.) alterados no remote
+      let hasRemoteCodeChanges = false;
+      let changedFiles = [];
+      try {
+        const diffOutput = execFileSync('git', ['diff', '--name-only', 'HEAD', 'origin/main'], {
+          cwd: __dirname, encoding: 'utf8', timeout: 10000
+        });
+        changedFiles = diffOutput.split('\n').map(s => s.trim()).filter(Boolean);
+        hasRemoteCodeChanges = changedFiles.some(f => 
+          !f.endsWith('.md') && 
+          !f.endsWith('.txt') && 
+          !f.includes('battle_history_log') && 
+          !f.includes('dialog_history_log') && 
+          !f.includes('battle_detection_debug') && 
+          !f.includes('last_known_state')
+        );
+      } catch (e) {}
+
+      if (!hasRemoteCodeChanges) {
+        // Já tem o código mais recente!
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ 
+          success: true, 
+          message: 'O teu Pokémon AI Companion já tem a versão de código mais recente instalada! (As atualizações contínuas no GitHub referem-se aos logs de telemetria enviados em tempo real).' 
+        }));
+        return;
+      }
+
+      // Se houver código real no remote, descarta ficheiros gerados em runtime para permitir integração
       try {
         execFileSync('git', ['checkout', 'HEAD', '--', ':/'], {
           cwd: __dirname, stdio: 'ignore', timeout: 10000
@@ -43,11 +72,22 @@ const server = http.createServer(async (req, res) => {
           cwd: __dirname, stdio: 'ignore', timeout: 10000
         });
       } catch (e) {}
-      execFileSync('git', ['pull', '--ff-only', 'origin', 'main'], {
-        cwd: __dirname, stdio: 'pipe', timeout: 30000
-      });
+
+      try {
+        execFileSync('git', ['pull', '--rebase', '-X', 'theirs', 'origin', 'main'], {
+          cwd: __dirname, stdio: 'pipe', timeout: 30000
+        });
+      } catch (pullErr) {
+        try {
+          execFileSync('git', ['rebase', '--abort'], { cwd: __dirname, stdio: 'ignore', timeout: 10000 });
+        } catch (e) {}
+        execFileSync('git', ['merge', '-X', 'theirs', '--no-edit', 'origin/main'], {
+          cwd: __dirname, stdio: 'pipe', timeout: 30000
+        });
+      }
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: true, message: 'Pull concluído com sucesso. A reiniciar o companion...' }));
+      res.end(JSON.stringify({ success: true, message: 'Atualização de código instalada com sucesso! A reiniciar o companion...' }));
       setTimeout(() => process.exit(0), 700);
     } catch (err) {
       res.writeHead(500, { 'Content-Type': 'application/json' });

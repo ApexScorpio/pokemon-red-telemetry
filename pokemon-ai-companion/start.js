@@ -45,24 +45,35 @@ function checkForUpdates() {
       return;
     }
 
-    const changedFiles = git(['diff', '--name-only', local, remote]).split('\n').filter(Boolean);
-    const hasCodeChanges = changedFiles.some(f => !f.endsWith('.md') && !f.endsWith('.txt'));
+    const changedFiles = git(['diff', '--name-only', local, remote]).split('\n').map(s => s.trim()).filter(Boolean);
+    const hasCodeChanges = changedFiles.some(f => 
+      !f.endsWith('.md') && 
+      !f.endsWith('.txt') && 
+      !f.includes('battle_history_log') && 
+      !f.includes('dialog_history_log') && 
+      !f.includes('battle_detection_debug') && 
+      !f.includes('last_known_state')
+    );
 
-    console.log('[Updater] Nova versão detetada no GitHub. A descarregar...');
-    try {
-      git(['checkout', 'HEAD', '--', ':/']);
-    } catch (e) {}
+    if (!hasCodeChanges) {
+      console.log('[Updater] Código local já está na versão mais recente (apenas telemetria remota atualizada).');
+      return;
+    }
+
+    console.log('[Updater] Novo código detetado no GitHub. A descarregar...');
     try {
       git(['checkout', '--', ':/README.md', ':/telemetria.md', ':/public/telemetria.md', ':/public/telemetria.txt']);
     } catch (e) {}
-    git(['pull', '--ff-only', 'origin', 'main']);
 
-    if (hasCodeChanges) {
-      console.log('[Updater] Código atualizado. A reiniciar o servidor...');
-      if (serverProcess && !serverProcess.killed) serverProcess.kill();
-    } else {
-      console.log('[Updater] Apenas ficheiros de telemetria/dados atualizados. O servidor mantém-se ativo.');
+    try {
+      git(['pull', '--rebase', '-X', 'theirs', 'origin', 'main']);
+    } catch (pullErr) {
+      try { git(['rebase', '--abort']); } catch (e) {}
+      git(['merge', '-X', 'theirs', '--no-edit', 'origin/main']);
     }
+
+    console.log('[Updater] Código atualizado. A reiniciar o servidor...');
+    if (serverProcess && !serverProcess.killed) serverProcess.kill();
   } catch (err) {
     console.warn('[Updater] Não foi possível verificar/instalar atualizações:', err.message);
   } finally {
@@ -72,13 +83,24 @@ function checkForUpdates() {
 
 console.log('[Updater] A verificar atualizações no GitHub...');
 try {
-  try {
-    git(['checkout', '--', 'README.md', 'telemetria.md', 'public/telemetria.md', 'public/telemetria.txt']);
-  } catch (e) {}
-  git(['pull', '--ff-only', 'origin', 'main']);
-  console.log('[Updater] Verificação inicial concluída.');
+  git(['fetch', 'origin', 'main']);
+  const local = git(['rev-parse', 'HEAD']);
+  const remote = git(['rev-parse', 'origin/main']);
+  if (local !== remote) {
+    const diff = git(['diff', '--name-only', local, remote]).split('\n').map(s => s.trim()).filter(Boolean);
+    const hasCode = diff.some(f => !f.endsWith('.md') && !f.endsWith('.txt') && !f.includes('last_known_state'));
+    if (hasCode) {
+      git(['checkout', '--', 'README.md', 'telemetria.md', 'public/telemetria.md', 'public/telemetria.txt']);
+      git(['merge', '-X', 'theirs', '--no-edit', 'origin/main']);
+      console.log('[Updater] Código atualizado no arranque.');
+    } else {
+      console.log('[Updater] Código local atualizado (commits remotos são apenas telemetria).');
+    }
+  } else {
+    console.log('[Updater] Verificação inicial concluída.');
+  }
 } catch (err) {
-  console.warn('[Updater] Não foi possível atualizar no arranque. Vou usar a versão local:', err.message);
+  console.warn('[Updater] Aviso no arranque (a usar versão local):', err.message);
 }
 
 launchServer();
