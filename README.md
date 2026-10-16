@@ -1,57 +1,22 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:31**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:35**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 5** (ID Interno: `0x10`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `8`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `63h 0m 26s`
-- **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `7`, Y: `8`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `63h 0m 27s`
+- **💬 Diálogo / Mensagem no Ecrã:** `anger It could be docile one`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra) | **Eficiência na Rota:** `10% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Scratch`
-- **Último Golpe Usado pelo Adversário:** `Scratch`
-
-### 🔴 Adversário em Campo: **Mankey** (Lv. 12)
-- **Tipos:** Fighting
-- **HP:** **2 / 32** (6%)
-- **Stats de Batalha:** ATK: 24 | DEF: 13 | SPD: 24 | SPC: 13
-- **Os 4 Golpes do Adversário:**
-  - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Scratch** (Normal) ➔ Dano: ~4-5 HP (1x)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-
-### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
-- **Tipos:** Poison
-- **HP:** **47 / 55** (HEALTHY)
-- **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
-- **⭐ Prioridade de Treino (EXP):** **Abra (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **75%** | Great Ball: **95%** | Ultra Ball: **100%**
-  - *Se adormeceres o inimigo:* **~84%** | *Com HP no vermelho:* **~75%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Abra** (Lv. 11)
@@ -87,7 +52,7 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 4. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
+### 4. **Nidorina** (Lv. 17)
 - **Tipos:** Poison | **HP:** 47 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
@@ -125,7 +90,7 @@
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **10 / 20 slots** (10 vagas livres)
 - **Potion** x6
-- **Poké Ball** x8
+- **Poké Ball** x7
 - **Antidote** x2
 - **Town Map** x1
 - **Rare Candy** x2
@@ -148,23 +113,24 @@
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Espécies Registadas na Pokédex:** **24 / 151** (Espécies Desbloqueadas)
+- **Espécies Registadas na Pokédex:** **25 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **44 / 151**
-- **Total de Pokémon Individuais Ativos:** **17 espécimes** (6 na Equipa + 11 no PC)
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
+- **Total de Pokémon Individuais Ativos:** **18 espécimes** (6 na Equipa + 12 no PC)
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #56 Mankey, #63 Abra, #74 Geodude
 
-## 💾 6. Pokémon Guardados no PC (11 / 20 na Caixa 1) • Vagas Livres: **9**
-- #1: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
-- #2: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
-- #3: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
-- #4: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
-- #5: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
-- #6: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
-- #7: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
-- #8: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
-- #9: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
-- #10: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
-- #11: **Rattata** (Lv. 45) • Tipos: Normal (Dex: #19) • HP: 42240 • Golpes: Golpe #255 (Não Identificado), Tackle, Quick Attack, Tail Whip
+## 💾 6. Pokémon Guardados no PC (12 / 20 na Caixa 1) • Vagas Livres: **8**
+- #1: **Mankey** (Lv. 2) • Tipos: Fighting (Dex: #56) • HP: 14592 • Golpes: Golpe #190 (Não Identificado), Scratch, Leer
+- #2: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
+- #3: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
+- #4: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
+- #5: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
+- #6: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
+- #7: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
+- #8: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
+- #9: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
+- #10: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
+- #11: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
+- #12: **Rattata** (Lv. 45) • Tipos: Normal (Dex: #19) • HP: 42240 • Golpes: Golpe #255 (Não Identificado), Tackle, Quick Attack, Tail Whip
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
@@ -204,6 +170,7 @@
 - [19:22:58] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [19:24:32] `anger It could be docile one`
 - [19:24:26] `SCRATCH GROWL`
 - [19:23:21] `TELEPORT`
 - [19:16:41] `CONFUSION STUN SPORE`
@@ -218,7 +185,6 @@
 - [18:58:49] `YOUNGSTER is about to use`
 - [18:58:19] `SCRATCH GROWL`
 - [18:57:29] `HORN ATTACK TACKLE`
-- [18:56:38] `FURY ATTACK POISON STING`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
