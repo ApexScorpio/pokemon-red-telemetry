@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:55**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:59**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -13,7 +13,7 @@
 - **Tempo de Jogo:** `62h 0m 37s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **10 510 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 10 (Abra)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
@@ -36,32 +36,32 @@
   - **Disable** (Normal) ➔ Golpe de Status
   - **Confusion** (Psychic_type) ➔ Dano: ~5-7 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 21)
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying
-- **HP:** **40 / 62** (HEALTHY)
-- **Stats com Modificadores:** ATK: 31 (0) | DEF: 30 (0) | SPD: 42 (0) | SPC: 47 (0)
+- **HP:** **43 / 65** (HEALTHY)
+- **Stats com Modificadores:** ATK: 32 (0) | DEF: 31 (0) | SPD: 44 (0) | SPC: 49 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **13-16 HP** (1x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **14-17 HP** (1x eficácia) • ~2 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Confusion (Causa ~13-16 de dano)
+- ➔ Turno 1: Confusion (Causa ~14-17 de dano)
 - ➔ Turno 2: Confusion (Golpe final de K.O.)
 > **Resumo Tático:** Vitória em 2 turnos rápidos com Confusion. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (40/62). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Abra (Lv. 10)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (43/65). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Abra (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Abra** (Lv. 10)
-- **Tipos:** Psychic | **HP:** 26 / 26 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 10 | DEF: 8 | SPD: 23 | SPC: 27
+### 1. **Abra** (Lv. 11)
+- **Tipos:** Psychic | **HP:** 28 / 28 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 10 | DEF: 8 | SPD: 25 | SPC: 29
 - **DVs Gen 1 (0–15):** Ataque: 5 | Defesa: 2 | Velocidade: 2 | Especial: 5 | HP: 9
-- **Stat Experience (0–65.535):** Atk: 40 | Def: 25 | Spd: 17 | Spc: 17 | HP: 35
-- **Experiência:** 719 EXP (Progresso: 87%, faltam 23 p/ Lv.11)
+- **Stat Experience (0–65.535):** Atk: 64 | Def: 47 | Spd: 38 | Spc: 62 | HP: 65
+- **Experiência:** 903 EXP (Progresso: 70%, faltam 70 p/ Lv.12)
 - **Golpes & PPs:**
   - **Teleport** (Psychic_type) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -113,12 +113,12 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 6. **Butterfree** (Lv. 21) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 40 / 62 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
+### 6. **Butterfree** (Lv. 22) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Flying | **HP:** 43 / 65 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7073 | Def: 6581 | Spd: 7192 | Spc: 4809 | HP: 5877
-- **Experiência:** 10 642 EXP (Progresso: 100%, faltam 6 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 7097 | Def: 6603 | Spd: 7213 | Spc: 4854 | HP: 5907
+- **Experiência:** 10 826 EXP (Progresso: 12%, faltam 1341 p/ Lv.23)
 - **Golpes & PPs:**
   - **Confusion** (Psychic_type) — PP: 16 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -150,7 +150,7 @@
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
-  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 10 (Abra)`).
+  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 11 (Abra)`).
   - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
@@ -194,6 +194,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:16:56] **Turno #9**: Butterfree (43/65 HP) vs Drowzee (Lv. 17 • 0/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 - [19:16:55] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 0/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 - [19:16:54] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 4/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Hypnosis`
 - [19:16:53] **Turno #8**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 10/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
@@ -208,7 +209,6 @@
 - [19:16:38] **Turno #1**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 - [19:16:36] **Turno #1**: Abra (26/26 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
-- [19:16:30] **Turno #3**: Butterfree (62/62 HP) vs Machop (Lv. 17 • 0/53 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
