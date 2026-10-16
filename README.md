@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:11**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:15**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,39 +18,41 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Horn Attack`
+- **Último Golpe Usado pelo Adversário:** `Poison Sting`
 
-### 🔴 Adversário em Campo: **Nidoran♂** (Lv. 15)
+### 🔴 Adversário em Campo: **Nidoran♀** (Lv. 15)
 - **Tipos:** Poison
-- **HP:** **41 / 41** (100%)
-- **Stats de Batalha:** ATK: 24 | DEF: 19 | SPD: 22 | SPC: 19
+- **HP:** **43 / 43** (100%)
+- **Stats de Batalha:** ATK: 21 | DEF: 23 | SPD: 19 | SPC: 19
 - **Os 4 Golpes do Adversário:**
-  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Horn Attack** (Normal) • PP: NaN • Poder: 65 • Precisão: 100%
+  - **Scratch** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
   - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
+  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
   - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
-  - **Horn Attack** (Normal) ➔ Dano: ~6-8 HP (1x)
+  - **Scratch** (Normal) ➔ Dano: ~4-5 HP (1x)
   - **Poison Sting** (Poison) ➔ Dano: ~1-2 HP (0.5x)
 
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 18)
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
 - **Tipos:** Poison
-- **HP:** **56 / 56** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 32 (0) | SPD: 34 (0) | SPC: 29 (0)
+- **HP:** **58 / 59** (HEALTHY)
+- **Stats com Modificadores:** ATK: 41 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **23-28 HP** (1x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **21-25 HP** (1x eficácia) • ~2 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Horn Attack (Causa ~23-28 de dano)
+- ➔ Turno 1: Horn Attack (Causa ~21-25 de dano)
 - ➔ Turno 2: Horn Attack (Golpe final de K.O.)
 > **Resumo Tático:** Vitória em 2 turnos rápidos com Horn Attack. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (56/56). Não precisas de gastar um turno a trocar.
+- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (58/59). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -66,14 +68,14 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 39 | DEF: 32 | SPD: 34 | SPC: 29
+### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 58 / 59 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 4036 | Def: 2688 | Spd: 4343 | Spc: 2438 | HP: 3227
-- **Experiência:** 4568 EXP (Progresso: 99%, faltam 7 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 4093 | Def: 2728 | Spd: 4393 | Spc: 2478 | HP: 3273
+- **Experiência:** 4760 EXP (Progresso: 21%, faltam 700 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 24 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 22 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -195,7 +197,7 @@
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Nidorina** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 19) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
@@ -207,7 +209,7 @@
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Nidorina** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 19) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
@@ -221,6 +223,11 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:57:15] **Turno #1**: Nidorino (58/59 HP) vs Nidoran♀ (Lv. 15 • 43/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
+- [18:57:14] **Turno #1**: Nidorino (58/59 HP) vs Nidoran♂ (Lv. 15 • 0/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
+- [18:57:13] **Turno #1**: Nidorino (55/56 HP) vs Nidoran♂ (Lv. 15 • 0/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
+- [18:57:12] **Turno #1**: Nidorino (55/56 HP) vs Nidoran♂ (Lv. 15 • 14/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
+- [18:57:11] **Turno #1**: Nidorino (56/56 HP) vs Nidoran♂ (Lv. 15 • 14/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
 - [18:57:10] **Turno #1**: Nidorino (56/56 HP) vs Nidoran♂ (Lv. 15 • 41/41 HP)
 - [18:57:10] **Turno #1**: Beedrill (56/56 HP) vs Slowpoke (Lv. 17 • 0/60 HP)
 - [18:57:05] **Turno #3**: Nidorino (56/56 HP) vs Slowpoke (Lv. 17 • 0/60 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Confusion`
@@ -231,11 +238,6 @@
 - [18:56:56] **Turno #1**: Beedrill (31/56 HP) vs Slowpoke (Lv. 17 • 35/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:56:53] **Turno #1**: Beedrill (31/56 HP) vs Slowpoke (Lv. 17 • 45/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:56:52] **Turno #1**: Beedrill (56/56 HP) vs Slowpoke (Lv. 17 • 45/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
-- [18:56:51] **Turno #1**: Beedrill (56/56 HP) vs Slowpoke (Lv. 17 • 60/60 HP)
-- [18:56:50] **Turno #1**: Beedrill (57/56 HP) vs Onix (Lv. 17 • 0/41 HP)
-- [18:56:45] **Turno #3**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 0/41 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
-- [18:56:43] **Turno #3**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 11/41 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
-- [18:56:42] **Turno #2**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
