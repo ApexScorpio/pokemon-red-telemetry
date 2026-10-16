@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:57**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -19,6 +19,7 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Scratch`
+- **Último Golpe Usado pelo Adversário:** `Confusion`
 
 ### 🔴 Adversário em Campo: **Butterfree** (Lv. 20)
 - **Tipos:** Bug/Flying
@@ -30,14 +31,14 @@
   - **Stun Spore** (Grass) • PP: NaN • Poder: -- • Precisão: 75%
   - **Sleep Powder** (Grass) • PP: NaN • Poder: -- • Precisão: 75%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Confusion** (Psychic_type) ➔ Dano: ~7-9 HP (1x)
+  - **Confusion** (Psychic_type) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
   - **Poisonpowder** (Poison) ➔ Golpe de Status
   - **Stun Spore** (Grass) ➔ Golpe de Status
   - **Sleep Powder** (Grass) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
 - **Tipos:** Poison
-- **HP:** **39 / 55** (PARALYSIS)
+- **HP:** **0 / 55** (PARALYSIS)
 - **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -48,9 +49,10 @@
 - ➔ Turnos 1-5: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (39/55). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Nidorino (Lv. 20)** [61/61 HP]
+- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Nidorino para manter o controlo da batalha.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -285,6 +287,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:04:01] **Turno #1**: Nidorina (0/55 HP) vs Butterfree (Lv. 20 • 57/57 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Confusion`
 - [20:03:55] **Turno #1**: Nidorina (39/55 HP) vs Butterfree (Lv. 20 • 57/57 HP)
 - [20:03:55] **Turno #1**: Charmeleon (39/53 HP) vs Pikachu (Lv. 16 • 0/39 HP)
 - [20:03:37] **Turno #3**: Nidorina (39/55 HP) vs Pikachu (Lv. 16 • 0/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thundershock`
@@ -299,7 +302,6 @@
 - [20:03:27] **Turno #1**: Charmeleon (15/53 HP) vs Rattata (Lv. 16 • 13/38 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
 - [20:03:25] **Turno #1**: Charmeleon (23/53 HP) vs Rattata (Lv. 16 • 38/38 HP)
 - [20:03:24] **Turno #1**: Charmeleon (46/53 HP) vs Squirtle (Lv. 20 • 0/50 HP)
-- [20:03:19] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 0/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
