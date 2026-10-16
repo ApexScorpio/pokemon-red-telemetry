@@ -1,13 +1,13 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:57:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:57:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `38`, Y: `22`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `38`, Y: `12`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `53h 0m 47s`
@@ -34,10 +34,10 @@
 - **Tipos:** Bug/Flying | **HP:** 54 / 60 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 29 | SPD: 40 | SPC: 45
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 6396 | Def: 5926 | Spd: 6659 | Spc: 4372 | HP: 5360
-- **Experiência:** 8942 EXP (Progresso: 75%, faltam 319 p/ Lv.21)
+- **Stat Experience (0–65.535):** Atk: 6441 | Def: 5961 | Spd: 6714 | Spc: 4412 | HP: 5400
+- **Experiência:** 9011 EXP (Progresso: 80%, faltam 250 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 16 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 15 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 13 | Poder: -- | Precisão: 75%
@@ -132,7 +132,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 33 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste)) • **✅ VENCIDO**
+### #1. [↙️ 31 passos Sudoeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -144,7 +144,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
-### #2. [↖️ 32 passos Noroeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **✅ VENCIDO**
+### #2. [⬅️ 22 passos Oeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Zubat (Lv. 12) • Ekans (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -156,7 +156,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
-### #3. [↖️ 14 passos Noroeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **✅ VENCIDO**
+### #3. [↙️ 14 passos Sudoeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Raticate (Lv. 13)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -168,7 +168,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Hyper Fang. Raticate tem alta velocidade e ataque rápido.
 
-### #4. [↖️ 39 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
+### #4. [↖️ 29 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe / Média
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -180,7 +180,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
-### #5. [↖️ 26 passos Noroeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
+### #5. [↖️ 16 passos Noroeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
 - **Dificuldade:** Difícil
 - **Roster Inimigo:** Raticate (Lv. 16)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -195,14 +195,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:57:26] **Turno #1**: Butterfree (54/60 HP) vs Zubat (0/27 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
+- [15:57:24] **Turno #1**: Beedrill (54/51 HP) vs Zubat (27/27 HP)
 - [15:57:22] **Turno #1**: Butterfree (54/60 HP) vs Geodude (0/27 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:57:16] **Turno #1**: Beedrill (54/51 HP) vs Geodude (27/27 HP)
 - [15:57:12] **Turno #1**: Butterfree (54/60 HP) vs Geodude (0/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:57:10] **Turno #1**: Beedrill (54/51 HP) vs Geodude (28/28 HP)
 - [15:57:07] **Turno #1**: Butterfree (54/60 HP) vs Zubat (0/32 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Supersonic`
 - [15:57:06] **Turno #1**: Butterfree (54/60 HP) vs Zubat (20/32 HP) • Golpe RED: `Struggle` • Golpe Inimigo: `Supersonic`
-- [15:57:05] **Turno #1**: Beedrill (0/51 HP) vs Zubat (20/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
-- [15:57:03] **Turno #1**: Beedrill (5/51 HP) vs Zubat (20/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
 
 - [15:56:57] Entrou em Mt Moon B2f
 - [15:56:56] Entrou em Mt Moon B1F
