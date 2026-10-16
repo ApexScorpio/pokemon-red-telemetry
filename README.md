@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:03:44**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:03:48**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,18 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `24`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `74h 0m 8s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **Tempo de Jogo:** `74h 0m 9s`
+- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 22 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Confusion`
+- **Último Golpe Usado pelo Adversário:** `Harden`
 
 ### 🔴 Adversário em Campo: **Kakuna** (Lv. 8)
 - **Tipos:** Bug/Poison
-- **HP:** **26 / 26** (100%)
+- **HP:** **0 / 26** (0%)
 - **Stats de Batalha:** ATK: 9 | DEF: 13 | SPD: 12 | SPC: 10
 - **Os 4 Golpes do Adversário:**
   - **Harden** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
@@ -29,7 +31,7 @@
   - **Harden** (Normal) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 22)
-- **Tipos:** Normal
+- **Tipos:** Bug/Flying
 - **HP:** **65 / 65** (HEALTHY)
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 31 (0) | SPD: 44 (0) | SPC: 49 (0)
 
@@ -46,18 +48,15 @@
 - **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (65/65). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **17%** | Great Ball: **33%** | Ultra Ball: **29%**
-  - *Se adormeceres o inimigo:* **~27%** | *Com HP no vermelho:* **~47%**
-
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Butterfree** (Lv. 22) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7142 | Def: 6643 | Spd: 7269 | Spc: 4889 | HP: 5947
-- **Experiência:** 10 920 EXP (Progresso: 18%, faltam 1247 p/ Lv.23)
+- **Stat Experience (0–65.535):** Atk: 7167 | Def: 6693 | Spd: 7304 | Spc: 4914 | HP: 5992
+- **Experiência:** 11 001 EXP (Progresso: 23%, faltam 1166 p/ Lv.23)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 24 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -325,6 +324,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:03:45] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 0/26 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Harden`
 - [21:03:43] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 26/26 HP)
 - [21:03:42] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 0/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
 - [21:03:41] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 33/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
@@ -343,6 +343,7 @@
 - [20:58:24] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:03:44] `CONFUSION STUN SPORE`
 - [21:03:33] `THUNDERSHOCK THUNDER WAVE`
 - [20:58:30] `HORN ATTACK TACKLE`
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
