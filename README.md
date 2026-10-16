@@ -1,65 +1,34 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:43**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:47**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `7`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `5`
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `60h 0m 26s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
-- **Dinheiro:** **5756 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **6351 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
-
-### 🔴 Adversário em Campo: **Onix** (Lv. 17)
-- **Tipos:** Rock/Ground
-- **HP:** **11 / 41** (27%)
-- **Stats de Batalha:** ATK: 23 | DEF: 62 | SPD: 31 | SPC: 17
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Screech** (Normal) • PP: 40 • Poder: -- • Precisão: 85%
-  - **Bind** (Normal) • PP: NaN • Poder: 15 • Precisão: 75%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
-  - **Screech** (Normal) ➔ 🛡️ Reduz stats (Screech)
-  - **Bind** (Normal) ➔ Dano: ~2-3 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 21)
-- **Tipos:** Bug/Flying
-- **HP:** **57 / 62** (HEALTHY)
-- **Stats com Modificadores:** ATK: 31 (0) | DEF: 30 (0) | SPD: 42 (0) | SPC: 47 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **5-7 HP** (1x eficácia) • ~2 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Confusion (Causa ~5-7 de dano)
-- ➔ Turno 2: Confusion (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Confusion. Atacas primeiro em ambos os turnos.
-
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 11 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Confusion para liquidar o adversário já!
-- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4819 | Def: 4026 | Spd: 5343 | Spc: 3136 | HP: 3938
-- **Experiência:** 6662 EXP (Progresso: 81%, faltam 197 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 4841 | Def: 4106 | Spd: 5378 | Spc: 3151 | HP: 3955
+- **Experiência:** 6858 EXP (Progresso: 100%, faltam 1 p/ Lv.19)
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 16 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -114,14 +83,14 @@
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
-### 6. **Butterfree** (Lv. 21) ⚔️ [EM COMBATE]
+### 6. **Butterfree** (Lv. 21)
 - **Tipos:** Bug/Flying | **HP:** 57 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 6971 | Def: 6426 | Spd: 7130 | Spc: 4762 | HP: 5805
-- **Experiência:** 10 169 EXP (Progresso: 65%, faltam 479 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 6993 | Def: 6506 | Spd: 7165 | Spc: 4777 | HP: 5822
+- **Experiência:** 10 365 EXP (Progresso: 80%, faltam 283 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 20 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 19 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -223,6 +192,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:45] **Turno #3**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 0/41 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [18:56:43] **Turno #3**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 11/41 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [18:56:42] **Turno #2**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [18:56:37] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Screech`
@@ -237,7 +207,6 @@
 - [18:56:23] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 22/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [18:56:22] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 36/36 HP) • Golpe RED: `Fury Attack`
 - [18:56:13] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 0/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
-- [18:56:12] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 12/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Defense Curl`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
