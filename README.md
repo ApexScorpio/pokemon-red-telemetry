@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:19**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,28 +9,60 @@
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `4`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `60h 0m 23s`
-- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Tempo de Jogo:** `60h 0m 24s`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **5531 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Tail Whip`
+
+### 🔴 Adversário em Campo: **Rattata** (Lv. 15)
+- **Tipos:** Normal
+- **HP:** **8 / 36** (22%)
+- **Stats de Batalha:** ATK: 24 | DEF: 17 | SPD: 29 | SPC: 14
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
+  - **Quick Attack** (Normal) ➔ Dano: ~8-10 HP (1x)
+  - **Hyper Fang** (Normal) ➔ Dano: ~15-18 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
+- **Tipos:** Bug/Poison
+- **HP:** **56 / 56** (HEALTHY)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 18)
+### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4703 | Def: 3961 | Spd: 5201 | Spc: 3080 | HP: 3868
 - **Experiência:** 6293 EXP (Progresso: 45%, faltam 566 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 19 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -192,6 +224,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:24] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 8/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [18:56:23] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 22/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [18:56:22] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 36/36 HP) • Golpe RED: `Fury Attack`
 - [18:56:13] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 0/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [18:56:12] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 12/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Defense Curl`
 - [18:56:10] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 39/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
@@ -204,9 +239,6 @@
 - [18:53:27] **Turno #1**: Butterfree (62/62 HP) vs Weedle (Lv. 7 • 23/23 HP)
 - [18:53:25] **Turno #1**: Butterfree (62/62 HP) vs Pidgey (Lv. 13 • 0/36 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
 - [18:53:24] **Turno #1**: Butterfree (62/62 HP) vs Pidgey (Lv. 13 • 36/36 HP)
-- [18:53:23] **Turno #1**: Butterfree (4/62 HP) vs Pidgey (Lv. 13 • 36/36 HP)
-- [18:53:14] **Turno #3**: Beedrill (4/56 HP) vs Pidgey (Lv. 13 • 0/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [18:53:14] **Turno #3**: Beedrill (9/56 HP) vs Pidgey (Lv. 13 • 6/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
@@ -216,6 +248,7 @@
 - [18:53:55] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:56:22] `FURY ATTACK POISON STING`
 - [18:53:34] `CONFUSION STUN SPORE`
 - [18:53:02] `FURY ATTACK POISON STING`
 - [18:52:58] `it wanders around sowing its seeds`
@@ -230,7 +263,6 @@
 - [18:14:31] `CONFUSION STUN SPORE`
 - [18:11:46] `and stealthily Eats the eggs of`
 - [18:09:07] `THUNDERSHOCK THUNDER WAVE`
-- [18:08:56] `TACKLE TAIL WHIP`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
