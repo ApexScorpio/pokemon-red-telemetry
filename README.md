@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:20:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:20:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `25`, Y: `12`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `30`, Y: `7`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `62h 0m 57s`
+- **Tempo de Jogo:** `62h 0m 58s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra)
@@ -88,7 +88,7 @@
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **10 / 20 slots** (10 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **11 / 20 slots** (9 vagas livres)
 - **Potion** x6
 - **Poké Ball** x8
 - **Antidote** x2
@@ -99,6 +99,7 @@
 - **Ether** x2
 - **Great Ball** x1
 - **Repel** x2
+- **TM28 (Dig)** x1
 
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
@@ -163,12 +164,12 @@
 - [19:16:36] **Turno #1**: Abra (26/26 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 
+- [19:20:04] Entrou em Cerulean City
+- [19:20:03] Entrou em Cerulean Trashed House
 - [19:19:59] Entrou em Cerulean City
 - [19:18:33] Entrou em Cerulean Pokecenter
 - [19:18:26] Entrou em Cerulean City
 - [19:18:23] Entrou em Cerulean Trashed House
-- [19:17:58] Entrou em Cerulean City
-- [19:17:56] Entrou em Cerulean Trashed House
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:16:41] `CONFUSION STUN SPORE`
