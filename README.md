@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:59:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:59:34**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `8`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `14`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `67h 0m 13s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TOSS`
@@ -163,61 +163,61 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↘️ 13 passos Sudeste] **Jr. Trainer♂ Ricky** (Rota 6) • **⚔️ POR VENCER**
+### #1. [↙️ 7 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↘️ 23 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **⚔️ POR VENCER**
+### #2. [↘️ 5 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↘️ 34 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **⚔️ POR VENCER**
+### #3. [↘️ 16 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↘️ 19 passos Sudeste] **Jr. Trainer♂ Jeff** (Rota 6) • **⚔️ POR VENCER**
+### #4. [↙️ 13 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↘️ 25 passos Sudeste] **Jr. Trainer♀ Izzy** (Rota 6) • **⚔️ POR VENCER**
+### #5. [⬇️ 7 passos Sul] **Jr. Trainer♀ Izzy** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↘️ 31 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **⚔️ POR VENCER**
+### #6. [↙️ 21 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [↗️ 7 passos Nordeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↖️ 21 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [↖️ 6 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [↖️ 24 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [➡️ 2 passos Este] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↖️ 16 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [↗️ 9 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↖️ 23 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
