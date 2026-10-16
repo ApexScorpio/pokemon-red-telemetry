@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:55:40**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:55:43**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,18 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `68`, Y: `15`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `57h 0m 20s`
+- **Tempo de Jogo:** `57h 0m 21s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Poison Sting`
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado por RED:** `Golpe #255 (Não Identificado)`
+- **Último Golpe Usado pelo Adversário:** `Wrap`
 
 ### 🔴 Adversário em Campo: **Ekans** (Lv. 10)
 - **Tipos:** Poison
-- **HP:** **28 / 28** (100%)
+- **HP:** **17 / 28** (61%)
 - **Stats de Batalha:** ATK: 18 | DEF: 15 | SPD: 17 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
@@ -34,29 +35,29 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison
-- **HP:** **51 / 57** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
+- **HP:** **48 / 57** (HEALTHY)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (-1) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • ~5 turnos para K.O.
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **7-9 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-5: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Fury Attack (Causa ~7-9 de dano)
+- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
-- **Motivo:** Butterfree tem o golpe String Shot (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (48/57). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **58%** | Great Ball: **88%** | Ultra Ball: **58%**
+  - *Se adormeceres o inimigo:* **~62%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 51 / 57 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 48 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 5355 | Def: 4485 | Spd: 5686 | Spc: 3543 | HP: 4273
@@ -64,7 +65,7 @@
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Pikachu** (Lv. 16)
@@ -207,6 +208,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:55:43] **Turno #3**: Beedrill (48/57 HP) vs Ekans (Lv. 10 • 17/28 HP) • Golpe RED: `Golpe #255 (Não Identificado)` • Golpe Inimigo: `Wrap`
+- [17:55:42] **Turno #2**: Beedrill (51/57 HP) vs Ekans (Lv. 10 • 17/28 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Wrap`
+- [17:55:41] **Turno #1**: Beedrill (51/57 HP) vs Ekans (Lv. 10 • 23/28 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Leer`
 - [17:55:18] **Turno #1**: Beedrill (51/57 HP) vs Ekans (Lv. 10 • 28/28 HP)
 - [17:55:17] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 12 • 0/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Peck`
 - [17:55:17] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 12 • 7/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Peck`
@@ -219,9 +223,6 @@
 - [17:54:52] **Turno #1**: Beedrill (51/57 HP) vs Ekans (Lv. 6 • 0/20 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Wrap`
 - [17:54:50] **Turno #1**: Beedrill (51/57 HP) vs Ekans (Lv. 6 • 3/20 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Wrap`
 - [17:54:32] **Turno #1**: Beedrill (51/57 HP) vs Ekans (Lv. 6 • 20/20 HP)
-- [17:54:29] **Turno #1**: Beedrill (51/57 HP) vs Rattata (Lv. 10 • 2/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [17:54:29] **Turno #1**: Beedrill (57/57 HP) vs Rattata (Lv. 10 • 2/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [17:54:28] **Turno #1**: Beedrill (57/57 HP) vs Rattata (Lv. 10 • 18/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [17:53:11] Entrou em Route 4
 - [17:52:56] Entrou em Cerulean City
