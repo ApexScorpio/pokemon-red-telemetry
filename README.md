@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:14:11**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:14:16**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `18`
+- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `82`, Y: `10`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `56h 0m 35s`
+- **Tempo de Jogo:** `56h 0m 36s`
 - **💬 Diálogo / Mensagem no Ecrã:** `and stealthily Eats the eggs of`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -166,9 +166,12 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
-## 🎒 9. Itens da Área (Cerulean City)
+## 🎒 9. Itens da Área (Route 4 (Leste - Saída Mt. Moon / Cerulean))
+### Itens no Chão (Poké Balls visíveis):
+- **TM04 (Whirlwind)** (X: 57, Y: 3) • Estado: ✅ Já Recolhido — *Num planalto acessível descendo de Mt. Moon.*
+
 ### Itens Ocultos (Invisíveis no chão):
-- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
+- **Great Ball** (X: 40, Y: 3) • Estado: 🔴 Por Apanhar — *Na rocha no planalto a leste perto de Cerulean.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -189,12 +192,12 @@
 - [18:10:32] **Turno #1**: Pikachu (10/42 HP) vs Rattata (Lv. 12 • 31/31 HP)
 - [18:10:30] **Turno #1**: Pikachu (10/42 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 
+- [18:14:14] Entrou em Route 4
 - [18:14:06] Entrou em Cerulean City
 - [18:11:57] Entrou em Cerulean Pokecenter
 - [18:11:53] Entrou em Cerulean City
 - [18:09:30] Entrou em Route 4
 - [18:09:29] Entrou em Mt Moon B1F
-- [18:08:44] Entrou em Mt Moon B2f
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:11:46] `and stealthily Eats the eggs of`
