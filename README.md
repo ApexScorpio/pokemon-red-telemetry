@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:43:39**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:43:43**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,60 +16,58 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Fury Attack`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Confusion`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
 - **Tipos:** Rock/Ground
-- **HP:** **28 / 31** (90%)
+- **HP:** **0 / 31** (0%)
 - **Stats de Batalha:** ATK: 22 | DEF: 25 | SPD: 10 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
   - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
-- **Tipos:** Bug/Poison
-- **HP:** **43 / 48** (HEALTHY)
-- **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 19)
+- **Tipos:** Bug/Flying
+- **HP:** **53 / 57** (HEALTHY)
+- **Stats com Modificadores:** ATK: 28 (0) | DEF: 27 (0) | SPD: 38 (0) | SPC: 43 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~28 turnos para K.O.
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **11-13 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-28: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Confusion (Causa ~11-13 de dano)
+- ➔ Turno 2: Confusion (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Confusion. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 19)** [57/57 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **37%** | Great Ball: **55%** | Ultra Ball: **37%**
-  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (53/57). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 43 / 48 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 15)
+- **Tipos:** Bug/Poison | **HP:** 38 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 3738 | Def: 3125 | Spd: 4240 | Spc: 2390 | HP: 3048
-- **Experiência:** 3826 EXP (Progresso: 63%, faltam 270 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 3778 | Def: 3175 | Spd: 4250 | Spc: 2405 | HP: 3068
+- **Experiência:** 3887 EXP (Progresso: 71%, faltam 209 p/ Lv.16)
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 14 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 2. **Butterfree** (Lv. 19)
-- **Tipos:** Bug/Flying | **HP:** 57 / 57 ✅ (SAUDÁVEL)
+### 2. **Butterfree** (Lv. 19) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Flying | **HP:** 53 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 27 | SPD: 38 | SPC: 43
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 5754 | Def: 5229 | Spd: 6225 | Spc: 3937 | HP: 4925
 - **Experiência:** 7557 EXP (Progresso: 61%, faltam 443 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 24 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -257,14 +255,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:43:42] **Turno #2**: Butterfree (53/57 HP) vs Geodude (0/31 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
+- [15:43:41] **Turno #2**: Butterfree (53/57 HP) vs Geodude (28/31 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
+- [15:43:40] **Turno #1**: Butterfree (57/57 HP) vs Geodude (28/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [15:43:40] **Turno #1**: Beedrill (38/48 HP) vs Geodude (28/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [15:43:39] **Turno #1**: Beedrill (43/48 HP) vs Geodude (28/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [15:43:38] **Turno #1**: Beedrill (43/48 HP) vs Geodude (29/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [15:43:37] **Turno #1**: Beedrill (43/48 HP) vs Geodude (30/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [15:43:35] **Turno #1**: Beedrill (43/48 HP) vs Geodude (31/31 HP)
-- [15:43:32] **Turno #1**: Beedrill (43/48 HP) vs Zubat (0/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:43:31] **Turno #1**: Beedrill (43/48 HP) vs Zubat (4/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:43:30] **Turno #1**: Beedrill (48/48 HP) vs Zubat (2/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:43:29] **Turno #1**: Beedrill (48/48 HP) vs Zubat (18/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 
 - [15:43:24] Entrou em Mt Moon 1F
 - [15:43:23] Entrou em Mt Moon B1F
