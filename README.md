@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:01:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:01:56**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,18 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `15`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `67h 0m 28s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TOSS`
+- **Tempo de Jogo:** `67h 0m 29s`
+- **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH EMBER`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 17 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Ember`
+- **Último Golpe Usado pelo Adversário:** `Poison Sting`
 
 ### 🔴 Adversário em Campo: **Weedle** (Lv. 16)
 - **Tipos:** Bug/Poison
-- **HP:** **41 / 41** (100%)
+- **HP:** **0 / 41** (0%)
 - **Stats de Batalha:** ATK: 19 | DEF: 17 | SPD: 23 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Poison Sting** (Poison) • PP: 35 • Poder: 15 • Precisão: 100%
@@ -33,7 +35,7 @@
 ### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 17)
 - **Tipos:** Fire
 - **HP:** **50 / 50** (HEALTHY)
-- **Stats com Modificadores:** ATK: 32 (0) | DEF: 27 (0) | SPD: 40 (0) | SPC: 34 (0)
+- **Stats com Modificadores:** ATK: 32 (0) | DEF: 27 (0) | SPD: 40 (-1) | SPC: 34 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
@@ -55,9 +57,9 @@
 - **Stat Experience (0–65.535):** Atk: 5275 | Def: 3873 | Spd: 6016 | Spc: 3174 | HP: 3933
 - **Experiência:** 3316 EXP (Progresso: 29%, faltam 482 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorina** (Lv. 17)
@@ -280,6 +282,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:01:56] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Poison Sting`
+- [20:01:53] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 28/41 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `String Shot`
 - [20:01:52] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 41/41 HP)
 - [20:01:51] **Turno #1**: Charmeleon (28/50 HP) vs Weedle (Lv. 16 • 41/41 HP)
 - [20:01:48] **Turno #1**: Charmeleon (28/50 HP) vs Oddish (Lv. 13 • 38/38 HP)
@@ -293,8 +297,6 @@
 - [19:24:07] **Turno #1**: Abra (28/28 HP) vs Pidgey (Lv. 15 • 37/37 HP)
 - [19:23:21] **Turno #1**: Abra (28/28 HP) vs Pidgey (Lv. 13 • 37/37 HP) • Golpe RED: `Teleport`
 - [19:23:19] **Turno #1**: Abra (43/28 HP) vs Pidgey (Lv. 13 • 37/37 HP)
-- [19:16:56] **Turno #9**: Butterfree (43/65 HP) vs Drowzee (Lv. 17 • 0/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
-- [19:16:55] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 0/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
@@ -304,6 +306,7 @@
 - [20:00:54] Entrou em Underground Path North South
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:01:54] `SCRATCH EMBER`
 - [19:59:05] `TOSS`
 - [19:57:26] `SQUIRTLE`
 - [19:24:32] `anger It could be docile one`
@@ -318,7 +321,6 @@
 - [18:59:37] `THUNDERSHOCK THUNDER WAVE`
 - [18:59:10] `TACKLE TAIL WHIP`
 - [18:58:50] `SCRATCH GROWL`
-- [18:58:49] `YOUNGSTER is about to use`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
