@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:01:43**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:01:48**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,21 +9,45 @@
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `15`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `67h 0m 27s`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Tempo de Jogo:** `67h 0m 28s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TOSS`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 17 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Jr. Trainer♂ Ricky** (Rota 6)
-  - **Equipa Adversária:** Squirtle (Lv. 20)
-  - **Lead Recomendado:** Pikachu (Thundershock)
-  - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
+- **Tipos:** Grass/Poison
+- **HP:** **38 / 38** (100%)
+- **Stats de Batalha:** ATK: 21 | DEF: 22 | SPD: 16 | SPC: 26
+- **Os 4 Golpes do Adversário:**
+  - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Absorb** (Grass) ➔ Dano: ~3-4 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 17)
+- **Tipos:** Normal
+- **HP:** **28 / 50** (HEALTHY)
+- **Stats com Modificadores:** ATK: 32 (+232) | DEF: 27 (+73) | SPD: 40 (+73) | SPC: 34 (+73)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
+- **⭐ Melhor Golpe Matemático:** **Ember** (Fire) ➔ Dano: **18-22 HP** (2x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Ember (Causa ~18-22 de dano)
+- ➔ Turno 2: Ember (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Ember. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Charmeleon tem a melhor rota de vitória rápida e HP estável (28/50). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Charmeleon** (Lv. 17)
+### 1. **Charmeleon** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Fire | **HP:** 50 / 50 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 27 | SPD: 40 | SPC: 34
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
@@ -255,6 +279,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:01:48] **Turno #1**: Charmeleon (28/50 HP) vs Oddish (Lv. 13 • 38/38 HP)
 - [19:25:55] **Turno #1**: Abra (28/28 HP) vs Oddish (Lv. 13 • 38/38 HP) • Golpe RED: `Teleport` • Golpe Inimigo: `Absorb`
 - [19:25:53] **Turno #1**: Abra (47/28 HP) vs Oddish (Lv. 13 • 38/38 HP)
 - [19:24:29] **Turno #3**: Nidorina (47/55 HP) vs Mankey (Lv. 12 • 2/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
@@ -269,7 +294,6 @@
 - [19:16:55] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 0/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 - [19:16:54] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 4/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Hypnosis`
 - [19:16:53] **Turno #8**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 10/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
-- [19:16:51] **Turno #7**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 16/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
