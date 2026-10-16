@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:31:48**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:31:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 5** (ID Interno: `0x10`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `22`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `27`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `77h 0m 10s`
+- **Tempo de Jogo:** `77h 0m 11s`
 - **💬 Diálogo / Mensagem no Ecrã:** `We heal your POKMON back to`
 - **Dinheiro:** **13 555 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett) | **Eficiência na Rota:** `100% bloqueados`
@@ -251,127 +251,127 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↗️ 9 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
+### #1. [↗️ 14 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe
 - **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle.
 
-### #2. [↗️ 10 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
+### #2. [↗️ 15 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Weedle (Lv. 10)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember elimina os insetos.
 
-### #3. [↗️ 5 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
+### #3. [↗️ 10 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Charmeleon limpam.
 
-### #4. [↘️ 4 passos Sudeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
+### #4. [↗️ 7 passos Nordeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Sandshrew (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion contra Ekans e Sandshrew.
 
-### #5. [↘️ 7 passos Sudeste] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
+### #5. [➡️ 2 passos Este] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion causa 2x dano.
 
-### #6. [↘️ 12 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
+### #6. [↘️ 7 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Mankey (Lv. 18)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Fraqueza a Psíquico e Voador.
 
-### #7. [↘️ 13 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
+### #7. [↘️ 8 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Ekans (Lv. 15) • Zubat (Lv. 15)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Butterfree.
 
-### #8. [↖️ 16 passos Noroeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
+### #8. [↖️ 21 passos Noroeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Ataques rápidos.
 
-### #9. [↗️ 21 passos Nordeste] **Youngster Joey** (Rota 25) • **✅ VENCIDO**
+### #9. [↗️ 26 passos Nordeste] **Youngster Joey** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 15) • Spearow (Lv. 15)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu para Spearow.
 
-### #10. [↗️ 27 passos Nordeste] **Youngster Dan** (Rota 25) • **✅ VENCIDO**
+### #10. [↗️ 32 passos Nordeste] **Youngster Dan** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Slowpoke (Lv. 17)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Fraqueza a Electric.
 
-### #11. [↗️ 34 passos Nordeste] **Jr. Trainer♂ Flint** (Rota 25) • **✅ VENCIDO**
+### #11. [↗️ 39 passos Nordeste] **Jr. Trainer♂ Flint** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion e golpes fortes.
 
-### #12. [↗️ 25 passos Nordeste] **Lass Haley** (Rota 25) • **✅ VENCIDO**
+### #12. [↗️ 30 passos Nordeste] **Lass Haley** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 15) • Pidgey (Lv. 15) • Oddish (Lv. 15)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember elimina Oddish.
 
-### #13. [↗️ 43 passos Nordeste] **Hiker Franklin** (Rota 25) • **✅ VENCIDO**
+### #13. [↗️ 48 passos Nordeste] **Hiker Franklin** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Machop (Lv. 15) • Geodude (Lv. 15)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion destrói Machop.
 
-### #14. [↗️ 47 passos Nordeste] **Youngster Chad** (Rota 25) • **✅ VENCIDO**
+### #14. [↗️ 52 passos Nordeste] **Youngster Chad** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Ekans (Lv. 14) • Sandshrew (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Golpes psíquicos.
 
-### #15. [↗️ 47 passos Nordeste] **Hiker Wayne** (Rota 25) • **✅ VENCIDO**
+### #15. [↗️ 52 passos Nordeste] **Hiker Wayne** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Onix (Lv. 17)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Ataca no lado Especial.
 
-### #16. [↗️ 56 passos Nordeste] **Lass Robin** (Rota 25) • **✅ VENCIDO**
+### #16. [↗️ 61 passos Nordeste] **Lass Robin** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Bellsprout (Lv. 13) • Pidgey (Lv. 13) • Oddish (Lv. 13)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa.
 
-### #17. [↗️ 58 passos Nordeste] **Hiker Nob** (Rota 25) • **✅ VENCIDO**
+### #17. [↗️ 63 passos Nordeste] **Hiker Nob** (Rota 25) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 13) x2 • Machop (Lv. 13)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion.
 
-### #18. [↗️ 37 passos Nordeste] **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada)) • **✅ VENCIDO**
+### #18. [↗️ 42 passos Nordeste] **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Machop (Lv. 17) • Drowzee (Lv. 17)
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
 
-### #19. [↖️ 19 passos Noroeste] **Swimmer Luis** (Ginásio de Cerulean) • **✅ VENCIDO**
+### #19. [↖️ 24 passos Noroeste] **Swimmer Luis** (Ginásio de Cerulean) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Horsea (Lv. 16) • Shellder (Lv. 16)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Golpes elétricos.
 
-### #20. [↖️ 25 passos Noroeste] **Jr. Trainer♀ Diana** (Ginásio de Cerulean) • **✅ VENCIDO**
+### #20. [↖️ 30 passos Noroeste] **Jr. Trainer♀ Diana** (Ginásio de Cerulean) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Goldeen (Lv. 19)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Thundershock.
 
-### #21. [↖️ 22 passos Noroeste] **Líder Misty** (Ginásio de Cerulean (Líder)) • **✅ VENCIDO**
+### #21. [↖️ 27 passos Noroeste] **Líder Misty** (Ginásio de Cerulean (Líder)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe
 - **Roster Inimigo:** Staryu (Lv. 18) • Starmie (Lv. 21)
 - **Lead Recomendado:** Pikachu
