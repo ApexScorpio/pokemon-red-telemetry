@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:39:46**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:39:49**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -20,16 +20,18 @@
 - **Último Golpe Usado por RED:** `Fury Attack`
 - **Último Golpe Usado pelo Adversário:** `Scratch`
 
-### 🔴 Adversário em Campo: **Sandshrew** (Lv. 11)
-- **Tipos:** Ground
-- **HP:** **9 / 33** (27%)
-- **Stats de Batalha:** ATK: 23 | DEF: 25 | SPD: 15 | SPC: 13
+### 🔴 Adversário em Campo: **Rattata** (Lv. 11)
+- **Tipos:** Normal
+- **HP:** **29 / 29** (100%)
+- **Stats de Batalha:** ATK: 19 | DEF: 14 | SPD: 22 | SPC: 12
 - **Os 4 Golpes do Adversário:**
-  - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Scratch** (Normal) ➔ Dano: ~5-6 HP (1x)
-  - **Sand-attack** (Normal) ➔ Golpe de Status
+  - **Tackle** (Normal) ➔ Dano: ~5-7 HP (1x)
+  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
+  - **Quick Attack** (Normal) ➔ Dano: ~7-9 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
 - **Tipos:** Bug/Poison
@@ -37,26 +39,26 @@
 - **Stats com Modificadores:** ATK: 31 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **2-3 HP** (0.5x eficácia) • ~3 turnos para K.O.
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • ~3 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
 - ➔ Turnos 1-3: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 9 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (12/46). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 12 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 3298 | Def: 2746 | Spd: 3789 | Spc: 2080 | HP: 2708
-- **Experiência:** 3055 EXP (Progresso: 49%, faltam 320 p/ Lv.15)
+- **Stat Experience (0–65.535):** Atk: 3373 | Def: 2831 | Spd: 3829 | Spc: 2110 | HP: 2758
+- **Experiência:** 3274 EXP (Progresso: 84%, faltam 101 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 8 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 7 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
@@ -228,14 +230,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:39:49] **Turno #6**: Beedrill (12/46 HP) vs Rattata (29/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [15:39:46] **Turno #6**: Beedrill (12/46 HP) vs Sandshrew (0/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:45] **Turno #6**: Beedrill (12/46 HP) vs Sandshrew (9/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:41] **Turno #5**: Beedrill (18/46 HP) vs Sandshrew (9/33 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Sand-attack`
 - [15:39:39] **Turno #4**: Beedrill (18/46 HP) vs Sandshrew (9/33 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Sand-attack`
 - [15:39:10] **Turno #4**: Beedrill (18/46 HP) vs Sandshrew (12/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:10] **Turno #3**: Beedrill (24/46 HP) vs Sandshrew (16/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:09] **Turno #3**: Beedrill (24/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [15:39:08] **Turno #2**: Beedrill (30/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [15:39:06] **Turno #1**: Beedrill (36/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 
 - [15:35:35] Entrou em Mt Moon B2f
 - [15:35:13] Entrou em Mt Moon B1F
