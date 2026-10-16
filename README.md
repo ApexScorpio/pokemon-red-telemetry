@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `6`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `58h 0m 58s`
+- **Tempo de Jogo:** `58h 0m 59s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **2521 ₽** • **Fichas do Casino:** `0`
 
@@ -22,7 +22,7 @@
 
 ### 🔴 Adversário em Campo: **Rattata** (Lv. 15)
 - **Tipos:** Normal
-- **HP:** **36 / 36** (100%)
+- **HP:** **18 / 36** (50%)
 - **Stats de Batalha:** ATK: 24 | DEF: 17 | SPD: 29 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -38,16 +38,15 @@
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 17)
 - **Tipos:** Electric
 - **HP:** **28 / 42** (HEALTHY)
-- **Stats com Modificadores:** ATK: 30 (0) | DEF: 21 (0) | SPD: 39 (0) | SPC: 28 (0)
+- **Stats com Modificadores:** ATK: 30 (0) | DEF: 21 (-1) | SPD: 39 (0) | SPC: 28 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **20-24 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **20-24 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Thundershock (Causa ~20-24 de dano)
-- ➔ Turno 2: Thundershock (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Thundershock. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -208,6 +207,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:43:14] **Turno #1**: Pikachu (28/42 HP) vs Rattata (Lv. 15 • 18/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
 - [18:43:06] **Turno #1**: Pikachu (28/42 HP) vs Rattata (Lv. 15 • 36/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
 - [18:43:04] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 0/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
 - [18:42:58] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 15/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
@@ -222,7 +222,6 @@
 - [18:42:04] **Turno #1**: Pikachu (13/42 HP) vs Ekans (Lv. 10 • 13/27 HP)
 - [18:17:45] **Turno #2**: Pikachu (13/42 HP) vs Ekans (Lv. 10 • 13/27 HP) • Golpe RED: `Thunder Wave` • Golpe Inimigo: `Poison Sting`
 - [18:17:38] **Turno #1**: Pikachu (16/42 HP) vs Ekans (Lv. 10 • 13/27 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Poison Sting`
-- [18:17:30] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 10 • 27/27 HP)
 
 - [18:33:36] Entrou em Cerulean City
 - [18:29:24] Entrou em Cerulean Mart
