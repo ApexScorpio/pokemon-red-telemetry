@@ -1,26 +1,52 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:15**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:19**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `33`, Y: `5`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `37`, Y: `5`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `60h 0m 42s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **7776 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Tackle`
+- **Último Golpe Usado pelo Adversário:** `Absorb`
+
+### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
+- **Tipos:** Grass/Poison
+- **HP:** **36 / 36** (100%)
+- **Stats de Batalha:** ATK: 20 | DEF: 21 | SPD: 14 | SPC: 26
+- **Os 4 Golpes do Adversário:**
+  - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Absorb** (Grass) ➔ Dano: ~5-7 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 17)
+- **Tipos:** Normal
+- **HP:** **37 / 45** (HEALTHY)
+- **Stats com Modificadores:** ATK: 28 (0) | DEF: 21 (0) | SPD: 36 (0) | SPC: 21 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **25-30 HP** (1x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Hyper Fang (Causa ~25-30 de dano)
+- ➔ Turno 2: Hyper Fang (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Hyper Fang. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Rattata tem a melhor rota de vitória rápida e HP estável (37/45). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -59,14 +85,14 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 4. **Rattata** (Lv. 17)
+### 4. **Rattata** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Normal | **HP:** 37 / 45 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 21 | SPD: 36 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6184 | Def: 4575 | Spd: 6827 | Spc: 3847 | HP: 5146
 - **Experiência:** 4918 EXP (Progresso: 1%, faltam 914 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
@@ -186,6 +212,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:59:18] **Turno #1**: Rattata (37/45 HP) vs Oddish (Lv. 13 • 36/36 HP)
+- [18:59:17] **Turno #1**: Beedrill (37/56 HP) vs Sandshrew (Lv. 14 • 0/40 HP)
 - [18:59:12] **Turno #13**: Rattata (37/45 HP) vs Sandshrew (Lv. 14 • 0/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:59:11] **Turno #13**: Rattata (35/43 HP) vs Sandshrew (Lv. 14 • 0/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:59:10] **Turno #13**: Rattata (35/43 HP) vs Sandshrew (Lv. 14 • 1/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
@@ -199,8 +227,6 @@
 - [18:59:01] **Turno #7**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 19/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
 - [18:59:00] **Turno #7**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:58:59] **Turno #6**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:58:58] **Turno #5**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:58:57] **Turno #4**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
