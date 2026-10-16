@@ -1,35 +1,37 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `25`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `22`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `59h 0m 45s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
-- **Dinheiro:** **3466 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **3676 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Tackle`
-- **Último Golpe Usado pelo Adversário:** `Leech Life`
+- **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 14)
-- **Tipos:** Poison/Flying
-- **HP:** **0 / 37** (0%)
-- **Stats de Batalha:** ATK: 20 | DEF: 17 | SPD: 22 | SPC: 18
+### 🔴 Adversário em Campo: **Pidgey** (Lv. 16)
+- **Tipos:** Normal/Flying
+- **HP:** **41 / 41** (100%)
+- **Stats de Batalha:** ATK: 22 | DEF: 20 | SPD: 25 | SPC: 18
 - **Os 4 Golpes do Adversário:**
-  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
-  - **Supersonic** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
+  - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~5-6 HP (2x)
-  - **Supersonic** (Normal) ➔ Golpe de Status
+  - **Gust** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Sand-attack** (Normal) ➔ Golpe de Status
+  - **Quick Attack** (Normal) ➔ Dano: ~7-9 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 17)
 - **Tipos:** Poison
@@ -37,12 +39,13 @@
 - **Stats com Modificadores:** ATK: 37 (0) | DEF: 30 (0) | SPD: 32 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **22-27 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **19-23 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Horn Attack (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Horn Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Horn Attack (Causa ~19-23 de dano)
+- ➔ Turno 2: Horn Attack (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Horn Attack. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -69,7 +72,7 @@
 - **Stat Experience (0–65.535):** Atk: 3694 | Def: 2417 | Spd: 4051 | Spc: 2208 | HP: 2927
 - **Experiência:** 3165 EXP (Progresso: 7%, faltam 633 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -201,6 +204,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:50:27] **Turno #1**: Nidorino (53/53 HP) vs Pidgey (Lv. 16 • 41/41 HP)
+- [18:50:27] **Turno #1**: Beedrill (53/56 HP) vs Zubat (Lv. 14 • 0/37 HP)
 - [18:50:23] **Turno #2**: Nidorino (53/53 HP) vs Zubat (Lv. 14 • 0/37 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Leech Life`
 - [18:50:22] **Turno #2**: Nidorino (51/51 HP) vs Zubat (Lv. 14 • 0/37 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Leech Life`
 - [18:50:21] **Turno #2**: Nidorino (51/51 HP) vs Zubat (Lv. 14 • 6/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
@@ -214,8 +219,6 @@
 - [18:50:11] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:10] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 9/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:09] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 27/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
-- [18:50:01] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 36/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [18:50:00] **Turno #1**: Beedrill (15/54 HP) vs Rattata (Lv. 14 • 0/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
