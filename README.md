@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:57:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:57:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,29 +17,31 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Supersonic`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
 - **Tipos:** Poison/Flying
-- **HP:** **32 / 32** (100%)
+- **HP:** **20 / 32** (63%)
 - **Stats de Batalha:** ATK: 16 | DEF: 16 | SPD: 19 | SPC: 16
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
   - **Supersonic** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~2-3 HP (1x)
+  - **Leech Life** (Bug) ➔ 🚨 RISCO DE K.O.! (5-6 HP)
   - **Supersonic** (Normal) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
-- **Tipos:** Normal
+- **Tipos:** Bug/Poison
 - **HP:** **5 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (-1) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-2 HP** (0.5x eficácia) • ~16 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~4 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-16: Usa repetidamente Poison Sting
+- ➔ Turnos 1-4: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
@@ -48,8 +50,8 @@
 - **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **54%** | Great Ball: **80%** | Ultra Ball: **54%**
+  - *Se adormeceres o inimigo:* **~58%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
@@ -59,7 +61,7 @@
 - **Stat Experience (0–65.535):** Atk: 4269 | Def: 3606 | Spd: 4699 | Spc: 2800 | HP: 3518
 - **Experiência:** 4820 EXP (Progresso: 89%, faltam 93 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 7 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 6 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -234,14 +236,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:57:03] **Turno #1**: Beedrill (5/51 HP) vs Zubat (20/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
+- [15:57:02] **Turno #1**: Beedrill (5/51 HP) vs Zubat (26/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
 - [15:57:01] **Turno #1**: Beedrill (5/51 HP) vs Zubat (32/32 HP)
 - [15:56:40] **Turno #2**: Beedrill (5/51 HP) vs Clefairy (0/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [15:56:39] **Turno #2**: Beedrill (5/51 HP) vs Clefairy (8/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [15:56:38] **Turno #2**: Beedrill (10/51 HP) vs Clefairy (8/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Pound`
 - [15:56:37] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (16/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [15:56:36] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (25/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
-- [15:56:34] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (34/34 HP)
-- [15:56:32] **Turno #1**: Beedrill (10/51 HP) vs Clefairy (0/40 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Pound`
 
 - [15:56:57] Entrou em Mt Moon B2f
 - [15:56:56] Entrou em Mt Moon B1F
