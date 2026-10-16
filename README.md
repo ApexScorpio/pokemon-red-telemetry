@@ -1,19 +1,19 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:34:41**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:49:18**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 11** (ID Interno: `0x16`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `6`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Localização Atual:** **Vermilion City** (ID Interno: `0x5`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `31`, Y: `14`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `71h 0m 1s`
+- **Tempo de Jogo:** `72h 0m 35s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SLOWPOKE`
 - **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
@@ -126,8 +126,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 14** *(Entrou a Lv. 11 • Ganhou +3 níveis!)*
 - **Custo de Retirada:** **400 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **1897 EXP**
-- **Progresso para Nível 15:** Faltam **138 passos / EXP** (67%)
+- **Experiência Total:** **1911 EXP**
+- **Progresso para Nível 15:** Faltam **124 passos / EXP** (71%)
 - **DVs Gen 1:** ATK: 5 | DEF: 2 | SPD: 2 | SPC: 5 | HP: 9
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 17
@@ -151,13 +151,13 @@
 - **Utilidade Tática:** ⭐ Única Jynx de Kanto! Tipos Gelo/Psíquico com Lovely Kiss e Blizzard brutal.
 - **Estado no Teu Jogo:** ⚪ Precisas de apanhar Poliwhirl
 
-### Vermilion City (Casa ao lado do Centro Pokémon) • **🟡 NO PC BOX 1**
+### Vermilion City (Casa ao lado do Centro Pokémon) 📍 [NESTA ÁREA] • **🟡 NO PC BOX 1**
 - **Oferece:** **Spearow** (Dex #21) ➔ **Recebe:** **Farfetch'd** ("DUX" • Dex #83)
 - **NPC & Local:** Rapariga (Casa ao lado do Centro Pokémon de Vermilion (X:3 Y:5))
 - **Utilidade Tática:** ⭐ Único Farfetch'd de Kanto! Excelente utilitário com Cut e Fly e alto dano com Slash crítico.
 - **Estado no Teu Jogo:** 🟡 NO PC BOX 1! Tens Spearow (Nv. 6) - Retira para trocar!
 
-### Rota 11 (Portão 2º Andar) 📍 [NESTA ÁREA] • **⚪ REQUER CAPTURA**
+### Rota 11 (Portão 2º Andar) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Drowzee** (Dex #96) ➔ **Recebe:** **Lickitung** ("MARC" • Dex #108)
 - **NPC & Local:** Rapaz (Andar superior do posto de controlo da Rota 11)
 - **Utilidade Tática:** ⭐ Único Lickitung do jogo! Pokémon Normal raro com grande vitalidade.
@@ -191,8 +191,7 @@
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
   - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 18 (Charmeleon)`).
-  - **Eficiência na Área Atual:** **100% de encontros bloqueados** (100% bloqueados)
-  - **Bloqueados por Repel:** Ekans Nv.14 (20%), Spearow Nv.15 (20%), Ekans Nv.12 (15%), Drowzee Nv.9 (10%), Spearow Nv.13 (10%), Drowzee Nv.13 (10%), Ekans Nv.15 (5%), Spearow Nv.17 (5%), Drowzee Nv.11 (4%), Drowzee Nv.15 (1%)
+  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
 
@@ -228,65 +227,69 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↘️ 14 passos Sudeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #1. [↙️ 23 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↘️ 24 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #2. [↙️ 13 passos Sudoeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↘️ 35 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↙️ 24 passos Sudoeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↘️ 20 passos Sudeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #4. [↙️ 29 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↘️ 26 passos Sudeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #5. [↙️ 23 passos Sudoeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↘️ 32 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #6. [↙️ 37 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [↗️ 4 passos Nordeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↖️ 37 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [↖️ 5 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [↖️ 40 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [↘️ 3 passos Sudeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↖️ 32 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [↗️ 6 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↖️ 39 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
 - **Estratégia:** 100% Imune a Electric! Usa Dig no Raichu para aniquilar sem sofrer dano.
+
+## 🎒 9. Itens da Área (Vermilion City)
+### Itens Ocultos (Invisíveis no chão):
+- **Max Ether** (X: 14, Y: 11) • Estado: 🔴 Por Apanhar — *Canto noroeste, escondido perto dos arbustos e árvores.*
 
 ## 🌐 10. Panorama Global de 100% de Kanto (Guia Completo para ChatGPT)
 ### 🎯 Estado dos 8 Ginásios de Kanto:
@@ -319,17 +322,20 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
+- [20:49:17] Entrou em Vermilion City
 - [20:20:55] Entrou em Route 11
 - [20:20:53] Entrou em Digletts Cave Route 11
 - [20:20:52] Entrou em Digletts Cave
 - [20:20:50] Entrou em Digletts Cave Route 11
 - [20:20:47] Entrou em Route 11
-- [20:09:11] Entrou em Vermilion City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
 - [16:24:40] `We'll each take one! No being greedy!`
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
+
+## 🧠 Conselho Tático do Grok AI
+> "Vais apanhar um **Magnemite** (magnético) na Route 11 para garantir vantagem de tipo contra o próximo ginásio (Falkner, de Voo)! Para criar espaço, mete o **Nidorino** no PC, pois o seu ataque físico fraco e a sobreposição de tipo Poison com a Nidorina tornam-no a escolha menos útil para o avanço."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
