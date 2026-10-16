@@ -1,13 +1,13 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:54:43**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:54:48**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `6`, Y: `8`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `12`, Y: `5`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `60h 0m 13s`
@@ -95,7 +95,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **17 / 20 slots** (3 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **18 / 20 slots** (2 vagas livres)
 - **Potion** x6
 - **Poké Ball** x8
 - **Antidote** x2
@@ -113,6 +113,7 @@
 - **TM04 (Whirlwind)** x1
 - **Repel** x2
 - **Nugget** x1
+- **TM45 (Thunder Wave)** x1
 
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
@@ -183,7 +184,7 @@
 
 ## 🎒 9. Itens da Área (Route 24)
 ### Itens no Chão (Poké Balls visíveis):
-- **TM45 (Thunder Wave)** (X: undefined, Y: undefined) • Estado: 🔴 Por Apanhar — *No planalto perto do início da rota.*
+- **TM45 (Thunder Wave)** (X: undefined, Y: undefined) • Estado: ✅ Já Recolhido — *No planalto perto do início da rota.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
