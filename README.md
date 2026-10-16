@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:16:27**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:16:32**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,9 +8,9 @@
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Vermilion Pokecenter** (ID Interno: `0x59`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `4`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `75h 0m 30s`
+- **Tempo de Jogo:** `75h 0m 31s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
@@ -90,7 +90,7 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **10 / 20 slots** (10 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **11 / 20 slots** (9 vagas livres)
 - **Potion** x6
 - **Poké Ball** x4
 - **Antidote** x2
@@ -101,15 +101,15 @@
 - **Ether** x2
 - **Great Ball** x1
 - **Repel** x2
+- **S.s.ticket** x1
 
-## 💻 4.1. Armazenamento de Itens no PC (RAM $D53A) • Capacidade: **12 / 50 slots** (38 vagas livres)
+## 💻 4.1. Armazenamento de Itens no PC (RAM $D53A) • Capacidade: **11 / 50 slots** (39 vagas livres)
 > *Itens guardados no PC pessoal do jogador (preservam espaço na mochila mas contam como possuídos para TMs/Key Items):*
 - **Potion** x1 • 🧪 Cura/Restauração
 - **TM34 (Bide)** x1 • 💿 TM Único
 - **TM12 (Water Gun)** x1 • 💿 TM Único
 - **TM11 (BubbleBeam)** x1 • 💿 TM Único
 - **TM45 (Thunder Wave)** x1 • 💿 TM Único
-- **S.s.ticket** x1 • 🔑 Key Item
 - **Nugget** x1 • 💰 Item Valioso
 - **Helix Fossil** x1 • 🔑 Key Item
 - **TM04 (Whirlwind)** x1 • 💿 TM Único
@@ -121,8 +121,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 12** *(Entrou a Lv. 10 • Ganhou +2 níveis!)*
 - **Custo de Retirada:** **300 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **1149 EXP**
-- **Progresso para Nível 13:** Faltam **112 passos / EXP** (61%)
+- **Experiência Total:** **1152 EXP**
+- **Progresso para Nível 13:** Faltam **109 passos / EXP** (62%)
 - **DVs Gen 1:** ATK: 10 | DEF: 8 | SPD: 6 | SPC: 3 | HP: 1
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 20
@@ -366,7 +366,7 @@
 
 ### 🔑 Key Items e Pedras Raras em Posse (Mochila + PC):
 - **Town Map** x1 [Local: 🎒 Na Mochila]
-- **S.s.ticket** x1 [Local: 💻 Guardado no PC]
+- **S.s.ticket** x1 [Local: 🎒 Na Mochila]
 - **Helix Fossil** x1 [Local: 💻 Guardado no PC]
 - **Moon Stone** x2 [Local: 💻 Guardado no PC]
 
