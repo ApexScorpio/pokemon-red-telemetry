@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:47:58**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:48:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -93,10 +93,10 @@
 - **Tipos:** Fire | **HP:** 55 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 30 | SPD: 44 | SPC: 37
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
-- **Stat Experience (0–65.535):** Atk: 5660 | Def: 4172 | Spd: 6466 | Spc: 3414 | HP: 4257
-- **Experiência:** 4864 EXP (Progresso: 33%, faltam 596 p/ Lv.20)
+- **Stat Experience (0–65.535):** Atk: 5700 | Def: 4242 | Spd: 6526 | Spc: 3484 | HP: 4287
+- **Experiência:** 5165 EXP (Progresso: 67%, faltam 295 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
