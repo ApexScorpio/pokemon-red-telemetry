@@ -70,6 +70,7 @@ function checkIsItemInInventory(itemName, inventory) {
   const cleanTarget = rawTarget.replace(/\(.*?\)/g, '').replace(/[^A-Z0-9]/g, '');
   if (!cleanTarget) return false;
 
+  // 1. TMs únicos da primeira geração (TM01..TM50)
   const tmMatch = rawTarget.match(/TM(\d+)/i);
   if (tmMatch) {
     const tmNum = parseInt(tmMatch[1], 10);
@@ -80,6 +81,7 @@ function checkIsItemInInventory(itemName, inventory) {
     });
   }
 
+  // 2. HMs únicos (HM01..HM05)
   const hmMatch = rawTarget.match(/HM(\d+)/i);
   if (hmMatch) {
     const hmNum = parseInt(hmMatch[1], 10);
@@ -90,24 +92,21 @@ function checkIsItemInInventory(itemName, inventory) {
     });
   }
 
-  if (cleanTarget.includes('FOSSIL') || cleanTarget.includes('HELIX') || cleanTarget.includes('DOME')) {
-    const hasFossil = inventory.some(inv => {
-      const invClean = (inv.name || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
-      return invClean.includes('FOSSIL') || invClean.includes('HELIX') || invClean.includes('DOME');
-    });
-    if (hasFossil) return true;
-  }
+  // 3. Fósseis e Key Items únicos
+  const UNIQUE_KEY_ITEMS = [
+    'TOWNMAP', 'BICYCLE', 'BIKEVOUCHER', 'SSTICKET', 'SILPHSCOPE', 'POKEFLUTE',
+    'CARDKEY', 'LIFTKEY', 'SECRETKEY', 'GOLDTEETH', 'OLDAMBER', 'HELIXFOSSIL',
+    'DOMEFOSSIL', 'COINCASE', 'ITEMFINDER'
+  ];
 
-  if (cleanTarget.includes('MOONSTONE')) {
-    const moonStone = inventory.find(inv => (inv.name || '').toUpperCase().includes('MOON STONE'));
-    if (moonStone && moonStone.qty >= 1) return true;
-  }
-
-  return inventory.some(inv => {
-    const rawInv = (inv.name || '').toUpperCase();
-    const cleanInv = rawInv.replace(/\(.*?\)/g, '').replace(/[^A-Z0-9]/g, '');
-    if (!cleanInv) return false;
-    return cleanInv === cleanTarget || cleanInv.includes(cleanTarget) || cleanTarget.includes(cleanInv);
+  return UNIQUE_KEY_ITEMS.some(keyItem => {
+    if (cleanTarget.includes(keyItem)) {
+      return inventory.some(inv => {
+        const invClean = (inv.name || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        return invClean.includes(keyItem);
+      });
+    }
+    return false;
   });
 }
 
