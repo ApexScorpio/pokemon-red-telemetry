@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:19**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:23**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `37`, Y: `5`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `60h 0m 42s`
+- **Tempo de Jogo:** `60h 0m 43s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **7776 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Absorb`
 
 ### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
 - **Tipos:** Grass/Poison
-- **HP:** **36 / 36** (100%)
+- **HP:** **7 / 36** (19%)
 - **Stats de Batalha:** ATK: 20 | DEF: 21 | SPD: 14 | SPC: 26
 - **Os 4 Golpes do Adversário:**
   - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
@@ -32,21 +32,20 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 17)
 - **Tipos:** Normal
-- **HP:** **37 / 45** (HEALTHY)
+- **HP:** **22 / 45** (HEALTHY)
 - **Stats com Modificadores:** ATK: 28 (0) | DEF: 21 (0) | SPD: 36 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **25-30 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **13-16 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Hyper Fang (Causa ~25-30 de dano)
-- ➔ Turno 2: Hyper Fang (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Hyper Fang. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Rattata tem a melhor rota de vitória rápida e HP estável (37/45). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 7 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -86,13 +85,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 4. **Rattata** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 37 / 45 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 22 / 45 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 21 | SPD: 36 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6184 | Def: 4575 | Spd: 6827 | Spc: 3847 | HP: 5146
 - **Experiência:** 4918 EXP (Progresso: 1%, faltam 914 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
@@ -212,6 +211,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:59:23] **Turno #2**: Rattata (22/45 HP) vs Oddish (Lv. 13 • 7/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
+- [18:59:22] **Turno #2**: Rattata (22/45 HP) vs Oddish (Lv. 13 • 3/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
+- [18:59:21] **Turno #1**: Rattata (31/45 HP) vs Oddish (Lv. 13 • 17/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
+- [18:59:20] **Turno #1**: Rattata (31/45 HP) vs Oddish (Lv. 13 • 14/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
 - [18:59:18] **Turno #1**: Rattata (37/45 HP) vs Oddish (Lv. 13 • 36/36 HP)
 - [18:59:17] **Turno #1**: Beedrill (37/56 HP) vs Sandshrew (Lv. 14 • 0/40 HP)
 - [18:59:12] **Turno #13**: Rattata (37/45 HP) vs Sandshrew (Lv. 14 • 0/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
@@ -223,10 +226,6 @@
 - [18:59:05] **Turno #11**: Nidorina (3/55 HP) vs Sandshrew (Lv. 14 • 10/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:59:03] **Turno #10**: Nidorina (3/55 HP) vs Sandshrew (Lv. 14 • 10/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:59:03] **Turno #9**: Nidorina (3/55 HP) vs Sandshrew (Lv. 14 • 19/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:59:02] **Turno #8**: Nidorina (3/55 HP) vs Sandshrew (Lv. 14 • 19/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:59:01] **Turno #7**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 19/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
-- [18:59:00] **Turno #7**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:58:59] **Turno #6**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
