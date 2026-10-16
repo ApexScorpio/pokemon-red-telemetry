@@ -1,19 +1,19 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:40:46**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:40:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Vermilion City** (ID Interno: `0x5`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `18`, Y: `8`
+- **Localização Atual:** **Route 6** (ID Interno: `0x11`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `28`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `78h 0m 9s`
+- **Tempo de Jogo:** `78h 0m 10s`
 - **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
 - **Dinheiro:** **14 815 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
@@ -162,7 +162,7 @@
 - **Utilidade Tática:** ⭐ Única Jynx de Kanto! Tipos Gelo/Psíquico com Lovely Kiss e Blizzard brutal.
 - **Estado no Teu Jogo:** ⚪ Precisas de apanhar Poliwhirl
 
-### Vermilion City (Casa ao lado do Centro Pokémon) 📍 [NESTA ÁREA] • **⚪ REQUER CAPTURA**
+### Vermilion City (Casa ao lado do Centro Pokémon) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Spearow** (Dex #21) ➔ **Recebe:** **Farfetch'd** ("DUX" • Dex #83)
 - **NPC & Local:** Rapariga (Casa ao lado do Centro Pokémon de Vermilion (X:3 Y:5))
 - **Utilidade Tática:** ⭐ Único Farfetch'd de Kanto! Excelente utilitário com Cut e Fly e alto dano com Slash crítico.
@@ -202,7 +202,8 @@
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
   - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 18 (Diglett)`).
-  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
+  - **Eficiência na Área Atual:** **100% de encontros bloqueados** (100% bloqueados)
+  - **Bloqueados por Repel:** Oddish Nv.13 (20%), Pidgey Nv.13 (20%), Pidgey Nv.15 (15%), Mankey Nv.10 (10%), Mankey Nv.12 (10%), Oddish Nv.15 (10%), Oddish Nv.16 (5%), Pidgey Nv.16 (5%), Mankey Nv.14 (4%), Mankey Nv.16 (1%)
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
 
@@ -241,129 +242,41 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 18 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Diglett é 100% imune a ataques elétricos.
-
-### #2. [↖️ 21 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Dig destrói ambos num único turno.
-
-### #3. [⬅️ 13 passos Oeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Pikachu (Lv. 23)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Diglett vence facilmente sem sofrer dano.
-
-### #4. [↖️ 20 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
-- **Dificuldade:** Chefe / Difícil
-- **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
-- **Lead Recomendado:** Diglett / Dugtrio
-- **Estratégia:** 100% Imune a Electric! Usa Dig no Raichu para aniquilar sem sofrer dano.
-
-### #5. [↙️ 16 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #1. [↖️ 18 passos Noroeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #6. [↘️ 8 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #2. [↗️ 18 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #7. [↘️ 19 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↗️ 7 passos Nordeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #8. [↙️ 22 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #4. [↖️ 12 passos Noroeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #9. [↙️ 16 passos Sudoeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #5. [↗️ 8 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #10. [↙️ 30 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #6. [↙️ 6 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
-
-### #11. [↘️ 18 passos Sudeste] **Youngster Eddie** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Ekans (Lv. 21)
-- **Lead Recomendado:** Butterfree (Confusion)
-- **Estratégia:** Confusion é super eficaz contra Veneno.
-
-### #12. [↘️ 21 passos Sudeste] **Gambler Hugo** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Voltorb (Lv. 18) • Magnemite (Lv. 18)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Diglett imune a ataques elétricos.
-
-### #13. [↖️ 8 passos Noroeste] **Youngster Dave** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Sandshrew (Lv. 19) • Zubat (Lv. 19)
-- **Lead Recomendado:** Pikachu / Butterfree
-- **Estratégia:** Pikachu contra Zubat.
-
-### #14. [↗️ 27 passos Nordeste] **Engineer Bernie** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Magnemite (Lv. 21)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Dig destroi Magnemite.
-
-### #15. [↘️ 29 passos Sudeste] **Youngster Dillon** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Nidoran♂ (Lv. 18) • Nidorino (Lv. 18)
-- **Lead Recomendado:** Butterfree (Confusion)
-- **Estratégia:** Confusion causa 2x dano.
-
-### #16. [↘️ 12 passos Sudeste] **Gambler Jasper** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Poliwag (Lv. 18) • Horsea (Lv. 18)
-- **Lead Recomendado:** Pikachu (Thundershock)
-- **Estratégia:** Eletricidade contra água.
-
-### #17. [↙️ 6 passos Sudoeste] **Gambler Darian** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Growlithe (Lv. 21) • Vulpix (Lv. 21)
-- **Lead Recomendado:** Diglett / Água
-- **Estratégia:** Ataques de Terra ou Água contra Fogo.
-
-### #18. [↗️ 12 passos Nordeste] **Youngster Yasu** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Rattata (Lv. 17) x2 • Raticate (Lv. 17)
-- **Lead Recomendado:** Nidorino / Charmeleon
-- **Estratégia:** Cuidado com Hyper Fang do Raticate.
-
-### #19. [↘️ 21 passos Sudeste] **Engineer Braxton** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Magnemite (Lv. 18) • Magneton (Lv. 18)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Dig aniquila ambos.
-
-### #20. [↗️ 8 passos Nordeste] **Gambler Dirk** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Bellsprout (Lv. 18) • Oddish (Lv. 18)
-- **Lead Recomendado:** Charmeleon (Ember)
-- **Estratégia:** Fogo contra planta.
-
-## 🎒 9. Itens da Área (Vermilion City)
-### Itens Ocultos (Invisíveis no chão):
-- **Max Ether** (X: 14, Y: 11) • Estado: 🔴 Por Apanhar — *Canto noroeste, escondido perto dos arbustos e árvores.*
 
 ## 🌐 10. Panorama Global de 100% de Kanto (Guia Completo para ChatGPT)
 ### 🎯 Estado dos 8 Ginásios de Kanto:
@@ -414,12 +327,12 @@
 - [21:10:39] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 4/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:38] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 10/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 
+- [21:40:48] Entrou em Route 6
 - [21:40:43] Entrou em Vermilion City
 - [21:40:42] Entrou em Vermilion Dock
 - [21:40:38] Entrou em Ss Anne 1F
 - [21:40:31] Entrou em Ss Anne 1F Rooms
 - [21:40:29] Entrou em Ss Anne 1F
-- [21:40:29] Entrou em Ss Anne 1F Rooms
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [21:39:52] `EMBER SCRATCH`
