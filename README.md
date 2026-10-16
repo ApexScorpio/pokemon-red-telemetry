@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:57:20**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:57:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,47 +8,14 @@
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `38`, Y: `22`
-- **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `53h 0m 47s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Stun Spore`
-
-### 🔴 Adversário em Campo: **Geodude** (Lv. 9)
-- **Tipos:** Rock/Ground
-- **HP:** **27 / 27** (100%)
-- **Stats de Batalha:** ATK: 20 | DEF: 23 | SPD: 11 | SPC: 11
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 20)
-- **Tipos:** Bug/Flying
-- **HP:** **54 / 60** (HEALTHY)
-- **Stats com Modificadores:** ATK: 30 (0) | DEF: 29 (0) | SPD: 40 (0) | SPC: 45 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **13-16 HP** (1x eficácia) • ~2 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Confusion (Causa ~13-16 de dano)
-- ➔ Turno 2: Confusion (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Confusion. Atacas primeiro em ambos os turnos.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (54/60). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **38%** | Great Ball: **56%** | Ultra Ball: **38%**
-  - *Se adormeceres o inimigo:* **~44%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 16)
@@ -63,14 +30,14 @@
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Butterfree** (Lv. 20) ⚔️ [EM COMBATE]
+### 2. **Butterfree** (Lv. 20)
 - **Tipos:** Bug/Flying | **HP:** 54 / 60 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 29 | SPD: 40 | SPC: 45
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 6316 | Def: 5826 | Spd: 6639 | Spc: 4342 | HP: 5320
-- **Experiência:** 8832 EXP (Progresso: 66%, faltam 429 p/ Lv.21)
+- **Stat Experience (0–65.535):** Atk: 6396 | Def: 5926 | Spd: 6659 | Spc: 4372 | HP: 5360
+- **Experiência:** 8942 EXP (Progresso: 75%, faltam 319 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 17 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 16 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 13 | Poder: -- | Precisão: 75%
@@ -228,6 +195,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:57:22] **Turno #1**: Butterfree (54/60 HP) vs Geodude (0/27 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:57:16] **Turno #1**: Beedrill (54/51 HP) vs Geodude (27/27 HP)
 - [15:57:12] **Turno #1**: Butterfree (54/60 HP) vs Geodude (0/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:57:10] **Turno #1**: Beedrill (54/51 HP) vs Geodude (28/28 HP)
@@ -235,7 +203,6 @@
 - [15:57:06] **Turno #1**: Butterfree (54/60 HP) vs Zubat (20/32 HP) • Golpe RED: `Struggle` • Golpe Inimigo: `Supersonic`
 - [15:57:05] **Turno #1**: Beedrill (0/51 HP) vs Zubat (20/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
 - [15:57:03] **Turno #1**: Beedrill (5/51 HP) vs Zubat (20/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
-- [15:57:02] **Turno #1**: Beedrill (5/51 HP) vs Zubat (26/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
 
 - [15:56:57] Entrou em Mt Moon B2f
 - [15:56:56] Entrou em Mt Moon B1F
