@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:32**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,19 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `22`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `59h 0m 45s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **Tempo de Jogo:** `59h 0m 46s`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **3676 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Tackle`
+- **Último Golpe Usado por RED:** `Poison Sting`
 - **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 16)
 - **Tipos:** Normal/Flying
-- **HP:** **41 / 41** (100%)
+- **HP:** **29 / 41** (71%)
 - **Stats de Batalha:** ATK: 22 | DEF: 20 | SPD: 25 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -204,6 +204,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:50:29] **Turno #1**: Nidorino (53/53 HP) vs Pidgey (Lv. 16 • 29/41 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:50:27] **Turno #1**: Nidorino (53/53 HP) vs Pidgey (Lv. 16 • 41/41 HP)
 - [18:50:27] **Turno #1**: Beedrill (53/56 HP) vs Zubat (Lv. 14 • 0/37 HP)
 - [18:50:23] **Turno #2**: Nidorino (53/53 HP) vs Zubat (Lv. 14 • 0/37 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Leech Life`
@@ -218,7 +219,6 @@
 - [18:50:12] **Turno #1**: Beedrill (17/56 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:11] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:10] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 9/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
-- [18:50:09] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 27/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
@@ -228,6 +228,7 @@
 - [18:29:12] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:50:30] `TACKLE HORN ATTACK`
 - [18:49:18] `FURY ATTACK POISON STING`
 - [18:43:39] `He invented the POKMON Storage`
 - [18:16:07] `THUNDERSHOCK THUNDER WAVE`
@@ -242,7 +243,6 @@
 - [18:08:31] `THUNDERSHOCK THUNDER WAVE`
 - [18:08:25] `TACKLE TAIL WHIP`
 - [18:06:14] `THUNDERSHOCK THUNDER WAVE`
-- [18:05:57] `TACKLE TAIL WHIP`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
