@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:56**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:54:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `17`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `19`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `60h 0m 8s`
+- **Tempo de Jogo:** `60h 0m 12s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree)
@@ -30,10 +30,10 @@
 - **Stat Experience (0–65.535):** Atk: 6811 | Def: 6276 | Spd: 7075 | Spc: 4697 | HP: 5695
 - **Experiência:** 9611 EXP (Progresso: 25%, faltam 1037 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 14 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
 ### 2. **Nidorino** (Lv. 18)
 - **Tipos:** Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
@@ -84,15 +84,15 @@
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 6. **Beedrill** (Lv. 18)
-- **Tipos:** Bug/Poison | **HP:** 4 / 56 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4703 | Def: 3961 | Spd: 5201 | Spc: 3080 | HP: 3868
 - **Experiência:** 6293 EXP (Progresso: 45%, faltam 566 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 30 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **17 / 20 slots** (3 vagas livres)
@@ -180,6 +180,10 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
+## 🎒 9. Itens da Área (Cerulean City)
+### Itens Ocultos (Invisíveis no chão):
+- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
+
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
@@ -199,12 +203,12 @@
 - [18:52:50] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 7/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:49] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 6/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 
+- [18:54:33] Entrou em Cerulean City
 - [18:53:55] Entrou em Cerulean Pokecenter
 - [18:53:53] Entrou em Cerulean City
 - [18:51:39] Entrou em Route 24
 - [18:51:35] Entrou em Cerulean City
 - [18:51:32] Entrou em Cerulean Pokecenter
-- [18:51:30] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:53:34] `CONFUSION STUN SPORE`
