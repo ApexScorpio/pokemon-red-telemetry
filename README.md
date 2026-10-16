@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:11**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:15**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `72`, Y: `15`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `73`, Y: `11`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `56h 0m 9s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
@@ -17,29 +17,28 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thundershock`
 
-### 🔴 Adversário em Campo: **Rattata** (Lv. 8)
-- **Tipos:** Normal
-- **HP:** **25 / 25** (100%)
-- **Stats de Batalha:** ATK: 14 | DEF: 12 | SPD: 17 | SPC: 10
+### 🔴 Adversário em Campo: **Spearow** (Lv. 10)
+- **Tipos:** Normal/Flying
+- **HP:** **30 / 30** (100%)
+- **Stats de Batalha:** ATK: 18 | DEF: 12 | SPD: 20 | SPC: 12
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
+  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
+  - **Leer** (Normal) • PP: NaN • Poder: -- • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~5-6 HP (1x)
-  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Peck** (Flying) ➔ Dano: ~5-7 HP (1x)
+  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
+  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
 
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 16)
-- **Tipos:** Electric
-- **HP:** **22 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 29 (0) | DEF: 20 (0) | SPD: 37 (0) | SPC: 26 (0)
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 17)
+- **Tipos:** Normal
+- **HP:** **19 / 42** (HEALTHY)
+- **Stats com Modificadores:** ATK: 30 (0) | DEF: 21 (0) | SPD: 39 (0) | SPC: 28 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **25-30 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **30-36 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
 - ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
@@ -47,20 +46,21 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (22/40). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (19/42). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Nidorino (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **35%** | Great Ball: **52%** | Ultra Ball: **35%**
-  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
+  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 22 / 40 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
+### 1. **Pikachu** (Lv. 17) ⚔️ [EM COMBATE]
+- **Tipos:** Electric | **HP:** 19 / 42 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 30 | DEF: 21 | SPD: 39 | SPC: 28
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6969 | Def: 4944 | Spd: 7634 | Spc: 4189 | HP: 5010
-- **Experiência:** 4896 EXP (Progresso: 98%, faltam 17 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 7025 | Def: 4979 | Spd: 7706 | Spc: 4214 | HP: 5040
+- **Experiência:** 4961 EXP (Progresso: 5%, faltam 871 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 16 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 14 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -176,7 +176,7 @@
 - **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
 - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Pikachu** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Pikachu** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Nidorino** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
@@ -187,7 +187,7 @@
 - **Roster Inimigo:** Staryu (Lv. 18 - Water) • Starmie (Lv. 21 - Water/Psychic)
 - **Lead Recomendado:** Pikachu / Bellsprout
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Pikachu** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Pikachu** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Nidorino** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
@@ -203,6 +203,11 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:17:15] **Turno #1**: Pikachu (19/42 HP) vs Spearow (Lv. 10 • 30/30 HP)
+- [18:17:14] **Turno #1**: Pikachu (19/42 HP) vs Rattata (Lv. 8 • 0/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
+- [18:17:13] **Turno #1**: Pikachu (17/40 HP) vs Rattata (Lv. 8 • 0/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
+- [18:17:13] **Turno #1**: Pikachu (17/40 HP) vs Rattata (Lv. 8 • 2/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
+- [18:17:12] **Turno #1**: Pikachu (17/40 HP) vs Rattata (Lv. 8 • 25/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:17:10] **Turno #1**: Pikachu (22/40 HP) vs Rattata (Lv. 8 • 25/25 HP)
 - [18:17:09] **Turno #1**: Pikachu (22/40 HP) vs Spearow (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 - [18:17:04] **Turno #1**: Pikachu (22/40 HP) vs Spearow (Lv. 10 • 28/28 HP) • Golpe RED: `Thundershock`
@@ -213,11 +218,6 @@
 - [18:16:10] **Turno #1**: Pikachu (22/40 HP) vs Geodude (Lv. 9 • 28/28 HP)
 - [18:16:08] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 9 • 0/27 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:16:06] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 9 • 27/27 HP)
-- [18:16:04] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 11 • 0/32 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
-- [18:16:01] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 11 • 32/32 HP)
-- [18:15:59] **Turno #3**: Pikachu (22/40 HP) vs Paras (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Scratch`
-- [18:15:59] **Turno #3**: Pikachu (22/40 HP) vs Paras (Lv. 10 • 1/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Scratch`
-- [18:15:58] **Turno #2**: Pikachu (27/40 HP) vs Paras (Lv. 10 • 1/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Scratch`
 
 - [18:16:21] Entrou em Route 4
 - [18:16:20] Entrou em Mt Moon B1F
