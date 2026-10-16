@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:55:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:56:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `79`, Y: `15`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `17`, Y: `22`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `57h 0m 22s`
+- **Tempo de Jogo:** `57h 0m 23s`
 - **💬 Diálogo / Mensagem no Ecrã:** `and stealthily Eats the eggs of`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -165,12 +165,9 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
-## 🎒 9. Itens da Área (Route 4 (Leste - Saída Mt. Moon / Cerulean))
-### Itens no Chão (Poké Balls visíveis):
-- **TM04 (Whirlwind)** (X: 57, Y: 3) • Estado: 🔴 Por Apanhar — *Num planalto acessível descendo de Mt. Moon.*
-
+## 🎒 9. Itens da Área (Cerulean City)
 ### Itens Ocultos (Invisíveis no chão):
-- **Great Ball** (X: 40, Y: 3) • Estado: ✅ Já Recolhido — *Na rocha no planalto a leste perto de Cerulean.*
+- **Rare Candy** (X: 15, Y: 8) • Estado: 🔴 Por Apanhar — *No canteiro de flores atrás da casa arrombada.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -191,12 +188,12 @@
 - [17:55:03] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [17:55:00] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 30/30 HP)
 
+- [17:56:00] Entrou em Cerulean City
 - [17:53:11] Entrou em Route 4
 - [17:52:56] Entrou em Cerulean City
 - [17:52:18] Entrou em Route 4
 - [17:52:16] Entrou em Cerulean City
 - [17:52:03] Entrou em Cerulean Pokecenter
-- [17:51:57] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [17:55:55] `and stealthily Eats the eggs of`
