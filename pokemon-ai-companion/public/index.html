@@ -147,6 +147,59 @@
           </div>
         </section>
 
+        <!-- CARTÃO COMPACTO: EFEITOS DE CAMPO & REPEL (LIVE RAM $D0DB) -->
+        <section class="card-glass field-items-deck-card" id="field-items-deck-card">
+          <div class="card-header-compact">
+            <div class="header-left">
+              <span class="icon-avatar">🧴</span>
+              <div>
+                <h4>ITENS DE CAMPO & REPEL</h4>
+                <span class="sub-small" id="field-repel-summary">RAM: 0 passos • Inativo</span>
+              </div>
+            </div>
+            <span class="badge-repel-status status-inactive" id="badge-repel-status">INATIVO</span>
+          </div>
+
+          <div class="field-items-body">
+            <!-- Barra de Duração do Repelente -->
+            <div class="repel-gauge-container">
+              <div class="repel-gauge-meta">
+                <span class="gauge-label">⏱️ Duração Restante (RAM $D0DB):</span>
+                <strong class="gauge-val" id="repel-steps-val">0 passos</strong>
+              </div>
+              <div class="repel-bar-track">
+                <div class="repel-bar-fill" id="repel-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Zona de Influência & Eficiência -->
+            <div class="field-stat-row">
+              <div class="field-stat-box">
+                <span class="f-box-label">🎯 INFLUÊNCIA</span>
+                <span class="f-box-val highlight-cyan" id="repel-influence-val">&lt; Nv. --</span>
+                <span class="f-box-sub" id="repel-leader-sub">Líder: --</span>
+              </div>
+              <div class="field-stat-box">
+                <span class="f-box-label">⚡ EFICIÊNCIA ROTA</span>
+                <span class="f-box-val highlight-green" id="repel-efficiency-val">--%</span>
+                <span class="f-box-sub" id="repel-blocked-count">0/10 slots</span>
+              </div>
+            </div>
+
+            <!-- Detalhe da Rota (Quem bloqueia vs quem passa) -->
+            <div class="repel-slots-mini" id="repel-slots-mini">
+              <span class="repel-chip chip-neutral">A aguardar dados da rota...</span>
+            </div>
+
+            <!-- Mini Inventário de Itens de Rota -->
+            <div class="field-inv-mini-row" id="field-inv-mini-row">
+              <span class="field-item-pill" id="pill-repels-count" title="Repelentes na mochila">🧴 Repel: 0</span>
+              <span class="field-item-pill" id="pill-bike-status" title="Modo de deslocação / Bicicleta">👟 A Pé</span>
+              <span class="field-item-pill" id="pill-rope-count" title="Escape Ropes disponíveis">🪢 Corda: 0</span>
+            </div>
+          </div>
+        </section>
+
         <!-- Cartão Mochila / Inventário Compacto -->
         <section class="card-glass inventory-deck-card">
           <div class="card-header-compact">

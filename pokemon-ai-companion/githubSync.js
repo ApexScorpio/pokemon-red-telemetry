@@ -135,8 +135,12 @@ function formatTelemetryMarkdown(state) {
   if (state.stepCounter !== undefined) {
     md += `- **Contador de Passos de Encontro:** \`${state.stepCounter}\` passos\n`;
   }
-  if (state.repelSteps && state.repelSteps > 0) {
-    md += `- **Repelente Ativo:** 🧴 \`${state.repelSteps}\` passos restantes\n`;
+  const fItems = state.fieldItemsStatus || {};
+  const repelInfo = fItems.repel || {};
+  if (repelInfo.isActive) {
+    md += `- **Repelente Ativo (RAM $D0DB):** 🟢 \`${repelInfo.stepsRemaining}\` passos restantes | **Influência:** ${repelInfo.thresholdText} | **Eficiência na Rota:** \`${repelInfo.efficiencyLabel || '100%'}\`\n`;
+  } else {
+    md += `- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** ${repelInfo.thresholdText || 'Líder da equipa'}${repelInfo.efficiencyPercent !== null && repelInfo.efficiencyPercent !== undefined ? ` | **Eficiência na Rota:** \`${repelInfo.efficiencyLabel}\`` : ''}\n`;
   }
   md += `\n`;
 
@@ -267,6 +271,31 @@ function formatTelemetryMarkdown(state) {
       md += `- **${it.name}** x${it.qty}\n`;
     });
     md += `\n`;
+  }
+
+  // Efeitos de Campo e Itens de Rota (Live RAM)
+  if (state.fieldItemsStatus) {
+    const fs = state.fieldItemsStatus;
+    const r = fs.repel || {};
+    const m = fs.movement || {};
+    const e = fs.escapeRope || {};
+    md += `### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)\n`;
+    md += `- **Modo de Deslocação ($D700):** **${m.mode || 'A Pé'}**${m.hasBicycle ? ' (Possui Bicicleta na mochila)' : ''}\n`;
+    md += `- **Repelente no Terreno ($D0DB):** **${r.isActive ? `🟢 ATIVO (${r.stepsRemaining} passos restantes)` : '⚪ INATIVO'}**\n`;
+    md += `  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (\`${r.thresholdText}\`).\n`;
+    if (r.hasWildEncounters) {
+      md += `  - **Eficiência na Área Atual:** **${r.efficiencyPercent}% de encontros bloqueados** (${r.efficiencyLabel})\n`;
+      if (r.blockedSlots && r.blockedSlots.length > 0) {
+        md += `  - **Bloqueados por Repel:** ${r.blockedSlots.map(s => `${s.name} Nv.${s.level} (${s.chance}%)`).join(', ')}\n`;
+      }
+      if (r.bypassSlots && r.bypassSlots.length > 0) {
+        md += `  - **⚠️ Podem Aparecer (Nível >= líder):** ${r.bypassSlots.map(s => `${s.name} Nv.${s.level} (${s.chance}%)`).join(', ')}\n`;
+      }
+    } else {
+      md += `  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.\n`;
+    }
+    md += `- **Repelentes na Mochila:** Repel: \`${r.inBag?.regular || 0}\` | Super Repel: \`${r.inBag?.super || 0}\` | Max Repel: \`${r.inBag?.max || 0}\` (Total: \`${r.inBag?.total || 0}\`)\n`;
+    md += `- **Escape Rope ($D158):** \`${e.count}\` disponíveis${e.isUsableHere ? ' • **Área Compatível (Caverna/Dungeon)**' : ' • Exterior/Cidade'}\n\n`;
   }
 
   // =========================================================================

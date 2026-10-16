@@ -314,6 +314,9 @@ function renderState(state) {
     elRepelPill.style.display = 'none';
   }
 
+  // Cartão Compacto de Efeitos de Campo e Repel (Live RAM)
+  renderFieldItemsStatus(state);
+
   // Diálogo no Ecrã em Tempo Real
   const elLiveDialogBanner = document.getElementById('live-dialog-banner');
   const elLiveDialogText = document.getElementById('live-dialog-text');
@@ -390,6 +393,136 @@ function renderState(state) {
   }
 
   lastState = state;
+}
+
+// Renderização do Cartão Compacto de Efeitos de Campo & Repel (Live RAM $D0DB)
+function renderFieldItemsStatus(state) {
+  const elCard = document.getElementById('field-items-deck-card');
+  if (!elCard) return;
+
+  const fItems = state.fieldItemsStatus || {};
+  const repel = fItems.repel || {};
+  const movement = fItems.movement || {};
+  const rope = fItems.escapeRope || {};
+
+  const steps = repel.stepsRemaining || 0;
+  const isActive = repel.isActive || steps > 0;
+  const leadLv = repel.leadLevel || (state.party && state.party[0] ? state.party[0].level : 0);
+  const leadName = repel.leadName || (state.party && state.party[0] ? state.party[0].name : '--');
+
+  // 1. Resumo e Badge de Estado
+  const elSummary = document.getElementById('field-repel-summary');
+  const elBadge = document.getElementById('badge-repel-status');
+  if (elSummary) {
+    elSummary.textContent = isActive ? `RAM: ${steps} passos • Ativo` : `RAM: 0 passos • Inativo`;
+  }
+  if (elBadge) {
+    if (isActive) {
+      elBadge.textContent = 'ATIVO';
+      elBadge.className = 'badge-repel-status status-active';
+    } else {
+      elBadge.textContent = 'INATIVO';
+      elBadge.className = 'badge-repel-status status-inactive';
+    }
+  }
+
+  // 2. Barra de Duração (Gauges)
+  const elStepsVal = document.getElementById('repel-steps-val');
+  const elBarFill = document.getElementById('repel-bar-fill');
+  if (elStepsVal) {
+    elStepsVal.textContent = `${steps} passos`;
+  }
+  if (elBarFill) {
+    const maxSteps = steps > 200 ? 250 : steps > 100 ? 200 : 100;
+    const pct = isActive ? Math.min(100, Math.max(5, Math.round((steps / maxSteps) * 100))) : 0;
+    elBarFill.style.width = `${pct}%`;
+    if (!isActive) {
+      elBarFill.style.background = 'rgba(255, 255, 255, 0.1)';
+      elBarFill.style.boxShadow = 'none';
+    } else {
+      elBarFill.style.background = 'linear-gradient(90deg, #00f3ff, #00ff88)';
+      elBarFill.style.boxShadow = '0 0 6px rgba(0, 255, 136, 0.5)';
+    }
+  }
+
+  // 3. Influência (Onde está a influenciar: selvagens < leadLevel)
+  const elInfluence = document.getElementById('repel-influence-val');
+  const elLeaderSub = document.getElementById('repel-leader-sub');
+  if (elInfluence) {
+    elInfluence.textContent = leadLv > 0 ? `< Nv. ${leadLv}` : 'Sem líder';
+  }
+  if (elLeaderSub) {
+    elLeaderSub.textContent = leadLv > 0 ? `Líder: ${leadName} (Nv.${leadLv})` : 'Equipa vazia';
+  }
+
+  // 4. Eficiência na Rota
+  const elEfficiency = document.getElementById('repel-efficiency-val');
+  const elBlockedCount = document.getElementById('repel-blocked-count');
+  if (elEfficiency && elBlockedCount) {
+    if (repel.hasWildEncounters && repel.efficiencyPercent !== null && repel.efficiencyPercent !== undefined) {
+      elEfficiency.textContent = `${repel.efficiencyPercent}%`;
+      elEfficiency.className = `f-box-val ${repel.efficiencyPercent === 100 ? 'highlight-green' : repel.efficiencyPercent > 50 ? 'highlight-cyan' : 'highlight-yellow'}`;
+      elBlockedCount.textContent = `${repel.efficiencyLabel || `${repel.efficiencyPercent}% bloqueados`}`;
+    } else {
+      elEfficiency.textContent = 'N/A';
+      elEfficiency.className = 'f-box-val';
+      elBlockedCount.textContent = 'Sem relva nesta área';
+    }
+  }
+
+  // 5. Detalhes de Slots (Quem bloqueia vs quem passa)
+  const elSlotsMini = document.getElementById('repel-slots-mini');
+  if (elSlotsMini) {
+    if (!repel.hasWildEncounters) {
+      elSlotsMini.innerHTML = `<span class="repel-chip chip-neutral">🏙️ Área Segura: Sem encontros na relva</span>`;
+    } else if (repel.efficiencyPercent === 100) {
+      const names = [...new Set((repel.blockedSlots || []).map(s => s.name))];
+      elSlotsMini.innerHTML = `<span class="repel-chip chip-success">🛡️ 100% Eficaz: Bloqueia todos (${names.slice(0, 3).join(', ')}${names.length > 3 ? '...' : ''})</span>`;
+    } else {
+      const bypassNames = [...new Set((repel.bypassSlots || []).map(s => `${s.name} (Nv.${s.level})`))];
+      elSlotsMini.innerHTML = `
+        <span class="repel-chip chip-warning">⚠️ Podem Aparecer: ${bypassNames.join(', ')}</span>
+      `;
+    }
+  }
+
+  // 6. Mini Inventário de Rota
+  const elPillRepels = document.getElementById('pill-repels-count');
+  const elPillBike = document.getElementById('pill-bike-status');
+  const elPillRope = document.getElementById('pill-rope-count');
+
+  const inBag = repel.inBag || { total: 0, regular: 0, super: 0, max: 0 };
+  if (elPillRepels) {
+    elPillRepels.textContent = `🧴 Repels: ${inBag.total}`;
+    elPillRepels.title = `Normal: ${inBag.regular} | Super: ${inBag.super} | Max: ${inBag.max}`;
+    if (inBag.total > 0) elPillRepels.classList.add('pill-active');
+    else elPillRepels.classList.remove('pill-active');
+  }
+
+  if (elPillBike) {
+    if (movement.isBiking) {
+      elPillBike.textContent = '🚲 Bicicleta';
+      elPillBike.classList.add('pill-active');
+    } else if (movement.isSurfing) {
+      elPillBike.textContent = '🏄 A Surfar';
+      elPillBike.classList.add('pill-active');
+    } else {
+      elPillBike.textContent = movement.hasBicycle ? '👟 A Pé (Bike 🎒)' : '👟 A Pé';
+      elPillBike.classList.remove('pill-active');
+    }
+  }
+
+  if (elPillRope) {
+    const ropeQty = rope.count || 0;
+    elPillRope.textContent = `🪢 Corda: ${ropeQty}`;
+    if (rope.isUsableHere && ropeQty > 0) {
+      elPillRope.classList.add('pill-active');
+      elPillRope.title = 'Útil aqui! Teleporta logo para a saída da caverna/dungeon.';
+    } else {
+      elPillRope.classList.remove('pill-active');
+      elPillRope.title = `${ropeQty} Escape Ropes na mochila.`;
+    }
+  }
 }
 
 // Cache de Imagens de Mapas Oficiais do Pokémon Red
@@ -2223,11 +2356,21 @@ function renderAreaRadar(areaInfo) {
       const typesHtml = (w.types || []).map(t => `<span class="type-pill type-${t}">${t}</span>`).join('');
       const base = w.baseStats || { hp: 40, atk: 40, def: 40, spd: 40, spc: 40 };
 
+      const leadLv = (lastState && lastState.party && lastState.party[0]) ? lastState.party[0].level : 0;
+      let repelBadge = '';
+      if (leadLv > 0 && w.maxLv !== undefined) {
+        if (w.maxLv < leadLv) {
+          repelBadge = `<span class="repel-influence-pill pill-blocked" title="Bloqueado por Repel (< Nv.${leadLv})">🧴 BLOQUEADO</span>`;
+        } else {
+          repelBadge = `<span class="repel-influence-pill pill-bypass" title="Pode aparecer com Repel (>= Nv.${leadLv})">⚠️ IGNORA REPEL</span>`;
+        }
+      }
+
       card.innerHTML = `
         <div class="wild-top-row">
           <div>
             <span class="wild-mon-name">${w.name}</span>
-            <span class="wild-level-tag">Lv. ${w.minLv} - ${w.maxLv}</span>
+            <span class="wild-level-tag">Lv. ${w.minLv} - ${w.maxLv} ${repelBadge}</span>
             <div class="types-row" style="margin-top:2px;">${typesHtml}</div>
           </div>
           <div>${badgeHtml}</div>

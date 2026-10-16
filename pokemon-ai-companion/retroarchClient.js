@@ -738,6 +738,7 @@ class RetroArchClient extends EventEmitter {
     let enemyPartyRaw = [];
     let toggleRaw = [];
     let hiddenRaw = [];
+    let walkBikeSurf = 0;
 
     if (blockWorldEvents && blockWorldEvents.length >= 784) {
       // Caixa do PC Atual ($D5A0, offset 0)
@@ -753,7 +754,7 @@ class RetroArchClient extends EventEmitter {
       hiddenRaw = blockWorldEvents.slice(336, 350);
 
       // Modo de Deslocação ($D700, offset 352: 0 = Pé, 1 = Bicicleta, 2 = Surf)
-      const walkBikeSurf = parseInt(blockWorldEvents[352], 16) || 0;
+      walkBikeSurf = parseInt(blockWorldEvents[352], 16) || 0;
       this.latestState.movementMode = walkBikeSurf === 1 ? '🚲 Bicicleta' : walkBikeSurf === 2 ? '🌊 A Surfar' : '🚶 A Pé';
 
       // EVENT FLAGS COMPLETAS ($D747, offset 423..742 = 320 BYTES = 2,560 EVENT BITS!)
@@ -1161,6 +1162,11 @@ class RetroArchClient extends EventEmitter {
     const battleFlagRead = await this.sendRaw('READ_CORE_MEMORY D057 1');
     const directBattleFlag = battleFlagRead && battleFlagRead.length ? battleFlagRead[0] : null;
 
+    // Leitura Direta de Repelente ($D0DB, 1 byte) da RAM
+    const repelRead = await this.sendRaw('READ_CORE_MEMORY D0DB 1');
+    const repelSteps = (repelRead && repelRead.length > 0) ? parseInt(repelRead[0], 16) : 0;
+    this.latestState.repelSteps = repelSteps;
+
     let inBattle = false;
     let battleType = 'None';
 
@@ -1457,6 +1463,106 @@ class RetroArchClient extends EventEmitter {
     if (this.latestState.battle && this.latestState.battle.enemy) {
       this.lastBattleEnemy = `${this.latestState.battle.enemy.name} (Lv. ${this.latestState.battle.enemy.level})`;
     }
+
+    // =========================================================================
+    // 8. EFEITOS DE CAMPO, ITENS DE ROTA E ANÁLISE DE REPEL DA MEMÓRIA RAM
+    // =========================================================================
+    const currentParty = this.latestState.party || [];
+    const leadMon = currentParty.length > 0 ? currentParty[0] : null;
+    const leadLevel = leadMon ? (leadMon.level || 1) : 0;
+    const leadName = leadMon ? leadMon.name : 'Nenhum';
+
+    const currentInv = this.latestState.inventory || [];
+    const repelItem = currentInv.find(i => i.id === 30 || (i.name && i.name.toLowerCase() === 'repel'));
+    const superRepelItem = currentInv.find(i => i.id === 56 || (i.name && i.name.toLowerCase().includes('super repel')));
+    const maxRepelItem = currentInv.find(i => i.id === 57 || (i.name && i.name.toLowerCase().includes('max repel')));
+    const escapeRopeItem = currentInv.find(i => i.id === 29 || (i.name && i.name.toLowerCase().includes('escape rope')));
+    const bicycleItem = currentInv.find(i => i.id === 6 || (i.name && i.name.toLowerCase().includes('bicycle')));
+
+    const repelsInBag = {
+      regular: repelItem ? repelItem.qty : 0,
+      super: superRepelItem ? superRepelItem.qty : 0,
+      max: maxRepelItem ? maxRepelItem.qty : 0,
+      total: (repelItem ? repelItem.qty : 0) + (superRepelItem ? superRepelItem.qty : 0) + (maxRepelItem ? maxRepelItem.qty : 0)
+    };
+
+    const slotChances = [20, 20, 15, 10, 10, 10, 5, 5, 4, 1];
+    let totalEncounterWeight = 0;
+    let blockedEncounterWeight = 0;
+    const blockedSlots = [];
+    const bypassSlots = [];
+    let hasWildEncounters = false;
+
+    if (wildGrassRaw && wildGrassRaw.length >= 21) {
+      const grassRate = parseInt(wildGrassRaw[0], 16);
+      if (grassRate > 0) {
+        hasWildEncounters = true;
+        for (let s = 0; s < 10; s++) {
+          const lv = parseInt(wildGrassRaw[1 + s * 2], 16);
+          const spId = parseInt(wildGrassRaw[2 + s * 2], 16);
+          const chance = slotChances[s] || 0;
+          if (spId && spId !== 0xFF && INTERNAL_TO_POKEMON[spId]) {
+            const pName = INTERNAL_TO_POKEMON[spId].name;
+            const pDex = INTERNAL_TO_POKEMON[spId].dex;
+            totalEncounterWeight += chance;
+            // Na Gen 1: Repel bloqueia se e só se wild_level < lead_level
+            if (leadLevel > 0 && lv < leadLevel) {
+              blockedEncounterWeight += chance;
+              const existing = blockedSlots.find(b => b.name === pName && b.level === lv);
+              if (existing) {
+                existing.chance += chance;
+              } else {
+                blockedSlots.push({ name: pName, dex: pDex, level: lv, chance });
+              }
+            } else {
+              const existing = bypassSlots.find(b => b.name === pName && b.level === lv);
+              if (existing) {
+                existing.chance += chance;
+              } else {
+                bypassSlots.push({ name: pName, dex: pDex, level: lv, chance });
+              }
+            }
+          }
+        }
+      }
+    }
+
+    let efficiencyPercent = null;
+    let efficiencyLabel = 'Sem relva / encontros';
+    if (hasWildEncounters && totalEncounterWeight > 0) {
+      efficiencyPercent = Math.round((blockedEncounterWeight / totalEncounterWeight) * 100);
+      efficiencyLabel = `${efficiencyPercent}% bloqueados`;
+    }
+
+    const currentMapLower = (this.latestState.mapName || '').toLowerCase();
+    const isDungeon = /cave|tunnel|mt|forest|hideout|tower|mansion|islands|safari/.test(currentMapLower);
+
+    this.latestState.fieldItemsStatus = {
+      repel: {
+        stepsRemaining: this.latestState.repelSteps || 0,
+        isActive: (this.latestState.repelSteps || 0) > 0,
+        leadLevel,
+        leadName,
+        thresholdText: leadLevel > 0 ? `< Nv. ${leadLevel} (${leadName})` : 'Sem líder',
+        hasWildEncounters,
+        efficiencyPercent,
+        efficiencyLabel,
+        blockedSlots,
+        bypassSlots,
+        inBag: repelsInBag
+      },
+      movement: {
+        mode: this.latestState.movementMode || '🚶 A Pé',
+        rawState: typeof walkBikeSurf !== 'undefined' ? walkBikeSurf : 0,
+        isBiking: (typeof walkBikeSurf !== 'undefined' ? walkBikeSurf : 0) === 1,
+        isSurfing: (typeof walkBikeSurf !== 'undefined' ? walkBikeSurf : 0) === 2,
+        hasBicycle: !!bicycleItem
+      },
+      escapeRope: {
+        count: escapeRopeItem ? escapeRopeItem.qty : 0,
+        isUsableHere: isDungeon
+      }
+    };
 
     // A VRAM é recolhida em segundo plano para todos os mapas, sem bloquear a leitura principal.
     // Amostragem da VRAM a 4 Hz; o canvas do mapa completo é redesenhado a 60 Hz.
