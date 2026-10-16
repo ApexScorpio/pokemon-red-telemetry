@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:38**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:42**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -78,7 +78,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 4. **Pikachu** (Lv. 22)
-- **Tipos:** Electric | **HP:** 10 / 52 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 2 / 52 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 38 | DEF: 26 | SPD: 49 | SPC: 35
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 8124 | Def: 6138 | Spd: 8947 | Spc: 5437 | HP: 5887
