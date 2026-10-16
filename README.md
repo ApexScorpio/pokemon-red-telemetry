@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:31**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:35**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Ember`
-- **Último Golpe Usado pelo Adversário:** `Thundershock`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Scratch`
+- **Último Golpe Usado pelo Adversário:** `Thunder Wave`
 
 ### 🔴 Adversário em Campo: **Pikachu** (Lv. 16)
 - **Tipos:** Electric
-- **HP:** **39 / 39** (100%)
+- **HP:** **23 / 39** (59%)
 - **Stats de Batalha:** ATK: 25 | DEF: 17 | SPD: 36 | SPC: 23
 - **Os 4 Golpes do Adversário:**
   - **Thundershock** (Electric) • PP: 30 • Poder: 40 • Precisão: 100%
@@ -31,33 +31,32 @@
   - **Thunder Wave** (Electric) • PP: NaN • Poder: -- • Precisão: 100%
   - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Thundershock** (Electric) ➔ 🚨 RISCO DE K.O.! (5-7 HP)
+  - **Thundershock** (Electric) ➔ Dano: ~7-9 HP (1x)
   - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
   - **Thunder Wave** (Electric) ➔ Golpe de Status
-  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (5-7 HP)
+  - **Quick Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 18)
-- **Tipos:** Fire
-- **HP:** **6 / 53** (HEALTHY)
-- **Stats com Modificadores:** ATK: 34 (0) | DEF: 28 (0) | SPD: 42 (0) | SPC: 35 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
+- **Tipos:** Poison
+- **HP:** **47 / 55** (PARALYSIS)
+- **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Ember** (Fire) ➔ Dano: **17-21 HP** (1x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **10-12 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 70%)
-- ➔ Turno 1: Ember (Causa ~17-21 de dano)
-- ➔ Turno 2: Ember (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Ember. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 80%)
+- ➔ Turno 1: Tackle
+- ➔ Turno 2: Tackle (Finalizador)
+> **Resumo Tático:** O teu Pokémon tem 47 HP e aguenta o combate até finalizar no Turno 2.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Charmeleon tem a melhor rota de vitória rápida e HP estável (6/53). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (47/55). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Charmeleon** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Fire | **HP:** 6 / 53 ✅ (SAUDÁVEL)
+### 1. **Charmeleon** (Lv. 18)
+- **Tipos:** Fire | **HP:** 0 / 53 ❌ (FAINTED)
 - **Stats Reais:** ATK: 34 | DEF: 28 | SPD: 42 | SPC: 35
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
 - **Stat Experience (0–65.535):** Atk: 5580 | Def: 4110 | Spd: 6380 | Spc: 3354 | HP: 4190
@@ -68,7 +67,7 @@
   - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorina** (Lv. 17)
+### 2. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 47 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
@@ -288,6 +287,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:03:34] **Turno #2**: Nidorina (47/55 HP) vs Pikachu (Lv. 16 • 23/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thunder Wave`
+- [20:03:31] **Turno #1**: Charmeleon (0/53 HP) vs Pikachu (Lv. 16 • 23/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Thundershock`
 - [20:03:30] **Turno #1**: Charmeleon (6/53 HP) vs Pikachu (Lv. 16 • 39/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Thundershock`
 - [20:03:30] **Turno #2**: Charmeleon (6/53 HP) vs Pikachu (Lv. 16 • 39/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
 - [20:03:29] **Turno #2**: Charmeleon (6/53 HP) vs Rattata (Lv. 16 • 0/38 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
@@ -301,8 +302,6 @@
 - [20:03:17] **Turno #3**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 15/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [20:03:15] **Turno #3**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 30/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [20:03:14] **Turno #2**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 38/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [20:03:13] **Turno #2**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 42/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [20:03:12] **Turno #1**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 50/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
