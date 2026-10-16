@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #4`
 - **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 13)
 - **Tipos:** Normal/Flying
-- **HP:** **32 / 36** (89%)
+- **HP:** **22 / 36** (61%)
 - **Stats de Batalha:** ATK: 18 | DEF: 19 | SPD: 23 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -36,24 +36,24 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
-- **HP:** **21 / 24** (HEALTHY)
+- **HP:** **18 / 24** (HEALTHY)
 - **Stats com Modificadores:** ATK: 19 (0) | DEF: 21 (0) | SPD: 9 (0) | SPC: 12 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~7 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~5 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-7: Usa repetidamente Tackle
+- ➔ Turnos 1-5: Usa repetidamente Tackle
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Geodude tem a melhor rota de vitória rápida e HP estável (21/24). Não precisas de gastar um turno a trocar.
+- **Motivo:** Geodude tem a melhor rota de vitória rápida e HP estável (18/24). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **38%** | Great Ball: **56%** | Ultra Ball: **38%**
-  - *Se adormeceres o inimigo:* **~44%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **60%** | Great Ball: **90%** | Ultra Ball: **60%**
+  - *Se adormeceres o inimigo:* **~64%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
 ### 1. **Geodude** (Lv. 8) ⚔️ [EM COMBATE]
@@ -63,7 +63,7 @@
 - **Stat Experience (0–65.535):** Atk: 16 | Def: 18 | Spd: 10 | Spc: 25 | HP: 15
 - **Experiência:** 362 EXP (Progresso: 46%, faltam 57 p/ Lv.9)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
 
 ### 2. **Pikachu** (Lv. 20)
 - **Tipos:** Electric | **HP:** 33 / 48 ✅ (SAUDÁVEL)
@@ -338,6 +338,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:10:32] **Turno #4**: Geodude (18/24 HP) vs Pidgey (Lv. 13 • 22/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
+- [21:10:31] **Turno #4**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 22/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
+- [21:10:30] **Turno #3**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 27/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
+- [21:10:30] **Turno #2**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 32/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [21:10:29] **Turno #1**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 32/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:27] **Turno #1**: Geodude (24/24 HP) vs Pidgey (Lv. 13 • 36/36 HP) • Golpe RED: `Tackle`
 - [21:10:25] **Turno #1**: Geodude (33/24 HP) vs Pidgey (Lv. 13 • 36/36 HP)
@@ -349,10 +353,6 @@
 - [21:10:17] **Turno #2**: Pikachu (43/48 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
 - [21:10:16] **Turno #1**: Pikachu (48/48 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
 - [21:10:12] **Turno #1**: Spearow (12/19 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
-- [21:10:11] **Turno #1**: Spearow (19/19 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
-- [21:10:07] **Turno #1**: Geodude (24/24 HP) vs Oddish (Lv. 13 • 36/36 HP)
-- [21:10:05] **Turno #1**: Geodude (60/24 HP) vs Oddish (Lv. 13 • 36/36 HP)
-- [21:07:26] **Turno #2**: Butterfree (60/65 HP) vs Abra (Lv. 10 • 25/25 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Teleport`
 
 - [21:10:00] Entrou em Route 6
 - [21:09:59] Entrou em Underground Path Route 6
