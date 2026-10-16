@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `30`, Y: `7`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `62h 0m 36s`
+- **Tempo de Jogo:** `62h 0m 37s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **10 510 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 10 (Abra)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #6`
+- **Turno Atual:** `Turno #9`
 - **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Confusion`
+- **Último Golpe Usado pelo Adversário:** `Pound`
 
 ### 🔴 Adversário em Campo: **Drowzee** (Lv. 17)
 - **Tipos:** Psychic
-- **HP:** **22 / 50** (44%)
+- **HP:** **0 / 50** (0%)
 - **Stats de Batalha:** ATK: 24 | DEF: 23 | SPD: 22 | SPC: 38
 - **Os 4 Golpes do Adversário:**
   - **Pound** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -120,7 +120,7 @@
 - **Stat Experience (0–65.535):** Atk: 7073 | Def: 6581 | Spd: 7192 | Spc: 4809 | HP: 5877
 - **Experiência:** 10 642 EXP (Progresso: 100%, faltam 6 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 20 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 16 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 14 | Poder: -- | Precisão: 75%
@@ -194,6 +194,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:16:55] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 0/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
+- [19:16:54] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 4/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Hypnosis`
+- [19:16:53] **Turno #8**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 10/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
+- [19:16:51] **Turno #7**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 16/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:50] **Turno #6**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:50] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:49] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 28/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
@@ -205,10 +209,6 @@
 - [19:16:36] **Turno #1**: Abra (26/26 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:30] **Turno #3**: Butterfree (62/62 HP) vs Machop (Lv. 17 • 0/53 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
-- [19:16:29] **Turno #3**: Butterfree (62/62 HP) vs Machop (Lv. 17 • 17/53 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
-- [19:16:27] **Turno #3**: Pikachu (0/48 HP) vs Machop (Lv. 17 • 17/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
-- [19:16:25] **Turno #2**: Pikachu (6/48 HP) vs Machop (Lv. 17 • 35/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
-- [19:16:24] **Turno #1**: Pikachu (27/48 HP) vs Machop (Lv. 17 • 53/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
 
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
