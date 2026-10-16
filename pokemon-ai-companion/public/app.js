@@ -344,14 +344,9 @@ function renderState(state) {
 }
 
 // Cache de Imagens de Mapas Oficiais do Pokémon Red
+// Cache de Imagens de Mapas Oficiais do Pokémon Red
 const loadedMapImages = {};
-
-// Paleta quente avermelhada para aproximar o aspeto do Game Boy Color usado pelo jogador.
-// É aplicada apenas à arte do mapa; marcadores, textos e sprites da interface mantêm as cores.
-function drawMapImageTinted(ctx, ...args) {
-  // Mantém as cores originais da cartografia; não aplicar uma tonalidade inventada.
-  ctx.drawImage(...args);
-}
+const colorizedMapCache = {};
 
 // =========================================================================
 // PALETAS AUTÊNTICAS SUPER GAME BOY (SGB) DO POKÉMON RED (SAMEBOY COMPATÍVEL)
@@ -371,15 +366,25 @@ const SGB_SUPER_PALETTES = {
   PAL_INDIGO: ['#ffefff', '#b573c5', '#a5d6ff', '#191010'],
   PAL_SAFFRON: ['#ffefff', '#dede19', '#a5d6ff', '#191010'],
   PAL_CAVE: ['#ffefff', '#ad734a', '#94c5b5', '#191010'],
-  PAL_GRAYMON: ['#ffefff', '#d6adb5', '#7b7b94', '#191010']
+  PAL_GRAYMON: ['#ffefff', '#d6adb5', '#7b7b94', '#191010'],
+  PAL_REDMON: ['#ffefff', '#f7a5a5', '#d65231', '#191010'],
+  PAL_BLUEMON: ['#ffefff', '#8ca5f7', '#a5d6ff', '#191010']
 };
 
 function getMapSgbPalette(mapId, mapName) {
   const id = Number(mapId);
   const name = String(mapName || '').toLowerCase();
 
-  // Cavernas, minas e interiores do tileset CAVERN
-  if ([59, 60, 61, 68, 82, 83, 102, 103, 104, 105, 106, 194, 197, 198, 227, 228, 229].includes(id) ||
+  // Interiores de Centros Pokémon (paleta vermelha/rosa acolhedora)
+  if (name.includes('pokecenter') || name.includes('center') || [41, 58, 64, 68, 86, 95, 114, 126, 137, 149, 161, 168, 178].includes(id)) {
+    return SGB_SUPER_PALETTES.PAL_REDMON;
+  }
+  // Interiores de Poké Marts (paleta azulada comercial)
+  if (name.includes('mart') || [42, 56, 67, 87, 96, 127, 138, 150].includes(id)) {
+    return SGB_SUPER_PALETTES.PAL_BLUEMON;
+  }
+  // Cavernas, minas e interiores do tileset CAVERN (excluindo o Pokecenter da Route 4/Mt Moon 68!)
+  if ([59, 60, 61, 82, 83, 102, 103, 104, 105, 106, 194, 197, 198, 227, 228, 229].includes(id) ||
       name.includes('cave') || name.includes('moon') || name.includes('tunnel') || name.includes('seafoam') || name.includes('cavern')) {
     return SGB_SUPER_PALETTES.PAL_CAVE;
   }
@@ -412,6 +417,62 @@ function getMapSgbPalette(mapId, mapName) {
   }
 
   return SGB_SUPER_PALETTES.PAL_ROUTE;
+}
+
+// Converte a cartografia monocromática/escala de cinzas na paleta autêntica Super Game Boy
+function getColorizedMapCanvas(mapId, mapImg, palette) {
+  if (!mapImg || !mapImg.complete || mapImg.naturalWidth === 0) return mapImg;
+  const palKey = palette.join(',');
+  const cacheKey = `${mapId}_${palKey}_${mapImg.src}`;
+  if (colorizedMapCache[cacheKey]) return colorizedMapCache[cacheKey];
+
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width = mapImg.naturalWidth;
+    canvas.height = mapImg.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(mapImg, 0, 0);
+
+    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imgData.data;
+    const rgbPalette = palette.map(hex => {
+      const num = parseInt(hex.slice(1), 16);
+      return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+    });
+
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] === 0) continue;
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      // Luminância padrão Game Boy (0..255)
+      const lum = (r * 299 + g * 587 + b * 114) / 1000;
+      let shade = 3;
+      if (lum > 200) shade = 0;       // Highlight / Branco SGB
+      else if (lum > 130) shade = 1;  // Cor primária clara
+      else if (lum > 60) shade = 2;   // Cor secundária / Sombra
+      else shade = 3;                 // Linhas e contorno / Preto SGB
+
+      const col = rgbPalette[shade] || rgbPalette[0];
+      data[i] = col[0];
+      data[i + 1] = col[1];
+      data[i + 2] = col[2];
+    }
+    ctx.putImageData(imgData, 0, 0);
+    colorizedMapCache[cacheKey] = canvas;
+    return canvas;
+  } catch (e) {
+    return mapImg;
+  }
+}
+
+function drawMapImageTinted(ctx, img, ...args) {
+  if (!img) return;
+  const mapId = (lastState && lastState.mapId !== undefined) ? lastState.mapId : 0;
+  const mapName = (lastState && lastState.mapName) ? lastState.mapName : '';
+  const palette = getMapSgbPalette(mapId, mapName);
+  const colorized = getColorizedMapCanvas(mapId, img, palette);
+  ctx.drawImage(colorized, ...args);
 }
 
 // =========================================================================
@@ -641,18 +702,28 @@ function buildLiveVramMapCanvas(state) {
 }
 
 function getMapImage(mapId) {
-  if (loadedMapImages[mapId]) return loadedMapImages[mapId];
+  const idNum = Number(mapId);
+  if (loadedMapImages[idNum]) return loadedMapImages[idNum];
   const img = new Image();
-  img.src = `/maps/map_${mapId}.png?v=20261015_3`;
-  loadedMapImages[mapId] = img;
+  img.src = `/maps/map_${idNum}.png?v=20261016_3`;
+  loadedMapImages[idNum] = img;
   const redraw = () => {
-    if (lastState && lastState.mapId === mapId) {
+    if (lastState && lastState.mapId === idNum) {
       renderFogMinimap(lastState);
       if (isGtaMapOpen) renderGtaFullMap(lastState);
     }
   };
   img.onload = redraw;
-  img.onerror = redraw;
+  img.onerror = () => {
+    const mapName = (lastState && lastState.mapName ? lastState.mapName : '').toLowerCase();
+    if (mapName.includes('pokecenter') || mapName.includes('center')) {
+      img.src = `/maps/pokecenter_interior.png?v=20261016_3`;
+    } else if (mapName.includes('mart')) {
+      img.src = `/maps/mart_interior.png?v=20261016_3`;
+    } else {
+      redraw();
+    }
+  };
   return img;
 }
 
@@ -744,10 +815,11 @@ function renderFogMinimap(state) {
   const coords = state.coords || { x: 0, y: 0 };
   const dir = state.playerDirection || 'Sul';
   const mapImg = getMapImage(mapId);
+  const hasValidMapImg = (mapImg && mapImg.complete && mapImg.naturalWidth > 16);
 
   // Muitos interiores ainda não têm arte estática. Nesses casos, reconstrói o ecrã
   // visível a partir dos tiles e da paleta BGP lidos da VRAM real do RetroArch.
-  if (state.videoMemory && (!mapImg || (mapImg.complete && mapImg.naturalWidth === 0))) {
+  if (!hasValidMapImg && state.videoMemory) {
     ctxFog.fillStyle = '#03060f';
     ctxFog.fillRect(0, 0, canvasFog.width, canvasFog.height);
     if (drawLiveVramMap(ctxFog, state, 0, 0, canvasFog.width, canvasFog.height)) {
@@ -760,10 +832,10 @@ function renderFogMinimap(state) {
   }
 
   const dims = state.mapDimensions || { width: 30, height: 30 };
-  let mapW = (mapImg && mapImg.complete && mapImg.naturalWidth > 0)
+  let mapW = hasValidMapImg
     ? Math.round(mapImg.naturalWidth / 16)
     : (dims.width > 40 ? dims.width : (dims.width || 30) * 2);
-  let mapH = (mapImg && mapImg.complete && mapImg.naturalHeight > 0)
+  let mapH = hasValidMapImg
     ? Math.round(mapImg.naturalHeight / 16)
     : (dims.height > 20 ? dims.height : (dims.height || 18) * 2);
 
@@ -961,7 +1033,7 @@ function renderGtaFullMap(state) {
   ctxGta.fillRect(0, 0, cw, ch);
 
   // 1. Desenho do Mapa (Imagem Estática, Dungeon Stitcher da RAM, ou Grelha Tática)
-  const hasMapImg = (mapImg && mapImg.complete && mapImg.naturalWidth > 0);
+  const hasMapImg = (mapImg && mapImg.complete && mapImg.naturalWidth > 16);
   const dungeonCanvas = dungeonCanvases[mapId];
 
   if (hasMapImg) {
@@ -1019,6 +1091,12 @@ function renderGtaFullMap(state) {
           ctxGta.strokeRect(sx, sy, tilePx, tilePx);
         }
       });
+    }
+  } else if (state.videoMemory) {
+    const liveCanvas = buildLiveVramMapCanvas(state);
+    if (liveCanvas) {
+      ctxGta.imageSmoothingEnabled = false;
+      ctxGta.drawImage(liveCanvas, originX, originY, 256 * gtaZoom, 256 * gtaZoom);
     }
   } else {
     // Grelha tática genérica enquanto os dados carregam
