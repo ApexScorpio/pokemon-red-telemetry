@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:00**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,32 +18,35 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Ember`
 
-### 🔴 Adversário em Campo: **Mankey** (Lv. 16)
-- **Tipos:** Fighting
-- **HP:** **0 / 43** (0%)
-- **Stats de Batalha:** ATK: 32 | DEF: 21 | SPD: 30 | SPC: 19
+### 🔴 Adversário em Campo: **Squirtle** (Lv. 20)
+- **Tipos:** Water
+- **HP:** **50 / 50** (100%)
+- **Stats de Batalha:** ATK: 27 | DEF: 34 | SPD: 25 | SPC: 28
 - **Os 4 Golpes do Adversário:**
-  - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Karate Chop** (Normal) • PP: NaN • Poder: 50 • Precisão: 100%
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Bubble** (Water) • PP: NaN • Poder: 20 • Precisão: 100%
+  - **Water Gun** (Water) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Scratch** (Normal) ➔ Dano: ~6-8 HP (1x)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-  - **Karate Chop** (Normal) ➔ Dano: ~8-10 HP (1x)
+  - **Tackle** (Normal) ➔ Dano: ~6-8 HP (1x)
+  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
+  - **Bubble** (Water) ➔ Dano: ~10-12 HP (2x)
+  - **Water Gun** (Water) ➔ Dano: ~17-20 HP (2x)
 
 ### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 18)
-- **Tipos:** Normal
+- **Tipos:** Fire
 - **HP:** **23 / 53** (HEALTHY)
 - **Stats com Modificadores:** ATK: 34 (0) | DEF: 28 (0) | SPD: 42 (0) | SPC: 35 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **18-22 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **8-10 HP** (1x eficácia) • ~5 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-5: Usa repetidamente Scratch
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -283,6 +286,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:03:01] **Turno #1**: Charmeleon (23/53 HP) vs Squirtle (Lv. 20 • 50/50 HP)
 - [20:02:40] **Turno #1**: Charmeleon (23/53 HP) vs Mankey (Lv. 16 • 0/43 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Karate Chop`
 - [20:02:38] **Turno #1**: Charmeleon (23/53 HP) vs Mankey (Lv. 16 • 8/43 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Scratch`
 - [20:02:38] **Turno #1**: Charmeleon (36/53 HP) vs Mankey (Lv. 16 • 8/43 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Scratch`
@@ -297,7 +301,6 @@
 - [20:02:02] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:02:00] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 41/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:01:58] **Turno #1**: Charmeleon (50/50 HP) vs Caterpie (Lv. 16 • 0/42 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
-- [20:01:57] **Turno #1**: Charmeleon (50/50 HP) vs Caterpie (Lv. 16 • 42/42 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Poison Sting`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
