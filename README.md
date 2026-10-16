@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:03:56**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:04:00**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -33,7 +33,7 @@
   - **Quick Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 22)
-- **Tipos:** Normal
+- **Tipos:** Bug/Flying
 - **HP:** **65 / 65** (HEALTHY)
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 31 (0) | SPD: 44 (0) | SPC: 49 (0)
 
