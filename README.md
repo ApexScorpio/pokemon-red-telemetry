@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:24:04**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:24:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,7 +11,7 @@
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `76h 0m 20s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **12 410 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
 
@@ -80,7 +80,7 @@
 - **Stat Experience (0–65.535):** Atk: 7362 | Def: 6898 | Spd: 7450 | Spc: 5174 | HP: 6167
 - **Experiência:** 11 505 EXP (Progresso: 56%, faltam 662 p/ Lv.23)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 24 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -431,6 +431,7 @@
 - [21:16:47] Entrou em Ss Anne 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:24:05] `CONFUSION STUN SPORE`
 - [21:23:00] `THUNDERSHOCK THUNDER WAVE`
 - [21:22:52] `EMBER SCRATCH`
 - [21:22:44] `TACKLE`
