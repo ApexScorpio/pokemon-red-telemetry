@@ -48,6 +48,53 @@ function saveLocalTelemetryFiles(markdown) {
   });
 }
 
+function checkIsItemInInventory(itemName, inventory) {
+  if (!itemName || !inventory || !Array.isArray(inventory) || inventory.length === 0) return false;
+  const rawTarget = String(itemName).trim().toUpperCase();
+  const cleanTarget = rawTarget.replace(/\(.*?\)/g, '').replace(/[^A-Z0-9]/g, '');
+  if (!cleanTarget) return false;
+
+  const tmMatch = rawTarget.match(/TM(\d+)/i);
+  if (tmMatch) {
+    const tmNum = parseInt(tmMatch[1], 10);
+    return inventory.some(inv => {
+      const invRaw = (inv.name || '').toUpperCase();
+      const invTm = invRaw.match(/TM(\d+)/i);
+      return invTm && parseInt(invTm[1], 10) === tmNum;
+    });
+  }
+
+  const hmMatch = rawTarget.match(/HM(\d+)/i);
+  if (hmMatch) {
+    const hmNum = parseInt(hmMatch[1], 10);
+    return inventory.some(inv => {
+      const invRaw = (inv.name || '').toUpperCase();
+      const invHm = invRaw.match(/HM(\d+)/i);
+      return invHm && parseInt(invHm[1], 10) === hmNum;
+    });
+  }
+
+  if (cleanTarget.includes('FOSSIL') || cleanTarget.includes('HELIX') || cleanTarget.includes('DOME')) {
+    const hasFossil = inventory.some(inv => {
+      const invClean = (inv.name || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+      return invClean.includes('FOSSIL') || invClean.includes('HELIX') || invClean.includes('DOME');
+    });
+    if (hasFossil) return true;
+  }
+
+  if (cleanTarget.includes('MOONSTONE')) {
+    const moonStone = inventory.find(inv => (inv.name || '').toUpperCase().includes('MOON STONE'));
+    if (moonStone && moonStone.qty >= 1) return true;
+  }
+
+  return inventory.some(inv => {
+    const rawInv = (inv.name || '').toUpperCase();
+    const cleanInv = rawInv.replace(/\(.*?\)/g, '').replace(/[^A-Z0-9]/g, '');
+    if (!cleanInv) return false;
+    return cleanInv === cleanTarget || cleanInv.includes(cleanTarget) || cleanTarget.includes(cleanInv);
+  });
+}
+
 // Formata todos os dados da RAM do jogo em Markdown limpo, estruturado e organizado em 3 partes para o ChatGPT
 function formatTelemetryMarkdown(state) {
   if (!state) return '# 🎮 Pokémon Red • Telemetria Indisponível\n';
@@ -307,14 +354,16 @@ function formatTelemetryMarkdown(state) {
     if (visItems.length > 0) {
       md += `### Itens no Chão (Poké Balls visíveis):\n`;
       visItems.forEach(it => {
-        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: ${it.isCollected ? '✅ Já Recolhido' : '🔴 Por Apanhar'}${it.hint ? ` — *${it.hint}*` : ''}\n`;
+        const collected = it.isCollected || it.inInventory || checkIsItemInInventory(it.name, inv);
+        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: ${collected ? '✅ Já Recolhido' : '🔴 Por Apanhar'}${it.hint ? ` — *${it.hint}*` : ''}\n`;
       });
       md += `\n`;
     }
     if (hidItems.length > 0) {
       md += `### Itens Ocultos (Invisíveis no chão):\n`;
       hidItems.forEach(it => {
-        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: ${it.isCollected ? '✅ Já Recolhido' : '🔴 Por Apanhar'}${it.hint ? ` — *${it.hint}*` : ''}\n`;
+        const collected = it.isCollected || it.inInventory || checkIsItemInInventory(it.name, inv);
+        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: ${collected ? '✅ Já Recolhido' : '🔴 Por Apanhar'}${it.hint ? ` — *${it.hint}*` : ''}\n`;
       });
       md += `\n`;
     }

@@ -61,6 +61,53 @@ function saveExploredMaps() {
   } catch (e) {}
 }
 
+function isItemInInventoryFrontend(itemName, inventory) {
+  if (!itemName || !inventory || !Array.isArray(inventory) || inventory.length === 0) return false;
+  const rawTarget = String(itemName).trim().toUpperCase();
+  const cleanTarget = rawTarget.replace(/\(.*?\)/g, '').replace(/[^A-Z0-9]/g, '');
+  if (!cleanTarget) return false;
+
+  const tmMatch = rawTarget.match(/TM(\d+)/i);
+  if (tmMatch) {
+    const tmNum = parseInt(tmMatch[1], 10);
+    return inventory.some(inv => {
+      const invRaw = (inv.name || '').toUpperCase();
+      const invTm = invRaw.match(/TM(\d+)/i);
+      return invTm && parseInt(invTm[1], 10) === tmNum;
+    });
+  }
+
+  const hmMatch = rawTarget.match(/HM(\d+)/i);
+  if (hmMatch) {
+    const hmNum = parseInt(hmMatch[1], 10);
+    return inventory.some(inv => {
+      const invRaw = (inv.name || '').toUpperCase();
+      const invHm = invRaw.match(/HM(\d+)/i);
+      return invHm && parseInt(invHm[1], 10) === hmNum;
+    });
+  }
+
+  if (cleanTarget.includes('FOSSIL') || cleanTarget.includes('HELIX') || cleanTarget.includes('DOME')) {
+    return inventory.some(inv => {
+      const invClean = (inv.name || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+      return invClean.includes('FOSSIL') || invClean.includes('HELIX') || invClean.includes('DOME');
+    });
+  }
+
+  if (cleanTarget.includes('MOONSTONE')) {
+    const moon = inventory.find(inv => (inv.name || '').toUpperCase().includes('MOON STONE'));
+    if (moon && moon.qty >= 1) return true;
+  }
+
+  return inventory.some(inv => {
+    const rawInv = (inv.name || '').toUpperCase();
+    const cleanInv = rawInv.replace(/\(.*?\)/g, '').replace(/[^A-Z0-9]/g, '');
+    if (!cleanInv) return false;
+    return cleanInv === cleanTarget || cleanInv.includes(cleanTarget) || cleanTarget.includes(cleanInv);
+  });
+}
+
+
 if (btnResetMap) {
   btnResetMap.addEventListener('click', () => {
     if (lastState && lastState.mapId !== undefined) {
@@ -956,7 +1003,7 @@ function renderFogMinimap(state) {
   ];
   items.forEach(it => {
     if (it.x === undefined || it.y === undefined) return;
-    if (it.isCollected) return; // Item já apanhado não aparece no mapa
+    if (it.isCollected || it.inInventory || isItemInInventoryFrontend(it.name, state.inventory || [])) return; // Item já apanhado não aparece no mapa
     const ix = camX + it.x * tileSize + tileSize / 2;
     const iy = camY + it.y * tileSize + tileSize / 2;
     if (ix >= -16 && ix <= cw + 16 && iy >= -16 && iy <= ch + 16) {
@@ -969,7 +1016,7 @@ function renderFogMinimap(state) {
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
-    if (ent.isItem && ent.isCollected) return; // Item já recolhido não aparece no ecrã
+    if (ent.isItem && (ent.isCollected || isItemInInventoryFrontend(ent.itemName || ent.name, state.inventory || []))) return; // Item já recolhido não aparece no ecrã
     const ex = camX + ent.x * tileSize + tileSize / 2;
     const ey = camY + ent.y * tileSize + tileSize / 2;
     if (ex >= -16 && ex <= cw + 16 && ey >= -16 && ey <= ch + 16) {
@@ -2246,10 +2293,14 @@ function renderAreaRadar(areaInfo) {
   }
 
   // Itens Visíveis e Secretos (Filtragem Estrita: Apenas Pendentes em Destaque!)
-  const uncollectedVis = vis.filter(item => !item.isCollected);
-  const collectedVis = vis.filter(item => item.isCollected);
-  const uncollectedHid = hid.filter(item => !item.isCollected);
-  const collectedHid = hid.filter(item => item.isCollected);
+  const playerInv = state.inventory || [];
+  const isItemCollected = (it) => {
+    return it.isCollected || it.inInventory || isItemInInventoryFrontend(it.name, playerInv);
+  };
+  const uncollectedVis = vis.filter(item => !isItemCollected(item));
+  const collectedVis = vis.filter(item => isItemCollected(item));
+  const uncollectedHid = hid.filter(item => !isItemCollected(item));
+  const collectedHid = hid.filter(item => isItemCollected(item));
   const allCollected = [...collectedVis, ...collectedHid];
 
   // Itens Disponíveis para Apanhar Agora

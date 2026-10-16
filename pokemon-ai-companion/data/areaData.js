@@ -296,8 +296,8 @@ const AREA_DATABASE = {
       { name: 'TM01 (Mega Punch)', type: 'visible', x: 29, y: 5, hint: 'No canto superior direito após descer as escadas (X:29 Y:5).', importance: 'Golpe físico potente de 80 Power.', toggleIndex: 112 }
     ],
     hiddenItems: [
-      { name: 'Moon Stone', type: 'hidden', x: 17, y: 12, hint: 'Pedra no canto superior direito num bloco isolado.', importance: '⭐ SEGUNDA MOON STONE! Permite evoluir outro Pokémon!', hiddenIndex: 3 },
-      { name: 'Ether', type: 'hidden', x: 33, y: 9, hint: 'Perto das escadas centrais numa rocha.', importance: 'Recupera 10 PP.', hiddenIndex: 4 }
+      { name: 'Moon Stone', type: 'hidden', x: 17, y: 12, hint: 'Pedra no canto superior direito num bloco isolado.', importance: '⭐ SEGUNDA MOON STONE! Permite evoluir outro Pokémon!', hiddenIndex: 2 },
+      { name: 'Ether', type: 'hidden', x: 33, y: 9, hint: 'Perto das escadas centrais numa rocha.', importance: 'Recupera 10 PP.', hiddenIndex: 49 }
     ]
   },
 
@@ -316,7 +316,7 @@ const AREA_DATABASE = {
       { name: 'TM04 (Whirlwind)', type: 'visible', x: 57, y: 3, hint: 'Num planalto acessível descendo de Mt. Moon.', importance: 'Golpe de vento.', toggleIndex: 27 }
     ],
     hiddenItems: [
-      { name: 'Great Ball', type: 'hidden', x: 40, y: 3, hint: 'Na rocha no planalto a leste perto de Cerulean.', importance: 'Taxa de captura superior.', hiddenIndex: 2 }
+      { name: 'Great Ball', type: 'hidden', x: 40, y: 3, hint: 'Na rocha no planalto a leste perto de Cerulean.', importance: 'Taxa de captura superior.', hiddenIndex: 53 }
     ]
   },
 
@@ -334,7 +334,7 @@ const AREA_DATABASE = {
     ],
     visibleItems: [],
     hiddenItems: [
-      { name: 'Rare Candy', type: 'hidden', x: 15, y: 8, hint: 'No canteiro de flores atrás da casa arrombada.', importance: 'Sobe 1 nível grátis.', hiddenIndex: 5 }
+      { name: 'Rare Candy', type: 'hidden', x: 15, y: 8, hint: 'No canteiro de flores atrás da casa arrombada.', importance: 'Sobe 1 nível grátis.', hiddenIndex: 52 }
     ]
   },
 
@@ -389,7 +389,7 @@ const AREA_DATABASE = {
       { name: 'TM19 (Seismic Toss)', type: 'visible', hint: 'No canteiro de flores perto do labirinto de treinadores.', importance: 'Dano fixo igual ao nível do teu Pokémon.', toggleIndex: 29 }
     ],
     hiddenItems: [
-      { name: 'Elixer', type: 'hidden', x: 38, y: 3, hint: 'Cerca à direita da casa do Bill.', importance: 'Recupera 10 PP de todos os golpes.', hiddenIndex: 6 }
+      { name: 'Elixer', type: 'hidden', x: 38, y: 3, hint: 'Cerca à direita da casa do Bill.', importance: 'Recupera 10 PP de todos os golpes.', hiddenIndex: 3 }
     ]
   },
 

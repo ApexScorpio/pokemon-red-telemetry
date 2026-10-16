@@ -64,6 +64,53 @@ function getCompass(playerCoords, targetX, targetY) {
   };
 }
 
+function checkIsItemInInventory(itemName, inventory) {
+  if (!itemName || !inventory || !Array.isArray(inventory) || inventory.length === 0) return false;
+  const rawTarget = String(itemName).trim().toUpperCase();
+  const cleanTarget = rawTarget.replace(/\(.*?\)/g, '').replace(/[^A-Z0-9]/g, '');
+  if (!cleanTarget) return false;
+
+  const tmMatch = rawTarget.match(/TM(\d+)/i);
+  if (tmMatch) {
+    const tmNum = parseInt(tmMatch[1], 10);
+    return inventory.some(inv => {
+      const invRaw = (inv.name || '').toUpperCase();
+      const invTm = invRaw.match(/TM(\d+)/i);
+      return invTm && parseInt(invTm[1], 10) === tmNum;
+    });
+  }
+
+  const hmMatch = rawTarget.match(/HM(\d+)/i);
+  if (hmMatch) {
+    const hmNum = parseInt(hmMatch[1], 10);
+    return inventory.some(inv => {
+      const invRaw = (inv.name || '').toUpperCase();
+      const invHm = invRaw.match(/HM(\d+)/i);
+      return invHm && parseInt(invHm[1], 10) === hmNum;
+    });
+  }
+
+  if (cleanTarget.includes('FOSSIL') || cleanTarget.includes('HELIX') || cleanTarget.includes('DOME')) {
+    const hasFossil = inventory.some(inv => {
+      const invClean = (inv.name || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+      return invClean.includes('FOSSIL') || invClean.includes('HELIX') || invClean.includes('DOME');
+    });
+    if (hasFossil) return true;
+  }
+
+  if (cleanTarget.includes('MOONSTONE')) {
+    const moonStone = inventory.find(inv => (inv.name || '').toUpperCase().includes('MOON STONE'));
+    if (moonStone && moonStone.qty >= 1) return true;
+  }
+
+  return inventory.some(inv => {
+    const rawInv = (inv.name || '').toUpperCase();
+    const cleanInv = rawInv.replace(/\(.*?\)/g, '').replace(/[^A-Z0-9]/g, '');
+    if (!cleanInv) return false;
+    return cleanInv === cleanTarget || cleanInv.includes(cleanTarget) || cleanTarget.includes(cleanInv);
+  });
+}
+
 const STAGE_MULTIPLIERS = {
   1: { stage: -6, mult: 0.25 },
   2: { stage: -5, mult: 0.28 },
@@ -703,8 +750,8 @@ class RetroArchClient extends EventEmitter {
       // Itens no chão / Entidades Missable ($D5A6, offset 6..37, 32 bytes)
       toggleRaw = blockWorldEvents.slice(6, 38);
 
-      // Itens Ocultos ($D6F0, offset 336..343, 8 bytes)
-      hiddenRaw = blockWorldEvents.slice(336, 344);
+      // Itens Ocultos ($D6F0, offset 336..349, 14 bytes cobrindo todos os 54 itens ocultos)
+      hiddenRaw = blockWorldEvents.slice(336, 350);
 
       // Modo de Deslocação ($D700, offset 352: 0 = Pé, 1 = Bicicleta, 2 = Surf)
       const walkBikeSurf = parseInt(blockWorldEvents[352], 16) || 0;
@@ -910,10 +957,12 @@ class RetroArchClient extends EventEmitter {
         const val = parseInt(hiddenRaw[b], 16);
         isCollected = (val & (1 << bit)) !== 0;
       }
+      const inInventory = checkIsItemInInventory(item.name, this.latestState.inventory);
+      if (inInventory) isCollected = true;
       return {
         ...item,
         isCollected,
-        inInventory: inventoryNames.some(invName => item.name.toUpperCase().includes(invName) || invName.includes(item.name.toUpperCase()))
+        inInventory
       };
     });
 
@@ -965,12 +1014,14 @@ class RetroArchClient extends EventEmitter {
         const val = parseInt(toggleRaw[b], 16);
         isCollected = (val & (1 << bit)) !== 0;
       }
+      const inInventory = checkIsItemInInventory(item.name, this.latestState.inventory);
+      if (inInventory) isCollected = true;
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
       return {
         ...item,
         isCollected,
-        inInventory: inventoryNames.some(invName => item.name.toUpperCase().includes(invName) || invName.includes(item.name.toUpperCase())),
+        inInventory,
         isLocked: !accInfo.accessible,
         lockReason: accInfo.reason,
         compass
@@ -978,10 +1029,14 @@ class RetroArchClient extends EventEmitter {
     });
 
     const allHiddenItems = hiddenList.map(item => {
+      const inInventory = checkIsItemInInventory(item.name, this.latestState.inventory);
+      const isCollected = item.isCollected || inInventory;
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
       return {
         ...item,
+        isCollected,
+        inInventory,
         isLocked: !accInfo.accessible,
         lockReason: accInfo.reason,
         compass
@@ -989,10 +1044,14 @@ class RetroArchClient extends EventEmitter {
     });
 
     const allNpcItems = (areaData.npcItems || []).map(item => {
+      const inInventory = checkIsItemInInventory(item.name, this.latestState.inventory);
+      const isCollected = inInventory;
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
       return {
         ...item,
+        isCollected,
+        inInventory,
         isLocked: !accInfo.accessible,
         lockReason: accInfo.reason,
         compass
@@ -1058,9 +1117,12 @@ class RetroArchClient extends EventEmitter {
             ent.itemName = matchedItem.name;
             ent.hint = matchedItem.hint;
             ent.importance = matchedItem.importance;
-            ent.isCollected = matchedItem.isCollected;
+            ent.isCollected = matchedItem.isCollected || checkIsItemInInventory(matchedItem.name, this.latestState.inventory);
           } else {
             ent.name = `🎒 Item no Chão (Poké Ball)`;
+          }
+          if (ent.itemName && checkIsItemInInventory(ent.itemName, this.latestState.inventory)) {
+            ent.isCollected = true;
           }
         } else {
           // Procura correspondência com treinadores conhecidos da área (tolerância até 4 tiles para NPCs em patrulha)
