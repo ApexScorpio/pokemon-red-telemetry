@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:49:18**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:49:23**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Vermilion City** (ID Interno: `0x5`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `31`, Y: `14`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `21`, Y: `7`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `72h 0m 35s`
+- **Tempo de Jogo:** `72h 0m 36s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SLOWPOKE`
 - **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon)
@@ -126,8 +126,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 14** *(Entrou a Lv. 11 • Ganhou +3 níveis!)*
 - **Custo de Retirada:** **400 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **1911 EXP**
-- **Progresso para Nível 15:** Faltam **124 passos / EXP** (71%)
+- **Experiência Total:** **1953 EXP**
+- **Progresso para Nível 15:** Faltam **82 passos / EXP** (81%)
 - **DVs Gen 1:** ATK: 5 | DEF: 2 | SPD: 2 | SPC: 5 | HP: 9
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 17
@@ -227,61 +227,61 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↙️ 23 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #1. [↙️ 20 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↙️ 13 passos Sudoeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #2. [↙️ 10 passos Sudoeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↙️ 24 passos Sudoeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↙️ 21 passos Sudoeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↙️ 29 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #4. [↙️ 26 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↙️ 23 passos Sudoeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #5. [↙️ 20 passos Sudoeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↙️ 37 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #6. [↙️ 34 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [↖️ 37 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↖️ 20 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [↖️ 40 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [↖️ 23 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [↖️ 32 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↙️ 17 passos Sudoeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [↖️ 39 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↖️ 22 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
@@ -335,7 +335,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Vais apanhar um **Magnemite** (magnético) na Route 11 para garantir vantagem de tipo contra o próximo ginásio (Falkner, de Voo)! Para criar espaço, mete o **Nidorino** no PC, pois o seu ataque físico fraco e a sobreposição de tipo Poison com a Nidorina tornam-no a escolha menos útil para o avanço."
+> "Com 12.740$ e o próximo objetivo sendo o Vermilion Gym, compra imediatamente um **Thunder Stone** (1.200$) na loja para evoluir o Pikachu, que é a tua arma principal contra a água. Mantém o Butterfree no PC se precisares de espaço, mas por enquanto o teu foco é a compra estratégica para dominar o ginásio."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
