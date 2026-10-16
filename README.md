@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:05**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:09**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Scratch`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Thundershock`
 - **Último Golpe Usado pelo Adversário:** `Confusion`
 
 ### 🔴 Adversário em Campo: **Butterfree** (Lv. 20)
 - **Tipos:** Bug/Flying
-- **HP:** **57 / 57** (100%)
+- **HP:** **37 / 57** (65%)
 - **Stats de Batalha:** ATK: 26 | DEF: 28 | SPD: 36 | SPC: 40
 - **Os 4 Golpes do Adversário:**
   - **Confusion** (Psychic_type) • PP: 25 • Poder: 50 • Precisão: 100%
@@ -38,20 +38,21 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
 - **Tipos:** Electric
-- **HP:** **48 / 48** (HEALTHY)
+- **HP:** **37 / 48** (HEALTHY)
 - **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **22-26 HP** (2x eficácia) • ~3 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **22-26 HP** (2x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-3: Usa repetidamente Thundershock
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Thundershock (Causa ~22-26 de dano)
+- ➔ Turno 2: Thundershock (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Thundershock. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (48/48). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (37/48). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 19)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -104,13 +105,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 5. **Pikachu** (Lv. 20) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 37 / 48 ⚠️ (SLEEP)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7701 | Def: 5647 | Spd: 8496 | Spc: 4900 | HP: 5532
 - **Experiência:** 8083 EXP (Progresso: 7%, faltam 1178 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -287,6 +288,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:04:08] **Turno #4**: Pikachu (37/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
+- [20:04:07] **Turno #3**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
+- [20:04:07] **Turno #2**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
+- [20:04:06] **Turno #1**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sleep Powder`
 - [20:04:05] **Turno #1**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 57/57 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Confusion`
 - [20:04:01] **Turno #1**: Nidorina (0/55 HP) vs Butterfree (Lv. 20 • 57/57 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Confusion`
 - [20:03:55] **Turno #1**: Nidorina (39/55 HP) vs Butterfree (Lv. 20 • 57/57 HP)
@@ -298,10 +303,6 @@
 - [20:03:31] **Turno #1**: Charmeleon (0/53 HP) vs Pikachu (Lv. 16 • 23/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Thundershock`
 - [20:03:30] **Turno #1**: Charmeleon (6/53 HP) vs Pikachu (Lv. 16 • 39/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Thundershock`
 - [20:03:30] **Turno #2**: Charmeleon (6/53 HP) vs Pikachu (Lv. 16 • 39/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
-- [20:03:29] **Turno #2**: Charmeleon (6/53 HP) vs Rattata (Lv. 16 • 0/38 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
-- [20:03:27] **Turno #2**: Charmeleon (6/53 HP) vs Rattata (Lv. 16 • 13/38 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
-- [20:03:27] **Turno #1**: Charmeleon (15/53 HP) vs Rattata (Lv. 16 • 13/38 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
-- [20:03:25] **Turno #1**: Charmeleon (23/53 HP) vs Rattata (Lv. 16 • 38/38 HP)
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
