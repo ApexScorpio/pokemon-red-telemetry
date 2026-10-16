@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:48:53**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:48:57**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,12 +11,14 @@
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `56h 0m 37s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Quick Attack`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
 - **Tipos:** Rock/Ground
@@ -29,7 +31,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **43 / 43** (HEALTHY)
+- **HP:** **37 / 43** (HEALTHY)
 - **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -75,7 +77,7 @@
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 37 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6069 | Def: 4440 | Spd: 6777 | Spc: 3802 | HP: 5076
@@ -269,6 +271,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:48:54] **Turno #1**: Rattata (37/43 HP) vs Geodude (Lv. 10 • 30/30 HP) • Golpe Inimigo: `Tackle`
 - [17:48:53] **Turno #1**: Rattata (43/43 HP) vs Geodude (Lv. 10 • 30/30 HP)
 - [17:48:51] **Turno #1**: Beedrill (54/54 HP) vs Geodude (Lv. 10 • 30/30 HP)
 - [17:48:49] **Turno #1**: Beedrill (40/54 HP) vs Geodude (Lv. 10 • 30/30 HP)
@@ -283,7 +286,6 @@
 - [17:48:07] **Turno #5**: Nidorino (36/51 HP) vs Geodude (Lv. 9 • 9/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
 - [17:48:06] **Turno #4**: Nidorino (39/51 HP) vs Geodude (Lv. 9 • 9/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
 - [17:48:05] **Turno #4**: Nidorino (39/51 HP) vs Geodude (Lv. 9 • 16/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
-- [17:48:02] **Turno #3**: Nidorino (42/51 HP) vs Geodude (Lv. 9 • 24/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
 
 - [17:48:39] Entrou em Mt Moon 1F
 - [17:48:38] Entrou em Route 4
@@ -293,6 +295,7 @@
 - [17:48:17] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:48:55] `TACKLE TAIL WHIP`
 - [17:48:00] `TACKLE HORN ATTACK`
 - [17:47:54] `THUNDERSHOCK THUNDER WAVE`
 - [17:46:49] `FURY ATTACK POISON STING`
