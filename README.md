@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:48:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:48:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `21`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `24`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 33s`
+- **Tempo de Jogo:** `56h 0m 34s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -18,37 +18,39 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
+### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
 - **Tipos:** Poison/Flying
-- **HP:** **23 / 23** (100%)
-- **Stats de Batalha:** ATK: 12 | DEF: 11 | SPD: 13 | SPC: 11
+- **HP:** **26 / 26** (100%)
+- **Stats de Batalha:** ATK: 12 | DEF: 10 | SPD: 13 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
   - **Leech Life** (Bug) ➔ Dano: ~1-2 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 16)
-- **Tipos:** Electric
-- **HP:** **40 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 29 (0) | DEF: 20 (0) | SPD: 37 (0) | SPC: 26 (0)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
+- **Tipos:** Normal
+- **HP:** **40 / 54** (HEALTHY)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **45-54 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **13-16 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Fury Attack (Causa ~13-16 de dano)
+- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (40/40). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (40/54). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **38%** | Great Ball: **57%** | Ultra Ball: **38%**
-  - *Se adormeceres o inimigo:* **~44%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
+  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 17)
+### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 0 / 54 ❌ (FAINTED)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -60,14 +62,14 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Pikachu** (Lv. 16) ⚔️ [EM COMBATE]
+### 2. **Pikachu** (Lv. 16)
 - **Tipos:** Electric | **HP:** 40 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6434 | Def: 4504 | Spd: 7164 | Spc: 3827 | HP: 4635
-- **Experiência:** 4117 EXP (Progresso: 3%, faltam 796 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 6479 | Def: 4539 | Spd: 7219 | Spc: 3867 | HP: 4675
+- **Experiência:** 4171 EXP (Progresso: 9%, faltam 742 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -164,7 +166,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 30 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
+### #1. [↖️ 33 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -175,7 +177,7 @@
   - **Slot #4**: **Nidorino** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** A carcaça de pedra deles é vulnerável a Confusion (Special). NÃO uses Charmeleon nem Pikachu!
 
-### #2. [↖️ 13 passos Noroeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
+### #2. [↖️ 16 passos Noroeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -186,7 +188,7 @@
   - **Slot #4**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #3. [↗️ 27 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
+### #3. [↗️ 30 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -197,7 +199,7 @@
   - **Slot #4**: **Nidorino** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #4. [↘️ 14 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #4. [↘️ 11 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -208,7 +210,7 @@
   - **Slot #4**: **Nidorino** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #5. [↙️ 6 passos Sudoeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
+### #5. [↖️ 5 passos Noroeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -219,7 +221,7 @@
   - **Slot #4**: **Nidorino** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↙️ 14 passos Sudoeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
+### #6. [↖️ 15 passos Noroeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -230,7 +232,7 @@
   - **Slot #4**: **Nidorino** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #7. [↘️ 16 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
+### #7. [↘️ 13 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -253,6 +255,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:48:26] **Turno #1**: Beedrill (40/54 HP) vs Zubat (Lv. 8 • 26/26 HP)
+- [17:48:24] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 7 • 0/23 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [17:48:23] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 7 • 23/23 HP)
 - [17:48:22] **Turno #1**: Beedrill (38/54 HP) vs Zubat (Lv. 7 • 23/23 HP)
 - [17:48:13] **Turno #6**: Nidorino (38/53 HP) vs Geodude (Lv. 9 • 0/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
@@ -266,8 +270,6 @@
 - [17:48:00] **Turno #2**: Nidorino (45/51 HP) vs Geodude (Lv. 9 • 24/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [17:47:59] **Turno #1**: Nidorino (48/51 HP) vs Geodude (Lv. 9 • 28/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [17:47:58] **Turno #1**: Nidorino (51/51 HP) vs Geodude (Lv. 9 • 28/28 HP) • Golpe RED: `Thundershock`
-- [17:47:53] **Turno #1**: Pikachu (38/38 HP) vs Geodude (Lv. 9 • 28/28 HP)
-- [17:47:52] **Turno #1**: Beedrill (51/54 HP) vs Geodude (Lv. 9 • 28/28 HP)
 
 - [17:48:18] Entrou em Mt Moon 1F
 - [17:48:17] Entrou em Mt Moon B1F
