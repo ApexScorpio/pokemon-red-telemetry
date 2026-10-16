@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:07:06**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:07:10**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -19,39 +19,39 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
-### 🔴 Adversário em Campo: **Spearow** (Lv. 16)
-- **Tipos:** Normal/Flying
-- **HP:** **41 / 41** (100%)
-- **Stats de Batalha:** ATK: 27 | DEF: 17 | SPD: 29 | SPC: 17
+### 🔴 Adversário em Campo: **Raticate** (Lv. 16)
+- **Tipos:** Normal
+- **HP:** **46 / 46** (100%)
+- **Stats de Batalha:** ATK: 33 | DEF: 26 | SPD: 38 | SPC: 23
 - **Os 4 Golpes do Adversário:**
-  - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
-  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
-  - **Leer** (Normal) • PP: NaN • Poder: -- • Precisão: 100%
-  - **Fury Attack** (Normal) • PP: NaN • Poder: 15 • Precisão: 85%
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Peck** (Flying) ➔ Dano: ~15-18 HP (2x)
-  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-  - **Fury Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Tackle** (Normal) ➔ Dano: ~8-10 HP (1x)
+  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
+  - **Quick Attack** (Normal) ➔ Dano: ~10-12 HP (1x)
+  - **Hyper Fang** (Normal) ➔ 🚨 RISCO DE K.O.! (18-22 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 20)
 - **Tipos:** Bug/Poison
-- **HP:** **33 / 62** (HEALTHY)
+- **HP:** **22 / 62** (HEALTHY)
 - **Stats com Modificadores:** ATK: 43 (0) | DEF: 28 (0) | SPD: 40 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Twineedle** (Bug) ➔ Dano: **10-12 HP** (0.5x eficácia) • ~4 turnos para K.O.
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Twineedle** (Bug) ➔ Dano: **13-16 HP** (1x eficácia) • ~3 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-4: Usa repetidamente Twineedle
+- ➔ Turnos 1-3: Usa repetidamente Twineedle
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Pikachu (Lv. 20)** [12/48 HP]
-- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (22/62). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -82,10 +82,10 @@
 - **Tipos:** Bug/Poison | **HP:** 33 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 28 | SPD: 40 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 5075 | Def: 4343 | Spd: 5682 | Spc: 3381 | HP: 4157
-- **Experiência:** 8491 EXP (Progresso: 39%, faltam 770 p/ Lv.21)
+- **Stat Experience (0–65.535):** Atk: 5135 | Def: 4373 | Spd: 5752 | Spc: 3412 | HP: 4197
+- **Experiência:** 8689 EXP (Progresso: 55%, faltam 572 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 11 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 10 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Twineedle** (Bug) — PP: 18 | Poder: 25 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -296,6 +296,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:07:10] **Turno #1**: Beedrill (22/62 HP) vs Raticate (Lv. 16 • 46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
+- [20:07:08] **Turno #1**: Beedrill (33/62 HP) vs Raticate (Lv. 16 • 46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
+- [20:07:07] **Turno #1**: Beedrill (33/62 HP) vs Spearow (Lv. 16 • 0/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
+- [20:07:06] **Turno #1**: Beedrill (33/62 HP) vs Spearow (Lv. 16 • 23/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [20:07:04] **Turno #1**: Charmeleon (33/53 HP) vs Spearow (Lv. 16 • 41/41 HP)
 - [20:07:04] **Turno #1**: Charmeleon (33/53 HP) vs Pidgey (Lv. 16 • 0/41 HP)
 - [20:06:57] **Turno #1**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
@@ -307,10 +311,6 @@
 - [20:06:51] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 3/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 - [20:06:50] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 12/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 - [20:06:48] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 23/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
-- [20:06:47] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 32/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
-- [20:06:45] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [20:06:44] **Turno #3**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [20:04:26] **Turno #3**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 0/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
