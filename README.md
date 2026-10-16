@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:58:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:58:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,57 +9,28 @@
 - **Localização Atual:** **Route 5** (ID Interno: `0x10`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `9`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `73h 0m 34s`
-- **💬 Diálogo / Mensagem no Ecrã:** `SLOWPOKE`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `73h 0m 35s`
+- **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
 - **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 20 (Nidorino) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Mankey** (Lv. 10)
-- **Tipos:** Fighting
-- **HP:** **30 / 30** (100%)
-- **Stats de Batalha:** ATK: 22 | DEF: 15 | SPD: 21 | SPC: 12
-- **Os 4 Golpes do Adversário:**
-  - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Scratch** (Normal) ➔ Dano: ~3-4 HP (1x)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 20)
-- **Tipos:** Normal
-- **HP:** **44 / 61** (HEALTHY)
-- **Stats com Modificadores:** ATK: 43 (0) | DEF: 35 (0) | SPD: 38 (0) | SPC: 32 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **30-36 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Tackle (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Tackle! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (44/61). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **27%** | Great Ball: **51%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~37%** | *Com HP no vermelho:* **~75%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada))
+  - **Equipa Adversária:** Machop (Lv. 17) • Drowzee (Lv. 17)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
-### 1. **Nidorino** (Lv. 20) ⚔️ [EM COMBATE]
+### 1. **Nidorino** (Lv. 20)
 - **Tipos:** Poison | **HP:** 61 / 61 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 4497 | Def: 3119 | Spd: 4698 | Spc: 2693 | HP: 3528
-- **Experiência:** 6179 EXP (Progresso: 72%, faltam 279 p/ Lv.21)
+- **Stat Experience (0–65.535):** Atk: 4577 | Def: 3154 | Spd: 4768 | Spc: 2728 | HP: 3568
+- **Experiência:** 6284 EXP (Progresso: 83%, faltam 174 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 24 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -399,6 +370,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:58:31] **Turno #1**: Nidorino (61/61 HP) vs Mankey (Lv. 10 • 0/30 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Leer`
+- [20:58:30] **Turno #1**: Nidorino (61/61 HP) vs Mankey (Lv. 10 • 30/30 HP) • Golpe RED: `Horn Attack`
 - [20:58:28] **Turno #1**: Nidorino (44/61 HP) vs Mankey (Lv. 10 • 30/30 HP)
 
 - [20:58:28] Entrou em Route 5
@@ -409,6 +382,7 @@
 - [20:50:35] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:58:30] `HORN ATTACK TACKLE`
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
 - [16:24:40] `We'll each take one! No being greedy!`
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
