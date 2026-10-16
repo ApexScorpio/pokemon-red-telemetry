@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:45**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:49**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -49,8 +49,8 @@
 - **Tipos:** Rock/Ground | **HP:** 34 / 34 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 31 | SPD: 12 | SPC: 17
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 171 | Def: 179 | Spd: 185 | Spc: 227 | HP: 135
-- **Experiência:** 1421 EXP (Progresso: 46%, faltam 191 p/ Lv.14)
+- **Stat Experience (0–65.535):** Atk: 191 | Def: 196 | Spd: 220 | Spc: 277 | HP: 155
+- **Experiência:** 1610 EXP (Progresso: 99%, faltam 2 p/ Lv.14)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Defense Curl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -105,8 +105,8 @@
 - **Tipos:** Bug/Flying | **HP:** 51 / 68 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 34 | DEF: 33 | SPD: 46 | SPC: 51
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7596 | Def: 7185 | Spd: 7691 | Spc: 5469 | HP: 6373
-- **Experiência:** 12 734 EXP (Progresso: 34%, faltam 1090 p/ Lv.24)
+- **Stat Experience (0–65.535):** Atk: 7616 | Def: 7202 | Spd: 7726 | Spc: 5519 | HP: 6393
+- **Experiência:** 12 923 EXP (Progresso: 46%, faltam 901 p/ Lv.24)
 - **Golpes & PPs:**
   - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
