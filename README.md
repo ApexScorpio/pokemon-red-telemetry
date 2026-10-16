@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `30`, Y: `7`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `62h 0m 34s`
+- **Tempo de Jogo:** `62h 0m 35s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TELEPORT`
 - **Dinheiro:** **10 510 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 10 (Abra)
@@ -18,35 +18,41 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Thundershock`
+- **Último Golpe Usado por RED:** `Confusion`
 - **Último Golpe Usado pelo Adversário:** `Karate Chop`
 
-### 🔴 Adversário em Campo: **Machop** (Lv. 17)
-- **Tipos:** Fighting
-- **HP:** **17 / 53** (32%)
-- **Stats de Batalha:** ATK: 35 | DEF: 24 | SPD: 19 | SPC: 19
+### 🔴 Adversário em Campo: **Drowzee** (Lv. 17)
+- **Tipos:** Psychic
+- **HP:** **50 / 50** (100%)
+- **Stats de Batalha:** ATK: 24 | DEF: 23 | SPD: 22 | SPC: 38
 - **Os 4 Golpes do Adversário:**
-  - **Karate Chop** (Normal) • PP: 25 • Poder: 50 • Precisão: 100%
+  - **Pound** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Hypnosis** (Psychic_type) • PP: 20 • Poder: -- • Precisão: 60%
+  - **Disable** (Normal) • PP: NaN • Poder: -- • Precisão: 55%
+  - **Confusion** (Psychic_type) • PP: NaN • Poder: 50 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Karate Chop** (Normal) ➔ 🚨 RISCO DE K.O.! (10-12 HP)
+  - **Pound** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Hypnosis** (Psychic_type) ➔ Golpe de Status
+  - **Disable** (Normal) ➔ Golpe de Status
+  - **Confusion** (Psychic_type) ➔ Dano: ~5-7 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
-- **Tipos:** Electric
-- **HP:** **0 / 48** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 21)
+- **Tipos:** Bug/Flying
+- **HP:** **62 / 62** (HEALTHY)
+- **Stats com Modificadores:** ATK: 31 (0) | DEF: 30 (0) | SPD: 42 (0) | SPC: 47 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **21-25 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **13-16 HP** (1x eficácia) • ~4 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 88%)
+- ➔ Turno 1: Sleep Powder (Neutraliza o adversário sem sofrer dano)
+- ➔ Turnos seguintes: Confusion até à vitória
+> **Resumo Tático:** Usa Sleep Powder para garantir que o Pokémon sobrevive enquanto desgasta a barra de vida do inimigo.
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Abra (Lv. 10)** [26/26 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Abra para manter o controlo da batalha.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (62/62). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Abra (Lv. 10)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -54,12 +60,12 @@
 - **Tipos:** Psychic | **HP:** 26 / 26 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 10 | DEF: 8 | SPD: 23 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 5 | Defesa: 2 | Velocidade: 2 | Especial: 5 | HP: 9
-- **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
-- **Experiência:** 560 EXP (Progresso: 0%, faltam 182 p/ Lv.11)
+- **Stat Experience (0–65.535):** Atk: 40 | Def: 25 | Spd: 17 | Spc: 17 | HP: 35
+- **Experiência:** 719 EXP (Progresso: 87%, faltam 23 p/ Lv.11)
 - **Golpes & PPs:**
   - **Teleport** (Psychic_type) — PP: 20 | Poder: -- | Precisão: 100%
 
-### 2. **Pikachu** (Lv. 20) ⚔️ [EM COMBATE]
+### 2. **Pikachu** (Lv. 20)
 - **Tipos:** Electric | **HP:** 0 / 48 ❌ (FAINTED)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -107,14 +113,14 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 6. **Butterfree** (Lv. 21)
+### 6. **Butterfree** (Lv. 21) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7033 | Def: 6556 | Spd: 7175 | Spc: 4792 | HP: 5842
-- **Experiência:** 10 483 EXP (Progresso: 88%, faltam 165 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 7073 | Def: 6581 | Spd: 7192 | Spc: 4809 | HP: 5877
+- **Experiência:** 10 642 EXP (Progresso: 100%, faltam 6 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 24 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -153,7 +159,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **24 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **43 / 151**
+- **Espécies Vistas na Pokédex:** **44 / 151**
 - **Total de Pokémon Individuais Ativos:** **17 espécimes** (6 na Equipa + 11 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
 
@@ -188,6 +194,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
+- [19:16:30] **Turno #3**: Butterfree (62/62 HP) vs Machop (Lv. 17 • 0/53 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
+- [19:16:29] **Turno #3**: Butterfree (62/62 HP) vs Machop (Lv. 17 • 17/53 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:27] **Turno #3**: Pikachu (0/48 HP) vs Machop (Lv. 17 • 17/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
 - [19:16:25] **Turno #2**: Pikachu (6/48 HP) vs Machop (Lv. 17 • 35/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
 - [19:16:24] **Turno #1**: Pikachu (27/48 HP) vs Machop (Lv. 17 • 53/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
@@ -200,9 +209,6 @@
 - [19:03:49] **Turno #11**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 5/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Bubblebeam`
 - [19:03:48] **Turno #10**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 5/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [19:03:47] **Turno #10**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 9/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [19:03:46] **Turno #9**: Beedrill (33/56 HP) vs Starmie (Lv. 21 • 11/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Water Gun`
-- [19:03:45] **Turno #9**: Beedrill (33/56 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Water Gun`
-- [19:03:45] **Turno #8**: Beedrill (56/56 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Water Gun`
 
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
