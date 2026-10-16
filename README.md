@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:14:06**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:14:11**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,7 +8,7 @@
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `18`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `56h 0m 35s`
 - **💬 Diálogo / Mensagem no Ecrã:** `and stealthily Eats the eggs of`
