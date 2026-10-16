@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:39:10**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:39:13**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
+- **Turno Atual:** `Turno #4`
 - **Último Golpe Usado por RED:** `Fury Attack`
 - **Último Golpe Usado pelo Adversário:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Sandshrew** (Lv. 11)
 - **Tipos:** Ground
-- **HP:** **24 / 33** (73%)
+- **HP:** **12 / 33** (36%)
 - **Stats de Batalha:** ATK: 23 | DEF: 25 | SPD: 15 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -33,25 +33,24 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
 - **Tipos:** Bug/Poison
-- **HP:** **24 / 46** (HEALTHY)
+- **HP:** **18 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 31 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **2-3 HP** (0.5x eficácia) • ~8 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **2-3 HP** (0.5x eficácia) • ~4 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-8: Usa repetidamente Poison Sting
+- ➔ Turnos 1-4: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 19)** [53/57 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 12 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14)
-- **Tipos:** Bug/Poison | **HP:** 24 / 46 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 18 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 3298 | Def: 2746 | Spd: 3789 | Spc: 2080 | HP: 2708
@@ -229,14 +228,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:39:10] **Turno #4**: Beedrill (18/46 HP) vs Sandshrew (12/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [15:39:10] **Turno #3**: Beedrill (24/46 HP) vs Sandshrew (16/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:09] **Turno #3**: Beedrill (24/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:08] **Turno #2**: Beedrill (30/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:06] **Turno #1**: Beedrill (36/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [15:39:03] **Turno #1**: Beedrill (36/46 HP) vs Sandshrew (33/33 HP)
 - [15:39:02] **Turno #1**: Beedrill (53/46 HP) vs Sandshrew (33/33 HP)
 - [15:35:32] **Turno #1**: Butterfree (53/57 HP) vs Geodude (0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
-- [15:35:31] **Turno #1**: Butterfree (53/57 HP) vs Geodude (24/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
-- [15:35:31] **Turno #1**: Butterfree (55/57 HP) vs Geodude (24/24 HP)
 
 - [15:35:35] Entrou em Mt Moon B2f
 - [15:35:13] Entrou em Mt Moon B1F
