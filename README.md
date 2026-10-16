@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:50:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:50:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `78h 0m 58s`
+- **Tempo de Jogo:** `78h 0m 59s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **17 005 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 14 (Geodude)
@@ -49,8 +49,8 @@
 - **Tipos:** Rock/Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 33 | SPD: 12 | SPC: 18
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 213 | Def: 223 | Spd: 262 | Spc: 312 | HP: 170
-- **Experiência:** 1802 EXP (Progresso: 45%, faltam 233 p/ Lv.15)
+- **Stat Experience (0–65.535):** Atk: 245 | Def: 273 | Spd: 282 | Spc: 334 | HP: 185
+- **Experiência:** 1976 EXP (Progresso: 86%, faltam 59 p/ Lv.15)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Defense Curl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -102,13 +102,13 @@
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 23)
-- **Tipos:** Bug/Flying | **HP:** 41 / 68 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 35 / 68 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 34 | DEF: 33 | SPD: 46 | SPC: 51
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7638 | Def: 7229 | Spd: 7768 | Spc: 5554 | HP: 6408
-- **Experiência:** 13 115 EXP (Progresso: 57%, faltam 709 p/ Lv.24)
+- **Stat Experience (0–65.535):** Atk: 7670 | Def: 7279 | Spd: 7788 | Spc: 5576 | HP: 6423
+- **Experiência:** 13 289 EXP (Progresso: 68%, faltam 535 p/ Lv.24)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 19 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
