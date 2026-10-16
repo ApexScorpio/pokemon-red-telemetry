@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:09:41**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:09:45**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `61`, Y: `10`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `59`, Y: `5`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `56h 0m 7s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
@@ -94,7 +94,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **13 / 20 slots** (7 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **14 / 20 slots** (6 vagas livres)
 - **Potion** x6
 - **Poké Ball** x11
 - **Antidote** x2
@@ -108,6 +108,7 @@
 - **TM01 (Mega Punch)** x1
 - **Helix Fossil** x1
 - **Ether** x1
+- **TM04 (Whirlwind)** x1
 
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
@@ -164,7 +165,7 @@
 
 ## 🎒 9. Itens da Área (Route 4 (Leste - Saída Mt. Moon / Cerulean))
 ### Itens no Chão (Poké Balls visíveis):
-- **TM04 (Whirlwind)** (X: 57, Y: 3) • Estado: 🔴 Por Apanhar — *Num planalto acessível descendo de Mt. Moon.*
+- **TM04 (Whirlwind)** (X: 57, Y: 3) • Estado: ✅ Já Recolhido — *Num planalto acessível descendo de Mt. Moon.*
 
 ### Itens Ocultos (Invisíveis no chão):
 - **Great Ball** (X: 40, Y: 3) • Estado: 🔴 Por Apanhar — *Na rocha no planalto a leste perto de Cerulean.*
