@@ -1,61 +1,59 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:19**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `8`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `6`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `60h 0m 30s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
-- **Dinheiro:** **6606 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **6831 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Horn Attack`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
 
-### 🔴 Adversário em Campo: **Nidoran♀** (Lv. 15)
-- **Tipos:** Poison
-- **HP:** **0 / 43** (0%)
-- **Stats de Batalha:** ATK: 21 | DEF: 23 | SPD: 19 | SPC: 19
+### 🔴 Adversário em Campo: **Rattata** (Lv. 14)
+- **Tipos:** Normal
+- **HP:** **34 / 34** (100%)
+- **Stats de Batalha:** ATK: 23 | DEF: 17 | SPD: 27 | SPC: 14
 - **Os 4 Golpes do Adversário:**
-  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Scratch** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
-  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
+  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
-  - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
-  - **Scratch** (Normal) ➔ Dano: ~4-5 HP (1x)
-  - **Poison Sting** (Poison) ➔ Dano: ~1-2 HP (0.5x)
+  - **Tackle** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
+  - **Quick Attack** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Hyper Fang** (Normal) ➔ Dano: ~13-16 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
-- **Tipos:** Poison
-- **HP:** **57 / 59** (HEALTHY)
-- **Stats com Modificadores:** ATK: 41 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 30 (0)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
+- **Tipos:** Normal
+- **HP:** **57 / 56** (HEALTHY)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **21-25 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **6-8 HP** (1x eficácia) • ~5 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Horn Attack (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Horn Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-5: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (57/59). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (57/56). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 18)
+### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 0 / 56 ❌ (FAINTED)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -67,7 +65,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 19) ⚔️ [EM COMBATE]
+### 2. **Nidorino** (Lv. 19)
 - **Tipos:** Poison | **HP:** 57 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 33 | SPD: 36 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
@@ -222,6 +220,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:57:24] **Turno #1**: Beedrill (57/56 HP) vs Rattata (Lv. 14 • 34/34 HP)
 - [18:57:19] **Turno #1**: Nidorino (57/59 HP) vs Nidoran♀ (Lv. 15 • 0/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
 - [18:57:17] **Turno #1**: Nidorino (57/59 HP) vs Nidoran♀ (Lv. 15 • 19/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
 - [18:57:15] **Turno #1**: Nidorino (58/59 HP) vs Nidoran♀ (Lv. 15 • 43/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
@@ -236,7 +235,6 @@
 - [18:57:02] **Turno #3**: Beedrill (0/56 HP) vs Slowpoke (Lv. 17 • 10/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:57:01] **Turno #2**: Beedrill (8/56 HP) vs Slowpoke (Lv. 17 • 15/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:56:57] **Turno #2**: Beedrill (8/56 HP) vs Slowpoke (Lv. 17 • 30/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
-- [18:56:56] **Turno #1**: Beedrill (31/56 HP) vs Slowpoke (Lv. 17 • 35/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
