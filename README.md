@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:06:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:06:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,10 +17,12 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Quick Attack`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
 - **Tipos:** Rock/Ground
-- **HP:** **30 / 30** (100%)
+- **HP:** **27 / 30** (90%)
 - **Stats de Batalha:** ATK: 21 | DEF: 27 | SPD: 11 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -34,10 +36,10 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **3-4 HP** (0.5x eficácia) • ~8 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **3-4 HP** (0.5x eficácia) • ~7 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-8: Usa repetidamente Quick Attack
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-7: Usa repetidamente Quick Attack
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
@@ -45,8 +47,8 @@
 - **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
 - **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Pikachu.
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **42%** | Great Ball: **63%** | Ultra Ball: **42%**
+  - *Se adormeceres o inimigo:* **~47%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 16) ⚔️ [EM COMBATE]
@@ -59,7 +61,7 @@
   - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
 
 ### 2. **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -241,6 +243,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:06:29] **Turno #1**: Pikachu (40/40 HP) vs Geodude (Lv. 10 • 27/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
 - [18:06:26] **Turno #1**: Pikachu (40/40 HP) vs Geodude (Lv. 10 • 30/30 HP)
 - [18:06:19] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 10 • 0/29 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:06:16] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 10 • 29/29 HP)
@@ -255,7 +258,6 @@
 - [18:05:59] **Turno #2**: Rattata (39/43 HP) vs Geodude (Lv. 8 • 14/26 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [18:05:56] **Turno #1**: Rattata (39/43 HP) vs Geodude (Lv. 8 • 26/26 HP) • Golpe Inimigo: `Tackle`
 - [18:05:55] **Turno #1**: Rattata (43/43 HP) vs Geodude (Lv. 8 • 26/26 HP) • Golpe Inimigo: `Tackle`
-- [18:05:51] **Turno #1**: Pikachu (40/40 HP) vs Geodude (Lv. 8 • 26/26 HP)
 
 - [18:06:26] Entrou em Mt Moon B2f
 - [18:06:21] Entrou em Mt Moon B1F
