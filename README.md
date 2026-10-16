@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:25**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:29**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Quick Attack`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Squirtle** (Lv. 17)
 - **Tipos:** Water
-- **HP:** **44 / 44** (100%)
+- **HP:** **17 / 44** (39%)
 - **Stats de Batalha:** ATK: 24 | DEF: 29 | SPD: 22 | SPC: 24
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -41,13 +41,12 @@
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (-1) | SPD: 41 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **27-32 HP** (2x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **27-32 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Thundershock (Causa ~27-32 de dano)
-- ➔ Turno 2: Thundershock (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Thundershock. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -62,7 +61,7 @@
 - **Stat Experience (0–65.535):** Atk: 7341 | Def: 5202 | Spd: 8119 | Spc: 4505 | HP: 5268
 - **Experiência:** 6001 EXP (Progresso: 16%, faltam 858 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 25 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 27 | Poder: 40 | Precisão: 100%
@@ -208,6 +207,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:43:29] **Turno #1**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
+- [18:43:26] **Turno #1**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 44/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:43:21] **Turno #2**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 44/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:43:20] **Turno #2**: Pikachu (12/44 HP) vs Rattata (Lv. 15 • 0/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:43:19] **Turno #2**: Pikachu (10/42 HP) vs Rattata (Lv. 15 • 0/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
@@ -221,8 +222,6 @@
 - [18:42:43] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 0/53 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 - [18:42:31] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 7/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sand-attack`
 - [18:42:27] **Turno #1**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 7/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sand-attack`
-- [18:42:18] **Turno #1**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 30/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
-- [18:42:17] **Turno #1**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 53/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 
 - [18:33:36] Entrou em Cerulean City
 - [18:29:24] Entrou em Cerulean Mart
