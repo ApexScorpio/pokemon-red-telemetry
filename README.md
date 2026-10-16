@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:32**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,40 +10,38 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `6`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `60h 0m 30s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **Tempo de Jogo:** `60h 0m 31s`
+- **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
 - **Dinheiro:** **6831 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Horn Attack`
-- **Último Golpe Usado pelo Adversário:** `Quick Attack`
+- **Último Golpe Usado pelo Adversário:** `Leer`
 
-### 🔴 Adversário em Campo: **Rattata** (Lv. 14)
-- **Tipos:** Normal
-- **HP:** **0 / 34** (0%)
-- **Stats de Batalha:** ATK: 23 | DEF: 17 | SPD: 27 | SPC: 14
+### 🔴 Adversário em Campo: **Ekans** (Lv. 14)
+- **Tipos:** Poison
+- **HP:** **0 / 36** (0%)
+- **Stats de Batalha:** ATK: 24 | DEF: 19 | SPD: 22 | SPC: 18
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
-  - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
+  - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
+  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~5-7 HP (1x)
-  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ Dano: ~5-7 HP (1x)
-  - **Hyper Fang** (Normal) ➔ Dano: ~10-12 HP (1x)
+  - **Wrap** (Normal) ➔ Dano: ~2-3 HP (1x)
+  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
+  - **Poison Sting** (Poison) ➔ Dano: ~1-2 HP (0.5x)
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 19)
 - **Tipos:** Poison
 - **HP:** **45 / 59** (HEALTHY)
-- **Stats com Modificadores:** ATK: 41 (0) | DEF: 33 (0) | SPD: 36 (0) | SPC: 30 (0)
+- **Stats com Modificadores:** ATK: 41 (0) | DEF: 33 (-1) | SPD: 36 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **28-33 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **25-30 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
 - ➔ Turno 1: Usa Horn Attack (K.O. Imediato em 1 golpe!)
@@ -74,7 +72,7 @@
 - **Stat Experience (0–65.535):** Atk: 4196 | Def: 2815 | Spd: 4506 | Spc: 2543 | HP: 3358
 - **Experiência:** 5120 EXP (Progresso: 62%, faltam 340 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 18 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 16 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -222,6 +220,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:57:31] **Turno #1**: Nidorino (45/59 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Leer`
+- [18:57:30] **Turno #1**: Nidorino (45/59 HP) vs Ekans (Lv. 14 • 9/36 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Leer`
+- [18:57:29] **Turno #1**: Nidorino (45/59 HP) vs Ekans (Lv. 14 • 36/36 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Leer`
+- [18:57:28] **Turno #2**: Nidorino (45/59 HP) vs Ekans (Lv. 14 • 36/36 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Quick Attack`
 - [18:57:28] **Turno #2**: Nidorino (45/59 HP) vs Rattata (Lv. 14 • 0/34 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Quick Attack`
 - [18:57:27] **Turno #2**: Nidorino (45/59 HP) vs Rattata (Lv. 14 • 3/34 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Quick Attack`
 - [18:57:26] **Turno #1**: Nidorino (51/59 HP) vs Rattata (Lv. 14 • 3/34 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
@@ -233,10 +235,6 @@
 - [18:57:13] **Turno #1**: Nidorino (55/56 HP) vs Nidoran♂ (Lv. 15 • 0/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
 - [18:57:12] **Turno #1**: Nidorino (55/56 HP) vs Nidoran♂ (Lv. 15 • 14/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
 - [18:57:11] **Turno #1**: Nidorino (56/56 HP) vs Nidoran♂ (Lv. 15 • 14/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
-- [18:57:10] **Turno #1**: Nidorino (56/56 HP) vs Nidoran♂ (Lv. 15 • 41/41 HP)
-- [18:57:10] **Turno #1**: Beedrill (56/56 HP) vs Slowpoke (Lv. 17 • 0/60 HP)
-- [18:57:05] **Turno #3**: Nidorino (56/56 HP) vs Slowpoke (Lv. 17 • 0/60 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Confusion`
-- [18:57:05] **Turno #3**: Nidorino (56/56 HP) vs Slowpoke (Lv. 17 • 10/60 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Confusion`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
@@ -246,6 +244,7 @@
 - [18:53:55] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:57:29] `HORN ATTACK TACKLE`
 - [18:56:38] `FURY ATTACK POISON STING`
 - [18:56:32] `Youe going to see BILL First`
 - [18:56:22] `FURY ATTACK POISON STING`
@@ -260,7 +259,6 @@
 - [18:16:07] `THUNDERSHOCK THUNDER WAVE`
 - [18:15:04] `TACKLE TAIL WHIP`
 - [18:14:53] `THUNDERSHOCK THUNDER WAVE`
-- [18:14:31] `CONFUSION STUN SPORE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
