@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:25:42**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:25:47**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 5** (ID Interno: `0x10`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `24`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `2`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `63h 0m 34s`
 - **💬 Diálogo / Mensagem no Ecrã:** `anger It could be docile one`
@@ -162,12 +162,12 @@
 - [19:16:50] **Turno #6**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:50] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 
+- [19:25:46] Entrou em Route 5
+- [19:25:44] Entrou em Cerulean City
 - [19:25:24] Entrou em Route 5
 - [19:25:23] Entrou em Cerulean City
 - [19:24:02] Entrou em Route 5
 - [19:23:37] Entrou em Cerulean City
-- [19:23:31] Entrou em Route 9
-- [19:23:28] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:24:32] `anger It could be docile one`
