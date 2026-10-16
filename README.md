@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:31**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:35**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,40 +18,34 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Tackle`
+- **Último Golpe Usado por RED:** `Thundershock`
 - **Último Golpe Usado pelo Adversário:** `Gust`
 
-### 🔴 Adversário em Campo: **Pidgey** (Lv. 13)
-- **Tipos:** Normal/Flying
-- **HP:** **2 / 35** (6%)
-- **Stats de Batalha:** ATK: 19 | DEF: 17 | SPD: 21 | SPC: 16
+### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
+- **Tipos:** Grass/Poison
+- **HP:** **36 / 36** (100%)
+- **Stats de Batalha:** ATK: 20 | DEF: 21 | SPD: 14 | SPC: 26
 - **Os 4 Golpes do Adversário:**
-  - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Gust** (Normal) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
-  - **Sand-attack** (Normal) ➔ Golpe de Status
-  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
+  - **Absorb** (Grass) ➔ Dano: ~5-6 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 17)
-- **Tipos:** Normal
-- **HP:** **0 / 45** (HEALTHY)
-- **Stats com Modificadores:** ATK: 28 (0) | DEF: 21 (0) | SPD: 36 (0) | SPC: 21 (0)
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 18)
+- **Tipos:** Electric
+- **HP:** **44 / 44** (HEALTHY)
+- **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (0) | SPD: 41 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **16-19 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **11-14 HP** (1x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-3: Usa repetidamente Quick Attack
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Pikachu (Lv. 18)** [44/44 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Pikachu para manter o controlo da batalha.
-- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 18)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (44/44). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -90,7 +84,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 4. **Rattata** (Lv. 17) ⚔️ [EM COMBATE]
+### 4. **Rattata** (Lv. 17)
 - **Tipos:** Normal | **HP:** 0 / 45 ❌ (FAINTED)
 - **Stats Reais:** ATK: 28 | DEF: 21 | SPD: 36 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
@@ -102,14 +96,14 @@
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
 
-### 5. **Pikachu** (Lv. 18)
+### 5. **Pikachu** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 44 / 44 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 22 | SPD: 41 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7389 | Def: 5267 | Spd: 8162 | Spc: 4555 | HP: 5312
-- **Experiência:** 6241 EXP (Progresso: 40%, faltam 618 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 7434 | Def: 5307 | Spd: 8218 | Spc: 4590 | HP: 5352
+- **Experiência:** 6394 EXP (Progresso: 55%, faltam 465 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -215,6 +209,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:59:35] **Turno #4**: Pikachu (44/44 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Gust`
+- [18:59:34] **Turno #4**: Pikachu (44/44 HP) vs Pidgey (Lv. 13 • 0/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Gust`
+- [18:59:32] **Turno #4**: Pikachu (44/44 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Gust`
 - [18:59:31] **Turno #4**: Rattata (0/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Gust`
 - [18:59:30] **Turno #4**: Rattata (4/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Gust`
 - [18:59:29] **Turno #3**: Rattata (4/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
@@ -227,9 +224,6 @@
 - [18:59:23] **Turno #2**: Rattata (22/45 HP) vs Oddish (Lv. 13 • 7/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
 - [18:59:22] **Turno #2**: Rattata (22/45 HP) vs Oddish (Lv. 13 • 3/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
 - [18:59:21] **Turno #1**: Rattata (31/45 HP) vs Oddish (Lv. 13 • 17/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
-- [18:59:20] **Turno #1**: Rattata (31/45 HP) vs Oddish (Lv. 13 • 14/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
-- [18:59:18] **Turno #1**: Rattata (37/45 HP) vs Oddish (Lv. 13 • 36/36 HP)
-- [18:59:17] **Turno #1**: Beedrill (37/56 HP) vs Sandshrew (Lv. 14 • 0/40 HP)
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
