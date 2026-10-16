@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:44:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:44:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -25,19 +25,19 @@
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~2-3 HP (1x)
+  - **Leech Life** (Bug) ➔ Dano: ~5-6 HP (2x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
-- **Tipos:** Normal
-- **HP:** **53 / 48** (HEALTHY)
+- **Tipos:** Bug/Poison
+- **HP:** **38 / 48** (HEALTHY)
 - **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **3-4 HP** (0.5x eficácia) • ~7 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • ~5 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-7: Usa repetidamente Poison Sting
+- ➔ Turnos 1-5: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
@@ -229,6 +229,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:44:04] **Turno #1**: Beedrill (38/48 HP) vs Zubat (28/28 HP)
 - [15:44:01] **Turno #1**: Beedrill (53/48 HP) vs Zubat (28/28 HP)
 - [15:43:42] **Turno #2**: Butterfree (53/57 HP) vs Geodude (0/31 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:43:41] **Turno #2**: Butterfree (53/57 HP) vs Geodude (28/31 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
@@ -236,7 +237,6 @@
 - [15:43:40] **Turno #1**: Beedrill (38/48 HP) vs Geodude (28/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [15:43:39] **Turno #1**: Beedrill (43/48 HP) vs Geodude (28/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [15:43:38] **Turno #1**: Beedrill (43/48 HP) vs Geodude (29/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [15:43:37] **Turno #1**: Beedrill (43/48 HP) vs Geodude (30/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [15:43:51] Entrou em Mt Moon B2f
 - [15:43:49] Entrou em Mt Moon B1F
