@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:42:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:42:54**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,7 +16,7 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Quick Attack`
 - **Último Golpe Usado pelo Adversário:** `Gust`
 
@@ -49,7 +49,7 @@
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 17)
+### 1. **Pikachu** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 28 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 21 | SPD: 39 | SPC: 28
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -202,6 +202,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:42:54] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 - [18:42:45] **Turno #2**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 - [18:42:43] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 0/53 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 - [18:42:31] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 7/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sand-attack`
@@ -216,7 +217,6 @@
 - [18:17:28] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 0/21 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 - [18:17:25] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 21/21 HP)
 - [18:17:23] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 0/20 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Wrap`
-- [18:17:21] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 20/20 HP)
 
 - [18:33:36] Entrou em Cerulean City
 - [18:29:24] Entrou em Cerulean Mart
