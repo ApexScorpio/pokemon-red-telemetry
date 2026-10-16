@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:46:48**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:46:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,13 +11,13 @@
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `52h 0m 56s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **2051 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #2`
-- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Hyper Fang`
 
 ### 🔴 Adversário em Campo: **Raticate** (Lv. 16)
@@ -30,32 +30,32 @@
   - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
   - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (11-13 HP)
+  - **Tackle** (Normal) ➔ Dano: ~12-15 HP (1x)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (12-15 HP)
-  - **Hyper Fang** (Normal) ➔ 🚨 RISCO DE K.O.! (23-28 HP)
+  - **Quick Attack** (Normal) ➔ Dano: ~13-16 HP (1x)
+  - **Hyper Fang** (Normal) ➔ Dano: ~25-30 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 48** (HEALTHY)
-- **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
+### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
+- **Tipos:** Normal
+- **HP:** **43 / 43** (HEALTHY)
+- **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • ~7 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **20-24 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-7: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 35%)
+- ➔ Turno 1: Hyper Fang
+- ➔ Turno 2: Hyper Fang (Finalizador)
+> **Resumo Tático:** ⚠️ Sobrevivência reduzida (35%): O inimigo ataca duas vezes antes de venceres.
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Rattata (Lv. 16)** [43/43 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Rattata para manter o controlo da batalha.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Rattata tem a melhor rota de vitória rápida e HP estável (43/43). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 15)
 - **Tipos:** Bug/Poison | **HP:** 0 / 48 ❌ (FAINTED)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -78,7 +78,7 @@
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
-### 3. **Rattata** (Lv. 16)
+### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
 - **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
@@ -230,6 +230,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:46:48] **Turno #2**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:38] **Turno #2**: Beedrill (0/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:37] **Turno #2**: Beedrill (20/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:36] **Turno #1**: Beedrill (20/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
@@ -237,7 +238,6 @@
 - [15:44:16] **Turno #1**: Beedrill (33/48 HP) vs Zubat (0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:44:15] **Turno #1**: Beedrill (33/48 HP) vs Zubat (16/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:44:14] **Turno #1**: Beedrill (33/48 HP) vs Zubat (14/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:44:13] **Turno #1**: Beedrill (38/48 HP) vs Zubat (14/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 
 - [15:43:51] Entrou em Mt Moon B2f
 - [15:43:49] Entrou em Mt Moon B1F
@@ -247,6 +247,7 @@
 - [15:42:13] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [15:46:51] `TACKLE TAIL WHIP`
 - [15:44:12] `FURY ATTACK POISON STING`
 - [15:43:01] `THUNDERSHOCK THUNDER WAVE`
 - [15:39:05] `FURY ATTACK POISON STING`
