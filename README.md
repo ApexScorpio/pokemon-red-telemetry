@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:56**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:00**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,27 +9,60 @@
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `25`
 - **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `59h 0m 42s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3466 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Quick Attack`
+
+### 🔴 Adversário em Campo: **Rattata** (Lv. 14)
+- **Tipos:** Normal
+- **HP:** **0 / 34** (0%)
+- **Stats de Batalha:** ATK: 23 | DEF: 17 | SPD: 27 | SPC: 14
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
+  - **Quick Attack** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Hyper Fang** (Normal) ➔ 🚨 RISCO DE K.O.! (13-16 HP)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
+- **Tipos:** Bug/Poison
+- **HP:** **15 / 54** (HEALTHY)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 70%)
+- ➔ Turno 1: Poison Sting (Causa ~8-10 de dano)
+- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (15/54). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Nidorino (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 17)
-- **Tipos:** Bug/Poison | **HP:** 23 / 54 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 15 / 54 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4426 | Def: 3763 | Spd: 4891 | Spc: 2915 | HP: 3698
 - **Experiência:** 5477 EXP (Progresso: 61%, faltam 355 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 8 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 7 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -175,6 +208,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:50:00] **Turno #1**: Beedrill (15/54 HP) vs Rattata (Lv. 14 • 0/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
+- [18:49:59] **Turno #1**: Beedrill (15/54 HP) vs Rattata (Lv. 14 • 14/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
+- [18:49:58] **Turno #1**: Beedrill (15/54 HP) vs Rattata (Lv. 14 • 34/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
+- [18:49:57] **Turno #1**: Beedrill (23/54 HP) vs Rattata (Lv. 14 • 34/34 HP)
 - [18:49:52] **Turno #3**: Beedrill (23/54 HP) vs Nidoran♀ (Lv. 14 • 0/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [18:49:52] **Turno #3**: Beedrill (23/54 HP) vs Nidoran♀ (Lv. 14 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [18:49:51] **Turno #3**: Beedrill (28/54 HP) vs Nidoran♀ (Lv. 14 • 6/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
@@ -186,10 +223,6 @@
 - [18:49:44] **Turno #2**: Beedrill (38/54 HP) vs Nidoran♀ (Lv. 14 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [18:49:43] **Turno #2**: Beedrill (38/54 HP) vs Pidgey (Lv. 14 • 0/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [18:49:42] **Turno #2**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 1/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Gust`
-- [18:49:40] **Turno #1**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 1/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Gust`
-- [18:49:39] **Turno #1**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 7/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Gust`
-- [18:49:38] **Turno #1**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 19/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [18:49:38] **Turno #1**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 31/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
