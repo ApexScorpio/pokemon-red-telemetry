@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:07:10**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:07:14**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `31`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `68h 0m 2s`
+- **Tempo de Jogo:** `68h 0m 3s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK TWINEEDLE`
 - **Dinheiro:** **12 420 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `Quick Attack`
+- **Último Golpe Usado pelo Adversário:** `Hyper Fang`
 
 ### 🔴 Adversário em Campo: **Raticate** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **46 / 46** (100%)
+- **HP:** **22 / 46** (48%)
 - **Stats de Batalha:** ATK: 33 | DEF: 26 | SPD: 38 | SPC: 23
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,27 +31,29 @@
   - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
   - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~8-10 HP (1x)
+  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (8-10 HP)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ Dano: ~10-12 HP (1x)
+  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (10-12 HP)
   - **Hyper Fang** (Normal) ➔ 🚨 RISCO DE K.O.! (18-22 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 20)
 - **Tipos:** Bug/Poison
-- **HP:** **22 / 62** (HEALTHY)
+- **HP:** **0 / 62** (HEALTHY)
 - **Stats com Modificadores:** ATK: 43 (0) | DEF: 28 (0) | SPD: 40 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Twineedle** (Bug) ➔ Dano: **13-16 HP** (1x eficácia) • ~3 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Twineedle** (Bug) ➔ Dano: **13-16 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-3: Usa repetidamente Twineedle
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 70%)
+- ➔ Turno 1: Twineedle (Causa ~13-16 de dano)
+- ➔ Turno 2: Twineedle (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Twineedle. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (22/62). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Nidorino (Lv. 20)** [61/61 HP]
+- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Nidorino para manter o controlo da batalha.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -79,13 +81,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Beedrill** (Lv. 20) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 33 / 62 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 11 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 28 | SPD: 40 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 5135 | Def: 4373 | Spd: 5752 | Spc: 3412 | HP: 4197
 - **Experiência:** 8689 EXP (Progresso: 55%, faltam 572 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 10 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 7 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Twineedle** (Bug) — PP: 18 | Poder: 25 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -296,6 +298,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:07:13] **Turno #3**: Beedrill (0/62 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
+- [20:07:12] **Turno #2**: Beedrill (11/62 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [20:07:11] **Turno #1**: Beedrill (22/62 HP) vs Raticate (Lv. 16 • 28/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [20:07:10] **Turno #1**: Beedrill (22/62 HP) vs Raticate (Lv. 16 • 34/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [20:07:10] **Turno #1**: Beedrill (22/62 HP) vs Raticate (Lv. 16 • 46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [20:07:08] **Turno #1**: Beedrill (33/62 HP) vs Raticate (Lv. 16 • 46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [20:07:07] **Turno #1**: Beedrill (33/62 HP) vs Spearow (Lv. 16 • 0/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
@@ -307,10 +313,6 @@
 - [20:06:55] **Turno #3**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [20:06:55] **Turno #3**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [20:06:53] **Turno #2**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
-- [20:06:52] **Turno #2**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 3/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
-- [20:06:51] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 3/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
-- [20:06:50] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 12/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
-- [20:06:48] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 23/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
