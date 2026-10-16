@@ -1,68 +1,36 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:32**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `4`
-- **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `4`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `60h 0m 24s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
-- **Dinheiro:** **5531 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **5756 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `Hyper Fang`
-
-### 🔴 Adversário em Campo: **Spearow** (Lv. 15)
-- **Tipos:** Normal/Flying
-- **HP:** **39 / 39** (100%)
-- **Stats de Batalha:** ATK: 25 | DEF: 16 | SPD: 28 | SPC: 16
-- **Os 4 Golpes do Adversário:**
-  - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
-  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
-  - **Leer** (Normal) • PP: NaN • Poder: -- • Precisão: 100%
-  - **Fury Attack** (Normal) • PP: NaN • Poder: 15 • Precisão: 85%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Peck** (Flying) ➔ Dano: ~15-18 HP (2x)
-  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-  - **Fury Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
-- **Tipos:** Bug/Poison
-- **HP:** **56 / 56** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (-1) | SPD: 36 (0) | SPC: 24 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **11-13 HP** (1x eficácia) • ~3 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-3: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (56/56). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4759 | Def: 3996 | Spd: 5273 | Spc: 3105 | HP: 3898
-- **Experiência:** 6476 EXP (Progresso: 63%, faltam 383 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 4819 | Def: 4026 | Spd: 5343 | Spc: 3136 | HP: 3938
+- **Experiência:** 6662 EXP (Progresso: 81%, faltam 197 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 18 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -224,6 +192,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:29] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 0/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
+- [18:56:28] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 21/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [18:56:26] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 39/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [18:56:26] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [18:56:25] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 1/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
@@ -237,8 +207,6 @@
 - [18:56:08] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 48/48 HP)
 - [18:56:02] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 20/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Teleport`
 - [18:56:00] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 28/28 HP)
-- [18:53:31] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 26/26 HP)
-- [18:53:29] **Turno #1**: Butterfree (62/62 HP) vs Weedle (Lv. 7 • 0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Poison Sting`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
