@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:13:20**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:13:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,9 +8,9 @@
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Vermilion City** (ID Interno: `0x5`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `75h 0m 10s`
+- **Tempo de Jogo:** `75h 0m 11s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
@@ -24,13 +24,13 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Geodude** (Lv. 8)
-- **Tipos:** Rock/Ground | **HP:** 1 / 24 ✅ (SAUDÁVEL)
+- **Tipos:** Rock/Ground | **HP:** 24 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 16 | Def: 18 | Spd: 10 | Spc: 25 | HP: 15
 - **Experiência:** 362 EXP (Progresso: 46%, faltam 57 p/ Lv.9)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
 ### 2. **Pikachu** (Lv. 20)
 - **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
@@ -79,7 +79,7 @@
   - **Sand-attack** (Normal) — PP: 15 | Poder: -- | Precisão: 100%
 
 ### 6. **Diglett** (Lv. 18)
-- **Tipos:** Ground | **HP:** 14 / 35 ✅ (SAUDÁVEL)
+- **Tipos:** Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 13 | Defesa: 14 | Velocidade: 13 | Especial: 11 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
@@ -119,8 +119,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 11** *(Entrou a Lv. 10 • Ganhou +1 níveis!)*
 - **Custo de Retirada:** **200 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **897 EXP**
-- **Progresso para Nível 12:** Faltam **76 passos / EXP** (67%)
+- **Experiência Total:** **906 EXP**
+- **Progresso para Nível 12:** Faltam **67 passos / EXP** (71%)
 - **DVs Gen 1:** ATK: 10 | DEF: 8 | SPD: 6 | SPC: 3 | HP: 1
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 20
@@ -394,12 +394,12 @@
 - [21:10:39] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 4/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:38] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 10/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 
+- [21:13:24] Entrou em Vermilion City
+- [21:13:20] Entrou em Vermilion Pokecenter
 - [21:13:16] Entrou em Vermilion City
 - [21:13:15] Entrou em Route 11
 - [21:13:14] Entrou em Digletts Cave Route 11
 - [21:12:51] Entrou em Digletts Cave
-- [21:12:50] Entrou em Digletts Cave Route 11
-- [21:12:50] Entrou em Route 11
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [21:10:29] `TACKLE`
