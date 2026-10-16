@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:39:38**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:39:42**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `Scratch`
+- **Turno Atual:** `Turno #5`
+- **Último Golpe Usado por RED:** `Poison Sting`
+- **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
 ### 🔴 Adversário em Campo: **Sandshrew** (Lv. 11)
 - **Tipos:** Ground
-- **HP:** **12 / 33** (36%)
+- **HP:** **9 / 33** (27%)
 - **Stats de Batalha:** ATK: 23 | DEF: 25 | SPD: 15 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -38,15 +38,15 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **2-3 HP** (0.5x eficácia) • ~4 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **2-3 HP** (0.5x eficácia) • ~3 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-4: Usa repetidamente Poison Sting
+- ➔ Turnos 1-3: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 12 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 9 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
@@ -58,7 +58,7 @@
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 9 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
 ### 2. **Butterfree** (Lv. 19)
 - **Tipos:** Bug/Flying | **HP:** 53 / 57 ✅ (SAUDÁVEL)
@@ -228,14 +228,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:39:41] **Turno #5**: Beedrill (18/46 HP) vs Sandshrew (9/33 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Sand-attack`
+- [15:39:39] **Turno #4**: Beedrill (18/46 HP) vs Sandshrew (9/33 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Sand-attack`
 - [15:39:10] **Turno #4**: Beedrill (18/46 HP) vs Sandshrew (12/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:10] **Turno #3**: Beedrill (24/46 HP) vs Sandshrew (16/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:09] **Turno #3**: Beedrill (24/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:08] **Turno #2**: Beedrill (30/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:06] **Turno #1**: Beedrill (36/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [15:39:03] **Turno #1**: Beedrill (36/46 HP) vs Sandshrew (33/33 HP)
-- [15:39:02] **Turno #1**: Beedrill (53/46 HP) vs Sandshrew (33/33 HP)
-- [15:35:32] **Turno #1**: Butterfree (53/57 HP) vs Geodude (0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 
 - [15:35:35] Entrou em Mt Moon B2f
 - [15:35:13] Entrou em Mt Moon B1F
