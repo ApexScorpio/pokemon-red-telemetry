@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:25:55**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:25:59**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -13,7 +13,7 @@
 - **Tempo de Jogo:** `76h 0m 32s`
 - **💬 Diálogo / Mensagem no Ecrã:** `We heal your POKMON back to`
 - **Dinheiro:** **14 055 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 9 (Geodude)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
@@ -53,17 +53,8 @@
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **21%** | Great Ball: **40%** | Ultra Ball: **36%**
   - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
 
-## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Geodude** (Lv. 9)
-- **Tipos:** Rock/Ground | **HP:** 26 / 26 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 21 | DEF: 23 | SPD: 9 | SPC: 13
-- **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 44 | Def: 38 | Spd: 35 | Spc: 45 | HP: 38
-- **Experiência:** 497 EXP (Progresso: 55%, faltam 63 p/ Lv.10)
-- **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-
-### 2. **Diglett** (Lv. 18)
+## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
+### 1. **Diglett** (Lv. 18)
 - **Tipos:** Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 13 | Defesa: 14 | Velocidade: 13 | Especial: 11 | HP: 11
@@ -73,7 +64,7 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
-### 3. **Butterfree** (Lv. 22)
+### 2. **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
@@ -85,7 +76,7 @@
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
-### 4. **Nidorino** (Lv. 20)
+### 3. **Nidorino** (Lv. 20)
 - **Tipos:** Poison | **HP:** 61 / 61 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
@@ -97,7 +88,7 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 5. **Pikachu** (Lv. 21)
+### 4. **Pikachu** (Lv. 21)
 - **Tipos:** Electric | **HP:** 50 / 50 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 36 | DEF: 25 | SPD: 47 | SPC: 34
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -109,7 +100,7 @@
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
-### 6. **Charmeleon** (Lv. 19)
+### 5. **Charmeleon** (Lv. 19)
 - **Tipos:** Fire | **HP:** 55 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 30 | SPD: 44 | SPC: 37
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
@@ -217,7 +208,7 @@
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
-  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 9 (Geodude)`).
+  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 18 (Diglett)`).
   - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
@@ -227,10 +218,10 @@
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **27 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **45 / 151**
-- **Total de Pokémon Individuais Ativos:** **19 espécimes** (6 na Equipa + 13 no PC)
+- **Total de Pokémon Individuais Ativos:** **19 espécimes** (5 na Equipa + 14 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #50 Diglett, #56 Mankey, #63 Abra, #74 Geodude, #83 Farfetch'd
 
-## 💾 6. Pokémon Guardados no PC (13 / 20 na Caixa 1) • Vagas Livres: **7**
+## 💾 6. Pokémon Guardados no PC (14 / 20 na Caixa 1) • Vagas Livres: **6**
 - #1: **Mankey** (Lv. 2) • Tipos: Fighting (Dex: #56) • HP: 14592 • Golpes: Golpe #190 (Não Identificado), Scratch, Leer
 - #2: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
 - #3: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
@@ -244,6 +235,7 @@
 - #11: **Beedrill** (Lv. 62) • Tipos: Bug/Poison (Dex: #15) • HP: 29184 • Golpes: Golpe #255 (Não Identificado), Fury Attack, String Shot, Twineedle
 - #12: **Abra** (Lv. 37) • Tipos: Psychic (Dex: #63) • HP: 37888 • Golpes: Golpe #200 (Não Identificado), Teleport
 - #13: **Farfetch'd** (Lv. 21) • Tipos: Normal/Flying (Dex: #83) • HP: 16384 • Golpes: Growl, Peck, Sand-attack
+- #14: **Geodude** (Lv. 26) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
