@@ -1,26 +1,26 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:59:53**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:59:58**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 5 Gate** (ID Interno: `0x46`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `3`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Localização Atual:** **Route 5** (ID Interno: `0x10`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `28`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `67h 0m 16s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TOSS`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 17 (Charmeleon)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 17 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Jr. Trainer♂ Ricky** (Rota 6)
-  - **Equipa Adversária:** Squirtle (Lv. 20)
-  - **Lead Recomendado:** Pikachu (Thundershock)
-  - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
+- **🎯 Próximo Alvo de Batalha na Área:** **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada))
+  - **Equipa Adversária:** Machop (Lv. 17) • Drowzee (Lv. 17)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 17)
@@ -126,7 +126,8 @@
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
   - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 17 (Charmeleon)`).
-  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
+  - **Eficiência na Área Atual:** **100% de encontros bloqueados** (100% bloqueados)
+  - **Bloqueados por Repel:** Oddish Nv.13 (20%), Pidgey Nv.13 (20%), Pidgey Nv.15 (15%), Mankey Nv.10 (10%), Mankey Nv.12 (10%), Oddish Nv.15 (10%), Oddish Nv.16 (5%), Pidgey Nv.16 (5%), Mankey Nv.14 (4%), Mankey Nv.16 (1%)
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
 
@@ -162,65 +163,131 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↘️ 17 passos Sudeste] **Jr. Trainer♂ Ricky** (Rota 6) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Squirtle (Lv. 20)
-- **Lead Recomendado:** Pikachu (Thundershock)
-- **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
-
-### #2. [↘️ 27 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
-- **Lead Recomendado:** Geodude / Butterfree
-- **Estratégia:** Geodude é imune a Electric e resiste a Normal.
-
-### #3. [↘️ 38 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Butterfree (Lv. 20)
-- **Lead Recomendado:** Pikachu / Charmeleon
-- **Estratégia:** Pikachu ou fogo derrotam Butterfree.
-
-### #4. [↘️ 23 passos Sudeste] **Jr. Trainer♂ Jeff** (Rota 6) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
-- **Lead Recomendado:** Pikachu / Geodude
-- **Estratégia:** Cuidado com Hyper Fang do Raticate.
-
-### #5. [↘️ 29 passos Sudeste] **Jr. Trainer♀ Izzy** (Rota 6) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
+### #1. [↗️ 18 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
+- **Dificuldade:** Chefe
+- **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
 - **Lead Recomendado:** Pikachu
-- **Estratégia:** Pikachu limpa os três pássaros.
+- **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle.
 
-### #6. [↘️ 35 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **⚔️ POR VENCER**
+### #2. [↗️ 19 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
-- **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
+- **Roster Inimigo:** Caterpie (Lv. 10) • Weedle (Lv. 10)
 - **Lead Recomendado:** Charmeleon
-- **Estratégia:** Ember limpa os insetos.
+- **Estratégia:** Ember elimina os insetos.
 
-### #7. [➡️ 1 passos Este] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #3. [↗️ 14 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Pikachu e Charmeleon limpam.
+
+### #4. [↗️ 11 passos Nordeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Sandshrew (Lv. 14) • Ekans (Lv. 14)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion contra Ekans e Sandshrew.
+
+### #5. [↗️ 6 passos Nordeste] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
 - **Dificuldade:** Média
-- **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Diglett é 100% imune a ataques elétricos.
+- **Roster Inimigo:** Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion causa 2x dano.
 
-### #8. [⬅️ 2 passos Oeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #6. [↘️ 9 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
 - **Dificuldade:** Média
-- **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Dig destrói ambos num único turno.
+- **Roster Inimigo:** Mankey (Lv. 18)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Fraqueza a Psíquico e Voador.
 
-### #9. [↘️ 6 passos Sudeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↘️ 10 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
-- **Roster Inimigo:** Pikachu (Lv. 23)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Diglett vence facilmente sem sofrer dano.
+- **Roster Inimigo:** Ekans (Lv. 15) • Zubat (Lv. 15)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Pikachu e Butterfree.
 
-### #10. [↗️ 3 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
-- **Dificuldade:** Chefe / Difícil
-- **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
-- **Lead Recomendado:** Diglett / Dugtrio
-- **Estratégia:** 100% Imune a Electric! Usa Dig no Raichu para aniquilar sem sofrer dano.
+### #8. [↗️ 23 passos Nordeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Ataques rápidos.
+
+### #9. [↗️ 30 passos Nordeste] **Youngster Joey** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Rattata (Lv. 15) • Spearow (Lv. 15)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Pikachu para Spearow.
+
+### #10. [↗️ 36 passos Nordeste] **Youngster Dan** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Slowpoke (Lv. 17)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Fraqueza a Electric.
+
+### #11. [↗️ 43 passos Nordeste] **Jr. Trainer♂ Flint** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion e golpes fortes.
+
+### #12. [↗️ 34 passos Nordeste] **Lass Haley** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Oddish (Lv. 15) • Pidgey (Lv. 15) • Oddish (Lv. 15)
+- **Lead Recomendado:** Charmeleon
+- **Estratégia:** Ember elimina Oddish.
+
+### #13. [↗️ 52 passos Nordeste] **Hiker Franklin** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Machop (Lv. 15) • Geodude (Lv. 15)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion destrói Machop.
+
+### #14. [↗️ 56 passos Nordeste] **Youngster Chad** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Ekans (Lv. 14) • Sandshrew (Lv. 14)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Golpes psíquicos.
+
+### #15. [↗️ 56 passos Nordeste] **Hiker Wayne** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Onix (Lv. 17)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Ataca no lado Especial.
+
+### #16. [↗️ 65 passos Nordeste] **Lass Robin** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Bellsprout (Lv. 13) • Pidgey (Lv. 13) • Oddish (Lv. 13)
+- **Lead Recomendado:** Charmeleon
+- **Estratégia:** Ember limpa.
+
+### #17. [↗️ 67 passos Nordeste] **Hiker Nob** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Geodude (Lv. 13) x2 • Machop (Lv. 13)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion.
+
+### #18. [↗️ 46 passos Nordeste] **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada)) • **⚔️ POR VENCER**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Machop (Lv. 17) • Drowzee (Lv. 17)
+- **Lead Recomendado:** Butterfree (Confusion)
+- **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
+
+### #19. [↖️ 22 passos Noroeste] **Swimmer Luis** (Ginásio de Cerulean) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Horsea (Lv. 16) • Shellder (Lv. 16)
+- **Lead Recomendado:** Pikachu (Thundershock)
+- **Estratégia:** Golpes elétricos.
+
+### #20. [↖️ 28 passos Noroeste] **Jr. Trainer♀ Diana** (Ginásio de Cerulean) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Goldeen (Lv. 19)
+- **Lead Recomendado:** Pikachu (Thundershock)
+- **Estratégia:** Thundershock.
+
+### #21. [⬆️ 25 passos Norte] **Líder Misty** (Ginásio de Cerulean (Líder)) • **✅ VENCIDO**
+- **Dificuldade:** Chefe
+- **Roster Inimigo:** Staryu (Lv. 18) • Starmie (Lv. 21)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Insignia Cascade obtida!
 
 ## 🌐 10. Panorama Global de 100% de Kanto (Guia Completo para ChatGPT)
 ### 🎯 Estado dos 8 Ginásios de Kanto:
@@ -270,12 +337,12 @@
 - [19:16:53] **Turno #8**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 10/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:51] **Turno #7**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 16/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 
+- [19:59:55] Entrou em Route 5
 - [19:59:46] Entrou em Route 5 Gate
 - [19:59:40] Entrou em Route 5
 - [19:59:39] Entrou em Underground Path Route 5
 - [19:59:37] Entrou em Underground Path North South
 - [19:59:35] Entrou em Underground Path Route 6
-- [19:59:00] Entrou em Route 6
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:59:05] `TOSS`
