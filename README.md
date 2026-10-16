@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:48:39**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:48:43**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,45 +8,14 @@
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `29`, Y: `5`
-- **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `53h 0m 7s`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `53h 0m 8s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **2531 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
-- **Tipos:** Poison/Flying
-- **HP:** **24 / 24** (100%)
-- **Stats de Batalha:** ATK: 13 | DEF: 11 | SPD: 15 | SPC: 13
-- **Os 4 Golpes do Adversário:**
-  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~1-1 HP (0.5x)
-
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 19)
-- **Tipos:** Bug/Flying
-- **HP:** **49 / 57** (HEALTHY)
-- **Stats com Modificadores:** ATK: 28 (0) | DEF: 27 (0) | SPD: 38 (0) | SPC: 43 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **22-27 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (49/57). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 15)
@@ -60,12 +29,12 @@
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 2. **Butterfree** (Lv. 19) ⚔️ [EM COMBATE]
+### 2. **Butterfree** (Lv. 19)
 - **Tipos:** Bug/Flying | **HP:** 49 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 27 | SPD: 38 | SPC: 43
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 5909 | Def: 5369 | Spd: 6315 | Spc: 4047 | HP: 5020
-- **Experiência:** 7772 EXP (Progresso: 80%, faltam 228 p/ Lv.20)
+- **Stat Experience (0–65.535):** Atk: 5931 | Def: 5386 | Spd: 6342 | Spc: 4067 | HP: 5040
+- **Experiência:** 7802 EXP (Progresso: 83%, faltam 198 p/ Lv.20)
 - **Golpes & PPs:**
   - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -97,13 +66,13 @@
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
 ### 5. **Pikachu** (Lv. 15)
-- **Tipos:** Electric | **HP:** 35 / 38 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 33 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6327 | Def: 4402 | Spd: 7072 | Spc: 3752 | HP: 4555
-- **Experiência:** 3882 EXP (Progresso: 70%, faltam 214 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 6349 | Def: 4419 | Spd: 7099 | Spc: 3772 | HP: 4575
+- **Experiência:** 3912 EXP (Progresso: 74%, faltam 184 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -241,14 +210,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:48:41] **Turno #1**: Pikachu (33/38 HP) vs Zubat (0/24 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
+- [15:48:39] **Turno #1**: Pikachu (35/38 HP) vs Zubat (24/24 HP)
 - [15:48:35] **Turno #1**: Beedrill (49/48 HP) vs Zubat (24/24 HP)
 - [15:48:33] **Turno #1**: Butterfree (49/57 HP) vs Zubat (0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [15:48:31] **Turno #1**: Beedrill (49/48 HP) vs Zubat (23/23 HP)
 - [15:48:24] **Turno #1**: Butterfree (49/57 HP) vs Paras (0/29 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Scratch`
 - [15:48:23] **Turno #1**: Butterfree (53/57 HP) vs Paras (4/29 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Scratch`
 - [15:48:22] **Turno #1**: Butterfree (53/57 HP) vs Paras (29/29 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Scratch`
-- [15:48:22] **Turno #1**: Beedrill (51/48 HP) vs Paras (29/29 HP)
-- [15:48:10] **Turno #6**: Nidorino (51/51 HP) vs Raticate (0/46 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tail Whip`
 
 - [15:48:30] Entrou em Mt Moon 1F
 - [15:48:28] Entrou em Mt Moon B1F
