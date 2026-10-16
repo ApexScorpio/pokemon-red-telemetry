@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:49:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:49:32**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Underground Path Route 6** (ID Interno: `0x4A`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `7`
+- **Localização Atual:** **Underground Path North South** (ID Interno: `0x77`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `3`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `72h 0m 36s`
+- **Tempo de Jogo:** `72h 0m 37s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SLOWPOKE`
 - **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon)
@@ -124,10 +124,10 @@
 
 ## 🏡 4.2. Centro de Criação / Daycare (Rota 5 - RAM $DA48) • 🟢 POKÉMON EM TREINO
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
-- **Nível Real Atual:** **Lv. 14** *(Entrou a Lv. 11 • Ganhou +3 níveis!)*
-- **Custo de Retirada:** **400 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **1995 EXP**
-- **Progresso para Nível 15:** Faltam **40 passos / EXP** (91%)
+- **Nível Real Atual:** **Lv. 15** *(Entrou a Lv. 11 • Ganhou +4 níveis!)*
+- **Custo de Retirada:** **500 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
+- **Experiência Total:** **2037 EXP**
+- **Progresso para Nível 16:** Faltam **498 passos / EXP** (0%)
 - **DVs Gen 1:** ATK: 5 | DEF: 2 | SPD: 2 | SPC: 5 | HP: 9
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 17
@@ -227,61 +227,61 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↘️ 14 passos Sudeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #1. [↘️ 19 passos Sudeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↘️ 24 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #2. [↘️ 29 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↘️ 35 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↘️ 40 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↘️ 20 passos Sudeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #4. [↘️ 25 passos Sudeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↘️ 26 passos Sudeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #5. [↘️ 31 passos Sudeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↘️ 32 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #6. [↘️ 37 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [↗️ 6 passos Nordeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [➡️ 3 passos Este] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [↖️ 5 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [🎯 0 passos No azulejo exato] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [↘️ 3 passos Sudeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↘️ 8 passos Sudeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [↗️ 8 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↗️ 5 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
@@ -318,12 +318,12 @@
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
+- [20:49:30] Entrou em Underground Path North South
 - [20:49:27] Entrou em Underground Path Route 6
 - [20:49:25] Entrou em Route 6
 - [20:49:17] Entrou em Vermilion City
 - [20:20:55] Entrou em Route 11
 - [20:20:53] Entrou em Digletts Cave Route 11
-- [20:20:52] Entrou em Digletts Cave
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
