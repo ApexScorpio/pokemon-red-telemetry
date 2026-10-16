@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:39**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:43**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Quick Attack`
 - **Último Golpe Usado pelo Adversário:** `Absorb`
 
 ### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
 - **Tipos:** Grass/Poison
-- **HP:** **32 / 36** (89%)
+- **HP:** **12 / 36** (33%)
 - **Stats de Batalha:** ATK: 20 | DEF: 21 | SPD: 14 | SPC: 26
 - **Os 4 Golpes do Adversário:**
   - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
@@ -32,20 +32,20 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 18)
 - **Tipos:** Electric
-- **HP:** **39 / 44** (HEALTHY)
+- **HP:** **29 / 44** (HEALTHY)
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (0) | SPD: 41 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **11-14 HP** (1x eficácia) • ~3 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **11-14 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-3: Usa repetidamente Quick Attack
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (39/44). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 12 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -97,7 +97,7 @@
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
 
 ### 5. **Pikachu** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 39 / 44 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 29 / 44 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 22 | SPD: 41 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7434 | Def: 5307 | Spd: 8218 | Spc: 4590 | HP: 5352
@@ -106,7 +106,7 @@
   - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 27 | Poder: 40 | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 21)
 - **Tipos:** Bug/Flying | **HP:** 52 / 62 ✅ (SAUDÁVEL)
@@ -209,6 +209,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:59:43] **Turno #3**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 12/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
+- [18:59:41] **Turno #3**: Pikachu (34/44 HP) vs Oddish (Lv. 13 • 10/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
+- [18:59:40] **Turno #2**: Pikachu (34/44 HP) vs Oddish (Lv. 13 • 22/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
+- [18:59:40] **Turno #2**: Pikachu (39/44 HP) vs Oddish (Lv. 13 • 20/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [18:59:37] **Turno #1**: Pikachu (39/44 HP) vs Oddish (Lv. 13 • 32/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
 - [18:59:36] **Turno #1**: Pikachu (44/44 HP) vs Oddish (Lv. 13 • 30/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
 - [18:59:35] **Turno #1**: Pikachu (44/44 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
@@ -220,10 +224,6 @@
 - [18:59:29] **Turno #3**: Rattata (4/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [18:59:28] **Turno #3**: Rattata (13/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [18:59:27] **Turno #2**: Rattata (13/45 HP) vs Pidgey (Lv. 13 • 18/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
-- [18:59:26] **Turno #1**: Rattata (22/45 HP) vs Pidgey (Lv. 13 • 18/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:59:26] **Turno #1**: Rattata (22/45 HP) vs Pidgey (Lv. 13 • 35/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:59:25] **Turno #2**: Rattata (22/45 HP) vs Pidgey (Lv. 13 • 35/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
-- [18:59:24] **Turno #2**: Rattata (22/45 HP) vs Oddish (Lv. 13 • 0/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
