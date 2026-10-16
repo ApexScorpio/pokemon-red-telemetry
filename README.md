@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:46:37**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:46:41**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,36 +16,35 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Hyper Fang`
+- **Turno Atual:** `Turno #5`
+- **Último Golpe Usado por RED:** `Scratch`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 7)
 - **Tipos:** Rock/Ground
-- **HP:** **11 / 24** (46%)
+- **HP:** **1 / 24** (4%)
 - **Stats de Batalha:** ATK: 18 | DEF: 19 | SPD: 9 | SPC: 9
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (3-4 HP)
+  - **Tackle** (Normal) ➔ Dano: ~2-3 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **0 / 43** (HEALTHY)
-- **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 16)
+- **Tipos:** Poison
+- **HP:** **48 / 52** (HEALTHY)
+- **Stats com Modificadores:** ATK: 27 (0) | DEF: 29 (0) | SPD: 29 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **12-15 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Hyper Fang (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Hyper Fang! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Butterfree para manter o controlo da batalha.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 1 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
@@ -75,7 +74,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
-### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
+### 3. **Rattata** (Lv. 16)
 - **Tipos:** Normal | **HP:** 0 / 43 ❌ (FAINTED)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
@@ -111,14 +110,14 @@
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
-### 6. **Nidorina** (Lv. 16)
-- **Tipos:** Poison | **HP:** 52 / 52 ✅ (SAUDÁVEL)
+### 6. **Nidorina** (Lv. 16) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 48 / 52 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 29 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3030 | Def: 2222 | Spd: 3429 | Spc: 1904 | HP: 2298
 - **Experiência:** 2577 EXP (Progresso: 7%, faltam 543 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 33 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -313,6 +312,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:46:41] **Turno #5**: Nidorina (48/52 HP) vs Geodude (Lv. 7 • 1/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
+- [17:46:40] **Turno #4**: Nidorina (50/52 HP) vs Geodude (Lv. 7 • 1/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
+- [17:46:39] **Turno #4**: Nidorina (50/52 HP) vs Geodude (Lv. 7 • 6/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
+- [17:46:38] **Turno #3**: Nidorina (52/52 HP) vs Geodude (Lv. 7 • 11/24 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:46:36] **Turno #3**: Rattata (0/43 HP) vs Geodude (Lv. 7 • 11/24 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:46:35] **Turno #2**: Rattata (3/43 HP) vs Geodude (Lv. 7 • 11/24 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:46:34] **Turno #2**: Rattata (6/43 HP) vs Geodude (Lv. 7 • 24/24 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
@@ -324,10 +327,6 @@
 - [17:46:20] **Turno #1**: Beedrill (9/54 HP) vs Zubat (Lv. 8 • 24/24 HP)
 - [17:46:17] **Turno #4**: Rattata (9/43 HP) vs Geodude (Lv. 10 • 0/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:46:16] **Turno #4**: Rattata (9/43 HP) vs Geodude (Lv. 10 • 4/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [17:46:15] **Turno #3**: Rattata (9/43 HP) vs Geodude (Lv. 10 • 4/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [17:46:14] **Turno #3**: Rattata (14/43 HP) vs Geodude (Lv. 10 • 14/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [17:46:12] **Turno #2**: Rattata (14/43 HP) vs Geodude (Lv. 10 • 24/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [17:46:12] **Turno #2**: Rattata (20/43 HP) vs Geodude (Lv. 10 • 24/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [17:46:26] Entrou em Mt Moon B1F
 - [17:46:01] Entrou em Mt Moon 1F
