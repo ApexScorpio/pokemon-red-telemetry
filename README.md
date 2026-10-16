@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:47:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:47:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,10 +17,12 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Paras** (Lv. 10)
 - **Tipos:** Bug/Grass
-- **HP:** **27 / 27** (100%)
+- **HP:** **0 / 27** (0%)
 - **Stats de Batalha:** ATK: 21 | DEF: 16 | SPD: 12 | SPC: 16
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -29,7 +31,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
 - **Tipos:** Bug/Poison
-- **HP:** **22 / 54** (HEALTHY)
+- **HP:** **17 / 54** (HEALTHY)
 - **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -42,21 +44,18 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (22/54). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (17/54). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **28%** | Great Ball: **53%** | Ultra Ball: **38%**
-  - *Se adormeceres o inimigo:* **~38%** | *Com HP no vermelho:* **~75%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 22 / 54 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 17 / 54 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4684 | Def: 3986 | Spd: 5029 | Spc: 3100 | HP: 3813
-- **Experiência:** 5386 EXP (Progresso: 51%, faltam 446 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 4754 | Def: 4041 | Spd: 5054 | Spc: 3155 | HP: 3848
+- **Experiência:** 5486 EXP (Progresso: 62%, faltam 346 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 7 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 5 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -235,6 +234,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:47:16] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 0/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [17:47:16] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 7/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [17:47:15] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 13/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [17:47:14] **Turno #1**: Beedrill (22/54 HP) vs Paras (Lv. 10 • 20/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:47:12] **Turno #1**: Beedrill (22/54 HP) vs Paras (Lv. 10 • 27/27 HP)
 - [17:47:08] **Turno #1**: Beedrill (22/54 HP) vs Zubat (Lv. 9 • 0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:47:08] **Turno #1**: Beedrill (22/54 HP) vs Zubat (Lv. 9 • 19/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
@@ -246,10 +249,6 @@
 - [17:46:45] **Turno #1**: Beedrill (48/54 HP) vs Zubat (Lv. 9 • 27/27 HP)
 - [17:46:42] **Turno #5**: Nidorina (48/52 HP) vs Geodude (Lv. 7 • 0/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [17:46:41] **Turno #5**: Nidorina (48/52 HP) vs Geodude (Lv. 7 • 1/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [17:46:40] **Turno #4**: Nidorina (50/52 HP) vs Geodude (Lv. 7 • 1/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [17:46:39] **Turno #4**: Nidorina (50/52 HP) vs Geodude (Lv. 7 • 6/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [17:46:38] **Turno #3**: Nidorina (52/52 HP) vs Geodude (Lv. 7 • 11/24 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [17:46:36] **Turno #3**: Rattata (0/43 HP) vs Geodude (Lv. 7 • 11/24 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 
 - [17:46:44] Entrou em Mt Moon B2f
 - [17:46:26] Entrou em Mt Moon B1F
