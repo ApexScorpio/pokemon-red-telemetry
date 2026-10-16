@@ -1,59 +1,22 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:17:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `30`, Y: `7`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `7`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `62h 0m 37s`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `62h 0m 38s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
-- **Dinheiro:** **10 510 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra)
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #9`
-- **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Pound`
-
-### 🔴 Adversário em Campo: **Drowzee** (Lv. 17)
-- **Tipos:** Psychic
-- **HP:** **0 / 50** (0%)
-- **Stats de Batalha:** ATK: 24 | DEF: 23 | SPD: 22 | SPC: 38
-- **Os 4 Golpes do Adversário:**
-  - **Pound** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Hypnosis** (Psychic_type) • PP: 20 • Poder: -- • Precisão: 60%
-  - **Disable** (Normal) • PP: NaN • Poder: -- • Precisão: 55%
-  - **Confusion** (Psychic_type) • PP: NaN • Poder: 50 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Pound** (Normal) ➔ Dano: ~5-6 HP (1x)
-  - **Hypnosis** (Psychic_type) ➔ Golpe de Status
-  - **Disable** (Normal) ➔ Golpe de Status
-  - **Confusion** (Psychic_type) ➔ Dano: ~5-7 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 22)
-- **Tipos:** Bug/Flying
-- **HP:** **43 / 65** (HEALTHY)
-- **Stats com Modificadores:** ATK: 32 (0) | DEF: 31 (0) | SPD: 44 (0) | SPC: 49 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **14-17 HP** (1x eficácia) • ~2 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Confusion (Causa ~14-17 de dano)
-- ➔ Turno 2: Confusion (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Confusion. Atacas primeiro em ambos os turnos.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (43/65). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Abra (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Abra** (Lv. 11)
@@ -113,7 +76,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 6. **Butterfree** (Lv. 22) ⚔️ [EM COMBATE]
+### 6. **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying | **HP:** 43 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
@@ -210,12 +173,12 @@
 - [19:16:36] **Turno #1**: Abra (26/26 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 
+- [19:17:03] Entrou em Cerulean City
+- [19:17:02] Entrou em Cerulean Trashed House
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
 - [19:16:08] Entrou em Cerulean City
 - [19:11:19] Entrou em Cerulean Pokecenter
-- [19:07:52] Entrou em Cerulean City
-- [19:07:35] Entrou em Cerulean Trade House
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:16:41] `CONFUSION STUN SPORE`
