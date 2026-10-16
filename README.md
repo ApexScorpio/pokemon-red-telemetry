@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:26:45**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:26:49**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,9 +10,9 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `76h 0m 37s`
+- **Tempo de Jogo:** `76h 0m 38s`
 - **💬 Diálogo / Mensagem no Ecrã:** `We heal your POKMON back to`
-- **Dinheiro:** **14 055 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **13 555 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett)
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -53,7 +53,7 @@
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **21%** | Great Ball: **40%** | Ultra Ball: **36%**
   - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
 
-## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
+## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Diglett** (Lv. 18)
 - **Tipos:** Ground | **HP:** 0 / 35 ❌ (FAINTED)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
@@ -112,6 +112,15 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
+### 6. **Abra** (Lv. 14)
+- **Tipos:** Psychic | **HP:** 31 / 31 ⚠️ (SLEEP)
+- **Stats Reais:** ATK: 13 | DEF: 11 | SPD: 31 | SPC: 35
+- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 8 | Velocidade: 6 | Especial: 3 | HP: 1
+- **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
+- **Experiência:** 1986 EXP (Progresso: 88%, faltam 49 p/ Lv.15)
+- **Golpes & PPs:**
+  - **Teleport** (Psychic_type) — PP: 20 | Poder: -- | Precisão: 100%
+
 ## 🎒 4. Mochila & Recursos • Capacidade: **12 / 20 slots** (8 vagas livres)
 - **Potion** x6
 - **Poké Ball** x4
@@ -140,22 +149,15 @@
 - **Moon Stone** x2 • 💎 Pedra de Evolução
 - **TM28 (Dig)** x1 • 💿 TM Único
 
-## 🏡 4.2. Centro de Criação / Daycare (Rota 5 - RAM $DA48) • 🟢 POKÉMON EM TREINO
-- **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
-- **Nível Real Atual:** **Lv. 14** *(Entrou a Lv. 10 • Ganhou +4 níveis!)*
-- **Custo de Retirada:** **500 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **1986 EXP**
-- **Progresso para Nível 15:** Faltam **49 passos / EXP** (88%)
-- **DVs Gen 1:** ATK: 10 | DEF: 8 | SPD: 6 | SPC: 3 | HP: 1
-- **Os 4 Golpes Atuais:**
-  - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 20
+## 🏡 4.2. Centro de Criação / Daycare (Rota 5 - RAM $DA48) • ⚪ VAZIO
+*Nenhum Pokémon entregue no Daycare da Rota 5 de momento.*
 
 ## 🤝 4.3. Trocas de Pokémon com NPCs em Kanto (In-Game Trades - RAM $D737) • **1 / 9 Concluídas**
-### Rota 2 (Casa ao sul do Túnel de Diglett) • **🟡 NO PC BOX 1**
+### Rota 2 (Casa ao sul do Túnel de Diglett) • **🟢 PRONTO NA EQUIPA!**
 - **Oferece:** **Abra** (Dex #63) ➔ **Recebe:** **Mr. Mime** ("MARCEL" • Dex #122)
 - **NPC & Local:** Rapaz (Casa ao lado da saída sul do Diglett's Cave)
 - **Utilidade Tática:** ⭐ Único Mr. Mime de Kanto! Psíquico rápido com Special elevado.
-- **Estado no Teu Jogo:** 🟡 NO PC BOX 1! Tens Abra (Nv. 37) - Retira para trocar!
+- **Estado no Teu Jogo:** 🟢 PRONTO NA EQUIPA! Tens Abra (Nv. 14)
 
 ### Rota 5 (Entrada do Underground Path) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Nidoran♂** (Dex #32) ➔ **Recebe:** **Nidoran♀** ("SPOT" • Dex #29)
@@ -218,7 +220,7 @@
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **27 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **45 / 151**
-- **Total de Pokémon Individuais Ativos:** **19 espécimes** (5 na Equipa + 14 no PC)
+- **Total de Pokémon Individuais Ativos:** **20 espécimes** (6 na Equipa + 14 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #50 Diglett, #56 Mankey, #63 Abra, #74 Geodude, #83 Farfetch'd
 
 ## 💾 6. Pokémon Guardados no PC (14 / 20 na Caixa 1) • Vagas Livres: **6**
