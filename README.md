@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:20:12**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:20:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `26`, Y: `9`
+- **Localização Atual:** **Cerulean Trashed House** (ID Interno: `0x3E`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `7`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `62h 0m 58s`
+- **Tempo de Jogo:** `62h 0m 59s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra)
@@ -141,9 +141,12 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-## 🎒 9. Itens da Área (Cerulean City)
+## 🎒 9. Itens da Área (S.S. Anne (Navio))
+### Itens no Chão (Poké Balls visíveis):
+- **TM08 (Body Slam)** (X: undefined, Y: undefined) • Estado: 🔴 Por Apanhar — *Num camarote do 1º andar.*
+
 ### Itens Ocultos (Invisíveis no chão):
-- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
+- **Hyper Potion** (X: 3, Y: 1) • Estado: 🔴 Por Apanhar — *No chão da cozinha do navio no caixote do lixo.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -164,12 +167,12 @@
 - [19:16:36] **Turno #1**: Abra (26/26 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 
+- [19:20:16] Entrou em Cerulean Trashed House
 - [19:20:04] Entrou em Cerulean City
 - [19:20:03] Entrou em Cerulean Trashed House
 - [19:19:59] Entrou em Cerulean City
 - [19:18:33] Entrou em Cerulean Pokecenter
 - [19:18:26] Entrou em Cerulean City
-- [19:18:23] Entrou em Cerulean Trashed House
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:16:41] `CONFUSION STUN SPORE`
