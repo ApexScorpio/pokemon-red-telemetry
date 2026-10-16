@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Fury Attack`
 - **Último Golpe Usado pelo Adversário:** `String Shot`
 
 ### 🔴 Adversário em Campo: **Weedle** (Lv. 14)
 - **Tipos:** Bug/Poison
-- **HP:** **5 / 37** (14%)
+- **HP:** **0 / 37** (0%)
 - **Stats de Batalha:** ATK: 17 | DEF: 15 | SPD: 21 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Poison Sting** (Poison) • PP: 35 • Poder: 15 • Precisão: 100%
@@ -34,19 +34,20 @@
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
 - **Tipos:** Bug/Poison
 - **HP:** **54 / 54** (HEALTHY)
-- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (-1) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Poison Sting (Causa ~10-12 de dano)
+- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 5 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (54/54). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorino (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -54,10 +55,10 @@
 - **Tipos:** Bug/Poison | **HP:** 54 / 54 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4299 | Def: 3641 | Spd: 4744 | Spc: 2820 | HP: 3563
-- **Experiência:** 4979 EXP (Progresso: 7%, faltam 853 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 4334 | Def: 3671 | Spd: 4794 | Spc: 2840 | HP: 3603
+- **Experiência:** 5135 EXP (Progresso: 24%, faltam 697 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 16 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 15 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -203,6 +204,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:49:31] **Turno #2**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 0/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
+- [18:49:30] **Turno #2**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 5/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:29] **Turno #1**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 5/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:28] **Turno #1**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 19/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:26] **Turno #1**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 37/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
@@ -216,8 +219,6 @@
 - [18:43:32] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 0/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
 - [18:43:30] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [18:43:29] **Turno #1**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
-- [18:43:26] **Turno #1**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 44/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
-- [18:43:21] **Turno #2**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 44/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
