@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:39:55**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:39:59**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -55,12 +55,12 @@
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
-### 2. **Geodude** (Lv. 9)
-- **Tipos:** Rock/Ground | **HP:** 26 / 26 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 21 | DEF: 23 | SPD: 9 | SPC: 13
+### 2. **Geodude** (Lv. 10)
+- **Tipos:** Rock/Ground | **HP:** 28 / 28 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 23 | DEF: 25 | SPD: 10 | SPC: 14
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 44 | Def: 38 | Spd: 35 | Spc: 45 | HP: 38
-- **Experiência:** 497 EXP (Progresso: 55%, faltam 63 p/ Lv.10)
+- **Stat Experience (0–65.535):** Atk: 79 | Def: 60 | Spd: 65 | Spc: 70 | HP: 65
+- **Experiência:** 669 EXP (Progresso: 60%, faltam 73 p/ Lv.11)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
@@ -89,15 +89,15 @@
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 5. **Charmeleon** (Lv. 19)
-- **Tipos:** Fire | **HP:** 49 / 55 ✅ (SAUDÁVEL)
+- **Tipos:** Fire | **HP:** 37 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 30 | SPD: 44 | SPC: 37
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
-- **Stat Experience (0–65.535):** Atk: 5625 | Def: 4150 | Spd: 6436 | Spc: 3389 | HP: 4230
-- **Experiência:** 4692 EXP (Progresso: 13%, faltam 768 p/ Lv.20)
+- **Stat Experience (0–65.535):** Atk: 5660 | Def: 4172 | Spd: 6466 | Spc: 3414 | HP: 4257
+- **Experiência:** 4864 EXP (Progresso: 33%, faltam 596 p/ Lv.20)
 - **Golpes & PPs:**
   - **Ember** (Fire) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 33 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 22)
