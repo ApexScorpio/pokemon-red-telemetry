@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:59:32**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:59:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,40 +9,14 @@
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `7`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `53h 0m 58s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 16 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Onix** (Lv. 14)
-- **Tipos:** Rock/Ground
-- **HP:** **34 / 34** (100%)
-- **Stats de Batalha:** ATK: -- | DEF: -- | SPD: -- | SPC: --
-- **Os 4 Golpes do Adversário:**
-  - **Tackle**
-  - **Screech**
-  - **Bide**
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Golpe #Tackle** (Normal) ➔ Dano: ~5-6 HP
-  - **Golpe #Screech** (Normal) ➔ Dano: ~5-6 HP
-  - **Golpe #Bide** (Normal) ➔ Dano: ~5-6 HP
-
-### 🔵 O Teu Pokémon em Campo: **Diglett** (Lv. 18)
-- **Tipos:** Ground
-- **HP:** **35 / 35** (HEALTHY)
-- **Stats com Modificadores:** ATK: 29 (0) | DEF: 19 (0) | SPD: 43 (0) | SPC: 25 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **5-6 HP** (0.5x eficácia) • ~6 turnos para K.O.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **21%** | Great Ball: **40%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 16)
