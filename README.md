@@ -1,29 +1,60 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:32**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:36**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `4`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `60h 0m 24s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `7`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Tempo de Jogo:** `60h 0m 25s`
+- **💬 Diálogo / Mensagem no Ecrã:** `Youe going to see BILL First`
 - **Dinheiro:** **5756 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Screech`
+
+### 🔴 Adversário em Campo: **Onix** (Lv. 17)
+- **Tipos:** Rock/Ground
+- **HP:** **41 / 41** (100%)
+- **Stats de Batalha:** ATK: 23 | DEF: 62 | SPD: 31 | SPC: 17
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Screech** (Normal) • PP: 40 • Poder: -- • Precisão: 85%
+  - **Bind** (Normal) • PP: NaN • Poder: 15 • Precisão: 75%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Screech** (Normal) ➔ 🛡️ Reduz stats (Screech)
+  - **Bind** (Normal) ➔ Dano: ~2-3 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
+- **Tipos:** Bug/Poison
+- **HP:** **56 / 56** (HEALTHY)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~41 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-41: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
+- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 18)
+### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -192,6 +223,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:34] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 41/41 HP)
 - [18:56:29] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 0/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [18:56:28] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 21/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [18:56:26] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 39/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
@@ -206,7 +238,6 @@
 - [18:56:09] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 0/48 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [18:56:08] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 48/48 HP)
 - [18:56:02] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 20/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Teleport`
-- [18:56:00] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 28/28 HP)
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
@@ -216,6 +247,7 @@
 - [18:53:55] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:56:32] `Youe going to see BILL First`
 - [18:56:22] `FURY ATTACK POISON STING`
 - [18:53:34] `CONFUSION STUN SPORE`
 - [18:53:02] `FURY ATTACK POISON STING`
@@ -230,7 +262,6 @@
 - [18:14:53] `THUNDERSHOCK THUNDER WAVE`
 - [18:14:31] `CONFUSION STUN SPORE`
 - [18:11:46] `and stealthily Eats the eggs of`
-- [18:09:07] `THUNDERSHOCK THUNDER WAVE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
