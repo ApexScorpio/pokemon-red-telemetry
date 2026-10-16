@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:10:32**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:10:37**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,8 +10,8 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `68h 0m 24s`
-- **💬 Diálogo / Mensagem no Ecrã:** `BUTTERFREE WEEDLE`
+- **Tempo de Jogo:** `68h 0m 25s`
+- **💬 Diálogo / Mensagem no Ecrã:** `PIKACHU`
 - **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon)
 
@@ -288,6 +288,8 @@
 - [20:01:01] Entrou em Underground Path North South
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:10:33] `PIKACHU`
+- [20:10:33] `WEEDLE KAKUNA`
 - [20:10:32] `BUTTERFREE WEEDLE`
 - [20:10:25] `SQUIRTLE`
 - [20:07:16] `HORN ATTACK TACKLE`
@@ -301,8 +303,6 @@
 - [19:24:26] `SCRATCH GROWL`
 - [19:23:21] `TELEPORT`
 - [19:16:41] `CONFUSION STUN SPORE`
-- [19:16:20] `TELEPORT`
-- [19:11:46] `SPEED SPECIAL OT`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
