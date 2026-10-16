@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:34**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:38**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,14 +10,16 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `28`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `60h 0m 5s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **Tempo de Jogo:** `60h 0m 6s`
+- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Sleep Powder`
+- **Último Golpe Usado pelo Adversário:** `Teleport`
 
 ### 🔴 Adversário em Campo: **Abra** (Lv. 10)
 - **Tipos:** Psychic
@@ -60,7 +62,7 @@
   - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 14 | Poder: -- | Precisão: 75%
 
 ### 2. **Nidorino** (Lv. 18)
 - **Tipos:** Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
@@ -238,6 +240,7 @@
 - [18:46:54] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:53:34] `CONFUSION STUN SPORE`
 - [18:53:02] `FURY ATTACK POISON STING`
 - [18:52:58] `it wanders around sowing its seeds`
 - [18:52:33] `FURY ATTACK POISON STING`
@@ -252,7 +255,6 @@
 - [18:11:46] `and stealthily Eats the eggs of`
 - [18:09:07] `THUNDERSHOCK THUNDER WAVE`
 - [18:08:56] `TACKLE TAIL WHIP`
-- [18:08:48] `THUNDERSHOCK THUNDER WAVE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
