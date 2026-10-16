@@ -1,30 +1,59 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:03:10**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:03:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `18`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `74h 0m 5s`
-- **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
+- **Localização Atual:** **Route 24** (ID Interno: `0x23`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `24`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Tempo de Jogo:** `74h 0m 7s`
+- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude) | **Eficiência na Rota:** `20% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada))
-  - **Equipa Adversária:** Machop (Lv. 17) • Drowzee (Lv. 17)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado por RED:** `Quick Attack`
+- **Último Golpe Usado pelo Adversário:** `Absorb`
+
+### 🔴 Adversário em Campo: **Oddish** (Lv. 12)
+- **Tipos:** Grass/Poison
+- **HP:** **14 / 34** (41%)
+- **Stats de Batalha:** ATK: 18 | DEF: 20 | SPD: 15 | SPC: 26
+- **Os 4 Golpes do Adversário:**
+  - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Absorb** (Grass) ➔ Dano: ~3-4 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
+- **Tipos:** Electric
+- **HP:** **42 / 48** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 14 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **94%** | Great Ball: **100%** | Ultra Ball: **94%**
+  - *Se adormeceres o inimigo:* **~95%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Geodude** (Lv. 8)
-- **Tipos:** Rock/Ground | **HP:** 24 / 24 ✅ (SAUDÁVEL)
+- **Tipos:** Rock/Ground | **HP:** 0 / 24 ❌ (FAINTED)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
@@ -32,17 +61,17 @@
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
-### 2. **Pikachu** (Lv. 20)
-- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+### 2. **Pikachu** (Lv. 20) ⚔️ [EM COMBATE]
+- **Tipos:** Electric | **HP:** 42 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7746 | Def: 5697 | Spd: 8566 | Spc: 4980 | HP: 5592
 - **Experiência:** 8768 EXP (Progresso: 61%, faltam 493 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
 
 ### 3. **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
@@ -130,7 +159,7 @@
 - **Utilidade Tática:** Permite obter Nidoran♀ que evolui para Nidoqueen.
 - **Estado no Teu Jogo:** ⚪ Precisas de apanhar Nidoran♂
 
-### Cerulean City (Casa ao lado do Centro Pokémon) 📍 [NESTA ÁREA] • **⚪ REQUER CAPTURA**
+### Cerulean City (Casa ao lado do Centro Pokémon) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Poliwhirl** (Dex #61) ➔ **Recebe:** **Jynx** ("LOLA" • Dex #124)
 - **NPC & Local:** Criança (Casa ao lado do Centro Pokémon de Cerulean)
 - **Utilidade Tática:** ⭐ Única Jynx de Kanto! Tipos Gelo/Psíquico com Lovely Kiss e Blizzard brutal.
@@ -176,7 +205,9 @@
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
   - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 8 (Geodude)`).
-  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
+  - **Eficiência na Área Atual:** **20% de encontros bloqueados** (20% bloqueados)
+  - **Bloqueados por Repel:** Weedle Nv.7 (20%)
+  - **⚠️ Podem Aparecer (Nível >= líder):** Kakuna Nv.8 (20%), Pidgey Nv.12 (15%), Oddish Nv.12 (10%), Oddish Nv.13 (10%), Abra Nv.10 (10%), Oddish Nv.14 (5%), Pidgey Nv.13 (5%), Abra Nv.8 (4%), Abra Nv.12 (1%)
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
 
@@ -213,135 +244,57 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 12 passos Noroeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
+### #1. [↗️ 15 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe
 - **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle.
 
-### #2. [↖️ 11 passos Noroeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
+### #2. [↗️ 16 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Weedle (Lv. 10)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember elimina os insetos.
 
-### #3. [↙️ 10 passos Sudoeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
+### #3. [↗️ 11 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Charmeleon limpam.
 
-### #4. [↙️ 13 passos Sudoeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
+### #4. [↗️ 8 passos Nordeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Sandshrew (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion contra Ekans e Sandshrew.
 
-### #5. [↙️ 18 passos Sudoeste] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
+### #5. [↘️ 9 passos Sudeste] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion causa 2x dano.
 
-### #6. [↙️ 21 passos Sudoeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
+### #6. [↘️ 14 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Mankey (Lv. 18)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Fraqueza a Psíquico e Voador.
 
-### #7. [↙️ 24 passos Sudoeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
+### #7. [↘️ 15 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Ekans (Lv. 15) • Zubat (Lv. 15)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Butterfree.
 
-### #8. [↖️ 23 passos Noroeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
+### #8. [↗️ 20 passos Nordeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Ataques rápidos.
 
-### #9. [↖️ 16 passos Noroeste] **Youngster Joey** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Rattata (Lv. 15) • Spearow (Lv. 15)
-- **Lead Recomendado:** Pikachu
-- **Estratégia:** Pikachu para Spearow.
-
-### #10. [↖️ 14 passos Noroeste] **Youngster Dan** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Slowpoke (Lv. 17)
-- **Lead Recomendado:** Pikachu
-- **Estratégia:** Fraqueza a Electric.
-
-### #11. [↗️ 19 passos Nordeste] **Jr. Trainer♂ Flint** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
-- **Lead Recomendado:** Butterfree
-- **Estratégia:** Confusion e golpes fortes.
-
-### #12. [↖️ 12 passos Noroeste] **Lass Haley** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Oddish (Lv. 15) • Pidgey (Lv. 15) • Oddish (Lv. 15)
-- **Lead Recomendado:** Charmeleon
-- **Estratégia:** Ember elimina Oddish.
-
-### #13. [↗️ 28 passos Nordeste] **Hiker Franklin** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Machop (Lv. 15) • Geodude (Lv. 15)
-- **Lead Recomendado:** Butterfree
-- **Estratégia:** Confusion destrói Machop.
-
-### #14. [↗️ 32 passos Nordeste] **Youngster Chad** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Ekans (Lv. 14) • Sandshrew (Lv. 14)
-- **Lead Recomendado:** Butterfree
-- **Estratégia:** Golpes psíquicos.
-
-### #15. [↗️ 32 passos Nordeste] **Hiker Wayne** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Onix (Lv. 17)
-- **Lead Recomendado:** Butterfree
-- **Estratégia:** Ataca no lado Especial.
-
-### #16. [↗️ 41 passos Nordeste] **Lass Robin** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Bellsprout (Lv. 13) • Pidgey (Lv. 13) • Oddish (Lv. 13)
-- **Lead Recomendado:** Charmeleon
-- **Estratégia:** Ember limpa.
-
-### #17. [↗️ 43 passos Nordeste] **Hiker Nob** (Rota 25) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Geodude (Lv. 13) x2 • Machop (Lv. 13)
-- **Lead Recomendado:** Butterfree
-- **Estratégia:** Confusion.
-
-### #18. [↗️ 22 passos Nordeste] **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada)) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Machop (Lv. 17) • Drowzee (Lv. 17)
-- **Lead Recomendado:** Butterfree (Confusion)
-- **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
-
-### #19. [↖️ 26 passos Noroeste] **Swimmer Luis** (Ginásio de Cerulean) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Horsea (Lv. 16) • Shellder (Lv. 16)
-- **Lead Recomendado:** Pikachu (Thundershock)
-- **Estratégia:** Golpes elétricos.
-
-### #20. [↖️ 32 passos Noroeste] **Jr. Trainer♀ Diana** (Ginásio de Cerulean) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Goldeen (Lv. 19)
-- **Lead Recomendado:** Pikachu (Thundershock)
-- **Estratégia:** Thundershock.
-
-### #21. [↖️ 29 passos Noroeste] **Líder Misty** (Ginásio de Cerulean (Líder)) • **✅ VENCIDO**
-- **Dificuldade:** Chefe
-- **Roster Inimigo:** Staryu (Lv. 18) • Starmie (Lv. 21)
-- **Lead Recomendado:** Pikachu
-- **Estratégia:** Insignia Cascade obtida!
-
-## 🎒 9. Itens da Área (Cerulean City)
-### Itens Ocultos (Invisíveis no chão):
-- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
+## 🎒 9. Itens da Área (Route 24)
+### Itens no Chão (Poké Balls visíveis):
+- **TM45 (Thunder Wave)** (X: undefined, Y: undefined) • Estado: ✅ Já Recolhido — *No planalto perto do início da rota.*
 
 ## 🌐 10. Panorama Global de 100% de Kanto (Guia Completo para ChatGPT)
 ### 🎯 Estado dos 8 Ginásios de Kanto:
@@ -375,18 +328,20 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:03:33] **Turno #3**: Pikachu (42/48 HP) vs Oddish (Lv. 12 • 14/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [20:58:31] **Turno #1**: Nidorino (61/61 HP) vs Mankey (Lv. 10 • 0/30 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Leer`
 - [20:58:30] **Turno #1**: Nidorino (61/61 HP) vs Mankey (Lv. 10 • 30/30 HP) • Golpe RED: `Horn Attack`
 - [20:58:28] **Turno #1**: Nidorino (44/61 HP) vs Mankey (Lv. 10 • 30/30 HP)
 
+- [21:03:33] Entrou em Route 24
 - [21:02:53] Entrou em Cerulean City
 - [21:02:50] Entrou em Route 5
 - [20:58:41] Entrou em Daycare
 - [20:58:28] Entrou em Route 5
 - [20:58:24] Entrou em Cerulean City
-- [20:58:20] Entrou em Cerulean Trashed House
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:03:33] `THUNDERSHOCK THUNDER WAVE`
 - [20:58:30] `HORN ATTACK TACKLE`
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
 - [16:24:40] `We'll each take one! No being greedy!`
