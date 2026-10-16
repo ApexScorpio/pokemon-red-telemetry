@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:15:27**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:15:31**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,11 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Hyper Fang`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
-- **HP:** **25 / 25** (100%)
+- **HP:** **3 / 25** (12%)
 - **Stats de Batalha:** ATK: 20 | DEF: 22 | SPD: 8 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -29,26 +31,24 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **19 / 43** (HEALTHY)
+- **HP:** **11 / 43** (HEALTHY)
 - **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **11-13 HP** (0.5x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **5-6 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Hyper Fang (Causa ~11-13 de dano)
-- ➔ Turno 2: Hyper Fang (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Hyper Fang. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Tackle (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Tackle! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 21)** [56/62 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Rattata.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 3 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Tackle para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **35%** | Great Ball: **52%** | Ultra Ball: **35%**
-  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 16)
@@ -76,7 +76,7 @@
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 19 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 11 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6069 | Def: 4440 | Spd: 6777 | Spc: 3802 | HP: 5076
@@ -85,7 +85,7 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Hyper Fang** (Normal) — PP: 9 | Poder: 80 | Precisão: 90%
+  - **Hyper Fang** (Normal) — PP: 8 | Poder: 80 | Precisão: 90%
 
 ### 4. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -263,6 +263,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:15:30] **Turno #2**: Rattata (11/43 HP) vs Geodude (Lv. 8 • 3/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [18:15:29] **Turno #1**: Rattata (15/43 HP) vs Geodude (Lv. 8 • 14/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [18:15:28] **Turno #1**: Rattata (15/43 HP) vs Geodude (Lv. 8 • 25/25 HP) • Golpe RED: `Struggle` • Golpe Inimigo: `Tackle`
 - [18:15:27] **Turno #1**: Rattata (19/43 HP) vs Geodude (Lv. 8 • 25/25 HP)
 - [18:15:25] **Turno #1**: Pikachu (37/40 HP) vs Geodude (Lv. 8 • 25/25 HP)
 - [18:15:24] **Turno #1**: Pikachu (19/40 HP) vs Geodude (Lv. 8 • 25/25 HP)
@@ -275,9 +278,6 @@
 - [18:15:12] **Turno #1**: Pikachu (37/40 HP) vs Geodude (Lv. 8 • 26/26 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [18:15:10] **Turno #1**: Pikachu (31/40 HP) vs Geodude (Lv. 8 • 26/26 HP)
 - [18:15:08] **Turno #3**: Rattata (31/43 HP) vs Geodude (Lv. 8 • 0/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [18:15:07] **Turno #3**: Rattata (31/43 HP) vs Geodude (Lv. 8 • 3/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [18:15:06] **Turno #2**: Rattata (35/43 HP) vs Geodude (Lv. 8 • 3/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [18:15:05] **Turno #2**: Rattata (39/43 HP) vs Geodude (Lv. 8 • 14/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 
 - [18:15:09] Entrou em Mt Moon 1F
 - [18:14:59] Entrou em Mt Moon B1F
