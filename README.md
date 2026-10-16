@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:34**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:38**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,20 +11,20 @@
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `61h 0m 10s`
-- **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
+- **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
 - **Dinheiro:** **8431 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 20 (Pikachu)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #5`
-- **Último Golpe Usado por RED:** `Scratch`
-- **Último Golpe Usado pelo Adversário:** `Bubblebeam`
+- **Último Golpe Usado por RED:** `Tackle`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Starmie** (Lv. 21)
 - **Tipos:** Water/Psychic
-- **HP:** **27 / 59** (46%)
-- **Stats de Batalha:** ATK: 40 | DEF: 44 | SPD: 56 | SPC: 50
+- **HP:** **18 / 59** (31%)
+- **Stats de Batalha:** ATK: 40 | DEF: 66 | SPD: 56 | SPC: 50
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
   - **Water Gun** (Water) • PP: 25 • Poder: 40 • Precisão: 100%
@@ -41,10 +41,10 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **5-6 HP** (1x eficácia) • ~5 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **2-3 HP** (1x eficácia) • ~6 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-5: Usa repetidamente Scratch
+- ➔ Turnos 1-6: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **⚠️ PERIGO DE MORTE: TROCA PARA Beedrill**
@@ -78,13 +78,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 55 / 55 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 19 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3210 | Def: 2366 | Spd: 3529 | Spc: 1994 | HP: 2423
 - **Experiência:** 3125 EXP (Progresso: 1%, faltam 673 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 33 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -431,6 +431,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:03:36] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
+- [19:03:34] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 22/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [19:03:33] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Bubblebeam`
 - [19:03:32] **Turno #4**: Nidorina (55/55 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Water Gun`
 - [19:03:31] **Turno #4**: Nidorino (0/61 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Water Gun`
@@ -444,8 +446,6 @@
 - [19:03:19] **Turno #1**: Pikachu (24/48 HP) vs Starmie (Lv. 21 • 59/59 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [19:03:18] **Turno #1**: Pikachu (24/48 HP) vs Staryu (Lv. 18 • 0/41 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [19:03:18] **Turno #1**: Pikachu (22/46 HP) vs Staryu (Lv. 18 • 0/41 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
-- [19:03:17] **Turno #1**: Pikachu (22/46 HP) vs Staryu (Lv. 18 • 20/41 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
-- [19:03:16] **Turno #1**: Pikachu (33/46 HP) vs Staryu (Lv. 18 • 20/41 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Water Gun`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
@@ -455,6 +455,7 @@
 - [19:00:43] Entrou em Route 25
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [19:03:37] `SCRATCH GROWL`
 - [19:03:28] `HORN ATTACK TACKLE`
 - [18:59:37] `THUNDERSHOCK THUNDER WAVE`
 - [18:59:10] `TACKLE TAIL WHIP`
@@ -469,7 +470,6 @@
 - [18:53:02] `FURY ATTACK POISON STING`
 - [18:52:58] `it wanders around sowing its seeds`
 - [18:52:33] `FURY ATTACK POISON STING`
-- [18:50:33] `HORN ATTACK TACKLE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
