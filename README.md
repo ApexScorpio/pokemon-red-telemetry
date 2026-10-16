@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:12**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:16**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,49 +18,47 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `Leer`
+- **Último Golpe Usado pelo Adversário:** `Supersonic`
 
-### 🔴 Adversário em Campo: **Ekans** (Lv. 14)
-- **Tipos:** Poison
-- **HP:** **0 / 36** (0%)
-- **Stats de Batalha:** ATK: 24 | DEF: 19 | SPD: 22 | SPC: 18
+### 🔴 Adversário em Campo: **Zubat** (Lv. 14)
+- **Tipos:** Poison/Flying
+- **HP:** **23 / 37** (62%)
+- **Stats de Batalha:** ATK: 20 | DEF: 17 | SPD: 22 | SPC: 18
 - **Os 4 Golpes do Adversário:**
-  - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
-  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
+  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
+  - **Supersonic** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Wrap** (Normal) ➔ Dano: ~2-3 HP (1x)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-  - **Poison Sting** (Poison) ➔ Dano: ~3-4 HP (1x)
+  - **Leech Life** (Bug) ➔ Dano: ~5-6 HP (2x)
+  - **Supersonic** (Normal) ➔ Golpe de Status
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison
-- **HP:** **15 / 54** (HEALTHY)
-- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (-1) | SPD: 34 (0) | SPC: 23 (0)
+- **HP:** **17 / 56** (HEALTHY)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (-1) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~4 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • ~4 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
 - ➔ Turnos 1-4: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
 - **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
-- **Motivo:** Butterfree tem o golpe String Shot (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+- **Substituto Sugerido:** **Pikachu (Lv. 18)** [44/44 HP]
+- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 - **⭐ Prioridade de Treino (EXP):** **Nidorino (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 15 / 54 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
+### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 17 / 56 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4482 | Def: 3798 | Spd: 4963 | Spc: 2940 | HP: 3728
-- **Experiência:** 5648 EXP (Progresso: 80%, faltam 184 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 4542 | Def: 3842 | Spd: 5018 | Spc: 2980 | HP: 3763
+- **Experiência:** 5834 EXP (Progresso: 0%, faltam 1025 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 5 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 4 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -182,7 +180,7 @@
   - **Slot #2**: **Nidorino** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Beedrill** (Lv. 17) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Beedrill** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
@@ -195,7 +193,7 @@
   - **Slot #2**: **Nidorino** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Beedrill** (Lv. 17) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Beedrill** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
@@ -206,6 +204,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:50:15] **Turno #1**: Beedrill (17/56 HP) vs Zubat (Lv. 14 • 23/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
+- [18:50:13] **Turno #1**: Beedrill (17/56 HP) vs Zubat (Lv. 14 • 37/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
+- [18:50:12] **Turno #1**: Beedrill (17/56 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:11] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:10] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 9/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:09] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 27/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
@@ -218,9 +219,6 @@
 - [18:49:52] **Turno #3**: Beedrill (23/54 HP) vs Nidoran♀ (Lv. 14 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [18:49:51] **Turno #3**: Beedrill (28/54 HP) vs Nidoran♀ (Lv. 14 • 6/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [18:49:50] **Turno #2**: Beedrill (28/54 HP) vs Nidoran♀ (Lv. 14 • 16/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [18:49:49] **Turno #2**: Beedrill (28/54 HP) vs Nidoran♀ (Lv. 14 • 31/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [18:49:48] **Turno #1**: Beedrill (33/54 HP) vs Nidoran♀ (Lv. 14 • 31/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [18:49:47] **Turno #1**: Beedrill (38/54 HP) vs Nidoran♀ (Lv. 14 • 31/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
