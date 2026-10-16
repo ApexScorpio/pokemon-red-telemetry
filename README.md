@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:33:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:33:34**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,9 +10,9 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `5`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `57h 0m 55s`
+- **Tempo de Jogo:** `57h 0m 56s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
-- **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **2521 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
@@ -94,7 +94,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **15 / 20 slots** (5 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **16 / 20 slots** (4 vagas livres)
 - **Potion** x6
 - **Poké Ball** x10
 - **Antidote** x2
@@ -110,6 +110,7 @@
 - **Ether** x1
 - **Great Ball** x1
 - **TM04 (Whirlwind)** x1
+- **Repel** x2
 
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
