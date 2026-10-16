@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:51:46**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:52:21**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `6`, Y: `14`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `16`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `59h 0m 54s`
+- **Tempo de Jogo:** `59h 0m 57s`
 - **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
 - **Dinheiro:** **4726 ₽** • **Fichas do Casino:** `0`
 
