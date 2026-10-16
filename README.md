@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:42:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:42:31**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -23,7 +23,7 @@
 ### 🔴 Adversário em Campo: **Pidgeotto** (Lv. 18)
 - **Tipos:** Normal/Flying
 - **HP:** **7 / 53** (13%)
-- **Stats de Batalha:** ATK: 29 | DEF: 27 | SPD: 33 | SPC: 25
+- **Stats de Batalha:** ATK: 29 | DEF: 27 | SPD: 8 | SPC: 25
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
   - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
