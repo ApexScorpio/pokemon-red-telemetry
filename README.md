@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:49:35**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:49:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,19 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `17`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 41s`
-- **💬 Diálogo / Mensagem no Ecrã:** `HYPER FANG TAIL WHIP`
+- **Tempo de Jogo:** `56h 0m 42s`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Fury Attack`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Poison Sting`
 - **Último Golpe Usado pelo Adversário:** `Leech Life`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
 - **Tipos:** Poison/Flying
-- **HP:** **2 / 30** (7%)
+- **HP:** **4 / 30** (13%)
 - **Stats de Batalha:** ATK: 16 | DEF: 15 | SPD: 18 | SPC: 16
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
@@ -33,7 +33,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
 - **Tipos:** Bug/Poison
-- **HP:** **54 / 54** (HEALTHY)
+- **HP:** **49 / 54** (HEALTHY)
 - **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -46,15 +46,15 @@
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 4 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
   - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 54 / 54 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 17)
+- **Tipos:** Bug/Poison | **HP:** 49 / 54 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4879 | Def: 4176 | Spd: 5129 | Spc: 3225 | HP: 3928
@@ -328,6 +328,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:49:36] **Turno #2**: Beedrill (49/54 HP) vs Zubat (Lv. 11 • 4/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
+- [17:49:35] **Turno #2**: Beedrill (49/54 HP) vs Zubat (Lv. 11 • 2/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:49:34] **Turno #1**: Beedrill (54/54 HP) vs Zubat (Lv. 11 • 2/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:49:32] **Turno #1**: Beedrill (54/54 HP) vs Zubat (Lv. 11 • 16/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
 - [17:49:31] **Turno #1**: Beedrill (54/54 HP) vs Zubat (Lv. 11 • 30/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
@@ -341,8 +343,6 @@
 - [17:49:17] **Turno #1**: Beedrill (54/54 HP) vs Zubat (Lv. 9 • 0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:49:16] **Turno #1**: Beedrill (54/54 HP) vs Zubat (Lv. 9 • 20/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:49:14] **Turno #1**: Beedrill (54/54 HP) vs Zubat (Lv. 9 • 28/28 HP)
-- [17:49:13] **Turno #1**: Beedrill (19/54 HP) vs Zubat (Lv. 9 • 28/28 HP)
-- [17:49:04] **Turno #4**: Rattata (19/43 HP) vs Geodude (Lv. 10 • 0/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
 
 - [17:49:18] Entrou em Mt Moon B1F
 - [17:48:39] Entrou em Mt Moon 1F
@@ -352,6 +352,7 @@
 - [17:48:18] Entrou em Mt Moon 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:49:37] `FURY ATTACK POISON STING`
 - [17:49:23] `HYPER FANG TAIL WHIP`
 - [17:49:15] `FURY ATTACK POISON STING`
 - [17:48:57] `HYPER FANG TAIL WHIP`
@@ -366,7 +367,6 @@
 - [17:45:37] `TACKLE TAIL WHIP`
 - [17:45:19] `FURY ATTACK POISON STING`
 - [17:44:18] `CONFUSION STUN SPORE`
-- [17:02:28] `FURY ATTACK POISON STING`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
