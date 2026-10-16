@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:47:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:47:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,7 +16,7 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #4`
+- **Turno Atual:** `Turno #5`
 - **Último Golpe Usado por RED:** `Quick Attack`
 - **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
@@ -37,7 +37,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **15 / 43** (HEALTHY)
+- **HP:** **0 / 43** (HEALTHY)
 - **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (-1) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -48,9 +48,10 @@
 - ➔ Turno 1: Inimigo ataca primeiro (~30 dano) ➔ Responde com Tackle (K.O.)
 > **Resumo Tático:** ⚠️ PERIGO: O adversário ataca primeiro e pode desmaiar o teu Pokémon! Considera curar ou trocar.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 3 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Tackle para liquidar o adversário já!
+#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Nidorino (Lv. 16)** [51/51 HP]
+- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Nidorino para manter o controlo da batalha.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -229,6 +230,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:47:30] **Turno #5**: Rattata (0/43 HP) vs Raticate (3/46 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Quick Attack`
 - [15:46:59] **Turno #4**: Rattata (15/43 HP) vs Raticate (3/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Quick Attack`
 - [15:46:58] **Turno #4**: Rattata (15/43 HP) vs Raticate (24/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Quick Attack`
 - [15:46:56] **Turno #3**: Rattata (43/43 HP) vs Raticate (24/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tail Whip`
@@ -236,7 +238,6 @@
 - [15:46:48] **Turno #2**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:38] **Turno #2**: Beedrill (0/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:37] **Turno #2**: Beedrill (20/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
-- [15:46:36] **Turno #1**: Beedrill (20/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [15:43:51] Entrou em Mt Moon B2f
 - [15:43:49] Entrou em Mt Moon B1F
