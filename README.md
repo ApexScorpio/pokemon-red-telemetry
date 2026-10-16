@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:13:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:13:29**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -119,8 +119,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 11** *(Entrou a Lv. 10 • Ganhou +1 níveis!)*
 - **Custo de Retirada:** **200 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **906 EXP**
-- **Progresso para Nível 12:** Faltam **67 passos / EXP** (71%)
+- **Experiência Total:** **915 EXP**
+- **Progresso para Nível 12:** Faltam **58 passos / EXP** (75%)
 - **DVs Gen 1:** ATK: 10 | DEF: 8 | SPD: 6 | SPC: 3 | HP: 1
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 20
@@ -394,12 +394,12 @@
 - [21:10:39] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 4/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:38] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 10/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 
+- [21:13:27] Entrou em Vermilion City
+- [21:13:25] Entrou em Vermilion Pokecenter
 - [21:13:24] Entrou em Vermilion City
 - [21:13:20] Entrou em Vermilion Pokecenter
 - [21:13:16] Entrou em Vermilion City
 - [21:13:15] Entrou em Route 11
-- [21:13:14] Entrou em Digletts Cave Route 11
-- [21:12:51] Entrou em Digletts Cave
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [21:10:29] `TACKLE`
