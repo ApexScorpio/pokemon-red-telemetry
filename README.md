@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:47:00**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:47:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,16 +9,48 @@
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `29`, Y: `8`
 - **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `56h 0m 24s`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Tempo de Jogo:** `56h 0m 25s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
+- **Tipos:** Poison/Flying
+- **HP:** **28 / 28** (100%)
+- **Stats de Batalha:** ATK: 13 | DEF: 12 | SPD: 16 | SPC: 14
+- **Os 4 Golpes do Adversário:**
+  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Leech Life** (Bug) ➔ Dano: ~1-2 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
+- **Tipos:** Normal
+- **HP:** **22 / 54** (HEALTHY)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **12-15 HP** (1x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Fury Attack (Causa ~12-15 de dano)
+- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (22/54). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 17)
+### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 22 / 54 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -204,6 +236,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:47:04] **Turno #1**: Beedrill (22/54 HP) vs Zubat (Lv. 9 • 28/28 HP)
 - [17:46:53] **Turno #1**: Beedrill (22/54 HP) vs Zubat (Lv. 9 • 3/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:46:51] **Turno #1**: Beedrill (22/54 HP) vs Zubat (Lv. 9 • 9/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:46:50] **Turno #1**: Beedrill (27/54 HP) vs Zubat (Lv. 9 • 9/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
@@ -218,7 +251,6 @@
 - [17:46:35] **Turno #2**: Rattata (3/43 HP) vs Geodude (Lv. 7 • 11/24 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:46:34] **Turno #2**: Rattata (6/43 HP) vs Geodude (Lv. 7 • 24/24 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:46:33] **Turno #1**: Rattata (6/43 HP) vs Geodude (Lv. 7 • 24/24 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
-- [17:46:28] **Turno #1**: Beedrill (27/54 HP) vs Geodude (Lv. 7 • 24/24 HP)
 
 - [17:46:44] Entrou em Mt Moon B2f
 - [17:46:26] Entrou em Mt Moon B1F
