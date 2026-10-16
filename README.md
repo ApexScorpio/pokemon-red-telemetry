@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:08:07**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:08:11**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `31`, Y: `11`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `19`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `55h 0m 56s`
+- **Tempo de Jogo:** `55h 0m 57s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -20,14 +20,14 @@
 - **Último Golpe Usado por RED:** `Thundershock`
 - **Último Golpe Usado pelo Adversário:** `Leech Life`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 6)
+### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
 - **Tipos:** Poison/Flying
-- **HP:** **0 / 22** (0%)
-- **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 12 | SPC: 11
+- **HP:** **0 / 27** (0%)
+- **Stats de Batalha:** ATK: 15 | DEF: 13 | SPD: 16 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~1-2 HP (1x)
+  - **Leech Life** (Bug) ➔ Dano: ~2-3 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 16)
 - **Tipos:** Electric
@@ -36,7 +36,7 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **45-54 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **37-44 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
 - ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
@@ -47,14 +47,14 @@
 - **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (37/40). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 16)
+### 1. **Pikachu** (Lv. 16) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 37 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 6439 | Def: 4489 | Spd: 7209 | Spc: 3852 | HP: 4655
 - **Experiência:** 4108 EXP (Progresso: 1%, faltam 805 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -163,7 +163,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 31 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
+### #1. [↖️ 18 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -175,7 +175,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** A carcaça de pedra deles é vulnerável a Confusion (Special). NÃO uses Charmeleon nem Pikachu!
 
-### #2. [↙️ 24 passos Sudoeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
+### #2. [↗️ 5 passos Nordeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -187,7 +187,7 @@
   - **Slot #5**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #3. [↖️ 8 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
+### #3. [↗️ 35 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -199,7 +199,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #4. [↙️ 27 passos Sudoeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #4. [↘️ 26 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -211,7 +211,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #5. [↙️ 27 passos Sudoeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
+### #5. [↘️ 10 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -223,7 +223,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↙️ 35 passos Sudoeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
+### #6. [↙️ 6 passos Sudoeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -235,7 +235,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #7. [↙️ 17 passos Sudoeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
+### #7. [↘️ 28 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -259,6 +259,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:08:11] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 9 • 0/27 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
+- [18:08:10] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 9 • 27/27 HP)
 - [18:08:06] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 6 • 0/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:08:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (Lv. 6 • 0/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:08:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (Lv. 6 • 22/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
@@ -272,8 +274,6 @@
 - [18:07:29] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 7 • 22/22 HP)
 - [18:07:16] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 10 • 0/30 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Supersonic`
 - [18:07:04] **Turno #1**: Pikachu (5/40 HP) vs Zubat (Lv. 12 • 0/34 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
-- [18:07:03] **Turno #1**: Pikachu (5/40 HP) vs Zubat (Lv. 12 • 34/34 HP)
-- [18:06:59] **Turno #1**: Pikachu (5/40 HP) vs Zubat (Lv. 9 • 0/27 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 
 - [18:07:47] Entrou em Mt Moon 1F
 - [18:07:46] Entrou em Mt Moon B1F
