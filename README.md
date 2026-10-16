@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:47:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:47:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -78,13 +78,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 4. **Pikachu** (Lv. 21)
-- **Tipos:** Electric | **HP:** 31 / 50 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 25 / 50 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 36 | DEF: 25 | SPD: 47 | SPC: 34
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7974 | Def: 5949 | Spd: 8752 | Spc: 5222 | HP: 5787
-- **Experiência:** 9846 EXP (Progresso: 42%, faltam 802 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 8039 | Def: 6049 | Spd: 8792 | Spc: 5267 | HP: 5817
+- **Experiência:** 10 198 EXP (Progresso: 68%, faltam 450 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -212,7 +212,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **27 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **46 / 151**
+- **Espécies Vistas na Pokédex:** **47 / 151**
 - **Total de Pokémon Individuais Ativos:** **20 espécimes** (6 na Equipa + 14 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #50 Diglett, #56 Mankey, #63 Abra, #74 Geodude, #83 Farfetch'd
 
