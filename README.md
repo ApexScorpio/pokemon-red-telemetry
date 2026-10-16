@@ -1,26 +1,57 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:07:02**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:07:06**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `30`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `31`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `68h 0m 1s`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Tempo de Jogo:** `68h 0m 2s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK TWINEEDLE`
 - **Dinheiro:** **12 420 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Jr. Trainer♂ Jeff** (Rota 6)
-  - **Equipa Adversária:** Spearow (Lv. 16) • Raticate (Lv. 16)
-  - **Lead Recomendado:** Pikachu / Geodude
-  - **Estratégia:** Cuidado com Hyper Fang do Raticate.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+
+### 🔴 Adversário em Campo: **Spearow** (Lv. 16)
+- **Tipos:** Normal/Flying
+- **HP:** **41 / 41** (100%)
+- **Stats de Batalha:** ATK: 27 | DEF: 17 | SPD: 29 | SPC: 17
+- **Os 4 Golpes do Adversário:**
+  - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
+  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
+  - **Leer** (Normal) • PP: NaN • Poder: -- • Precisão: 100%
+  - **Fury Attack** (Normal) • PP: NaN • Poder: 15 • Precisão: 85%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Peck** (Flying) ➔ Dano: ~15-18 HP (2x)
+  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
+  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
+  - **Fury Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 20)
+- **Tipos:** Bug/Poison
+- **HP:** **33 / 62** (HEALTHY)
+- **Stats com Modificadores:** ATK: 43 (0) | DEF: 28 (0) | SPD: 40 (0) | SPC: 26 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Twineedle** (Bug) ➔ Dano: **10-12 HP** (0.5x eficácia) • ~4 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-4: Usa repetidamente Twineedle
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Pikachu (Lv. 20)** [12/48 HP]
+- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -47,7 +78,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 3. **Beedrill** (Lv. 20)
+### 3. **Beedrill** (Lv. 20) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 33 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 28 | SPD: 40 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -126,8 +157,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 14** *(Entrou a Lv. 11 • Ganhou +3 níveis!)*
 - **Custo de Retirada:** **400 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **1685 EXP**
-- **Progresso para Nível 15:** Faltam **350 passos / EXP** (17%)
+- **Experiência Total:** **1686 EXP**
+- **Progresso para Nível 15:** Faltam **349 passos / EXP** (17%)
 - **DVs Gen 1:** ATK: 5 | DEF: 2 | SPD: 2 | SPC: 5 | HP: 9
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 17
@@ -173,61 +204,61 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↗️ 16 passos Nordeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #1. [↗️ 17 passos Nordeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↗️ 26 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #2. [↗️ 27 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↗️ 15 passos Nordeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↗️ 16 passos Nordeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↗️ 10 passos Nordeste] **Jr. Trainer♂ Jeff** (Rota 6) • **⚔️ POR VENCER**
+### #4. [↗️ 11 passos Nordeste] **Jr. Trainer♂ Jeff** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↗️ 16 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **⚔️ POR VENCER**
+### #5. [↗️ 17 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↘️ 4 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #6. [➡️ 3 passos Este] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [↖️ 30 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↖️ 31 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [↖️ 33 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [↖️ 34 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [↖️ 25 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↖️ 26 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [↖️ 32 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↖️ 33 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
@@ -265,6 +296,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:07:04] **Turno #1**: Charmeleon (33/53 HP) vs Spearow (Lv. 16 • 41/41 HP)
+- [20:07:04] **Turno #1**: Charmeleon (33/53 HP) vs Pidgey (Lv. 16 • 0/41 HP)
 - [20:06:57] **Turno #1**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [20:06:56] **Turno #3**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [20:06:55] **Turno #3**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
@@ -278,8 +311,6 @@
 - [20:06:45] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:06:44] **Turno #3**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:04:26] **Turno #3**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 0/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [20:04:25] **Turno #3**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 0/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [20:04:23] **Turno #3**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 6/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
