@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:48:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:48:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,8 +10,8 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `22`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `78h 0m 46s`
-- **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
+- **Tempo de Jogo:** `78h 0m 47s`
+- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **15 955 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 12 (Geodude)
 
@@ -102,13 +102,13 @@
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 22)
-- **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 60 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 7516 | Def: 7045 | Spd: 7571 | Spc: 5329 | HP: 6313
 - **Experiência:** 12 132 EXP (Progresso: 98%, faltam 35 p/ Lv.23)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -420,6 +420,7 @@
 - [21:43:43] Entrou em Ss Anne B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:48:04] `CONFUSION STUN SPORE`
 - [21:39:52] `EMBER SCRATCH`
 - [21:39:45] `TACKLE`
 - [21:24:30] `We heal your POKMON back to`
@@ -434,7 +435,6 @@
 - [20:58:30] `HORN ATTACK TACKLE`
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
 - [16:24:40] `We'll each take one! No being greedy!`
-- [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Troca imediatamente o Diglett pelo Nidorino, pois o Onix é imune a golpes de Terra e o Nidorino tem vantagem de tipo com Poison Sting. Usa Poison Sting para aplicar veneno e forçar o Onix a trocar ou morrer por dano residual, garantindo a vitória sem riscos."
