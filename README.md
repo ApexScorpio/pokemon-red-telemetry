@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:08:32**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:08:36**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,47 +10,49 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `17`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `55h 0m 59s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **Tempo de Jogo:** `56h 0m 0s`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thundershock`
+- **Último Golpe Usado por RED:** `Hyper Fang`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
-- **HP:** **26 / 26** (100%)
+- **HP:** **15 / 26** (58%)
 - **Stats de Batalha:** ATK: 20 | DEF: 22 | SPD: 8 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
   - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 16)
-- **Tipos:** Electric
-- **HP:** **37 / 40** (HEALTHY)
-- **Stats com Modificadores:** ATK: 29 (0) | DEF: 20 (0) | SPD: 37 (0) | SPC: 26 (0)
+### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
+- **Tipos:** Normal
+- **HP:** **30 / 43** (HEALTHY)
+- **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~6 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **11-13 HP** (0.5x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-6: Usa repetidamente Quick Attack
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Hyper Fang (Causa ~11-13 de dano)
+- ➔ Turno 2: Hyper Fang (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Hyper Fang. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 21)** [56/62 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Pikachu.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 15 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Hyper Fang para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **72%** | Great Ball: **100%** | Ultra Ball: **72%**
+  - *Se adormeceres o inimigo:* **~75%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 16) ⚔️ [EM COMBATE]
+### 1. **Pikachu** (Lv. 16)
 - **Tipos:** Electric | **HP:** 37 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -74,8 +76,8 @@
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 3. **Rattata** (Lv. 16)
-- **Tipos:** Normal | **HP:** 34 / 43 ✅ (SAUDÁVEL)
+### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
+- **Tipos:** Normal | **HP:** 30 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6029 | Def: 4390 | Spd: 6767 | Spc: 3787 | HP: 5056
@@ -84,7 +86,7 @@
   - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Hyper Fang** (Normal) — PP: 13 | Poder: 80 | Precisão: 90%
+  - **Hyper Fang** (Normal) — PP: 12 | Poder: 80 | Precisão: 90%
 
 ### 4. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -313,6 +315,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:08:35] **Turno #1**: Rattata (30/43 HP) vs Geodude (Lv. 8 • 15/26 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [18:08:35] **Turno #1**: Rattata (30/43 HP) vs Geodude (Lv. 8 • 26/26 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [18:08:34] **Turno #1**: Rattata (34/43 HP) vs Geodude (Lv. 8 • 26/26 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [18:08:30] **Turno #1**: Pikachu (37/40 HP) vs Geodude (Lv. 8 • 26/26 HP)
 - [18:08:29] **Turno #1**: Pikachu (34/40 HP) vs Geodude (Lv. 8 • 26/26 HP)
 - [18:08:28] **Turno #3**: Rattata (34/43 HP) vs Geodude (Lv. 7 • 0/23 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
@@ -325,9 +330,6 @@
 - [18:08:14] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 7 • 24/24 HP)
 - [18:08:11] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 9 • 0/27 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:08:10] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 9 • 27/27 HP)
-- [18:08:06] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 6 • 0/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
-- [18:08:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (Lv. 6 • 0/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
-- [18:08:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (Lv. 6 • 22/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 
 - [18:08:18] Entrou em Mt Moon B1F
 - [18:07:47] Entrou em Mt Moon 1F
@@ -337,6 +339,7 @@
 - [18:07:16] Entrou em Mt Moon 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:08:35] `TACKLE TAIL WHIP`
 - [18:08:31] `THUNDERSHOCK THUNDER WAVE`
 - [18:08:25] `TACKLE TAIL WHIP`
 - [18:06:14] `THUNDERSHOCK THUNDER WAVE`
@@ -351,7 +354,6 @@
 - [17:48:57] `HYPER FANG TAIL WHIP`
 - [17:48:55] `TACKLE TAIL WHIP`
 - [17:48:00] `TACKLE HORN ATTACK`
-- [17:47:54] `THUNDERSHOCK THUNDER WAVE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
