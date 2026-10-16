@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:13:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:15:18**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `75h 0m 11s`
+- **Tempo de Jogo:** `75h 0m 23s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
@@ -32,17 +32,15 @@
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
-### 2. **Pikachu** (Lv. 20)
-- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
-- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7812 | Def: 5770 | Spd: 8606 | Spc: 5080 | HP: 5652
-- **Experiência:** 8949 EXP (Progresso: 75%, faltam 312 p/ Lv.21)
+### 2. **Diglett** (Lv. 18)
+- **Tipos:** Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
+- **DVs Gen 1 (0–15):** Ataque: 13 | Defesa: 14 | Velocidade: 13 | Especial: 11 | HP: 11
+- **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
+- **Experiência:** 5832 EXP (Progresso: 0%, faltam 1027 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 3. **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
@@ -78,15 +76,17 @@
   - **Peck** (Flying) — PP: 35 | Poder: 35 | Precisão: 100%
   - **Sand-attack** (Normal) — PP: 15 | Poder: -- | Precisão: 100%
 
-### 6. **Diglett** (Lv. 18)
-- **Tipos:** Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
-- **DVs Gen 1 (0–15):** Ataque: 13 | Defesa: 14 | Velocidade: 13 | Especial: 11 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
-- **Experiência:** 5832 EXP (Progresso: 0%, faltam 1027 p/ Lv.19)
+### 6. **Pikachu** (Lv. 20)
+- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
+- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
+- **Stat Experience (0–65.535):** Atk: 7812 | Def: 5770 | Spd: 8606 | Spc: 5080 | HP: 5652
+- **Experiência:** 8949 EXP (Progresso: 75%, faltam 312 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **10 / 20 slots** (10 vagas livres)
 - **Potion** x6
@@ -411,7 +411,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Geodude está a 1 HP, usa imediatamente uma Potion para o curar e evitar uma perda desnecessária. Com 12.140$ e apenas 2 insígnias, corre para a cidade mais próxima para comprar Potions extras e trocar o Farfetch'd (Nv.5, inútil) no PC, mantendo a equipa focada nos níveis 18-22."
+> "Com 12.140$ e dois selos, a prioridade é evoluir o teu Geodude fraco (Nv.8) para Graveler (Nv.25) usando os teus 2 Rare Candies, garantindo um tanque de Rock/Ground imbatível contra o próximo ginásio. Mete imediatamente o Farfetch'd (Nv.5) no PC para libertar espaço na equipa, pois é inútil comparado com o potencial do Geodude."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
