@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:51:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:52:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `19`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `3`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `56h 0m 57s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
@@ -164,10 +164,6 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
-## 🎒 9. Itens da Área (Cerulean City)
-### Itens Ocultos (Invisíveis no chão):
-- **Rare Candy** (X: 15, Y: 8) • Estado: 🔴 Por Apanhar — *No canteiro de flores atrás da casa arrombada.*
-
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
@@ -187,12 +183,12 @@
 - [17:50:04] **Turno #1**: Beedrill (39/54 HP) vs Zubat (Lv. 9 • 0/28 HP)
 - [17:49:52] **Turno #2**: Beedrill (39/54 HP) vs Zubat (Lv. 9 • 0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 
+- [17:52:03] Entrou em Cerulean Pokecenter
 - [17:51:57] Entrou em Cerulean City
 - [17:50:39] Entrou em Route 4
 - [17:50:38] Entrou em Mt Moon B1F
 - [17:49:42] Entrou em Mt Moon B2f
 - [17:49:18] Entrou em Mt Moon B1F
-- [17:48:39] Entrou em Mt Moon 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [17:50:29] `FURY ATTACK POISON STING`
