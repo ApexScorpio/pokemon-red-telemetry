@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:25:14**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:25:19**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `9`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `8`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `57h 0m 1s`
+- **Tempo de Jogo:** `57h 0m 2s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -101,7 +101,7 @@
 - **Town Map** x1
 - **TM34 (Bide)** x1
 - **TM12 (Water Gun)** x1
-- **Rare Candy** x1
+- **Rare Candy** x2
 - **Escape Rope** x1
 - **Moon Stone** x2
 - **Hp Up** x1
@@ -169,7 +169,7 @@
 
 ## 🎒 9. Itens da Área (Cerulean City)
 ### Itens Ocultos (Invisíveis no chão):
-- **Rare Candy** (X: 15, Y: 8) • Estado: 🔴 Por Apanhar — *No canteiro de flores atrás da casa arrombada.*
+- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
