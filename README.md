@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:15:47**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:15:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `34`, Y: `18`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `37`, Y: `21`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `56h 0m 0s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
@@ -22,10 +22,10 @@
 - **Tipos:** Electric | **HP:** 37 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6604 | Def: 4674 | Spd: 7294 | Spc: 3937 | HP: 4755
-- **Experiência:** 4355 EXP (Progresso: 32%, faltam 558 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 6649 | Def: 4709 | Spd: 7349 | Spc: 3977 | HP: 4795
+- **Experiência:** 4424 EXP (Progresso: 40%, faltam 489 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -134,7 +134,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 32 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
+### #1. [↖️ 38 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe / Média
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -145,7 +145,7 @@
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
-### #2. [↖️ 25 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
+### #2. [↖️ 31 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -167,7 +167,7 @@
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
-### #4. [↖️ 12 passos Noroeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Leste-Norte)) • **✅ VENCIDO**
+### #4. [↖️ 18 passos Noroeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Leste-Norte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Raticate (Lv. 13)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -178,7 +178,7 @@
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Hyper Fang. Raticate tem alta velocidade e ataque rápido.
 
-### #5. [↖️ 6 passos Noroeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
+### #5. [↖️ 12 passos Noroeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
 - **Dificuldade:** Difícil
 - **Roster Inimigo:** Raticate (Lv. 16)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -201,6 +201,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:15:50] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 9 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
+- [18:15:49] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 9 • 28/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
+- [18:15:48] **Turno #1**: Pikachu (0/40 HP) vs Zubat (Lv. 9 • 28/28 HP)
 - [18:15:40] **Turno #2**: Rattata (0/43 HP) vs Geodude (Lv. 8 • 13/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [18:15:39] **Turno #1**: Rattata (3/43 HP) vs Geodude (Lv. 8 • 13/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [18:15:38] **Turno #1**: Rattata (3/43 HP) vs Geodude (Lv. 8 • 25/25 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
@@ -213,9 +216,6 @@
 - [18:15:29] **Turno #1**: Rattata (15/43 HP) vs Geodude (Lv. 8 • 14/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [18:15:28] **Turno #1**: Rattata (15/43 HP) vs Geodude (Lv. 8 • 25/25 HP) • Golpe RED: `Struggle` • Golpe Inimigo: `Tackle`
 - [18:15:27] **Turno #1**: Rattata (19/43 HP) vs Geodude (Lv. 8 • 25/25 HP)
-- [18:15:25] **Turno #1**: Pikachu (37/40 HP) vs Geodude (Lv. 8 • 25/25 HP)
-- [18:15:24] **Turno #1**: Pikachu (19/40 HP) vs Geodude (Lv. 8 • 25/25 HP)
-- [18:15:20] **Turno #4**: Rattata (19/43 HP) vs Geodude (Lv. 8 • 0/26 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 
 - [18:15:43] Entrou em Mt Moon B2f
 - [18:15:34] Entrou em Mt Moon B1F
