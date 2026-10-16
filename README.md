@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:42:31**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:42:35**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,7 +16,7 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Thundershock`
 - **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
@@ -205,6 +205,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:42:31] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 7/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sand-attack`
 - [18:42:27] **Turno #1**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 7/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sand-attack`
 - [18:42:18] **Turno #1**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 30/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:42:17] **Turno #1**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 53/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
@@ -219,7 +220,6 @@
 - [18:17:21] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 20/20 HP)
 - [18:17:18] **Turno #1**: Pikachu (19/42 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 - [18:17:15] **Turno #1**: Pikachu (19/42 HP) vs Spearow (Lv. 10 • 30/30 HP)
-- [18:17:14] **Turno #1**: Pikachu (19/42 HP) vs Rattata (Lv. 8 • 0/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 
 - [18:33:36] Entrou em Cerulean City
 - [18:29:24] Entrou em Cerulean Mart
