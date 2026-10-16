@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:47:18**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:47:22**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `12`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `78h 0m 41s`
+- **Tempo de Jogo:** `78h 0m 42s`
 - **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
 - **Dinheiro:** **15 445 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 12 (Geodude)
@@ -49,8 +49,8 @@
 - **Tipos:** Rock/Ground | **HP:** 32 / 32 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 11 | SPC: 16
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 131 | Def: 145 | Spd: 115 | Spc: 127 | HP: 95
-- **Experiência:** 1033 EXP (Progresso: 21%, faltam 228 p/ Lv.13)
+- **Stat Experience (0–65.535):** Atk: 151 | Def: 162 | Spd: 150 | Spc: 177 | HP: 115
+- **Experiência:** 1222 EXP (Progresso: 86%, faltam 39 p/ Lv.13)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Defense Curl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -81,10 +81,10 @@
 - **Tipos:** Electric | **HP:** 2 / 50 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 36 | DEF: 25 | SPD: 47 | SPC: 34
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 8039 | Def: 6049 | Spd: 8792 | Spc: 5267 | HP: 5817
-- **Experiência:** 10 198 EXP (Progresso: 68%, faltam 450 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 8059 | Def: 6066 | Spd: 8827 | Spc: 5317 | HP: 5837
+- **Experiência:** 10 387 EXP (Progresso: 81%, faltam 261 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 23 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 21 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
