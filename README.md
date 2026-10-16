@@ -1,29 +1,61 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:02:20**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:02:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `20`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `23`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `67h 0m 31s`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Tempo de Jogo:** `67h 0m 32s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH EMBER`
 - **Dinheiro:** **11 180 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Jr. Trainer♂ Ricky** (Rota 6)
-  - **Equipa Adversária:** Squirtle (Lv. 20)
-  - **Lead Recomendado:** Pikachu (Thundershock)
-  - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Pidgey** (Lv. 16)
+- **Tipos:** Normal/Flying
+- **HP:** **41 / 41** (100%)
+- **Stats de Batalha:** ATK: 22 | DEF: 21 | SPD: 24 | SPC: 20
+- **Os 4 Golpes do Adversário:**
+  - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Gust** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Sand-attack** (Normal) ➔ Golpe de Status
+  - **Quick Attack** (Normal) ➔ Dano: ~7-9 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 18)
+- **Tipos:** Fire
+- **HP:** **53 / 53** (HEALTHY)
+- **Stats com Modificadores:** ATK: 34 (0) | DEF: 28 (0) | SPD: 42 (0) | SPC: 35 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Ember** (Fire) ➔ Dano: **20-24 HP** (1x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Ember (Causa ~20-24 de dano)
+- ➔ Turno 2: Ember (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Ember. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Charmeleon tem a melhor rota de vitória rápida e HP estável (53/53). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **51%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Charmeleon** (Lv. 18)
+### 1. **Charmeleon** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Fire | **HP:** 53 / 53 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 34 | DEF: 28 | SPD: 42 | SPC: 35
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
@@ -163,61 +195,61 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↗️ 10 passos Nordeste] **Jr. Trainer♂ Ricky** (Rota 6) • **⚔️ POR VENCER**
+### #1. [↗️ 13 passos Nordeste] **Jr. Trainer♂ Ricky** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↗️ 20 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **⚔️ POR VENCER**
+### #2. [↗️ 23 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↘️ 21 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↘️ 18 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↘️ 6 passos Sudeste] **Jr. Trainer♂ Jeff** (Rota 6) • **⚔️ POR VENCER**
+### #4. [↗️ 7 passos Nordeste] **Jr. Trainer♂ Jeff** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↘️ 12 passos Sudeste] **Jr. Trainer♀ Izzy** (Rota 6) • **⚔️ POR VENCER**
+### #5. [↗️ 13 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↘️ 18 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **⚔️ POR VENCER**
+### #6. [↘️ 15 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [↗️ 18 passos Nordeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↗️ 21 passos Nordeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [↖️ 19 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [↖️ 22 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [↗️ 13 passos Nordeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↗️ 16 passos Nordeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [↗️ 20 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↗️ 23 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
@@ -255,6 +287,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:02:23] **Turno #1**: Charmeleon (53/53 HP) vs Pidgey (Lv. 16 • 41/41 HP)
 - [20:02:03] **Turno #1**: Charmeleon (53/53 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:02:02] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:02:00] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 41/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
@@ -269,7 +302,6 @@
 - [19:25:53] **Turno #1**: Abra (47/28 HP) vs Oddish (Lv. 13 • 38/38 HP)
 - [19:24:29] **Turno #3**: Nidorina (47/55 HP) vs Mankey (Lv. 12 • 2/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
 - [19:24:28] **Turno #3**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 2/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
-- [19:24:25] **Turno #2**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 16/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
