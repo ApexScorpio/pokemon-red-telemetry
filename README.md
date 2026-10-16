@@ -1,24 +1,56 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:45:15**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:45:20**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `25`, Y: `21`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `26`, Y: `22`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `56h 0m 13s`
-- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+
+### 🔴 Adversário em Campo: **Paras** (Lv. 10)
+- **Tipos:** Bug/Grass
+- **HP:** **28 / 28** (100%)
+- **Stats de Batalha:** ATK: 22 | DEF: 18 | SPD: 12 | SPC: 18
+- **Os 4 Golpes do Adversário:**
+  - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Scratch** (Normal) ➔ Dano: ~5-6 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
+- **Tipos:** Bug/Poison
+- **HP:** **51 / 51** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **34-40 HP** (4x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (51/51). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **25%** | Great Ball: **48%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~35%** | *Com HP no vermelho:* **~75%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 16)
+### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -132,7 +164,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 26 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
+### #1. [↖️ 28 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe / Média
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -145,7 +177,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
-### #2. [↖️ 19 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
+### #2. [↖️ 21 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -158,7 +190,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
-### #3. [↙️ 11 passos Sudoeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro-Sul)) • **✅ VENCIDO**
+### #3. [⬅️ 11 passos Oeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro-Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Zubat (Lv. 12) • Ekans (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -209,6 +241,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:45:19] **Turno #1**: Beedrill (51/51 HP) vs Paras (Lv. 10 • 28/28 HP) • Golpe RED: `Fury Attack`
+- [17:45:17] **Turno #1**: Beedrill (56/51 HP) vs Paras (Lv. 10 • 28/28 HP)
 - [17:44:28] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 7 • 0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [17:44:26] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 7 • 24/24 HP)
 - [17:44:22] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 8 • 0/25 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
@@ -222,8 +256,6 @@
 - [15:57:56] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 10 • 0/30 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Supersonic`
 - [15:57:55] **Turno #1**: Butterfree (54/60 HP) vs Zubat (Lv. 10 • 0/30 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Supersonic`
 - [15:57:53] **Turno #1**: Beedrill (54/51 HP) vs Zubat (Lv. 10 • 30/30 HP)
-- [15:57:51] **Turno #1**: Butterfree (54/60 HP) vs Zubat (Lv. 8 • 0/25 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
-- [15:57:49] **Turno #1**: Beedrill (54/51 HP) vs Zubat (Lv. 8 • 25/25 HP)
 
 - [17:45:11] Entrou em Mt Moon B2f
 - [17:45:04] Entrou em Mt Moon B1F
@@ -233,6 +265,7 @@
 - [17:44:30] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:45:19] `FURY ATTACK POISON STING`
 - [17:44:18] `CONFUSION STUN SPORE`
 - [17:02:28] `FURY ATTACK POISON STING`
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
