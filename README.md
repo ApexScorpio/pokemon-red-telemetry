@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:24:30**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:24:34**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -55,22 +55,22 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Geodude** (Lv. 8)
-- **Tipos:** Rock/Ground | **HP:** 0 / 24 ❌ (FAINTED)
+- **Tipos:** Rock/Ground | **HP:** 24 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 16 | Def: 18 | Spd: 10 | Spc: 25 | HP: 15
 - **Experiência:** 362 EXP (Progresso: 46%, faltam 57 p/ Lv.9)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
 ### 2. **Diglett** (Lv. 18)
-- **Tipos:** Ground | **HP:** 0 / 35 ❌ (FAINTED)
+- **Tipos:** Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 13 | Defesa: 14 | Velocidade: 13 | Especial: 11 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
 - **Experiência:** 5832 EXP (Progresso: 0%, faltam 1027 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 32 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
 ### 3. **Butterfree** (Lv. 22)
@@ -80,7 +80,7 @@
 - **Stat Experience (0–65.535):** Atk: 7466 | Def: 6990 | Spd: 7541 | Spc: 5254 | HP: 6268
 - **Experiência:** 11 988 EXP (Progresso: 88%, faltam 179 p/ Lv.23)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -98,25 +98,25 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 5. **Pikachu** (Lv. 20)
-- **Tipos:** Electric | **HP:** 29 / 48 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7859 | Def: 5822 | Spd: 8647 | Spc: 5120 | HP: 5707
 - **Experiência:** 9175 EXP (Progresso: 93%, faltam 86 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 6. **Charmeleon** (Lv. 19)
-- **Tipos:** Fire | **HP:** 47 / 55 ✅ (SAUDÁVEL)
+- **Tipos:** Fire | **HP:** 55 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 30 | SPD: 44 | SPC: 37
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
 - **Stat Experience (0–65.535):** Atk: 5625 | Def: 4150 | Spd: 6436 | Spc: 3389 | HP: 4230
 - **Experiência:** 4692 EXP (Progresso: 13%, faltam 768 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Ember** (Fire) — PP: 24 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
