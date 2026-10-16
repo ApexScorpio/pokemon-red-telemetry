@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:47:33**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:47:37**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,13 +11,13 @@
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `53h 0m 1s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **2051 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #5`
-- **Último Golpe Usado por RED:** `Quick Attack`
+- **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
 ### 🔴 Adversário em Campo: **Raticate** (Lv. 16)
@@ -30,28 +30,27 @@
   - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
   - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (12-15 HP)
+  - **Tackle** (Normal) ➔ Dano: ~8-10 HP (1x)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (13-16 HP)
-  - **Hyper Fang** (Normal) ➔ 🚨 RISCO DE K.O.! (25-30 HP)
+  - **Quick Attack** (Normal) ➔ Dano: ~10-12 HP (1x)
+  - **Hyper Fang** (Normal) ➔ Dano: ~17-21 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **0 / 43** (HEALTHY)
-- **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (-1) | SPD: 34 (0) | SPC: 20 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
+- **Tipos:** Poison
+- **HP:** **51 / 51** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **10-12 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 45%)
-- ➔ Turno 1: Inimigo ataca primeiro (~30 dano) ➔ Responde com Tackle (K.O.)
-> **Resumo Tático:** ⚠️ PERIGO: O adversário ataca primeiro e pode desmaiar o teu Pokémon! Considera curar ou trocar.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turno 1: Inimigo ataca primeiro (~21 dano) ➔ Responde com Poison Sting (K.O.)
+> **Resumo Tático:** O adversário é mais rápido mas o teu HP (51) aguenta o golpe. Finaliza logo a seguir com Poison Sting.
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Nidorino (Lv. 16)** [51/51 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Nidorino para manter o controlo da batalha.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 3 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -78,7 +77,7 @@
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
-### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
+### 3. **Rattata** (Lv. 16)
 - **Tipos:** Normal | **HP:** 0 / 43 ❌ (FAINTED)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
@@ -90,7 +89,7 @@
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 13 | Poder: 80 | Precisão: 90%
 
-### 4. **Nidorino** (Lv. 16)
+### 4. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
@@ -225,6 +224,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:47:36] **Turno #5**: Nidorino (51/51 HP) vs Raticate (3/46 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Quick Attack`
 - [15:47:30] **Turno #5**: Rattata (0/43 HP) vs Raticate (3/46 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Quick Attack`
 - [15:46:59] **Turno #4**: Rattata (15/43 HP) vs Raticate (3/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Quick Attack`
 - [15:46:58] **Turno #4**: Rattata (15/43 HP) vs Raticate (24/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Quick Attack`
@@ -232,7 +232,6 @@
 - [15:46:53] **Turno #3**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tail Whip`
 - [15:46:48] **Turno #2**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:38] **Turno #2**: Beedrill (0/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
-- [15:46:37] **Turno #2**: Beedrill (20/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 
 - [15:43:51] Entrou em Mt Moon B2f
 - [15:43:49] Entrou em Mt Moon B1F
@@ -242,6 +241,7 @@
 - [15:42:13] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [15:47:37] `TACKLE HORN ATTACK`
 - [15:46:51] `TACKLE TAIL WHIP`
 - [15:44:12] `FURY ATTACK POISON STING`
 - [15:43:01] `THUNDERSHOCK THUNDER WAVE`
