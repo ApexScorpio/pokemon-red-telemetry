@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:54:49**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:54:53**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,10 +18,11 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Wrap`
 
 ### 🔴 Adversário em Campo: **Ekans** (Lv. 6)
 - **Tipos:** Poison
-- **HP:** **20 / 20** (100%)
+- **HP:** **0 / 20** (0%)
 - **Stats de Batalha:** ATK: 12 | DEF: 11 | SPD: 13 | SPC: 10
 - **Os 4 Golpes do Adversário:**
   - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
@@ -49,9 +50,6 @@
 - **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (51/57). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
-
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 51 / 57 ✅ (SAUDÁVEL)
@@ -60,7 +58,7 @@
 - **Stat Experience (0–65.535):** Atk: 5115 | Def: 4351 | Spd: 5421 | Spc: 3410 | HP: 4118
 - **Experiência:** 6061 EXP (Progresso: 22%, faltam 798 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 18 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -205,6 +203,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:54:52] **Turno #1**: Beedrill (51/57 HP) vs Ekans (Lv. 6 • 0/20 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Wrap`
+- [17:54:50] **Turno #1**: Beedrill (51/57 HP) vs Ekans (Lv. 6 • 3/20 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Wrap`
 - [17:54:32] **Turno #1**: Beedrill (51/57 HP) vs Ekans (Lv. 6 • 20/20 HP)
 - [17:54:29] **Turno #1**: Beedrill (51/57 HP) vs Rattata (Lv. 10 • 2/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [17:54:29] **Turno #1**: Beedrill (57/57 HP) vs Rattata (Lv. 10 • 2/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
@@ -218,8 +218,6 @@
 - [17:50:28] **Turno #3**: Beedrill (9/57 HP) vs Zubat (Lv. 11 • 32/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:50:27] **Turno #2**: Beedrill (23/57 HP) vs Zubat (Lv. 11 • 32/32 HP) • Golpe RED: `Struggle` • Golpe Inimigo: `Supersonic`
 - [17:50:23] **Turno #1**: Beedrill (37/57 HP) vs Zubat (Lv. 11 • 32/32 HP)
-- [17:50:14] **Turno #1**: Beedrill (37/57 HP) vs Zubat (Lv. 11 • 0/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [17:50:13] **Turno #1**: Beedrill (34/54 HP) vs Zubat (Lv. 11 • 0/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 
 - [17:53:11] Entrou em Route 4
 - [17:52:56] Entrou em Cerulean City
