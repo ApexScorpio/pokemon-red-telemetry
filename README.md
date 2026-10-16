@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:43**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:46**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,12 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Struggle`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Scratch`
+- **Último Golpe Usado pelo Adversário:** `Poison Sting`
 
 ### 🔴 Adversário em Campo: **Ekans** (Lv. 14)
 - **Tipos:** Poison
-- **HP:** **36 / 36** (100%)
+- **HP:** **10 / 36** (28%)
 - **Stats de Batalha:** ATK: 24 | DEF: 19 | SPD: 22 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
@@ -35,20 +36,20 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 16)
 - **Tipos:** Poison
-- **HP:** **20 / 52** (HEALTHY)
+- **HP:** **18 / 52** (HEALTHY)
 - **Stats com Modificadores:** ATK: 27 (0) | DEF: 29 (0) | SPD: 29 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **8-10 HP** (1x eficácia) • ~4 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **10-12 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-4: Usa repetidamente Tackle
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (20/52). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 10 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Scratch para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -76,13 +77,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Nidorina** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 20 / 52 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 19 / 52 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 29 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3150 | Def: 2322 | Spd: 3474 | Spc: 1954 | HP: 2388
 - **Experiência:** 2939 EXP (Progresso: 69%, faltam 181 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 28 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -216,6 +217,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:58:46] **Turno #2**: Nidorina (18/52 HP) vs Ekans (Lv. 14 • 10/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Poison Sting`
+- [18:58:45] **Turno #1**: Nidorina (19/52 HP) vs Ekans (Lv. 14 • 10/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Poison Sting`
+- [18:58:44] **Turno #1**: Nidorina (19/52 HP) vs Ekans (Lv. 14 • 25/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Poison Sting`
+- [18:58:43] **Turno #1**: Nidorina (20/52 HP) vs Ekans (Lv. 14 • 25/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Poison Sting`
 - [18:58:43] **Turno #1**: Nidorina (20/52 HP) vs Ekans (Lv. 14 • 36/36 HP) • Golpe RED: `Struggle`
 - [18:58:42] **Turno #1**: Beedrill (52/56 HP) vs Ekans (Lv. 14 • 36/36 HP)
 - [18:58:41] **Turno #1**: Beedrill (52/56 HP) vs Geodude (Lv. 13 • 0/35 HP)
@@ -227,10 +232,6 @@
 - [18:58:26] **Turno #5**: Nidorina (25/52 HP) vs Geodude (Lv. 13 • 29/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [18:58:25] **Turno #4**: Nidorina (30/52 HP) vs Geodude (Lv. 13 • 29/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [18:58:24] **Turno #4**: Nidorina (35/52 HP) vs Geodude (Lv. 13 • 30/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [18:58:23] **Turno #3**: Nidorina (35/52 HP) vs Geodude (Lv. 13 • 31/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [18:58:22] **Turno #2**: Nidorina (40/52 HP) vs Geodude (Lv. 13 • 31/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
-- [18:58:19] **Turno #2**: Nidorina (40/52 HP) vs Geodude (Lv. 13 • 32/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [18:58:19] **Turno #2**: Nidorina (45/52 HP) vs Geodude (Lv. 13 • 32/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
