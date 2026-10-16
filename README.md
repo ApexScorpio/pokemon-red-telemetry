@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:07:31**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:07:35**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `21`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `24`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `74h 0m 33s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
@@ -211,49 +211,49 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↗️ 11 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
+### #1. [⬆️ 9 passos Norte] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe
 - **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle.
 
-### #2. [↗️ 12 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
+### #2. [↗️ 10 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Weedle (Lv. 10)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember elimina os insetos.
 
-### #3. [↗️ 7 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
+### #3. [⬆️ 5 passos Norte] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Charmeleon limpam.
 
-### #4. [↘️ 8 passos Sudeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
+### #4. [↗️ 2 passos Nordeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Sandshrew (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion contra Ekans e Sandshrew.
 
-### #5. [↘️ 11 passos Sudeste] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
+### #5. [⬇️ 3 passos Sul] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion causa 2x dano.
 
-### #6. [↘️ 16 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
+### #6. [↘️ 8 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Mankey (Lv. 18)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Fraqueza a Psíquico e Voador.
 
-### #7. [↘️ 17 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
+### #7. [⬇️ 9 passos Sul] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Ekans (Lv. 15) • Zubat (Lv. 15)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Butterfree.
 
-### #8. [↗️ 16 passos Nordeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
+### #8. [↖️ 20 passos Noroeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
@@ -327,7 +327,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Usa **Confusion** agora para garantir a derrota do Pidgey sem gastar energia, já que está a 4 HP de cair. Depois, mete o **Geodude** (nível 8, morto) e o **Spearow** (nível 5, fraco) no PC para limpar espaço e focar-te em treinar o Nidorino e o Abra, que são as tuas peças fortes para as próximas ginásios."
+> "Geodude está KO e Spearow é inutilizável contra o próximo Ginásio, por isso mete ambos no PC e compra uma Super Potion em Cerulean City para curar o Pikachu. Usa os teus 2 Rare Candies no Nidorino para o subir de nível e garantir vantagem no próximo desafio!"
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
