@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:06**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:10**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,37 +17,36 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
+- **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Horn Attack`
-- **Último Golpe Usado pelo Adversário:** `Defense Curl`
+- **Último Golpe Usado pelo Adversário:** `Karate Chop`
 
-### 🔴 Adversário em Campo: **Geodude** (Lv. 13)
-- **Tipos:** Rock/Ground
-- **HP:** **11 / 35** (31%)
-- **Stats de Batalha:** ATK: 28 | DEF: 66 | SPD: 12 | SPC: 14
+### 🔴 Adversário em Campo: **Machop** (Lv. 13)
+- **Tipos:** Fighting
+- **HP:** **11 / 43** (26%)
+- **Stats de Batalha:** ATK: 28 | DEF: 20 | SPD: 16 | SPC: 16
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Defense Curl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
+  - **Karate Chop** (Normal) • PP: 25 • Poder: 50 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (4-5 HP)
-  - **Defense Curl** (Normal) ➔ Golpe de Status
+  - **Karate Chop** (Normal) ➔ 🚨 RISCO DE K.O.! (5-6 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 20)
 - **Tipos:** Poison
-- **HP:** **4 / 61** (HEALTHY)
+- **HP:** **0 / 61** (HEALTHY)
 - **Stats com Modificadores:** ATK: 43 (0) | DEF: 35 (0) | SPD: 38 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~11 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **11-13 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-11: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 11 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Nidorina (Lv. 16)** [52/52 HP]
+- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Nidorina para manter o controlo da batalha.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -67,10 +66,10 @@
 - **Tipos:** Poison | **HP:** 4 / 61 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 4336 | Def: 2959 | Spd: 4581 | Spc: 2613 | HP: 3433
-- **Experiência:** 5544 EXP (Progresso: 8%, faltam 914 p/ Lv.21)
+- **Stat Experience (0–65.535):** Atk: 4416 | Def: 3059 | Spd: 4601 | Spc: 2643 | HP: 3473
+- **Experiência:** 5782 EXP (Progresso: 32%, faltam 676 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 4 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 2 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -218,6 +217,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:58:10] **Turno #1**: Nidorino (0/61 HP) vs Machop (Lv. 13 • 11/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Karate Chop`
+- [18:58:09] **Turno #1**: Nidorino (4/61 HP) vs Machop (Lv. 13 • 43/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
+- [18:58:08] **Turno #3**: Nidorino (4/61 HP) vs Machop (Lv. 13 • 43/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
+- [18:58:07] **Turno #3**: Nidorino (4/61 HP) vs Geodude (Lv. 13 • 0/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
 - [18:58:05] **Turno #3**: Nidorino (4/61 HP) vs Geodude (Lv. 13 • 11/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
 - [18:58:03] **Turno #2**: Nidorino (4/61 HP) vs Geodude (Lv. 13 • 17/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
 - [18:58:02] **Turno #1**: Nidorino (8/61 HP) vs Geodude (Lv. 13 • 26/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
@@ -229,10 +232,6 @@
 - [18:57:56] **Turno #11**: Nidorino (11/59 HP) vs Geodude (Lv. 13 • 3/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
 - [18:57:55] **Turno #10**: Nidorino (11/59 HP) vs Geodude (Lv. 13 • 5/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
 - [18:57:54] **Turno #9**: Nidorino (17/59 HP) vs Geodude (Lv. 13 • 7/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
-- [18:57:54] **Turno #9**: Nidorino (22/59 HP) vs Geodude (Lv. 13 • 7/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
-- [18:57:53] **Turno #8**: Nidorino (22/59 HP) vs Geodude (Lv. 13 • 9/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
-- [18:57:52] **Turno #7**: Nidorino (22/59 HP) vs Geodude (Lv. 13 • 9/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
-- [18:57:49] **Turno #7**: Nidorino (22/59 HP) vs Geodude (Lv. 13 • 12/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
