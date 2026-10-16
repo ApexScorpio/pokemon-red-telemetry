@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:40:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:40:54**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `28`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `29`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `78h 0m 10s`
 - **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
@@ -242,37 +242,37 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 18 passos Noroeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #1. [↗️ 15 passos Nordeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↗️ 18 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #2. [↗️ 25 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↗️ 7 passos Nordeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↗️ 14 passos Nordeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↖️ 12 passos Noroeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #4. [↗️ 9 passos Nordeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↗️ 8 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #5. [↗️ 15 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↙️ 6 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #6. [↘️ 5 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
