@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:50:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:50:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -22,7 +22,7 @@
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 9)
 - **Tipos:** Rock/Ground
-- **HP:** **25 / 28** (89%)
+- **HP:** **19 / 28** (68%)
 - **Stats de Batalha:** ATK: 21 | DEF: 24 | SPD: 10 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,15 +31,15 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison
-- **HP:** **43 / 51** (HEALTHY)
+- **HP:** **39 / 51** (HEALTHY)
 - **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~25 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~19 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-25: Usa repetidamente Poison Sting
+- ➔ Turnos 1-19: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
@@ -48,12 +48,12 @@
 - **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **39%** | Great Ball: **58%** | Ultra Ball: **39%**
-  - *Se adormeceres o inimigo:* **~45%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **58%** | Great Ball: **88%** | Ultra Ball: **58%**
+  - *Se adormeceres o inimigo:* **~62%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 43 / 51 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 16)
+- **Tipos:** Bug/Poison | **HP:** 39 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4043 | Def: 3400 | Spd: 4535 | Spc: 2620 | HP: 3288
@@ -233,14 +233,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:50:15] **Turno #1**: Beedrill (39/51 HP) vs Geodude (19/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [15:50:14] **Turno #1**: Beedrill (43/51 HP) vs Geodude (19/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [15:50:13] **Turno #1**: Beedrill (43/51 HP) vs Geodude (22/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [15:50:13] **Turno #1**: Beedrill (43/51 HP) vs Geodude (25/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [15:50:10] **Turno #1**: Beedrill (43/51 HP) vs Geodude (28/28 HP)
 - [15:49:55] **Turno #1**: Beedrill (43/51 HP) vs Zubat (6/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:49:54] **Turno #1**: Beedrill (43/51 HP) vs Zubat (13/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
 - [15:49:49] **Turno #1**: Beedrill (43/51 HP) vs Zubat (33/33 HP)
-- [15:49:29] **Turno #1**: Beedrill (43/51 HP) vs Zubat (1/25 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:49:28] **Turno #1**: Beedrill (43/51 HP) vs Zubat (17/25 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:49:27] **Turno #1**: Beedrill (43/51 HP) vs Zubat (25/25 HP)
 
 - [15:49:34] Entrou em Mt Moon B2f
 - [15:49:32] Entrou em Mt Moon B1F
