@@ -50,6 +50,19 @@ const server = http.createServer(async (req, res) => {
     return res.end(JSON.stringify(client.latestState));
   }
 
+  // Endpoint direto de telemetria em texto puro (Markdown) com 0ms de atraso e sem cache
+  if (url.pathname === '/telemetria.md' || url.pathname === '/telemetria.txt' || url.pathname === '/api/telemetria.md') {
+    const markdown = formatTelemetryMarkdown(client.latestState);
+    res.writeHead(200, {
+      'Content-Type': 'text/markdown; charset=utf-8',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+      'Access-Control-Allow-Origin': '*'
+    });
+    return res.end(markdown);
+  }
+
   // Exportar dados completos em Markdown para o ChatGPT e sincronizar com o GitHub
   if (url.pathname === '/api/export-markdown') {
     const markdown = formatTelemetryMarkdown(client.latestState);

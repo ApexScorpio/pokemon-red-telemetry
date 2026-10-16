@@ -34,8 +34,12 @@ function saveLocalTelemetryFiles(markdown) {
   const targets = [
     path.join(__dirname, 'README.md'),
     path.join(__dirname, 'telemetria.md'),
+    path.join(__dirname, 'public', 'telemetria.md'),
+    path.join(__dirname, 'public', 'telemetria.txt'),
     path.join(__dirname, '..', 'README.md'),
-    path.join(__dirname, '..', 'telemetria.md')
+    path.join(__dirname, '..', 'telemetria.md'),
+    path.join(__dirname, '..', 'public', 'telemetria.md'),
+    path.join(__dirname, '..', 'public', 'telemetria.txt')
   ];
   targets.forEach(p => {
     try {
@@ -406,14 +410,36 @@ async function syncToGitHub(state) {
   }
 }
 
-// Disparo periódico e seguro (evita starvation do clearTimeout a cada 650ms)
+let lastSyncedFingerprint = '';
+
+function getStateFingerprint(state) {
+  if (!state) return '';
+  return `${state.mapId || 0}_${state.coords ? `${state.coords.x},${state.coords.y}` : ''}_${state.playerDirection || ''}_${state.inBattle}_${state.battle ? `${state.battle.turn}_${state.battle.enemy ? state.battle.enemy.hp : ''}_${state.battle.playerActive ? state.battle.playerActive.hp : ''}` : ''}_${state.currentDialog || ''}_${state.money || 0}`;
+}
+
+// Disparo periódico e seguro com deteção de alterações
 function triggerDebouncedSync(state) {
+  if (!state) return;
+
+  // Atualização em disco local em tempo real (a cada ~700ms)
+  try {
+    const md = formatTelemetryMarkdown(state);
+    saveLocalTelemetryFiles(md);
+  } catch (e) {}
+
+  const currentFingerprint = getStateFingerprint(state);
+  // Se não houve alteração no jogo desde o último envio para o GitHub, evita pedidos redundantes
+  if (currentFingerprint === lastSyncedFingerprint && !state.inBattle) {
+    return;
+  }
+
   pendingStateToSync = state;
   if (isSyncing) return;
 
   const now = Date.now();
   const timeSinceLast = now - lastSyncTime;
-  const MIN_INTERVAL = 10000; // Máximo 1 commit a cada 10 segundos
+  // Intervalo rápido de 3 segundos quando há alterações ativas (evita bloqueio secundário da API do GitHub)
+  const MIN_INTERVAL = state.inBattle ? 2500 : 3500;
 
   if (timeSinceLast >= MIN_INTERVAL) {
     executeQueuedSync();
@@ -432,7 +458,10 @@ async function executeQueuedSync() {
   pendingStateToSync = null;
 
   try {
-    await syncToGitHub(state);
+    const res = await syncToGitHub(state);
+    if (res && res.success) {
+      lastSyncedFingerprint = getStateFingerprint(state);
+    }
   } finally {
     isSyncing = false;
     lastSyncTime = Date.now();
