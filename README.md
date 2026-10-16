@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:57**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:00:02**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `42`, Y: `4`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `38`, Y: `4`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `60h 0m 47s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
@@ -108,7 +108,7 @@
 - **Hp Up** x1
 - **TM01 (Mega Punch)** x1
 - **Helix Fossil** x1
-- **Ether** x1
+- **Ether** x2
 - **Great Ball** x1
 - **TM04 (Whirlwind)** x1
 - **Repel** x2
@@ -179,7 +179,7 @@
 - **TM19 (Seismic Toss)** (X: undefined, Y: undefined) • Estado: 🔴 Por Apanhar — *No canteiro de flores perto do labirinto de treinadores.*
 
 ### Itens Ocultos (Invisíveis no chão):
-- **Elixer** (X: 38, Y: 3) • Estado: 🔴 Por Apanhar — *Cerca à direita da casa do Bill.*
+- **Elixer** (X: 38, Y: 3) • Estado: ✅ Já Recolhido — *Cerca à direita da casa do Bill.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
