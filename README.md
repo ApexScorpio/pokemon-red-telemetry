@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:46**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,39 +17,38 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Scratch`
-- **Último Golpe Usado pelo Adversário:** `Poison Sting`
+- **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
-### 🔴 Adversário em Campo: **Ekans** (Lv. 14)
-- **Tipos:** Poison
-- **HP:** **10 / 36** (28%)
-- **Stats de Batalha:** ATK: 24 | DEF: 19 | SPD: 22 | SPC: 18
+### 🔴 Adversário em Campo: **Sandshrew** (Lv. 14)
+- **Tipos:** Ground
+- **HP:** **40 / 40** (100%)
+- **Stats de Batalha:** ATK: 28 | DEF: 31 | SPD: 18 | SPC: 15
 - **Os 4 Golpes do Adversário:**
-  - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
-  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
+  - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Wrap** (Normal) ➔ Dano: ~2-3 HP (1x)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-  - **Poison Sting** (Poison) ➔ Dano: ~1-2 HP (0.5x)
+  - **Scratch** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Sand-attack** (Normal) ➔ Golpe de Status
 
-### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 16)
+### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
 - **Tipos:** Poison
-- **HP:** **18 / 52** (HEALTHY)
-- **Stats com Modificadores:** ATK: 27 (0) | DEF: 29 (0) | SPD: 29 (0) | SPC: 25 (0)
+- **HP:** **21 / 55** (HEALTHY)
+- **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **10-12 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **5-7 HP** (1x eficácia) • ~6 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-6: Usa repetidamente Tackle
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 10 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Scratch para liquidar o adversário já!
+- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (21/55). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -76,14 +75,14 @@
   - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 3. **Nidorina** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 19 / 52 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 29 | SPC: 25
+### 3. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 21 / 55 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 3150 | Def: 2322 | Spd: 3474 | Spc: 1954 | HP: 2388
-- **Experiência:** 2939 EXP (Progresso: 69%, faltam 181 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 3210 | Def: 2366 | Spd: 3529 | Spc: 1994 | HP: 2423
+- **Experiência:** 3125 EXP (Progresso: 1%, faltam 673 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 26 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 25 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -191,8 +190,8 @@
 - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Nidorina** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #2**: **Rattata** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidorina** (Lv. 17) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
@@ -202,8 +201,8 @@
 - **Lead Recomendado:** Pikachu / Bellsprout
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Nidorina** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #2**: **Rattata** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidorina** (Lv. 17) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
@@ -217,6 +216,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:58:50] **Turno #1**: Nidorina (21/55 HP) vs Sandshrew (Lv. 14 • 40/40 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Sand-attack`
+- [18:58:49] **Turno #2**: Nidorina (21/55 HP) vs Sandshrew (Lv. 14 • 40/40 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Wrap`
+- [18:58:48] **Turno #2**: Nidorina (18/52 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Wrap`
 - [18:58:46] **Turno #2**: Nidorina (18/52 HP) vs Ekans (Lv. 14 • 10/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Poison Sting`
 - [18:58:45] **Turno #1**: Nidorina (19/52 HP) vs Ekans (Lv. 14 • 10/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Poison Sting`
 - [18:58:44] **Turno #1**: Nidorina (19/52 HP) vs Ekans (Lv. 14 • 25/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Poison Sting`
@@ -229,9 +231,6 @@
 - [18:58:29] **Turno #6**: Butterfree (57/62 HP) vs Geodude (Lv. 13 • 28/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [18:58:27] **Turno #6**: Nidorina (20/52 HP) vs Geodude (Lv. 13 • 28/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [18:58:27] **Turno #6**: Nidorina (25/52 HP) vs Geodude (Lv. 13 • 28/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [18:58:26] **Turno #5**: Nidorina (25/52 HP) vs Geodude (Lv. 13 • 29/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [18:58:25] **Turno #4**: Nidorina (30/52 HP) vs Geodude (Lv. 13 • 29/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [18:58:24] **Turno #4**: Nidorina (35/52 HP) vs Geodude (Lv. 13 • 30/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
@@ -241,6 +240,8 @@
 - [18:53:55] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:58:50] `SCRATCH GROWL`
+- [18:58:49] `YOUNGSTER is about to use`
 - [18:58:19] `SCRATCH GROWL`
 - [18:57:29] `HORN ATTACK TACKLE`
 - [18:56:38] `FURY ATTACK POISON STING`
@@ -254,8 +255,6 @@
 - [18:50:30] `TACKLE HORN ATTACK`
 - [18:49:18] `FURY ATTACK POISON STING`
 - [18:43:39] `He invented the POKMON Storage`
-- [18:16:07] `THUNDERSHOCK THUNDER WAVE`
-- [18:15:04] `TACKLE TAIL WHIP`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
