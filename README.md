@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:45:36**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:45:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,19 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `27`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 15s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **Tempo de Jogo:** `56h 0m 16s`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #2`
-- **Último Golpe Usado por RED:** `Tackle`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Quick Attack`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 9)
 - **Tipos:** Rock/Ground
-- **HP:** **23 / 26** (88%)
+- **HP:** **6 / 26** (23%)
 - **Stats de Batalha:** ATK: 21 | DEF: 25 | SPD: 8 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,26 +31,24 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **39 / 43** (HEALTHY)
+- **HP:** **31 / 43** (HEALTHY)
 - **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **10-12 HP** (0.5x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **10-12 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Hyper Fang (Causa ~10-12 de dano)
-- ➔ Turno 2: Hyper Fang (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Hyper Fang. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Hyper Fang (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Hyper Fang! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Rattata.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 6 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Hyper Fang para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **43%** | Great Ball: **65%** | Ultra Ball: **43%**
-  - *Se adormeceres o inimigo:* **~49%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 17)
@@ -77,14 +75,14 @@
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 39 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 31 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 5989 | Def: 4340 | Spd: 6757 | Spc: 3772 | HP: 5036
 - **Experiência:** 4492 EXP (Progresso: 48%, faltam 421 p/ Lv.17)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 28 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
 
@@ -244,6 +242,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:45:40] **Turno #4**: Rattata (31/43 HP) vs Geodude (Lv. 9 • 6/26 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
+- [17:45:39] **Turno #4**: Rattata (31/43 HP) vs Geodude (Lv. 9 • 11/26 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
+- [17:45:37] **Turno #3**: Rattata (35/43 HP) vs Geodude (Lv. 9 • 16/26 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
+- [17:45:37] **Turno #3**: Rattata (39/43 HP) vs Geodude (Lv. 9 • 16/26 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [17:45:36] **Turno #2**: Rattata (39/43 HP) vs Geodude (Lv. 9 • 23/26 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [17:45:35] **Turno #1**: Rattata (43/43 HP) vs Geodude (Lv. 9 • 23/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [17:45:32] **Turno #1**: Beedrill (40/54 HP) vs Geodude (Lv. 9 • 23/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
@@ -255,10 +257,6 @@
 - [17:45:21] **Turno #2**: Beedrill (46/51 HP) vs Paras (Lv. 10 • 4/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:45:21] **Turno #1**: Beedrill (46/51 HP) vs Paras (Lv. 10 • 16/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:45:20] **Turno #1**: Beedrill (51/51 HP) vs Paras (Lv. 10 • 16/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [17:45:19] **Turno #1**: Beedrill (51/51 HP) vs Paras (Lv. 10 • 28/28 HP) • Golpe RED: `Fury Attack`
-- [17:45:17] **Turno #1**: Beedrill (56/51 HP) vs Paras (Lv. 10 • 28/28 HP)
-- [17:44:28] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 7 • 0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
-- [17:44:26] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 7 • 24/24 HP)
 
 - [17:45:11] Entrou em Mt Moon B2f
 - [17:45:04] Entrou em Mt Moon B1F
@@ -268,6 +266,7 @@
 - [17:44:30] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:45:37] `TACKLE TAIL WHIP`
 - [17:45:19] `FURY ATTACK POISON STING`
 - [17:44:18] `CONFUSION STUN SPORE`
 - [17:02:28] `FURY ATTACK POISON STING`
