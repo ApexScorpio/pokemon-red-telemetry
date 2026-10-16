@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,28 +9,60 @@
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `20`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `67h 0m 38s`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Tempo de Jogo:** `67h 0m 39s`
 - **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
 - **Dinheiro:** **11 580 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Jr. Trainer♀ Nancy** (Rota 6)
-  - **Equipa Adversária:** Rattata (Lv. 16) • Pikachu (Lv. 16)
-  - **Lead Recomendado:** Geodude / Butterfree
-  - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Ember`
+- **Último Golpe Usado pelo Adversário:** `Quick Attack`
+
+### 🔴 Adversário em Campo: **Rattata** (Lv. 16)
+- **Tipos:** Normal
+- **HP:** **13 / 38** (34%)
+- **Stats de Batalha:** ATK: 25 | DEF: 18 | SPD: 30 | SPC: 15
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
+  - **Quick Attack** (Normal) ➔ Dano: ~8-10 HP (1x)
+  - **Hyper Fang** (Normal) ➔ 🚨 RISCO DE K.O.! (15-18 HP)
+
+### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 18)
+- **Tipos:** Fire
+- **HP:** **15 / 53** (HEALTHY)
+- **Stats com Modificadores:** ATK: 34 (0) | DEF: 28 (0) | SPD: 42 (0) | SPC: 35 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 13 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Scratch para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Charmeleon** (Lv. 18)
+### 1. **Charmeleon** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Fire | **HP:** 23 / 53 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 34 | DEF: 28 | SPD: 42 | SPC: 35
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
 - **Stat Experience (0–65.535):** Atk: 5524 | Def: 4075 | Spd: 6308 | Spc: 3329 | HP: 4160
 - **Experiência:** 4286 EXP (Progresso: 63%, faltam 289 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Ember** (Fire) — PP: 20 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 19 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -255,6 +287,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:03:27] **Turno #1**: Charmeleon (15/53 HP) vs Rattata (Lv. 16 • 13/38 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
+- [20:03:25] **Turno #1**: Charmeleon (23/53 HP) vs Rattata (Lv. 16 • 38/38 HP)
+- [20:03:24] **Turno #1**: Charmeleon (46/53 HP) vs Squirtle (Lv. 20 • 0/50 HP)
 - [20:03:19] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 0/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [20:03:18] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 1/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [20:03:18] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 15/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
@@ -267,9 +302,6 @@
 - [20:03:01] **Turno #1**: Charmeleon (23/53 HP) vs Squirtle (Lv. 20 • 50/50 HP)
 - [20:02:40] **Turno #1**: Charmeleon (23/53 HP) vs Mankey (Lv. 16 • 0/43 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Karate Chop`
 - [20:02:38] **Turno #1**: Charmeleon (23/53 HP) vs Mankey (Lv. 16 • 8/43 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Scratch`
-- [20:02:38] **Turno #1**: Charmeleon (36/53 HP) vs Mankey (Lv. 16 • 8/43 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Scratch`
-- [20:02:35] **Turno #1**: Charmeleon (36/53 HP) vs Mankey (Lv. 16 • 43/43 HP)
-- [20:02:32] **Turno #2**: Charmeleon (36/53 HP) vs Pidgey (Lv. 16 • 0/41 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Gust`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
