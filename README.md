@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:16**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:20**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,55 +10,55 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `25`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `59h 0m 44s`
+- **Tempo de Jogo:** `59h 0m 45s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3466 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `Supersonic`
+- **Último Golpe Usado pelo Adversário:** `Leech Life`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 14)
 - **Tipos:** Poison/Flying
-- **HP:** **23 / 37** (62%)
+- **HP:** **6 / 37** (16%)
 - **Stats de Batalha:** ATK: 20 | DEF: 17 | SPD: 22 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
   - **Supersonic** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~5-6 HP (2x)
+  - **Leech Life** (Bug) ➔ 🚨 RISCO DE K.O.! (5-6 HP)
   - **Supersonic** (Normal) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison
-- **HP:** **17 / 56** (HEALTHY)
+- **HP:** **0 / 56** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (-1) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • ~4 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-4: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
+#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
 - **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
 - **Substituto Sugerido:** **Pikachu (Lv. 18)** [44/44 HP]
-- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Pikachu para manter o controlo da batalha.
 - **⭐ Prioridade de Treino (EXP):** **Nidorino (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 17 / 56 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 8 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4542 | Def: 3842 | Spd: 5018 | Spc: 2980 | HP: 3763
 - **Experiência:** 5834 EXP (Progresso: 0%, faltam 1025 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 4 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 3 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -204,6 +204,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:50:20] **Turno #2**: Beedrill (0/56 HP) vs Zubat (Lv. 14 • 6/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
+- [18:50:19] **Turno #2**: Beedrill (8/56 HP) vs Zubat (Lv. 14 • 6/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
+- [18:50:18] **Turno #2**: Beedrill (17/56 HP) vs Zubat (Lv. 14 • 2/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
+- [18:50:17] **Turno #1**: Beedrill (17/56 HP) vs Zubat (Lv. 14 • 9/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [18:50:15] **Turno #1**: Beedrill (17/56 HP) vs Zubat (Lv. 14 • 23/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
 - [18:50:13] **Turno #1**: Beedrill (17/56 HP) vs Zubat (Lv. 14 • 37/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:12] **Turno #1**: Beedrill (17/56 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
@@ -215,10 +219,6 @@
 - [18:49:59] **Turno #1**: Beedrill (15/54 HP) vs Rattata (Lv. 14 • 14/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [18:49:58] **Turno #1**: Beedrill (15/54 HP) vs Rattata (Lv. 14 • 34/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [18:49:57] **Turno #1**: Beedrill (23/54 HP) vs Rattata (Lv. 14 • 34/34 HP)
-- [18:49:52] **Turno #3**: Beedrill (23/54 HP) vs Nidoran♀ (Lv. 14 • 0/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [18:49:52] **Turno #3**: Beedrill (23/54 HP) vs Nidoran♀ (Lv. 14 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [18:49:51] **Turno #3**: Beedrill (28/54 HP) vs Nidoran♀ (Lv. 14 • 6/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [18:49:50] **Turno #2**: Beedrill (28/54 HP) vs Nidoran♀ (Lv. 14 • 16/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
