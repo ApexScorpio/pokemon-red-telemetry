@@ -908,8 +908,8 @@ html, body {
 }
 
 .fighter-sprite {
-  width: 58px;
-  height: 58px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
   image-rendering: pixelated;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
@@ -1484,8 +1484,8 @@ html, body {
 }
 
 .party-thumb {
-  width: 26px;
-  height: 26px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
   image-rendering: pixelated;
   flex-shrink: 0;

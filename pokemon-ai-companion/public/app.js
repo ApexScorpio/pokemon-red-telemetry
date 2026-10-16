@@ -353,6 +353,133 @@ function drawMapImageTinted(ctx, ...args) {
   ctx.drawImage(...args);
 }
 
+// =========================================================================
+// PALETAS AUTÊNTICAS SUPER GAME BOY (SGB) DO POKÉMON RED (SAMEBOY COMPATÍVEL)
+// Extraídas diretamente da tabela canónica SuperPalettes de pret/pokered
+// =========================================================================
+const SGB_SUPER_PALETTES = {
+  PAL_ROUTE: ['#ffefff', '#ade65a', '#a5d6ff', '#191010'],
+  PAL_PALLET: ['#ffefff', '#cee6de', '#a5d6ff', '#191010'],
+  PAL_VIRIDIAN: ['#ffefff', '#8cd619', '#a5d6ff', '#191010'],
+  PAL_PEWTER: ['#ffefff', '#bdce84', '#a5d6ff', '#191010'],
+  PAL_CERULEAN: ['#ffefff', '#8ca5f7', '#a5d6ff', '#191010'],
+  PAL_LAVENDER: ['#ffefff', '#dea5de', '#a5d6ff', '#191010'],
+  PAL_VERMILION: ['#ffefff', '#f79400', '#a5d6ff', '#191010'],
+  PAL_CELADON: ['#ffefff', '#84f7b5', '#a5d6ff', '#191010'],
+  PAL_FUCHSIA: ['#ffefff', '#ff7bb5', '#a5d6ff', '#191010'],
+  PAL_CINNABAR: ['#ffefff', '#d65231', '#a5d6ff', '#191010'],
+  PAL_INDIGO: ['#ffefff', '#b573c5', '#a5d6ff', '#191010'],
+  PAL_SAFFRON: ['#ffefff', '#dede19', '#a5d6ff', '#191010'],
+  PAL_CAVE: ['#ffefff', '#ad734a', '#94c5b5', '#191010'],
+  PAL_GRAYMON: ['#ffefff', '#d6adb5', '#7b7b94', '#191010']
+};
+
+function getMapSgbPalette(mapId, mapName) {
+  const id = Number(mapId);
+  const name = String(mapName || '').toLowerCase();
+
+  // Cavernas, minas e interiores do tileset CAVERN
+  if ([59, 60, 61, 68, 82, 83, 102, 103, 104, 105, 106, 194, 197, 198, 227, 228, 229].includes(id) ||
+      name.includes('cave') || name.includes('moon') || name.includes('tunnel') || name.includes('seafoam') || name.includes('cavern')) {
+    return SGB_SUPER_PALETTES.PAL_CAVE;
+  }
+  // Pokémon Tower / Cemitério
+  if ((id >= 142 && id <= 148) || name.includes('tower') || name.includes('agatha')) {
+    return SGB_SUPER_PALETTES.PAL_GRAYMON;
+  }
+  // Cidades do jogo (0..10)
+  if (id === 0 || name.includes('pallet')) return SGB_SUPER_PALETTES.PAL_PALLET;
+  if (id === 1 || name.includes('viridian')) return SGB_SUPER_PALETTES.PAL_VIRIDIAN;
+  if (id === 2 || name.includes('pewter')) return SGB_SUPER_PALETTES.PAL_PEWTER;
+  if (id === 3 || name.includes('cerulean')) return SGB_SUPER_PALETTES.PAL_CERULEAN;
+  if (id === 4 || name.includes('lavender')) return SGB_SUPER_PALETTES.PAL_LAVENDER;
+  if (id === 5 || name.includes('vermilion')) return SGB_SUPER_PALETTES.PAL_VERMILION;
+  if (id === 6 || name.includes('celadon')) return SGB_SUPER_PALETTES.PAL_CELADON;
+  if (id === 7 || name.includes('fuchsia')) return SGB_SUPER_PALETTES.PAL_FUCHSIA;
+  if (id === 8 || name.includes('cinnabar')) return SGB_SUPER_PALETTES.PAL_CINNABAR;
+  if (id === 9 || name.includes('indigo')) return SGB_SUPER_PALETTES.PAL_INDIGO;
+  if (id === 10 || name.includes('saffron')) return SGB_SUPER_PALETTES.PAL_SAFFRON;
+
+  if (name.includes('gym')) {
+    if (name.includes('pewter')) return SGB_SUPER_PALETTES.PAL_PEWTER;
+    if (name.includes('cerulean')) return SGB_SUPER_PALETTES.PAL_CERULEAN;
+    if (name.includes('vermilion')) return SGB_SUPER_PALETTES.PAL_VERMILION;
+    if (name.includes('celadon')) return SGB_SUPER_PALETTES.PAL_CELADON;
+    if (name.includes('fuchsia')) return SGB_SUPER_PALETTES.PAL_FUCHSIA;
+    if (name.includes('saffron')) return SGB_SUPER_PALETTES.PAL_SAFFRON;
+    if (name.includes('cinnabar')) return SGB_SUPER_PALETTES.PAL_CINNABAR;
+    if (name.includes('viridian')) return SGB_SUPER_PALETTES.PAL_VIRIDIAN;
+  }
+
+  return SGB_SUPER_PALETTES.PAL_ROUTE;
+}
+
+// =========================================================================
+// RECONSTRUÇÃO CONTÍNUA DO MAPA EXPLORADO DA CAVE (DUNGEON STITCHER)
+// =========================================================================
+const dungeonCanvases = {};
+
+function getOrCreateDungeonCanvas(mapId, state) {
+  if (dungeonCanvases[mapId]) return dungeonCanvases[mapId];
+  const dims = (state && state.mapDimensions) ? state.mapDimensions : { width: 40, height: 36 };
+  const wTiles = Math.max(20, dims.width || 40);
+  const hTiles = Math.max(18, dims.height || 36);
+  const canvas = document.createElement('canvas');
+  canvas.width = wTiles * 16;
+  canvas.height = hTiles * 16;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#020408';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  dungeonCanvases[mapId] = canvas;
+  return canvas;
+}
+
+// Cache de Sprites Originais do Game Boy
+const loadedOverworldSprites = {};
+function getOverworldSpriteImage(nameOrId) {
+  if (!nameOrId) return null;
+  const clean = String(nameOrId).toLowerCase().replace(/[^a-z0-9_]/g, '');
+  if (loadedOverworldSprites[clean]) return loadedOverworldSprites[clean];
+  const img = new Image();
+  img.src = `/sprites/overworld/${clean}.png`;
+  loadedOverworldSprites[clean] = img;
+  return img;
+}
+
+function drawSpriteFrame(ctx, img, facing, x, y, scale) {
+  if (!img || !img.complete || img.naturalWidth === 0) return false;
+  const h = img.naturalHeight;
+  let frameY = 0;
+  let flipX = false;
+
+  if (h >= 96) {
+    const f = String(facing || '').toLowerCase();
+    if (f.includes('norte') || f.includes('cima')) {
+      frameY = 32;
+    } else if (f.includes('oeste') || f.includes('esquerda')) {
+      frameY = 64;
+    } else if (f.includes('este') || f.includes('direita')) {
+      frameY = 64;
+      flipX = true;
+    } else {
+      frameY = 0; // Sul / Baixo
+    }
+  }
+
+  const drawSize = 16 * scale;
+  ctx.save();
+  ctx.imageSmoothingEnabled = false;
+  if (flipX) {
+    ctx.translate(x, y);
+    ctx.scale(-1, 1);
+    ctx.drawImage(img, 0, frameY, 16, 16, -drawSize / 2, -drawSize / 2, drawSize, drawSize);
+  } else {
+    ctx.drawImage(img, 0, frameY, 16, 16, Math.round(x - drawSize / 2), Math.round(y - drawSize / 2), drawSize, drawSize);
+  }
+  ctx.restore();
+  return true;
+}
+
 function drawLiveVramMap(ctx, state, x, y, width, height) {
   const video = state && state.videoMemory;
   if (!ctx || !video || !video.tilePatterns || !video.bgTileMap) return false;
@@ -363,11 +490,16 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
   const scrollX = Number(video.scrollX || 0) & 0xFF;
   const scrollY = Number(video.scrollY || 0) & 0xFF;
   const bgp = Number(video.bgPalette || 0xE4);
-  // READ_CORE_MEMORY não expõe as paletas SGB efetivas do SameBoy. Não inventar cores: usar tons neutros até haver framebuffer/paletas SGB reais.
-  const colors = ['#f4f4f4', '#b8b8b8', '#686868', '#161616'];
+  const obp0 = Number(video.obp0 || 0xE4);
+  const obp1 = Number(video.obp1 || 0xE4);
+  const oam = video.oam || [];
+
+  // Paleta autêntica Super Game Boy do mapa atual
+  const colors = getMapSgbPalette(state.mapId, state.mapName);
   const image = ctx.createImageData(160, 144);
   const pixels = image.data;
 
+  // 1. Renderiza o Background com paleta SGB real e registo BGP
   for (let sy = 0; sy < 144; sy++) {
     const worldY = (sy + scrollY) & 0xFF;
     const tileY = worldY >> 3;
@@ -390,7 +522,7 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
       const bit = 7 - pixelX;
       const rawShade = ((lo >> bit) & 1) | (((hi >> bit) & 1) << 1);
       const shade = (bgp >> (rawShade * 2)) & 3;
-      const rgb = colors[shade];
+      const rgb = colors[shade] || '#ffefff';
       const hex = parseInt(rgb.slice(1), 16);
       const i = (sy * 160 + sx) * 4;
       pixels[i] = (hex >> 16) & 255;
@@ -400,10 +532,60 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
     }
   }
 
+  // 2. Renderiza os Sprites Reais do Game Boy através da tabela OAM ($FE00)
+  if (oam && oam.length >= 160) {
+    for (let sp = 0; sp < 40; sp++) {
+      const spY = oam[sp * 4] - 16;
+      const spX = oam[sp * 4 + 1] - 8;
+      const tileIndex = oam[sp * 4 + 2];
+      const flags = oam[sp * 4 + 3];
+      if (spY < -7 || spY >= 144 || spX < -7 || spX >= 160) continue;
+      const flipY = (flags & 0x40) !== 0;
+      const flipX = (flags & 0x20) !== 0;
+      const palReg = (flags & 0x10) ? obp1 : obp0;
+
+      for (let py = 0; py < 8; py++) {
+        const drawY = spY + py;
+        if (drawY < 0 || drawY >= 144) continue;
+        const lineY = flipY ? 7 - py : py;
+        const tileOffset = tileIndex * 16 + lineY * 2;
+        if (tileOffset < 0 || tileOffset + 1 >= tileData.length) continue;
+        const lo = tileData[tileOffset] || 0;
+        const hi = tileData[tileOffset + 1] || 0;
+
+        for (let px = 0; px < 8; px++) {
+          const drawX = spX + px;
+          if (drawX < 0 || drawX >= 160) continue;
+          const lineX = flipX ? px : 7 - px;
+          const raw = ((lo >> lineX) & 1) | (((hi >> lineX) & 1) << 1);
+          if (raw === 0) continue; // Cor 0 é transparente em sprites do Game Boy
+
+          const shade = (palReg >> (raw * 2)) & 3;
+          const rgb = colors[shade] || '#ffefff';
+          const hex = parseInt(rgb.slice(1), 16);
+          const i = (drawY * 160 + drawX) * 4;
+          pixels[i] = (hex >> 16) & 255;
+          pixels[i + 1] = (hex >> 8) & 255;
+          pixels[i + 2] = hex & 255;
+          pixels[i + 3] = 255;
+        }
+      }
+    }
+  }
+
   const liveCanvas = document.createElement('canvas');
   liveCanvas.width = 160;
   liveCanvas.height = 144;
   liveCanvas.getContext('2d').putImageData(image, 0, 0);
+
+  // 3. Carimba no Dungeon Stitcher na posição global do jogador
+  const dungeon = getOrCreateDungeonCanvas(state.mapId, state);
+  if (dungeon && state.coords) {
+    const dctx = dungeon.getContext('2d');
+    const stampX = Math.max(0, (state.coords.x - 4) * 16);
+    const stampY = Math.max(0, (state.coords.y - 4) * 16);
+    dctx.drawImage(liveCanvas, stampX, stampY);
+  }
 
   ctx.fillStyle = '#090d13';
   ctx.fillRect(x, y, width, height);
@@ -415,21 +597,8 @@ function drawLiveVramMap(ctx, state, x, y, width, height) {
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(liveCanvas, drawX, drawY, drawW, drawH);
 
-  // Marcador central: a vista reconstruída corresponde ao ecrã atual do jogo.
-  const markerX = drawX + drawW / 2;
-  const markerY = drawY + drawH / 2;
-  ctx.strokeStyle = '#00d9ff';
-  ctx.lineWidth = Math.max(1.5, scale * 1.5);
-  ctx.beginPath();
-  ctx.arc(markerX, markerY, Math.max(4, scale * 4), 0, Math.PI * 2);
-  ctx.stroke();
-  ctx.fillStyle = '#00d9ff';
-  ctx.beginPath();
-  ctx.arc(markerX, markerY, Math.max(1.5, scale * 1.5), 0, Math.PI * 2);
-  ctx.fill();
   return true;
 }
-
 
 function buildLiveVramMapCanvas(state) {
   const video = state && state.videoMemory;
@@ -438,7 +607,7 @@ function buildLiveVramMapCanvas(state) {
   const tileMap = video.bgTileMap;
   const lcdc = Number(video.lcdc || 0);
   const bgp = Number(video.bgPalette ?? 0xE4);
-  const colors = [ '#f4f4f4', '#b8b8b8', '#686868', '#161616' ];
+  const colors = getMapSgbPalette(state.mapId, state.mapName);
   const image = document.createElement('canvas');
   image.width = 256;
   image.height = 256;
@@ -546,28 +715,22 @@ function getMapEntitySnapshot(state) {
 
 function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
   const ghost = forceGhost || ent.isGhost || ent.isCollected || ent.isDefeated;
-  const size = Math.max(10, 15 * scale);
   ctx.save();
   ctx.globalAlpha = ghost ? 0.36 : 1;
 
-  // Sprite visual: usa o ícone associado ao picture ID lido da RAM, em vez de pontos abstratos.
-  const icon = ent.icon || (ent.isItem ? '🎒' : ent.isTrainer ? '🧍' : '👤');
-  ctx.font = `${size}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  // Sem auras/círculos artificiais: mostrar apenas o marcador da entidade.
-  ctx.fillText(icon, x, y);
-  if (ent.facing && !ghost && scale >= 1.2) {
-    const len = 8 * scale;
-    ctx.strokeStyle = '#ffd000';
-    ctx.lineWidth = Math.max(1, scale);
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    if (ent.facing.includes('Norte')) ctx.lineTo(x, y - len);
-    else if (ent.facing.includes('Sul')) ctx.lineTo(x, y + len);
-    else if (ent.facing.includes('Este')) ctx.lineTo(x + len, y);
-    else if (ent.facing.includes('Oeste')) ctx.lineTo(x - len, y);
-    ctx.stroke();
+  // Renderiza o sprite real do Game Boy decodificado da RAM
+  const spriteName = ent.spriteFile || (ent.isItem ? 'poke_ball' : null);
+  const spriteImg = spriteName ? getOverworldSpriteImage(spriteName) : null;
+  const drawn = spriteImg ? drawSpriteFrame(ctx, spriteImg, ent.facing, x, y, scale) : false;
+
+  // Fallback caso a imagem do sprite ainda esteja a carregar
+  if (!drawn) {
+    const size = Math.max(10, 15 * scale);
+    const icon = ent.icon || (ent.isItem ? '🎒' : ent.isTrainer ? '🧍' : '👤');
+    ctx.font = `${size}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(icon, x, y);
   }
   ctx.restore();
 }
@@ -710,37 +873,37 @@ function renderFogMinimap(state) {
     }
   });
 
-  // 5. Desenha o Jogador Centralizado
+  // 5. Desenha o Jogador Centralizado com o seu Sprite Original
   const playerScreenX = camX + px * tileSize + tileSize / 2;
   const playerScreenY = camY + py * tileSize + tileSize / 2;
 
-  ctxFog.fillStyle = 'rgba(0, 240, 255, 0.25)';
-  ctxFog.beginPath();
-  ctxFog.arc(playerScreenX, playerScreenY, 11, 0, Math.PI * 2);
-  ctxFog.fill();
+  const redImg = getOverworldSpriteImage('red');
+  const drawnRed = redImg ? drawSpriteFrame(ctxFog, redImg, dir, playerScreenX, playerScreenY, 1.0) : false;
 
-  ctxFog.fillStyle = '#00f0ff';
-  ctxFog.beginPath();
-  ctxFog.arc(playerScreenX, playerScreenY, 4.5, 0, Math.PI * 2);
-  ctxFog.fill();
+  if (!drawnRed) {
+    ctxFog.fillStyle = '#00f0ff';
+    ctxFog.beginPath();
+    ctxFog.arc(playerScreenX, playerScreenY, 4.5, 0, Math.PI * 2);
+    ctxFog.fill();
 
-  // Seta de Orientação
-  ctxFog.strokeStyle = '#ffd000';
-  ctxFog.lineWidth = 2.5;
-  ctxFog.beginPath();
-  ctxFog.moveTo(playerScreenX, playerScreenY);
-  if (dir.includes('Norte') || dir.includes('Cima')) {
-    ctxFog.lineTo(playerScreenX, playerScreenY - 12);
-  } else if (dir.includes('Sul') || dir.includes('Baixo')) {
-    ctxFog.lineTo(playerScreenX, playerScreenY + 12);
-  } else if (dir.includes('Este') || dir.includes('Direita')) {
-    ctxFog.lineTo(playerScreenX + 12, playerScreenY);
-  } else if (dir.includes('Oeste') || dir.includes('Esquerda')) {
-    ctxFog.lineTo(playerScreenX - 12, playerScreenY);
-  } else {
-    ctxFog.lineTo(playerScreenX, playerScreenY - 12);
+    // Seta de Orientação
+    ctxFog.strokeStyle = '#ffd000';
+    ctxFog.lineWidth = 2.5;
+    ctxFog.beginPath();
+    ctxFog.moveTo(playerScreenX, playerScreenY);
+    if (dir.includes('Norte') || dir.includes('Cima')) {
+      ctxFog.lineTo(playerScreenX, playerScreenY - 12);
+    } else if (dir.includes('Sul') || dir.includes('Baixo')) {
+      ctxFog.lineTo(playerScreenX, playerScreenY + 12);
+    } else if (dir.includes('Este') || dir.includes('Direita')) {
+      ctxFog.lineTo(playerScreenX + 12, playerScreenY);
+    } else if (dir.includes('Oeste') || dir.includes('Esquerda')) {
+      ctxFog.lineTo(playerScreenX - 12, playerScreenY);
+    } else {
+      ctxFog.lineTo(playerScreenX, playerScreenY - 12);
+    }
+    ctxFog.stroke();
   }
-  ctxFog.stroke();
 
   // Moldura do Radar
   ctxFog.strokeStyle = 'rgba(0, 240, 255, 0.3)';
@@ -774,43 +937,17 @@ function renderGtaFullMap(state) {
   // Corrige o ecrã preto: mapImg era usado abaixo sem ser declarado nesta função.
   const mapImg = getMapImage(mapId);
 
-  if (state.videoMemory && (!mapImg || (mapImg.complete && mapImg.naturalWidth === 0))) {
-    const liveMap = buildLiveVramMapCanvas(state);
-    if (liveMap) {
-      ctxGta.fillStyle = '#020408';
-      ctxGta.fillRect(0, 0, cw, ch);
-      const drawW = 256 * gtaZoom;
-      const drawH = 256 * gtaZoom;
-      ctxGta.imageSmoothingEnabled = false;
-      ctxGta.drawImage(liveMap, gtaPan.x, gtaPan.y, drawW, drawH);
-      const coordsLive = state.coords || { x: 0, y: 0 };
-      if (gtaFogEnabled) {
-        for (let tx = 0; tx < 16; tx++) for (let ty = 0; ty < 16; ty++) {
-          if (!(exploredMaps[mapId] || new Set()).has(`${tx},${ty}`)) {
-            ctxGta.fillStyle = 'rgba(2,4,10,0.78)';
-            ctxGta.fillRect(gtaPan.x + tx * 16 * gtaZoom, gtaPan.y + ty * 16 * gtaZoom, 16 * gtaZoom + 0.5, 16 * gtaZoom + 0.5);
-          }
-        }
-      }
-      const livePlayerX = gtaPan.x + coordsLive.x * 16 * gtaZoom + 8 * gtaZoom;
-      const livePlayerY = gtaPan.y + coordsLive.y * 16 * gtaZoom + 8 * gtaZoom;
-      ctxGta.fillStyle = '#00f0ff';
-      ctxGta.beginPath();
-      ctxGta.arc(livePlayerX, livePlayerY, Math.max(3, 5 * gtaZoom), 0, Math.PI * 2);
-      ctxGta.fill();
-      if (elGtaHeading) elGtaHeading.textContent = `${mapName} • VRAM completa (zoom ativo)`;
-      if (elGtaSubInfo) elGtaSubInfo.textContent = `Mapa reconstruído dos tiles atuais • Zoom: ${Math.round(gtaZoom * 100)}% • X:${coordsLive.x} Y:${coordsLive.y}`;
-      return;
-    }
-  }
+  const tilePx = 16 * gtaZoom;
+  const originX = gtaPan.x;
+  const originY = gtaPan.y;
 
   const dims = state.mapDimensions || { width: 30, height: 30 };
   let mapW = (mapImg && mapImg.complete && mapImg.naturalWidth > 0)
     ? Math.round(mapImg.naturalWidth / 16)
-    : (dims.width > 40 ? dims.width : (dims.width || 30) * 2);
+    : (dims.width || 40);
   let mapH = (mapImg && mapImg.complete && mapImg.naturalHeight > 0)
     ? Math.round(mapImg.naturalHeight / 16)
-    : (dims.height > 20 ? dims.height : (dims.height || 18) * 2);
+    : (dims.height || 36);
 
   const visited = exploredMaps[mapId] || new Set();
   const totalTiles = Math.max(1, mapW * mapH);
@@ -823,16 +960,14 @@ function renderGtaFullMap(state) {
   ctxGta.fillStyle = '#020408';
   ctxGta.fillRect(0, 0, cw, ch);
 
-  const tilePx = 16 * gtaZoom;
-  const originX = gtaPan.x;
-  const originY = gtaPan.y;
+  // 1. Desenho do Mapa (Imagem Estática, Dungeon Stitcher da RAM, ou Grelha Tática)
+  const hasMapImg = (mapImg && mapImg.complete && mapImg.naturalWidth > 0);
+  const dungeonCanvas = dungeonCanvases[mapId];
 
-  // 1. Desenho do Mapa
-  if (mapImg && mapImg.complete && mapImg.naturalWidth > 0) {
+  if (hasMapImg) {
     if (!gtaFogEnabled) {
       // Se névoa estiver desligada: desenha todo o mapa
       drawMapImageTinted(ctxGta, mapImg, originX, originY, mapImg.naturalWidth * gtaZoom, mapImg.naturalHeight * gtaZoom);
-      // Escurece ligeiramente zonas não visitadas para dar profundidade tática
       for (let tx = 0; tx < mapW; tx++) {
         for (let ty = 0; ty < mapH; ty++) {
           if (!visited.has(`${tx},${ty}`)) {
@@ -862,8 +997,31 @@ function renderGtaFullMap(state) {
         }
       });
     }
+  } else if (dungeonCanvas) {
+    // Reconstrução contínua da cave a partir da VRAM lida em tempo real
+    if (!gtaFogEnabled) {
+      ctxGta.drawImage(dungeonCanvas, originX, originY, dungeonCanvas.width * gtaZoom, dungeonCanvas.height * gtaZoom);
+    } else {
+      visited.forEach(tileKey => {
+        const [tx, ty] = tileKey.split(',').map(Number);
+        const sx = originX + tx * tilePx;
+        const sy = originY + ty * tilePx;
+        if (sx >= -tilePx && sx <= cw && sy >= -tilePx && sy <= ch) {
+          const srcX = tx * 16;
+          const srcY = ty * 16;
+          if (srcX >= 0 && srcX + 16 <= dungeonCanvas.width && srcY >= 0 && srcY + 16 <= dungeonCanvas.height) {
+            ctxGta.drawImage(dungeonCanvas, srcX, srcY, 16, 16, sx, sy, tilePx + 0.5, tilePx + 0.5);
+          } else {
+            ctxGta.fillStyle = '#0a1424';
+            ctxGta.fillRect(sx, sy, tilePx, tilePx);
+          }
+          ctxGta.strokeStyle = 'rgba(0, 240, 255, 0.05)';
+          ctxGta.strokeRect(sx, sy, tilePx, tilePx);
+        }
+      });
+    }
   } else {
-    // Grelha genérica
+    // Grelha tática genérica enquanto os dados carregam
     visited.forEach(tileKey => {
       const [tx, ty] = tileKey.split(',').map(Number);
       const sx = originX + tx * tilePx;
@@ -875,7 +1033,7 @@ function renderGtaFullMap(state) {
     });
   }
 
-  // Itens conhecidos na área, incluindo ghosts dos que já foram recolhidos.
+  // 2. Itens conhecidos na área
   const items = [
     ...(state.areaInfo?.visibleItems || []),
     ...(state.areaInfo?.hiddenItems || [])
@@ -885,73 +1043,62 @@ function renderGtaFullMap(state) {
     const ix = originX + it.x * tilePx + tilePx / 2;
     const iy = originY + it.y * tilePx + tilePx / 2;
     if (ix >= -24 && ix <= cw + 24 && iy >= -24 && iy <= ch + 24) {
-      drawMapEntity(ctxGta, { ...it, icon: it.icon || '🎒', isItem: true, isGhost: !!it.isCollected }, ix, iy, gtaZoom, !!it.isCollected);
+      drawMapEntity(ctxGta, { ...it, spriteFile: 'poke_ball', icon: it.icon || '🎒', isItem: true, isGhost: !!it.isCollected }, ix, iy, gtaZoom, !!it.isCollected);
     }
   });
 
-  // Treinadores conhecidos; derrotados ficam como ghosts no mapa.
-  const battles = state.areaInfo?.upcomingBoss?.battles || [];
-  battles.forEach(bt => {
-    if (bt.x === undefined || bt.y === undefined) return;
-    const bx = originX + bt.x * tilePx + tilePx / 2;
-    const by = originY + bt.y * tilePx + tilePx / 2;
-    if (bx >= -24 && bx <= cw + 24 && by >= -24 && by <= ch + 24) {
-      drawMapEntity(ctxGta, { ...bt, icon: bt.icon || '🧍', isTrainer: true, isGhost: !!bt.isDefeated }, bx, by, gtaZoom, !!bt.isDefeated);
-    }
-  });
-
-  // Sprites da RAM em movimento + ghosts na última posição quando desaparecem.
+  // 3. Apenas entidades reais presentes na RAM (sem treinadores previstos nem ghosts artificiais)
   const entitySnapshot = getMapEntitySnapshot(state);
-  [...entitySnapshot.active, ...entitySnapshot.ghosts].forEach(ent => {
+  entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
     const ex = originX + ent.x * tilePx + tilePx / 2;
     const ey = originY + ent.y * tilePx + tilePx / 2;
     if (ex >= -32 && ex <= cw + 32 && ey >= -32 && ey <= ch + 32) {
-      drawMapEntity(ctxGta, ent, ex, ey, gtaZoom, ent.isGhost);
+      drawMapEntity(ctxGta, ent, ex, ey, gtaZoom, false);
     }
   });
 
-  // 4. Jogador (Marcador Tático com Farol de Luz e Seta)
+  // 4. Jogador (Desenho com o Sprite Original do RED e Halo Tático)
   const playerScreenX = originX + px * tilePx + tilePx / 2;
   const playerScreenY = originY + py * tilePx + tilePx / 2;
 
-  // Cone de visão do jogador
-  ctxGta.fillStyle = 'rgba(0, 240, 255, 0.12)';
+  // Halo suave e indicador
+  ctxGta.fillStyle = 'rgba(0, 240, 255, 0.15)';
   ctxGta.beginPath();
-  ctxGta.arc(playerScreenX, playerScreenY, 24 * gtaZoom, 0, Math.PI * 2);
+  ctxGta.arc(playerScreenX, playerScreenY, 14 * gtaZoom, 0, Math.PI * 2);
   ctxGta.fill();
 
-  ctxGta.fillStyle = 'rgba(0, 240, 255, 0.35)';
-  ctxGta.beginPath();
-  ctxGta.arc(playerScreenX, playerScreenY, 12 * gtaZoom, 0, Math.PI * 2);
-  ctxGta.fill();
+  const redGtaImg = getOverworldSpriteImage('red');
+  const drawnGtaRed = redGtaImg ? drawSpriteFrame(ctxGta, redGtaImg, dir, playerScreenX, playerScreenY, gtaZoom) : false;
 
-  ctxGta.fillStyle = '#00f0ff';
-  ctxGta.beginPath();
-  ctxGta.arc(playerScreenX, playerScreenY, 6 * gtaZoom, 0, Math.PI * 2);
-  ctxGta.fill();
-  ctxGta.strokeStyle = '#fff';
-  ctxGta.lineWidth = 2;
-  ctxGta.stroke();
+  if (!drawnGtaRed) {
+    ctxGta.fillStyle = '#00f0ff';
+    ctxGta.beginPath();
+    ctxGta.arc(playerScreenX, playerScreenY, 6 * gtaZoom, 0, Math.PI * 2);
+    ctxGta.fill();
+    ctxGta.strokeStyle = '#fff';
+    ctxGta.lineWidth = 2;
+    ctxGta.stroke();
 
-  // Seta de direção dourada
-  ctxGta.strokeStyle = '#ffd000';
-  ctxGta.lineWidth = 3;
-  ctxGta.beginPath();
-  ctxGta.moveTo(playerScreenX, playerScreenY);
-  const pointerLen = 16 * gtaZoom;
-  if (dir.includes('Norte') || dir.includes('Cima')) {
-    ctxGta.lineTo(playerScreenX, playerScreenY - pointerLen);
-  } else if (dir.includes('Sul') || dir.includes('Baixo')) {
-    ctxGta.lineTo(playerScreenX, playerScreenY + pointerLen);
-  } else if (dir.includes('Este') || dir.includes('Direita')) {
-    ctxGta.lineTo(playerScreenX + pointerLen, playerScreenY);
-  } else if (dir.includes('Oeste') || dir.includes('Esquerda')) {
-    ctxGta.lineTo(playerScreenX - pointerLen, playerScreenY);
-  } else {
-    ctxGta.lineTo(playerScreenX, playerScreenY - pointerLen);
+    // Seta de direção dourada
+    ctxGta.strokeStyle = '#ffd000';
+    ctxGta.lineWidth = 3;
+    ctxGta.beginPath();
+    ctxGta.moveTo(playerScreenX, playerScreenY);
+    const pointerLen = 16 * gtaZoom;
+    if (dir.includes('Norte') || dir.includes('Cima')) {
+      ctxGta.lineTo(playerScreenX, playerScreenY - pointerLen);
+    } else if (dir.includes('Sul') || dir.includes('Baixo')) {
+      ctxGta.lineTo(playerScreenX, playerScreenY + pointerLen);
+    } else if (dir.includes('Este') || dir.includes('Direita')) {
+      ctxGta.lineTo(playerScreenX + pointerLen, playerScreenY);
+    } else if (dir.includes('Oeste') || dir.includes('Esquerda')) {
+      ctxGta.lineTo(playerScreenX - pointerLen, playerScreenY);
+    } else {
+      ctxGta.lineTo(playerScreenX, playerScreenY - pointerLen);
+    }
+    ctxGta.stroke();
   }
-  ctxGta.stroke();
 }
 
 // Funções de Interação com o Mapa GTA
@@ -959,7 +1106,9 @@ function openGtaMap() {
   if (!gtaMapModal) return;
   isGtaMapOpen = true;
   gtaMapModal.style.display = 'flex';
-  if (lastState && lastState.coords) centerGtaMapOnPlayer(lastState);
+  requestAnimationFrame(() => {
+    if (lastState && lastState.coords) centerGtaMapOnPlayer(lastState);
+  });
   const animateMap = () => {
     if (!isGtaMapOpen) { gtaMapAnimationFrame = null; return; }
     if (lastState) renderGtaFullMap(lastState);
