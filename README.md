@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:49**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:53**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,8 +10,8 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `78h 0m 57s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **Tempo de Jogo:** `78h 0m 58s`
+- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **17 005 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 13 (Geodude)
 
@@ -102,13 +102,13 @@
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 23)
-- **Tipos:** Bug/Flying | **HP:** 51 / 68 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 47 / 68 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 34 | DEF: 33 | SPD: 46 | SPC: 51
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 7616 | Def: 7202 | Spd: 7726 | Spc: 5519 | HP: 6393
 - **Experiência:** 12 923 EXP (Progresso: 46%, faltam 901 p/ Lv.24)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 22 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -422,6 +422,7 @@
 - [21:48:43] Entrou em Ss Anne B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:49:52] `CONFUSION STUN SPORE`
 - [21:49:19] `THUNDERSHOCK THUNDER WAVE`
 - [21:48:04] `CONFUSION STUN SPORE`
 - [21:39:52] `EMBER SCRATCH`
@@ -436,7 +437,6 @@
 - [21:03:44] `CONFUSION STUN SPORE`
 - [21:03:33] `THUNDERSHOCK THUNDER WAVE`
 - [20:58:30] `HORN ATTACK TACKLE`
-- [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Troca imediatamente o Diglett pelo Nidorino, pois o Onix é imune a golpes de Terra e o Nidorino tem vantagem de tipo com Poison Sting. Usa Poison Sting para aplicar veneno e forçar o Onix a trocar ou morrer por dano residual, garantindo a vitória sem riscos."
