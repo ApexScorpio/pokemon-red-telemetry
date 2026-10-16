@@ -1,19 +1,19 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:53:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:53:54**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Ss Anne B1F** (ID Interno: `0x62`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `27`, Y: `5`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `7`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `79h 0m 22s`
+- **Tempo de Jogo:** `55h 0m 51s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
-- **Dinheiro:** **18 200 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 15 (Geodude)
+- **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 16 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
@@ -45,114 +45,104 @@
   - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Geodude** (Lv. 15)
-- **Tipos:** Rock/Ground | **HP:** 37 / 37 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 33 | DEF: 35 | SPD: 13 | SPC: 19
-- **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 285 | Def: 298 | Spd: 299 | Spc: 351 | HP: 220
-- **Experiência:** 2163 EXP (Progresso: 26%, faltam 372 p/ Lv.16)
+### 1. **Beedrill** (Lv. 16)
+- **Tipos:** Bug/Poison | **HP:** 0 / 51 ❌ (FAINTED)
+- **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
+- **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
+- **Stat Experience (0–65.535):** Atk: 4269 | Def: 3606 | Spd: 4699 | Spc: 2800 | HP: 3518
+- **Experiência:** 4820 EXP (Progresso: 89%, faltam 93 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Defense Curl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Fury Attack** (Normal) — PP: 6 | Poder: 15 | Precisão: 85%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
+  - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Diglett** (Lv. 18)
-- **Tipos:** Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
-- **DVs Gen 1 (0–15):** Ataque: 13 | Defesa: 14 | Velocidade: 13 | Especial: 11 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 35 | Def: 22 | Spd: 30 | Spc: 25 | HP: 27
-- **Experiência:** 6004 EXP (Progresso: 17%, faltam 855 p/ Lv.19)
-- **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-
-### 3. **Nidorino** (Lv. 20)
-- **Tipos:** Poison | **HP:** 61 / 61 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
-- **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 4577 | Def: 3154 | Spd: 4768 | Spc: 2728 | HP: 3568
-- **Experiência:** 6284 EXP (Progresso: 83%, faltam 174 p/ Lv.21)
-- **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
-  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
-
-### 4. **Pikachu** (Lv. 22)
-- **Tipos:** Electric | **HP:** 52 / 52 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 38 | DEF: 26 | SPD: 49 | SPC: 35
-- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 8124 | Def: 6138 | Spd: 8947 | Spc: 5437 | HP: 5887
-- **Experiência:** 10 994 EXP (Progresso: 23%, faltam 1173 p/ Lv.23)
-- **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
-
-### 5. **Charmeleon** (Lv. 19)
-- **Tipos:** Fire | **HP:** 55 / 55 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 35 | DEF: 30 | SPD: 44 | SPC: 37
-- **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
-- **Stat Experience (0–65.535):** Atk: 5740 | Def: 4267 | Spd: 6543 | Spc: 3501 | HP: 4322
-- **Experiência:** 5352 EXP (Progresso: 88%, faltam 108 p/ Lv.20)
-- **Golpes & PPs:**
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
-  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-
-### 6. **Butterfree** (Lv. 23)
-- **Tipos:** Bug/Flying | **HP:** 68 / 68 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 34 | DEF: 33 | SPD: 46 | SPC: 51
+### 2. **Butterfree** (Lv. 21)
+- **Tipos:** Bug/Flying | **HP:** 56 / 62 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7670 | Def: 7279 | Spd: 7788 | Spc: 5576 | HP: 6423
-- **Experiência:** 13 289 EXP (Progresso: 68%, faltam 535 p/ Lv.24)
+- **Stat Experience (0–65.535):** Atk: 6646 | Def: 6121 | Spd: 6904 | Spc: 4587 | HP: 5555
+- **Experiência:** 9318 EXP (Progresso: 4%, faltam 1330 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 11 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 13 | Poder: -- | Precisão: 75%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **15 / 20 slots** (5 vagas livres)
+### 3. **Rattata** (Lv. 16)
+- **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
+- **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
+- **Stat Experience (0–65.535):** Atk: 5989 | Def: 4340 | Spd: 6757 | Spc: 3772 | HP: 5036
+- **Experiência:** 4492 EXP (Progresso: 48%, faltam 421 p/ Lv.17)
+- **Golpes & PPs:**
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+  - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
+
+### 4. **Nidorino** (Lv. 16)
+- **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
+- **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
+- **Stat Experience (0–65.535):** Atk: 3649 | Def: 2382 | Spd: 3996 | Spc: 2168 | HP: 2887
+- **Experiência:** 3003 EXP (Progresso: 80%, faltam 117 p/ Lv.17)
+- **Golpes & PPs:**
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+
+### 5. **Pikachu** (Lv. 15)
+- **Tipos:** Electric | **HP:** 35 / 38 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
+- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
+- **Stat Experience (0–65.535):** Atk: 6394 | Def: 4454 | Spd: 7154 | Spc: 3812 | HP: 4615
+- **Experiência:** 4062 EXP (Progresso: 95%, faltam 34 p/ Lv.16)
+- **Golpes & PPs:**
+  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
+  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+
+### 6. **Nidorina** (Lv. 16)
+- **Tipos:** Poison | **HP:** 52 / 52 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 29 | SPC: 25
+- **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
+- **Stat Experience (0–65.535):** Atk: 3030 | Def: 2222 | Spd: 3429 | Spc: 1904 | HP: 2298
+- **Experiência:** 2577 EXP (Progresso: 7%, faltam 543 p/ Lv.17)
+- **Golpes & PPs:**
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+
+## 🎒 4. Mochila & Recursos • Capacidade: **12 / 20 slots** (8 vagas livres)
 - **Potion** x6
-- **Poké Ball** x4
+- **Poké Ball** x11
 - **Antidote** x2
 - **Town Map** x1
-- **Rare Candy** x2
+- **TM34 (Bide)** x1
+- **TM12 (Water Gun)** x1
+- **Rare Candy** x1
 - **Escape Rope** x1
+- **Moon Stone** x2
 - **Hp Up** x1
-- **Ether** x3
-- **Great Ball** x1
-- **Repel** x2
-- **S.s.ticket** x1
-- **TM08 (Body Slam)** x1
-- **Max Potion** x1
-- **TM44 (Rest)** x1
-- **Hyper Potion** x1
+- **TM01 (Mega Punch)** x1
+- **Helix Fossil** x1
 
-## 💻 4.1. Armazenamento de Itens no PC (RAM $D53A) • Capacidade: **11 / 50 slots** (39 vagas livres)
+## 💻 4.1. Armazenamento de Itens no PC (RAM $D53A) • Capacidade: **1 / 50 slots** (49 vagas livres)
 > *Itens guardados no PC pessoal do jogador (preservam espaço na mochila mas contam como possuídos para TMs/Key Items):*
 - **Potion** x1 • 🧪 Cura/Restauração
-- **TM34 (Bide)** x1 • 💿 TM Único
-- **TM12 (Water Gun)** x1 • 💿 TM Único
-- **TM11 (BubbleBeam)** x1 • 💿 TM Único
-- **TM45 (Thunder Wave)** x1 • 💿 TM Único
-- **Nugget** x1 • 💰 Item Valioso
-- **Helix Fossil** x1 • 🔑 Key Item
-- **TM04 (Whirlwind)** x1 • 💿 TM Único
-- **TM01 (Mega Punch)** x1 • 💿 TM Único
-- **Moon Stone** x2 • 💎 Pedra de Evolução
-- **TM28 (Dig)** x1 • 💿 TM Único
 
 ## 🏡 4.2. Centro de Criação / Daycare (Rota 5 - RAM $DA48) • ⚪ VAZIO
 *Nenhum Pokémon entregue no Daycare da Rota 5 de momento.*
 
-## 🤝 4.3. Trocas de Pokémon com NPCs em Kanto (In-Game Trades - RAM $D737) • **1 / 9 Concluídas**
-### Rota 2 (Casa ao sul do Túnel de Diglett) • **🟡 NO PC BOX 1**
+## 🤝 4.3. Trocas de Pokémon com NPCs em Kanto (In-Game Trades - RAM $D737) • **0 / 9 Concluídas**
+### Rota 2 (Casa ao sul do Túnel de Diglett) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Abra** (Dex #63) ➔ **Recebe:** **Mr. Mime** ("MARCEL" • Dex #122)
 - **NPC & Local:** Rapaz (Casa ao lado da saída sul do Diglett's Cave)
 - **Utilidade Tática:** ⭐ Único Mr. Mime de Kanto! Psíquico rápido com Special elevado.
-- **Estado no Teu Jogo:** 🟡 NO PC BOX 1! Tens Abra (Nv. 37) - Retira para trocar!
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Abra
 
 ### Rota 5 (Entrada do Underground Path) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Nidoran♂** (Dex #32) ➔ **Recebe:** **Nidoran♀** ("SPOT" • Dex #29)
@@ -166,17 +156,17 @@
 - **Utilidade Tática:** ⭐ Única Jynx de Kanto! Tipos Gelo/Psíquico com Lovely Kiss e Blizzard brutal.
 - **Estado no Teu Jogo:** ⚪ Precisas de apanhar Poliwhirl
 
-### Vermilion City (Casa ao lado do Centro Pokémon) • **⚪ REQUER CAPTURA**
+### Vermilion City (Casa ao lado do Centro Pokémon) • **🟡 NO PC BOX 1**
 - **Oferece:** **Spearow** (Dex #21) ➔ **Recebe:** **Farfetch'd** ("DUX" • Dex #83)
 - **NPC & Local:** Rapariga (Casa ao lado do Centro Pokémon de Vermilion (X:3 Y:5))
 - **Utilidade Tática:** ⭐ Único Farfetch'd de Kanto! Excelente utilitário com Cut e Fly e alto dano com Slash crítico.
-- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Spearow
+- **Estado no Teu Jogo:** 🟡 NO PC BOX 1! Tens Spearow (Nv. 6) - Retira para trocar!
 
-### Rota 11 (Portão 2º Andar) • **✅ JÁ REALIZADA**
+### Rota 11 (Portão 2º Andar) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Drowzee** (Dex #96) ➔ **Recebe:** **Lickitung** ("MARC" • Dex #108)
 - **NPC & Local:** Rapaz (Andar superior do posto de controlo da Rota 11)
 - **Utilidade Tática:** ⭐ Único Lickitung do jogo! Pokémon Normal raro com grande vitalidade.
-- **Estado no Teu Jogo:** ✅ Troca Já Realizada (MARC)
+- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Drowzee
 
 ### Rota 18 (Portão 2º Andar) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Parasect** (Dex #47) ➔ **Recebe:** **Tangela** ("CRINKLES" • Dex #114)
@@ -205,38 +195,33 @@
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
-  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 15 (Geodude)`).
-  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
-- **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
-- **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
+  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 16 (Beedrill)`).
+  - **Eficiência na Área Atual:** **100% de encontros bloqueados** (100% bloqueados)
+  - **Bloqueados por Repel:** Zubat Nv.8 (20%), Zubat Nv.7 (20%), Zubat Nv.9 (15%), Geodude Nv.8 (10%), Zubat Nv.6 (10%), Zubat Nv.10 (10%), Geodude Nv.10 (5%), Paras Nv.8 (5%), Zubat Nv.11 (4%), Clefairy Nv.8 (1%)
+- **Repelentes na Mochila:** Repel: `0` | Super Repel: `0` | Max Repel: `0` (Total: `0`)
+- **Escape Rope ($D158):** `1` disponíveis • **Área Compatível (Caverna/Dungeon)**
 
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Espécies Registadas na Pokédex:** **27 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **47 / 151**
-- **Total de Pokémon Individuais Ativos:** **20 espécimes** (6 na Equipa + 14 no PC)
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #50 Diglett, #56 Mankey, #63 Abra, #74 Geodude, #83 Farfetch'd
+- **Espécies Registadas na Pokédex:** **21 / 151** (Espécies Desbloqueadas)
+- **Espécies Vistas na Pokédex:** **33 / 151**
+- **Total de Pokémon Individuais Ativos:** **14 espécimes** (6 na Equipa + 8 no PC)
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #46 Paras, #74 Geodude
 
-## 💾 6. Pokémon Guardados no PC (14 / 20 na Caixa 1) • Vagas Livres: **6**
-- #1: **Mankey** (Lv. 2) • Tipos: Fighting (Dex: #56) • HP: 14592 • Golpes: Golpe #190 (Não Identificado), Scratch, Leer
-- #2: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
-- #3: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
-- #4: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
-- #5: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
-- #6: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
-- #7: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
-- #8: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
-- #9: **Rattata** (Lv. 45) • Tipos: Normal (Dex: #19) • HP: 42240 • Golpes: Golpe #255 (Não Identificado), Tackle, Quick Attack, Tail Whip
-- #10: **Nidorina** (Lv. 55) • Tipos: Poison (Dex: #30) • HP: 43008 • Golpes: Golpe #235 (Não Identificado), Scratch, Tackle, Growl
-- #11: **Beedrill** (Lv. 62) • Tipos: Bug/Poison (Dex: #15) • HP: 29184 • Golpes: Golpe #255 (Não Identificado), Fury Attack, String Shot, Twineedle
-- #12: **Abra** (Lv. 37) • Tipos: Psychic (Dex: #63) • HP: 37888 • Golpes: Golpe #200 (Não Identificado), Teleport
-- #13: **Farfetch'd** (Lv. 21) • Tipos: Normal/Flying (Dex: #83) • HP: 16384 • Golpes: Growl, Peck, Sand-attack
-- #14: **Abra** (Lv. 31) • Tipos: Psychic (Dex: #63) • HP: 37888 • Golpes: Golpe #200 (Não Identificado), Teleport
+## 💾 6. Pokémon Guardados no PC (8 / 20 na Caixa 1) • Vagas Livres: **12**
+- #1: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
+- #2: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
+- #3: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
+- #4: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
+- #5: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
+- #6: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
+- #7: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
+- #8: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
-- **2. Cascade Badge** (Cerulean City • Misty • Tipo: Água): ✅ [CONQUISTADA]
+- **2. Cascade Badge** (Cerulean City • Misty • Tipo: Água): ⏳ [BLOQUEADA]
 - **3. Thunder Badge** (Vermilion City • Lt. Surge • Tipo: Elétrico): ⏳ [BLOQUEADA]
 - **4. Rainbow Badge** (Celadon City • Erika • Tipo: Planta): ⏳ [BLOQUEADA]
 - **5. Soul Badge** (Fuchsia City • Koga • Tipo: Veneno): ⏳ [BLOQUEADA]
@@ -245,130 +230,103 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 24 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #1. [↖️ 11 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
-- **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Diglett é 100% imune a ataques elétricos.
-
-### #2. [↖️ 27 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Dig destrói ambos num único turno.
-
-### #3. [↙️ 25 passos Sudoeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Pikachu (Lv. 23)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Diglett vence facilmente sem sofrer dano.
-
-### #4. [↖️ 26 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
-- **Dificuldade:** Chefe / Difícil
-- **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
-- **Lead Recomendado:** Diglett / Dugtrio
-- **Estratégia:** 100% Imune a Electric! Usa Dig no Raichu para aniquilar sem sofrer dano.
-
-### #5. [↙️ 28 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Squirtle (Lv. 20)
-- **Lead Recomendado:** Pikachu (Thundershock)
-- **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
-
-### #6. [↙️ 18 passos Sudoeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
-- **Lead Recomendado:** Geodude / Butterfree
-- **Estratégia:** Geodude é imune a Electric e resiste a Normal.
-
-### #7. [↙️ 29 passos Sudoeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Butterfree (Lv. 20)
-- **Lead Recomendado:** Pikachu / Charmeleon
-- **Estratégia:** Pikachu ou fogo derrotam Butterfree.
-
-### #8. [↙️ 34 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
-- **Lead Recomendado:** Pikachu / Geodude
-- **Estratégia:** Cuidado com Hyper Fang do Raticate.
-
-### #9. [↙️ 28 passos Sudoeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
-- **Lead Recomendado:** Pikachu
-- **Estratégia:** Pikachu limpa os três pássaros.
-
-### #10. [↙️ 42 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
-- **Lead Recomendado:** Charmeleon
-- **Estratégia:** Ember limpa os insetos.
-
-### #11. [↘️ 12 passos Sudeste] **Youngster Eddie** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Fácil
-- **Roster Inimigo:** Ekans (Lv. 21)
+- **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
-- **Estratégia:** Confusion é super eficaz contra Veneno.
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** A carcaça de pedra deles é vulnerável a Confusion (Special). NÃO uses Charmeleon nem Pikachu!
 
-### #12. [↘️ 15 passos Sudeste] **Gambler Hugo** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Voltorb (Lv. 18) • Magnemite (Lv. 18)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Diglett imune a ataques elétricos.
-
-### #13. [⬅️ 14 passos Oeste] **Youngster Dave** (Rota 11) • **⚔️ POR VENCER**
+### #2. [↙️ 12 passos Sudoeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
-- **Roster Inimigo:** Sandshrew (Lv. 19) • Zubat (Lv. 19)
-- **Lead Recomendado:** Pikachu / Butterfree
-- **Estratégia:** Pikachu contra Zubat.
+- **Roster Inimigo:** Rattata (Lv. 11) • Zubat (Lv. 11)
+- **Lead Recomendado:** Butterfree / Pikachu
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Rattata** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #14. [↘️ 19 passos Sudeste] **Engineer Bernie** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Magnemite (Lv. 21)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Dig destroi Magnemite.
+### #3. [↗️ 18 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Clefairy (Lv. 14)
+- **Lead Recomendado:** Charmeleon / Nidorino
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #15. [↘️ 23 passos Sudeste] **Youngster Dillon** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Nidoran♂ (Lv. 18) • Nidorino (Lv. 18)
-- **Lead Recomendado:** Butterfree (Confusion)
-- **Estratégia:** Confusion causa 2x dano.
-
-### #16. [↙️ 16 passos Sudoeste] **Gambler Jasper** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Poliwag (Lv. 18) • Horsea (Lv. 18)
-- **Lead Recomendado:** Pikachu (Thundershock)
-- **Estratégia:** Eletricidade contra água.
-
-### #17. [↙️ 18 passos Sudoeste] **Gambler Darian** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Growlithe (Lv. 21) • Vulpix (Lv. 21)
-- **Lead Recomendado:** Diglett / Água
-- **Estratégia:** Ataques de Terra ou Água contra Fogo.
-
-### #18. [↘️ 2 passos Sudeste] **Youngster Yasu** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Rattata (Lv. 17) x2 • Raticate (Lv. 17)
-- **Lead Recomendado:** Nidorino / Charmeleon
-- **Estratégia:** Cuidado com Hyper Fang do Raticate.
-
-### #19. [↘️ 15 passos Sudeste] **Engineer Braxton** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Magnemite (Lv. 18) • Magneton (Lv. 18)
-- **Lead Recomendado:** Diglett (Dig)
-- **Estratégia:** Dig aniquila ambos.
-
-### #20. [↖️ 6 passos Noroeste] **Gambler Dirk** (Rota 11) • **⚔️ POR VENCER**
-- **Dificuldade:** Média
-- **Roster Inimigo:** Bellsprout (Lv. 18) • Oddish (Lv. 18)
+### #4. [↘️ 33 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
-- **Estratégia:** Fogo contra planta.
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
+
+### #5. [↘️ 17 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
+- **Lead Recomendado:** Charmeleon / Butterfree
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
+
+### #6. [↙️ 23 passos Sudoeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
+- **Lead Recomendado:** Charmeleon / Beedrill
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
+
+### #7. [↘️ 35 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
+- **Dificuldade:** Muito Fácil
+- **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
+- **Lead Recomendado:** Charmeleon (Ember) / Butterfree
+- **Ordem Ideal da Equipa (Slots 1 a 6):**
+  - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+- **Estratégia:** Ember elimina ambos os insetos num só golpe.
+
+## 🎒 9. Itens da Área (Mt. Moon (1F))
+### Itens no Chão (Poké Balls visíveis):
+- **Potion** (X: 2, Y: 20) • Estado: ✅ Já Recolhido — *Perto da entrada esquerda no piso 1F.*
+- **Moon Stone** (X: 2, Y: 2) • Estado: ✅ Já Recolhido — *No canto superior esquerdo.*
+- **Rare Candy** (X: 35, Y: 31) • Estado: ✅ Já Recolhido — *No canto superior direito numa plataforma.*
+- **Escape Rope** (X: 36, Y: 23) • Estado: ✅ Já Recolhido — *Perto das escadas no centro da caverna.*
+- **Potion** (X: 20, Y: 33) • Estado: ✅ Já Recolhido — *No corredor inferior.*
+- **TM12 (Water Gun)** (X: 5, Y: 32) • Estado: ✅ Já Recolhido — *No canto inferior esquerdo.*
 
 ## 🌐 10. Panorama Global de 100% de Kanto (Guia Completo para ChatGPT)
 ### 🎯 Estado dos 8 Ginásios de Kanto:
 - **1. Boulder Badge** (Pewter City • Brock): ✅ VENCIDO
-- **2. Cascade Badge** (Cerulean City • Misty): ✅ VENCIDO
+- **2. Cascade Badge** (Cerulean City • Misty): ⏳ POR VENCER
 - **3. Thunder Badge** (Vermilion City • Lt. Surge): ⏳ POR VENCER
 - **4. Rainbow Badge** (Celadon City • Erika): ⏳ POR VENCER
 - **5. Soul Badge** (Fuchsia City • Koga): ⏳ POR VENCER
@@ -377,24 +335,17 @@
 - **8. Earth Badge** (Viridian City • Giovanni): ⏳ POR VENCER
 
 ### 💿 TMs e HMs em Posse do Jogador (Mochila + PC):
-- **TM08 (Body Slam)** x1 [Local: 🎒 Na Mochila]
-- **TM44 (Rest)** x1 [Local: 🎒 Na Mochila]
-- **TM34 (Bide)** x1 [Local: 💻 Guardado no PC]
-- **TM12 (Water Gun)** x1 [Local: 💻 Guardado no PC]
-- **TM11 (BubbleBeam)** x1 [Local: 💻 Guardado no PC]
-- **TM45 (Thunder Wave)** x1 [Local: 💻 Guardado no PC]
-- **TM04 (Whirlwind)** x1 [Local: 💻 Guardado no PC]
-- **TM01 (Mega Punch)** x1 [Local: 💻 Guardado no PC]
-- **TM28 (Dig)** x1 [Local: 💻 Guardado no PC]
+- **TM34 (Bide)** x1 [Local: 🎒 Na Mochila]
+- **TM12 (Water Gun)** x1 [Local: 🎒 Na Mochila]
+- **TM01 (Mega Punch)** x1 [Local: 🎒 Na Mochila]
 
 ### 🔑 Key Items e Pedras Raras em Posse (Mochila + PC):
 - **Town Map** x1 [Local: 🎒 Na Mochila]
-- **S.s.ticket** x1 [Local: 🎒 Na Mochila]
-- **Helix Fossil** x1 [Local: 💻 Guardado no PC]
-- **Moon Stone** x2 [Local: 💻 Guardado no PC]
+- **Helix Fossil** x1 [Local: 🎒 Na Mochila]
+- **Moon Stone** x2 [Local: 🎒 Na Mochila]
 
 ### 🚩 Próximo Grande Objetivo de Jogo para Orientares o Jogador:
-> **RED possui 2 Insígnias (Boulder & Cascade)!** Já possui o **S.S. Ticket** (guardado no PC/mochila). O próximo passo é atravessar a Casa Subterrânea da Rota 5 até Vermilion City. Em Vermilion City, com o S.S. Ticket, deve embarcar no navio S.S. Anne, vencer o Rival Blue, obter o **HM01 Cut** com o Capitão do navio, cortar o arbusto do ginásio e derrotar o **Líder Lt. Surge (Thunder Badge)**!
+> RED possui a Boulder Badge. Deve atravessar o Mt. Moon e a Rota 4 até Cerulean City para desafiar a Líder Misty (Cascade Badge).
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -415,12 +366,12 @@
 - [21:10:39] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 4/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:38] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 10/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 
+- [21:53:54] Entrou em Mt Moon 1F
 - [21:51:22] Entrou em Ss Anne B1F
 - [21:51:13] Entrou em Ss Anne 1F
 - [21:51:12] Entrou em Vermilion Dock
 - [21:51:04] Entrou em Vermilion City
 - [21:51:00] Entrou em Vermilion Pokecenter
-- [21:50:53] Entrou em Vermilion City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [21:49:52] `CONFUSION STUN SPORE`
