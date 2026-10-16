@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:42:47**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:42:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,17 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `29`, Y: `8`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `52h 0m 29s`
+- **Tempo de Jogo:** `52h 0m 30s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **1691 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Thundershock`
+- **Último Golpe Usado pelo Adversário:** `Supersonic`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 12)
 - **Tipos:** Poison/Flying
-- **HP:** **33 / 33** (100%)
+- **HP:** **0 / 33** (0%)
 - **Stats de Batalha:** ATK: 17 | DEF: 15 | SPD: 20 | SPC: 16
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
@@ -31,7 +33,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 15)
 - **Tipos:** Electric
-- **HP:** **38 / 38** (HEALTHY)
+- **HP:** **35 / 38** (HEALTHY)
 - **Stats com Modificadores:** ATK: 27 (0) | DEF: 19 (0) | SPD: 35 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -44,7 +46,7 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (38/38). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (35/38). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -52,8 +54,8 @@
 - **Tipos:** Bug/Poison | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 3671 | Def: 3073 | Spd: 4158 | Spc: 2330 | HP: 2988
-- **Experiência:** 3688 EXP (Progresso: 43%, faltam 408 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 3693 | Def: 3090 | Spd: 4185 | Spc: 2350 | HP: 3008
+- **Experiência:** 3757 EXP (Progresso: 53%, faltam 339 p/ Lv.16)
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -96,13 +98,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 5. **Pikachu** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 35 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6245 | Def: 4341 | Spd: 6990 | Spc: 3692 | HP: 4500
-- **Experiência:** 3654 EXP (Progresso: 39%, faltam 442 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 6267 | Def: 4358 | Spd: 7017 | Spc: 3712 | HP: 4520
+- **Experiência:** 3723 EXP (Progresso: 48%, faltam 373 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -227,14 +229,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:42:49] **Turno #1**: Pikachu (35/38 HP) vs Zubat (0/33 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
+- [15:42:48] **Turno #1**: Pikachu (35/38 HP) vs Zubat (33/33 HP) • Golpe Inimigo: `Leech Life`
 - [15:42:47] **Turno #1**: Pikachu (38/38 HP) vs Zubat (33/33 HP)
 - [15:42:38] **Turno #1**: Beedrill (48/48 HP) vs Zubat (33/33 HP)
 - [15:42:11] **Turno #1**: Beedrill (48/48 HP) vs Zubat (0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:42:10] **Turno #1**: Beedrill (48/48 HP) vs Zubat (15/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:42:08] **Turno #1**: Beedrill (48/48 HP) vs Zubat (24/24 HP)
 - [15:41:37] **Turno #1**: Beedrill (48/48 HP) vs Zubat (0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:41:36] **Turno #1**: Beedrill (48/48 HP) vs Zubat (11/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:41:34] **Turno #1**: Beedrill (48/48 HP) vs Zubat (24/24 HP)
 
 - [15:42:23] Entrou em Mt Moon B2f
 - [15:42:13] Entrou em Mt Moon B1F
