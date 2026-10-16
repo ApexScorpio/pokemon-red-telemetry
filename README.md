@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:19**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:23**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -77,14 +77,14 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 4. **Pikachu** (Lv. 21)
-- **Tipos:** Electric | **HP:** 18 / 50 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 36 | DEF: 25 | SPD: 47 | SPC: 34
+### 4. **Pikachu** (Lv. 22)
+- **Tipos:** Electric | **HP:** 10 / 52 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 38 | DEF: 26 | SPD: 49 | SPC: 35
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 8079 | Def: 6083 | Spd: 8862 | Spc: 5367 | HP: 5857
-- **Experiência:** 10 586 EXP (Progresso: 96%, faltam 62 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 8124 | Def: 6138 | Spd: 8947 | Spc: 5437 | HP: 5887
+- **Experiência:** 10 994 EXP (Progresso: 23%, faltam 1173 p/ Lv.23)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 25 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
