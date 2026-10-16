@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:42:36**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:42:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,32 +18,34 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
+### 🔴 Adversário em Campo: **Zubat** (Lv. 12)
 - **Tipos:** Poison/Flying
-- **HP:** **0 / 24** (0%)
-- **Stats de Batalha:** ATK: 12 | DEF: 11 | SPD: 14 | SPC: 11
+- **HP:** **33 / 33** (100%)
+- **Stats de Batalha:** ATK: 17 | DEF: 15 | SPD: 20 | SPC: 16
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
+  - **Supersonic** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~1-2 HP (1x)
+  - **Leech Life** (Bug) ➔ Dano: ~5-6 HP (2x)
+  - **Supersonic** (Normal) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
-- **Tipos:** Normal
+- **Tipos:** Bug/Poison
 - **HP:** **48 / 48** (HEALTHY)
 - **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **12-15 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~7 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Fury Attack (Causa ~12-15 de dano)
-- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-7: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (48/48). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Pikachu (Lv. 15)** [38/38 HP]
+- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
@@ -225,6 +227,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:42:38] **Turno #1**: Beedrill (48/48 HP) vs Zubat (33/33 HP)
 - [15:42:11] **Turno #1**: Beedrill (48/48 HP) vs Zubat (0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:42:10] **Turno #1**: Beedrill (48/48 HP) vs Zubat (15/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:42:08] **Turno #1**: Beedrill (48/48 HP) vs Zubat (24/24 HP)
@@ -232,7 +235,6 @@
 - [15:41:36] **Turno #1**: Beedrill (48/48 HP) vs Zubat (11/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:41:34] **Turno #1**: Beedrill (48/48 HP) vs Zubat (24/24 HP)
 - [15:41:31] **Turno #1**: Beedrill (48/48 HP) vs Zubat (0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:41:29] **Turno #1**: Beedrill (48/48 HP) vs Zubat (24/24 HP)
 
 - [15:42:23] Entrou em Mt Moon B2f
 - [15:42:13] Entrou em Mt Moon B1F
