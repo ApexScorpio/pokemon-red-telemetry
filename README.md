@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:37**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:42**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,7 +11,7 @@
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `59h 0m 1s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **💬 Diálogo / Mensagem no Ecrã:** `He invented the POKMON Storage`
 - **Dinheiro:** **3116 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -199,6 +199,7 @@
 - [18:26:40] Entrou em Bike Shop
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:43:39] `He invented the POKMON Storage`
 - [18:16:07] `THUNDERSHOCK THUNDER WAVE`
 - [18:15:04] `TACKLE TAIL WHIP`
 - [18:14:53] `THUNDERSHOCK THUNDER WAVE`
@@ -213,7 +214,6 @@
 - [18:06:14] `THUNDERSHOCK THUNDER WAVE`
 - [18:05:57] `TACKLE TAIL WHIP`
 - [18:05:06] `SQUIRTLE`
-- [17:55:55] `and stealthily Eats the eggs of`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
