@@ -1,58 +1,29 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:45**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `28`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `27`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `60h 0m 7s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `String Shot`
-- **Último Golpe Usado pelo Adversário:** `Teleport`
-
-### 🔴 Adversário em Campo: **Abra** (Lv. 10)
-- **Tipos:** Psychic
-- **HP:** **26 / 26** (100%)
-- **Stats de Batalha:** ATK: 10 | DEF: 8 | SPD: 23 | SPC: 27
-- **Os 4 Golpes do Adversário:**
-  - **Teleport** (Psychic_type) • PP: 20 • Poder: -- • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Teleport** (Psychic_type) ➔ Golpe de Status
-
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 21)
-- **Tipos:** Bug/Flying
-- **HP:** **62 / 62** (HEALTHY)
-- **Stats com Modificadores:** ATK: 31 (0) | DEF: 30 (0) | SPD: 42 (0) | SPC: 47 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **37-44 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (62/62). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **29%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~38%** | *Com HP no vermelho:* **~79%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 21) ⚔️ [EM COMBATE]
+### 1. **Butterfree** (Lv. 21)
 - **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
@@ -126,7 +97,7 @@
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **17 / 20 slots** (3 vagas livres)
 - **Potion** x6
-- **Poké Ball** x9
+- **Poké Ball** x8
 - **Antidote** x2
 - **Town Map** x1
 - **TM34 (Bide)** x1
@@ -157,20 +128,21 @@
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **24 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **36 / 151**
-- **Total de Pokémon Individuais Ativos:** **16 espécimes** (6 na Equipa + 10 no PC)
+- **Total de Pokémon Individuais Ativos:** **17 espécimes** (6 na Equipa + 11 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
 
-## 💾 6. Pokémon Guardados no PC (10 / 20 na Caixa 1) • Vagas Livres: **10**
-- #1: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
-- #2: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
-- #3: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
-- #4: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
-- #5: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
-- #6: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
-- #7: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
-- #8: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
-- #9: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
-- #10: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
+## 💾 6. Pokémon Guardados no PC (11 / 20 na Caixa 1) • Vagas Livres: **9**
+- #1: **Abra** (Lv. 26) • Tipos: Psychic (Dex: #63) • HP: 37888 • Golpes: Golpe #200 (Não Identificado), Teleport
+- #2: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
+- #3: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
+- #4: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
+- #5: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
+- #6: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
+- #7: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
+- #8: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
+- #9: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
+- #10: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
+- #11: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
