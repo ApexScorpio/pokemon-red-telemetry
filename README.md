@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:20**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `30`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `67h 0m 44s`
+- **Tempo de Jogo:** `67h 0m 45s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
 - **Dinheiro:** **12 100 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Fury Attack`
 - **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 16)
 - **Tipos:** Normal/Flying
-- **HP:** **27 / 41** (66%)
+- **HP:** **6 / 41** (15%)
 - **Stats de Batalha:** ATK: 22 | DEF: 20 | SPD: 25 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -40,16 +40,16 @@
 - **Stats com Modificadores:** ATK: 41 (0) | DEF: 27 (0) | SPD: 38 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (1x eficácia) • ~3 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-3: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (46/59). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 6 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -83,7 +83,7 @@
 - **Stat Experience (0–65.535):** Atk: 4940 | Def: 4223 | Spd: 5514 | Spc: 3276 | HP: 4037
 - **Experiência:** 7930 EXP (Progresso: 94%, faltam 70 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 15 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -284,6 +284,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:04:23] **Turno #3**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 6/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
+- [20:04:22] **Turno #2**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 6/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
+- [20:04:21] **Turno #1**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 13/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:04:19] **Turno #1**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 27/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:04:19] **Turno #1**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:04:18] **Turno #1**: Charmeleon (12/53 HP) vs Pidgey (Lv. 16 • 41/41 HP)
@@ -296,9 +299,6 @@
 - [20:04:07] **Turno #3**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
 - [20:04:07] **Turno #2**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
 - [20:04:06] **Turno #1**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sleep Powder`
-- [20:04:05] **Turno #1**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 57/57 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Confusion`
-- [20:04:01] **Turno #1**: Nidorina (0/55 HP) vs Butterfree (Lv. 20 • 57/57 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Confusion`
-- [20:03:55] **Turno #1**: Nidorina (39/55 HP) vs Butterfree (Lv. 20 • 57/57 HP)
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
