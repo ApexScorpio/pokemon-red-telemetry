@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:58:43**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:58:48**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -12,7 +12,7 @@
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `73h 0m 36s`
 - **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
-- **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -22,7 +22,7 @@
   - **Lead Recomendado:** Butterfree (Confusion)
   - **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
 
-## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
+## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground | **HP:** 24 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
@@ -78,6 +78,15 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
+### 6. **Abra** (Lv. 16)
+- **Tipos:** Psychic | **HP:** 37 / 37 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 13 | DEF: 10 | SPD: 34 | SPC: 40
+- **DVs Gen 1 (0–15):** Ataque: 5 | Defesa: 2 | Velocidade: 2 | Especial: 5 | HP: 9
+- **Stat Experience (0–65.535):** Atk: 64 | Def: 47 | Spd: 38 | Spc: 62 | HP: 65
+- **Experiência:** 2843 EXP (Progresso: 53%, faltam 277 p/ Lv.17)
+- **Golpes & PPs:**
+  - **Teleport** (Psychic_type) — PP: 17 | Poder: -- | Precisão: 100%
+
 ## 🎒 4. Mochila & Recursos • Capacidade: **10 / 20 slots** (10 vagas livres)
 - **Potion** x6
 - **Poké Ball** x7
@@ -105,22 +114,15 @@
 - **Moon Stone** x2 • 💎 Pedra de Evolução
 - **TM28 (Dig)** x1 • 💿 TM Único
 
-## 🏡 4.2. Centro de Criação / Daycare (Rota 5 - RAM $DA48) • 🟢 POKÉMON EM TREINO
-- **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
-- **Nível Real Atual:** **Lv. 16** *(Entrou a Lv. 16 • Ganhou +0 níveis!)*
-- **Custo de Retirada:** **100 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **2843 EXP**
-- **Progresso para Nível 17:** Faltam **277 passos / EXP** (53%)
-- **DVs Gen 1:** ATK: 5 | DEF: 2 | SPD: 2 | SPC: 5 | HP: 9
-- **Os 4 Golpes Atuais:**
-  - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 17
+## 🏡 4.2. Centro de Criação / Daycare (Rota 5 - RAM $DA48) • ⚪ VAZIO
+*Nenhum Pokémon entregue no Daycare da Rota 5 de momento.*
 
 ## 🤝 4.3. Trocas de Pokémon com NPCs em Kanto (In-Game Trades - RAM $D737) • **0 / 9 Concluídas**
-### Rota 2 (Casa ao sul do Túnel de Diglett) • **⚪ REQUER CAPTURA**
+### Rota 2 (Casa ao sul do Túnel de Diglett) • **🟢 PRONTO NA EQUIPA!**
 - **Oferece:** **Abra** (Dex #63) ➔ **Recebe:** **Mr. Mime** ("MARCEL" • Dex #122)
 - **NPC & Local:** Rapaz (Casa ao lado da saída sul do Diglett's Cave)
 - **Utilidade Tática:** ⭐ Único Mr. Mime de Kanto! Psíquico rápido com Special elevado.
-- **Estado no Teu Jogo:** ⚪ Precisas de apanhar Abra
+- **Estado no Teu Jogo:** 🟢 PRONTO NA EQUIPA! Tens Abra (Nv. 16)
 
 ### Rota 5 (Entrada do Underground Path) • **⚪ REQUER CAPTURA**
 - **Oferece:** **Nidoran♂** (Dex #32) ➔ **Recebe:** **Nidoran♀** ("SPOT" • Dex #29)
@@ -183,7 +185,7 @@
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **25 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **44 / 151**
-- **Total de Pokémon Individuais Ativos:** **17 espécimes** (5 na Equipa + 12 no PC)
+- **Total de Pokémon Individuais Ativos:** **18 espécimes** (6 na Equipa + 12 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #56 Mankey, #63 Abra, #74 Geodude
 
 ## 💾 6. Pokémon Guardados no PC (12 / 20 na Caixa 1) • Vagas Livres: **8**
