@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:42**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:46**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,13 +10,13 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `73`, Y: `15`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 12s`
+- **Tempo de Jogo:** `56h 0m 13s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Thunder Wave`
 - **Último Golpe Usado pelo Adversário:** `Poison Sting`
 
@@ -35,7 +35,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 17)
 - **Tipos:** Electric
-- **HP:** **16 / 42** (HEALTHY)
+- **HP:** **13 / 42** (HEALTHY)
 - **Stats com Modificadores:** ATK: 30 (0) | DEF: 21 (0) | SPD: 39 (0) | SPC: 28 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -56,7 +56,7 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 16 / 42 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 13 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 21 | SPD: 39 | SPC: 28
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7205 | Def: 5097 | Spd: 7886 | Spc: 4325 | HP: 5150
@@ -205,6 +205,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:17:45] **Turno #2**: Pikachu (13/42 HP) vs Ekans (Lv. 10 • 13/27 HP) • Golpe RED: `Thunder Wave` • Golpe Inimigo: `Poison Sting`
 - [18:17:38] **Turno #1**: Pikachu (16/42 HP) vs Ekans (Lv. 10 • 13/27 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Poison Sting`
 - [18:17:30] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 10 • 27/27 HP)
 - [18:17:28] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 0/21 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
@@ -219,7 +220,6 @@
 - [18:17:12] **Turno #1**: Pikachu (17/40 HP) vs Rattata (Lv. 8 • 25/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:17:10] **Turno #1**: Pikachu (22/40 HP) vs Rattata (Lv. 8 • 25/25 HP)
 - [18:17:09] **Turno #1**: Pikachu (22/40 HP) vs Spearow (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
-- [18:17:04] **Turno #1**: Pikachu (22/40 HP) vs Spearow (Lv. 10 • 28/28 HP) • Golpe RED: `Thundershock`
 
 - [18:16:21] Entrou em Route 4
 - [18:16:20] Entrou em Mt Moon B1F
