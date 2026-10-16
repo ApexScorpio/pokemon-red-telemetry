@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:41:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:42:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,20 +9,48 @@
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `6`
 - **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `58h 0m 51s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **2521 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Ekans** (Lv. 10)
+- **Tipos:** Poison
+- **HP:** **13 / 27** (48%)
+- **Stats de Batalha:** ATK: 18 | DEF: 15 | SPD: 16 | SPC: 15
+- **Os 4 Golpes do Adversário:**
+  - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
+  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Wrap** (Normal) ➔ Dano: ~2-3 HP (1x)
+  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
+  - **Poison Sting** (Poison) ➔ Dano: ~3-4 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 17)
+- **Tipos:** Normal
+- **HP:** **13 / 42** (HEALTHY)
+- **Stats com Modificadores:** ATK: 30 (0) | DEF: 21 (0) | SPD: 39 (0) | SPC: 28 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **20-24 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 13 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 17)
+### 1. **Pikachu** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 42 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 21 | SPD: 39 | SPC: 28
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -175,6 +203,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:42:04] **Turno #1**: Pikachu (13/42 HP) vs Ekans (Lv. 10 • 13/27 HP)
 - [18:17:45] **Turno #2**: Pikachu (13/42 HP) vs Ekans (Lv. 10 • 13/27 HP) • Golpe RED: `Thunder Wave` • Golpe Inimigo: `Poison Sting`
 - [18:17:38] **Turno #1**: Pikachu (16/42 HP) vs Ekans (Lv. 10 • 13/27 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Poison Sting`
 - [18:17:30] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 10 • 27/27 HP)
@@ -189,7 +218,6 @@
 - [18:17:13] **Turno #1**: Pikachu (17/40 HP) vs Rattata (Lv. 8 • 2/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:17:12] **Turno #1**: Pikachu (17/40 HP) vs Rattata (Lv. 8 • 25/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:17:10] **Turno #1**: Pikachu (22/40 HP) vs Rattata (Lv. 8 • 25/25 HP)
-- [18:17:09] **Turno #1**: Pikachu (22/40 HP) vs Spearow (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 
 - [18:33:36] Entrou em Cerulean City
 - [18:29:24] Entrou em Cerulean Mart
