@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:51:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:52:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,13 +10,15 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `8`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `53h 0m 29s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **Tempo de Jogo:** `53h 0m 30s`
+- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **2921 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `String Shot`
+- **Último Golpe Usado pelo Adversário:** `Disable`
 
 ### 🔴 Adversário em Campo: **Grimer** (Lv. 12)
 - **Tipos:** Poison
@@ -29,27 +31,27 @@
   - **Pound** (Normal) ➔ Dano: ~5-6 HP (1x)
   - **Disable** (Normal) ➔ Golpe de Status
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
-- **Tipos:** Bug/Poison
-- **HP:** **15 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 19)
+- **Tipos:** Bug/Flying
+- **HP:** **51 / 57** (HEALTHY)
+- **Stats com Modificadores:** ATK: 28 (0) | DEF: 27 (0) | SPD: 38 (0) | SPC: 43 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~9 turnos para K.O.
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **14-17 HP** (1x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-9: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 88%)
+- ➔ Turno 1: Sleep Powder (Neutraliza o adversário sem sofrer dano)
+- ➔ Turnos seguintes: Confusion até à vitória
+> **Resumo Tático:** Usa Sleep Powder para garantir que o Pokémon sobrevive enquanto desgasta a barra de vida do inimigo.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 19)** [51/57 HP]
-- **Motivo:** Butterfree tem o golpe String Shot (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (51/57). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison | **HP:** 15 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -61,7 +63,7 @@
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Butterfree** (Lv. 19)
+### 2. **Butterfree** (Lv. 19) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 51 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 27 | SPD: 38 | SPC: 43
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
@@ -230,6 +232,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:51:59] **Turno #1**: Butterfree (51/57 HP) vs Grimer (43/43 HP) • Golpe Inimigo: `Disable`
 - [15:51:55] **Turno #1**: Beedrill (15/51 HP) vs Grimer (43/43 HP)
 - [15:51:07] **Turno #1**: Pikachu (35/38 HP) vs Zubat (0/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [15:51:06] **Turno #1**: Pikachu (35/38 HP) vs Zubat (7/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
@@ -237,7 +240,6 @@
 - [15:51:04] **Turno #1**: Pikachu (38/38 HP) vs Zubat (6/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [15:50:59] **Turno #1**: Pikachu (38/38 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
 - [15:50:58] **Turno #3**: Pikachu (38/38 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
-- [15:50:51] **Turno #3**: Beedrill (15/51 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
 
 - [15:49:34] Entrou em Mt Moon B2f
 - [15:49:32] Entrou em Mt Moon B1F
@@ -247,6 +249,7 @@
 - [15:48:50] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [15:52:03] `CONFUSION STUN SPORE`
 - [15:51:03] `THUNDERSHOCK THUNDER WAVE`
 - [15:49:22] `FURY ATTACK POISON STING`
 - [15:49:12] `CONFUSION STUN SPORE`
@@ -256,7 +259,6 @@
 - [15:44:12] `FURY ATTACK POISON STING`
 - [15:43:01] `THUNDERSHOCK THUNDER WAVE`
 - [15:39:05] `FURY ATTACK POISON STING`
-- [15:35:31] `CONFUSION STUN SPORE`
 
 ## 🧠 Conselho Tático do Grok AI
 > "A sincronizar com a memória do Game Boy..."
