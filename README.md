@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `17`, Y: `26`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `67h 0m 42s`
+- **Tempo de Jogo:** `67h 0m 43s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
 - **Dinheiro:** **11 900 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
@@ -31,28 +31,28 @@
   - **Stun Spore** (Grass) • PP: NaN • Poder: -- • Precisão: 75%
   - **Sleep Powder** (Grass) • PP: NaN • Poder: -- • Precisão: 75%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Confusion** (Psychic_type) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
+  - **Confusion** (Psychic_type) ➔ Dano: ~9-11 HP (1x)
   - **Poisonpowder** (Poison) ➔ Golpe de Status
   - **Stun Spore** (Grass) ➔ Golpe de Status
   - **Sleep Powder** (Grass) ➔ Golpe de Status
 
-### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
-- **Tipos:** Poison
-- **HP:** **0 / 55** (PARALYSIS)
-- **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
+- **Tipos:** Electric
+- **HP:** **48 / 48** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (2x eficácia) • ~5 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **22-26 HP** (2x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-5: Usa repetidamente Poison Sting
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-3: Usa repetidamente Thundershock
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Nidorino (Lv. 20)** [61/61 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Nidorino para manter o controlo da batalha.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (48/48). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 19)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -67,8 +67,8 @@
   - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 39 / 55 ⚠️ (PARALYSIS)
+### 2. **Nidorina** (Lv. 17)
+- **Tipos:** Poison | **HP:** 0 / 55 ❌ (FAINTED)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3265 | Def: 2396 | Spd: 3619 | Spc: 2044 | HP: 2458
@@ -103,7 +103,7 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 5. **Pikachu** (Lv. 20)
+### 5. **Pikachu** (Lv. 20) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -287,6 +287,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:04:05] **Turno #1**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 57/57 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Confusion`
 - [20:04:01] **Turno #1**: Nidorina (0/55 HP) vs Butterfree (Lv. 20 • 57/57 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Confusion`
 - [20:03:55] **Turno #1**: Nidorina (39/55 HP) vs Butterfree (Lv. 20 • 57/57 HP)
 - [20:03:55] **Turno #1**: Charmeleon (39/53 HP) vs Pikachu (Lv. 16 • 0/39 HP)
@@ -301,7 +302,6 @@
 - [20:03:27] **Turno #2**: Charmeleon (6/53 HP) vs Rattata (Lv. 16 • 13/38 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
 - [20:03:27] **Turno #1**: Charmeleon (15/53 HP) vs Rattata (Lv. 16 • 13/38 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
 - [20:03:25] **Turno #1**: Charmeleon (23/53 HP) vs Rattata (Lv. 16 • 38/38 HP)
-- [20:03:24] **Turno #1**: Charmeleon (46/53 HP) vs Squirtle (Lv. 20 • 0/50 HP)
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
