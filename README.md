@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:26:34**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:26:37**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `9`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `76h 0m 36s`
+- **Tempo de Jogo:** `76h 0m 37s`
 - **💬 Diálogo / Mensagem no Ecrã:** `We heal your POKMON back to`
 - **Dinheiro:** **14 055 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett) | **Eficiência na Rota:** `100% bloqueados`
@@ -55,13 +55,13 @@
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
 ### 1. **Diglett** (Lv. 18)
-- **Tipos:** Ground | **HP:** 14 / 35 ✅ (SAUDÁVEL)
+- **Tipos:** Ground | **HP:** 0 / 35 ❌ (FAINTED)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 13 | Defesa: 14 | Velocidade: 13 | Especial: 11 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
 - **Experiência:** 5832 EXP (Progresso: 0%, faltam 1027 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 32 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
 ### 2. **Butterfree** (Lv. 22)
