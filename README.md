@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:11:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:14:06**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `3`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `18`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `56h 0m 21s`
+- **Tempo de Jogo:** `56h 0m 35s`
 - **💬 Diálogo / Mensagem no Ecrã:** `and stealthily Eats the eggs of`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -166,6 +166,10 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
+## 🎒 9. Itens da Área (Cerulean City)
+### Itens Ocultos (Invisíveis no chão):
+- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
+
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
@@ -185,12 +189,12 @@
 - [18:10:32] **Turno #1**: Pikachu (10/42 HP) vs Rattata (Lv. 12 • 31/31 HP)
 - [18:10:30] **Turno #1**: Pikachu (10/42 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 
+- [18:14:06] Entrou em Cerulean City
 - [18:11:57] Entrou em Cerulean Pokecenter
 - [18:11:53] Entrou em Cerulean City
 - [18:09:30] Entrou em Route 4
 - [18:09:29] Entrou em Mt Moon B1F
 - [18:08:44] Entrou em Mt Moon B2f
-- [18:08:18] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:11:46] `and stealthily Eats the eggs of`
