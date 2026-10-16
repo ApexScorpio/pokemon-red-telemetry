@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:35**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `20`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `67h 0m 39s`
-- **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
+- **Tempo de Jogo:** `67h 0m 40s`
+- **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
 - **Dinheiro:** **11 580 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Scratch`
-- **Último Golpe Usado pelo Adversário:** `Thunder Wave`
+- **Último Golpe Usado pelo Adversário:** `Thundershock`
 
 ### 🔴 Adversário em Campo: **Pikachu** (Lv. 16)
 - **Tipos:** Electric
-- **HP:** **23 / 39** (59%)
+- **HP:** **0 / 39** (0%)
 - **Stats de Batalha:** ATK: 25 | DEF: 17 | SPD: 36 | SPC: 23
 - **Os 4 Golpes do Adversário:**
   - **Thundershock** (Electric) • PP: 30 • Poder: 40 • Precisão: 100%
@@ -38,7 +38,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
 - **Tipos:** Poison
-- **HP:** **47 / 55** (PARALYSIS)
+- **HP:** **39 / 55** (PARALYSIS)
 - **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -48,11 +48,11 @@
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 80%)
 - ➔ Turno 1: Tackle
 - ➔ Turno 2: Tackle (Finalizador)
-> **Resumo Tático:** O teu Pokémon tem 47 HP e aguenta o combate até finalizar no Turno 2.
+> **Resumo Tático:** O teu Pokémon tem 39 HP e aguenta o combate até finalizar no Turno 2.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (47/55). Não precisas de gastar um turno a trocar.
+- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (39/55). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -68,13 +68,13 @@
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 47 / 55 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 39 / 55 ⚠️ (PARALYSIS)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 3210 | Def: 2366 | Spd: 3529 | Spc: 1994 | HP: 2423
-- **Experiência:** 3125 EXP (Progresso: 1%, faltam 673 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 3265 | Def: 2396 | Spd: 3619 | Spc: 2044 | HP: 2458
+- **Experiência:** 3405 EXP (Progresso: 42%, faltam 393 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 33 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -287,6 +287,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:03:37] **Turno #3**: Nidorina (39/55 HP) vs Pikachu (Lv. 16 • 0/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thundershock`
+- [20:03:36] **Turno #3**: Nidorina (39/55 HP) vs Pikachu (Lv. 16 • 11/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thundershock`
+- [20:03:36] **Turno #2**: Nidorina (47/55 HP) vs Pikachu (Lv. 16 • 11/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thunder Wave`
 - [20:03:34] **Turno #2**: Nidorina (47/55 HP) vs Pikachu (Lv. 16 • 23/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thunder Wave`
 - [20:03:31] **Turno #1**: Charmeleon (0/53 HP) vs Pikachu (Lv. 16 • 23/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Thundershock`
 - [20:03:30] **Turno #1**: Charmeleon (6/53 HP) vs Pikachu (Lv. 16 • 39/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Thundershock`
@@ -299,9 +302,6 @@
 - [20:03:19] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 0/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [20:03:18] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 1/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [20:03:18] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 15/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [20:03:17] **Turno #3**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 15/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [20:03:15] **Turno #3**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 30/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [20:03:14] **Turno #2**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 38/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
@@ -311,6 +311,7 @@
 - [20:00:54] Entrou em Underground Path North South
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:03:36] `SCRATCH GROWL`
 - [20:02:28] `EMBER SCRATCH`
 - [20:01:54] `SCRATCH EMBER`
 - [19:59:05] `TOSS`
@@ -325,7 +326,6 @@
 - [19:03:37] `SCRATCH GROWL`
 - [19:03:28] `HORN ATTACK TACKLE`
 - [18:59:37] `THUNDERSHOCK THUNDER WAVE`
-- [18:59:10] `TACKLE TAIL WHIP`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
