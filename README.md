@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:07**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:11**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,28 +9,57 @@
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `60h 0m 22s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Confusion`
+- **Último Golpe Usado pelo Adversário:** `Karate Chop`
+
+### 🔴 Adversário em Campo: **Geodude** (Lv. 15)
+- **Tipos:** Rock/Ground
+- **HP:** **39 / 39** (100%)
+- **Stats de Batalha:** ATK: 31 | DEF: 37 | SPD: 13 | SPC: 16
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Defense Curl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~5-7 HP (1x)
+  - **Defense Curl** (Normal) ➔ Golpe de Status
+
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 21)
+- **Tipos:** Bug/Flying
+- **HP:** **62 / 62** (HEALTHY)
+- **Stats com Modificadores:** ATK: 31 (0) | DEF: 30 (0) | SPD: 42 (0) | SPC: 47 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **9-11 HP** (1x eficácia) • ~4 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 88%)
+- ➔ Turno 1: Sleep Powder (Neutraliza o adversário sem sofrer dano)
+- ➔ Turnos seguintes: Confusion até à vitória
+> **Resumo Tático:** Usa Sleep Powder para garantir que o Pokémon sobrevive enquanto desgasta a barra de vida do inimigo.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (62/62). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Butterfree** (Lv. 21)
 - **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 6811 | Def: 6276 | Spd: 7075 | Spc: 4697 | HP: 5695
-- **Experiência:** 9611 EXP (Progresso: 25%, faltam 1037 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 6891 | Def: 6326 | Spd: 7110 | Spc: 4732 | HP: 5765
+- **Experiência:** 9893 EXP (Progresso: 46%, faltam 755 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 24 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -128,7 +157,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **24 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **36 / 151**
+- **Espécies Vistas na Pokédex:** **37 / 151**
 - **Total de Pokémon Individuais Ativos:** **17 espécimes** (6 na Equipa + 11 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
 
@@ -192,6 +221,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:10] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 39/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
+- [18:56:09] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 0/48 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
+- [18:56:08] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 48/48 HP)
 - [18:56:02] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 20/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Teleport`
 - [18:56:00] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 28/28 HP)
 - [18:53:31] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 26/26 HP)
@@ -204,9 +236,6 @@
 - [18:53:14] **Turno #3**: Beedrill (9/56 HP) vs Pidgey (Lv. 13 • 6/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [18:53:12] **Turno #2**: Beedrill (9/56 HP) vs Pidgey (Lv. 13 • 6/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [18:53:11] **Turno #1**: Beedrill (9/56 HP) vs Pidgey (Lv. 13 • 6/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [18:53:10] **Turno #1**: Beedrill (9/56 HP) vs Pidgey (Lv. 13 • 22/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [18:53:09] **Turno #1**: Beedrill (15/56 HP) vs Pidgey (Lv. 13 • 22/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Gust`
-- [18:53:00] **Turno #1**: Beedrill (15/56 HP) vs Pidgey (Lv. 13 • 34/34 HP)
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
