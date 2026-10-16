@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:47:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:47:54**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -46,7 +46,7 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Geodude** (Lv. 12)
-- **Tipos:** Rock/Ground | **HP:** 32 / 32 ✅ (SAUDÁVEL)
+- **Tipos:** Rock/Ground | **HP:** 0 / 32 ❌ (FAINTED)
 - **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 11 | SPC: 16
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 151 | Def: 162 | Spd: 150 | Spc: 177 | HP: 115
@@ -84,7 +84,7 @@
 - **Stat Experience (0–65.535):** Atk: 8059 | Def: 6066 | Spd: 8827 | Spc: 5317 | HP: 5837
 - **Experiência:** 10 387 EXP (Progresso: 81%, faltam 261 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 21 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 20 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
