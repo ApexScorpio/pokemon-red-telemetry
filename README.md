@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:18:20**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:19:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,51 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `22`, Y: `7`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `75h 0m 42s`
+- **Tempo de Jogo:** `75h 0m 49s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Sailor Dwayne** (Ginásio de Vermilion)
-  - **Equipa Adversária:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
-  - **Lead Recomendado:** Diglett (Dig)
-  - **Estratégia:** Diglett é 100% imune a ataques elétricos.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Onix** (Lv. 14)
+- **Tipos:** Rock/Ground
+- **HP:** **34 / 34** (100%)
+- **Stats de Batalha:** ATK: -- | DEF: -- | SPD: -- | SPC: --
+- **Os 4 Golpes do Adversário:**
+  - **Tackle**
+  - **Screech**
+  - **Bide**
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Golpe #Tackle** (Normal) ➔ Dano: ~2-3 HP (0.5x)
+  - **Golpe #Screech** (Normal) ➔ Dano: ~2-3 HP (0.5x)
+  - **Golpe #Bide** (Normal) ➔ Dano: ~2-3 HP (0.5x)
+
+### 🔵 O Teu Pokémon em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Rock/Ground
+- **HP:** **24 / 24** (HEALTHY)
+- **Stats com Modificadores:** ATK: 19 (0) | DEF: 21 (0) | SPD: 9 (0) | SPC: 12 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **1-2 HP** (0.5x eficácia) • ~17 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-17: Usa repetidamente Tackle
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 22)** [65/65 HP]
+- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Geodude.
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **21%** | Great Ball: **40%** | Ultra Ball: **36%**
+  - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Geodude** (Lv. 8)
+### 1. **Geodude** (Lv. 8) ⚔️ [EM COMBATE]
 - **Tipos:** Rock/Ground | **HP:** 24 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
@@ -409,7 +440,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Tens 12.140$ e o S.S. Anne: compra imediatamente 3 Super Potions e 1 Repel extra na loja para garantir a travessia segura. Tira o Geodude Lv.8 para o PC (é frágil e lento, inútil contra os Water-types do barco) e usa o espaço para apanhar um Staryu ou Magikarp em Route 15 ou 16 para ter vantagem de tipo."
+> "Com 12.140$ e 2 Rare Candies, compra um **X Attack** e um **Super Potion** na loja de S.S. Anne para garantir vitórias rápidas e recuperar HP. Apanhe um **Staryu** (nível 15-20) no deck do navio para adicionar vantagem Água contra o próximo ginásio, colocando o **Geodude** (fraco contra Água e sem ataques fortes) no PC para abrir espaço."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
