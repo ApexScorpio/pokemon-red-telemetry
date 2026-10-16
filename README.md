@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:52:35**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:52:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #4`
 - **Último Golpe Usado por RED:** `Poison Sting`
-- **Último Golpe Usado pelo Adversário:** `Leer`
+- **Último Golpe Usado pelo Adversário:** `Wrap`
 
 ### 🔴 Adversário em Campo: **Ekans** (Lv. 14)
 - **Tipos:** Poison
-- **HP:** **8 / 36** (22%)
+- **HP:** **3 / 36** (8%)
 - **Stats de Batalha:** ATK: 24 | DEF: 19 | SPD: 22 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
@@ -36,25 +36,25 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison
-- **HP:** **30 / 56** (HEALTHY)
+- **HP:** **18 / 56** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (-1) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **6-8 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Fury Attack (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Fury Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Fury Attack para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 3 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 30 / 56 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 18 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4598 | Def: 3877 | Spd: 5090 | Spc: 3005 | HP: 3793
@@ -62,7 +62,7 @@
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 16 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 18)
@@ -216,6 +216,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:52:38] **Turno #4**: Beedrill (18/56 HP) vs Ekans (Lv. 14 • 3/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Wrap`
+- [18:52:37] **Turno #3**: Beedrill (26/56 HP) vs Ekans (Lv. 14 • 3/36 HP) • Golpe RED: `Golpe #255 (Não Identificado)` • Golpe Inimigo: `Wrap`
+- [18:52:37] **Turno #2**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 3/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Wrap`
+- [18:52:36] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 3/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Wrap`
 - [18:52:32] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 8/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:52:31] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 29/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:52:30] **Turno #2**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 36/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
@@ -227,10 +231,6 @@
 - [18:51:22] **Turno #1**: Nidorino (17/56 HP) vs Zubat (Lv. 15 • 11/39 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Leech Life`
 - [18:51:21] **Turno #1**: Nidorino (24/56 HP) vs Zubat (Lv. 15 • 11/39 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Leech Life`
 - [18:51:19] **Turno #1**: Nidorino (24/56 HP) vs Zubat (Lv. 15 • 39/39 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Wrap`
-- [18:51:18] **Turno #1**: Nidorino (24/56 HP) vs Ekans (Lv. 15 • 0/37 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Wrap`
-- [18:51:17] **Turno #1**: Nidorino (24/56 HP) vs Ekans (Lv. 15 • 12/37 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Wrap`
-- [18:51:17] **Turno #1**: Nidorino (25/56 HP) vs Ekans (Lv. 15 • 12/37 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Poison Sting`
-- [18:51:15] **Turno #1**: Nidorino (25/56 HP) vs Ekans (Lv. 15 • 37/37 HP)
 
 - [18:51:39] Entrou em Route 24
 - [18:51:35] Entrou em Cerulean City
