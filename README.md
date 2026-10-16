@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:19:58**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:20:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `25`, Y: `12`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `62h 0m 57s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
@@ -140,6 +140,10 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
+## 🎒 9. Itens da Área (Cerulean City)
+### Itens Ocultos (Invisíveis no chão):
+- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
+
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
@@ -159,12 +163,12 @@
 - [19:16:36] **Turno #1**: Abra (26/26 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 
+- [19:19:59] Entrou em Cerulean City
 - [19:18:33] Entrou em Cerulean Pokecenter
 - [19:18:26] Entrou em Cerulean City
 - [19:18:23] Entrou em Cerulean Trashed House
 - [19:17:58] Entrou em Cerulean City
 - [19:17:56] Entrou em Cerulean Trashed House
-- [19:17:52] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:16:41] `CONFUSION STUN SPORE`
