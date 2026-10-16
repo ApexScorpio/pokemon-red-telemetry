@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:06:48**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:06:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,10 +18,12 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Confusion`
+- **Último Golpe Usado pelo Adversário:** `Gust`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 12)
 - **Tipos:** Normal/Flying
-- **HP:** **33 / 33** (100%)
+- **HP:** **0 / 33** (0%)
 - **Stats de Batalha:** ATK: 19 | DEF: 15 | SPD: 19 | SPC: 15
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -34,35 +36,31 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying
-- **HP:** **65 / 65** (HEALTHY)
+- **HP:** **60 / 65** (HEALTHY)
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 31 (0) | SPD: 44 (0) | SPC: 49 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **22-26 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **22-26 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Confusion (Causa ~22-26 de dano)
-- ➔ Turno 2: Confusion (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Confusion. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (65/65). Não precisas de gastar um turno a trocar.
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (60/65). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **52%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Butterfree** (Lv. 22) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 60 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 7167 | Def: 6693 | Spd: 7304 | Spc: 4914 | HP: 5992
 - **Experiência:** 11 001 EXP (Progresso: 23%, faltam 1166 p/ Lv.23)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -330,6 +328,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:06:52] **Turno #1**: Butterfree (60/65 HP) vs Pidgey (Lv. 12 • 0/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
+- [21:06:51] **Turno #1**: Butterfree (60/65 HP) vs Pidgey (Lv. 12 • 4/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Quick Attack`
 - [21:03:52] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 33/33 HP)
 - [21:03:45] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 0/26 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Harden`
 - [21:03:43] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 26/26 HP)
