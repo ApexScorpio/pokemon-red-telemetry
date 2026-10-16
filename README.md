@@ -1,49 +1,50 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:33**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:37**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `31`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `28`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `59h 0m 39s`
+- **Tempo de Jogo:** `59h 0m 40s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
-- **Dinheiro:** **3116 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **3256 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `String Shot`
+- **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
-### 🔴 Adversário em Campo: **Weedle** (Lv. 14)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 37** (0%)
-- **Stats de Batalha:** ATK: 17 | DEF: 15 | SPD: 21 | SPC: 12
+### 🔴 Adversário em Campo: **Pidgey** (Lv. 14)
+- **Tipos:** Normal/Flying
+- **HP:** **37 / 37** (100%)
+- **Stats de Batalha:** ATK: 20 | DEF: 18 | SPD: 22 | SPC: 17
 - **Os 4 Golpes do Adversário:**
-  - **Poison Sting** (Poison) • PP: 35 • Poder: 15 • Precisão: 100%
-  - **String Shot** (Bug) • PP: 40 • Poder: -- • Precisão: 95%
+  - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Poison Sting** (Poison) ➔ Dano: ~3-4 HP (1x)
-  - **String Shot** (Bug) ➔ Golpe de Status
+  - **Gust** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Sand-attack** (Normal) ➔ Golpe de Status
+  - **Quick Attack** (Normal) ➔ Dano: ~7-9 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
 - **Tipos:** Bug/Poison
 - **HP:** **54 / 54** (HEALTHY)
-- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (-1) | SPC: 23 (0)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (1x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • ~4 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Poison Sting (Causa ~10-12 de dano)
-- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-4: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -204,6 +205,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:49:36] **Turno #1**: Beedrill (54/54 HP) vs Pidgey (Lv. 14 • 37/37 HP)
+- [18:49:35] **Turno #1**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 0/37 HP)
 - [18:49:31] **Turno #2**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 0/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:30] **Turno #2**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 5/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:29] **Turno #1**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 5/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
@@ -217,8 +220,6 @@
 - [18:49:15] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 38/38 HP)
 - [18:49:14] **Turno #1**: Beedrill (2/51 HP) vs Caterpie (Lv. 14 • 38/38 HP)
 - [18:43:32] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 0/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
-- [18:43:30] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
-- [18:43:29] **Turno #1**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
