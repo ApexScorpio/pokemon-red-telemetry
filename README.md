@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:07:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:07:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,7 +17,7 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Sleep Powder`
 - **Último Golpe Usado pelo Adversário:** `Teleport`
 
@@ -118,7 +118,7 @@
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **10 / 20 slots** (10 vagas livres)
 - **Potion** x6
-- **Poké Ball** x7
+- **Poké Ball** x6
 - **Antidote** x2
 - **Town Map** x1
 - **Rare Candy** x2
@@ -327,6 +327,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:07:26] **Turno #2**: Butterfree (60/65 HP) vs Abra (Lv. 10 • 25/25 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Teleport`
 - [21:07:06] **Turno #1**: Butterfree (60/65 HP) vs Abra (Lv. 10 • 25/25 HP)
 - [21:07:05] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 13 • 0/34 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Absorb`
 - [21:07:02] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 13 • 34/34 HP)
@@ -341,7 +342,6 @@
 - [21:03:43] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 26/26 HP)
 - [21:03:42] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 0/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
 - [21:03:41] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 33/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
-- [21:03:39] **Turno #1**: Butterfree (42/65 HP) vs Pidgey (Lv. 12 • 33/33 HP)
 
 - [21:03:33] Entrou em Route 24
 - [21:02:53] Entrou em Cerulean City
