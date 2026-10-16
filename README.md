@@ -1,34 +1,38 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:07**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:11**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `18`, Y: `4`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `8`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `60h 0m 28s`
+- **Tempo de Jogo:** `60h 0m 29s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
-- **Dinheiro:** **6351 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **6606 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Horn Attack`
-- **Último Golpe Usado pelo Adversário:** `Confusion`
+- **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Slowpoke** (Lv. 17)
-- **Tipos:** Water/Psychic
-- **HP:** **0 / 60** (0%)
-- **Stats de Batalha:** ATK: 30 | DEF: 29 | SPD: 12 | SPC: 21
+### 🔴 Adversário em Campo: **Nidoran♂** (Lv. 15)
+- **Tipos:** Poison
+- **HP:** **41 / 41** (100%)
+- **Stats de Batalha:** ATK: 24 | DEF: 19 | SPD: 22 | SPC: 19
 - **Os 4 Golpes do Adversário:**
-  - **Confusion** (Psychic_type) • PP: 25 • Poder: 50 • Precisão: 100%
+  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Horn Attack** (Normal) • PP: NaN • Poder: 65 • Precisão: 100%
+  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Confusion** (Psychic_type) ➔ Dano: ~6-8 HP (1x)
+  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
+  - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
+  - **Horn Attack** (Normal) ➔ Dano: ~6-8 HP (1x)
+  - **Poison Sting** (Poison) ➔ Dano: ~1-2 HP (0.5x)
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 18)
 - **Tipos:** Poison
@@ -37,12 +41,12 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **9-11 HP** (1x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **23-28 HP** (1x eficácia) • ~2 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Tackle (Causa ~9-11 de dano)
-- ➔ Turno 2: Tackle (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Tackle. Atacas primeiro em ambos os turnos.
+- ➔ Turno 1: Horn Attack (Causa ~23-28 de dano)
+- ➔ Turno 2: Horn Attack (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Horn Attack. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -217,6 +221,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:57:10] **Turno #1**: Nidorino (56/56 HP) vs Nidoran♂ (Lv. 15 • 41/41 HP)
+- [18:57:10] **Turno #1**: Beedrill (56/56 HP) vs Slowpoke (Lv. 17 • 0/60 HP)
 - [18:57:05] **Turno #3**: Nidorino (56/56 HP) vs Slowpoke (Lv. 17 • 0/60 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Confusion`
 - [18:57:05] **Turno #3**: Nidorino (56/56 HP) vs Slowpoke (Lv. 17 • 10/60 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Confusion`
 - [18:57:02] **Turno #3**: Beedrill (0/56 HP) vs Slowpoke (Lv. 17 • 10/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
@@ -230,8 +236,6 @@
 - [18:56:45] **Turno #3**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 0/41 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [18:56:43] **Turno #3**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 11/41 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [18:56:42] **Turno #2**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [18:56:37] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Screech`
-- [18:56:36] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 40/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Screech`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
