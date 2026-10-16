@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:51:06**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:51:10**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `19`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `53h 0m 23s`
+- **Tempo de Jogo:** `53h 0m 24s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **2531 ₽** • **Fichas do Casino:** `0`
 
@@ -18,11 +18,11 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Leech Life`
+- **Último Golpe Usado pelo Adversário:** `Supersonic`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 13)
 - **Tipos:** Poison/Flying
-- **HP:** **6 / 35** (17%)
+- **HP:** **0 / 35** (0%)
 - **Stats de Batalha:** ATK: 19 | DEF: 16 | SPD: 21 | SPC: 17
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
@@ -44,9 +44,9 @@
 - ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
 > **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 6 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Thundershock para liquidar o adversário já!
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (35/38). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 16)
@@ -98,13 +98,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 5. **Pikachu** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 35 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6349 | Def: 4419 | Spd: 7099 | Spc: 3772 | HP: 4575
-- **Experiência:** 3912 EXP (Progresso: 74%, faltam 184 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 6394 | Def: 4454 | Spd: 7154 | Spc: 3812 | HP: 4615
+- **Experiência:** 4062 EXP (Progresso: 95%, faltam 34 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
@@ -230,14 +230,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:51:07] **Turno #1**: Pikachu (35/38 HP) vs Zubat (0/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
+- [15:51:06] **Turno #1**: Pikachu (35/38 HP) vs Zubat (7/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [15:51:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (6/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [15:51:04] **Turno #1**: Pikachu (38/38 HP) vs Zubat (6/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [15:50:59] **Turno #1**: Pikachu (38/38 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
 - [15:50:58] **Turno #3**: Pikachu (38/38 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
 - [15:50:51] **Turno #3**: Beedrill (15/51 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
 - [15:50:48] **Turno #3**: Beedrill (15/51 HP) vs Rattata (4/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Quick Attack`
-- [15:50:47] **Turno #3**: Beedrill (15/51 HP) vs Rattata (14/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Quick Attack`
-- [15:50:46] **Turno #2**: Beedrill (27/51 HP) vs Rattata (14/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Quick Attack`
 
 - [15:49:34] Entrou em Mt Moon B2f
 - [15:49:32] Entrou em Mt Moon B1F
