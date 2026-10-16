@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:42**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:45**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `28`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `60h 0m 6s`
+- **Tempo de Jogo:** `60h 0m 7s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
@@ -155,10 +155,10 @@
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Espécies Registadas na Pokédex:** **23 / 151** (Espécies Desbloqueadas)
+- **Espécies Registadas na Pokédex:** **24 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **36 / 151**
 - **Total de Pokémon Individuais Ativos:** **16 espécimes** (6 na Equipa + 10 no PC)
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #74 Geodude
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
 
 ## 💾 6. Pokémon Guardados no PC (10 / 20 na Caixa 1) • Vagas Livres: **10**
 - #1: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
