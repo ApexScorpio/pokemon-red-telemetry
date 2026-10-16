@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:53**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:58**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,21 +9,48 @@
 - **Localização Atual:** **Cerulean Gym** (ID Interno: `0x41`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `2`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `61h 0m 6s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **8431 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 19 (Pikachu)
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Staryu** (Lv. 18)
+- **Tipos:** Water
+- **HP:** **41 / 41** (100%)
+- **Stats de Batalha:** ATK: 24 | DEF: 27 | SPD: 38 | SPC: 33
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Water Gun** (Water) • PP: 25 • Poder: 40 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~5-7 HP (1x)
+  - **Water Gun** (Water) ➔ Dano: ~10-12 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 19)
+- **Tipos:** Electric
+- **HP:** **33 / 46** (HEALTHY)
+- **Stats com Modificadores:** ATK: 33 (0) | DEF: 23 (0) | SPD: 43 (0) | SPC: 31 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **22-26 HP** (2x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Thundershock (Causa ~22-26 de dano)
+- ➔ Turno 2: Thundershock (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Thundershock. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (33/46). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 19)
+### 1. **Pikachu** (Lv. 19) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 33 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 23 | SPD: 43 | SPC: 31
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -128,7 +155,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **24 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **41 / 151**
+- **Espécies Vistas na Pokédex:** **42 / 151**
 - **Total de Pokémon Individuais Ativos:** **17 espécimes** (6 na Equipa + 11 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
 
@@ -445,6 +472,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:02:54] **Turno #1**: Pikachu (33/46 HP) vs Staryu (Lv. 18 • 41/41 HP)
 - [19:02:48] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 0/49 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Peck`
 - [19:02:46] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 20/49 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [19:02:44] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 49/49 HP)
@@ -459,7 +487,6 @@
 - [19:02:30] **Turno #1**: Pikachu (29/44 HP) vs Horsea (Lv. 16 • 38/38 HP)
 - [19:02:29] **Turno #1**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 0/36 HP)
 - [18:59:43] **Turno #3**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 0/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
-- [18:59:43] **Turno #3**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 12/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
