@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:51:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:51:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `8`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `53h 0m 28s`
+- **Tempo de Jogo:** `53h 0m 29s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **2921 ₽** • **Fichas do Casino:** `0`
 
@@ -18,34 +18,34 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 13)
-- **Tipos:** Poison/Flying
-- **HP:** **0 / 35** (0%)
-- **Stats de Batalha:** ATK: 19 | DEF: 16 | SPD: 21 | SPC: 17
+### 🔴 Adversário em Campo: **Grimer** (Lv. 12)
+- **Tipos:** Poison
+- **HP:** **43 / 43** (100%)
+- **Stats de Batalha:** ATK: 26 | DEF: 18 | SPD: 12 | SPC: 16
 - **Os 4 Golpes do Adversário:**
-  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
-  - **Supersonic** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
+  - **Pound** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Disable** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~3-4 HP (1x)
-  - **Supersonic** (Normal) ➔ Golpe de Status
+  - **Pound** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Disable** (Normal) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **35 / 51** (HEALTHY)
+- **Tipos:** Bug/Poison
+- **HP:** **15 / 51** (HEALTHY)
 - **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **8-10 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~9 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Fury Attack (Causa ~8-10 de dano)
-- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-9: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (35/51). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 19)** [51/57 HP]
+- **Motivo:** Butterfree tem o golpe String Shot (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -137,7 +137,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **21 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **31 / 151**
+- **Espécies Vistas na Pokédex:** **32 / 151**
 - **Total de Pokémon Individuais Ativos:** **14 espécimes** (6 na Equipa + 8 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #46 Paras, #74 Geodude
 
@@ -230,6 +230,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:51:55] **Turno #1**: Beedrill (15/51 HP) vs Grimer (43/43 HP)
 - [15:51:07] **Turno #1**: Pikachu (35/38 HP) vs Zubat (0/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [15:51:06] **Turno #1**: Pikachu (35/38 HP) vs Zubat (7/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [15:51:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (6/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
@@ -237,7 +238,6 @@
 - [15:50:59] **Turno #1**: Pikachu (38/38 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
 - [15:50:58] **Turno #3**: Pikachu (38/38 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
 - [15:50:51] **Turno #3**: Beedrill (15/51 HP) vs Zubat (35/35 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tackle`
-- [15:50:48] **Turno #3**: Beedrill (15/51 HP) vs Rattata (4/32 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Quick Attack`
 
 - [15:49:34] Entrou em Mt Moon B2f
 - [15:49:32] Entrou em Mt Moon B1F
