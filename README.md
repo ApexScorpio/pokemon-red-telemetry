@@ -1,19 +1,19 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:56**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `27`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `17`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `60h 0m 7s`
+- **Tempo de Jogo:** `60h 0m 8s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
@@ -118,8 +118,7 @@
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
   - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 21 (Butterfree)`).
-  - **Eficiência na Área Atual:** **100% de encontros bloqueados** (100% bloqueados)
-  - **Bloqueados por Repel:** Weedle Nv.7 (20%), Kakuna Nv.8 (20%), Pidgey Nv.12 (15%), Oddish Nv.12 (10%), Oddish Nv.13 (10%), Abra Nv.10 (10%), Oddish Nv.14 (5%), Pidgey Nv.13 (5%), Abra Nv.8 (4%), Abra Nv.12 (1%)
+  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
 
@@ -181,10 +180,6 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
-## 🎒 9. Itens da Área (Route 24)
-### Itens no Chão (Poké Balls visíveis):
-- **TM45 (Thunder Wave)** (X: undefined, Y: undefined) • Estado: 🔴 Por Apanhar — *No planalto perto do início da rota.*
-
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
@@ -204,12 +199,12 @@
 - [18:52:50] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 7/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:49] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 6/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 
+- [18:53:55] Entrou em Cerulean Pokecenter
+- [18:53:53] Entrou em Cerulean City
 - [18:51:39] Entrou em Route 24
 - [18:51:35] Entrou em Cerulean City
 - [18:51:32] Entrou em Cerulean Pokecenter
 - [18:51:30] Entrou em Cerulean City
-- [18:49:02] Entrou em Route 24
-- [18:46:54] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:53:34] `CONFUSION STUN SPORE`
