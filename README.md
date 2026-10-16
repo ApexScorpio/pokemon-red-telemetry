@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:02:00**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:02:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `15`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `67h 0m 29s`
+- **Tempo de Jogo:** `67h 0m 30s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH EMBER`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 17 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
@@ -21,15 +21,15 @@
 - **Último Golpe Usado por RED:** `Ember`
 - **Último Golpe Usado pelo Adversário:** `String Shot`
 
-### 🔴 Adversário em Campo: **Caterpie** (Lv. 16)
-- **Tipos:** Bug
-- **HP:** **0 / 42** (0%)
-- **Stats de Batalha:** ATK: 17 | DEF: 18 | SPD: 21 | SPC: 13
+### 🔴 Adversário em Campo: **Weedle** (Lv. 16)
+- **Tipos:** Bug/Poison
+- **HP:** **0 / 41** (0%)
+- **Stats de Batalha:** ATK: 19 | DEF: 17 | SPD: 23 | SPC: 13
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Poison Sting** (Poison) • PP: 35 • Poder: 15 • Precisão: 100%
   - **String Shot** (Bug) • PP: 40 • Poder: -- • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
+  - **Poison Sting** (Poison) ➔ Dano: ~3-4 HP (1x)
   - **String Shot** (Bug) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 17)
@@ -54,12 +54,12 @@
 - **Tipos:** Fire | **HP:** 50 / 50 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 27 | SPD: 40 | SPC: 34
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
-- **Stat Experience (0–65.535):** Atk: 5340 | Def: 3938 | Spd: 6111 | Spc: 3214 | HP: 4018
-- **Experiência:** 3674 EXP (Progresso: 82%, faltam 124 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 5375 | Def: 3968 | Spd: 6161 | Spc: 3234 | HP: 4058
+- **Experiência:** 3851 EXP (Progresso: 100%, faltam 0)
 - **Golpes & PPs:**
   - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Ember** (Fire) — PP: 23 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 22 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorina** (Lv. 17)
@@ -282,6 +282,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:02:02] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
+- [20:02:00] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 41/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:01:58] **Turno #1**: Charmeleon (50/50 HP) vs Caterpie (Lv. 16 • 0/42 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:01:57] **Turno #1**: Charmeleon (50/50 HP) vs Caterpie (Lv. 16 • 42/42 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Poison Sting`
 - [20:01:56] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Poison Sting`
@@ -295,8 +297,6 @@
 - [19:24:28] **Turno #3**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 2/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
 - [19:24:25] **Turno #2**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 16/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
 - [19:24:24] **Turno #1**: Nidorina (55/55 HP) vs Mankey (Lv. 12 • 32/32 HP) • Golpe RED: `Teleport` • Golpe Inimigo: `Leer`
-- [19:24:13] **Turno #1**: Abra (28/28 HP) vs Mankey (Lv. 12 • 32/32 HP)
-- [19:24:07] **Turno #1**: Abra (28/28 HP) vs Pidgey (Lv. 15 • 37/37 HP)
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
