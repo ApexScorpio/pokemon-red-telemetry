@@ -1,68 +1,39 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:14**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:19**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `4`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `4`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `60h 0m 23s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
-- **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 21 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
+- **Dinheiro:** **5531 ₽** • **Fichas do Casino:** `0`
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
-
-### 🔴 Adversário em Campo: **Geodude** (Lv. 15)
-- **Tipos:** Rock/Ground
-- **HP:** **0 / 39** (0%)
-- **Stats de Batalha:** ATK: 31 | DEF: 55 | SPD: 13 | SPC: 16
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Defense Curl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~5-7 HP (1x)
-  - **Defense Curl** (Normal) ➔ Golpe de Status
-
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 21)
-- **Tipos:** Bug/Flying
-- **HP:** **62 / 62** (HEALTHY)
-- **Stats com Modificadores:** ATK: 31 (0) | DEF: 30 (0) | SPD: 42 (0) | SPC: 47 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **5-6 HP** (1x eficácia) • ~4 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 88%)
-- ➔ Turno 1: Sleep Powder (Neutraliza o adversário sem sofrer dano)
-- ➔ Turnos seguintes: Confusion até à vitória
-> **Resumo Tático:** Usa Sleep Powder para garantir que o Pokémon sobrevive enquanto desgasta a barra de vida do inimigo.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (62/62). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 21) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
-- **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 6971 | Def: 6426 | Spd: 7130 | Spc: 4762 | HP: 5805
-- **Experiência:** 10 169 EXP (Progresso: 65%, faltam 479 p/ Lv.22)
+### 1. **Beedrill** (Lv. 18)
+- **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
+- **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
+- **Stat Experience (0–65.535):** Atk: 4703 | Def: 3961 | Spd: 5201 | Spc: 3080 | HP: 3868
+- **Experiência:** 6293 EXP (Progresso: 45%, faltam 566 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
+  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 18)
 - **Tipos:** Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
@@ -112,17 +83,17 @@
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
-### 6. **Beedrill** (Lv. 18)
-- **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
-- **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4703 | Def: 3961 | Spd: 5201 | Spc: 3080 | HP: 3868
-- **Experiência:** 6293 EXP (Progresso: 45%, faltam 566 p/ Lv.19)
+### 6. **Butterfree** (Lv. 21)
+- **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
+- **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
+- **Stat Experience (0–65.535):** Atk: 6971 | Def: 6426 | Spd: 7130 | Spc: 4762 | HP: 5805
+- **Experiência:** 10 169 EXP (Progresso: 65%, faltam 479 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
-  - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **18 / 20 slots** (2 vagas livres)
 - **Potion** x6
@@ -147,7 +118,7 @@
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
-  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 21 (Butterfree)`).
+  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 18 (Beedrill)`).
   - **Eficiência na Área Atual:** **100% de encontros bloqueados** (100% bloqueados)
   - **Bloqueados por Repel:** Weedle Nv.8 (20%), Kakuna Nv.9 (20%), Pidgey Nv.13 (15%), Oddish Nv.12 (10%), Oddish Nv.13 (10%), Abra Nv.12 (10%), Oddish Nv.14 (5%), Abra Nv.10 (5%), Metapod Nv.7 (4%), Caterpie Nv.8 (1%)
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
@@ -193,8 +164,8 @@
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Nidorina** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Beedrill** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Beedrill** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorino** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
@@ -206,8 +177,8 @@
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Nidorina** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Beedrill** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Beedrill** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorino** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
