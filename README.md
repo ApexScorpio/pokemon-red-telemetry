@@ -1,29 +1,53 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:47**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `5`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `60h 0m 26s`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `18`, Y: `4`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Tempo de Jogo:** `60h 0m 27s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **6351 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
-  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
-  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
-  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Slowpoke** (Lv. 17)
+- **Tipos:** Water/Psychic
+- **HP:** **60 / 60** (100%)
+- **Stats de Batalha:** ATK: 30 | DEF: 29 | SPD: 12 | SPC: 21
+- **Os 4 Golpes do Adversário:**
+  - **Confusion** (Psychic_type) • PP: 25 • Poder: 50 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Confusion** (Psychic_type) ➔ Dano: ~8-10 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
+- **Tipos:** Bug/Poison
+- **HP:** **56 / 56** (HEALTHY)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **7-9 HP** (1x eficácia) • ~7 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-7: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (56/56). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 18)
+### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -128,7 +152,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **24 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **37 / 151**
+- **Espécies Vistas na Pokédex:** **38 / 151**
 - **Total de Pokémon Individuais Ativos:** **17 espécimes** (6 na Equipa + 11 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
 
@@ -192,6 +216,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:51] **Turno #1**: Beedrill (56/56 HP) vs Slowpoke (Lv. 17 • 60/60 HP)
+- [18:56:50] **Turno #1**: Beedrill (57/56 HP) vs Onix (Lv. 17 • 0/41 HP)
 - [18:56:45] **Turno #3**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 0/41 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [18:56:43] **Turno #3**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 11/41 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [18:56:42] **Turno #2**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
@@ -205,8 +231,6 @@
 - [18:56:25] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 1/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [18:56:24] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 8/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [18:56:23] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 22/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [18:56:22] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 36/36 HP) • Golpe RED: `Fury Attack`
-- [18:56:13] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 0/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
