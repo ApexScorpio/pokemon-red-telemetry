@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:29:11**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:29:16**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `27`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `18`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `57h 0m 27s`
+- **Tempo de Jogo:** `57h 0m 28s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -190,12 +190,12 @@
 - [18:17:10] **Turno #1**: Pikachu (22/40 HP) vs Rattata (Lv. 8 • 25/25 HP)
 - [18:17:09] **Turno #1**: Pikachu (22/40 HP) vs Spearow (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 
+- [18:29:12] Entrou em Cerulean City
+- [18:29:12] Entrou em Bike Shop
 - [18:26:45] Entrou em Cerulean City
 - [18:26:40] Entrou em Bike Shop
 - [18:25:59] Entrou em Cerulean City
 - [18:25:59] Entrou em Cerulean Badge House
-- [18:24:48] Entrou em Cerulean City
-- [18:24:42] Entrou em Cerulean Badge House
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:16:07] `THUNDERSHOCK THUNDER WAVE`
