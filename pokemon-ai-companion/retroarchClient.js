@@ -201,6 +201,8 @@ class RetroArchClient extends EventEmitter {
       pokedexSeen: [],
       pokedexSeenCount: 0,
       recentHistory: [],
+      actionHistory: this.loadPersistedActionHistory(),
+      dialogHistory: this.loadPersistedDialogHistory(),
       battle: null,
       aiAdvice: 'A sincronizar com a memória do Game Boy...'
     };
@@ -209,6 +211,51 @@ class RetroArchClient extends EventEmitter {
     this.lastVideoReadAt = 0;
     this.videoReadInProgress = false;
     this.pendingResolves = new Map();
+  }
+
+  loadPersistedActionHistory() {
+    try {
+      const p = require('path').join(__dirname, 'data', 'battle_history_log.jsonl');
+      if (fs.existsSync(p)) {
+        const lines = fs.readFileSync(p, 'utf8').trim().split('\n').filter(Boolean);
+        return lines.slice(-25).map(l => {
+          try { return JSON.parse(l); } catch (e) { return null; }
+        }).filter(Boolean).reverse();
+      }
+    } catch (e) {}
+    return [];
+  }
+
+  loadPersistedDialogHistory() {
+    try {
+      const p = require('path').join(__dirname, 'data', 'dialog_history_log.jsonl');
+      if (fs.existsSync(p)) {
+        const lines = fs.readFileSync(p, 'utf8').trim().split('\n').filter(Boolean);
+        return lines.slice(-25).map(l => {
+          try { return JSON.parse(l); } catch (e) { return null; }
+        }).filter(Boolean).reverse();
+      }
+    } catch (e) {}
+    return [];
+  }
+
+  persistDialogEntry(entry) {
+    try {
+      const p = require('path').join(__dirname, 'data', 'dialog_history_log.jsonl');
+      fs.appendFileSync(p, JSON.stringify(entry) + '\n');
+    } catch (e) {}
+  }
+
+  isValidDialogText(text) {
+    if (!text || text.length < 3) return false;
+    const trimmed = text.trim();
+    const letters = (trimmed.match(/[a-zA-Z]/g) || []).length;
+    if (letters < 3) return false;
+    if (/^(POK[EÉ]DEX|POK[EÉ]MON|ITEM|SAVE|OPTION|RESET|TRAINER|SWITCH|CANCEL|TIME\s*\d)/i.test(trimmed)) return false;
+    if (/(.)\1{4,}/.test(trimmed)) return false;
+    const digits = (trimmed.match(/\d/g) || []).length;
+    if (digits > letters) return false;
+    return true;
   }
 
   addHistoryEvent(eventText) {
@@ -408,8 +455,8 @@ class RetroArchClient extends EventEmitter {
     // BLOCO 2: Mundo, Eventos (320 bytes), Itens Ocultos, Fauna Selvagem e Equipa Inimiga ($D5A0..$D8AF, 784 bytes)
     const blockWorldEvents = await this.readMemoryBlock('D5A0', 784);
 
-    // BLOCO 3: Tempo de Jogo e Caixa do PC ($DA40..$DAFF, 192 bytes)
-    const blockBoxTime = await this.readMemoryBlock('DA40', 192);
+    // BLOCO 3: Tempo de Jogo e Caixa do PC com detalhes de todos os 20 Pokémon ($DA40..$DD30, 750 bytes)
+    const blockBoxTime = await this.readMemoryBlock('DA40', 750);
 
     // BLOCO 4: Sprites e Entidades no Overworld ($C100..$C2FF, 512 bytes)
     const blockSprites = await this.readMemoryBlock('C100', 512);
@@ -666,8 +713,30 @@ class RetroArchClient extends EventEmitter {
       for (let i = 0; i < Math.min(boxCount, 20); i++) {
         const spId = parseInt(blockBoxTime[65 + i], 16);
         if (spId === 0xFF || !spId) break;
-        const pk = INTERNAL_TO_POKEMON[spId] || { name: `Pokémon #${spId}`, dex: 0 };
-        boxSpecies.push({ speciesId: spId, name: pk.name, dex: pk.dex });
+        const pk = INTERNAL_TO_POKEMON[spId] || { name: `Pokémon #${spId}`, dex: 0, types: [] };
+        let level = null;
+        let curHp = null;
+        const moves = [];
+        const monOffset = 85 + i * 33;
+        if (blockBoxTime.length >= monOffset + 12) {
+          curHp = (parseInt(blockBoxTime[monOffset + 1], 16) << 8) | parseInt(blockBoxTime[monOffset + 2], 16);
+          level = parseInt(blockBoxTime[monOffset + 3], 16) || null;
+          for (let m = 0; m < 4; m++) {
+            const mId = parseInt(blockBoxTime[monOffset + 8 + m], 16);
+            if (mId > 0 && MOVES && MOVES[mId]) {
+              moves.push(MOVES[mId].name);
+            }
+          }
+        }
+        boxSpecies.push({
+          speciesId: spId,
+          name: pk.name,
+          dex: pk.dex,
+          level,
+          curHp,
+          types: pk.types || [],
+          moves
+        });
       }
       const currentBoxNum = (blockWorldEvents && blockWorldEvents[0]) ? ((parseInt(blockWorldEvents[0], 16) & 0x7F) + 1) : 1;
       this.latestState.pcBox = {
@@ -738,16 +807,18 @@ class RetroArchClient extends EventEmitter {
       const line2 = decodeGen1Text(blockTilemap.slice(301, 319)).trim();
       const onScreenDialog = [line1, line2].filter(Boolean).join(' ');
 
-      if (onScreenDialog && onScreenDialog.length > 1) {
+      if (this.isValidDialogText(onScreenDialog)) {
         this.latestState.currentDialog = onScreenDialog;
         if (!this.latestState.dialogHistory) this.latestState.dialogHistory = [];
         const isDuplicate = this.latestState.dialogHistory.length > 0 && this.latestState.dialogHistory[0].text === onScreenDialog;
         if (!isDuplicate) {
           const time = new Date().toLocaleTimeString('pt-PT');
-          this.latestState.dialogHistory.unshift({ time, text: onScreenDialog });
-          if (this.latestState.dialogHistory.length > 20) {
+          const entry = { time, text: onScreenDialog };
+          this.latestState.dialogHistory.unshift(entry);
+          if (this.latestState.dialogHistory.length > 25) {
             this.latestState.dialogHistory.pop();
           }
+          this.persistDialogEntry(entry);
         }
       }
     }

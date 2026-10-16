@@ -251,7 +251,11 @@ function formatTelemetryMarkdown(state) {
     md += `*Caixa ${pc.boxNum} vazia.*\n\n`;
   } else {
     pc.pokemon.forEach((p, idx) => {
-      md += `- #${idx + 1}: **${p.name}** (Dex: #${p.dex})\n`;
+      const typeStr = (p.types && p.types.length > 0) ? ` • Tipos: ${p.types.join('/')}` : '';
+      const lvlStr = p.level ? ` (Lv. ${p.level})` : '';
+      const hpStr = (p.curHp !== undefined && p.curHp !== null && p.curHp > 0) ? ` • HP: ${p.curHp}` : '';
+      const movesStr = (p.moves && p.moves.length > 0) ? ` • Golpes: ${p.moves.join(', ')}` : '';
+      md += `- #${idx + 1}: **${p.name}**${lvlStr}${typeStr} (Dex: #${p.dex})${hpStr}${movesStr}\n`;
     });
     md += `\n`;
   }
@@ -301,12 +305,22 @@ function formatTelemetryMarkdown(state) {
   md += `# 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA\n\n`;
 
   // Log de Ações e Batalhas em Tempo Real (Turno a Turno)
-  const actionHistory = state.actionHistory || [];
+  let actionHistory = state.actionHistory || [];
+  if (actionHistory.length === 0) {
+    try {
+      const p = path.join(__dirname, 'data', 'battle_history_log.jsonl');
+      if (fs.existsSync(p)) {
+        const lines = fs.readFileSync(p, 'utf8').trim().split('\n').filter(Boolean);
+        actionHistory = lines.slice(-20).map(l => JSON.parse(l)).reverse();
+      }
+    } catch (e) {}
+  }
+
   if (actionHistory.length > 0) {
     md += `## ⚔️ Registo de Ações e Batalhas (Turno a Turno)\n`;
-    actionHistory.slice(0, 8).forEach(a => {
+    actionHistory.slice(0, 15).forEach(a => {
       if (a.type === 'BATTLE_ACTION') {
-        md += `- [${a.time}] **Turno #${a.turn}**: ${a.playerActive ? `${a.playerActive.name} (${a.playerActive.hp}/${a.playerActive.maxHp} HP)` : 'RED'} vs ${a.enemy ? `${a.enemy.name} (${a.enemy.hp}/${a.enemy.maxHp} HP)` : 'Inimigo'}${a.lastPlayerMove ? ` • Golpe RED: \`${a.lastPlayerMove}\`` : ''}${a.lastEnemyMove ? ` • Golpe Inimigo: \`${a.lastEnemyMove}\`` : ''}\n`;
+        md += `- [${a.time}] **Turno #${a.turn}**: ${a.playerActive ? `${a.playerActive.name} (${a.playerActive.hp}/${a.playerActive.maxHp} HP)` : 'RED'} vs ${a.enemy ? `${a.enemy.name} (Lv. ${a.enemy.level || '--'} • ${a.enemy.hp}/${a.enemy.maxHp} HP)` : 'Inimigo'}${a.lastPlayerMove ? ` • Golpe RED: \`${a.lastPlayerMove}\`` : ''}${a.lastEnemyMove ? ` • Golpe Inimigo: \`${a.lastEnemyMove}\`` : ''}\n`;
       } else if (a.type === 'BATTLE_END') {
         md += `- [${a.time}] 🏁 **${a.summary}** (${a.enemy})\n`;
       }
@@ -325,10 +339,20 @@ function formatTelemetryMarkdown(state) {
   md += `\n`;
 
   // Histórico de Diálogos & Mensagens do Jogo
-  const dialogHistory = state.dialogHistory || [];
+  let dialogHistory = state.dialogHistory || [];
+  if (dialogHistory.length === 0) {
+    try {
+      const p = path.join(__dirname, 'data', 'dialog_history_log.jsonl');
+      if (fs.existsSync(p)) {
+        const lines = fs.readFileSync(p, 'utf8').trim().split('\n').filter(Boolean);
+        dialogHistory = lines.slice(-20).map(l => JSON.parse(l)).reverse();
+      }
+    } catch (e) {}
+  }
+
   if (dialogHistory.length > 0) {
     md += `### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):\n`;
-    dialogHistory.slice(0, 10).forEach(d => {
+    dialogHistory.slice(0, 15).forEach(d => {
       md += `- [${d.time}] \`${d.text}\`\n`;
     });
     md += `\n`;

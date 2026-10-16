@@ -49,6 +49,9 @@ function checkForUpdates() {
     const hasCodeChanges = changedFiles.some(f => !f.endsWith('.md') && !f.endsWith('.txt'));
 
     console.log('[Updater] Nova versão detetada no GitHub. A descarregar...');
+    try {
+      git(['checkout', '--', 'README.md', 'telemetria.md', 'public/telemetria.md', 'public/telemetria.txt']);
+    } catch (e) {}
     git(['pull', '--ff-only', 'origin', 'main']);
 
     if (hasCodeChanges) {
@@ -66,6 +69,9 @@ function checkForUpdates() {
 
 console.log('[Updater] A verificar atualizações no GitHub...');
 try {
+  try {
+    git(['checkout', '--', 'README.md', 'telemetria.md', 'public/telemetria.md', 'public/telemetria.txt']);
+  } catch (e) {}
   git(['pull', '--ff-only', 'origin', 'main']);
   console.log('[Updater] Verificação inicial concluída.');
 } catch (err) {

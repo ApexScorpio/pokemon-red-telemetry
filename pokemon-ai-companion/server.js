@@ -32,11 +32,17 @@ const server = http.createServer(async (req, res) => {
       execFileSync('git', ['fetch', 'origin', 'main'], {
         cwd: __dirname, stdio: 'pipe', timeout: 30000
       });
+      // Descarta ficheiros gerados em runtime para permitir pull sem conflitos
+      try {
+        execFileSync('git', ['checkout', '--', 'README.md', 'telemetria.md', 'public/telemetria.md', 'public/telemetria.txt'], {
+          cwd: __dirname, stdio: 'ignore', timeout: 10000
+        });
+      } catch (e) {}
       execFileSync('git', ['pull', '--ff-only', 'origin', 'main'], {
         cwd: __dirname, stdio: 'pipe', timeout: 30000
       });
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: true, message: 'Pull concluído. A reiniciar o companion...' }));
+      res.end(JSON.stringify({ success: true, message: 'Pull concluído com sucesso. A reiniciar o companion...' }));
       setTimeout(() => process.exit(0), 700);
     } catch (err) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
