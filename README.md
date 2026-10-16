@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:27**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:31**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,46 +10,48 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `37`, Y: `5`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `60h 0m 43s`
+- **Tempo de Jogo:** `60h 0m 44s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **7776 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #4`
 - **Último Golpe Usado por RED:** `Tackle`
-- **Último Golpe Usado pelo Adversário:** `Sand-attack`
+- **Último Golpe Usado pelo Adversário:** `Gust`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 13)
 - **Tipos:** Normal/Flying
-- **HP:** **18 / 35** (51%)
+- **HP:** **2 / 35** (6%)
 - **Stats de Batalha:** ATK: 19 | DEF: 17 | SPD: 21 | SPC: 16
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
   - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
   - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Gust** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Gust** (Normal) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
   - **Sand-attack** (Normal) ➔ Golpe de Status
-  - **Quick Attack** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 17)
 - **Tipos:** Normal
-- **HP:** **22 / 45** (HEALTHY)
+- **HP:** **0 / 45** (HEALTHY)
 - **Stats com Modificadores:** ATK: 28 (0) | DEF: 21 (0) | SPD: 36 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **31-37 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **16-19 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Hyper Fang (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Hyper Fang! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Rattata tem a melhor rota de vitória rápida e HP estável (22/45). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Pikachu (Lv. 18)** [44/44 HP]
+- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Pikachu para manter o controlo da batalha.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 18)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -89,13 +91,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 4. **Rattata** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 22 / 45 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 0 / 45 ❌ (FAINTED)
 - **Stats Reais:** ATK: 28 | DEF: 21 | SPD: 36 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6234 | Def: 4630 | Spd: 6857 | Spc: 3922 | HP: 5191
 - **Experiência:** 5134 EXP (Progresso: 24%, faltam 698 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 29 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
@@ -191,8 +193,7 @@
 - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Rattata** (Lv. 17) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #2**: **Butterfree** (Lv. 21) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ### #2. **Líder Misty** (Ginásio de Cerulean (Chefe)) • **⚔️ POR VENCER**
@@ -201,8 +202,7 @@
 - **Lead Recomendado:** Pikachu / Bellsprout
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Rattata** (Lv. 17) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #2**: **Butterfree** (Lv. 21) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
 ## 🎒 9. Itens da Área (Route 25)
@@ -215,6 +215,11 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:59:31] **Turno #4**: Rattata (0/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Gust`
+- [18:59:30] **Turno #4**: Rattata (4/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Gust`
+- [18:59:29] **Turno #3**: Rattata (4/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
+- [18:59:28] **Turno #3**: Rattata (13/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
+- [18:59:27] **Turno #2**: Rattata (13/45 HP) vs Pidgey (Lv. 13 • 18/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [18:59:26] **Turno #1**: Rattata (22/45 HP) vs Pidgey (Lv. 13 • 18/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:59:26] **Turno #1**: Rattata (22/45 HP) vs Pidgey (Lv. 13 • 35/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:59:25] **Turno #2**: Rattata (22/45 HP) vs Pidgey (Lv. 13 • 35/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
@@ -225,11 +230,6 @@
 - [18:59:20] **Turno #1**: Rattata (31/45 HP) vs Oddish (Lv. 13 • 14/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
 - [18:59:18] **Turno #1**: Rattata (37/45 HP) vs Oddish (Lv. 13 • 36/36 HP)
 - [18:59:17] **Turno #1**: Beedrill (37/56 HP) vs Sandshrew (Lv. 14 • 0/40 HP)
-- [18:59:12] **Turno #13**: Rattata (37/45 HP) vs Sandshrew (Lv. 14 • 0/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:59:11] **Turno #13**: Rattata (35/43 HP) vs Sandshrew (Lv. 14 • 0/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
-- [18:59:10] **Turno #13**: Rattata (35/43 HP) vs Sandshrew (Lv. 14 • 1/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
-- [18:59:09] **Turno #12**: Rattata (43/43 HP) vs Sandshrew (Lv. 14 • 10/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
-- [18:59:07] **Turno #12**: Nidorina (0/55 HP) vs Sandshrew (Lv. 14 • 10/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
