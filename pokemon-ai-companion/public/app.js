@@ -353,21 +353,22 @@ const colorizedMapCache = {};
 // Extraídas diretamente da tabela canónica SuperPalettes de pret/pokered
 // =========================================================================
 const SGB_SUPER_PALETTES = {
-  PAL_ROUTE: ['#ffefff', '#ade65a', '#a5d6ff', '#191010'],
-  PAL_PALLET: ['#ffefff', '#cee6de', '#a5d6ff', '#191010'],
+  // Paleta autêntica vermelha/carmesim do Pokémon Red (Game Boy Color)
+  PAL_ROUTE: ['#fff8f0', '#f88870', '#b03020', '#100808'],
+  PAL_PALLET: ['#fff8f0', '#f88870', '#b03020', '#100808'],
   PAL_VIRIDIAN: ['#ffefff', '#8cd619', '#a5d6ff', '#191010'],
-  PAL_PEWTER: ['#ffefff', '#bdce84', '#a5d6ff', '#191010'],
+  PAL_PEWTER: ['#fff8f0', '#d89888', '#905040', '#100808'],
   PAL_CERULEAN: ['#ffefff', '#8ca5f7', '#a5d6ff', '#191010'],
   PAL_LAVENDER: ['#ffefff', '#dea5de', '#a5d6ff', '#191010'],
   PAL_VERMILION: ['#ffefff', '#f79400', '#a5d6ff', '#191010'],
   PAL_CELADON: ['#ffefff', '#84f7b5', '#a5d6ff', '#191010'],
   PAL_FUCHSIA: ['#ffefff', '#ff7bb5', '#a5d6ff', '#191010'],
-  PAL_CINNABAR: ['#ffefff', '#d65231', '#a5d6ff', '#191010'],
+  PAL_CINNABAR: ['#fff8f0', '#f85838', '#b82010', '#100808'],
   PAL_INDIGO: ['#ffefff', '#b573c5', '#a5d6ff', '#191010'],
   PAL_SAFFRON: ['#ffefff', '#dede19', '#a5d6ff', '#191010'],
-  PAL_CAVE: ['#ffefff', '#ad734a', '#94c5b5', '#191010'],
+  PAL_CAVE: ['#fff8f0', '#e07858', '#983828', '#100808'],
   PAL_GRAYMON: ['#ffefff', '#d6adb5', '#7b7b94', '#191010'],
-  PAL_REDMON: ['#ffefff', '#f7a5a5', '#d65231', '#191010'],
+  PAL_REDMON: ['#fff8f0', '#f88078', '#c02820', '#100808'],
   PAL_BLUEMON: ['#ffefff', '#8ca5f7', '#a5d6ff', '#191010']
 };
 
@@ -427,13 +428,27 @@ function getColorizedMapCanvas(mapId, mapImg, palette) {
   if (colorizedMapCache[cacheKey]) return colorizedMapCache[cacheKey];
 
   try {
+    const rawW = mapImg.naturalWidth;
+    const rawH = mapImg.naturalHeight;
+    // Garante que o canvas tem dimensões completas em blocos de 16px (evita corte do último azulejo, ex: 223px -> 224px)
+    const targetW = Math.ceil(rawW / 16) * 16;
+    const targetH = Math.ceil(rawH / 16) * 16;
+
     const canvas = document.createElement('canvas');
-    canvas.width = mapImg.naturalWidth;
-    canvas.height = mapImg.naturalHeight;
+    canvas.width = targetW;
+    canvas.height = targetH;
     const ctx = canvas.getContext('2d');
     ctx.drawImage(mapImg, 0, 0);
 
-    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    // Se faltava 1 pixel na margem direita (ex: 223px do Pokecenter), repete a coluna final para preencher os 16px
+    if (targetW > rawW) {
+      ctx.drawImage(mapImg, rawW - 1, 0, 1, rawH, rawW, 0, targetW - rawW, targetH);
+    }
+    if (targetH > rawH) {
+      ctx.drawImage(mapImg, 0, rawH - 1, rawW, 1, 0, rawH, targetW, targetH - rawH);
+    }
+
+    const imgData = ctx.getImageData(0, 0, targetW, targetH);
     const data = imgData.data;
     const rgbPalette = palette.map(hex => {
       const num = parseInt(hex.slice(1), 16);
@@ -448,10 +463,10 @@ function getColorizedMapCanvas(mapId, mapImg, palette) {
       // Luminância padrão Game Boy (0..255)
       const lum = (r * 299 + g * 587 + b * 114) / 1000;
       let shade = 3;
-      if (lum > 200) shade = 0;       // Highlight / Branco SGB
+      if (lum > 200) shade = 0;       // Highlight / Branco
       else if (lum > 130) shade = 1;  // Cor primária clara
       else if (lum > 60) shade = 2;   // Cor secundária / Sombra
-      else shade = 3;                 // Linhas e contorno / Preto SGB
+      else shade = 3;                 // Linhas e contorno / Preto
 
       const col = rgbPalette[shade] || rgbPalette[0];
       data[i] = col[0];
@@ -894,7 +909,7 @@ function renderFogMinimap(state) {
       if (sx >= -tileSize && sx <= cw && sy >= -tileSize && sy <= ch) {
         const srcX = tx * 16;
         const srcY = ty * 16;
-        if (srcX >= 0 && srcX + 16 <= mapImg.naturalWidth && srcY >= 0 && srcY + 16 <= mapImg.naturalHeight) {
+        if (srcX >= 0 && srcX < mapW * 16 && srcY >= 0 && srcY < mapH * 16) {
           drawMapImageTinted(ctxFog, mapImg, srcX, srcY, 16, 16, sx, sy, tileSize, tileSize);
         } else {
           ctxFog.fillStyle = '#0c1b2c';
@@ -1037,37 +1052,19 @@ function renderGtaFullMap(state) {
   const dungeonCanvas = dungeonCanvases[mapId];
 
   if (hasMapImg) {
-    if (!gtaFogEnabled) {
-      // Se névoa estiver desligada: desenha todo o mapa
-      drawMapImageTinted(ctxGta, mapImg, originX, originY, mapImg.naturalWidth * gtaZoom, mapImg.naturalHeight * gtaZoom);
+    // 1. Desenha o mapa completo da área/rua em alta resolução
+    drawMapImageTinted(ctxGta, mapImg, originX, originY, mapW * 16 * gtaZoom, mapH * 16 * gtaZoom);
+
+    // 2. Se a névoa estiver ligada, aplica máscara translúcida sobre os azulejos ainda não explorados
+    if (gtaFogEnabled) {
       for (let tx = 0; tx < mapW; tx++) {
         for (let ty = 0; ty < mapH; ty++) {
           if (!visited.has(`${tx},${ty}`)) {
-            ctxGta.fillStyle = 'rgba(2, 4, 10, 0.65)';
+            ctxGta.fillStyle = 'rgba(2, 4, 10, 0.72)';
             ctxGta.fillRect(originX + tx * tilePx, originY + ty * tilePx, tilePx + 0.5, tilePx + 0.5);
           }
         }
       }
-    } else {
-      // Névoa ligada: desenha estritamente os azulejos que já foram explorados!
-      visited.forEach(tileKey => {
-        const [tx, ty] = tileKey.split(',').map(Number);
-        const sx = originX + tx * tilePx;
-        const sy = originY + ty * tilePx;
-
-        if (sx >= -tilePx && sx <= cw && sy >= -tilePx && sy <= ch) {
-          const srcX = tx * 16;
-          const srcY = ty * 16;
-          if (srcX >= 0 && srcX + 16 <= mapImg.naturalWidth && srcY >= 0 && srcY + 16 <= mapImg.naturalHeight) {
-            drawMapImageTinted(ctxGta, mapImg, srcX, srcY, 16, 16, sx, sy, tilePx + 0.5, tilePx + 0.5);
-          } else {
-            ctxGta.fillStyle = '#0c1b2c';
-            ctxGta.fillRect(sx, sy, tilePx, tilePx);
-          }
-          ctxGta.strokeStyle = 'rgba(0, 240, 255, 0.04)';
-          ctxGta.strokeRect(sx, sy, tilePx, tilePx);
-        }
-      });
     }
   } else if (dungeonCanvas) {
     // Reconstrução contínua da cave a partir da VRAM lida em tempo real
