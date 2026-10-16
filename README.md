@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:18:39**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:19:58**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `4`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `62h 0m 48s`
+- **Tempo de Jogo:** `62h 0m 57s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra)
@@ -88,27 +88,17 @@
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
-## 🎒 4. Mochila & Recursos • Capacidade: **20 / 20 slots** (0 vagas livres)
+## 🎒 4. Mochila & Recursos • Capacidade: **10 / 20 slots** (10 vagas livres)
 - **Potion** x6
 - **Poké Ball** x8
 - **Antidote** x2
 - **Town Map** x1
-- **TM34 (Bide)** x1
-- **TM12 (Water Gun)** x1
 - **Rare Candy** x2
 - **Escape Rope** x1
-- **Moon Stone** x2
 - **Hp Up** x1
-- **TM01 (Mega Punch)** x1
-- **Helix Fossil** x1
 - **Ether** x2
 - **Great Ball** x1
-- **TM04 (Whirlwind)** x1
 - **Repel** x2
-- **Nugget** x1
-- **TM45 (Thunder Wave)** x1
-- **S.s.ticket** x1
-- **TM11 (BubbleBeam)** x1
 
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
