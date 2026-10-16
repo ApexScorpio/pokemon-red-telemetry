@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:41:28**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:41:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,54 +9,23 @@
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `21`, Y: `10`
 - **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `52h 0m 21s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **1691 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Zubat** (Lv. 7)
-- **Tipos:** Poison/Flying
-- **HP:** **24 / 24** (100%)
-- **Stats de Batalha:** ATK: 12 | DEF: 11 | SPD: 12 | SPC: 11
-- **Os 4 Golpes do Adversário:**
-  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~1-2 HP (1x)
-
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
-- **Tipos:** Normal
-- **HP:** **8 / 48** (HEALTHY)
-- **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **12-15 HP** (1x eficácia) • ~2 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Fury Attack (Causa ~12-15 de dano)
-- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (8/48). Não precisas de gastar um turno a trocar.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 15)
 - **Tipos:** Bug/Poison | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 3536 | Def: 2968 | Spd: 3993 | Spc: 2210 | HP: 2868
-- **Experiência:** 3526 EXP (Progresso: 21%, faltam 570 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 3581 | Def: 3003 | Spd: 4048 | Spc: 2250 | HP: 2908
+- **Experiência:** 3580 EXP (Progresso: 28%, faltam 516 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 19 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -254,14 +223,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:41:31] **Turno #1**: Beedrill (48/48 HP) vs Zubat (0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
+- [15:41:29] **Turno #1**: Beedrill (48/48 HP) vs Zubat (24/24 HP)
 - [15:41:27] **Turno #1**: Beedrill (8/48 HP) vs Zubat (24/24 HP)
 - [15:40:49] **Turno #1**: Beedrill (8/48 HP) vs Zubat (1/21 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:40:44] **Turno #1**: Beedrill (8/48 HP) vs Zubat (21/21 HP) • Golpe RED: `Fury Attack`
 - [15:40:43] **Turno #1**: Beedrill (50/48 HP) vs Zubat (21/21 HP)
 - [15:40:38] **Turno #1**: Butterfree (50/57 HP) vs Zubat (0/25 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [15:40:37] **Turno #1**: Butterfree (50/57 HP) vs Zubat (25/25 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:40:36] **Turno #1**: Butterfree (51/57 HP) vs Zubat (25/25 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:40:33] **Turno #1**: Beedrill (8/48 HP) vs Zubat (25/25 HP) • Golpe RED: `Fury Attack`
 
 - [15:41:20] Entrou em Mt Moon 1F
 - [15:41:14] Entrou em Route 4
