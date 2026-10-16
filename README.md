@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:11:18**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:11:22**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thunder Wave`
-- **Último Golpe Usado pelo Adversário:** `Leer`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Quick Attack`
+- **Último Golpe Usado pelo Adversário:** `Poison Sting`
 
 ### 🔴 Adversário em Campo: **Ekans** (Lv. 10)
 - **Tipos:** Poison
-- **HP:** **27 / 27** (100%)
+- **HP:** **9 / 27** (33%)
 - **Stats de Batalha:** ATK: 17 | DEF: 15 | SPD: 4 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
@@ -39,24 +39,23 @@
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (-1) | SPD: 41 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **16-19 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **16-19 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Quick Attack (Causa ~16-19 de dano)
-- ➔ Turno 2: Quick Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Quick Attack. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (6/44). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 9 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **38%** | Great Ball: **56%** | Ultra Ball: **38%**
-  - *Se adormeceres o inimigo:* **~44%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 18)
+### 1. **Pikachu** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 6 / 44 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 22 | SPD: 41 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -66,7 +65,7 @@
   - **Thundershock** (Electric) — PP: 0 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 19 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
 
 ### 2. **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison | **HP:** 0 / 51 ❌ (FAINTED)
@@ -207,6 +206,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:11:21] **Turno #2**: Pikachu (6/44 HP) vs Ekans (Lv. 10 • 9/27 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Poison Sting`
 - [18:10:53] **Turno #1**: Pikachu (6/44 HP) vs Ekans (Lv. 10 • 27/27 HP)
 - [18:10:51] **Turno #1**: Pikachu (6/44 HP) vs Spearow (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Peck`
 - [18:10:49] **Turno #1**: Pikachu (6/44 HP) vs Spearow (Lv. 10 • 28/28 HP)
@@ -221,7 +221,6 @@
 - [18:10:34] **Turno #1**: Pikachu (10/42 HP) vs Rattata (Lv. 12 • 8/31 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [18:10:32] **Turno #1**: Pikachu (10/42 HP) vs Rattata (Lv. 12 • 31/31 HP)
 - [18:10:30] **Turno #1**: Pikachu (10/42 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
-- [18:10:28] **Turno #1**: Pikachu (10/42 HP) vs Spearow (Lv. 10 • 30/30 HP)
 
 - [18:09:30] Entrou em Route 4
 - [18:09:29] Entrou em Mt Moon B1F
