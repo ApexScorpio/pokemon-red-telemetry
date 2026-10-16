@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,7 +17,7 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado pelo Adversário:** `Absorb`
 
 ### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
@@ -27,24 +27,25 @@
 - **Os 4 Golpes do Adversário:**
   - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Absorb** (Grass) ➔ Dano: ~5-7 HP (0.5x)
+  - **Absorb** (Grass) ➔ Dano: ~5-6 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Spearow** (Lv. 5)
-- **Tipos:** Normal/Flying
-- **HP:** **12 / 19** (HEALTHY)
-- **Stats com Modificadores:** ATK: 11 (0) | DEF: 8 (0) | SPD: 12 (0) | SPC: 8 (0)
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
+- **Tipos:** Electric
+- **HP:** **43 / 48** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Peck** (Flying) ➔ Dano: **6-8 HP** (2x eficácia) • ~5 turnos para K.O.
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **13-16 HP** (1x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-5: Usa repetidamente Peck
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-3: Usa repetidamente Quick Attack
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Spearow tem a melhor rota de vitória rápida e HP estável (12/19). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (43/48). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
   - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
@@ -59,7 +60,7 @@
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
-### 2. **Pikachu** (Lv. 20)
+### 2. **Pikachu** (Lv. 20) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -83,7 +84,7 @@
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
-### 4. **Spearow** (Lv. 5) ⚔️ [EM COMBATE]
+### 4. **Spearow** (Lv. 5)
 - **Tipos:** Normal/Flying | **HP:** 12 / 19 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 11 | DEF: 8 | SPD: 12 | SPC: 8
 - **DVs Gen 1 (0–15):** Ataque: 1 | Defesa: 8 | Velocidade: 0 | Especial: 6 | HP: 8
@@ -332,6 +333,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:10:17] **Turno #2**: Pikachu (43/48 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
+- [21:10:16] **Turno #1**: Pikachu (48/48 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
 - [21:10:12] **Turno #1**: Spearow (12/19 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
 - [21:10:11] **Turno #1**: Spearow (19/19 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
 - [21:10:07] **Turno #1**: Geodude (24/24 HP) vs Oddish (Lv. 13 • 36/36 HP)
@@ -345,8 +348,6 @@
 - [21:06:56] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 0/35 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Absorb`
 - [21:06:54] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 35/35 HP)
 - [21:06:52] **Turno #1**: Butterfree (60/65 HP) vs Pidgey (Lv. 12 • 0/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
-- [21:06:51] **Turno #1**: Butterfree (60/65 HP) vs Pidgey (Lv. 12 • 4/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Quick Attack`
-- [21:03:52] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 33/33 HP)
 
 - [21:10:00] Entrou em Route 6
 - [21:09:59] Entrou em Underground Path Route 6
