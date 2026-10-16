@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:01:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:04**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 25** (ID Interno: `0x24`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `16`, Y: `3`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Localização Atual:** **Route 24** (ID Interno: `0x23`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `12`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `61h 0m 0s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
@@ -121,7 +121,7 @@
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
   - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 18 (Beedrill)`).
   - **Eficiência na Área Atual:** **100% de encontros bloqueados** (100% bloqueados)
-  - **Bloqueados por Repel:** Weedle Nv.8 (20%), Kakuna Nv.9 (20%), Pidgey Nv.13 (15%), Oddish Nv.12 (10%), Oddish Nv.13 (10%), Abra Nv.12 (10%), Oddish Nv.14 (5%), Abra Nv.10 (5%), Metapod Nv.7 (4%), Caterpie Nv.8 (1%)
+  - **Bloqueados por Repel:** Weedle Nv.7 (20%), Kakuna Nv.8 (20%), Pidgey Nv.12 (15%), Oddish Nv.12 (10%), Oddish Nv.13 (10%), Abra Nv.10 (10%), Oddish Nv.14 (5%), Pidgey Nv.13 (5%), Abra Nv.8 (4%), Abra Nv.12 (1%)
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
 
@@ -175,12 +175,9 @@
   - **Slot #2**: **Butterfree** (Lv. 21) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
-## 🎒 9. Itens da Área (Route 25)
+## 🎒 9. Itens da Área (Route 24)
 ### Itens no Chão (Poké Balls visíveis):
-- **TM19 (Seismic Toss)** (X: undefined, Y: undefined) • Estado: 🔴 Por Apanhar — *No canteiro de flores perto do labirinto de treinadores.*
-
-### Itens Ocultos (Invisíveis no chão):
-- **Elixer** (X: 38, Y: 3) • Estado: ✅ Já Recolhido — *Cerca à direita da casa do Bill.*
+- **TM45 (Thunder Wave)** (X: undefined, Y: undefined) • Estado: ✅ Já Recolhido — *No planalto perto do início da rota.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -201,12 +198,12 @@
 - [18:59:29] **Turno #3**: Rattata (4/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [18:59:28] **Turno #3**: Rattata (13/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 
+- [19:02:03] Entrou em Route 24
 - [19:00:43] Entrou em Route 25
 - [19:00:13] Entrou em Bills House
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
 - [18:55:12] Entrou em Route 25
-- [18:54:37] Entrou em Route 24
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:59:37] `THUNDERSHOCK THUNDER WAVE`
