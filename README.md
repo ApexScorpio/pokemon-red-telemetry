@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:13:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:13:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `31`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `75h 0m 8s`
+- **Tempo de Jogo:** `75h 0m 9s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude) | **Eficiência na Rota:** `0% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #5`
+- **Turno Atual:** `Turno #7`
 - **Último Golpe Usado por RED:** `Tackle`
-- **Último Golpe Usado pelo Adversário:** `Scratch`
+- **Último Golpe Usado pelo Adversário:** `Growl`
 
 ### 🔴 Adversário em Campo: **Diglett** (Lv. 18)
 - **Tipos:** Ground
-- **HP:** **19 / 35** (54%)
+- **HP:** **14 / 35** (40%)
 - **Stats de Batalha:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -35,34 +35,33 @@
 ### 🔵 O Teu Pokémon em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
 - **HP:** **1 / 24** (HEALTHY)
-- **Stats com Modificadores:** ATK: 19 (0) | DEF: 21 (0) | SPD: 9 (0) | SPC: 12 (0)
+- **Stats com Modificadores:** ATK: 19 (-2) | DEF: 21 (0) | SPD: 9 (0) | SPC: 12 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~4 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **2-3 HP** (1x eficácia) • ~5 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-4: Usa repetidamente Tackle
+- ➔ Turnos 1-5: Usa repetidamente Tackle
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚠️ PERIGO DE MORTE: TROCA PARA Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 22)** [65/65 HP]
-- **Motivo:** Geodude corre perigo real de K.O. no próximo golpe do inimigo (1 HP). Trocar para Butterfree salva o teu Pokémon e ataca com Stun Spore!
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 14 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Tackle para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **DUX (Farfetch'd) (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **73%** | Great Ball: **100%** | Ultra Ball: **73%**
-  - *Se adormeceres o inimigo:* **~75%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **97%** | Great Ball: **100%** | Ultra Ball: **97%**
+  - *Se adormeceres o inimigo:* **~97%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
 ### 1. **Geodude** (Lv. 8) ⚔️ [EM COMBATE]
-- **Tipos:** Rock/Ground | **HP:** 5 / 24 ✅ (SAUDÁVEL)
+- **Tipos:** Rock/Ground | **HP:** 1 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 16 | Def: 18 | Spd: 10 | Spc: 25 | HP: 15
 - **Experiência:** 362 EXP (Progresso: 46%, faltam 57 p/ Lv.9)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 30 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
 
 ### 2. **Pikachu** (Lv. 20)
 - **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
@@ -397,6 +396,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:13:06] **Turno #7**: Geodude (1/24 HP) vs Diglett (Lv. 18 • 14/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Growl`
+- [21:13:05] **Turno #7**: Geodude (1/24 HP) vs Diglett (Lv. 18 • 16/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Growl`
+- [21:13:04] **Turno #6**: Geodude (1/24 HP) vs Diglett (Lv. 18 • 19/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Growl`
 - [21:13:03] **Turno #5**: Geodude (1/24 HP) vs Diglett (Lv. 18 • 19/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
 - [21:13:02] **Turno #5**: Geodude (5/24 HP) vs Diglett (Lv. 18 • 23/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
 - [21:13:01] **Turno #4**: Geodude (5/24 HP) vs Diglett (Lv. 18 • 27/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
@@ -409,9 +411,6 @@
 - [21:10:40] **Turno #10**: Geodude (0/24 HP) vs Pidgey (Lv. 13 • 4/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:39] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 4/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:38] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 10/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
-- [21:10:37] **Turno #8**: Geodude (6/24 HP) vs Pidgey (Lv. 13 • 16/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
-- [21:10:36] **Turno #8**: Geodude (12/24 HP) vs Pidgey (Lv. 13 • 16/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
-- [21:10:35] **Turno #7**: Geodude (12/24 HP) vs Pidgey (Lv. 13 • 22/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Gust`
 
 - [21:12:51] Entrou em Digletts Cave
 - [21:12:50] Entrou em Digletts Cave Route 11
