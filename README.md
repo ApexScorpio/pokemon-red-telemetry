@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:54:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:54:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,51 +17,52 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Tail Whip`
 
 ### 🔴 Adversário em Campo: **Rattata** (Lv. 10)
 - **Tipos:** Normal
-- **HP:** **26 / 26** (100%)
+- **HP:** **2 / 26** (8%)
 - **Stats de Batalha:** ATK: 18 | DEF: 14 | SPD: 21 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
   - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
   - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (5-6 HP)
+  - **Tackle** (Normal) ➔ Dano: ~5-6 HP (1x)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (5-7 HP)
+  - **Quick Attack** (Normal) ➔ Dano: ~5-7 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
-- **Tipos:** Normal
-- **HP:** **4 / 57** (HEALTHY)
+- **Tipos:** Bug/Poison
+- **HP:** **51 / 57** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **12-15 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **12-15 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 70%)
-- ➔ Turno 1: Fury Attack (Causa ~12-15 de dano)
-- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (4/57). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 57 / 57 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 51 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 5059 | Def: 4316 | Spd: 5349 | Spc: 3385 | HP: 4088
 - **Experiência:** 5980 EXP (Progresso: 14%, faltam 879 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 18 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -206,6 +207,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:54:29] **Turno #1**: Beedrill (51/57 HP) vs Rattata (Lv. 10 • 2/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [17:54:29] **Turno #1**: Beedrill (57/57 HP) vs Rattata (Lv. 10 • 2/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [17:54:28] **Turno #1**: Beedrill (57/57 HP) vs Rattata (Lv. 10 • 18/26 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [17:54:27] **Turno #1**: Beedrill (57/57 HP) vs Rattata (Lv. 10 • 26/26 HP)
 - [17:54:26] **Turno #1**: Beedrill (4/57 HP) vs Rattata (Lv. 10 • 26/26 HP)
 - [17:50:34] **Turno #4**: Beedrill (4/57 HP) vs Zubat (Lv. 11 • 0/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:50:32] **Turno #4**: Beedrill (4/57 HP) vs Zubat (Lv. 11 • 6/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
@@ -217,10 +222,6 @@
 - [17:50:14] **Turno #1**: Beedrill (37/57 HP) vs Zubat (Lv. 11 • 0/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:50:13] **Turno #1**: Beedrill (34/54 HP) vs Zubat (Lv. 11 • 0/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:50:12] **Turno #1**: Beedrill (34/54 HP) vs Zubat (Lv. 11 • 16/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [17:50:11] **Turno #1**: Beedrill (39/54 HP) vs Zubat (Lv. 11 • 14/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [17:50:10] **Turno #1**: Beedrill (39/54 HP) vs Zubat (Lv. 11 • 22/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [17:50:05] **Turno #1**: Beedrill (39/54 HP) vs Zubat (Lv. 11 • 30/30 HP)
-- [17:50:04] **Turno #1**: Beedrill (39/54 HP) vs Zubat (Lv. 9 • 0/28 HP)
 
 - [17:53:11] Entrou em Route 4
 - [17:52:56] Entrou em Cerulean City
