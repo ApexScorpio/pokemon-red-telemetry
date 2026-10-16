@@ -1,29 +1,58 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:12:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:12:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Digletts Cave Route 11** (ID Interno: `0x55`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `7`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Localização Atual:** **Digletts Cave** (ID Interno: `0xC5`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `31`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `75h 0m 7s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude) | **Eficiência na Rota:** `0% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Sailor Dwayne** (Ginásio de Vermilion)
-  - **Equipa Adversária:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
-  - **Lead Recomendado:** Diglett (Dig)
-  - **Estratégia:** Diglett é 100% imune a ataques elétricos.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Diglett** (Lv. 18)
+- **Tipos:** Ground
+- **HP:** **35 / 35** (100%)
+- **Stats de Batalha:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
+- **Os 4 Golpes do Adversário:**
+  - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Scratch** (Normal) ➔ Dano: ~4-5 HP (0.5x)
+  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
+
+### 🔵 O Teu Pokémon em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Rock/Ground
+- **HP:** **24 / 24** (HEALTHY)
+- **Stats com Modificadores:** ATK: 19 (0) | DEF: 21 (0) | SPD: 9 (0) | SPC: 12 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~7 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-7: Usa repetidamente Tackle
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Geodude tem a melhor rota de vitória rápida e HP estável (24/24). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **DUX (Farfetch'd) (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **55%** | Ultra Ball: **36%**
+  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
-### 1. **Geodude** (Lv. 8)
+### 1. **Geodude** (Lv. 8) ⚔️ [EM COMBATE]
 - **Tipos:** Rock/Ground | **HP:** 24 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
@@ -109,8 +138,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 11** *(Entrou a Lv. 10 • Ganhou +1 níveis!)*
 - **Custo de Retirada:** **200 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **816 EXP**
-- **Progresso para Nível 12:** Faltam **157 passos / EXP** (32%)
+- **Experiência Total:** **834 EXP**
+- **Progresso para Nível 12:** Faltam **139 passos / EXP** (40%)
 - **DVs Gen 1:** ATK: 10 | DEF: 8 | SPD: 6 | SPC: 3 | HP: 1
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 20
@@ -174,7 +203,8 @@
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
   - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 8 (Geodude)`).
-  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
+  - **Eficiência na Área Atual:** **0% de encontros bloqueados** (0% bloqueados)
+  - **⚠️ Podem Aparecer (Nível >= líder):** Diglett Nv.18 (20%), Diglett Nv.19 (20%), Diglett Nv.17 (15%), Diglett Nv.20 (10%), Diglett Nv.16 (10%), Diglett Nv.15 (10%), Diglett Nv.21 (5%), Diglett Nv.22 (5%), Dugtrio Nv.29 (4%), Dugtrio Nv.31 (1%)
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • **Área Compatível (Caverna/Dungeon)**
 
@@ -212,121 +242,121 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↗️ 7 passos Nordeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #1. [↖️ 47 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #2. [⬆️ 4 passos Norte] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #2. [↖️ 50 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #3. [↘️ 4 passos Sudeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #3. [↖️ 42 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #4. [↗️ 9 passos Nordeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #4. [↖️ 49 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
 - **Estratégia:** 100% Imune a Electric! Usa Dig no Raichu para aniquilar sem sofrer dano.
 
-### #5. [↘️ 15 passos Sudeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #5. [↖️ 31 passos Noroeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #6. [↘️ 25 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #6. [↖️ 21 passos Noroeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #7. [↘️ 36 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #7. [↖️ 10 passos Noroeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #8. [↘️ 21 passos Sudeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #8. [↖️ 25 passos Noroeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #9. [↘️ 27 passos Sudeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #9. [↖️ 19 passos Noroeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #10. [↘️ 33 passos Sudeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #10. [⬅️ 13 passos Oeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #11. [↘️ 35 passos Sudeste] **Youngster Eddie** (Rota 11) • **⚔️ POR VENCER**
+### #11. [↗️ 27 passos Nordeste] **Youngster Eddie** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Ekans (Lv. 21)
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Estratégia:** Confusion é super eficaz contra Veneno.
 
-### #12. [↘️ 38 passos Sudeste] **Gambler Hugo** (Rota 11) • **⚔️ POR VENCER**
+### #12. [↗️ 36 passos Nordeste] **Gambler Hugo** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 18) • Magnemite (Lv. 18)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett imune a ataques elétricos.
 
-### #13. [↗️ 13 passos Nordeste] **Youngster Dave** (Rota 11) • **⚔️ POR VENCER**
+### #13. [↖️ 37 passos Noroeste] **Youngster Dave** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Sandshrew (Lv. 19) • Zubat (Lv. 19)
 - **Lead Recomendado:** Pikachu / Butterfree
 - **Estratégia:** Pikachu contra Zubat.
 
-### #14. [➡️ 42 passos Este] **Engineer Bernie** (Rota 11) • **⚔️ POR VENCER**
+### #14. [↗️ 44 passos Nordeste] **Engineer Bernie** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Magnemite (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destroi Magnemite.
 
-### #15. [↘️ 46 passos Sudeste] **Youngster Dillon** (Rota 11) • **⚔️ POR VENCER**
+### #15. [↗️ 34 passos Nordeste] **Youngster Dillon** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Nidoran♂ (Lv. 18) • Nidorino (Lv. 18)
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Estratégia:** Confusion causa 2x dano.
 
-### #16. [↘️ 29 passos Sudeste] **Gambler Jasper** (Rota 11) • **⚔️ POR VENCER**
+### #16. [↖️ 17 passos Noroeste] **Gambler Jasper** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Poliwag (Lv. 18) • Horsea (Lv. 18)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Eletricidade contra água.
 
-### #17. [↘️ 13 passos Sudeste] **Gambler Darian** (Rota 11) • **⚔️ POR VENCER**
+### #17. [↖️ 33 passos Noroeste] **Gambler Darian** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Growlithe (Lv. 21) • Vulpix (Lv. 21)
 - **Lead Recomendado:** Diglett / Água
 - **Estratégia:** Ataques de Terra ou Água contra Fogo.
 
-### #18. [↗️ 27 passos Nordeste] **Youngster Yasu** (Rota 11) • **⚔️ POR VENCER**
+### #18. [↗️ 29 passos Nordeste] **Youngster Yasu** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 17) x2 • Raticate (Lv. 17)
 - **Lead Recomendado:** Nidorino / Charmeleon
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #19. [↘️ 38 passos Sudeste] **Engineer Braxton** (Rota 11) • **⚔️ POR VENCER**
+### #19. [↗️ 32 passos Nordeste] **Engineer Braxton** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Magnemite (Lv. 18) • Magneton (Lv. 18)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig aniquila ambos.
 
-### #20. [↗️ 23 passos Nordeste] **Gambler Dirk** (Rota 11) • **⚔️ POR VENCER**
+### #20. [↖️ 29 passos Noroeste] **Gambler Dirk** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Bellsprout (Lv. 18) • Oddish (Lv. 18)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -364,6 +394,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:12:54] **Turno #1**: Geodude (24/24 HP) vs Diglett (Lv. 18 • 35/35 HP)
+- [21:12:53] **Turno #1**: Geodude (0/24 HP) vs Diglett (Lv. 18 • 35/35 HP)
 - [21:10:40] **Turno #10**: Geodude (0/24 HP) vs Pidgey (Lv. 13 • 4/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:39] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 4/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:38] **Turno #9**: Geodude (3/24 HP) vs Pidgey (Lv. 13 • 10/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
@@ -377,15 +409,13 @@
 - [21:10:30] **Turno #3**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 27/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [21:10:30] **Turno #2**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 32/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [21:10:29] **Turno #1**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 32/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
-- [21:10:27] **Turno #1**: Geodude (24/24 HP) vs Pidgey (Lv. 13 • 36/36 HP) • Golpe RED: `Tackle`
-- [21:10:25] **Turno #1**: Geodude (33/24 HP) vs Pidgey (Lv. 13 • 36/36 HP)
 
+- [21:12:51] Entrou em Digletts Cave
 - [21:12:50] Entrou em Digletts Cave Route 11
 - [21:12:50] Entrou em Route 11
 - [21:12:34] Entrou em Vermilion City
 - [21:11:48] Entrou em Vermilion Trade House
 - [21:11:44] Entrou em Vermilion City
-- [21:10:47] Entrou em Vermilion Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [21:10:29] `TACKLE`
@@ -397,7 +427,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Esquece a Farfetch'd (DUX) e mete-o no PC imediatamente, pois o nível 5 é inútil para a frente; usa o dinheiro para comprar um **TM38 (Fire Blast)** ou itens na Vermilion City, e treina o Pikachu e o Nidorino na Route 11 para chegarem ao nível 25+ antes de enfrentares a Elite 4!"
+> "Tragédia imediata: o teu Geodude desmaiou! Troca **AGORA** para o **Pikachu** e ataca com **Thundershock**, que é super efetivo contra o Diglett de Terra e resolve a luta em um ou dois golpes."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
