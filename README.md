@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:22:36**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:22:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,8 +10,8 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `11`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `76h 0m 10s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
+- **Tempo de Jogo:** `76h 0m 11s`
+- **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
 
@@ -64,13 +64,13 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
 ### 2. **Diglett** (Lv. 18)
-- **Tipos:** Ground | **HP:** 20 / 35 ✅ (SAUDÁVEL)
+- **Tipos:** Ground | **HP:** 5 / 35 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 13 | Defesa: 14 | Velocidade: 13 | Especial: 11 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
 - **Experiência:** 5832 EXP (Progresso: 0%, faltam 1027 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 32 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
 
 ### 3. **Butterfree** (Lv. 22)
@@ -431,6 +431,7 @@
 - [21:15:51] Entrou em Vermilion City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:22:36] `SCRATCH`
 - [21:10:29] `TACKLE`
 - [21:03:44] `CONFUSION STUN SPORE`
 - [21:03:33] `THUNDERSHOCK THUNDER WAVE`
