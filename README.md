@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:06:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:06:56**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `30`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `27`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `74h 0m 28s`
+- **Tempo de Jogo:** `74h 0m 29s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 22 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
@@ -19,20 +19,16 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Gust`
+- **Último Golpe Usado pelo Adversário:** `Absorb`
 
-### 🔴 Adversário em Campo: **Pidgey** (Lv. 12)
-- **Tipos:** Normal/Flying
-- **HP:** **0 / 33** (0%)
-- **Stats de Batalha:** ATK: 19 | DEF: 15 | SPD: 19 | SPC: 15
+### 🔴 Adversário em Campo: **Oddish** (Lv. 12)
+- **Tipos:** Grass/Poison
+- **HP:** **35 / 35** (100%)
+- **Stats de Batalha:** ATK: 18 | DEF: 21 | SPD: 14 | SPC: 25
 - **Os 4 Golpes do Adversário:**
-  - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Gust** (Normal) ➔ Dano: ~5-6 HP (1x)
-  - **Sand-attack** (Normal) ➔ Golpe de Status
-  - **Quick Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Absorb** (Grass) ➔ Dano: ~1-1 HP (0.25x)
 
 ### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying
@@ -40,27 +36,31 @@
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 31 (0) | SPD: 44 (0) | SPC: 49 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **22-26 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **16-19 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Confusion (Causa ~16-19 de dano)
+- ➔ Turno 2: Confusion (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Confusion. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
 - **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (60/65). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **55%** | Ultra Ball: **36%**
+  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
+
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Butterfree** (Lv. 22) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 60 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7167 | Def: 6693 | Spd: 7304 | Spc: 4914 | HP: 5992
-- **Experiência:** 11 001 EXP (Progresso: 23%, faltam 1166 p/ Lv.23)
+- **Stat Experience (0–65.535):** Atk: 7212 | Def: 6733 | Spd: 7360 | Spc: 4949 | HP: 6032
+- **Experiência:** 11 095 EXP (Progresso: 29%, faltam 1072 p/ Lv.23)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 20 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -244,49 +244,49 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↗️ 21 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
+### #1. [↗️ 17 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe
 - **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle.
 
-### #2. [↗️ 22 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
+### #2. [↗️ 18 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Weedle (Lv. 10)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember elimina os insetos.
 
-### #3. [↗️ 17 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
+### #3. [↗️ 13 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Charmeleon limpam.
 
-### #4. [↗️ 14 passos Nordeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
+### #4. [↗️ 10 passos Nordeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Sandshrew (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion contra Ekans e Sandshrew.
 
-### #5. [↗️ 9 passos Nordeste] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
+### #5. [➡️ 5 passos Este] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion causa 2x dano.
 
-### #6. [↘️ 8 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
+### #6. [↘️ 10 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Mankey (Lv. 18)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Fraqueza a Psíquico e Voador.
 
-### #7. [↘️ 9 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
+### #7. [↘️ 11 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Ekans (Lv. 15) • Zubat (Lv. 15)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Butterfree.
 
-### #8. [↗️ 26 passos Nordeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
+### #8. [↗️ 22 passos Nordeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
@@ -328,6 +328,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:06:54] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 12 • 35/35 HP)
 - [21:06:52] **Turno #1**: Butterfree (60/65 HP) vs Pidgey (Lv. 12 • 0/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
 - [21:06:51] **Turno #1**: Butterfree (60/65 HP) vs Pidgey (Lv. 12 • 4/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Quick Attack`
 - [21:03:52] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 33/33 HP)
@@ -358,7 +359,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Troca imediatamente o Buterfree por um Pidgeotto ou outro Pokémon de tipo Elétrico/Voador na equipa para garantir vantagem de tipo, ou usa **Stun Spore** para paralisar o Pidgey e garantir a vitória com facilidade. Se não tiveres outro voador, usa **String Shot** para reduzir a velocidade inimiga antes de atacar."
+> "Usa **Confusion** agora para garantir a derrota do Pidgey sem gastar energia, já que está a 4 HP de cair. Depois, mete o **Geodude** (nível 8, morto) e o **Spearow** (nível 5, fraco) no PC para limpar espaço e focar-te em treinar o Nidorino e o Abra, que são as tuas peças fortes para as próximas ginásios."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
