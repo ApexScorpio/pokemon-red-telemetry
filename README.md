@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:12**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:16**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Ember`
-- **Último Golpe Usado pelo Adversário:** `Water Gun`
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Tail Whip`
 
 ### 🔴 Adversário em Campo: **Squirtle** (Lv. 20)
 - **Tipos:** Water
-- **HP:** **50 / 50** (100%)
+- **HP:** **30 / 50** (60%)
 - **Stats de Batalha:** ATK: 27 | DEF: 34 | SPD: 25 | SPC: 28
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -38,20 +38,20 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 19)
 - **Tipos:** Bug/Poison
-- **HP:** **59 / 59** (HEALTHY)
+- **HP:** **46 / 59** (HEALTHY)
 - **Stats com Modificadores:** ATK: 41 (0) | DEF: 27 (0) | SPD: 38 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • ~8 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • ~5 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-8: Usa repetidamente Poison Sting
+- ➔ Turnos 1-5: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (59/59). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (46/59). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -80,13 +80,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Beedrill** (Lv. 19) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 59 / 59 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 46 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 27 | SPD: 38 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4916 | Def: 4191 | Spd: 5493 | Spc: 3251 | HP: 4015
 - **Experiência:** 7789 EXP (Progresso: 82%, faltam 211 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 18 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -287,6 +287,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:03:15] **Turno #3**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 30/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [20:03:14] **Turno #2**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 38/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [20:03:13] **Turno #2**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 42/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [20:03:12] **Turno #1**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 50/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [20:03:11] **Turno #1**: Beedrill (59/59 HP) vs Squirtle (Lv. 20 • 50/50 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Water Gun`
 - [20:03:01] **Turno #1**: Charmeleon (23/53 HP) vs Squirtle (Lv. 20 • 50/50 HP)
 - [20:02:40] **Turno #1**: Charmeleon (23/53 HP) vs Mankey (Lv. 16 • 0/43 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Karate Chop`
@@ -298,10 +302,6 @@
 - [20:02:29] **Turno #2**: Charmeleon (36/53 HP) vs Pidgey (Lv. 16 • 28/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
 - [20:02:25] **Turno #1**: Charmeleon (44/53 HP) vs Pidgey (Lv. 16 • 28/41 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Gust`
 - [20:02:24] **Turno #1**: Charmeleon (53/53 HP) vs Pidgey (Lv. 16 • 28/41 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Gust`
-- [20:02:23] **Turno #1**: Charmeleon (53/53 HP) vs Pidgey (Lv. 16 • 41/41 HP)
-- [20:02:03] **Turno #1**: Charmeleon (53/53 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
-- [20:02:02] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
-- [20:02:00] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 41/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
