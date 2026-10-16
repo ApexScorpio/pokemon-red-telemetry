@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:27**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:31**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #2`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Scratch`
 - **Último Golpe Usado pelo Adversário:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Mankey** (Lv. 12)
 - **Tipos:** Fighting
-- **HP:** **16 / 32** (50%)
+- **HP:** **2 / 32** (6%)
 - **Stats de Batalha:** ATK: 24 | DEF: 13 | SPD: 24 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -34,24 +34,24 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
 - **Tipos:** Poison
-- **HP:** **51 / 55** (HEALTHY)
+- **HP:** **47 / 55** (HEALTHY)
 - **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (51/55). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 2 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Abra (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **50%** | Great Ball: **95%** | Ultra Ball: **67%**
-  - *Se adormeceres o inimigo:* **~60%** | *Com HP no vermelho:* **~75%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **75%** | Great Ball: **95%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~84%** | *Com HP no vermelho:* **~75%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Abra** (Lv. 11)
@@ -88,13 +88,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 4. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 51 / 55 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 47 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3210 | Def: 2366 | Spd: 3529 | Spc: 1994 | HP: 2423
 - **Experiência:** 3125 EXP (Progresso: 1%, faltam 673 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 33 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -180,6 +180,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:24:29] **Turno #3**: Nidorina (47/55 HP) vs Mankey (Lv. 12 • 2/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
+- [19:24:28] **Turno #3**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 2/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
 - [19:24:25] **Turno #2**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 16/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
 - [19:24:24] **Turno #1**: Nidorina (55/55 HP) vs Mankey (Lv. 12 • 32/32 HP) • Golpe RED: `Teleport` • Golpe Inimigo: `Leer`
 - [19:24:13] **Turno #1**: Abra (28/28 HP) vs Mankey (Lv. 12 • 32/32 HP)
@@ -193,8 +195,6 @@
 - [19:16:51] **Turno #7**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 16/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:50] **Turno #6**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:50] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
-- [19:16:49] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 28/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
-- [19:16:47] **Turno #4**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Confusion`
 
 - [19:24:02] Entrou em Route 5
 - [19:23:37] Entrou em Cerulean City
