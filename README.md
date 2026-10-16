@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:06**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:10**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `30`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `74h 0m 49s`
+- **Tempo de Jogo:** `74h 0m 50s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude) | **Eficiência na Rota:** `0% bloqueados`
@@ -26,24 +26,25 @@
 - **Os 4 Golpes do Adversário:**
   - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Absorb** (Grass) ➔ Dano: ~8-10 HP (1x)
+  - **Absorb** (Grass) ➔ 🚨 RISCO DE K.O.! (34-40 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Geodude** (Lv. 8)
-- **Tipos:** Normal
-- **HP:** **60 / 24** (HEALTHY)
-- **Stats com Modificadores:** ATK: 19 (+232) | DEF: 21 (+73) | SPD: 9 (+73) | SPC: 12 (+73)
+- **Tipos:** Rock/Ground
+- **HP:** **24 / 24** (HEALTHY)
+- **Stats com Modificadores:** ATK: 19 (0) | DEF: 21 (0) | SPD: 9 (0) | SPC: 12 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **5-7 HP** (1x eficácia) • ~6 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~8 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-6: Usa repetidamente Tackle
+- ➔ Turnos 1-8: Usa repetidamente Tackle
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Geodude tem a melhor rota de vitória rápida e HP estável (60/24). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **⚠️ PERIGO DE MORTE: TROCA PARA Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 22)** [65/65 HP]
+- **Motivo:** Geodude corre perigo real de K.O. no próximo golpe do inimigo (24 HP). Trocar para Butterfree salva o teu Pokémon e ataca com String Shot!
 - **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
@@ -332,6 +333,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:10:07] **Turno #1**: Geodude (24/24 HP) vs Oddish (Lv. 13 • 36/36 HP)
 - [21:10:05] **Turno #1**: Geodude (60/24 HP) vs Oddish (Lv. 13 • 36/36 HP)
 - [21:07:26] **Turno #2**: Butterfree (60/65 HP) vs Abra (Lv. 10 • 25/25 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Teleport`
 - [21:07:06] **Turno #1**: Butterfree (60/65 HP) vs Abra (Lv. 10 • 25/25 HP)
@@ -346,7 +348,6 @@
 - [21:03:52] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 33/33 HP)
 - [21:03:45] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 0/26 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Harden`
 - [21:03:43] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 26/26 HP)
-- [21:03:42] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 0/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
 
 - [21:10:00] Entrou em Route 6
 - [21:09:59] Entrou em Underground Path Route 6
