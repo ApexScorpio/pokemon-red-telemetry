@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:56:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:56:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,12 +11,13 @@
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `53h 0m 41s`
-- **💬 Diálogo / Mensagem no Ecrã:** `99999999999999999 99999999999999999`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
 
 ### 🔴 Adversário em Campo: **Clefairy** (Lv. 12)
 - **Tipos:** Fairy
@@ -30,21 +31,21 @@
   - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **54 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (-2) | SPD: 32 (0) | SPC: 21 (0)
+- **Tipos:** Bug/Poison
+- **HP:** **15 / 51** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • ~6 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • ~4 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-6: Usa repetidamente Poison Sting
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-4: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (54/51). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (15/51). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **20%** | Great Ball: **38%** | Ultra Ball: **34%**
@@ -233,11 +234,13 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:56:24] **Turno #1**: Beedrill (15/51 HP) vs Clefairy (40/40 HP)
 - [15:56:22] **Turno #1**: Beedrill (54/51 HP) vs Clefairy (40/40 HP)
 
-- [15:56:24] Sincronização inicial com o emulador RetroArch concluída com sucesso.
+- [15:56:28] Sincronização inicial com o emulador RetroArch concluída com sucesso.
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [15:56:26] `FURY ATTACK POISON STING`
 - [15:56:22] `99999999999999999 99999999999999999`
 
 ## 🧠 Conselho Tático do Grok AI
