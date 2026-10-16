@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:52:43**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:52:47**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,36 +18,38 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Poison Sting`
+- **Último Golpe Usado pelo Adversário:** `Absorb`
 
 ### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
 - **Tipos:** Grass/Poison
-- **HP:** **36 / 36** (100%)
+- **HP:** **28 / 36** (78%)
 - **Stats de Batalha:** ATK: 21 | DEF: 22 | SPD: 16 | SPC: 25
 - **Os 4 Golpes do Adversário:**
   - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Absorb** (Grass) ➔ Dano: ~5-6 HP (1x)
+  - **Absorb** (Grass) ➔ Dano: ~1-1 HP (0.25x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
-- **Tipos:** Normal
-- **HP:** **18 / 56** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (-1) | SPD: 36 (0) | SPC: 24 (0)
+- **Tipos:** Bug/Poison
+- **HP:** **17 / 56** (HEALTHY)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • ~6 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-6: Usa repetidamente Poison Sting
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-3: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (18/56). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (17/56). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **43%** | Great Ball: **64%** | Ultra Ball: **43%**
+  - *Se adormeceres o inimigo:* **~49%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
@@ -59,7 +61,7 @@
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 16 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 33 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 18)
@@ -213,6 +215,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:52:46] **Turno #1**: Beedrill (17/56 HP) vs Oddish (Lv. 13 • 28/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
+- [18:52:45] **Turno #1**: Beedrill (18/56 HP) vs Oddish (Lv. 13 • 27/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:42] **Turno #1**: Beedrill (18/56 HP) vs Oddish (Lv. 13 • 36/36 HP)
 - [18:52:39] **Turno #4**: Beedrill (18/56 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Poison Sting`
 - [18:52:38] **Turno #4**: Beedrill (18/56 HP) vs Ekans (Lv. 14 • 3/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Wrap`
@@ -226,8 +230,6 @@
 - [18:52:28] **Turno #2**: Beedrill (30/56 HP) vs Rattata (Lv. 14 • 12/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [18:52:27] **Turno #1**: Beedrill (47/56 HP) vs Rattata (Lv. 14 • 12/34 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [18:51:23] **Turno #1**: Nidorino (17/56 HP) vs Zubat (Lv. 15 • 0/39 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bite`
-- [18:51:22] **Turno #1**: Nidorino (17/56 HP) vs Zubat (Lv. 15 • 14/39 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bite`
-- [18:51:22] **Turno #1**: Nidorino (17/56 HP) vs Zubat (Lv. 15 • 11/39 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Leech Life`
 
 - [18:51:39] Entrou em Route 24
 - [18:51:35] Entrou em Cerulean City
