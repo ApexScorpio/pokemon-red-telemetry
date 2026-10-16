@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -19,39 +19,39 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `Tail Whip`
+- **Último Golpe Usado pelo Adversário:** `Hyper Fang`
 
-### 🔴 Adversário em Campo: **Rattata** (Lv. 15)
-- **Tipos:** Normal
-- **HP:** **8 / 36** (22%)
-- **Stats de Batalha:** ATK: 24 | DEF: 17 | SPD: 29 | SPC: 14
+### 🔴 Adversário em Campo: **Spearow** (Lv. 15)
+- **Tipos:** Normal/Flying
+- **HP:** **39 / 39** (100%)
+- **Stats de Batalha:** ATK: 25 | DEF: 16 | SPD: 28 | SPC: 16
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
-  - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
+  - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
+  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
+  - **Leer** (Normal) • PP: NaN • Poder: -- • Precisão: 100%
+  - **Fury Attack** (Normal) • PP: NaN • Poder: 15 • Precisão: 85%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~7-9 HP (1x)
-  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ Dano: ~8-10 HP (1x)
-  - **Hyper Fang** (Normal) ➔ Dano: ~15-18 HP (1x)
+  - **Peck** (Flying) ➔ Dano: ~15-18 HP (2x)
+  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
+  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
+  - **Fury Attack** (Normal) ➔ Dano: ~5-6 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison
 - **HP:** **56 / 56** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (-1) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **11-13 HP** (1x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-3: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 8 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (56/56). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -59,10 +59,10 @@
 - **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4703 | Def: 3961 | Spd: 5201 | Spc: 3080 | HP: 3868
-- **Experiência:** 6293 EXP (Progresso: 45%, faltam 566 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 4759 | Def: 3996 | Spd: 5273 | Spc: 3105 | HP: 3898
+- **Experiência:** 6476 EXP (Progresso: 63%, faltam 383 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 19 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 18 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -224,6 +224,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:26] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 39/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
+- [18:56:26] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
+- [18:56:25] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 1/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [18:56:24] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 8/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [18:56:23] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 22/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [18:56:22] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 36/36 HP) • Golpe RED: `Fury Attack`
@@ -236,9 +239,6 @@
 - [18:56:00] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 28/28 HP)
 - [18:53:31] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 26/26 HP)
 - [18:53:29] **Turno #1**: Butterfree (62/62 HP) vs Weedle (Lv. 7 • 0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Poison Sting`
-- [18:53:27] **Turno #1**: Butterfree (62/62 HP) vs Weedle (Lv. 7 • 23/23 HP)
-- [18:53:25] **Turno #1**: Butterfree (62/62 HP) vs Pidgey (Lv. 13 • 0/36 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
-- [18:53:24] **Turno #1**: Butterfree (62/62 HP) vs Pidgey (Lv. 13 • 36/36 HP)
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
