@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:52:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:52:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,7 +17,7 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `String Shot`
+- **Último Golpe Usado por RED:** `Sleep Powder`
 - **Último Golpe Usado pelo Adversário:** `Disable`
 
 ### 🔴 Adversário em Campo: **Grimer** (Lv. 12)
@@ -73,7 +73,7 @@
   - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 14 | Poder: -- | Precisão: 75%
 
 ### 3. **Rattata** (Lv. 16)
 - **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
