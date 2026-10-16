@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:48:08**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:48:12**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `27`, Y: `17`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `53h 0m 4s`
+- **Tempo de Jogo:** `53h 0m 5s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **2051 ₽** • **Fichas do Casino:** `0`
 
@@ -22,7 +22,7 @@
 
 ### 🔴 Adversário em Campo: **Raticate** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **3 / 46** (7%)
+- **HP:** **0 / 46** (0%)
 - **Stats de Batalha:** ATK: 33 | DEF: 26 | SPD: 38 | SPC: 23
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -41,16 +41,17 @@
 - **Stats com Modificadores:** ATK: 35 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **8-10 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turno 1: Inimigo ataca primeiro (~21 dano) ➔ Responde com Poison Sting (K.O.)
-> **Resumo Tático:** O adversário é mais rápido mas o teu HP (51) aguenta o golpe. Finaliza logo a seguir com Poison Sting.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 80%)
+- ➔ Turno 1: Tackle
+- ➔ Turno 2: Tackle (Finalizador)
+> **Resumo Tático:** O teu Pokémon tem 51 HP e aguenta o combate até finalizar no Turno 2.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 3 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (51/51). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -93,13 +94,13 @@
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 3568 | Def: 2322 | Spd: 3899 | Spc: 2118 | HP: 2832
-- **Experiência:** 2606 EXP (Progresso: 12%, faltam 514 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 3649 | Def: 2382 | Spd: 3996 | Spc: 2168 | HP: 2887
+- **Experiência:** 3003 EXP (Progresso: 80%, faltam 117 p/ Lv.17)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
 ### 5. **Pikachu** (Lv. 15)
 - **Tipos:** Electric | **HP:** 35 / 38 ✅ (SAUDÁVEL)
@@ -224,6 +225,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:48:10] **Turno #6**: Nidorino (51/51 HP) vs Raticate (0/46 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tail Whip`
 - [15:48:08] **Turno #6**: Nidorino (51/51 HP) vs Raticate (3/46 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tail Whip`
 - [15:47:36] **Turno #5**: Nidorino (51/51 HP) vs Raticate (3/46 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Quick Attack`
 - [15:47:30] **Turno #5**: Rattata (0/43 HP) vs Raticate (3/46 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Quick Attack`
@@ -231,7 +233,6 @@
 - [15:46:58] **Turno #4**: Rattata (15/43 HP) vs Raticate (24/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Quick Attack`
 - [15:46:56] **Turno #3**: Rattata (43/43 HP) vs Raticate (24/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tail Whip`
 - [15:46:53] **Turno #3**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tail Whip`
-- [15:46:48] **Turno #2**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 
 - [15:43:51] Entrou em Mt Moon B2f
 - [15:43:49] Entrou em Mt Moon B1F
