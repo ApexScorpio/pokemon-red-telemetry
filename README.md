@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:57:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,40 +18,39 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado por RED:** `Horn Attack`
 - **Último Golpe Usado pelo Adversário:** `Confusion`
 
 ### 🔴 Adversário em Campo: **Slowpoke** (Lv. 17)
 - **Tipos:** Water/Psychic
-- **HP:** **10 / 60** (17%)
+- **HP:** **0 / 60** (0%)
 - **Stats de Batalha:** ATK: 30 | DEF: 29 | SPD: 12 | SPC: 21
 - **Os 4 Golpes do Adversário:**
   - **Confusion** (Psychic_type) • PP: 25 • Poder: 50 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Confusion** (Psychic_type) ➔ 🚨 RISCO DE K.O.! (8-10 HP)
+  - **Confusion** (Psychic_type) ➔ Dano: ~6-8 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 56** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 18)
+- **Tipos:** Poison
+- **HP:** **56 / 56** (HEALTHY)
+- **Stats com Modificadores:** ATK: 39 (0) | DEF: 32 (0) | SPD: 34 (0) | SPC: 29 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **7-9 HP** (1x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **9-11 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 70%)
-- ➔ Turno 1: Poison Sting (Causa ~7-9 de dano)
-- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Tackle (Causa ~9-11 de dano)
+- ➔ Turno 2: Tackle (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Tackle. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Pikachu (Lv. 18)** [44/44 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Pikachu para manter o controlo da batalha.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (56/56). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison | **HP:** 0 / 56 ❌ (FAINTED)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -63,14 +62,14 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 18)
+### 2. **Nidorino** (Lv. 18) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 32 | SPD: 34 | SPC: 29
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 3971 | Def: 2623 | Spd: 4328 | Spc: 2398 | HP: 3137
-- **Experiência:** 4208 EXP (Progresso: 53%, faltam 367 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 4036 | Def: 2688 | Spd: 4343 | Spc: 2438 | HP: 3227
+- **Experiência:** 4568 EXP (Progresso: 99%, faltam 7 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 24 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -218,6 +217,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:57:05] **Turno #3**: Nidorino (56/56 HP) vs Slowpoke (Lv. 17 • 0/60 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Confusion`
+- [18:57:05] **Turno #3**: Nidorino (56/56 HP) vs Slowpoke (Lv. 17 • 10/60 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Confusion`
 - [18:57:02] **Turno #3**: Beedrill (0/56 HP) vs Slowpoke (Lv. 17 • 10/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:57:01] **Turno #2**: Beedrill (8/56 HP) vs Slowpoke (Lv. 17 • 15/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:56:57] **Turno #2**: Beedrill (8/56 HP) vs Slowpoke (Lv. 17 • 30/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
@@ -231,8 +232,6 @@
 - [18:56:42] **Turno #2**: Butterfree (57/62 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [18:56:37] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Screech`
 - [18:56:36] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 40/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Screech`
-- [18:56:34] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 41/41 HP)
-- [18:56:29] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 0/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
