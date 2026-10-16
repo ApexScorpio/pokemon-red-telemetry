@@ -1,65 +1,35 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:10:48**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:10:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `67`, Y: `15`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `68`, Y: `11`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `56h 0m 14s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Tail Whip`
-
-### 🔴 Adversário em Campo: **Rattata** (Lv. 8)
-- **Tipos:** Normal
-- **HP:** **0 / 24** (0%)
-- **Stats de Batalha:** ATK: 16 | DEF: 12 | SPD: 18 | SPC: 11
-- **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (5-6 HP)
-  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (5-6 HP)
-
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 18)
-- **Tipos:** Electric
-- **HP:** **6 / 44** (HEALTHY)
-- **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (0) | SPD: 41 (0) | SPC: 30 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **19-23 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (6/44). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 18) ⚔️ [EM COMBATE]
+### 1. **Pikachu** (Lv. 18)
 - **Tipos:** Electric | **HP:** 6 / 44 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 22 | SPD: 41 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7693 | Def: 5354 | Spd: 8552 | Spc: 4620 | HP: 5510
-- **Experiência:** 5833 EXP (Progresso: 0%, faltam 1026 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 7809 | Def: 5419 | Spd: 8694 | Spc: 4676 | HP: 5580
+- **Experiência:** 5980 EXP (Progresso: 14%, faltam 879 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 1 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 0 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -203,6 +173,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:10:51] **Turno #1**: Pikachu (6/44 HP) vs Spearow (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Peck`
+- [18:10:49] **Turno #1**: Pikachu (6/44 HP) vs Spearow (Lv. 10 • 28/28 HP)
 - [18:10:47] **Turno #1**: Pikachu (6/44 HP) vs Rattata (Lv. 8 • 0/24 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
 - [18:10:46] **Turno #1**: Pikachu (6/44 HP) vs Rattata (Lv. 8 • 24/24 HP)
 - [18:10:42] **Turno #1**: Pikachu (4/42 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
@@ -216,8 +188,6 @@
 - [18:10:30] **Turno #1**: Pikachu (10/42 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 - [18:10:28] **Turno #1**: Pikachu (10/42 HP) vs Spearow (Lv. 10 • 30/30 HP)
 - [18:10:26] **Turno #1**: Pikachu (10/42 HP) vs Rattata (Lv. 8 • 0/25 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
-- [18:10:24] **Turno #1**: Pikachu (10/42 HP) vs Rattata (Lv. 8 • 25/25 HP)
-- [18:10:18] **Turno #1**: Pikachu (10/42 HP) vs Rattata (Lv. 8 • 0/23 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 
 - [18:09:30] Entrou em Route 4
 - [18:09:29] Entrou em Mt Moon B1F
