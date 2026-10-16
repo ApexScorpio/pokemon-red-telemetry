@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:46:04**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:46:08**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,17 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `23`, Y: `15`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 18s`
+- **Tempo de Jogo:** `56h 0m 19s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
 - **Tipos:** Rock/Ground
-- **HP:** **30 / 30** (100%)
+- **HP:** **27 / 30** (90%)
 - **Stats de Batalha:** ATK: 23 | DEF: 26 | SPD: 9 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -34,10 +36,10 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~30 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~27 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-30: Usa repetidamente Poison Sting
+- ➔ Turnos 1-27: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
@@ -46,8 +48,8 @@
 - **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **42%** | Great Ball: **63%** | Ultra Ball: **42%**
+  - *Se adormeceres o inimigo:* **~47%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
@@ -57,7 +59,7 @@
 - **Stat Experience (0–65.535):** Atk: 4469 | Def: 3781 | Spd: 4844 | Spc: 2950 | HP: 3653
 - **Experiência:** 5083 EXP (Progresso: 18%, faltam 749 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 12 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 11 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -267,6 +269,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:46:07] **Turno #1**: Beedrill (32/54 HP) vs Geodude (Lv. 10 • 27/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [17:46:02] **Turno #1**: Beedrill (32/54 HP) vs Geodude (Lv. 10 • 30/30 HP)
 - [17:45:57] **Turno #1**: Beedrill (32/54 HP) vs Zubat (Lv. 7 • 0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:45:56] **Turno #1**: Beedrill (32/54 HP) vs Zubat (Lv. 7 • 10/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
@@ -281,7 +284,6 @@
 - [17:45:44] **Turno #6**: Rattata (20/43 HP) vs Geodude (Lv. 9 • 0/26 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [17:45:42] **Turno #6**: Rattata (20/43 HP) vs Geodude (Lv. 9 • 1/26 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
 - [17:45:42] **Turno #5**: Rattata (27/43 HP) vs Geodude (Lv. 9 • 1/26 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
-- [17:45:41] **Turno #5**: Rattata (27/43 HP) vs Geodude (Lv. 9 • 6/26 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
 
 - [17:46:01] Entrou em Mt Moon 1F
 - [17:45:46] Entrou em Mt Moon B1F
