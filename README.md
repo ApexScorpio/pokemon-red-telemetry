@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:32**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:50:36**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,18 +11,18 @@
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `59h 0m 46s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
+- **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
 - **Dinheiro:** **3676 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Poison Sting`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 16)
 - **Tipos:** Normal/Flying
-- **HP:** **29 / 41** (71%)
+- **HP:** **5 / 41** (12%)
 - **Stats de Batalha:** ATK: 22 | DEF: 20 | SPD: 25 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -39,17 +39,16 @@
 - **Stats com Modificadores:** ATK: 37 (0) | DEF: 30 (0) | SPD: 32 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **19-23 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **7-9 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Horn Attack (Causa ~19-23 de dano)
-- ➔ Turno 2: Horn Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Horn Attack. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (53/53). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 5 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -65,16 +64,16 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorino** (Lv. 17) ⚔️ [EM COMBATE]
+### 2. **Nidorino** (Lv. 17)
 - **Tipos:** Poison | **HP:** 53 / 53 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 30 | SPD: 32 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 3694 | Def: 2417 | Spd: 4051 | Spc: 2208 | HP: 2927
 - **Experiência:** 3165 EXP (Progresso: 7%, faltam 633 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
+  - **Horn Attack** (Normal) — PP: 24 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Nidorina** (Lv. 16)
@@ -204,6 +203,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:50:34] **Turno #2**: Nidorino (53/53 HP) vs Pidgey (Lv. 16 • 5/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Sand-attack`
+- [18:50:34] **Turno #1**: Nidorino (53/53 HP) vs Pidgey (Lv. 16 • 5/41 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Sand-attack`
 - [18:50:29] **Turno #1**: Nidorino (53/53 HP) vs Pidgey (Lv. 16 • 29/41 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:50:27] **Turno #1**: Nidorino (53/53 HP) vs Pidgey (Lv. 16 • 41/41 HP)
 - [18:50:27] **Turno #1**: Beedrill (53/56 HP) vs Zubat (Lv. 14 • 0/37 HP)
@@ -217,8 +218,6 @@
 - [18:50:15] **Turno #1**: Beedrill (17/56 HP) vs Zubat (Lv. 14 • 23/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
 - [18:50:13] **Turno #1**: Beedrill (17/56 HP) vs Zubat (Lv. 14 • 37/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:50:12] **Turno #1**: Beedrill (17/56 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
-- [18:50:11] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
-- [18:50:10] **Turno #1**: Beedrill (15/54 HP) vs Ekans (Lv. 14 • 9/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
@@ -228,6 +227,7 @@
 - [18:29:12] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:50:33] `HORN ATTACK TACKLE`
 - [18:50:30] `TACKLE HORN ATTACK`
 - [18:49:18] `FURY ATTACK POISON STING`
 - [18:43:39] `He invented the POKMON Storage`
@@ -242,7 +242,6 @@
 - [18:08:35] `TACKLE TAIL WHIP`
 - [18:08:31] `THUNDERSHOCK THUNDER WAVE`
 - [18:08:25] `TACKLE TAIL WHIP`
-- [18:06:14] `THUNDERSHOCK THUNDER WAVE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
