@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:42:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:42:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -20,16 +20,18 @@
 - **Último Golpe Usado por RED:** `Thundershock`
 - **Último Golpe Usado pelo Adversário:** `Supersonic`
 
-### 🔴 Adversário em Campo: **Zubat** (Lv. 12)
-- **Tipos:** Poison/Flying
-- **HP:** **0 / 33** (0%)
-- **Stats de Batalha:** ATK: 17 | DEF: 15 | SPD: 20 | SPC: 16
+### 🔴 Adversário em Campo: **Ekans** (Lv. 12)
+- **Tipos:** Poison
+- **HP:** **32 / 32** (100%)
+- **Stats de Batalha:** ATK: 21 | DEF: 17 | SPD: 20 | SPC: 16
 - **Os 4 Golpes do Adversário:**
-  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
-  - **Supersonic** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
+  - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
+  - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~2-3 HP (1x)
-  - **Supersonic** (Normal) ➔ Golpe de Status
+  - **Wrap** (Normal) ➔ Dano: ~2-3 HP (1x)
+  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
+  - **Poison Sting** (Poison) ➔ Dano: ~3-4 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 15)
 - **Tipos:** Electric
@@ -37,12 +39,13 @@
 - **Stats com Modificadores:** ATK: 27 (0) | DEF: 19 (0) | SPD: 35 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **32-38 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **16-19 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Thundershock (Causa ~16-19 de dano)
+- ➔ Turno 2: Thundershock (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Thundershock. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -229,6 +232,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:42:52] **Turno #1**: Pikachu (35/38 HP) vs Ekans (32/32 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [15:42:49] **Turno #1**: Pikachu (35/38 HP) vs Zubat (0/33 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [15:42:48] **Turno #1**: Pikachu (35/38 HP) vs Zubat (33/33 HP) • Golpe Inimigo: `Leech Life`
 - [15:42:47] **Turno #1**: Pikachu (38/38 HP) vs Zubat (33/33 HP)
@@ -236,7 +240,6 @@
 - [15:42:11] **Turno #1**: Beedrill (48/48 HP) vs Zubat (0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:42:10] **Turno #1**: Beedrill (48/48 HP) vs Zubat (15/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:42:08] **Turno #1**: Beedrill (48/48 HP) vs Zubat (24/24 HP)
-- [15:41:37] **Turno #1**: Beedrill (48/48 HP) vs Zubat (0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 
 - [15:42:23] Entrou em Mt Moon B2f
 - [15:42:13] Entrou em Mt Moon B1F
