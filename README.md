@@ -1,67 +1,35 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:55:09**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:55:12**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `72`, Y: `12`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `57h 0m 17s`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `72`, Y: `15`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `57h 0m 18s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Spearow** (Lv. 10)
-- **Tipos:** Normal/Flying
-- **HP:** **30 / 30** (100%)
-- **Stats de Batalha:** ATK: 18 | DEF: 12 | SPD: 21 | SPC: 14
-- **Os 4 Golpes do Adversário:**
-  - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
-  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
-  - **Leer** (Normal) • PP: NaN • Poder: -- • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Peck** (Flying) ➔ Dano: ~5-6 HP (1x)
-  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
-  - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
-
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
-- **Tipos:** Normal
-- **HP:** **51 / 57** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **13-16 HP** (1x eficácia) • ~2 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Fury Attack (Causa ~13-16 de dano)
-- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (51/57). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Rival Blue #3** (Rota 24 (Entrada da Ponte))
+  - **Equipa Adversária:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+  - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
+  - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison | **HP:** 51 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 5235 | Def: 4425 | Spd: 5546 | Spc: 3481 | HP: 4193
-- **Experiência:** 6196 EXP (Progresso: 35%, faltam 663 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 5295 | Def: 4455 | Spd: 5616 | Spc: 3512 | HP: 4233
+- **Experiência:** 6278 EXP (Progresso: 43%, faltam 581 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 16 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 15 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -206,6 +174,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:55:11] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
+- [17:55:10] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 10/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [17:55:08] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 30/30 HP)
 - [17:55:03] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [17:55:00] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 30/30 HP)
@@ -219,8 +189,6 @@
 - [17:54:26] **Turno #1**: Beedrill (4/57 HP) vs Rattata (Lv. 10 • 26/26 HP)
 - [17:50:34] **Turno #4**: Beedrill (4/57 HP) vs Zubat (Lv. 11 • 0/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:50:32] **Turno #4**: Beedrill (4/57 HP) vs Zubat (Lv. 11 • 6/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
-- [17:50:31] **Turno #3**: Beedrill (4/57 HP) vs Zubat (Lv. 11 • 19/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
-- [17:50:29] **Turno #3**: Beedrill (4/57 HP) vs Zubat (Lv. 11 • 32/32 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 
 - [17:53:11] Entrou em Route 4
 - [17:52:56] Entrou em Cerulean City
