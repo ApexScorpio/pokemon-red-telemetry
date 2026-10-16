@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:44:33**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:44:47**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -8,9 +8,9 @@
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon Pokecenter** (ID Interno: `0x44`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `3`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `56h 0m 8s`
+- **Tempo de Jogo:** `56h 0m 10s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -30,17 +30,16 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Butterfree** (Lv. 21)
-- **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
-- **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 6896 | Def: 6316 | Spd: 7149 | Spc: 4802 | HP: 5750
-- **Experiência:** 9613 EXP (Progresso: 25%, faltam 1035 p/ Lv.22)
+### 2. **Pikachu** (Lv. 15)
+- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
+- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
+- **Stat Experience (0–65.535):** Atk: 6394 | Def: 4454 | Spd: 7154 | Spc: 3812 | HP: 4615
+- **Experiência:** 4062 EXP (Progresso: 95%, faltam 34 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
-  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
+  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 16)
 - **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
@@ -66,16 +65,17 @@
   - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 5. **Pikachu** (Lv. 15)
-- **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
-- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6394 | Def: 4454 | Spd: 7154 | Spc: 3812 | HP: 4615
-- **Experiência:** 4062 EXP (Progresso: 95%, faltam 34 p/ Lv.16)
+### 5. **Butterfree** (Lv. 21)
+- **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
+- **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
+- **Stat Experience (0–65.535):** Atk: 6896 | Def: 6316 | Spd: 7149 | Spc: 4802 | HP: 5750
+- **Experiência:** 9613 EXP (Progresso: 25%, faltam 1035 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
+  - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
+  - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
 ### 6. **Nidorina** (Lv. 16)
 - **Tipos:** Poison | **HP:** 52 / 52 ✅ (SAUDÁVEL)
