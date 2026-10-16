@@ -1,34 +1,36 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:52:58**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `21`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `28`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `60h 0m 1s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
+- **Tempo de Jogo:** `60h 0m 2s`
+- **💬 Diálogo / Mensagem no Ecrã:** `it wanders around sowing its seeds`
 - **Dinheiro:** **5006 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Poison Sting`
-- **Último Golpe Usado pelo Adversário:** `Absorb`
+- **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
-- **Tipos:** Grass/Poison
-- **HP:** **7 / 36** (19%)
-- **Stats de Batalha:** ATK: 21 | DEF: 22 | SPD: 16 | SPC: 25
+### 🔴 Adversário em Campo: **Pidgey** (Lv. 13)
+- **Tipos:** Normal/Flying
+- **HP:** **34 / 34** (100%)
+- **Stats de Batalha:** ATK: 17 | DEF: 18 | SPD: 21 | SPC: 17
 - **Os 4 Golpes do Adversário:**
-  - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
+  - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
+  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
+  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Absorb** (Grass) ➔ Dano: ~1-1 HP (0.25x)
+  - **Gust** (Normal) ➔ Dano: ~5-7 HP (1x)
+  - **Sand-attack** (Normal) ➔ Golpe de Status
+  - **Quick Attack** (Normal) ➔ Dano: ~5-7 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison
@@ -36,20 +38,20 @@
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (1x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-3: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 7 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (15/56). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
-  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **53%** | Ultra Ball: **36%**
+  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
@@ -126,7 +128,7 @@
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **17 / 20 slots** (3 vagas livres)
 - **Potion** x6
-- **Poké Ball** x10
+- **Poké Ball** x9
 - **Antidote** x2
 - **Town Map** x1
 - **TM34 (Bide)** x1
@@ -155,21 +157,22 @@
 # 🏛️ PARTE B: PROGRESSO PERMANENTE
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
-- **Espécies Registadas na Pokédex:** **22 / 151** (Espécies Desbloqueadas)
+- **Espécies Registadas na Pokédex:** **23 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **36 / 151**
-- **Total de Pokémon Individuais Ativos:** **15 espécimes** (6 na Equipa + 9 no PC)
-- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #46 Paras, #74 Geodude
+- **Total de Pokémon Individuais Ativos:** **16 espécimes** (6 na Equipa + 10 no PC)
+- **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #74 Geodude
 
-## 💾 6. Pokémon Guardados no PC (9 / 20 na Caixa 1) • Vagas Livres: **11**
-- #1: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
-- #2: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
-- #3: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
-- #4: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
-- #5: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
-- #6: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
-- #7: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
-- #8: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
-- #9: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
+## 💾 6. Pokémon Guardados no PC (10 / 20 na Caixa 1) • Vagas Livres: **10**
+- #1: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
+- #2: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
+- #3: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
+- #4: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
+- #5: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
+- #6: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
+- #7: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
+- #8: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
+- #9: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
+- #10: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
@@ -215,6 +218,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:53:00] **Turno #1**: Beedrill (15/56 HP) vs Pidgey (Lv. 13 • 34/34 HP)
 - [18:52:50] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 7/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:49] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 6/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:49] **Turno #2**: Beedrill (16/56 HP) vs Oddish (Lv. 13 • 6/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
@@ -229,7 +233,6 @@
 - [18:52:37] **Turno #2**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 3/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Wrap`
 - [18:52:36] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 3/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Wrap`
 - [18:52:32] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 8/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
-- [18:52:31] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 29/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 
 - [18:51:39] Entrou em Route 24
 - [18:51:35] Entrou em Cerulean City
@@ -239,6 +242,7 @@
 - [18:46:54] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:52:58] `it wanders around sowing its seeds`
 - [18:52:33] `FURY ATTACK POISON STING`
 - [18:50:33] `HORN ATTACK TACKLE`
 - [18:50:30] `TACKLE HORN ATTACK`
@@ -253,7 +257,6 @@
 - [18:08:56] `TACKLE TAIL WHIP`
 - [18:08:48] `THUNDERSHOCK THUNDER WAVE`
 - [18:08:35] `TACKLE TAIL WHIP`
-- [18:08:31] `THUNDERSHOCK THUNDER WAVE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
