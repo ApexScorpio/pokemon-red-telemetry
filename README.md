@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:22**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:26**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `23`, Y: `8`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `60h 0m 36s`
+- **Tempo de Jogo:** `60h 0m 37s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
 - **Dinheiro:** **7111 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #2`
-- **Último Golpe Usado por RED:** `Tackle`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Scratch`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 13)
 - **Tipos:** Rock/Ground
-- **HP:** **32 / 35** (91%)
+- **HP:** **29 / 35** (83%)
 - **Stats de Batalha:** ATK: 28 | DEF: 49 | SPD: 12 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -34,15 +34,15 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 16)
 - **Tipos:** Poison
-- **HP:** **40 / 52** (HEALTHY)
+- **HP:** **30 / 52** (HEALTHY)
 - **Stats com Modificadores:** ATK: 27 (0) | DEF: 29 (0) | SPD: 29 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **1-2 HP** (0.5x eficácia) • ~16 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~29 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-16: Usa repetidamente Tackle
+- ➔ Turnos 1-29: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
@@ -76,14 +76,14 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Nidorina** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 40 / 52 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 30 / 52 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 29 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3110 | Def: 2272 | Spd: 3464 | Spc: 1939 | HP: 2368
 - **Experiência:** 2821 EXP (Progresso: 49%, faltam 299 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Scratch** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -216,6 +216,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:58:25] **Turno #4**: Nidorina (30/52 HP) vs Geodude (Lv. 13 • 29/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
+- [18:58:24] **Turno #4**: Nidorina (35/52 HP) vs Geodude (Lv. 13 • 30/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
+- [18:58:23] **Turno #3**: Nidorina (35/52 HP) vs Geodude (Lv. 13 • 31/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
+- [18:58:22] **Turno #2**: Nidorina (40/52 HP) vs Geodude (Lv. 13 • 31/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [18:58:19] **Turno #2**: Nidorina (40/52 HP) vs Geodude (Lv. 13 • 32/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [18:58:19] **Turno #2**: Nidorina (45/52 HP) vs Geodude (Lv. 13 • 32/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [18:58:17] **Turno #1**: Nidorina (45/52 HP) vs Geodude (Lv. 13 • 33/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Defense Curl`
@@ -227,10 +231,6 @@
 - [18:58:09] **Turno #1**: Nidorino (4/61 HP) vs Machop (Lv. 13 • 43/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
 - [18:58:08] **Turno #3**: Nidorino (4/61 HP) vs Machop (Lv. 13 • 43/43 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
 - [18:58:07] **Turno #3**: Nidorino (4/61 HP) vs Geodude (Lv. 13 • 0/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
-- [18:58:05] **Turno #3**: Nidorino (4/61 HP) vs Geodude (Lv. 13 • 11/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
-- [18:58:03] **Turno #2**: Nidorino (4/61 HP) vs Geodude (Lv. 13 • 17/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Defense Curl`
-- [18:58:02] **Turno #1**: Nidorino (8/61 HP) vs Geodude (Lv. 13 • 26/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
-- [18:58:01] **Turno #1**: Nidorino (8/61 HP) vs Geodude (Lv. 13 • 35/35 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
