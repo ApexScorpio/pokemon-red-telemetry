@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:36**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,7 +11,7 @@
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `60h 0m 25s`
-- **💬 Diálogo / Mensagem no Ecrã:** `Youe going to see BILL First`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **5756 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
@@ -23,7 +23,7 @@
 
 ### 🔴 Adversário em Campo: **Onix** (Lv. 17)
 - **Tipos:** Rock/Ground
-- **HP:** **41 / 41** (100%)
+- **HP:** **39 / 41** (95%)
 - **Stats de Batalha:** ATK: 23 | DEF: 62 | SPD: 31 | SPC: 17
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -41,10 +41,10 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~41 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~39 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-41: Usa repetidamente Poison Sting
+- ➔ Turnos 1-39: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
@@ -61,7 +61,7 @@
 - **Stat Experience (0–65.535):** Atk: 4819 | Def: 4026 | Spd: 5343 | Spc: 3136 | HP: 3938
 - **Experiência:** 6662 EXP (Progresso: 81%, faltam 197 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 16 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -223,6 +223,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:37] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 39/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Screech`
+- [18:56:36] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 40/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Screech`
 - [18:56:34] **Turno #1**: Beedrill (56/56 HP) vs Onix (Lv. 17 • 41/41 HP)
 - [18:56:29] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 0/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [18:56:28] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 21/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
@@ -236,8 +238,6 @@
 - [18:56:12] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 12/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Defense Curl`
 - [18:56:10] **Turno #1**: Butterfree (62/62 HP) vs Geodude (Lv. 15 • 39/39 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [18:56:09] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 0/48 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
-- [18:56:08] **Turno #1**: Butterfree (62/62 HP) vs Machop (Lv. 15 • 48/48 HP)
-- [18:56:02] **Turno #1**: Butterfree (62/62 HP) vs Abra (Lv. 10 • 20/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Teleport`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
@@ -247,6 +247,7 @@
 - [18:53:55] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:56:38] `FURY ATTACK POISON STING`
 - [18:56:32] `Youe going to see BILL First`
 - [18:56:22] `FURY ATTACK POISON STING`
 - [18:53:34] `CONFUSION STUN SPORE`
@@ -261,7 +262,6 @@
 - [18:15:04] `TACKLE TAIL WHIP`
 - [18:14:53] `THUNDERSHOCK THUNDER WAVE`
 - [18:14:31] `CONFUSION STUN SPORE`
-- [18:11:46] `and stealthily Eats the eggs of`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
