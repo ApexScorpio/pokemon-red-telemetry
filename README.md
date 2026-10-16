@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:17:09**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:17:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `3`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `18`, Y: `18`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `62h 0m 38s`
+- **Tempo de Jogo:** `62h 0m 43s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra)
@@ -29,13 +29,13 @@
   - **Teleport** (Psychic_type) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 2. **Pikachu** (Lv. 20)
-- **Tipos:** Electric | **HP:** 0 / 48 ❌ (FAINTED)
+- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7701 | Def: 5647 | Spd: 8496 | Spc: 4900 | HP: 5532
 - **Experiência:** 8083 EXP (Progresso: 7%, faltam 1178 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -77,16 +77,16 @@
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 22)
-- **Tipos:** Bug/Flying | **HP:** 43 / 65 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 7097 | Def: 6603 | Spd: 7213 | Spc: 4854 | HP: 5907
 - **Experiência:** 10 826 EXP (Progresso: 12%, faltam 1341 p/ Lv.23)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 16 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 14 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **20 / 20 slots** (0 vagas livres)
 - **Potion** x6
@@ -150,6 +150,10 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
+## 🎒 9. Itens da Área (Cerulean City)
+### Itens Ocultos (Invisíveis no chão):
+- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
+
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
@@ -169,12 +173,12 @@
 - [19:16:36] **Turno #1**: Abra (26/26 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 - [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 
+- [19:17:52] Entrou em Cerulean City
 - [19:17:08] Entrou em Cerulean Pokecenter
 - [19:17:03] Entrou em Cerulean City
 - [19:17:02] Entrou em Cerulean Trashed House
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
-- [19:16:08] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:16:41] `CONFUSION STUN SPORE`
