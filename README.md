@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:53**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:57**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -13,7 +13,7 @@
 - **Tempo de Jogo:** `78h 0m 58s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **17 005 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 13 (Geodude)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 14 (Geodude)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
@@ -45,12 +45,12 @@
   - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Geodude** (Lv. 13)
-- **Tipos:** Rock/Ground | **HP:** 34 / 34 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 29 | DEF: 31 | SPD: 12 | SPC: 17
+### 1. **Geodude** (Lv. 14)
+- **Tipos:** Rock/Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 31 | DEF: 33 | SPD: 12 | SPC: 18
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 191 | Def: 196 | Spd: 220 | Spc: 277 | HP: 155
-- **Experiência:** 1610 EXP (Progresso: 99%, faltam 2 p/ Lv.14)
+- **Stat Experience (0–65.535):** Atk: 213 | Def: 223 | Spd: 262 | Spc: 312 | HP: 170
+- **Experiência:** 1802 EXP (Progresso: 45%, faltam 233 p/ Lv.15)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Defense Curl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -102,13 +102,13 @@
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 23)
-- **Tipos:** Bug/Flying | **HP:** 47 / 68 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 41 / 68 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 34 | DEF: 33 | SPD: 46 | SPC: 51
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 7616 | Def: 7202 | Spd: 7726 | Spc: 5519 | HP: 6393
-- **Experiência:** 12 923 EXP (Progresso: 46%, faltam 901 p/ Lv.24)
+- **Stat Experience (0–65.535):** Atk: 7638 | Def: 7229 | Spd: 7768 | Spc: 5554 | HP: 6408
+- **Experiência:** 13 115 EXP (Progresso: 57%, faltam 709 p/ Lv.24)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 22 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 21 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -204,7 +204,7 @@
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
-  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 13 (Geodude)`).
+  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 14 (Geodude)`).
   - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
