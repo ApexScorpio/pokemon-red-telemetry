@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:46:46**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:46:50**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,12 +11,13 @@
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `56h 0m 23s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
 - **Tipos:** Poison/Flying
@@ -25,25 +26,25 @@
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~2-3 HP (1x)
+  - **Leech Life** (Bug) ➔ Dano: ~5-6 HP (2x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
-- **Tipos:** Normal
-- **HP:** **48 / 54** (HEALTHY)
+- **Tipos:** Bug/Poison
+- **HP:** **27 / 54** (HEALTHY)
 - **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **12-15 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (0.5x eficácia) • ~4 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Fury Attack (Causa ~12-15 de dano)
-- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-4: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (48/54). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Pikachu (Lv. 15)** [38/38 HP]
+- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **38%** | Great Ball: **56%** | Ultra Ball: **38%**
@@ -236,6 +237,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:46:49] **Turno #1**: Beedrill (27/54 HP) vs Zubat (Lv. 9 • 27/27 HP) • Golpe RED: `Fury Attack`
 - [17:46:45] **Turno #1**: Beedrill (48/54 HP) vs Zubat (Lv. 9 • 27/27 HP)
 - [17:46:42] **Turno #5**: Nidorina (48/52 HP) vs Geodude (Lv. 7 • 0/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [17:46:41] **Turno #5**: Nidorina (48/52 HP) vs Geodude (Lv. 7 • 1/24 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
@@ -250,7 +252,6 @@
 - [17:46:23] **Turno #1**: Beedrill (27/54 HP) vs Zubat (Lv. 8 • 0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:46:22] **Turno #1**: Beedrill (27/54 HP) vs Zubat (Lv. 8 • 8/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:46:20] **Turno #1**: Beedrill (27/54 HP) vs Zubat (Lv. 8 • 24/24 HP)
-- [17:46:20] **Turno #1**: Beedrill (9/54 HP) vs Zubat (Lv. 8 • 24/24 HP)
 
 - [17:46:44] Entrou em Mt Moon B2f
 - [17:46:26] Entrou em Mt Moon B1F
@@ -260,6 +261,7 @@
 - [17:45:04] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:46:49] `FURY ATTACK POISON STING`
 - [17:46:33] `TACKLE TAIL WHIP`
 - [17:46:21] `FURY ATTACK POISON STING`
 - [17:46:13] `TACKLE TAIL WHIP`
