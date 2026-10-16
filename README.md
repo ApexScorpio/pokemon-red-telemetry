@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:36**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:40**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -19,11 +19,11 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Bubble`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Shellder** (Lv. 16)
 - **Tipos:** Water
-- **HP:** **38 / 38** (100%)
+- **HP:** **0 / 38** (0%)
 - **Stats de Batalha:** ATK: 28 | DEF: 39 | SPD: 20 | SPC: 21
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -34,7 +34,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 19)
 - **Tipos:** Electric
-- **HP:** **40 / 46** (HEALTHY)
+- **HP:** **33 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 33 (0) | DEF: 23 (0) | SPD: 43 (-1) | SPC: 31 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -47,18 +47,18 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (40/46). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (33/46). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 19) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 40 / 46 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 33 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 23 | SPD: 43 | SPC: 31
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7524 | Def: 5432 | Spd: 8308 | Spc: 4735 | HP: 5427
-- **Experiência:** 6893 EXP (Progresso: 3%, faltam 1107 p/ Lv.20)
+- **Stat Experience (0–65.535):** Atk: 7589 | Def: 5532 | Spd: 8348 | Spc: 4780 | HP: 5457
+- **Experiência:** 7224 EXP (Progresso: 32%, faltam 776 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -473,6 +473,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:02:38] **Turno #1**: Pikachu (33/46 HP) vs Shellder (Lv. 16 • 0/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
+- [19:02:37] **Turno #1**: Pikachu (33/46 HP) vs Shellder (Lv. 16 • 7/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
+- [19:02:36] **Turno #1**: Pikachu (40/46 HP) vs Shellder (Lv. 16 • 7/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [19:02:35] **Turno #1**: Pikachu (40/46 HP) vs Shellder (Lv. 16 • 38/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubble`
 - [19:02:34] **Turno #1**: Pikachu (38/44 HP) vs Horsea (Lv. 16 • 0/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubble`
 - [19:02:33] **Turno #1**: Pikachu (38/44 HP) vs Horsea (Lv. 16 • 14/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubble`
@@ -485,9 +488,6 @@
 - [18:59:41] **Turno #3**: Pikachu (34/44 HP) vs Oddish (Lv. 13 • 10/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [18:59:40] **Turno #2**: Pikachu (34/44 HP) vs Oddish (Lv. 13 • 22/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [18:59:40] **Turno #2**: Pikachu (39/44 HP) vs Oddish (Lv. 13 • 20/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
-- [18:59:37] **Turno #1**: Pikachu (39/44 HP) vs Oddish (Lv. 13 • 32/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
-- [18:59:36] **Turno #1**: Pikachu (44/44 HP) vs Oddish (Lv. 13 • 30/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
-- [18:59:35] **Turno #1**: Pikachu (44/44 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
