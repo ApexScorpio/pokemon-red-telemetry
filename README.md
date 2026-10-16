@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:22:52**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:22:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,7 +11,7 @@
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `76h 0m 12s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
+- **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
 
@@ -109,14 +109,14 @@
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
-### 6. **Charmeleon** (Lv. 18)
-- **Tipos:** Fire | **HP:** 53 / 53 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 34 | DEF: 29 | SPD: 42 | SPC: 35
+### 6. **Charmeleon** (Lv. 19)
+- **Tipos:** Fire | **HP:** 47 / 55 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 35 | DEF: 30 | SPD: 44 | SPC: 37
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
-- **Stat Experience (0–65.535):** Atk: 5580 | Def: 4110 | Spd: 6380 | Spc: 3354 | HP: 4190
-- **Experiência:** 4481 EXP (Progresso: 88%, faltam 94 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 5625 | Def: 4150 | Spd: 6436 | Spc: 3389 | HP: 4230
+- **Experiência:** 4692 EXP (Progresso: 13%, faltam 768 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -431,6 +431,7 @@
 - [21:15:51] Entrou em Vermilion City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:22:52] `EMBER SCRATCH`
 - [21:22:44] `TACKLE`
 - [21:22:36] `SCRATCH`
 - [21:10:29] `TACKLE`
