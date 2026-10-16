@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:33:48**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:33:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `77h 0m 23s`
+- **Tempo de Jogo:** `77h 0m 24s`
 - **💬 Diálogo / Mensagem no Ecrã:** `We heal your POKMON back to`
 - **Dinheiro:** **13 555 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett)
@@ -53,7 +53,7 @@
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **21%** | Great Ball: **40%** | Ultra Ball: **36%**
   - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
 
-## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
+## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Diglett** (Lv. 18)
 - **Tipos:** Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 19 | SPD: 43 | SPC: 25
@@ -111,6 +111,15 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+
+### 6. **Geodude** (Lv. 9)
+- **Tipos:** Rock/Ground | **HP:** 26 / 26 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 21 | DEF: 23 | SPD: 9 | SPC: 13
+- **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
+- **Stat Experience (0–65.535):** Atk: 44 | Def: 38 | Spd: 35 | Spc: 45 | HP: 38
+- **Experiência:** 497 EXP (Progresso: 55%, faltam 63 p/ Lv.10)
+- **Golpes & PPs:**
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **12 / 20 slots** (8 vagas livres)
 - **Potion** x6
@@ -211,10 +220,10 @@
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **27 / 151** (Espécies Desbloqueadas)
 - **Espécies Vistas na Pokédex:** **45 / 151**
-- **Total de Pokémon Individuais Ativos:** **20 espécimes** (5 na Equipa + 15 no PC)
+- **Total de Pokémon Individuais Ativos:** **20 espécimes** (6 na Equipa + 14 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #50 Diglett, #56 Mankey, #63 Abra, #74 Geodude, #83 Farfetch'd
 
-## 💾 6. Pokémon Guardados no PC (15 / 20 na Caixa 1) • Vagas Livres: **5**
+## 💾 6. Pokémon Guardados no PC (14 / 20 na Caixa 1) • Vagas Livres: **6**
 - #1: **Mankey** (Lv. 2) • Tipos: Fighting (Dex: #56) • HP: 14592 • Golpes: Golpe #190 (Não Identificado), Scratch, Leer
 - #2: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
 - #3: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
@@ -228,8 +237,7 @@
 - #11: **Beedrill** (Lv. 62) • Tipos: Bug/Poison (Dex: #15) • HP: 29184 • Golpes: Golpe #255 (Não Identificado), Fury Attack, String Shot, Twineedle
 - #12: **Abra** (Lv. 37) • Tipos: Psychic (Dex: #63) • HP: 37888 • Golpes: Golpe #200 (Não Identificado), Teleport
 - #13: **Farfetch'd** (Lv. 21) • Tipos: Normal/Flying (Dex: #83) • HP: 16384 • Golpes: Growl, Peck, Sand-attack
-- #14: **Geodude** (Lv. 26) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
-- #15: **Abra** (Lv. 31) • Tipos: Psychic (Dex: #63) • HP: 37888 • Golpes: Golpe #200 (Não Identificado), Teleport
+- #14: **Abra** (Lv. 31) • Tipos: Psychic (Dex: #63) • HP: 37888 • Golpes: Golpe #200 (Não Identificado), Teleport
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
