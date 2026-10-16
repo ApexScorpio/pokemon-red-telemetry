@@ -1,19 +1,19 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:23:33**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:23:38**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 9** (ID Interno: `0x14`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `8`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `36`, Y: `18`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `63h 0m 20s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TELEPORT`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra) | **Eficiência na Rota:** `0% bloqueados`
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
@@ -104,8 +104,7 @@
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
   - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 11 (Abra)`).
-  - **Eficiência na Área Atual:** **0% de encontros bloqueados** (0% bloqueados)
-  - **⚠️ Podem Aparecer (Nível >= líder):** Rattata Nv.16 (20%), Spearow Nv.16 (20%), Rattata Nv.14 (15%), Ekans Nv.11 (10%), Spearow Nv.13 (10%), Ekans Nv.15 (10%), Rattata Nv.17 (5%), Spearow Nv.17 (5%), Ekans Nv.13 (4%), Ekans Nv.17 (1%)
+  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
 
@@ -141,6 +140,10 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
+## 🎒 9. Itens da Área (Cerulean City)
+### Itens Ocultos (Invisíveis no chão):
+- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
+
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
@@ -160,12 +163,12 @@
 - [19:16:39] **Turno #1**: Butterfree (56/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 - [19:16:38] **Turno #1**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 
+- [19:23:37] Entrou em Cerulean City
 - [19:23:31] Entrou em Route 9
 - [19:23:28] Entrou em Cerulean City
 - [19:23:18] Entrou em Route 5
 - [19:22:58] Entrou em Cerulean City
 - [19:22:56] Entrou em Cerulean Trashed House
-- [19:22:54] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:23:21] `TELEPORT`
