@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:40:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:40:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon B1F** (ID Interno: `0x3C`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `27`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `27`, Y: `26`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `52h 0m 14s`
+- **Tempo de Jogo:** `52h 0m 15s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **1691 ₽** • **Fichas do Casino:** `0`
 
@@ -18,56 +18,56 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Geodude** (Lv. 7)
-- **Tipos:** Rock/Ground
-- **HP:** **23 / 23** (100%)
-- **Stats de Batalha:** ATK: 17 | DEF: 19 | SPD: 9 | SPC: 9
+### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
+- **Tipos:** Poison/Flying
+- **HP:** **25 / 25** (100%)
+- **Stats de Batalha:** ATK: 13 | DEF: 12 | SPD: 14 | SPC: 11
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+  - **Leech Life** (Bug) ➔ Dano: ~2-3 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
-- **Tipos:** Bug/Poison
-- **HP:** **8 / 48** (HEALTHY)
+- **Tipos:** Normal
+- **HP:** **51 / 48** (HEALTHY)
 - **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-2 HP** (0.25x eficácia) • ~12 turnos para K.O.
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **11-13 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-12: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Fury Attack (Causa ~11-13 de dano)
+- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 19)** [53/57 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (51/48). Não precisas de gastar um turno a trocar.
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **38%** | Great Ball: **57%** | Ultra Ball: **38%**
-  - *Se adormeceres o inimigo:* **~44%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **35%** | Great Ball: **52%** | Ultra Ball: **35%**
+  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 8 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 3429 | Def: 2866 | Spd: 3901 | Spc: 2135 | HP: 2788
-- **Experiência:** 3407 EXP (Progresso: 4%, faltam 689 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 3469 | Def: 2916 | Spd: 3911 | Spc: 2150 | HP: 2808
+- **Experiência:** 3450 EXP (Progresso: 10%, faltam 646 p/ Lv.16)
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 4 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
 ### 2. **Butterfree** (Lv. 19)
-- **Tipos:** Bug/Flying | **HP:** 53 / 57 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 51 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 27 | SPD: 38 | SPC: 43
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 5692 | Def: 5162 | Spd: 6188 | Spc: 3902 | HP: 4885
-- **Experiência:** 7484 EXP (Progresso: 55%, faltam 516 p/ Lv.20)
+- **Stat Experience (0–65.535):** Atk: 5732 | Def: 5212 | Spd: 6198 | Spc: 3917 | HP: 4905
+- **Experiência:** 7527 EXP (Progresso: 59%, faltam 473 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 22 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -160,7 +160,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↘️ 6 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **✅ VENCIDO**
+### #1. [↙️ 17 passos Sudoeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -173,7 +173,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember elimina ambos os insetos num só golpe.
 
-### #2. [↖️ 31 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **✅ VENCIDO**
+### #2. [↖️ 42 passos Noroeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -186,7 +186,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #3. [↗️ 19 passos Nordeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **✅ VENCIDO**
+### #3. [↖️ 14 passos Noroeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -199,7 +199,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #4. [↗️ 38 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **✅ VENCIDO**
+### #4. [↗️ 25 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -212,7 +212,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #5. [↘️ 13 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
+### #5. [↙️ 8 passos Sudoeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -225,7 +225,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↖️ 12 passos Noroeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
+### #6. [↖️ 23 passos Noroeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Rattata (Lv. 10) • Zubat (Lv. 10)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -238,7 +238,7 @@
   - **Slot #6**: **Butterfree** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #7. [⬆️ 5 passos Norte] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #7. [↖️ 16 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -251,7 +251,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** A carcaça de pedra deles é vulnerável a Confusion (Special). NÃO uses Charmeleon nem Pikachu!
 
-### #8. [↖️ 15 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste)) • **⚔️ POR VENCER**
+### #8. [↖️ 26 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste)) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -264,7 +264,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
-### #9. [↗️ 16 passos Nordeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **✅ VENCIDO**
+### #9. [↖️ 25 passos Noroeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Zubat (Lv. 12) • Ekans (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -277,7 +277,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
-### #10. [↗️ 24 passos Nordeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **⚔️ POR VENCER**
+### #10. [↗️ 11 passos Nordeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Raticate (Lv. 13)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -290,7 +290,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Hyper Fang. Raticate tem alta velocidade e ataque rápido.
 
-### #11. [↖️ 21 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **⚔️ POR VENCER**
+### #11. [↖️ 32 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Média
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -303,7 +303,7 @@
   - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
-### #12. [↗️ 34 passos Nordeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **⚔️ POR VENCER**
+### #12. [↗️ 21 passos Nordeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **⚔️ POR VENCER**
 - **Dificuldade:** Difícil
 - **Roster Inimigo:** Raticate (Lv. 16)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -319,14 +319,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:40:32] **Turno #1**: Beedrill (51/48 HP) vs Zubat (25/25 HP)
+- [15:40:30] **Turno #1**: Butterfree (51/57 HP) vs Geodude (0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
+- [15:40:29] **Turno #1**: Butterfree (51/57 HP) vs Geodude (23/23 HP) • Golpe Inimigo: `Tackle`
 - [15:40:26] **Turno #1**: Beedrill (8/48 HP) vs Geodude (23/23 HP)
 - [15:40:25] **Turno #1**: Beedrill (38/48 HP) vs Geodude (23/23 HP)
 - [15:40:19] **Turno #1**: Pikachu (38/38 HP) vs Zubat (0/31 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [15:40:18] **Turno #1**: Pikachu (38/38 HP) vs Zubat (31/31 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [15:40:17] **Turno #2**: Pikachu (38/38 HP) vs Zubat (31/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [15:40:08] **Turno #2**: Beedrill (8/48 HP) vs Zubat (31/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [15:40:07] **Turno #2**: Beedrill (8/48 HP) vs Rattata (0/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [15:40:06] **Turno #2**: Beedrill (6/46 HP) vs Rattata (0/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 
 - [15:40:24] Entrou em Mt Moon B1F
 - [15:35:35] Entrou em Mt Moon B2f
