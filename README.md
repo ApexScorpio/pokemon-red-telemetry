@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:08:24**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:08:28**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,18 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `10`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `55h 0m 58s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **Tempo de Jogo:** `55h 0m 59s`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado por RED:** `Hyper Fang`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 7)
 - **Tipos:** Rock/Ground
-- **HP:** **23 / 23** (100%)
+- **HP:** **0 / 23** (0%)
 - **Stats de Batalha:** ATK: 18 | DEF: 20 | SPD: 8 | SPC: 10
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -30,7 +31,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **43 / 43** (HEALTHY)
+- **HP:** **34 / 43** (HEALTHY)
 - **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -47,9 +48,6 @@
 - **Substituto Sugerido:** **Butterfree (Lv. 21)** [56/62 HP]
 - **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Rattata.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **38%** | Great Ball: **57%** | Ultra Ball: **38%**
-  - *Se adormeceres o inimigo:* **~44%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 16)
@@ -77,16 +75,16 @@
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 34 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 5989 | Def: 4340 | Spd: 6757 | Spc: 3772 | HP: 5036
 - **Experiência:** 4492 EXP (Progresso: 48%, faltam 421 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
+  - **Hyper Fang** (Normal) — PP: 13 | Poder: 80 | Precisão: 90%
 
 ### 4. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -315,6 +313,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:08:28] **Turno #3**: Rattata (34/43 HP) vs Geodude (Lv. 7 • 0/23 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [18:08:27] **Turno #3**: Rattata (34/43 HP) vs Geodude (Lv. 7 • 17/23 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [18:08:25] **Turno #2**: Rattata (37/43 HP) vs Geodude (Lv. 7 • 17/23 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
+- [18:08:24] **Turno #1**: Rattata (40/43 HP) vs Geodude (Lv. 7 • 17/23 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [18:08:23] **Turno #1**: Rattata (43/43 HP) vs Geodude (Lv. 7 • 23/23 HP) • Golpe Inimigo: `Tackle`
 - [18:08:19] **Turno #1**: Pikachu (37/40 HP) vs Geodude (Lv. 7 • 23/23 HP)
 - [18:08:16] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 7 • 0/24 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
@@ -326,10 +328,6 @@
 - [18:08:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (Lv. 6 • 22/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:08:03] **Turno #1**: Pikachu (56/38 HP) vs Zubat (Lv. 6 • 22/22 HP)
 - [18:07:53] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 8 • 0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
-- [18:07:49] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 8 • 24/24 HP)
-- [18:07:39] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 9 • 0/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
-- [18:07:37] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 9 • 28/28 HP)
-- [18:07:36] **Turno #1**: Butterfree (56/62 HP) vs Geodude (Lv. 8 • 0/26 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 
 - [18:08:18] Entrou em Mt Moon B1F
 - [18:07:47] Entrou em Mt Moon 1F
@@ -339,6 +337,7 @@
 - [18:07:16] Entrou em Mt Moon 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:08:25] `TACKLE TAIL WHIP`
 - [18:06:14] `THUNDERSHOCK THUNDER WAVE`
 - [18:05:57] `TACKLE TAIL WHIP`
 - [18:05:06] `SQUIRTLE`
@@ -353,7 +352,6 @@
 - [17:48:00] `TACKLE HORN ATTACK`
 - [17:47:54] `THUNDERSHOCK THUNDER WAVE`
 - [17:46:49] `FURY ATTACK POISON STING`
-- [17:46:33] `TACKLE TAIL WHIP`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
