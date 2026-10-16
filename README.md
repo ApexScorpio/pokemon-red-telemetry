@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:47:30**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:47:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `27`, Y: `17`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `53h 0m 0s`
+- **Tempo de Jogo:** `53h 0m 1s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **2051 ₽** • **Fichas do Casino:** `0`
 
@@ -79,7 +79,7 @@
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
 ### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 15 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 0 / 43 ❌ (FAINTED)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 5989 | Def: 4340 | Spd: 6757 | Spc: 3772 | HP: 5036
@@ -174,9 +174,8 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
 ### #2. [↖️ 16 passos Noroeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro)) • **✅ VENCIDO**
@@ -186,9 +185,8 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
 ### #3. [➡️ 2 passos Este] **Team Rocket Grunt #3** (Mt. Moon B2F (Corredor)) • **✅ VENCIDO**
@@ -198,9 +196,8 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Hyper Fang. Raticate tem alta velocidade e ataque rápido.
 
 ### #4. [↖️ 23 passos Noroeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **⚔️ POR VENCER**
@@ -210,9 +207,8 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
 ### #5. [↗️ 12 passos Nordeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **⚔️ POR VENCER**
@@ -222,9 +218,8 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
