@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:09**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:14**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `23`, Y: `13`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `3`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `61h 0m 1s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
@@ -24,73 +24,73 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
-- **Tipos:** Bug/Poison | **HP:** 0 / 56 ❌ (FAINTED)
+- **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4841 | Def: 4106 | Spd: 5378 | Spc: 3151 | HP: 3955
 - **Experiência:** 6858 EXP (Progresso: 100%, faltam 1 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Nidorino** (Lv. 20)
-- **Tipos:** Poison | **HP:** 0 / 61 ❌ (FAINTED)
+- **Tipos:** Poison | **HP:** 61 / 61 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 4416 | Def: 3059 | Spd: 4601 | Spc: 2643 | HP: 3473
 - **Experiência:** 5782 EXP (Progresso: 32%, faltam 676 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 2 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Nidorina** (Lv. 17)
-- **Tipos:** Poison | **HP:** 0 / 55 ❌ (FAINTED)
+- **Tipos:** Poison | **HP:** 55 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3210 | Def: 2366 | Spd: 3529 | Spc: 1994 | HP: 2423
 - **Experiência:** 3125 EXP (Progresso: 1%, faltam 673 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 24 | Poder: 40 | Precisão: 100%
-  - **Tackle** (Normal) — PP: 23 | Poder: 35 | Precisão: 95%
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 4. **Rattata** (Lv. 17)
-- **Tipos:** Normal | **HP:** 0 / 45 ❌ (FAINTED)
+- **Tipos:** Normal | **HP:** 45 / 45 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 21 | SPD: 36 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6234 | Def: 4630 | Spd: 6857 | Spc: 3922 | HP: 5191
 - **Experiência:** 5134 EXP (Progresso: 24%, faltam 698 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 26 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
 
 ### 5. **Pikachu** (Lv. 18)
-- **Tipos:** Electric | **HP:** 29 / 44 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 44 / 44 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 22 | SPD: 41 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7484 | Def: 5362 | Spd: 8248 | Spc: 4665 | HP: 5397
 - **Experiência:** 6610 EXP (Progresso: 76%, faltam 249 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 27 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 21)
-- **Tipos:** Bug/Flying | **HP:** 52 / 62 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 7033 | Def: 6556 | Spd: 7175 | Spc: 4792 | HP: 5842
 - **Experiência:** 10 483 EXP (Progresso: 88%, faltam 165 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 18 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -162,7 +162,11 @@
 - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Butterfree** (Lv. 21) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Nidorina** (Lv. 17) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 17) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Beedrill** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorino** (Lv. 20) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ### #2. **Líder Misty** (Ginásio de Cerulean (Chefe)) • **⚔️ POR VENCER**
@@ -171,12 +175,12 @@
 - **Lead Recomendado:** Pikachu / Bellsprout
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Butterfree** (Lv. 21) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Nidorina** (Lv. 17) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 17) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Beedrill** (Lv. 18) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorino** (Lv. 20) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
-
-## 🎒 9. Itens da Área (Cerulean City)
-### Itens Ocultos (Invisíveis no chão):
-- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -197,12 +201,12 @@
 - [18:59:29] **Turno #3**: Rattata (4/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [18:59:28] **Turno #3**: Rattata (13/45 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 
+- [19:02:12] Entrou em Cerulean Pokecenter
 - [19:02:08] Entrou em Cerulean City
 - [19:02:03] Entrou em Route 24
 - [19:00:43] Entrou em Route 25
 - [19:00:13] Entrou em Bills House
 - [18:56:04] Entrou em Route 25
-- [18:56:04] Entrou em Route 24
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:59:37] `THUNDERSHOCK THUNDER WAVE`
