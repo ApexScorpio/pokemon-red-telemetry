@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:35**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:59:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `37`, Y: `5`
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `60h 0m 44s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
+- **Tempo de Jogo:** `60h 0m 45s`
+- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **7776 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Beedrill) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Gust`
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Quick Attack`
+- **Último Golpe Usado pelo Adversário:** `Absorb`
 
 ### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
 - **Tipos:** Grass/Poison
-- **HP:** **36 / 36** (100%)
+- **HP:** **32 / 36** (89%)
 - **Stats de Batalha:** ATK: 20 | DEF: 21 | SPD: 14 | SPC: 26
 - **Os 4 Golpes do Adversário:**
   - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
@@ -32,7 +32,7 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 18)
 - **Tipos:** Electric
-- **HP:** **44 / 44** (HEALTHY)
+- **HP:** **39 / 44** (HEALTHY)
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (0) | SPD: 41 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -45,7 +45,7 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (44/44). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (39/44). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
@@ -97,16 +97,16 @@
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
 
 ### 5. **Pikachu** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 44 / 44 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 39 / 44 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 22 | SPD: 41 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7434 | Def: 5307 | Spd: 8218 | Spc: 4590 | HP: 5352
 - **Experiência:** 6394 EXP (Progresso: 55%, faltam 465 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 21)
 - **Tipos:** Bug/Flying | **HP:** 52 / 62 ✅ (SAUDÁVEL)
@@ -209,6 +209,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:59:37] **Turno #1**: Pikachu (39/44 HP) vs Oddish (Lv. 13 • 32/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
+- [18:59:36] **Turno #1**: Pikachu (44/44 HP) vs Oddish (Lv. 13 • 30/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
+- [18:59:35] **Turno #1**: Pikachu (44/44 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
 - [18:59:35] **Turno #4**: Pikachu (44/44 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Gust`
 - [18:59:34] **Turno #4**: Pikachu (44/44 HP) vs Pidgey (Lv. 13 • 0/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Gust`
 - [18:59:32] **Turno #4**: Pikachu (44/44 HP) vs Pidgey (Lv. 13 • 2/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Gust`
@@ -221,9 +224,6 @@
 - [18:59:26] **Turno #1**: Rattata (22/45 HP) vs Pidgey (Lv. 13 • 35/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:59:25] **Turno #2**: Rattata (22/45 HP) vs Pidgey (Lv. 13 • 35/35 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
 - [18:59:24] **Turno #2**: Rattata (22/45 HP) vs Oddish (Lv. 13 • 0/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
-- [18:59:23] **Turno #2**: Rattata (22/45 HP) vs Oddish (Lv. 13 • 7/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
-- [18:59:22] **Turno #2**: Rattata (22/45 HP) vs Oddish (Lv. 13 • 3/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
-- [18:59:21] **Turno #1**: Rattata (31/45 HP) vs Oddish (Lv. 13 • 17/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Absorb`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
@@ -233,6 +233,7 @@
 - [18:53:55] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [18:59:37] `THUNDERSHOCK THUNDER WAVE`
 - [18:59:10] `TACKLE TAIL WHIP`
 - [18:58:50] `SCRATCH GROWL`
 - [18:58:49] `YOUNGSTER is about to use`
@@ -247,7 +248,6 @@
 - [18:52:33] `FURY ATTACK POISON STING`
 - [18:50:33] `HORN ATTACK TACKLE`
 - [18:50:30] `TACKLE HORN ATTACK`
-- [18:49:18] `FURY ATTACK POISON STING`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
