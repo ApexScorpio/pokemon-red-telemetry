@@ -1,29 +1,27 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `68`, Y: `14`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `67`, Y: `11`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 10s`
+- **Tempo de Jogo:** `56h 0m 11s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Wrap`
 
 ### 🔴 Adversário em Campo: **Ekans** (Lv. 6)
 - **Tipos:** Poison
-- **HP:** **0 / 20** (0%)
-- **Stats de Batalha:** ATK: 13 | DEF: 11 | SPD: 12 | SPC: 10
+- **HP:** **21 / 21** (100%)
+- **Stats de Batalha:** ATK: 12 | DEF: 11 | SPD: 12 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Wrap** (Normal) • PP: 20 • Poder: 15 • Precisão: 85%
   - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
@@ -38,7 +36,7 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **26-31 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **25-30 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
 - ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
@@ -49,13 +47,16 @@
 - **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (19/42). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorino (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **35%** | Great Ball: **52%** | Ultra Ball: **35%**
+  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
+
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 19 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 21 | SPD: 39 | SPC: 28
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7085 | Def: 5009 | Spd: 7776 | Spc: 4245 | HP: 5080
-- **Experiência:** 5043 EXP (Progresso: 14%, faltam 789 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 7145 | Def: 5053 | Spd: 7831 | Spc: 4285 | HP: 5115
+- **Experiência:** 5096 EXP (Progresso: 20%, faltam 736 p/ Lv.18)
 - **Golpes & PPs:**
   - **Thundershock** (Electric) — PP: 12 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -200,6 +201,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:17:25] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 21/21 HP)
 - [18:17:23] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 0/20 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Wrap`
 - [18:17:21] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 20/20 HP)
 - [18:17:18] **Turno #1**: Pikachu (19/42 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
@@ -214,7 +216,6 @@
 - [18:17:02] **Turno #1**: Pikachu (53/40 HP) vs Spearow (Lv. 10 • 28/28 HP)
 - [18:16:17] **Turno #1**: Butterfree (53/62 HP) vs Geodude (Lv. 9 • 0/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [18:16:16] **Turno #1**: Butterfree (53/62 HP) vs Geodude (Lv. 9 • 28/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
-- [18:16:15] **Turno #1**: Butterfree (56/62 HP) vs Geodude (Lv. 9 • 28/28 HP)
 
 - [18:16:21] Entrou em Route 4
 - [18:16:20] Entrou em Mt Moon B1F
