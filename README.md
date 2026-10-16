@@ -1,61 +1,62 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:46:17**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:46:21**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `23`, Y: `15`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `28`, Y: `6`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `56h 0m 20s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
+- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Hyper Fang`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
 
-### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
-- **Tipos:** Rock/Ground
-- **HP:** **0 / 30** (0%)
-- **Stats de Batalha:** ATK: 23 | DEF: 26 | SPD: 9 | SPC: 11
+### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
+- **Tipos:** Poison/Flying
+- **HP:** **24 / 24** (100%)
+- **Stats de Batalha:** ATK: 13 | DEF: 11 | SPD: 14 | SPC: 12
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Leech Life** (Bug) ➔ Dano: ~3-4 HP (2x)
 
-### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **9 / 43** (HEALTHY)
-- **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
+- **Tipos:** Bug/Poison
+- **HP:** **27 / 54** (HEALTHY)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **10-12 HP** (0.5x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-7 HP** (0.5x eficácia) • ~4 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Hyper Fang (Causa ~10-12 de dano)
-- ➔ Turno 2: Hyper Fang (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Hyper Fang. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-4: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
 - **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Rattata.
+- **Substituto Sugerido:** **Pikachu (Lv. 15)** [38/38 HP]
+- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
+
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 17)
+### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 27 / 54 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4469 | Def: 3781 | Spd: 4844 | Spc: 2950 | HP: 3653
-- **Experiência:** 5083 EXP (Progresso: 18%, faltam 749 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 4509 | Def: 3831 | Spd: 4854 | Spc: 2965 | HP: 3673
+- **Experiência:** 5144 EXP (Progresso: 25%, faltam 688 p/ Lv.18)
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 11 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -73,12 +74,12 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
 
-### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
+### 3. **Rattata** (Lv. 16)
 - **Tipos:** Normal | **HP:** 9 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
-- **Stat Experience (0–65.535):** Atk: 6029 | Def: 4390 | Spd: 6767 | Spc: 3787 | HP: 5056
-- **Experiência:** 4547 EXP (Progresso: 55%, faltam 366 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 6069 | Def: 4440 | Spd: 6777 | Spc: 3802 | HP: 5076
+- **Experiência:** 4608 EXP (Progresso: 63%, faltam 305 p/ Lv.17)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 33 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 27 | Poder: 40 | Precisão: 100%
@@ -164,7 +165,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 27 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
+### #1. [⬅️ 23 passos Oeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -177,7 +178,7 @@
   - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** A carcaça de pedra deles é vulnerável a Confusion (Special). NÃO uses Charmeleon nem Pikachu!
 
-### #2. [↙️ 12 passos Sudoeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
+### #2. [↙️ 26 passos Sudoeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -190,7 +191,7 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #3. [↗️ 18 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
+### #3. [↗️ 4 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -203,7 +204,7 @@
   - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #4. [↘️ 17 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #4. [↙️ 29 passos Sudoeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -216,7 +217,7 @@
   - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #5. [↙️ 15 passos Sudoeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
+### #5. [↙️ 29 passos Sudoeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -229,7 +230,7 @@
   - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↙️ 23 passos Sudoeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
+### #6. [↙️ 37 passos Sudoeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -242,7 +243,7 @@
   - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #7. [↘️ 19 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
+### #7. [↘️ 23 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -267,6 +268,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:46:20] **Turno #1**: Beedrill (27/54 HP) vs Zubat (Lv. 8 • 24/24 HP)
+- [17:46:20] **Turno #1**: Beedrill (9/54 HP) vs Zubat (Lv. 8 • 24/24 HP)
 - [17:46:17] **Turno #4**: Rattata (9/43 HP) vs Geodude (Lv. 10 • 0/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:46:16] **Turno #4**: Rattata (9/43 HP) vs Geodude (Lv. 10 • 4/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:46:15] **Turno #3**: Rattata (9/43 HP) vs Geodude (Lv. 10 • 4/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
@@ -280,8 +283,6 @@
 - [17:45:57] **Turno #1**: Beedrill (32/54 HP) vs Zubat (Lv. 7 • 0/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:45:56] **Turno #1**: Beedrill (32/54 HP) vs Zubat (Lv. 7 • 10/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [17:45:55] **Turno #1**: Beedrill (37/54 HP) vs Zubat (Lv. 7 • 8/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [17:45:54] **Turno #1**: Beedrill (37/54 HP) vs Zubat (Lv. 7 • 16/24 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [17:45:53] **Turno #1**: Beedrill (37/54 HP) vs Zubat (Lv. 7 • 24/24 HP)
 
 - [17:46:01] Entrou em Mt Moon 1F
 - [17:45:46] Entrou em Mt Moon B1F
@@ -291,6 +292,7 @@
 - [17:44:48] Entrou em Route 4
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:46:21] `FURY ATTACK POISON STING`
 - [17:46:13] `TACKLE TAIL WHIP`
 - [17:45:56] `FURY ATTACK POISON STING`
 - [17:45:37] `TACKLE TAIL WHIP`
