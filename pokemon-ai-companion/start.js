@@ -45,10 +45,18 @@ function checkForUpdates() {
       return;
     }
 
-    console.log('[Updater] Nova versão detetada. A atualizar...');
+    const changedFiles = git(['diff', '--name-only', local, remote]).split('\n').filter(Boolean);
+    const hasCodeChanges = changedFiles.some(f => !f.endsWith('.md') && !f.endsWith('.txt'));
+
+    console.log('[Updater] Nova versão detetada no GitHub. A descarregar...');
     git(['pull', '--ff-only', 'origin', 'main']);
-    console.log('[Updater] Atualização instalada. A reiniciar o servidor...');
-    if (serverProcess && !serverProcess.killed) serverProcess.kill();
+
+    if (hasCodeChanges) {
+      console.log('[Updater] Código atualizado. A reiniciar o servidor...');
+      if (serverProcess && !serverProcess.killed) serverProcess.kill();
+    } else {
+      console.log('[Updater] Apenas ficheiros de telemetria/dados atualizados. O servidor mantém-se ativo.');
+    }
   } catch (err) {
     console.warn('[Updater] Não foi possível verificar/instalar atualizações:', err.message);
   } finally {
