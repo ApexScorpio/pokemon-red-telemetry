@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:08**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:13**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `19`, Y: `18`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `27`, Y: `9`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `62h 0m 32s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SPEED SPECIAL OT`
@@ -173,12 +173,12 @@
 - [19:03:36] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [19:03:34] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 22/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 
+- [19:16:13] Entrou em Cerulean City
+- [19:16:11] Entrou em Cerulean Trashed House
 - [19:16:08] Entrou em Cerulean City
 - [19:11:19] Entrou em Cerulean Pokecenter
 - [19:07:52] Entrou em Cerulean City
 - [19:07:35] Entrou em Cerulean Trade House
-- [19:07:08] Entrou em Cerulean City
-- [19:04:05] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [19:11:46] `SPEED SPECIAL OT`
