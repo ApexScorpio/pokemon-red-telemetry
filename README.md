@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:39:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:39:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,8 +10,8 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `0`, Y: `3`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `78h 0m 3s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
+- **Tempo de Jogo:** `78h 0m 4s`
+- **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
 - **Dinheiro:** **13 555 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett)
 
@@ -77,7 +77,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 4. **Pikachu** (Lv. 21)
-- **Tipos:** Electric | **HP:** 21 / 50 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 0 / 50 ❌ (FAINTED)
 - **Stats Reais:** ATK: 36 | DEF: 25 | SPD: 47 | SPC: 34
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7922 | Def: 5864 | Spd: 8702 | Spc: 5165 | HP: 5757
@@ -89,13 +89,13 @@
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 5. **Charmeleon** (Lv. 19)
-- **Tipos:** Fire | **HP:** 55 / 55 ✅ (SAUDÁVEL)
+- **Tipos:** Fire | **HP:** 49 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 30 | SPD: 44 | SPC: 37
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
 - **Stat Experience (0–65.535):** Atk: 5625 | Def: 4150 | Spd: 6436 | Spc: 3389 | HP: 4230
 - **Experiência:** 4692 EXP (Progresso: 13%, faltam 768 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -418,6 +418,7 @@
 - [21:38:17] Entrou em Ss Anne 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:39:52] `EMBER SCRATCH`
 - [21:39:45] `TACKLE`
 - [21:24:30] `We heal your POKMON back to`
 - [21:24:05] `CONFUSION STUN SPORE`
