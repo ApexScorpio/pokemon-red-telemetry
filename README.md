@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:37:21**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:37:26**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Ss Anne 1F** (ID Interno: `0x5F`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `16`, Y: `6`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `15`, Y: `7`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `77h 0m 47s`
 - **💬 Diálogo / Mensagem no Ecrã:** `We heal your POKMON back to`
@@ -253,7 +253,7 @@
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #3. [↙️ 13 passos Sudoeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #3. [↙️ 11 passos Sudoeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
@@ -265,7 +265,7 @@
 - **Lead Recomendado:** Diglett / Dugtrio
 - **Estratégia:** 100% Imune a Electric! Usa Dig no Raichu para aniquilar sem sofrer dano.
 
-### #5. [↙️ 16 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #5. [↙️ 14 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
@@ -283,19 +283,19 @@
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #8. [↙️ 22 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #8. [↙️ 20 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #9. [↙️ 16 passos Sudoeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #9. [⬇️ 14 passos Sul] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #10. [↙️ 30 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #10. [↙️ 28 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
@@ -319,7 +319,7 @@
 - **Lead Recomendado:** Pikachu / Butterfree
 - **Estratégia:** Pikachu contra Zubat.
 
-### #14. [↘️ 29 passos Sudeste] **Engineer Bernie** (Rota 11) • **⚔️ POR VENCER**
+### #14. [➡️ 29 passos Este] **Engineer Bernie** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Magnemite (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
@@ -337,13 +337,13 @@
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Eletricidade contra água.
 
-### #17. [↙️ 6 passos Sudoeste] **Gambler Darian** (Rota 11) • **⚔️ POR VENCER**
+### #17. [↙️ 4 passos Sudoeste] **Gambler Darian** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Growlithe (Lv. 21) • Vulpix (Lv. 21)
 - **Lead Recomendado:** Diglett / Água
 - **Estratégia:** Ataques de Terra ou Água contra Fogo.
 
-### #18. [➡️ 12 passos Este] **Youngster Yasu** (Rota 11) • **⚔️ POR VENCER**
+### #18. [↗️ 14 passos Nordeste] **Youngster Yasu** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 17) x2 • Raticate (Lv. 17)
 - **Lead Recomendado:** Nidorino / Charmeleon
@@ -355,7 +355,7 @@
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig aniquila ambos.
 
-### #20. [↗️ 8 passos Nordeste] **Gambler Dirk** (Rota 11) • **⚔️ POR VENCER**
+### #20. [↗️ 10 passos Nordeste] **Gambler Dirk** (Rota 11) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Bellsprout (Lv. 18) • Oddish (Lv. 18)
 - **Lead Recomendado:** Charmeleon (Ember)
