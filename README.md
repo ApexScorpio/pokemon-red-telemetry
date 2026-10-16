@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:47**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:51**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #4`
-- **Último Golpe Usado por RED:** `Sleep Powder`
+- **Turno Atual:** `Turno #6`
+- **Último Golpe Usado por RED:** `Confusion`
 - **Último Golpe Usado pelo Adversário:** `Confusion`
 
 ### 🔴 Adversário em Campo: **Drowzee** (Lv. 17)
 - **Tipos:** Psychic
-- **HP:** **34 / 50** (68%)
+- **HP:** **22 / 50** (44%)
 - **Stats de Batalha:** ATK: 24 | DEF: 23 | SPD: 22 | SPC: 38
 - **Os 4 Golpes do Adversário:**
   - **Pound** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -43,12 +43,12 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **13-16 HP** (1x eficácia) • ~3 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **13-16 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 88%)
-- ➔ Turno 1: Sleep Powder (Neutraliza o adversário sem sofrer dano)
-- ➔ Turnos seguintes: Confusion até à vitória
-> **Resumo Tático:** Usa Sleep Powder para garantir que o Pokémon sobrevive enquanto desgasta a barra de vida do inimigo.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Confusion (Causa ~13-16 de dano)
+- ➔ Turno 2: Confusion (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Confusion. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -120,7 +120,7 @@
 - **Stat Experience (0–65.535):** Atk: 7073 | Def: 6581 | Spd: 7192 | Spc: 4809 | HP: 5877
 - **Experiência:** 10 642 EXP (Progresso: 100%, faltam 6 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 22 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 20 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 14 | Poder: -- | Precisão: 75%
@@ -194,6 +194,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:16:50] **Turno #6**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
+- [19:16:50] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
+- [19:16:49] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 28/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:47] **Turno #4**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Confusion`
 - [19:16:41] **Turno #3**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:40] **Turno #2**: Butterfree (50/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
@@ -206,9 +209,6 @@
 - [19:16:27] **Turno #3**: Pikachu (0/48 HP) vs Machop (Lv. 17 • 17/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
 - [19:16:25] **Turno #2**: Pikachu (6/48 HP) vs Machop (Lv. 17 • 35/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
 - [19:16:24] **Turno #1**: Pikachu (27/48 HP) vs Machop (Lv. 17 • 53/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
-- [19:16:23] **Turno #1**: Pikachu (48/48 HP) vs Machop (Lv. 17 • 53/53 HP) • Golpe RED: `Teleport` • Golpe Inimigo: `Karate Chop`
-- [19:16:19] **Turno #1**: Abra (26/26 HP) vs Machop (Lv. 17 • 53/53 HP)
-- [19:16:18] **Turno #1**: Abra (25/26 HP) vs Machop (Lv. 17 • 53/53 HP)
 
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
