@@ -1,22 +1,26 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:26:01**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:45:36**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Daycare** (ID Interno: `0x48`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `7`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `2`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `63h 0m 36s`
+- **Tempo de Jogo:** `65h 0m 44s`
 - **💬 Diálogo / Mensagem no Ecrã:** `anger It could be docile one`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada))
+  - **Equipa Adversária:** Machop (Lv. 17) • Drowzee (Lv. 17)
+  - **Lead Recomendado:** Butterfree (Confusion)
+  - **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Abra** (Lv. 11)
@@ -141,6 +145,132 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
+### #1. [↘️ 19 passos Sudeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
+- **Dificuldade:** Chefe
+- **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle.
+
+### #2. [↘️ 20 passos Sudeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Caterpie (Lv. 10) • Weedle (Lv. 10)
+- **Lead Recomendado:** Charmeleon
+- **Estratégia:** Ember elimina os insetos.
+
+### #3. [↘️ 23 passos Sudeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Pikachu e Charmeleon limpam.
+
+### #4. [↘️ 28 passos Sudeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Sandshrew (Lv. 14) • Ekans (Lv. 14)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion contra Ekans e Sandshrew.
+
+### #5. [↘️ 31 passos Sudeste] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion causa 2x dano.
+
+### #6. [↘️ 36 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Mankey (Lv. 18)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Fraqueza a Psíquico e Voador.
+
+### #7. [↘️ 37 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Ekans (Lv. 15) • Zubat (Lv. 15)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Pikachu e Butterfree.
+
+### #8. [↘️ 8 passos Sudeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Ataques rápidos.
+
+### #9. [↘️ 15 passos Sudeste] **Youngster Joey** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Rattata (Lv. 15) • Spearow (Lv. 15)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Pikachu para Spearow.
+
+### #10. [↘️ 17 passos Sudeste] **Youngster Dan** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Slowpoke (Lv. 17)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Fraqueza a Electric.
+
+### #11. [➡️ 22 passos Este] **Jr. Trainer♂ Flint** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion e golpes fortes.
+
+### #12. [↘️ 19 passos Sudeste] **Lass Haley** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Oddish (Lv. 15) • Pidgey (Lv. 15) • Oddish (Lv. 15)
+- **Lead Recomendado:** Charmeleon
+- **Estratégia:** Ember elimina Oddish.
+
+### #13. [↗️ 31 passos Nordeste] **Hiker Franklin** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Machop (Lv. 15) • Geodude (Lv. 15)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion destrói Machop.
+
+### #14. [➡️ 35 passos Este] **Youngster Chad** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Ekans (Lv. 14) • Sandshrew (Lv. 14)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Golpes psíquicos.
+
+### #15. [↘️ 41 passos Sudeste] **Hiker Wayne** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Onix (Lv. 17)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Ataca no lado Especial.
+
+### #16. [↗️ 44 passos Nordeste] **Lass Robin** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Fácil
+- **Roster Inimigo:** Bellsprout (Lv. 13) • Pidgey (Lv. 13) • Oddish (Lv. 13)
+- **Lead Recomendado:** Charmeleon
+- **Estratégia:** Ember limpa.
+
+### #17. [↘️ 52 passos Sudeste] **Hiker Nob** (Rota 25) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Geodude (Lv. 13) x2 • Machop (Lv. 13)
+- **Lead Recomendado:** Butterfree
+- **Estratégia:** Confusion.
+
+### #18. [↘️ 31 passos Sudeste] **Team Rocket Ladrão (TM28 Dig)** (Cerulean City (Atrás da Casa Roubada)) • **⚔️ POR VENCER**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Machop (Lv. 17) • Drowzee (Lv. 17)
+- **Lead Recomendado:** Butterfree (Confusion)
+- **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
+
+### #19. [↘️ 5 passos Sudeste] **Swimmer Luis** (Ginásio de Cerulean) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Horsea (Lv. 16) • Shellder (Lv. 16)
+- **Lead Recomendado:** Pikachu (Thundershock)
+- **Estratégia:** Golpes elétricos.
+
+### #20. [⬆️ 1 passos Norte] **Jr. Trainer♀ Diana** (Ginásio de Cerulean) • **✅ VENCIDO**
+- **Dificuldade:** Média
+- **Roster Inimigo:** Goldeen (Lv. 19)
+- **Lead Recomendado:** Pikachu (Thundershock)
+- **Estratégia:** Thundershock.
+
+### #21. [↗️ 4 passos Nordeste] **Líder Misty** (Ginásio de Cerulean (Líder)) • **✅ VENCIDO**
+- **Dificuldade:** Chefe
+- **Roster Inimigo:** Staryu (Lv. 18) • Starmie (Lv. 21)
+- **Lead Recomendado:** Pikachu
+- **Estratégia:** Insignia Cascade obtida!
+
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
