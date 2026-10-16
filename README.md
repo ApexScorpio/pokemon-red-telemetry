@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:54**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:58:58**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,13 +17,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #5`
 - **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
 ### 🔴 Adversário em Campo: **Sandshrew** (Lv. 14)
 - **Tipos:** Ground
-- **HP:** **34 / 40** (85%)
+- **HP:** **27 / 40** (68%)
 - **Stats de Batalha:** ATK: 28 | DEF: 31 | SPD: 18 | SPC: 15
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -34,20 +34,20 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
 - **Tipos:** Poison
-- **HP:** **21 / 55** (HEALTHY)
+- **HP:** **9 / 55** (HEALTHY)
 - **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **5-7 HP** (1x eficácia) • ~5 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **5-7 HP** (1x eficácia) • ~4 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-5: Usa repetidamente Tackle
+- ➔ Turnos 1-4: Usa repetidamente Tackle
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (21/55). Não precisas de gastar um turno a trocar.
+- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (9/55). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Rattata (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -76,14 +76,14 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 3. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 21 / 55 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 9 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3210 | Def: 2366 | Spd: 3529 | Spc: 1994 | HP: 2423
 - **Experiência:** 3125 EXP (Progresso: 1%, faltam 673 p/ Lv.18)
 - **Golpes & PPs:**
   - **Scratch** (Normal) — PP: 24 | Poder: 40 | Precisão: 100%
-  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 30 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -216,6 +216,11 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:58:58] **Turno #5**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
+- [18:58:57] **Turno #4**: Nidorina (9/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
+- [18:58:56] **Turno #3**: Nidorina (15/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
+- [18:58:55] **Turno #3**: Nidorina (21/55 HP) vs Sandshrew (Lv. 14 • 27/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
+- [18:58:54] **Turno #2**: Nidorina (21/55 HP) vs Sandshrew (Lv. 14 • 34/40 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
 - [18:58:51] **Turno #1**: Nidorina (21/55 HP) vs Sandshrew (Lv. 14 • 34/40 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Sand-attack`
 - [18:58:50] **Turno #1**: Nidorina (21/55 HP) vs Sandshrew (Lv. 14 • 40/40 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Sand-attack`
 - [18:58:49] **Turno #2**: Nidorina (21/55 HP) vs Sandshrew (Lv. 14 • 40/40 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Wrap`
@@ -226,11 +231,6 @@
 - [18:58:43] **Turno #1**: Nidorina (20/52 HP) vs Ekans (Lv. 14 • 25/36 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Poison Sting`
 - [18:58:43] **Turno #1**: Nidorina (20/52 HP) vs Ekans (Lv. 14 • 36/36 HP) • Golpe RED: `Struggle`
 - [18:58:42] **Turno #1**: Beedrill (52/56 HP) vs Ekans (Lv. 14 • 36/36 HP)
-- [18:58:41] **Turno #1**: Beedrill (52/56 HP) vs Geodude (Lv. 13 • 0/35 HP)
-- [18:58:31] **Turno #7**: Butterfree (52/62 HP) vs Geodude (Lv. 13 • 0/35 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Defense Curl`
-- [18:58:30] **Turno #7**: Butterfree (52/62 HP) vs Geodude (Lv. 13 • 28/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [18:58:29] **Turno #6**: Butterfree (57/62 HP) vs Geodude (Lv. 13 • 28/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [18:58:27] **Turno #6**: Nidorina (20/52 HP) vs Geodude (Lv. 13 • 28/35 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
