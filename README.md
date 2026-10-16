@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:44**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:47**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,8 +17,8 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Stun Spore`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Sleep Powder`
 - **Último Golpe Usado pelo Adversário:** `Confusion`
 
 ### 🔴 Adversário em Campo: **Drowzee** (Lv. 17)
@@ -123,7 +123,7 @@
   - **Confusion** (Psychic_type) — PP: 22 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 14 | Poder: -- | Precisão: 75%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **20 / 20 slots** (0 vagas livres)
 - **Potion** x6
@@ -194,6 +194,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:16:47] **Turno #4**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Confusion`
 - [19:16:41] **Turno #3**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:40] **Turno #2**: Butterfree (50/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:39] **Turno #1**: Butterfree (56/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
@@ -208,7 +209,6 @@
 - [19:16:23] **Turno #1**: Pikachu (48/48 HP) vs Machop (Lv. 17 • 53/53 HP) • Golpe RED: `Teleport` • Golpe Inimigo: `Karate Chop`
 - [19:16:19] **Turno #1**: Abra (26/26 HP) vs Machop (Lv. 17 • 53/53 HP)
 - [19:16:18] **Turno #1**: Abra (25/26 HP) vs Machop (Lv. 17 • 53/53 HP)
-- [19:16:17] **Turno #1**: Abra (25/26 HP) vs Starmie (Lv. 21 • 0/59 HP)
 
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
