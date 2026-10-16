@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:41**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:45**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,56 +10,59 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `28`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `59h 0m 40s`
+- **Tempo de Jogo:** `59h 0m 41s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3256 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `Gust`
+- **Último Golpe Usado pelo Adversário:** `Sand-attack`
 
-### 🔴 Adversário em Campo: **Pidgey** (Lv. 14)
-- **Tipos:** Normal/Flying
-- **HP:** **1 / 37** (3%)
-- **Stats de Batalha:** ATK: 20 | DEF: 18 | SPD: 22 | SPC: 17
+### 🔴 Adversário em Campo: **Nidoran♀** (Lv. 14)
+- **Tipos:** Poison
+- **HP:** **41 / 41** (100%)
+- **Stats de Batalha:** ATK: 20 | DEF: 21 | SPD: 18 | SPC: 18
 - **Os 4 Golpes do Adversário:**
-  - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
-  - **Sand-attack** (Normal) • PP: 15 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+  - **Scratch** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Poison Sting** (Poison) • PP: NaN • Poder: 15 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Gust** (Normal) ➔ Dano: ~7-9 HP (1x)
-  - **Sand-attack** (Normal) ➔ Golpe de Status
-  - **Quick Attack** (Normal) ➔ Dano: ~7-9 HP (1x)
+  - **Growl** (Normal) ➔ 🛡️ Reduz stats (Growl)
+  - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
+  - **Scratch** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Poison Sting** (Poison) ➔ Dano: ~3-4 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
 - **Tipos:** Bug/Poison
-- **HP:** **46 / 54** (HEALTHY)
+- **HP:** **38 / 54** (HEALTHY)
 - **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **3-4 HP** (0.5x eficácia) • ~11 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-11: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 1 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
+- **Motivo:** Butterfree tem o golpe String Shot (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 - **⭐ Prioridade de Treino (EXP):** **Nidorino (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 46 / 54 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 38 / 54 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4334 | Def: 3671 | Spd: 4794 | Spc: 2840 | HP: 3603
-- **Experiência:** 5135 EXP (Progresso: 24%, faltam 697 p/ Lv.18)
+- **Stat Experience (0–65.535):** Atk: 4379 | Def: 3711 | Spd: 4850 | Spc: 2875 | HP: 3643
+- **Experiência:** 5300 EXP (Progresso: 42%, faltam 532 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 12 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -205,6 +208,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:49:44] **Turno #2**: Beedrill (38/54 HP) vs Nidoran♀ (Lv. 14 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
+- [18:49:43] **Turno #2**: Beedrill (38/54 HP) vs Pidgey (Lv. 14 • 0/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
+- [18:49:42] **Turno #2**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 1/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Gust`
 - [18:49:40] **Turno #1**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 1/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Gust`
 - [18:49:39] **Turno #1**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 7/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Gust`
 - [18:49:38] **Turno #1**: Beedrill (46/54 HP) vs Pidgey (Lv. 14 • 19/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
@@ -217,9 +223,6 @@
 - [18:49:28] **Turno #1**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 19/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:26] **Turno #1**: Beedrill (54/54 HP) vs Weedle (Lv. 14 • 37/37 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:25] **Turno #1**: Beedrill (54/54 HP) vs Caterpie (Lv. 14 • 0/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
-- [18:49:24] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 0/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
-- [18:49:24] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 2/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
-- [18:49:22] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 20/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
