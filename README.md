@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:40:25**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:40:29**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -28,16 +28,16 @@
   - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
-- **Tipos:** Normal
-- **HP:** **38 / 48** (HEALTHY)
+- **Tipos:** Bug/Poison
+- **HP:** **8 / 48** (HEALTHY)
 - **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~23 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-2 HP** (0.25x eficácia) • ~12 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-23: Usa repetidamente Poison Sting
+- ➔ Turnos 1-12: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
@@ -319,6 +319,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:40:26] **Turno #1**: Beedrill (8/48 HP) vs Geodude (23/23 HP)
 - [15:40:25] **Turno #1**: Beedrill (38/48 HP) vs Geodude (23/23 HP)
 - [15:40:19] **Turno #1**: Pikachu (38/38 HP) vs Zubat (0/31 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [15:40:18] **Turno #1**: Pikachu (38/38 HP) vs Zubat (31/31 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
@@ -326,7 +327,6 @@
 - [15:40:08] **Turno #2**: Beedrill (8/48 HP) vs Zubat (31/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [15:40:07] **Turno #2**: Beedrill (8/48 HP) vs Rattata (0/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [15:40:06] **Turno #2**: Beedrill (6/46 HP) vs Rattata (0/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
-- [15:40:05] **Turno #2**: Beedrill (6/46 HP) vs Rattata (15/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 
 - [15:40:24] Entrou em Mt Moon B1F
 - [15:35:35] Entrou em Mt Moon B2f
