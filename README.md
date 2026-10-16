@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:29**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:33**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `20`, Y: `6`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `59h 0m 0s`
+- **Tempo de Jogo:** `59h 0m 1s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **2521 ₽** • **Fichas do Casino:** `0`
 
@@ -18,11 +18,11 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
+- **Último Golpe Usado pelo Adversário:** `Tail Whip`
 
 ### 🔴 Adversário em Campo: **Squirtle** (Lv. 17)
 - **Tipos:** Water
-- **HP:** **17 / 44** (39%)
+- **HP:** **0 / 44** (0%)
 - **Stats de Batalha:** ATK: 24 | DEF: 29 | SPD: 22 | SPC: 24
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -30,14 +30,14 @@
   - **Bubble** (Water) • PP: NaN • Poder: 20 • Precisão: 100%
   - **Water Gun** (Water) • PP: NaN • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~5-7 HP (1x)
+  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (5-7 HP)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Bubble** (Water) ➔ Dano: ~5-6 HP (1x)
-  - **Water Gun** (Water) ➔ Dano: ~7-9 HP (1x)
+  - **Bubble** (Water) ➔ 🚨 RISCO DE K.O.! (5-6 HP)
+  - **Water Gun** (Water) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 18)
 - **Tipos:** Electric
-- **HP:** **12 / 44** (HEALTHY)
+- **HP:** **2 / 44** (HEALTHY)
 - **Stats com Modificadores:** ATK: 32 (0) | DEF: 22 (-1) | SPD: 41 (0) | SPC: 30 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
@@ -50,18 +50,18 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (12/44). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (2/44). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 12 / 44 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 2 / 44 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 22 | SPD: 41 | SPC: 30
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7341 | Def: 5202 | Spd: 8119 | Spc: 4505 | HP: 5268
-- **Experiência:** 6001 EXP (Progresso: 16%, faltam 858 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 7389 | Def: 5267 | Spd: 8162 | Spc: 4555 | HP: 5312
+- **Experiência:** 6241 EXP (Progresso: 40%, faltam 618 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 27 | Poder: 40 | Precisão: 100%
@@ -207,6 +207,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:43:32] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 0/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
+- [18:43:30] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [18:43:29] **Turno #1**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [18:43:26] **Turno #1**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 44/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:43:21] **Turno #2**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 44/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
@@ -220,8 +222,6 @@
 - [18:42:54] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 - [18:42:45] **Turno #2**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 - [18:42:43] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 0/53 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
-- [18:42:31] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 7/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sand-attack`
-- [18:42:27] **Turno #1**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 7/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Sand-attack`
 
 - [18:33:36] Entrou em Cerulean City
 - [18:29:24] Entrou em Cerulean Mart
