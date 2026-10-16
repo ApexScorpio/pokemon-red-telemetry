@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:06:51**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:06:55**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `30`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `68h 0m 0s`
+- **Tempo de Jogo:** `68h 0m 1s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK TWINEEDLE`
 - **Dinheiro:** **12 100 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Twineedle`
-- **Último Golpe Usado pelo Adversário:** `Sand-attack`
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 16)
 - **Tipos:** Normal/Flying
-- **HP:** **3 / 41** (7%)
+- **HP:** **1 / 41** (2%)
 - **Stats de Batalha:** ATK: 22 | DEF: 20 | SPD: 25 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -49,7 +49,7 @@
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 3 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Twineedle para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 1 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Twineedle para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -284,6 +284,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:06:55] **Turno #3**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
+- [20:06:53] **Turno #2**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
+- [20:06:52] **Turno #2**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 3/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 - [20:06:51] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 3/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 - [20:06:50] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 12/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 - [20:06:48] **Turno #1**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 23/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
@@ -296,9 +299,6 @@
 - [20:04:22] **Turno #2**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 6/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:04:21] **Turno #1**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 13/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [20:04:19] **Turno #1**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 27/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [20:04:19] **Turno #1**: Beedrill (46/59 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
-- [20:04:18] **Turno #1**: Charmeleon (12/53 HP) vs Pidgey (Lv. 16 • 41/41 HP)
-- [20:04:17] **Turno #1**: Charmeleon (12/53 HP) vs Butterfree (Lv. 20 • 0/57 HP)
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
