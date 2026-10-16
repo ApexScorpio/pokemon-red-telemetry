@@ -34,12 +34,12 @@ const server = http.createServer(async (req, res) => {
       });
       // Descarta ficheiros gerados em runtime para permitir pull sem conflitos
       try {
-        execFileSync('git', ['checkout', '--', ':/README.md', ':/telemetria.md', ':/public/telemetria.md', ':/public/telemetria.txt'], {
+        execFileSync('git', ['checkout', 'HEAD', '--', ':/'], {
           cwd: __dirname, stdio: 'ignore', timeout: 10000
         });
       } catch (e) {}
       try {
-        execFileSync('git', ['checkout', '--', 'README.md', 'telemetria.md', 'public/telemetria.md', 'public/telemetria.txt'], {
+        execFileSync('git', ['checkout', '--', ':/README.md', ':/telemetria.md', ':/public/telemetria.md', ':/public/telemetria.txt'], {
           cwd: __dirname, stdio: 'ignore', timeout: 10000
         });
       } catch (e) {}

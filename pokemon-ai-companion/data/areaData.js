@@ -691,6 +691,13 @@ function suggestPartyMemberToDeposit(party = [], protectedDexList = [], bossWeak
 function getUpcomingBossTactics(mapId, badges = [], party = [], pokedexOwned = [], inventory = [], eventFlagsChecker = null, coords = null) {
   const badgeCount = badges.filter(b => b.obtained).length;
   const hasBoulderBadge = badges.some(b => b.name && b.name.includes('Boulder') && b.obtained);
+  const hasCascadeBadge = badges.some(b => b.name && b.name.includes('Cascade') && b.obtained);
+  const hasThunderBadge = badges.some(b => b.name && b.name.includes('Thunder') && b.obtained);
+  const hasRainbowBadge = badges.some(b => b.name && b.name.includes('Rainbow') && b.obtained);
+  const hasSoulBadge = badges.some(b => b.name && b.name.includes('Soul') && b.obtained);
+  const hasMarshBadge = badges.some(b => b.name && b.name.includes('Marsh') && b.obtained);
+  const hasVolcanoBadge = badges.some(b => b.name && b.name.includes('Volcano') && b.obtained);
+  const hasEarthBadge = badges.some(b => b.name && b.name.includes('Earth') && b.obtained);
   const partyDexList = party.map(p => p.dex);
   const ownedDexSet = new Set(pokedexOwned);
 

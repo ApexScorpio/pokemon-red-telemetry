@@ -235,9 +235,15 @@ class RetroArchClient extends EventEmitter {
 
   persistState(state) {
     if (!state || !state.party || state.party.length === 0) return;
+    if (!state.connected) return;
+    if (!state.trainerName || state.trainerName === '9' || state.trainerName === 'Desconhecido') return;
+    if (!state.areaInfo || !state.areaInfo.name || state.areaInfo.name === 'Desconhecido') return;
+    if (state.mapId === 0 && (state.badges && state.badges.some(b => b.obtained))) return;
     try {
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
       fs.writeFileSync(p, JSON.stringify(state, null, 2), 'utf8');
+      const rootP = require('path').join(__dirname, '..', 'data', 'last_known_state.json');
+      fs.writeFileSync(rootP, JSON.stringify(state, null, 2), 'utf8');
     } catch (e) {}
   }
 
