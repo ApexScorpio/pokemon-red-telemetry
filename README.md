@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:34:15**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:34:19**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,49 +9,18 @@
 - **Localização Atual:** **Ss Anne 1F** (ID Interno: `0x5F`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `24`, Y: `7`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `77h 0m 26s`
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Tempo de Jogo:** `77h 0m 27s`
 - **💬 Diálogo / Mensagem no Ecrã:** `We heal your POKMON back to`
 - **Dinheiro:** **13 555 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Diglett)
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-
-### 🔴 Adversário em Campo: **Onix** (Lv. 14)
-- **Tipos:** Rock/Ground
-- **HP:** **34 / 34** (100%)
-- **Stats de Batalha:** ATK: -- | DEF: -- | SPD: -- | SPC: --
-- **Os 4 Golpes do Adversário:**
-  - **Tackle**
-  - **Screech**
-  - **Bide**
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Golpe #Tackle** (Normal) ➔ Dano: ~2-3 HP (0.5x)
-  - **Golpe #Screech** (Normal) ➔ Dano: ~2-3 HP (0.5x)
-  - **Golpe #Bide** (Normal) ➔ Dano: ~2-3 HP (0.5x)
-
-### 🔵 O Teu Pokémon em Campo: **Geodude** (Lv. 8)
-- **Tipos:** Rock/Ground
-- **HP:** **24 / 24** (HEALTHY)
-- **Stats com Modificadores:** ATK: 19 (0) | DEF: 21 (0) | SPD: 9 (0) | SPC: 12 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **1-2 HP** (0.5x eficácia) • ~17 turnos para K.O.
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-17: Usa repetidamente Tackle
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
-
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 22)** [65/65 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Geodude.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **21%** | Great Ball: **40%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Sailor Dwayne** (Ginásio de Vermilion)
+  - **Equipa Adversária:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
+  - **Lead Recomendado:** Diglett (Dig)
+  - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Diglett** (Lv. 18)
@@ -171,7 +140,7 @@
 - **Utilidade Tática:** ⭐ Única Jynx de Kanto! Tipos Gelo/Psíquico com Lovely Kiss e Blizzard brutal.
 - **Estado no Teu Jogo:** ⚪ Precisas de apanhar Poliwhirl
 
-### Vermilion City (Casa ao lado do Centro Pokémon) • **⚪ REQUER CAPTURA**
+### Vermilion City (Casa ao lado do Centro Pokémon) 📍 [NESTA ÁREA] • **⚪ REQUER CAPTURA**
 - **Oferece:** **Spearow** (Dex #21) ➔ **Recebe:** **Farfetch'd** ("DUX" • Dex #83)
 - **NPC & Local:** Rapariga (Casa ao lado do Centro Pokémon de Vermilion (X:3 Y:5))
 - **Utilidade Tática:** ⭐ Único Farfetch'd de Kanto! Excelente utilitário com Cut e Fly e alto dano com Slash crítico.
