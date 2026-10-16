@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:07:14**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:07:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,19 +11,19 @@
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `68h 0m 3s`
-- **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK TWINEEDLE`
+- **💬 Diálogo / Mensagem no Ecrã:** `HORN ATTACK TACKLE`
 - **Dinheiro:** **12 420 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Fury Attack`
-- **Último Golpe Usado pelo Adversário:** `Hyper Fang`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Horn Attack`
+- **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
 ### 🔴 Adversário em Campo: **Raticate** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **22 / 46** (48%)
+- **HP:** **0 / 46** (0%)
 - **Stats de Batalha:** ATK: 33 | DEF: 26 | SPD: 38 | SPC: 23
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,29 +31,27 @@
   - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
   - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (8-10 HP)
+  - **Tackle** (Normal) ➔ Dano: ~7-9 HP (1x)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (10-12 HP)
-  - **Hyper Fang** (Normal) ➔ 🚨 RISCO DE K.O.! (18-22 HP)
+  - **Quick Attack** (Normal) ➔ Dano: ~8-10 HP (1x)
+  - **Hyper Fang** (Normal) ➔ Dano: ~15-18 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 20)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 62** (HEALTHY)
-- **Stats com Modificadores:** ATK: 43 (0) | DEF: 28 (0) | SPD: 40 (0) | SPC: 26 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 20)
+- **Tipos:** Poison
+- **HP:** **44 / 61** (HEALTHY)
+- **Stats com Modificadores:** ATK: 43 (0) | DEF: 35 (0) | SPD: 38 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Twineedle** (Bug) ➔ Dano: **13-16 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **22-26 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 70%)
-- ➔ Turno 1: Twineedle (Causa ~13-16 de dano)
-- ➔ Turno 2: Twineedle (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Twineedle. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Horn Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Horn Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🚨 POKÉMON DESMAIOU: MUDAR AGORA!**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Nidorino (Lv. 20)** [61/61 HP]
-- **Motivo:** O teu Pokémon ativo não pode continuar. Troca imediatamente para Nidorino para manter o controlo da batalha.
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Nidorino tem a melhor rota de vitória rápida e HP estável (44/61). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -80,8 +78,8 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 3. **Beedrill** (Lv. 20) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 11 / 62 ✅ (SAUDÁVEL)
+### 3. **Beedrill** (Lv. 20)
+- **Tipos:** Bug/Poison | **HP:** 0 / 62 ❌ (FAINTED)
 - **Stats Reais:** ATK: 43 | DEF: 28 | SPD: 40 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 5135 | Def: 4373 | Spd: 5752 | Spc: 3412 | HP: 4197
@@ -92,14 +90,14 @@
   - **Twineedle** (Bug) — PP: 18 | Poder: 25 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 4. **Nidorino** (Lv. 20)
-- **Tipos:** Poison | **HP:** 61 / 61 ✅ (SAUDÁVEL)
+### 4. **Nidorino** (Lv. 20) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 44 / 61 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 4416 | Def: 3059 | Spd: 4601 | Spc: 2643 | HP: 3473
-- **Experiência:** 5782 EXP (Progresso: 32%, faltam 676 p/ Lv.21)
+- **Stat Experience (0–65.535):** Atk: 4497 | Def: 3119 | Spd: 4698 | Spc: 2693 | HP: 3528
+- **Experiência:** 6179 EXP (Progresso: 72%, faltam 279 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 24 | Poder: 65 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -298,6 +296,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:07:17] **Turno #4**: Nidorino (44/61 HP) vs Raticate (Lv. 16 • 0/46 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Quick Attack`
+- [20:07:17] **Turno #4**: Nidorino (44/61 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Quick Attack`
+- [20:07:16] **Turno #3**: Nidorino (61/61 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Hyper Fang`
 - [20:07:13] **Turno #3**: Beedrill (0/62 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [20:07:12] **Turno #2**: Beedrill (11/62 HP) vs Raticate (Lv. 16 • 22/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [20:07:11] **Turno #1**: Beedrill (22/62 HP) vs Raticate (Lv. 16 • 28/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
@@ -310,9 +311,6 @@
 - [20:07:04] **Turno #1**: Charmeleon (33/53 HP) vs Pidgey (Lv. 16 • 0/41 HP)
 - [20:06:57] **Turno #1**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
 - [20:06:56] **Turno #3**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 41/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [20:06:55] **Turno #3**: Beedrill (41/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [20:06:55] **Turno #3**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Quick Attack`
-- [20:06:53] **Turno #2**: Beedrill (49/62 HP) vs Pidgey (Lv. 16 • 1/41 HP) • Golpe RED: `Twineedle` • Golpe Inimigo: `Sand-attack`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
@@ -322,6 +320,7 @@
 - [20:00:54] Entrou em Underground Path North South
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:07:16] `HORN ATTACK TACKLE`
 - [20:06:46] `FURY ATTACK TWINEEDLE`
 - [20:03:36] `SCRATCH GROWL`
 - [20:02:28] `EMBER SCRATCH`
@@ -336,7 +335,6 @@
 - [19:11:46] `SPEED SPECIAL OT`
 - [19:03:41] `TACKLE TAIL WHIP`
 - [19:03:37] `SCRATCH GROWL`
-- [19:03:28] `HORN ATTACK TACKLE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
