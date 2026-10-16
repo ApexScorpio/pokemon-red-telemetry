@@ -1,28 +1,27 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:04**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:08**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `70`, Y: `10`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `72`, Y: `12`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 8s`
+- **Tempo de Jogo:** `56h 0m 9s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thundershock`
 
 ### 🔴 Adversário em Campo: **Spearow** (Lv. 10)
 - **Tipos:** Normal/Flying
 - **HP:** **28 / 28** (100%)
-- **Stats de Batalha:** ATK: 17 | DEF: 11 | SPD: 19 | SPC: 12
+- **Stats de Batalha:** ATK: 17 | DEF: 12 | SPD: 20 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
   - **Growl** (Normal) • PP: 40 • Poder: -- • Precisão: 100%
@@ -39,7 +38,7 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **42-50 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **37-44 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
 - ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
@@ -57,10 +56,10 @@
 - **Tipos:** Electric | **HP:** 22 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6849 | Def: 4884 | Spd: 7494 | Spc: 4127 | HP: 4930
-- **Experiência:** 4732 EXP (Progresso: 78%, faltam 181 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 6909 | Def: 4914 | Spd: 7564 | Spc: 4158 | HP: 4970
+- **Experiência:** 4814 EXP (Progresso: 88%, faltam 99 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 18 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 17 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
