@@ -1,29 +1,56 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:00**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:06**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `17`, Y: `14`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `30`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `74h 0m 49s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude) | **Eficiência na Rota:** `0% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Sailor Dwayne** (Ginásio de Vermilion)
-  - **Equipa Adversária:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
-  - **Lead Recomendado:** Diglett (Dig)
-  - **Estratégia:** Diglett é 100% imune a ataques elétricos.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
+- **Tipos:** Grass/Poison
+- **HP:** **36 / 36** (100%)
+- **Stats de Batalha:** ATK: 18 | DEF: 21 | SPD: 15 | SPC: 27
+- **Os 4 Golpes do Adversário:**
+  - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Absorb** (Grass) ➔ Dano: ~8-10 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Normal
+- **HP:** **60 / 24** (HEALTHY)
+- **Stats com Modificadores:** ATK: 19 (+232) | DEF: 21 (+73) | SPD: 9 (+73) | SPC: 12 (+73)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **EQUILIBRADO**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **5-7 HP** (1x eficácia) • ~6 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-6: Usa repetidamente Tackle
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Geodude tem a melhor rota de vitória rápida e HP estável (60/24). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
-### 1. **Geodude** (Lv. 8)
+### 1. **Geodude** (Lv. 8) ⚔️ [EM COMBATE]
 - **Tipos:** Rock/Ground | **HP:** 24 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
@@ -109,8 +136,8 @@
 - **Pokémon:** **Abra** ("ABRA" • Dex #63 • Psychic)
 - **Nível Real Atual:** **Lv. 10** *(Entrou a Lv. 10 • Ganhou +0 níveis!)*
 - **Custo de Retirada:** **100 ₽** *(100 ₽ base + 100 ₽ por nível crescido)*
-- **Experiência Total:** **632 EXP**
-- **Progresso para Nível 11:** Faltam **110 passos / EXP** (40%)
+- **Experiência Total:** **681 EXP**
+- **Progresso para Nível 11:** Faltam **61 passos / EXP** (66%)
 - **DVs Gen 1:** ATK: 10 | DEF: 8 | SPD: 6 | SPC: 3 | HP: 1
 - **Os 4 Golpes Atuais:**
   - **Teleport** (Psychic_type) • Poder: -- • Precisão: 100% • PP: 20
@@ -213,61 +240,61 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↙️ 9 passos Sudoeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
+### #1. [↖️ 20 passos Noroeste] **Jr. Trainer♂ Ricky** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Squirtle (Lv. 20)
 - **Lead Recomendado:** Pikachu (Thundershock)
 - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
-### #2. [↘️ 3 passos Sudeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
+### #2. [↗️ 20 passos Nordeste] **Jr. Trainer♀ Nancy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Rattata (Lv. 16) • Pikachu (Lv. 16)
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↘️ 14 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
+### #3. [↗️ 9 passos Nordeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
 - **Estratégia:** Pikachu ou fogo derrotam Butterfree.
 
-### #4. [↙️ 15 passos Sudoeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
+### #4. [↖️ 14 passos Noroeste] **Jr. Trainer♂ Jeff** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 16) • Raticate (Lv. 16)
 - **Lead Recomendado:** Pikachu / Geodude
 - **Estratégia:** Cuidado com Hyper Fang do Raticate.
 
-### #5. [↙️ 9 passos Sudoeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
+### #5. [↗️ 10 passos Nordeste] **Jr. Trainer♀ Izzy** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pidgey (Lv. 16) • Pidgey (Lv. 16) • Pidgey (Lv. 16)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu limpa os três pássaros.
 
-### #6. [↙️ 23 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
+### #6. [↙️ 4 passos Sudoeste] **Bug Catcher Elijah** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 16) • Caterpie (Lv. 16) • Weedle (Lv. 16)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember limpa os insetos.
 
-### #7. [↖️ 23 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #7. [↖️ 36 passos Noroeste] **Sailor Dwayne** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 21) • Pikachu (Lv. 21)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett é 100% imune a ataques elétricos.
 
-### #8. [↖️ 26 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #8. [↖️ 39 passos Noroeste] **Rocker Perry** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Voltorb (Lv. 20) • Magnemite (Lv. 20)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Dig destrói ambos num único turno.
 
-### #9. [↖️ 18 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
+### #9. [↖️ 31 passos Noroeste] **Gentleman Tucker** (Ginásio de Vermilion) • **⚔️ POR VENCER**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Pikachu (Lv. 23)
 - **Lead Recomendado:** Diglett (Dig)
 - **Estratégia:** Diglett vence facilmente sem sofrer dano.
 
-### #10. [↖️ 25 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
+### #10. [↖️ 38 passos Noroeste] **Líder Lt. Surge** (Ginásio de Vermilion (Líder)) • **⚔️ POR VENCER**
 - **Dificuldade:** Chefe / Difícil
 - **Roster Inimigo:** Voltorb (Lv. 21) • Pikachu (Lv. 18) • Raichu (Lv. 24 - Thunderbolt)
 - **Lead Recomendado:** Diglett / Dugtrio
@@ -305,6 +332,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:10:05] **Turno #1**: Geodude (60/24 HP) vs Oddish (Lv. 13 • 36/36 HP)
 - [21:07:26] **Turno #2**: Butterfree (60/65 HP) vs Abra (Lv. 10 • 25/25 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Teleport`
 - [21:07:06] **Turno #1**: Butterfree (60/65 HP) vs Abra (Lv. 10 • 25/25 HP)
 - [21:07:05] **Turno #1**: Butterfree (60/65 HP) vs Oddish (Lv. 13 • 0/34 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Absorb`
@@ -319,7 +347,6 @@
 - [21:03:45] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 0/26 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Harden`
 - [21:03:43] **Turno #1**: Butterfree (65/65 HP) vs Kakuna (Lv. 8 • 26/26 HP)
 - [21:03:42] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 0/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
-- [21:03:41] **Turno #1**: Butterfree (65/65 HP) vs Pidgey (Lv. 12 • 33/33 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
 
 - [21:10:00] Entrou em Route 6
 - [21:09:59] Entrou em Underground Path Route 6
@@ -337,7 +364,7 @@
 - [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ## 🧠 Conselho Tático do Grok AI
-> "Spearow (Nv. 5) e Geodude (Nv. 8) são um fardo inútil; envia o Spearow para o PC imediatamente para fazer espaço e foca-te em sublevelar o Pikachu e o Nidorino na Route 5. Com 12.140$ disponíveis, corre até Pallet Town para comprar Repels e Potions, pois vais precisar de recursos para enfrentar o próximo ginásio e apanhar novos monstros."
+> "Entra imediatamente no PC de Cerulean City e liberta o Spearow (Nv. 5) e o Geodude (Nv. 8), pois são demasiado fracos e sem cobertura de tipos contra os líderes restantes. Usa o dinheiro (12.140$) para comprar Super Potions e um Rare Candy extra, garantindo que o Pikachu e o Nidorino cheguem fortes a Viridian City."
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
