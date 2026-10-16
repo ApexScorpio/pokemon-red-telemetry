@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:21**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:25**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `30`, Y: `7`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `62h 0m 33s`
+- **Tempo de Jogo:** `62h 0m 34s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TELEPORT`
 - **Dinheiro:** **10 510 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 10 (Abra)
@@ -18,7 +18,8 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Teleport`
+- **Último Golpe Usado por RED:** `Thundershock`
+- **Último Golpe Usado pelo Adversário:** `Karate Chop`
 
 ### 🔴 Adversário em Campo: **Machop** (Lv. 17)
 - **Tipos:** Fighting
@@ -27,27 +28,28 @@
 - **Os 4 Golpes do Adversário:**
   - **Karate Chop** (Normal) • PP: 25 • Poder: 50 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Karate Chop** (Normal) ➔ 🚨 RISCO DE K.O.! (28-33 HP)
+  - **Karate Chop** (Normal) ➔ Dano: ~10-12 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Abra** (Lv. 10)
-- **Tipos:** Psychic
-- **HP:** **26 / 26** (HEALTHY)
-- **Stats com Modificadores:** ATK: 10 (0) | DEF: 8 (0) | SPD: 23 (0) | SPC: 27 (0)
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
+- **Tipos:** Electric
+- **HP:** **27 / 48** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Teleport** (Psychic_type) ➔ Dano: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **21-25 HP** (1x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 15%)
-- ➔ ⚠️ Abra não tem nenhum golpe de dano eficaz contra o adversário! Troca imediatamente de Pokémon.
-> **Resumo Tático:** Não ataques com golpes de status que causam 0 dano. Muda imediatamente para um atacante com vantagem de tipo.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-3: Usa repetidamente Thundershock
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Abra tem a melhor rota de vitória rápida e HP estável (26/26). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (27/48). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Abra (Lv. 10)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Abra** (Lv. 10) ⚔️ [EM COMBATE]
+### 1. **Abra** (Lv. 10)
 - **Tipos:** Psychic | **HP:** 26 / 26 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 10 | DEF: 8 | SPD: 23 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 5 | Defesa: 2 | Velocidade: 2 | Especial: 5 | HP: 9
@@ -57,13 +59,13 @@
   - **Teleport** (Psychic_type) — PP: 20 | Poder: -- | Precisão: 100%
 
 ### 2. **Pikachu** (Lv. 20)
-- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 27 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7701 | Def: 5647 | Spd: 8496 | Spc: 4900 | HP: 5532
 - **Experiência:** 8083 EXP (Progresso: 7%, faltam 1178 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -185,6 +187,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:16:24] **Turno #1**: Pikachu (27/48 HP) vs Machop (Lv. 17 • 53/53 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Karate Chop`
+- [19:16:23] **Turno #1**: Pikachu (48/48 HP) vs Machop (Lv. 17 • 53/53 HP) • Golpe RED: `Teleport` • Golpe Inimigo: `Karate Chop`
 - [19:16:19] **Turno #1**: Abra (26/26 HP) vs Machop (Lv. 17 • 53/53 HP)
 - [19:16:18] **Turno #1**: Abra (25/26 HP) vs Machop (Lv. 17 • 53/53 HP)
 - [19:16:17] **Turno #1**: Abra (25/26 HP) vs Starmie (Lv. 21 • 0/59 HP)
@@ -198,8 +202,6 @@
 - [19:03:45] **Turno #8**: Beedrill (56/56 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Water Gun`
 - [19:03:44] **Turno #8**: Rattata (0/45 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Water Gun`
 - [19:03:43] **Turno #8**: Rattata (2/45 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Water Gun`
-- [19:03:42] **Turno #7**: Rattata (2/45 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Bubblebeam`
-- [19:03:41] **Turno #7**: Rattata (45/45 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Bubblebeam`
 
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
