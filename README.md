@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:10:37**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:10:42**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,7 +11,7 @@
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `68h 0m 25s`
-- **💬 Diálogo / Mensagem no Ecrã:** `PIKACHU`
+- **💬 Diálogo / Mensagem no Ecrã:** `SLOWPOKE`
 - **Dinheiro:** **12 740 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon)
 
@@ -288,6 +288,8 @@
 - [20:01:01] Entrou em Underground Path North South
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [20:10:40] `SLOWPOKE`
+- [20:10:40] `GEODUDE`
 - [20:10:33] `PIKACHU`
 - [20:10:33] `WEEDLE KAKUNA`
 - [20:10:32] `BUTTERFREE WEEDLE`
@@ -301,8 +303,6 @@
 - [19:57:26] `SQUIRTLE`
 - [19:24:32] `anger It could be docile one`
 - [19:24:26] `SCRATCH GROWL`
-- [19:23:21] `TELEPORT`
-- [19:16:41] `CONFUSION STUN SPORE`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
