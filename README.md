@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:14**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:18**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,10 +18,12 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Thundershock`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Staryu** (Lv. 18)
 - **Tipos:** Water
-- **HP:** **41 / 41** (100%)
+- **HP:** **0 / 41** (0%)
 - **Stats de Batalha:** ATK: 24 | DEF: 27 | SPD: 38 | SPC: 33
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -32,32 +34,31 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 19)
 - **Tipos:** Electric
-- **HP:** **33 / 46** (HEALTHY)
+- **HP:** **22 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 33 (0) | DEF: 23 (0) | SPD: 43 (0) | SPC: 31 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **22-26 HP** (2x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **22-26 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Thundershock (Causa ~22-26 de dano)
-- ➔ Turno 2: Thundershock (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Thundershock. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (33/46). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (22/46). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 17)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 19) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 33 / 46 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 22 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 23 | SPD: 43 | SPC: 31
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7656 | Def: 5592 | Spd: 8411 | Spc: 4830 | HP: 5502
 - **Experiência:** 7675 EXP (Progresso: 72%, faltam 325 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 24 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 22 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -472,6 +473,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:03:18] **Turno #1**: Pikachu (22/46 HP) vs Staryu (Lv. 18 • 0/41 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
+- [19:03:17] **Turno #1**: Pikachu (22/46 HP) vs Staryu (Lv. 18 • 20/41 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
+- [19:03:16] **Turno #1**: Pikachu (33/46 HP) vs Staryu (Lv. 18 • 20/41 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Water Gun`
 - [19:02:54] **Turno #1**: Pikachu (33/46 HP) vs Staryu (Lv. 18 • 41/41 HP)
 - [19:02:48] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 0/49 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Peck`
 - [19:02:46] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 20/49 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
@@ -484,9 +488,6 @@
 - [19:02:33] **Turno #1**: Pikachu (38/44 HP) vs Horsea (Lv. 16 • 14/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubble`
 - [19:02:32] **Turno #1**: Pikachu (44/44 HP) vs Horsea (Lv. 16 • 14/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubble`
 - [19:02:31] **Turno #1**: Pikachu (44/44 HP) vs Horsea (Lv. 16 • 38/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Bubble`
-- [19:02:30] **Turno #1**: Pikachu (29/44 HP) vs Horsea (Lv. 16 • 38/38 HP)
-- [19:02:29] **Turno #1**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 0/36 HP)
-- [18:59:43] **Turno #3**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 0/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
