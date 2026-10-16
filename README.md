@@ -1,21 +1,52 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:48:35**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:48:39**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `27`, Y: `5`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `29`, Y: `5`
 - **Direção de RED:** **Este (Direita ➡️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `53h 0m 7s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **2531 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
+- **Tipos:** Poison/Flying
+- **HP:** **24 / 24** (100%)
+- **Stats de Batalha:** ATK: 13 | DEF: 11 | SPD: 15 | SPC: 13
+- **Os 4 Golpes do Adversário:**
+  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Leech Life** (Bug) ➔ Dano: ~1-1 HP (0.5x)
+
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 19)
+- **Tipos:** Bug/Flying
+- **HP:** **49 / 57** (HEALTHY)
+- **Stats com Modificadores:** ATK: 28 (0) | DEF: 27 (0) | SPD: 38 (0) | SPC: 43 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **22-27 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (49/57). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
+  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 15)
@@ -29,7 +60,7 @@
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 2. **Butterfree** (Lv. 19)
+### 2. **Butterfree** (Lv. 19) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 49 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 27 | SPD: 38 | SPC: 43
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
@@ -130,7 +161,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↙️ 38 passos Sudoeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **✅ VENCIDO**
+### #1. [↙️ 40 passos Sudoeste] **Bug Catcher Kent** (Mt. Moon 1F (Entrada)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -141,7 +172,7 @@
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember elimina ambos os insetos num só golpe.
 
-### #2. [↙️ 23 passos Sudoeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **✅ VENCIDO**
+### #2. [↙️ 25 passos Sudoeste] **Lass Iris** (Mt. Moon 1F (Norte)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -152,7 +183,7 @@
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #3. [↙️ 15 passos Sudoeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **✅ VENCIDO**
+### #3. [↙️ 17 passos Sudoeste] **Super Nerd Jovan** (Mt. Moon 1F (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -163,7 +194,7 @@
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #4. [↗️ 4 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **✅ VENCIDO**
+### #4. [↗️ 2 passos Nordeste] **Bug Catcher Robby** (Mt. Moon 1F (Caminho Este)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -174,7 +205,7 @@
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #5. [↙️ 29 passos Sudoeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
+### #5. [↙️ 31 passos Sudoeste] **Lass Miriam** (Mt. Moon 1F (Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -185,7 +216,7 @@
   - **Slot #4**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↙️ 32 passos Sudoeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
+### #6. [↙️ 34 passos Sudoeste] **Youngster Josh** (Mt. Moon 1F (Escadas)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Rattata (Lv. 10) • Zubat (Lv. 10)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -196,7 +227,7 @@
   - **Slot #4**: **Butterfree** (Lv. 19) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #7. [↙️ 29 passos Sudoeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #7. [↙️ 31 passos Sudoeste] **Hiker Marcos** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -210,6 +241,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:48:35] **Turno #1**: Beedrill (49/48 HP) vs Zubat (24/24 HP)
 - [15:48:33] **Turno #1**: Butterfree (49/57 HP) vs Zubat (0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [15:48:31] **Turno #1**: Beedrill (49/48 HP) vs Zubat (23/23 HP)
 - [15:48:24] **Turno #1**: Butterfree (49/57 HP) vs Paras (0/29 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Scratch`
@@ -217,7 +249,6 @@
 - [15:48:22] **Turno #1**: Butterfree (53/57 HP) vs Paras (29/29 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Scratch`
 - [15:48:22] **Turno #1**: Beedrill (51/48 HP) vs Paras (29/29 HP)
 - [15:48:10] **Turno #6**: Nidorino (51/51 HP) vs Raticate (0/46 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tail Whip`
-- [15:48:08] **Turno #6**: Nidorino (51/51 HP) vs Raticate (3/46 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tail Whip`
 
 - [15:48:30] Entrou em Mt Moon 1F
 - [15:48:28] Entrou em Mt Moon B1F
