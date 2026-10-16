@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:45**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:49**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `2`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `61h 0m 11s`
+- **Tempo de Jogo:** `61h 0m 12s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **8431 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 20 (Pikachu)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #8`
-- **Último Golpe Usado por RED:** `Tackle`
-- **Último Golpe Usado pelo Adversário:** `Water Gun`
+- **Turno Atual:** `Turno #11`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Bubblebeam`
 
 ### 🔴 Adversário em Campo: **Starmie** (Lv. 21)
 - **Tipos:** Water/Psychic
-- **HP:** **13 / 59** (22%)
+- **HP:** **5 / 59** (8%)
 - **Stats de Batalha:** ATK: 40 | DEF: 66 | SPD: 56 | SPC: 50
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,25 +31,26 @@
   - **Bubblebeam** (Water) • PP: NaN • Poder: 65 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
   - **Tackle** (Normal) ➔ Dano: ~9-11 HP (1x)
-  - **Water Gun** (Water) ➔ Dano: ~20-24 HP (1x)
-  - **Bubblebeam** (Water) ➔ Dano: ~33-39 HP (1x)
+  - **Water Gun** (Water) ➔ 🚨 RISCO DE K.O.! (20-24 HP)
+  - **Bubblebeam** (Water) ➔ 🚨 RISCO DE K.O.! (33-39 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison
-- **HP:** **56 / 56** (HEALTHY)
+- **HP:** **22 / 56** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **3-4 HP** (1x eficácia) • ~4 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **3-4 HP** (1x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-4: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 35%)
+- ➔ Turno 1: Poison Sting
+- ➔ Turno 2: Poison Sting (Finalizador)
+> **Resumo Tático:** ⚠️ Sobrevivência reduzida (35%): O inimigo ataca duas vezes antes de venceres.
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 13 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 5 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 20)
@@ -101,13 +102,13 @@
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
 
 ### 5. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 56 / 56 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 22 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4841 | Def: 4106 | Spd: 5378 | Spc: 3151 | HP: 3955
 - **Experiência:** 6858 EXP (Progresso: 100%, faltam 1 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -386,6 +387,11 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:03:49] **Turno #11**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 5/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Bubblebeam`
+- [19:03:48] **Turno #10**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 5/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [19:03:47] **Turno #10**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 9/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
+- [19:03:46] **Turno #9**: Beedrill (33/56 HP) vs Starmie (Lv. 21 • 11/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Water Gun`
+- [19:03:45] **Turno #9**: Beedrill (33/56 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Water Gun`
 - [19:03:45] **Turno #8**: Beedrill (56/56 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Water Gun`
 - [19:03:44] **Turno #8**: Rattata (0/45 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Water Gun`
 - [19:03:43] **Turno #8**: Rattata (2/45 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Water Gun`
@@ -396,11 +402,6 @@
 - [19:03:34] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 22/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [19:03:33] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Bubblebeam`
 - [19:03:32] **Turno #4**: Nidorina (55/55 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Water Gun`
-- [19:03:31] **Turno #4**: Nidorino (0/61 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Water Gun`
-- [19:03:30] **Turno #4**: Nidorino (4/61 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Water Gun`
-- [19:03:30] **Turno #3**: Nidorino (4/61 HP) vs Starmie (Lv. 21 • 43/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bubblebeam`
-- [19:03:29] **Turno #3**: Nidorino (32/61 HP) vs Starmie (Lv. 21 • 43/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bubblebeam`
-- [19:03:28] **Turno #2**: Nidorino (32/61 HP) vs Starmie (Lv. 21 • 43/59 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Bubblebeam`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
