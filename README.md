@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:48:04**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:48:08**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,9 +16,9 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #5`
-- **Último Golpe Usado por RED:** `Horn Attack`
-- **Último Golpe Usado pelo Adversário:** `Quick Attack`
+- **Turno Atual:** `Turno #6`
+- **Último Golpe Usado por RED:** `Poison Sting`
+- **Último Golpe Usado pelo Adversário:** `Tail Whip`
 
 ### 🔴 Adversário em Campo: **Raticate** (Lv. 16)
 - **Tipos:** Normal
@@ -224,6 +224,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:48:08] **Turno #6**: Nidorino (51/51 HP) vs Raticate (3/46 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Tail Whip`
 - [15:47:36] **Turno #5**: Nidorino (51/51 HP) vs Raticate (3/46 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Quick Attack`
 - [15:47:30] **Turno #5**: Rattata (0/43 HP) vs Raticate (3/46 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Quick Attack`
 - [15:46:59] **Turno #4**: Rattata (15/43 HP) vs Raticate (3/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Quick Attack`
@@ -231,7 +232,6 @@
 - [15:46:56] **Turno #3**: Rattata (43/43 HP) vs Raticate (24/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tail Whip`
 - [15:46:53] **Turno #3**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tail Whip`
 - [15:46:48] **Turno #2**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
-- [15:46:38] **Turno #2**: Beedrill (0/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 
 - [15:43:51] Entrou em Mt Moon B2f
 - [15:43:49] Entrou em Mt Moon B1F
