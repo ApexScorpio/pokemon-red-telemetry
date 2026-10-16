@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:14**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:18**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `31`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `59h 0m 37s`
+- **Tempo de Jogo:** `59h 0m 38s`
 - **💬 Diálogo / Mensagem no Ecrã:** `He invented the POKMON Storage`
 - **Dinheiro:** **3116 ₽** • **Fichas do Casino:** `0`
 
@@ -18,37 +18,34 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 
-### 🔴 Adversário em Campo: **Squirtle** (Lv. 17)
-- **Tipos:** Water
-- **HP:** **0 / 44** (0%)
-- **Stats de Batalha:** ATK: 24 | DEF: 29 | SPD: 22 | SPC: 24
+### 🔴 Adversário em Campo: **Caterpie** (Lv. 14)
+- **Tipos:** Bug
+- **HP:** **38 / 38** (100%)
+- **Stats de Batalha:** ATK: 15 | DEF: 17 | SPD: 19 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Bubble** (Water) • PP: NaN • Poder: 20 • Precisão: 100%
-  - **Water Gun** (Water) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **String Shot** (Bug) • PP: 40 • Poder: -- • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (5-7 HP)
-  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Bubble** (Water) ➔ 🚨 RISCO DE K.O.! (5-7 HP)
-  - **Water Gun** (Water) ➔ 🚨 RISCO DE K.O.! (10-12 HP)
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+  - **String Shot** (Bug) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **2 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (-1) | SPD: 32 (0) | SPC: 21 (0)
+- **Tipos:** Bug/Poison
+- **HP:** **51 / 51** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **4-5 HP** (1x eficácia) • ~4 turnos para K.O.
+- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **17-20 HP** (2x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-4: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Poison Sting (Causa ~17-20 de dano)
+- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (2/51). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (51/51). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
@@ -204,6 +201,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:49:15] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 38/38 HP)
+- [18:49:14] **Turno #1**: Beedrill (2/51 HP) vs Caterpie (Lv. 14 • 38/38 HP)
 - [18:43:32] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 0/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
 - [18:43:30] **Turno #1**: Pikachu (2/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [18:43:29] **Turno #1**: Pikachu (12/44 HP) vs Squirtle (Lv. 17 • 17/44 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
@@ -217,8 +216,6 @@
 - [18:43:04] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 0/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
 - [18:42:58] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 15/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
 - [18:42:54] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
-- [18:42:45] **Turno #2**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
-- [18:42:43] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 0/53 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
