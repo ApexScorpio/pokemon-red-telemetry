@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:19**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:23**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -52,7 +52,7 @@
   - *Se adormeceres o inimigo:* **~35%** | *Com HP no vermelho:* **~75%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Abra** (Lv. 11) ⚔️ [EM COMBATE]
+### 1. **Abra** (Lv. 11)
 - **Tipos:** Psychic | **HP:** 28 / 28 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 10 | DEF: 8 | SPD: 25 | SPC: 29
 - **DVs Gen 1 (0–15):** Ataque: 5 | Defesa: 2 | Velocidade: 2 | Especial: 5 | HP: 9
