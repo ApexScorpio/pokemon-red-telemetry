@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:52:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:52:54**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -23,7 +23,7 @@
 
 ### 🔴 Adversário em Campo: **Oddish** (Lv. 13)
 - **Tipos:** Grass/Poison
-- **HP:** **6 / 36** (17%)
+- **HP:** **7 / 36** (19%)
 - **Stats de Batalha:** ATK: 21 | DEF: 22 | SPD: 16 | SPC: 25
 - **Os 4 Golpes do Adversário:**
   - **Absorb** (Grass) • PP: 20 • Poder: 20 • Precisão: 100%
@@ -45,7 +45,7 @@
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 6 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 7 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 - **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
@@ -53,7 +53,7 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 16 / 56 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 15 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4658 | Def: 3921 | Spd: 5145 | Spc: 3045 | HP: 3828
@@ -215,6 +215,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:52:50] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 7/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:49] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 6/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:49] **Turno #2**: Beedrill (16/56 HP) vs Oddish (Lv. 13 • 6/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:48] **Turno #2**: Beedrill (16/56 HP) vs Oddish (Lv. 13 • 20/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
@@ -229,7 +230,6 @@
 - [18:52:36] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 3/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Wrap`
 - [18:52:32] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 8/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
 - [18:52:31] **Turno #1**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 29/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leer`
-- [18:52:30] **Turno #2**: Beedrill (30/56 HP) vs Ekans (Lv. 14 • 36/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 
 - [18:51:39] Entrou em Route 24
 - [18:51:35] Entrou em Cerulean City
