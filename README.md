@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:50:16**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:50:20**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -49,8 +49,8 @@
 - **Tipos:** Rock/Ground | **HP:** 35 / 35 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 33 | SPD: 12 | SPC: 18
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 245 | Def: 273 | Spd: 282 | Spc: 334 | HP: 185
-- **Experiência:** 1976 EXP (Progresso: 86%, faltam 59 p/ Lv.15)
+- **Stat Experience (0–65.535):** Atk: 285 | Def: 298 | Spd: 299 | Spc: 351 | HP: 220
+- **Experiência:** 2163 EXP (Progresso: 100%, faltam 0)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Defense Curl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -96,7 +96,7 @@
 - **Stat Experience (0–65.535):** Atk: 5700 | Def: 4242 | Spd: 6526 | Spc: 3484 | HP: 4287
 - **Experiência:** 5165 EXP (Progresso: 67%, faltam 295 p/ Lv.20)
 - **Golpes & PPs:**
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
+  - **Ember** (Fire) — PP: 24 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
