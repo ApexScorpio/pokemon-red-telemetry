@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:47:58**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:48:02**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,43 +11,45 @@
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `56h 0m 31s`
-- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
+- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE HORN ATTACK`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thundershock`
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado por RED:** `Tackle`
+- **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 9)
 - **Tipos:** Rock/Ground
-- **HP:** **28 / 28** (100%)
+- **HP:** **24 / 28** (86%)
 - **Stats de Batalha:** ATK: 19 | DEF: 23 | SPD: 8 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 15)
-- **Tipos:** Electric
-- **HP:** **38 / 38** (HEALTHY)
-- **Stats com Modificadores:** ATK: 27 (0) | DEF: 19 (0) | SPD: 35 (0) | SPC: 25 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
+- **Tipos:** Poison
+- **HP:** **45 / 51** (HEALTHY)
+- **Stats com Modificadores:** ATK: 35 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **1-1 HP** (0x eficácia) • ~28 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-2 HP** (0.25x eficácia) • ~12 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-28: Usa repetidamente Thundershock
+- ➔ Turnos 1-12: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
 - **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
 - **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Pikachu.
+- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Nidorino.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **39%** | Great Ball: **58%** | Ultra Ball: **39%**
+  - *Se adormeceres o inimigo:* **~45%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 17)
@@ -62,7 +64,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Pikachu** (Lv. 15) ⚔️ [EM COMBATE]
+### 2. **Pikachu** (Lv. 15)
 - **Tipos:** Electric | **HP:** 38 / 38 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
@@ -85,14 +87,14 @@
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 10 | Poder: 80 | Precisão: 90%
 
-### 4. **Nidorino** (Lv. 16)
-- **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
+### 4. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 45 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 3719 | Def: 2437 | Spd: 4021 | Spc: 2223 | HP: 2922
 - **Experiência:** 3103 EXP (Progresso: 97%, faltam 17 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -232,6 +234,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:48:01] **Turno #3**: Nidorino (45/51 HP) vs Geodude (Lv. 9 • 24/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
+- [17:48:00] **Turno #2**: Nidorino (45/51 HP) vs Geodude (Lv. 9 • 24/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
+- [17:47:59] **Turno #1**: Nidorino (48/51 HP) vs Geodude (Lv. 9 • 28/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
+- [17:47:58] **Turno #1**: Nidorino (51/51 HP) vs Geodude (Lv. 9 • 28/28 HP) • Golpe RED: `Thundershock`
 - [17:47:53] **Turno #1**: Pikachu (38/38 HP) vs Geodude (Lv. 9 • 28/28 HP)
 - [17:47:52] **Turno #1**: Beedrill (51/54 HP) vs Geodude (Lv. 9 • 28/28 HP)
 - [17:47:43] **Turno #4**: Nidorino (51/51 HP) vs Paras (Lv. 10 • 11/29 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Scratch`
@@ -243,10 +249,6 @@
 - [17:47:35] **Turno #1**: Beedrill (12/54 HP) vs Paras (Lv. 10 • 29/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:47:33] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 29/29 HP)
 - [17:47:16] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 0/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [17:47:16] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 7/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [17:47:15] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 13/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [17:47:14] **Turno #1**: Beedrill (22/54 HP) vs Paras (Lv. 10 • 20/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [17:47:12] **Turno #1**: Beedrill (22/54 HP) vs Paras (Lv. 10 • 27/27 HP)
 
 - [17:46:44] Entrou em Mt Moon B2f
 - [17:46:26] Entrou em Mt Moon B1F
@@ -256,6 +258,7 @@
 - [17:45:04] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:48:00] `TACKLE HORN ATTACK`
 - [17:47:54] `THUNDERSHOCK THUNDER WAVE`
 - [17:46:49] `FURY ATTACK POISON STING`
 - [17:46:33] `TACKLE TAIL WHIP`
