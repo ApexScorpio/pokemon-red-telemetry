@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:22:59**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:23:03**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,7 +11,7 @@
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `76h 0m 13s`
-- **💬 Diálogo / Mensagem no Ecrã:** `EMBER SCRATCH`
+- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude)
 
@@ -98,13 +98,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 5. **Pikachu** (Lv. 20)
-- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 41 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7812 | Def: 5770 | Spd: 8606 | Spc: 5080 | HP: 5652
 - **Experiência:** 8949 EXP (Progresso: 75%, faltam 312 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -431,6 +431,7 @@
 - [21:15:51] Entrou em Vermilion City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:23:00] `THUNDERSHOCK THUNDER WAVE`
 - [21:22:52] `EMBER SCRATCH`
 - [21:22:44] `TACKLE`
 - [21:22:36] `SCRATCH`
