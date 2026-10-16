@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:49:02**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:49:06**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,17 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `5`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `53h 0m 10s`
+- **Tempo de Jogo:** `53h 0m 11s`
 - **💬 Diálogo / Mensagem no Ecrã:** `We heal your POKMON back to`
 - **Dinheiro:** **2531 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Supersonic`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
 - **Tipos:** Poison/Flying
-- **HP:** **31 / 31** (100%)
+- **HP:** **5 / 31** (16%)
 - **Stats de Batalha:** ATK: 17 | DEF: 14 | SPD: 17 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
@@ -31,34 +33,33 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
 - **Tipos:** Bug/Poison
-- **HP:** **48 / 48** (HEALTHY)
+- **HP:** **43 / 48** (HEALTHY)
 - **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (0) | SPD: 30 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • ~6 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-6: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Pikachu (Lv. 15)** [38/38 HP]
-- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 5 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **37%** | Great Ball: **55%** | Ultra Ball: **37%**
-  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 43 / 48 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 3823 | Def: 3210 | Spd: 4305 | Spc: 2445 | HP: 3108
 - **Experiência:** 3956 EXP (Progresso: 81%, faltam 140 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 18 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -257,14 +258,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:49:05] **Turno #1**: Beedrill (43/48 HP) vs Zubat (5/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Supersonic`
+- [15:49:05] **Turno #1**: Beedrill (43/48 HP) vs Zubat (12/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
+- [15:49:04] **Turno #1**: Beedrill (48/48 HP) vs Zubat (10/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
+- [15:49:03] **Turno #1**: Beedrill (48/48 HP) vs Zubat (24/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 - [15:49:02] **Turno #1**: Beedrill (48/48 HP) vs Zubat (31/31 HP)
 - [15:49:01] **Turno #1**: Beedrill (49/48 HP) vs Zubat (31/31 HP)
 - [15:48:47] **Turno #1**: Butterfree (49/57 HP) vs Zubat (0/26 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [15:48:46] **Turno #1**: Beedrill (33/48 HP) vs Zubat (26/26 HP)
-- [15:48:41] **Turno #1**: Pikachu (33/38 HP) vs Zubat (0/24 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
-- [15:48:39] **Turno #1**: Pikachu (35/38 HP) vs Zubat (24/24 HP)
-- [15:48:35] **Turno #1**: Beedrill (49/48 HP) vs Zubat (24/24 HP)
-- [15:48:33] **Turno #1**: Butterfree (49/57 HP) vs Zubat (0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 
 - [15:48:57] Entrou em Mt Moon 1F
 - [15:48:55] Entrou em Route 4
