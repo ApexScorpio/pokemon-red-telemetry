@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:24:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,46 +10,48 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `8`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `63h 0m 25s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TELEPORT`
+- **Tempo de Jogo:** `63h 0m 26s`
+- **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra) | **Eficiência na Rota:** `10% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Teleport`
+- **Turno Atual:** `Turno #2`
+- **Último Golpe Usado por RED:** `Scratch`
+- **Último Golpe Usado pelo Adversário:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Mankey** (Lv. 12)
 - **Tipos:** Fighting
-- **HP:** **32 / 32** (100%)
+- **HP:** **16 / 32** (50%)
 - **Stats de Batalha:** ATK: 24 | DEF: 13 | SPD: 24 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
   - **Leer** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Scratch** (Normal) ➔ Dano: ~11-14 HP (1x)
+  - **Scratch** (Normal) ➔ Dano: ~4-5 HP (1x)
   - **Leer** (Normal) ➔ 🛡️ Reduz stats (Leer)
 
-### 🔵 O Teu Pokémon em Campo: **Abra** (Lv. 11)
-- **Tipos:** Psychic
-- **HP:** **28 / 28** (HEALTHY)
-- **Stats com Modificadores:** ATK: 10 (0) | DEF: 8 (0) | SPD: 25 (0) | SPC: 29 (0)
+### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
+- **Tipos:** Poison
+- **HP:** **51 / 55** (HEALTHY)
+- **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Teleport** (Psychic_type) ➔ Dano: **0-0 HP** (1x eficácia) • ~null turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Scratch** (Normal) ➔ Dano: **14-17 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 15%)
-- ➔ ⚠️ Abra não tem nenhum golpe de dano eficaz contra o adversário! Troca imediatamente de Pokémon.
-> **Resumo Tático:** Não ataques com golpes de status que causam 0 dano. Muda imediatamente para um atacante com vantagem de tipo.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Scratch (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Scratch! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Abra tem a melhor rota de vitória rápida e HP estável (28/28). Não precisas de gastar um turno a trocar.
+- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (51/55). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Abra (Lv. 11)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **25%** | Great Ball: **48%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~35%** | *Com HP no vermelho:* **~75%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **50%** | Great Ball: **95%** | Ultra Ball: **67%**
+  - *Se adormeceres o inimigo:* **~60%** | *Com HP no vermelho:* **~75%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Abra** (Lv. 11)
@@ -85,14 +87,14 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 4. **Nidorina** (Lv. 17)
-- **Tipos:** Poison | **HP:** 55 / 55 ✅ (SAUDÁVEL)
+### 4. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
+- **Tipos:** Poison | **HP:** 51 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 3210 | Def: 2366 | Spd: 3529 | Spc: 1994 | HP: 2423
 - **Experiência:** 3125 EXP (Progresso: 1%, faltam 673 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
@@ -178,6 +180,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:24:25] **Turno #2**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 16/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
+- [19:24:24] **Turno #1**: Nidorina (55/55 HP) vs Mankey (Lv. 12 • 32/32 HP) • Golpe RED: `Teleport` • Golpe Inimigo: `Leer`
 - [19:24:13] **Turno #1**: Abra (28/28 HP) vs Mankey (Lv. 12 • 32/32 HP)
 - [19:24:07] **Turno #1**: Abra (28/28 HP) vs Pidgey (Lv. 15 • 37/37 HP)
 - [19:23:21] **Turno #1**: Abra (28/28 HP) vs Pidgey (Lv. 13 • 37/37 HP) • Golpe RED: `Teleport`
@@ -191,8 +195,6 @@
 - [19:16:50] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 22/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:49] **Turno #5**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 28/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:47] **Turno #4**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Sleep Powder` • Golpe Inimigo: `Confusion`
-- [19:16:41] **Turno #3**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 34/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
-- [19:16:40] **Turno #2**: Butterfree (50/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 
 - [19:24:02] Entrou em Route 5
 - [19:23:37] Entrou em Cerulean City
@@ -202,6 +204,7 @@
 - [19:22:58] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [19:24:26] `SCRATCH GROWL`
 - [19:23:21] `TELEPORT`
 - [19:16:41] `CONFUSION STUN SPORE`
 - [19:16:20] `TELEPORT`
@@ -216,7 +219,6 @@
 - [18:58:19] `SCRATCH GROWL`
 - [18:57:29] `HORN ATTACK TACKLE`
 - [18:56:38] `FURY ATTACK POISON STING`
-- [18:56:32] `Youe going to see BILL First`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
