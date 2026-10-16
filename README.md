@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:18:02**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:18:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `18`
-- **Direção de RED:** **Este (Direita ➡️)**
+- **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `3`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `56h 0m 14s`
+- **Tempo de Jogo:** `56h 0m 15s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
@@ -23,40 +23,40 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 17)
-- **Tipos:** Electric | **HP:** 13 / 42 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 42 / 42 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 30 | DEF: 21 | SPD: 39 | SPC: 28
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 7205 | Def: 5097 | Spd: 7886 | Spc: 4325 | HP: 5150
 - **Experiência:** 5149 EXP (Progresso: 26%, faltam 683 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 11 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Thunder Wave** (Electric) — PP: 19 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 2. **Beedrill** (Lv. 16)
-- **Tipos:** Bug/Poison | **HP:** 0 / 51 ❌ (FAINTED)
+- **Tipos:** Bug/Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4269 | Def: 3606 | Spd: 4699 | Spc: 2800 | HP: 3518
 - **Experiência:** 4820 EXP (Progresso: 89%, faltam 93 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 6 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 16)
-- **Tipos:** Normal | **HP:** 0 / 43 ❌ (FAINTED)
+- **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6109 | Def: 4490 | Spd: 6787 | Spc: 3817 | HP: 5096
 - **Experiência:** 4639 EXP (Progresso: 66%, faltam 274 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 34 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Hyper Fang** (Normal) — PP: 6 | Poder: 80 | Precisão: 90%
+  - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
 
 ### 4. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -71,16 +71,16 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 5. **Butterfree** (Lv. 21)
-- **Tipos:** Bug/Flying | **HP:** 53 / 62 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 6731 | Def: 6206 | Spd: 6969 | Spc: 4642 | HP: 5615
 - **Experiência:** 9457 EXP (Progresso: 14%, faltam 1191 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 9 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 25 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
-  - **Sleep Powder** (Grass) — PP: 13 | Poder: -- | Precisão: 75%
+  - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
 ### 6. **Nidorina** (Lv. 16)
 - **Tipos:** Poison | **HP:** 52 / 52 ✅ (SAUDÁVEL)
@@ -147,9 +147,11 @@
 - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Nidorino** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #2**: **Beedrill** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ### #2. **Líder Misty** (Ginásio de Cerulean (Chefe)) • **⚔️ POR VENCER**
@@ -158,14 +160,12 @@
 - **Lead Recomendado:** Pikachu / Bellsprout
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 17) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Nidorino** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #2**: **Beedrill** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
-
-## 🎒 9. Itens da Área (Cerulean City)
-### Itens Ocultos (Invisíveis no chão):
-- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -186,12 +186,12 @@
 - [18:17:10] **Turno #1**: Pikachu (22/40 HP) vs Rattata (Lv. 8 • 25/25 HP)
 - [18:17:09] **Turno #1**: Pikachu (22/40 HP) vs Spearow (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 
+- [18:18:04] Entrou em Cerulean Pokecenter
 - [18:18:02] Entrou em Cerulean City
 - [18:16:21] Entrou em Route 4
 - [18:16:20] Entrou em Mt Moon B1F
 - [18:15:43] Entrou em Mt Moon B2f
 - [18:15:34] Entrou em Mt Moon B1F
-- [18:15:09] Entrou em Mt Moon 1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:16:07] `THUNDERSHOCK THUNDER WAVE`
