@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:09:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:09:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `7`, Y: `2`
-- **Direção de RED:** **Oeste (Esquerda ⬅️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `7`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `56h 0m 5s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
@@ -17,11 +17,13 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Thundershock`
+- **Último Golpe Usado pelo Adversário:** `Leech Life`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 9)
 - **Tipos:** Poison/Flying
-- **HP:** **26 / 26** (100%)
-- **Stats de Batalha:** ATK: 15 | DEF: 12 | SPD: 15 | SPC: 12
+- **HP:** **0 / 26** (0%)
+- **Stats de Batalha:** ATK: 13 | DEF: 12 | SPD: 17 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
@@ -34,7 +36,7 @@
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **42-50 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **37-44 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
 - ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
@@ -44,18 +46,15 @@
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
 - **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (22/40). Não precisas de gastar um turno a trocar.
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
-
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 16) ⚔️ [EM COMBATE]
 - **Tipos:** Electric | **HP:** 22 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6899 | Def: 4904 | Spd: 7594 | Spc: 4192 | HP: 4990
-- **Experiência:** 4747 EXP (Progresso: 80%, faltam 166 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 6944 | Def: 4939 | Spd: 7649 | Spc: 4232 | HP: 5030
+- **Experiência:** 4816 EXP (Progresso: 88%, faltam 97 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 17 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 15 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -164,7 +163,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↘️ 11 passos Sudeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
+### #1. [↘️ 9 passos Sudeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe / Média
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -176,7 +175,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
-### #2. [↘️ 18 passos Sudeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
+### #2. [↘️ 16 passos Sudeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -188,7 +187,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
-### #3. [↘️ 28 passos Sudeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro-Sul)) • **✅ VENCIDO**
+### #3. [↘️ 26 passos Sudeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro-Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Zubat (Lv. 12) • Ekans (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -200,7 +199,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
-### #4. [↘️ 31 passos Sudeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Leste-Norte)) • **✅ VENCIDO**
+### #4. [↘️ 29 passos Sudeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Leste-Norte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Raticate (Lv. 13)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -212,7 +211,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Hyper Fang. Raticate tem alta velocidade e ataque rápido.
 
-### #5. [↘️ 37 passos Sudeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
+### #5. [↘️ 35 passos Sudeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
 - **Dificuldade:** Difícil
 - **Roster Inimigo:** Raticate (Lv. 16)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -236,6 +235,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:09:27] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 9 • 0/26 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
+- [18:09:25] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 9 • 26/26 HP)
+- [18:09:23] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 9 • 0/26 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:09:21] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 9 • 26/26 HP)
 - [18:09:19] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 10 • 0/30 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:09:17] **Turno #1**: Pikachu (22/40 HP) vs Zubat (Lv. 10 • 30/30 HP)
@@ -248,9 +250,6 @@
 - [18:09:04] **Turno #2**: Pikachu (32/40 HP) vs Paras (Lv. 10 • 11/29 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Scratch`
 - [18:09:03] **Turno #1**: Pikachu (32/40 HP) vs Paras (Lv. 10 • 18/29 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Scratch`
 - [18:09:03] **Turno #1**: Pikachu (37/40 HP) vs Paras (Lv. 10 • 18/29 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Scratch`
-- [18:09:02] **Turno #1**: Pikachu (37/40 HP) vs Paras (Lv. 10 • 29/29 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Scratch`
-- [18:09:00] **Turno #1**: Pikachu (14/40 HP) vs Paras (Lv. 10 • 29/29 HP)
-- [18:08:58] **Turno #2**: Rattata (14/43 HP) vs Geodude (Lv. 9 • 0/26 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 
 - [18:08:44] Entrou em Mt Moon B2f
 - [18:08:18] Entrou em Mt Moon B1F
