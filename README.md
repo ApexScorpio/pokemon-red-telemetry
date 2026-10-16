@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:48:57**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:49:01**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,18 +11,18 @@
 - **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
 - **Tempo de Jogo:** `56h 0m 37s`
-- **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
+- **💬 Diálogo / Mensagem no Ecrã:** `HYPER FANG TAIL WHIP`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Quick Attack`
+- **Turno Atual:** `Turno #3`
+- **Último Golpe Usado por RED:** `Hyper Fang`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
 - **Tipos:** Rock/Ground
-- **HP:** **30 / 30** (100%)
+- **HP:** **1 / 30** (3%)
 - **Stats de Batalha:** ATK: 24 | DEF: 28 | SPD: 10 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,25 +31,24 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **37 / 43** (HEALTHY)
+- **HP:** **25 / 43** (HEALTHY)
 - **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (0.5x eficácia) • ~6 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (0.5x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-6: Usa repetidamente Tackle
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Tackle (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Tackle! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
-- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
-- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
-- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Rattata.
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** O adversário tem apenas 1 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Tackle para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **36%** | Great Ball: **54%** | Ultra Ball: **36%**
-  - *Se adormeceres o inimigo:* **~42%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 17)
@@ -77,16 +76,16 @@
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 37 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 25 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 6069 | Def: 4440 | Spd: 6777 | Spc: 3802 | HP: 5076
 - **Experiência:** 4608 EXP (Progresso: 63%, faltam 305 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Hyper Fang** (Normal) — PP: 12 | Poder: 80 | Precisão: 90%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
 
 ### 4. **Nidorino** (Lv. 17)
 - **Tipos:** Poison | **HP:** 53 / 53 ✅ (SAUDÁVEL)
@@ -271,6 +270,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:49:01] **Turno #3**: Rattata (25/43 HP) vs Geodude (Lv. 10 • 1/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [17:49:00] **Turno #3**: Rattata (25/43 HP) vs Geodude (Lv. 10 • 11/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [17:48:59] **Turno #2**: Rattata (31/43 HP) vs Geodude (Lv. 10 • 20/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
+- [17:48:58] **Turno #2**: Rattata (37/43 HP) vs Geodude (Lv. 10 • 20/30 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [17:48:54] **Turno #1**: Rattata (37/43 HP) vs Geodude (Lv. 10 • 30/30 HP) • Golpe Inimigo: `Tackle`
 - [17:48:53] **Turno #1**: Rattata (43/43 HP) vs Geodude (Lv. 10 • 30/30 HP)
 - [17:48:51] **Turno #1**: Beedrill (54/54 HP) vs Geodude (Lv. 10 • 30/30 HP)
@@ -282,10 +285,6 @@
 - [17:48:22] **Turno #1**: Beedrill (38/54 HP) vs Zubat (Lv. 7 • 23/23 HP)
 - [17:48:13] **Turno #6**: Nidorino (38/53 HP) vs Geodude (Lv. 9 • 0/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [17:48:09] **Turno #6**: Nidorino (36/51 HP) vs Geodude (Lv. 9 • 0/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
-- [17:48:07] **Turno #6**: Nidorino (36/51 HP) vs Geodude (Lv. 9 • 1/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
-- [17:48:07] **Turno #5**: Nidorino (36/51 HP) vs Geodude (Lv. 9 • 9/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
-- [17:48:06] **Turno #4**: Nidorino (39/51 HP) vs Geodude (Lv. 9 • 9/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
-- [17:48:05] **Turno #4**: Nidorino (39/51 HP) vs Geodude (Lv. 9 • 16/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
 
 - [17:48:39] Entrou em Mt Moon 1F
 - [17:48:38] Entrou em Route 4
@@ -295,6 +294,7 @@
 - [17:48:17] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [17:48:57] `HYPER FANG TAIL WHIP`
 - [17:48:55] `TACKLE TAIL WHIP`
 - [17:48:00] `TACKLE HORN ATTACK`
 - [17:47:54] `THUNDERSHOCK THUNDER WAVE`
@@ -309,7 +309,6 @@
 - [17:02:28] `FURY ATTACK POISON STING`
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
 - [16:24:40] `We'll each take one! No being greedy!`
-- [16:22:15] `Hey, stop! You found these fossils! They're both mine!`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
