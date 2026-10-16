@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:09**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:04:13**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `17`, Y: `26`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `67h 0m 43s`
+- **Tempo de Jogo:** `67h 0m 44s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
 - **Dinheiro:** **11 900 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #4`
+- **Turno Atual:** `Turno #6`
 - **Último Golpe Usado por RED:** `Thundershock`
 - **Último Golpe Usado pelo Adversário:** `Confusion`
 
 ### 🔴 Adversário em Campo: **Butterfree** (Lv. 20)
 - **Tipos:** Bug/Flying
-- **HP:** **37 / 57** (65%)
+- **HP:** **0 / 57** (0%)
 - **Stats de Batalha:** ATK: 26 | DEF: 28 | SPD: 36 | SPC: 40
 - **Os 4 Golpes do Adversário:**
   - **Confusion** (Psychic_type) • PP: 25 • Poder: 50 • Precisão: 100%
@@ -38,21 +38,20 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 20)
 - **Tipos:** Electric
-- **HP:** **37 / 48** (HEALTHY)
+- **HP:** **12 / 48** (PARALYSIS)
 - **Stats com Modificadores:** ATK: 35 (0) | DEF: 24 (0) | SPD: 45 (0) | SPC: 32 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **22-26 HP** (2x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **22-26 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Thundershock (Causa ~22-26 de dano)
-- ➔ Turno 2: Thundershock (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Thundershock. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (37/48). Não precisas de gastar um turno a trocar.
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (12/48). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 19)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -105,13 +104,13 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 5. **Pikachu** (Lv. 20) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 37 / 48 ⚠️ (SLEEP)
+- **Tipos:** Electric | **HP:** 12 / 48 ⚠️ (PARALYSIS)
 - **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7701 | Def: 5647 | Spd: 8496 | Spc: 4900 | HP: 5532
-- **Experiência:** 8083 EXP (Progresso: 7%, faltam 1178 p/ Lv.21)
+- **Stat Experience (0–65.535):** Atk: 7746 | Def: 5697 | Spd: 8566 | Spc: 4980 | HP: 5592
+- **Experiência:** 8768 EXP (Progresso: 61%, faltam 493 p/ Lv.21)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
@@ -288,6 +287,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:04:12] **Turno #6**: Pikachu (12/48 HP) vs Butterfree (Lv. 20 • 0/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
+- [20:04:11] **Turno #6**: Pikachu (25/48 HP) vs Butterfree (Lv. 20 • 15/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
+- [20:04:10] **Turno #5**: Pikachu (25/48 HP) vs Butterfree (Lv. 20 • 15/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Stun Spore`
+- [20:04:09] **Turno #4**: Pikachu (25/48 HP) vs Butterfree (Lv. 20 • 15/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Stun Spore`
 - [20:04:08] **Turno #4**: Pikachu (37/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
 - [20:04:07] **Turno #3**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
 - [20:04:07] **Turno #2**: Pikachu (48/48 HP) vs Butterfree (Lv. 20 • 37/57 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Confusion`
@@ -299,10 +302,6 @@
 - [20:03:37] **Turno #3**: Nidorina (39/55 HP) vs Pikachu (Lv. 16 • 0/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thundershock`
 - [20:03:36] **Turno #3**: Nidorina (39/55 HP) vs Pikachu (Lv. 16 • 11/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thundershock`
 - [20:03:36] **Turno #2**: Nidorina (47/55 HP) vs Pikachu (Lv. 16 • 11/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thunder Wave`
-- [20:03:34] **Turno #2**: Nidorina (47/55 HP) vs Pikachu (Lv. 16 • 23/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thunder Wave`
-- [20:03:31] **Turno #1**: Charmeleon (0/53 HP) vs Pikachu (Lv. 16 • 23/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Thundershock`
-- [20:03:30] **Turno #1**: Charmeleon (6/53 HP) vs Pikachu (Lv. 16 • 39/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Thundershock`
-- [20:03:30] **Turno #2**: Charmeleon (6/53 HP) vs Pikachu (Lv. 16 • 39/39 HP) • Golpe RED: `Ember` • Golpe Inimigo: `Quick Attack`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
