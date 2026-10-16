@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:17:58**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:18:02**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
-- **Localização Atual:** **Route 4** (ID Interno: `0xF`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `73`, Y: `15`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `18`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `56h 0m 14s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
@@ -163,12 +163,9 @@
   - **Slot #4**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
-## 🎒 9. Itens da Área (Route 4 (Leste - Saída Mt. Moon / Cerulean))
-### Itens no Chão (Poké Balls visíveis):
-- **TM04 (Whirlwind)** (X: 57, Y: 3) • Estado: ✅ Já Recolhido — *Num planalto acessível descendo de Mt. Moon.*
-
+## 🎒 9. Itens da Área (Cerulean City)
 ### Itens Ocultos (Invisíveis no chão):
-- **Great Ball** (X: 40, Y: 3) • Estado: ✅ Já Recolhido — *Na rocha no planalto a leste perto de Cerulean.*
+- **Rare Candy** (X: 15, Y: 8) • Estado: ✅ Já Recolhido — *No canteiro de flores atrás da casa arrombada.*
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
@@ -189,12 +186,12 @@
 - [18:17:10] **Turno #1**: Pikachu (22/40 HP) vs Rattata (Lv. 8 • 25/25 HP)
 - [18:17:09] **Turno #1**: Pikachu (22/40 HP) vs Spearow (Lv. 10 • 0/28 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 
+- [18:18:02] Entrou em Cerulean City
 - [18:16:21] Entrou em Route 4
 - [18:16:20] Entrou em Mt Moon B1F
 - [18:15:43] Entrou em Mt Moon B2f
 - [18:15:34] Entrou em Mt Moon B1F
 - [18:15:09] Entrou em Mt Moon 1F
-- [18:14:59] Entrou em Mt Moon B1F
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [18:16:07] `THUNDERSHOCK THUNDER WAVE`
