@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:49**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:03:53**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -12,7 +12,7 @@
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `61h 0m 12s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
-- **Dinheiro:** **8431 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **10 510 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 20 (Pikachu)
 
 ## ⚔️ 2. Batalha em Tempo Real
@@ -23,7 +23,7 @@
 
 ### 🔴 Adversário em Campo: **Starmie** (Lv. 21)
 - **Tipos:** Water/Psychic
-- **HP:** **5 / 59** (8%)
+- **HP:** **0 / 59** (0%)
 - **Stats de Batalha:** ATK: 40 | DEF: 66 | SPD: 56 | SPC: 50
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,26 +31,26 @@
   - **Bubblebeam** (Water) • PP: NaN • Poder: 65 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
   - **Tackle** (Normal) ➔ Dano: ~9-11 HP (1x)
-  - **Water Gun** (Water) ➔ 🚨 RISCO DE K.O.! (20-24 HP)
-  - **Bubblebeam** (Water) ➔ 🚨 RISCO DE K.O.! (33-39 HP)
+  - **Water Gun** (Water) ➔ Dano: ~20-24 HP (1x)
+  - **Bubblebeam** (Water) ➔ 🚨 RISCO DE K.O.! (31-37 HP)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 19)
 - **Tipos:** Bug/Poison
-- **HP:** **22 / 56** (HEALTHY)
-- **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
+- **HP:** **25 / 59** (HEALTHY)
+- **Stats com Modificadores:** ATK: 41 (0) | DEF: 27 (0) | SPD: 38 (0) | SPC: 25 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **3-4 HP** (1x eficácia) • ~2 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **3-4 HP** (1x eficácia) • ~5 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 35%)
-- ➔ Turno 1: Poison Sting
-- ➔ Turno 2: Poison Sting (Finalizador)
-> **Resumo Tático:** ⚠️ Sobrevivência reduzida (35%): O inimigo ataca duas vezes antes de venceres.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-5: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 5 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Poison Sting para liquidar o adversário já!
+#### 🔄 Conselheiro de Troca: **⚠️ PERIGO DE MORTE: TROCA PARA Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 21)** [62/62 HP]
+- **Motivo:** Beedrill corre perigo real de K.O. no próximo golpe do inimigo (25 HP). Trocar para Butterfree salva o teu Pokémon e ataca com String Shot!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 20)
@@ -101,12 +101,12 @@
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
   - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
 
-### 5. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 22 / 56 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
+### 5. **Beedrill** (Lv. 19)
+- **Tipos:** Bug/Poison | **HP:** 25 / 59 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 41 | DEF: 27 | SPD: 38 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4841 | Def: 4106 | Spd: 5378 | Spc: 3151 | HP: 3955
-- **Experiência:** 6858 EXP (Progresso: 100%, faltam 1 p/ Lv.19)
+- **Stat Experience (0–65.535):** Atk: 4916 | Def: 4191 | Spd: 5493 | Spc: 3251 | HP: 4015
+- **Experiência:** 7789 EXP (Progresso: 82%, faltam 211 p/ Lv.20)
 - **Golpes & PPs:**
   - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
@@ -192,7 +192,7 @@
 - **Lead Recomendado:** Charmeleon (Ember) / Pidgey
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Ember elimina cada inseto num só golpe.
 
 ### #2. [⬇️ 4 passos Sul] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
@@ -201,7 +201,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** A carcaça de pedra deles é vulnerável a Confusion (Special). NÃO uses Charmeleon nem Pikachu!
 
 ### #3. [↘️ 11 passos Sudeste] **Youngster Ben** (Rota 3 (Caminho Superior)) • **✅ VENCIDO**
@@ -210,7 +210,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Confusion é super eficaz contra Ekans (Veneno). Cuidado com Poison Sting.
 
 ### #4. [↘️ 21 passos Sudeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
@@ -219,7 +219,7 @@
 - **Lead Recomendado:** Butterfree / Pikachu
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
 ### #5. [↘️ 18 passos Sudeste] **Lass Janice** (Rota 3 (Centro)) • **✅ VENCIDO**
@@ -228,7 +228,7 @@
 - **Lead Recomendado:** Pikachu / Butterfree
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
 ### #6. [↘️ 27 passos Sudeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
@@ -237,7 +237,7 @@
 - **Lead Recomendado:** Charmeleon / Nidorino
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
 ### #7. [↘️ 17 passos Sudeste] **Bug Catcher Greg** (Rota 3 (Perto do Centro)) • **✅ VENCIDO**
@@ -246,7 +246,7 @@
 - **Lead Recomendado:** Charmeleon (Ember)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Ember do Charmeleon limpa facilmente a equipa inteira.
 
 ### #8. [↘️ 48 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
@@ -255,7 +255,7 @@
 - **Lead Recomendado:** Charmeleon (Ember)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
 ### #9. [↘️ 20 passos Sudeste] **Lass Sally** (Rota 3 (Caminho Sul)) • **✅ VENCIDO**
@@ -264,7 +264,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Confusion elimina Nidoran♀ rapidamente.
 
 ### #10. [↘️ 32 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
@@ -273,7 +273,7 @@
 - **Lead Recomendado:** Charmeleon / Butterfree
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
 ### #11. [↘️ 24 passos Sudeste] **Youngster Calvin** (Rota 3 (Labirinto)) • **✅ VENCIDO**
@@ -282,7 +282,7 @@
 - **Lead Recomendado:** Pikachu (Thundershock) ou Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Spearow é rápido e bate forte com Peck. Pikachu derrota com facilidade.
 
 ### #12. [↘️ 22 passos Sudeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
@@ -291,7 +291,7 @@
 - **Lead Recomendado:** Charmeleon / Beedrill
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
 ### #13. [↘️ 23 passos Sudeste] **Bug Catcher James** (Rota 3 (Perto de Mt. Moon)) • **✅ VENCIDO**
@@ -300,7 +300,7 @@
 - **Lead Recomendado:** Charmeleon (Ember)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Equipa de 4 insetos. Charmeleon limpa facilmente a equipa inteira.
 
 ### #14. [↘️ 50 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
@@ -309,7 +309,7 @@
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Ember elimina ambos os insetos num só golpe.
 
 ### #15. [↘️ 36 passos Sudeste] **Lass Robin** (Rota 3 (Canto Nordeste)) • **✅ VENCIDO**
@@ -318,7 +318,7 @@
 - **Lead Recomendado:** Charmeleon / Beedrill
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
 
 ### #16. [↘️ 13 passos Sudeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
@@ -327,7 +327,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
 ### #17. [↘️ 20 passos Sudeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
@@ -336,7 +336,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
 ### #18. [↘️ 30 passos Sudeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro-Sul)) • **✅ VENCIDO**
@@ -345,7 +345,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
 ### #19. [↘️ 33 passos Sudeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Leste-Norte)) • **✅ VENCIDO**
@@ -354,7 +354,7 @@
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Cuidado com Hyper Fang. Raticate tem alta velocidade e ataque rápido.
 
 ### #20. **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **⚔️ POR VENCER**
@@ -363,7 +363,7 @@
 - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
 ### #21. [↘️ 39 passos Sudeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
@@ -372,7 +372,7 @@
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
 
 ### #22. **Líder Misty** (Ginásio de Cerulean (Chefe)) • **⚔️ POR VENCER**
@@ -381,12 +381,14 @@
 - **Lead Recomendado:** Pikachu / Bellsprout
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 18) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 19) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:03:50] **Turno #11**: Beedrill (25/59 HP) vs Starmie (Lv. 21 • 0/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Bubblebeam`
+- [19:03:50] **Turno #11**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 0/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Bubblebeam`
 - [19:03:49] **Turno #11**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 5/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Bubblebeam`
 - [19:03:48] **Turno #10**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 5/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 - [19:03:47] **Turno #10**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 9/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
@@ -400,8 +402,6 @@
 - [19:03:39] **Turno #6**: Nidorina (0/55 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Bubblebeam`
 - [19:03:36] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 - [19:03:34] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 22/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
-- [19:03:33] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Bubblebeam`
-- [19:03:32] **Turno #4**: Nidorina (55/55 HP) vs Starmie (Lv. 21 • 27/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Water Gun`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
