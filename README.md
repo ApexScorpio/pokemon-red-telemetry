@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:22**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:49:25**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,7 +10,7 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `10`, Y: `31`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `59h 0m 38s`
+- **Tempo de Jogo:** `59h 0m 39s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3116 ₽** • **Fichas do Casino:** `0`
 
@@ -22,7 +22,7 @@
 
 ### 🔴 Adversário em Campo: **Caterpie** (Lv. 14)
 - **Tipos:** Bug
-- **HP:** **32 / 38** (84%)
+- **HP:** **0 / 38** (0%)
 - **Stats de Batalha:** ATK: 15 | DEF: 17 | SPD: 19 | SPC: 12
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,33 +31,33 @@
   - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
   - **String Shot** (Bug) ➔ Golpe de Status
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
 - **Tipos:** Bug/Poison
-- **HP:** **51 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
+- **HP:** **54 / 54** (HEALTHY)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **17-20 HP** (2x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **17-20 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Poison Sting (Causa ~17-20 de dano)
-- ➔ Turno 2: Poison Sting (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Poison Sting. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Poison Sting (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Poison Sting! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (51/51). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (54/54). Não precisas de gastar um turno a trocar.
+- **⭐ Prioridade de Treino (EXP):** **Nidorino (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
+### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 54 / 54 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4269 | Def: 3606 | Spd: 4699 | Spc: 2800 | HP: 3518
-- **Experiência:** 4820 EXP (Progresso: 89%, faltam 93 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 4299 | Def: 3641 | Spd: 4744 | Spc: 2820 | HP: 3563
+- **Experiência:** 4979 EXP (Progresso: 7%, faltam 853 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 19 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 18 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -176,10 +176,10 @@
 - **Lead Recomendado:** Pikachu (Pidgeotto/Wartortle)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #2**: **Nidorino** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Beedrill** (Lv. 17) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
@@ -189,10 +189,10 @@
 - **Lead Recomendado:** Pikachu / Bellsprout
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Pikachu** (Lv. 18) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #2**: **Nidorino** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #3**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Beedrill** (Lv. 17) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** PERIGO EXTREMO COM BUBBLEBEAM! Pikachu ou Planta são obrigatórios. Não uses Charmeleon ou Geodude!
 
@@ -203,6 +203,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:49:25] **Turno #1**: Beedrill (54/54 HP) vs Caterpie (Lv. 14 • 0/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
+- [18:49:24] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 0/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
+- [18:49:24] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 2/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
+- [18:49:22] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 20/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:21] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 32/38 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `String Shot`
 - [18:49:15] **Turno #1**: Beedrill (51/51 HP) vs Caterpie (Lv. 14 • 38/38 HP)
 - [18:49:14] **Turno #1**: Beedrill (2/51 HP) vs Caterpie (Lv. 14 • 38/38 HP)
@@ -214,10 +218,6 @@
 - [18:43:20] **Turno #2**: Pikachu (12/44 HP) vs Rattata (Lv. 15 • 0/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:43:19] **Turno #2**: Pikachu (10/42 HP) vs Rattata (Lv. 15 • 0/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
 - [18:43:18] **Turno #2**: Pikachu (10/42 HP) vs Rattata (Lv. 15 • 18/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Quick Attack`
-- [18:43:14] **Turno #1**: Pikachu (28/42 HP) vs Rattata (Lv. 15 • 18/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tail Whip`
-- [18:43:06] **Turno #1**: Pikachu (28/42 HP) vs Rattata (Lv. 15 • 36/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
-- [18:43:04] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 0/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
-- [18:42:58] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 15/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
 
 - [18:49:02] Entrou em Route 24
 - [18:46:54] Entrou em Cerulean City
