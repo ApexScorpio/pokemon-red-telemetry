@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:07:49**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:07:53**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,40 +17,38 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Confusion`
+- **Último Golpe Usado pelo Adversário:** `Leech Life`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 8)
 - **Tipos:** Poison/Flying
-- **HP:** **24 / 24** (100%)
+- **HP:** **0 / 24** (0%)
 - **Stats de Batalha:** ATK: 13 | DEF: 12 | SPD: 15 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Leech Life** (Bug) ➔ Dano: ~2-3 HP (1x)
+  - **Leech Life** (Bug) ➔ Dano: ~1-1 HP (0.5x)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
-- **Tipos:** Normal
-- **HP:** **56 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
+### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 21)
+- **Tipos:** Bug/Flying
+- **HP:** **56 / 62** (HEALTHY)
+- **Stats com Modificadores:** ATK: 31 (0) | DEF: 30 (0) | SPD: 42 (0) | SPC: 47 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Fury Attack** (Normal) ➔ Dano: **11-13 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **25-30 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Fury Attack (Causa ~11-13 de dano)
-- ➔ Turno 2: Fury Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Fury Attack. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (56/51). Não precisas de gastar um turno a trocar.
+- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (56/62). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **34%** | Great Ball: **50%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~40%** | *Com HP no vermelho:* **~100%**
-
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
+### 1. **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison | **HP:** 0 / 51 ❌ (FAINTED)
 - **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -62,14 +60,14 @@
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Butterfree** (Lv. 21)
+### 2. **Butterfree** (Lv. 21) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Flying | **HP:** 56 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 6816 | Def: 6291 | Spd: 7034 | Spc: 4697 | HP: 5675
 - **Experiência:** 9539 EXP (Progresso: 20%, faltam 1109 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 8 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 7 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 13 | Poder: -- | Precisão: 75%
@@ -261,6 +259,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:07:53] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 8 • 0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [18:07:49] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 8 • 24/24 HP)
 - [18:07:39] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 9 • 0/28 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [18:07:37] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 9 • 28/28 HP)
@@ -275,7 +274,6 @@
 - [18:06:52] **Turno #2**: Pikachu (5/40 HP) vs Clefairy (Lv. 10 • 7/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Pound`
 - [18:06:50] **Turno #1**: Pikachu (5/40 HP) vs Clefairy (Lv. 10 • 22/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Growl`
 - [18:06:48] **Turno #1**: Pikachu (5/40 HP) vs Clefairy (Lv. 10 • 35/35 HP)
-- [18:06:45] **Turno #7**: Pikachu (5/40 HP) vs Geodude (Lv. 10 • 0/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
 
 - [18:07:47] Entrou em Mt Moon 1F
 - [18:07:46] Entrou em Mt Moon B1F
