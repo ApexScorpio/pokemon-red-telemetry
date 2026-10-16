@@ -1,16 +1,16 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:11:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:11:35**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean Pokecenter** (ID Interno: `0x40`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `4`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `62h 0m 1s`
+- **Tempo de Jogo:** `62h 0m 2s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **10 510 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 20 (Pikachu)
@@ -55,19 +55,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 4. **Rattata** (Lv. 17)
-- **Tipos:** Normal | **HP:** 45 / 45 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 28 | DEF: 21 | SPD: 36 | SPC: 21
-- **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
-- **Stat Experience (0–65.535):** Atk: 6234 | Def: 4630 | Spd: 6857 | Spc: 3922 | HP: 5191
-- **Experiência:** 5134 EXP (Progresso: 24%, faltam 698 p/ Lv.18)
-- **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
-  - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
-
-### 5. **Beedrill** (Lv. 19)
+### 4. **Beedrill** (Lv. 19)
 - **Tipos:** Bug/Poison | **HP:** 59 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 27 | SPD: 38 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -79,7 +67,7 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 6. **Butterfree** (Lv. 21)
+### 5. **Butterfree** (Lv. 21)
 - **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
@@ -90,6 +78,15 @@
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
+
+### 6. **Abra** (Lv. 10)
+- **Tipos:** Psychic | **HP:** 26 / 26 ⚠️ (SLEEP)
+- **Stats Reais:** ATK: 10 | DEF: 8 | SPD: 23 | SPC: 27
+- **DVs Gen 1 (0–15):** Ataque: 5 | Defesa: 2 | Velocidade: 2 | Especial: 5 | HP: 9
+- **Stat Experience (0–65.535):** Atk: 0 | Def: 0 | Spd: 0 | Spc: 0 | HP: 0
+- **Experiência:** 560 EXP (Progresso: 0%, faltam 182 p/ Lv.11)
+- **Golpes & PPs:**
+  - **Teleport** (Psychic_type) — PP: 20 | Poder: -- | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **20 / 20 slots** (0 vagas livres)
 - **Potion** x6
@@ -130,17 +127,17 @@
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
 
 ## 💾 6. Pokémon Guardados no PC (11 / 20 na Caixa 1) • Vagas Livres: **9**
-- #1: **Abra** (Lv. 26) • Tipos: Psychic (Dex: #63) • HP: 37888 • Golpes: Golpe #200 (Não Identificado), Teleport
-- #2: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
-- #3: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
-- #4: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
-- #5: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
-- #6: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
-- #7: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
-- #8: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
-- #9: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
-- #10: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
-- #11: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
+- #1: **Oddish** (Lv. 7) • Tipos: Grass/Poison (Dex: #43) • HP: 47360 • Golpes: Golpe #255 (Não Identificado), Absorb
+- #2: **Ekans** (Lv. 13) • Tipos: Poison (Dex: #23) • HP: 27648 • Golpes: Golpe #255 (Não Identificado), Wrap, Leer, Poison Sting
+- #3: **Paras** (Lv. 11) • Tipos: Bug/Grass (Dex: #46) • HP: 27904 • Golpes: Golpe #190 (Não Identificado), Scratch
+- #4: **Clefairy** (Lv. 9) • Tipos: Fairy (Dex: #35) • HP: 1024 • Golpes: Splash, Pound, Growl
+- #5: **Geodude** (Lv. 7) • Tipos: Rock/Ground (Dex: #74) • HP: 43264 • Golpes: Golpe #255 (Não Identificado), Tackle
+- #6: **Zubat** (Lv. 13) • Tipos: Poison/Flying (Dex: #41) • HP: 27392 • Golpes: Golpe #255 (Não Identificado), Leech Life
+- #7: **Jigglypuff** (Lv. 7) • Tipos: Normal/Fairy (Dex: #39) • HP: 25600 • Golpes: Golpe #170 (Não Identificado), Sing
+- #8: **Spearow** (Lv. 6) • Tipos: Normal/Flying (Dex: #21) • HP: 1280 • Golpes: Golpe #255 (Não Identificado), Peck, Growl
+- #9: **Pidgey** (Lv. 43) • Tipos: Normal/Flying (Dex: #16) • HP: 9216 • Golpes: Golpe #255 (Não Identificado), Gust, Quick Attack, Sand-attack
+- #10: **Charmeleon** (Lv. 50) • Tipos: Fire (Dex: #5) • HP: 45568 • Golpes: Growl, Scratch, Growl, Ember
+- #11: **Rattata** (Lv. 45) • Tipos: Normal (Dex: #19) • HP: 42240 • Golpes: Golpe #255 (Não Identificado), Tackle, Quick Attack, Tail Whip
 
 ## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)
 - **1. Boulder Badge** (Pewter City • Brock • Tipo: Rocha): ✅ [CONQUISTADA]
