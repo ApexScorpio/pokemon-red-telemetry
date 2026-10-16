@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:40:05**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:40:09**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -20,45 +20,44 @@
 - **Último Golpe Usado por RED:** `Fury Attack`
 - **Último Golpe Usado pelo Adversário:** `Tail Whip`
 
-### 🔴 Adversário em Campo: **Rattata** (Lv. 11)
-- **Tipos:** Normal
-- **HP:** **29 / 29** (100%)
-- **Stats de Batalha:** ATK: 19 | DEF: 14 | SPD: 22 | SPC: 12
+### 🔴 Adversário em Campo: **Zubat** (Lv. 11)
+- **Tipos:** Poison/Flying
+- **HP:** **31 / 31** (100%)
+- **Stats de Batalha:** ATK: 16 | DEF: 14 | SPD: 18 | SPC: 15
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-  - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
+  - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
+  - **Supersonic** (Normal) • PP: 20 • Poder: -- • Precisão: 55%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (5-7 HP)
-  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (7-9 HP)
+  - **Leech Life** (Bug) ➔ Dano: ~5-6 HP (2x)
+  - **Supersonic** (Normal) ➔ Golpe de Status
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 15)
 - **Tipos:** Bug/Poison
-- **HP:** **6 / 46** (HEALTHY)
-- **Stats com Modificadores:** ATK: 31 (0) | DEF: 20 (-1) | SPD: 29 (0) | SPC: 19 (0)
+- **HP:** **8 / 48** (HEALTHY)
+- **Stats com Modificadores:** ATK: 33 (0) | DEF: 21 (-1) | SPD: 30 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **8-10 HP** (1x eficácia) • ~3 turnos para K.O.
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **5-6 HP** (0.5x eficácia) • ~6 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-3: Usa repetidamente Poison Sting
+- ➔ Turnos 1-6: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (6/46). Não precisas de gastar um turno a trocar.
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Pikachu**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Pikachu (Lv. 15)** [38/38 HP]
+- **Motivo:** Pikachu tem o golpe Thundershock (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 6 / 46 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
+### 1. **Beedrill** (Lv. 15) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 8 / 48 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 33 | DEF: 21 | SPD: 30 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 3373 | Def: 2831 | Spd: 3829 | Spc: 2110 | HP: 2758
-- **Experiência:** 3274 EXP (Progresso: 84%, faltam 101 p/ Lv.15)
+- **Stat Experience (0–65.535):** Atk: 3429 | Def: 2866 | Spd: 3901 | Spc: 2135 | HP: 2788
+- **Experiência:** 3407 EXP (Progresso: 4%, faltam 689 p/ Lv.16)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 5 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 4 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 34 | Poder: 15 | Precisão: 100%
 
@@ -168,7 +167,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -181,7 +180,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -194,7 +193,7 @@
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -207,7 +206,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -220,7 +219,7 @@
 - **Lead Recomendado:** Charmeleon / Geodude
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 19) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Beedrill** (Lv. 14) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Beedrill** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Pikachu** (Lv. 15) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -230,14 +229,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:40:08] **Turno #2**: Beedrill (8/48 HP) vs Zubat (31/31 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [15:40:07] **Turno #2**: Beedrill (8/48 HP) vs Rattata (0/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [15:40:06] **Turno #2**: Beedrill (6/46 HP) vs Rattata (0/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
+- [15:40:05] **Turno #2**: Beedrill (6/46 HP) vs Rattata (15/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [15:40:04] **Turno #2**: Beedrill (6/46 HP) vs Rattata (29/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [15:40:03] **Turno #1**: Beedrill (6/46 HP) vs Rattata (29/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 - [15:40:02] **Turno #1**: Beedrill (12/46 HP) vs Rattata (29/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [15:39:49] **Turno #6**: Beedrill (12/46 HP) vs Rattata (29/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [15:39:46] **Turno #6**: Beedrill (12/46 HP) vs Sandshrew (0/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [15:39:45] **Turno #6**: Beedrill (12/46 HP) vs Sandshrew (9/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [15:39:41] **Turno #5**: Beedrill (18/46 HP) vs Sandshrew (9/33 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Sand-attack`
-- [15:39:39] **Turno #4**: Beedrill (18/46 HP) vs Sandshrew (9/33 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Sand-attack`
 
 - [15:35:35] Entrou em Mt Moon B2f
 - [15:35:13] Entrou em Mt Moon B1F
