@@ -1,13 +1,13 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:56:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:56:09**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean City** (ID Interno: `0x3`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `17`, Y: `22`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `7`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `57h 0m 23s`
@@ -23,15 +23,15 @@
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18)
-- **Tipos:** Bug/Poison | **HP:** 39 / 57 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 57 / 57 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 5355 | Def: 4485 | Spd: 5686 | Spc: 3543 | HP: 4273
 - **Experiência:** 6377 EXP (Progresso: 53%, faltam 482 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 32 | Poder: 15 | Precisão: 100%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 2. **Pikachu** (Lv. 16)
@@ -188,12 +188,12 @@
 - [17:55:03] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 0/30 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [17:55:00] **Turno #1**: Beedrill (51/57 HP) vs Spearow (Lv. 10 • 30/30 HP)
 
+- [17:56:08] Entrou em Cerulean City
+- [17:56:05] Entrou em Cerulean Pokecenter
 - [17:56:00] Entrou em Cerulean City
 - [17:53:11] Entrou em Route 4
 - [17:52:56] Entrou em Cerulean City
 - [17:52:18] Entrou em Route 4
-- [17:52:16] Entrou em Cerulean City
-- [17:52:03] Entrou em Cerulean Pokecenter
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
 - [17:55:55] `and stealthily Eats the eggs of`
