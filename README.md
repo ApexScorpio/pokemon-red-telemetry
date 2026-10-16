@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:15**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:49:19**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,10 +10,10 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `12`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `78h 0m 53s`
-- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
+- **Tempo de Jogo:** `78h 0m 54s`
+- **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
 - **Dinheiro:** **16 465 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 12 (Geodude)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 13 (Geodude)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
@@ -45,12 +45,12 @@
   - *Se adormeceres o inimigo:* **~31%** | *Com HP no vermelho:* **~59%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Geodude** (Lv. 12)
-- **Tipos:** Rock/Ground | **HP:** 32 / 32 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 27 | DEF: 29 | SPD: 11 | SPC: 16
+### 1. **Geodude** (Lv. 13)
+- **Tipos:** Rock/Ground | **HP:** 34 / 34 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 29 | DEF: 31 | SPD: 12 | SPC: 17
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 151 | Def: 162 | Spd: 150 | Spc: 177 | HP: 115
-- **Experiência:** 1222 EXP (Progresso: 86%, faltam 39 p/ Lv.13)
+- **Stat Experience (0–65.535):** Atk: 171 | Def: 179 | Spd: 185 | Spc: 227 | HP: 135
+- **Experiência:** 1421 EXP (Progresso: 46%, faltam 191 p/ Lv.14)
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Defense Curl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -81,8 +81,8 @@
 - **Tipos:** Electric | **HP:** 18 / 50 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 36 | DEF: 25 | SPD: 47 | SPC: 34
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 8059 | Def: 6066 | Spd: 8827 | Spc: 5317 | HP: 5837
-- **Experiência:** 10 387 EXP (Progresso: 81%, faltam 261 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 8079 | Def: 6083 | Spd: 8862 | Spc: 5367 | HP: 5857
+- **Experiência:** 10 586 EXP (Progresso: 96%, faltam 62 p/ Lv.22)
 - **Golpes & PPs:**
   - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -203,7 +203,7 @@
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
-  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 12 (Geodude)`).
+  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 13 (Geodude)`).
   - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
@@ -420,6 +420,7 @@
 - [21:48:39] Entrou em Vermilion Dock
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [21:49:19] `THUNDERSHOCK THUNDER WAVE`
 - [21:48:04] `CONFUSION STUN SPORE`
 - [21:39:52] `EMBER SCRATCH`
 - [21:39:45] `TACKLE`
@@ -434,7 +435,6 @@
 - [21:03:33] `THUNDERSHOCK THUNDER WAVE`
 - [20:58:30] `HORN ATTACK TACKLE`
 - [16:25:50] `TEAM ROCKET will find the fossils, revive POKEMON and sell them for cash!`
-- [16:24:40] `We'll each take one! No being greedy!`
 
 ## 🧠 Conselho Tático do Grok AI
 > "Troca imediatamente o Diglett pelo Nidorino, pois o Onix é imune a golpes de Terra e o Nidorino tem vantagem de tipo com Poison Sting. Usa Poison Sting para aplicar veneno e forçar o Onix a trocar ou morrer por dano residual, garantindo a vitória sem riscos."
