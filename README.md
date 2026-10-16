@@ -1,55 +1,25 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:03:48**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:03:52**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `24`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `27`
+- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `74h 0m 9s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 22 (Butterfree) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Confusion`
-- **Último Golpe Usado pelo Adversário:** `Harden`
-
-### 🔴 Adversário em Campo: **Kakuna** (Lv. 8)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 26** (0%)
-- **Stats de Batalha:** ATK: 9 | DEF: 13 | SPD: 12 | SPC: 10
-- **Os 4 Golpes do Adversário:**
-  - **Harden** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Harden** (Normal) ➔ Golpe de Status
-
-### 🔵 O Teu Pokémon em Campo: **Butterfree** (Lv. 22)
-- **Tipos:** Bug/Flying
-- **HP:** **65 / 65** (HEALTHY)
-- **Stats com Modificadores:** ATK: 32 (0) | DEF: 31 (0) | SPD: 44 (0) | SPC: 49 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Confusion** (Psychic_type) ➔ Dano: **24-29 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Confusion (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Confusion! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Butterfree tem a melhor rota de vitória rápida e HP estável (65/65). Não precisas de gastar um turno a trocar.
-- **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Butterfree** (Lv. 22) ⚔️ [EM COMBATE]
+### 1. **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
@@ -240,49 +210,49 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↗️ 15 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
+### #1. [↗️ 18 passos Nordeste] **Rival Blue #3** (Rota 24 (Entrada da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe
 - **Roster Inimigo:** Pidgeotto (Lv. 18) • Abra (Lv. 15) • Rattata (Lv. 15) • Wartortle (Lv. 17)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle.
 
-### #2. [↗️ 16 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
+### #2. [↗️ 19 passos Nordeste] **Bug Catcher Cale** (Rota 24 (Ponte #1)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Weedle (Lv. 10)
 - **Lead Recomendado:** Charmeleon
 - **Estratégia:** Ember elimina os insetos.
 
-### #3. [↗️ 11 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
+### #3. [↗️ 14 passos Nordeste] **Lass Ali** (Rota 24 (Ponte #2)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Pidgey (Lv. 12) • Oddish (Lv. 12) • Bellsprout (Lv. 12)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Charmeleon limpam.
 
-### #4. [↗️ 8 passos Nordeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
+### #4. [↗️ 11 passos Nordeste] **Youngster Timmy** (Rota 24 (Ponte #3)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Sandshrew (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion contra Ekans e Sandshrew.
 
-### #5. [↘️ 9 passos Sudeste] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
+### #5. [➡️ 6 passos Este] **Lass Reli** (Rota 24 (Ponte #4)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Nidoran♀ (Lv. 16) • Nidoran♂ (Lv. 16)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Confusion causa 2x dano.
 
-### #6. [↘️ 14 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
+### #6. [↘️ 11 passos Sudeste] **Jr. Trainer♂ Shane** (Rota 24 (Ponte #5)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Mankey (Lv. 18)
 - **Lead Recomendado:** Butterfree
 - **Estratégia:** Fraqueza a Psíquico e Voador.
 
-### #7. [↘️ 15 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
+### #7. [↘️ 12 passos Sudeste] **Team Rocket Grunt (Nugget)** (Rota 24 (Fim da Ponte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Ekans (Lv. 15) • Zubat (Lv. 15)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Pikachu e Butterfree.
 
-### #8. [↗️ 20 passos Nordeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
+### #8. [↗️ 23 passos Nordeste] **Jr. Trainer♂ Ethan** (Rota 24 (Relva)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 14) • Ekans (Lv. 14)
 - **Lead Recomendado:** Butterfree
