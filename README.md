@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:53**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:03:57**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,18 +9,48 @@
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `17`, Y: `26`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `67h 0m 41s`
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Tempo de Jogo:** `67h 0m 42s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH GROWL`
 - **Dinheiro:** **11 900 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Jr. Trainer♂ Jeff** (Rota 6)
-  - **Equipa Adversária:** Spearow (Lv. 16) • Raticate (Lv. 16)
-  - **Lead Recomendado:** Pikachu / Geodude
-  - **Estratégia:** Cuidado com Hyper Fang do Raticate.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Scratch`
+
+### 🔴 Adversário em Campo: **Butterfree** (Lv. 20)
+- **Tipos:** Bug/Flying
+- **HP:** **57 / 57** (100%)
+- **Stats de Batalha:** ATK: 26 | DEF: 28 | SPD: 36 | SPC: 40
+- **Os 4 Golpes do Adversário:**
+  - **Confusion** (Psychic_type) • PP: 25 • Poder: 50 • Precisão: 100%
+  - **Poisonpowder** (Poison) • PP: 35 • Poder: -- • Precisão: 75%
+  - **Stun Spore** (Grass) • PP: NaN • Poder: -- • Precisão: 75%
+  - **Sleep Powder** (Grass) • PP: NaN • Poder: -- • Precisão: 75%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Confusion** (Psychic_type) ➔ Dano: ~7-9 HP (1x)
+  - **Poisonpowder** (Poison) ➔ Golpe de Status
+  - **Stun Spore** (Grass) ➔ Golpe de Status
+  - **Sleep Powder** (Grass) ➔ Golpe de Status
+
+### 🔵 O Teu Pokémon em Campo: **Nidorina** (Lv. 17)
+- **Tipos:** Poison
+- **HP:** **39 / 55** (PARALYSIS)
+- **Stats com Modificadores:** ATK: 28 (0) | DEF: 31 (0) | SPD: 31 (0) | SPC: 27 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **10-12 HP** (2x eficácia) • ~5 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-5: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
+- **Motivo:** Nidorina tem a melhor rota de vitória rápida e HP estável (39/55). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Charmeleon** (Lv. 18)
@@ -35,7 +65,7 @@
   - **Scratch** (Normal) — PP: 31 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 2. **Nidorina** (Lv. 17)
+### 2. **Nidorina** (Lv. 17) ⚔️ [EM COMBATE]
 - **Tipos:** Poison | **HP:** 39 / 55 ⚠️ (PARALYSIS)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
@@ -255,6 +285,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:03:55] **Turno #1**: Nidorina (39/55 HP) vs Butterfree (Lv. 20 • 57/57 HP)
+- [20:03:55] **Turno #1**: Charmeleon (39/53 HP) vs Pikachu (Lv. 16 • 0/39 HP)
 - [20:03:37] **Turno #3**: Nidorina (39/55 HP) vs Pikachu (Lv. 16 • 0/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thundershock`
 - [20:03:36] **Turno #3**: Nidorina (39/55 HP) vs Pikachu (Lv. 16 • 11/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thundershock`
 - [20:03:36] **Turno #2**: Nidorina (47/55 HP) vs Pikachu (Lv. 16 • 11/39 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Thunder Wave`
@@ -268,8 +300,6 @@
 - [20:03:25] **Turno #1**: Charmeleon (23/53 HP) vs Rattata (Lv. 16 • 38/38 HP)
 - [20:03:24] **Turno #1**: Charmeleon (46/53 HP) vs Squirtle (Lv. 20 • 0/50 HP)
 - [20:03:19] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 0/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [20:03:18] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 1/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [20:03:18] **Turno #4**: Beedrill (46/59 HP) vs Squirtle (Lv. 20 • 15/50 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
