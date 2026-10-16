@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:02:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 20:02:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,53 +9,26 @@
 - **Localização Atual:** **Route 6** (ID Interno: `0x11`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `15`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
-- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
+- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `67h 0m 30s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SCRATCH EMBER`
-- **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 17 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
+- **Dinheiro:** **11 180 ₽** • **Fichas do Casino:** `0`
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 18 (Charmeleon) | **Eficiência na Rota:** `100% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Ember`
-- **Último Golpe Usado pelo Adversário:** `String Shot`
-
-### 🔴 Adversário em Campo: **Weedle** (Lv. 16)
-- **Tipos:** Bug/Poison
-- **HP:** **0 / 41** (0%)
-- **Stats de Batalha:** ATK: 19 | DEF: 17 | SPD: 23 | SPC: 13
-- **Os 4 Golpes do Adversário:**
-  - **Poison Sting** (Poison) • PP: 35 • Poder: 15 • Precisão: 100%
-  - **String Shot** (Bug) • PP: 40 • Poder: -- • Precisão: 95%
-- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Poison Sting** (Poison) ➔ Dano: ~3-4 HP (1x)
-  - **String Shot** (Bug) ➔ Golpe de Status
-
-### 🔵 O Teu Pokémon em Campo: **Charmeleon** (Lv. 17)
-- **Tipos:** Fire
-- **HP:** **50 / 50** (HEALTHY)
-- **Stats com Modificadores:** ATK: 32 (0) | DEF: 27 (0) | SPD: 40 (-1) | SPC: 34 (0)
-
-### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Ember** (Fire) ➔ Dano: **51-60 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
-
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Ember (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Ember! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
-
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
-- **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Charmeleon tem a melhor rota de vitória rápida e HP estável (50/50). Não precisas de gastar um turno a trocar.
+- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **🎯 Próximo Alvo de Batalha na Área:** **Jr. Trainer♂ Ricky** (Rota 6)
+  - **Equipa Adversária:** Squirtle (Lv. 20)
+  - **Lead Recomendado:** Pikachu (Thundershock)
+  - **Estratégia:** Pikachu neutraliza facilmente o Squirtle.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Charmeleon** (Lv. 17) ⚔️ [EM COMBATE]
-- **Tipos:** Fire | **HP:** 50 / 50 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 32 | DEF: 27 | SPD: 40 | SPC: 34
+### 1. **Charmeleon** (Lv. 18)
+- **Tipos:** Fire | **HP:** 53 / 53 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 34 | DEF: 28 | SPD: 42 | SPC: 35
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
 - **Stat Experience (0–65.535):** Atk: 5375 | Def: 3968 | Spd: 6161 | Spc: 3234 | HP: 4058
-- **Experiência:** 3851 EXP (Progresso: 100%, faltam 0)
+- **Experiência:** 3851 EXP (Progresso: 7%, faltam 724 p/ Lv.19)
 - **Golpes & PPs:**
   - **Scratch** (Normal) — PP: 34 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
@@ -152,7 +125,7 @@
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
-  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 17 (Charmeleon)`).
+  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 18 (Charmeleon)`).
   - **Eficiência na Área Atual:** **100% de encontros bloqueados** (100% bloqueados)
   - **Bloqueados por Repel:** Oddish Nv.13 (20%), Pidgey Nv.13 (20%), Pidgey Nv.15 (15%), Mankey Nv.10 (10%), Mankey Nv.12 (10%), Oddish Nv.15 (10%), Oddish Nv.16 (5%), Pidgey Nv.16 (5%), Mankey Nv.14 (4%), Mankey Nv.16 (1%)
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
@@ -202,7 +175,7 @@
 - **Lead Recomendado:** Geodude / Butterfree
 - **Estratégia:** Geodude é imune a Electric e resiste a Normal.
 
-### #3. [↘️ 26 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **⚔️ POR VENCER**
+### #3. [↘️ 26 passos Sudeste] **Bug Catcher Keigo** (Rota 6) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Butterfree (Lv. 20)
 - **Lead Recomendado:** Pikachu / Charmeleon
@@ -282,6 +255,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [20:02:03] **Turno #1**: Charmeleon (53/53 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:02:02] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 0/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:02:00] **Turno #1**: Charmeleon (50/50 HP) vs Weedle (Lv. 16 • 41/41 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
 - [20:01:58] **Turno #1**: Charmeleon (50/50 HP) vs Caterpie (Lv. 16 • 0/42 HP) • Golpe RED: `Ember` • Golpe Inimigo: `String Shot`
@@ -296,7 +270,6 @@
 - [19:24:29] **Turno #3**: Nidorina (47/55 HP) vs Mankey (Lv. 12 • 2/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
 - [19:24:28] **Turno #3**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 2/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
 - [19:24:25] **Turno #2**: Nidorina (51/55 HP) vs Mankey (Lv. 12 • 16/32 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Scratch`
-- [19:24:24] **Turno #1**: Nidorina (55/55 HP) vs Mankey (Lv. 12 • 32/32 HP) • Golpe RED: `Teleport` • Golpe Inimigo: `Leer`
 
 - [20:01:06] Entrou em Route 6
 - [20:01:05] Entrou em Underground Path Route 6
