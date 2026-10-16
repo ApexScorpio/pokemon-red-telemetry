@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:55**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:56:59**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,46 +17,46 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Fury Attack`
 - **Último Golpe Usado pelo Adversário:** `Confusion`
 
 ### 🔴 Adversário em Campo: **Slowpoke** (Lv. 17)
 - **Tipos:** Water/Psychic
-- **HP:** **45 / 60** (75%)
+- **HP:** **30 / 60** (50%)
 - **Stats de Batalha:** ATK: 30 | DEF: 29 | SPD: 12 | SPC: 21
 - **Os 4 Golpes do Adversário:**
   - **Confusion** (Psychic_type) • PP: 25 • Poder: 50 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Confusion** (Psychic_type) ➔ Dano: ~8-10 HP (1x)
+  - **Confusion** (Psychic_type) ➔ 🚨 RISCO DE K.O.! (8-10 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 18)
 - **Tipos:** Bug/Poison
-- **HP:** **31 / 56** (HEALTHY)
+- **HP:** **8 / 56** (HEALTHY)
 - **Stats com Modificadores:** ATK: 39 (0) | DEF: 25 (0) | SPD: 36 (0) | SPC: 24 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **7-9 HP** (1x eficácia) • ~5 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **7-9 HP** (1x eficácia) • ~4 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-5: Usa repetidamente Poison Sting
+- ➔ Turnos 1-4: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (31/56). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (8/56). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Nidorina (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 18) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 31 / 56 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Poison | **HP:** 8 / 56 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 39 | DEF: 25 | SPD: 36 | SPC: 24
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 4841 | Def: 4106 | Spd: 5378 | Spc: 3151 | HP: 3955
 - **Experiência:** 6858 EXP (Progresso: 100%, faltam 1 p/ Lv.19)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 15 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 14 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -218,6 +218,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:56:57] **Turno #2**: Beedrill (8/56 HP) vs Slowpoke (Lv. 17 • 30/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
+- [18:56:56] **Turno #1**: Beedrill (31/56 HP) vs Slowpoke (Lv. 17 • 35/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:56:53] **Turno #1**: Beedrill (31/56 HP) vs Slowpoke (Lv. 17 • 45/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:56:52] **Turno #1**: Beedrill (56/56 HP) vs Slowpoke (Lv. 17 • 45/60 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Confusion`
 - [18:56:51] **Turno #1**: Beedrill (56/56 HP) vs Slowpoke (Lv. 17 • 60/60 HP)
@@ -231,8 +233,6 @@
 - [18:56:29] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 0/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [18:56:28] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 21/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Growl`
 - [18:56:26] **Turno #1**: Beedrill (56/56 HP) vs Spearow (Lv. 15 • 39/39 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
-- [18:56:26] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 0/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
-- [18:56:25] **Turno #1**: Beedrill (56/56 HP) vs Rattata (Lv. 15 • 1/36 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tail Whip`
 
 - [18:56:04] Entrou em Route 25
 - [18:56:04] Entrou em Route 24
