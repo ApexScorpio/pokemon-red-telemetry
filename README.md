@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:57:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:58:17**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,10 +10,10 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `13`, Y: `4`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `67h 0m 0s`
+- **Tempo de Jogo:** `67h 0m 5s`
 - **💬 Diálogo / Mensagem no Ecrã:** `SQUIRTLE`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
-- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 20 (Pikachu)
+- **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 17 (Charmeleon)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
@@ -23,31 +23,19 @@
   - **Estratégia:** Confusion destrói o Machop. Recupera o TM28 Dig!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 20)
-- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
-- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 7701 | Def: 5647 | Spd: 8496 | Spc: 4900 | HP: 5532
-- **Experiência:** 8083 EXP (Progresso: 7%, faltam 1178 p/ Lv.21)
+### 1. **Charmeleon** (Lv. 17)
+- **Tipos:** Fire | **HP:** 50 / 50 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 32 | DEF: 27 | SPD: 40 | SPC: 34
+- **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
+- **Stat Experience (0–65.535):** Atk: 5275 | Def: 3873 | Spd: 6016 | Spc: 3174 | HP: 3933
+- **Experiência:** 3316 EXP (Progresso: 29%, faltam 482 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
-
-### 2. **Nidorino** (Lv. 20)
-- **Tipos:** Poison | **HP:** 61 / 61 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
-- **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
-- **Stat Experience (0–65.535):** Atk: 4416 | Def: 3059 | Spd: 4601 | Spc: 2643 | HP: 3473
-- **Experiência:** 5782 EXP (Progresso: 32%, faltam 676 p/ Lv.21)
-- **Golpes & PPs:**
-  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
-  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 3. **Nidorina** (Lv. 17)
+### 2. **Nidorina** (Lv. 17)
 - **Tipos:** Poison | **HP:** 47 / 55 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 28 | DEF: 31 | SPD: 31 | SPC: 27
 - **DVs Gen 1 (0–15):** Ataque: 0 | Defesa: 5 | Velocidade: 15 | Especial: 5 | HP: 7
@@ -59,7 +47,7 @@
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
-### 4. **Beedrill** (Lv. 19)
+### 3. **Beedrill** (Lv. 19)
 - **Tipos:** Bug/Poison | **HP:** 59 / 59 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 41 | DEF: 27 | SPD: 38 | SPC: 25
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
@@ -71,7 +59,31 @@
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 5. **Butterfree** (Lv. 22)
+### 4. **Nidorino** (Lv. 20)
+- **Tipos:** Poison | **HP:** 61 / 61 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 43 | DEF: 35 | SPD: 38 | SPC: 32
+- **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
+- **Stat Experience (0–65.535):** Atk: 4416 | Def: 3059 | Spd: 4601 | Spc: 2643 | HP: 3473
+- **Experiência:** 5782 EXP (Progresso: 32%, faltam 676 p/ Lv.21)
+- **Golpes & PPs:**
+  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
+  - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
+  - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
+
+### 5. **Pikachu** (Lv. 20)
+- **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 35 | DEF: 24 | SPD: 45 | SPC: 32
+- **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
+- **Stat Experience (0–65.535):** Atk: 7701 | Def: 5647 | Spd: 8496 | Spc: 4900 | HP: 5532
+- **Experiência:** 8083 EXP (Progresso: 7%, faltam 1178 p/ Lv.21)
+- **Golpes & PPs:**
+  - **Thundershock** (Electric) — PP: 30 | Poder: 40 | Precisão: 100%
+  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
+  - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
+
+### 6. **Butterfree** (Lv. 22)
 - **Tipos:** Bug/Flying | **HP:** 65 / 65 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 32 | DEF: 31 | SPD: 44 | SPC: 49
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
@@ -82,18 +94,6 @@
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
-
-### 6. **Charmeleon** (Lv. 17)
-- **Tipos:** Fire | **HP:** 50 / 50 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 32 | DEF: 27 | SPD: 40 | SPC: 34
-- **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 14 | Especial: 14 | HP: 4
-- **Stat Experience (0–65.535):** Atk: 5275 | Def: 3873 | Spd: 6016 | Spc: 3174 | HP: 3933
-- **Experiência:** 3316 EXP (Progresso: 29%, faltam 482 p/ Lv.18)
-- **Golpes & PPs:**
-  - **Scratch** (Normal) — PP: 35 | Poder: 40 | Precisão: 100%
-  - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
-  - **Ember** (Fire) — PP: 25 | Poder: 40 | Precisão: 100%
-  - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ## 🎒 4. Mochila & Recursos • Capacidade: **10 / 20 slots** (10 vagas livres)
 - **Potion** x6
@@ -107,10 +107,25 @@
 - **Great Ball** x1
 - **Repel** x2
 
+## 💻 4.1. Armazenamento de Itens no PC (RAM $D53A) • Capacidade: **12 / 50 slots** (38 vagas livres)
+> *Itens guardados no PC pessoal do jogador (preservam espaço na mochila mas contam como possuídos para TMs/Key Items):*
+- **Potion** x1 • 🧪 Cura/Restauração
+- **TM34 (Bide)** x1 • 💿 TM Único
+- **TM12 (Water Gun)** x1 • 💿 TM Único
+- **TM11 (BubbleBeam)** x1 • 💿 TM Único
+- **TM45 (Thunder Wave)** x1 • 💿 TM Único
+- **S.s.ticket** x1 • 🔑 Key Item
+- **Nugget** x1 • 💰 Item Valioso
+- **Helix Fossil** x1 • 🔑 Key Item
+- **TM04 (Whirlwind)** x1 • 💿 TM Único
+- **TM01 (Mega Punch)** x1 • 💿 TM Único
+- **Moon Stone** x2 • 💎 Pedra de Evolução
+- **TM28 (Dig)** x1 • 💿 TM Único
+
 ### 🧴 Efeitos de Campo & Itens de Rota (Live RAM)
 - **Modo de Deslocação ($D700):** **🚶 A Pé**
 - **Repelente no Terreno ($D0DB):** **⚪ INATIVO**
-  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 20 (Pikachu)`).
+  - **Regra do Repel (Gen 1):** Bloqueia selvagens com nível estritamente inferior ao líder da equipa (`< Nv. 17 (Charmeleon)`).
   - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.
 - **Repelentes na Mochila:** Repel: `2` | Super Repel: `0` | Max Repel: `0` (Total: `2`)
 - **Escape Rope ($D158):** `1` disponíveis • Exterior/Cidade
@@ -272,6 +287,35 @@
 - **Roster Inimigo:** Staryu (Lv. 18) • Starmie (Lv. 21)
 - **Lead Recomendado:** Pikachu
 - **Estratégia:** Insignia Cascade obtida!
+
+## 🌐 10. Panorama Global de 100% de Kanto (Guia Completo para ChatGPT)
+### 🎯 Estado dos 8 Ginásios de Kanto:
+- **1. Boulder Badge** (Pewter City • Brock): ✅ VENCIDO
+- **2. Cascade Badge** (Cerulean City • Misty): ✅ VENCIDO
+- **3. Thunder Badge** (Vermilion City • Lt. Surge): ⏳ POR VENCER
+- **4. Rainbow Badge** (Celadon City • Erika): ⏳ POR VENCER
+- **5. Soul Badge** (Fuchsia City • Koga): ⏳ POR VENCER
+- **6. Marsh Badge** (Saffron City • Sabrina): ⏳ POR VENCER
+- **7. Volcano Badge** (Cinnabar Island • Blaine): ⏳ POR VENCER
+- **8. Earth Badge** (Viridian City • Giovanni): ⏳ POR VENCER
+
+### 💿 TMs e HMs em Posse do Jogador (Mochila + PC):
+- **TM34 (Bide)** x1 [Local: 💻 Guardado no PC]
+- **TM12 (Water Gun)** x1 [Local: 💻 Guardado no PC]
+- **TM11 (BubbleBeam)** x1 [Local: 💻 Guardado no PC]
+- **TM45 (Thunder Wave)** x1 [Local: 💻 Guardado no PC]
+- **TM04 (Whirlwind)** x1 [Local: 💻 Guardado no PC]
+- **TM01 (Mega Punch)** x1 [Local: 💻 Guardado no PC]
+- **TM28 (Dig)** x1 [Local: 💻 Guardado no PC]
+
+### 🔑 Key Items e Pedras Raras em Posse (Mochila + PC):
+- **Town Map** x1 [Local: 🎒 Na Mochila]
+- **S.s.ticket** x1 [Local: 💻 Guardado no PC]
+- **Helix Fossil** x1 [Local: 💻 Guardado no PC]
+- **Moon Stone** x2 [Local: 💻 Guardado no PC]
+
+### 🚩 Próximo Grande Objetivo de Jogo para Orientares o Jogador:
+> **RED possui 2 Insígnias (Boulder & Cascade)!** Já possui o **S.S. Ticket** (guardado no PC/mochila). O próximo passo é atravessar a Casa Subterrânea da Rota 5 até Vermilion City. Em Vermilion City, com o S.S. Ticket, deve embarcar no navio S.S. Anne, vencer o Rival Blue, obter o **HM01 Cut** com o Capitão do navio, cortar o arbusto do ginásio e derrotar o **Líder Lt. Surge (Thunder Badge)**!
 
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
