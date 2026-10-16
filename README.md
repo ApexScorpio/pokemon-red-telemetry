@@ -1,21 +1,54 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:15:23**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:15:27**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Mt Moon 1F** (ID Interno: `0x3B`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `6`, Y: `11`
-- **Direção de RED:** **Norte (Cima ⬆️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `55h 0m 57s`
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `3`, Y: `5`
+- **Direção de RED:** **Este (Direita ➡️)**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
+- **Tempo de Jogo:** `55h 0m 58s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE TAIL WHIP`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Geodude** (Lv. 8)
+- **Tipos:** Rock/Ground
+- **HP:** **25 / 25** (100%)
+- **Stats de Batalha:** ATK: 20 | DEF: 22 | SPD: 8 | SPC: 11
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~4-5 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
+- **Tipos:** Normal
+- **HP:** **19 / 43** (HEALTHY)
+- **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (0) | SPD: 34 (0) | SPC: 20 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **11-13 HP** (0.5x eficácia) • ~2 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Hyper Fang (Causa ~11-13 de dano)
+- ➔ Turno 2: Hyper Fang (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Hyper Fang. Atacas primeiro em ambos os turnos.
+
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 21)** [56/62 HP]
+- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Rattata.
+- **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
+
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **35%** | Great Ball: **52%** | Ultra Ball: **35%**
+  - *Se adormeceres o inimigo:* **~41%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 16)
@@ -42,7 +75,7 @@
   - **Poison Sting** (Poison) — PP: 31 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
-### 3. **Rattata** (Lv. 16)
+### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
 - **Tipos:** Normal | **HP:** 19 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
@@ -134,7 +167,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↖️ 6 passos Noroeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
+### #1. [↘️ 3 passos Sudeste] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -146,7 +179,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** A carcaça de pedra deles é vulnerável a Confusion (Special). NÃO uses Charmeleon nem Pikachu!
 
-### #2. [↘️ 11 passos Sudeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
+### #2. [↘️ 20 passos Sudeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -158,7 +191,7 @@
   - **Slot #5**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #3. [↗️ 31 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
+### #3. [↗️ 28 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -170,7 +203,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #4. [↘️ 38 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #4. [↘️ 47 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -182,7 +215,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #5. [↘️ 22 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
+### #5. [↘️ 31 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -194,7 +227,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #6. [↘️ 12 passos Sudeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
+### #6. [↘️ 21 passos Sudeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -206,7 +239,7 @@
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #7. [↘️ 40 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
+### #7. [↘️ 49 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -230,6 +263,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:15:27] **Turno #1**: Rattata (19/43 HP) vs Geodude (Lv. 8 • 25/25 HP)
+- [18:15:25] **Turno #1**: Pikachu (37/40 HP) vs Geodude (Lv. 8 • 25/25 HP)
+- [18:15:24] **Turno #1**: Pikachu (19/40 HP) vs Geodude (Lv. 8 • 25/25 HP)
 - [18:15:20] **Turno #4**: Rattata (19/43 HP) vs Geodude (Lv. 8 • 0/26 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [18:15:19] **Turno #4**: Rattata (19/43 HP) vs Geodude (Lv. 8 • 3/26 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [18:15:18] **Turno #3**: Rattata (23/43 HP) vs Geodude (Lv. 8 • 14/26 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
@@ -242,9 +278,6 @@
 - [18:15:07] **Turno #3**: Rattata (31/43 HP) vs Geodude (Lv. 8 • 3/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [18:15:06] **Turno #2**: Rattata (35/43 HP) vs Geodude (Lv. 8 • 3/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
 - [18:15:05] **Turno #2**: Rattata (39/43 HP) vs Geodude (Lv. 8 • 14/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [18:15:04] **Turno #1**: Rattata (39/43 HP) vs Geodude (Lv. 8 • 25/25 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tackle`
-- [18:15:04] **Turno #1**: Rattata (43/43 HP) vs Geodude (Lv. 8 • 25/25 HP) • Golpe Inimigo: `Tackle`
-- [18:15:00] **Turno #1**: Pikachu (37/40 HP) vs Geodude (Lv. 8 • 25/25 HP)
 
 - [18:15:09] Entrou em Mt Moon 1F
 - [18:14:59] Entrou em Mt Moon B1F
