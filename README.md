@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:46:55**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:46:59**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #3`
+- **Turno Atual:** `Turno #4`
 - **Último Golpe Usado por RED:** `Hyper Fang`
-- **Último Golpe Usado pelo Adversário:** `Tail Whip`
+- **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
 ### 🔴 Adversário em Campo: **Raticate** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **46 / 46** (100%)
+- **HP:** **3 / 46** (7%)
 - **Stats de Batalha:** ATK: 33 | DEF: 26 | SPD: 38 | SPC: 23
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -30,28 +30,27 @@
   - **Quick Attack** (Normal) • PP: NaN • Poder: 40 • Precisão: 100%
   - **Hyper Fang** (Normal) • PP: NaN • Poder: 80 • Precisão: 90%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~12-15 HP (1x)
+  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (12-15 HP)
   - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
-  - **Quick Attack** (Normal) ➔ Dano: ~13-16 HP (1x)
-  - **Hyper Fang** (Normal) ➔ Dano: ~25-30 HP (1x)
+  - **Quick Attack** (Normal) ➔ 🚨 RISCO DE K.O.! (13-16 HP)
+  - **Hyper Fang** (Normal) ➔ 🚨 RISCO DE K.O.! (25-30 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Rattata** (Lv. 16)
 - **Tipos:** Normal
-- **HP:** **43 / 43** (HEALTHY)
+- **HP:** **15 / 43** (HEALTHY)
 - **Stats com Modificadores:** ATK: 26 (0) | DEF: 20 (-1) | SPD: 34 (0) | SPC: 20 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Hyper Fang** (Normal) ➔ Dano: **20-24 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **10-12 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 35%)
-- ➔ Turno 1: Hyper Fang
-- ➔ Turno 2: Hyper Fang (Finalizador)
-> **Resumo Tático:** ⚠️ Sobrevivência reduzida (35%): O inimigo ataca duas vezes antes de venceres.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 45%)
+- ➔ Turno 1: Inimigo ataca primeiro (~30 dano) ➔ Responde com Tackle (K.O.)
+> **Resumo Tático:** ⚠️ PERIGO: O adversário ataca primeiro e pode desmaiar o teu Pokémon! Considera curar ou trocar.
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Rattata tem a melhor rota de vitória rápida e HP estável (43/43). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 3 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Tackle para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -79,7 +78,7 @@
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
 
 ### 3. **Rattata** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Normal | **HP:** 43 / 43 ✅ (SAUDÁVEL)
+- **Tipos:** Normal | **HP:** 15 / 43 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 26 | DEF: 20 | SPD: 34 | SPC: 20
 - **DVs Gen 1 (0–15):** Ataque: 3 | Defesa: 5 | Velocidade: 11 | Especial: 15 | HP: 15
 - **Stat Experience (0–65.535):** Atk: 5989 | Def: 4340 | Spd: 6757 | Spc: 3772 | HP: 5036
@@ -88,7 +87,7 @@
   - **Tackle** (Normal) — PP: 35 | Poder: 35 | Precisão: 95%
   - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
   - **Tail Whip** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Hyper Fang** (Normal) — PP: 15 | Poder: 80 | Precisão: 90%
+  - **Hyper Fang** (Normal) — PP: 13 | Poder: 80 | Precisão: 90%
 
 ### 4. **Nidorino** (Lv. 16)
 - **Tipos:** Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -230,14 +229,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:46:59] **Turno #4**: Rattata (15/43 HP) vs Raticate (3/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Quick Attack`
+- [15:46:58] **Turno #4**: Rattata (15/43 HP) vs Raticate (24/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Quick Attack`
+- [15:46:56] **Turno #3**: Rattata (43/43 HP) vs Raticate (24/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tail Whip`
 - [15:46:53] **Turno #3**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Hyper Fang` • Golpe Inimigo: `Tail Whip`
 - [15:46:48] **Turno #2**: Rattata (43/43 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:38] **Turno #2**: Beedrill (0/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:37] **Turno #2**: Beedrill (20/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Hyper Fang`
 - [15:46:36] **Turno #1**: Beedrill (20/48 HP) vs Raticate (46/46 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Tackle`
-- [15:46:35] **Turno #1**: Beedrill (33/48 HP) vs Raticate (46/46 HP)
-- [15:44:16] **Turno #1**: Beedrill (33/48 HP) vs Zubat (0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
-- [15:44:15] **Turno #1**: Beedrill (33/48 HP) vs Zubat (16/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Leech Life`
 
 - [15:43:51] Entrou em Mt Moon B2f
 - [15:43:49] Entrou em Mt Moon B1F
