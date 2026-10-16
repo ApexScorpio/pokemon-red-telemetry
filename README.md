@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:48:02**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:48:05**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #3`
-- **Último Golpe Usado por RED:** `Tackle`
+- **Turno Atual:** `Turno #4`
+- **Último Golpe Usado por RED:** `Horn Attack`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 9)
 - **Tipos:** Rock/Ground
-- **HP:** **24 / 28** (86%)
+- **HP:** **16 / 28** (57%)
 - **Stats de Batalha:** ATK: 19 | DEF: 23 | SPD: 8 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,16 +31,17 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Nidorino** (Lv. 16)
 - **Tipos:** Poison
-- **HP:** **45 / 51** (HEALTHY)
+- **HP:** **39 / 51** (HEALTHY)
 - **Stats com Modificadores:** ATK: 35 (0) | DEF: 29 (0) | SPD: 31 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-2 HP** (0.25x eficácia) • ~12 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Horn Attack** (Normal) ➔ Dano: **7-9 HP** (0.5x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-12: Usa repetidamente Poison Sting
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Horn Attack (Causa ~7-9 de dano)
+- ➔ Turno 2: Horn Attack (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Horn Attack. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
 - **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
@@ -48,8 +49,8 @@
 - **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Nidorino.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **39%** | Great Ball: **58%** | Ultra Ball: **39%**
-  - *Se adormeceres o inimigo:* **~45%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **58%** | Great Ball: **88%** | Ultra Ball: **58%**
+  - *Se adormeceres o inimigo:* **~62%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Beedrill** (Lv. 17)
@@ -88,7 +89,7 @@
   - **Hyper Fang** (Normal) — PP: 10 | Poder: 80 | Precisão: 90%
 
 ### 4. **Nidorino** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Poison | **HP:** 45 / 51 ✅ (SAUDÁVEL)
+- **Tipos:** Poison | **HP:** 42 / 51 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 35 | DEF: 29 | SPD: 31 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 15 | Defesa: 12 | Velocidade: 9 | Especial: 7 | HP: 11
 - **Stat Experience (0–65.535):** Atk: 3719 | Def: 2437 | Spd: 4021 | Spc: 2223 | HP: 2922
@@ -96,7 +97,7 @@
 - **Golpes & PPs:**
   - **Tackle** (Normal) — PP: 32 | Poder: 35 | Precisão: 95%
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
-  - **Horn Attack** (Normal) — PP: 25 | Poder: 65 | Precisão: 100%
+  - **Horn Attack** (Normal) — PP: 24 | Poder: 65 | Precisão: 100%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
 ### 5. **Butterfree** (Lv. 21)
@@ -234,6 +235,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:48:05] **Turno #4**: Nidorino (39/51 HP) vs Geodude (Lv. 9 • 16/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
+- [17:48:02] **Turno #3**: Nidorino (42/51 HP) vs Geodude (Lv. 9 • 24/28 HP) • Golpe RED: `Horn Attack` • Golpe Inimigo: `Tackle`
 - [17:48:01] **Turno #3**: Nidorino (45/51 HP) vs Geodude (Lv. 9 • 24/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [17:48:00] **Turno #2**: Nidorino (45/51 HP) vs Geodude (Lv. 9 • 24/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
 - [17:47:59] **Turno #1**: Nidorino (48/51 HP) vs Geodude (Lv. 9 • 28/28 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Tackle`
@@ -247,8 +250,6 @@
 - [17:47:37] **Turno #2**: Beedrill (7/54 HP) vs Paras (Lv. 10 • 17/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:47:36] **Turno #2**: Beedrill (7/54 HP) vs Paras (Lv. 10 • 29/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:47:35] **Turno #1**: Beedrill (12/54 HP) vs Paras (Lv. 10 • 29/29 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
-- [17:47:33] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 29/29 HP)
-- [17:47:16] **Turno #1**: Beedrill (17/54 HP) vs Paras (Lv. 10 • 0/27 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 
 - [17:46:44] Entrou em Mt Moon B2f
 - [17:46:26] Entrou em Mt Moon B1F
