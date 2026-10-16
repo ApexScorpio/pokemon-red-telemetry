@@ -1,17 +1,17 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:23:18**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:23:23**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 5** (ID Interno: `0x10`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `8`, Y: `3`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `11`, Y: `4`
+- **Direção de RED:** **Este (Direita ➡️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
-- **Tempo de Jogo:** `63h 0m 18s`
-- **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
+- **Tempo de Jogo:** `63h 0m 19s`
+- **💬 Diálogo / Mensagem no Ecrã:** `TELEPORT`
 - **Dinheiro:** **11 020 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 11 (Abra) | **Eficiência na Rota:** `10% bloqueados`
 
@@ -26,7 +26,7 @@
 - **Stat Experience (0–65.535):** Atk: 64 | Def: 47 | Spd: 38 | Spc: 62 | HP: 65
 - **Experiência:** 903 EXP (Progresso: 70%, faltam 70 p/ Lv.12)
 - **Golpes & PPs:**
-  - **Teleport** (Psychic_type) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Teleport** (Psychic_type) — PP: 19 | Poder: -- | Precisão: 100%
 
 ### 2. **Pikachu** (Lv. 20)
 - **Tipos:** Electric | **HP:** 48 / 48 ✅ (SAUDÁVEL)
@@ -145,6 +145,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:23:21] **Turno #1**: Abra (28/28 HP) vs Pidgey (Lv. 13 • 37/37 HP) • Golpe RED: `Teleport`
+- [19:23:19] **Turno #1**: Abra (43/28 HP) vs Pidgey (Lv. 13 • 37/37 HP)
 - [19:16:56] **Turno #9**: Butterfree (43/65 HP) vs Drowzee (Lv. 17 • 0/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 - [19:16:55] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 0/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 - [19:16:54] **Turno #9**: Butterfree (40/62 HP) vs Drowzee (Lv. 17 • 4/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Hypnosis`
@@ -158,8 +160,6 @@
 - [19:16:40] **Turno #2**: Butterfree (50/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Confusion`
 - [19:16:39] **Turno #1**: Butterfree (56/62 HP) vs Drowzee (Lv. 17 • 40/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
 - [19:16:38] **Turno #1**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Pound`
-- [19:16:36] **Turno #1**: Abra (26/26 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
-- [19:16:31] **Turno #3**: Butterfree (62/62 HP) vs Drowzee (Lv. 17 • 50/50 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Karate Chop`
 
 - [19:23:18] Entrou em Route 5
 - [19:22:58] Entrou em Cerulean City
@@ -169,6 +169,7 @@
 - [19:20:17] Entrou em Cerulean City
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [19:23:21] `TELEPORT`
 - [19:16:41] `CONFUSION STUN SPORE`
 - [19:16:20] `TELEPORT`
 - [19:11:46] `SPEED SPECIAL OT`
@@ -183,7 +184,6 @@
 - [18:57:29] `HORN ATTACK TACKLE`
 - [18:56:38] `FURY ATTACK POISON STING`
 - [18:56:32] `Youe going to see BILL First`
-- [18:56:22] `FURY ATTACK POISON STING`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
