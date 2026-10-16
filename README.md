@@ -1,14 +1,14 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:26**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:53:30**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Route 24** (ID Interno: `0x23`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `4`, Y: `21`
-- **Direção de RED:** **Sul (Baixo ⬇️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `27`
+- **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
 - **Tempo de Jogo:** `60h 0m 5s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
@@ -27,10 +27,10 @@
 - **Tipos:** Bug/Flying | **HP:** 62 / 62 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 30 | SPD: 42 | SPC: 47
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
-- **Stat Experience (0–65.535):** Atk: 6776 | Def: 6246 | Spd: 7025 | Spc: 4677 | HP: 5655
-- **Experiência:** 9559 EXP (Progresso: 21%, faltam 1089 p/ Lv.22)
+- **Stat Experience (0–65.535):** Atk: 6811 | Def: 6276 | Spd: 7075 | Spc: 4697 | HP: 5695
+- **Experiência:** 9611 EXP (Progresso: 25%, faltam 1037 p/ Lv.22)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 24 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 23 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
@@ -187,6 +187,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:53:29] **Turno #1**: Butterfree (62/62 HP) vs Weedle (Lv. 7 • 0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Poison Sting`
+- [18:53:27] **Turno #1**: Butterfree (62/62 HP) vs Weedle (Lv. 7 • 23/23 HP)
 - [18:53:25] **Turno #1**: Butterfree (62/62 HP) vs Pidgey (Lv. 13 • 0/36 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Gust`
 - [18:53:24] **Turno #1**: Butterfree (62/62 HP) vs Pidgey (Lv. 13 • 36/36 HP)
 - [18:53:23] **Turno #1**: Butterfree (4/62 HP) vs Pidgey (Lv. 13 • 36/36 HP)
@@ -200,8 +202,6 @@
 - [18:52:50] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 7/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:49] **Turno #3**: Beedrill (15/56 HP) vs Oddish (Lv. 13 • 6/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 - [18:52:49] **Turno #2**: Beedrill (16/56 HP) vs Oddish (Lv. 13 • 6/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
-- [18:52:48] **Turno #2**: Beedrill (16/56 HP) vs Oddish (Lv. 13 • 20/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
-- [18:52:47] **Turno #2**: Beedrill (17/56 HP) vs Oddish (Lv. 13 • 19/36 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Absorb`
 
 - [18:51:39] Entrou em Route 24
 - [18:51:35] Entrou em Cerulean City
