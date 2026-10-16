@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:38:50**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:38:54**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -9,20 +9,44 @@
 - **Localização Atual:** **Mt Moon B2f** (ID Interno: `0x3D`)
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `16`, Y: `22`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
-- **Estado Atual do Jogador:** **💬 Em Diálogo / Menu / Evento**
+- **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `52h 0m 4s`
 - **💬 Diálogo / Mensagem no Ecrã:** `CONFUSION STUN SPORE`
 - **Dinheiro:** **1361 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
-- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**
-- **🎯 Próximo Alvo de Batalha na Área:** **Team Rocket Grunt #1** (Mt. Moon B2F (Noroeste))
-  - **Equipa Adversária:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
-  - **Lead Recomendado:** Butterfree (Confusion)
-  - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
+- **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
+- **Turno Atual:** `Turno #1`
+
+### 🔴 Adversário em Campo: **Geodude** (Lv. 7)
+- **Tipos:** Rock/Ground
+- **HP:** **0 / 24** (0%)
+- **Stats de Batalha:** ATK: 18 | DEF: 20 | SPD: 8 | SPC: 11
+- **Os 4 Golpes do Adversário:**
+  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
+- **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
+  - **Tackle** (Normal) ➔ Dano: ~3-4 HP (1x)
+
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
+- **Tipos:** Normal
+- **HP:** **53 / 46** (HEALTHY)
+- **Stats com Modificadores:** ATK: 31 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
+
+### 🎯 Análise Tática Matemática & Decisão
+- **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **1-1 HP** (0.25x eficácia) • ~20 turnos para K.O.
+
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
+- ➔ Turnos 1-20: Usa repetidamente Poison Sting
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+
+#### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
+- **Decisão:** 🚨 DEVES MUDAR DE POKÉMON
+- **Substituto Sugerido:** **Butterfree (Lv. 19)** [53/57 HP]
+- **Motivo:** Butterfree tem o golpe Stun Spore (4x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14)
+### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
 - **Tipos:** Bug/Poison | **HP:** 36 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
