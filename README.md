@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:06:38**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:06:42**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -16,13 +16,13 @@
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #4`
+- **Turno Atual:** `Turno #6`
 - **Último Golpe Usado por RED:** `Quick Attack`
 - **Último Golpe Usado pelo Adversário:** `Tackle`
 
 ### 🔴 Adversário em Campo: **Geodude** (Lv. 10)
 - **Tipos:** Rock/Ground
-- **HP:** **12 / 30** (40%)
+- **HP:** **6 / 30** (20%)
 - **Stats de Batalha:** ATK: 21 | DEF: 27 | SPD: 11 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
@@ -31,27 +31,28 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 16)
 - **Tipos:** Electric
-- **HP:** **25 / 40** (HEALTHY)
+- **HP:** **10 / 40** (HEALTHY)
 - **Stats com Modificadores:** ATK: 29 (0) | DEF: 20 (0) | SPD: 37 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **3-4 HP** (0.5x eficácia) • ~3 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **3-4 HP** (0.5x eficácia) • ~2 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
-- ➔ Turnos 1-3: Usa repetidamente Quick Attack
-> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
+- ➔ Turno 1: Quick Attack (Causa ~3-4 de dano)
+- ➔ Turno 2: Quick Attack (Golpe final de K.O.)
+> **Resumo Tático:** Vitória em 2 turnos rápidos com Quick Attack. Atacas primeiro em ambos os turnos.
 
 #### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** O adversário tem apenas 12 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
+- **Motivo:** O adversário tem apenas 6 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **83%** | Great Ball: **100%** | Ultra Ball: **83%**
-  - *Se adormeceres o inimigo:* **~85%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **100%** | Great Ball: **100%** | Ultra Ball: **100%**
+  - *Se adormeceres o inimigo:* **~100%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Pikachu** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 25 / 40 ✅ (SAUDÁVEL)
+- **Tipos:** Electric | **HP:** 10 / 40 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 6614 | Def: 4644 | Spd: 7384 | Spc: 3987 | HP: 4795
@@ -60,7 +61,7 @@
   - **Thundershock** (Electric) — PP: 26 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 26 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 24 | Poder: 40 | Precisão: 100%
 
 ### 2. **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -242,6 +243,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:06:41] **Turno #6**: Pikachu (10/40 HP) vs Geodude (Lv. 10 • 6/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
+- [18:06:40] **Turno #6**: Pikachu (15/40 HP) vs Geodude (Lv. 10 • 6/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
+- [18:06:39] **Turno #5**: Pikachu (15/40 HP) vs Geodude (Lv. 10 • 9/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
+- [18:06:38] **Turno #4**: Pikachu (20/40 HP) vs Geodude (Lv. 10 • 12/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
 - [18:06:38] **Turno #4**: Pikachu (25/40 HP) vs Geodude (Lv. 10 • 12/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
 - [18:06:37] **Turno #3**: Pikachu (25/40 HP) vs Geodude (Lv. 10 • 15/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
 - [18:06:36] **Turno #2**: Pikachu (30/40 HP) vs Geodude (Lv. 10 • 15/30 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Tackle`
@@ -253,10 +258,6 @@
 - [18:06:19] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 10 • 0/29 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:06:16] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 10 • 29/29 HP)
 - [18:06:15] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 8 • 0/26 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
-- [18:06:12] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 8 • 26/26 HP)
-- [18:06:07] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 10 • 0/31 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
-- [18:06:07] **Turno #1**: Pikachu (40/40 HP) vs Zubat (Lv. 10 • 31/31 HP)
-- [18:06:06] **Turno #1**: Pikachu (27/40 HP) vs Zubat (Lv. 10 • 31/31 HP)
 
 - [18:06:26] Entrou em Mt Moon B2f
 - [18:06:21] Entrou em Mt Moon B1F
