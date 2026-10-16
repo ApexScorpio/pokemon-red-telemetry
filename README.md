@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:08:03**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:08:07**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -17,24 +17,26 @@
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Thundershock`
+- **Último Golpe Usado pelo Adversário:** `Leech Life`
 
 ### 🔴 Adversário em Campo: **Zubat** (Lv. 6)
 - **Tipos:** Poison/Flying
-- **HP:** **22 / 22** (100%)
+- **HP:** **0 / 22** (0%)
 - **Stats de Batalha:** ATK: 11 | DEF: 10 | SPD: 12 | SPC: 11
 - **Os 4 Golpes do Adversário:**
   - **Leech Life** (Bug) • PP: 15 • Poder: 20 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
   - **Leech Life** (Bug) ➔ Dano: ~1-2 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 15)
-- **Tipos:** Normal
-- **HP:** **56 / 38** (HEALTHY)
-- **Stats com Modificadores:** ATK: 27 (0) | DEF: 19 (0) | SPD: 35 (0) | SPC: 25 (0)
+### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 16)
+- **Tipos:** Electric
+- **HP:** **37 / 40** (HEALTHY)
+- **Stats com Modificadores:** ATK: 29 (0) | DEF: 20 (0) | SPD: 37 (0) | SPC: 26 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **30-36 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **45-54 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
 - ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
@@ -42,22 +44,20 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (56/38). Não precisas de gastar um turno a trocar.
-
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **37%** | Great Ball: **55%** | Ultra Ball: **37%**
-  - *Se adormeceres o inimigo:* **~43%** | *Com HP no vermelho:* **~100%**
+- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (37/40). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Pikachu** (Lv. 15) ⚔️ [EM COMBATE]
-- **Tipos:** Electric | **HP:** 35 / 38 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 27 | DEF: 19 | SPD: 35 | SPC: 25
+### 1. **Pikachu** (Lv. 16)
+- **Tipos:** Electric | **HP:** 37 / 40 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 29 | DEF: 20 | SPD: 37 | SPC: 26
 - **DVs Gen 1 (0–15):** Ataque: 10 | Defesa: 10 | Velocidade: 0 | Especial: 11 | HP: 1
-- **Stat Experience (0–65.535):** Atk: 6394 | Def: 4454 | Spd: 7154 | Spc: 3812 | HP: 4615
-- **Experiência:** 4062 EXP (Progresso: 95%, faltam 34 p/ Lv.16)
+- **Stat Experience (0–65.535):** Atk: 6439 | Def: 4489 | Spd: 7209 | Spc: 3852 | HP: 4655
+- **Experiência:** 4108 EXP (Progresso: 1%, faltam 805 p/ Lv.17)
 - **Golpes & PPs:**
-  - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
+  - **Thundershock** (Electric) — PP: 27 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 30 | Poder: 40 | Precisão: 100%
 
 ### 2. **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison | **HP:** 0 / 51 ❌ (FAINTED)
@@ -169,7 +169,7 @@
 - **Lead Recomendado:** Butterfree (Confusion)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Pikachu** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
@@ -180,7 +180,7 @@
 - **Roster Inimigo:** Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree / Pikachu
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
-  - **Slot #1**: **Pikachu** (Lv. 15) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
+  - **Slot #1**: **Pikachu** (Lv. 16) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Rattata** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
@@ -193,7 +193,7 @@
 - **Lead Recomendado:** Charmeleon / Nidorino
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Pikachu** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
@@ -205,7 +205,7 @@
 - **Lead Recomendado:** Charmeleon (Ember)
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Pikachu** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
@@ -217,7 +217,7 @@
 - **Lead Recomendado:** Charmeleon / Butterfree
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Pikachu** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
@@ -229,7 +229,7 @@
 - **Lead Recomendado:** Charmeleon / Beedrill
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Pikachu** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
@@ -241,7 +241,7 @@
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
-  - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
+  - **Slot #2**: **Pikachu** (Lv. 16) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
   - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
   - **Slot #5**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
@@ -259,6 +259,9 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:08:06] **Turno #1**: Pikachu (37/40 HP) vs Zubat (Lv. 6 • 0/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
+- [18:08:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (Lv. 6 • 0/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
+- [18:08:05] **Turno #1**: Pikachu (35/38 HP) vs Zubat (Lv. 6 • 22/22 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
 - [18:08:03] **Turno #1**: Pikachu (56/38 HP) vs Zubat (Lv. 6 • 22/22 HP)
 - [18:07:53] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 8 • 0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [18:07:49] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 8 • 24/24 HP)
@@ -271,9 +274,6 @@
 - [18:07:04] **Turno #1**: Pikachu (5/40 HP) vs Zubat (Lv. 12 • 0/34 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Supersonic`
 - [18:07:03] **Turno #1**: Pikachu (5/40 HP) vs Zubat (Lv. 12 • 34/34 HP)
 - [18:06:59] **Turno #1**: Pikachu (5/40 HP) vs Zubat (Lv. 9 • 0/27 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leech Life`
-- [18:06:57] **Turno #1**: Pikachu (5/40 HP) vs Zubat (Lv. 9 • 27/27 HP)
-- [18:06:52] **Turno #2**: Pikachu (5/40 HP) vs Clefairy (Lv. 10 • 7/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Pound`
-- [18:06:50] **Turno #1**: Pikachu (5/40 HP) vs Clefairy (Lv. 10 • 22/35 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Growl`
 
 - [18:07:47] Entrou em Mt Moon 1F
 - [18:07:46] Entrou em Mt Moon B1F
