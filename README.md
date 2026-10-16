@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:17**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:16:21**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -11,31 +11,28 @@
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
 - **Tempo de Jogo:** `62h 0m 33s`
-- **💬 Diálogo / Mensagem no Ecrã:** `SPEED SPECIAL OT`
+- **💬 Diálogo / Mensagem no Ecrã:** `TELEPORT`
 - **Dinheiro:** **10 510 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 10 (Abra)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
+- **Último Golpe Usado por RED:** `Teleport`
 
-### 🔴 Adversário em Campo: **Starmie** (Lv. 21)
-- **Tipos:** Water/Psychic
-- **HP:** **0 / 59** (0%)
-- **Stats de Batalha:** ATK: 40 | DEF: 66 | SPD: 56 | SPC: 50
+### 🔴 Adversário em Campo: **Machop** (Lv. 17)
+- **Tipos:** Fighting
+- **HP:** **53 / 53** (100%)
+- **Stats de Batalha:** ATK: 35 | DEF: 24 | SPD: 19 | SPC: 19
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Water Gun** (Water) • PP: 25 • Poder: 40 • Precisão: 100%
-  - **Bubblebeam** (Water) • PP: NaN • Poder: 65 • Precisão: 100%
+  - **Karate Chop** (Normal) • PP: 25 • Poder: 50 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ 🚨 RISCO DE K.O.! (28-33 HP)
-  - **Water Gun** (Water) ➔ Dano: ~18-22 HP (1x)
-  - **Bubblebeam** (Water) ➔ 🚨 RISCO DE K.O.! (28-34 HP)
+  - **Karate Chop** (Normal) ➔ 🚨 RISCO DE K.O.! (28-33 HP)
 
 ### 🔵 O Teu Pokémon em Campo: **Abra** (Lv. 10)
-- **Tipos:** Normal
-- **HP:** **25 / 26** (HEALTHY)
-- **Stats com Modificadores:** ATK: 10 (+138) | DEF: 8 (+132) | SPD: 23 (+73) | SPC: 27 (+73)
+- **Tipos:** Psychic
+- **HP:** **26 / 26** (HEALTHY)
+- **Stats com Modificadores:** ATK: 10 (0) | DEF: 8 (0) | SPD: 23 (0) | SPC: 27 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
@@ -47,7 +44,7 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Abra tem a melhor rota de vitória rápida e HP estável (25/26). Não precisas de gastar um turno a trocar.
+- **Motivo:** Abra tem a melhor rota de vitória rápida e HP estável (26/26). Não precisas de gastar um turno a trocar.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
 ### 1. **Abra** (Lv. 10) ⚔️ [EM COMBATE]
@@ -188,6 +185,8 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:16:19] **Turno #1**: Abra (26/26 HP) vs Machop (Lv. 17 • 53/53 HP)
+- [19:16:18] **Turno #1**: Abra (25/26 HP) vs Machop (Lv. 17 • 53/53 HP)
 - [19:16:17] **Turno #1**: Abra (25/26 HP) vs Starmie (Lv. 21 • 0/59 HP)
 - [19:03:50] **Turno #11**: Beedrill (25/59 HP) vs Starmie (Lv. 21 • 0/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Bubblebeam`
 - [19:03:50] **Turno #11**: Beedrill (22/56 HP) vs Starmie (Lv. 21 • 0/59 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Bubblebeam`
@@ -201,8 +200,6 @@
 - [19:03:43] **Turno #8**: Rattata (2/45 HP) vs Starmie (Lv. 21 • 13/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Water Gun`
 - [19:03:42] **Turno #7**: Rattata (2/45 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Bubblebeam`
 - [19:03:41] **Turno #7**: Rattata (45/45 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Bubblebeam`
-- [19:03:39] **Turno #6**: Nidorina (0/55 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Poison Sting` • Golpe Inimigo: `Bubblebeam`
-- [19:03:36] **Turno #5**: Nidorina (19/55 HP) vs Starmie (Lv. 21 • 18/59 HP) • Golpe RED: `Scratch` • Golpe Inimigo: `Tackle`
 
 - [19:16:13] Entrou em Cerulean City
 - [19:16:11] Entrou em Cerulean Trashed House
@@ -212,6 +209,7 @@
 - [19:07:35] Entrou em Cerulean Trade House
 
 ### 💬 Últimos Diálogos & Mensagens com NPCs (Memória do Ecrã):
+- [19:16:20] `TELEPORT`
 - [19:11:46] `SPEED SPECIAL OT`
 - [19:03:41] `TACKLE TAIL WHIP`
 - [19:03:37] `SCRATCH GROWL`
@@ -226,7 +224,6 @@
 - [18:56:32] `Youe going to see BILL First`
 - [18:56:22] `FURY ATTACK POISON STING`
 - [18:53:34] `CONFUSION STUN SPORE`
-- [18:53:02] `FURY ATTACK POISON STING`
 
 ---
 *Link permanente deste ficheiro:* [https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/README.md)
