@@ -958,8 +958,16 @@ class RetroArchClient extends EventEmitter {
             ent.name = `🎒 Item no Chão (Poké Ball)`;
           }
         } else {
-          // Procura correspondência com treinadores conhecidos da área
-          const matchedBt = battles.find(bt => Math.abs(bt.x - ent.x) <= 2 && Math.abs(bt.y - ent.y) <= 2);
+          // Procura correspondência com treinadores conhecidos da área (tolerância até 4 tiles para NPCs em patrulha)
+          let matchedBt = null;
+          let bestDist = 999;
+          for (const bt of battles) {
+            const dist = Math.abs(bt.x - ent.x) + Math.abs(bt.y - ent.y);
+            if (dist <= 4 && dist < bestDist) {
+              bestDist = dist;
+              matchedBt = bt;
+            }
+          }
           if (matchedBt) {
             ent.isTrainer = true;
             ent.trainerName = matchedBt.name;

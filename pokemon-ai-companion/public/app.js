@@ -802,9 +802,11 @@ function getMapEntitySnapshot(state) {
 }
 
 function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
-  const ghost = forceGhost || ent.isGhost || ent.isCollected || ent.isDefeated;
+  const isDefeated = !!ent.isDefeated;
+  const isCollected = !!ent.isCollected;
+  const ghost = forceGhost || ent.isGhost || isCollected || isDefeated;
   ctx.save();
-  ctx.globalAlpha = ghost ? 0.36 : 1;
+  ctx.globalAlpha = ghost ? 0.45 : 1;
 
   // Renderiza o sprite real do Game Boy decodificado da RAM
   const spriteName = ent.spriteFile || (ent.isItem ? 'poke_ball' : null);
@@ -820,6 +822,17 @@ function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
     ctx.textBaseline = 'middle';
     ctx.fillText(icon, x, y);
   }
+
+  // Se o treinador já foi vencido, desenha um pequeno distintivo de verificado verde (✓) discreto
+  if (isDefeated) {
+    ctx.globalAlpha = 0.95;
+    ctx.fillStyle = '#00e676';
+    ctx.font = `bold ${Math.max(10, Math.round(12 * scale))}px sans-serif`;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('✓', x + 3 * scale, y - 8 * scale);
+  }
+
   ctx.restore();
 }
 
@@ -936,17 +949,18 @@ function renderFogMinimap(state) {
     });
   }
 
-  // Itens conhecidos: ícone no mapa; quando recolhidos, ficam como ghost.
+  // Itens conhecidos: apenas desenha se AINDA NÃO tiver sido recolhido!
   const items = [
     ...(state.areaInfo?.visibleItems || []),
     ...(state.areaInfo?.hiddenItems || [])
   ];
   items.forEach(it => {
     if (it.x === undefined || it.y === undefined) return;
+    if (it.isCollected) return; // Item já apanhado não aparece no mapa
     const ix = camX + it.x * tileSize + tileSize / 2;
     const iy = camY + it.y * tileSize + tileSize / 2;
     if (ix >= -16 && ix <= cw + 16 && iy >= -16 && iy <= ch + 16) {
-      drawMapEntity(ctxFog, { ...it, icon: it.icon || '🎒', isItem: true, isGhost: !!it.isCollected }, ix, iy, 0.85, !!it.isCollected);
+      drawMapEntity(ctxFog, { ...it, icon: it.icon || '🎒', isItem: true, isGhost: false }, ix, iy, 0.85, false);
     }
   });
 
@@ -955,6 +969,7 @@ function renderFogMinimap(state) {
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
+    if (ent.isItem && ent.isCollected) return; // Item já recolhido não aparece no ecrã
     const ex = camX + ent.x * tileSize + tileSize / 2;
     const ey = camY + ent.y * tileSize + tileSize / 2;
     if (ex >= -16 && ex <= cw + 16 && ey >= -16 && ey <= ch + 16) {
@@ -1110,17 +1125,18 @@ function renderGtaFullMap(state) {
     });
   }
 
-  // 2. Itens conhecidos na área
+  // 2. Itens conhecidos na área (apenas itens por apanhar)
   const items = [
     ...(state.areaInfo?.visibleItems || []),
     ...(state.areaInfo?.hiddenItems || [])
   ];
   items.forEach(it => {
     if (it.x === undefined || it.y === undefined) return;
+    if (it.isCollected) return; // Item já apanhado não aparece no mapa
     const ix = originX + it.x * tilePx + tilePx / 2;
     const iy = originY + it.y * tilePx + tilePx / 2;
     if (ix >= -24 && ix <= cw + 24 && iy >= -24 && iy <= ch + 24) {
-      drawMapEntity(ctxGta, { ...it, spriteFile: 'poke_ball', icon: it.icon || '🎒', isItem: true, isGhost: !!it.isCollected }, ix, iy, gtaZoom, !!it.isCollected);
+      drawMapEntity(ctxGta, { ...it, spriteFile: 'poke_ball', icon: it.icon || '🎒', isItem: true, isGhost: false }, ix, iy, gtaZoom, false);
     }
   });
 
@@ -1128,6 +1144,7 @@ function renderGtaFullMap(state) {
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
+    if (ent.isItem && ent.isCollected) return; // Item já recolhido não aparece no ecrã
     const ex = originX + ent.x * tilePx + tilePx / 2;
     const ey = originY + ent.y * tilePx + tilePx / 2;
     if (ex >= -32 && ex <= cw + 32 && ey >= -32 && ey <= ch + 32) {
@@ -1302,7 +1319,7 @@ if (gtaViewport) {
           const ey = gtaPan.y + ent.y * tilePx + tilePx / 2;
           if (Math.hypot(mx - ex, my - ey) < 14 * gtaZoom) {
             if (ent.isItem) {
-              found = `<b>${ent.name}</b> (RAM ao Vivo)<br>📍 Coordenadas: X:${ent.x} Y:${ent.y}<br>📏 Distância: ${ent.compass ? ent.compass.badge : ''}<br>💡 ${ent.importance || 'Item no chão. Aproxima-te para recolher!'}`;
+              found = `<b>${ent.name}</b> (RAM ao Vivo)<br>📍 Coordenadas: X:${ent.x} Y:${ent.y}<br>📏 Distância: ${ent.compass ? ent.compass.badge : ''}<br>💡 ${ent.importance || 'Item no chão. Aproxima-te para recolher!'}<br>Estado: ${ent.isCollected ? '✅ Já Apanhado' : '🔴 Por Apanhar'}`;
             } else if (ent.isTrainer) {
               found = `<b>${ent.name}</b> (Treinador Ativo)<br>📍 Coordenadas: X:${ent.x} Y:${ent.y} • Virado a: ${ent.facing || 'Sul'}<br>👥 ${ent.enemyRoster || 'Equipa de Treinador'}<br>⭐ Lead: ${ent.optimalLead || 'Pronto a combater'}<br>Estado: ${ent.isDefeated ? '✅ Já Vencido' : '⚔️ Pronto a Combater'}`;
             } else {
@@ -1328,15 +1345,15 @@ if (gtaViewport) {
         }
       }
 
-      // 3. Procura Item estático próximo
+      // 3. Procura Item estático próximo (apenas ainda não recolhidos)
       if (!found) {
         const items = [...(lastState.areaInfo?.visibleItems || []), ...(lastState.areaInfo?.hiddenItems || [])];
         for (const it of items) {
-          if (it.x !== undefined && it.y !== undefined) {
+          if (it.x !== undefined && it.y !== undefined && !it.isCollected) {
             const ix = gtaPan.x + it.x * tilePx + tilePx / 2;
             const iy = gtaPan.y + it.y * tilePx + tilePx / 2;
             if (Math.hypot(mx - ix, my - iy) < 14 * gtaZoom) {
-              found = `<b>${it.name}</b> (${it.type === 'hidden' ? 'Item Oculto' : 'No Chão'})<br>📍 ${it.hint}<br>💡 ${it.importance || ''}<br>Estado: ${it.isCollected ? '✅ Já Apanhado' : '🔴 Por Apanhar'}`;
+              found = `<b>${it.name}</b> (${it.type === 'hidden' ? 'Item Oculto' : 'No Chão'})<br>📍 ${it.hint}<br>💡 ${it.importance || ''}<br>Estado: 🔴 Por Apanhar`;
               break;
             }
           }
