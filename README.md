@@ -1,49 +1,49 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:40**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 19:02:44**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
 ## 🧭 1. Localização e Estado Exato do Jogo
 - **Treinador:** `RED` | **Rival:** `BLUE`
 - **Localização Atual:** **Cerulean Gym** (ID Interno: `0x41`)
-- **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `7`
-- **Direção de RED:** **Norte (Cima ⬆️)**
+- **Coordenadas do Mapa (Azulejo / Tile):** X: `5`, Y: `3`
+- **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `61h 0m 4s`
+- **Tempo de Jogo:** `61h 0m 5s`
 - **💬 Diálogo / Mensagem no Ecrã:** `THUNDERSHOCK THUNDER WAVE`
-- **Dinheiro:** **7971 ₽** • **Fichas do Casino:** `0`
+- **Dinheiro:** **8051 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 19 (Pikachu)
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
-- **Último Golpe Usado por RED:** `Thundershock`
-- **Último Golpe Usado pelo Adversário:** `Tackle`
 
-### 🔴 Adversário em Campo: **Shellder** (Lv. 16)
+### 🔴 Adversário em Campo: **Goldeen** (Lv. 19)
 - **Tipos:** Water
-- **HP:** **0 / 38** (0%)
-- **Stats de Batalha:** ATK: 28 | DEF: 39 | SPD: 20 | SPC: 21
+- **HP:** **49 / 49** (100%)
+- **Stats de Batalha:** ATK: 33 | DEF: 30 | SPD: 31 | SPC: 27
 - **Os 4 Golpes do Adversário:**
-  - **Tackle** (Normal) • PP: 35 • Poder: 35 • Precisão: 95%
-  - **Withdraw** (Water) • PP: 40 • Poder: -- • Precisão: 100%
+  - **Peck** (Flying) • PP: 35 • Poder: 35 • Precisão: 100%
+  - **Tail Whip** (Normal) • PP: 30 • Poder: -- • Precisão: 100%
+  - **Supersonic** (Normal) • PP: NaN • Poder: -- • Precisão: 55%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Tackle** (Normal) ➔ Dano: ~6-8 HP (1x)
-  - **Withdraw** (Water) ➔ Golpe de Status
+  - **Peck** (Flying) ➔ Dano: ~8-10 HP (1x)
+  - **Tail Whip** (Normal) ➔ 🛡️ Reduz stats (Tail Whip)
+  - **Supersonic** (Normal) ➔ Golpe de Status
 
 ### 🔵 O Teu Pokémon em Campo: **Pikachu** (Lv. 19)
-- **Tipos:** Electric
+- **Tipos:** Normal
 - **HP:** **33 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 33 (0) | DEF: 23 (0) | SPD: 43 (-1) | SPC: 31 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
-- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **32-38 HP** (2x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
+- **Classificação do Confronto:** **MUITO FAVORÁVEL (+80%)**
+- **⭐ Melhor Golpe Matemático:** **Thundershock** (Electric) ➔ Dano: **18-22 HP** (2x eficácia) • ~3 turnos para K.O.
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
-- ➔ Turno 1: Usa Thundershock (K.O. Imediato em 1 golpe!)
-> **Resumo Tático:** Atacas primeiro com Thundershock! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 85%)
+- ➔ Turnos 1-3: Usa repetidamente Thundershock
+> **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
@@ -156,7 +156,7 @@
 
 ## 📖 5. Coleção da Pokédex (Kanto Gen 1)
 - **Espécies Registadas na Pokédex:** **24 / 151** (Espécies Desbloqueadas)
-- **Espécies Vistas na Pokédex:** **40 / 151**
+- **Espécies Vistas na Pokédex:** **41 / 151**
 - **Total de Pokémon Individuais Ativos:** **17 espécimes** (6 na Equipa + 11 no PC)
 - **Espécies Registadas na Pokédex:** #4 Charmander, #5 Charmeleon, #10 Caterpie, #11 Metapod, #12 Butterfree, #13 Weedle, #14 Kakuna, #15 Beedrill, #16 Pidgey, #19 Rattata, #21 Spearow, #23 Ekans, #25 Pikachu, #29 Nidoran♀, #30 Nidorina, #32 Nidoran♂, #33 Nidorino, #35 Clefairy, #39 Jigglypuff, #41 Zubat, #43 Oddish, #46 Paras, #63 Abra, #74 Geodude
 
@@ -184,7 +184,7 @@
 - **8. Earth Badge** (Viridian City • Giovanni • Tipo: Terra): ⏳ [BLOQUEADA]
 
 ## 🗺️ 8. Progresso da História & Treinadores Derrotados
-### #1. [↗️ 6 passos Nordeste] **Bug Catcher Colton** (Rota 3 (Entrada Oeste)) • **✅ VENCIDO**
+### #1. [↘️ 8 passos Sudeste] **Bug Catcher Colton** (Rota 3 (Entrada Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10)
 - **Lead Recomendado:** Charmeleon (Ember) / Pidgey
@@ -197,7 +197,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember elimina cada inseto num só golpe.
 
-### #2. [⬆️ 1 passos Norte] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
+### #2. [⬇️ 3 passos Sul] **Hiker Marcos** (Mt. Moon 1F (Noroeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Geodude (Lv. 10) • Geodude (Lv. 10) • Onix (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -210,7 +210,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** A carcaça de pedra deles é vulnerável a Confusion (Special). NÃO uses Charmeleon nem Pikachu!
 
-### #3. [↗️ 12 passos Nordeste] **Youngster Ben** (Rota 3 (Caminho Superior)) • **✅ VENCIDO**
+### #3. [↘️ 10 passos Sudeste] **Youngster Ben** (Rota 3 (Caminho Superior)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 11) • Ekans (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -223,7 +223,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion é super eficaz contra Ekans (Veneno). Cuidado com Poison Sting.
 
-### #4. [↘️ 16 passos Sudeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
+### #4. [↘️ 20 passos Sudeste] **Youngster Josh** (Mt. Moon 1F (Centro-Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree / Pikachu
@@ -236,7 +236,7 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu ou Butterfree anulam o Zubat facilmente.
 
-### #5. [↘️ 13 passos Sudeste] **Lass Janice** (Rota 3 (Centro)) • **✅ VENCIDO**
+### #5. [↘️ 17 passos Sudeste] **Lass Janice** (Rota 3 (Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Pidgey (Lv. 9) • Pidgey (Lv. 9)
 - **Lead Recomendado:** Pikachu / Butterfree
@@ -249,7 +249,7 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Usa ataques elétricos ou Confusion para vencer sem sofrer dano.
 
-### #6. [↗️ 28 passos Nordeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
+### #6. [↘️ 26 passos Sudeste] **Lass Iris** (Mt. Moon 1F (Nordeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Clefairy (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Nidorino
@@ -262,7 +262,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Metronome e Sing. Ataca depressa com dano físico.
 
-### #7. [↗️ 16 passos Nordeste] **Bug Catcher Greg** (Rota 3 (Perto do Centro)) • **✅ VENCIDO**
+### #7. [↘️ 16 passos Sudeste] **Bug Catcher Greg** (Rota 3 (Perto do Centro)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 9) • Weedle (Lv. 9) • Caterpie (Lv. 9)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -275,7 +275,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember do Charmeleon limpa facilmente a equipa inteira.
 
-### #8. [↘️ 43 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
+### #8. [↘️ 47 passos Sudeste] **Super Nerd Jovan** (Mt. Moon 1F (Sudeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Magnemite (Lv. 11) • Voltorb (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -288,7 +288,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember e golpes de Terra destroem Magnemite e Voltorb.
 
-### #9. [↗️ 21 passos Nordeste] **Lass Sally** (Rota 3 (Caminho Sul)) • **✅ VENCIDO**
+### #9. [↘️ 19 passos Sudeste] **Lass Sally** (Rota 3 (Caminho Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Rattata (Lv. 10) • Nidoran♀ (Lv. 10)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -301,7 +301,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Confusion elimina Nidoran♀ rapidamente.
 
-### #10. [↘️ 27 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
+### #10. [↘️ 31 passos Sudeste] **Lass Miriam** (Mt. Moon 1F (Centro-Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Oddish (Lv. 11) • Bellsprout (Lv. 11)
 - **Lead Recomendado:** Charmeleon / Butterfree
@@ -314,7 +314,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ataques de Fogo e Voador dão 2x dano super eficaz.
 
-### #11. [↘️ 19 passos Sudeste] **Youngster Calvin** (Rota 3 (Labirinto)) • **✅ VENCIDO**
+### #11. [↘️ 23 passos Sudeste] **Youngster Calvin** (Rota 3 (Labirinto)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Spearow (Lv. 14)
 - **Lead Recomendado:** Pikachu (Thundershock) ou Geodude
@@ -327,7 +327,7 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Spearow é rápido e bate forte com Peck. Pikachu derrota com facilidade.
 
-### #12. [↘️ 17 passos Sudeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
+### #12. [↘️ 21 passos Sudeste] **Bug Catcher Robby** (Mt. Moon 1F (Sudoeste)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Caterpie (Lv. 10) • Metapod (Lv. 10) • Caterpie (Lv. 10)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -340,7 +340,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Combate rápido para recolher EXP com qualquer Pokémon.
 
-### #13. [↗️ 20 passos Nordeste] **Bug Catcher James** (Rota 3 (Perto de Mt. Moon)) • **✅ VENCIDO**
+### #13. [↘️ 22 passos Sudeste] **Bug Catcher James** (Rota 3 (Perto de Mt. Moon)) • **✅ VENCIDO**
 - **Dificuldade:** Fácil
 - **Roster Inimigo:** Weedle (Lv. 9) • Kakuna (Lv. 9) • Caterpie (Lv. 9) • Metapod (Lv. 9)
 - **Lead Recomendado:** Charmeleon (Ember)
@@ -353,7 +353,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Equipa de 4 insetos. Charmeleon limpa facilmente a equipa inteira.
 
-### #14. [↘️ 45 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
+### #14. [↘️ 49 passos Sudeste] **Bug Catcher Kent** (Mt. Moon 1F (Leste)) • **✅ VENCIDO**
 - **Dificuldade:** Muito Fácil
 - **Roster Inimigo:** Weedle (Lv. 11) • Kakuna (Lv. 11)
 - **Lead Recomendado:** Charmeleon (Ember) / Butterfree
@@ -366,7 +366,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ember elimina ambos os insetos num só golpe.
 
-### #15. [↘️ 31 passos Sudeste] **Lass Robin** (Rota 3 (Canto Nordeste)) • **✅ VENCIDO**
+### #15. [↘️ 35 passos Sudeste] **Lass Robin** (Rota 3 (Canto Nordeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Jigglypuff (Lv. 14)
 - **Lead Recomendado:** Charmeleon / Beedrill
@@ -379,7 +379,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM SING! O Jigglypuff adormece o teu Pokémon. Derrota-o depressa.
 
-### #16. [↘️ 8 passos Sudeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
+### #16. [↘️ 12 passos Sudeste] **Super Nerd Miguel** (Mt. Moon B2F (Guardião dos Fósseis)) • **✅ VENCIDO**
 - **Dificuldade:** Chefe / Média
 - **Roster Inimigo:** Grimer (Lv. 12) • Voltorb (Lv. 12) • Koffing (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -392,7 +392,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
-### #17. [↘️ 15 passos Sudeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
+### #17. [↘️ 19 passos Sudeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Sandshrew (Lv. 11) • Rattata (Lv. 11) • Zubat (Lv. 11)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -405,7 +405,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
-### #18. [↘️ 25 passos Sudeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro-Sul)) • **✅ VENCIDO**
+### #18. [↘️ 29 passos Sudeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro-Sul)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Zubat (Lv. 12) • Ekans (Lv. 12)
 - **Lead Recomendado:** Butterfree (Confusion)
@@ -418,7 +418,7 @@
   - **Slot #6**: **Nidorino** (Lv. 20) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
-### #19. [↘️ 28 passos Sudeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Leste-Norte)) • **✅ VENCIDO**
+### #19. [↘️ 32 passos Sudeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Leste-Norte)) • **✅ VENCIDO**
 - **Dificuldade:** Média
 - **Roster Inimigo:** Raticate (Lv. 13)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -444,7 +444,7 @@
   - **Slot #6**: **Butterfree** (Lv. 21) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Pikachu neutraliza Pidgeotto e Wartortle. Butterfree ou Charmeleon limpam o resto.
 
-### #21. [↘️ 34 passos Sudeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
+### #21. [↘️ 38 passos Sudeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
 - **Dificuldade:** Difícil
 - **Roster Inimigo:** Raticate (Lv. 16)
 - **Lead Recomendado:** Charmeleon / Geodude
@@ -473,6 +473,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [19:02:44] **Turno #1**: Pikachu (33/46 HP) vs Goldeen (Lv. 19 • 49/49 HP)
 - [19:02:38] **Turno #1**: Pikachu (33/46 HP) vs Shellder (Lv. 16 • 0/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [19:02:37] **Turno #1**: Pikachu (33/46 HP) vs Shellder (Lv. 16 • 7/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
 - [19:02:36] **Turno #1**: Pikachu (40/46 HP) vs Shellder (Lv. 16 • 7/38 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Tackle`
@@ -487,7 +488,6 @@
 - [18:59:43] **Turno #3**: Pikachu (29/44 HP) vs Oddish (Lv. 13 • 12/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [18:59:41] **Turno #3**: Pikachu (34/44 HP) vs Oddish (Lv. 13 • 10/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [18:59:40] **Turno #2**: Pikachu (34/44 HP) vs Oddish (Lv. 13 • 22/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
-- [18:59:40] **Turno #2**: Pikachu (39/44 HP) vs Oddish (Lv. 13 • 20/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 
 - [19:02:26] Entrou em Cerulean Gym
 - [19:02:22] Entrou em Cerulean City
