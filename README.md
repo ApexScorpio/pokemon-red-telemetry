@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:50:13**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:50:16**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -102,13 +102,13 @@
   - **Leer** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
 
 ### 6. **Butterfree** (Lv. 23)
-- **Tipos:** Bug/Flying | **HP:** 35 / 68 ✅ (SAUDÁVEL)
+- **Tipos:** Bug/Flying | **HP:** 0 / 68 ❌ (FAINTED)
 - **Stats Reais:** ATK: 34 | DEF: 33 | SPD: 46 | SPC: 51
 - **DVs Gen 1 (0–15):** Ataque: 8 | Defesa: 1 | Velocidade: 9 | Especial: 13 | HP: 7
 - **Stat Experience (0–65.535):** Atk: 7670 | Def: 7279 | Spd: 7788 | Spc: 5576 | HP: 6423
 - **Experiência:** 13 289 EXP (Progresso: 68%, faltam 535 p/ Lv.24)
 - **Golpes & PPs:**
-  - **Confusion** (Psychic_type) — PP: 19 | Poder: 50 | Precisão: 100%
+  - **Confusion** (Psychic_type) — PP: 18 | Poder: 50 | Precisão: 100%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Stun Spore** (Grass) — PP: 30 | Poder: -- | Precisão: 75%
   - **Sleep Powder** (Grass) — PP: 15 | Poder: -- | Precisão: 75%
