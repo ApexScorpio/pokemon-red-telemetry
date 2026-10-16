@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:33**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 21:10:37**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,20 +10,20 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `14`, Y: `30`
 - **Direção de RED:** **Norte (Cima ⬆️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `74h 0m 52s`
+- **Tempo de Jogo:** `74h 0m 53s`
 - **💬 Diálogo / Mensagem no Ecrã:** `TACKLE`
 - **Dinheiro:** **12 140 ₽** • **Fichas do Casino:** `0`
 - **Repelente (RAM $D0DB):** ⚪ Inativo (0 passos) | **Influência se ativado:** < Nv. 8 (Geodude) | **Eficiência na Rota:** `0% bloqueados`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #4`
+- **Turno Atual:** `Turno #8`
 - **Último Golpe Usado por RED:** `Tackle`
 - **Último Golpe Usado pelo Adversário:** `Quick Attack`
 
 ### 🔴 Adversário em Campo: **Pidgey** (Lv. 13)
 - **Tipos:** Normal/Flying
-- **HP:** **22 / 36** (61%)
+- **HP:** **16 / 36** (44%)
 - **Stats de Batalha:** ATK: 18 | DEF: 19 | SPD: 23 | SPC: 14
 - **Os 4 Golpes do Adversário:**
   - **Gust** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -36,34 +36,34 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Geodude** (Lv. 8)
 - **Tipos:** Rock/Ground
-- **HP:** **18 / 24** (HEALTHY)
+- **HP:** **12 / 24** (HEALTHY)
 - **Stats com Modificadores:** ATK: 19 (0) | DEF: 21 (0) | SPD: 9 (0) | SPC: 12 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~5 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Tackle** (Normal) ➔ Dano: **4-5 HP** (1x eficácia) • ~4 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-5: Usa repetidamente Tackle
+- ➔ Turnos 1-4: Usa repetidamente Tackle
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Geodude tem a melhor rota de vitória rápida e HP estável (18/24). Não precisas de gastar um turno a trocar.
+- **Motivo:** Geodude tem a melhor rota de vitória rápida e HP estável (12/24). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Spearow (Lv. 5)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **60%** | Great Ball: **90%** | Ultra Ball: **60%**
-  - *Se adormeceres o inimigo:* **~64%** | *Com HP no vermelho:* **~100%**
+- **Probabilidade de Captura com HP Atual:** Poké Ball: **75%** | Great Ball: **100%** | Ultra Ball: **75%**
+  - *Se adormeceres o inimigo:* **~77%** | *Com HP no vermelho:* **~100%**
 
 ## 👥 3. Equipa Atual (5/6 Pokémon) • Vagas Livres: **1**
 ### 1. **Geodude** (Lv. 8) ⚔️ [EM COMBATE]
-- **Tipos:** Rock/Ground | **HP:** 21 / 24 ✅ (SAUDÁVEL)
+- **Tipos:** Rock/Ground | **HP:** 12 / 24 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 19 | DEF: 21 | SPD: 9 | SPC: 12
 - **DVs Gen 1 (0–15):** Ataque: 12 | Defesa: 0 | Velocidade: 6 | Especial: 15 | HP: 1
 - **Stat Experience (0–65.535):** Atk: 16 | Def: 18 | Spd: 10 | Spc: 25 | HP: 15
 - **Experiência:** 362 EXP (Progresso: 46%, faltam 57 p/ Lv.9)
 - **Golpes & PPs:**
-  - **Tackle** (Normal) — PP: 31 | Poder: 35 | Precisão: 95%
+  - **Tackle** (Normal) — PP: 28 | Poder: 35 | Precisão: 95%
 
 ### 2. **Pikachu** (Lv. 20)
 - **Tipos:** Electric | **HP:** 33 / 48 ✅ (SAUDÁVEL)
@@ -338,6 +338,10 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [21:10:36] **Turno #8**: Geodude (12/24 HP) vs Pidgey (Lv. 13 • 16/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
+- [21:10:35] **Turno #7**: Geodude (12/24 HP) vs Pidgey (Lv. 13 • 22/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Gust`
+- [21:10:34] **Turno #6**: Geodude (15/24 HP) vs Pidgey (Lv. 13 • 22/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
+- [21:10:33] **Turno #5**: Geodude (15/24 HP) vs Pidgey (Lv. 13 • 22/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:32] **Turno #4**: Geodude (18/24 HP) vs Pidgey (Lv. 13 • 22/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:31] **Turno #4**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 22/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Quick Attack`
 - [21:10:30] **Turno #3**: Geodude (21/24 HP) vs Pidgey (Lv. 13 • 27/36 HP) • Golpe RED: `Tackle` • Golpe Inimigo: `Sand-attack`
@@ -349,10 +353,6 @@
 - [21:10:22] **Turno #4**: Pikachu (33/48 HP) vs Oddish (Lv. 13 • 10/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [21:10:21] **Turno #4**: Pikachu (38/48 HP) vs Oddish (Lv. 13 • 8/36 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Absorb`
 - [21:10:19] **Turno #3**: Pikachu (38/48 HP) vs Oddish (Lv. 13 • 31/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
-- [21:10:18] **Turno #3**: Pikachu (43/48 HP) vs Oddish (Lv. 13 • 29/36 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Absorb`
-- [21:10:17] **Turno #2**: Pikachu (43/48 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
-- [21:10:16] **Turno #1**: Pikachu (48/48 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
-- [21:10:12] **Turno #1**: Spearow (12/19 HP) vs Oddish (Lv. 13 • 36/36 HP) • Golpe Inimigo: `Absorb`
 
 - [21:10:00] Entrou em Route 6
 - [21:09:59] Entrou em Underground Path Route 6
