@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:39:06**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 15:39:10**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,18 +10,19 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `16`, Y: `22`
 - **Direção de RED:** **Oeste (Esquerda ⬅️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Treinador)**
-- **Tempo de Jogo:** `52h 0m 5s`
+- **Tempo de Jogo:** `52h 0m 6s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **1361 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #3`
 - **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Sandshrew** (Lv. 11)
 - **Tipos:** Ground
-- **HP:** **33 / 33** (100%)
+- **HP:** **24 / 33** (73%)
 - **Stats de Batalha:** ATK: 23 | DEF: 25 | SPD: 15 | SPC: 13
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
@@ -32,15 +33,15 @@
 
 ### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 14)
 - **Tipos:** Bug/Poison
-- **HP:** **36 / 46** (HEALTHY)
+- **HP:** **24 / 46** (HEALTHY)
 - **Stats com Modificadores:** ATK: 31 (0) | DEF: 20 (0) | SPD: 29 (0) | SPC: 19 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **DESFAVORÁVEL (-50%)**
-- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **2-3 HP** (0.5x eficácia) • ~11 turnos para K.O.
+- **⭐ Melhor Golpe Matemático:** **Poison Sting** (Poison) ➔ Dano: **2-3 HP** (0.5x eficácia) • ~8 turnos para K.O.
 
 #### ⚡ Sequência Ótima de Ataques (Sobrevivência: 40%)
-- ➔ Turnos 1-11: Usa repetidamente Poison Sting
+- ➔ Turnos 1-8: Usa repetidamente Poison Sting
 > **Resumo Tático:** Combate de atrito. Vigia o teu HP se o adversário usar golpes fortes.
 
 #### 🔄 Conselheiro de Troca: **🔄 TROCA TÁTICA RECOMENDADA: Butterfree**
@@ -49,14 +50,14 @@
 - **Motivo:** Butterfree tem o golpe Stun Spore (2x Super Efetivo) e vence a batalha muito mais rápido do que Beedrill.
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 14) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 36 / 46 ✅ (SAUDÁVEL)
+### 1. **Beedrill** (Lv. 14)
+- **Tipos:** Bug/Poison | **HP:** 24 / 46 ✅ (SAUDÁVEL)
 - **Stats Reais:** ATK: 31 | DEF: 20 | SPD: 29 | SPC: 19
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
 - **Stat Experience (0–65.535):** Atk: 3298 | Def: 2746 | Spd: 3789 | Spc: 2080 | HP: 2708
 - **Experiência:** 3055 EXP (Progresso: 49%, faltam 320 p/ Lv.15)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 13 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 9 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
 
@@ -228,14 +229,14 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [15:39:09] **Turno #3**: Beedrill (24/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [15:39:08] **Turno #2**: Beedrill (30/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [15:39:06] **Turno #1**: Beedrill (36/46 HP) vs Sandshrew (24/33 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Sand-attack`
 - [15:39:03] **Turno #1**: Beedrill (36/46 HP) vs Sandshrew (33/33 HP)
 - [15:39:02] **Turno #1**: Beedrill (53/46 HP) vs Sandshrew (33/33 HP)
 - [15:35:32] **Turno #1**: Butterfree (53/57 HP) vs Geodude (0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:35:31] **Turno #1**: Butterfree (53/57 HP) vs Geodude (24/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 - [15:35:31] **Turno #1**: Butterfree (55/57 HP) vs Geodude (24/24 HP)
-- [15:35:29] **Turno #1**: Beedrill (36/46 HP) vs Geodude (24/24 HP)
-- [15:35:28] **Turno #1**: Beedrill (55/46 HP) vs Geodude (24/24 HP)
-- [15:35:26] **Turno #1**: Butterfree (55/57 HP) vs Geodude (0/23 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Tackle`
 
 - [15:35:35] Entrou em Mt Moon B2f
 - [15:35:13] Entrou em Mt Moon B1F
