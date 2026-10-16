@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:42:58**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 18:43:02**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -18,11 +18,11 @@
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Treinador)**
 - **Turno Atual:** `Turno #1`
 - **Último Golpe Usado por RED:** `Quick Attack`
-- **Último Golpe Usado pelo Adversário:** `Gust`
+- **Último Golpe Usado pelo Adversário:** `Teleport`
 
 ### 🔴 Adversário em Campo: **Abra** (Lv. 15)
 - **Tipos:** Psychic
-- **HP:** **34 / 34** (100%)
+- **HP:** **15 / 34** (44%)
 - **Stats de Batalha:** ATK: 13 | DEF: 11 | SPD: 34 | SPC: 38
 - **Os 4 Golpes do Adversário:**
   - **Teleport** (Psychic_type) • PP: 20 • Poder: -- • Precisão: 100%
@@ -35,17 +35,16 @@
 - **Stats com Modificadores:** ATK: 30 (0) | DEF: 21 (0) | SPD: 39 (0) | SPC: 28 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
-- **Classificação do Confronto:** **EQUILIBRADO**
-- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **17-21 HP** (1x eficácia) • ~2 turnos para K.O.
+- **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
+- **⭐ Melhor Golpe Matemático:** **Quick Attack** (Normal) ➔ Dano: **17-21 HP** (1x eficácia) • K.O. GARANTIDO EM 1 GOLPE!
 
-#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 95%)
-- ➔ Turno 1: Quick Attack (Causa ~17-21 de dano)
-- ➔ Turno 2: Quick Attack (Golpe final de K.O.)
-> **Resumo Tático:** Vitória em 2 turnos rápidos com Quick Attack. Atacas primeiro em ambos os turnos.
+#### ⚡ Sequência Ótima de Ataques (Sobrevivência: 100%)
+- ➔ Turno 1: Usa Quick Attack (K.O. Imediato em 1 golpe!)
+> **Resumo Tático:** Atacas primeiro com Quick Attack! K.O. imediato no 1º turno sem perigo de sofrer dano (100% sobrevivência).
 
-#### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
+#### 🔄 Conselheiro de Troca: **⚡ FINALIZAR O ADVERSÁRIO!**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Pikachu tem a melhor rota de vitória rápida e HP estável (28/42). Não precisas de gastar um turno a trocar.
+- **Motivo:** O adversário tem apenas 15 HP! NÃO TROQUES agora: trocar perde um turno inteiro e levas dano grátis. Usa Quick Attack para liquidar o adversário já!
 - **⭐ Prioridade de Treino (EXP):** **Beedrill (Lv. 16)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
@@ -59,7 +58,7 @@
   - **Thundershock** (Electric) — PP: 28 | Poder: 40 | Precisão: 100%
   - **Growl** (Normal) — PP: 40 | Poder: -- | Precisão: 100%
   - **Thunder Wave** (Electric) — PP: 20 | Poder: -- | Precisão: 100%
-  - **Quick Attack** (Normal) — PP: 29 | Poder: 40 | Precisão: 100%
+  - **Quick Attack** (Normal) — PP: 28 | Poder: 40 | Precisão: 100%
 
 ### 2. **Beedrill** (Lv. 16)
 - **Tipos:** Bug/Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
@@ -202,6 +201,7 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [18:42:58] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 15/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Teleport`
 - [18:42:54] **Turno #1**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 - [18:42:45] **Turno #2**: Pikachu (28/42 HP) vs Abra (Lv. 15 • 34/34 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
 - [18:42:43] **Turno #2**: Pikachu (28/42 HP) vs Pidgeotto (Lv. 18 • 0/53 HP) • Golpe RED: `Quick Attack` • Golpe Inimigo: `Gust`
@@ -216,7 +216,6 @@
 - [18:17:30] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 10 • 27/27 HP)
 - [18:17:28] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 0/21 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Leer`
 - [18:17:25] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 21/21 HP)
-- [18:17:23] **Turno #1**: Pikachu (19/42 HP) vs Ekans (Lv. 6 • 0/20 HP) • Golpe RED: `Thundershock` • Golpe Inimigo: `Wrap`
 
 - [18:33:36] Entrou em Cerulean City
 - [18:29:24] Entrou em Cerulean Mart
