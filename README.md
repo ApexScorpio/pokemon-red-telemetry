@@ -1,6 +1,6 @@
 # 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)
 > **ROM Validada:** `Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)`
-> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:45:20**
+> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **16/10/2026, 17:45:24**
 
 # 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)
 
@@ -10,28 +10,29 @@
 - **Coordenadas do Mapa (Azulejo / Tile):** X: `26`, Y: `22`
 - **Direção de RED:** **Sul (Baixo ⬇️)**
 - **Estado Atual do Jogador:** **⚔️ Em Combate (Selvagem)**
-- **Tempo de Jogo:** `56h 0m 13s`
+- **Tempo de Jogo:** `56h 0m 14s`
 - **💬 Diálogo / Mensagem no Ecrã:** `FURY ATTACK POISON STING`
 - **Dinheiro:** **3221 ₽** • **Fichas do Casino:** `0`
 
 ## ⚔️ 2. Batalha em Tempo Real
 - **Modo de Combate:** ⚔️ **EM BATALHA REAL (Selvagem)**
-- **Turno Atual:** `Turno #1`
+- **Turno Atual:** `Turno #2`
 - **Último Golpe Usado por RED:** `Fury Attack`
+- **Último Golpe Usado pelo Adversário:** `Scratch`
 
 ### 🔴 Adversário em Campo: **Paras** (Lv. 10)
 - **Tipos:** Bug/Grass
-- **HP:** **28 / 28** (100%)
+- **HP:** **0 / 28** (0%)
 - **Stats de Batalha:** ATK: 22 | DEF: 18 | SPD: 12 | SPC: 18
 - **Os 4 Golpes do Adversário:**
   - **Scratch** (Normal) • PP: 35 • Poder: 40 • Precisão: 100%
 - **⚠️ Previsão de Dano do Adversário no Teu Pokémon:**
-  - **Scratch** (Normal) ➔ Dano: ~5-6 HP (1x)
+  - **Scratch** (Normal) ➔ Dano: ~4-5 HP (1x)
 
-### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 16)
+### 🔵 O Teu Pokémon em Campo: **Beedrill** (Lv. 17)
 - **Tipos:** Bug/Poison
-- **HP:** **51 / 51** (HEALTHY)
-- **Stats com Modificadores:** ATK: 35 (0) | DEF: 23 (0) | SPD: 32 (0) | SPC: 21 (0)
+- **HP:** **44 / 54** (HEALTHY)
+- **Stats com Modificadores:** ATK: 37 (0) | DEF: 24 (0) | SPD: 34 (0) | SPC: 23 (0)
 
 ### 🎯 Análise Tática Matemática & Decisão
 - **Classificação do Confronto:** **VITÓRIA TURNO 1 (100%)**
@@ -43,21 +44,18 @@
 
 #### 🔄 Conselheiro de Troca: **✅ MANTER EM CAMPO**
 - **Decisão:** ✅ DEVES MANTER O POKÉMON ATUAL
-- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (51/51). Não precisas de gastar um turno a trocar.
+- **Motivo:** Beedrill tem a melhor rota de vitória rápida e HP estável (44/54). Não precisas de gastar um turno a trocar.
 - **⭐ Prioridade de Treino (EXP):** **Pikachu (Lv. 15)** é o mais fraco da tua equipa e deve receber prioridade de EXP quando for seguro!
 
-- **Probabilidade de Captura com HP Atual:** Poké Ball: **25%** | Great Ball: **48%** | Ultra Ball: **34%**
-  - *Se adormeceres o inimigo:* **~35%** | *Com HP no vermelho:* **~75%**
-
 ## 👥 3. Equipa Atual (6/6 Pokémon) • Vagas Livres: **0**
-### 1. **Beedrill** (Lv. 16) ⚔️ [EM COMBATE]
-- **Tipos:** Bug/Poison | **HP:** 51 / 51 ✅ (SAUDÁVEL)
-- **Stats Reais:** ATK: 35 | DEF: 23 | SPD: 32 | SPC: 21
+### 1. **Beedrill** (Lv. 17) ⚔️ [EM COMBATE]
+- **Tipos:** Bug/Poison | **HP:** 44 / 54 ✅ (SAUDÁVEL)
+- **Stats Reais:** ATK: 37 | DEF: 24 | SPD: 34 | SPC: 23
 - **DVs Gen 1 (0–15):** Ataque: 7 | Defesa: 10 | Velocidade: 4 | Especial: 2 | HP: 8
-- **Stat Experience (0–65.535):** Atk: 4269 | Def: 3606 | Spd: 4699 | Spc: 2800 | HP: 3518
-- **Experiência:** 4820 EXP (Progresso: 89%, faltam 93 p/ Lv.17)
+- **Stat Experience (0–65.535):** Atk: 4339 | Def: 3661 | Spd: 4724 | Spc: 2855 | HP: 3553
+- **Experiência:** 4920 EXP (Progresso: 1%, faltam 912 p/ Lv.18)
 - **Golpes & PPs:**
-  - **Fury Attack** (Normal) — PP: 20 | Poder: 15 | Precisão: 85%
+  - **Fury Attack** (Normal) — PP: 17 | Poder: 15 | Precisão: 85%
   - **String Shot** (Bug) — PP: 40 | Poder: -- | Precisão: 95%
   - **Poison Sting** (Poison) — PP: 35 | Poder: 15 | Precisão: 100%
   - **Focus Energy** (Normal) — PP: 30 | Poder: -- | Precisão: 100%
@@ -171,10 +169,10 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Beedrill** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Guardião dos fósseis (Dome ou Helix Fossil). Confusion aniquila Grimer e Koffing (Veneno).
 
 ### #2. [↖️ 21 passos Noroeste] **Team Rocket Grunt #1** (Mt. Moon B2F (Oeste)) • **✅ VENCIDO**
@@ -184,10 +182,10 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Beedrill** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Butterfree é imune a ataques de Terra do Sandshrew e bate forte no Zubat.
 
 ### #3. [⬅️ 11 passos Oeste] **Team Rocket Grunt #2** (Mt. Moon B2F (Centro-Sul)) • **✅ VENCIDO**
@@ -197,10 +195,10 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Beedrill** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Ambos são tipo Veneno. Confusion é 2x super eficaz contra os dois.
 
 ### #4. [↗️ 14 passos Nordeste] **Team Rocket Grunt #3** (Mt. Moon B2F (Leste-Norte)) • **✅ VENCIDO**
@@ -210,10 +208,10 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Beedrill** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** Cuidado com Hyper Fang. Raticate tem alta velocidade e ataque rápido.
 
 ### #5. [↗️ 8 passos Nordeste] **Team Rocket Grunt #4 (Saída)** (Mt. Moon B2F (Porta da Saída)) • **✅ VENCIDO**
@@ -223,10 +221,10 @@
 - **Ordem Ideal da Equipa (Slots 1 a 6):**
   - **Slot #1**: **Butterfree** (Lv. 21) — *⭐ SLOT 1 (LEAD / COMBATENTE PRINCIPAL)*: Inicia a batalha para anular a maior ameaça e garantir vitória rápida sem risco.
   - **Slot #2**: **Pikachu** (Lv. 15) — *📈 SLOT 2 (PRIORIDADE DE EXP / TREINO)*: Pokémon mais fraco da equipa. Se o adversário estiver enfraquecido, troca para ele dar o golpe final e recolher EXP!
-  - **Slot #3**: **Beedrill** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #4**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #5**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
-  - **Slot #6**: **Nidorina** (Lv. 16) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
+  - **Slot #3**: **Rattata** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #4**: **Nidorino** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #5**: **Nidorina** (Lv. 16) — *👥 RESERVA DE COMBATE*: Suporte tático pronto a entrar.
+  - **Slot #6**: **Beedrill** (Lv. 17) — *🛡️ ÂNCORA DE SEGURANÇA*: Reserva de nível alto pronta caso algo corra mal.
 - **Estratégia:** CUIDADO COM HYPER FANG! O Raticate causa dano massivo. Um tipo Rocha (Geodude) reduz o dano drasticamente.
 
 ## 🎒 9. Itens da Área (Mt. Moon (B2F))
@@ -241,6 +239,11 @@
 # 📜 PARTE C: HISTÓRICO RECENTE & LOGS DE BATALHA
 
 ## ⚔️ Registo de Ações e Batalhas (Turno a Turno)
+- [17:45:23] **Turno #2**: Beedrill (44/54 HP) vs Paras (Lv. 10 • 0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [17:45:22] **Turno #2**: Beedrill (41/51 HP) vs Paras (Lv. 10 • 0/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [17:45:21] **Turno #2**: Beedrill (46/51 HP) vs Paras (Lv. 10 • 4/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [17:45:21] **Turno #1**: Beedrill (46/51 HP) vs Paras (Lv. 10 • 16/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
+- [17:45:20] **Turno #1**: Beedrill (51/51 HP) vs Paras (Lv. 10 • 16/28 HP) • Golpe RED: `Fury Attack` • Golpe Inimigo: `Scratch`
 - [17:45:19] **Turno #1**: Beedrill (51/51 HP) vs Paras (Lv. 10 • 28/28 HP) • Golpe RED: `Fury Attack`
 - [17:45:17] **Turno #1**: Beedrill (56/51 HP) vs Paras (Lv. 10 • 28/28 HP)
 - [17:44:28] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 7 • 0/24 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
@@ -251,11 +254,6 @@
 - [17:44:17] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 7 • 24/24 HP)
 - [17:44:14] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 6 • 0/21 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Leech Life`
 - [17:44:12] **Turno #1**: Beedrill (56/51 HP) vs Zubat (Lv. 6 • 21/21 HP)
-- [17:44:09] **Turno #1**: Beedrill (56/51 HP) vs Paras (Lv. 8 • 25/25 HP)
-- [17:41:51] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 10 • 0/30 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Supersonic`
-- [15:57:56] **Turno #1**: Butterfree (56/62 HP) vs Zubat (Lv. 10 • 0/30 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Supersonic`
-- [15:57:55] **Turno #1**: Butterfree (54/60 HP) vs Zubat (Lv. 10 • 0/30 HP) • Golpe RED: `Confusion` • Golpe Inimigo: `Supersonic`
-- [15:57:53] **Turno #1**: Beedrill (54/51 HP) vs Zubat (Lv. 10 • 30/30 HP)
 
 - [17:45:11] Entrou em Mt Moon B2f
 - [17:45:04] Entrou em Mt Moon B1F
