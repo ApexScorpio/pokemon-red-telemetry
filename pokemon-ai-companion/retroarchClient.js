@@ -447,7 +447,8 @@ class RetroArchClient extends EventEmitter {
 
   // Leitura Exaustiva de Blocos de Memória Contíguos
   async readMemoryBlock(startAddrHex, length) {
-    // 160 bytes de dados por resposta: manter cada pacote UDP abaixo dos limites\n    // práticos observados com RetroArch/SameBoy. Nunca aceitar leituras parciais.\n    const CHUNK_SIZE = 160;
+    // Blocos UDP limitados a 160 bytes; nunca aceitar respostas incompletas.
+    const CHUNK_SIZE = 160;
     const startAddr = parseInt(startAddrHex, 16);
     if (!Number.isInteger(length) || length < 0 ||
         !Number.isInteger(startAddr) || startAddr < 0 || startAddr + length > 0x10000) return null;
