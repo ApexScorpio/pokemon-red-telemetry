@@ -91,6 +91,36 @@ function readMapObject(b,bank,objPtr,height,width){
  return {borderBlock,warps,signs,objects,source:'ROM: map object binary format',
    rawEndOffset:q};
 }
+
+function extractTrainerEventPointers(b,map){
+ const bank=map.mapBank,end=Math.min(b.length,(bank+1)*BANK_SIZE);
+ const objects=map.objects?.objects,base=romAddress(bank,map.textPointerCpu,b.length);
+ if(!Array.isArray(objects)||base===null)return [];
+ const bindings=[];
+ for(let i=0;i<objects.length;i++){
+  const o=objects[i];if(o.kind!=='trainer')continue;
+  const ix=o.textId&0x3F;
+  if(ix<1||ix>63||base+(ix-1)*2+1>=end)continue;
+  const textPtr=u16(b,base+(ix-1)*2);
+  const p=romAddress(bank,textPtr,b.length);
+  if(p===null||p+11>=end||b[p]!==0x08||b[p+1]!==0x21)continue;
+  const hdrCpu=u16(b,p+2);
+  let q=p+4;
+  if(b[q]===0x18){const delta=(b[q+1]<<24)>>24;q+=2+delta;}
+  if(q<bank*BANK_SIZE||q+6>=end||b[q]!==0xCD||b[q+3]!==0xC3)continue;
+  const fn=u16(b,q+1),terminal=u16(b,q+4);
+  if(fn<=0x3000||fn>=0x3400||terminal<=0x2300||terminal>=0x2700)continue;
+  const h=romAddress(bank,hdrCpu,b.length);
+  if(h===null||h+12>=end)continue;
+  const bit=b[h],distance=b[h+1],ram=u16(b,h+2);
+  if(bit>15||distance>0xA0||(distance&15)!==0||ram<0xD747||ram>=0xD887)continue;
+  if(Array.from({length:4},(_,z)=>u16(b,h+4+2*z)).some(ptr=>ptr<0x4000||ptr>=0x8000))continue;
+  bindings.push({objectOrdinal:i+1,eventBitIndex:(ram-0xD747)*8+bit,
+    trainerHeaderCpu:hdrCpu,source:'ROM_OBJECT_TEXT_SCRIPT_TO_TRAINER_HEADER'});
+ }
+ return bindings;
+}
+
 function getMapHeader(b,bank,cpu){
  const p=romAddress(bank,cpu,b.length);
  if(p===null||p+12>(bank+1)*BANK_SIZE)return null;
@@ -139,15 +169,19 @@ function findMapHeaders(b){
  const bankPos=hits[0];
  const data=pointers.map((cpu,mapId)=>{
   const bank=b[bankPos+mapId],h=getMapHeader(b,bank,cpu);
+  if(h?.valid)h.trainerEvents=extractTrainerEventPointers(b,h);
   return {mapId,valid:!!h,...(h||{invalidReason:'Cabeçalho não corresponde à estrutura Gen I'})};
  });
  const validCount=data.filter(x=>x.valid).length;
  return {valid:validCount>=200,source:'ROM: MapHeaderPointers + MapHeaderBanks',
    pointerTable:bankLocation(p),bankTable:bankLocation(bankPos),
-   validMapHeaders:validCount,totalMapIds:MAPS,data};
+   validMapHeaders:validCount,totalMapIds:MAPS,
+   trainerEventsVerified:data.reduce((n,m)=>n+(m.trainerEvents?.length||0),0),
+   trainerEventMapsVerified:data.filter(m=>m.trainerEvents?.length).length,
+   data};
 }
 function inspectWorld(b){
  if(!Buffer.isBuffer(b)||b.length%BANK_SIZE)throw Error('ROM inválida');
  return {schema:'gen1-world-v1',wildEncounters:findWildData(b),maps:findMapHeaders(b)};
 }
-module.exports={inspectWorld,findWildData,findMapHeaders,readEncounter,getMapHeader};
+module.exports={inspectWorld,findWildData,findMapHeaders,readEncounter,getMapHeader,extractTrainerEventPointers};
