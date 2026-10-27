@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "pret/pokered master base_stats/*.asm, assembled for Red/Blue; verify hash against player ROM",
-    "sourceVerified": 96,
+    "sourceVerified": 113,
     "coverageTarget": 151,
     "sourceCategory": "ROM static facts; not live RAM",
     "updated": "2026-10-27"
@@ -2402,221 +2402,420 @@
       "internalId": 129,
       "name": "Hypno",
       "upstreamPath": "data/pokemon/base_stats/hypno.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 73,
+        "defense": 70,
+        "speed": 67,
+        "special": 115
+      },
+      "catchRate": 75,
+      "baseExp": 165,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "POUND",
+        "HYPNOSIS",
+        "DISABLE",
+        "CONFUSION"
+      ],
+      "sourceVerified": true
     },
     "98": {
       "dex": 98,
       "internalId": 78,
       "name": "Krabby",
       "upstreamPath": "data/pokemon/base_stats/krabby.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 30,
+        "attack": 105,
+        "defense": 90,
+        "speed": 50,
+        "special": 25
+      },
+      "catchRate": 225,
+      "baseExp": 115,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "BUBBLE",
+        "LEER"
+      ],
+      "sourceVerified": true
     },
     "99": {
       "dex": 99,
       "internalId": 138,
       "name": "Kingler",
       "upstreamPath": "data/pokemon/base_stats/kingler.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 130,
+        "defense": 115,
+        "speed": 75,
+        "special": 50
+      },
+      "catchRate": 60,
+      "baseExp": 206,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "BUBBLE",
+        "LEER",
+        "VICEGRIP"
+      ],
+      "sourceVerified": true
     },
     "100": {
       "dex": 100,
       "internalId": 6,
       "name": "Voltorb",
       "upstreamPath": "data/pokemon/base_stats/voltorb.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 30,
+        "defense": 50,
+        "speed": 100,
+        "special": 55
+      },
+      "catchRate": 190,
+      "baseExp": 103,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "TACKLE",
+        "SCREECH"
+      ],
+      "sourceVerified": true
     },
     "101": {
       "dex": 101,
       "internalId": 141,
       "name": "Electrode",
       "upstreamPath": "data/pokemon/base_stats/electrode.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 50,
+        "defense": 70,
+        "speed": 140,
+        "special": 80
+      },
+      "catchRate": 60,
+      "baseExp": 150,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "TACKLE",
+        "SCREECH",
+        "SONICBOOM"
+      ],
+      "sourceVerified": true
     },
     "102": {
       "dex": 102,
       "internalId": 12,
       "name": "Exeggcute",
       "upstreamPath": "data/pokemon/base_stats/exeggcute.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Grass",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 40,
+        "defense": 80,
+        "speed": 40,
+        "special": 60
+      },
+      "catchRate": 90,
+      "baseExp": 98,
+      "growthRate": "SLOW",
+      "startingMoves": [
+        "BARRAGE",
+        "HYPNOSIS"
+      ],
+      "sourceVerified": true
     },
     "103": {
       "dex": 103,
       "internalId": 10,
       "name": "Exeggutor",
       "upstreamPath": "data/pokemon/base_stats/exeggutor.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Grass",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 95,
+        "defense": 85,
+        "speed": 55,
+        "special": 125
+      },
+      "catchRate": 45,
+      "baseExp": 212,
+      "growthRate": "SLOW",
+      "startingMoves": [
+        "BARRAGE",
+        "HYPNOSIS"
+      ],
+      "sourceVerified": true
     },
     "104": {
       "dex": 104,
       "internalId": 17,
       "name": "Cubone",
       "upstreamPath": "data/pokemon/base_stats/cubone.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 50,
+        "defense": 95,
+        "speed": 35,
+        "special": 40
+      },
+      "catchRate": 190,
+      "baseExp": 87,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "BONE_CLUB",
+        "GROWL"
+      ],
+      "sourceVerified": true
     },
     "105": {
       "dex": 105,
       "internalId": 145,
       "name": "Marowak",
       "upstreamPath": "data/pokemon/base_stats/marowak.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 80,
+        "defense": 110,
+        "speed": 45,
+        "special": 50
+      },
+      "catchRate": 75,
+      "baseExp": 124,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "BONE_CLUB",
+        "GROWL",
+        "LEER",
+        "FOCUS_ENERGY"
+      ],
+      "sourceVerified": true
     },
     "106": {
       "dex": 106,
       "internalId": 43,
       "name": "Hitmonlee",
       "upstreamPath": "data/pokemon/base_stats/hitmonlee.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 120,
+        "defense": 53,
+        "speed": 87,
+        "special": 35
+      },
+      "catchRate": 45,
+      "baseExp": 139,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "DOUBLE_KICK",
+        "MEDITATE"
+      ],
+      "sourceVerified": true
     },
     "107": {
       "dex": 107,
       "internalId": 44,
       "name": "Hitmonchan",
       "upstreamPath": "data/pokemon/base_stats/hitmonchan.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 105,
+        "defense": 79,
+        "speed": 76,
+        "special": 35
+      },
+      "catchRate": 45,
+      "baseExp": 140,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "COMET_PUNCH",
+        "AGILITY"
+      ],
+      "sourceVerified": true
     },
     "108": {
       "dex": 108,
       "internalId": 11,
       "name": "Lickitung",
       "upstreamPath": "data/pokemon/base_stats/lickitung.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 55,
+        "defense": 75,
+        "speed": 30,
+        "special": 60
+      },
+      "catchRate": 45,
+      "baseExp": 127,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "WRAP",
+        "SUPERSONIC"
+      ],
+      "sourceVerified": true
     },
     "109": {
       "dex": 109,
       "internalId": 55,
       "name": "Koffing",
       "upstreamPath": "data/pokemon/base_stats/koffing.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 65,
+        "defense": 95,
+        "speed": 35,
+        "special": 60
+      },
+      "catchRate": 190,
+      "baseExp": 114,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "TACKLE",
+        "SMOG"
+      ],
+      "sourceVerified": true
     },
     "110": {
       "dex": 110,
       "internalId": 143,
       "name": "Weezing",
       "upstreamPath": "data/pokemon/base_stats/weezing.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 120,
+        "speed": 60,
+        "special": 85
+      },
+      "catchRate": 60,
+      "baseExp": 173,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "TACKLE",
+        "SMOG",
+        "SLUDGE"
+      ],
+      "sourceVerified": true
     },
     "111": {
       "dex": 111,
       "internalId": 18,
       "name": "Rhyhorn",
       "upstreamPath": "data/pokemon/base_stats/rhyhorn.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Ground",
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 85,
+        "defense": 95,
+        "speed": 25,
+        "special": 30
+      },
+      "catchRate": 120,
+      "baseExp": 135,
+      "growthRate": "SLOW",
+      "startingMoves": [
+        "HORN_ATTACK"
+      ],
+      "sourceVerified": true
     },
     "112": {
       "dex": 112,
       "internalId": 1,
       "name": "Rhydon",
       "upstreamPath": "data/pokemon/base_stats/rhydon.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Ground",
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 105,
+        "attack": 130,
+        "defense": 120,
+        "speed": 40,
+        "special": 45
+      },
+      "catchRate": 60,
+      "baseExp": 204,
+      "growthRate": "SLOW",
+      "startingMoves": [
+        "HORN_ATTACK",
+        "STOMP",
+        "TAIL_WHIP",
+        "FURY_ATTACK"
+      ],
+      "sourceVerified": true
     },
     "113": {
       "dex": 113,
       "internalId": 40,
       "name": "Chansey",
       "upstreamPath": "data/pokemon/base_stats/chansey.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 250,
+        "attack": 5,
+        "defense": 5,
+        "speed": 50,
+        "special": 105
+      },
+      "catchRate": 30,
+      "baseExp": 255,
+      "growthRate": "FAST",
+      "startingMoves": [
+        "POUND",
+        "DOUBLESLAP"
+      ],
+      "sourceVerified": true
     },
     "114": {
       "dex": 114,
