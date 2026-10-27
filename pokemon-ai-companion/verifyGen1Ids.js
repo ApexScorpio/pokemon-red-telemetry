@@ -76,6 +76,71 @@ assert.match(code,/const monOffset = 86 \+ i \* 33;/);
 assert.match(code,/parseInt\(blockBoxTime\[1\], 16\)/);
 assert.match(code,/parseInt\(blockBoxTime\[3\], 16\)/);
 assert.match(code,/parseInt\(blockBoxTime\[4\], 16\)/);
+
+const events = require('./data/exact_events.json');
+const speciesCatalog = require('./data/gen1CanonicalSpecies.json').species;
+const learnsets = require('./data/gen1CanonicalLearnsets.json').byDex;
+const wild = require('./data/gen1CanonicalWildEncounters.json').maps;
+const trades = require('./data/gen1NpcTrades.json').trades;
+const maps = require('./data/gen1CanonicalMaps.json').maps;
+const evasm = fs.readFileSync(path.join(__dirname,'data/event_constants.asm'),'utf8');
+let eventNumber=0, eventsChecked=0;
+const parseCount=x=>x.startsWith('
+ result:'OK',source:'pret/pokered constants and local .sym',
+ internalSpeciesVerified:speciesChecked,moveIdsVerified:movesChecked,
+ itemIdsVerified:itemChecked,glitchIdsVerified:glitchIds.length,
+ symbolsVerified:Object.keys(expectedAddresses).length,
+ specialItemDisplayNames:itemDisplayExceptions
+},null,2));
+)?parseInt(x.slice(1),16):Number(x);
+for (const raw of evasm.split('\n')) {
+  const s=raw.split(';')[0].trim(); let m;
+  if ((m=s.match(/^const_def(?:\s+(\$[0-9a-f]+|\d+))?$/i))) eventNumber=m[1]?parseCount(m[1]):0;
+  else if ((m=s.match(/^const_next\s+(\$[0-9a-f]+|\d+)$/i))) eventNumber=parseCount(m[1]);
+  else if ((m=s.match(/^const_skip(?:\s+(\$[0-9a-f]+|\d+))?$/i))) eventNumber+=m[1]?parseCount(m[1]):1;
+  else if ((m=s.match(/^const\s+(EVENT_\w+)$/))) {
+    assert.equal(events[m[1]],eventNumber,'Flag canónica do evento '+m[1]);
+    assert.ok(eventNumber < 2560, 'Flag superior a 320 bytes RAM');
+    eventNumber++;eventsChecked++;
+  }
+}
+assert.equal(eventsChecked,507);
+assert.equal(Object.keys(events).length,507);
+assert.equal(new Set(Object.values(events)).size,507);
+assert.equal(events.EVENT_BEAT_CERULEAN_ROCKET_THIEF,167);
+assert.equal(events.EVENT_BEAT_MISTY,191);
+assert.equal(Object.keys(speciesCatalog).length,151);
+assert.equal(Object.keys(learnsets).length,151);
+assert.equal(Object.keys(wild).length,59);
+assert.equal(Object.keys(maps).length,248);
+assert.equal(trades.filter(t=>t.available).length,9);
+for (const [dex,s] of Object.entries(speciesCatalog)) {
+  assert.ok(s.sourceVerified && s.dex === Number(dex), 'Ficha sem fonte '+dex);
+  assert.ok(Number.isInteger(s.catchRate) && s.catchRate>=1 && s.catchRate<=255,
+    'Taxa captura inválida '+dex);
+  assert.ok(['FAST','MEDIUM_FAST','MEDIUM_SLOW','SLOW'].includes(s.growthRate),
+    'Curva de experiência inválida '+dex);
+  assert.ok(learnsets[dex] && learnsets[dex].dex===s.dex,'Learnset indisponível '+dex);
+  for(let lvl=2;lvl<=100;lvl++) {
+    const exp=runtime.getGen1ExpForLevel(Number(dex),lvl);
+    assert.ok(Number.isInteger(exp) && exp>=0,'Experiência inválida '+dex+' Lv'+lvl);
+    assert.equal(runtime.getGen1LevelFromExp(Number(dex),exp),lvl,'Curva inconsistente '+dex+' Lv'+lvl);
+  }
+}
+const weights=[51,51,39,25,25,25,13,13,11,3];
+assert.equal(weights.reduce((a,b)=>a+b,0),256);
+for(const [name,record] of Object.entries(wild)){
+  for(const variant of ['red','blue'])for(const type of ['grass','water']){
+    const slots=record.variants[variant][type];
+    const rate=record.encounterRateByte[type];
+    assert.equal(slots.length,rate?10:0,'Slots '+name+' '+variant+' '+type);
+    if(rate) {
+      assert.equal(slots.reduce((acc,s)=>acc+s.weight,0),256,'Pesos '+name);
+      slots.forEach((s,i)=>assert.equal(s.weight,weights[i],'Peso slot '+name+' '+i));
+    }
+  }
+}
+
 console.log(JSON.stringify({
  result:'OK',source:'pret/pokered constants and local .sym',
  internalSpeciesVerified:speciesChecked,moveIdsVerified:movesChecked,
