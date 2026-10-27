@@ -6,6 +6,7 @@ const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
+const {captureOpportunities}=require('./romCaptureOpportunities');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -1275,6 +1276,13 @@ class RetroArchClient extends EventEmitter {
       grass: {...romWild.grass, slots: resolveSlots(romWild.grass.slots)},
       water: {...romWild.water, slots: resolveSlots(romWild.water.slots)}
     } : null;
+    this.latestState.romCaptureOpportunities=captureOpportunities(
+      this.latestState.romWildEncounters,
+      this.latestState.pokedexOwned,
+      this.latestState.pokedexSeen,
+      {romMatched:!!this.activeRomProfile,
+        partyRamVerified:!!this.latestState.memoryReadStatus?.blocks?.playerAndParty}
+    );
     const headerTitle = this.latestState.romHeader?.title || '';
     const romVariant = this.latestState.romHeader?.checksumValid && /POKEMON RED/i.test(headerTitle) ? 'red'
       : this.latestState.romHeader?.checksumValid && /POKEMON BLUE/i.test(headerTitle) ? 'blue'
