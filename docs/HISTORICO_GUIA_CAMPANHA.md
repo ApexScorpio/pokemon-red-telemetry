@@ -129,3 +129,21 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 9. Criado tests/romThreeVersions.test.js e docs/ROMS_RED_BLUE_GREEN_PERFIS.md com validação de hash, localizações distintas de PokedexOrder e instruções.
 - 10. Não foi possível executar um teste end-to-end no RetroArch/iPhone a partir deste ambiente. Os perfis foram testados com os bytes recebidos; o reconhecimento via rede necessita de prova no equipamento real.
 - 11. Não foram alterados saves, sessões Antigravity, chaves, nem ficheiros do projeto original no C:.
+
+
+## 2026-10-27 — ROMs Red/Blue/Green: mapas, encontros, objetos e sprites originais (v3)
+
+- 1. Analisados os três ficheiros binários reais recebidos nesta conversa, sem publicar os ficheiros de jogo no GitHub.
+- 2. Encontrada por assinatura e validação a tabela WildDataPointers em 0xCEEB, com 248 índices de mapa, 59 referências de dados distintas, 57 mapas com encontros; extraídas taxas, níveis e IDs internos reais de cada versão.
+- 3. Verificadas as tabelas MapHeaderPointers 0x1AE e MapHeaderBanks 0xC23D; 226 cabeçalhos de mapa válidos em cada ROM, 23 783 bytes de blocos de mapas, warps, placas e objetos como definidos no ficheiro.
+- 4. Comparadas as diferenças reais da Route 5: Red inclui Oddish/Mankey, Blue inclui Bellsprout/Meowth, Green International inclui Oddish/Meowth nos primeiros slots.
+- 5. Descoberta de bancos de sprites por dupla assinatura (frente 0x55/0x66/0x77 e costas 0x44), obtendo 150 correspondências únicas em cada ROM. Na Green existem 10 diferenças de banco face a Red/Blue.
+- 6. Implementado decompressor de imagens comprimidas da Geração I conforme pret/pokered/home/uncompress.asm, incluindo RLE, differential decode, XOR e exportação PNG usando Node nativo; sem imagens externas, para a versão com perfil correspondente.
+- 7. Confirmados testes locais em Python e Node com 900 descodificações (150 frontais + 150 traseiras por ROM), sem erros de stream ou dimensão, com verificações de variações dos pixels e resultados visualmente reconhecíveis.
+- 8. Atualizado romVariantRegistry.js para incluir os dados de mundo e sprites por versão, romLiveResolver.js para expor sprites de perfil confirmado, e retroarchClient.js para enviar os dados do mapa/encounters e as imagens originais para a equipa e combate.
+- 9. Construído pacote v3 com os três perfis JSON ampliados: 900 imagens PNG em base64, mapas, encontros e os restantes metadados. Nenhum binário ROM é incluído; ficheiro ZIP no sandbox do ChatGPT.
+- 10. Criados tests/romWorldData.test.js e tests/romSpriteDecoder.test.js, que são reproduzíveis com ROMs locais no PC. Não se executou integração remota no iPhone / RetroArch; continuam por validar aí a seleção de ROM, RAM e aparência das paletas.
+- 11. As imagens são quatro tons Gen I; coloração exata do SameBoy, gráficos de NPCs/tilesets, scripts integrais de eventos e todas as mecânicas continuam sem certificação.
+- 12. Foi preservada a regra append-only deste histórico; nenhum save, credencial, sessão do utilizador ou unidade C: foi tocado nesta fase.
+
+**Estado do requisito de integridade:** 100% dos bytes dos três ficheiros ROM já foi examinado; 100% dos elementos e cálculos NÃO está ainda descodificado. A telemetria vivo ainda tem de ser testada com o emulador.
