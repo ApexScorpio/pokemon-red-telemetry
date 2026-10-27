@@ -542,6 +542,8 @@ class RetroArchClient extends EventEmitter {
     // Não marcar ONLINE até todas as zonas essenciais serem lidas corretamente.
     // BLOCO 2: Mundo, Eventos (320 bytes), Itens Ocultos, Fauna Selvagem e Equipa Inimiga ($D5A0..$D8AF, 784 bytes)
     const blockWorldEvents = await this.readMemoryBlock('D5A0', 784);
+    // wNumBoxItems ($D53A) e wBoxItems ($D53B): 50 pares item/quantidade + terminador.
+    const blockPcItems = await this.readMemoryBlock('D53A', 102);
 
     // BLOCO 3: Tempo de Jogo e Caixa do PC com detalhes de todos os 20 Pokémon ($DA40..$DD30, 750 bytes)
     const blockBoxTime = await this.readMemoryBlock('DA40', 750);
@@ -555,6 +557,7 @@ class RetroArchClient extends EventEmitter {
     const baseReadStatus = {
       playerAndParty: !!(blockPlayerParty && blockPlayerParty.length === 530),
       worldAndEvents: !!(blockWorldEvents && blockWorldEvents.length === 784),
+      storedPcItems: !!(blockPcItems && blockPcItems.length === 102),
       currentPcBox: !!(blockBoxTime && blockBoxTime.length === 750),
       overworldSprites: !!(blockSprites && blockSprites.length === 512),
       screenTilemap: !!(blockTilemap && blockTilemap.length === 360)
@@ -750,6 +753,31 @@ class RetroArchClient extends EventEmitter {
       });
     }
     this.latestState.inventory = inventory;
+
+    // Armazenamento do PC: independência entre itens na mochila e itens no PC.
+    const pcItemCountRaw = Number.parseInt(blockPcItems[0], 16);
+    if (pcItemCountRaw > 50) {
+      this.latestState.connected = false;
+      this.latestState.lastReadError = 'PC de itens: contagem inválida (possível offset ou RAM errados).';
+      this.emit('update', this.latestState);
+      return;
+    }
+    const pcItems = [];
+    for (let i = 0; i < pcItemCountRaw; i++) {
+      const id = Number.parseInt(blockPcItems[1 + i * 2], 16);
+      const qty = Number.parseInt(blockPcItems[2 + i * 2], 16);
+      if (!id || id === 0xFF || !qty) {
+        this.latestState.connected = false;
+        this.latestState.lastReadError = `PC de itens: ID/quantidade inválidos no slot ${i + 1}`;
+        this.emit('update', this.latestState);
+        return;
+      }
+      pcItems.push({ id, name: ITEM_NAMES[id] || `Item #${id} (não identificado)`, qty });
+    }
+    this.latestState.pcItems = pcItems;
+    this.latestState.pcItemsCapacity = {
+      total: 50, occupied: pcItems.length, free: 50 - pcItems.length
+    };
     this.latestState.inventoryCapacity = {
       total: 20,
       occupied: inventory.length,
@@ -846,9 +874,11 @@ class RetroArchClient extends EventEmitter {
     // =========================================================================
     let boxCount = 0;
     if (blockBoxTime && blockBoxTime.length >= 100) {
-      const hours = (parseInt(blockBoxTime[0], 16) << 8) | parseInt(blockBoxTime[1], 16);
-      const minutes = parseInt(blockBoxTime[2], 16);
-      const seconds = parseInt(blockBoxTime[3], 16);
+      // Símbolos pret/pokered: wPlayTimeHours=DA41, Minutes=DA43, Seconds=DA44.
+      // DA40 NÃO é o byte alto das horas; DA42 é wPlayTimeMaxed.
+      const hours = parseInt(blockBoxTime[1], 16);
+      const minutes = parseInt(blockBoxTime[3], 16);
+      const seconds = parseInt(blockBoxTime[4], 16);
       this.latestState.playTime = `${hours}h ${minutes}m ${seconds}s`;
 
       boxCount = parseInt(blockBoxTime[64], 16) || 0;
@@ -860,7 +890,8 @@ class RetroArchClient extends EventEmitter {
         let level = null;
         let curHp = null;
         const moves = [];
-        const monOffset = 85 + i * 33;
+        // $DA96 - $DA40 = 86. $DA95 é o marcador final da lista de espécies.
+        const monOffset = 86 + i * 33;
         if (blockBoxTime.length >= monOffset + 12) {
           curHp = (parseInt(blockBoxTime[monOffset + 1], 16) << 8) | parseInt(blockBoxTime[monOffset + 2], 16);
           level = parseInt(blockBoxTime[monOffset + 3], 16) || null;
@@ -887,6 +918,46 @@ class RetroArchClient extends EventEmitter {
         count: boxCount,
         freeSlots: Math.max(0, 20 - boxCount),
         pokemon: boxSpecies
+      };
+    }
+
+    // Daycare em RAM: wDayCareInUse=DA48, wDayCareMon=DA5F,
+    // wDayCareMonBoxLevel=DA62, wDayCareMonMoves=DA67,
+    // wDayCareMonExp=DA6D, wDayCareMonPP=DA7C.
+    const daycareInUse = parseInt(blockBoxTime[8], 16);
+    if (daycareInUse === 1) {
+      const off = 31; // DA5F - DA40
+      const speciesId = parseInt(blockBoxTime[off], 16);
+      const info = INTERNAL_TO_POKEMON[speciesId] || null;
+      const exp = (parseInt(blockBoxTime[off + 14], 16) << 16) |
+        (parseInt(blockBoxTime[off + 15], 16) << 8) |
+        parseInt(blockBoxTime[off + 16], 16);
+      const moves = [0, 1, 2, 3].map(i => {
+        const moveId = parseInt(blockBoxTime[off + 8 + i], 16);
+        if (!moveId) return null;
+        return {
+          id: moveId,
+          name: MOVES[moveId]?.name || `Golpe #${moveId} (não identificado)`,
+          pp: parseInt(blockBoxTime[off + 29 + i], 16) & 0x3F
+        };
+      }).filter(Boolean);
+      this.latestState.daycare = {
+        occupied: true,
+        speciesId,
+        name: info?.name || `Pokémon #${speciesId} (não identificado)`,
+        dex: info?.dex || null,
+        depositedLevel: parseInt(blockBoxTime[off + 3], 16),
+        totalExpNow: exp,
+        moves,
+        currentLevel: null,
+        levelSource: 'Por calcular a partir do grupo de crescimento validado; nível na ficha da creche é o nível depositado até falar com o responsável',
+        readFromRam: true
+      };
+    } else {
+      this.latestState.daycare = {
+        occupied: false,
+        readFromRam: daycareInUse === 0,
+        error: daycareInUse === 0 ? null : 'Flag Daycare inválida'
       };
     }
 
