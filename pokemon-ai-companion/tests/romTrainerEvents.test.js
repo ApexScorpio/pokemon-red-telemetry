@@ -52,3 +52,53 @@ test('Route 24: Rocket especial e seis treinadores normais têm flags válidas',
  assert.deepEqual(result.entries.map(x=>x.eventBitIndex),[1346,1347,1348,1349,1350,1351,1345]);
  assert.ok(result.entries.every(x=>x.defeated===null));
 });
+
+
+test('perfil completo da ROM e atlas auditado: conflitos de bits são rejeitados',()=>{
+ const flags=Array(320).fill('00');
+ const dynamic={...map,trainerEvents:[
+   {objectOrdinal:1,eventBitIndex:1041},
+   {objectOrdinal:2,eventBitIndex:1042}
+ ]};
+ const fullProfile={...profile,world:{maps:{
+   trainerEventsVerified:310,data:{17:{mapId:17}}
+ }}};
+ const ok=trainerFlagsForCurrentMap(fullProfile,dynamic,flags);
+ assert.equal(ok.verified,true);
+ assert.equal(ok.entries.length,6);
+ assert.equal(ok.entries.find(x=>x.objectOrdinal===6).eventBitIndex,1046);
+ assert.match(ok.source,/ATLAS_SHA256_COMPARADOS/);
+
+ const conflicting={...dynamic,trainerEvents:[
+   {objectOrdinal:1,eventBitIndex:1049}
+ ]};
+ const bad=trainerFlagsForCurrentMap(fullProfile,conflicting,flags);
+ assert.equal(bad.verified,false);
+ assert.equal(bad.source,'CONFLITO_ATLAS_VS_CABECALHO_ROM');
+});
+
+test('ordinais duplicados na tabela dinâmica nunca são aceites',()=>{
+ const flags=Array(320).fill('00');
+ const fullProfile={...profile,world:{maps:{
+   trainerEventsVerified:310,data:{17:{mapId:17}}
+ }}};
+ const dup={...map,trainerEvents:[
+   {objectOrdinal:1,eventBitIndex:1041},
+   {objectOrdinal:1,eventBitIndex:1042}
+ ]};
+ assert.equal(trainerFlagsForCurrentMap(fullProfile,dup,flags).source,
+   'ROM_CABEÇALHO_INVALIDO_OU_DUPLICADO');
+});
+
+test('atlas não confunde encontro fixo com treinador humano',()=>{
+ const flags=Array(320).fill('00');
+ const fixed={kind:'wildPokemon',trainerClassOrItemId:73,wildSpeciesInternalId:73};
+ const mapMoltres={valid:true,mapId:194,objects:{objects:[
+   ...Array.from({length:5},()=>({kind:'trainer',trainerClassOrItemId:201})),
+   fixed
+ ]}};
+ const r=trainerFlagsForCurrentMap(profile,mapMoltres,flags);
+ assert.equal(r.verified,true);
+ assert.equal(r.entries.length,5);
+ assert.equal(r.entries.some(x=>x.objectOrdinal===6),false);
+});
