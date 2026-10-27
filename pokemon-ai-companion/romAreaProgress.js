@@ -57,7 +57,7 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
    },
    remainingConfirmed:hidden?hiddenResult.stillAvailableConfirmed:null,
    remainingScope:'Apenas itens ocultos com bitmap verificado; não é o total da zona.',
-   needs:{trainerEventHeaders:true,fullVisibleItemPickupLog:true,npcScriptProgress:true}
+   needs:{trainerEventHeaders:trainerUnknown>0,fullVisibleItemPickupLog:true,npcScriptProgress:true}
  };
 }
 module.exports={makeAreaProgress};
