@@ -26,6 +26,10 @@ test('Route 4 item oculto (40,3) é obtido pela flag RAM de índice 53',()=>{
  assert.equal(got.items[0].x,40);
  assert.equal(got.items[0].y,3);
  assert.equal(got.items[0].isCollected,true);
+ assert.equal(got.items[0].itemId,3); // ROM HiddenEventScript: Great Ball
+ const named=decodeHiddenItems({hash:{sha256:HASHES[0]}},15,flags,{3:'Great Ball'});
+ assert.equal(named.items[0].itemName,'Great Ball');
+ assert.equal(named.items[0].itemNameSource,'ID_EXTRAÍDO_DA_ROM_NOME_DE_REFERÊNCIA');
  flags[6]='00';
  assert.equal(decodeHiddenItems({hash:{sha256:HASHES[0]}},15,flags).items[0].isCollected,false);
 });
@@ -54,4 +58,16 @@ test('um objeto removido NÃO prova captura, recolha nem vitória',()=>{
  assert.equal(out.items[0].collected,null);
  assert.equal(out.items[0].defeated,null);
  assert.equal(out.items[0].observedInRam,false);
+});
+
+
+test('os três cartuchos comprovam os IDs dos objetos escondidos, não nomes manuais',()=>{
+ const flags=Array(14).fill('00');
+ for(const sha256 of HASHES){
+  const forest=decodeHiddenItems({hash:{sha256}},51,flags);
+  assert.equal(forest.verified,true);
+  assert.deepEqual(forest.items.map(x=>x.itemId),[20,11]); // Potion, Antidote
+  const mtMoon=decodeHiddenItems({hash:{sha256}},61,flags);
+  assert.deepEqual(mtMoon.items.map(x=>x.itemId),[10,80]); // Moon Stone, Ether
+ }
 });
