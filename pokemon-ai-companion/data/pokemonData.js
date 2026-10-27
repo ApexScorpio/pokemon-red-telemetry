@@ -29,7 +29,7 @@ const INTERNAL_TO_POKEMON = {
     "name": "Clefairy",
     "dex": 35,
     "types": [
-      "Fairy"
+      "Normal"
     ],
     "baseHp": 70
   },
@@ -352,8 +352,7 @@ const INTERNAL_TO_POKEMON = {
     "name": "Mr. Mime",
     "dex": 122,
     "types": [
-      "Psychic",
-      "Fairy"
+      "Psychic"
     ],
     "baseHp": 40
   },
@@ -832,8 +831,7 @@ const INTERNAL_TO_POKEMON = {
     "name": "Jigglypuff",
     "dex": 39,
     "types": [
-      "Normal",
-      "Fairy"
+      "Normal"
     ],
     "baseHp": 115
   },
@@ -841,8 +839,7 @@ const INTERNAL_TO_POKEMON = {
     "name": "Wigglytuff",
     "dex": 40,
     "types": [
-      "Normal",
-      "Fairy"
+      "Normal"
     ],
     "baseHp": 140
   },
@@ -1182,7 +1179,7 @@ const INTERNAL_TO_POKEMON = {
     "name": "Clefable",
     "dex": 36,
     "types": [
-      "Fairy"
+      "Normal"
     ],
     "baseHp": 95
   },
@@ -1867,7 +1864,8 @@ const MOVES = new Proxy(RAW_EXACT_MOVES, {
   get(target, prop) {
     if (prop in target) return target[prop];
     const n = Number(prop);
-    if (!isNaN(n) && n > 0) return { name: `Golpe #${n} (Não Identificado)`, type: 'Normal', power: 40, acc: 100, pp: 35 };
+    // ID de golpe desconhecido: NÃO fabricar tipo, poder, precisão ou PP.
+    if (!isNaN(n) && n > 0) return undefined;
     return target[prop];
   }
 });
@@ -2045,7 +2043,8 @@ function analyzeBattle(playerMon, enemyMon, isWild, badges = [], inventory = [],
 
   const moveAnalyses = (playerMon.moves || []).map(move => {
     if (!move || !move.id) return null;
-    const moveData = MOVES[move.id] || { name: 'Golpe #' + move.id, type: 'Normal', power: 40, acc: 100, pp: 10 };
+    const moveData = MOVES[move.id];
+    if (!moveData) return null; // nunca estimar dano de golpes não identificados
     const effectiveness = getEffectiveness(moveData.type, enemyTypes);
     const hasStab = playerTypes.includes(moveData.type);
     const stabMultiplier = hasStab ? 1.5 : 1.0;
@@ -2300,7 +2299,8 @@ function analyzeBattle(playerMon, enemyMon, isWild, badges = [], inventory = [],
 
   const enemyMoveThreats = (enemyMon.moves || []).map(m => {
     const mId = typeof m === 'object' ? m.id : m;
-    const mInfo = MOVES[mId] || (typeof m === 'object' ? m : { name: `Golpe #${mId}`, type: 'Normal', power: 35, acc: 95 });
+    const mInfo = MOVES[mId];
+    if (!mInfo) return null; // ameaça não calculável sem identificação real do golpe
     const isSpecial = ['Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon'].includes(mInfo.type);
     const eff = getEffectiveness(mInfo.type, playerTypes);
     const hasStab = enemyTypes.includes(mInfo.type);
@@ -2471,7 +2471,8 @@ function analyzeBattle(playerMon, enemyMon, isWild, badges = [], inventory = [],
     let bestEff = 1.0;
     let bestMoveName = 'Ataque';
     for (const bMove of (bMon.moves || [])) {
-      const mInfo = MOVES[bMove.id] || { type: 'Normal', power: 40 };
+      const mInfo = MOVES[bMove.id];
+      if (!mInfo) continue;
       const eff = getEffectiveness(mInfo.type, enemyTypes);
       if (eff > bestEff && bMove.pp > 0) {
         bestEff = eff;
