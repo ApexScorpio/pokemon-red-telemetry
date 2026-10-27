@@ -200,3 +200,18 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 11. Criado docs/PROGRESSO_ZONA_FLAGS_ROM_RAM_V5.md com o detalhe técnico e limitações pendentes. Não foram editados saves, binários ROM, sessões Antigravity, credenciais ou ficheiros no C: do utilizador.
 
 **Pendente:** descodificar e validar a correspondência entre cada treinador da ROM e a sua flag de derrota, os scripts dos NPCs e os identificadores de cada item oculto. Manter estados desconhecidos até haver prova.
+
+
+## 2026-10-27 — Extensão fase 5: flags de vitória certificadas em 17 mapas
+
+- 1. Foram inspecionados os cabeçalhos reais de treinador nas três ROMs fornecidas; a estrutura Gen I usa o bit no primeiro byte e o endereço wEventFlags apontado pelo campo word+2. Foram comparados bytes das versões Red, Blue e Green.
+- 2. Um scanner local encontrou 37 mapas candidatos com sequência de cabeçalhos única junto ao script do mapa. Destes, **apenas 17 mapas/50 treinadores** apresentaram também correspondência exata com os EVENT_BEAT_* do dicionário pret/pokered e foram admitidos como comprovados. Os 20 mapas restantes foram recusados nesta fase (alguns têm convenções de nomes de scripts diferentes).
+- 3. Criado romTrainerEvents.js com os 17 mapas, 50 índices reais de flags de batalha e os SHA-256 das três ROMs auditadas. Nenhuma outra ROM recebe esta atribuição.
+- 4. Adicionado à ramificação ROM/RAM do retroarchClient.js o campo romTrainerFlags e integração em romAreaEvidence.js, ligando a ordem dos treinadores definidos na ROM à flag lida em D747 (320 bytes). Só marca defeated true/false quando o número de objetos da ROM, hash da ROM e leitura RAM coincidem.
+- 5. Atualizado romAreaProgress.js para somar vitórias e batalhas por vencer apenas onde há prova; mapas desconhecidos conservam estados null, em vez de listas manuais de treinos inferidas.
+- 6. Criado tests/romTrainerEvents.test.js, executada prova isolada em JavaScript na Route 6: 6 treinadores, bits 1041-1046, dois bits ativos => 2 vencidos e 4 pendentes. Mapas ou ROMs sem equivalência são recusados.
+- 7. Atualizado public/app.js: cartão de provas ROM/RAM apresenta itens ocultos obtidos/pendentes, objetos visíveis marcados removidos/não removidos, batalhas concretamente vencidas/pendentes e contagens desconhecidas. Nomes de itens provenientes do catálogo manual continuam rotulados como não verificados na ROM.
+- 8. Revalidada a sintaxe dos sete ficheiros JavaScript envolvidos. Teste de ligação ao iPhone/SameBoy ainda não executado. As versões além das três ROMs auditadas continuam sem garantia.
+- 9. Nenhuma ROM, save, sessão, token, serviço ou ficheiro do disco C: foi alterado no equipamento do utilizador.
+
+**Próximos passos pendentes:** identificar cabeçalhos de treinadores nos restantes mapas (incluindo ginásios e áreas especiais); extrair os nomes dos itens ocultos diretamente dos scripts ROM; confirmar os resultados no emulador real.
