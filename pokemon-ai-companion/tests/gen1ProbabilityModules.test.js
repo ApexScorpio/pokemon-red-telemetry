@@ -66,4 +66,5 @@ test('refuse if battle not verified, invalid catch or status',()=>{
   assert.equal(cap('POKE_BALL',120,60,60,'CONFUSION').verified,false);
   assert.throws(()=>cap('POKE_BALL',300,60,60),RangeError);
   assert.throws(()=>cap('POKE_BALL',100,61,60),RangeError);
+  assert.throws(()=>cap('POKE_BALL',100,1000,1000),RangeError);
 });
