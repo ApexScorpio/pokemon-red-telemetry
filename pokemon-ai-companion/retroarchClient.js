@@ -4,6 +4,7 @@ const { expAtLevel } = require('./gen1EngineMath');
 const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
 const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const {decodeToggleables,decodeHiddenItems}=require('./romEventState');
+const {makeAreaProgress}=require('./romAreaProgress');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -1365,6 +1366,10 @@ class RetroArchClient extends EventEmitter {
     // Itens Ocultos e Radar de Itemfinder
     const hiddenItemEvidence=decodeHiddenItems(this.activeRomProfile,this.latestState.mapId,hiddenRaw);
     this.latestState.romHiddenItems=hiddenItemEvidence;
+    this.latestState.romAreaProgress=makeAreaProgress(
+      this.latestState.romAreaEvidence,hiddenItemEvidence,
+      this.latestState.romRuntimeIdentity
+    );
     // Nas três ROMs auditadas, o ordinal da coordenada na tabela ROM corresponde
     // ao bit de wObtainedHiddenItemsFlags. O ID/nome do item AINDA depende de scripts.
     const hiddenList = hiddenItemEvidence.verified
