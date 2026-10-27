@@ -29,8 +29,14 @@ for(const testCase of ROMS){
   assert.equal(p.maps.valid,true);
   assert.equal(p.maps.totalMapIds,248);
   assert.equal(p.maps.validMapHeaders,226);
-  assert.equal(p.maps.trainerEventsVerified,312);
-  assert.equal(p.maps.trainerEventMapsVerified,67);
+  assert.equal(p.maps.trainerEventsVerified,310);
+  assert.equal(p.maps.trainerEventMapsVerified,66);
+  assert.equal(p.maps.staticEncountersVerified,12);
+  assert.equal(p.maps.staticEncounterMapsVerified,4);
+  assert.equal(p.maps.data[83].objects.objects.filter(o=>o.kind==='wildPokemon').length,9);
+  assert.equal(p.maps.data[162].staticEncounterEvents[0].eventBitIndex,2522);
+  assert.equal(p.maps.data[194].staticEncounterEvents[0].eventBitIndex,1342);
+  assert.equal(p.maps.data[227].staticEncounterEvents[0].eventBitIndex,2241);
   assert.deepEqual(p.maps.data[17].trainerEvents.map(x=>x.eventBitIndex),
     [1041,1042,1043,1044,1045,1046]);
   assert.deepEqual(p.maps.data[35].trainerEvents.map(x=>x.objectOrdinal),
