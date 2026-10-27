@@ -45,12 +45,13 @@ function decodeGen1Name(data) {
   let complete = false;
   for (const b of data) {
     if (b === 0x50) { complete = true; break; }
-    if (b >= 0x80 && b <= 0x99) chars.push(String.fromCharCode(65 + b - 0x80).toLowerCase());
-    else if (b >= 0xA0 && b <= 0xB9) chars.push(String.fromCharCode(65 + b - 0xA0));
+    if (b >= 0x80 && b <= 0x99) chars.push(String.fromCharCode(65 + b - 0x80));
+    else if (b >= 0xA0 && b <= 0xB9) chars.push(String.fromCharCode(97 + b - 0xA0));
     else if (b >= 0xF6 && b <= 0xFF) chars.push(String(b - 0xF6));
     else if (b === 0xE8) chars.push('.');
     else if (b === 0xE3) chars.push('-');
-    else if (b === 0xF5) chars.push(':');
+    else if (b === 0xEF) chars.push('♂');
+    else if (b === 0xF5) chars.push('♀');
     else if (b === 0x7F) chars.push(' ');
     else return { text: null, decoded: false, rawHex: data.toString('hex') };
   }
