@@ -4,1154 +4,1319 @@
     "type": "Normal",
     "power": 40,
     "acc": 100,
-    "pp": 35
+    "pp": 35,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "2": {
     "name": "Karate Chop",
     "type": "Normal",
     "power": 50,
     "acc": 100,
-    "pp": 25
+    "pp": 25,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "3": {
     "name": "Doubleslap",
     "type": "Normal",
     "power": 15,
     "acc": 85,
-    "pp": 10
+    "pp": 10,
+    "effect": "TWO_TO_FIVE_ATTACKS_EFFECT"
   },
   "4": {
     "name": "Comet Punch",
     "type": "Normal",
     "power": 18,
     "acc": 85,
-    "pp": 15
+    "pp": 15,
+    "effect": "TWO_TO_FIVE_ATTACKS_EFFECT"
   },
   "5": {
     "name": "Mega Punch",
     "type": "Normal",
     "power": 80,
     "acc": 85,
-    "pp": 20
+    "pp": 20,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "6": {
     "name": "Pay Day",
     "type": "Normal",
     "power": 40,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "PAY_DAY_EFFECT"
   },
   "7": {
     "name": "Fire Punch",
     "type": "Fire",
     "power": 75,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "BURN_SIDE_EFFECT1"
   },
   "8": {
     "name": "Ice Punch",
     "type": "Ice",
     "power": 75,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "FREEZE_SIDE_EFFECT1"
   },
   "9": {
     "name": "Thunderpunch",
     "type": "Electric",
     "power": 75,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "PARALYZE_SIDE_EFFECT1"
   },
   "10": {
     "name": "Scratch",
     "type": "Normal",
     "power": 40,
     "acc": 100,
-    "pp": 35
+    "pp": 35,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "11": {
     "name": "Vicegrip",
     "type": "Normal",
     "power": 55,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "12": {
     "name": "Guillotine",
     "type": "Normal",
     "power": 1,
     "acc": 30,
-    "pp": 5
+    "pp": 5,
+    "effect": "OHKO_EFFECT"
   },
   "13": {
     "name": "Razor Wind",
     "type": "Normal",
     "power": 80,
     "acc": 75,
-    "pp": 10
+    "pp": 10,
+    "effect": "CHARGE_EFFECT"
   },
   "14": {
     "name": "Swords Dance",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "ATTACK_UP2_EFFECT"
   },
   "15": {
     "name": "Cut",
     "type": "Normal",
     "power": 50,
     "acc": 95,
-    "pp": 30
+    "pp": 30,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "16": {
     "name": "Gust",
     "type": "Normal",
     "power": 40,
     "acc": 100,
-    "pp": 35
+    "pp": 35,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "17": {
     "name": "Wing Attack",
     "type": "Flying",
     "power": 35,
     "acc": 100,
-    "pp": 35
+    "pp": 35,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "18": {
     "name": "Whirlwind",
     "type": "Normal",
     "power": 0,
     "acc": 85,
-    "pp": 20
+    "pp": 20,
+    "effect": "SWITCH_AND_TELEPORT_EFFECT"
   },
   "19": {
     "name": "Fly",
     "type": "Flying",
     "power": 70,
     "acc": 95,
-    "pp": 15
+    "pp": 15,
+    "effect": "FLY_EFFECT"
   },
   "20": {
     "name": "Bind",
     "type": "Normal",
     "power": 15,
     "acc": 75,
-    "pp": 20
+    "pp": 20,
+    "effect": "TRAPPING_EFFECT"
   },
   "21": {
     "name": "Slam",
     "type": "Normal",
     "power": 80,
     "acc": 75,
-    "pp": 20
+    "pp": 20,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "22": {
     "name": "Vine Whip",
     "type": "Grass",
     "power": 35,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "23": {
     "name": "Stomp",
     "type": "Normal",
     "power": 65,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "FLINCH_SIDE_EFFECT2"
   },
   "24": {
     "name": "Double Kick",
     "type": "Fighting",
     "power": 30,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "ATTACK_TWICE_EFFECT"
   },
   "25": {
     "name": "Mega Kick",
     "type": "Normal",
     "power": 120,
     "acc": 75,
-    "pp": 5
+    "pp": 5,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "26": {
     "name": "Jump Kick",
     "type": "Fighting",
     "power": 70,
     "acc": 95,
-    "pp": 25
+    "pp": 25,
+    "effect": "JUMP_KICK_EFFECT"
   },
   "27": {
     "name": "Rolling Kick",
     "type": "Fighting",
     "power": 60,
     "acc": 85,
-    "pp": 15
+    "pp": 15,
+    "effect": "FLINCH_SIDE_EFFECT2"
   },
   "28": {
     "name": "Sand-attack",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "ACCURACY_DOWN1_EFFECT"
   },
   "29": {
     "name": "Headbutt",
     "type": "Normal",
     "power": 70,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "FLINCH_SIDE_EFFECT2"
   },
   "30": {
     "name": "Horn Attack",
     "type": "Normal",
     "power": 65,
     "acc": 100,
-    "pp": 25
+    "pp": 25,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "31": {
     "name": "Fury Attack",
     "type": "Normal",
     "power": 15,
     "acc": 85,
-    "pp": 20
+    "pp": 20,
+    "effect": "TWO_TO_FIVE_ATTACKS_EFFECT"
   },
   "32": {
     "name": "Horn Drill",
     "type": "Normal",
     "power": 1,
     "acc": 30,
-    "pp": 5
+    "pp": 5,
+    "effect": "OHKO_EFFECT"
   },
   "33": {
     "name": "Tackle",
     "type": "Normal",
     "power": 35,
     "acc": 95,
-    "pp": 35
+    "pp": 35,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "34": {
     "name": "Body Slam",
     "type": "Normal",
     "power": 85,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "PARALYZE_SIDE_EFFECT2"
   },
   "35": {
     "name": "Wrap",
     "type": "Normal",
     "power": 15,
     "acc": 85,
-    "pp": 20
+    "pp": 20,
+    "effect": "TRAPPING_EFFECT"
   },
   "36": {
     "name": "Take Down",
     "type": "Normal",
     "power": 90,
     "acc": 85,
-    "pp": 20
+    "pp": 20,
+    "effect": "RECOIL_EFFECT"
   },
   "37": {
     "name": "Thrash",
     "type": "Normal",
     "power": 90,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "THRASH_PETAL_DANCE_EFFECT"
   },
   "38": {
     "name": "Double-edge",
     "type": "Normal",
     "power": 100,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "RECOIL_EFFECT"
   },
   "39": {
     "name": "Tail Whip",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "DEFENSE_DOWN1_EFFECT"
   },
   "40": {
     "name": "Poison Sting",
     "type": "Poison",
     "power": 15,
     "acc": 100,
-    "pp": 35
+    "pp": 35,
+    "effect": "POISON_SIDE_EFFECT1"
   },
   "41": {
     "name": "Twineedle",
     "type": "Bug",
     "power": 25,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "TWINEEDLE_EFFECT"
   },
   "42": {
     "name": "Pin Missile",
     "type": "Bug",
     "power": 14,
     "acc": 85,
-    "pp": 20
+    "pp": 20,
+    "effect": "TWO_TO_FIVE_ATTACKS_EFFECT"
   },
   "43": {
     "name": "Leer",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "DEFENSE_DOWN1_EFFECT"
   },
   "44": {
     "name": "Bite",
     "type": "Normal",
     "power": 60,
     "acc": 100,
-    "pp": 25
+    "pp": 25,
+    "effect": "FLINCH_SIDE_EFFECT1"
   },
   "45": {
     "name": "Growl",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 40
+    "pp": 40,
+    "effect": "ATTACK_DOWN1_EFFECT"
   },
   "46": {
     "name": "Roar",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "SWITCH_AND_TELEPORT_EFFECT"
   },
   "47": {
     "name": "Sing",
     "type": "Normal",
     "power": 0,
     "acc": 55,
-    "pp": 15
+    "pp": 15,
+    "effect": "SLEEP_EFFECT"
   },
   "48": {
     "name": "Supersonic",
     "type": "Normal",
     "power": 0,
     "acc": 55,
-    "pp": 20
+    "pp": 20,
+    "effect": "CONFUSION_EFFECT"
   },
   "49": {
     "name": "Sonicboom",
     "type": "Normal",
     "power": 1,
     "acc": 90,
-    "pp": 20
+    "pp": 20,
+    "effect": "SPECIAL_DAMAGE_EFFECT"
   },
   "50": {
     "name": "Disable",
     "type": "Normal",
     "power": 0,
     "acc": 55,
-    "pp": 20
+    "pp": 20,
+    "effect": "DISABLE_EFFECT"
   },
   "51": {
     "name": "Acid",
     "type": "Poison",
     "power": 40,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "DEFENSE_DOWN_SIDE_EFFECT"
   },
   "52": {
     "name": "Ember",
     "type": "Fire",
     "power": 40,
     "acc": 100,
-    "pp": 25
+    "pp": 25,
+    "effect": "BURN_SIDE_EFFECT1"
   },
   "53": {
     "name": "Flamethrower",
     "type": "Fire",
     "power": 95,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "BURN_SIDE_EFFECT1"
   },
   "54": {
     "name": "Mist",
     "type": "Ice",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "MIST_EFFECT"
   },
   "55": {
     "name": "Water Gun",
     "type": "Water",
     "power": 40,
     "acc": 100,
-    "pp": 25
+    "pp": 25,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "56": {
     "name": "Hydro Pump",
     "type": "Water",
     "power": 120,
     "acc": 80,
-    "pp": 5
+    "pp": 5,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "57": {
     "name": "Surf",
     "type": "Water",
     "power": 95,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "58": {
     "name": "Ice Beam",
     "type": "Ice",
     "power": 95,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "FREEZE_SIDE_EFFECT1"
   },
   "59": {
     "name": "Blizzard",
     "type": "Ice",
     "power": 120,
     "acc": 90,
-    "pp": 5
+    "pp": 5,
+    "effect": "FREEZE_SIDE_EFFECT1"
   },
   "60": {
     "name": "Psybeam",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 65,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "CONFUSION_SIDE_EFFECT"
   },
   "61": {
     "name": "Bubblebeam",
     "type": "Water",
     "power": 65,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "SPEED_DOWN_SIDE_EFFECT"
   },
   "62": {
     "name": "Aurora Beam",
     "type": "Ice",
     "power": 65,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "ATTACK_DOWN_SIDE_EFFECT"
   },
   "63": {
     "name": "Hyper Beam",
     "type": "Normal",
     "power": 150,
     "acc": 90,
-    "pp": 5
+    "pp": 5,
+    "effect": "HYPER_BEAM_EFFECT"
   },
   "64": {
     "name": "Peck",
     "type": "Flying",
     "power": 35,
     "acc": 100,
-    "pp": 35
+    "pp": 35,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "65": {
     "name": "Drill Peck",
     "type": "Flying",
     "power": 80,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "66": {
     "name": "Submission",
     "type": "Fighting",
     "power": 80,
     "acc": 80,
-    "pp": 25
+    "pp": 25,
+    "effect": "RECOIL_EFFECT"
   },
   "67": {
     "name": "Low Kick",
     "type": "Fighting",
     "power": 50,
     "acc": 90,
-    "pp": 20
+    "pp": 20,
+    "effect": "FLINCH_SIDE_EFFECT2"
   },
   "68": {
     "name": "Counter",
     "type": "Fighting",
     "power": 1,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "69": {
     "name": "Seismic Toss",
     "type": "Fighting",
     "power": 1,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "SPECIAL_DAMAGE_EFFECT"
   },
   "70": {
     "name": "Strength",
     "type": "Normal",
     "power": 80,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "71": {
     "name": "Absorb",
     "type": "Grass",
     "power": 20,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "DRAIN_HP_EFFECT"
   },
   "72": {
     "name": "Mega Drain",
     "type": "Grass",
     "power": 40,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "DRAIN_HP_EFFECT"
   },
   "73": {
     "name": "Leech Seed",
     "type": "Grass",
     "power": 0,
     "acc": 90,
-    "pp": 10
+    "pp": 10,
+    "effect": "LEECH_SEED_EFFECT"
   },
   "74": {
     "name": "Growth",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 40
+    "pp": 40,
+    "effect": "SPECIAL_UP1_EFFECT"
   },
   "75": {
     "name": "Razor Leaf",
     "type": "Grass",
     "power": 55,
     "acc": 95,
-    "pp": 25
+    "pp": 25,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "76": {
     "name": "Solarbeam",
     "type": "Grass",
     "power": 120,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "CHARGE_EFFECT"
   },
   "77": {
     "name": "Poisonpowder",
     "type": "Poison",
     "power": 0,
     "acc": 75,
-    "pp": 35
+    "pp": 35,
+    "effect": "POISON_EFFECT"
   },
   "78": {
     "name": "Stun Spore",
     "type": "Grass",
     "power": 0,
     "acc": 75,
-    "pp": 30
+    "pp": 30,
+    "effect": "PARALYZE_EFFECT"
   },
   "79": {
     "name": "Sleep Powder",
     "type": "Grass",
     "power": 0,
     "acc": 75,
-    "pp": 15
+    "pp": 15,
+    "effect": "SLEEP_EFFECT"
   },
   "80": {
     "name": "Petal Dance",
     "type": "Grass",
     "power": 70,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "THRASH_PETAL_DANCE_EFFECT"
   },
   "81": {
     "name": "String Shot",
     "type": "Bug",
     "power": 0,
     "acc": 95,
-    "pp": 40
+    "pp": 40,
+    "effect": "SPEED_DOWN1_EFFECT"
   },
   "82": {
     "name": "Dragon Rage",
     "type": "Dragon",
     "power": 1,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "SPECIAL_DAMAGE_EFFECT"
   },
   "83": {
     "name": "Fire Spin",
     "type": "Fire",
     "power": 15,
     "acc": 70,
-    "pp": 15
+    "pp": 15,
+    "effect": "TRAPPING_EFFECT"
   },
   "84": {
     "name": "Thundershock",
     "type": "Electric",
     "power": 40,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "PARALYZE_SIDE_EFFECT1"
   },
   "85": {
     "name": "Thunderbolt",
     "type": "Electric",
     "power": 95,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "PARALYZE_SIDE_EFFECT1"
   },
   "86": {
     "name": "Thunder Wave",
     "type": "Electric",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "PARALYZE_EFFECT"
   },
   "87": {
     "name": "Thunder",
     "type": "Electric",
     "power": 120,
     "acc": 70,
-    "pp": 10
+    "pp": 10,
+    "effect": "PARALYZE_SIDE_EFFECT1"
   },
   "88": {
     "name": "Rock Throw",
     "type": "Rock",
     "power": 50,
     "acc": 65,
-    "pp": 15
+    "pp": 15,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "89": {
     "name": "Earthquake",
     "type": "Ground",
     "power": 100,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "90": {
     "name": "Fissure",
     "type": "Ground",
     "power": 1,
     "acc": 30,
-    "pp": 5
+    "pp": 5,
+    "effect": "OHKO_EFFECT"
   },
   "91": {
     "name": "Dig",
     "type": "Ground",
     "power": 100,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "CHARGE_EFFECT"
   },
   "92": {
     "name": "Toxic",
     "type": "Poison",
     "power": 0,
     "acc": 85,
-    "pp": 10
+    "pp": 10,
+    "effect": "POISON_EFFECT"
   },
   "93": {
     "name": "Confusion",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 50,
     "acc": 100,
-    "pp": 25
+    "pp": 25,
+    "effect": "CONFUSION_SIDE_EFFECT"
   },
   "94": {
     "name": "Psychic",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 90,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "SPECIAL_DOWN_SIDE_EFFECT"
   },
   "95": {
     "name": "Hypnosis",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 60,
-    "pp": 20
+    "pp": 20,
+    "effect": "SLEEP_EFFECT"
   },
   "96": {
     "name": "Meditate",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 100,
-    "pp": 40
+    "pp": 40,
+    "effect": "ATTACK_UP1_EFFECT"
   },
   "97": {
     "name": "Agility",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "SPEED_UP2_EFFECT"
   },
   "98": {
     "name": "Quick Attack",
     "type": "Normal",
     "power": 40,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "99": {
     "name": "Rage",
     "type": "Normal",
     "power": 20,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "RAGE_EFFECT"
   },
   "100": {
     "name": "Teleport",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "SWITCH_AND_TELEPORT_EFFECT"
   },
   "101": {
     "name": "Night Shade",
     "type": "Ghost",
     "power": 0,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "SPECIAL_DAMAGE_EFFECT"
   },
   "102": {
     "name": "Mimic",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "MIMIC_EFFECT"
   },
   "103": {
     "name": "Screech",
     "type": "Normal",
     "power": 0,
     "acc": 85,
-    "pp": 40
+    "pp": 40,
+    "effect": "DEFENSE_DOWN2_EFFECT"
   },
   "104": {
     "name": "Double Team",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "EVASION_UP1_EFFECT"
   },
   "105": {
     "name": "Recover",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "HEAL_EFFECT"
   },
   "106": {
     "name": "Harden",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "DEFENSE_UP1_EFFECT"
   },
   "107": {
     "name": "Minimize",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "EVASION_UP1_EFFECT"
   },
   "108": {
     "name": "Smokescreen",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "ACCURACY_DOWN1_EFFECT"
   },
   "109": {
     "name": "Confuse Ray",
     "type": "Ghost",
     "power": 0,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "CONFUSION_EFFECT"
   },
   "110": {
     "name": "Withdraw",
     "type": "Water",
     "power": 0,
     "acc": 100,
-    "pp": 40
+    "pp": 40,
+    "effect": "DEFENSE_UP1_EFFECT"
   },
   "111": {
     "name": "Defense Curl",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 40
+    "pp": 40,
+    "effect": "DEFENSE_UP1_EFFECT"
   },
   "112": {
     "name": "Barrier",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "DEFENSE_UP2_EFFECT"
   },
   "113": {
     "name": "Light Screen",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "LIGHT_SCREEN_EFFECT"
   },
   "114": {
     "name": "Haze",
     "type": "Ice",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "HAZE_EFFECT"
   },
   "115": {
     "name": "Reflect",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "REFLECT_EFFECT"
   },
   "116": {
     "name": "Focus Energy",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "FOCUS_ENERGY_EFFECT"
   },
   "117": {
     "name": "Bide",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "BIDE_EFFECT"
   },
   "118": {
     "name": "Metronome",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "METRONOME_EFFECT"
   },
   "119": {
     "name": "Mirror Move",
     "type": "Flying",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "MIRROR_MOVE_EFFECT"
   },
   "120": {
     "name": "Selfdestruct",
     "type": "Normal",
     "power": 130,
     "acc": 100,
-    "pp": 5
+    "pp": 5,
+    "effect": "EXPLODE_EFFECT"
   },
   "121": {
     "name": "Egg Bomb",
     "type": "Normal",
     "power": 100,
     "acc": 75,
-    "pp": 10
+    "pp": 10,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "122": {
     "name": "Lick",
     "type": "Ghost",
     "power": 20,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "PARALYZE_SIDE_EFFECT2"
   },
   "123": {
     "name": "Smog",
     "type": "Poison",
     "power": 20,
     "acc": 70,
-    "pp": 20
+    "pp": 20,
+    "effect": "POISON_SIDE_EFFECT2"
   },
   "124": {
     "name": "Sludge",
     "type": "Poison",
     "power": 65,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "POISON_SIDE_EFFECT2"
   },
   "125": {
     "name": "Bone Club",
     "type": "Ground",
     "power": 65,
     "acc": 85,
-    "pp": 20
+    "pp": 20,
+    "effect": "FLINCH_SIDE_EFFECT1"
   },
   "126": {
     "name": "Fire Blast",
     "type": "Fire",
     "power": 120,
     "acc": 85,
-    "pp": 5
+    "pp": 5,
+    "effect": "BURN_SIDE_EFFECT2"
   },
   "127": {
     "name": "Waterfall",
     "type": "Water",
     "power": 80,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "128": {
     "name": "Clamp",
     "type": "Water",
     "power": 35,
     "acc": 75,
-    "pp": 10
+    "pp": 10,
+    "effect": "TRAPPING_EFFECT"
   },
   "129": {
     "name": "Swift",
     "type": "Normal",
     "power": 60,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "SWIFT_EFFECT"
   },
   "130": {
     "name": "Skull Bash",
     "type": "Normal",
     "power": 100,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "CHARGE_EFFECT"
   },
   "131": {
     "name": "Spike Cannon",
     "type": "Normal",
     "power": 20,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "TWO_TO_FIVE_ATTACKS_EFFECT"
   },
   "132": {
     "name": "Constrict",
     "type": "Normal",
     "power": 10,
     "acc": 100,
-    "pp": 35
+    "pp": 35,
+    "effect": "SPEED_DOWN_SIDE_EFFECT"
   },
   "133": {
     "name": "Amnesia",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "SPECIAL_UP2_EFFECT"
   },
   "134": {
     "name": "Kinesis",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 80,
-    "pp": 15
+    "pp": 15,
+    "effect": "ACCURACY_DOWN1_EFFECT"
   },
   "135": {
     "name": "Softboiled",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "HEAL_EFFECT"
   },
   "136": {
     "name": "Hi Jump Kick",
     "type": "Fighting",
     "power": 85,
     "acc": 90,
-    "pp": 20
+    "pp": 20,
+    "effect": "JUMP_KICK_EFFECT"
   },
   "137": {
     "name": "Glare",
     "type": "Normal",
     "power": 0,
     "acc": 75,
-    "pp": 30
+    "pp": 30,
+    "effect": "PARALYZE_EFFECT"
   },
   "138": {
     "name": "Dream Eater",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 100,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "DREAM_EATER_EFFECT"
   },
   "139": {
     "name": "Poison Gas",
     "type": "Poison",
     "power": 0,
     "acc": 55,
-    "pp": 40
+    "pp": 40,
+    "effect": "POISON_EFFECT"
   },
   "140": {
     "name": "Barrage",
     "type": "Normal",
     "power": 15,
     "acc": 85,
-    "pp": 20
+    "pp": 20,
+    "effect": "TWO_TO_FIVE_ATTACKS_EFFECT"
   },
   "141": {
     "name": "Leech Life",
     "type": "Bug",
     "power": 20,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "DRAIN_HP_EFFECT"
   },
   "142": {
     "name": "Lovely Kiss",
     "type": "Normal",
     "power": 0,
     "acc": 75,
-    "pp": 10
+    "pp": 10,
+    "effect": "SLEEP_EFFECT"
   },
   "143": {
     "name": "Sky Attack",
     "type": "Flying",
     "power": 140,
     "acc": 90,
-    "pp": 5
+    "pp": 5,
+    "effect": "CHARGE_EFFECT"
   },
   "144": {
     "name": "Transform",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "TRANSFORM_EFFECT"
   },
   "145": {
     "name": "Bubble",
     "type": "Water",
     "power": 20,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "SPEED_DOWN_SIDE_EFFECT"
   },
   "146": {
     "name": "Dizzy Punch",
     "type": "Normal",
     "power": 70,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "147": {
     "name": "Spore",
     "type": "Grass",
     "power": 0,
     "acc": 100,
-    "pp": 15
+    "pp": 15,
+    "effect": "SLEEP_EFFECT"
   },
   "148": {
     "name": "Flash",
     "type": "Normal",
     "power": 0,
     "acc": 70,
-    "pp": 20
+    "pp": 20,
+    "effect": "ACCURACY_DOWN1_EFFECT"
   },
   "149": {
     "name": "Psywave",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 1,
     "acc": 80,
-    "pp": 15
+    "pp": 15,
+    "effect": "SPECIAL_DAMAGE_EFFECT"
   },
   "150": {
     "name": "Splash",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 40
+    "pp": 40,
+    "effect": "SPLASH_EFFECT"
   },
   "151": {
     "name": "Acid Armor",
     "type": "Poison",
     "power": 0,
     "acc": 100,
-    "pp": 40
+    "pp": 40,
+    "effect": "DEFENSE_UP2_EFFECT"
   },
   "152": {
     "name": "Crabhammer",
     "type": "Water",
     "power": 90,
     "acc": 85,
-    "pp": 10
+    "pp": 10,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "153": {
     "name": "Explosion",
     "type": "Normal",
     "power": 170,
     "acc": 100,
-    "pp": 5
+    "pp": 5,
+    "effect": "EXPLODE_EFFECT"
   },
   "154": {
     "name": "Fury Swipes",
     "type": "Normal",
     "power": 18,
     "acc": 80,
-    "pp": 15
+    "pp": 15,
+    "effect": "TWO_TO_FIVE_ATTACKS_EFFECT"
   },
   "155": {
     "name": "Bonemerang",
     "type": "Ground",
     "power": 50,
     "acc": 90,
-    "pp": 10
+    "pp": 10,
+    "effect": "ATTACK_TWICE_EFFECT"
   },
   "156": {
     "name": "Rest",
-    "type": "Psychic_type",
+    "type": "Psychic",
     "power": 0,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "HEAL_EFFECT"
   },
   "157": {
     "name": "Rock Slide",
     "type": "Rock",
     "power": 75,
     "acc": 90,
-    "pp": 10
+    "pp": 10,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "158": {
     "name": "Hyper Fang",
     "type": "Normal",
     "power": 80,
     "acc": 90,
-    "pp": 15
+    "pp": 15,
+    "effect": "FLINCH_SIDE_EFFECT1"
   },
   "159": {
     "name": "Sharpen",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "ATTACK_UP1_EFFECT"
   },
   "160": {
     "name": "Conversion",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 30
+    "pp": 30,
+    "effect": "CONVERSION_EFFECT"
   },
   "161": {
     "name": "Tri Attack",
     "type": "Normal",
     "power": 80,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "162": {
     "name": "Super Fang",
     "type": "Normal",
     "power": 1,
     "acc": 90,
-    "pp": 10
+    "pp": 10,
+    "effect": "SUPER_FANG_EFFECT"
   },
   "163": {
     "name": "Slash",
     "type": "Normal",
     "power": 70,
     "acc": 100,
-    "pp": 20
+    "pp": 20,
+    "effect": "NO_ADDITIONAL_EFFECT"
   },
   "164": {
     "name": "Substitute",
     "type": "Normal",
     "power": 0,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "SUBSTITUTE_EFFECT"
   },
   "165": {
     "name": "Struggle",
     "type": "Normal",
     "power": 50,
     "acc": 100,
-    "pp": 10
+    "pp": 10,
+    "effect": "RECOIL_EFFECT"
   }
 }
