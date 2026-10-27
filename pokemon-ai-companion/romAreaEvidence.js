@@ -19,6 +19,7 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
   }
   const spritesVerified=options.spritesVerified === true;
   const toggles=options.toggleables?.verified ? options.toggleables.entries : null;
+  const trainerFlags=options.trainerFlags?.verified ? options.trainerFlags.entries : null;
   const live=Array.isArray(entities) ? entities : [];
   const seen=new Set();
   const items=[],trainers=[],npcs=[];
@@ -60,6 +61,14 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
       entry.visibilitySource=matching?'SPRITE_CORRESPONDENTE_NA_RAM':'NÃO_OBSERVADO_NA_RAM_NÃO_PROVA_CONCLUSÃO';
       if (matching) seen.add(live.indexOf(matching));
     }
+    if (kind==='trainer'){
+      const battle=trainerFlags?.find(x=>x.objectOrdinal===i+1);
+      if(battle){
+        entry.defeated=battle.defeated;
+        entry.eventBitIndex=battle.eventBitIndex;
+        entry.completionSource=battle.source;
+      }
+    }
     if (kind==='item') items.push(entry);
     else if (kind==='trainer') trainers.push(entry);
     else npcs.push(entry);
@@ -69,6 +78,7 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
     items,trainers,npcs,
     note:'Objetos da ROM não comprovam recolha/derrota. Ausência da RAM não comprova conclusão.',
     toggleableRamVerified:!!toggles,
+    trainerEventRamVerified:!!trainerFlags,
     counts:{items:items.length,trainers:trainers.length,npcs:npcs.length}};
 }
 module.exports={buildRomAreaEvidence};
