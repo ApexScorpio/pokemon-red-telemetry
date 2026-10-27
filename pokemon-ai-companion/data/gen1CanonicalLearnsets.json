@@ -1,0 +1,4768 @@
+{
+  "source": "pret/pokered Red/Blue evos_moves.asm; static ROM reference",
+  "version": "Gen I",
+  "count": 151,
+  "byDex": {
+    "1": {
+      "dex": 1,
+      "internalId": 153,
+      "symbol": "BULBASAUR",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "LEECH_SEED"
+        },
+        {
+          "level": 13,
+          "moveSymbol": "VINE_WHIP"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "RAZOR_LEAF"
+        },
+        {
+          "level": 34,
+          "moveSymbol": "GROWTH"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "SOLARBEAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "16",
+          "param2": "IVYSAUR",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "2": {
+      "dex": 2,
+      "internalId": 9,
+      "symbol": "IVYSAUR",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "LEECH_SEED"
+        },
+        {
+          "level": 13,
+          "moveSymbol": "VINE_WHIP"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "RAZOR_LEAF"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "GROWTH"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "SOLARBEAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "32",
+          "param2": "VENUSAUR",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "3": {
+      "dex": 3,
+      "internalId": 154,
+      "symbol": "VENUSAUR",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "LEECH_SEED"
+        },
+        {
+          "level": 13,
+          "moveSymbol": "VINE_WHIP"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "RAZOR_LEAF"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "GROWTH"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 65,
+          "moveSymbol": "SOLARBEAM"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "4": {
+      "dex": 4,
+      "internalId": 176,
+      "symbol": "CHARMANDER",
+      "levelUp": [
+        {
+          "level": 9,
+          "moveSymbol": "EMBER"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "FLAMETHROWER"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "FIRE_SPIN"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "16",
+          "param2": "CHARMELEON",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "5": {
+      "dex": 5,
+      "internalId": 178,
+      "symbol": "CHARMELEON",
+      "levelUp": [
+        {
+          "level": 9,
+          "moveSymbol": "EMBER"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "FLAMETHROWER"
+        },
+        {
+          "level": 56,
+          "moveSymbol": "FIRE_SPIN"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "36",
+          "param2": "CHARIZARD",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "6": {
+      "dex": 6,
+      "internalId": 180,
+      "symbol": "CHARIZARD",
+      "levelUp": [
+        {
+          "level": 9,
+          "moveSymbol": "EMBER"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "FLAMETHROWER"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "FIRE_SPIN"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "7": {
+      "dex": 7,
+      "internalId": 177,
+      "symbol": "SQUIRTLE",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "BUBBLE"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 28,
+          "moveSymbol": "WITHDRAW"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "SKULL_BASH"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "16",
+          "param2": "WARTORTLE",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "8": {
+      "dex": 8,
+      "internalId": 179,
+      "symbol": "WARTORTLE",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "BUBBLE"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "WITHDRAW"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SKULL_BASH"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "36",
+          "param2": "BLASTOISE",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "9": {
+      "dex": 9,
+      "internalId": 28,
+      "symbol": "BLASTOISE",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "BUBBLE"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "WITHDRAW"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "SKULL_BASH"
+        },
+        {
+          "level": 52,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "10": {
+      "dex": 10,
+      "internalId": 123,
+      "symbol": "CATERPIE",
+      "levelUp": [],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "7",
+          "param2": "METAPOD",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "11": {
+      "dex": 11,
+      "internalId": 124,
+      "symbol": "METAPOD",
+      "levelUp": [],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "10",
+          "param2": "BUTTERFREE",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "12": {
+      "dex": 12,
+      "internalId": 125,
+      "symbol": "BUTTERFREE",
+      "levelUp": [
+        {
+          "level": 12,
+          "moveSymbol": "CONFUSION"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 16,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 26,
+          "moveSymbol": "WHIRLWIND"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "PSYBEAM"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "13": {
+      "dex": 13,
+      "internalId": 112,
+      "symbol": "WEEDLE",
+      "levelUp": [],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "7",
+          "param2": "KAKUNA",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "14": {
+      "dex": 14,
+      "internalId": 113,
+      "symbol": "KAKUNA",
+      "levelUp": [],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "10",
+          "param2": "BEEDRILL",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "15": {
+      "dex": 15,
+      "internalId": 114,
+      "symbol": "BEEDRILL",
+      "levelUp": [
+        {
+          "level": 12,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 16,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "TWINEEDLE"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "PIN_MISSILE"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "16": {
+      "dex": 16,
+      "internalId": 36,
+      "symbol": "PIDGEY",
+      "levelUp": [
+        {
+          "level": 5,
+          "moveSymbol": "SAND_ATTACK"
+        },
+        {
+          "level": 12,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "WHIRLWIND"
+        },
+        {
+          "level": 28,
+          "moveSymbol": "WING_ATTACK"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "MIRROR_MOVE"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "18",
+          "param2": "PIDGEOTTO",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "17": {
+      "dex": 17,
+      "internalId": 150,
+      "symbol": "PIDGEOTTO",
+      "levelUp": [
+        {
+          "level": 5,
+          "moveSymbol": "SAND_ATTACK"
+        },
+        {
+          "level": 12,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "WHIRLWIND"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "WING_ATTACK"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "MIRROR_MOVE"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "36",
+          "param2": "PIDGEOT",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "18": {
+      "dex": 18,
+      "internalId": 151,
+      "symbol": "PIDGEOT",
+      "levelUp": [
+        {
+          "level": 5,
+          "moveSymbol": "SAND_ATTACK"
+        },
+        {
+          "level": 12,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "WHIRLWIND"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "WING_ATTACK"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "MIRROR_MOVE"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "19": {
+      "dex": 19,
+      "internalId": 165,
+      "symbol": "RATTATA",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "HYPER_FANG"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 34,
+          "moveSymbol": "SUPER_FANG"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "20",
+          "param2": "RATICATE",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "20": {
+      "dex": 20,
+      "internalId": 166,
+      "symbol": "RATICATE",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "HYPER_FANG"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "SUPER_FANG"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "21": {
+      "dex": 21,
+      "internalId": 5,
+      "symbol": "SPEAROW",
+      "levelUp": [
+        {
+          "level": 9,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "MIRROR_MOVE"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "DRILL_PECK"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "20",
+          "param2": "FEAROW",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "22": {
+      "dex": 22,
+      "internalId": 35,
+      "symbol": "FEAROW",
+      "levelUp": [
+        {
+          "level": 9,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "MIRROR_MOVE"
+        },
+        {
+          "level": 34,
+          "moveSymbol": "DRILL_PECK"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "23": {
+      "dex": 23,
+      "internalId": 108,
+      "symbol": "EKANS",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "GLARE"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "ACID"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "22",
+          "param2": "ARBOK",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "24": {
+      "dex": 24,
+      "internalId": 45,
+      "symbol": "ARBOK",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "GLARE"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "ACID"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "25": {
+      "dex": 25,
+      "internalId": 84,
+      "symbol": "PIKACHU",
+      "levelUp": [
+        {
+          "level": 9,
+          "moveSymbol": "THUNDER_WAVE"
+        },
+        {
+          "level": 16,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 26,
+          "moveSymbol": "SWIFT"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "THUNDER"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "THUNDER_STONE",
+          "param2": "1",
+          "param3": "RAICHU"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "26": {
+      "dex": 26,
+      "internalId": 85,
+      "symbol": "RAICHU",
+      "levelUp": [],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "27": {
+      "dex": 27,
+      "internalId": 96,
+      "symbol": "SANDSHREW",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "SAND_ATTACK"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "SWIFT"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "FURY_SWIPES"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "22",
+          "param2": "SANDSLASH",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "28": {
+      "dex": 28,
+      "internalId": 97,
+      "symbol": "SANDSLASH",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "SAND_ATTACK"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "SWIFT"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "FURY_SWIPES"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "29": {
+      "dex": 29,
+      "internalId": 15,
+      "symbol": "NIDORAN_F",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "SCRATCH"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "FURY_SWIPES"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "DOUBLE_KICK"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "16",
+          "param2": "NIDORINA",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "30": {
+      "dex": 30,
+      "internalId": 168,
+      "symbol": "NIDORINA",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "SCRATCH"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "FURY_SWIPES"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "DOUBLE_KICK"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "MOON_STONE",
+          "param2": "1",
+          "param3": "NIDOQUEEN"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "31": {
+      "dex": 31,
+      "internalId": 16,
+      "symbol": "NIDOQUEEN",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "SCRATCH"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "BODY_SLAM"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "32": {
+      "dex": 32,
+      "internalId": 3,
+      "symbol": "NIDORAN_M",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "HORN_ATTACK"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "HORN_DRILL"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "DOUBLE_KICK"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "16",
+          "param2": "NIDORINO",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "33": {
+      "dex": 33,
+      "internalId": 167,
+      "symbol": "NIDORINO",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "HORN_ATTACK"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "HORN_DRILL"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "DOUBLE_KICK"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "MOON_STONE",
+          "param2": "1",
+          "param3": "NIDOKING"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "34": {
+      "dex": 34,
+      "internalId": 7,
+      "symbol": "NIDOKING",
+      "levelUp": [
+        {
+          "level": 8,
+          "moveSymbol": "HORN_ATTACK"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "THRASH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "35": {
+      "dex": 35,
+      "internalId": 4,
+      "symbol": "CLEFAIRY",
+      "levelUp": [
+        {
+          "level": 13,
+          "moveSymbol": "SING"
+        },
+        {
+          "level": 18,
+          "moveSymbol": "DOUBLESLAP"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "MINIMIZE"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "METRONOME"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "DEFENSE_CURL"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "LIGHT_SCREEN"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "MOON_STONE",
+          "param2": "1",
+          "param3": "CLEFABLE"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "36": {
+      "dex": 36,
+      "internalId": 142,
+      "symbol": "CLEFABLE",
+      "levelUp": [],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "37": {
+      "dex": 37,
+      "internalId": 82,
+      "symbol": "VULPIX",
+      "levelUp": [
+        {
+          "level": 16,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "ROAR"
+        },
+        {
+          "level": 28,
+          "moveSymbol": "CONFUSE_RAY"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "FLAMETHROWER"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "FIRE_SPIN"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "FIRE_STONE",
+          "param2": "1",
+          "param3": "NINETALES"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "38": {
+      "dex": 38,
+      "internalId": 83,
+      "symbol": "NINETALES",
+      "levelUp": [],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "39": {
+      "dex": 39,
+      "internalId": 100,
+      "symbol": "JIGGLYPUFF",
+      "levelUp": [
+        {
+          "level": 9,
+          "moveSymbol": "POUND"
+        },
+        {
+          "level": 14,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "DEFENSE_CURL"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "DOUBLESLAP"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "REST"
+        },
+        {
+          "level": 34,
+          "moveSymbol": "BODY_SLAM"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "DOUBLE_EDGE"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "MOON_STONE",
+          "param2": "1",
+          "param3": "WIGGLYTUFF"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "40": {
+      "dex": 40,
+      "internalId": 101,
+      "symbol": "WIGGLYTUFF",
+      "levelUp": [],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "41": {
+      "dex": 41,
+      "internalId": 107,
+      "symbol": "ZUBAT",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "CONFUSE_RAY"
+        },
+        {
+          "level": 28,
+          "moveSymbol": "WING_ATTACK"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "HAZE"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "22",
+          "param2": "GOLBAT",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "42": {
+      "dex": 42,
+      "internalId": 130,
+      "symbol": "GOLBAT",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "CONFUSE_RAY"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "WING_ATTACK"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "HAZE"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "43": {
+      "dex": 43,
+      "internalId": 185,
+      "symbol": "ODDISH",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "ACID"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "PETAL_DANCE"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "SOLARBEAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "21",
+          "param2": "GLOOM",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "44": {
+      "dex": 44,
+      "internalId": 186,
+      "symbol": "GLOOM",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 28,
+          "moveSymbol": "ACID"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "PETAL_DANCE"
+        },
+        {
+          "level": 52,
+          "moveSymbol": "SOLARBEAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "LEAF_STONE",
+          "param2": "1",
+          "param3": "VILEPLUME"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "45": {
+      "dex": 45,
+      "internalId": 187,
+      "symbol": "VILEPLUME",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "SLEEP_POWDER"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "46": {
+      "dex": 46,
+      "internalId": 109,
+      "symbol": "PARAS",
+      "levelUp": [
+        {
+          "level": 13,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "LEECH_LIFE"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "SPORE"
+        },
+        {
+          "level": 34,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "GROWTH"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "24",
+          "param2": "PARASECT",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "47": {
+      "dex": 47,
+      "internalId": 46,
+      "symbol": "PARASECT",
+      "levelUp": [
+        {
+          "level": 13,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "LEECH_LIFE"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "SPORE"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "GROWTH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "48": {
+      "dex": 48,
+      "internalId": 65,
+      "symbol": "VENONAT",
+      "levelUp": [
+        {
+          "level": 24,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "LEECH_LIFE"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "PSYBEAM"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "PSYCHIC_M"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "31",
+          "param2": "VENOMOTH",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "49": {
+      "dex": 49,
+      "internalId": 119,
+      "symbol": "VENOMOTH",
+      "levelUp": [
+        {
+          "level": 24,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "LEECH_LIFE"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "PSYBEAM"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "PSYCHIC_M"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "50": {
+      "dex": 50,
+      "internalId": 59,
+      "symbol": "DIGLETT",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "DIG"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "SAND_ATTACK"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "EARTHQUAKE"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "26",
+          "param2": "DUGTRIO",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "51": {
+      "dex": 51,
+      "internalId": 118,
+      "symbol": "DUGTRIO",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "DIG"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "SAND_ATTACK"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "EARTHQUAKE"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "52": {
+      "dex": 52,
+      "internalId": 77,
+      "symbol": "MEOWTH",
+      "levelUp": [
+        {
+          "level": 12,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "PAY_DAY"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "FURY_SWIPES"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "SLASH"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "28",
+          "param2": "PERSIAN",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "53": {
+      "dex": 53,
+      "internalId": 144,
+      "symbol": "PERSIAN",
+      "levelUp": [
+        {
+          "level": 12,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "PAY_DAY"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "FURY_SWIPES"
+        },
+        {
+          "level": 51,
+          "moveSymbol": "SLASH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "54": {
+      "dex": 54,
+      "internalId": 47,
+      "symbol": "PSYDUCK",
+      "levelUp": [
+        {
+          "level": 28,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "CONFUSION"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "FURY_SWIPES"
+        },
+        {
+          "level": 52,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "33",
+          "param2": "GOLDUCK",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "55": {
+      "dex": 55,
+      "internalId": 128,
+      "symbol": "GOLDUCK",
+      "levelUp": [
+        {
+          "level": 28,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "CONFUSION"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "FURY_SWIPES"
+        },
+        {
+          "level": 59,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "56": {
+      "dex": 56,
+      "internalId": 57,
+      "symbol": "MANKEY",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "KARATE_CHOP"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "FURY_SWIPES"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "SEISMIC_TOSS"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "THRASH"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "28",
+          "param2": "PRIMEAPE",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "57": {
+      "dex": 57,
+      "internalId": 117,
+      "symbol": "PRIMEAPE",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "KARATE_CHOP"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "FURY_SWIPES"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "SEISMIC_TOSS"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "THRASH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "58": {
+      "dex": 58,
+      "internalId": 33,
+      "symbol": "GROWLITHE",
+      "levelUp": [
+        {
+          "level": 18,
+          "moveSymbol": "EMBER"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "TAKE_DOWN"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "FLAMETHROWER"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "FIRE_STONE",
+          "param2": "1",
+          "param3": "ARCANINE"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "59": {
+      "dex": 59,
+      "internalId": 20,
+      "symbol": "ARCANINE",
+      "levelUp": [],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "60": {
+      "dex": 60,
+      "internalId": 71,
+      "symbol": "POLIWAG",
+      "levelUp": [
+        {
+          "level": 16,
+          "moveSymbol": "HYPNOSIS"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "DOUBLESLAP"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "BODY_SLAM"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "AMNESIA"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "25",
+          "param2": "POLIWHIRL",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "61": {
+      "dex": 61,
+      "internalId": 110,
+      "symbol": "POLIWHIRL",
+      "levelUp": [
+        {
+          "level": 16,
+          "moveSymbol": "HYPNOSIS"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 26,
+          "moveSymbol": "DOUBLESLAP"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "BODY_SLAM"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "AMNESIA"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "WATER_STONE",
+          "param2": "1",
+          "param3": "POLIWRATH"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "62": {
+      "dex": 62,
+      "internalId": 111,
+      "symbol": "POLIWRATH",
+      "levelUp": [
+        {
+          "level": 16,
+          "moveSymbol": "HYPNOSIS"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "WATER_GUN"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "63": {
+      "dex": 63,
+      "internalId": 148,
+      "symbol": "ABRA",
+      "levelUp": [],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "16",
+          "param2": "KADABRA",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "64": {
+      "dex": 64,
+      "internalId": 38,
+      "symbol": "KADABRA",
+      "levelUp": [
+        {
+          "level": 16,
+          "moveSymbol": "CONFUSION"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "PSYBEAM"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "RECOVER"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "PSYCHIC_M"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "REFLECT"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "TRADE",
+          "param1": "1",
+          "param2": "ALAKAZAM",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "65": {
+      "dex": 65,
+      "internalId": 149,
+      "symbol": "ALAKAZAM",
+      "levelUp": [
+        {
+          "level": 16,
+          "moveSymbol": "CONFUSION"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "PSYBEAM"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "RECOVER"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "PSYCHIC_M"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "REFLECT"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "66": {
+      "dex": 66,
+      "internalId": 106,
+      "symbol": "MACHOP",
+      "levelUp": [
+        {
+          "level": 20,
+          "moveSymbol": "LOW_KICK"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SEISMIC_TOSS"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "SUBMISSION"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "28",
+          "param2": "MACHOKE",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "67": {
+      "dex": 67,
+      "internalId": 41,
+      "symbol": "MACHOKE",
+      "levelUp": [
+        {
+          "level": 20,
+          "moveSymbol": "LOW_KICK"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "SEISMIC_TOSS"
+        },
+        {
+          "level": 52,
+          "moveSymbol": "SUBMISSION"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "TRADE",
+          "param1": "1",
+          "param2": "MACHAMP",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "68": {
+      "dex": 68,
+      "internalId": 126,
+      "symbol": "MACHAMP",
+      "levelUp": [
+        {
+          "level": 20,
+          "moveSymbol": "LOW_KICK"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "SEISMIC_TOSS"
+        },
+        {
+          "level": 52,
+          "moveSymbol": "SUBMISSION"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "69": {
+      "dex": 69,
+      "internalId": 188,
+      "symbol": "BELLSPROUT",
+      "levelUp": [
+        {
+          "level": 13,
+          "moveSymbol": "WRAP"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 18,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 26,
+          "moveSymbol": "ACID"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "RAZOR_LEAF"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "SLAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "21",
+          "param2": "WEEPINBELL",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "70": {
+      "dex": 70,
+      "internalId": 189,
+      "symbol": "WEEPINBELL",
+      "levelUp": [
+        {
+          "level": 13,
+          "moveSymbol": "WRAP"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 18,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "ACID"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "RAZOR_LEAF"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "SLAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "LEAF_STONE",
+          "param2": "1",
+          "param3": "VICTREEBEL"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "71": {
+      "dex": 71,
+      "internalId": 190,
+      "symbol": "VICTREEBEL",
+      "levelUp": [
+        {
+          "level": 13,
+          "moveSymbol": "WRAP"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 18,
+          "moveSymbol": "SLEEP_POWDER"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "72": {
+      "dex": 72,
+      "internalId": 24,
+      "symbol": "TENTACOOL",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 13,
+          "moveSymbol": "WRAP"
+        },
+        {
+          "level": 18,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "CONSTRICT"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "BARRIER"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "30",
+          "param2": "TENTACRUEL",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "73": {
+      "dex": 73,
+      "internalId": 155,
+      "symbol": "TENTACRUEL",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 13,
+          "moveSymbol": "WRAP"
+        },
+        {
+          "level": 18,
+          "moveSymbol": "POISON_STING"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "CONSTRICT"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "BARRIER"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "74": {
+      "dex": 74,
+      "internalId": 169,
+      "symbol": "GEODUDE",
+      "levelUp": [
+        {
+          "level": 11,
+          "moveSymbol": "DEFENSE_CURL"
+        },
+        {
+          "level": 16,
+          "moveSymbol": "ROCK_THROW"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "SELFDESTRUCT"
+        },
+        {
+          "level": 26,
+          "moveSymbol": "HARDEN"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "EARTHQUAKE"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "EXPLOSION"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "25",
+          "param2": "GRAVELER",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "75": {
+      "dex": 75,
+      "internalId": 39,
+      "symbol": "GRAVELER",
+      "levelUp": [
+        {
+          "level": 11,
+          "moveSymbol": "DEFENSE_CURL"
+        },
+        {
+          "level": 16,
+          "moveSymbol": "ROCK_THROW"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "SELFDESTRUCT"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "HARDEN"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "EARTHQUAKE"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "EXPLOSION"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "TRADE",
+          "param1": "1",
+          "param2": "GOLEM",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "76": {
+      "dex": 76,
+      "internalId": 49,
+      "symbol": "GOLEM",
+      "levelUp": [
+        {
+          "level": 11,
+          "moveSymbol": "DEFENSE_CURL"
+        },
+        {
+          "level": 16,
+          "moveSymbol": "ROCK_THROW"
+        },
+        {
+          "level": 21,
+          "moveSymbol": "SELFDESTRUCT"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "HARDEN"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "EARTHQUAKE"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "EXPLOSION"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "77": {
+      "dex": 77,
+      "internalId": 163,
+      "symbol": "PONYTA",
+      "levelUp": [
+        {
+          "level": 30,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "STOMP"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "FIRE_SPIN"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "TAKE_DOWN"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "40",
+          "param2": "RAPIDASH",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "78": {
+      "dex": 78,
+      "internalId": 164,
+      "symbol": "RAPIDASH",
+      "levelUp": [
+        {
+          "level": 30,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "STOMP"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "FIRE_SPIN"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "TAKE_DOWN"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "79": {
+      "dex": 79,
+      "internalId": 37,
+      "symbol": "SLOWPOKE",
+      "levelUp": [
+        {
+          "level": 18,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "HEADBUTT"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "AMNESIA"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "PSYCHIC_M"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "37",
+          "param2": "SLOWBRO",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "80": {
+      "dex": 80,
+      "internalId": 8,
+      "symbol": "SLOWBRO",
+      "levelUp": [
+        {
+          "level": 18,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "HEADBUTT"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "WITHDRAW"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "AMNESIA"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "PSYCHIC_M"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "81": {
+      "dex": 81,
+      "internalId": 173,
+      "symbol": "MAGNEMITE",
+      "levelUp": [
+        {
+          "level": 21,
+          "moveSymbol": "SONICBOOM"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "THUNDERSHOCK"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "THUNDER_WAVE"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "SWIFT"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "SCREECH"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "30",
+          "param2": "MAGNETON",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "82": {
+      "dex": 82,
+      "internalId": 54,
+      "symbol": "MAGNETON",
+      "levelUp": [
+        {
+          "level": 21,
+          "moveSymbol": "SONICBOOM"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "THUNDERSHOCK"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "THUNDER_WAVE"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "SWIFT"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "SCREECH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "83": {
+      "dex": 83,
+      "internalId": 64,
+      "symbol": "FARFETCHD",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "SWORDS_DANCE"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SLASH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "84": {
+      "dex": 84,
+      "internalId": 70,
+      "symbol": "DODUO",
+      "levelUp": [
+        {
+          "level": 20,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "DRILL_PECK"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "TRI_ATTACK"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "31",
+          "param2": "DODRIO",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "85": {
+      "dex": 85,
+      "internalId": 116,
+      "symbol": "DODRIO",
+      "levelUp": [
+        {
+          "level": 20,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "DRILL_PECK"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "TRI_ATTACK"
+        },
+        {
+          "level": 51,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "86": {
+      "dex": 86,
+      "internalId": 58,
+      "symbol": "SEEL",
+      "levelUp": [
+        {
+          "level": 30,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "AURORA_BEAM"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "REST"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "TAKE_DOWN"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "ICE_BEAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "34",
+          "param2": "DEWGONG",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "87": {
+      "dex": 87,
+      "internalId": 120,
+      "symbol": "DEWGONG",
+      "levelUp": [
+        {
+          "level": 30,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "AURORA_BEAM"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "REST"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "TAKE_DOWN"
+        },
+        {
+          "level": 56,
+          "moveSymbol": "ICE_BEAM"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "88": {
+      "dex": 88,
+      "internalId": 13,
+      "symbol": "GRIMER",
+      "levelUp": [
+        {
+          "level": 30,
+          "moveSymbol": "POISON_GAS"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "MINIMIZE"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "SLUDGE"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "HARDEN"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "ACID_ARMOR"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "38",
+          "param2": "MUK",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "89": {
+      "dex": 89,
+      "internalId": 136,
+      "symbol": "MUK",
+      "levelUp": [
+        {
+          "level": 30,
+          "moveSymbol": "POISON_GAS"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "MINIMIZE"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "SLUDGE"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "HARDEN"
+        },
+        {
+          "level": 53,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 60,
+          "moveSymbol": "ACID_ARMOR"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "90": {
+      "dex": 90,
+      "internalId": 23,
+      "symbol": "SHELLDER",
+      "levelUp": [
+        {
+          "level": 18,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "CLAMP"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "AURORA_BEAM"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "ICE_BEAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "WATER_STONE",
+          "param2": "1",
+          "param3": "CLOYSTER"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "91": {
+      "dex": 91,
+      "internalId": 139,
+      "symbol": "CLOYSTER",
+      "levelUp": [
+        {
+          "level": 50,
+          "moveSymbol": "SPIKE_CANNON"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "92": {
+      "dex": 92,
+      "internalId": 25,
+      "symbol": "GASTLY",
+      "levelUp": [
+        {
+          "level": 27,
+          "moveSymbol": "HYPNOSIS"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "DREAM_EATER"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "25",
+          "param2": "HAUNTER",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "93": {
+      "dex": 93,
+      "internalId": 147,
+      "symbol": "HAUNTER",
+      "levelUp": [
+        {
+          "level": 29,
+          "moveSymbol": "HYPNOSIS"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "DREAM_EATER"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "TRADE",
+          "param1": "1",
+          "param2": "GENGAR",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "94": {
+      "dex": 94,
+      "internalId": 14,
+      "symbol": "GENGAR",
+      "levelUp": [
+        {
+          "level": 29,
+          "moveSymbol": "HYPNOSIS"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "DREAM_EATER"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "95": {
+      "dex": 95,
+      "internalId": 34,
+      "symbol": "ONIX",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "BIND"
+        },
+        {
+          "level": 19,
+          "moveSymbol": "ROCK_THROW"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "SLAM"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "HARDEN"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "96": {
+      "dex": 96,
+      "internalId": 48,
+      "symbol": "DROWZEE",
+      "levelUp": [
+        {
+          "level": 12,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "CONFUSION"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "HEADBUTT"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "POISON_GAS"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "PSYCHIC_M"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "MEDITATE"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "26",
+          "param2": "HYPNO",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "97": {
+      "dex": 97,
+      "internalId": 129,
+      "symbol": "HYPNO",
+      "levelUp": [
+        {
+          "level": 12,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 17,
+          "moveSymbol": "CONFUSION"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "HEADBUTT"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "POISON_GAS"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "PSYCHIC_M"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "MEDITATE"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "98": {
+      "dex": 98,
+      "internalId": 78,
+      "symbol": "KRABBY",
+      "levelUp": [
+        {
+          "level": 20,
+          "moveSymbol": "VICEGRIP"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "GUILLOTINE"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "STOMP"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "CRABHAMMER"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "HARDEN"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "28",
+          "param2": "KINGLER",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "99": {
+      "dex": 99,
+      "internalId": 138,
+      "symbol": "KINGLER",
+      "levelUp": [
+        {
+          "level": 20,
+          "moveSymbol": "VICEGRIP"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "GUILLOTINE"
+        },
+        {
+          "level": 34,
+          "moveSymbol": "STOMP"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "CRABHAMMER"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "HARDEN"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "100": {
+      "dex": 100,
+      "internalId": 6,
+      "symbol": "VOLTORB",
+      "levelUp": [
+        {
+          "level": 17,
+          "moveSymbol": "SONICBOOM"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "SELFDESTRUCT"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "LIGHT_SCREEN"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "SWIFT"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "EXPLOSION"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "30",
+          "param2": "ELECTRODE",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "101": {
+      "dex": 101,
+      "internalId": 141,
+      "symbol": "ELECTRODE",
+      "levelUp": [
+        {
+          "level": 17,
+          "moveSymbol": "SONICBOOM"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "SELFDESTRUCT"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "LIGHT_SCREEN"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "SWIFT"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "EXPLOSION"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "102": {
+      "dex": 102,
+      "internalId": 12,
+      "symbol": "EXEGGCUTE",
+      "levelUp": [
+        {
+          "level": 25,
+          "moveSymbol": "REFLECT"
+        },
+        {
+          "level": 28,
+          "moveSymbol": "LEECH_SEED"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "SOLARBEAM"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "SLEEP_POWDER"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "LEAF_STONE",
+          "param2": "1",
+          "param3": "EXEGGUTOR"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "103": {
+      "dex": 103,
+      "internalId": 10,
+      "symbol": "EXEGGUTOR",
+      "levelUp": [
+        {
+          "level": 28,
+          "moveSymbol": "STOMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "104": {
+      "dex": 104,
+      "internalId": 17,
+      "symbol": "CUBONE",
+      "levelUp": [
+        {
+          "level": 25,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "THRASH"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "BONEMERANG"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "RAGE"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "28",
+          "param2": "MAROWAK",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "105": {
+      "dex": 105,
+      "internalId": 145,
+      "symbol": "MAROWAK",
+      "levelUp": [
+        {
+          "level": 25,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 33,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "THRASH"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "BONEMERANG"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "RAGE"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "106": {
+      "dex": 106,
+      "internalId": 43,
+      "symbol": "HITMONLEE",
+      "levelUp": [
+        {
+          "level": 33,
+          "moveSymbol": "ROLLING_KICK"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "JUMP_KICK"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "HI_JUMP_KICK"
+        },
+        {
+          "level": 53,
+          "moveSymbol": "MEGA_KICK"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "107": {
+      "dex": 107,
+      "internalId": 44,
+      "symbol": "HITMONCHAN",
+      "levelUp": [
+        {
+          "level": 33,
+          "moveSymbol": "FIRE_PUNCH"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "ICE_PUNCH"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "THUNDERPUNCH"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "MEGA_PUNCH"
+        },
+        {
+          "level": 53,
+          "moveSymbol": "COUNTER"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "108": {
+      "dex": 108,
+      "internalId": 11,
+      "symbol": "LICKITUNG",
+      "levelUp": [
+        {
+          "level": 7,
+          "moveSymbol": "STOMP"
+        },
+        {
+          "level": 15,
+          "moveSymbol": "DISABLE"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "DEFENSE_CURL"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "SLAM"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SCREECH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "109": {
+      "dex": 109,
+      "internalId": 55,
+      "symbol": "KOFFING",
+      "levelUp": [
+        {
+          "level": 32,
+          "moveSymbol": "SLUDGE"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "SMOKESCREEN"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "SELFDESTRUCT"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "HAZE"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "EXPLOSION"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "35",
+          "param2": "WEEZING",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "110": {
+      "dex": 110,
+      "internalId": 143,
+      "symbol": "WEEZING",
+      "levelUp": [
+        {
+          "level": 32,
+          "moveSymbol": "SLUDGE"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SMOKESCREEN"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "SELFDESTRUCT"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "HAZE"
+        },
+        {
+          "level": 53,
+          "moveSymbol": "EXPLOSION"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "111": {
+      "dex": 111,
+      "internalId": 18,
+      "symbol": "RHYHORN",
+      "levelUp": [
+        {
+          "level": 30,
+          "moveSymbol": "STOMP"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "HORN_DRILL"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "TAKE_DOWN"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "42",
+          "param2": "RHYDON",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "112": {
+      "dex": 112,
+      "internalId": 1,
+      "symbol": "RHYDON",
+      "levelUp": [
+        {
+          "level": 30,
+          "moveSymbol": "STOMP"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "HORN_DRILL"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 64,
+          "moveSymbol": "TAKE_DOWN"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "113": {
+      "dex": 113,
+      "internalId": 40,
+      "symbol": "CHANSEY",
+      "levelUp": [
+        {
+          "level": 24,
+          "moveSymbol": "SING"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "GROWL"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "MINIMIZE"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "DEFENSE_CURL"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "LIGHT_SCREEN"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "DOUBLE_EDGE"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "114": {
+      "dex": 114,
+      "internalId": 30,
+      "symbol": "TANGELA",
+      "levelUp": [
+        {
+          "level": 29,
+          "moveSymbol": "ABSORB"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "POISONPOWDER"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "STUN_SPORE"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SLEEP_POWDER"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "SLAM"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "GROWTH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "115": {
+      "dex": 115,
+      "internalId": 2,
+      "symbol": "KANGASKHAN",
+      "levelUp": [
+        {
+          "level": 26,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "MEGA_PUNCH"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "DIZZY_PUNCH"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "116": {
+      "dex": 116,
+      "internalId": 92,
+      "symbol": "HORSEA",
+      "levelUp": [
+        {
+          "level": 19,
+          "moveSymbol": "SMOKESCREEN"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "32",
+          "param2": "SEADRA",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "117": {
+      "dex": 117,
+      "internalId": 93,
+      "symbol": "SEADRA",
+      "levelUp": [
+        {
+          "level": 19,
+          "moveSymbol": "SMOKESCREEN"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 52,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "118": {
+      "dex": 118,
+      "internalId": 157,
+      "symbol": "GOLDEEN",
+      "levelUp": [
+        {
+          "level": 19,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "HORN_ATTACK"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "WATERFALL"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "HORN_DRILL"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "33",
+          "param2": "SEAKING",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "119": {
+      "dex": 119,
+      "internalId": 158,
+      "symbol": "SEAKING",
+      "levelUp": [
+        {
+          "level": 19,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "HORN_ATTACK"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "FURY_ATTACK"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "WATERFALL"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "HORN_DRILL"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "120": {
+      "dex": 120,
+      "internalId": 27,
+      "symbol": "STARYU",
+      "levelUp": [
+        {
+          "level": 17,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 22,
+          "moveSymbol": "HARDEN"
+        },
+        {
+          "level": 27,
+          "moveSymbol": "RECOVER"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "SWIFT"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "MINIMIZE"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "LIGHT_SCREEN"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "WATER_STONE",
+          "param2": "1",
+          "param3": "STARMIE"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "121": {
+      "dex": 121,
+      "internalId": 152,
+      "symbol": "STARMIE",
+      "levelUp": [],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "122": {
+      "dex": 122,
+      "internalId": 42,
+      "symbol": "MR_MIME",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "CONFUSION"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "LIGHT_SCREEN"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "DOUBLESLAP"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "MEDITATE"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "SUBSTITUTE"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "123": {
+      "dex": 123,
+      "internalId": 26,
+      "symbol": "SCYTHER",
+      "levelUp": [
+        {
+          "level": 17,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 24,
+          "moveSymbol": "DOUBLE_TEAM"
+        },
+        {
+          "level": 29,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "SWORDS_DANCE"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "AGILITY"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "124": {
+      "dex": 124,
+      "internalId": 72,
+      "symbol": "JYNX",
+      "levelUp": [
+        {
+          "level": 18,
+          "moveSymbol": "LICK"
+        },
+        {
+          "level": 23,
+          "moveSymbol": "DOUBLESLAP"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "ICE_PUNCH"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "BODY_SLAM"
+        },
+        {
+          "level": 47,
+          "moveSymbol": "THRASH"
+        },
+        {
+          "level": 58,
+          "moveSymbol": "BLIZZARD"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "125": {
+      "dex": 125,
+      "internalId": 53,
+      "symbol": "ELECTABUZZ",
+      "levelUp": [
+        {
+          "level": 34,
+          "moveSymbol": "THUNDERSHOCK"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "SCREECH"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "THUNDERPUNCH"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "LIGHT_SCREEN"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "THUNDER"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "126": {
+      "dex": 126,
+      "internalId": 51,
+      "symbol": "MAGMAR",
+      "levelUp": [
+        {
+          "level": 36,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "CONFUSE_RAY"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "FIRE_PUNCH"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "SMOKESCREEN"
+        },
+        {
+          "level": 52,
+          "moveSymbol": "SMOG"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "FLAMETHROWER"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "127": {
+      "dex": 127,
+      "internalId": 29,
+      "symbol": "PINSIR",
+      "levelUp": [
+        {
+          "level": 25,
+          "moveSymbol": "SEISMIC_TOSS"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "GUILLOTINE"
+        },
+        {
+          "level": 36,
+          "moveSymbol": "FOCUS_ENERGY"
+        },
+        {
+          "level": 43,
+          "moveSymbol": "HARDEN"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "SWORDS_DANCE"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "128": {
+      "dex": 128,
+      "internalId": 60,
+      "symbol": "TAUROS",
+      "levelUp": [
+        {
+          "level": 21,
+          "moveSymbol": "STOMP"
+        },
+        {
+          "level": 28,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 51,
+          "moveSymbol": "TAKE_DOWN"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "129": {
+      "dex": 129,
+      "internalId": 133,
+      "symbol": "MAGIKARP",
+      "levelUp": [
+        {
+          "level": 15,
+          "moveSymbol": "TACKLE"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "20",
+          "param2": "GYARADOS",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "130": {
+      "dex": 130,
+      "internalId": 22,
+      "symbol": "GYARADOS",
+      "levelUp": [
+        {
+          "level": 20,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "DRAGON_RAGE"
+        },
+        {
+          "level": 32,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "HYDRO_PUMP"
+        },
+        {
+          "level": 52,
+          "moveSymbol": "HYPER_BEAM"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "131": {
+      "dex": 131,
+      "internalId": 19,
+      "symbol": "LAPRAS",
+      "levelUp": [
+        {
+          "level": 16,
+          "moveSymbol": "SING"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "MIST"
+        },
+        {
+          "level": 25,
+          "moveSymbol": "BODY_SLAM"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "CONFUSE_RAY"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "ICE_BEAM"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "132": {
+      "dex": 132,
+      "internalId": 76,
+      "symbol": "DITTO",
+      "levelUp": [],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "133": {
+      "dex": 133,
+      "internalId": 102,
+      "symbol": "EEVEE",
+      "levelUp": [
+        {
+          "level": 27,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "TAKE_DOWN"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "ITEM",
+          "param1": "FIRE_STONE",
+          "param2": "1",
+          "param3": "FLAREON"
+        },
+        {
+          "method": "ITEM",
+          "param1": "THUNDER_STONE",
+          "param2": "1",
+          "param3": "JOLTEON"
+        },
+        {
+          "method": "ITEM",
+          "param1": "WATER_STONE",
+          "param2": "1",
+          "param3": "VAPOREON"
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "134": {
+      "dex": 134,
+      "internalId": 105,
+      "symbol": "VAPOREON",
+      "levelUp": [
+        {
+          "level": 27,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "WATER_GUN"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "ACID_ARMOR"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "HAZE"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "MIST"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "135": {
+      "dex": 135,
+      "internalId": 104,
+      "symbol": "JOLTEON",
+      "levelUp": [
+        {
+          "level": 27,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "THUNDERSHOCK"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "THUNDER_WAVE"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "DOUBLE_KICK"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "PIN_MISSILE"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "THUNDER"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "136": {
+      "dex": 136,
+      "internalId": 103,
+      "symbol": "FLAREON",
+      "levelUp": [
+        {
+          "level": 27,
+          "moveSymbol": "QUICK_ATTACK"
+        },
+        {
+          "level": 31,
+          "moveSymbol": "EMBER"
+        },
+        {
+          "level": 37,
+          "moveSymbol": "TAIL_WHIP"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "FIRE_SPIN"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "RAGE"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "FLAMETHROWER"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "137": {
+      "dex": 137,
+      "internalId": 170,
+      "symbol": "PORYGON",
+      "levelUp": [
+        {
+          "level": 23,
+          "moveSymbol": "PSYBEAM"
+        },
+        {
+          "level": 28,
+          "moveSymbol": "RECOVER"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 42,
+          "moveSymbol": "TRI_ATTACK"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "138": {
+      "dex": 138,
+      "internalId": 98,
+      "symbol": "OMANYTE",
+      "levelUp": [
+        {
+          "level": 34,
+          "moveSymbol": "HORN_ATTACK"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "SPIKE_CANNON"
+        },
+        {
+          "level": 53,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "40",
+          "param2": "OMASTAR",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "139": {
+      "dex": 139,
+      "internalId": 99,
+      "symbol": "OMASTAR",
+      "levelUp": [
+        {
+          "level": 34,
+          "moveSymbol": "HORN_ATTACK"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "SPIKE_CANNON"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "140": {
+      "dex": 140,
+      "internalId": 90,
+      "symbol": "KABUTO",
+      "levelUp": [
+        {
+          "level": 34,
+          "moveSymbol": "ABSORB"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 44,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 49,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "40",
+          "param2": "KABUTOPS",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "141": {
+      "dex": 141,
+      "internalId": 91,
+      "symbol": "KABUTOPS",
+      "levelUp": [
+        {
+          "level": 34,
+          "moveSymbol": "ABSORB"
+        },
+        {
+          "level": 39,
+          "moveSymbol": "SLASH"
+        },
+        {
+          "level": 46,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 53,
+          "moveSymbol": "HYDRO_PUMP"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "142": {
+      "dex": 142,
+      "internalId": 171,
+      "symbol": "AERODACTYL",
+      "levelUp": [
+        {
+          "level": 33,
+          "moveSymbol": "SUPERSONIC"
+        },
+        {
+          "level": 38,
+          "moveSymbol": "BITE"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "TAKE_DOWN"
+        },
+        {
+          "level": 54,
+          "moveSymbol": "HYPER_BEAM"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "143": {
+      "dex": 143,
+      "internalId": 132,
+      "symbol": "SNORLAX",
+      "levelUp": [
+        {
+          "level": 35,
+          "moveSymbol": "BODY_SLAM"
+        },
+        {
+          "level": 41,
+          "moveSymbol": "HARDEN"
+        },
+        {
+          "level": 48,
+          "moveSymbol": "DOUBLE_EDGE"
+        },
+        {
+          "level": 56,
+          "moveSymbol": "HYPER_BEAM"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "144": {
+      "dex": 144,
+      "internalId": 74,
+      "symbol": "ARTICUNO",
+      "levelUp": [
+        {
+          "level": 51,
+          "moveSymbol": "BLIZZARD"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 60,
+          "moveSymbol": "MIST"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "145": {
+      "dex": 145,
+      "internalId": 75,
+      "symbol": "ZAPDOS",
+      "levelUp": [
+        {
+          "level": 51,
+          "moveSymbol": "THUNDER"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 60,
+          "moveSymbol": "LIGHT_SCREEN"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "146": {
+      "dex": 146,
+      "internalId": 73,
+      "symbol": "MOLTRES",
+      "levelUp": [
+        {
+          "level": 51,
+          "moveSymbol": "LEER"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 60,
+          "moveSymbol": "SKY_ATTACK"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "147": {
+      "dex": 147,
+      "internalId": 88,
+      "symbol": "DRATINI",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "THUNDER_WAVE"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "SLAM"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "DRAGON_RAGE"
+        },
+        {
+          "level": 50,
+          "moveSymbol": "HYPER_BEAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "30",
+          "param2": "DRAGONAIR",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "148": {
+      "dex": 148,
+      "internalId": 89,
+      "symbol": "DRAGONAIR",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "THUNDER_WAVE"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "SLAM"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "DRAGON_RAGE"
+        },
+        {
+          "level": 55,
+          "moveSymbol": "HYPER_BEAM"
+        }
+      ],
+      "evolutions": [
+        {
+          "method": "LEVEL",
+          "param1": "55",
+          "param2": "DRAGONITE",
+          "param3": null
+        }
+      ],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "149": {
+      "dex": 149,
+      "internalId": 66,
+      "symbol": "DRAGONITE",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "THUNDER_WAVE"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "AGILITY"
+        },
+        {
+          "level": 35,
+          "moveSymbol": "SLAM"
+        },
+        {
+          "level": 45,
+          "moveSymbol": "DRAGON_RAGE"
+        },
+        {
+          "level": 60,
+          "moveSymbol": "HYPER_BEAM"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "150": {
+      "dex": 150,
+      "internalId": 131,
+      "symbol": "MEWTWO",
+      "levelUp": [
+        {
+          "level": 63,
+          "moveSymbol": "BARRIER"
+        },
+        {
+          "level": 66,
+          "moveSymbol": "PSYCHIC_M"
+        },
+        {
+          "level": 70,
+          "moveSymbol": "RECOVER"
+        },
+        {
+          "level": 75,
+          "moveSymbol": "MIST"
+        },
+        {
+          "level": 81,
+          "moveSymbol": "AMNESIA"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    },
+    "151": {
+      "dex": 151,
+      "internalId": 21,
+      "symbol": "MEW",
+      "levelUp": [
+        {
+          "level": 10,
+          "moveSymbol": "TRANSFORM"
+        },
+        {
+          "level": 20,
+          "moveSymbol": "MEGA_PUNCH"
+        },
+        {
+          "level": 30,
+          "moveSymbol": "METRONOME"
+        },
+        {
+          "level": 40,
+          "moveSymbol": "PSYCHIC_M"
+        }
+      ],
+      "evolutions": [],
+      "source": "pret/pokered/data/pokemon/evos_moves.asm"
+    }
+  }
+}
