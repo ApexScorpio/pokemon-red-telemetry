@@ -79,7 +79,16 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
    source+=(source==='SEM_CABECALHO_TREINADOR_NORMAL'?'':' + ')+
      '16_CHECKEVENT_ESPECIAIS_COMPROVADOS_NAS_3_ROMS';
  }
- if(!expected.size)return {verified:false,source:'MAPA_SEM_TREINADORES_AUDITADOS',entries:[]};
+ // Perfis JSON antigos assinalavam Pokémon selvagens fixos como "trainer".
+ // Não contam para vitórias de treinadores humanos (OPP_ID_OFFSET=200).
+ for(const [ordinal] of expected){
+   const actor=objects[ordinal-1];
+   const speciesId=actor?.trainerClassOrItemId;
+   if(actor?.kind==='wildPokemon'||
+      (actor?.kind==='trainer'&&Number.isInteger(speciesId)&&
+       speciesId>=1&&speciesId<=190))expected.delete(ordinal);
+ }
+ if(!expected.size)return {verified:false,source:'MAPA_SEM_TREINADORES_HUMANOS_AUDITADOS',entries:[]};
  const entries=[];
  for(const [ordinal,eventBitIndex] of expected){
   if(!Number.isInteger(ordinal)||ordinal<1||ordinal>objects.length||
@@ -94,7 +103,9 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
     battleGateClosed:eventFlagSet,
     source:source+' + RAM_D747'});
  }
- const n=objects.filter(x=>x.kind==='trainer').length;
+ const n=objects.filter(x=>x.kind==='trainer' &&
+   !(Number.isInteger(x.trainerClassOrItemId)&&
+     x.trainerClassOrItemId>=1&&x.trainerClassOrItemId<=190)).length;
  return {verified:true,mapId,source:source+' + RAM_D747',
   entries,verifiedTrainerCount:entries.length,
   unknownTrainerCount:n-entries.length,fullyMapped:n===entries.length,
