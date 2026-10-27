@@ -209,7 +209,11 @@ const GEN1_SPRITE_PICTURES = {
   70: { name: 'Pokédex', type: 'object', icon: '📱', spriteFile: 'pokedex' }
 };
 
-function getPokemonSpriteUrl(name, dex) {
+function getPokemonSpriteUrl(name, dex, romSprite = null, side = 'front') {
+  if (romSprite?.pixelsDecoded) {
+    const encoded = side === 'back' ? romSprite.backPngBase64 : romSprite.frontPngBase64;
+    if (encoded && /^[A-Za-z0-9+/=]+$/.test(encoded)) return 'data:image/png;base64,' + encoded;
+  }
   if (!name) return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dex || 1}.png`;
   if (name.includes('♀')) return 'https://play.pokemonshowdown.com/sprites/gen5/nidoranf.png';
   if (name.includes('♂')) return 'https://play.pokemonshowdown.com/sprites/gen5/nidoranm.png';
@@ -805,8 +809,12 @@ class RetroArchClient extends EventEmitter {
         dvs: { hp: hpDv, attack: atkDv, defense: defDv, speed: spdDv, special: spcDv },
         exp: expProgress,
         moves: moveList,
-        spriteUrl: getPokemonSpriteUrl(pkInfo.name, pkInfo.dex),
-        spriteSource: 'IMAGEM_EXTERNA_GEN5_NÃO_EXTRAÍDA_DA_ROM',
+        spriteUrl: getPokemonSpriteUrl(pkInfo.name, pkInfo.dex, pkInfo.spriteRom),
+        spriteSource: pkInfo.spriteRom?.pixelsDecoded ?
+          'SPRITE_FRONTAL_DESCODIFICADO_DA_ROM (4 tons neutros)' :
+          'IMAGEM_EXTERNA_GEN5_NÃO_EXTRAÍDA_DA_ROM',
+        originalBackSpriteUrl: pkInfo.spriteRom?.pixelsDecoded ?
+          getPokemonSpriteUrl(pkInfo.name, pkInfo.dex, pkInfo.spriteRom,'back') : null,
         artworkUrl: pkInfo.dex ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pkInfo.dex}.png` : ''
       });
     }
@@ -1693,7 +1701,7 @@ class RetroArchClient extends EventEmitter {
         baseStats: { spd: eInfo.baseSpeed || 50 },
         stats: { attack: eAttack || 20, defense: eDefense || 20, speed: eSpeed || 20, special: eSpecial || 20 },
         statMods: eMods,
-        spriteUrl: getPokemonSpriteUrl(eInfo.name, eInfo.dex),
+        spriteUrl: getPokemonSpriteUrl(eInfo.name, eInfo.dex, eInfo.spriteRom),
         moves: eMoves.map((m, idx) => {
           if (!m || !this.getMoveInfo(m)) return null;
           return {
@@ -1776,7 +1784,7 @@ class RetroArchClient extends EventEmitter {
         stats: partyMon ? partyMon.stats : { attack: bAttack, defense: bDefense, speed: bSpeed, special: bSpecial },
         statMods: pMods,
         moves: partyMon ? partyMon.moves : moveList,
-        spriteUrl: getPokemonSpriteUrl(pInfo.name, pInfo.dex),
+        spriteUrl: getPokemonSpriteUrl(pInfo.name, pInfo.dex, pInfo.spriteRom,'back'),
         artworkUrl: pInfo.dex ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pInfo.dex}.png` : ''
       };
 
