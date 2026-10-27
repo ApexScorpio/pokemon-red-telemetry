@@ -172,12 +172,10 @@ const INTERNAL_TO_POKEMON = {
     "baseHp": 90
   },
   "21": {
-    "name": "Mewtwo",
-    "dex": 150,
-    "types": [
-      "Psychic"
-    ],
-    "baseHp": 106
+    "name": "Mew",
+    "dex": 151,
+    "types": ["Psychic"],
+    "baseHp": 100
   },
   "22": {
     "name": "Gyarados",
@@ -381,13 +379,10 @@ const INTERNAL_TO_POKEMON = {
     "baseHp": 60
   },
   "46": {
-    "name": "Paras",
-    "dex": 46,
-    "types": [
-      "Bug",
-      "Grass"
-    ],
-    "baseHp": 35
+    "name": "Parasect",
+    "dex": 47,
+    "types": ["Bug","Grass"],
+    "baseHp": 60
   },
   "47": {
     "name": "Psyduck",
@@ -449,10 +444,7 @@ const INTERNAL_TO_POKEMON = {
   "54": {
     "name": "Magneton",
     "dex": 82,
-    "types": [
-      "Electric",
-      "Steel"
-    ],
+    "types": ["Electric"],
     "baseHp": 50
   },
   "55": {
@@ -753,13 +745,10 @@ const INTERNAL_TO_POKEMON = {
     "baseHp": 30
   },
   "91": {
-    "name": "Kabuto",
-    "dex": 140,
-    "types": [
-      "Rock",
-      "Water"
-    ],
-    "baseHp": 30
+    "name": "Kabutops",
+    "dex": 141,
+    "types": ["Rock","Water"],
+    "baseHp": 60
   },
   "92": {
     "name": "Horsea",
@@ -1250,13 +1239,10 @@ const INTERNAL_TO_POKEMON = {
     "baseHp": 63
   },
   "151": {
-    "name": "Pidgeotto",
-    "dex": 17,
-    "types": [
-      "Normal",
-      "Flying"
-    ],
-    "baseHp": 63
+    "name": "Pidgeot",
+    "dex": 18,
+    "types": ["Normal","Flying"],
+    "baseHp": 83
   },
   "152": {
     "name": "Starmie",
@@ -1435,10 +1421,7 @@ const INTERNAL_TO_POKEMON = {
   "173": {
     "name": "Magnemite",
     "dex": 81,
-    "types": [
-      "Electric",
-      "Steel"
-    ],
+    "types": ["Electric"],
     "baseHp": 25
   },
   "174": {
