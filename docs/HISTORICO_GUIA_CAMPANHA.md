@@ -83,3 +83,17 @@
 - 8. Criado docs/PLANO_DECODIFICACAO_ROM_INTEGRAL.md com roadmap e separação entre ROM, RAM, scripts, VRAM, imagem SameBoy e interpretação semântica.
 - 9. Nenhuma ROM foi descarregada, copiada, modificada ou publicada; o servidor do Pokémon Companion, saves e sessão Antigravity não foram alterados nesta fase.
 - 10. A ROM real do SameBoy não foi disponibilizada. **Não declarar 100% de elementos descodificados ou que os testes sintéticos substituem validação com a ROM real.**
+
+
+## 2026-10-27 — Alargamento do atlas ROM a ataques e evoluções
+
+- 1. Consultada a desmontagem pret/pokered para confirmar formato binário de EvosMovesPointerTable, MoveNames e constantes EVOLVE_LEVEL=1, EVOLVE_ITEM=2, EVOLVE_TRADE=3; sem adaptar dados de FireRed nem de gerações posteriores.
+- 2. Adicionado em romAtlas.js o descodificador de 190 ponteiros de evolução/learnsets; valida terminadores, endereços do banco, limites e IDs; não inventa eventos quando os dados são inválidos.
+- 3. Adicionada leitura de 165 nomes de golpes a partir de MoveNames, com charmap parcial e valores nulos para caracteres não identificados.
+- 4. Alargado tests/romAtlas.test.js com testes sintéticos de evolução e ataques por nível.
+- 5. Atualizado docs/PLANO_DECODIFICACAO_ROM_INTEGRAL.md com o alcance técnico desta segunda fase.
+- 6. Confirmada a presença dos novos ficheiros no GitHub. Os testes ainda exigem execução Node e a ROM do jogador não esteve acessível nesta sessão.
+- 7. Confirmado na documentação do SameBoy que as cores finais também podem depender do firmware/modelo emulado e da correção de cor, não só da ROM.
+- 8. Não se efetuaram alterações ao servidor em execução, sessões, tokens, saves, ficheiros da ROM ou ficheiros em C:.
+
+Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gbc que o SameBoy carrega no iPhone e validar SHA-256 e proveniência dos símbolos para essa versão. 100% de bytes examinados não constitui 100% dos elementos descodificados.
