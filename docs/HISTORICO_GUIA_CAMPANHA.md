@@ -393,3 +393,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 7. Nenhuma ROM, save, sessão Antigravity, token, unidade C: nem processo do equipamento do utilizador foi alterado. Este histórico foi apenas acrescentado.
 
 **Estado:** melhoria publicada e testada isoladamente; falta validar a releitura de $D35E com a telemetria real. O requisito de leitura atómica de todos os eventos não está certificado — a verificação de estabilidade do ID do mapa mitiga, mas não elimina, alterações simultâneas noutros bytes.
+
+
+## 2026-10-27 — Conferência independente de contagem de treinadores nas ROMs reais
+
+- 1. Executada nova leitura Python apenas em memória dos três ficheiros .gb recebidos, percorrendo os 248 IDs de mapa, `MapHeaderPointers` no offset 0x1AE, `MapHeaderBanks` em 0xC23D e os cabeçalhos de objetos por mapa, sem recorrer aos totais escritos no relatório.
+- 2. Cada uma das versões Red, Blue e Green International v1.2.1 devolveu **334 objetos de treinador humano em 71 mapas**, **12 Pokémon de encontro fixo** e **22 IDs sem cabeçalho normal validável**. Os três resultados coincidem.
+- 3. Esta contagem valida o universo de objetos ROM, mas não prova que todos tenham flags de vitória, estejam acessíveis naquele momento ou já tenham sido vencidos. O mapeamento de flags e a estabilidade da amostra RAM são validados separadamente.
+- 4. Nenhum binário original foi alterado ou enviado ao GitHub; não se criaram ficheiros de teste permanentes nem se tocou no equipamento do jogador.
