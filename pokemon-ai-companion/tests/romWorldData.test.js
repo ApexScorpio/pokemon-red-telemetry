@@ -29,6 +29,12 @@ for(const testCase of ROMS){
   assert.equal(p.maps.valid,true);
   assert.equal(p.maps.totalMapIds,248);
   assert.equal(p.maps.validMapHeaders,226);
+  assert.equal(p.maps.trainerEventsVerified,312);
+  assert.equal(p.maps.trainerEventMapsVerified,67);
+  assert.deepEqual(p.maps.data[17].trainerEvents.map(x=>x.eventBitIndex),
+    [1041,1042,1043,1044,1045,1046]);
+  assert.deepEqual(p.maps.data[35].trainerEvents.map(x=>x.objectOrdinal),
+    [2,3,4,5,6,7]);
   assert.equal(p.maps.pointerTable.fileOffset,0x1AE);
   assert.equal(p.maps.bankTable.fileOffset,0xC23D);
   assert.deepEqual(p.wildEncounters.data[0x10].grass.slots.slice(0,4).map(s=>s.internalId),
