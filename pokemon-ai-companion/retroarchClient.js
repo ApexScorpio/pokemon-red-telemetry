@@ -550,6 +550,8 @@ class RetroArchClient extends EventEmitter {
 
     // BLOCO 3: Tempo de Jogo e Caixa do PC com detalhes de todos os 20 Pokémon ($DA40..$DD30, 750 bytes)
     const blockBoxTime = await this.readMemoryBlock('DA40', 750);
+    // $DD2A: 20 OT names (220B); $DE06: 20 nicknames (220B).
+    const blockPcBoxNames = await this.readMemoryBlock('DD2A', 440);
 
     // BLOCO 4: Sprites e Entidades no Overworld ($C100..$C2FF, 512 bytes)
     const blockSprites = await this.readMemoryBlock('C100', 512);
@@ -562,6 +564,7 @@ class RetroArchClient extends EventEmitter {
       worldAndEvents: !!(blockWorldEvents && blockWorldEvents.length === 784),
       storedPcItems: !!(blockPcItems && blockPcItems.length === 102),
       currentPcBox: !!(blockBoxTime && blockBoxTime.length === 750),
+      currentPcBoxNames: !!(blockPcBoxNames && blockPcBoxNames.length === 440),
       overworldSprites: !!(blockSprites && blockSprites.length === 512),
       screenTilemap: !!(blockTilemap && blockTilemap.length === 360)
     };
@@ -905,12 +908,22 @@ class RetroArchClient extends EventEmitter {
             }
           }
         }
+        const otName = decodeGen1Text(blockPcBoxNames.slice(i * 11, (i + 1) * 11));
+        const nickname = decodeGen1Text(blockPcBoxNames.slice(220 + i * 11, 220 + (i + 1) * 11));
+        const displayName = nickname && nickname.toUpperCase() !== pk.name.toUpperCase()
+          ? `${nickname} (${pk.name})` : pk.name;
+        const plausible = level >= 1 && level <= 100 && curHp >= 0 && curHp <= 999;
         boxSpecies.push({
           speciesId: spId,
-          name: pk.name,
+          name: displayName,
+          rawName: pk.name,
+          nickname,
+          otName,
           dex: pk.dex,
-          level,
-          curHp,
+          level: plausible ? level : null,
+          curHp: plausible ? curHp : null,
+          valuesVerified: plausible && pk.dex > 0,
+          validationError: plausible ? null : 'Dados inválidos: rever offset/ROM e bloco do PC',
           types: pk.types || [],
           moves
         });
