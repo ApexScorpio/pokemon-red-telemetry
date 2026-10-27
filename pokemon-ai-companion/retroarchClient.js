@@ -563,12 +563,30 @@ class RetroArchClient extends EventEmitter {
   }
 
   getMoveInfo(id) {
-    const romName = moveNameFromProfile(this.activeRomProfile, id);
-    const reference = MOVES[id] || null;
-    // Só o NOME está confirmado pela ROM quando existe perfil ativo.
+    const romName=moveNameFromProfile(this.activeRomProfile,id);
+    const reference=MOVES[id]||null;
+    const exact=Number.isInteger(id) && this.activeRomProfile?.moveStats?.[id-1];
+    const romMove=exact && exact.id===id ? exact : null;
+    if(romMove) {
+      return {
+        ...(reference||{}),
+        name:romName||(reference?.name||'Golpe #'+id),
+        nameSource:romName?'PERFIL_ROM_LOCAL_CRC32':'REFERÊNCIA_EXTERN_NÃO_COMPROVADA',
+        power:romMove.powerByte,pp:romMove.basePp,
+        typeId:romMove.typeByte,effectByte:romMove.effectByte,
+        accuracyByte:romMove.accuracyByte,
+        // Indicador nominal derivado do byte, NÃO probabilidade efetiva do turno.
+        acc:romMove.accuracyByte*100/255,
+        accuracySource:'BYTE_ROM_A_APLICAR_A_ESTAGIOS_DO_TURNO',
+        attributesSource:'MOVES_DA_ROM_LOCAL_CRC32 (6 BYTES POR GOLPE)',
+        typeSource:'NOME_DE_TIPO_DA_REFERENCIA_A_CONFRONTAR_COM_ID_ROM',
+        effectSource:'ID_DE_EFEITO_ROM; NOME_DE_REFERENCIA_A_VALIDAR'
+      };
+    }
+    // O catálogo estático não prova os valores de uma ROM modificada.
     return romName ? {
-      ...(reference||{}), name:romName,
-      nameSource:'ROM_VERIFICADA_PELO_CRC32',
+      ...(reference||{}),name:romName,
+      nameSource:'PERFIL_ROM_LOCAL_CRC32',
       attributesSource:'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM'
     } : reference ? {...reference,nameSource:'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM'} : null;
   }
