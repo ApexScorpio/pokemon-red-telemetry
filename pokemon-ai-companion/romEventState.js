@@ -102,7 +102,8 @@ function decodeHiddenCoins(profile,mapId,coinHex){
    if(data.length===48){
      coins=Array.from({length:12},(_,i)=>({
        hiddenIndex:i,mapId:data[i*4],y:data[i*4+1],
-       x:data[i*4+2],coinAmount:data[i*4+3]
+       x:data[i*4+2],coinAmount:data[i*4+3],
+       actualAwardIfClaimed:data[i*4+3]===40?20:data[i*4+3]
      }));
      source='ROM_HIDDEN_COINS_AUDITED_THREE_BUILDS';
    }
@@ -115,8 +116,12 @@ function decodeHiddenCoins(profile,mapId,coinHex){
    verified:false,coins:[],reason:'Estrutura inválida de moedas escondidas'};
  return {verified:true,source:source+' + RAM_D6FE',mapId,
    coins:coins.filter(c=>c.mapId===mapId).map(c=>({
-     ...c,isCollected:!!(flags[c.hiddenIndex>>3]&(1<<(c.hiddenIndex&7))),
-     collectionEvidence:'ID_EVENTO_ROM + FLAG_RAM_D6FE'
+     ...c,
+     actualAwardIfClaimed:Number.isInteger(c.actualAwardIfClaimed)?
+       c.actualAwardIfClaimed:null,
+     isCollected:!!(flags[c.hiddenIndex>>3]&(1<<(c.hiddenIndex&7))),
+     collectionEvidence:'ID_EVENTO_ROM + FLAG_RAM_D6FE',
+     amountSource:'ROM_ARG+ROTINA_DE_ATRIBUIÇÃO_SE_VALIDADA'
    }))};
 }
 module.exports={decodeToggleables,decodeHiddenItems,decodeHiddenCoins,fromKnownRom};
