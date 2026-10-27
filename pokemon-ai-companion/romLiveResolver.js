@@ -85,6 +85,8 @@ function pokemonFromProfile(profile,internalId,reference){
   catchRate:p.stats?.catchRate??null,attack:p.stats?.attack??null,
   defense:p.stats?.defense??null,speed:p.stats?.speed??null,
   special:p.stats?.special??null,
+  spriteRom:p.sprite?.verified ? p.sprite : null,
+  spritePixelDataSource:'AINDA_NÃO_DESCODIFICADA',
   source:profile.source==='PERFIL_IMPORTADO_DE_ROM_VERIFICADA; ROM LOCAL NÃO RELIDA' ?
     'PERFIL_DA_ROM_CRC32_CONFIRMADO' : 'ROM_LOCAL_CRC32_CONFIRMADO',
   movesAndEvolutionsSource:p.learnset?'ROM_VERIFICADA_PELO_CRC32':'NÃO_DISPONÍVEL'
