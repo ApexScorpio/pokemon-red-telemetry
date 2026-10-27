@@ -21,6 +21,10 @@
           <span class="brand-title">POKÉVISION <span class="badge-ai-mini">AI CORE</span></span>
         </div>
         <div class="trainer-tag">TREINADOR: <strong id="trainer-name-tag">RED</strong></div>
+        <span id="rom-profile-status" title="Identificação automática da ROM e proveniência dos dados"
+          style="font-size:10px;max-width:240px;white-space:normal;line-height:1.3;color:var(--muted-text,#b9c5d0)">
+          🕹️ ROM: a procurar automaticamente…
+        </span>
       </div>
 
       <div class="hud-center">
@@ -227,6 +231,20 @@
           </div>
           <div class="daycare-tracker-body" id="daycare-tracker-content" aria-live="polite">
             A aguardar uma leitura validada do jogo...
+          </div>
+        </section>
+        <section class="card-glass inventory-deck-card" id="rom-progress-card">
+          <div class="card-header-compact">
+            <div class="header-left">
+              <span class="icon-avatar">📘</span>
+              <div>
+                <h4>PRÓXIMOS GOLPES & EVOLUÇÕES</h4>
+                <span class="sub-small" id="rom-progress-source">ROM por identificar</span>
+              </div>
+            </div>
+          </div>
+          <div class="daycare-tracker-body" id="rom-progress-content" aria-live="polite">
+            A aguardar a identificação automática da ROM…
           </div>
         </section>
       </aside>
