@@ -3,7 +3,7 @@ const { buildProfiles, getCurrentRom, pokemonFromProfile, moveNameFromProfile } 
 const { expAtLevel } = require('./gen1EngineMath');
 const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
 const {buildRomAreaEvidence}=require('./romAreaEvidence');
-const {decodeToggleables,decodeHiddenItems}=require('./romEventState');
+const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
 const dgram = require('dgram');
@@ -952,6 +952,7 @@ class RetroArchClient extends EventEmitter {
     let toggleRaw = [];
     let toggleListRaw = [];
     let hiddenRaw = [];
+    let hiddenCoinsRaw = [];
     let walkBikeSurf = 0;
 
     if (blockWorldEvents && blockWorldEvents.length >= 784) {
@@ -968,6 +969,8 @@ class RetroArchClient extends EventEmitter {
 
       // Itens Ocultos ($D6F0, offset 336..349, 14 bytes cobrindo todos os 54 itens ocultos)
       hiddenRaw = blockWorldEvents.slice(336, 350);
+      // wObtainedHiddenCoinsFlags: D6FE..D6FF (12 moedas escondidas).
+      hiddenCoinsRaw = blockWorldEvents.slice(350, 352);
 
       // Modo de Deslocação ($D700, offset 352: 0 = Pé, 1 = Bicicleta, 2 = Surf)
       walkBikeSurf = parseInt(blockWorldEvents[352], 16) || 0;
@@ -1371,6 +1374,9 @@ class RetroArchClient extends EventEmitter {
     // Itens Ocultos e Radar de Itemfinder
     const hiddenItemEvidence=decodeHiddenItems(this.activeRomProfile,this.latestState.mapId,hiddenRaw,ITEM_NAMES);
     this.latestState.romHiddenItems=hiddenItemEvidence;
+    this.latestState.romHiddenCoins=decodeHiddenCoins(
+      this.activeRomProfile,this.latestState.mapId,hiddenCoinsRaw
+    );
     this.latestState.romAreaProgress=makeAreaProgress(
       this.latestState.romAreaEvidence,hiddenItemEvidence,
       this.latestState.romRuntimeIdentity
