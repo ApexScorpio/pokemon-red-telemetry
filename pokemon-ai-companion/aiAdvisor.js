@@ -40,6 +40,10 @@ async function getLiveAdvice(state, force = false) {
       Date.now() - Date.parse(state.lastUpdate) < 0 ||
       Date.now() - Date.parse(state.lastUpdate) >= 15000)
     return 'Telemetria RAM indisponível ou incompleta; não emitir decisões sobre dados antigos ou simulados.';
+  // Não converter estimativas legadas ou ROM/RAM incompletas em conselhos táticos de combate.
+  if (state.inBattle && (!state.battle || state.battle.exactTurnMathReady !== true)) {
+    return 'Combate detetado, mas probabilidades e recomendações exatas estão suspensas até verificar os dados deste turno e as fórmulas desta ROM.';
+  }
   const now = Date.now();
   if (!force && now - lastAdviceTime < 15000) {
     return cachedAdvice;
@@ -101,6 +105,12 @@ Regras da tua resposta:
 }
 
 async function askAdvisor(question, state) {
+  if (!state || !state.connected || !state.memoryReadStatus?.verified || state.isSimulation) {
+    return 'Telemetria real indisponível. Não posso calcular ou recomendar com dados antigos ou simulados.';
+  }
+  if (state.inBattle && (!state.battle || state.battle.exactTurnMathReady !== true)) {
+    return 'Não há cálculos de combate certificados para este turno; aguardo dados e fórmulas ROM/RAM verificados antes de recomendar golpes, capturas ou riscos.';
+  }
   const context = {
     trainer: state.trainerName || 'RED',
     location: state.mapName,
