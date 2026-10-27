@@ -32,11 +32,13 @@ const ATLAS=(()=>{
 const SPECIAL_SCRIPT_EVENTS={
   45:{1:81},    // Viridian Gym: Giovanni
   54:{1:119},   // Pewter Gym: Brock
+  61:{1:1401},  // Mt Moon B2F: Super Nerd do fóssil
   65:{1:191},   // Cerulean Gym: Misty
   92:{1:359},   // Vermilion Gym: Lt. Surge
   134:{1:425},  // Celadon Gym: Erika
   157:{1:601},  // Fuchsia Gym: Koga
   166:{1:665,2:666,3:667,4:668,5:669,6:670,7:671,8:672},
+  177:{1:849},  // Fighting Dojo: Karate Master (CheckEventReuseA)
   178:{1:865},  // Saffron Gym: Sabrina
   202:{1:1703}  // Rocket Hideout B4F: Giovanni
 };
@@ -68,7 +70,7 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
    expected=new Map();
    source='SEM_CABECALHO_TREINADOR_NORMAL';
  }
- // Estes 16 casos são scripts especiais: líder ou evento que usa
+ // Estes 18 casos são scripts especiais: líder ou evento que usa
  // CheckEvent diretamente em vez de TalkToTrainer.
  if(ROM_HASHES.has(sha)&&SPECIAL_INDEX.has(mapId)){
    for(const [ordinal,bit] of SPECIAL_INDEX.get(mapId)){
@@ -77,7 +79,7 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
      expected.set(ordinal,bit);
    }
    source+=(source==='SEM_CABECALHO_TREINADOR_NORMAL'?'':' + ')+
-     '16_CHECKEVENT_ESPECIAIS_COMPROVADOS_NAS_3_ROMS';
+     '18_CHECKEVENT_ESPECIAIS_COMPROVADOS_NAS_3_ROMS';
  }
  // Perfis JSON antigos assinalavam Pokémon selvagens fixos como "trainer".
  // Não contam para vitórias de treinadores humanos (OPP_ID_OFFSET=200).
