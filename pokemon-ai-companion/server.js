@@ -252,7 +252,7 @@ client.on('update', (state) => {
 // Inicia servidor
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`\n======================================================`);
-  console.log(`⚡ POKÉMON RED AI COMPANION (GROQ AI ATIVO) ⚡`);
+  console.log(`⚡ POKÉMON GEN I COMPANION — RED / BLUE / GREEN ⚡`);
   console.log(`- Dashboard PC:      http://localhost:${PORT}`);
   console.log(`- Dashboard iPhone:  http://192.168.1.50:${PORT}`);
   console.log(`- Alvo RetroArch:    ${client.ip}:${client.port}`);
