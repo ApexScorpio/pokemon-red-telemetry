@@ -274,3 +274,15 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 14. Alterado `romEventState.js` para transportar em separado `coinAmount` (argumento do script) e `actualAwardIfClaimed` (resultado previsto da rotina). A tabela auditada para os três hashes Red/Blue/Green mantém o fallback de 40 → 20 sem exigir nova instalação manual.
 - 15. Alterado `public/app.js` para apresentar ao jogador o valor efetivo (20) e explicar que o script pedia 40, sem confundir uma flag de recolha com créditos efetivamente presentes no Coin Case.
 - 16. Reforçados `tests/romHiddenEvents.test.js` e `tests/romEventState.test.js`, e confirmada em Node a assinatura no código dos três binários originais. O teste de integração real no iPhone continua pendente.
+
+
+## 2026-10-27 — Cruzamento automático dos encontros ROM com capturas da Pokédex
+
+- 1. Revisto o código atual antes de alterar o sistema: o atlas de treinadores já contém 312 associações auditadas nas ROMs Red, Blue e Green, e, por prudência, o código distingue "flag de combate desativado" de "vitória individual comprovada".
+- 2. Criado `romCaptureOpportunities.js`: agrega as dez posições de encontro de cada meio (relva/água), calcula níveis e probabilidade **condicional ao encontro** pela soma dos pesos reais da ROM e cruza o número da Pokédex com as flags Owned/Seen que já são lidas da RAM.
+- 3. A saída `romCaptureOpportunities` só fica verificada se houver correspondência CRC32 da ROM e leitura da Pokédex da RAM. Dados não confirmados ficam como desconhecidos. Não são confundidas probabilidades de encontro de cada espécie com probabilidade absoluta de captura.
+- 4. Integrado no `retroarchClient.js` após carregar a área correspondente da ROM e as listas de espécies capturadas/vistas. Separação entre encontros de relva e de água/Surf.
+- 5. Atualizado `public/app.js` para mostrar no cartão da zona as espécies que ainda faltam capturar, os níveis possíveis e a respetiva percentagem condicional; acesso ao terreno/Surf permanece uma condição não verificada.
+- 6. Executados dois testes isolados em JavaScript: Oddish com 102/256 de peso é mostrado a 39,84%, nos níveis 13 e 15, visto mas ainda não capturado; ROM sem correspondência não produz factos de captura. Passaram.
+- 7. Criado `tests/romCaptureOpportunities.test.js` com estes casos reproduzíveis.
+- 8. Não foram modificados saves, ROMs originais, sessões, ficheiros do PC ou o disco C:. Ainda não foi feito teste ponta a ponta no iPhone.
