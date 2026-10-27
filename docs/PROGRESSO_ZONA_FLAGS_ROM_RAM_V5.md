@@ -31,3 +31,14 @@
 - `pret/pokered/data/maps/toggleable_objects.asm`: mapeamento global dos objetos alternáveis e estado inicial.
 
 **Critério de segurança:** só declarar concluído quando um bit/sinal de RAM prova essa conclusão e quando a sua identidade foi validada para a ROM realmente carregada. Um item possuído, sprite ausente ou NPC próximo não bastam.
+
+
+## Adenda — treinadores auditados posteriormente (27/10/2026)
+
+A limitação relativa a treinadores foi **parcialmente ultrapassada** após a publicação inicial deste documento:
+
+- **17 mapas e 50 treinadores** foram cruzados com cabeçalhos de treinador presentes nos três ficheiros ROM recebidos, e com o dicionário de flags `EVENT_BEAT_*` da desmontagem, sem recorrer a resultados presumidos.
+- O ficheiro `romTrainerEvents.js` indica o `eventBitIndex` apenas para estes mapas e só quando o SHA-256 do perfil coincide exatamente com uma das três ROMs analisadas.
+- A RAM `wEventFlags` fornece o bit atual de cada treinador verificado. O painel distingue VENCIDO / POR VENCER dos restantes, que permanecem ESTADO DESCONHECIDO.
+- Teste de exemplo: Route 6, mapa 17, 6 treinadores, índices 1041 a 1046. Duas flags em 1 produzem exatamente duas vitórias e quatro batalhas pendentes.
+- Ainda faltam os outros mapas e a verificação da ligação em execução no iPhone. A presença na ROM não prova que um treinador esteja visível ou acessível nesse instante.
