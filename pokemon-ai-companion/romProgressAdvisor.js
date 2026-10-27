@@ -24,14 +24,17 @@ function milestones(profile,internalId){
      evolveToInternalId:e.args[1],source:'ROM_PERFIL_CRC32'});
   }
   if(e.method===2&&Number.isInteger(e.args?.[0])){
-   const next=speciesInRom(profile,e.args[1]);
+   // Gen I: EVOLVE_ITEM, item ID, nível mínimo, espécie destino.
+   const next=speciesInRom(profile,e.args[2]);
    output.push({level:null,kind:'EVOLUTION_ITEM',name:next?.name||null,
-     itemId:e.args[0],evolveToInternalId:e.args[1],source:'ROM_PERFIL_CRC32'});
+     itemId:e.args[0],minimumLevel:e.args[1],
+     evolveToInternalId:e.args[2],source:'ROM_PERFIL_CRC32'});
   }
   if(e.method===3&&Number.isInteger(e.args?.[0])){
-   const next=speciesInRom(profile,e.args[0]);
+   // Gen I: EVOLVE_TRADE, nível mínimo, espécie destino.
+   const next=speciesInRom(profile,e.args[1]);
    output.push({level:null,kind:'EVOLUTION_TRADE',name:next?.name||null,
-     evolveToInternalId:e.args[0],source:'ROM_PERFIL_CRC32'});
+     minimumLevel:e.args[0],evolveToInternalId:e.args[1],source:'ROM_PERFIL_CRC32'});
   }
  }
  return output.sort((a,b)=>(a.level??999)-(b.level??999));
