@@ -6282,6 +6282,2061 @@
         }
       },
       "source": "pret/pokered/data/wild/maps/SafariZoneCenter.asm"
+    },
+    "SafariZoneEast": {
+      "mapIds": [
+        217
+      ],
+      "encounterRateByte": {
+        "grass": 30,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "NIDORAN_M",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "DODUO",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "PARAS",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "NIDORINO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "NIDORAN_F",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "PARASECT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "KANGASKHAN",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "SCYTHER",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "NIDORAN_F",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "DODUO",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "PARAS",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "NIDORINA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "NIDORAN_M",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "PARASECT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "KANGASKHAN",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "PINSIR",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SafariZoneEast.asm"
+    },
+    "SafariZoneNorth": {
+      "mapIds": [
+        218
+      ],
+      "encounterRateByte": {
+        "grass": 30,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 22,
+              "species": "NIDORAN_M",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "RHYHORN",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "PARAS",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "NIDORINO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "NIDORINA",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "VENOMOTH",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "CHANSEY",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "TAUROS",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 22,
+              "species": "NIDORAN_F",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "RHYHORN",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "PARAS",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "NIDORINA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "NIDORINO",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "VENOMOTH",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "CHANSEY",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "TAUROS",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SafariZoneNorth.asm"
+    },
+    "SafariZoneWest": {
+      "mapIds": [
+        219
+      ],
+      "encounterRateByte": {
+        "grass": 30,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 25,
+              "species": "NIDORAN_M",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "DODUO",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "VENONAT",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "NIDORINO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "NIDORAN_F",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "VENOMOTH",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "TAUROS",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "KANGASKHAN",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 25,
+              "species": "NIDORAN_F",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "DODUO",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "VENONAT",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "NIDORINA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "EXEGGCUTE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "NIDORAN_M",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "VENOMOTH",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "TAUROS",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "KANGASKHAN",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SafariZoneWest.asm"
+    },
+    "SeafoamIslandsB1F": {
+      "mapIds": [
+        159
+      ],
+      "encounterRateByte": {
+        "grass": 10,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 30,
+              "species": "STARYU",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "HORSEA",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "SHELLDER",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "HORSEA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "SLOWPOKE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "SEEL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "SLOWPOKE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "SEEL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 38,
+              "species": "DEWGONG",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 37,
+              "species": "SEADRA",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 30,
+              "species": "SHELLDER",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "KRABBY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "STARYU",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "KRABBY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "PSYDUCK",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "SEEL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "PSYDUCK",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "SEEL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 38,
+              "species": "DEWGONG",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 37,
+              "species": "KINGLER",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SeafoamIslandsB1F.asm"
+    },
+    "SeaRoutes": {
+      "mapIds": [
+        30,
+        31
+      ],
+      "encounterRateByte": {
+        "grass": 0,
+        "water": 5
+      },
+      "variants": {
+        "red": {
+          "grass": [],
+          "water": [
+            {
+              "level": 5,
+              "species": "TENTACOOL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 10,
+              "species": "TENTACOOL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "TENTACOOL",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "TENTACOOL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 10,
+              "species": "TENTACOOL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "TENTACOOL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "TENTACOOL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "TENTACOOL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 35,
+              "species": "TENTACOOL",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 40,
+              "species": "TENTACOOL",
+              "weight": 3,
+              "outOf": 256
+            }
+          ]
+        },
+        "blue": {
+          "grass": [],
+          "water": [
+            {
+              "level": 5,
+              "species": "TENTACOOL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 10,
+              "species": "TENTACOOL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "TENTACOOL",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "TENTACOOL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 10,
+              "species": "TENTACOOL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "TENTACOOL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "TENTACOOL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "TENTACOOL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 35,
+              "species": "TENTACOOL",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 40,
+              "species": "TENTACOOL",
+              "weight": 3,
+              "outOf": 256
+            }
+          ]
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SeaRoutes.asm"
+    },
+    "SeafoamIslandsB2F": {
+      "mapIds": [
+        160
+      ],
+      "encounterRateByte": {
+        "grass": 10,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 30,
+              "species": "SEEL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "SLOWPOKE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "SEEL",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "SLOWPOKE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "HORSEA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "STARYU",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "HORSEA",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "SHELLDER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "GOLBAT",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 37,
+              "species": "SLOWBRO",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 30,
+              "species": "SEEL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "PSYDUCK",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "SEEL",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "PSYDUCK",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "KRABBY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "SHELLDER",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "KRABBY",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "STARYU",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "GOLBAT",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 37,
+              "species": "GOLDUCK",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SeafoamIslandsB2F.asm"
+    },
+    "SeafoamIslandsB3F": {
+      "mapIds": [
+        161
+      ],
+      "encounterRateByte": {
+        "grass": 10,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 31,
+              "species": "SLOWPOKE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "SEEL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "SLOWPOKE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "SEEL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "HORSEA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "SHELLDER",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "HORSEA",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "SHELLDER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 39,
+              "species": "SEADRA",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 37,
+              "species": "DEWGONG",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 31,
+              "species": "PSYDUCK",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "SEEL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "PSYDUCK",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "SEEL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "KRABBY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "STARYU",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "KRABBY",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "STARYU",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 39,
+              "species": "KINGLER",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 37,
+              "species": "DEWGONG",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SeafoamIslandsB3F.asm"
+    },
+    "SeafoamIslands1F": {
+      "mapIds": [
+        192
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 30,
+              "species": "SEEL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "SLOWPOKE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "SHELLDER",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "HORSEA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "HORSEA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 21,
+              "species": "ZUBAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "GOLBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "PSYDUCK",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "SHELLDER",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 38,
+              "species": "GOLDUCK",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 30,
+              "species": "SEEL",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "PSYDUCK",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "STARYU",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "KRABBY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "KRABBY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 21,
+              "species": "ZUBAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "GOLBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "SLOWPOKE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "STARYU",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 38,
+              "species": "SLOWBRO",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SeafoamIslands1F.asm"
+    },
+    "SeafoamIslandsB4F": {
+      "mapIds": [
+        162
+      ],
+      "encounterRateByte": {
+        "grass": 10,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 31,
+              "species": "HORSEA",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "SHELLDER",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "HORSEA",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "SHELLDER",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "SLOWPOKE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "SEEL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "SLOWPOKE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "SEEL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 39,
+              "species": "SLOWBRO",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "GOLBAT",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 31,
+              "species": "KRABBY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "STARYU",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "KRABBY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "STARYU",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "PSYDUCK",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "SEEL",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 31,
+              "species": "PSYDUCK",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "SEEL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 39,
+              "species": "GOLDUCK",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "GOLBAT",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/SeafoamIslandsB4F.asm"
+    },
+    "VictoryRoad1F": {
+      "mapIds": [
+        108
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "MACHOP",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "GEODUDE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "ZUBAT",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 36,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 39,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 41,
+              "species": "GRAVELER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 41,
+              "species": "GOLBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "MACHOKE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 43,
+              "species": "MAROWAK",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "MACHOP",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "GEODUDE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "ZUBAT",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 36,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 39,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 41,
+              "species": "GRAVELER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 41,
+              "species": "GOLBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "MACHOKE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 43,
+              "species": "MAROWAK",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/VictoryRoad1F.asm"
+    },
+    "VictoryRoad2F": {
+      "mapIds": [
+        194
+      ],
+      "encounterRateByte": {
+        "grass": 10,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 22,
+              "species": "MACHOP",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "GEODUDE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "ZUBAT",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 36,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 39,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 41,
+              "species": "MACHOKE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 40,
+              "species": "GOLBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 40,
+              "species": "MAROWAK",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 43,
+              "species": "GRAVELER",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 22,
+              "species": "MACHOP",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "GEODUDE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "ZUBAT",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 36,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 39,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 41,
+              "species": "MACHOKE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 40,
+              "species": "GOLBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 40,
+              "species": "MAROWAK",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 43,
+              "species": "GRAVELER",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/VictoryRoad2F.asm"
+    },
+    "VictoryRoad3F": {
+      "mapIds": [
+        198
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "MACHOP",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "GEODUDE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "ZUBAT",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 40,
+              "species": "VENOMOTH",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 45,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 43,
+              "species": "GRAVELER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 41,
+              "species": "GOLBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "MACHOKE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 45,
+              "species": "MACHOKE",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "MACHOP",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "GEODUDE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "ZUBAT",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 40,
+              "species": "VENOMOTH",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 45,
+              "species": "ONIX",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 43,
+              "species": "GRAVELER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 41,
+              "species": "GOLBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 42,
+              "species": "MACHOKE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 45,
+              "species": "MACHOKE",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/VictoryRoad3F.asm"
+    },
+    "ViridianForest": {
+      "mapIds": [
+        51
+      ],
+      "encounterRateByte": {
+        "grass": 8,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 4,
+              "species": "WEEDLE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "KAKUNA",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "WEEDLE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "WEEDLE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 4,
+              "species": "KAKUNA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 6,
+              "species": "KAKUNA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 4,
+              "species": "METAPOD",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "CATERPIE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "PIKACHU",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "PIKACHU",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 4,
+              "species": "CATERPIE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "METAPOD",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "CATERPIE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "CATERPIE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 4,
+              "species": "METAPOD",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 6,
+              "species": "METAPOD",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 4,
+              "species": "KAKUNA",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "WEEDLE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "PIKACHU",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "PIKACHU",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/ViridianForest.asm"
+    },
+    "nothing": {
+      "mapIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        163,
+        164,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        193,
+        195,
+        196,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        221,
+        222,
+        223,
+        224,
+        225,
+        229,
+        230,
+        231,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247
+      ],
+      "encounterRateByte": {
+        "grass": 0,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [],
+          "water": []
+        },
+        "blue": {
+          "grass": [],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/nothing.asm"
     }
   }
 }
