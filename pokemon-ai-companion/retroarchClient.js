@@ -1444,7 +1444,7 @@ class RetroArchClient extends EventEmitter {
       const accInfo=checkAccessibility(item);
       return {
         ...item,name:itemName,itemId:romObject?.itemId??null,
-        nameSource:romItemName?'ITEM_ID_DO_OBJETO_ROM':'REFERÊNCIA_MANUAL_NÃO_VERIFICADA',
+        nameSource:romItemName?'ITEM_ID_ROM + NOMES_LOCAIS_NÃO_COMPROVADOS_NO_BINÁRIO':'REFERÊNCIA_MANUAL_NÃO_VERIFICADA',
         isCollected:null, // flag de remoção nunca prova uma recolha específica
         removedFromMap:romObject?.removedFromMap??null,
         toggleableFlagIndex:romObject?.toggleableFlagIndex??null,
@@ -1461,7 +1461,7 @@ class RetroArchClient extends EventEmitter {
       .filter(o=>!allVisItems.some(m=>m.x===o.x&&m.y===o.y))
       .map(o=>({
         name:o.itemName||'Item no mapa (ID não identificado)',
-        nameSource:o.itemName?'ITEM_ID_DO_OBJETO_ROM':'NÃO_IDENTIFICADO',
+        nameSource:o.itemName?'ITEM_ID_ROM + NOMES_LOCAIS_NÃO_COMPROVADOS_NO_BINÁRIO':'NÃO_IDENTIFICADO',
         itemId:o.itemId,x:o.x,y:o.y,
         isCollected:null,removedFromMap:o.removedFromMap,
         toggleableFlagIndex:o.toggleableFlagIndex,
