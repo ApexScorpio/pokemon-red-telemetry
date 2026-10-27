@@ -15,6 +15,9 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
    stillAvailableConfirmed:hidden.filter(x=>x.isCollected===false).length,
    source:hiddenEvidence.source
  }:null;
+ const provenWon=trainers.filter(x=>x.defeated===true).length;
+ const provenPending=trainers.filter(x=>x.defeated===false).length;
+ const trainerUnknown=trainers.length-provenWon-provenPending;
  const removed=items.filter(x=>x.removedFromMap===true).length;
  const shown=items.filter(x=>x.removedFromMap===false).length;
  const unknown=items.length-removed-shown;
@@ -31,9 +34,10 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
    },
    trainers:{
      totalInRom:trainers.length,
-     defeatedConfirmed:null,pendingConfirmed:null,
-     statusUnknown:trainers.length,
-     explanation:'É necessário ligar os cabeçalhos dos treinadores às event flags.'
+     defeatedConfirmed:trainerUnknown===trainers.length?null:provenWon,
+     pendingConfirmed:trainerUnknown===trainers.length?null:provenPending,
+     statusUnknown:trainerUnknown,
+     explanation:'Só contar batalhas com cabeçalho ROM e bit RAM associados por mapa.'
    },
    remainingConfirmed:hidden?hiddenResult.stillAvailableConfirmed:null,
    remainingScope:'Apenas itens ocultos com bitmap verificado; não é o total da zona.',
