@@ -139,5 +139,8 @@ console.log(JSON.stringify({
  internalSpeciesVerified:speciesChecked,moveIdsVerified:movesChecked,
  itemIdsVerified:itemChecked,glitchIdsVerified:glitchIds.length,
  symbolsVerified:Object.keys(expectedAddresses).length,
+ eventsVerified:eventsChecked,speciesBaseStatsVerified:Object.keys(speciesCatalog).length,
+ learnsetsVerified:Object.keys(learnsets).length,wildMapsVerified:Object.keys(wild).length,
+ mapsVerified:Object.keys(maps).length,npcTradesVerified:trades.filter(t=>t.available).length,
  specialItemDisplayNames:itemDisplayExceptions
 },null,2));
