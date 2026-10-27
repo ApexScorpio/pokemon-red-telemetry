@@ -22,8 +22,8 @@ function captureProbability({ball, actualCatchRateFromRam, hpFromRam, maxHpFromR
     return {verified:false,reason:'Tipo de bola ou estado RAM não suportado/confirmado'};
   }
   const catchRate=num(actualCatchRateFromRam,0,255,'catch rate ajustado da RAM');
-  const hp=num(hpFromRam,1,65535,'HP da RAM');
-  const maxHp=num(maxHpFromRam,hp,65535,'HP máximo da RAM');
+  const hp=num(hpFromRam,1,999,'HP da RAM');
+  const maxHp=num(maxHpFromRam,hp,999,'HP máximo da RAM');
   // Items.asm: floor(floor(MaxHP*255/Factor) / max(floor(HP/4),1)).
   const w=Math.floor(Math.floor(maxHp*255/FACTOR[ball])/Math.max(1,Math.floor(hp/4)));
   const x=Math.min(255,w);
