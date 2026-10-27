@@ -78,3 +78,19 @@ https://gbdev.io/pandocs/Memory_Map.html
 https://gbdev.io/pandocs/Tile_Data.html
 
 Critério final: nunca confundir bytes examinados, dados estruturados descodificados, cálculos reproduzidos e estado realmente verificado no emulador.
+
+
+## 2026-10-27 — Segunda fase de descodificação de tabelas da própria ROM
+
+No romAtlas.js acrescentou-se:
+- EvosMovesPointerTable: 190 ponteiros por ID interno, métodos 1 = nível, 2 = item, 3 = troca; leitura da lista de ataques por nível terminada por zero, respeitando os limites do banco.
+- MoveNames: 165 nomes de golpes, descodificados apenas quando os bytes estão no charmap conhecido; nomes desconhecidos continuam nulos com representação hexadecimal.
+- GrowthRateTable mantém os coeficientes extraídos em vez de usar uma curva de EXP suposta.
+- Estendem-se os testes sintéticos para validar ponteiros, movimentos e evoluções. Isto NÃO demonstra ainda compatibilidade com a ROM real do utilizador.
+
+Fontes primárias:
+- https://github.com/pret/pokered/blob/master/data/pokemon/evos_moves.asm
+- https://github.com/pret/pokered/blob/master/data/moves/names.asm
+- https://github.com/pret/pokered/blob/master/constants/pokemon_data_constants.asm
+
+O código tem de ser confrontado com o ficheiro ROM exato que é executado no iPhone. Sem essa correspondência, a extração de símbolos está bloqueada por segurança.
