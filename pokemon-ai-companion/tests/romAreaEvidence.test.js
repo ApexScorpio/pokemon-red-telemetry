@@ -5,7 +5,7 @@ const {buildRomAreaEvidence}=require('../romAreaEvidence');
 
 const map={valid:true,mapId:6,objects:{objects:[
   {kind:'item',x:4,y:7,spriteId:61,trainerClassOrItemId:17},
-  {kind:'trainer',x:10,y:5,spriteId:7,trainerClassOrItemId:12,trainerNumberOrLevel:2},
+  {kind:'trainer',x:10,y:5,spriteId:7,trainerClassOrItemId:212,trainerNumberOrLevel:2},
   {kind:'npc',x:9,y:8,spriteId:8}
 ]}};
 const live=[
@@ -23,7 +23,7 @@ test('objeto item da ROM visto na RAM não significa já apanhado',()=>{
  assert.equal(r.items[0].observedInRam,true);
  assert.equal(r.items[0].collected,null);
  assert.equal(r.trainers[0].defeated,null);
- assert.equal(r.trainers[0].trainerClassId,12);
+ assert.equal(r.trainers[0].trainerClassId,212);
  assert.equal(r.trainers[0].trainerNumber,2);
  assert.equal(r.npcs.length,1);
 });
