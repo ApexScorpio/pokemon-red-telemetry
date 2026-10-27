@@ -265,3 +265,12 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 11. Nenhuma ROM, save, token, sessão Antigravity, ficheiro de utilizador no C: ou processo local do jogador foi alterado. A identificação automática permanece baseada nos perfis já disponíveis e no CRC32 anunciado pelo emulador.
 
 **Limites ainda pendentes:** validação ao vivo no SameBoy, interpretação da atividade histórica completa dos treinadores, scripts de NPCs especiais, tipos de interação restantes e cobertura de ROM hacks com dados diferentes.
+
+
+### 2026-10-27 — Correção adicional no cálculo das moedas ocultas
+
+- 12. Inspecionada diretamente nos três executáveis a sequência de instruções da rotina `HiddenCoins` (banco 1D, Red 6799, Blue 679A, Green International 679B). A comparação `cp 40` salta para a ramificação que atribui **20 moedas**, erro conhecido do motor Gen I, portanto um argumento `COIN+40` não concede 40.
+- 13. Alterado `romHiddenEvents.js` para testar a assinatura do próprio código binário antes de concluir que o evento nominal de 40 atribui 20. Para ROMs alteradas sem assinatura, o valor efetivo fica `null`, em vez de ser inventado.
+- 14. Alterado `romEventState.js` para transportar em separado `coinAmount` (argumento do script) e `actualAwardIfClaimed` (resultado previsto da rotina). A tabela auditada para os três hashes Red/Blue/Green mantém o fallback de 40 → 20 sem exigir nova instalação manual.
+- 15. Alterado `public/app.js` para apresentar ao jogador o valor efetivo (20) e explicar que o script pedia 40, sem confundir uma flag de recolha com créditos efetivamente presentes no Coin Case.
+- 16. Reforçados `tests/romHiddenEvents.test.js` e `tests/romEventState.test.js`, e confirmada em Node a assinatura no código dos três binários originais. O teste de integração real no iPhone continua pendente.
