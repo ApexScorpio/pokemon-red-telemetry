@@ -60,18 +60,15 @@ function checkForUpdates() {
       return;
     }
 
-    console.log('[Updater] Novo código detetado no GitHub. A descarregar...');
-    try {
-      git(['checkout', '--', ':/README.md', ':/telemetria.md', ':/public/telemetria.md', ':/public/telemetria.txt']);
-    } catch (e) {}
-
-    try {
-      git(['pull', '--rebase', '-X', 'theirs', 'origin', 'main']);
-    } catch (pullErr) {
-      try { git(['rebase', '--abort']); } catch (e) {}
-      git(['merge', '-X', 'theirs', '--no-edit', 'origin/main']);
+    // Não permitir que atualizações automáticas descartem RAM logs,
+    // código local, dados de ROM ou alterações ainda não guardadas.
+    const dirty = git(['status','--porcelain','--untracked-files=no']);
+    if(dirty){
+      console.warn('[Updater] Atualização adiada: existem ficheiros versionados alterados localmente. Nada foi apagado.');
+      return;
     }
-
+    // --ff-only não cria merges artificiais nem escolhe silenciosamente "theirs".
+    git(['merge','--ff-only','origin/main']);
     console.log('[Updater] Código atualizado. A reiniciar o servidor...');
     if (serverProcess && !serverProcess.killed) serverProcess.kill();
   } catch (err) {
@@ -90,9 +87,13 @@ try {
     const diff = git(['diff', '--name-only', local, remote]).split('\n').map(s => s.trim()).filter(Boolean);
     const hasCode = diff.some(f => !f.endsWith('.md') && !f.endsWith('.txt') && !f.includes('last_known_state'));
     if (hasCode) {
-      git(['checkout', '--', 'README.md', 'telemetria.md', 'public/telemetria.md', 'public/telemetria.txt']);
-      git(['merge', '-X', 'theirs', '--no-edit', 'origin/main']);
-      console.log('[Updater] Código atualizado no arranque.');
+      const dirty=git(['status','--porcelain','--untracked-files=no']);
+      if(dirty){
+        console.warn('[Updater] Há alterações locais: atualização inicial ignorada por segurança; o servidor arranca normalmente.');
+      }else{
+        git(['merge','--ff-only','origin/main']);
+        console.log('[Updater] Código atualizado sem descartar ficheiros locais.');
+      }
     } else {
       console.log('[Updater] Código local atualizado (commits remotos são apenas telemetria).');
     }
