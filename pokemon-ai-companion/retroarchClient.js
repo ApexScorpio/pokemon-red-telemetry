@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { buildProfiles, getCurrentRom, pokemonFromProfile, moveNameFromProfile } = require('./romLiveResolver');
+const { expAtLevel } = require('./gen1EngineMath');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -232,6 +233,7 @@ class RetroArchClient extends EventEmitter {
     this.romRegistry = buildProfiles();
     this.activeRomProfile = null;
     this.lastRomStatusReadAt = 0;
+    this.lastRomRegistryRefreshAt = Date.now();
 
     const cachedState = this.loadPersistedState();
     this.latestState = cachedState || {
@@ -550,11 +552,18 @@ class RetroArchClient extends EventEmitter {
   }
 
   async fetchGameState() {
-    if (!this.lastRomStatusReadAt || Date.now()-this.lastRomStatusReadAt > 15000) {
+    if (!this.lastRomStatusReadAt || Date.now()-this.lastRomStatusReadAt > 4000) {
       this.lastRomStatusReadAt = Date.now();
       const reply = await this.sendRaw('GET_STATUS');
       const status = reply ? 'GET_STATUS '+reply.join(' ') : null;
-      this.activeRomProfile = getCurrentRom(status,this.romRegistry.profiles);
+      let match = getCurrentRom(status,this.romRegistry.profiles);
+      if (!match && process.env.POKEMON_ROM_DIR &&
+          Date.now()-this.lastRomRegistryRefreshAt > 30000) {
+        this.lastRomRegistryRefreshAt = Date.now();
+        this.romRegistry = buildProfiles(); // deteta ROMs novas na pasta sem reiniciar
+        match = getCurrentRom(status,this.romRegistry.profiles);
+      }
+      this.activeRomProfile = match;
       const crcMatch = status && status.match(/crc32=([0-9a-f]{8})/i);
       this.latestState.romRuntimeIdentity = {
         source:'RetroArch GET_STATUS',
@@ -564,9 +573,16 @@ class RetroArchClient extends EventEmitter {
         title:this.activeRomProfile?.title||null,
         addressesFromRom:!!this.activeRomProfile,
         localProfiles:this.romRegistry.profiles.length,
+        tablesValidated:this.activeRomProfile?.validated||null,
         reason:this.activeRomProfile ? 'CRC32 da ROM carregada coincide com ficheiro local analisado' :
           'Não há ficheiro ROM local coincidente ou GET_STATUS indisponível'
       };
+      if (status && /GET_STATUS\s+CONTENTLESS/i.test(status)) {
+        this.latestState.connected=false;
+        this.latestState.lastReadError='RetroArch sem ROM carregada.';
+        this.emit('update',this.latestState);
+        return;
+      }
     }
     // =========================================================================
     // ARQUITETURA DE LEITURA EXAUSTIVA DA MEMÓRIA RAM DO GAME BOY (GEN 1)
@@ -744,12 +760,29 @@ class RetroArchClient extends EventEmitter {
           type: mData.type,
           power: mData.power,
           accuracy: mData.acc,
-          pp: pp[mIdx] !== undefined ? pp[mIdx] : 10,
-          maxPp: mData.pp || 20
+          pp: pp[mIdx] !== undefined ? pp[mIdx] : null,
+          maxPp: Number.isInteger(mData.pp) ? mData.pp : null,
+          nameSource: mData.nameSource || 'DESCONHECIDO',
+          attributesSource: mData.attributesSource || 'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM'
         };
       }).filter(Boolean);
 
-      const expProgress = calculateExpProgress(level, exp, pkInfo.dex);
+      let expProgress = calculateExpProgress(level, exp, pkInfo.dex);
+      expProgress = {...expProgress,source:'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM'};
+      const romSpecies = this.activeRomProfile?.species?.[speciesId-1];
+      const rateId = romSpecies?.stats?.growthRateId;
+      const growth = Number.isInteger(rateId) ? this.activeRomProfile?.growthRates?.[rateId] : null;
+      if (growth && level>=1 && level<=100) {
+        try {
+          const start=expAtLevel(growth,level),next=expAtLevel(growth,Math.min(100,level+1));
+          expProgress={
+            current:exp,next,needed:level===100?0:Math.max(0,next-exp),
+            percent:level===100?100:Math.max(0,Math.min(100,
+              Math.round((exp-start)/Math.max(1,next-start)*100))),
+            source:'FÓRMULA_EXTRAÍDA_DA_ROM+EXP_RAM'
+          };
+        } catch(e) {expProgress={current:exp,next:null,needed:null,percent:null,source:'FÓRMULA_ROM_INVÁLIDA'};}
+      }
 
       party.push({
         partyIndex: i,
@@ -760,6 +793,7 @@ class RetroArchClient extends EventEmitter {
         otName,
         dex: pkInfo.dex,
         types: pkInfo.types,
+        speciesSource: pkInfo.source || 'NÃO_VALIDADO',
         hp,
         maxHp: maxHp || hp,
         level: level || 1,
@@ -770,6 +804,7 @@ class RetroArchClient extends EventEmitter {
         exp: expProgress,
         moves: moveList,
         spriteUrl: getPokemonSpriteUrl(pkInfo.name, pkInfo.dex),
+        spriteSource: 'IMAGEM_EXTERNA_GEN5_NÃO_EXTRAÍDA_DA_ROM',
         artworkUrl: pkInfo.dex ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pkInfo.dex}.png` : ''
       });
     }
