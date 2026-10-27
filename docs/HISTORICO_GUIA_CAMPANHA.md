@@ -166,3 +166,20 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 13. Não foram alterados os binários ROM, saves, tokens, processos do utilizador ou unidades externas. O historial continua append-only.
 
 **Estado:** arranque de descoberta automatizado e testes de lógica concluídos; a aceitação final exige abrir o Companion no PC e verificar `/api/state` e os CRC32 enquanto se alternam Red, Blue e Green no SameBoy.
+
+
+## 2026-10-27 — Corrigir a prioridade: estado verdadeiro da zona antes de aperfeiçoamentos gráficos
+
+- 1. Reconhecido o erro de prioridade: tinham sido implementados extração ROM e sprites, mas não a ligação completa entre cada treinador/item, seu script ROM e flags atuais da RAM.
+- 2. Criado `romAreaEvidence.js`: mapa e objetos específicos da ROM reconhecida (CRC32), IDs de item, classe/número de treinador e coordenadas; tenta relacionar só sprites RAM compatíveis em tipo/pictureId/coordenada. Um sprite ausente nunca implica recolha/derrota.
+- 3. Integrado o novo objeto `romAreaEvidence` no estado publicado pelo `retroarchClient.js`; sem perfil correspondente ou RAM validada não fabrica estados.
+- 4. Corrigido `retroarchClient.js` para não definir `isCollected=false` sem um índice de flag existente; valor agora `null` (desconhecido), mantendo rótulos de proveniência e ressalvando que a associação dos índices da base manual à ROM não está ainda certificada.
+- 5. Corrigido radar Itemfinder para considerar apenas itens cujo bit sugere não recolhido e cujo índice é conhecido, sem identificar todos os outros como pendentes.
+- 6. Corrigido `public/app.js` para não ocultar um item só por existir outro exemplar na mochila/PC e para distinguir três estados: indicação do bit RAM (com associação por verificar), possibilidade de estar pendente e estado totalmente desconhecido.
+- 7. Corrigida a listagem dos treinadores de referência para não chamar "vencidos" ou "por vencer" a flags não validadas para esta ROM. As propostas de combate continuam disponíveis como referência tática, mas sem estatuto de prova.
+- 8. Acrescentado ao painel um cartão de evidências ROM/RAM por zona, com a lista de objetos e treinadores efetivamente definidos no mapa da ROM e presença observada na RAM quando foi comprovada.
+- 9. Criados `tests/romAreaEvidence.test.js` e efetuadas 7 verificações isoladas da função: presença, ausência, identidade ROM, campos de conclusão nulos e classificação por tipo/posição. Sintaxe dos ficheiros alterados verificada no repositório.
+- 10. Limite ainda não resolvido: não existe ligação completa entre flags de conclusão e scripts ROM para todos os treinadores, itens ocultos e NPCs. Não é possível afirmar o histórico total das ações antes dessa descodificação, nem foi testado o resultado num SameBoy/iPhone em tempo real.
+- 11. As ROMs, saves, credenciais e a sessão local do utilizador não foram alterados. O histórico mantém entradas anteriores sem apagá-las.
+
+**Próxima prioridade:** extrair o mapeamento script ROM → flag RAM de cada objeto e testar diferenças entre Red/Blue/Green antes de atribuir estados recolhido/derrotado definitivos.
