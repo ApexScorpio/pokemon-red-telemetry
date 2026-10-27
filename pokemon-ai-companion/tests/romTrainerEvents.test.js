@@ -42,13 +42,13 @@ test('recusar jogo, mapa ou RAM que não constam das associações auditadas',()
 });
 
 
-test('Route 24: primeiro NPC é um script especial, os outros 6 têm flags válidas',()=>{
+test('Route 24: Rocket especial e seis treinadores normais têm flags válidas',()=>{
  const flags=Array(320).fill('00'),objects=Array.from({length:7},()=>({kind:'trainer'}));
  const result=trainerFlagsForCurrentMap(profile,{valid:true,mapId:35,objects:{objects}},flags);
  assert.equal(result.verified,true);
- assert.equal(result.fullyMapped,false);
- assert.equal(result.unknownTrainerCount,1);
- assert.deepEqual(result.entries.map(x=>x.objectOrdinal),[2,3,4,5,6,7]);
- assert.deepEqual(result.entries.map(x=>x.eventBitIndex),[1346,1347,1348,1349,1350,1351]);
+ assert.equal(result.fullyMapped,true);
+ assert.equal(result.unknownTrainerCount,0);
+ assert.deepEqual(result.entries.map(x=>x.objectOrdinal),[2,3,4,5,6,7,1]);
+ assert.deepEqual(result.entries.map(x=>x.eventBitIndex),[1346,1347,1348,1349,1350,1351,1345]);
  assert.ok(result.entries.every(x=>x.defeated===null));
 });
