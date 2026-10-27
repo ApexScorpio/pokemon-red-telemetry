@@ -356,29 +356,56 @@ function renderRomAreaEvidence(state) {
     body.textContent='Não há perfil ROM correspondente para identificar objetos desta zona.';
     return;
   }
-  source.textContent='Objetos da ROM CRC32 + sprites RAM, quando observados';
+  const progress=state.romAreaProgress;
+  const validatedBattles=state.romTrainerFlags?.verified===true;
+  source.textContent='ROM CRC32 + RAM, com flags apenas quando correspondem ao objeto';
   const present = item => item.observedInRam === true ? ' • visto na RAM agora' :
     item.observedInRam === false ? ' • não visível na RAM (não significa recolhido)' :
       ' • visibilidade por confirmar';
+  const removedStatus=i=>i.removedFromMap===true?' • removido do mapa (RAM)':
+    i.removedFromMap===false?' • não removido do mapa (RAM)':' • remoção desconhecida';
+  const wonStatus=t=>t.defeated===true?'✅ VENCIDO (FLAG RAM)':
+    t.defeated===false?'⚔️ POR VENCER (FLAG RAM)':'❔ Resultado desconhecido';
   const rows=[
-    '📦 ITENS DEFINIDOS NA ROM ('+evidence.items.length+')',
+    '📦 OBJETOS DE ITEM NA ROM ('+evidence.items.length+')',
     ...evidence.items.slice(0,20).map(i=>'• '+(i.itemName||'Item #'+i.itemId)+
-      ' [ID '+i.itemId+'] X:'+i.x+' Y:'+i.y+present(i)),
-    '⚔️ TREINADORES DA ROM ('+evidence.trainers.length+')',
+      ' [ID '+i.itemId+'] X:'+i.x+' Y:'+i.y+removedStatus(i)+present(i)),
+    '⚔️ TREINADORES NA ROM ('+evidence.trainers.length+')',
     ...evidence.trainers.slice(0,20).map(t=>'• Classe #'+t.trainerClassId+
-      ' / Nº '+t.trainerNumber+' X:'+t.x+' Y:'+t.y+present(t)),
-    '👤 NPCs da ROM: '+evidence.npcs.length,
-    '❔ Derrotado/recolhido: por confirmar até associar a flag exata do script.'
+      ' / Nº '+t.trainerNumber+' X:'+t.x+' Y:'+t.y+' — '+wonStatus(t)+present(t)),
+    '👤 NPCs da ROM: '+evidence.npcs.length
   ];
-  const hidden=state.areaInfo?.hiddenItems||[];
-  if(hidden.length){
-    rows.push('🔍 Itens ocultos (lista de referência, NÃO totalmente validada na ROM):');
-    for(const i of hidden.slice(0,10)){
-      rows.push('• '+i.name+' X:'+i.x+' Y:'+i.y+' • '+
-        (i.isCollected === null ? 'estado desconhecido' :
-         'bit RAM lido, mas associação do índice à ROM ainda por verificar'));
-    }
+  if(progress?.trainers){
+    const tr=progress.trainers;
+    rows.push('📊 Batalhas confirmadas: '+(tr.defeatedConfirmed??'—')+
+      ' vencidas / '+(tr.pendingConfirmed??'—')+
+      ' pendentes / '+tr.statusUnknown+' sem flag identificada');
   }
+  if(progress?.visibleItemObjects){
+    const it=progress.visibleItemObjects;
+    rows.push('📦 Removidos do mapa: '+it.removedFromMapConfirmed+
+      ' / Não removidos: '+it.notRemovedConfirmed+
+      ' / Desconhecidos: '+it.unknownFlag+
+      ' (removido NÃO comprova recolha)');
+  }
+  const hidden=state.romHiddenItems;
+  if(hidden?.verified){
+    const info=progress?.hiddenItems;
+    rows.push('🔍 ITENS OCULTOS DA ROM ('+hidden.items.length+
+      ') — '+(info?.obtainedConfirmed??0)+' obtidos / '+
+      (info?.stillAvailableConfirmed??0)+' por apanhar:');
+    for(const item of hidden.items.slice(0,15)){
+      const manual=(state.areaInfo?.hiddenItems||[]).find(m=>m.x===item.x&&m.y===item.y);
+      rows.push('• '+(manual?.name||'Item oculto (tipo por descodificar)')+
+        ' X:'+item.x+' Y:'+item.y+' — '+
+        (item.isCollected?'✅ RECOLHIDO (bit RAM)':'🎯 AINDA DISPONÍVEL (bit RAM)')+
+        (manual?.name?' • nome de referência não verificado na ROM':''));
+    }
+  }else{
+    rows.push('🔍 Itens ocultos: sem índice ROM/bitmap RAM confirmado');
+  }
+  if(!validatedBattles)
+    rows.push('⚠️ Batalhas: este mapa não tem todos os cabeçalhos validados; resultado desconhecido.');
   body.textContent=rows.join('\n');
 }
 
