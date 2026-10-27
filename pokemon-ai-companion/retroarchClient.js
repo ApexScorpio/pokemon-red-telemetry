@@ -20,6 +20,7 @@ const CANONICAL_LEARNSETS = require('./data/gen1CanonicalLearnsets.json').byDex;
 const CANONICAL_WILD = require('./data/gen1CanonicalWildEncounters.json').maps;
 const CANONICAL_MAPS = require('./data/gen1CanonicalMaps.json').maps;
 const CANONICAL_IDS = require('./data/gen1CanonicalIds.json').internalPokemonIds;
+const CANONICAL_TRADES = require('./data/gen1NpcTrades.json').trades;
 
 function getCompass(playerCoords, targetX, targetY) {
   if (!playerCoords || targetX === undefined || targetY === undefined || targetX === null || targetY === null) {
@@ -1285,6 +1286,15 @@ class RetroArchClient extends EventEmitter {
       name: areaData.name,
       wildSource: wildFromCurrentRam ? 'RAM (tabela de encontros atual)' : 'Nenhum encontro de relva confirmado na RAM',
       canonicalWildReference,
+      canonicalNpcTrades: CANONICAL_TRADES.filter(t => t.available && t.mapId === this.latestState.mapId).map(t => ({
+        ...t,
+        confirmedCompleted: null,
+        completionSource: 'NÃO CONFIRMADO: sem flag de troca validada',
+        offerRegisteredInPokedex: ownedDexSet.has(t.give.dex),
+        offerInParty: party.some(p => p.dex === t.give.dex),
+        offerInCurrentPcBox: (this.latestState.pcBox?.pokemon || []).some(p => p.dex === t.give.dex),
+        otherPcBoxesInspected: false
+      })),
       wild: effectiveWild.map(w => ({
         ...w,
         isCaughtInDex: ownedDexSet.has(w.dex),
