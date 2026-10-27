@@ -41,7 +41,15 @@ function decodeToggleables(flagHex,listHex){
  return {verified:true,entries,source:'wToggleableObjectList/wToggleableObjectFlags'};
 }
 function fromKnownRom(profile){
+ // ROMs Gen I novas, desde que a tabela de eventos ocultos tenha sido
+ // efetivamente descodificada e vinculada ao hash do perfil.
+ const scripts=profile?.world?.hiddenItemScripts;
  const hash=profile?.hash?.sha256?.toLowerCase();
+ if(scripts?.valid && scripts.sha256?.toLowerCase()===hash &&
+   Array.isArray(scripts.items)&&scripts.items.length===54 &&
+   scripts.items.every((x,i)=>x.hiddenIndex===i&&
+     Number.isInteger(x.itemId)&&x.itemId>=1&&x.itemId<=0x53))
+   return scripts.items.map(({hiddenIndex,mapId,y,x,itemId})=>({hiddenIndex,mapId,y,x,itemId}));
  if(!ROM_COORDS[hash])return null;
  const bytes=Buffer.from(HIDDEN_ITEM_COORDINATES_B64,'base64');
  if(bytes.length!==163||bytes[162]!==255)return null;
@@ -59,12 +67,13 @@ function decodeHiddenItems(profile,mapId,hiddenHex,itemNames=null){
  if(!coords||!flags)return {verified:false,items:[],
     reason:!coords?'ROM não registada nesta tabela de itens ocultos':
       'Flags RAM D6F0 incompletas'};
- if(HIDDEN_ITEM_IDS_HEX.length!==108)return {verified:false,items:[],
-     reason:'IDs de itens ocultos corrompidos'};
+ if(coords.some(x=>!Number.isInteger(x.itemId))&&HIDDEN_ITEM_IDS_HEX.length!==108)
+  return {verified:false,items:[],reason:'IDs de itens ocultos corrompidos'};
  return {verified:true,mapId,
   source:'ROM HiddenItemCoords + ROM HiddenEventScripts + RAM wObtainedHiddenItemsFlags',
   items:coords.filter(x=>x.mapId===mapId).map(x=>{
-    const itemId=parseInt(HIDDEN_ITEM_IDS_HEX.slice(x.hiddenIndex*2,x.hiddenIndex*2+2),16);
+    const itemId=Number.isInteger(x.itemId)?x.itemId:
+      parseInt(HIDDEN_ITEM_IDS_HEX.slice(x.hiddenIndex*2,x.hiddenIndex*2+2),16);
     return {...x,itemId,
       itemName:itemNames?.[itemId]||'Item #'+itemId,
       itemNameSource:itemNames?.[itemId]?
