@@ -455,3 +455,12 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 1. Inspecionados os trechos reais de `retroarchClient.js`, `data/pokemonData.js`, `public/app.js` e do leitor UDP de memória. Confirmado que o código legado preenche HP, nível, stats e catch rate com valores de substituição e que `analyzeBattle` produz estimativas apresentadas de forma excessivamente confiante. A leitura de três blocos de combate é sequencial, não atómica.
 - 2. Publicado `pokemon-ai-companion/romBattleEvidence.js`, interpretador puro de três blocos ROM/RAM (255 bytes em CFE0, 30 em D014, 280 em CC20) com validação de comprimento, hex, HP, níveis, atributos, espécies, golpes e 12 bytes de estágios. Recusa amostras incoerentes; nunca deduz taxa de captura de um offset não certificado; declara `atomicSnapshotVerified:false` e `exactTurnMathReady:false` mesmo com os três blocos completos.
 - 3. Sem reiniciar, fechar ou alterar aplicações, credenciais, ROMs, saves, sessões ou backup Antigravity. Código apenas publicado no GitHub; integração em curso.
+
+### 2026-10-27 — Integração conservadora da leitura de combate
+
+- 4. `retroarchClient.js` passou a exigir `romBattleEvidence.js` e a validar a integridade dos três blocos antes de publicar um combate. Respostas UDP incompletas, bytes inválidos, estágios ou atributos incoerentes deixam `battle=null` e expõem o motivo em `battleReadStatus`.
+- 5. Se a flag de combate não vier da RAM, a interface deixa de manter o estado anterior como se estivesse confirmado; a deteção de fim de combate só é registada quando a flag foi efetivamente lida.
+- 6. Removidos os valores inventados 20/5/150 para HP, nível, stats e taxa de captura das fichas de combate. O campo `catchRate` permanece `null` até existir um endereço comprovado. HP/nível/stats do combatente ativo passam a vir do bloco de batalha validado; os PP não inventam valores de recurso.
+- 7. Desativada a estratégia matemática antiga de `analyzeBattle` para os combates reais até existir motor completo e amostra apropriada. A telemetria distingue dados do combate de prova de cálculo exato, marcada `false`. Mantida a rota explícita de simulação separada do combate real. Nenhuma ROM, save, sessão ou perfil Antigravity alterados.
+
+**Limites:** leitura de três blocos é sequencial, não prova atomicidade do turno. Não houve ainda teste ponta a ponta com RetroArch/SameBoy; a interface antiga também precisa limpar campos apresentados de estratégias anteriores.
