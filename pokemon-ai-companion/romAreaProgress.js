@@ -19,6 +19,8 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
  const gatesClosed=trainers.filter(x=>x.eventFlagSet===true).length;
  const gatesOpen=trainers.filter(x=>x.eventFlagSet===false).length;
  const trainerUnknown=trainers.length-gatesClosed-gatesOpen;
+ const scriptedVictories=trainers.filter(t=>t.victoryRecorded===true).length;
+ const scriptedBattleOccurrences=trainers.filter(t=>t.battleWasPlayed===true).length;
  const staticDone=stationary.filter(x=>x.encounterGateClosed===true).length;
  const staticOpen=stationary.filter(x=>x.encounterGateClosed===false).length;
  const removed=items.filter(x=>x.removedFromMap===true).length;
@@ -37,8 +39,10 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
    },
    trainers:{
      totalInRom:trainers.length,
-     defeatedConfirmed:null, // A flag pode ser ativada por script, sem batalha individual
+     defeatedConfirmed:null, // total geral não comprovado; preservar separação
      pendingConfirmed:null,
+     scriptedVictoriesConfirmed:scriptedVictories,
+     scriptedBattlesPlayedConfirmed:scriptedBattleOccurrences,
      eventGatesClosed:gatesClosed,eventGatesOpen:gatesOpen,
      eventGatesUnknown:trainerUnknown,
      statusUnknown:trainerUnknown,
