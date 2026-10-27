@@ -7,7 +7,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const zlib=require('node:zlib');
 
-const MAX_DIR_ENTRIES=500, MAX_ZIP_SIZE=32*1024*1024;
+const MAX_DIR_ENTRIES=5000, MAX_ZIP_SIZE=32*1024*1024;
 const MAX_JSON_UNCOMPRESSED=4*1024*1024, MAX_PROFILES=32;
 const ROM_EXT=/\.(?:gb|gbc)$/i;
 const PROFILE_NAME=/^pokemon_(?:red|blue|green)(?:_international.*?)?_rom_profile\.json$/i;
