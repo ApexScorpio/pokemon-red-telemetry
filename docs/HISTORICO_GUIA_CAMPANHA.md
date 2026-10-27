@@ -401,3 +401,15 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 2. Cada uma das versões Red, Blue e Green International v1.2.1 devolveu **334 objetos de treinador humano em 71 mapas**, **12 Pokémon de encontro fixo** e **22 IDs sem cabeçalho normal validável**. Os três resultados coincidem.
 - 3. Esta contagem valida o universo de objetos ROM, mas não prova que todos tenham flags de vitória, estejam acessíveis naquele momento ou já tenham sido vencidos. O mapeamento de flags e a estabilidade da amostra RAM são validados separadamente.
 - 4. Nenhum binário original foi alterado ou enviado ao GitHub; não se criaram ficheiros de teste permanentes nem se tocou no equipamento do jogador.
+
+
+## 2026-10-27 — Objetivo de mapeamento ROM a 100% e primeiro cálculo rigoroso de precisão
+
+- 1. Revistos os módulos reais da aplicação (`gen1EngineMath.js`, `romCaptureOpportunities.js`, `aiAdvisor.js`) e o plano existente de descodificação. Confirmado que a matemática completa do combate ainda não estava implementada; pesos de encontros condicionais já eram apresentados sem confundir taxa de ativação com percentagem.
+- 2. Consultada a desmontagem primária pret/pokered: `engine/battle/core.asm` (`CalcHitChance`/`MoveHitTest`) e `data/battle/stat_modifiers.asm`. Confirmados os dois arredondamentos intermédios, a reflexão de evasão `14 - estágio`, a saturação a 255 e a comparação `R < limiar`.
+- 3. Implementado, **isoladamente**, `pokemon-ai-companion/gen1StandardHitChance.js`: exige byte de precisão e tabela de rácios da ROM, estágios da RAM e evidência explícita da identidade ROM/consistência da RAM/aplicabilidade do teste. Não faz aconselhamento nem altera runtime atual; não abrange OHKO, X Accuracy, exceções, crítico ou dano.
+- 4. Criado `tests/gen1StandardHitChance.test.js`; no ambiente de desenvolvimento Node v22.16.0 executados sete cenários isolados e aprovados (255/256, 216/256, evasão, truncamentos, saturação e falha controlada). A execução do conjunto completo de testes e o confronto com o SameBoy/iPhone continuam pendentes.
+- 5. Criado `docs/REQUISITOS_ROM_COMPLETA_E_MECANICAS_GEN1.md` com inventário de mundo, Pokémon, itens ocultos, eventos, encontros/capturas, batalhas, experiências, evoluções, trocas, probabilidades e metas verificáveis por versão. A cobertura sem inventário independente permanece INDETERMINADA: não declarar 100% só por ler os bytes da ROM.
+- 6. Não alterados ROMs, saves, aplicações/processos ou sessões do utilizador; nenhuma alteração no disco C: ou na sessão Antigravity. Não houve alteração visual: screenshots do Companion deverão ser capturados e analisados na futura fase de UI.
+
+**Pendente prioritário:** proveniência e descodificação em runtime da precisão e rácios por ROM; cobertura de fórmulas completas de combate/dano/captura/encontro e restantes áreas; integração real com telemetria, bateria de regressões e validação SameBoy/iPhone. Este commit é uma fundação isolada, não certificação de 100%.
