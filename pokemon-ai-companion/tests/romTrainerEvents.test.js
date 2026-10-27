@@ -36,7 +36,19 @@ test('Route 6: seis bits concretos extraídos dos cabeçalhos auditados',()=>{
 test('recusar jogo, mapa ou RAM que não constam das associações auditadas',()=>{
  const flags=Array(320).fill('00');
  assert.equal(trainerFlagsForCurrentMap(null,map,flags).verified,false);
- assert.equal(trainerFlagsForCurrentMap(profile,{...map,mapId:99},flags).verified,false);
+ assert.equal(trainerFlagsForCurrentMap(profile,{...map,mapId:0},flags).verified,false);
  assert.equal(trainerFlagsForCurrentMap(profile,map,flags.slice(2)).verified,false);
  assert.equal(trainerFlagsForCurrentMap(profile,{...map,objects:{objects:[{kind:'trainer'}]}},flags).verified,false);
+});
+
+
+test('Route 24: primeiro NPC é um script especial, os outros 6 têm flags válidas',()=>{
+ const flags=Array(320).fill('00'),objects=Array.from({length:7},()=>({kind:'trainer'}));
+ const result=trainerFlagsForCurrentMap(profile,{valid:true,mapId:35,objects:{objects}},flags);
+ assert.equal(result.verified,true);
+ assert.equal(result.fullyMapped,false);
+ assert.equal(result.unknownTrainerCount,1);
+ assert.deepEqual(result.entries.map(x=>x.objectOrdinal),[2,3,4,5,6,7]);
+ assert.deepEqual(result.entries.map(x=>x.eventBitIndex),[1346,1347,1348,1349,1350,1351]);
+ assert.ok(result.entries.every(x=>x.defeated===null));
 });
