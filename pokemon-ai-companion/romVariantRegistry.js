@@ -3,6 +3,7 @@
 // Só leitura local. Offsets encontrados e validados por estrutura, nunca fixos.
 const fs=require('node:fs'), crypto=require('node:crypto'), path=require('node:path');
 const {inspectWorld}=require('./romWorldData');
+const {extractHiddenItemsFromRom}=require('./romHiddenEvents');
 const {spritePngBase64}=require('./romSpriteDecoder');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
@@ -157,6 +158,7 @@ function inspectRom(file){
     origin:'ROM: GrowthRateTable (4 bytes por grupo)'};
  });
  const world=inspectWorld(b);
+ world.hiddenItemScripts=extractHiddenItemsFromRom(b);
  const species=[],hasCore=offsets.names!==null&&offsets.dexOrder!==null&&offsets.baseStats!==null;
  if(hasCore)for(let id=1;id<=INTERNAL;id++){
   const dex=b[offsets.dexOrder+id-1],name=decode(b.subarray(offsets.names+(id-1)*10,offsets.names+id*10));
