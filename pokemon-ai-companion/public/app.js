@@ -364,7 +364,13 @@ function renderRomAreaEvidence(state) {
       ' • visibilidade por confirmar';
   const removedStatus=i=>i.removedFromMap===true?' • removido do mapa (RAM)':
     i.removedFromMap===false?' • não removido do mapa (RAM)':' • remoção desconhecida';
-  const wonStatus=t=>t.eventFlagSet===true?'🔒 COMBATE DESATIVADO (FLAG RAM)':
+  const wonStatus=t=>t.victoryRecorded===true?
+    '✅ VITÓRIA ASSINALADA PELO SCRIPT + RAM':
+    t.battleWasPlayed===true?
+    '📜 BATALHA REALIZADA (RESULTADO NÃO REGISTADO)':
+    t.victoryRecorded===false?
+    '⚔️ SEM VITÓRIA REGISTADA NESTA FLAG':
+    t.eventFlagSet===true?'🔒 COMBATE DESATIVADO (FLAG RAM)':
     t.eventFlagSet===false?'⚔️ FLAG AINDA NÃO ATIVADA (RAM)':'❔ FLAG DESCONHECIDA';
   const rows=[
     '📦 OBJETOS DE ITEM NA ROM ('+evidence.items.length+')',
@@ -398,7 +404,15 @@ function renderRomAreaEvidence(state) {
     rows.push('📊 Flags de treinadores: '+(tr.eventGatesClosed??0)+
       ' desativadas / '+(tr.eventGatesOpen??0)+
       ' por ativar / '+tr.statusUnknown+' sem associação');
-    rows.push('ℹ️ Flag desativada não prova que combateste esse treinador: scripts podem ativá-la.');
+    rows.push('✅ Vitórias especiais com script de vitória comprovado: '+
+      (tr.scriptedVictoriesConfirmed??0)+
+      ' · Batalhas do laboratório de Oak registadas: '+
+      (tr.scriptedBattlesPlayedConfirmed??0));
+    rows.push('ℹ️ Outras flags desativadas não provam que combateste esse treinador: scripts podem ativá-las.');
+  }
+  for(const event of state.romTrainerFlags?.contextEvents||[]){
+    rows.push('📜 '+event.label+': '+(event.eventFlagSet?'assinalado na RAM':'não assinalado')+
+      ' — não prova a vitória da batalha');
   }
   if(progress?.visibleItemObjects){
     const it=progress.visibleItemObjects;
