@@ -79,8 +79,22 @@ function extractHiddenItemsFromRom(rom){
       coins.push({hiddenIndex:index,mapId,y,x,coinAmount:e.itemId-0x3b});
     }
     if(coinValid){
+      // Instruções comprovadas no executável das três ROMs: cp 40 / jr z
+      // para a ramificação que atribui 20 (bug original Gen I).
+      // Não aplicar esta peculiaridade num hack com código diferente.
+      const handlerOffset=coinHandler.bank*BANK+coinHandler.cpuAddress-0x4000;
+      const knownBugSignature=Buffer.from([0xfe,0x28,0x28,0x08,0x18,0x12,0x3e,0x10,0xe0,0xa1,
+        0x18,0x10,0x3e,0x20,0xe0,0xa1]);
+      const executable=rom.subarray(handlerOffset,Math.min(rom.length,handlerOffset+110));
+      const engine40Gives20=executable.indexOf(knownBugSignature)!==-1;
+      for(const c of coins){
+        c.actualAwardIfClaimed=c.coinAmount===40?
+          (engine40Gives20?20:null):c.coinAmount;
+      }
       hiddenCoins={valid:true,coordinateTable:address(coinAt),
-        handler:coinHandler,coins};
+        handler:coinHandler,coins,
+        fortyCoinBranchVerified:engine40Gives20,
+        awardSemantics:'Quantidade prevista pela rotina, sujeita a Coin Case/limite de moedas'};
       break;
     }
    }
