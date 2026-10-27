@@ -183,3 +183,20 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 11. As ROMs, saves, credenciais e a sessão local do utilizador não foram alterados. O histórico mantém entradas anteriores sem apagá-las.
 
 **Próxima prioridade:** extrair o mapeamento script ROM → flag RAM de cada objeto e testar diferenças entre Red/Blue/Green antes de atribuir estados recolhido/derrotado definitivos.
+
+
+## 2026-10-27 — Fase 5: progresso da zona com flags ROM + RAM efetivas
+
+- 1. Inspecionado o estado atual do código no repositório, incluindo retroarchClient.js, romAreaEvidence.js, romWorldData.js, exact_events.json e pokered.sym.
+- 2. Confirmadas pela desmontagem original pret/pokered as estruturas D5A6 (32 bytes de flags de objetos removíveis), D5CE (lista local de 34 bytes), D6F0 (14 bytes de flags de itens ocultos) e D747 (320 bytes de eventos).
+- 3. Localizada a tabela real HiddenItemCoords nas três ROMs enviadas: Red 0x766B8, Blue 0x766B9 e Green International v1.2.1 0x766BA; comparadas 54 entradas com terminador 0xFF; todas as entradas são equivalentes nos três ficheiros.
+- 4. Implementado romEventState.js, com validação de bytes hexadecimais e terminação da lista RAM, leitura de flags de remoção por sprite e bitmap de itens ocultos indexado pelos 54 tripletos ROM.
+- 5. Validado por execução isolada que o item oculto Route 4 X40/Y3 é o índice 53 (byte 6, bit 5) e que cada flag deriva da ROM auditada e da RAM, não da mochila; comprovado que ROMs com hash desconhecido são recusadas.
+- 6. Atualizado romAreaEvidence.js para anotar flag e remoção dos objetos sem transformar ausência de sprite ou remoção em recolha/vitória.
+- 7. Atualizado retroarchClient.js para apresentar itens ocultos obtidos/pendentes, recolher os objetos de item efetivamente definidos na ROM e não usar os toggleIndex manuais como prova de que o jogador apanhou um exemplar específico.
+- 8. Neutralizados os campos de resultado das batalhas do catálogo manual até haver associação auditada dos cabeçalhos dos treinadores às event flags da ROM. Não se afirma que o treinador foi vencido ou que a luta expirou apenas porque consta de uma tabela manual.
+- 9. Criado romAreaProgress.js com resumos de itens ocultos comprovados, objetos removidos e treinadores de estado ainda desconhecido. Criados testes romEventState.test.js e romAreaProgress.test.js.
+- 10. Verificada a sintaxe do cliente RetroArch e dos módulos/testes novos. Executados testes isolados em JavaScript, incluindo a ligação ROM/RAM e a separação entre recolha, remoção e derrota; passaram. Não foi executado teste de ponta a ponta contra o iPhone nesta fase.
+- 11. Criado docs/PROGRESSO_ZONA_FLAGS_ROM_RAM_V5.md com o detalhe técnico e limitações pendentes. Não foram editados saves, binários ROM, sessões Antigravity, credenciais ou ficheiros no C: do utilizador.
+
+**Pendente:** descodificar e validar a correspondência entre cada treinador da ROM e a sua flag de derrota, os scripts dos NPCs e os identificadores de cada item oculto. Manter estados desconhecidos até haver prova.
