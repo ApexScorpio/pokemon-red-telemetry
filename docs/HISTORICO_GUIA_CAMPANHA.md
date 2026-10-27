@@ -286,3 +286,21 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 6. Executados dois testes isolados em JavaScript: Oddish com 102/256 de peso é mostrado a 39,84%, nos níveis 13 e 15, visto mas ainda não capturado; ROM sem correspondência não produz factos de captura. Passaram.
 - 7. Criado `tests/romCaptureOpportunities.test.js` com estes casos reproduzíveis.
 - 8. Não foram modificados saves, ROMs originais, sessões, ficheiros do PC ou o disco C:. Ainda não foi feito teste ponta a ponta no iPhone.
+
+
+## 2026-10-27 — Fase 6: distinguir treinadores humanos de Pokémon fixos e ler eventos de líderes
+
+- 1. Reabertos os três binários ROM reais enviados (Red, Blue, Green International 1.2.1), os módulos romWorldData.js, romTrainerEvents.js e as provas existentes no GitHub.
+- 2. Confirmado pelo source original pret/pokered que o campo object_event de batalha pode conter espécie Pokémon ou classe de treinador. OPP_ID_OFFSET é 200. Encontrados 346 objetos com formato de batalha, dos quais 12 são Pokémon fixos e 334 humanos.
+- 3. Auditados diretamente nos 3 binários os scripts especiais dos oito líderes dos ginásios, 7 treinadores de Cinnabar, Giovanni do esconderijo Rocket, Super Nerd do fóssil em Mt Moon e Karate Master no Dojo. Somam 18 índices de flags adicionais. Implementado o catálogo restrito a SHA-256 das 3 ROMs em romTrainerEvents.js.
+- 4. Corrigido romWorldData.js para classificar espécie fixa como wildPokemon, não trainer, e extrair a associação do cabeçalho estático da ROM. Encontradas as 12 flags: Power Plant 1121..1129, Articuno 2522, Moltres 1342, Mewtwo 2241.
+- 5. Corrigido romTrainerEvents.js para excluir das batalhas humanas os dois encontros de Moltres e Mewtwo anteriormente presentes no atlas de 312 cabeçalhos. Resultado atual: 310 humanos convencionais + 18 casos especiais = 328 associações para 334 humanos (6 casos por auditar), além das 12 flags de Pokémon fixos.
+- 6. Implementado romStaticEncounterEvents.js: estado específico de encontros fixos lido a partir da ROM atual quando o perfil foi analisado localmente, ou das 3 ROMs com hash exato em perfis JSON antigos, sempre cruzando wEventFlags. O resultado não afirma captura nem derrota individual.
+- 7. Expandido romAreaEvidence.js, romAreaProgress.js, retroarchClient.js e public/app.js para apresentar separadamente Pokémon fixos, espécies, níveis, posição e flag de evento. Captured permanece null até existir evidência histórica.
+- 8. Criados romStaticEncounterEvents.test.js e romSpecialTrainerEvents.test.js; corrigidos fixtures e expectativas de romAreaEvidence.test.js, romTrainerEvents.test.js e romWorldData.test.js para classes de treinadores >=201, 310 cabeçalhos convencionais, 12 Pokémon fixos e 18 scripts especiais.
+- 9. Executada verificação direta em Python dos 12 cabeçalhos de encontros fixos nos três binários; nenhum falhou. Validados os bits 1128 e 1129 (armazenam offsets 8/9), bem como as 18 verificações de script de líderes e especiais.
+- 10. Executado teste isolado em JavaScript do código atualizado com perfil de ROM JSON antigo: mapa Power Plant revelou 9 Pokémon fixos, 0 treinadores humanos, 1 flag encerrada e nenhuma captura declarada; passou. Verificada a sintaxe dos módulos alterados.
+- 11. Documentada a investigação e as limitações em docs/AUDITORIA_BATALHAS_E_ENCONTROS_FIXOS_V6.md. Os testes npm test integrais e a execução contra o SameBoy/iPhone ainda não foram executados nesta sessão.
+- 12. Nenhum ficheiro do utilizador em C:, save, ROM, processo, token ou sessão Antigravity foi alterado. Só foram criados/alterados ficheiros de código e documentação no repositório GitHub e scripts temporários no ambiente de análise.
+
+**Pendentes:** Cerulean Rival, Rocket da Route 24, Rival no Oak Lab, Rival na S.S. Anne, Rocket do Game Corner e Giovanni na Silph Co 11F: são 6 casos de script especial, sem associação segura nesta fase. É proibido concluir vitória apenas pela presença/ausência do NPC ou por um bit que os scripts possam ativar.
