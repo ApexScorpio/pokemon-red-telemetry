@@ -220,7 +220,7 @@ function formatTelemetryMarkdown(state) {
       }
       if (strat.catchChance && state.battleType === 'Wild') {
         md += `\n- **Probabilidade de Captura com HP Atual:** Poké Ball: **${strat.catchChance.pokeball}%** | Great Ball: **${strat.catchChance.greatball}%** | Ultra Ball: **${strat.catchChance.ultraball}%**\n`;
-        md += `  - *Se adormeceres o inimigo:* **~${strat.catchChance.withSleep || 45}%** | *Com HP no vermelho:* **~${strat.catchChance.withRedHp || 60}%**\n`;
+        md += `  - *Com sono:* **${strat.catchChance.withSleep ?? 'não calculado'}%** | *HP no vermelho:* **${strat.catchChance.withRedHp ?? 'não calculado'}%** (estimativas, não leituras da RAM)\n`;
       }
     }
   } else {
@@ -257,12 +257,14 @@ function formatTelemetryMarkdown(state) {
         md += `- **Stat Experience (0–65.535):** Atk: ${p.statExp.attack} | Def: ${p.statExp.defense} | Spd: ${p.statExp.speed} | Spc: ${p.statExp.special} | HP: ${p.statExp.hp}\n`;
       }
       if (p.exp) {
-        md += `- **Experiência:** ${p.exp.current.toLocaleString()} EXP (Progresso: ${p.exp.percent}%, faltam ${p.exp.needed > 0 ? `${p.exp.needed} p/ Lv.${p.level + 1}` : '0'})\n`;
+        md += p.exp.current !== null && p.exp.needed !== null
+          ? `- **Experiência:** ${p.exp.current.toLocaleString()} EXP (Progresso: ${p.exp.percent}%, faltam ${p.exp.needed} p/ Lv.${Math.min(100,p.level + 1)})\n`
+          : '- **Experiência:** ⚠️ Curva de crescimento não validada; previsão indisponível.\n';
       }
       if (p.moves && p.moves.length > 0) {
         md += `- **Golpes & PPs:**\n`;
         p.moves.forEach(m => {
-          md += `  - **${m.name}** (${m.type}) — PP: ${m.pp} | Poder: ${m.power || '--'} | Precisão: ${m.accuracy || 100}%\n`;
+          md += `  - **${m.name}** (${m.type || 'Desconhecido'}) — PP: ${m.pp ?? '?'} | Poder: ${m.power ?? '?'} | Precisão: ${m.accuracy === null || m.accuracy === undefined ? '?' : m.accuracy}%\n`;
         });
       }
       md += `\n`;
@@ -279,6 +281,32 @@ function formatTelemetryMarkdown(state) {
       md += `- **${it.name}** x${it.qty}\n`;
     });
     md += `\n`;
+  }
+
+  // Itens que estão no PC pessoal, não na mochila.
+  const stored = state.pcItems || [];
+  md += `## 💻 4.1. Itens guardados no PC (RAM $D53A; ${stored.length}/50 slots)\n`;
+  if (state.pcItemsCapacity) {
+    if (stored.length === 0) md += '- PC de itens vazio (leitura validada).\n';
+    stored.forEach(it => { md += `- **${it.name}** x${it.qty} • PC, não mochila\n`; });
+  } else {
+    md += '- ⚠️ Itens guardados no PC não disponíveis na leitura atual.\n';
+  }
+  md += '\n';
+
+  // Daycare: nível calculado pela experiência atual + taxa de crescimento verificada.
+  const daycare = state.daycare || {};
+  md += '## 🏡 4.2. Daycare — Rota 5 (RAM $DA48/$DA5F)\n';
+  if (daycare.readFromRam && !daycare.occupied) {
+    md += '- Vazio, confirmado na RAM.\n\n';
+  } else if (daycare.occupied) {
+    md += `- **${daycare.name}**: nível depositado ${daycare.depositedLevel ?? '?'}; nível calculado agora ${daycare.currentLevel ?? '?'}; experiência bruta ${daycare.totalExpNow ?? '?'}.\n`;
+    md += '- O nível atual é **calculado**, não é o byte do nível de depósito.\n';
+    if (daycare.nextMilestone) md += `- Próximo marco: **${daycare.nextMilestone.symbol}** no nível ${daycare.nextMilestone.level}. Objetivo de levantamento: nível **${daycare.pickupAtLevel}**. Passos estimados até lá: **${daycare.stepsUntilPickupEstimate}**.\n`;
+    if (daycare.pickupAlert) md += `- 🚨 **${daycare.pickupAlert}**\n`;
+    md += '\n';
+  } else {
+    md += '- ⚠️ Estado ainda não confirmado na RAM.\n\n';
   }
 
   // Efeitos de Campo e Itens de Rota (Live RAM)
@@ -300,7 +328,7 @@ function formatTelemetryMarkdown(state) {
         md += `  - **⚠️ Podem Aparecer (Nível >= líder):** ${r.bypassSlots.map(s => `${s.name} Nv.${s.level} (${s.chance}%)`).join(', ')}\n`;
       }
     } else {
-      md += `  - **Área Segura:** Sem encontros selvagens de relva nesta secção do mapa.\n`;
+      md += `  - **Sem encontros de relva confirmados na RAM** (pode haver pesca, Surf ou outros encontros).\n`;
     }
     md += `- **Repelentes na Mochila:** Repel: \`${r.inBag?.regular || 0}\` | Super Repel: \`${r.inBag?.super || 0}\` | Max Repel: \`${r.inBag?.max || 0}\` (Total: \`${r.inBag?.total || 0}\`)\n`;
     md += `- **Escape Rope ($D158):** \`${e.count}\` disponíveis${e.isUsableHere ? ' • **Área Compatível (Caverna/Dungeon)**' : ' • Exterior/Cidade'}\n\n`;
@@ -327,6 +355,25 @@ function formatTelemetryMarkdown(state) {
     md += `- **Espécies Registadas na Pokédex:** ${ownedNames.join(', ')}\n`;
   }
   md += `\n`;
+
+  // Referências da ROM são factos estáticos e nunca provas de conclusão.
+  if (area.canonicalWildReference) {
+    const w = area.canonicalWildReference;
+    md += `### 📊 Encontros da ROM na área (referência ${w.variant.toUpperCase()}, não leitura do save)\n`;
+    for (const k of ['grass', 'water']) {
+      if (w[k]?.length) {
+        md += `- **${k === 'grass' ? 'Relva/caverna' : 'Água (Surf)'}** • taxa bruta ${w.rateBytes?.[k] ?? '?'}; slots: ${w[k].map(x => `${x.species} Lv.${x.level} (${x.weight}/256 = ${x.chancePercent.toFixed(2)}%)`).join('; ')}\n`;
+      }
+    }
+    md += '\n';
+  }
+  if (area.canonicalNpcTrades?.length) {
+    md += '### 🤝 Trocas NPC nesta localização (tabela oficial; conclusão NÃO confirmada)\n';
+    area.canonicalNpcTrades.forEach(t => {
+      md += `- **${t.nickname}**: ${t.giveSymbol} ➜ ${t.receiveSymbol}; oferta na equipa: ${t.offerInParty ? 'sim' : 'não'}; nesta caixa PC: ${t.offerInCurrentPcBox ? 'sim' : 'não'}; outras caixas: **não verificadas**.\n`;
+    });
+    md += '\n';
+  }
 
   // 6. Pokémon no PC
   md += `## 💾 6. Pokémon no PC: APENAS a Caixa ${pc.boxNum} (${pc.count}/20) • Vagas nesta caixa: **${pc.freeSlots}**\n`;
@@ -358,7 +405,7 @@ function formatTelemetryMarkdown(state) {
   md += `## 🏆 7. Insígnias de Ginásio (8 Oficiais de Kanto)\n`;
   officialBadges.forEach((bDef, idx) => {
     const isGot = badges.some(b => b.name && b.name.includes(bDef.name) && b.obtained);
-    const statusMark = isGot ? '✅ [CONQUISTADA]' : idx === 0 ? '⚔️ [POR CONQUISTAR - Faz Agora!]' : '⏳ [BLOQUEADA]';
+    const statusMark = isGot ? '✅ [CONQUISTADA]' : '⚪ [AINDA NÃO CONQUISTADA — acesso depende do progresso]';
     md += `- **${idx + 1}. ${bDef.name}** (${bDef.city} • ${bDef.leader} • Tipo: ${bDef.type}): ${statusMark}\n`;
   });
   md += `\n`;
