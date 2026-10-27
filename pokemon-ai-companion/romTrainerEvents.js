@@ -80,15 +80,41 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
  // Perfis novos são produzidos diretamente da ROM que está no PC.
  // Perfis anteriores (v4) usam apenas atlas auditado por SHA-256 exato.
  let expected,source;
- if(Array.isArray(romMap.trainerEvents)&&
+ const audited=ROM_HASHES.has(sha);
+ const canonical=audited ? ATLAS.get(mapId) : null;
+ const fromRom=Array.isArray(romMap.trainerEvents)&&
     profile?.world?.maps?.trainerEventsVerified>0 &&
     profile?.world?.maps?.data?.[mapId]?.mapId===mapId &&
-    /^[0-9a-f]{64}$/.test(sha||'')){
-   expected=new Map(romMap.trainerEvents.map(v=>[v.objectOrdinal,v.eventBitIndex]));
-   source='ROM_PERFIL_LOCAL_TEXTO_CABEÇALHO';
- }else if(ROM_HASHES.has(sha)&&ATLAS.has(mapId)){
-   expected=new Map(ATLAS.get(mapId));
-   source='312_CABECALHOS_VALIDOS_NAS_3_ROMS';
+    /^[0-9a-f]{64}$/.test(sha||'');
+ if(fromRom){
+   // Os perfis da ROM carregada nunca devem sobrepor os 312 registros
+   // independentes auditados das três ROMs sem serem confrontados.
+   expected=new Map();
+   for(const row of romMap.trainerEvents){
+     if(!Number.isInteger(row.objectOrdinal)||row.objectOrdinal<1||
+        row.objectOrdinal>objects.length||
+        !Number.isInteger(row.eventBitIndex)||row.eventBitIndex<0||
+        row.eventBitIndex>=2560||expected.has(row.objectOrdinal))
+       return {verified:false,source:'ROM_CABEÇALHO_INVALIDO_OU_DUPLICADO',entries:[]};
+     expected.set(row.objectOrdinal,row.eventBitIndex);
+   }
+   if(canonical){
+     for(const [ordinal,bit] of canonical){
+       const obj=objects[ordinal-1];
+       const human=obj?.kind==='trainer'&&
+         Number.isInteger(obj.trainerClassOrItemId)&&
+         obj.trainerClassOrItemId>=201;
+       if(!human)continue; // Um Pokémon fixo não é um treinador humano.
+       if(expected.has(ordinal)&&expected.get(ordinal)!==bit)
+         return {verified:false,source:'CONFLITO_ATLAS_VS_CABECALHO_ROM',entries:[]};
+       if(!expected.has(ordinal))expected.set(ordinal,bit);
+     }
+   }
+   source=audited?'ROM_LOCAL + ATLAS_SHA256_COMPARADOS':
+     'ROM_PERFIL_LOCAL_TEXTO_CABEÇALHO';
+ }else if(canonical){
+   expected=new Map(canonical);
+   source='ATLAS_312_CABECALHOS_AUDITADOS_3_ROMS';
  }else{
    expected=new Map();
    source='SEM_CABECALHO_TREINADOR_NORMAL';
