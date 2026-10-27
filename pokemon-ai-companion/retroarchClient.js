@@ -629,8 +629,13 @@ class RetroArchClient extends EventEmitter {
     this.latestState.trainerName = trainerName;
 
     // Número de Pokémon na Equipa ($D163, offset 11)
-    let partyCount = parseInt(blockPlayerParty[11], 16) || 0;
-    if (partyCount > 6) partyCount = 6;
+    const partyCount = parseInt(blockPlayerParty[11], 16);
+    if (!Number.isInteger(partyCount) || partyCount > 6) {
+      this.latestState.connected = false;
+      this.latestState.lastReadError = 'Contagem da equipa inválida: não aceitar ou cortar silenciosamente valores da RAM.';
+      this.emit('update', this.latestState);
+      return;
+    }
     this.latestState.partyCount = partyCount;
 
     // Espécies da Equipa ($D164, offset 12..18)
@@ -910,17 +915,35 @@ class RetroArchClient extends EventEmitter {
       const seconds = parseInt(blockBoxTime[4], 16);
       this.latestState.playTime = `${hours}h ${minutes}m ${seconds}s`;
 
-      boxCount = parseInt(blockBoxTime[64], 16) || 0;
+      boxCount = parseInt(blockBoxTime[64], 16);
+      if (!Number.isInteger(boxCount) || boxCount > 20) {
+        this.latestState.connected = false;
+        this.latestState.lastReadError = 'Contagem de Pokémon na caixa atual impossível (>20 ou inválida).';
+        this.emit('update', this.latestState);
+        return;
+      }
       const boxSpecies = [];
       for (let i = 0; i < Math.min(boxCount, 20); i++) {
         const spId = parseInt(blockBoxTime[65 + i], 16);
-        if (spId === 0xFF || !spId) break;
+        if (spId === 0xFF || !spId) {
+          this.latestState.connected = false;
+          this.latestState.lastReadError = 'ID do Pokémon no PC inválido na lista de espécies.';
+          this.emit('update', this.latestState);
+          return;
+        }
         const pk = INTERNAL_TO_POKEMON[spId] || { name: `Pokémon #${spId}`, dex: 0, types: [] };
         let level = null;
         let curHp = null;
         const moves = [];
         // $DA96 - $DA40 = 86. $DA95 é o marcador final da lista de espécies.
         const monOffset = 86 + i * 33;
+        const structSpeciesId = parseInt(blockBoxTime[monOffset], 16);
+        if (structSpeciesId !== spId) {
+          this.latestState.connected = false;
+          this.latestState.lastReadError = 'ID do Pokémon na estrutura PC não coincide com a lista: offset inválido.';
+          this.emit('update', this.latestState);
+          return;
+        }
         if (blockBoxTime.length >= monOffset + 12) {
           curHp = (parseInt(blockBoxTime[monOffset + 1], 16) << 8) | parseInt(blockBoxTime[monOffset + 2], 16);
           level = parseInt(blockBoxTime[monOffset + 3], 16) || null;
@@ -964,6 +987,12 @@ class RetroArchClient extends EventEmitter {
     // wDayCareMonBoxLevel=DA62, wDayCareMonMoves=DA67,
     // wDayCareMonExp=DA6D, wDayCareMonPP=DA7C.
     const daycareInUse = parseInt(blockBoxTime[8], 16);
+    if (daycareInUse !== 0 && daycareInUse !== 1) {
+      this.latestState.connected = false;
+      this.latestState.lastReadError = 'Flag do Daycare fora do intervalo esperado (0/1).';
+      this.emit('update', this.latestState);
+      return;
+    }
     if (daycareInUse === 1) {
       const off = 31; // DA5F - DA40
       const speciesId = parseInt(blockBoxTime[off], 16);
