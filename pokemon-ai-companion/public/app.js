@@ -407,7 +407,13 @@ function renderRomAreaEvidence(state) {
   if(coinEvidence?.verified&&coinEvidence.coins.length){
     rows.push('🪙 MOEDAS ESCONDIDAS — Game Corner ('+coinEvidence.coins.length+')');
     for(const coin of coinEvidence.coins){
-      rows.push('• '+coin.coinAmount+' moedas X:'+coin.x+' Y:'+coin.y+
+      const award=Number.isInteger(coin.actualAwardIfClaimed)?
+        coin.actualAwardIfClaimed+' moedas':
+        'valor efetivo não confirmado';
+      const quirk=Number.isInteger(coin.actualAwardIfClaimed)&&
+        coin.actualAwardIfClaimed!==coin.coinAmount?
+          ' (o script indica '+coin.coinAmount+', mas a rotina concede '+coin.actualAwardIfClaimed+')':'';
+      rows.push('• '+award+quirk+' X:'+coin.x+' Y:'+coin.y+
         ' — '+(coin.isCollected?'✅ RECOLHIDAS (RAM D6FE)':'🎯 POR RECOLHER (RAM D6FE)'));
     }
   }
