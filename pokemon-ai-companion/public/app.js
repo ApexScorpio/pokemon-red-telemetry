@@ -2206,7 +2206,7 @@ function renderBattle(battle, battleType) {
     renderStatChips(elPlayerStatMods, playerActive.stats, playerActive.statMods);
 
     // Matriz de Golpes com Dano Previsto (Min-Max), PP e Probabilidade de Crítico & Conselho de Captura
-    if (strategy && strategy.moves) {
+    if (strategy && strategy.moves && strategy.verified === true) {
       elPlayerBattleMoves.innerHTML = strategy.moves.map(m => {
         const isBest = strategy.bestMove && strategy.bestMove.id === m.id;
         const effClass = m.effectiveness >= 2 ? 'eff-super' : m.effectiveness < 1 ? 'eff-not' : 'eff-none';
@@ -2235,11 +2235,19 @@ function renderBattle(battle, battleType) {
           </div>
         `;
       }).join('');
+    } else {
+      // Não reaproveitar previsões de dano, críticos ou KO de turnos anteriores.
+      // Os nomes/PP são informação descritiva, NÃO previsões matemáticas.
+      elPlayerBattleMoves.textContent = (playerActive.moves || [])
+        .map(m => (typeof m === 'object' ? (m.name || 'Golpe sem nome validado') :
+          String(m)) + (typeof m === 'object' && Number.isInteger(m.pp) ?
+          ' • PP ' + m.pp : '')).join(' | ') ||
+        'Golpes indisponíveis na leitura atual';
     }
   }
 
   // Recomendações Estratégicas e Cálculo de Captura
-  if (strategy) {
+  if (strategy && strategy.verified === true) {
     elMatchupRatingText.textContent = strategy.matchupRating || 'EQUILIBRADO';
     if (strategy.bestMove) {
       const koNote = strategy.bestMove.hitsToKo === 1 ? ' • DERROTA GARANTIDA EM 1 GOLPE' : '';
@@ -2315,6 +2323,18 @@ function renderBattle(battle, battleType) {
     } else {
       elCatchCalculator.style.display = 'none';
     }
+  } else {
+    // Falta de provas da ROM/RAM: limpar por completo a estratégia anterior.
+    elMatchupRatingText.textContent = 'CÁLCULO NÃO CONFIRMADO';
+    elRecMoveTitle.textContent = 'Sem recomendação matemática validada';
+    elRecMoveDesc.textContent = battle.exactTurnMathReason ||
+      'Aguardar leituras e fórmulas completas do turno real.';
+    elTacticalAlerts.textContent =
+      'Dano, precisão, crítico, KO e captura não certificados neste turno.';
+    elCatchCalculator.style.display = 'none';
+    elChancePokeball.textContent = '--%';
+    elChanceGreatball.textContent = '--%';
+    elChanceUltraball.textContent = '--%';
   }
 }
 
