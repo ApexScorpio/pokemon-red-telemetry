@@ -327,3 +327,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 9. Ficheiros temporários de análise local apagados. Nenhuma ROM, save, credencial ou sessão do utilizador foi alterada; histórico anterior preservado.
 
 **Atenção:** equipa/níveis lidos da ROM não provam vitória. Flags de eventos podem indicar que o combate foi desativado por script, e não que foi ganho individualmente.
+
+
+### Adenda — exceção importante para as equipas do rival
+
+- 13. Verificada na fonte primária pret/pokered a existência de três formações alternativas por batalha de Rival1/Rival2/Rival3, dependentes do inicial e dos ramos dos scripts.
+- 14. Corrigido romTrainerParties.js: classes internas 225, 242 e 243 nunca devolvem uma equipa concreta como confirmada sem validar a variante escolhida; devolvem team=null, variantDependent=true e explicação.
+- 15. Atualizados romAreaEvidence.js e public/app.js para distinguir visualmente esta incerteza, sem alterar flags ou concluir derrotas.
+- 16. Alargados os testes com verificação de que o rival não recebe uma equipa suposta. A integração SameBoy/iPhone permanece sem teste de ponta a ponta.
