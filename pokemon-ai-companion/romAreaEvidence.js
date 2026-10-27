@@ -64,7 +64,9 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
     if (kind==='trainer'){
       const battle=trainerFlags?.find(x=>x.objectOrdinal===i+1);
       if(battle){
-        entry.defeated=battle.defeated;
+        entry.defeated=null; // Flag ativa não prova batalha efetivamente disputada
+        entry.battleGateClosed=battle.battleGateClosed;
+        entry.eventFlagSet=battle.eventFlagSet;
         entry.eventBitIndex=battle.eventBitIndex;
         entry.completionSource=battle.source;
       }
