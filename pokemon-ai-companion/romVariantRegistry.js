@@ -115,6 +115,13 @@ function inspectRom(file){
  const offsets={names:findNames(b),dexOrder:findDex(b),baseStats:findStats(b),growthRates:findGrowth(b)};
  const evos=findEvos(b,offsets.baseStats),moves=findMoveNames(b);
  offsets.evolutions=evos.offset;offsets.moveNames=moves.offset;
+ const growthRates=offsets.growthRates===null?null:Array.from({length:6},(_,id)=>{
+  const q=offsets.growthRates+id*4,first=b[q],quad=b[q+1];
+  return {id,numerator:first>>4,denominator:first&15,
+    squaredCoefficient:quad&0x80?-(quad&0x7f):(quad&0x7f),
+    linearCoefficient:b[q+2],constantToSubtract:b[q+3],
+    origin:'ROM: GrowthRateTable (4 bytes por grupo)'};
+ });
  const species=[],hasCore=offsets.names!==null&&offsets.dexOrder!==null&&offsets.baseStats!==null;
  if(hasCore)for(let id=1;id<=INTERNAL;id++){
   const dex=b[offsets.dexOrder+id-1],name=decode(b.subarray(offsets.names+(id-1)*10,offsets.names+id*10));
@@ -131,7 +138,7 @@ function inspectRom(file){
   title,bytes:b.length,banks:b.length/BANK,bytesRead:b.length,
   offsets:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,addresses(p)])),
   validated:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,p!==null])),
-  species,moveNames:moves.names,unknownLayout:!hasCore,semanticCoveragePercent:null,
+  species,moveNames:moves.names,growthRates,unknownLayout:!hasCore,semanticCoveragePercent:null,
   identityMatchedWithRuntime:false};
 }
 function runtimeMatches(profile,status){
