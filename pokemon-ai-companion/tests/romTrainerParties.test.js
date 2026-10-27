@@ -4,7 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
-const {parseTrainerParties,fallbackForKnownProfile,getTrainerParty}=require('../romTrainerParties');
+const {parseTrainerParties,parseTrainerClassNames,fallbackForKnownProfile,getTrainerParty}=require('../romTrainerParties');
 const SHA={
  red:'5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
  blue:'2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
@@ -38,6 +38,8 @@ test('o Companion devolve equipa de Brock e Misty sem inferir vitórias',()=>{
  const profile=auditedProfile();
  const brock=getTrainerParty(profile,234,1);
  const misty=getTrainerParty(profile,235,1);
+ assert.equal(brock.className,'BROCK');
+ assert.equal(misty.className,'MISTY');
  assert.deepEqual(brock.team.map(x=>[x.name,x.level]),
    [['GEODUDE',12],['ONIX',14]]);
  assert.deepEqual(misty.team.map(x=>[x.name,x.level]),
@@ -60,6 +62,13 @@ for(const [version,file] of Object.entries(FILENAMES)){
   assert.equal(result.pointerTableFileOffset,0x39d3b);
   assert.deepEqual(result.rosters[33][0],[[169,12],[34,14]]);
   assert.deepEqual(result.rosters[34][0],[[27,18],[152,21]]);
+  const named=parseTrainerClassNames(bytes);
+  assert.equal(named.verified,true);
+  assert.equal(named.names.length,47);
+  assert.equal(named.names[33],'BROCK');
+  assert.equal(named.names[34],'MISTY');
+  assert.equal(result.classNames[33],'BROCK');
+  assert.equal(result.classNames[34],'MISTY');
   assert.deepEqual(result.rosters,fallbackForKnownProfile({hash:{sha256:hash}}).rosters);
  });
 }
