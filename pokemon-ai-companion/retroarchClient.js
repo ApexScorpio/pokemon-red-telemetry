@@ -1369,7 +1369,7 @@ class RetroArchClient extends EventEmitter {
     }
 
     // Itens Ocultos e Radar de Itemfinder
-    const hiddenItemEvidence=decodeHiddenItems(this.activeRomProfile,this.latestState.mapId,hiddenRaw);
+    const hiddenItemEvidence=decodeHiddenItems(this.activeRomProfile,this.latestState.mapId,hiddenRaw,ITEM_NAMES);
     this.latestState.romHiddenItems=hiddenItemEvidence;
     this.latestState.romAreaProgress=makeAreaProgress(
       this.latestState.romAreaEvidence,hiddenItemEvidence,
@@ -1382,11 +1382,10 @@ class RetroArchClient extends EventEmitter {
           const manual=(areaData.hiddenItems||[]).find(r=>r.x===item.x&&r.y===item.y);
           return {
             ...item,
-            name: manual?.name||'Item oculto (nome por identificar)',
-            nameSource:manual?'REFERÊNCIA_MANUAL_NÃO_COMPROVADA_PELO_SCRIPT_ROM':
-              'NÃO_IDENTIFICADO',
-            source:'COORDENADA_COMPARADA_NA_ROM + FLAG_RAM',
-            inInventory:manual?checkIsItemInInventory(manual.name,inventoryAndPcItems):null,
+            name:item.itemName,
+            nameSource:item.itemNameSource,
+            source:'ROM_COORDENADA+SCRIPT_ITEM_ID+RAM_FLAG',
+            inInventory:checkIsItemInInventory(item.itemName,inventoryAndPcItems),
             requires:manual?.requires||null,
             lockReason:manual?.lockReason||null
           };
