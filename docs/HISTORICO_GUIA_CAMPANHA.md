@@ -472,3 +472,13 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 10. Validação de sintaxe JavaScript a partir do conteúdo atual do GitHub concluída para `romBattleEvidence.js`, `retroarchClient.js`, `public/app.js`, `tests/romBattleEvidence.test.js` e `aiAdvisor.js`. Os cinco cenários de `romBattleEvidence.test.js` foram executados num ambiente JS isolado com as fontes atuais: **5/5 aprovados**. Esta verificação NÃO executou o `npm test` integral, a UI nem o SameBoy.
 
 **Limite:** ainda não são produzidas probabilidades de combate em produção porque os pré-requisitos ROM/RAM/turno não são observados de forma simultânea e comprovada. É preferível apresentar `NÃO CONFIRMADO` a resultados fictícios.
+
+### 2026-10-27 — Tabela Moves de 165 golpes descodificada da ROM local
+
+- 11. Inspecionados `romVariantRegistry.js`, `retroarchClient.js` e a fonte primária `pret/pokered/data/moves/moves.asm`; confirmado que cada entrada compilada `move` tem 6 bytes: ID/animação, efeito, potência, tipo, precisão e PP.
+- 12. Publicado `romMoveTable.js`, scanner de bancos ROM que identifica de forma única 165 registos sequenciais de seis bytes, com endereços exatos, sem offsets pré-assumidos. Recusa tabelas ausentes, ambíguas, truncadas ou incoerentes e não usa fallback por semelhança de versão.
+- 13. Integrado scanner na criação dos perfis locais `romVariantRegistry.js`: expõe `moveStats`, `moveStatsStatus`, `offsets.moveData` e validadores de proveniência, sem alterar ROMs/saves.
+- 14. Alterado `retroarchClient.getMoveInfo`: quando a mesma ROM local é identificada por CRC32 e a tabela Moves tem leitura comprovada, potência, PP, byte de precisão e IDs de tipo/efeito vêm dessa ROM, não do catálogo estático. A descrição nominal de tipo/efeito continua identificada como referência externa até ser ligada ao ID da ROM; os cálculos exatos do turno continuam bloqueados.
+- 15. Criado `tests/romMoveTable.test.js` com cinco cenários para os 165 golpes, mudança de banco, corrupção, duplicação e ROM inválida. Os testes de sintaxe são passíveis de verificação isolada; integração real contra ROMs no PC/iPhone ainda pendente.
+
+**Ressalva:** detetar a tabela `Moves` numa ROM de perfil local não prova que o iPhone esteja a executar o mesmo SHA-256; o `GET_STATUS` usado atualmente só faz correspondência CRC32. A garantia forte de identidade e a validação visual/funcional no SameBoy permanecem obrigatórias.
