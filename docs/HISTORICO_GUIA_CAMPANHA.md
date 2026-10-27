@@ -97,3 +97,20 @@
 - 8. Não se efetuaram alterações ao servidor em execução, sessões, tokens, saves, ficheiros da ROM ou ficheiros em C:.
 
 Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gbc que o SameBoy carrega no iPhone e validar SHA-256 e proveniência dos símbolos para essa versão. 100% de bytes examinados não constitui 100% dos elementos descodificados.
+
+
+## 2026-10-27 — ROM Green International v1.2.1 fornecida; perfil por versão em tempo real
+
+- 1. Analisado o ficheiro ROM enviado pelo utilizador exclusivamente em ambiente de análise local, sem publicar ou alterar o binário. 1 048 576 bytes, 64 bancos, header POKEMON GREEN, checksums válidos, CRC32 3C2DD8AE, SHA256 aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db.
+- 2. Confirmado por bytes reais que PokedexOrder está no offset 0x41956, NÃO 0x41024 como indica a .sym original. Confirmadas também as outras cinco tabelas e a descodificação de 190 IDs, 165 nomes de golpes, listas de evolução/ataques.
+- 3. Implementado romVariantRegistry.js para procurar e validar tabelas por padrões, inspecionar bancos completos, devolver os bytes transformados em dados verificáveis e hash.
+- 4. Implementado romLiveResolver.js que regista ficheiros em POKEMON_ROM_PATH/POKEMON_ROM_DIR ou metadados em POKEMON_ROM_PROFILE_PATH; compara GET_STATUS/CRC32 da ROM em execução e só então aplica o perfil respetivo.
+- 5. Atualizado retroarchClient.js para GET_STATUS, seleção de ROMs quando se muda de jogo, atribuição de nomes/atributos base por ROM, identificação de proveniência e cálculo de EXP com coeficientes extraídos do jogo; taxas adicionais permanecem explicitamente classificadas como referências.
+- 6. Atualizado githubSync.js para nome da ROM e correspondência CRC32 no relatório vivo; o URL permanece o mesmo.
+- 7. Corrigido charmap do módulo romAtlas.js: letras maiúsculas e minúsculas estavam invertidas e o símbolo de género era incorreto; corrigidos também os fixtures correspondentes.
+- 8. Gerado e validado um perfil JSON separado para o Green enviado, sem o binário original. Mantido fora do GitHub e disponível ao utilizador na resposta da conversa.
+- 9. Adicionados testes Node para CRC32, recusa de identificação pela aparência e inspeção de um ficheiro de ROM real, e documentada a ativação das fontes local/ficheiro/pasta.
+- 10. Realizados testes efetivos na ROM fornecida com ferramenta Node local equivalente: identificados nomes, IDs, 190 entradas, 165 golpes, todas as seis tabelas e espécies/learnsets específicos. NÃO foi efetuado teste end-to-end com o SameBoy ligado ao iPhone, nem foi declarada compatibilidade com qualquer hack arbitrário.
+- 11. Nenhum save, binário ROM, token, sessão Antigravity ou ficheiro no disco C foi alterado no PC do utilizador.
+
+**Limites ainda explícitos:** reconhecimento automático sujeito ao esquema Gen I; outras versões com layouts radicalmente diferentes necessitam de descodificadores novos. Sprites originais, scripts completos, múltiplas caixas e RAM variável ainda aguardam validação.
