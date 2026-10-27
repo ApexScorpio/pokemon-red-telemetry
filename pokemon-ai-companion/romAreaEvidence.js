@@ -79,6 +79,7 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
         ? options.trainerPartyForObject(obj) : null;
       entry.trainerClassName=roster?.className||null;
       entry.team=roster?.team||null;
+      entry.teamVariantDependent=roster?.variantDependent===true;
       entry.teamSource=roster?.source||'EQUIPA_TREINADOR_NÃO_VALIDADA_NESTA_ROM';
       const battle=trainerFlags?.find(x=>x.objectOrdinal===i+1);
       if(battle){
