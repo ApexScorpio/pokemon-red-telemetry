@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 function getGitHubToken() {
   if (process.env.GITHUB_TOKEN && process.env.GITHUB_TOKEN.trim()) {
@@ -599,7 +600,28 @@ let lastSyncedFingerprint = '';
 
 function getStateFingerprint(state) {
   if (!state) return '';
-  return `${state.mapId || 0}_${state.coords ? `${state.coords.x},${state.coords.y}` : ''}_${state.playerDirection || ''}_${state.inBattle}_${state.battle ? `${state.battle.turn}_${state.battle.enemy ? state.battle.enemy.hp : ''}_${state.battle.playerActive ? state.battle.playerActive.hp : ''}` : ''}_${state.currentDialog || ''}_${state.money || 0}`;
+  // Importante: ignorar timestamps, mas incluir QUALQUER alteração material
+  // de equipa, mochila, PC, Daycare, Pokédex, insígnias e itens da área.
+  const meaningful = {
+    mapId: state.mapId, coords: state.coords,
+    direction: state.playerDirection, dialog: state.currentDialog,
+    money: state.money, coins: state.coins, inBattle: state.inBattle,
+    battle: state.battle ? {
+      enemy: state.battle.enemy, playerActive: state.battle.playerActive,
+      turn: state.battle.turn
+    } : null,
+    party: state.party, inventory: state.inventory, pcItems: state.pcItems,
+    pcBox: state.pcBox, daycare: state.daycare,
+    pokedexOwned: state.pokedexOwned, pokedexSeen: state.pokedexSeen,
+    badges: state.badges, repelSteps: state.repelSteps,
+    areaItems: state.areaInfo ? {
+      visible: state.areaInfo.visibleItems,
+      hidden: state.areaInfo.hiddenItems,
+      locked: state.areaInfo.lockedItems,
+      trades: state.areaInfo.canonicalNpcTrades
+    } : null
+  };
+  return crypto.createHash('sha256').update(JSON.stringify(meaningful)).digest('hex');
 }
 
 // Disparo periódico e seguro com deteção de alterações
@@ -617,7 +639,7 @@ function triggerDebouncedSync(state) {
 
   const currentFingerprint = getStateFingerprint(state);
   // Se não houve alteração no jogo desde o último envio para o GitHub, evita pedidos redundantes
-  if (currentFingerprint === lastSyncedFingerprint && !state.inBattle) {
+  if (currentFingerprint === lastSyncedFingerprint) {
     return;
   }
 
