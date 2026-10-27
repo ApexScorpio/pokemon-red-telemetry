@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const { bankOffset, parseSym, readPokemonTables, readGrowthRates, scanRom } = require('../romAtlas');
+const { bankOffset, parseSym, readPokemonTables, readGrowthRates, readEvolutionsAndLearnsets, readMoveNames, scanRom } = require('../romAtlas');
 const { expAtLevel, statFromRamAndRom, hpDvFromDvs, eventFlagFromRam } = require('../gen1EngineMath');
 
 function buildFixture() {
@@ -32,7 +32,21 @@ function buildFixture() {
   let global = 0;
   for (let i = 0; i < rom.length; i++) if (i !== 0x14E && i !== 0x14F) global = (global + rom[i]) & 0xFFFF;
   rom.writeUInt16BE(global, 0x14E);
-  const sym = parseSym('00:0200 MonsterNames\n00:0A00 PokedexOrder\n00:0B00 BaseStats\n00:2000 GrowthRateTable\n');
+  // Tabela sintética compatível: 190 ponteiros -> zero evoluções, zero golpes.
+  const pointers = 0x2100, evolutions = 0x2400, moves = 0x2600;
+  for (let i = 0; i < 190; i++) {
+    const entry = i === 0 ? evolutions : evolutions + 8 + (i - 1) * 2;
+    rom.writeUInt16LE(entry, pointers + i * 2);
+    if (i > 0) rom.set([0, 0], entry);
+  }
+  rom.set([1, 20, 2, 0, 10, 1, 0], evolutions);
+  let m = moves;
+  const first = 'POUND';
+  for (let i = 0; i < 165; i++) {
+    for (const ch of (i === 0 ? first : 'A')) rom[m++] = 0xA0 + ch.charCodeAt(0) - 65;
+    rom[m++] = 0x50;
+  }
+  const sym = parseSym('00:0200 MonsterNames\n00:0A00 PokedexOrder\n00:0B00 BaseStats\n00:2000 GrowthRateTable\n00:2100 EvosMovesPointerTable\n00:2600 MoveNames\n');
   return { rom, sym };
 }
 
@@ -53,6 +67,18 @@ test('a ROM sintetizada preserva relações ID→nome→Pokédex→base stats', 
   assert.equal(data.entries[0].baseStats.hp, 45);
   assert.equal(data.entries[0].pokedexNumber, 1);
   assert.equal(data.entries[189].baseStats, null);
+});
+
+test('eventos de evolução e ataques por nível vêm da estrutura binária ROM', () => {
+  const { rom, sym } = buildFixture();
+  const evo = readEvolutionsAndLearnsets(rom, sym);
+  assert.equal(evo.validCount, 190);
+  assert.deepEqual(evo.entries[0].evolutions[0], { method: 1, params: [20, 2] });
+  assert.deepEqual(evo.entries[0].learnset[0], { level: 10, moveId: 1 });
+  const moves = readMoveNames(rom, sym);
+  assert.equal(moves.valid, true);
+  assert.equal(moves.entries.length, 165);
+  assert.equal(moves.entries[0].name, 'POUND');
 });
 
 test('fórmulas de EXP são lidas dos coeficientes do ficheiro ROM', () => {
@@ -80,7 +106,7 @@ test('varrimento de 100% dos bytes não atesta automaticamente símbolos sem ref
   const filename = path.join(dir, 'test.gb'), symname = path.join(dir, 'test.sym');
   try {
     fs.writeFileSync(filename, rom);
-    fs.writeFileSync(symname, '00:0200 MonsterNames\n00:0A00 PokedexOrder\n00:0B00 BaseStats\n00:2000 GrowthRateTable\n');
+    fs.writeFileSync(symname, '00:0200 MonsterNames\n00:0A00 PokedexOrder\n00:0B00 BaseStats\n00:2000 GrowthRateTable\n00:2100 EvosMovesPointerTable\n00:2600 MoveNames\n');
     const noSymbols = scanRom(filename, { symbolFile: symname });
     assert.equal(noSymbols.coverage.percentagemBytes, 100);
     assert.equal(noSymbols.coverage.banksVerified, 2);
