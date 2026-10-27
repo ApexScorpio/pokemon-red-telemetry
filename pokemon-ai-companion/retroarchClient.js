@@ -665,12 +665,12 @@ class RetroArchClient extends EventEmitter {
       const otName = decodeGen1Text(blockPlayerParty.slice(283 + i * 11, 283 + (i + 1) * 11)) || trainerName;
       const nickname = decodeGen1Text(blockPlayerParty.slice(349 + i * 11, 349 + (i + 1) * 11)) || '';
 
-      const pkInfo = INTERNAL_TO_POKEMON[speciesId] || { name: `Pokémon #${speciesId}`, dex: 0, types: ['Normal'] };
+      const pkInfo = INTERNAL_TO_POKEMON[speciesId] || { name: `Pokémon #${speciesId} (não identificado)`, dex: 0, types: [] };
       const displayName = nickname && nickname !== pkInfo.name.toUpperCase() ? `${nickname} (${pkInfo.name})` : pkInfo.name;
 
       const moveList = moves.map((mId, mIdx) => {
         if (!mId) return null;
-        const mData = MOVES[mId] || { name: `Golpe #${mId}`, type: 'Normal', power: 40, acc: 100, pp: 20 };
+        const mData = MOVES[mId] || { name: `Golpe #${mId} (não identificado)`, type: 'Desconhecido', power: null, acc: null, pp: null };
         return {
           id: mId,
           name: mData.name,
@@ -1230,12 +1230,16 @@ class RetroArchClient extends EventEmitter {
     // Ler o sinalizador diretamente: o bloco CFE0 atravessa a fronteira CFFF/D000
     // e a leitura em bloco pode falhar antes de chegar a D057.
     const battleFlagRead = await this.sendRaw('READ_CORE_MEMORY D057 1');
-    const directBattleFlag = battleFlagRead && battleFlagRead.length ? battleFlagRead[0] : null;
+    const directBattleFlag = battleFlagRead && battleFlagRead.length === 1 &&
+      /^[0-9A-Fa-f]{2}$/.test(battleFlagRead[0]) ? battleFlagRead[0] : null;
+    this.latestState.battleFlagVerified = directBattleFlag !== null;
 
     // Leitura Direta de Repelente ($D0DB, 1 byte) da RAM
     const repelRead = await this.sendRaw('READ_CORE_MEMORY D0DB 1');
-    const repelSteps = (repelRead && repelRead.length > 0) ? parseInt(repelRead[0], 16) : 0;
+    const repelVerified = !!(repelRead && repelRead.length === 1 && /^[0-9A-Fa-f]{2}$/.test(repelRead[0]));
+    const repelSteps = repelVerified ? parseInt(repelRead[0], 16) : null;
     this.latestState.repelSteps = repelSteps;
+    this.latestState.repelVerified = repelVerified;
 
     let inBattle = false;
     let battleType = 'None';
@@ -1309,7 +1313,7 @@ class RetroArchClient extends EventEmitter {
         parseInt(blockCombat[33], 16)
       ];
 
-      const eInfo = INTERNAL_TO_POKEMON[eSpecies] || { name: `Inimigo #${eSpecies}`, dex: 0, types: ['Normal'], baseHp: 30 };
+      const eInfo = INTERNAL_TO_POKEMON[eSpecies] || { name: `Inimigo #${eSpecies} (não identificado)`, dex: 0, types: [], baseHp: null };
 
       // Modificadores de Stats do Inimigo ($CD2E, offset 270 de blockBattleMods)
       const eMods = {
@@ -1398,12 +1402,12 @@ class RetroArchClient extends EventEmitter {
         });
       }
 
-      const pInfo = INTERNAL_TO_POKEMON[bSpecies] || { name: `Pokémon #${bSpecies}`, dex: 0, types: ['Normal'] };
+      const pInfo = INTERNAL_TO_POKEMON[bSpecies] || { name: `Pokémon #${bSpecies} (não identificado)`, dex: 0, types: [] };
       const partyMon = (this.latestState.party && this.latestState.party[realPartyPos]) ? this.latestState.party[realPartyPos] : null;
 
       const moveList = bMoves.map((mId, mIdx) => {
         if (!mId) return null;
-        const mData = MOVES[mId] || { name: `Golpe #${mId}`, type: 'Normal', power: 40, acc: 100, pp: 20 };
+        const mData = MOVES[mId] || { name: `Golpe #${mId} (não identificado)`, type: 'Desconhecido', power: null, acc: null, pp: null };
         const currentLivePP = (partyMon && partyMon.moves && partyMon.moves[mIdx]) ? partyMon.moves[mIdx].pp : (bPPs[mIdx] !== undefined ? bPPs[mIdx] : 10);
         return {
           id: mId,
