@@ -1,0 +1,62 @@
+'use strict';
+// Evidência conservadora: um objeto definido na ROM NÃO implica presença atual
+// e a ausência na lista de sprites NÃO implica recolha/derrota.
+// Só se identifica "observado" quando coincidem tipo, coordenadas e sprite.
+function asInt(v) { return Number.isInteger(v) ? v : null; }
+function distance(a,b) {
+  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+}
+function sameKind(rom, live) {
+  if (rom.kind === 'item') return live.isItem === true;
+  if (rom.kind === 'trainer') return live.isItem !== true && live.isTrainer === true;
+  return live.isItem !== true && live.isTrainer !== true;
+}
+function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
+  if (!romMap || romMap.valid !== true || !romMap.objects ||
+      !Array.isArray(romMap.objects.objects) || !options.romIdentityMatched) {
+    return { verified:false, source:'ROM_NÃO_CONFIRMADA',
+      items:[],trainers:[],npcs:[],reason:'Mapa ou identidade CRC32 indisponível' };
+  }
+  const spritesVerified=options.spritesVerified === true;
+  const live=Array.isArray(entities) ? entities : [];
+  const seen=new Set();
+  const items=[],trainers=[],npcs=[];
+  for (let i=0;i<romMap.objects.objects.length;i++) {
+    const obj=romMap.objects.objects[i];
+    const kind=obj.kind;
+    if (!['item','trainer','npc'].includes(kind)) continue;
+    const id=asInt(obj.trainerClassOrItemId);
+    const entry={
+      mapId:romMap.mapId,objectOrdinal:i+1,kind,
+      x:asInt(obj.x),y:asInt(obj.y),pictureId:asInt(obj.spriteId),
+      itemId:kind==='item'?id:null,
+      itemName:kind==='item' && id!==null
+        ? ((itemNames && itemNames[id]) || 'Item #'+id+' (nome não confirmado pela ROM)') : null,
+      trainerClassId:kind==='trainer'?id:null,
+      trainerNumber:kind==='trainer'?asInt(obj.trainerNumberOrLevel):null,
+      source:'OBJETO_DEFINIDO_NA_ROM_COM_CRC32_CORRESPONDENTE',
+      existsInRom:true,observedInRam:null,
+      collected:null,defeated:null,completionSource:'FLAG_ESPECÍFICA_NÃO_ASSOCIADA',
+      visibilitySource:'RAM_DE_SPRITES_NÃO_CONFIRMADA'
+    };
+    if (spritesVerified && entry.x!==null && entry.y!==null) {
+      const matching=live.find((e,j)=>!seen.has(j) &&
+        Number.isInteger(e.x)&&Number.isInteger(e.y) &&
+        asInt(e.pictureId)===entry.pictureId &&
+        sameKind(entry,e) &&
+        distance(entry,e) <= (kind==='trainer'?1:0));
+      entry.observedInRam=!!matching;
+      entry.visibilitySource=matching?'SPRITE_CORRESPONDENTE_NA_RAM':'NÃO_OBSERVADO_NA_RAM_NÃO_PROVA_CONCLUSÃO';
+      if (matching) seen.add(live.indexOf(matching));
+    }
+    if (kind==='item') items.push(entry);
+    else if (kind==='trainer') trainers.push(entry);
+    else npcs.push(entry);
+  }
+  return {verified:true,mapId:romMap.mapId,
+    source:'ROM_COM_CRC32_CORRESPONDENTE + RAM_SE_VALIDADA',
+    items,trainers,npcs,
+    note:'Objetos da ROM não comprovam recolha/derrota. Ausência da RAM não comprova conclusão.',
+    counts:{items:items.length,trainers:trainers.length,npcs:npcs.length}};
+}
+module.exports={buildRomAreaEvidence};
