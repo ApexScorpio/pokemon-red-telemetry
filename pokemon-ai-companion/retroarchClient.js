@@ -1432,33 +1432,39 @@ class RetroArchClient extends EventEmitter {
     };
 
     const allVisItems = (areaData.visibleItems || []).map(item => {
-      let isCollected = null;
-      let collectionEvidence = 'NÃO_CONFIRMADO_SEM_FLAG_ASSOCIADA';
-      if (Number.isInteger(item.toggleIndex) && item.toggleIndex>=0 &&
-          toggleRaw && Math.floor(item.toggleIndex/8)<toggleRaw.length) {
-        const b = Math.floor(item.toggleIndex/8),bit=item.toggleIndex%8;
-        const raw=toggleRaw[b];
-        if (/^[0-9a-fA-F]{2}$/.test(raw)) {
-          isCollected=!!(parseInt(raw,16)&(1<<bit));
-          collectionEvidence='FLAG_RAM + INDICE_DE_REFERÊNCIA_AINDA_POR_VALIDAR_NA_ROM';
-        }
-      }
-      const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
-      // Possuir item idêntico NÃO prova que este exemplar foi recolhido.
-      const accInfo = checkAccessibility(item);
-      const compass = getCompass(this.latestState.coords, item.x, item.y);
-
+      const romObject=this.latestState.romAreaEvidence?.items?.find(o=>o.x===item.x&&o.y===item.y);
+      const romItemName=romObject?.itemName && !romObject.itemName.includes('não confirmado') ?
+        romObject.itemName : null;
+      const itemName=romItemName||item.name;
+      const accInfo=checkAccessibility(item);
       return {
-        ...item,
-        isCollected,
-        collectionEvidence,
-        referenceSource:'LISTA_MANUAL_DA_ZONA_NÃO_EXTRAÍDA_INTEGRALMENTE_DA_ROM',
-        inInventory,
-        isLocked: !accInfo.accessible,
-        lockReason: accInfo.reason,
-        compass
+        ...item,name:itemName,itemId:romObject?.itemId??null,
+        nameSource:romItemName?'ITEM_ID_DO_OBJETO_ROM':'REFERÊNCIA_MANUAL_NÃO_VERIFICADA',
+        isCollected:null, // flag de remoção nunca prova uma recolha específica
+        removedFromMap:romObject?.removedFromMap??null,
+        toggleableFlagIndex:romObject?.toggleableFlagIndex??null,
+        collectionEvidence:romObject?.removedSource||'SEM_VÍNCULO_ROM_RAM',
+        referenceSource:romObject?.source||'LISTA_MANUAL_NÃO_EXTRAÍDA_DA_ROM',
+        inInventory:checkIsItemInInventory(itemName,inventoryAndPcItems),
+        isLocked:!accInfo.accessible,lockReason:accInfo.reason,
+        compass:getCompass(this.latestState.coords,item.x,item.y)
       };
     });
+    // Acrescentar todos os objetos de item existentes na ROM deste mapa,
+    // inclusive os que não estão no antigo catálogo manual.
+    const extraRomItems=(this.latestState.romAreaEvidence?.items||[])
+      .filter(o=>!allVisItems.some(m=>m.x===o.x&&m.y===o.y))
+      .map(o=>({
+        name:o.itemName||'Item no mapa (ID não identificado)',
+        nameSource:o.itemName?'ITEM_ID_DO_OBJETO_ROM':'NÃO_IDENTIFICADO',
+        itemId:o.itemId,x:o.x,y:o.y,
+        isCollected:null,removedFromMap:o.removedFromMap,
+        toggleableFlagIndex:o.toggleableFlagIndex,
+        collectionEvidence:o.removedSource,
+        referenceSource:o.source,
+        inInventory:null,isLocked:false,lockReason:null,
+        compass:getCompass(this.latestState.coords,o.x,o.y)
+      }));
 
     const allHiddenItems = hiddenList.map(item => {
       const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
@@ -1555,7 +1561,7 @@ class RetroArchClient extends EventEmitter {
       })),
       npcItems: allNpcItems.filter(i => !i.isLocked),
       lockedNpcItems: allNpcItems.filter(i => i.isLocked),
-      visibleItems: allVisItems.filter(i => !i.isLocked),
+      visibleItems: [...allVisItems,...extraRomItems].filter(i => !i.isLocked),
       hiddenItems: allHiddenItems.filter(i => !i.isLocked),
       lockedItems: [...allVisItems.filter(i => i.isLocked), ...allHiddenItems.filter(i => i.isLocked)],
       itemfinder: itemfinderRadar,
