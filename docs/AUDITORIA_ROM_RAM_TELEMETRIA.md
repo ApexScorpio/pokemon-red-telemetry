@@ -56,3 +56,24 @@ Exemplo de utilização na pasta da aplicação:
 - https://gbdk.org/docs/api/docs_rombanking_mbcs.html
 
 **Conclusão:** há leitura real de memória, mas não existe ainda prova de leitura integral da ROM nem garantia de 100% de exatidão em toda a telemetria.
+
+## Adenda — 27/10/2026: segunda auditoria de IDs e progresso
+
+**Atualizações efetuadas:** corrigidos os quatro IDs de espécie errados, os 15 tipos de golpes Psíquicos inválidos e **186 índices de eventos** calculados erradamente por misturar decimal e hexadecimal nos `const_skip` da desmontagem. Todas as **110 referências** a bits de evento em `areaData.js` passaram a constantes nomeadas do catálogo, pelo que o Rocket da casa roubada usa agora `EVENT_BEAT_CERULEAN_ROCKET_THIEF = 167` e Misty usa `EVENT_BEAT_MISTY = 191`.
+
+Foi verificada, nas fontes do `pret/pokered`, uma base de referência de **151 espécies, 165 golpes, 507 eventos, 59 tabelas de áreas selvagens, 248 IDs de mapas e 9 trocas NPC disponíveis**. No formato da RAM, o código distingue valores observados (bytes), valores calculados (nível pelo grupo de crescimento) e tabelas estáticas da ROM; os valores dependentes de uma ROM modificada continuam condicionados à identidade da ROM real.
+
+**Testes isolados executados:** leitura UDP de 530 bytes em 160/160/160/50, rejeição de erro e truncamento; validação estrutural de 12 caixas de um save sintético, incluindo rejeição de contagem superior a 20; renderização isolada do cartão Daycare com alerta e estado offline; validação sintática dos módulos alterados; teste automático dos dicionários de constantes e curvas de experiência. O código do dashboard foi atualizado no GitHub.
+
+**Requisitos ainda NÃO concluídos:** não foi lida a ROM inteira do iPhone; não foi possível comparar byte a byte a memória viva com imagens captadas do jogo; a cópia mais recente da página no PC e do `.sav` do iPhone não foram inspecionadas. Um ficheiro `.sav` permite auditar todas as 12 caixas do último save; **não garante o que foi alterado após esse save**. A atualização e inspeção reais do painel continuam pendentes.
+
+**Limites das probabilidades:** as posições de encontros usam pesos exatos `[51,51,39,25,25,25,13,13,11,3]/256`; isso descreve a distribuição *condicional a um encontro válido*. A probabilidade por passo depende ainda da taxa da zona e das regras de encontro, Repel, localização, método de pesca e situação de jogo. Probabilidades de captura ou dano são cálculos dependentes da espécie, HP/estado e dos efeitos da Geração I, nunca observações diretas da RAM; onde a fórmula não estiver validada, o sistema não deve afirmar garantias.
+
+Referências dos módulos novos:
+- [IDs canónicos](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/pokemon-ai-companion/data/gen1CanonicalIds.json)
+- [Eventos e bits](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/pokemon-ai-companion/data/exact_events.json)
+- [Species e crescimento](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/pokemon-ai-companion/data/gen1CanonicalSpecies.json)
+- [Encontros por área](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/pokemon-ai-companion/data/gen1CanonicalWildEncounters.json)
+- [Golpes e evolução](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/pokemon-ai-companion/data/gen1CanonicalLearnsets.json)
+- [12 caixas de save](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/pokemon-ai-companion/saveAudit.js)
+- [Teste automático de IDs e progresso](https://github.com/ApexScorpio/pokemon-red-telemetry/blob/main/pokemon-ai-companion/verifyGen1Ids.js)
