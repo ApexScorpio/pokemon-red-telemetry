@@ -737,7 +737,7 @@ class RetroArchClient extends EventEmitter {
 
       const moveList = moves.map((mId, mIdx) => {
         if (!mId) return null;
-        const mData = MOVES[mId] || { name: `Golpe #${mId} (não identificado)`, type: 'Desconhecido', power: null, acc: null, pp: null };
+        const mData = this.getMoveInfo(mId) || { name: `Golpe #${mId} (não identificado)`, type: 'Desconhecido', power: null, acc: null, pp: null };
         return {
           id: mId,
           name: mData.name,
@@ -996,8 +996,8 @@ class RetroArchClient extends EventEmitter {
           level = parseInt(blockBoxTime[monOffset + 3], 16) || null;
           for (let m = 0; m < 4; m++) {
             const mId = parseInt(blockBoxTime[monOffset + 8 + m], 16);
-            if (mId > 0 && MOVES && MOVES[mId]) {
-              moves.push(MOVES[mId].name);
+            if (mId > 0 && this.getMoveInfo(mId)) {
+              moves.push(this.getMoveInfo(mId).name);
             }
           }
         }
@@ -1052,7 +1052,7 @@ class RetroArchClient extends EventEmitter {
         if (!moveId) return null;
         return {
           id: moveId,
-          name: MOVES[moveId]?.name || `Golpe #${moveId} (não identificado)`,
+          name: this.getMoveInfo(moveId)?.name || `Golpe #${moveId} (não identificado)`,
           pp: parseInt(blockBoxTime[off + 29 + i], 16) & 0x3F
         };
       }).filter(Boolean);
@@ -1609,14 +1609,14 @@ class RetroArchClient extends EventEmitter {
         statMods: eMods,
         spriteUrl: getPokemonSpriteUrl(eInfo.name, eInfo.dex),
         moves: eMoves.map((m, idx) => {
-          if (!m || !MOVES[m]) return null;
+          if (!m || !this.getMoveInfo(m)) return null;
           return {
             id: m,
-            name: MOVES[m].name,
-            type: MOVES[m].type,
-            power: MOVES[m].power,
-            accuracy: MOVES[m].acc,
-            pp: ePPs[idx] !== undefined ? ePPs[idx] : (MOVES[m].pp || 20)
+            name: this.getMoveInfo(m).name,
+            type: this.getMoveInfo(m).type || 'Desconhecido',
+            power: this.getMoveInfo(m).power ?? null,
+            accuracy: this.getMoveInfo(m).acc ?? null,
+            pp: ePPs[idx] !== undefined ? ePPs[idx] : null
           };
         }).filter(Boolean)
       };
@@ -1661,7 +1661,7 @@ class RetroArchClient extends EventEmitter {
 
       const moveList = bMoves.map((mId, mIdx) => {
         if (!mId) return null;
-        const mData = MOVES[mId] || { name: `Golpe #${mId} (não identificado)`, type: 'Desconhecido', power: null, acc: null, pp: null };
+        const mData = this.getMoveInfo(mId) || { name: `Golpe #${mId} (não identificado)`, type: 'Desconhecido', power: null, acc: null, pp: null };
         const currentLivePP = (partyMon && partyMon.moves && partyMon.moves[mIdx]) ? partyMon.moves[mIdx].pp : (bPPs[mIdx] !== undefined ? bPPs[mIdx] : 10);
         return {
           id: mId,
@@ -1704,8 +1704,8 @@ class RetroArchClient extends EventEmitter {
       );
 
       const currentTurn = parseInt(blockBattleMods[181], 16) || 1;
-      const lastPlayerMove = MOVES[parseInt(blockBattleMods[188], 16)] ? MOVES[parseInt(blockBattleMods[188], 16)].name : null;
-      const lastEnemyMove = MOVES[parseInt(blockBattleMods[189], 16)] ? MOVES[parseInt(blockBattleMods[189], 16)].name : null;
+      const lastPlayerMove = this.getMoveInfo(parseInt(blockBattleMods[188], 16))?.name || null;
+      const lastEnemyMove = this.getMoveInfo(parseInt(blockBattleMods[189], 16))?.name || null;
 
       this.latestState.battle = {
         enemy: enemyMon,
