@@ -365,3 +365,18 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 6. Não foram alterados binários ROM, saves, credenciais, dados locais do utilizador nem o seu disco C:. O histórico anterior foi preservado integralmente.
 
 **Limite:** auditoria de cobertura de metadados; o teste real ponta a ponta com o SameBoy/iPhone ainda é necessário. A contagem global depende dos mapas descodificados e dos perfis instalados no PC. O passo técnico subsequente é interpretar os scripts dos objetos que a auditoria identifica como incompletos.
+
+
+## 2026-10-27 — Auditoria independente dos 334 treinadores das três ROMs
+
+- 1. Reabertos e inspecionados os módulos atuais do GitHub antes de alterar código. O projeto já continha atlas com 312 registos, scripts especiais de líderes/rivais, equipas de 47 classes e evidência conservadora de eventos. Não foram repetidas alterações já existentes.
+- 2. Corrido scanner Python independente diretamente nos ficheiros Pokémon Red, Blue e Green International v1.2.1 disponíveis nesta conversa. Resultados idênticos em todos: **334 objetos treinador humano**, **310** ligações diretas a cabeçalhos/event flags em **66** mapas, e **24** casos de scripts especiais.
+- 3. Confirmado que 18 casos especiais têm índices de evento conhecidos por scripts de líderes/ginásios, quatro outros por scripts particulares e dois não possuem a cadeia direta normal (S.S. Anne 2F e Game Corner). Estes últimos permanecem sem conclusão inferida automaticamente.
+- 4. Verificado que o atlas histórico de 312 entradas contém dois encontros de Pokémon fixos (mapas 194 e 227) que não são treinadores humanos. O módulo distingue-os pela classe de objeto, não os conta como batalhas de treinador.
+- 5. Corrigido `romTrainerEvents.js` para comparar dados dinâmicos da ROM com o atlas auditado para os três SHA-256 conhecidos; conflitos de eventBitIndex invalidam a leitura do mapa, e ordinais duplicados são recusados. O atlas preenche lacunas apenas de treinadores humanos em ROMs previamente auditadas.
+- 6. Criadas três regressões adicionais em `tests/romTrainerEvents.test.js`: conflito ROM/atlas, entradas duplicadas e exclusão de encontros fixos; testado isolamento JS com quatro cenários, todos passaram.
+- 7. Criado `tests/romRealTrainerAudit.test.js` com auditoria completa dos três ficheiros reais (requer `POKEMON_ROM_DIR` local quando executado). Exige 310 cadeias ROM + 334 objetos e 332 ligações contabilizando scripts especiais.
+- 8. Publicado `docs/AUDITORIA_TREINADORES_ROM_INTEGRAL.md` com endereçamento, fontes e ressalvas. Não houve teste de integração com o RetroArch/SameBoy do iPhone.
+- 9. Nenhuma ROM, save, token, sessão Antigravity, ficheiro do utilizador no C: ou processo em execução foi alterado.
+
+**Importante:** flags de eventos não provam vitória. Só os scripts que confirmam o resultado permitem apresentar uma vitória específica como certa. Dois encontros com controlo especial continuam sem prova completa do seu estado.
