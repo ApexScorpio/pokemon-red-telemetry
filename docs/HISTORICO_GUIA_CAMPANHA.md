@@ -304,3 +304,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 12. Nenhum ficheiro do utilizador em C:, save, ROM, processo, token ou sessão Antigravity foi alterado. Só foram criados/alterados ficheiros de código e documentação no repositório GitHub e scripts temporários no ambiente de análise.
 
 **Pendentes:** Cerulean Rival, Rocket da Route 24, Rival no Oak Lab, Rival na S.S. Anne, Rocket do Game Corner e Giovanni na Silph Co 11F: são 6 casos de script especial, sem associação segura nesta fase. É proibido concluir vitória apenas pela presença/ausência do NPC ou por um bit que os scripts possam ativar.
+
+
+### Adenda fase 6 — validação de regressão e presença de Pokémon fixos
+
+- 13. Corrigido romAreaEvidence.js para não interpretar a ausência de um sprite de Pokémon fixo como ausência no mapa, pois o classificador de sprites RAM atual não identifica essa categoria de forma inequívoca. A visibilidade mantém-se desconhecida até existir prova.
+- 14. Verificada a sintaxe de 10 módulos/testes de mundo, batalhas, Pokémon fixos, progresso e interface após as alterações.
+- 15. Executados 3 testes isolados adicionais do JavaScript atual: Route 6 (seis treinadores humanos, uma flag ativada); Victory Road 2F (cinco treinadores humanos, Moltres excluído); Power Plant (nove encontros Pokémon fixos, evento de Zapdos ativo, nenhuma captura inferida). Todos passaram no ambiente de teste isolado.
+- 16. A execução do pacote completo de testes Node no repositório e a observação do SameBoy real continuam pendentes. Não declarar a integração em produção certificada.
