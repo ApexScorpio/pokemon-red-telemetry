@@ -1,0 +1,934 @@
+{
+  "source": "pret/pokered source ASM master; verified on 2026-10-27",
+  "appliesTo": "Red/Blue generation I source, compare ROM hash before treating as modified ROM truth",
+  "notation": "Each species internal index 1..190 maps to a dex number or 0 for MissingNo",
+  "internalPokemonIds": {
+    "0": {
+      "symbol": "NO_MON",
+      "dex": 0
+    },
+    "1": {
+      "symbol": "RHYDON",
+      "dex": 112
+    },
+    "2": {
+      "symbol": "KANGASKHAN",
+      "dex": 115
+    },
+    "3": {
+      "symbol": "NIDORAN_M",
+      "dex": 32
+    },
+    "4": {
+      "symbol": "CLEFAIRY",
+      "dex": 35
+    },
+    "5": {
+      "symbol": "SPEAROW",
+      "dex": 21
+    },
+    "6": {
+      "symbol": "VOLTORB",
+      "dex": 100
+    },
+    "7": {
+      "symbol": "NIDOKING",
+      "dex": 34
+    },
+    "8": {
+      "symbol": "SLOWBRO",
+      "dex": 80
+    },
+    "9": {
+      "symbol": "IVYSAUR",
+      "dex": 2
+    },
+    "10": {
+      "symbol": "EXEGGUTOR",
+      "dex": 103
+    },
+    "11": {
+      "symbol": "LICKITUNG",
+      "dex": 108
+    },
+    "12": {
+      "symbol": "EXEGGCUTE",
+      "dex": 102
+    },
+    "13": {
+      "symbol": "GRIMER",
+      "dex": 88
+    },
+    "14": {
+      "symbol": "GENGAR",
+      "dex": 94
+    },
+    "15": {
+      "symbol": "NIDORAN_F",
+      "dex": 29
+    },
+    "16": {
+      "symbol": "NIDOQUEEN",
+      "dex": 31
+    },
+    "17": {
+      "symbol": "CUBONE",
+      "dex": 104
+    },
+    "18": {
+      "symbol": "RHYHORN",
+      "dex": 111
+    },
+    "19": {
+      "symbol": "LAPRAS",
+      "dex": 131
+    },
+    "20": {
+      "symbol": "ARCANINE",
+      "dex": 59
+    },
+    "21": {
+      "symbol": "MEW",
+      "dex": 151
+    },
+    "22": {
+      "symbol": "GYARADOS",
+      "dex": 130
+    },
+    "23": {
+      "symbol": "SHELLDER",
+      "dex": 90
+    },
+    "24": {
+      "symbol": "TENTACOOL",
+      "dex": 72
+    },
+    "25": {
+      "symbol": "GASTLY",
+      "dex": 92
+    },
+    "26": {
+      "symbol": "SCYTHER",
+      "dex": 123
+    },
+    "27": {
+      "symbol": "STARYU",
+      "dex": 120
+    },
+    "28": {
+      "symbol": "BLASTOISE",
+      "dex": 9
+    },
+    "29": {
+      "symbol": "PINSIR",
+      "dex": 127
+    },
+    "30": {
+      "symbol": "TANGELA",
+      "dex": 114
+    },
+    "33": {
+      "symbol": "GROWLITHE",
+      "dex": 58
+    },
+    "34": {
+      "symbol": "ONIX",
+      "dex": 95
+    },
+    "35": {
+      "symbol": "FEAROW",
+      "dex": 22
+    },
+    "36": {
+      "symbol": "PIDGEY",
+      "dex": 16
+    },
+    "37": {
+      "symbol": "SLOWPOKE",
+      "dex": 79
+    },
+    "38": {
+      "symbol": "KADABRA",
+      "dex": 64
+    },
+    "39": {
+      "symbol": "GRAVELER",
+      "dex": 75
+    },
+    "40": {
+      "symbol": "CHANSEY",
+      "dex": 113
+    },
+    "41": {
+      "symbol": "MACHOKE",
+      "dex": 67
+    },
+    "42": {
+      "symbol": "MR_MIME",
+      "dex": 122
+    },
+    "43": {
+      "symbol": "HITMONLEE",
+      "dex": 106
+    },
+    "44": {
+      "symbol": "HITMONCHAN",
+      "dex": 107
+    },
+    "45": {
+      "symbol": "ARBOK",
+      "dex": 24
+    },
+    "46": {
+      "symbol": "PARASECT",
+      "dex": 47
+    },
+    "47": {
+      "symbol": "PSYDUCK",
+      "dex": 54
+    },
+    "48": {
+      "symbol": "DROWZEE",
+      "dex": 96
+    },
+    "49": {
+      "symbol": "GOLEM",
+      "dex": 76
+    },
+    "51": {
+      "symbol": "MAGMAR",
+      "dex": 126
+    },
+    "53": {
+      "symbol": "ELECTABUZZ",
+      "dex": 125
+    },
+    "54": {
+      "symbol": "MAGNETON",
+      "dex": 82
+    },
+    "55": {
+      "symbol": "KOFFING",
+      "dex": 109
+    },
+    "57": {
+      "symbol": "MANKEY",
+      "dex": 56
+    },
+    "58": {
+      "symbol": "SEEL",
+      "dex": 86
+    },
+    "59": {
+      "symbol": "DIGLETT",
+      "dex": 50
+    },
+    "60": {
+      "symbol": "TAUROS",
+      "dex": 128
+    },
+    "64": {
+      "symbol": "FARFETCHD",
+      "dex": 83
+    },
+    "65": {
+      "symbol": "VENONAT",
+      "dex": 48
+    },
+    "66": {
+      "symbol": "DRAGONITE",
+      "dex": 149
+    },
+    "70": {
+      "symbol": "DODUO",
+      "dex": 84
+    },
+    "71": {
+      "symbol": "POLIWAG",
+      "dex": 60
+    },
+    "72": {
+      "symbol": "JYNX",
+      "dex": 124
+    },
+    "73": {
+      "symbol": "MOLTRES",
+      "dex": 146
+    },
+    "74": {
+      "symbol": "ARTICUNO",
+      "dex": 144
+    },
+    "75": {
+      "symbol": "ZAPDOS",
+      "dex": 145
+    },
+    "76": {
+      "symbol": "DITTO",
+      "dex": 132
+    },
+    "77": {
+      "symbol": "MEOWTH",
+      "dex": 52
+    },
+    "78": {
+      "symbol": "KRABBY",
+      "dex": 98
+    },
+    "82": {
+      "symbol": "VULPIX",
+      "dex": 37
+    },
+    "83": {
+      "symbol": "NINETALES",
+      "dex": 38
+    },
+    "84": {
+      "symbol": "PIKACHU",
+      "dex": 25
+    },
+    "85": {
+      "symbol": "RAICHU",
+      "dex": 26
+    },
+    "88": {
+      "symbol": "DRATINI",
+      "dex": 147
+    },
+    "89": {
+      "symbol": "DRAGONAIR",
+      "dex": 148
+    },
+    "90": {
+      "symbol": "KABUTO",
+      "dex": 140
+    },
+    "91": {
+      "symbol": "KABUTOPS",
+      "dex": 141
+    },
+    "92": {
+      "symbol": "HORSEA",
+      "dex": 116
+    },
+    "93": {
+      "symbol": "SEADRA",
+      "dex": 117
+    },
+    "96": {
+      "symbol": "SANDSHREW",
+      "dex": 27
+    },
+    "97": {
+      "symbol": "SANDSLASH",
+      "dex": 28
+    },
+    "98": {
+      "symbol": "OMANYTE",
+      "dex": 138
+    },
+    "99": {
+      "symbol": "OMASTAR",
+      "dex": 139
+    },
+    "100": {
+      "symbol": "JIGGLYPUFF",
+      "dex": 39
+    },
+    "101": {
+      "symbol": "WIGGLYTUFF",
+      "dex": 40
+    },
+    "102": {
+      "symbol": "EEVEE",
+      "dex": 133
+    },
+    "103": {
+      "symbol": "FLAREON",
+      "dex": 136
+    },
+    "104": {
+      "symbol": "JOLTEON",
+      "dex": 135
+    },
+    "105": {
+      "symbol": "VAPOREON",
+      "dex": 134
+    },
+    "106": {
+      "symbol": "MACHOP",
+      "dex": 66
+    },
+    "107": {
+      "symbol": "ZUBAT",
+      "dex": 41
+    },
+    "108": {
+      "symbol": "EKANS",
+      "dex": 23
+    },
+    "109": {
+      "symbol": "PARAS",
+      "dex": 46
+    },
+    "110": {
+      "symbol": "POLIWHIRL",
+      "dex": 61
+    },
+    "111": {
+      "symbol": "POLIWRATH",
+      "dex": 62
+    },
+    "112": {
+      "symbol": "WEEDLE",
+      "dex": 13
+    },
+    "113": {
+      "symbol": "KAKUNA",
+      "dex": 14
+    },
+    "114": {
+      "symbol": "BEEDRILL",
+      "dex": 15
+    },
+    "116": {
+      "symbol": "DODRIO",
+      "dex": 85
+    },
+    "117": {
+      "symbol": "PRIMEAPE",
+      "dex": 57
+    },
+    "118": {
+      "symbol": "DUGTRIO",
+      "dex": 51
+    },
+    "119": {
+      "symbol": "VENOMOTH",
+      "dex": 49
+    },
+    "120": {
+      "symbol": "DEWGONG",
+      "dex": 87
+    },
+    "123": {
+      "symbol": "CATERPIE",
+      "dex": 10
+    },
+    "124": {
+      "symbol": "METAPOD",
+      "dex": 11
+    },
+    "125": {
+      "symbol": "BUTTERFREE",
+      "dex": 12
+    },
+    "126": {
+      "symbol": "MACHAMP",
+      "dex": 68
+    },
+    "128": {
+      "symbol": "GOLDUCK",
+      "dex": 55
+    },
+    "129": {
+      "symbol": "HYPNO",
+      "dex": 97
+    },
+    "130": {
+      "symbol": "GOLBAT",
+      "dex": 42
+    },
+    "131": {
+      "symbol": "MEWTWO",
+      "dex": 150
+    },
+    "132": {
+      "symbol": "SNORLAX",
+      "dex": 143
+    },
+    "133": {
+      "symbol": "MAGIKARP",
+      "dex": 129
+    },
+    "136": {
+      "symbol": "MUK",
+      "dex": 89
+    },
+    "138": {
+      "symbol": "KINGLER",
+      "dex": 99
+    },
+    "139": {
+      "symbol": "CLOYSTER",
+      "dex": 91
+    },
+    "141": {
+      "symbol": "ELECTRODE",
+      "dex": 101
+    },
+    "142": {
+      "symbol": "CLEFABLE",
+      "dex": 36
+    },
+    "143": {
+      "symbol": "WEEZING",
+      "dex": 110
+    },
+    "144": {
+      "symbol": "PERSIAN",
+      "dex": 53
+    },
+    "145": {
+      "symbol": "MAROWAK",
+      "dex": 105
+    },
+    "147": {
+      "symbol": "HAUNTER",
+      "dex": 93
+    },
+    "148": {
+      "symbol": "ABRA",
+      "dex": 63
+    },
+    "149": {
+      "symbol": "ALAKAZAM",
+      "dex": 65
+    },
+    "150": {
+      "symbol": "PIDGEOTTO",
+      "dex": 17
+    },
+    "151": {
+      "symbol": "PIDGEOT",
+      "dex": 18
+    },
+    "152": {
+      "symbol": "STARMIE",
+      "dex": 121
+    },
+    "153": {
+      "symbol": "BULBASAUR",
+      "dex": 1
+    },
+    "154": {
+      "symbol": "VENUSAUR",
+      "dex": 3
+    },
+    "155": {
+      "symbol": "TENTACRUEL",
+      "dex": 73
+    },
+    "157": {
+      "symbol": "GOLDEEN",
+      "dex": 118
+    },
+    "158": {
+      "symbol": "SEAKING",
+      "dex": 119
+    },
+    "163": {
+      "symbol": "PONYTA",
+      "dex": 77
+    },
+    "164": {
+      "symbol": "RAPIDASH",
+      "dex": 78
+    },
+    "165": {
+      "symbol": "RATTATA",
+      "dex": 19
+    },
+    "166": {
+      "symbol": "RATICATE",
+      "dex": 20
+    },
+    "167": {
+      "symbol": "NIDORINO",
+      "dex": 33
+    },
+    "168": {
+      "symbol": "NIDORINA",
+      "dex": 30
+    },
+    "169": {
+      "symbol": "GEODUDE",
+      "dex": 74
+    },
+    "170": {
+      "symbol": "PORYGON",
+      "dex": 137
+    },
+    "171": {
+      "symbol": "AERODACTYL",
+      "dex": 142
+    },
+    "173": {
+      "symbol": "MAGNEMITE",
+      "dex": 81
+    },
+    "176": {
+      "symbol": "CHARMANDER",
+      "dex": 4
+    },
+    "177": {
+      "symbol": "SQUIRTLE",
+      "dex": 7
+    },
+    "178": {
+      "symbol": "CHARMELEON",
+      "dex": 5
+    },
+    "179": {
+      "symbol": "WARTORTLE",
+      "dex": 8
+    },
+    "180": {
+      "symbol": "CHARIZARD",
+      "dex": 6
+    },
+    "182": {
+      "symbol": "FOSSIL_KABUTOPS",
+      "dex": 0
+    },
+    "183": {
+      "symbol": "FOSSIL_AERODACTYL",
+      "dex": 0
+    },
+    "184": {
+      "symbol": "MON_GHOST",
+      "dex": 0
+    },
+    "185": {
+      "symbol": "ODDISH",
+      "dex": 43
+    },
+    "186": {
+      "symbol": "GLOOM",
+      "dex": 44
+    },
+    "187": {
+      "symbol": "VILEPLUME",
+      "dex": 45
+    },
+    "188": {
+      "symbol": "BELLSPROUT",
+      "dex": 69
+    },
+    "189": {
+      "symbol": "WEEPINBELL",
+      "dex": 70
+    },
+    "190": {
+      "symbol": "VICTREEBEL",
+      "dex": 71
+    }
+  },
+  "moveIds": {
+    "1": "POUND",
+    "2": "KARATE_CHOP",
+    "3": "DOUBLESLAP",
+    "4": "COMET_PUNCH",
+    "5": "MEGA_PUNCH",
+    "6": "PAY_DAY",
+    "7": "FIRE_PUNCH",
+    "8": "ICE_PUNCH",
+    "9": "THUNDERPUNCH",
+    "10": "SCRATCH",
+    "11": "VICEGRIP",
+    "12": "GUILLOTINE",
+    "13": "RAZOR_WIND",
+    "14": "SWORDS_DANCE",
+    "15": "CUT",
+    "16": "GUST",
+    "17": "WING_ATTACK",
+    "18": "WHIRLWIND",
+    "19": "FLY",
+    "20": "BIND",
+    "21": "SLAM",
+    "22": "VINE_WHIP",
+    "23": "STOMP",
+    "24": "DOUBLE_KICK",
+    "25": "MEGA_KICK",
+    "26": "JUMP_KICK",
+    "27": "ROLLING_KICK",
+    "28": "SAND_ATTACK",
+    "29": "HEADBUTT",
+    "30": "HORN_ATTACK",
+    "31": "FURY_ATTACK",
+    "32": "HORN_DRILL",
+    "33": "TACKLE",
+    "34": "BODY_SLAM",
+    "35": "WRAP",
+    "36": "TAKE_DOWN",
+    "37": "THRASH",
+    "38": "DOUBLE_EDGE",
+    "39": "TAIL_WHIP",
+    "40": "POISON_STING",
+    "41": "TWINEEDLE",
+    "42": "PIN_MISSILE",
+    "43": "LEER",
+    "44": "BITE",
+    "45": "GROWL",
+    "46": "ROAR",
+    "47": "SING",
+    "48": "SUPERSONIC",
+    "49": "SONICBOOM",
+    "50": "DISABLE",
+    "51": "ACID",
+    "52": "EMBER",
+    "53": "FLAMETHROWER",
+    "54": "MIST",
+    "55": "WATER_GUN",
+    "56": "HYDRO_PUMP",
+    "57": "SURF",
+    "58": "ICE_BEAM",
+    "59": "BLIZZARD",
+    "60": "PSYBEAM",
+    "61": "BUBBLEBEAM",
+    "62": "AURORA_BEAM",
+    "63": "HYPER_BEAM",
+    "64": "PECK",
+    "65": "DRILL_PECK",
+    "66": "SUBMISSION",
+    "67": "LOW_KICK",
+    "68": "COUNTER",
+    "69": "SEISMIC_TOSS",
+    "70": "STRENGTH",
+    "71": "ABSORB",
+    "72": "MEGA_DRAIN",
+    "73": "LEECH_SEED",
+    "74": "GROWTH",
+    "75": "RAZOR_LEAF",
+    "76": "SOLARBEAM",
+    "77": "POISONPOWDER",
+    "78": "STUN_SPORE",
+    "79": "SLEEP_POWDER",
+    "80": "PETAL_DANCE",
+    "81": "STRING_SHOT",
+    "82": "DRAGON_RAGE",
+    "83": "FIRE_SPIN",
+    "84": "THUNDERSHOCK",
+    "85": "THUNDERBOLT",
+    "86": "THUNDER_WAVE",
+    "87": "THUNDER",
+    "88": "ROCK_THROW",
+    "89": "EARTHQUAKE",
+    "90": "FISSURE",
+    "91": "DIG",
+    "92": "TOXIC",
+    "93": "CONFUSION",
+    "94": "PSYCHIC_M",
+    "95": "HYPNOSIS",
+    "96": "MEDITATE",
+    "97": "AGILITY",
+    "98": "QUICK_ATTACK",
+    "99": "RAGE",
+    "100": "TELEPORT",
+    "101": "NIGHT_SHADE",
+    "102": "MIMIC",
+    "103": "SCREECH",
+    "104": "DOUBLE_TEAM",
+    "105": "RECOVER",
+    "106": "HARDEN",
+    "107": "MINIMIZE",
+    "108": "SMOKESCREEN",
+    "109": "CONFUSE_RAY",
+    "110": "WITHDRAW",
+    "111": "DEFENSE_CURL",
+    "112": "BARRIER",
+    "113": "LIGHT_SCREEN",
+    "114": "HAZE",
+    "115": "REFLECT",
+    "116": "FOCUS_ENERGY",
+    "117": "BIDE",
+    "118": "METRONOME",
+    "119": "MIRROR_MOVE",
+    "120": "SELFDESTRUCT",
+    "121": "EGG_BOMB",
+    "122": "LICK",
+    "123": "SMOG",
+    "124": "SLUDGE",
+    "125": "BONE_CLUB",
+    "126": "FIRE_BLAST",
+    "127": "WATERFALL",
+    "128": "CLAMP",
+    "129": "SWIFT",
+    "130": "SKULL_BASH",
+    "131": "SPIKE_CANNON",
+    "132": "CONSTRICT",
+    "133": "AMNESIA",
+    "134": "KINESIS",
+    "135": "SOFTBOILED",
+    "136": "HI_JUMP_KICK",
+    "137": "GLARE",
+    "138": "DREAM_EATER",
+    "139": "POISON_GAS",
+    "140": "BARRAGE",
+    "141": "LEECH_LIFE",
+    "142": "LOVELY_KISS",
+    "143": "SKY_ATTACK",
+    "144": "TRANSFORM",
+    "145": "BUBBLE",
+    "146": "DIZZY_PUNCH",
+    "147": "SPORE",
+    "148": "FLASH",
+    "149": "PSYWAVE",
+    "150": "SPLASH",
+    "151": "ACID_ARMOR",
+    "152": "CRABHAMMER",
+    "153": "EXPLOSION",
+    "154": "FURY_SWIPES",
+    "155": "BONEMERANG",
+    "156": "REST",
+    "157": "ROCK_SLIDE",
+    "158": "HYPER_FANG",
+    "159": "SHARPEN",
+    "160": "CONVERSION",
+    "161": "TRI_ATTACK",
+    "162": "SUPER_FANG",
+    "163": "SLASH",
+    "164": "SUBSTITUTE",
+    "165": "STRUGGLE"
+  },
+  "itemIds": {
+    "1": "MASTER_BALL",
+    "2": "ULTRA_BALL",
+    "3": "GREAT_BALL",
+    "4": "POKE_BALL",
+    "5": "TOWN_MAP",
+    "6": "BICYCLE",
+    "7": "SURFBOARD",
+    "8": "SAFARI_BALL",
+    "9": "POKEDEX",
+    "10": "MOON_STONE",
+    "11": "ANTIDOTE",
+    "12": "BURN_HEAL",
+    "13": "ICE_HEAL",
+    "14": "AWAKENING",
+    "15": "PARLYZ_HEAL",
+    "16": "FULL_RESTORE",
+    "17": "MAX_POTION",
+    "18": "HYPER_POTION",
+    "19": "SUPER_POTION",
+    "20": "POTION",
+    "21": "BOULDERBADGE",
+    "22": "CASCADEBADGE",
+    "23": "THUNDERBADGE",
+    "24": "RAINBOWBADGE",
+    "25": "SOULBADGE",
+    "26": "MARSHBADGE",
+    "27": "VOLCANOBADGE",
+    "28": "EARTHBADGE",
+    "29": "ESCAPE_ROPE",
+    "30": "REPEL",
+    "31": "OLD_AMBER",
+    "32": "FIRE_STONE",
+    "33": "THUNDER_STONE",
+    "34": "WATER_STONE",
+    "35": "HP_UP",
+    "36": "PROTEIN",
+    "37": "IRON",
+    "38": "CARBOS",
+    "39": "CALCIUM",
+    "40": "RARE_CANDY",
+    "41": "DOME_FOSSIL",
+    "42": "HELIX_FOSSIL",
+    "43": "SECRET_KEY",
+    "45": "BIKE_VOUCHER",
+    "46": "X_ACCURACY",
+    "47": "LEAF_STONE",
+    "48": "CARD_KEY",
+    "49": "NUGGET",
+    "51": "POKE_DOLL",
+    "52": "FULL_HEAL",
+    "53": "REVIVE",
+    "54": "MAX_REVIVE",
+    "55": "GUARD_SPEC",
+    "56": "SUPER_REPEL",
+    "57": "MAX_REPEL",
+    "58": "DIRE_HIT",
+    "59": "COIN",
+    "60": "FRESH_WATER",
+    "61": "SODA_POP",
+    "62": "LEMONADE",
+    "63": "S_S_TICKET",
+    "64": "GOLD_TEETH",
+    "65": "X_ATTACK",
+    "66": "X_DEFEND",
+    "67": "X_SPEED",
+    "68": "X_SPECIAL",
+    "69": "COIN_CASE",
+    "70": "OAKS_PARCEL",
+    "71": "ITEMFINDER",
+    "72": "SILPH_SCOPE",
+    "73": "POKE_FLUTE",
+    "74": "LIFT_KEY",
+    "75": "EXP_ALL",
+    "76": "OLD_ROD",
+    "77": "GOOD_ROD",
+    "78": "SUPER_ROD",
+    "79": "PP_UP",
+    "80": "ETHER",
+    "81": "MAX_ETHER",
+    "82": "ELIXER",
+    "83": "MAX_ELIXER",
+    "84": "FLOOR_B2F",
+    "85": "FLOOR_B1F",
+    "86": "FLOOR_1F",
+    "87": "FLOOR_2F",
+    "88": "FLOOR_3F",
+    "89": "FLOOR_4F",
+    "90": "FLOOR_5F",
+    "91": "FLOOR_6F",
+    "92": "FLOOR_7F",
+    "93": "FLOOR_8F",
+    "94": "FLOOR_9F",
+    "95": "FLOOR_10F",
+    "96": "FLOOR_11F",
+    "97": "FLOOR_B4F"
+  },
+  "validSpeciesCount": 151,
+  "glitchIndices": [
+    31,
+    32,
+    50,
+    52,
+    56,
+    61,
+    62,
+    63,
+    67,
+    68,
+    69,
+    79,
+    80,
+    81,
+    86,
+    87,
+    94,
+    95,
+    115,
+    121,
+    122,
+    127,
+    134,
+    135,
+    137,
+    140,
+    146,
+    156,
+    159,
+    160,
+    161,
+    162,
+    172,
+    174,
+    175,
+    181,
+    182,
+    183,
+    184
+  ],
+  "flags": "Static reference data only; runtime progress must be read from RAM/SRAM"
+}
