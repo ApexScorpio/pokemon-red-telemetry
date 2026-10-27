@@ -1219,6 +1219,25 @@ class RetroArchClient extends EventEmitter {
     // =========================================================================
     const areaData = getAreaInfo(this.latestState.mapId, this.latestState.coords);
     const mapSpec = CANONICAL_MAPS[this.latestState.mapId] || null;
+    const romWorld = this.activeRomProfile?.world;
+    const romMap = romWorld?.maps?.valid ? romWorld.maps.data[this.latestState.mapId] : null;
+    const romWild = romWorld?.wildEncounters?.valid ? romWorld.wildEncounters.data[this.latestState.mapId] : null;
+    // Dados de ROM: estáticos para ESTA compilação, não dizem se um NPC/item já foi concluído.
+    this.latestState.romMap = romMap?.valid ? {
+      ...romMap, source: 'ROM_EXATA_CONFIRMADA_POR_CRC32',
+      objectFlagsChecked: false
+    } : null;
+    const resolveSlots = slots => (slots || []).map(slot => ({
+      ...slot,
+      speciesName: this.getPokemonInfo(slot.internalId)?.name || null,
+      dex: this.getPokemonInfo(slot.internalId)?.dex || null
+    }));
+    this.latestState.romWildEncounters = romWild ? {
+      mapId: this.latestState.mapId,
+      source: 'ROM_EXATA_CONFIRMADA_POR_CRC32',
+      grass: {...romWild.grass, slots: resolveSlots(romWild.grass.slots)},
+      water: {...romWild.water, slots: resolveSlots(romWild.water.slots)}
+    } : null;
     const headerTitle = this.latestState.romHeader?.title || '';
     const romVariant = this.latestState.romHeader?.checksumValid && /POKEMON RED/i.test(headerTitle) ? 'red'
       : this.latestState.romHeader?.checksumValid && /POKEMON BLUE/i.test(headerTitle) ? 'blue'
@@ -1242,11 +1261,16 @@ class RetroArchClient extends EventEmitter {
         internalId: Number(Object.keys(CANONICAL_IDS).find(key => CANONICAL_IDS[key].symbol === slot.species)) || null
       }))
     } : null;
-    this.latestState.mapReference = mapSpec ? {
-      source: 'pret/pokered ROM source', symbol: mapSpec.symbol,
-      tileWidth: mapSpec.tileWidth, tileHeight: mapSpec.tileHeight,
-      dimensionsMatchRam: this.latestState.mapDimensions?.width === mapSpec.tileWidth &&
-        this.latestState.mapDimensions?.height === mapSpec.tileHeight
+    this.latestState.mapReference = romMap?.valid ? {
+      source:'ROM_EXATA_CONFIRMADA_POR_CRC32', mapId:this.latestState.mapId,
+      tileWidth:romMap.widthTiles, tileHeight:romMap.heightTiles,
+      tilesetId:romMap.tilesetId, blockSha256:romMap.blockSha256,
+      dimensionsMatchRam:this.latestState.mapDimensions?.width === romMap.widthTiles &&
+        this.latestState.mapDimensions?.height === romMap.heightTiles
+    } : mapSpec ? {
+      source:'TABELA_EXTERNA_PRET_POKERED_NÃO_CONFIRMADA_NESTA_ROM', symbol:mapSpec.symbol,
+      tileWidth:mapSpec.tileWidth,tileHeight:mapSpec.tileHeight,
+      dimensionsMatchRam:null
     } : null;
     const partyDexList = (this.latestState.party || []).map(p => p.dex);
     const inventoryNames = (this.latestState.inventory || []).map(i => i.name.toUpperCase());
@@ -1286,7 +1310,29 @@ class RetroArchClient extends EventEmitter {
     }
 
     const wildFromCurrentRam = effectiveWild.length > 0;
-    // Sem tabela válida da RAM não substituir encontros por uma hipótese manual.
+    // Quando a RAM não fornece uma tabela válida, a ROM exata identificada por CRC32
+    // fornece a referência daquele mapa; jamais usar encontros de outra variante.
+    let wildFromVerifiedRom = false;
+    if (!wildFromCurrentRam && romWild?.grass?.slots?.length) {
+      const bySpecies = new Map();
+      for (const slot of romWild.grass.slots) {
+        const p = this.getPokemonInfo(slot.internalId);
+        if (!p) continue;
+        const key = slot.internalId;
+        if (!bySpecies.has(key)) bySpecies.set(key, {
+          name:p.name, dex:p.dex, types:p.types,
+          minLv:slot.level, maxLv:slot.level, chance:0,
+          baseStats:null,
+          rec:'Extraído do ficheiro da ROM exata, não é um encontro observado.'
+        });
+        const row=bySpecies.get(key);
+        row.chance += slot.rollWeight*100/256;
+        row.minLv=Math.min(row.minLv,slot.level);
+        row.maxLv=Math.max(row.maxLv,slot.level);
+      }
+      effectiveWild = Array.from(bySpecies.values());
+      wildFromVerifiedRom = true;
+    }
 
     // Itens Ocultos e Radar de Itemfinder
     const hiddenList = (areaData.hiddenItems || []).map(item => {
@@ -1418,7 +1464,10 @@ class RetroArchClient extends EventEmitter {
 
     this.latestState.areaInfo = {
       name: areaData.name,
-      wildSource: wildFromCurrentRam ? 'RAM (tabela de encontros atual)' : 'Nenhum encontro de relva confirmado na RAM',
+      wildSource: wildFromCurrentRam ? 'RAM (tabela de encontros atual)' :
+        wildFromVerifiedRom ? 'ROM_EXATA_CRC32 (tabela de relva desta versão; não é observação)' :
+        romWild && romWild.grass.rateByte === 0 ? 'ROM_EXATA_CRC32 (sem encontros de relva neste mapa)' :
+        'Nenhum encontro de relva confirmado na RAM/ROM',
       canonicalWildReference,
       canonicalNpcTrades: CANONICAL_TRADES.filter(t => t.available && t.mapId === this.latestState.mapId).map(t => ({
         ...t,
