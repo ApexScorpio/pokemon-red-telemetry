@@ -1929,44 +1929,47 @@ function getEffectiveness(attackType, defenderTypes) {
   return mult;
 }
 
-// Conjuntos de Dex de Gen 1 por Taxa de Crescimento
-const GEN1_MEDIUM_SLOW_DEX = new Set([
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 17, 18, 29, 30, 31, 32, 33, 34,
-  58, 59, 60, 61, 62, 63, 64, 65, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78,
-  81, 82, 84, 85, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
-  100, 101, 102, 103, 104, 105, 111, 112, 116, 117, 118, 119, 120, 121,
-  123, 127, 129, 130, 131, 137, 138, 139, 140, 141, 142,
-  144, 145, 146, 147, 148, 149, 150, 151
-]);
-const GEN1_FAST_DEX = new Set([35, 36, 39, 40, 113]);
-const GEN1_SLOW_DEX = new Set([66, 67, 68]);
+// Curvas de crescimento oficiais por espécie: pret/pokered/data/pokemon/base_stats/*.asm.
+// NÃO usar conjuntos de IDs feitos à mão, que classificavam várias espécies incorretamente.
+const CANONICAL_SPECIES = require('./gen1CanonicalSpecies.json').species;
 
-function getGen1ExpForLevel(dex, lvl) {
-  if (lvl <= 1) return 0;
-  if (GEN1_FAST_DEX.has(dex)) return Math.floor(0.8 * Math.pow(lvl, 3));
-  if (GEN1_SLOW_DEX.has(dex)) return Math.floor(1.25 * Math.pow(lvl, 3));
-  if (GEN1_MEDIUM_SLOW_DEX.has(dex)) {
-    return Math.floor(1.2 * Math.pow(lvl, 3) - 15 * Math.pow(lvl, 2) + 100 * lvl - 140);
+function getGen1ExpForLevel(dex, level) {
+  const species = CANONICAL_SPECIES[dex];
+  if (!species || !species.sourceVerified || !species.growthRate) return null;
+  const n = Math.max(1, Math.min(100, Math.floor(level)));
+  if (n === 1) return 0;
+  const cube = n * n * n;
+  switch (species.growthRate) {
+    case 'FAST': return Math.floor(4 * cube / 5);
+    case 'MEDIUM_FAST': return cube;
+    case 'MEDIUM_SLOW': return Math.max(0, Math.floor(6 * cube / 5 - 15 * n * n + 100 * n - 140));
+    case 'SLOW': return Math.floor(5 * cube / 4);
+    default: return null;
   }
-  // Medium-Fast padrão
-  return Math.floor(Math.pow(lvl, 3));
+}
+
+function getGen1LevelFromExp(dex, exp) {
+  if (!Number.isInteger(exp) || exp < 0) return null;
+  if (getGen1ExpForLevel(dex, 2) === null) return null;
+  for (let level = 100; level >= 1; level--) {
+    if (exp >= getGen1ExpForLevel(dex, level)) return level;
+  }
+  return 1;
 }
 
 function calculateExpProgress(level, currentExp, dex = 0) {
   const lvl = Math.max(1, Math.min(100, level || 1));
-  const exp = currentExp || 0;
+  const exp = Number.isFinite(currentExp) && currentExp >= 0 ? currentExp : null;
   const currentLvlExp = getGen1ExpForLevel(dex, lvl);
-  const nextLvlExp = getGen1ExpForLevel(dex, lvl + 1);
+  const nextLvlExp = getGen1ExpForLevel(dex, Math.min(100, lvl + 1));
+  if (exp === null || currentLvlExp === null || nextLvlExp === null) {
+    return { current: exp, next: null, needed: null, percent: null, source: 'CURVA DE EXP NÃO VALIDADA' };
+  }
+  if (lvl >= 100) return { current: exp, next: nextLvlExp, needed: 0, percent: 100, source: 'pret/pokered' };
   const needed = Math.max(0, nextLvlExp - exp);
   const range = Math.max(1, nextLvlExp - currentLvlExp);
-  const progress = Math.max(0, Math.min(100, Math.round(((exp - currentLvlExp) / range) * 100)));
-
-  return {
-    current: exp,
-    next: nextLvlExp,
-    needed,
-    percent: progress
-  };
+  const percent = Math.max(0, Math.min(100, Math.round(((exp - currentLvlExp) / range) * 100)));
+  return { current: exp, next: nextLvlExp, needed, percent, source: 'pret/pokered' };
 }
 
 // Cálculo Matemático Exato de Taxa de Captura da Gen 1 (Disassembly Oficial Pokémon Red/Blue)
@@ -2576,6 +2579,8 @@ module.exports = {
   decodeBadges,
   getEffectiveness,
   calculateExpProgress,
+  getGen1ExpForLevel,
+  getGen1LevelFromExp,
   calcGen1CatchRate,
   analyzeBattle
 };
