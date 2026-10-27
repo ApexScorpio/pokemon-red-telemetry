@@ -163,7 +163,13 @@ function inspectRom(file){
   let stats=null;
   if(dex>0&&dex<=150){
    const p=offsets.baseStats+(dex-1)*28;
-   stats={baseHp:b[p+1],attack:b[p+2],defense:b[p+3],speed:b[p+4],special:b[p+5],typeIds:[b[p+6],b[p+7]],catchRate:b[p+8],baseExp:b[p+9],frontSpritePointer:b.readUInt16LE(p+11),backSpritePointer:b.readUInt16LE(p+13),growthRateId:b[p+19]};
+   // Os 7 bytes p+20..p+26 codificam 50 TMs + 5 HMs (bit 0 é TM01).
+   const machineBytes=[...b.subarray(p+20,p+27)];
+   const machines=Array.from({length:55},(_,i)=>i+1).filter(n=>
+     !!(machineBytes[(n-1)>>3] & (1<<((n-1)&7))));
+   stats={baseHp:b[p+1],attack:b[p+2],defense:b[p+3],speed:b[p+4],special:b[p+5],typeIds:[b[p+6],b[p+7]],catchRate:b[p+8],baseExp:b[p+9],frontSpritePointer:b.readUInt16LE(p+11),backSpritePointer:b.readUInt16LE(p+13),growthRateId:b[p+19],
+    tmHm:{source:'ROM_BASESTATS_BITS_VERIFICADOS',rawHex:Buffer.from(machineBytes).toString('hex'),
+      tmNumbers:machines.filter(n=>n<=50),hmNumbers:machines.filter(n=>n>50).map(n=>n-50)}};
   }
   const sprite=stats ? spritePointersFromRom(b,stats,
     b[offsets.baseStats+(dex-1)*28+10]) : null;
