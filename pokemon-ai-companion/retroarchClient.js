@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { buildProfiles, getCurrentRom, pokemonFromProfile, moveNameFromProfile } = require('./romLiveResolver');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -227,6 +228,10 @@ class RetroArchClient extends EventEmitter {
     this.pollInterval = 700; // ms
     this.timer = null;
     this.isSimulatingBattle = false;
+    // ROM local é lida apenas em memória. Nunca alteramos os ficheiros do jogador.
+    this.romRegistry = buildProfiles();
+    this.activeRomProfile = null;
+    this.lastRomStatusReadAt = 0;
 
     const cachedState = this.loadPersistedState();
     this.latestState = cachedState || {
@@ -264,6 +269,11 @@ class RetroArchClient extends EventEmitter {
 
     // Um estado persistido nunca demonstra uma ROM validada agora.
     this.latestState.isSimulation = false;
+    this.latestState.romRuntimeIdentity = {
+      matched: false, source: 'RetroArch GET_STATUS + ROM local',
+      localProfiles: this.romRegistry.profiles.length,
+      profileLoadErrors: this.romRegistry.errors
+    };
     this.latestState.romValidation = 'ROM não verificada nesta sessão';
     this.latestState.romHeader = { fullRomVerified: false };
     this.latestState.memoryReadStatus = { verified: false, completeness: 'selected-address-ranges-only' };
@@ -391,7 +401,7 @@ class RetroArchClient extends EventEmitter {
       if (!this.socket) return resolve(null);
 
       const parts = cmd.trim().split(' ');
-      const key = `${parts[0]} ${parts[1]}`.toUpperCase();
+      const key = (parts.length === 1 ? parts[0] : `${parts[0]} ${parts[1]}`).toUpperCase();
 
       const timeout = setTimeout(() => {
         if (this.pendingResolves.has(key)) {
@@ -431,11 +441,13 @@ class RetroArchClient extends EventEmitter {
     const parts = str.split(' ');
     if (parts.length < 2) return;
 
-    const key = `${parts[0]} ${parts[1]}`.toUpperCase();
+    const key = parts[0].toUpperCase() === 'GET_STATUS'
+      ? 'GET_STATUS'
+      : `${parts[0]} ${parts[1]}`.toUpperCase();
     if (this.pendingResolves.has(key)) {
       const cb = this.pendingResolves.get(key);
       this.pendingResolves.delete(key);
-      cb(parts.slice(2));
+      cb(parts[0].toUpperCase() === 'GET_STATUS' ? parts.slice(1) : parts.slice(2));
     } else if (!this.lastUnmatchedUdpLogAt || Date.now() - this.lastUnmatchedUdpLogAt >= 2000) {
       this.lastUnmatchedUdpLogAt = Date.now();
       console.warn('[RetroArchClient] UDP sem pedido correspondente:', JSON.stringify({
@@ -520,7 +532,42 @@ class RetroArchClient extends EventEmitter {
     };
   }
 
+  getPokemonInfo(id) {
+    // Dados reais da ROM carregada têm prioridade apenas após CRC32 confirmado.
+    return pokemonFromProfile(this.activeRomProfile, id) ||
+      (this.getPokemonInfo(id) ? { ...this.getPokemonInfo(id), source: 'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM' } : null);
+  }
+
+  getMoveInfo(id) {
+    const romName = moveNameFromProfile(this.activeRomProfile, id);
+    const reference = MOVES[id] || null;
+    // Só o NOME está confirmado pela ROM quando existe perfil ativo.
+    return romName ? {
+      ...(reference||{}), name:romName,
+      nameSource:'ROM_VERIFICADA_PELO_CRC32',
+      attributesSource:'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM'
+    } : reference ? {...reference,nameSource:'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM'} : null;
+  }
+
   async fetchGameState() {
+    if (!this.lastRomStatusReadAt || Date.now()-this.lastRomStatusReadAt > 15000) {
+      this.lastRomStatusReadAt = Date.now();
+      const reply = await this.sendRaw('GET_STATUS');
+      const status = reply ? 'GET_STATUS '+reply.join(' ') : null;
+      this.activeRomProfile = getCurrentRom(status,this.romRegistry.profiles);
+      const crcMatch = status && status.match(/crc32=([0-9a-f]{8})/i);
+      this.latestState.romRuntimeIdentity = {
+        source:'RetroArch GET_STATUS',
+        reportedCRC32:crcMatch ? crcMatch[1].toUpperCase() : null,
+        matched:!!this.activeRomProfile,
+        profileSha256:this.activeRomProfile?.hash?.sha256||null,
+        title:this.activeRomProfile?.title||null,
+        addressesFromRom:!!this.activeRomProfile,
+        localProfiles:this.romRegistry.profiles.length,
+        reason:this.activeRomProfile ? 'CRC32 da ROM carregada coincide com ficheiro local analisado' :
+          'Não há ficheiro ROM local coincidente ou GET_STATUS indisponível'
+      };
+    }
     // =========================================================================
     // ARQUITETURA DE LEITURA EXAUSTIVA DA MEMÓRIA RAM DO GAME BOY (GEN 1)
     // Lê blocos contíguos completos sem deixar bytes por ler.
@@ -685,7 +732,7 @@ class RetroArchClient extends EventEmitter {
       const otName = decodeGen1Text(blockPlayerParty.slice(283 + i * 11, 283 + (i + 1) * 11)) || trainerName;
       const nickname = decodeGen1Text(blockPlayerParty.slice(349 + i * 11, 349 + (i + 1) * 11)) || '';
 
-      const pkInfo = INTERNAL_TO_POKEMON[speciesId] || { name: `Pokémon #${speciesId} (não identificado)`, dex: 0, types: [] };
+      const pkInfo = this.getPokemonInfo(speciesId) || { name: `Pokémon #${speciesId} (não identificado)`, dex: 0, types: [] };
       const displayName = nickname && nickname !== pkInfo.name.toUpperCase() ? `${nickname} (${pkInfo.name})` : pkInfo.name;
 
       const moveList = moves.map((mId, mIdx) => {
@@ -931,7 +978,7 @@ class RetroArchClient extends EventEmitter {
           this.emit('update', this.latestState);
           return;
         }
-        const pk = INTERNAL_TO_POKEMON[spId] || { name: `Pokémon #${spId}`, dex: 0, types: [] };
+        const pk = this.getPokemonInfo(spId) || { name: `Pokémon #${spId}`, dex: 0, types: [] };
         let level = null;
         let curHp = null;
         const moves = [];
@@ -996,7 +1043,7 @@ class RetroArchClient extends EventEmitter {
     if (daycareInUse === 1) {
       const off = 31; // DA5F - DA40
       const speciesId = parseInt(blockBoxTime[off], 16);
-      const info = INTERNAL_TO_POKEMON[speciesId] || null;
+      const info = this.getPokemonInfo(speciesId) || null;
       const exp = (parseInt(blockBoxTime[off + 14], 16) << 16) |
         (parseInt(blockBoxTime[off + 15], 16) << 8) |
         parseInt(blockBoxTime[off + 16], 16);
@@ -1178,8 +1225,8 @@ class RetroArchClient extends EventEmitter {
         for (let s = 0; s < 10; s++) {
           const lv = parseInt(wildGrassRaw[1 + s * 2], 16);
           const spId = parseInt(wildGrassRaw[2 + s * 2], 16);
-          if (spId && spId !== 0xFF && INTERNAL_TO_POKEMON[spId]) {
-            const pInfo = INTERNAL_TO_POKEMON[spId];
+          if (spId && spId !== 0xFF && this.getPokemonInfo(spId)) {
+            const pInfo = this.getPokemonInfo(spId);
             if (!speciesMap[spId]) {
               const staticMatch = (areaData.wild || []).find(w => w.dex === pInfo.dex);
               speciesMap[spId] = {
@@ -1353,8 +1400,8 @@ class RetroArchClient extends EventEmitter {
         isInParty: partyDexList.includes(w.dex)
       })),
       npcTrades: CANONICAL_TRADES.filter(t => t.available && t.mapId === this.latestState.mapId).map(t => ({
-        give: INTERNAL_TO_POKEMON[t.give.internalId]?.name || t.giveSymbol,
-        receive: INTERNAL_TO_POKEMON[t.receive.internalId]?.name || t.receiveSymbol,
+        give: this.getPokemonInfo(t.give.internalId)?.name || t.giveSymbol,
+        receive: this.getPokemonInfo(t.receive.internalId)?.name || t.receiveSymbol,
         dex: t.receive.dex,
         nickname: t.nickname,
         hint: 'Troca NPC registada na desmontagem pret/pokered: ' + t.mapSymbol,
@@ -1520,7 +1567,7 @@ class RetroArchClient extends EventEmitter {
         parseInt(blockCombat[33], 16)
       ];
 
-      const eInfo = INTERNAL_TO_POKEMON[eSpecies] || { name: `Inimigo #${eSpecies} (não identificado)`, dex: 0, types: [], baseHp: null };
+      const eInfo = this.getPokemonInfo(eSpecies) || { name: `Inimigo #${eSpecies} (não identificado)`, dex: 0, types: [], baseHp: null };
 
       // Modificadores de Stats do Inimigo ($CD2E, offset 270 de blockBattleMods)
       const eMods = {
@@ -1545,7 +1592,7 @@ class RetroArchClient extends EventEmitter {
       const enemyTrainerCount = (enemyPartyRaw && enemyPartyRaw.length > 0) ? parseInt(enemyPartyRaw[0], 16) : null;
       const enemyTrainerSpecies = (enemyPartyRaw && enemyPartyRaw.length > 1) ? enemyPartyRaw.slice(1, 1 + (enemyTrainerCount || 0)).map(s => {
         const id = parseInt(s, 16);
-        return (INTERNAL_TO_POKEMON[id] || { name: `Pokémon #${id}` }).name;
+        return (this.getPokemonInfo(id) || { name: `Pokémon #${id}` }).name;
       }) : [];
 
       const enemyMon = {
@@ -1609,7 +1656,7 @@ class RetroArchClient extends EventEmitter {
         });
       }
 
-      const pInfo = INTERNAL_TO_POKEMON[bSpecies] || { name: `Pokémon #${bSpecies} (não identificado)`, dex: 0, types: [] };
+      const pInfo = this.getPokemonInfo(bSpecies) || { name: `Pokémon #${bSpecies} (não identificado)`, dex: 0, types: [] };
       const partyMon = (this.latestState.party && this.latestState.party[realPartyPos]) ? this.latestState.party[realPartyPos] : null;
 
       const moveList = bMoves.map((mId, mIdx) => {
@@ -1782,9 +1829,9 @@ class RetroArchClient extends EventEmitter {
           const lv = parseInt(wildGrassRaw[1 + s * 2], 16);
           const spId = parseInt(wildGrassRaw[2 + s * 2], 16);
           const chance = slotChances[s] || 0;
-          if (spId && spId !== 0xFF && INTERNAL_TO_POKEMON[spId]) {
-            const pName = INTERNAL_TO_POKEMON[spId].name;
-            const pDex = INTERNAL_TO_POKEMON[spId].dex;
+          if (spId && spId !== 0xFF && this.getPokemonInfo(spId)) {
+            const pName = this.getPokemonInfo(spId).name;
+            const pDex = this.getPokemonInfo(spId).dex;
             totalEncounterWeight += chance;
             // Na Gen 1: Repel bloqueia se e só se wild_level < lead_level
             if (leadLevel > 0 && lv < leadLevel) {
