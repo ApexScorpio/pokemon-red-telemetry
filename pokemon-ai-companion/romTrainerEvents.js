@@ -28,30 +28,47 @@ const ATLAS=(()=>{
 const VERIFIED_BY_MAP=Object.fromEntries([...ATLAS].map(([map,ordinals])=>
  [map,[...ordinals.values()]]));
 function trainerFlagsForCurrentMap(profile,romMap,eventHex){
- const sha=profile?.hash?.sha256?.toLowerCase();
- const mapId=romMap?.mapId;
- const expected=ATLAS.get(mapId);
- if(!ROM_HASHES.has(sha)||!romMap?.valid||!expected)
-  return {verified:false,source:'SEM_CABECALHO_TREINADOR_ROM_CERTIFICADO',entries:[]};
- if(!Array.isArray(eventHex)||eventHex.length!==320||
-   eventHex.some(x=>typeof x!=='string'||!/^[a-fA-F0-9]{2}$/.test(x)))
-   return {verified:false,source:'FLAGS_RAM_D747_INCOMPLETAS',entries:[]};
+ const sha=profile?.hash?.sha256?.toLowerCase(),mapId=romMap?.mapId;
+ if(!romMap?.valid)return {verified:false,source:'MAPA_ROM_NÃO_VALIDADO',entries:[]};
  const objects=romMap.objects?.objects;
- if(!Array.isArray(objects))return {verified:false,
-  source:'OBJETOS_ROM_AUSENTES',entries:[]};
+ if(!Array.isArray(objects))return {verified:false,source:'OBJETOS_ROM_AUSENTES',entries:[]};
+ if(!Array.isArray(eventHex)||eventHex.length!==320||
+    eventHex.some(x=>typeof x!=='string'||!/^[a-fA-F0-9]{2}$/.test(x)))
+    return {verified:false,source:'FLAGS_RAM_D747_INCOMPLETAS',entries:[]};
+ // Perfis novos são produzidos diretamente da ROM que está no PC.
+ // Perfis anteriores (v4) usam apenas atlas auditado por SHA-256 exato.
+ let expected,source;
+ if(Array.isArray(romMap.trainerEvents)&&
+    profile?.world?.maps?.trainerEventsVerified>0 &&
+    profile?.world?.maps?.data?.[mapId]?.mapId===mapId &&
+    /^[0-9a-f]{64}$/.test(sha||'')){
+   expected=new Map(romMap.trainerEvents.map(v=>[v.objectOrdinal,v.eventBitIndex]));
+   source='ROM_PERFIL_LOCAL_TEXTO_CABEÇALHO';
+ }else if(ROM_HASHES.has(sha)&&ATLAS.has(mapId)){
+   expected=ATLAS.get(mapId);
+   source='312_CABECALHOS_VALIDOS_NAS_3_ROMS';
+ }else{
+   return {verified:false,source:'SEM_CABECALHO_TREINADOR_ROM_CERTIFICADO',entries:[]};
+ }
+ if(!expected.size)return {verified:false,source:'MAPA_SEM_TREINADORES_AUDITADOS',entries:[]};
  const entries=[];
  for(const [ordinal,eventBitIndex] of expected){
-  if(ordinal>objects.length||objects[ordinal-1]?.kind!=='trainer')
-   return {verified:false,source:'ORDINAL_ROM_DIVERGENTE_DOS_BYTES_AUDITADOS',entries:[]};
-  entries.push({objectOrdinal:ordinal,eventBitIndex,
-    defeated:!!(parseInt(eventHex[eventBitIndex>>3],16)&(1<<(eventBitIndex&7))),
-    source:'ROM_TEXT_SCRIPT->TRAINER_HEADER->RAM_EVENT_BIT'});
+  if(!Number.isInteger(ordinal)||ordinal<1||ordinal>objects.length||
+     objects[ordinal-1]?.kind!=='trainer'||
+     !Number.isInteger(eventBitIndex)||eventBitIndex<0||eventBitIndex>=2560)
+     return {verified:false,source:'ORDINAL_ROM_OU_EVENT_BIT_INVÁLIDO',entries:[]};
+  const eventFlagSet=!!(parseInt(eventHex[eventBitIndex>>3],16)&(1<<(eventBitIndex&7)));
+  entries.push({objectOrdinal:ordinal,eventBitIndex,eventFlagSet,
+    // Alguns scripts dos ginásios ativam flags após derrotar o LÍDER, sem
+    // que o jogador tenha combatido individualmente cada treinador.
+    defeated:null,
+    battleGateClosed:eventFlagSet,
+    source:source+' + RAM_D747'});
  }
- const trainerObjects=objects.filter(x=>x.kind==='trainer').length;
- return {verified:true,mapId,
-  source:'312_CABECALHOS_VALIDOS_NAS_3_ROMS + RAM_D747',
+ const n=objects.filter(x=>x.kind==='trainer').length;
+ return {verified:true,mapId,source:source+' + RAM_D747',
   entries,verifiedTrainerCount:entries.length,
-  unknownTrainerCount:trainerObjects-entries.length,
-  fullyMapped:trainerObjects===entries.length};
+  unknownTrainerCount:n-entries.length,fullyMapped:n===entries.length,
+  semantics:'eventFlagSet significa combate desativado/marcado concluído; não comprova historicamente vitória individual'};
 }
 module.exports={trainerFlagsForCurrentMap,VERIFIED_BY_MAP};
