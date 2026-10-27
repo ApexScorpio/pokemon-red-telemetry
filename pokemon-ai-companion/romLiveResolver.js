@@ -17,32 +17,55 @@ function localRomPaths(){
  }
  return [...new Set(candidates)];
 }
+function profilePaths(){
+ const paths=[];
+ if(process.env.POKEMON_ROM_PROFILE_PATH)paths.push(process.env.POKEMON_ROM_PROFILE_PATH);
+ const dir=process.env.POKEMON_ROM_PROFILE_DIR;
+ if(dir){
+  try{
+   if(fs.statSync(dir).isDirectory()){
+    const entries=fs.readdirSync(dir,{withFileTypes:true})
+     .filter(e=>e.isFile()&&/\\.json$/i.test(e.name)).slice(0,256);
+    for(const e of entries)paths.push(path.join(dir,e.name));
+   }
+  }catch(e){/* report individual source errors in buildProfiles */ }
+ }
+ return [...new Set(paths)];
+}
+function loadProfile(filename){
+ const profile=JSON.parse(fs.readFileSync(filename,'utf8'));
+ if(profile.schema!=='gen1-rom-profile-v1'||
+    !/^[0-9a-f]{64}$/i.test(profile.hash?.sha256||'')||
+    !/^[0-9a-f]{8}$/i.test(profile.hash?.crc32||'')||
+    !Number.isInteger(profile.bytes)||profile.bytes<32768||
+    profile.bytesRead!==profile.bytes||
+    !Array.isArray(profile.species)||profile.species.length!==190||
+    !Array.isArray(profile.moveNames)||profile.moveNames.length!==165||
+    !Array.isArray(profile.growthRates)||profile.growthRates.length!==6||
+    !profile.validated||!Object.values(profile.validated).every(v=>v===true)||
+    !['names','dexOrder','baseStats','growthRates','evolutions','moveNames'].every(k=>profile.offsets?.[k]&&profile.validated[k]===true)||
+    profile.unknownLayout===true)throw Error('perfil JSON inválido ou incompleto');
+ profile.source='PERFIL_IMPORTADO_DE_ROM_VERIFICADA; ROM LOCAL NÃO RELIDA';
+ return profile;
+}
 function buildProfiles(){
  const profiles=[],errors=[];
- // Pode usar perfil JSON derivado de uma ROM verificada noutra máquina,
- // sem publicar nem copiar o ficheiro ROM original.
- const metadataFile=process.env.POKEMON_ROM_PROFILE_PATH;
- if(metadataFile){
+ const usedSha=new Set();
+ for(const filename of profilePaths()){
   try{
-   const profile=JSON.parse(fs.readFileSync(metadataFile,'utf8'));
-   if(profile.schema!=='gen1-rom-profile-v1'||!/^[0-9a-f]{64}$/i.test(profile.hash?.sha256||'')||
-      !/^[0-9a-f]{8}$/i.test(profile.hash?.crc32||'')||
-      !Array.isArray(profile.species)||profile.species.length!==190||
-      !Array.isArray(profile.moveNames)||profile.moveNames.length!==165||
-      profile.unknownLayout===true)throw Error('perfil JSON inválido/incompleto');
-   profile.source='PERFIL_IMPORTADO_DE_ROM_VERIFICADA; ROM LOCAL NÃO RELIDA';
-   profiles.push(profile);
-  }catch(e){errors.push({file:path.basename(metadataFile),error:e.message});}
+   const p=loadProfile(filename);
+   if(!usedSha.has(p.hash.sha256)){profiles.push(p);usedSha.add(p.hash.sha256);}
+  }catch(e){errors.push({file:path.basename(filename),error:e.message});}
  }
  for(const filename of localRomPaths()){
   try{
    const size=fs.statSync(filename).size;
    if(size<0x8000||size>0x800000)throw Error('tamanho não suportado');
    const profile=inspectRom(filename);
-   if(profile.unknownLayout)throw Error('não foi possível validar tabelas Gen I');
+   if(profile.unknownLayout||!Object.values(profile.validated).every(Boolean))throw Error('ROM não permite validar todas as tabelas Gen I');
    const duplicate=profiles.findIndex(p=>p.hash.sha256===profile.hash.sha256);
-   if(duplicate>=0) profiles.splice(duplicate,1);
-   profiles.push(profile); // binário ROM local tem prioridade sobre metadados importados
+   if(duplicate>=0)profiles.splice(duplicate,1);
+   profiles.push(profile);
   }catch(e){errors.push({file:path.basename(filename),error:e.message});}
  }
  return {profiles,errors};
