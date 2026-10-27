@@ -7,6 +7,7 @@ const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEven
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
 const {auditTrainerCoverage,currentMapTrainerCoverage}=require('./romTrainerCoverage');
+const {verifyMapSnapshot}=require('./romSnapshotIntegrity');
 const {getTrainerParty}=require('./romTrainerParties');
 const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {captureOpportunities}=require('./romCaptureOpportunities');
@@ -672,6 +673,31 @@ class RetroArchClient extends EventEmitter {
       this.latestState.connected = false;
       this.latestState.lastReadError = 'Leitura incompleta: os valores antigos não são telemetria atual.';
       this.emit('update', this.latestState);
+      return;
+    }
+    // Verificar se o mapa mudou durante as leituras sequenciais. Se mudou,
+    // nunca publicar flags de eventos, itens e treinadores sob o ID antigo.
+    const mapConfirmation = verifyMapSnapshot(
+      blockPlayerParty[518],await this.readMemoryBlock('D35E',1)
+    );
+    this.latestState.memoryReadStatus.mapSnapshot=mapConfirmation;
+    if(!mapConfirmation.verified){
+      this.latestState.memoryReadStatus.verified=false;
+      this.latestState.connected=false;
+      this.latestState.lastReadError=mapConfirmation.reason+
+        ': descartar esta amostra e reler o mapa.';
+      this.latestState.romAreaEvidence={verified:false,
+        source:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES',items:[],trainers:[],npcs:[]};
+      this.latestState.romTrainerFlags={verified:false,entries:[],
+        source:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES'};
+      this.latestState.romHiddenItems={verified:false,items:[],
+        reason:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES'};
+      this.latestState.romAreaProgress={verified:false,
+        source:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES'};
+      this.latestState.romWildEncounters=null;
+      this.latestState.romMap=null;
+      this.latestState.mapEntities=[];
+      this.emit('update',this.latestState);
       return;
     }
     this.latestState.lastReadError = null;
