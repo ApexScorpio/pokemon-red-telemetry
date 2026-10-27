@@ -1,0 +1,2238 @@
+{
+  "source": "pret/pokered constants/map_constants.asm",
+  "note": "Map IDs and dimensions are static original-ROM reference, not live coords",
+  "maps": {
+    "0": {
+      "id": 0,
+      "hex": "0x00",
+      "symbol": "PALLET_TOWN",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "1": {
+      "id": 1,
+      "hex": "0x01",
+      "symbol": "VIRIDIAN_CITY",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "2": {
+      "id": 2,
+      "hex": "0x02",
+      "symbol": "PEWTER_CITY",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "3": {
+      "id": 3,
+      "hex": "0x03",
+      "symbol": "CERULEAN_CITY",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "4": {
+      "id": 4,
+      "hex": "0x04",
+      "symbol": "LAVENDER_TOWN",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "5": {
+      "id": 5,
+      "hex": "0x05",
+      "symbol": "VERMILION_CITY",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "6": {
+      "id": 6,
+      "hex": "0x06",
+      "symbol": "CELADON_CITY",
+      "blockWidth": 25,
+      "blockHeight": 18,
+      "tileWidth": 50,
+      "tileHeight": 36
+    },
+    "7": {
+      "id": 7,
+      "hex": "0x07",
+      "symbol": "FUCHSIA_CITY",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "8": {
+      "id": 8,
+      "hex": "0x08",
+      "symbol": "CINNABAR_ISLAND",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "9": {
+      "id": 9,
+      "hex": "0x09",
+      "symbol": "INDIGO_PLATEAU",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "10": {
+      "id": 10,
+      "hex": "0x0A",
+      "symbol": "SAFFRON_CITY",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "11": {
+      "id": 11,
+      "hex": "0x0B",
+      "symbol": "UNUSED_MAP_0B",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "12": {
+      "id": 12,
+      "hex": "0x0C",
+      "symbol": "ROUTE_1",
+      "blockWidth": 10,
+      "blockHeight": 18,
+      "tileWidth": 20,
+      "tileHeight": 36
+    },
+    "13": {
+      "id": 13,
+      "hex": "0x0D",
+      "symbol": "ROUTE_2",
+      "blockWidth": 10,
+      "blockHeight": 36,
+      "tileWidth": 20,
+      "tileHeight": 72
+    },
+    "14": {
+      "id": 14,
+      "hex": "0x0E",
+      "symbol": "ROUTE_3",
+      "blockWidth": 35,
+      "blockHeight": 9,
+      "tileWidth": 70,
+      "tileHeight": 18
+    },
+    "15": {
+      "id": 15,
+      "hex": "0x0F",
+      "symbol": "ROUTE_4",
+      "blockWidth": 45,
+      "blockHeight": 9,
+      "tileWidth": 90,
+      "tileHeight": 18
+    },
+    "16": {
+      "id": 16,
+      "hex": "0x10",
+      "symbol": "ROUTE_5",
+      "blockWidth": 10,
+      "blockHeight": 18,
+      "tileWidth": 20,
+      "tileHeight": 36
+    },
+    "17": {
+      "id": 17,
+      "hex": "0x11",
+      "symbol": "ROUTE_6",
+      "blockWidth": 10,
+      "blockHeight": 18,
+      "tileWidth": 20,
+      "tileHeight": 36
+    },
+    "18": {
+      "id": 18,
+      "hex": "0x12",
+      "symbol": "ROUTE_7",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "19": {
+      "id": 19,
+      "hex": "0x13",
+      "symbol": "ROUTE_8",
+      "blockWidth": 30,
+      "blockHeight": 9,
+      "tileWidth": 60,
+      "tileHeight": 18
+    },
+    "20": {
+      "id": 20,
+      "hex": "0x14",
+      "symbol": "ROUTE_9",
+      "blockWidth": 30,
+      "blockHeight": 9,
+      "tileWidth": 60,
+      "tileHeight": 18
+    },
+    "21": {
+      "id": 21,
+      "hex": "0x15",
+      "symbol": "ROUTE_10",
+      "blockWidth": 10,
+      "blockHeight": 36,
+      "tileWidth": 20,
+      "tileHeight": 72
+    },
+    "22": {
+      "id": 22,
+      "hex": "0x16",
+      "symbol": "ROUTE_11",
+      "blockWidth": 30,
+      "blockHeight": 9,
+      "tileWidth": 60,
+      "tileHeight": 18
+    },
+    "23": {
+      "id": 23,
+      "hex": "0x17",
+      "symbol": "ROUTE_12",
+      "blockWidth": 10,
+      "blockHeight": 54,
+      "tileWidth": 20,
+      "tileHeight": 108
+    },
+    "24": {
+      "id": 24,
+      "hex": "0x18",
+      "symbol": "ROUTE_13",
+      "blockWidth": 30,
+      "blockHeight": 9,
+      "tileWidth": 60,
+      "tileHeight": 18
+    },
+    "25": {
+      "id": 25,
+      "hex": "0x19",
+      "symbol": "ROUTE_14",
+      "blockWidth": 10,
+      "blockHeight": 27,
+      "tileWidth": 20,
+      "tileHeight": 54
+    },
+    "26": {
+      "id": 26,
+      "hex": "0x1A",
+      "symbol": "ROUTE_15",
+      "blockWidth": 30,
+      "blockHeight": 9,
+      "tileWidth": 60,
+      "tileHeight": 18
+    },
+    "27": {
+      "id": 27,
+      "hex": "0x1B",
+      "symbol": "ROUTE_16",
+      "blockWidth": 20,
+      "blockHeight": 9,
+      "tileWidth": 40,
+      "tileHeight": 18
+    },
+    "28": {
+      "id": 28,
+      "hex": "0x1C",
+      "symbol": "ROUTE_17",
+      "blockWidth": 10,
+      "blockHeight": 72,
+      "tileWidth": 20,
+      "tileHeight": 144
+    },
+    "29": {
+      "id": 29,
+      "hex": "0x1D",
+      "symbol": "ROUTE_18",
+      "blockWidth": 25,
+      "blockHeight": 9,
+      "tileWidth": 50,
+      "tileHeight": 18
+    },
+    "30": {
+      "id": 30,
+      "hex": "0x1E",
+      "symbol": "ROUTE_19",
+      "blockWidth": 10,
+      "blockHeight": 27,
+      "tileWidth": 20,
+      "tileHeight": 54
+    },
+    "31": {
+      "id": 31,
+      "hex": "0x1F",
+      "symbol": "ROUTE_20",
+      "blockWidth": 50,
+      "blockHeight": 9,
+      "tileWidth": 100,
+      "tileHeight": 18
+    },
+    "32": {
+      "id": 32,
+      "hex": "0x20",
+      "symbol": "ROUTE_21",
+      "blockWidth": 10,
+      "blockHeight": 45,
+      "tileWidth": 20,
+      "tileHeight": 90
+    },
+    "33": {
+      "id": 33,
+      "hex": "0x21",
+      "symbol": "ROUTE_22",
+      "blockWidth": 20,
+      "blockHeight": 9,
+      "tileWidth": 40,
+      "tileHeight": 18
+    },
+    "34": {
+      "id": 34,
+      "hex": "0x22",
+      "symbol": "ROUTE_23",
+      "blockWidth": 10,
+      "blockHeight": 72,
+      "tileWidth": 20,
+      "tileHeight": 144
+    },
+    "35": {
+      "id": 35,
+      "hex": "0x23",
+      "symbol": "ROUTE_24",
+      "blockWidth": 10,
+      "blockHeight": 18,
+      "tileWidth": 20,
+      "tileHeight": 36
+    },
+    "36": {
+      "id": 36,
+      "hex": "0x24",
+      "symbol": "ROUTE_25",
+      "blockWidth": 30,
+      "blockHeight": 9,
+      "tileWidth": 60,
+      "tileHeight": 18
+    },
+    "37": {
+      "id": 37,
+      "hex": "0x25",
+      "symbol": "REDS_HOUSE_1F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "38": {
+      "id": 38,
+      "hex": "0x26",
+      "symbol": "REDS_HOUSE_2F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "39": {
+      "id": 39,
+      "hex": "0x27",
+      "symbol": "BLUES_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "40": {
+      "id": 40,
+      "hex": "0x28",
+      "symbol": "OAKS_LAB",
+      "blockWidth": 5,
+      "blockHeight": 6,
+      "tileWidth": 10,
+      "tileHeight": 12
+    },
+    "41": {
+      "id": 41,
+      "hex": "0x29",
+      "symbol": "VIRIDIAN_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "42": {
+      "id": 42,
+      "hex": "0x2A",
+      "symbol": "VIRIDIAN_MART",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "43": {
+      "id": 43,
+      "hex": "0x2B",
+      "symbol": "VIRIDIAN_SCHOOL_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "44": {
+      "id": 44,
+      "hex": "0x2C",
+      "symbol": "VIRIDIAN_NICKNAME_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "45": {
+      "id": 45,
+      "hex": "0x2D",
+      "symbol": "VIRIDIAN_GYM",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "46": {
+      "id": 46,
+      "hex": "0x2E",
+      "symbol": "DIGLETTS_CAVE_ROUTE_2",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "47": {
+      "id": 47,
+      "hex": "0x2F",
+      "symbol": "VIRIDIAN_FOREST_NORTH_GATE",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "48": {
+      "id": 48,
+      "hex": "0x30",
+      "symbol": "ROUTE_2_TRADE_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "49": {
+      "id": 49,
+      "hex": "0x31",
+      "symbol": "ROUTE_2_GATE",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "50": {
+      "id": 50,
+      "hex": "0x32",
+      "symbol": "VIRIDIAN_FOREST_SOUTH_GATE",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "51": {
+      "id": 51,
+      "hex": "0x33",
+      "symbol": "VIRIDIAN_FOREST",
+      "blockWidth": 17,
+      "blockHeight": 24,
+      "tileWidth": 34,
+      "tileHeight": 48
+    },
+    "52": {
+      "id": 52,
+      "hex": "0x34",
+      "symbol": "MUSEUM_1F",
+      "blockWidth": 10,
+      "blockHeight": 4,
+      "tileWidth": 20,
+      "tileHeight": 8
+    },
+    "53": {
+      "id": 53,
+      "hex": "0x35",
+      "symbol": "MUSEUM_2F",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "54": {
+      "id": 54,
+      "hex": "0x36",
+      "symbol": "PEWTER_GYM",
+      "blockWidth": 5,
+      "blockHeight": 7,
+      "tileWidth": 10,
+      "tileHeight": 14
+    },
+    "55": {
+      "id": 55,
+      "hex": "0x37",
+      "symbol": "PEWTER_NIDORAN_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "56": {
+      "id": 56,
+      "hex": "0x38",
+      "symbol": "PEWTER_MART",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "57": {
+      "id": 57,
+      "hex": "0x39",
+      "symbol": "PEWTER_SPEECH_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "58": {
+      "id": 58,
+      "hex": "0x3A",
+      "symbol": "PEWTER_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "59": {
+      "id": 59,
+      "hex": "0x3B",
+      "symbol": "MT_MOON_1F",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "60": {
+      "id": 60,
+      "hex": "0x3C",
+      "symbol": "MT_MOON_B1F",
+      "blockWidth": 14,
+      "blockHeight": 14,
+      "tileWidth": 28,
+      "tileHeight": 28
+    },
+    "61": {
+      "id": 61,
+      "hex": "0x3D",
+      "symbol": "MT_MOON_B2F",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "62": {
+      "id": 62,
+      "hex": "0x3E",
+      "symbol": "CERULEAN_TRASHED_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "63": {
+      "id": 63,
+      "hex": "0x3F",
+      "symbol": "CERULEAN_TRADE_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "64": {
+      "id": 64,
+      "hex": "0x40",
+      "symbol": "CERULEAN_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "65": {
+      "id": 65,
+      "hex": "0x41",
+      "symbol": "CERULEAN_GYM",
+      "blockWidth": 5,
+      "blockHeight": 7,
+      "tileWidth": 10,
+      "tileHeight": 14
+    },
+    "66": {
+      "id": 66,
+      "hex": "0x42",
+      "symbol": "BIKE_SHOP",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "67": {
+      "id": 67,
+      "hex": "0x43",
+      "symbol": "CERULEAN_MART",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "68": {
+      "id": 68,
+      "hex": "0x44",
+      "symbol": "MT_MOON_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "69": {
+      "id": 69,
+      "hex": "0x45",
+      "symbol": "CERULEAN_TRASHED_HOUSE_COPY",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "70": {
+      "id": 70,
+      "hex": "0x46",
+      "symbol": "ROUTE_5_GATE",
+      "blockWidth": 4,
+      "blockHeight": 3,
+      "tileWidth": 8,
+      "tileHeight": 6
+    },
+    "71": {
+      "id": 71,
+      "hex": "0x47",
+      "symbol": "UNDERGROUND_PATH_ROUTE_5",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "72": {
+      "id": 72,
+      "hex": "0x48",
+      "symbol": "DAYCARE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "73": {
+      "id": 73,
+      "hex": "0x49",
+      "symbol": "ROUTE_6_GATE",
+      "blockWidth": 4,
+      "blockHeight": 3,
+      "tileWidth": 8,
+      "tileHeight": 6
+    },
+    "74": {
+      "id": 74,
+      "hex": "0x4A",
+      "symbol": "UNDERGROUND_PATH_ROUTE_6",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "75": {
+      "id": 75,
+      "hex": "0x4B",
+      "symbol": "UNDERGROUND_PATH_ROUTE_6_COPY",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "76": {
+      "id": 76,
+      "hex": "0x4C",
+      "symbol": "ROUTE_7_GATE",
+      "blockWidth": 3,
+      "blockHeight": 4,
+      "tileWidth": 6,
+      "tileHeight": 8
+    },
+    "77": {
+      "id": 77,
+      "hex": "0x4D",
+      "symbol": "UNDERGROUND_PATH_ROUTE_7",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "78": {
+      "id": 78,
+      "hex": "0x4E",
+      "symbol": "UNDERGROUND_PATH_ROUTE_7_COPY",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "79": {
+      "id": 79,
+      "hex": "0x4F",
+      "symbol": "ROUTE_8_GATE",
+      "blockWidth": 3,
+      "blockHeight": 4,
+      "tileWidth": 6,
+      "tileHeight": 8
+    },
+    "80": {
+      "id": 80,
+      "hex": "0x50",
+      "symbol": "UNDERGROUND_PATH_ROUTE_8",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "81": {
+      "id": 81,
+      "hex": "0x51",
+      "symbol": "ROCK_TUNNEL_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "82": {
+      "id": 82,
+      "hex": "0x52",
+      "symbol": "ROCK_TUNNEL_1F",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "83": {
+      "id": 83,
+      "hex": "0x53",
+      "symbol": "POWER_PLANT",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "84": {
+      "id": 84,
+      "hex": "0x54",
+      "symbol": "ROUTE_11_GATE_1F",
+      "blockWidth": 4,
+      "blockHeight": 5,
+      "tileWidth": 8,
+      "tileHeight": 10
+    },
+    "85": {
+      "id": 85,
+      "hex": "0x55",
+      "symbol": "DIGLETTS_CAVE_ROUTE_11",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "86": {
+      "id": 86,
+      "hex": "0x56",
+      "symbol": "ROUTE_11_GATE_2F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "87": {
+      "id": 87,
+      "hex": "0x57",
+      "symbol": "ROUTE_12_GATE_1F",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "88": {
+      "id": 88,
+      "hex": "0x58",
+      "symbol": "BILLS_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "89": {
+      "id": 89,
+      "hex": "0x59",
+      "symbol": "VERMILION_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "90": {
+      "id": 90,
+      "hex": "0x5A",
+      "symbol": "POKEMON_FAN_CLUB",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "91": {
+      "id": 91,
+      "hex": "0x5B",
+      "symbol": "VERMILION_MART",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "92": {
+      "id": 92,
+      "hex": "0x5C",
+      "symbol": "VERMILION_GYM",
+      "blockWidth": 5,
+      "blockHeight": 9,
+      "tileWidth": 10,
+      "tileHeight": 18
+    },
+    "93": {
+      "id": 93,
+      "hex": "0x5D",
+      "symbol": "VERMILION_PIDGEY_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "94": {
+      "id": 94,
+      "hex": "0x5E",
+      "symbol": "VERMILION_DOCK",
+      "blockWidth": 14,
+      "blockHeight": 6,
+      "tileWidth": 28,
+      "tileHeight": 12
+    },
+    "95": {
+      "id": 95,
+      "hex": "0x5F",
+      "symbol": "SS_ANNE_1F",
+      "blockWidth": 20,
+      "blockHeight": 9,
+      "tileWidth": 40,
+      "tileHeight": 18
+    },
+    "96": {
+      "id": 96,
+      "hex": "0x60",
+      "symbol": "SS_ANNE_2F",
+      "blockWidth": 20,
+      "blockHeight": 9,
+      "tileWidth": 40,
+      "tileHeight": 18
+    },
+    "97": {
+      "id": 97,
+      "hex": "0x61",
+      "symbol": "SS_ANNE_3F",
+      "blockWidth": 10,
+      "blockHeight": 3,
+      "tileWidth": 20,
+      "tileHeight": 6
+    },
+    "98": {
+      "id": 98,
+      "hex": "0x62",
+      "symbol": "SS_ANNE_B1F",
+      "blockWidth": 15,
+      "blockHeight": 4,
+      "tileWidth": 30,
+      "tileHeight": 8
+    },
+    "99": {
+      "id": 99,
+      "hex": "0x63",
+      "symbol": "SS_ANNE_BOW",
+      "blockWidth": 10,
+      "blockHeight": 7,
+      "tileWidth": 20,
+      "tileHeight": 14
+    },
+    "100": {
+      "id": 100,
+      "hex": "0x64",
+      "symbol": "SS_ANNE_KITCHEN",
+      "blockWidth": 7,
+      "blockHeight": 8,
+      "tileWidth": 14,
+      "tileHeight": 16
+    },
+    "101": {
+      "id": 101,
+      "hex": "0x65",
+      "symbol": "SS_ANNE_CAPTAINS_ROOM",
+      "blockWidth": 3,
+      "blockHeight": 4,
+      "tileWidth": 6,
+      "tileHeight": 8
+    },
+    "102": {
+      "id": 102,
+      "hex": "0x66",
+      "symbol": "SS_ANNE_1F_ROOMS",
+      "blockWidth": 12,
+      "blockHeight": 8,
+      "tileWidth": 24,
+      "tileHeight": 16
+    },
+    "103": {
+      "id": 103,
+      "hex": "0x67",
+      "symbol": "SS_ANNE_2F_ROOMS",
+      "blockWidth": 12,
+      "blockHeight": 8,
+      "tileWidth": 24,
+      "tileHeight": 16
+    },
+    "104": {
+      "id": 104,
+      "hex": "0x68",
+      "symbol": "SS_ANNE_B1F_ROOMS",
+      "blockWidth": 12,
+      "blockHeight": 8,
+      "tileWidth": 24,
+      "tileHeight": 16
+    },
+    "105": {
+      "id": 105,
+      "hex": "0x69",
+      "symbol": "UNUSED_MAP_69",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "106": {
+      "id": 106,
+      "hex": "0x6A",
+      "symbol": "UNUSED_MAP_6A",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "107": {
+      "id": 107,
+      "hex": "0x6B",
+      "symbol": "UNUSED_MAP_6B",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "108": {
+      "id": 108,
+      "hex": "0x6C",
+      "symbol": "VICTORY_ROAD_1F",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "109": {
+      "id": 109,
+      "hex": "0x6D",
+      "symbol": "UNUSED_MAP_6D",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "110": {
+      "id": 110,
+      "hex": "0x6E",
+      "symbol": "UNUSED_MAP_6E",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "111": {
+      "id": 111,
+      "hex": "0x6F",
+      "symbol": "UNUSED_MAP_6F",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "112": {
+      "id": 112,
+      "hex": "0x70",
+      "symbol": "UNUSED_MAP_70",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "113": {
+      "id": 113,
+      "hex": "0x71",
+      "symbol": "LANCES_ROOM",
+      "blockWidth": 13,
+      "blockHeight": 13,
+      "tileWidth": 26,
+      "tileHeight": 26
+    },
+    "114": {
+      "id": 114,
+      "hex": "0x72",
+      "symbol": "UNUSED_MAP_72",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "115": {
+      "id": 115,
+      "hex": "0x73",
+      "symbol": "UNUSED_MAP_73",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "116": {
+      "id": 116,
+      "hex": "0x74",
+      "symbol": "UNUSED_MAP_74",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "117": {
+      "id": 117,
+      "hex": "0x75",
+      "symbol": "UNUSED_MAP_75",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "118": {
+      "id": 118,
+      "hex": "0x76",
+      "symbol": "HALL_OF_FAME",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "119": {
+      "id": 119,
+      "hex": "0x77",
+      "symbol": "UNDERGROUND_PATH_NORTH_SOUTH",
+      "blockWidth": 4,
+      "blockHeight": 24,
+      "tileWidth": 8,
+      "tileHeight": 48
+    },
+    "120": {
+      "id": 120,
+      "hex": "0x78",
+      "symbol": "CHAMPIONS_ROOM",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "121": {
+      "id": 121,
+      "hex": "0x79",
+      "symbol": "UNDERGROUND_PATH_WEST_EAST",
+      "blockWidth": 25,
+      "blockHeight": 4,
+      "tileWidth": 50,
+      "tileHeight": 8
+    },
+    "122": {
+      "id": 122,
+      "hex": "0x7A",
+      "symbol": "CELADON_MART_1F",
+      "blockWidth": 10,
+      "blockHeight": 4,
+      "tileWidth": 20,
+      "tileHeight": 8
+    },
+    "123": {
+      "id": 123,
+      "hex": "0x7B",
+      "symbol": "CELADON_MART_2F",
+      "blockWidth": 10,
+      "blockHeight": 4,
+      "tileWidth": 20,
+      "tileHeight": 8
+    },
+    "124": {
+      "id": 124,
+      "hex": "0x7C",
+      "symbol": "CELADON_MART_3F",
+      "blockWidth": 10,
+      "blockHeight": 4,
+      "tileWidth": 20,
+      "tileHeight": 8
+    },
+    "125": {
+      "id": 125,
+      "hex": "0x7D",
+      "symbol": "CELADON_MART_4F",
+      "blockWidth": 10,
+      "blockHeight": 4,
+      "tileWidth": 20,
+      "tileHeight": 8
+    },
+    "126": {
+      "id": 126,
+      "hex": "0x7E",
+      "symbol": "CELADON_MART_ROOF",
+      "blockWidth": 10,
+      "blockHeight": 4,
+      "tileWidth": 20,
+      "tileHeight": 8
+    },
+    "127": {
+      "id": 127,
+      "hex": "0x7F",
+      "symbol": "CELADON_MART_ELEVATOR",
+      "blockWidth": 2,
+      "blockHeight": 2,
+      "tileWidth": 4,
+      "tileHeight": 4
+    },
+    "128": {
+      "id": 128,
+      "hex": "0x80",
+      "symbol": "CELADON_MANSION_1F",
+      "blockWidth": 4,
+      "blockHeight": 6,
+      "tileWidth": 8,
+      "tileHeight": 12
+    },
+    "129": {
+      "id": 129,
+      "hex": "0x81",
+      "symbol": "CELADON_MANSION_2F",
+      "blockWidth": 4,
+      "blockHeight": 6,
+      "tileWidth": 8,
+      "tileHeight": 12
+    },
+    "130": {
+      "id": 130,
+      "hex": "0x82",
+      "symbol": "CELADON_MANSION_3F",
+      "blockWidth": 4,
+      "blockHeight": 6,
+      "tileWidth": 8,
+      "tileHeight": 12
+    },
+    "131": {
+      "id": 131,
+      "hex": "0x83",
+      "symbol": "CELADON_MANSION_ROOF",
+      "blockWidth": 4,
+      "blockHeight": 6,
+      "tileWidth": 8,
+      "tileHeight": 12
+    },
+    "132": {
+      "id": 132,
+      "hex": "0x84",
+      "symbol": "CELADON_MANSION_ROOF_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "133": {
+      "id": 133,
+      "hex": "0x85",
+      "symbol": "CELADON_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "134": {
+      "id": 134,
+      "hex": "0x86",
+      "symbol": "CELADON_GYM",
+      "blockWidth": 5,
+      "blockHeight": 9,
+      "tileWidth": 10,
+      "tileHeight": 18
+    },
+    "135": {
+      "id": 135,
+      "hex": "0x87",
+      "symbol": "GAME_CORNER",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "136": {
+      "id": 136,
+      "hex": "0x88",
+      "symbol": "CELADON_MART_5F",
+      "blockWidth": 10,
+      "blockHeight": 4,
+      "tileWidth": 20,
+      "tileHeight": 8
+    },
+    "137": {
+      "id": 137,
+      "hex": "0x89",
+      "symbol": "GAME_CORNER_PRIZE_ROOM",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "138": {
+      "id": 138,
+      "hex": "0x8A",
+      "symbol": "CELADON_DINER",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "139": {
+      "id": 139,
+      "hex": "0x8B",
+      "symbol": "CELADON_CHIEF_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "140": {
+      "id": 140,
+      "hex": "0x8C",
+      "symbol": "CELADON_HOTEL",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "141": {
+      "id": 141,
+      "hex": "0x8D",
+      "symbol": "LAVENDER_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "142": {
+      "id": 142,
+      "hex": "0x8E",
+      "symbol": "POKEMON_TOWER_1F",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "143": {
+      "id": 143,
+      "hex": "0x8F",
+      "symbol": "POKEMON_TOWER_2F",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "144": {
+      "id": 144,
+      "hex": "0x90",
+      "symbol": "POKEMON_TOWER_3F",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "145": {
+      "id": 145,
+      "hex": "0x91",
+      "symbol": "POKEMON_TOWER_4F",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "146": {
+      "id": 146,
+      "hex": "0x92",
+      "symbol": "POKEMON_TOWER_5F",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "147": {
+      "id": 147,
+      "hex": "0x93",
+      "symbol": "POKEMON_TOWER_6F",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "148": {
+      "id": 148,
+      "hex": "0x94",
+      "symbol": "POKEMON_TOWER_7F",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "149": {
+      "id": 149,
+      "hex": "0x95",
+      "symbol": "MR_FUJIS_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "150": {
+      "id": 150,
+      "hex": "0x96",
+      "symbol": "LAVENDER_MART",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "151": {
+      "id": 151,
+      "hex": "0x97",
+      "symbol": "LAVENDER_CUBONE_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "152": {
+      "id": 152,
+      "hex": "0x98",
+      "symbol": "FUCHSIA_MART",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "153": {
+      "id": 153,
+      "hex": "0x99",
+      "symbol": "FUCHSIA_BILLS_GRANDPAS_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "154": {
+      "id": 154,
+      "hex": "0x9A",
+      "symbol": "FUCHSIA_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "155": {
+      "id": 155,
+      "hex": "0x9B",
+      "symbol": "WARDENS_HOUSE",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "156": {
+      "id": 156,
+      "hex": "0x9C",
+      "symbol": "SAFARI_ZONE_GATE",
+      "blockWidth": 4,
+      "blockHeight": 3,
+      "tileWidth": 8,
+      "tileHeight": 6
+    },
+    "157": {
+      "id": 157,
+      "hex": "0x9D",
+      "symbol": "FUCHSIA_GYM",
+      "blockWidth": 5,
+      "blockHeight": 9,
+      "tileWidth": 10,
+      "tileHeight": 18
+    },
+    "158": {
+      "id": 158,
+      "hex": "0x9E",
+      "symbol": "FUCHSIA_MEETING_ROOM",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "159": {
+      "id": 159,
+      "hex": "0x9F",
+      "symbol": "SEAFOAM_ISLANDS_B1F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "160": {
+      "id": 160,
+      "hex": "0xA0",
+      "symbol": "SEAFOAM_ISLANDS_B2F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "161": {
+      "id": 161,
+      "hex": "0xA1",
+      "symbol": "SEAFOAM_ISLANDS_B3F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "162": {
+      "id": 162,
+      "hex": "0xA2",
+      "symbol": "SEAFOAM_ISLANDS_B4F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "163": {
+      "id": 163,
+      "hex": "0xA3",
+      "symbol": "VERMILION_OLD_ROD_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "164": {
+      "id": 164,
+      "hex": "0xA4",
+      "symbol": "FUCHSIA_GOOD_ROD_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "165": {
+      "id": 165,
+      "hex": "0xA5",
+      "symbol": "POKEMON_MANSION_1F",
+      "blockWidth": 15,
+      "blockHeight": 14,
+      "tileWidth": 30,
+      "tileHeight": 28
+    },
+    "166": {
+      "id": 166,
+      "hex": "0xA6",
+      "symbol": "CINNABAR_GYM",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "167": {
+      "id": 167,
+      "hex": "0xA7",
+      "symbol": "CINNABAR_LAB",
+      "blockWidth": 9,
+      "blockHeight": 4,
+      "tileWidth": 18,
+      "tileHeight": 8
+    },
+    "168": {
+      "id": 168,
+      "hex": "0xA8",
+      "symbol": "CINNABAR_LAB_TRADE_ROOM",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "169": {
+      "id": 169,
+      "hex": "0xA9",
+      "symbol": "CINNABAR_LAB_METRONOME_ROOM",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "170": {
+      "id": 170,
+      "hex": "0xAA",
+      "symbol": "CINNABAR_LAB_FOSSIL_ROOM",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "171": {
+      "id": 171,
+      "hex": "0xAB",
+      "symbol": "CINNABAR_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "172": {
+      "id": 172,
+      "hex": "0xAC",
+      "symbol": "CINNABAR_MART",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "173": {
+      "id": 173,
+      "hex": "0xAD",
+      "symbol": "CINNABAR_MART_COPY",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "174": {
+      "id": 174,
+      "hex": "0xAE",
+      "symbol": "INDIGO_PLATEAU_LOBBY",
+      "blockWidth": 8,
+      "blockHeight": 6,
+      "tileWidth": 16,
+      "tileHeight": 12
+    },
+    "175": {
+      "id": 175,
+      "hex": "0xAF",
+      "symbol": "COPYCATS_HOUSE_1F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "176": {
+      "id": 176,
+      "hex": "0xB0",
+      "symbol": "COPYCATS_HOUSE_2F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "177": {
+      "id": 177,
+      "hex": "0xB1",
+      "symbol": "FIGHTING_DOJO",
+      "blockWidth": 5,
+      "blockHeight": 6,
+      "tileWidth": 10,
+      "tileHeight": 12
+    },
+    "178": {
+      "id": 178,
+      "hex": "0xB2",
+      "symbol": "SAFFRON_GYM",
+      "blockWidth": 10,
+      "blockHeight": 9,
+      "tileWidth": 20,
+      "tileHeight": 18
+    },
+    "179": {
+      "id": 179,
+      "hex": "0xB3",
+      "symbol": "SAFFRON_PIDGEY_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "180": {
+      "id": 180,
+      "hex": "0xB4",
+      "symbol": "SAFFRON_MART",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "181": {
+      "id": 181,
+      "hex": "0xB5",
+      "symbol": "SILPH_CO_1F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "182": {
+      "id": 182,
+      "hex": "0xB6",
+      "symbol": "SAFFRON_POKECENTER",
+      "blockWidth": 7,
+      "blockHeight": 4,
+      "tileWidth": 14,
+      "tileHeight": 8
+    },
+    "183": {
+      "id": 183,
+      "hex": "0xB7",
+      "symbol": "MR_PSYCHICS_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "184": {
+      "id": 184,
+      "hex": "0xB8",
+      "symbol": "ROUTE_15_GATE_1F",
+      "blockWidth": 4,
+      "blockHeight": 5,
+      "tileWidth": 8,
+      "tileHeight": 10
+    },
+    "185": {
+      "id": 185,
+      "hex": "0xB9",
+      "symbol": "ROUTE_15_GATE_2F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "186": {
+      "id": 186,
+      "hex": "0xBA",
+      "symbol": "ROUTE_16_GATE_1F",
+      "blockWidth": 4,
+      "blockHeight": 7,
+      "tileWidth": 8,
+      "tileHeight": 14
+    },
+    "187": {
+      "id": 187,
+      "hex": "0xBB",
+      "symbol": "ROUTE_16_GATE_2F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "188": {
+      "id": 188,
+      "hex": "0xBC",
+      "symbol": "ROUTE_16_FLY_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "189": {
+      "id": 189,
+      "hex": "0xBD",
+      "symbol": "ROUTE_12_SUPER_ROD_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "190": {
+      "id": 190,
+      "hex": "0xBE",
+      "symbol": "ROUTE_18_GATE_1F",
+      "blockWidth": 4,
+      "blockHeight": 5,
+      "tileWidth": 8,
+      "tileHeight": 10
+    },
+    "191": {
+      "id": 191,
+      "hex": "0xBF",
+      "symbol": "ROUTE_18_GATE_2F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "192": {
+      "id": 192,
+      "hex": "0xC0",
+      "symbol": "SEAFOAM_ISLANDS_1F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "193": {
+      "id": 193,
+      "hex": "0xC1",
+      "symbol": "ROUTE_22_GATE",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "194": {
+      "id": 194,
+      "hex": "0xC2",
+      "symbol": "VICTORY_ROAD_2F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "195": {
+      "id": 195,
+      "hex": "0xC3",
+      "symbol": "ROUTE_12_GATE_2F",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "196": {
+      "id": 196,
+      "hex": "0xC4",
+      "symbol": "VERMILION_TRADE_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "197": {
+      "id": 197,
+      "hex": "0xC5",
+      "symbol": "DIGLETTS_CAVE",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "198": {
+      "id": 198,
+      "hex": "0xC6",
+      "symbol": "VICTORY_ROAD_3F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "199": {
+      "id": 199,
+      "hex": "0xC7",
+      "symbol": "ROCKET_HIDEOUT_B1F",
+      "blockWidth": 15,
+      "blockHeight": 14,
+      "tileWidth": 30,
+      "tileHeight": 28
+    },
+    "200": {
+      "id": 200,
+      "hex": "0xC8",
+      "symbol": "ROCKET_HIDEOUT_B2F",
+      "blockWidth": 15,
+      "blockHeight": 14,
+      "tileWidth": 30,
+      "tileHeight": 28
+    },
+    "201": {
+      "id": 201,
+      "hex": "0xC9",
+      "symbol": "ROCKET_HIDEOUT_B3F",
+      "blockWidth": 15,
+      "blockHeight": 14,
+      "tileWidth": 30,
+      "tileHeight": 28
+    },
+    "202": {
+      "id": 202,
+      "hex": "0xCA",
+      "symbol": "ROCKET_HIDEOUT_B4F",
+      "blockWidth": 15,
+      "blockHeight": 12,
+      "tileWidth": 30,
+      "tileHeight": 24
+    },
+    "203": {
+      "id": 203,
+      "hex": "0xCB",
+      "symbol": "ROCKET_HIDEOUT_ELEVATOR",
+      "blockWidth": 3,
+      "blockHeight": 4,
+      "tileWidth": 6,
+      "tileHeight": 8
+    },
+    "204": {
+      "id": 204,
+      "hex": "0xCC",
+      "symbol": "UNUSED_MAP_CC",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "205": {
+      "id": 205,
+      "hex": "0xCD",
+      "symbol": "UNUSED_MAP_CD",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "206": {
+      "id": 206,
+      "hex": "0xCE",
+      "symbol": "UNUSED_MAP_CE",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "207": {
+      "id": 207,
+      "hex": "0xCF",
+      "symbol": "SILPH_CO_2F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "208": {
+      "id": 208,
+      "hex": "0xD0",
+      "symbol": "SILPH_CO_3F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "209": {
+      "id": 209,
+      "hex": "0xD1",
+      "symbol": "SILPH_CO_4F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "210": {
+      "id": 210,
+      "hex": "0xD2",
+      "symbol": "SILPH_CO_5F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "211": {
+      "id": 211,
+      "hex": "0xD3",
+      "symbol": "SILPH_CO_6F",
+      "blockWidth": 13,
+      "blockHeight": 9,
+      "tileWidth": 26,
+      "tileHeight": 18
+    },
+    "212": {
+      "id": 212,
+      "hex": "0xD4",
+      "symbol": "SILPH_CO_7F",
+      "blockWidth": 13,
+      "blockHeight": 9,
+      "tileWidth": 26,
+      "tileHeight": 18
+    },
+    "213": {
+      "id": 213,
+      "hex": "0xD5",
+      "symbol": "SILPH_CO_8F",
+      "blockWidth": 13,
+      "blockHeight": 9,
+      "tileWidth": 26,
+      "tileHeight": 18
+    },
+    "214": {
+      "id": 214,
+      "hex": "0xD6",
+      "symbol": "POKEMON_MANSION_2F",
+      "blockWidth": 15,
+      "blockHeight": 14,
+      "tileWidth": 30,
+      "tileHeight": 28
+    },
+    "215": {
+      "id": 215,
+      "hex": "0xD7",
+      "symbol": "POKEMON_MANSION_3F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "216": {
+      "id": 216,
+      "hex": "0xD8",
+      "symbol": "POKEMON_MANSION_B1F",
+      "blockWidth": 15,
+      "blockHeight": 14,
+      "tileWidth": 30,
+      "tileHeight": 28
+    },
+    "217": {
+      "id": 217,
+      "hex": "0xD9",
+      "symbol": "SAFARI_ZONE_EAST",
+      "blockWidth": 15,
+      "blockHeight": 13,
+      "tileWidth": 30,
+      "tileHeight": 26
+    },
+    "218": {
+      "id": 218,
+      "hex": "0xDA",
+      "symbol": "SAFARI_ZONE_NORTH",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "219": {
+      "id": 219,
+      "hex": "0xDB",
+      "symbol": "SAFARI_ZONE_WEST",
+      "blockWidth": 15,
+      "blockHeight": 13,
+      "tileWidth": 30,
+      "tileHeight": 26
+    },
+    "220": {
+      "id": 220,
+      "hex": "0xDC",
+      "symbol": "SAFARI_ZONE_CENTER",
+      "blockWidth": 15,
+      "blockHeight": 13,
+      "tileWidth": 30,
+      "tileHeight": 26
+    },
+    "221": {
+      "id": 221,
+      "hex": "0xDD",
+      "symbol": "SAFARI_ZONE_CENTER_REST_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "222": {
+      "id": 222,
+      "hex": "0xDE",
+      "symbol": "SAFARI_ZONE_SECRET_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "223": {
+      "id": 223,
+      "hex": "0xDF",
+      "symbol": "SAFARI_ZONE_WEST_REST_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "224": {
+      "id": 224,
+      "hex": "0xE0",
+      "symbol": "SAFARI_ZONE_EAST_REST_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "225": {
+      "id": 225,
+      "hex": "0xE1",
+      "symbol": "SAFARI_ZONE_NORTH_REST_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "226": {
+      "id": 226,
+      "hex": "0xE2",
+      "symbol": "CERULEAN_CAVE_2F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "227": {
+      "id": 227,
+      "hex": "0xE3",
+      "symbol": "CERULEAN_CAVE_B1F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "228": {
+      "id": 228,
+      "hex": "0xE4",
+      "symbol": "CERULEAN_CAVE_1F",
+      "blockWidth": 15,
+      "blockHeight": 9,
+      "tileWidth": 30,
+      "tileHeight": 18
+    },
+    "229": {
+      "id": 229,
+      "hex": "0xE5",
+      "symbol": "NAME_RATERS_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "230": {
+      "id": 230,
+      "hex": "0xE6",
+      "symbol": "CERULEAN_BADGE_HOUSE",
+      "blockWidth": 4,
+      "blockHeight": 4,
+      "tileWidth": 8,
+      "tileHeight": 8
+    },
+    "231": {
+      "id": 231,
+      "hex": "0xE7",
+      "symbol": "UNUSED_MAP_E7",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "232": {
+      "id": 232,
+      "hex": "0xE8",
+      "symbol": "ROCK_TUNNEL_B1F",
+      "blockWidth": 20,
+      "blockHeight": 18,
+      "tileWidth": 40,
+      "tileHeight": 36
+    },
+    "233": {
+      "id": 233,
+      "hex": "0xE9",
+      "symbol": "SILPH_CO_9F",
+      "blockWidth": 13,
+      "blockHeight": 9,
+      "tileWidth": 26,
+      "tileHeight": 18
+    },
+    "234": {
+      "id": 234,
+      "hex": "0xEA",
+      "symbol": "SILPH_CO_10F",
+      "blockWidth": 8,
+      "blockHeight": 9,
+      "tileWidth": 16,
+      "tileHeight": 18
+    },
+    "235": {
+      "id": 235,
+      "hex": "0xEB",
+      "symbol": "SILPH_CO_11F",
+      "blockWidth": 9,
+      "blockHeight": 9,
+      "tileWidth": 18,
+      "tileHeight": 18
+    },
+    "236": {
+      "id": 236,
+      "hex": "0xEC",
+      "symbol": "SILPH_CO_ELEVATOR",
+      "blockWidth": 2,
+      "blockHeight": 2,
+      "tileWidth": 4,
+      "tileHeight": 4
+    },
+    "237": {
+      "id": 237,
+      "hex": "0xED",
+      "symbol": "UNUSED_MAP_ED",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "238": {
+      "id": 238,
+      "hex": "0xEE",
+      "symbol": "UNUSED_MAP_EE",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "239": {
+      "id": 239,
+      "hex": "0xEF",
+      "symbol": "TRADE_CENTER",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "240": {
+      "id": 240,
+      "hex": "0xF0",
+      "symbol": "COLOSSEUM",
+      "blockWidth": 5,
+      "blockHeight": 4,
+      "tileWidth": 10,
+      "tileHeight": 8
+    },
+    "241": {
+      "id": 241,
+      "hex": "0xF1",
+      "symbol": "UNUSED_MAP_F1",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "242": {
+      "id": 242,
+      "hex": "0xF2",
+      "symbol": "UNUSED_MAP_F2",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "243": {
+      "id": 243,
+      "hex": "0xF3",
+      "symbol": "UNUSED_MAP_F3",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "244": {
+      "id": 244,
+      "hex": "0xF4",
+      "symbol": "UNUSED_MAP_F4",
+      "blockWidth": 0,
+      "blockHeight": 0,
+      "tileWidth": 0,
+      "tileHeight": 0
+    },
+    "245": {
+      "id": 245,
+      "hex": "0xF5",
+      "symbol": "LORELEIS_ROOM",
+      "blockWidth": 5,
+      "blockHeight": 6,
+      "tileWidth": 10,
+      "tileHeight": 12
+    },
+    "246": {
+      "id": 246,
+      "hex": "0xF6",
+      "symbol": "BRUNOS_ROOM",
+      "blockWidth": 5,
+      "blockHeight": 6,
+      "tileWidth": 10,
+      "tileHeight": 12
+    },
+    "247": {
+      "id": 247,
+      "hex": "0xF7",
+      "symbol": "AGATHAS_ROOM",
+      "blockWidth": 5,
+      "blockHeight": 6,
+      "tileWidth": 10,
+      "tileHeight": 12
+    }
+  }
+}
