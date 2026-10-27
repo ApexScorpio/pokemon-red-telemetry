@@ -1900,6 +1900,2136 @@
         }
       },
       "source": "pret/pokered/data/wild/maps/PokemonTower1F.asm"
+    },
+    "PokemonTower5F": {
+      "mapIds": [
+        146
+      ],
+      "encounterRateByte": {
+        "grass": 10,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 20,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 21,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "GASTLY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 19,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "HAUNTER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "CUBONE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "CUBONE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "GASTLY",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 20,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 21,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "GASTLY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 19,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "HAUNTER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "CUBONE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "CUBONE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "GASTLY",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/PokemonTower5F.asm"
+    },
+    "PokemonTower7F": {
+      "mapIds": [
+        148
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 21,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "GASTLY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "HAUNTER",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "CUBONE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "CUBONE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "HAUNTER",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "HAUNTER",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 21,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "GASTLY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "HAUNTER",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "CUBONE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "CUBONE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "HAUNTER",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "HAUNTER",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/PokemonTower7F.asm"
+    },
+    "PokemonTower6F": {
+      "mapIds": [
+        147
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 21,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "GASTLY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 19,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "HAUNTER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "CUBONE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "CUBONE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "HAUNTER",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 21,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "GASTLY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "GASTLY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 19,
+              "species": "GASTLY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "HAUNTER",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "CUBONE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "CUBONE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "HAUNTER",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/PokemonTower6F.asm"
+    },
+    "RockTunnel1F": {
+      "mapIds": [
+        82
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 16,
+              "species": "ZUBAT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "ZUBAT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "GEODUDE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "MACHOP",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 16,
+              "species": "GEODUDE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "ZUBAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "ZUBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "MACHOP",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "ONIX",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "ONIX",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 16,
+              "species": "ZUBAT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "ZUBAT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "GEODUDE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "MACHOP",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 16,
+              "species": "GEODUDE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "ZUBAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "ZUBAT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "MACHOP",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "ONIX",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "ONIX",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/RockTunnel1F.asm"
+    },
+    "PowerPlant": {
+      "mapIds": [
+        83
+      ],
+      "encounterRateByte": {
+        "grass": 10,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 21,
+              "species": "VOLTORB",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 21,
+              "species": "MAGNEMITE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "PIKACHU",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "PIKACHU",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "MAGNEMITE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "VOLTORB",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "MAGNETON",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 35,
+              "species": "MAGNETON",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "ELECTABUZZ",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 36,
+              "species": "ELECTABUZZ",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 21,
+              "species": "VOLTORB",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 21,
+              "species": "MAGNEMITE",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "PIKACHU",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "PIKACHU",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "MAGNEMITE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "VOLTORB",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 32,
+              "species": "MAGNETON",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 35,
+              "species": "MAGNETON",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 33,
+              "species": "RAICHU",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 36,
+              "species": "RAICHU",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/PowerPlant.asm"
+    },
+    "Route1": {
+      "mapIds": [
+        12
+      ],
+      "encounterRateByte": {
+        "grass": 25,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 3,
+              "species": "PIDGEY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "RATTATA",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "RATTATA",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 2,
+              "species": "RATTATA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 2,
+              "species": "PIDGEY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "PIDGEY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "PIDGEY",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 4,
+              "species": "RATTATA",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 4,
+              "species": "PIDGEY",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "PIDGEY",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 3,
+              "species": "PIDGEY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "RATTATA",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "RATTATA",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 2,
+              "species": "RATTATA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 2,
+              "species": "PIDGEY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "PIDGEY",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 3,
+              "species": "PIDGEY",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 4,
+              "species": "RATTATA",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 4,
+              "species": "PIDGEY",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 5,
+              "species": "PIDGEY",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route1.asm"
+    },
+    "RockTunnelB1F": {
+      "mapIds": [
+        232
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 16,
+              "species": "ZUBAT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "ZUBAT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "GEODUDE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "MACHOP",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 16,
+              "species": "GEODUDE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "ZUBAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "MACHOP",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "ONIX",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "ONIX",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "GEODUDE",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 16,
+              "species": "ZUBAT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "ZUBAT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "GEODUDE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "MACHOP",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 16,
+              "species": "GEODUDE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "ZUBAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "MACHOP",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "ONIX",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "ONIX",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "GEODUDE",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/RockTunnelB1F.asm"
+    },
+    "Route10": {
+      "mapIds": [
+        21
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 16,
+              "species": "VOLTORB",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 16,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 14,
+              "species": "VOLTORB",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 11,
+              "species": "EKANS",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "SPEAROW",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "EKANS",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "VOLTORB",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "SPEAROW",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "EKANS",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "EKANS",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 16,
+              "species": "VOLTORB",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 16,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 14,
+              "species": "VOLTORB",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 11,
+              "species": "SANDSHREW",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "SPEAROW",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "SANDSHREW",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "VOLTORB",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "SPEAROW",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "SANDSHREW",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "SANDSHREW",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route10.asm"
+    },
+    "Route11": {
+      "mapIds": [
+        22
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 14,
+              "species": "EKANS",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 12,
+              "species": "EKANS",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 9,
+              "species": "DROWZEE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "SPEAROW",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "DROWZEE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "EKANS",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "SPEAROW",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 11,
+              "species": "DROWZEE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "DROWZEE",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 14,
+              "species": "SANDSHREW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 12,
+              "species": "SANDSHREW",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 9,
+              "species": "DROWZEE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "SPEAROW",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 13,
+              "species": "DROWZEE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "SANDSHREW",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 17,
+              "species": "SPEAROW",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 11,
+              "species": "DROWZEE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 15,
+              "species": "DROWZEE",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route11.asm"
+    },
+    "Route12": {
+      "mapIds": [
+        23
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "ODDISH",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "PIDGEY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "PIDGEY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "ODDISH",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "ODDISH",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "PIDGEY",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "GLOOM",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "GLOOM",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "BELLSPROUT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "PIDGEY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "PIDGEY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "BELLSPROUT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "BELLSPROUT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "PIDGEY",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "WEEPINBELL",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "WEEPINBELL",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route12.asm"
+    },
+    "Route13": {
+      "mapIds": [
+        24
+      ],
+      "encounterRateByte": {
+        "grass": 20,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "ODDISH",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "PIDGEY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "PIDGEY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "ODDISH",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "ODDISH",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "DITTO",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "GLOOM",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "GLOOM",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "BELLSPROUT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "PIDGEY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "PIDGEY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "BELLSPROUT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "BELLSPROUT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "DITTO",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "WEEPINBELL",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "WEEPINBELL",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route13.asm"
+    },
+    "Route14": {
+      "mapIds": [
+        25
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "ODDISH",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "PIDGEY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "DITTO",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "ODDISH",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "ODDISH",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "GLOOM",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "PIDGEOTTO",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "PIDGEOTTO",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "BELLSPROUT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "PIDGEY",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "DITTO",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "BELLSPROUT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "BELLSPROUT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "WEEPINBELL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "PIDGEOTTO",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "PIDGEOTTO",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route14.asm"
+    },
+    "Route15": {
+      "mapIds": [
+        26
+      ],
+      "encounterRateByte": {
+        "grass": 15,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "ODDISH",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "DITTO",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "PIDGEY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "ODDISH",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "ODDISH",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "GLOOM",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "PIDGEOTTO",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "PIDGEOTTO",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 24,
+              "species": "BELLSPROUT",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "DITTO",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "PIDGEY",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "BELLSPROUT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "VENONAT",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "BELLSPROUT",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "WEEPINBELL",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "PIDGEOTTO",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 30,
+              "species": "PIDGEOTTO",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route15.asm"
+    },
+    "Route16": {
+      "mapIds": [
+        27
+      ],
+      "encounterRateByte": {
+        "grass": 25,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 20,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "RATTATA",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "DODUO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "RATTATA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "DODUO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "DODUO",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "RATTATA",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "RATICATE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "RATICATE",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 20,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "RATTATA",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "DODUO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 20,
+              "species": "RATTATA",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 18,
+              "species": "DODUO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "DODUO",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "RATTATA",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 23,
+              "species": "RATICATE",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "RATICATE",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route16.asm"
+    },
+    "Route17": {
+      "mapIds": [
+        28
+      ],
+      "encounterRateByte": {
+        "grass": 25,
+        "water": 0
+      },
+      "variants": {
+        "red": {
+          "grass": [
+            {
+              "level": 20,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "RATICATE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "DODUO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "RATICATE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "DODUO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "DODUO",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "RATICATE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "FEAROW",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "FEAROW",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        },
+        "blue": {
+          "grass": [
+            {
+              "level": 20,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 22,
+              "species": "SPEAROW",
+              "weight": 51,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "RATICATE",
+              "weight": 39,
+              "outOf": 256
+            },
+            {
+              "level": 24,
+              "species": "DODUO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "RATICATE",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 26,
+              "species": "DODUO",
+              "weight": 25,
+              "outOf": 256
+            },
+            {
+              "level": 28,
+              "species": "DODUO",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 29,
+              "species": "RATICATE",
+              "weight": 13,
+              "outOf": 256
+            },
+            {
+              "level": 25,
+              "species": "FEAROW",
+              "weight": 11,
+              "outOf": 256
+            },
+            {
+              "level": 27,
+              "species": "FEAROW",
+              "weight": 3,
+              "outOf": 256
+            }
+          ],
+          "water": []
+        }
+      },
+      "source": "pret/pokered/data/wild/maps/Route17.asm"
     }
   }
 }
