@@ -438,16 +438,18 @@ function formatTelemetryMarkdown(state) {
     if (visItems.length > 0) {
       md += `### Itens no Chão (Poké Balls visíveis):\n`;
       visItems.forEach(it => {
-        const collected = it.isCollected || it.inInventory || checkIsItemInInventory(it.name, inv);
-        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: ${collected ? '✅ Já Recolhido' : '🔴 Por Apanhar'}${it.hint ? ` — *${it.hint}*` : ''}\n`;
+        const evidence = Number.isInteger(it.toggleIndex) ?
+          (it.isCollected ? 'bit indica recolhido' : 'bit indica ainda no mapa') : 'não confirmado';
+        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: **${evidence}** (validar interpretação do bit no jogo). ${it.inInventory ? 'Possuir um item igual não prova esta recolha.' : ''}${it.hint ? ` — *${it.hint}*` : ''}\n`;
       });
       md += `\n`;
     }
     if (hidItems.length > 0) {
       md += `### Itens Ocultos (Invisíveis no chão):\n`;
       hidItems.forEach(it => {
-        const collected = it.isCollected || it.inInventory || checkIsItemInInventory(it.name, inv);
-        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: ${collected ? '✅ Já Recolhido' : '🔴 Por Apanhar'}${it.hint ? ` — *${it.hint}*` : ''}\n`;
+        const evidence = Number.isInteger(it.hiddenIndex) ?
+          (it.isCollected ? 'bit indica recolhido' : 'bit indica por recolher') : 'não confirmado';
+        md += `- **${it.name}** (X: ${it.x}, Y: ${it.y}) • Estado: **${evidence}** (validar interpretação do bit no jogo). ${it.inInventory ? 'Possuir um item igual não prova esta recolha.' : ''}${it.hint ? ` — *${it.hint}*` : ''}\n`;
       });
       md += `\n`;
     }
@@ -484,7 +486,7 @@ function formatTelemetryMarkdown(state) {
 
   const history = state.recentHistory || [];
   if (history.length === 0) {
-    md += `- [${dateStr.split(' ')[1] || 'Recente'}] Sincronização inicial com o emulador RetroArch concluída com sucesso.\n`;
+    md += '- Sem eventos adicionais registados nesta sessão.\n';
   } else {
     history.forEach(h => {
       md += `- [${h.time}] ${h.text}\n`;
