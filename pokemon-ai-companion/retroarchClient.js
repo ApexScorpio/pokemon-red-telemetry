@@ -17,6 +17,9 @@ const {
 const { getAreaInfo, getUpcomingBossTactics } = require('./data/areaData');
 const { getLiveAdvice } = require('./aiAdvisor');
 const CANONICAL_LEARNSETS = require('./data/gen1CanonicalLearnsets.json').byDex;
+const CANONICAL_WILD = require('./data/gen1CanonicalWildEncounters.json').maps;
+const CANONICAL_MAPS = require('./data/gen1CanonicalMaps.json').maps;
+const CANONICAL_IDS = require('./data/gen1CanonicalIds.json').internalPokemonIds;
 
 function getCompass(playerCoords, targetX, targetY) {
   if (!playerCoords || targetX === undefined || targetY === undefined || targetX === null || targetY === null) {
@@ -1083,6 +1086,36 @@ class RetroArchClient extends EventEmitter {
     // 6. FAUNA SELVAGEM CARREGADA NA RAM DA ÁREA ATUAL ($D887)
     // =========================================================================
     const areaData = getAreaInfo(this.latestState.mapId, this.latestState.coords);
+    const mapSpec = CANONICAL_MAPS[this.latestState.mapId] || null;
+    const headerTitle = this.latestState.romHeader?.title || '';
+    const romVariant = this.latestState.romHeader?.checksumValid && /POKEMON RED/i.test(headerTitle) ? 'red'
+      : this.latestState.romHeader?.checksumValid && /POKEMON BLUE/i.test(headerTitle) ? 'blue'
+      : null;
+    const wildRef = Object.values(CANONICAL_WILD).find(entry =>
+      (entry.mapIds || []).includes(this.latestState.mapId)) || null;
+    // Referência externa da ROM, nunca confundir com encontros observados na RAM.
+    const canonicalWildReference = romVariant && wildRef ? {
+      source: 'pret/pokered ROM static tables',
+      variant: romVariant,
+      mapId: this.latestState.mapId,
+      rateBytes: wildRef.encounterRateByte,
+      grass: wildRef.variants[romVariant].grass.map(slot => ({
+        ...slot,
+        chancePercent: slot.weight * 100 / slot.outOf,
+        internalId: Number(Object.keys(CANONICAL_IDS).find(key => CANONICAL_IDS[key].symbol === slot.species)) || null
+      })),
+      water: wildRef.variants[romVariant].water.map(slot => ({
+        ...slot,
+        chancePercent: slot.weight * 100 / slot.outOf,
+        internalId: Number(Object.keys(CANONICAL_IDS).find(key => CANONICAL_IDS[key].symbol === slot.species)) || null
+      }))
+    } : null;
+    this.latestState.mapReference = mapSpec ? {
+      source: 'pret/pokered ROM source', symbol: mapSpec.symbol,
+      tileWidth: mapSpec.tileWidth, tileHeight: mapSpec.tileHeight,
+      dimensionsMatchRam: this.latestState.mapDimensions?.width === mapSpec.tileWidth &&
+        this.latestState.mapDimensions?.height === mapSpec.tileHeight
+    } : null;
     const partyDexList = (this.latestState.party || []).map(p => p.dex);
     const inventoryNames = (this.latestState.inventory || []).map(i => i.name.toUpperCase());
 
@@ -1090,7 +1123,7 @@ class RetroArchClient extends EventEmitter {
     if (!areaData.isWestRoute4 && wildGrassRaw && wildGrassRaw.length >= 21) {
       const grassRate = parseInt(wildGrassRaw[0], 16);
       if (grassRate > 0) {
-        const slotChances = [20, 20, 15, 10, 10, 10, 5, 5, 4, 1];
+        const slotChances = [51, 51, 39, 25, 25, 25, 13, 13, 11, 3].map(n => n * 100 / 256);
         const speciesMap = {};
         for (let s = 0; s < 10; s++) {
           const lv = parseInt(wildGrassRaw[1 + s * 2], 16);
@@ -1120,10 +1153,7 @@ class RetroArchClient extends EventEmitter {
     }
 
     const wildFromCurrentRam = effectiveWild.length > 0;
-    if (!wildFromCurrentRam && !areaData.isWestRoute4) {
-      // Referência estática: não confundir com encontros observados na RAM.
-      effectiveWild = areaData.wild || [];
-    }
+    // Sem tabela válida da RAM não substituir encontros por uma hipótese manual.
 
     // Itens Ocultos e Radar de Itemfinder
     const hiddenList = (areaData.hiddenItems || []).map(item => {
@@ -1253,7 +1283,8 @@ class RetroArchClient extends EventEmitter {
 
     this.latestState.areaInfo = {
       name: areaData.name,
-      wildSource: wildFromCurrentRam ? 'RAM (tabela de encontros atual)' : 'TABELA_ESTÁTICA (não confirmada na RAM)',
+      wildSource: wildFromCurrentRam ? 'RAM (tabela de encontros atual)' : 'Nenhum encontro de relva confirmado na RAM',
+      canonicalWildReference,
       wild: effectiveWild.map(w => ({
         ...w,
         isCaughtInDex: ownedDexSet.has(w.dex),
@@ -1668,7 +1699,7 @@ class RetroArchClient extends EventEmitter {
       total: (repelItem ? repelItem.qty : 0) + (superRepelItem ? superRepelItem.qty : 0) + (maxRepelItem ? maxRepelItem.qty : 0)
     };
 
-    const slotChances = [20, 20, 15, 10, 10, 10, 5, 5, 4, 1];
+    const slotChances = [51, 51, 39, 25, 25, 25, 13, 13, 11, 3].map(n => n * 100 / 256);
     let totalEncounterWeight = 0;
     let blockedEncounterWeight = 0;
     const blockedSlots = [];
