@@ -587,7 +587,7 @@ class RetroArchClient extends EventEmitter {
         let checksum = 0;
         for (let i = 0x34; i <= 0x4C; i++) checksum = (checksum - h[i] - 1) & 0xFF;
         const title = String.fromCharCode(...h.slice(0x34, 0x44))
-          .split('\\0')[0].replace(/[^\\x20-\\x7E]/g, '').trim();
+          .split('\0')[0].replace(/[^\x20-\x7E]/g, '').trim();
         const valid = checksum === h[0x4D] && title.length > 0;
         this.latestState.romHeader = {
           source: 'ROM bank 0 / 0x0100-0x014F',
