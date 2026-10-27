@@ -28,6 +28,10 @@ for(const [name,sha256,handlerHex,coordHex] of FIXTURES){
   assert.equal(parsed.hiddenItemHandler.cpuAddress,parseInt(handlerHex,16));
   assert.equal(parsed.hiddenCoins.valid,true);
   assert.equal(parsed.hiddenCoins.coins.length,12);
+  assert.equal(parsed.hiddenCoins.fortyCoinBranchVerified,true,
+    'O ramo cp 40 -> 20 deve existir no executável da ROM');
+  assert.equal(parsed.hiddenCoins.coins[9].coinAmount,40);
+  assert.equal(parsed.hiddenCoins.coins[9].actualAwardIfClaimed,20);
   assert.deepEqual(parsed.hiddenCoins.coins.map(x=>x.coinAmount),
     [10,10,20,10,10,20,10,10,10,40,100,10]);
   assert.deepEqual(parsed.items[53],{hiddenIndex:53,mapId:15,y:3,x:40,itemId:3});
