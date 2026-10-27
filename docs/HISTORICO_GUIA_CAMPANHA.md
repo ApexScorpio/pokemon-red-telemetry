@@ -482,3 +482,12 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 15. Criado `tests/romMoveTable.test.js` com cinco cenários para os 165 golpes, mudança de banco, corrupção, duplicação e ROM inválida. Os testes de sintaxe são passíveis de verificação isolada; integração real contra ROMs no PC/iPhone ainda pendente.
 
 **Ressalva:** detetar a tabela `Moves` numa ROM de perfil local não prova que o iPhone esteja a executar o mesmo SHA-256; o `GET_STATUS` usado atualmente só faz correspondência CRC32. A garantia forte de identidade e a validação visual/funcional no SameBoy permanecem obrigatórias.
+
+### 2026-10-27 — Testes consolidados, área completa e instruções de IA verificáveis
+
+- 16. Executados, num ambiente JavaScript V8 isolado a partir das fontes atuais recebidas do GitHub, **39/39 testes aprovados** (7 ficheiros de testes de cálculos/probabilidades, oportunidades da zona, validação dos blocos de combate e leitura dos 165 golpes). O teste do leitor de ROM usa uma implementação isolada de Buffer compatível com `Uint8Array` e ROMs sintéticas; NÃO é uma execução da aplicação real nem prova equivalência com o Game Boy.
+- 17. Atualizado `public/app.js` para listar **todas** as espécies nos meios de encontro da zona, inclusive as já capturadas, com cada nível e respetivo peso condicional por 256. A taxa de ativação da ROM continua separada da probabilidade de espécie/nível e da captura. Sintaxe JS verificada; aparência final depende de screenshot de uma sessão real, ainda indisponível aqui.
+- 18. Corrigidos os dois prompts de `aiAdvisor.js`, retirando a afirmação falsa de visão total da memória e a limitação exclusiva ao Pokémon Red. A IA agora é orientada para Red, Blue e Green, marca os dados desconhecidos e só aconselha ações comprovadas; também removido texto corrompido por codificação. Verificação sintática concluída.
+- 19. Todos os passos nesta adenda foram modificações de código/documentação no GitHub. Não se tocaram ROMs, saves, disco C:, tokens/sessões/backups do Antigravity nem processos locais.
+
+**Ainda não feito:** `npm test` integral com Node e dependências do repositório, ROMs reais ligadas ao emulador do iPhone, testes diferenciais dos algoritmos, amostra de batalha atómica e screenshots da GUI. A percentagem de cobertura total continua indeterminada; não afirmar que o Companion já tem 100% mapeado.
