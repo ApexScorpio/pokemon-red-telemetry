@@ -250,6 +250,49 @@ function connectWebSocket() {
   };
 }
 
+// Painel Daycare: nível estimado exclusivamente a partir da EXP lida e da curva canónica.
+function renderDaycareTracker(state) {
+  const body = document.getElementById('daycare-tracker-content');
+  const source = document.getElementById('daycare-data-source');
+  if (!body || !source) return;
+
+  const readAt = Date.parse(state.lastUpdate || '');
+  const fresh = !!state.connected && !!state.memoryReadStatus?.verified &&
+    !state.isSimulation && Number.isFinite(readAt) &&
+    Date.now() - readAt >= 0 && Date.now() - readAt < 15000;
+  if (!fresh) {
+    source.textContent = 'SEM LEITURA RAM ATUAL';
+    body.textContent = '⚠️ Telemetria desligada, incompleta ou desatualizada. Os números anteriores não são atuais.';
+    return;
+  }
+
+  const d = state.daycare;
+  if (!d || !d.readFromRam) {
+    source.textContent = 'DAYCARE NÃO VALIDADO';
+    body.textContent = '⚠️ Não foi possível confirmar a ficha do Daycare na RAM.';
+    return;
+  }
+  source.textContent = 'EXP: RAM · NÍVEL/MARCOS: ROM';
+  if (!d.occupied) {
+    body.textContent = 'Daycare vazio — confirmado na memória do jogo.';
+    return;
+  }
+  const lines = [
+    `🐣 ${d.name || 'Espécie não identificada'} — nível calculado: ${d.currentLevel ?? 'desconhecido'}`,
+    `Depositado no nível ${d.depositedLevel ?? '?'} · EXP atual: ${d.totalExpNow ?? '?'}`
+  ];
+  if (d.nextMilestone) {
+    lines.push(`🎯 Próximo marco: ${d.nextMilestone.symbol} no nível ${d.nextMilestone.level}`);
+    lines.push(`Ir buscar no nível ${d.pickupAtLevel ?? '?'} (2 níveis antes)`);
+    if (d.stepsUntilPickupEstimate !== null && d.stepsUntilPickupEstimate !== undefined)
+      lines.push(`Passos estimados até ao aviso: ${d.stepsUntilPickupEstimate}`);
+  } else {
+    lines.push('Nenhum marco de nível posterior validado para esta espécie.');
+  }
+  if (d.pickupAlert) lines.push(`🚨 ${d.pickupAlert}`);
+  body.textContent = lines.join('\n');
+}
+
 // Renderização Principal do Cockpit
 function renderState(state) {
   if (state.connected) {
@@ -349,6 +392,7 @@ function renderState(state) {
   if (elMobilePartyCount) elMobilePartyCount.textContent = state.partyCount || 0;
   renderParty(state.party || [], state.battle ? state.battle.playerActive : null);
   renderInventory(state.inventory || []);
+  renderDaycareTracker(state);
 
   // Radar da Área (Fauna e Itens com RAM bit flags reais)
   renderAreaRadar(state.areaInfo);
