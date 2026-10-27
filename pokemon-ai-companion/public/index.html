@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2.24">
+  <link rel="stylesheet" href="style.css?v=2.25">
 </head>
 <body class="no-scroll-body">
   <div class="deck-layout">
@@ -212,6 +212,22 @@
             </div>
           </div>
           <div class="inventory-scroll-list" id="inventory-grid"></div>
+        </section>
+
+        <!-- Daycare: dados lidos da RAM; marcos calculados a partir da ROM canónica. -->
+        <section class="card-glass inventory-deck-card" id="daycare-tracker-card">
+          <div class="card-header-compact">
+            <div class="header-left">
+              <span class="icon-avatar">🏡</span>
+              <div>
+                <h4>DAYCARE — ALERTA ANTECIPADO</h4>
+                <span class="sub-small" id="daycare-data-source">RAM por validar</span>
+              </div>
+            </div>
+          </div>
+          <div class="daycare-tracker-body" id="daycare-tracker-content" aria-live="polite">
+            A aguardar uma leitura validada do jogo...
+          </div>
         </section>
       </aside>
 
@@ -453,6 +469,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=2.24"></script>
+  <script src="app.js?v=2.25"></script>
 </body>
 </html>
