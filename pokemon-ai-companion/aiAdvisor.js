@@ -56,6 +56,10 @@ async function getLiveAdvice(state, force = false) {
     pcCurrentBox: (state.pcBox?.pokemon || []).map(p => ({ name:p.name, level:p.level, dex:p.dex, verified:p.valuesVerified })),
     daycare: state.daycare || null,
     pokedexOwned: state.pokedexOwned || [],
+    progressEventFlags: state.eventFlagTelemetry?.verifiedRamCoverage ?
+      state.eventFlagTelemetry.completeNamedStates : null,
+    eventMappingSource: state.eventFlagTelemetry?.source || 'desconhecida',
+    eventRomIdentityProved: state.eventFlagTelemetry?.mappingRomIdentityConfirmed === true,
     memoryProvenance: { connected: state.connected, verified: state.memoryReadStatus?.verified,
       lastRead: state.lastUpdate, rom: state.romValidation,
       pcAllBoxesRead: false, isSimulation: !!state.isSimulation },
@@ -107,6 +111,10 @@ async function askAdvisor(question, state) {
     pcCurrentBox: (state.pcBox?.pokemon || []).map(p => ({ name:p.name, level:p.level, dex:p.dex, verified:p.valuesVerified })),
     daycare: state.daycare || null,
     pokedexOwned: state.pokedexOwned || [],
+    progressEventFlags: state.eventFlagTelemetry?.verifiedRamCoverage ?
+      state.eventFlagTelemetry.completeNamedStates : null,
+    eventMappingSource: state.eventFlagTelemetry?.source || 'desconhecida',
+    eventRomIdentityProved: state.eventFlagTelemetry?.mappingRomIdentityConfirmed === true,
     memoryProvenance: { connected: state.connected, verified: state.memoryReadStatus?.verified,
       lastRead: state.lastUpdate, rom: state.romValidation,
       pcAllBoxesRead: false, isSimulation: !!state.isSimulation },
