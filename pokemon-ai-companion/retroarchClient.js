@@ -11,6 +11,7 @@ const {verifyMapSnapshot}=require('./romSnapshotIntegrity');
 const {getTrainerParty}=require('./romTrainerParties');
 const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {captureOpportunities}=require('./romCaptureOpportunities');
+const {parseRomBattleEvidence}=require('./romBattleEvidence');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -1747,6 +1748,25 @@ class RetroArchClient extends EventEmitter {
         this.latestState.inBattle = inBattle;
         this.latestState.battleType = battleType;
       }
+    } else if (!this.isSimulatingBattle) {
+      this.latestState.inBattle=false;
+      this.latestState.battleType='Unknown';
+      this.latestState.battle=null;
+    }
+    const battleEvidence=parseRomBattleEvidence({
+      combatBlock:blockCombat,playerBlock:blockPlayerBattle,modifierBlock:blockBattleMods,
+      battleFlag:directBattleFlag===null?null:Number.parseInt(directBattleFlag,16),
+      romMatched:!!this.activeRomProfile,
+      mapSnapshotVerified:!!this.latestState.memoryReadStatus?.mapSnapshot?.verified
+    });
+    this.latestState.battleReadStatus={
+      verified:battleEvidence.verified,reason:battleEvidence.reason||battleEvidence.exactTurnMathReason||null,
+      source:battleEvidence.source||'RetroArch READ_CORE_MEMORY',
+      atomicSnapshotVerified:false,exactTurnMathReady:false
+    };
+    if(this.latestState.inBattle&&!this.isSimulatingBattle&&!battleEvidence.verified){
+      this.latestState.battle=null;
+      this.latestState.aiAdvice='Dados de combate indisponíveis: '+battleEvidence.reason;
     }
 
     const isDialog = this.latestState.currentDialog && this.latestState.currentDialog.length > 0;
@@ -1758,7 +1778,7 @@ class RetroArchClient extends EventEmitter {
       this.latestState.playerMode = `🗺️ Exploração Livre (${this.latestState.movementMode || 'A Pé'})`;
     }
 
-    if (this.latestState.inBattle && !this.isSimulatingBattle && blockCombat && blockBattleMods) {
+    if (this.latestState.inBattle && !this.isSimulatingBattle && battleEvidence.verified) {
       // Repel steps ($D0DB, offset 251)
       this.latestState.repelSteps = parseInt(blockCombat[251], 16) || 0;
 
@@ -1818,11 +1838,12 @@ class RetroArchClient extends EventEmitter {
         dex: eInfo.dex,
         types: eInfo.types,
         hp: eHp,
-        maxHp: eMaxHp || eHp || eInfo.baseHp || 20,
-        level: eLevel || 5,
-        catchRate: parseInt(blockCombat[12], 16) || 150,
-        baseStats: { spd: eInfo.baseSpeed || 50 },
-        stats: { attack: eAttack || 20, defense: eDefense || 20, speed: eSpeed || 20, special: eSpecial || 20 },
+        maxHp:eMaxHp,
+        level:eLevel,
+        catchRate:null,
+        catchRateSource:'RAM_OFFSET_NAO_CERTIFICADO',
+        baseStats:{spd:this.activeRomProfile&&String(eInfo.source||'').includes('ROM') ? (eInfo.baseSpeed??null) : null},
+        stats:{attack:eAttack,defense:eDefense,speed:eSpeed,special:eSpecial},
         statMods: eMods,
         spriteUrl: getPokemonSpriteUrl(eInfo.name, eInfo.dex, eInfo.spriteRom),
         moves: eMoves.map((m, idx) => {
@@ -1879,7 +1900,7 @@ class RetroArchClient extends EventEmitter {
       const moveList = bMoves.map((mId, mIdx) => {
         if (!mId) return null;
         const mData = this.getMoveInfo(mId) || { name: `Golpe #${mId} (não identificado)`, type: 'Desconhecido', power: null, acc: null, pp: null };
-        const currentLivePP = (partyMon && partyMon.moves && partyMon.moves[mIdx]) ? partyMon.moves[mIdx].pp : (bPPs[mIdx] !== undefined ? bPPs[mIdx] : 10);
+        const currentLivePP = (partyMon && partyMon.moves && partyMon.moves[mIdx]) ? partyMon.moves[mIdx].pp : (bPPs[mIdx] !== undefined ? bPPs[mIdx] : null);
         return {
           id: mId,
           name: mData.name,
@@ -1887,7 +1908,7 @@ class RetroArchClient extends EventEmitter {
           power: mData.power,
           accuracy: mData.acc,
           pp: currentLivePP,
-          maxPp: mData.pp || 20
+          maxPp: Number.isInteger(mData.pp) ? mData.pp : null
         };
       }).filter(Boolean);
 
@@ -1900,31 +1921,27 @@ class RetroArchClient extends EventEmitter {
         // HP e estado são lidos da estrutura de combate; os restantes dados
         // vêm da ficha real da equipa para evitar offsets incorretos no BattleMon.
         hp: bHp,
-        maxHp: partyMon ? partyMon.maxHp : (bMaxHp || bHp || 20),
-        level: partyMon ? partyMon.level : (bLevel || 5),
+        maxHp:bMaxHp,
+        level:bLevel,
         partyPos: realPartyPos,
         status: bStatusVal === 0 ? 'HEALTHY' : (bStatusVal & 0x7 ? 'SLEEP' : (bStatusVal & 0x8 ? 'POISON' : (bStatusVal & 0x40 ? 'PARALYSIS' : 'BURN'))),
-        stats: partyMon ? partyMon.stats : { attack: bAttack, defense: bDefense, speed: bSpeed, special: bSpecial },
+        stats:{attack:bAttack,defense:bDefense,speed:bSpeed,special:bSpecial},
         statMods: pMods,
         moves: partyMon ? partyMon.moves : moveList,
         spriteUrl: getPokemonSpriteUrl(pInfo.name, pInfo.dex, pInfo.spriteRom,'back'),
         artworkUrl: pInfo.dex ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pInfo.dex}.png` : ''
       };
 
-      const strategy = analyzeBattle(
-        activeMon,
-        enemyMon,
-        this.latestState.battleType === 'Wild',
-        this.latestState.badges || [],
-        this.latestState.inventory || [],
-        this.latestState.party || []
-      );
+      // Não apresentar estimativas do conselheiro legado como resultados exatos.
+      const strategy=null;
 
       const currentTurn = parseInt(blockBattleMods[181], 16) || 1;
       const lastPlayerMove = this.getMoveInfo(parseInt(blockBattleMods[188], 16))?.name || null;
       const lastEnemyMove = this.getMoveInfo(parseInt(blockBattleMods[189], 16))?.name || null;
 
       this.latestState.battle = {
+        evidence:battleEvidence,exactTurnMathReady:false,
+        exactTurnMathReason:battleEvidence.exactTurnMathReason,
         enemy: enemyMon,
         playerActive: activeMon,
         turn: currentTurn,
@@ -1960,18 +1977,13 @@ class RetroArchClient extends EventEmitter {
 
       const currentBattleKey = `${enemyMon.name}-${enemyMon.level}-${enemyMon.hp}`;
       if (this.lastBattleKey !== currentBattleKey) {
-        this.lastBattleKey = currentBattleKey;
-        getLiveAdvice(this.latestState).then(advice => {
-          if (advice) {
-            this.latestState.aiAdvice = advice;
-            this.emit('update', this.latestState);
-          }
-        });
+        this.lastBattleKey=currentBattleKey;
+        this.latestState.aiAdvice='Cálculos e recomendações de combate indisponíveis até validação dos dados do turno e mecânicas desta ROM.';
       }
     }
 
     // Só registar o fim quando há transição de combate para exploração.
-    if (!this.latestState.inBattle && this.wasInBattle) {
+    if (!this.latestState.inBattle && this.wasInBattle && this.latestState.battleFlagVerified) {
       const exitEntry = {
         timestamp: new Date().toISOString(),
         time: new Date().toLocaleTimeString('pt-PT'),
