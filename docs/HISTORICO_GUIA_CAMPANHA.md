@@ -464,3 +464,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 7. Desativada a estratégia matemática antiga de `analyzeBattle` para os combates reais até existir motor completo e amostra apropriada. A telemetria distingue dados do combate de prova de cálculo exato, marcada `false`. Mantida a rota explícita de simulação separada do combate real. Nenhuma ROM, save, sessão ou perfil Antigravity alterados.
 
 **Limites:** leitura de três blocos é sequencial, não prova atomicidade do turno. Não houve ainda teste ponta a ponta com RetroArch/SameBoy; a interface antiga também precisa limpar campos apresentados de estratégias anteriores.
+
+### 2026-10-27 — Interface e conselheiro sem previsões fictícias
+
+- 8. Alterado `public/app.js`: os resultados legados de dano, críticos, KO, recomendação e captura são apagados quando o campo `strategy.verified` não é estritamente verdadeiro. O painel mostra apenas golpes e PP descritivos quando disponíveis, juntamente com motivo explícito de cálculo indisponível, e deixa de reciclar percentagens de turnos anteriores. Alteração de interface pendente de screenshot/inspeção real — não há sessão visual do programa nesta conversa.
+- 9. Alterado `aiAdvisor.js`: tanto o conselho proativo como perguntas diretas recusam recomendações específicas de combate sem `exactTurnMathReady===true` e telemetria atual comprovada. O resto do aconselhamento fora de combate não foi refeito nesta fase.
+- 10. Validação de sintaxe JavaScript a partir do conteúdo atual do GitHub concluída para `romBattleEvidence.js`, `retroarchClient.js`, `public/app.js`, `tests/romBattleEvidence.test.js` e `aiAdvisor.js`. Os cinco cenários de `romBattleEvidence.test.js` foram executados num ambiente JS isolado com as fontes atuais: **5/5 aprovados**. Esta verificação NÃO executou o `npm test` integral, a UI nem o SameBoy.
+
+**Limite:** ainda não são produzidas probabilidades de combate em produção porque os pré-requisitos ROM/RAM/turno não são observados de forma simultânea e comprovada. É preferível apresentar `NÃO CONFIRMADO` a resultados fictícios.
