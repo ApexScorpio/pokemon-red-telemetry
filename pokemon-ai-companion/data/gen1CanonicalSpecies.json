@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "pret/pokered master base_stats/*.asm, assembled for Red/Blue; verify hash against player ROM",
-    "sourceVerified": 15,
+    "sourceVerified": 30,
     "coverageTarget": 151,
     "sourceCategory": "ROM static facts; not live RAM",
     "updated": "2026-10-27"
@@ -385,195 +385,369 @@
       "internalId": 36,
       "name": "Pidgey",
       "upstreamPath": "data/pokemon/base_stats/pidgey.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 40,
+        "speed": 56,
+        "special": 35
+      },
+      "catchRate": 255,
+      "baseExp": 55,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "GUST"
+      ],
+      "sourceVerified": true
     },
     "17": {
       "dex": 17,
       "internalId": 150,
       "name": "Pidgeotto",
       "upstreamPath": "data/pokemon/base_stats/pidgeotto.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 63,
+        "attack": 60,
+        "defense": 55,
+        "speed": 71,
+        "special": 50
+      },
+      "catchRate": 120,
+      "baseExp": 113,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "GUST",
+        "SAND_ATTACK"
+      ],
+      "sourceVerified": true
     },
     "18": {
       "dex": 18,
       "internalId": 151,
       "name": "Pidgeot",
       "upstreamPath": "data/pokemon/base_stats/pidgeot.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 83,
+        "attack": 80,
+        "defense": 75,
+        "speed": 91,
+        "special": 70
+      },
+      "catchRate": 45,
+      "baseExp": 172,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "GUST",
+        "SAND_ATTACK",
+        "QUICK_ATTACK"
+      ],
+      "sourceVerified": true
     },
     "19": {
       "dex": 19,
       "internalId": 165,
       "name": "Rattata",
       "upstreamPath": "data/pokemon/base_stats/rattata.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 30,
+        "attack": 56,
+        "defense": 35,
+        "speed": 72,
+        "special": 25
+      },
+      "catchRate": 255,
+      "baseExp": 57,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "TACKLE",
+        "TAIL_WHIP"
+      ],
+      "sourceVerified": true
     },
     "20": {
       "dex": 20,
       "internalId": 166,
       "name": "Raticate",
       "upstreamPath": "data/pokemon/base_stats/raticate.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 81,
+        "defense": 60,
+        "speed": 97,
+        "special": 50
+      },
+      "catchRate": 90,
+      "baseExp": 116,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "TACKLE",
+        "TAIL_WHIP",
+        "QUICK_ATTACK"
+      ],
+      "sourceVerified": true
     },
     "21": {
       "dex": 21,
       "internalId": 5,
       "name": "Spearow",
       "upstreamPath": "data/pokemon/base_stats/spearow.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 60,
+        "defense": 30,
+        "speed": 70,
+        "special": 31
+      },
+      "catchRate": 255,
+      "baseExp": 58,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "PECK",
+        "GROWL"
+      ],
+      "sourceVerified": true
     },
     "22": {
       "dex": 22,
       "internalId": 35,
       "name": "Fearow",
       "upstreamPath": "data/pokemon/base_stats/fearow.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 65,
+        "speed": 100,
+        "special": 61
+      },
+      "catchRate": 90,
+      "baseExp": 162,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "PECK",
+        "GROWL",
+        "LEER"
+      ],
+      "sourceVerified": true
     },
     "23": {
       "dex": 23,
       "internalId": 108,
       "name": "Ekans",
       "upstreamPath": "data/pokemon/base_stats/ekans.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 35,
+        "attack": 60,
+        "defense": 44,
+        "speed": 55,
+        "special": 40
+      },
+      "catchRate": 255,
+      "baseExp": 62,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "WRAP",
+        "LEER"
+      ],
+      "sourceVerified": true
     },
     "24": {
       "dex": 24,
       "internalId": 45,
       "name": "Arbok",
       "upstreamPath": "data/pokemon/base_stats/arbok.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 85,
+        "defense": 69,
+        "speed": 80,
+        "special": 65
+      },
+      "catchRate": 90,
+      "baseExp": 147,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "WRAP",
+        "LEER",
+        "POISON_STING"
+      ],
+      "sourceVerified": true
     },
     "25": {
       "dex": 25,
       "internalId": 84,
       "name": "Pikachu",
       "upstreamPath": "data/pokemon/base_stats/pikachu.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 35,
+        "attack": 55,
+        "defense": 30,
+        "speed": 90,
+        "special": 50
+      },
+      "catchRate": 190,
+      "baseExp": 82,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "THUNDERSHOCK",
+        "GROWL"
+      ],
+      "sourceVerified": true
     },
     "26": {
       "dex": 26,
       "internalId": 85,
       "name": "Raichu",
       "upstreamPath": "data/pokemon/base_stats/raichu.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 90,
+        "defense": 55,
+        "speed": 100,
+        "special": 90
+      },
+      "catchRate": 75,
+      "baseExp": 122,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "THUNDERSHOCK",
+        "GROWL",
+        "THUNDER_WAVE"
+      ],
+      "sourceVerified": true
     },
     "27": {
       "dex": 27,
       "internalId": 96,
       "name": "Sandshrew",
       "upstreamPath": "data/pokemon/base_stats/sandshrew.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 75,
+        "defense": 85,
+        "speed": 40,
+        "special": 30
+      },
+      "catchRate": 255,
+      "baseExp": 93,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "SCRATCH"
+      ],
+      "sourceVerified": true
     },
     "28": {
       "dex": 28,
       "internalId": 97,
       "name": "Sandslash",
       "upstreamPath": "data/pokemon/base_stats/sandslash.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 100,
+        "defense": 110,
+        "speed": 65,
+        "special": 55
+      },
+      "catchRate": 90,
+      "baseExp": 163,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "SCRATCH",
+        "SAND_ATTACK"
+      ],
+      "sourceVerified": true
     },
     "29": {
       "dex": 29,
       "internalId": 15,
       "name": "Nidoran♀",
       "upstreamPath": "data/pokemon/base_stats/nidoranf.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 47,
+        "defense": 52,
+        "speed": 41,
+        "special": 40
+      },
+      "catchRate": 235,
+      "baseExp": 59,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "GROWL",
+        "TACKLE"
+      ],
+      "sourceVerified": true
     },
     "30": {
       "dex": 30,
       "internalId": 168,
       "name": "Nidorina",
       "upstreamPath": "data/pokemon/base_stats/nidorina.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 62,
+        "defense": 67,
+        "speed": 56,
+        "special": 55
+      },
+      "catchRate": 120,
+      "baseExp": 117,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "GROWL",
+        "TACKLE",
+        "SCRATCH"
+      ],
+      "sourceVerified": true
     },
     "31": {
       "dex": 31,
