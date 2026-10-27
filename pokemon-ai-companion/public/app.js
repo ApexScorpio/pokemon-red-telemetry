@@ -401,6 +401,19 @@ function renderRomAreaEvidence(state) {
         ' — '+state);
     }
   }
+  const coverage=state.romTrainerCoverage;
+  if(coverage?.verified){
+    rows.push('🧪 COBERTURA ROM: '+coverage.trainerEventLinksMapped+
+      ' ligações de treinador auditadas / '+coverage.trainerEventLinksUnknown+
+      ' por associar, em '+coverage.mapsWithTrainers+' mapas com treinadores.');
+    const missing=coverage.currentMap?.missing||[];
+    if(missing.length){
+      rows.push('❔ TREINADORES SEM EVENTO VALIDADO NESTE MAPA: '+missing.length);
+      for(const t of missing.slice(0,15))
+        rows.push('• Objeto #'+t.objectOrdinal+' Classe #'+t.trainerClassId+
+          ' X:'+t.x+' Y:'+t.y+' — script/flag por interpretar');
+    }
+  }
   if(progress?.trainers){
     const tr=progress.trainers;
     rows.push('📊 Flags de treinadores: '+(tr.eventGatesClosed??0)+
