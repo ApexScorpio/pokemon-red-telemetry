@@ -1,0 +1,87 @@
+{
+  "reference": "pret/pokered data/events/trades.asm",
+  "version": "English Red/Blue as represented in upstream source; verify Japanese Green separately",
+  "notes": "Trade availability/status in player's save must be observed via verified event flags or game logs; this catalog does not assert any completed trade",
+  "trades": [
+    {
+      "giveSymbol": "NIDORINO",
+      "receiveSymbol": "NIDORINA",
+      "dialogType": "TRADE_DIALOGSET_CASUAL",
+      "nickname": "TERRY",
+      "locationSource": "used in ROUTE_11_GATE_2F",
+      "available": true
+    },
+    {
+      "giveSymbol": "ABRA",
+      "receiveSymbol": "MR_MIME",
+      "dialogType": "TRADE_DIALOGSET_CASUAL",
+      "nickname": "MARCEL",
+      "locationSource": "used in ROUTE_2_TRADE_HOUSE",
+      "available": true
+    },
+    {
+      "giveSymbol": "BUTTERFREE",
+      "receiveSymbol": "BEEDRILL",
+      "dialogType": "TRADE_DIALOGSET_HAPPY",
+      "nickname": "CHIKUCHIKU",
+      "locationSource": "unused",
+      "available": false
+    },
+    {
+      "giveSymbol": "PONYTA",
+      "receiveSymbol": "SEEL",
+      "dialogType": "TRADE_DIALOGSET_CASUAL",
+      "nickname": "SAILOR",
+      "locationSource": "used in CINNABAR_LAB_FOSSIL_ROOM",
+      "available": true
+    },
+    {
+      "giveSymbol": "SPEAROW",
+      "receiveSymbol": "FARFETCHD",
+      "dialogType": "TRADE_DIALOGSET_HAPPY",
+      "nickname": "DUX",
+      "locationSource": "used in VERMILION_TRADE_HOUSE",
+      "available": true
+    },
+    {
+      "giveSymbol": "SLOWBRO",
+      "receiveSymbol": "LICKITUNG",
+      "dialogType": "TRADE_DIALOGSET_CASUAL",
+      "nickname": "MARC",
+      "locationSource": "used in ROUTE_18_GATE_2F",
+      "available": true
+    },
+    {
+      "giveSymbol": "POLIWHIRL",
+      "receiveSymbol": "JYNX",
+      "dialogType": "TRADE_DIALOGSET_EVOLUTION",
+      "nickname": "LOLA",
+      "locationSource": "used in CERULEAN_TRADE_HOUSE",
+      "available": true
+    },
+    {
+      "giveSymbol": "RAICHU",
+      "receiveSymbol": "ELECTRODE",
+      "dialogType": "TRADE_DIALOGSET_EVOLUTION",
+      "nickname": "DORIS",
+      "locationSource": "used in CINNABAR_LAB_TRADE_ROOM",
+      "available": true
+    },
+    {
+      "giveSymbol": "VENONAT",
+      "receiveSymbol": "TANGELA",
+      "dialogType": "TRADE_DIALOGSET_HAPPY",
+      "nickname": "CRINKLES",
+      "locationSource": "used in CINNABAR_LAB_TRADE_ROOM",
+      "available": true
+    },
+    {
+      "giveSymbol": "NIDORAN_M",
+      "receiveSymbol": "NIDORAN_F",
+      "dialogType": "TRADE_DIALOGSET_HAPPY",
+      "nickname": "SPOT",
+      "locationSource": "used in UNDERGROUND_PATH_ROUTE_5",
+      "available": true
+    }
+  ]
+}
