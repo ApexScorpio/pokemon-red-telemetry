@@ -573,6 +573,7 @@ class RetroArchClient extends EventEmitter {
         profileSha256:this.activeRomProfile?.hash?.sha256||null,
         title:this.activeRomProfile?.title||null,
         addressesFromRom:!!this.activeRomProfile,
+        identityVerification:'CRC32_DO_RETROARCH (não é prova de SHA256 da ROM no iPhone)',
         localProfiles:this.romRegistry.profiles.length,
         tablesValidated:this.activeRomProfile?.validated||null,
         reason:this.activeRomProfile ? 'CRC32 da ROM carregada coincide com ficheiro local analisado' :
@@ -1224,7 +1225,7 @@ class RetroArchClient extends EventEmitter {
     const romWild = romWorld?.wildEncounters?.valid ? romWorld.wildEncounters.data[this.latestState.mapId] : null;
     // Dados de ROM: estáticos para ESTA compilação, não dizem se um NPC/item já foi concluído.
     this.latestState.romMap = romMap?.valid ? {
-      ...romMap, source: 'ROM_EXATA_CONFIRMADA_POR_CRC32',
+      ...romMap, source: 'PERFIL_ROM_COM_CRC32_CORRESPONDENTE',
       objectFlagsChecked: false
     } : null;
     const resolveSlots = slots => (slots || []).map(slot => ({
@@ -1234,7 +1235,7 @@ class RetroArchClient extends EventEmitter {
     }));
     this.latestState.romWildEncounters = romWild ? {
       mapId: this.latestState.mapId,
-      source: 'ROM_EXATA_CONFIRMADA_POR_CRC32',
+      source: 'PERFIL_ROM_COM_CRC32_CORRESPONDENTE',
       grass: {...romWild.grass, slots: resolveSlots(romWild.grass.slots)},
       water: {...romWild.water, slots: resolveSlots(romWild.water.slots)}
     } : null;
@@ -1262,7 +1263,7 @@ class RetroArchClient extends EventEmitter {
       }))
     } : null;
     this.latestState.mapReference = romMap?.valid ? {
-      source:'ROM_EXATA_CONFIRMADA_POR_CRC32', mapId:this.latestState.mapId,
+      source:'PERFIL_ROM_COM_CRC32_CORRESPONDENTE', mapId:this.latestState.mapId,
       tileWidth:romMap.widthTiles, tileHeight:romMap.heightTiles,
       tilesetId:romMap.tilesetId, blockSha256:romMap.blockSha256,
       dimensionsMatchRam:this.latestState.mapDimensions?.width === romMap.widthTiles &&
