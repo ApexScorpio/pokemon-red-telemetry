@@ -1996,7 +1996,7 @@ function calcGen1CatchRate(catchRate, maxHp, currentHp, ballType = 'pokeball', s
       successCount += pStep3;
     }
   }
-  return Math.min(100, Math.max(1, Math.round((successCount / (B + 1)) * 100)));
+  return Math.min(100, Math.max(0, Math.round((successCount / (B + 1)) * 10000) / 100));
 }
 
 function analyzeBattle(playerMon, enemyMon, isWild, badges = [], inventory = [], party = []) {
@@ -2020,7 +2020,9 @@ function analyzeBattle(playerMon, enemyMon, isWild, badges = [], inventory = [],
 
   // Função auxiliar de cálculo de probabilidade de captura na Gen 1
   const calcBallAtHp = (targetHp, targetStatus = null, ballType = 'pokeball') => {
-    const cRate = enemyMon.catchRate || 150;
+    const cRate = Number.isInteger(enemyMon.catchRate) && enemyMon.catchRate > 0
+      ? enemyMon.catchRate : CANONICAL_SPECIES[enemyMon.dex]?.catchRate;
+    if (!Number.isInteger(cRate)) return null;
     const mHp = enemyMaxHp;
     const cHp = Math.max(1, targetHp);
     const statusVal = targetStatus || enemyMon.status || 'NONE';
@@ -2053,13 +2055,16 @@ function analyzeBattle(playerMon, enemyMon, isWild, badges = [], inventory = [],
 
     let estDmgMin = 0;
     let estDmgMax = 0;
-    if (moveData.power > 0) {
+    const specialEffectNotModelled = ['SPECIAL_DAMAGE_EFFECT','OHKO_EFFECT','SUPER_FANG_EFFECT',
+      'DREAM_EATER_EFFECT','COUNTER_EFFECT','TWO_TO_FIVE_ATTACKS_EFFECT'].includes(moveData.effect);
+    if (moveData.power > 0 && !specialEffectNotModelled) {
       const level = playerMon.level || 5;
       const baseCalc = Math.floor((Math.floor((2 * level) / 5 + 2) * moveData.power * effectiveA) / effectiveD / 50 + 2);
       const withStab = Math.floor(baseCalc * stabMultiplier);
       const withType = Math.floor(withStab * effectiveness);
-      estDmgMax = Math.max(1, withType);
-      estDmgMin = Math.max(1, Math.floor(estDmgMax * 0.85));
+      const hits = ['TWINEEDLE_EFFECT','ATTACK_TWICE_EFFECT'].includes(moveData.effect) ? 2 : 1;
+      estDmgMax = Math.max(1, withType) * hits;
+      estDmgMin = Math.max(1, Math.floor(withType * 0.85)) * hits;
     }
 
     const hitsToKo = estDmgMax > 0 ? Math.ceil(enemyHp / estDmgMax) : null;
@@ -2536,18 +2541,22 @@ function analyzeBattle(playerMon, enemyMon, isWild, badges = [], inventory = [],
   // Cálculo da Probabilidade Global de Captura (Fórmula Exata Gen 1)
   let catchChance = null;
   if (isWild && enemyMon.hp > 0) {
-    const cRate = enemyMon.catchRate || 150;
+    const cRate = Number.isInteger(enemyMon.catchRate) && enemyMon.catchRate > 0
+      ? enemyMon.catchRate : CANONICAL_SPECIES[enemyMon.dex]?.catchRate;
     const mHp = enemyMaxHp;
     const cHp = enemyHp;
     const curStatus = enemyMon.status || 'NONE';
 
-    catchChance = {
+    catchChance = Number.isInteger(cRate) && Number.isInteger(enemyMon.hp) &&
+      Number.isInteger(enemyMon.maxHp) && enemyMon.maxHp >= enemyMon.hp ? {
+      source: 'modelo de captura Gen I com HP real e taxa de captura canónica',
+      calculatedNotObserved: true,
       pokeball: calcGen1CatchRate(cRate, mHp, cHp, 'pokeball', curStatus),
       greatball: calcGen1CatchRate(cRate, mHp, cHp, 'greatball', curStatus),
       ultraball: calcGen1CatchRate(cRate, mHp, cHp, 'ultraball', curStatus),
       withSleep: calcGen1CatchRate(cRate, mHp, cHp, 'pokeball', 'SLEEP'),
       withRedHp: calcGen1CatchRate(cRate, mHp, Math.max(1, Math.floor(mHp * 0.15)), 'pokeball', curStatus)
-    };
+    } : null;
   }
 
   return {
@@ -2565,7 +2574,7 @@ function analyzeBattle(playerMon, enemyMon, isWild, badges = [], inventory = [],
       movesFirst,
       diff: speedDifference
     },
-    matchupRating: bestMove ? (bestMove.hitsToKo === 1 ? 'VITÓRIA TURNO 1 (100%)' : bestMove.effectiveness >= 2 ? 'MUITO FAVORÁVEL (+80%)' : bestMove.effectiveness < 1 ? 'DESFAVORÁVEL (-50%)' : 'EQUILIBRADO') : 'NEUTRO'
+    matchupRating: bestMove ? (bestMove.hitsToKo === 1 ? 'POSSÍVEL K.O. EM 1 TURNO (depende da precisão e dano)' : bestMove.effectiveness >= 2 ? 'VANTAGEM DE TIPO' : bestMove.effectiveness < 1 ? 'DESVANTAGEM DE TIPO' : 'SEM VANTAGEM CLARA') : 'DADOS INSUFICIENTES'
   };
 }
 
