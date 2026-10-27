@@ -147,3 +147,22 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 12. Foi preservada a regra append-only deste histórico; nenhum save, credencial, sessão do utilizador ou unidade C: foi tocado nesta fase.
 
 **Estado do requisito de integridade:** 100% dos bytes dos três ficheiros ROM já foi examinado; 100% dos elementos e cálculos NÃO está ainda descodificado. A telemetria vivo ainda tem de ser testada com o emulador.
+
+
+## 2026-10-27 — Arranque automático e melhorias ROM v4
+
+- 1. Implementado `romAutoDiscovery.js`: procura automaticamente ROMs, JSONs e o ZIP v3/v4 em Downloads, pastas do projeto e pastas comuns no disco S: do Windows, sem tocar em saves nem exigir variáveis de ambiente.
+- 2. Implementada leitura segura do ZIP em memória, com limites de tamanho, cabeçalhos e CRC32; ficheiros nunca são extraídos ou alterados pelo Companion.
+- 3. Alterado `romLiveResolver.js` para importar vários perfis automaticamente, preferir os mais completos e dar prioridade aos bits TM/HM da v4. O perfil ativo continua a depender do CRC32 da ROM realmente reportada no RetroArch.
+- 4. Alterado `retroarchClient.js` para anunciar a descoberta no estado da telemetria, tentar novamente de 30 em 30 segundos quando falta um perfil e expor os novos alertas de golpes/evoluções.
+- 5. Criado `romProgressAdvisor.js`: Beedrill/Twineedle dois níveis antes, Abra/Daycare antes do 16, evoluções por pedra/troca com parâmetros corretos extraídos dos dados RGB. Executados 6 testes isolados de lógica no motor JavaScript, passaram.
+- 6. Daycare deixou de atribuir níveis ou marcos por curva de referência de outra ROM: usa o perfil CRC32 correspondente ou indica que não há curva comprovada.
+- 7. Acrescentada leitura real das máscaras de 7 bytes de 50 TMs + 5 HMs por espécie em `romVariantRegistry.js`, `romLiveResolver.js` e telemetria da equipa. Bulbasaur verificado com `a40338c0030806` nos três binários.
+- 8. Criado ZIP v4 com os três perfis analisados, 900 sprites PNG, mapas, encontros e máscaras TM/HM (150 espécies por jogo); verificada a integridade do ZIP e os CRC32/sha declarados dos perfis. Este ZIP foi entregue como anexo na conversa, não enviado para GitHub.
+- 9. Dashboard atualizado com estado visível da ROM reconhecida/não identificada e painel de próximos golpes/evoluções, incluindo rótulos de proveniência e incerteza.
+- 10. Corrigidos o supervisor `start.js` e o endpoint `/api/update` para não descartarem alterações locais automaticamente: só aceitam fast-forward quando o código versionado está limpo.
+- 11. Adicionados `tests/romAutoDiscovery.test.js`, `tests/romProgressAdvisor.test.js`, `npm test` e documentação `docs/AUTO_ROM_V4_STARTUP.md`.
+- 12. Verificados os ficheiros alterados no GitHub e a sintaxe dos módulos principais; NÃO houve teste de integração remota com o iPhone nem instalação direta dos perfis na máquina do utilizador. Se a ROM ou um perfil não estiver acessível ao PC, o Companion indica falta de correspondência.
+- 13. Não foram alterados os binários ROM, saves, tokens, processos do utilizador ou unidades externas. O historial continua append-only.
+
+**Estado:** arranque de descoberta automatizado e testes de lógica concluídos; a aceitação final exige abrir o Companion no PC e verificar `/api/state` e os CRC32 enquanto se alternam Red, Blue e Green no SameBoy.
