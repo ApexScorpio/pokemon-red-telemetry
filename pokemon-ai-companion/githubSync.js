@@ -224,7 +224,9 @@ function formatTelemetryMarkdown(state) {
       }
     }
   } else {
-    md += `- **Estado:** 🗺️ **Fora de Combate (Exploração Livre)**\n`;
+    md += state.battleFlagVerified === true
+      ? `- **Estado:** 🗺️ **Fora de Combate (sinalizador RAM confirmado)**\n`
+      : `- **Estado:** ⚠️ **Combate não confirmado: leitura RAM D057 indisponível**\n`;
     if (boss && boss.battles && boss.battles.length > 0) {
       const nextB = boss.battles.find(b => !b.isDefeated && !b.isMissed);
       if (nextB) {
