@@ -1119,6 +1119,7 @@ class RetroArchClient extends EventEmitter {
     } : null;
     const partyDexList = (this.latestState.party || []).map(p => p.dex);
     const inventoryNames = (this.latestState.inventory || []).map(i => i.name.toUpperCase());
+    const inventoryAndPcItems = [...(this.latestState.inventory || []), ...(this.latestState.pcItems || [])];
 
     let effectiveWild = [];
     if (!areaData.isWestRoute4 && wildGrassRaw && wildGrassRaw.length >= 21) {
@@ -1165,7 +1166,7 @@ class RetroArchClient extends EventEmitter {
         const val = parseInt(hiddenRaw[b], 16);
         isCollected = (val & (1 << bit)) !== 0;
       }
-      const inInventory = checkIsItemInInventory(item.name, this.latestState.inventory);
+      const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
       if (inInventory) isCollected = true;
       return {
         ...item,
@@ -1200,8 +1201,10 @@ class RetroArchClient extends EventEmitter {
     const hasCascadeBadge = (this.latestState.badges || []).some(b => (b.name && b.name.includes('Cascade')) && b.obtained);
     const hasSoulBadge = (this.latestState.badges || []).some(b => (b.name && b.name.includes('Soul')) && b.obtained);
     const hasCutInParty = (this.latestState.party || []).some(p => (p.moves || []).some(m => m.name === 'Cut'));
-    const hasCut = hasCascadeBadge && (hasCutInParty || inventoryNames.includes('HM01'));
-    const hasSurf = hasSoulBadge && inventoryNames.includes('HM03');
+    const hasSurfInParty = (this.latestState.party || []).some(p => (p.moves || []).some(m => m.name === 'Surf'));
+    // Ter o HM na mochila não significa que um Pokémon o saiba utilizar em campo.
+    const hasCut = hasCascadeBadge && hasCutInParty;
+    const hasSurf = hasSoulBadge && hasSurfInParty;
     const dexCount = ownedDexSet.size;
 
     const checkAccessibility = (item) => {
@@ -1222,7 +1225,7 @@ class RetroArchClient extends EventEmitter {
         const val = parseInt(toggleRaw[b], 16);
         isCollected = (val & (1 << bit)) !== 0;
       }
-      const inInventory = checkIsItemInInventory(item.name, this.latestState.inventory);
+      const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
       if (inInventory) isCollected = true;
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
@@ -1237,7 +1240,7 @@ class RetroArchClient extends EventEmitter {
     });
 
     const allHiddenItems = hiddenList.map(item => {
-      const inInventory = checkIsItemInInventory(item.name, this.latestState.inventory);
+      const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
       const isCollected = item.isCollected || inInventory;
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
@@ -1252,7 +1255,7 @@ class RetroArchClient extends EventEmitter {
     });
 
     const allNpcItems = (areaData.npcItems || []).map(item => {
-      const inInventory = checkIsItemInInventory(item.name, this.latestState.inventory);
+      const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
       const isCollected = inInventory;
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
@@ -1336,11 +1339,11 @@ class RetroArchClient extends EventEmitter {
             ent.itemName = matchedItem.name;
             ent.hint = matchedItem.hint;
             ent.importance = matchedItem.importance;
-            ent.isCollected = matchedItem.isCollected || checkIsItemInInventory(matchedItem.name, this.latestState.inventory);
+            ent.isCollected = matchedItem.isCollected || checkIsItemInInventory(matchedItem.name, inventoryAndPcItems);
           } else {
             ent.name = `🎒 Item no Chão (Poké Ball)`;
           }
-          if (ent.itemName && checkIsItemInInventory(ent.itemName, this.latestState.inventory)) {
+          if (ent.itemName && checkIsItemInInventory(ent.itemName, inventoryAndPcItems)) {
             ent.isCollected = true;
           }
         } else {
