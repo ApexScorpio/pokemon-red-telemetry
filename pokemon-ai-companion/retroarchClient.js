@@ -568,9 +568,9 @@ class RetroArchClient extends EventEmitter {
       const reply = await this.sendRaw('GET_STATUS');
       const status = reply ? 'GET_STATUS '+reply.join(' ') : null;
       let match = getCurrentRom(status,this.romRegistry.profiles);
-      if (!match && (process.env.POKEMON_ROM_DIR || process.env.POKEMON_ROM_PROFILE_DIR ||
-          process.env.POKEMON_ROM_PROFILE_PATH || process.env.POKEMON_ROM_PATH) &&
-          Date.now()-this.lastRomRegistryRefreshAt > 30000) {
+      if (!match && Date.now()-this.lastRomRegistryRefreshAt > 30000) {
+        // Descoberta inteiramente automática: ZIP/ROM copiado para Downloads
+        // depois do arranque é detetado sem reiniciar nem configurar variáveis.
         this.lastRomRegistryRefreshAt = Date.now();
         this.romRegistry = buildProfiles(); // procura ROMs e ZIPs novos sem reiniciar
         this.latestState.romAutoDiscovery=this.romRegistry.discovery;
