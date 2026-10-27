@@ -335,3 +335,21 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 14. Corrigido romTrainerParties.js: classes internas 225, 242 e 243 nunca devolvem uma equipa concreta como confirmada sem validar a variante escolhida; devolvem team=null, variantDependent=true e explicação.
 - 15. Atualizados romAreaEvidence.js e public/app.js para distinguir visualmente esta incerteza, sem alterar flags ou concluir derrotas.
 - 16. Alargados os testes com verificação de que o rival não recebe uma equipa suposta. A integração SameBoy/iPhone permanece sem teste de ponta a ponta.
+
+
+## 2026-10-27 — Fase 7: completar scripts especiais sem falsificar vitórias
+
+- 1. Reabertos os módulos atuais do GitHub antes de modificar: romWorldData.js já continha extração automática de eventos, romTrainerEvents.js possuía 310 associações humanas convencionais, 18 scripts especiais, 12 encontros fixos e identificava seis casos históricos sem associação segura. Evitou-se substituir esse trabalho por um scanner inferior.
+- 2. Revisitadas fontes primárias pret/pokered: scripts/CeruleanCity.asm, Route24.asm, OaksLab.asm, SSAnne2F.asm, GameCorner.asm e SilphCo11F.asm, distinguindo eventos de vitória, de confronto realizado, de partida de navio e de descoberta de esconderijo.
+- 3. Analisados os três executáveis Red/Blue/Green da conversa. Procuradas as assinaturas de bytecode SetEvent diretamente em cada banco de mapa: offsets 0x195C1 (Cerulean Rival, bit 152), 0x51432 (Rocket Route24, bit 1345), 0x1CE27 (Oak Lab, bit 35), 0x48EF4 (Game Corner poster, bit 441), 0x6225E (Giovanni Silph 11F, bit 1935). Todas as 15 procuras encontraram exatamente uma ocorrência por banco e por versão.
+- 4. Confirmados os ordinais reais dos objetos humanos: mapa 3 objeto 2, mapa 35 objeto 1, mapa 40 objeto 1, mapa 96 objeto 2 (Rival S.S. Anne), mapa 135 objeto 11 (Rocket do Game Corner), mapa 235 objeto 3 (Giovanni Silph).
+- 5. Atualizado romTrainerEvents.js com quatro vínculos novos condicionados exclusivamente aos três SHA-256 auditados. Cerulean Rival, Route24 Rocket e Giovanni Silph identificam SetEvent de vitória após controlo LOST_BATTLE; Oak Lab indica confronto disputado, sem resultado confirmado.
+- 6. EVENT_SS_ANNE_LEFT (1506) e EVENT_FOUND_ROCKET_HIDEOUT (441) passam a ser apresentados apenas como eventos da história; nenhum pode ser usado para afirmar vitória perante rival ou Rocket.
+- 7. Atualizado romAreaEvidence.js para transportar vitória comprovada de script, batalha realizada e proveniência; flags genéricas continuam com defeated=null.
+- 8. Atualizado romAreaProgress.js para contar separadamente vitórias de script e batalhas realizadas de resultado desconhecido; necessidades de cabeçalhos tornam-se dependentes do número real de treinadores sem associação na área.
+- 9. Atualizado public/app.js para identificar os três estados (vitória de script, batalha realizada sem resultado, e evento/combate genericamente desativado) e apresentar S.S. Anne/Game Corner como progresso, não resultado.
+- 10. Atualizado tests/romTrainerEvents.test.js para Route24 Rocket e criado tests/romScriptedBattles.test.js para cenários de scripts especiais, rejeição de ROM desconhecida e assinaturas compiladas das três ROMs (esta última prova depende de POKEMON_ROM_DIR no teste Node futuro).
+- 11. Executada validação isolada de sintaxe e sete cenários da implementação atual em motor JS; todos passaram. Executada procura direta dos 15 padrões em três ROMs reais. Não foi feita integração ao vivo no iPhone nem execução integral npm test.
+- 12. Criado docs/BATALHAS_ESPECIAIS_ROM_RAM_V7.md com a prova compilada, fontes, limites e semântica exata. Não se tocaram os saves, os tokens, o login Antigravity ou o disco C: do utilizador.
+
+**Pendência real:** a S.S. Anne não possui um evento persistente específico de vitória na luta do rival; o Game Corner só dispõe de evidência persistente de abertura do esconderijo, que não demonstra o resultado da luta. Outras variantes ROM exigem validação dos seus próprios scripts. Integração SameBoy ainda por testar.
