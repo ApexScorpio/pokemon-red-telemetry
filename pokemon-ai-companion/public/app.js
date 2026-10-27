@@ -375,7 +375,7 @@ function renderRomAreaEvidence(state) {
       const team=Array.isArray(t.team)&&t.team.length ?
         ' | Equipa ROM: '+t.team.map(p=>(p.name||'#'+p.internalId)+' Nv.'+p.level).join(', ') :
         ' | Equipa ainda sem validação ROM';
-      return '• Classe #'+t.trainerClassId+' / Nº '+t.trainerNumber+
+      return '• '+(t.trainerClassName||'Classe #'+t.trainerClassId)+' / Nº '+t.trainerNumber+
         ' X:'+t.x+' Y:'+t.y+' — '+wonStatus(t)+team+present(t);
     }),
     '👤 NPCs da ROM: '+evidence.npcs.length
