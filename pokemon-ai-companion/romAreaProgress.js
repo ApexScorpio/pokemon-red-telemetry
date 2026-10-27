@@ -7,7 +7,8 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
    verified:false,source:'ROM/RAM_NÃO_CONFIRMADAS',hiddenItems:null,
    visibleItemObjects:null,trainers:null,remainingConfirmed:null
  };
- const items=romEvidence.items||[],trainers=romEvidence.trainers||[];
+ const items=romEvidence.items||[],trainers=romEvidence.trainers||[],
+   stationary=romEvidence.stationaryPokemon||[];
  const hidden=hiddenEvidence?.verified ? hiddenEvidence.items||[] : null;
  const hiddenResult=hidden?{
    total: hidden.length,
@@ -18,6 +19,8 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
  const gatesClosed=trainers.filter(x=>x.eventFlagSet===true).length;
  const gatesOpen=trainers.filter(x=>x.eventFlagSet===false).length;
  const trainerUnknown=trainers.length-gatesClosed-gatesOpen;
+ const staticDone=stationary.filter(x=>x.encounterGateClosed===true).length;
+ const staticOpen=stationary.filter(x=>x.encounterGateClosed===false).length;
  const removed=items.filter(x=>x.removedFromMap===true).length;
  const shown=items.filter(x=>x.removedFromMap===false).length;
  const unknown=items.length-removed-shown;
@@ -40,6 +43,13 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
      eventGatesUnknown:trainerUnknown,
      statusUnknown:trainerUnknown,
      explanation:'Flag de evento 1 = combate desativado ou concluído; não prova combate histórico. Flag 0 = não desativado por esta flag.'
+   },
+   stationaryPokemon:{
+     totalInRom:stationary.length,eventGatesClosed:staticDone,
+     eventGatesOpen:staticOpen,
+     eventGatesUnknown:stationary.length-staticDone-staticOpen,
+     caughtConfirmed:null,defeatedConfirmed:null,
+     explanation:'Evento encerrado não prova captura. Consultar Pokédex Owned separadamente.'
    },
    remainingConfirmed:hidden?hiddenResult.stillAvailableConfirmed:null,
    remainingScope:'Apenas itens ocultos com bitmap verificado; não é o total da zona.',
