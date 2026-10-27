@@ -389,6 +389,22 @@ function renderRomAreaEvidence(state) {
       ' / Desconhecidos: '+it.unknownFlag+
       ' (removido NÃO comprova recolha)');
   }
+  const catches=state.romCaptureOpportunities;
+  if(catches?.verified){
+    rows.push('🌿 POKÉMON DA ZONA — AINDA POR CAPTURAR ('+catches.missingSpecies+' espécies)');
+    for(const group of catches.zones){
+      const missing=group.species.filter(p=>!p.alreadyCaught);
+      if(!missing.length)continue;
+      rows.push((group.kind==='grass'?'🌿 RELVA':'🌊 ÁGUA / SURF')+
+        ' • taxa de encontro ROM: '+group.encounterRateByte+'/255 (não probabilidade de captura)');
+      for(const mon of missing.slice(0,12)){
+        rows.push('• '+mon.name+' #'+mon.dex+' Nv.'+mon.levels.join('/')+
+          ' • '+mon.conditionalChancePercent+'% dos encontros neste meio'+
+          (mon.alreadySeen?' • já visto':' • nunca visto na Pokédex'));
+      }
+    }
+    rows.push('ℹ️ Níveis/probabilidades vêm da ROM; espécie capturada vem da Pokédex RAM. Não garante acesso ao local.');
+  } else rows.push('🌿 Pokémon por capturar: aguarda ROM e Pokédex RAM validadas.');
   const hidden=state.romHiddenItems;
   if(hidden?.verified){
     const info=progress?.hiddenItems;
