@@ -215,3 +215,21 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 9. Nenhuma ROM, save, sessão, token, serviço ou ficheiro do disco C: foi alterado no equipamento do utilizador.
 
 **Próximos passos pendentes:** identificar cabeçalhos de treinadores nos restantes mapas (incluindo ginásios e áreas especiais); extrair os nomes dos itens ocultos diretamente dos scripts ROM; confirmar os resultados no emulador real.
+
+
+## 2026-10-27 — Fase 6: 312 treinadores associados ao script original e 54 itens ocultos identificados
+
+- 1. Reanalisadas diretamente as três ROMs locais (Red/Blue/Green International 1.2.1) com parser próprio dos bancos, cabeçalhos de mapa e apontadores de texto de NPCs.
+- 2. A relação `NPC Object.textId → TextPointer → TEXT_ASM → LD HL, trainerHeader → CALL TalkToTrainer (direto ou salto JR) → evento em wEventFlags` foi reconstruída a partir dos bytes reais. Foi considerado o endereço diferente de TalkToTrainer nas variantes Red/Blue e Green.
+- 3. Foram identificados **346 objetos de treinador** por ROM: **312 flags com ligação de código comprovada**, em **67 mapas**, e **34 scripts especiais por resolver**. A mesma lista de 312 triplos `(mapId, objectOrdinal, eventBitIndex)` foi encontrada nas três versões.
+- 4. Substituído o atlas de 17 mapas por atlas de 312 entradas em romTrainerEvents.js, condicionado aos SHA-256 das três ROMs auditadas; os perfis v4 anteriores continuam a funcionar automaticamente, sem novo ZIP.
+- 5. Adicionado resolvedor direto dos cabeçalhos de batalha em romWorldData.js para ROMs locais compiladas com a mesma estrutura, guardando `trainerEvents` em cada mapa e metadados globais.
+- 6. Corrigido erro semântico antigo: algumas flags podem ser ativadas por scripts ao derrotar um líder de ginásio, mesmo sem ter lutado contra todos os NPCs. O programa agora publica `eventFlagSet`/`battleGateClosed`, e **não afirma a vitória histórica individual sem log do combate**. Atualizados romAreaEvidence.js, romAreaProgress.js e a interface.
+- 7. Descoberta a tabela HiddenEventMaps/HiddenEventPointers na ROM. Cruzados os 54 tripletos HiddenItemCoords com os seis bytes do evento da coordenada, o banco e o handler da rotina HiddenItems (Red 1D:6688, Blue 1D:6689, Green 1D:668A).
+- 8. **54/54 IDs de itens ocultos** obtidos diretamente dos scripts nas três ROMs, com correspondência exata. Exemplos: Viridian Forest Potion e Antidote, Mt Moon B2F Moon Stone e Ether, Route 4 Great Ball ID 3. A RAM D6F0 continua a determinar o estado de recolha.
+- 9. Modificados romEventState.js, retroarchClient.js e public/app.js para usar o ID do script e nome resolvido por ID, sem substituí-los por nomes inventados do catálogo manual.
+- 10. Adicionados testes de bytecode direto/JR e asserções de contagem de 312 flags/67 mapas/54 IDs e dos casos especiais de Route 24. Executados testes isolados em JavaScript (incluindo bytecode sintético e atlas) e testes de comparação em Python contra as três ROMs.
+- 11. Criada a documentação técnica docs/ROM_TREINADORES_ITENS_SCRIPT_V6.md.
+- 12. **Não foi feito o teste end-to-end no RetroArch/SameBoy do iPhone.** Não há prova de execução no PC do utilizador nesta sessão. ROMs, saves, credenciais, tokens Antigravity e C: do utilizador não foram alterados.
+
+**Pendente:** os 34 NPCs de treinador com scripts especiais, todos os efeitos de scripts de ginásio, histórico comprovado de batalhas observadas e decodificação universal de outros ROM hacks.
