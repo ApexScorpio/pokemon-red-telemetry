@@ -11,7 +11,8 @@ const items = require('./data/exact_items.json');
 const norm = x => String(x || '')
   .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
   .toUpperCase().replace(/♂/g, 'M').replace(/♀/g, 'F')
-  .replace(/[^A-Z0-9]/g, '');
+  .replace(/[^A-Z0-9]/g, '')
+  .replace(/^PSYCHICM$/, 'PSYCHIC'); // ID 94: constante PSYCHIC_M, nome apresentado Psychic
 
 function addressFromSym(lines, symbol) {
   const re = new RegExp('^00:([0-9a-f]{4}) ' + symbol + '$', 'im');
