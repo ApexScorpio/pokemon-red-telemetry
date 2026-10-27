@@ -428,3 +428,13 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 9. Nenhuma ROM, save, token, login, backup Antigravity, ficheiro do disco C: ou aplicação do utilizador foi alterado. Os ficheiros temporários de execução existem somente no ambiente de verificação isolado, não no computador do utilizador.
 
 **Pendentes:** comparar todas as fórmulas por variante ROM real (não apenas pret/pokered), extrair os bytes e estados de cada turno diretamente da ROM/RAM validada, implementar STAB, eficácia por tipo, golpes de efeito especial, cenário Safari, mecânica de encontro por passo e restantes oportunidades globais, executar `npm test` integral e testar telemetria do SameBoy. O objetivo de 100% descodificado/certificado continua não atingido.
+
+
+### Adenda — STAB e tabela de eficácia de tipos da Gen I (27/10/2026)
+
+- 10. Consultada diretamente a rotina primária `AdjustDamageForMoveType` em `pret/pokered/engine/battle/core.asm` e a tabela `pret/pokered/data/types/type_matchups.asm`: STAB acrescenta metade do dano (arredondada para baixo); o motor percorre os pares de tipos na ordem ROM e, por cada correspondência válida, multiplica/trunca separadamente antes de randomizar o dano.
+- 11. Publicado `pokemon-ai-companion/gen1TypeDamage.js`: adiciona STAB e fatores 0/0,5/1/2 de modo sequencial, com tipos da RAM, byte do golpe e tabela ordenada **proveniente da ROM validada**. Mantém o caso de dano arredondado a zero (que a Gen I marca como falha). Só é aplicável ao ramo convencional de dano, sem movimentos especiais ou estados cuja mecânica não tenha sido validada.
+- 12. Publicado `tests/gen1TypeDamage.test.js`, cobrindo STAB, combinação de fraqueza/resistência, tipo repetido, imunidade e recusa de tabela não comprovada. Executados no ambiente isolado os testes matemáticos conjuntos: **25/25 aprovados**, Node v22.16.0. A tabela sintética dos testes é expressamente um fixture, não uma leitura ROM em execução.
+- 13. A apresentação visual e o telemóvel continuam sem alterações; as fórmulas ainda não são usadas para declarar resultados do turno real, pois falta extração/verificação da tabela de tipos e de estados efetivos de batalha em tempo real.
+
+**Pendente:** leitura integral e confronto com os binários exatos da tabela `TypeEffects`, diferenças entre versões e teste diferencial ROM/emulador antes de integração ao vivo. A cobertura do jogo não é 100%.
