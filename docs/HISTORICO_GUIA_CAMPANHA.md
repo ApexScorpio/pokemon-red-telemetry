@@ -380,3 +380,16 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 9. Nenhuma ROM, save, token, sessão Antigravity, ficheiro do utilizador no C: ou processo em execução foi alterado.
 
 **Importante:** flags de eventos não provam vitória. Só os scripts que confirmam o resultado permitem apresentar uma vitória específica como certa. Dois encontros com controlo especial continuam sem prova completa do seu estado.
+
+
+## 2026-10-27 — Continuação: validação de consistência temporal ROM/RAM
+
+- 1. Reaberto o código efetivo do GitHub em vez de assumir que os anteriores 17 mapas eram a cobertura atual. Confirmado atlas de 312 cabeçalhos, scripts especiais, auditoria declarada de 334 objetos de treinador humano, 310 ligações diretas e 24 casos especiais. A leitura das flags normais já distingue evento desativado de vitória individual.
+- 2. Identificado risco concreto nas leituras sequenciais: o ID da zona vinha da RAM $D35E dentro do bloco de jogador $D158 e as flags da zona eram recolhidas mais tarde num bloco diferente. Uma transição podia associar dados de duas zonas numa amostra.
+- 3. Criado `pokemon-ai-companion/romSnapshotIntegrity.js`: compara o byte $D35E da leitura inicial com uma releitura final de um byte, recusa bytes inválidos, IDs Gen I fora do intervalo 0..247 e mapas diferentes. Um ID coincidente não prova atomicidade de todos os bytes, e essa limitação é declarada.
+- 4. Alterado `retroarchClient.js` para confirmar $D35E imediatamente após recolher os blocos obrigatórios e ANTES de declarar a amostra ligada ou interpretar vitórias, itens e eventos; em caso de erro/transição marca a RAM não verificada, apaga a evidência específica da zona e emite estado desligado, permitindo nova leitura no ciclo seguinte.
+- 5. Criado `tests/romSnapshotIntegrity.test.js`, com cenários de mapa estável, mudança Route 6 -> outro mapa, bytes em falta/corrompidos e ID inválido.
+- 6. Verificada a sintaxe dos dois módulos e do teste no motor JavaScript; executados seis cenários isolados do descodificador (6/6 passaram). Ainda não foi possível executar o conjunto completo contra o SameBoy/iPhone nesta sessão.
+- 7. Nenhuma ROM, save, sessão Antigravity, token, unidade C: nem processo do equipamento do utilizador foi alterado. Este histórico foi apenas acrescentado.
+
+**Estado:** melhoria publicada e testada isoladamente; falta validar a releitura de $D35E com a telemetria real. O requisito de leitura atómica de todos os eventos não está certificado — a verificação de estabilidade do ID do mapa mitiga, mas não elimina, alterações simultâneas noutros bytes.
