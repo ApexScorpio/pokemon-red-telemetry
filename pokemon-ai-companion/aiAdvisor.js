@@ -35,7 +35,10 @@ let lastAdviceTime = 0;
 let cachedAdvice = null;
 
 async function getLiveAdvice(state, force = false) {
-  if (!state || !state.connected || !state.memoryReadStatus?.verified || state.isSimulation)
+  if (!state || !state.connected || !state.memoryReadStatus?.verified || state.isSimulation ||
+      !state.lastUpdate || !Number.isFinite(Date.parse(state.lastUpdate)) ||
+      Date.now() - Date.parse(state.lastUpdate) < 0 ||
+      Date.now() - Date.parse(state.lastUpdate) >= 15000)
     return 'Telemetria RAM indisponível ou incompleta; não emitir decisões sobre dados antigos ou simulados.';
   const now = Date.now();
   if (!force && now - lastAdviceTime < 15000) {
