@@ -39,7 +39,7 @@ function searchRoots(base=__dirname,env=process.env){
    'S:\\tmp\\pokemon-rom-profiles','S:\\tmp\\pokemon-red-telemetry-upload');
  }
  for(const e of ['POKEMON_ROM_PATH','POKEMON_ROM_DIR','POKEMON_ROM_PROFILE_PATH',
-                 'POKEMON_ROM_PROFILE_DIR']){
+                 'POKEMON_ROM_PROFILE_DIR','POKEMON_ROM_PROFILE_ZIP']){
   if(env[e])roots.push(path.extname(env[e])?path.dirname(env[e]):env[e]);
  }
  const dirs=[];
@@ -72,7 +72,7 @@ function listCandidates(base=__dirname,env=process.env){
   }
  };
  for(const dir of searchRoots(base,env))scan(dir);
- for(const e of ['POKEMON_ROM_PATH','POKEMON_ROM_PROFILE_PATH']){
+ for(const e of ['POKEMON_ROM_PATH','POKEMON_ROM_PROFILE_PATH','POKEMON_ROM_PROFILE_ZIP']){
   const full=env[e];
   if(!full)continue;
   const key=path.normalize(full).toLowerCase();
