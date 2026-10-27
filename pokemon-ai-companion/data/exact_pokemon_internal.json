@@ -171,12 +171,12 @@
     "baseHp": 90
   },
   "21": {
-    "name": "Mewtwo",
-    "dex": 150,
+    "name": "Mew",
+    "dex": 151,
     "types": [
       "Psychic"
     ],
-    "baseHp": 106
+    "baseHp": 100
   },
   "22": {
     "name": "Gyarados",
@@ -381,13 +381,13 @@
     "baseHp": 60
   },
   "46": {
-    "name": "Paras",
-    "dex": 46,
+    "name": "Parasect",
+    "dex": 47,
     "types": [
       "Bug",
       "Grass"
     ],
-    "baseHp": 35
+    "baseHp": 60
   },
   "47": {
     "name": "Psyduck",
@@ -450,8 +450,7 @@
     "name": "Magneton",
     "dex": 82,
     "types": [
-      "Electric",
-      "Steel"
+      "Electric"
     ],
     "baseHp": 50
   },
@@ -753,13 +752,13 @@
     "baseHp": 30
   },
   "91": {
-    "name": "Kabuto",
-    "dex": 140,
+    "name": "Kabutops",
+    "dex": 141,
     "types": [
       "Rock",
       "Water"
     ],
-    "baseHp": 30
+    "baseHp": 60
   },
   "92": {
     "name": "Horsea",
@@ -1252,13 +1251,13 @@
     "baseHp": 63
   },
   "151": {
-    "name": "Pidgeotto",
-    "dex": 17,
+    "name": "Pidgeot",
+    "dex": 18,
     "types": [
       "Normal",
       "Flying"
     ],
-    "baseHp": 63
+    "baseHp": 83
   },
   "152": {
     "name": "Starmie",
@@ -1438,8 +1437,7 @@
     "name": "Magnemite",
     "dex": 81,
     "types": [
-      "Electric",
-      "Steel"
+      "Electric"
     ],
     "baseHp": 25
   },
