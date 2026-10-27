@@ -30,7 +30,8 @@ for(const [file,sha256] of ROMS){
        assert.ok(ix>=1);
        const tCpu=b.readUInt16LE(textBase+2*(ix-1));
        const t=bankOffset(tCpu);
-       const opcode=Buffer.from([0xfa,...Buffer.from(Uint16Array.of(0xd747+(bit>>3)).buffer),0xcb,0x47+8*(bit&7)]);
+       const address=0xd747+(bit>>3);
+       const opcode=Buffer.from([0xfa,address&255,address>>8,0xcb,0x47+8*(bit&7)]);
        // Karate Master: o segundo bit reutiliza A carregado pelo primeiro CheckEvent.
        const search=mapId===177?Buffer.from([0xcb,0x4f]):opcode;
        const found=b.subarray(t,t+19).indexOf(search);
