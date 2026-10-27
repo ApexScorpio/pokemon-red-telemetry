@@ -18,6 +18,7 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
       items:[],trainers:[],npcs:[],reason:'Mapa ou identidade CRC32 indisponível' };
   }
   const spritesVerified=options.spritesVerified === true;
+  const toggles=options.toggleables?.verified ? options.toggleables.entries : null;
   const live=Array.isArray(entities) ? entities : [];
   const seen=new Set();
   const items=[],trainers=[],npcs=[];
@@ -37,8 +38,18 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
       source:'OBJETO_DEFINIDO_NA_ROM_COM_CRC32_CORRESPONDENTE',
       existsInRom:true,observedInRam:null,
       collected:null,defeated:null,completionSource:'FLAG_ESPECÍFICA_NÃO_ASSOCIADA',
-      visibilitySource:'RAM_DE_SPRITES_NÃO_CONFIRMADA'
+      visibilitySource:'RAM_DE_SPRITES_NÃO_CONFIRMADA',
+      toggleableFlagIndex:null,removedFromMap:null,
+      removedSource:'SEM_ASSOCIAÇÃO_ATUAL_ROM_RAM'
     };
+    const toggle=toggles?.find(x=>x.spriteIndex===i+1);
+    if(toggle){
+      entry.toggleableFlagIndex=toggle.globalFlagIndex;
+      entry.removedFromMap=toggle.removedFromMap;
+      entry.removedSource=toggle.source;
+      // Algumas entidades são removidas por scripts, não pela recolha ou derrota.
+      // Nunca converter removedFromMap em collected/defeated por suposição.
+    }
     if (spritesVerified && entry.x!==null && entry.y!==null) {
       const matching=live.find((e,j)=>!seen.has(j) &&
         Number.isInteger(e.x)&&Number.isInteger(e.y) &&
@@ -57,6 +68,7 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
     source:'ROM_COM_CRC32_CORRESPONDENTE + RAM_SE_VALIDADA',
     items,trainers,npcs,
     note:'Objetos da ROM não comprovam recolha/derrota. Ausência da RAM não comprova conclusão.',
+    toggleableRamVerified:!!toggles,
     counts:{items:items.length,trainers:trainers.length,npcs:npcs.length}};
 }
 module.exports={buildRomAreaEvidence};
