@@ -376,6 +376,23 @@ function formatTelemetryMarkdown(state) {
     md += '\n';
   }
 
+  // Flags de eventos: todos os bits foram lidos, os nomes são das tabelas da ROM Red/Blue.
+  const evt = state.eventFlagTelemetry;
+  if (evt?.verifiedRamCoverage) {
+    const states = evt.completeNamedStates || {};
+    const active = Object.entries(states).filter(([,set])=>set).length;
+    md += `## 🏁 Eventos e progresso (507 flags nomeadas; ${active} bits ligados)\n`;
+    md += '- **Proveniência:** leitura direta de 320 bytes da RAM $D747; etiquetas de evento da desmontagem pret/pokered. O significado destas flags depende da correspondência da ROM.\n';
+    md += '- **Importante:** bit desligado não prova que um local foi visitado ou não; algumas flags têm condições especiais.\n';
+    md += '<details><summary>Ver todas as flags de eventos e estados da RAM</summary>\n\n';
+    for (const [name,set] of Object.entries(states)) {
+      md += `- ${set ? '[1]' : '[0]'} ${name}\n`;
+    }
+    md += '\n</details>\n\n';
+  } else {
+    md += '## 🏁 Eventos e progresso\n- Leitura completa das flags não validada.\n\n';
+  }
+
   // 6. Pokémon no PC
   md += `## 💾 6. Pokémon no PC: APENAS a Caixa ${pc.boxNum} (${pc.count}/20) • Vagas nesta caixa: **${pc.freeSlots}**\n`;
   if (!pc.pokemon || pc.pokemon.length === 0) {
@@ -616,6 +633,7 @@ function getStateFingerprint(state) {
     pcBox: state.pcBox, daycare: state.daycare,
     pokedexOwned: state.pokedexOwned, pokedexSeen: state.pokedexSeen,
     badges: state.badges, repelSteps: state.repelSteps,
+    activeEvents: state.eventFlagTelemetry?.activeEventNames,
     areaItems: state.areaInfo ? {
       visible: state.areaInfo.visibleItems,
       hidden: state.areaInfo.hiddenItems,
