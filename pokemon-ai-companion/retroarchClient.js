@@ -2,6 +2,7 @@ const fs = require('fs');
 const { buildProfiles, getCurrentRom, pokemonFromProfile, moveNameFromProfile } = require('./romLiveResolver');
 const { expAtLevel } = require('./gen1EngineMath');
 const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
+const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -1240,6 +1241,11 @@ class RetroArchClient extends EventEmitter {
       speciesName: this.getPokemonInfo(slot.internalId)?.name || null,
       dex: this.getPokemonInfo(slot.internalId)?.dex || null
     }));
+    this.latestState.romAreaEvidence=buildRomAreaEvidence(romMap,
+      this.latestState.mapEntities,ITEM_NAMES,{
+        romIdentityMatched:!!this.activeRomProfile,
+        spritesVerified:!!this.latestState.memoryReadStatus?.blocks?.overworldSprites
+      });
     this.latestState.romWildEncounters = romWild ? {
       mapId: this.latestState.mapId,
       source: 'PERFIL_ROM_COM_CRC32_CORRESPONDENTE',
@@ -1344,18 +1350,23 @@ class RetroArchClient extends EventEmitter {
 
     // Itens Ocultos e Radar de Itemfinder
     const hiddenList = (areaData.hiddenItems || []).map(item => {
-      let isCollected = false;
-      if (item.hiddenIndex !== undefined && hiddenRaw && hiddenRaw.length >= 7) {
-        const b = Math.floor(item.hiddenIndex / 8);
-        const bit = item.hiddenIndex % 8;
-        const val = parseInt(hiddenRaw[b], 16);
-        isCollected = (val & (1 << bit)) !== 0;
+      let isCollected = null;
+      let collectionEvidence = 'NÃO_CONFIRMADO_SEM_FLAG_ASSOCIADA';
+      if (Number.isInteger(item.hiddenIndex) && item.hiddenIndex>=0 &&
+          hiddenRaw && Math.floor(item.hiddenIndex/8)<hiddenRaw.length) {
+        const b = Math.floor(item.hiddenIndex / 8),bit = item.hiddenIndex % 8;
+        const raw = hiddenRaw[b];
+        if (/^[0-9a-fA-F]{2}$/.test(raw)) {
+          isCollected = !!(parseInt(raw, 16) & (1 << bit));
+          collectionEvidence='FLAG_RAM + INDICE_DE_REFERÊNCIA_AINDA_POR_VALIDAR_NA_ROM';
+        }
       }
       const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
       // Possuir item idêntico NÃO prova que este exemplar foi recolhido.
       return {
         ...item,
-        isCollected,
+        isCollected,collectionEvidence,
+        referenceSource:'LISTA_MANUAL_DA_ZONA_NÃO_EXTRAÍDA_INTEGRALMENTE_DA_ROM',
         inInventory
       };
     });
@@ -1364,7 +1375,8 @@ class RetroArchClient extends EventEmitter {
     if (this.latestState.coords) {
       const px = this.latestState.coords.x;
       const py = this.latestState.coords.y;
-      const uncollectedHidden = hiddenList.filter(h => !h.isCollected && h.x !== undefined && h.y !== undefined);
+      const uncollectedHidden = hiddenList.filter(h => h.isCollected === false &&
+        h.x !== undefined && h.y !== undefined);
       if (uncollectedHidden.length > 0) {
         uncollectedHidden.sort((a, b) => {
           const distA = Math.abs(a.x - px) + Math.abs(a.y - py);
@@ -1403,20 +1415,27 @@ class RetroArchClient extends EventEmitter {
     };
 
     const allVisItems = (areaData.visibleItems || []).map(item => {
-      let isCollected = false;
-      if (item.toggleIndex !== undefined && toggleRaw && toggleRaw.length >= 32) {
-        const b = Math.floor(item.toggleIndex / 8);
-        const bit = item.toggleIndex % 8;
-        const val = parseInt(toggleRaw[b], 16);
-        isCollected = (val & (1 << bit)) !== 0;
+      let isCollected = null;
+      let collectionEvidence = 'NÃO_CONFIRMADO_SEM_FLAG_ASSOCIADA';
+      if (Number.isInteger(item.toggleIndex) && item.toggleIndex>=0 &&
+          toggleRaw && Math.floor(item.toggleIndex/8)<toggleRaw.length) {
+        const b = Math.floor(item.toggleIndex/8),bit=item.toggleIndex%8;
+        const raw=toggleRaw[b];
+        if (/^[0-9a-fA-F]{2}$/.test(raw)) {
+          isCollected=!!(parseInt(raw,16)&(1<<bit));
+          collectionEvidence='FLAG_RAM + INDICE_DE_REFERÊNCIA_AINDA_POR_VALIDAR_NA_ROM';
+        }
       }
       const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
       // Possuir item idêntico NÃO prova que este exemplar foi recolhido.
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
+
       return {
         ...item,
         isCollected,
+        collectionEvidence,
+        referenceSource:'LISTA_MANUAL_DA_ZONA_NÃO_EXTRAÍDA_INTEGRALMENTE_DA_ROM',
         inInventory,
         isLocked: !accInfo.accessible,
         lockReason: accInfo.reason,
@@ -1467,6 +1486,7 @@ class RetroArchClient extends EventEmitter {
     if (upcomingBoss && upcomingBoss.battles) {
       upcomingBoss.battles.forEach(bt => {
         bt.compass = getCompass(this.latestState.coords, bt.x, bt.y);
+        bt.statusSource = 'TABELA_MANUAL_EVENT_FLAGS_NÃO_COMPROVADAS_PARA_ESTA_ROM';
       });
     }
 
