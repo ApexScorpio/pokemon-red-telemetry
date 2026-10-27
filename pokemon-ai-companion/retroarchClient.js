@@ -21,6 +21,7 @@ const CANONICAL_WILD = require('./data/gen1CanonicalWildEncounters.json').maps;
 const CANONICAL_MAPS = require('./data/gen1CanonicalMaps.json').maps;
 const CANONICAL_IDS = require('./data/gen1CanonicalIds.json').internalPokemonIds;
 const CANONICAL_TRADES = require('./data/gen1NpcTrades.json').trades;
+const CANONICAL_EVENTS = require('./data/exact_events.json');
 
 function getCompass(playerCoords, targetX, targetY) {
   if (!playerCoords || targetX === undefined || targetY === undefined || targetX === null || targetY === null) {
@@ -877,6 +878,23 @@ class RetroArchClient extends EventEmitter {
         return (val & (1 << bitIdx)) !== 0;
       }
       return false;
+    };
+
+    // Todos os 320 bytes de wEventFlags são obtidos diretamente da WRAM.
+    // Os 507 nomes são um dicionário estático baseado em pret/pokered (Red/Blue).
+    const eventEntries = Object.entries(CANONICAL_EVENTS).map(([name, bitIndex]) => ({
+      name, bitIndex, set: checkEventFlag(bitIndex)
+    }));
+    this.latestState.eventFlagTelemetry = {
+      source: 'RAM D747 (320 bytes) + dicionário pret/pokered',
+      bytesRead: eventFlagsRaw.length,
+      expectedBytes: 320,
+      dictionaryEntries: eventEntries.length,
+      verifiedRamCoverage: eventFlagsRaw.length === 320,
+      mappingRomIdentityConfirmed: this.latestState.romHeader?.fullRomVerified === true,
+      activeEventNames: eventEntries.filter(e => e.set).map(e => e.name),
+      completeNamedStates: Object.fromEntries(eventEntries.map(e => [e.name,e.set])),
+      rawHex: eventFlagsRaw.join('').toUpperCase()
     };
 
     // =========================================================================
