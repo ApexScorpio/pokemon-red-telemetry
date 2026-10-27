@@ -61,7 +61,10 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
       // Algumas entidades são removidas por scripts, não pela recolha ou derrota.
       // Nunca converter removedFromMap em collected/defeated por suposição.
     }
-    if (spritesVerified && entry.x!==null && entry.y!==null) {
+    // O classificador RAM de sprites só distingue NPCs e treinadores
+    // textuais; não validar a presença de um Pokémon fixo por esse campo.
+    if (spritesVerified && kind!=='wildPokemon' &&
+        entry.x!==null && entry.y!==null) {
       const matching=live.find((e,j)=>!seen.has(j) &&
         Number.isInteger(e.x)&&Number.isInteger(e.y) &&
         asInt(e.pictureId)===entry.pictureId &&
