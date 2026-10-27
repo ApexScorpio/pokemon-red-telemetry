@@ -52,7 +52,10 @@ function loadProfile(filename){
 function profileQuality(profile) {
  const sprite=profile.spritesWithPixelsDecoded||0;
  const world=profile.world?.wildEncounters?.valid&&profile.world?.maps?.valid?1:0;
- return sprite*10+world*100+(profile.source==='local-ROM-file'?10000:0);
+ const verifiedMachineData=profile.capabilities?.tmHmBitfields ||
+   profile.species?.some(p=>p.stats?.tmHm?.source==='ROM_BASESTATS_BITS_VERIFICADOS');
+ return sprite*10+world*100+(verifiedMachineData?50:0)+
+   (profile.source==='local-ROM-file'?10000:0);
 }
 function buildProfiles(){
  const profiles=[],errors=[];
