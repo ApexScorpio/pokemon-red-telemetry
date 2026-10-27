@@ -438,3 +438,13 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 13. A apresentação visual e o telemóvel continuam sem alterações; as fórmulas ainda não são usadas para declarar resultados do turno real, pois falta extração/verificação da tabela de tipos e de estados efetivos de batalha em tempo real.
 
 **Pendente:** leitura integral e confronto com os binários exatos da tabela `TypeEffects`, diferenças entre versões e teste diferencial ROM/emulador antes de integração ao vivo. A cobertura do jogo não é 100%.
+
+
+### Adenda — limites de HP e validação dos módulos isolados (27/10/2026)
+
+- 14. Na rotina de cálculo de captura, restringidos `hpFromRam` e `maxHpFromRam` ao intervalo válido normal 1..999; valores acima deste limite deixam de ser usados para apresentar uma probabilidade supostamente exata. Acrescentado caso de regressão em `tests/gen1ProbabilityModules.test.js`.
+- 15. Reexecutados no ambiente isolado os quatro ficheiros de testes de cálculos `gen1StandardHitChance`, `gen1ProbabilityModules`, `gen1NeutralTurnForecast` e `gen1TypeDamage`: **25/25 aprovados**. Não foi executado `npm test` integral contra todos os módulos do repositório nem houve execução no dispositivo.
+- 16. Detetada limitação funcional existente no `public/app.js`: a lista de encontros da zona apresenta por agora apenas espécies ainda não capturadas, embora o novo `romCaptureOpportunities.js` forneça probabilidades por nível de todas as espécies. A interface NÃO foi modificada nesta fase porque não havia acesso a uma sessão da aplicação para captar e inspecionar screenshot real; alteração UI permanece pendente, sem alegar validação visual inexistente.
+- 17. Observado no `retroarchClient.js` que alguns campos de batalha ainda usam valores de recurso para HP/stats/catch rate (por exemplo `|| 150`). Estes valores não constituem dados comprovados da RAM e **não podem** ser fornecidos ao novo motor exato como entradas verificadas. Não foram alterados aqui, para evitar regressões sem teste de telemetria real, mas o bloqueio fica documentado como prioritário.
+
+**Próximo trabalho obrigatório:** retirar/fazer fail-closed nos valores de recurso do combate, obter os bytes reais do estado do turno incluindo taxa de captura e variantes, provar ROM/estado em tempo real, ligar os módulos ao UI com screenshots analisados, corrigir eventuais incompatibilidades na bateria integral e alargar algoritmos a todos os casos da Gen I. Até lá os cálculos estão isolados e a cobertura 100% NÃO está certificada.
