@@ -44,6 +44,29 @@ const SPECIAL_SCRIPT_EVENTS={
 };
 const SPECIAL_INDEX=new Map(Object.entries(SPECIAL_SCRIPT_EVENTS).map(([map,ordinals])=>
  [Number(map),new Map(Object.entries(ordinals).map(([ordinal,bit])=>[Number(ordinal),bit]))]));
+// Eventos especiais conferidos nos scripts originais e nos bytes compilados
+// das três ROMs. Cada assinatura LD HL, wEventFlags+n ; SET bit,[HL] foi
+// encontrada uma única vez no banco do respetivo mapa em Red, Blue e Green.
+// O script de vitória verifica LOST_BATTLE ANTES de ativar a flag.
+// No Oak Lab o evento assinala batalha realizada, independentemente da vitória.
+const GUARDED_SPECIAL_BATTLES={
+  3: {2:{bit:152,kind:'SCRIPT_VICTORY',label:'Rival de Cerulean'}},
+  35:{1:{bit:1345,kind:'SCRIPT_VICTORY',label:'Rocket da Route 24'}},
+  40:{1:{bit:35,kind:'BATTLE_WAS_PLAYED',label:'Rival no laboratório de Oak'}},
+  235:{3:{bit:1935,kind:'SCRIPT_VICTORY',label:'Giovanni na Silph Co 11F'}}
+};
+// Abertura do esconderijo e partida do navio são eventos da história;
+// nenhum deles constitui uma flag de vitória da luta em si.
+const NON_BATTLE_CONTEXT_EVENTS={
+  96:[{bit:1506,label:'S.S. Anne partiu',kind:'SHIP_DEPARTED_NOT_RIVAL_VICTORY'}],
+  135:[{bit:441,label:'Poster do Game Corner revelou o esconderijo',kind:'POSTER_FOUND_NOT_ROCKET_VICTORY'}]
+};
+function readContextEvents(mapId,eventHex){
+ const defs=NON_BATTLE_CONTEXT_EVENTS[mapId]||[];
+ return defs.map(e=>({eventBitIndex:e.bit,label:e.label,kind:e.kind,
+    eventFlagSet:!!(parseInt(eventHex[e.bit>>3],16)&(1<<(e.bit&7))),
+    confirmsBattleVictory:false,source:'EVENTO_DE_HISTÓRIA_SCRIPT_ROM + RAM_D747'}));
+}
 const VERIFIED_BY_MAP=Object.fromEntries([...ATLAS].map(([map,ordinals])=>
  [map,[...ordinals.values()]]));
 function trainerFlagsForCurrentMap(profile,romMap,eventHex){
@@ -81,6 +104,17 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
    source+=(source==='SEM_CABECALHO_TREINADOR_NORMAL'?'':' + ')+
      '18_CHECKEVENT_ESPECIAIS_COMPROVADOS_NAS_3_ROMS';
  }
+ if(ROM_HASHES.has(sha)&&GUARDED_SPECIAL_BATTLES[mapId]){
+   for(const [ordinalStr,def] of Object.entries(GUARDED_SPECIAL_BATTLES[mapId])){
+     const ordinal=Number(ordinalStr);
+     if(expected.has(ordinal)&&expected.get(ordinal)!==def.bit)
+       return {verified:false,source:'CONFLITO_EVENTO_ESPECIAL_VS_TREINADOR',entries:[]};
+     expected.set(ordinal,def.bit);
+   }
+   source+=(source==='SEM_CABECALHO_TREINADOR_NORMAL'?'':' + ')+
+     '4_EVENTOS_ESPECIAIS_EXTRAÍDOS_DO_SCRIPT';
+ }
+ const contextEvents=ROM_HASHES.has(sha)?readContextEvents(mapId,eventHex):[];
  // Perfis JSON antigos assinalavam Pokémon selvagens fixos como "trainer".
  // Não contam para vitórias de treinadores humanos (OPP_ID_OFFSET=200).
  for(const [ordinal] of expected){
@@ -90,7 +124,8 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
       (actor?.kind==='trainer'&&Number.isInteger(speciesId)&&
        speciesId>=1&&speciesId<=190))expected.delete(ordinal);
  }
- if(!expected.size)return {verified:false,source:'MAPA_SEM_TREINADORES_HUMANOS_AUDITADOS',entries:[]};
+ if(!expected.size)return {verified:false,source:'MAPA_SEM_TREINADORES_HUMANOS_AUDITADOS',
+   entries:[],contextEvents};
  const entries=[];
  for(const [ordinal,eventBitIndex] of expected){
   if(!Number.isInteger(ordinal)||ordinal<1||ordinal>objects.length||
@@ -98,10 +133,16 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
      !Number.isInteger(eventBitIndex)||eventBitIndex<0||eventBitIndex>=2560)
      return {verified:false,source:'ORDINAL_ROM_OU_EVENT_BIT_INVÁLIDO',entries:[]};
   const eventFlagSet=!!(parseInt(eventHex[eventBitIndex>>3],16)&(1<<(eventBitIndex&7)));
+  const scenario=ROM_HASHES.has(sha)?GUARDED_SPECIAL_BATTLES[mapId]?.[ordinal]:null;
+  const confirmedVictory=scenario?.kind==='SCRIPT_VICTORY'&&eventFlagSet===true;
   entries.push({objectOrdinal:ordinal,eventBitIndex,eventFlagSet,
-    // Alguns scripts dos ginásios ativam flags após derrotar o LÍDER, sem
-    // que o jogador tenha combatido individualmente cada treinador.
-    defeated:null,
+    // Somente os 3 scripts especiais com SetEvent após testar LOST_BATTLE
+    // permitem afirmar vitória. As flags normais podem ser ativadas por scripts.
+    defeated:confirmedVictory?true:null,
+    victoryRecorded:scenario?.kind==='SCRIPT_VICTORY'?eventFlagSet:null,
+    battleWasPlayed:scenario?.kind==='BATTLE_WAS_PLAYED'?eventFlagSet:null,
+    outcomeEvidence:scenario?.kind||null,
+    scriptBattleName:scenario?.label||null,
     battleGateClosed:eventFlagSet,
     source:source+' + RAM_D747'});
  }
@@ -109,8 +150,9 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
    !(Number.isInteger(x.trainerClassOrItemId)&&
      x.trainerClassOrItemId>=1&&x.trainerClassOrItemId<=190)).length;
  return {verified:true,mapId,source:source+' + RAM_D747',
-  entries,verifiedTrainerCount:entries.length,
+  entries,contextEvents,verifiedTrainerCount:entries.length,
   unknownTrainerCount:n-entries.length,fullyMapped:n===entries.length,
   semantics:'eventFlagSet significa combate desativado/marcado concluído; não comprova historicamente vitória individual'};
 }
-module.exports={trainerFlagsForCurrentMap,VERIFIED_BY_MAP,SPECIAL_SCRIPT_EVENTS};
+module.exports={trainerFlagsForCurrentMap,VERIFIED_BY_MAP,SPECIAL_SCRIPT_EVENTS,
+  GUARDED_SPECIAL_BATTLES,NON_BATTLE_CONTEXT_EVENTS};
