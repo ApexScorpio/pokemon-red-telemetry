@@ -1167,7 +1167,7 @@ class RetroArchClient extends EventEmitter {
         isCollected = (val & (1 << bit)) !== 0;
       }
       const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
-      if (inInventory) isCollected = true;
+      // Possuir item idêntico NÃO prova que este exemplar foi recolhido.
       return {
         ...item,
         isCollected,
@@ -1226,7 +1226,7 @@ class RetroArchClient extends EventEmitter {
         isCollected = (val & (1 << bit)) !== 0;
       }
       const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
-      if (inInventory) isCollected = true;
+      // Possuir item idêntico NÃO prova que este exemplar foi recolhido.
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
       return {
@@ -1241,7 +1241,7 @@ class RetroArchClient extends EventEmitter {
 
     const allHiddenItems = hiddenList.map(item => {
       const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
-      const isCollected = item.isCollected || inInventory;
+      const isCollected = item.isCollected;
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
       return {
@@ -1256,7 +1256,7 @@ class RetroArchClient extends EventEmitter {
 
     const allNpcItems = (areaData.npcItems || []).map(item => {
       const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
-      const isCollected = inInventory;
+      const isCollected = null; // Conclusão da interação NPC ainda não confirmada por evento.
       const accInfo = checkAccessibility(item);
       const compass = getCompass(this.latestState.coords, item.x, item.y);
       return {
@@ -1298,6 +1298,7 @@ class RetroArchClient extends EventEmitter {
         offerInCurrentPcBox: (this.latestState.pcBox?.pokemon || []).some(p => p.dex === t.give.dex),
         otherPcBoxesInspected: false
       })),
+      referenceProvenance: { areaGuidance: 'TABELA MANUAL / não integralmente verificada', itemStatus: 'flags RAM quando disponíveis; posse de item não comprova recolha deste objeto' },
       wild: effectiveWild.map(w => ({
         ...w,
         isCaughtInDex: ownedDexSet.has(w.dex),
@@ -1339,13 +1340,11 @@ class RetroArchClient extends EventEmitter {
             ent.itemName = matchedItem.name;
             ent.hint = matchedItem.hint;
             ent.importance = matchedItem.importance;
-            ent.isCollected = matchedItem.isCollected || checkIsItemInInventory(matchedItem.name, inventoryAndPcItems);
+            ent.isCollected = matchedItem.isCollected;
           } else {
             ent.name = `🎒 Item no Chão (Poké Ball)`;
           }
-          if (ent.itemName && checkIsItemInInventory(ent.itemName, inventoryAndPcItems)) {
-            ent.isCollected = true;
-          }
+          // Não marcar como recolhido apenas porque existe uma cópia na mochila/PC.
         } else {
           // Procura correspondência com treinadores conhecidos da área (tolerância até 4 tiles para NPCs em patrulha)
           let matchedBt = null;
