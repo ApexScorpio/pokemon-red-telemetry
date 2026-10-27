@@ -25,7 +25,7 @@ function profilePaths(){
   try{
    if(fs.statSync(dir).isDirectory()){
     const entries=fs.readdirSync(dir,{withFileTypes:true})
-     .filter(e=>e.isFile()&&/\\.json$/i.test(e.name)).slice(0,256);
+     .filter(e=>e.isFile()&&/\.json$/i.test(e.name)).slice(0,256);
     for(const e of entries)paths.push(path.join(dir,e.name));
    }
   }catch(e){/* report individual source errors in buildProfiles */ }
