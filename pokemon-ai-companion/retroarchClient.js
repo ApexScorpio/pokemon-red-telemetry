@@ -1352,10 +1352,18 @@ class RetroArchClient extends EventEmitter {
         isCaughtInDex: ownedDexSet.has(w.dex),
         isInParty: partyDexList.includes(w.dex)
       })),
-      npcTrades: (areaData.npcTrades || []).map(t => ({
-        ...t,
-        isCaughtInDex: ownedDexSet.has(t.dex),
-        isInParty: partyDexList.includes(t.dex)
+      npcTrades: CANONICAL_TRADES.filter(t => t.available && t.mapId === this.latestState.mapId).map(t => ({
+        give: INTERNAL_TO_POKEMON[t.give.internalId]?.name || t.giveSymbol,
+        receive: INTERNAL_TO_POKEMON[t.receive.internalId]?.name || t.receiveSymbol,
+        dex: t.receive.dex,
+        nickname: t.nickname,
+        hint: 'Troca NPC registada na desmontagem pret/pokered: ' + t.mapSymbol,
+        importance: 'A conclusão desta troca NÃO está confirmada apenas por esta tabela.',
+        source: 'pret/pokered/data/events/trades.asm',
+        completed: null,
+        isCaughtInDex: ownedDexSet.has(t.receive.dex),
+        isInParty: partyDexList.includes(t.receive.dex),
+        offerAvailableInParty: partyDexList.includes(t.give.dex)
       })),
       npcGifts: (areaData.npcGifts || []).map(g => ({
         ...g,
