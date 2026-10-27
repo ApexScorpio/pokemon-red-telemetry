@@ -557,7 +557,8 @@ class RetroArchClient extends EventEmitter {
       const reply = await this.sendRaw('GET_STATUS');
       const status = reply ? 'GET_STATUS '+reply.join(' ') : null;
       let match = getCurrentRom(status,this.romRegistry.profiles);
-      if (!match && process.env.POKEMON_ROM_DIR &&
+      if (!match && (process.env.POKEMON_ROM_DIR || process.env.POKEMON_ROM_PROFILE_DIR ||
+          process.env.POKEMON_ROM_PROFILE_PATH || process.env.POKEMON_ROM_PATH) &&
           Date.now()-this.lastRomRegistryRefreshAt > 30000) {
         this.lastRomRegistryRefreshAt = Date.now();
         this.romRegistry = buildProfiles(); // deteta ROMs novas na pasta sem reiniciar
