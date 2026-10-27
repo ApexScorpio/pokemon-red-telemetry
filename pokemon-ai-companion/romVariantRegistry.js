@@ -108,6 +108,27 @@ function findMoveNames(b){
  }
  return found.length===1?found[0]:{offset:null,names:null};
 }
+function spritePointersFromRom(b,stats,dimsByte){
+  if(!stats||!Number.isInteger(dimsByte)||![0x55,0x66,0x77].includes(dimsByte))return null;
+  const frontCpu=stats.frontSpritePointer,backCpu=stats.backSpritePointer;
+  if(!Number.isInteger(frontCpu)||!Number.isInteger(backCpu)||
+     frontCpu<0x4000||frontCpu>=0x8000||backCpu<0x4000||backCpu>=0x8000)return null;
+  const candidates=[];
+  for(let bank=1;bank<b.length/BANK;bank++){
+    const front=bank*BANK+frontCpu-0x4000,back=bank*BANK+backCpu-0x4000;
+    // Comprimidos Gen I: frente inicia com dimensões 5x5/6x6/7x7;
+    // costas usa 0x44 (4x4). Exigir AMBOS no mesmo banco.
+    if(b[front]===dimsByte && b[back]===0x44)candidates.push(bank);
+  }
+  if(candidates.length!==1)return {
+    verified:false,candidateBanks:candidates,reason:'Banco de sprites não identificado de forma única'
+  };
+  const bank=candidates[0];
+  return {verified:true,source:'ROM: 2 ponteiros + 2 cabeçalhos comprimidos compatíveis',
+    bank,dimensionsByte:dimsByte,front:{cpuPointer:frontCpu,fileOffset:bank*BANK+frontCpu-0x4000},
+    back:{cpuPointer:backCpu,fileOffset:bank*BANK+backCpu-0x4000},
+    compressed:true,pixelsDecoded:false};
+}
 function inspectRom(file){
  const b=fs.readFileSync(file);
  if(b.length<0x150||b.length%BANK)throw Error('ROM sem bancos Game Boy completos');
@@ -132,7 +153,11 @@ function inspectRom(file){
    const p=offsets.baseStats+(dex-1)*28;
    stats={baseHp:b[p+1],attack:b[p+2],defense:b[p+3],speed:b[p+4],special:b[p+5],typeIds:[b[p+6],b[p+7]],catchRate:b[p+8],baseExp:b[p+9],frontSpritePointer:b.readUInt16LE(p+11),backSpritePointer:b.readUInt16LE(p+13),growthRateId:b[p+19]};
   }
-  species.push({internalId:id,name,dex,stats,evolutions:evos.rows?evos.rows[id-1].evolutions:null,learnset:evos.rows?evos.rows[id-1].learnset:null});
+  const sprite=stats ? spritePointersFromRom(b,stats,
+    b[offsets.baseStats+(dex-1)*28+10]) : null;
+  species.push({internalId:id,name,dex,stats,sprite,
+    evolutions:evos.rows?evos.rows[id-1].evolutions:null,
+    learnset:evos.rows?evos.rows[id-1].learnset:null});
  }
  const title=b.subarray(0x134,0x144).toString('latin1').split('\0')[0].trim();
  return {schema:'gen1-rom-profile-v1',source:'local-ROM-file',file:path.basename(file),
@@ -141,6 +166,8 @@ function inspectRom(file){
   offsets:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,addresses(p)])),
   validated:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,p!==null])),
   species,moveNames:moves.names,growthRates,world,
+  spritesVerified:species.filter(x=>x.sprite?.verified).length,
+  spritesTotalInBaseStats:species.filter(x=>x.stats).length,
   unknownLayout:!hasCore,semanticCoveragePercent:null,
   identityMatchedWithRuntime:false};
 }
@@ -148,7 +175,7 @@ function runtimeMatches(profile,status){
  const m=String(status||'').match(/\bcrc32=([0-9a-f]{8})\b/i);
  return !!(profile&&m&&m[1].toUpperCase()===profile.hash.crc32);
 }
-module.exports={inspectRom,runtimeMatches,crc32};
+module.exports={inspectRom,runtimeMatches,crc32,spritePointersFromRom};
 if(require.main===module)try{
  if(!process.argv[2])throw Error('Uso: node romVariantRegistry.js "caminho\\jogo.gb"');
  const p=inspectRom(process.argv[2]);
