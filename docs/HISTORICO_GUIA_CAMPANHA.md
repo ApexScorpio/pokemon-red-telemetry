@@ -312,3 +312,18 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 14. Verificada a sintaxe de 10 módulos/testes de mundo, batalhas, Pokémon fixos, progresso e interface após as alterações.
 - 15. Executados 3 testes isolados adicionais do JavaScript atual: Route 6 (seis treinadores humanos, uma flag ativada); Victory Road 2F (cinco treinadores humanos, Moltres excluído); Power Plant (nove encontros Pokémon fixos, evento de Zapdos ativo, nenhuma captura inferida). Todos passaram no ambiente de teste isolado.
 - 16. A execução do pacote completo de testes Node no repositório e a observação do SameBoy real continuam pendentes. Não declarar a integração em produção certificada.
+
+
+## 2026-10-27 — Equipas e níveis dos 415 treinadores obtidos da ROM
+
+- 1. Comparados os três ficheiros .gb reais fornecidos com a estrutura TrainerDataPointers (47 classes), conforme pret/pokered/data/trainers/parties.asm.
+- 2. Localizada uma única tabela válida em cada jogo, offset 0x39D3B. Extraídos e comparados 415 grupos de Pokémon, com IDs internos e níveis. Os três resultados coincidiram.
+- 3. Criado romTrainerParties.js: descobre ponteiros dinamicamente e só aceita grupos estruturalmente válidos, ou usa os metadados compactos se o hash corresponder precisamente a Red/Blue/Green International auditados.
+- 4. Testado Brock classe 234: Geodude Nv.12, Onix Nv.14; Misty classe 235: Staryu Nv.18 e Starmie Nv.21. Verificada a cadeia compacta por comprimento, hash de controlo e SHA-256 da representação normalizada.
+- 5. Criada leitura de TrainerNames para os 47 nomes das classes na própria ROM; no fallback estes nomes só são associados aos três hashes auditados.
+- 6. Integrado o leitor em romVariantRegistry.js, retroarchClient.js, romAreaEvidence.js e public/app.js. A interface passa a mostrar o nome da classe, a equipa e os níveis por treinador, distinguindo a previsão da ROM do resultado efetivo da batalha.
+- 7. Criado tests/romTrainerParties.test.js com testes de integridade do atlas e leitura das três ROMs quando estão disponíveis.
+- 8. Sintaxe validada para os seis ficheiros JavaScript; teste isolado da passagem de equipa por romAreaEvidence.js passou. A integração no SameBoy/iPhone não foi testada em execução.
+- 9. Ficheiros temporários de análise local apagados. Nenhuma ROM, save, credencial ou sessão do utilizador foi alterada; histórico anterior preservado.
+
+**Atenção:** equipa/níveis lidos da ROM não provam vitória. Flags de eventos podem indicar que o combate foi desativado por script, e não que foi ganho individualmente.
