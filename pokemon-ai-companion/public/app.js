@@ -12,6 +12,7 @@ let hideDefeatedBattles = localStorage.getItem('hideDefeatedBattles') === 'true'
 // Elementos DOM HUD
 const elConnectionStatus = document.getElementById('connection-status');
 const elConnectionPulse = document.getElementById('connection-pulse');
+const elRomProfileStatus = document.getElementById('rom-profile-status');
 const elCurrentLocation = document.getElementById('current-location');
 const elCurrentMoney = document.getElementById('current-money');
 const elTrainerNameTag = document.getElementById('trainer-name-tag');
@@ -272,7 +273,8 @@ function renderDaycareTracker(state) {
     body.textContent = '⚠️ Não foi possível confirmar a ficha do Daycare na RAM.';
     return;
   }
-  source.textContent = 'EXP: RAM · NÍVEL/MARCOS: ROM';
+  source.textContent = d.romMilestonesVerified ?
+    'EXP: RAM · NÍVEL/MARCOS: ROM IDENTIFICADA' : 'EXP: RAM · MARCOS DA ROM NÃO VERIFICADOS';
   if (!d.occupied) {
     body.textContent = 'Daycare vazio — confirmado na memória do jogo.';
     return;
@@ -291,6 +293,50 @@ function renderDaycareTracker(state) {
   }
   if (d.pickupAlert) lines.push(`🚨 ${d.pickupAlert}`);
   body.textContent = lines.join('\n');
+}
+
+function renderRomProgress(state) {
+  const id=state.romRuntimeIdentity||{};
+  const discovered=state.romAutoDiscovery||{};
+  const data=state.romProgressAlerts||{};
+  const source=document.getElementById('rom-progress-source');
+  const body=document.getElementById('rom-progress-content');
+  const checked=Number.isFinite(Date.parse(state.lastUpdate||'')) &&
+    Date.now()-Date.parse(state.lastUpdate)<15000;
+  if(elRomProfileStatus){
+    const status=id.matched ?
+      '🟢 ROM: '+(id.title||'identificada')+' · CRC '+(id.reportedCRC32||'?') :
+      discovered.profilesLoaded ?
+        '⚠️ ROM atual sem correspondência · '+discovered.profilesLoaded+' perfis encontrados' :
+        '⚠️ ROM sem perfil local · procura automática efetuada';
+    elRomProfileStatus.textContent=status;
+    elRomProfileStatus.title='Perfis carregados: '+(discovered.profilesLoaded??'desconhecido')+
+      ' · Código ROM CRC32: '+(id.reportedCRC32||'não disponível');
+  }
+  if(!body||!source)return;
+  if(!state.connected||!state.memoryReadStatus?.verified||!checked){
+    source.textContent='RAM NÃO CONFIRMADA';
+    body.textContent='A aguardar a ligação real ao RetroArch e a leitura da RAM.';
+    return;
+  }
+  if(!id.matched||!data.verified){
+    source.textContent='ROM NÃO IDENTIFICADA';
+    body.textContent='Sem um perfil CRC32 correspondente, não posso prever golpes e evoluções desta ROM.';
+    return;
+  }
+  source.textContent='ROM VERIFICADA POR CRC32 + NÍVEIS LIDOS DA RAM';
+  const sorted=(data.alerts||[]).slice().sort((a,b)=>a.levelsRemaining-b.levelsRemaining);
+  if(!sorted.length){
+    body.textContent='Nenhum próximo golpe ou evolução por nível encontrado na equipa.';
+    return;
+  }
+  body.textContent=sorted.slice(0,6).map(a=>{
+    const m=a.nextMilestone;
+    const label=m?.kind==='EVOLUTION'?'Evolução':'Golpe';
+    return (a.urgent?'🚨 ':'📈 ')+a.speciesName+' Nv.'+a.currentLevel+
+      ' → '+label+': '+(m?.name||'ID '+(m?.moveId||'?'))+
+      ' no Nv.'+m.level+' (faltam '+a.levelsRemaining+')';
+  }).join('\n');
 }
 
 // Renderização Principal do Cockpit
@@ -393,6 +439,7 @@ function renderState(state) {
   renderParty(state.party || [], state.battle ? state.battle.playerActive : null);
   renderInventory(state.inventory || []);
   renderDaycareTracker(state);
+  renderRomProgress(state);
 
   // Radar da Área (Fauna e Itens com RAM bit flags reais)
   renderAreaRadar(state.areaInfo);
