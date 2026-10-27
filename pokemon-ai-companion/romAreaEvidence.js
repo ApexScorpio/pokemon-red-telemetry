@@ -20,14 +20,19 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
   const spritesVerified=options.spritesVerified === true;
   const toggles=options.toggleables?.verified ? options.toggleables.entries : null;
   const trainerFlags=options.trainerFlags?.verified ? options.trainerFlags.entries : null;
+  const stationaryFlags=options.stationaryPokemon?.verified ?
+    options.stationaryPokemon.entries : null;
   const live=Array.isArray(entities) ? entities : [];
   const seen=new Set();
-  const items=[],trainers=[],npcs=[];
+  const items=[],trainers=[],npcs=[],stationaryPokemon=[];
   for (let i=0;i<romMap.objects.objects.length;i++) {
     const obj=romMap.objects.objects[i];
-    const kind=obj.kind;
-    if (!['item','trainer','npc'].includes(kind)) continue;
     const id=asInt(obj.trainerClassOrItemId);
+    // Compatibilidade com perfis anteriores: IDs < 200 são espécies fixas,
+    // não classes de treinador humano (OPP_ID_OFFSET=200 na Gen I).
+    const kind=obj.kind==='trainer'&&id!==null&&id>=1&&id<=190
+      ? 'wildPokemon' : obj.kind;
+    if (!['item','trainer','npc','wildPokemon'].includes(kind)) continue;
     const entry={
       mapId:romMap.mapId,objectOrdinal:i+1,kind,
       x:asInt(obj.x),y:asInt(obj.y),pictureId:asInt(obj.spriteId),
@@ -36,6 +41,11 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
         ? ((itemNames && itemNames[id]) || 'Item #'+id+' (nome não confirmado pela ROM)') : null,
       trainerClassId:kind==='trainer'?id:null,
       trainerNumber:kind==='trainer'?asInt(obj.trainerNumberOrLevel):null,
+      speciesInternalId:kind==='wildPokemon'?id:null,
+      speciesName:kind==='wildPokemon' ?
+        options.speciesName?.(id)||null : null,
+      encounterLevel:kind==='wildPokemon'?asInt(obj.trainerNumberOrLevel):null,
+      eventFlagSet:null,encounterGateClosed:null,captured:null,
       source:'OBJETO_DEFINIDO_NA_ROM_COM_CRC32_CORRESPONDENTE',
       existsInRom:true,observedInRam:null,
       collected:null,defeated:null,completionSource:'FLAG_ESPECÍFICA_NÃO_ASSOCIADA',
@@ -71,16 +81,28 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
         entry.completionSource=battle.source;
       }
     }
+    if(kind==='wildPokemon'){
+      const info=stationaryFlags?.find(x=>x.objectOrdinal===i+1);
+      if(info){
+        entry.eventBitIndex=info.eventBitIndex;
+        entry.eventFlagSet=info.eventFlagSet;
+        entry.encounterGateClosed=info.encounterGateClosed;
+        entry.completionSource=info.source;
+      }
+    }
     if (kind==='item') items.push(entry);
     else if (kind==='trainer') trainers.push(entry);
+    else if (kind==='wildPokemon') stationaryPokemon.push(entry);
     else npcs.push(entry);
   }
   return {verified:true,mapId:romMap.mapId,
     source:'ROM_COM_CRC32_CORRESPONDENTE + RAM_SE_VALIDADA',
-    items,trainers,npcs,
-    note:'Objetos da ROM não comprovam recolha/derrota. Ausência da RAM não comprova conclusão.',
+    items,trainers,npcs,stationaryPokemon,
+    note:'Objetos da ROM não comprovam recolha/derrota/captura. Ausência da RAM não comprova conclusão.',
     toggleableRamVerified:!!toggles,
     trainerEventRamVerified:!!trainerFlags,
-    counts:{items:items.length,trainers:trainers.length,npcs:npcs.length}};
+    stationaryEncounterRamVerified:!!stationaryFlags,
+    counts:{items:items.length,trainers:trainers.length,
+      stationaryPokemon:stationaryPokemon.length,npcs:npcs.length}};
 }
 module.exports={buildRomAreaEvidence};
