@@ -19,13 +19,30 @@ function localRomPaths(){
 }
 function buildProfiles(){
  const profiles=[],errors=[];
+ // Pode usar perfil JSON derivado de uma ROM verificada noutra máquina,
+ // sem publicar nem copiar o ficheiro ROM original.
+ const metadataFile=process.env.POKEMON_ROM_PROFILE_PATH;
+ if(metadataFile){
+  try{
+   const profile=JSON.parse(fs.readFileSync(metadataFile,'utf8'));
+   if(profile.schema!=='gen1-rom-profile-v1'||!/^[0-9a-f]{64}$/i.test(profile.hash?.sha256||'')||
+      !/^[0-9a-f]{8}$/i.test(profile.hash?.crc32||'')||
+      !Array.isArray(profile.species)||profile.species.length!==190||
+      !Array.isArray(profile.moveNames)||profile.moveNames.length!==165||
+      profile.unknownLayout===true)throw Error('perfil JSON inválido/incompleto');
+   profile.source='PERFIL_IMPORTADO_DE_ROM_VERIFICADA; ROM LOCAL NÃO RELIDA';
+   profiles.push(profile);
+  }catch(e){errors.push({file:path.basename(metadataFile),error:e.message});}
+ }
  for(const filename of localRomPaths()){
   try{
    const size=fs.statSync(filename).size;
    if(size<0x8000||size>0x800000)throw Error('tamanho não suportado');
    const profile=inspectRom(filename);
    if(profile.unknownLayout)throw Error('não foi possível validar tabelas Gen I');
-   profiles.push(profile);
+   const duplicate=profiles.findIndex(p=>p.hash.sha256===profile.hash.sha256);
+   if(duplicate>=0) profiles.splice(duplicate,1);
+   profiles.push(profile); // binário ROM local tem prioridade sobre metadados importados
   }catch(e){errors.push({file:path.basename(filename),error:e.message});}
  }
  return {profiles,errors};
@@ -45,7 +62,8 @@ function pokemonFromProfile(profile,internalId,reference){
   catchRate:p.stats?.catchRate??null,attack:p.stats?.attack??null,
   defense:p.stats?.defense??null,speed:p.stats?.speed??null,
   special:p.stats?.special??null,
-  source:'ROM_VERIFICADA_PELO_CRC32',
+  source:profile.source==='PERFIL_IMPORTADO_DE_ROM_VERIFICADA; ROM LOCAL NÃO RELIDA' ?
+    'PERFIL_DA_ROM_CRC32_CONFIRMADO' : 'ROM_LOCAL_CRC32_CONFIRMADO',
   movesAndEvolutionsSource:p.learnset?'ROM_VERIFICADA_PELO_CRC32':'NÃO_DISPONÍVEL'
  };
 }
