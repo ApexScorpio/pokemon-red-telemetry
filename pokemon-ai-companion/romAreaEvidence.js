@@ -75,6 +75,10 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
       if (matching) seen.add(live.indexOf(matching));
     }
     if (kind==='trainer'){
+      const roster=typeof options.trainerPartyForObject==='function'
+        ? options.trainerPartyForObject(obj) : null;
+      entry.team=roster?.team||null;
+      entry.teamSource=roster?.source||'EQUIPA_TREINADOR_NÃO_VALIDADA_NESTA_ROM';
       const battle=trainerFlags?.find(x=>x.objectOrdinal===i+1);
       if(battle){
         entry.defeated=null; // Flag ativa não prova batalha efetivamente disputada
