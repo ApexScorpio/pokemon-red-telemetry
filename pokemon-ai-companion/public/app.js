@@ -2240,15 +2240,18 @@ function renderAreaRadar(areaInfo) {
   if (areaInfo.upcomingBoss) {
     const b = areaInfo.upcomingBoss;
     const battles = b.battles || [];
-    const defeatedCount = battles.filter(bt => bt.isDefeated).length;
-    const allDefeated = battles.length > 0 && defeatedCount === battles.length;
-    const pendingBattles = battles.filter(bt => !bt.isDefeated);
+    // Os estados de batalhas de uma tabela manual não são prova da ROM atual.
+    const statusVerified = battles.length > 0 &&
+      battles.every(bt => bt.statusSource === 'EVENT_FLAG_ROM_VERIFIED');
+    const defeatedCount = statusVerified ? battles.filter(bt => bt.isDefeated === true).length : null;
+    const allDefeated = statusVerified && defeatedCount === battles.length;
+    const pendingBattles = statusVerified ? battles.filter(bt => bt.isDefeated === false) : [];
     const nextBattle = pendingBattles.length > 0 ? pendingBattles[0] : null;
 
     // Ordenação e Filtragem dos Treinadores
     let displayBattles = battles.map((bt, origIdx) => ({ ...bt, origIdx }));
-    if (hideDefeatedBattles) {
-      displayBattles = displayBattles.filter(bt => !bt.isDefeated);
+    if (hideDefeatedBattles && statusVerified) {
+      displayBattles = displayBattles.filter(bt => bt.isDefeated !== true);
     }
 
     if (areaBattlesSortMode === 'proximity') {
@@ -2271,9 +2274,11 @@ function renderAreaRadar(areaInfo) {
           <span class="level-pill" style="font-size:0.65rem;">Meta: <b>${b.targetLevel}</b></span>
         </div>
         <div style="display:flex; align-items:center; gap:6px;">
-          ${battles.length > 0 ? (allDefeated
-            ? `<span class="area-clean-badge">✅ ${defeatedCount}/${battles.length} VENCIDOS</span>`
-            : `<span class="area-pending-badge">⚔️ ${defeatedCount}/${battles.length} Vencidos • Próximo: <b>${nextBattle ? nextBattle.name : ''}</b></span>`
+          ${battles.length > 0 ? (!statusVerified
+            ? `<span class="area-pending-badge">❔ ${battles.length} combates de referência • estados por confirmar</span>`
+            : allDefeated
+              ? `<span class="area-clean-badge">✅ ${defeatedCount}/${battles.length} VENCIDOS</span>`
+              : `<span class="area-pending-badge">⚔️ ${defeatedCount}/${battles.length} Vencidos • Próximo: <b>${nextBattle ? nextBattle.name : ''}</b></span>`
           ) : ''}
           ${battles.length > 0 ? `
             <button class="btn-toggle-battles" id="btn-toggle-area-battles" title="Clica para ver ou ocultar os detalhes de cada treinador">
@@ -2302,7 +2307,7 @@ function renderAreaRadar(areaInfo) {
         </div>
         <div class="boss-battles-grid" style="display:flex; flex-direction:column; gap:4px;">
           ${displayBattles.map((bt, idx) => `
-            <div class="area-battle-card ${bt.diffClass || ''} ${bt.isDefeated ? 'is-defeated' : bt.isMissed ? 'is-missed' : 'is-pending'}" style="padding:4px 8px; font-size:0.7rem;">
+            <div class="area-battle-card ${bt.diffClass || ''} ${!statusVerified ? '' : bt.isDefeated ? 'is-defeated' : bt.isMissed ? 'is-missed' : 'is-pending'}" style="padding:4px 8px; font-size:0.7rem;">
               <div class="abattle-top" style="margin-bottom:2px;">
                 <div class="abattle-title-row">
                   <span class="abattle-order">#${idx + 1}</span>
@@ -2312,7 +2317,7 @@ function renderAreaRadar(areaInfo) {
                 </div>
                 <div style="display:flex; gap:4px; align-items:center;">
                   <span class="diff-badge ${bt.diffClass || ''}">${bt.difficulty}</span>
-                  <span class="battle-status-badge ${bt.isDefeated ? 'status-won' : bt.isMissed ? 'status-missed' : 'status-todo'}">${bt.statusLabel}</span>
+                  <span class="battle-status-badge ${!statusVerified ? '' : bt.isDefeated ? 'status-won' : bt.isMissed ? 'status-missed' : 'status-todo'}">${statusVerified ? bt.statusLabel : '❔ Estado não verificado nesta ROM'}</span>
                 </div>
               </div>
               <div class="abattle-details" style="font-size:0.65rem;">
@@ -2320,7 +2325,7 @@ function renderAreaRadar(areaInfo) {
               </div>
             </div>
           `).join('')}
-          ${displayBattles.length === 0 ? `<div style="padding:10px; text-align:center; color:var(--text-muted); font-size:0.7rem;">✅ Todos os treinadores desta área já foram vencidos!</div>` : ''}
+          ${displayBattles.length === 0 ? `<div style="padding:10px; text-align:center; color:var(--text-muted); font-size:0.7rem;">Sem batalhas de referência a mostrar (não comprova conclusão).</div>` : ''}
         </div>
       </div>
 
