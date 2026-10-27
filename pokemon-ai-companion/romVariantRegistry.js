@@ -3,6 +3,7 @@
 // Só leitura local. Offsets encontrados e validados por estrutura, nunca fixos.
 const fs=require('node:fs'), crypto=require('node:crypto'), path=require('node:path');
 const {inspectWorld}=require('./romWorldData');
+const {parseTrainerParties}=require('./romTrainerParties');
 const {extractHiddenItemsFromRom}=require('./romHiddenEvents');
 const {spritePngBase64}=require('./romSpriteDecoder');
 const BANK=0x4000, INTERNAL=190;
@@ -158,6 +159,7 @@ function inspectRom(file){
     origin:'ROM: GrowthRateTable (4 bytes por grupo)'};
  });
  const world=inspectWorld(b);
+ const trainerParties=parseTrainerParties(b);
  world.hiddenItemScripts=extractHiddenItemsFromRom(b);
  const species=[],hasCore=offsets.names!==null&&offsets.dexOrder!==null&&offsets.baseStats!==null;
  if(hasCore)for(let id=1;id<=INTERNAL;id++){
@@ -185,7 +187,7 @@ function inspectRom(file){
   title,bytes:b.length,banks:b.length/BANK,bytesRead:b.length,
   offsets:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,addresses(p)])),
   validated:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,p!==null])),
-  species,moveNames:moves.names,growthRates,world,
+  species,moveNames:moves.names,growthRates,world,trainerParties,
   spritesVerified:species.filter(x=>x.sprite?.verified).length,
   spritesTotalInBaseStats:species.filter(x=>x.stats).length,
   spritesWithPixelsDecoded:species.filter(x=>x.sprite?.pixelsDecoded).length,
