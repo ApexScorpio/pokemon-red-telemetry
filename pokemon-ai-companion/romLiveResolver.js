@@ -133,6 +133,7 @@ function pokemonFromProfile(profile,internalId,reference){
   catchRate:p.stats?.catchRate??null,attack:p.stats?.attack??null,
   defense:p.stats?.defense??null,speed:p.stats?.speed??null,
   special:p.stats?.special??null,
+  tmHmFromRom:p.stats?.tmHm?.source==='ROM_BASESTATS_BITS_VERIFICADOS'?p.stats.tmHm:null,
   spriteRom:p.sprite?.verified ? p.sprite : null,
   spritePixelDataSource:'AINDA_NÃO_DESCODIFICADA',
   source:profile.source==='PERFIL_IMPORTADO_DE_ROM_VERIFICADA; ROM LOCAL NÃO RELIDA' ?
