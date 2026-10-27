@@ -144,6 +144,14 @@ function getTrainerParty(profile,trainerClassId,trainerNumber){
  if(!table||!Array.isArray(table.rosters))return null;
  const members=table.rosters[trainerClassId-201]?.[trainerNumber-1];
  if(!Array.isArray(members)||!members.length)return null;
+ // O rival muda a formação segundo o inicial escolhido e as opções do
+ // script. O número no objeto do mapa, por si só, não comprova qual variante
+ // foi ativada. Expor o tipo, mas não uma equipa específica como certa.
+ if([225,242,243].includes(trainerClassId))
+   return {source:'ROM_RIVAL_COM_VARIANTE_DE_EQUIPA_POR_RESOLVER',
+     trainerClassId,trainerNumber,
+     className:table.classNames?.[trainerClassId-201]||null,
+     team:null,variantDependent:true};
  return {source:table.source,trainerClassId,trainerNumber,
    className:table.classNames?.[trainerClassId-201]||null,
    team:members.map(([internalId,level])=>({
