@@ -535,7 +535,7 @@ class RetroArchClient extends EventEmitter {
   getPokemonInfo(id) {
     // Dados reais da ROM carregada têm prioridade apenas após CRC32 confirmado.
     return pokemonFromProfile(this.activeRomProfile, id) ||
-      (this.getPokemonInfo(id) ? { ...this.getPokemonInfo(id), source: 'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM' } : null);
+      (INTERNAL_TO_POKEMON[id] ? { ...INTERNAL_TO_POKEMON[id], source: 'REFERÊNCIA_ESTÁTICA_NÃO_VERIFICADA_NESTA_ROM' } : null);
   }
 
   getMoveInfo(id) {
