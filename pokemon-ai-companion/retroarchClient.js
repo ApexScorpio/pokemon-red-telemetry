@@ -808,6 +808,7 @@ class RetroArchClient extends EventEmitter {
         dex: pkInfo.dex,
         types: pkInfo.types,
         speciesSource: pkInfo.source || 'NÃO_VALIDADO',
+        tmHmCompatibility: pkInfo.tmHmFromRom || null,
         hp,
         maxHp: maxHp || hp,
         level: level || 1,
