@@ -81,12 +81,18 @@ function readMapObject(b,bank,objPtr,height,width){
   if(q+6>end)return null;
   const spriteId=b[q++],y=b[q++]-4,x=b[q++]-4;
   const movement=b[q++],directionOrRange=b[q++],textId=b[q++];
-  const kind=(textId&0x40)?'trainer':(textId&0x80)?'item':'npc';
-  const extra=kind==='trainer'?2:kind==='item'?1:0;
+  // No esquema Gen I, OPP_ID_OFFSET=200 para classes de treinadores;
+  // um ID de espécie 1..190 é um Pokémon selvagem de encontro fixo.
+  const battle=(textId&0x40)!==0;
+  const extra=battle?2:(textId&0x80)?1:0;
   if(q+extra>end)return null;
   const meta=[...b.subarray(q,q+extra)];q+=extra;
+  const kind=battle ? ((meta[0]>=1&&meta[0]<=190)?'wildPokemon':'trainer') :
+    (textId&0x80)?'item':'npc';
   objects.push({spriteId,y,x,movement,directionOrRange,kind,textId,
-    trainerClassOrItemId:meta[0]??null,trainerNumberOrLevel:meta[1]??null});
+    trainerClassOrItemId:meta[0]??null,trainerNumberOrLevel:meta[1]??null,
+    wildSpeciesInternalId:kind==='wildPokemon'?meta[0]:null,
+    wildLevel:kind==='wildPokemon'?meta[1]:null});
  }
  return {borderBlock,warps,signs,objects,source:'ROM: map object binary format',
    rawEndOffset:q};
@@ -119,6 +125,33 @@ function extractTrainerEventPointers(b,map){
     trainerHeaderCpu:hdrCpu,source:'ROM_OBJECT_TEXT_SCRIPT_TO_TRAINER_HEADER'});
  }
  return bindings;
+}
+
+function extractStaticEncounterEventPointers(b,map){
+ const bank=map.mapBank,end=Math.min(b.length,(bank+1)*BANK_SIZE);
+ const objects=map.objects?.objects,textBase=romAddress(bank,map.textPointerCpu,b.length);
+ if(!Array.isArray(objects)||textBase===null)return [];
+ const entries=[];
+ for(let i=0;i<objects.length;i++){
+  const actor=objects[i];
+  if(actor.kind!=='wildPokemon'||!Number.isInteger(actor.wildLevel)||
+     actor.wildLevel<1||actor.wildLevel>100)continue;
+  const index=actor.textId&0x3f;
+  if(index<1||index>63||textBase+(index-1)*2+1>=end)continue;
+  const text=romAddress(bank,u16(b,textBase+(index-1)*2),b.length);
+  if(text===null||text+7>=end||b[text]!==0x08||b[text+1]!==0x21)continue;
+  const headerCpu=u16(b,text+2),header=romAddress(bank,headerCpu,b.length);
+  if(header===null||header+12>end)continue;
+  const bit=b[header],distance=b[header+1],ptr=u16(b,header+2);
+  if(bit>15||distance!==0||ptr<0xD747||ptr>=0xD887||
+     Array.from({length:4},(_,j)=>u16(b,header+4+2*j))
+       .some(cpu=>cpu<0x4000||cpu>=0x8000))continue;
+  entries.push({objectOrdinal:i+1,eventBitIndex:(ptr-0xD747)*8+bit,
+    speciesInternalId:actor.wildSpeciesInternalId,level:actor.wildLevel,
+    trainerHeaderCpu:headerCpu,
+    source:'ROM_OBJECT_TEXT_ASM_TO_STATIONARY_POKEMON_HEADER'});
+ }
+ return entries;
 }
 
 function getMapHeader(b,bank,cpu){
@@ -169,7 +202,10 @@ function findMapHeaders(b){
  const bankPos=hits[0];
  const data=pointers.map((cpu,mapId)=>{
   const bank=b[bankPos+mapId],h=getMapHeader(b,bank,cpu);
-  if(h?.valid)h.trainerEvents=extractTrainerEventPointers(b,h);
+  if(h?.valid){
+    h.trainerEvents=extractTrainerEventPointers(b,h);
+    h.staticEncounterEvents=extractStaticEncounterEventPointers(b,h);
+  }
   return {mapId,valid:!!h,...(h||{invalidReason:'Cabeçalho não corresponde à estrutura Gen I'})};
  });
  const validCount=data.filter(x=>x.valid).length;
@@ -178,10 +214,13 @@ function findMapHeaders(b){
    validMapHeaders:validCount,totalMapIds:MAPS,
    trainerEventsVerified:data.reduce((n,m)=>n+(m.trainerEvents?.length||0),0),
    trainerEventMapsVerified:data.filter(m=>m.trainerEvents?.length).length,
+   staticEncountersVerified:data.reduce((n,m)=>n+(m.staticEncounterEvents?.length||0),0),
+   staticEncounterMapsVerified:data.filter(m=>m.staticEncounterEvents?.length).length,
    data};
 }
 function inspectWorld(b){
  if(!Buffer.isBuffer(b)||b.length%BANK_SIZE)throw Error('ROM inválida');
  return {schema:'gen1-world-v1',wildEncounters:findWildData(b),maps:findMapHeaders(b)};
 }
-module.exports={inspectWorld,findWildData,findMapHeaders,readEncounter,getMapHeader,extractTrainerEventPointers};
+module.exports={inspectWorld,findWildData,findMapHeaders,readEncounter,getMapHeader,
+  extractTrainerEventPointers,extractStaticEncounterEventPointers};
