@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "pret/pokered master base_stats/*.asm, assembled for Red/Blue; verify hash against player ROM",
-    "sourceVerified": 0,
+    "sourceVerified": 15,
     "coverageTarget": 151,
     "sourceCategory": "ROM static facts; not live RAM",
     "updated": "2026-10-27"
@@ -12,195 +12,373 @@
       "internalId": 153,
       "name": "Bulbasaur",
       "upstreamPath": "data/pokemon/base_stats/bulbasaur.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 49,
+        "defense": 49,
+        "speed": 45,
+        "special": 65
+      },
+      "catchRate": 45,
+      "baseExp": 64,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "TACKLE",
+        "GROWL"
+      ],
+      "sourceVerified": true
     },
     "2": {
       "dex": 2,
       "internalId": 9,
       "name": "Ivysaur",
       "upstreamPath": "data/pokemon/base_stats/ivysaur.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 62,
+        "defense": 63,
+        "speed": 60,
+        "special": 80
+      },
+      "catchRate": 45,
+      "baseExp": 141,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "TACKLE",
+        "GROWL",
+        "LEECH_SEED"
+      ],
+      "sourceVerified": true
     },
     "3": {
       "dex": 3,
       "internalId": 154,
       "name": "Venusaur",
       "upstreamPath": "data/pokemon/base_stats/venusaur.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 82,
+        "defense": 83,
+        "speed": 80,
+        "special": 100
+      },
+      "catchRate": 45,
+      "baseExp": 208,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "TACKLE",
+        "GROWL",
+        "LEECH_SEED",
+        "VINE_WHIP"
+      ],
+      "sourceVerified": true
     },
     "4": {
       "dex": 4,
       "internalId": 176,
       "name": "Charmander",
       "upstreamPath": "data/pokemon/base_stats/charmander.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 39,
+        "attack": 52,
+        "defense": 43,
+        "speed": 65,
+        "special": 50
+      },
+      "catchRate": 45,
+      "baseExp": 65,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "SCRATCH",
+        "GROWL"
+      ],
+      "sourceVerified": true
     },
     "5": {
       "dex": 5,
       "internalId": 178,
       "name": "Charmeleon",
       "upstreamPath": "data/pokemon/base_stats/charmeleon.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 58,
+        "attack": 64,
+        "defense": 58,
+        "speed": 80,
+        "special": 65
+      },
+      "catchRate": 45,
+      "baseExp": 142,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "SCRATCH",
+        "GROWL",
+        "EMBER"
+      ],
+      "sourceVerified": true
     },
     "6": {
       "dex": 6,
       "internalId": 180,
       "name": "Charizard",
       "upstreamPath": "data/pokemon/base_stats/charizard.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Fire",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 84,
+        "defense": 78,
+        "speed": 100,
+        "special": 85
+      },
+      "catchRate": 45,
+      "baseExp": 209,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "SCRATCH",
+        "GROWL",
+        "EMBER",
+        "LEER"
+      ],
+      "sourceVerified": true
     },
     "7": {
       "dex": 7,
       "internalId": 177,
       "name": "Squirtle",
       "upstreamPath": "data/pokemon/base_stats/squirtle.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 44,
+        "attack": 48,
+        "defense": 65,
+        "speed": 43,
+        "special": 50
+      },
+      "catchRate": 45,
+      "baseExp": 66,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "TACKLE",
+        "TAIL_WHIP"
+      ],
+      "sourceVerified": true
     },
     "8": {
       "dex": 8,
       "internalId": 179,
       "name": "Wartortle",
       "upstreamPath": "data/pokemon/base_stats/wartortle.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 59,
+        "attack": 63,
+        "defense": 80,
+        "speed": 58,
+        "special": 65
+      },
+      "catchRate": 45,
+      "baseExp": 143,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "TACKLE",
+        "TAIL_WHIP",
+        "BUBBLE"
+      ],
+      "sourceVerified": true
     },
     "9": {
       "dex": 9,
       "internalId": 28,
       "name": "Blastoise",
       "upstreamPath": "data/pokemon/base_stats/blastoise.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 79,
+        "attack": 83,
+        "defense": 100,
+        "speed": 78,
+        "special": 85
+      },
+      "catchRate": 45,
+      "baseExp": 210,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "TACKLE",
+        "TAIL_WHIP",
+        "BUBBLE",
+        "WATER_GUN"
+      ],
+      "sourceVerified": true
     },
     "10": {
       "dex": 10,
       "internalId": 123,
       "name": "Caterpie",
       "upstreamPath": "data/pokemon/base_stats/caterpie.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Bug"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 30,
+        "defense": 35,
+        "speed": 45,
+        "special": 20
+      },
+      "catchRate": 255,
+      "baseExp": 53,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "TACKLE",
+        "STRING_SHOT"
+      ],
+      "sourceVerified": true
     },
     "11": {
       "dex": 11,
       "internalId": 124,
       "name": "Metapod",
       "upstreamPath": "data/pokemon/base_stats/metapod.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Bug"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 20,
+        "defense": 55,
+        "speed": 30,
+        "special": 25
+      },
+      "catchRate": 120,
+      "baseExp": 72,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "HARDEN"
+      ],
+      "sourceVerified": true
     },
     "12": {
       "dex": 12,
       "internalId": 125,
       "name": "Butterfree",
       "upstreamPath": "data/pokemon/base_stats/butterfree.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Bug",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 45,
+        "defense": 50,
+        "speed": 70,
+        "special": 80
+      },
+      "catchRate": 45,
+      "baseExp": 160,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "CONFUSION"
+      ],
+      "sourceVerified": true
     },
     "13": {
       "dex": 13,
       "internalId": 112,
       "name": "Weedle",
       "upstreamPath": "data/pokemon/base_stats/weedle.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Bug",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 35,
+        "defense": 30,
+        "speed": 50,
+        "special": 20
+      },
+      "catchRate": 255,
+      "baseExp": 52,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "POISON_STING",
+        "STRING_SHOT"
+      ],
+      "sourceVerified": true
     },
     "14": {
       "dex": 14,
       "internalId": 113,
       "name": "Kakuna",
       "upstreamPath": "data/pokemon/base_stats/kakuna.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Bug",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 25,
+        "defense": 50,
+        "speed": 35,
+        "special": 25
+      },
+      "catchRate": 120,
+      "baseExp": 71,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "HARDEN"
+      ],
+      "sourceVerified": true
     },
     "15": {
       "dex": 15,
       "internalId": 114,
       "name": "Beedrill",
       "upstreamPath": "data/pokemon/base_stats/beedrill.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Bug",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 80,
+        "defense": 40,
+        "speed": 75,
+        "special": 45
+      },
+      "catchRate": 45,
+      "baseExp": 159,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "FURY_ATTACK"
+      ],
+      "sourceVerified": true
     },
     "16": {
       "dex": 16,
