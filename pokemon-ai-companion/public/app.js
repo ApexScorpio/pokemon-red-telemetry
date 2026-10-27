@@ -438,19 +438,22 @@ function renderRomAreaEvidence(state) {
   }
   const catches=state.romCaptureOpportunities;
   if(catches?.verified){
-    rows.push('🌿 POKÉMON DA ZONA — AINDA POR CAPTURAR ('+catches.missingSpecies+' espécies)');
+    rows.push('🌿 TODOS OS POKÉMON DA ZONA — '+catches.missingSpecies+' espécies ainda por capturar');
     for(const group of catches.zones){
-      const missing=group.species.filter(p=>!p.alreadyCaught);
-      if(!missing.length)continue;
       rows.push((group.kind==='grass'?'🌿 RELVA':'🌊 ÁGUA / SURF')+
-        ' • taxa de encontro ROM: '+group.encounterRateByte+'/255 (não probabilidade de captura)');
-      for(const mon of missing.slice(0,12)){
-        rows.push('• '+mon.name+' #'+mon.dex+' Nv.'+mon.levels.join('/')+
-          ' • '+mon.conditionalChancePercent+'% dos encontros neste meio'+
-          (mon.alreadySeen?' • já visto':' • nunca visto na Pokédex'));
+        ' • taxa ROM '+group.encounterRateByte+'/255 (NÃO equivale à probabilidade por passo)');
+      if(!group.species.length){rows.push('• Sem espécies registadas neste meio na ROM.');continue;}
+      for(const mon of group.species){
+        const levelOdds=Array.isArray(mon.byLevel) ? mon.byLevel.map(item=>
+          'Nv.'+item.level+': '+item.ways+'/256 ('+item.conditionalChancePercent+'%)').join(' | ') :
+          'Distribuição por nível não validada';
+        rows.push('• '+mon.name+' #'+mon.dex+
+          (mon.alreadyCaught?' ✅ JÁ CAPTURADO':mon.alreadySeen?' 👁️ JÁ VISTO':' ⚪ NÃO REGISTADO')+
+          ' • '+mon.conditionalChanceOutOf256+'/256 ('+mon.conditionalChancePercent+
+          '%) DOS ENCONTROS neste meio'+' • '+levelOdds);
       }
     }
-    rows.push('ℹ️ Níveis/probabilidades vêm da ROM; espécie capturada vem da Pokédex RAM. Não garante acesso ao local.');
+    rows.push('ℹ️ Probabilidades condicionais a um encontro neste meio, por espécie e nível. A ROM não prova acessibilidade atual; captura é outro cálculo.');
   } else rows.push('🌿 Pokémon por capturar: aguarda ROM e Pokédex RAM validadas.');
   const hidden=state.romHiddenItems;
   if(hidden?.verified){
