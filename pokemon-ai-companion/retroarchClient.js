@@ -6,6 +6,7 @@ const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
+const {getTrainerParty}=require('./romTrainerParties');
 const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {captureOpportunities}=require('./romCaptureOpportunities');
 const dgram = require('dgram');
@@ -1273,6 +1274,8 @@ class RetroArchClient extends EventEmitter {
         spritesVerified:!!this.latestState.memoryReadStatus?.blocks?.overworldSprites,
         toggleables:toggleableEvidence,
         trainerFlags:this.latestState.romTrainerFlags,
+        trainerPartyForObject:object=>getTrainerParty(this.activeRomProfile,
+          object.trainerClassOrItemId,object.trainerNumberOrLevel),
         stationaryPokemon:this.latestState.romStationaryPokemonFlags,
         speciesName:id=>this.activeRomProfile?.species?.[id-1]?.name||null
       });
