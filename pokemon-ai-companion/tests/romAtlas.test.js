@@ -23,7 +23,7 @@ function buildFixture() {
   }
   // "RHYDON" em charmap ocidental.
   const name = 'RHYDON';
-  for (let i = 0; i < name.length; i++) rom[names + i] = 0xA0 + name.charCodeAt(i) - 65;
+  for (let i = 0; i < name.length; i++) rom[names + i] = 0x80 + name.charCodeAt(i) - 65;
   rom.set([0x11, 0, 0, 0, 0x34, 10, 0, 30, 0x34, 20, 0, 70,
     0x65, 0x8F, 100, 140, 0x45, 0, 0, 0, 0x54, 0, 0, 0], growth);
   let headerCheck = 0;
@@ -43,7 +43,7 @@ function buildFixture() {
   let m = moves;
   const first = 'POUND';
   for (let i = 0; i < 165; i++) {
-    for (const ch of (i === 0 ? first : 'A')) rom[m++] = 0xA0 + ch.charCodeAt(0) - 65;
+    for (const ch of (i === 0 ? first : 'A')) rom[m++] = 0x80 + ch.charCodeAt(0) - 65;
     rom[m++] = 0x50;
   }
   const sym = parseSym('00:0200 MonsterNames\n00:0A00 PokedexOrder\n00:0B00 BaseStats\n00:2000 GrowthRateTable\n00:2100 EvosMovesPointerTable\n00:2600 MoveNames\n');
