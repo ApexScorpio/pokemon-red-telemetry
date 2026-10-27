@@ -371,8 +371,13 @@ function renderRomAreaEvidence(state) {
     ...evidence.items.slice(0,20).map(i=>'• '+(i.itemName||'Item #'+i.itemId)+
       ' [ID '+i.itemId+'] X:'+i.x+' Y:'+i.y+removedStatus(i)+present(i)),
     '⚔️ TREINADORES NA ROM ('+evidence.trainers.length+')',
-    ...evidence.trainers.slice(0,20).map(t=>'• Classe #'+t.trainerClassId+
-      ' / Nº '+t.trainerNumber+' X:'+t.x+' Y:'+t.y+' — '+wonStatus(t)+present(t)),
+    ...evidence.trainers.slice(0,20).map(t=>{
+      const team=Array.isArray(t.team)&&t.team.length ?
+        ' | Equipa ROM: '+t.team.map(p=>(p.name||'#'+p.internalId)+' Nv.'+p.level).join(', ') :
+        ' | Equipa ainda sem validação ROM';
+      return '• Classe #'+t.trainerClassId+' / Nº '+t.trainerNumber+
+        ' X:'+t.x+' Y:'+t.y+' — '+wonStatus(t)+team+present(t);
+    }),
     '👤 NPCs da ROM: '+evidence.npcs.length
   ];
   const stationary=evidence.stationaryPokemon||[];
