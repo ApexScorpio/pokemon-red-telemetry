@@ -2,6 +2,7 @@
 // Descoberta de variantes de Pokémon Gen I diretamente do binário ROM.
 // Só leitura local. Offsets encontrados e validados por estrutura, nunca fixos.
 const fs=require('node:fs'), crypto=require('node:crypto'), path=require('node:path');
+const {inspectWorld}=require('./romWorldData');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
 function crc32(buf){let x=0xFFFFFFFF;for(const b of buf)x=crcTable[(x^b)&255]^(x>>>8);return ((x^0xFFFFFFFF)>>>0).toString(16).toUpperCase().padStart(8,'0');}
@@ -122,6 +123,7 @@ function inspectRom(file){
     linearCoefficient:b[q+2],constantToSubtract:b[q+3],
     origin:'ROM: GrowthRateTable (4 bytes por grupo)'};
  });
+ const world=inspectWorld(b);
  const species=[],hasCore=offsets.names!==null&&offsets.dexOrder!==null&&offsets.baseStats!==null;
  if(hasCore)for(let id=1;id<=INTERNAL;id++){
   const dex=b[offsets.dexOrder+id-1],name=decode(b.subarray(offsets.names+(id-1)*10,offsets.names+id*10));
@@ -138,7 +140,8 @@ function inspectRom(file){
   title,bytes:b.length,banks:b.length/BANK,bytesRead:b.length,
   offsets:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,addresses(p)])),
   validated:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,p!==null])),
-  species,moveNames:moves.names,growthRates,unknownLayout:!hasCore,semanticCoveragePercent:null,
+  species,moveNames:moves.names,growthRates,world,
+  unknownLayout:!hasCore,semanticCoveragePercent:null,
   identityMatchedWithRuntime:false};
 }
 function runtimeMatches(profile,status){
