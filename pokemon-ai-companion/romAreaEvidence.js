@@ -82,7 +82,13 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
       entry.teamSource=roster?.source||'EQUIPA_TREINADOR_NÃO_VALIDADA_NESTA_ROM';
       const battle=trainerFlags?.find(x=>x.objectOrdinal===i+1);
       if(battle){
-        entry.defeated=null; // Flag ativa não prova batalha efetivamente disputada
+        // Apenas os scripts que executam SetEvent após confirmar que NÃO perdeu
+        // permitem afirmar vitória. Nunca inferir derrota/vitória de flags genéricas.
+        entry.defeated=battle.defeated===true?true:null;
+        entry.victoryRecorded=battle.victoryRecorded??null;
+        entry.battleWasPlayed=battle.battleWasPlayed??null;
+        entry.scriptBattleName=battle.scriptBattleName??null;
+        entry.outcomeEvidence=battle.outcomeEvidence??null;
         entry.battleGateClosed=battle.battleGateClosed;
         entry.eventFlagSet=battle.eventFlagSet;
         entry.eventBitIndex=battle.eventBitIndex;
