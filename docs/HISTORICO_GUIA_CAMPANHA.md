@@ -448,3 +448,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 17. Observado no `retroarchClient.js` que alguns campos de batalha ainda usam valores de recurso para HP/stats/catch rate (por exemplo `|| 150`). Estes valores não constituem dados comprovados da RAM e **não podem** ser fornecidos ao novo motor exato como entradas verificadas. Não foram alterados aqui, para evitar regressões sem teste de telemetria real, mas o bloqueio fica documentado como prioritário.
 
 **Próximo trabalho obrigatório:** retirar/fazer fail-closed nos valores de recurso do combate, obter os bytes reais do estado do turno incluindo taxa de captura e variantes, provar ROM/estado em tempo real, ligar os módulos ao UI com screenshots analisados, corrigir eventuais incompatibilidades na bateria integral e alargar algoritmos a todos os casos da Gen I. Até lá os cálculos estão isolados e a cobertura 100% NÃO está certificada.
+
+
+## 2026-10-27 — Fase adicional: leitura conservadora dos blocos de combate
+
+- 1. Inspecionados os trechos reais de `retroarchClient.js`, `data/pokemonData.js`, `public/app.js` e do leitor UDP de memória. Confirmado que o código legado preenche HP, nível, stats e catch rate com valores de substituição e que `analyzeBattle` produz estimativas apresentadas de forma excessivamente confiante. A leitura de três blocos de combate é sequencial, não atómica.
+- 2. Publicado `pokemon-ai-companion/romBattleEvidence.js`, interpretador puro de três blocos ROM/RAM (255 bytes em CFE0, 30 em D014, 280 em CC20) com validação de comprimento, hex, HP, níveis, atributos, espécies, golpes e 12 bytes de estágios. Recusa amostras incoerentes; nunca deduz taxa de captura de um offset não certificado; declara `atomicSnapshotVerified:false` e `exactTurnMathReady:false` mesmo com os três blocos completos.
+- 3. Sem reiniciar, fechar ou alterar aplicações, credenciais, ROMs, saves, sessões ou backup Antigravity. Código apenas publicado no GitHub; integração em curso.
