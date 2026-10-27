@@ -255,6 +255,7 @@ class RetroArchClient extends EventEmitter {
     };
 
     // Um estado persistido nunca demonstra uma ROM validada agora.
+    this.latestState.isSimulation = false;
     this.latestState.romValidation = 'ROM não verificada nesta sessão';
     this.latestState.romHeader = { fullRomVerified: false };
     this.latestState.memoryReadStatus = { verified: false, completeness: 'selected-address-ranges-only' };
@@ -285,7 +286,7 @@ class RetroArchClient extends EventEmitter {
 
   persistState(state) {
     if (!state || !state.party || state.party.length === 0) return;
-    if (!state.connected) return;
+    if (!state.connected || state.isSimulation === true) return;
     if (!state.trainerName || state.trainerName === '9' || state.trainerName === 'Desconhecido') return;
     if (!state.areaInfo || !state.areaInfo.name || state.areaInfo.name === 'Desconhecido') return;
     if (state.mapId === 0 && (state.badges && state.badges.some(b => b.obtained))) return;
