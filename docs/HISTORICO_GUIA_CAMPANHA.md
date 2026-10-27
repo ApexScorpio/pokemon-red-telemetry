@@ -491,3 +491,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 19. Todos os passos nesta adenda foram modificações de código/documentação no GitHub. Não se tocaram ROMs, saves, disco C:, tokens/sessões/backups do Antigravity nem processos locais.
 
 **Ainda não feito:** `npm test` integral com Node e dependências do repositório, ROMs reais ligadas ao emulador do iPhone, testes diferenciais dos algoritmos, amostra de batalha atómica e screenshots da GUI. A percentagem de cobertura total continua indeterminada; não afirmar que o Companion já tem 100% mapeado.
+
+### 2026-10-27 — Identidade das três versões no conselheiro e servidor
+
+- 20. Removido o fallback do conselheiro que substituía silenciosamente um nome de treinador desconhecido por `RED`; o campo permanece `null` quando falta prova e o contexto passou a incluir `romRuntimeIdentity` para distinguir o perfil Red/Blue/Green efetivamente associado.
+- 21. Alterado somente o cabeçalho de texto da consola do servidor de `POKÉMON RED` para `POKÉMON GEN I COMPANION — RED / BLUE / GREEN`. A ligação e configuração de servidor não foram alteradas.
+- 22. Ficheiros `aiAdvisor.js` e `server.js` passaram validação de sintaxe JavaScript após as mudanças. Sem reiniciar servidor, emulador, aplicações ou sessão do Antigravity e sem afetar a ROM/saves. A bateria isolada de funções matemáticas continua com os últimos resultados 39/39; **não foi reexecutado npm test integral**.
