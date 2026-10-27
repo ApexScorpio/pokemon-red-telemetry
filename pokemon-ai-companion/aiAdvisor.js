@@ -51,7 +51,8 @@ async function getLiveAdvice(state, force = false) {
   lastAdviceTime = now;
 
   const context = {
-    trainer: state.trainerName || 'RED',
+    trainer: state.trainerName || null,
+    romIdentity: state.romRuntimeIdentity || null,
     location: state.mapName,
     money: state.money,
     badges: (state.badges || []).filter(b => b.obtained).map(b => b.name),
@@ -111,7 +112,8 @@ async function askAdvisor(question, state) {
     return 'Não há cálculos de combate certificados para este turno; aguardo dados e fórmulas ROM/RAM verificados antes de recomendar golpes, capturas ou riscos.';
   }
   const context = {
-    trainer: state.trainerName || 'RED',
+    trainer: state.trainerName || null,
+    romIdentity: state.romRuntimeIdentity || null,
     location: state.mapName,
     money: state.money,
     badges: (state.badges || []).filter(b => b.obtained).map(b => b.name),
