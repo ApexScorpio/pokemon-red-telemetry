@@ -6,6 +6,7 @@ const {inspectWorld}=require('./romWorldData');
 const {parseTrainerParties}=require('./romTrainerParties');
 const {extractHiddenItemsFromRom}=require('./romHiddenEvents');
 const {spritePngBase64}=require('./romSpriteDecoder');
+const {findGen1MoveTable}=require('./romMoveTable');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
 function crc32(buf){let x=0xFFFFFFFF;for(const b of buf)x=crcTable[(x^b)&255]^(x>>>8);return ((x^0xFFFFFFFF)>>>0).toString(16).toUpperCase().padStart(8,'0');}
@@ -150,7 +151,9 @@ function inspectRom(file){
  if(h!==b[0x14d])throw Error('Checksum do cabeçalho inválido');
  const offsets={names:findNames(b),dexOrder:findDex(b),baseStats:findStats(b),growthRates:findGrowth(b)};
  const evos=findEvos(b,offsets.baseStats),moves=findMoveNames(b);
+ const romMoves=findGen1MoveTable(b);
  offsets.evolutions=evos.offset;offsets.moveNames=moves.offset;
+ offsets.moveData=romMoves.valid?romMoves.offset:null;
  const growthRates=offsets.growthRates===null?null:Array.from({length:6},(_,id)=>{
   const q=offsets.growthRates+id*4,first=b[q],quad=b[q+1];
   return {id,numerator:first>>4,denominator:first&15,
@@ -187,7 +190,10 @@ function inspectRom(file){
   title,bytes:b.length,banks:b.length/BANK,bytesRead:b.length,
   offsets:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,addresses(p)])),
   validated:Object.fromEntries(Object.entries(offsets).map(([name,p])=>[name,p!==null])),
-  species,moveNames:moves.names,growthRates,world,trainerParties,
+  species,moveNames:moves.names,moveStats:romMoves.valid?romMoves.rows:null,
+  moveStatsStatus:{verified:romMoves.valid,source:romMoves.source||null,
+    reason:romMoves.reason||null,totalRomMoves:romMoves.valid?romMoves.rows.length:0},
+  growthRates,world,trainerParties,
   spritesVerified:species.filter(x=>x.sprite?.verified).length,
   spritesTotalInBaseStats:species.filter(x=>x.stats).length,
   spritesWithPixelsDecoded:species.filter(x=>x.sprite?.pixelsDecoded).length,
