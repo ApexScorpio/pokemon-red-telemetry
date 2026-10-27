@@ -1503,7 +1503,12 @@ class RetroArchClient extends EventEmitter {
     if (upcomingBoss && upcomingBoss.battles) {
       upcomingBoss.battles.forEach(bt => {
         bt.compass = getCompass(this.latestState.coords, bt.x, bt.y);
-        bt.statusSource = 'TABELA_MANUAL_EVENT_FLAGS_NÃO_COMPROVADAS_PARA_ESTA_ROM';
+        // O motor de conselhos da área inclui lutas exemplificativas e associações
+        // manuais de flags; não prova qual destes treinadores foi efetivamente vencido.
+        bt.isDefeated = null;
+        bt.isMissed = null;
+        bt.statusLabel = 'ESTADO DESCONHECIDO — falta validar cabeçalho e flag na ROM';
+        bt.statusSource = 'CONSELHO_MANUAL_SEM_FLAG_TREINADOR_VALIDADA_NA_ROM';
       });
     }
 
@@ -1595,8 +1600,8 @@ class RetroArchClient extends EventEmitter {
             ent.name = `⚔️ ${matchedBt.name}`;
             ent.enemyRoster = matchedBt.enemyRoster;
             ent.optimalLead = matchedBt.optimalLead;
-            ent.isDefeated = matchedBt.isDefeated;
-            ent.statusLabel = matchedBt.statusLabel;
+            ent.isDefeated = null; // não deduzir vitória pela lista manual
+            ent.statusLabel = 'BATALHA NÃO CONFIRMADA (FLAG AINDA SEM VÍNCULO ROM)';
             ent.difficulty = matchedBt.difficulty;
           }
         }
