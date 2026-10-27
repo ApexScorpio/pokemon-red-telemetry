@@ -339,6 +339,49 @@ function renderRomProgress(state) {
   }).join('\n');
 }
 
+function renderRomAreaEvidence(state) {
+  const body=document.getElementById('rom-area-evidence-content');
+  const source=document.getElementById('rom-area-evidence-source');
+  if(!body||!source)return;
+  const evidence=state.romAreaEvidence;
+  const readAge=Date.now()-Date.parse(state.lastUpdate||'');
+  if(!state.connected||!state.memoryReadStatus?.verified||!Number.isFinite(readAge)||
+     readAge<0||readAge>15000){
+    source.textContent='RAM offline ou desatualizada';
+    body.textContent='É necessária leitura atual do jogo para indicar a zona.';
+    return;
+  }
+  if(!evidence?.verified||!state.romRuntimeIdentity?.matched){
+    source.textContent='Dados da ROM não confirmados';
+    body.textContent='Não há perfil ROM correspondente para identificar objetos desta zona.';
+    return;
+  }
+  source.textContent='Objetos da ROM CRC32 + sprites RAM, quando observados';
+  const present = item => item.observedInRam === true ? ' • visto na RAM agora' :
+    item.observedInRam === false ? ' • não visível na RAM (não significa recolhido)' :
+      ' • visibilidade por confirmar';
+  const rows=[
+    '📦 ITENS DEFINIDOS NA ROM ('+evidence.items.length+')',
+    ...evidence.items.slice(0,20).map(i=>'• '+(i.itemName||'Item #'+i.itemId)+
+      ' [ID '+i.itemId+'] X:'+i.x+' Y:'+i.y+present(i)),
+    '⚔️ TREINADORES DA ROM ('+evidence.trainers.length+')',
+    ...evidence.trainers.slice(0,20).map(t=>'• Classe #'+t.trainerClassId+
+      ' / Nº '+t.trainerNumber+' X:'+t.x+' Y:'+t.y+present(t)),
+    '👤 NPCs da ROM: '+evidence.npcs.length,
+    '❔ Derrotado/recolhido: por confirmar até associar a flag exata do script.'
+  ];
+  const hidden=state.areaInfo?.hiddenItems||[];
+  if(hidden.length){
+    rows.push('🔍 Itens ocultos (lista de referência, NÃO totalmente validada na ROM):');
+    for(const i of hidden.slice(0,10)){
+      rows.push('• '+i.name+' X:'+i.x+' Y:'+i.y+' • '+
+        (i.isCollected === null ? 'estado desconhecido' :
+         'bit RAM lido, mas associação do índice à ROM ainda por verificar'));
+    }
+  }
+  body.textContent=rows.join('\n');
+}
+
 // Renderização Principal do Cockpit
 function renderState(state) {
   if (state.connected) {
@@ -440,6 +483,7 @@ function renderState(state) {
   renderInventory(state.inventory || []);
   renderDaycareTracker(state);
   renderRomProgress(state);
+  renderRomAreaEvidence(state);
 
   // Radar da Área (Fauna e Itens com RAM bit flags reais)
   renderAreaRadar(state.areaInfo);
@@ -1227,7 +1271,7 @@ function renderFogMinimap(state) {
   ];
   items.forEach(it => {
     if (it.x === undefined || it.y === undefined) return;
-    if (it.isCollected || it.inInventory || isItemInInventoryFrontend(it.name, state.inventory || [])) return; // Item já apanhado não aparece no mapa
+    if (it.isCollected === true) return; // Possuir outro exemplar NÃO prova que este foi recolhido
     const ix = camX + it.x * tileSize + tileSize / 2;
     const iy = camY + it.y * tileSize + tileSize / 2;
     if (ix >= -16 && ix <= cw + 16 && iy >= -16 && iy <= ch + 16) {
@@ -1240,7 +1284,7 @@ function renderFogMinimap(state) {
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
-    if (ent.isItem && (ent.isCollected || isItemInInventoryFrontend(ent.itemName || ent.name, state.inventory || []))) return; // Item já recolhido não aparece no ecrã
+    if (ent.isItem && ent.isCollected === true) return; // A mochila não determina estado deste objeto
     const ex = camX + ent.x * tileSize + tileSize / 2;
     const ey = camY + ent.y * tileSize + tileSize / 2;
     if (ex >= -16 && ex <= cw + 16 && ey >= -16 && ey <= ch + 16) {
@@ -1403,7 +1447,7 @@ function renderGtaFullMap(state) {
   ];
   items.forEach(it => {
     if (it.x === undefined || it.y === undefined) return;
-    if (it.isCollected) return; // Item já apanhado não aparece no mapa
+    if (it.isCollected === true) return; // Ocultar apenas quando recolha comprovada
     const ix = originX + it.x * tilePx + tilePx / 2;
     const iy = originY + it.y * tilePx + tilePx / 2;
     if (ix >= -24 && ix <= cw + 24 && iy >= -24 && iy <= ch + 24) {
@@ -1415,7 +1459,7 @@ function renderGtaFullMap(state) {
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
-    if (ent.isItem && ent.isCollected) return; // Item já recolhido não aparece no ecrã
+    if (ent.isItem && ent.isCollected === true) return; // Estado nulo não significa concluído
     const ex = originX + ent.x * tilePx + tilePx / 2;
     const ey = originY + ent.y * tilePx + tilePx / 2;
     if (ex >= -32 && ex <= cw + 32 && ey >= -32 && ey <= ch + 32) {
@@ -1590,9 +1634,9 @@ if (gtaViewport) {
           const ey = gtaPan.y + ent.y * tilePx + tilePx / 2;
           if (Math.hypot(mx - ex, my - ey) < 14 * gtaZoom) {
             if (ent.isItem) {
-              found = `<b>${ent.name}</b> (RAM ao Vivo)<br>📍 Coordenadas: X:${ent.x} Y:${ent.y}<br>📏 Distância: ${ent.compass ? ent.compass.badge : ''}<br>💡 ${ent.importance || 'Item no chão. Aproxima-te para recolher!'}<br>Estado: ${ent.isCollected ? '✅ Já Apanhado' : '🔴 Por Apanhar'}`;
+              found = `<b>${ent.name}</b> (RAM ao Vivo)<br>📍 Coordenadas: X:${ent.x} Y:${ent.y}<br>📏 Distância: ${ent.compass ? ent.compass.badge : ''}<br>💡 ${ent.importance || 'Item no chão. Aproxima-te para recolher!'}<br>Estado: ${ent.isCollected === true ? '✅ Recolhido (flag)' : ent.isCollected === false ? '🔴 Por recolher (flag não comprovada para esta ROM)' : '❔ Sem flag associada'}`;
             } else if (ent.isTrainer) {
-              found = `<b>${ent.name}</b> (Treinador Ativo)<br>📍 Coordenadas: X:${ent.x} Y:${ent.y} • Virado a: ${ent.facing || 'Sul'}<br>👥 ${ent.enemyRoster || 'Equipa de Treinador'}<br>⭐ Lead: ${ent.optimalLead || 'Pronto a combater'}<br>Estado: ${ent.isDefeated ? '✅ Já Vencido' : '⚔️ Pronto a Combater'}`;
+              found = `<b>${ent.name}</b> (Treinador Ativo)<br>📍 Coordenadas: X:${ent.x} Y:${ent.y} • Virado a: ${ent.facing || 'Sul'}<br>👥 ${ent.enemyRoster || 'Equipa de Treinador'}<br>⭐ Lead: ${ent.optimalLead || 'Pronto a combater'}<br>Estado: ${ent.isDefeated === true ? 'Vitória indicada por tabela de referência' : ent.isDefeated === false ? 'Pendente segundo referência (por verificar)' : '❔ Resultado não confirmado'}`;
             } else {
               found = `<b>${ent.icon || '👤'} ${ent.name}</b> (NPC no Mapa)<br>📍 Coordenadas: X:${ent.x} Y:${ent.y} • Virado a: ${ent.facing || 'Sul'}<br>📏 Distância: ${ent.compass ? ent.compass.badge : ''}`;
             }
