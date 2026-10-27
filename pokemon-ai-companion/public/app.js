@@ -403,8 +403,17 @@ function renderRomAreaEvidence(state) {
   }else{
     rows.push('🔍 Itens ocultos: sem índice ROM/bitmap RAM confirmado');
   }
-  if(!validatedBattles)
-    rows.push('⚠️ Batalhas: este mapa não tem todos os cabeçalhos validados; resultado desconhecido.');
+  const coinEvidence=state.romHiddenCoins;
+  if(coinEvidence?.verified&&coinEvidence.coins.length){
+    rows.push('🪙 MOEDAS ESCONDIDAS — Game Corner ('+coinEvidence.coins.length+')');
+    for(const coin of coinEvidence.coins){
+      rows.push('• '+coin.coinAmount+' moedas X:'+coin.x+' Y:'+coin.y+
+        ' — '+(coin.isCollected?'✅ RECOLHIDAS (RAM D6FE)':'🎯 POR RECOLHER (RAM D6FE)'));
+    }
+  }
+  if(!validatedBattles||state.romTrainerFlags?.unknownTrainerCount>0)
+    rows.push('⚠️ Batalhas: '+(state.romTrainerFlags?.unknownTrainerCount??'?')+
+      ' treinadores sem associação válida neste mapa. Estado desconhecido.');
   body.textContent=rows.join('\n');
 }
 
