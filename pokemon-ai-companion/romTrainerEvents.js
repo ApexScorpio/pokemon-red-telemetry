@@ -25,6 +25,23 @@ const ATLAS=(()=>{
  }
  return index;
 })();
+// Casos de script especial, extraídos e verificados nas três ROMs completas.
+// Verificação binária: text_asm (0x08), LD A,[wEventFlags+n] (0xFA),
+// BIT b,A (0xCB,0x47+8*b) no início do script do objeto treinador.
+// Não extrapolar para ROMs com outros SHA-256.
+const SPECIAL_SCRIPT_EVENTS={
+  45:{1:81},    // Viridian Gym: Giovanni
+  54:{1:119},   // Pewter Gym: Brock
+  65:{1:191},   // Cerulean Gym: Misty
+  92:{1:359},   // Vermilion Gym: Lt. Surge
+  134:{1:425},  // Celadon Gym: Erika
+  157:{1:601},  // Fuchsia Gym: Koga
+  166:{1:665,2:666,3:667,4:668,5:669,6:670,7:671,8:672},
+  178:{1:865},  // Saffron Gym: Sabrina
+  202:{1:1703}  // Rocket Hideout B4F: Giovanni
+};
+const SPECIAL_INDEX=new Map(Object.entries(SPECIAL_SCRIPT_EVENTS).map(([map,ordinals])=>
+ [Number(map),new Map(Object.entries(ordinals).map(([ordinal,bit])=>[Number(ordinal),bit]))]));
 const VERIFIED_BY_MAP=Object.fromEntries([...ATLAS].map(([map,ordinals])=>
  [map,[...ordinals.values()]]));
 function trainerFlagsForCurrentMap(profile,romMap,eventHex){
@@ -45,10 +62,22 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
    expected=new Map(romMap.trainerEvents.map(v=>[v.objectOrdinal,v.eventBitIndex]));
    source='ROM_PERFIL_LOCAL_TEXTO_CABEÇALHO';
  }else if(ROM_HASHES.has(sha)&&ATLAS.has(mapId)){
-   expected=ATLAS.get(mapId);
+   expected=new Map(ATLAS.get(mapId));
    source='312_CABECALHOS_VALIDOS_NAS_3_ROMS';
  }else{
-   return {verified:false,source:'SEM_CABECALHO_TREINADOR_ROM_CERTIFICADO',entries:[]};
+   expected=new Map();
+   source='SEM_CABECALHO_TREINADOR_NORMAL';
+ }
+ // Estes 16 casos são scripts especiais: líder ou evento que usa
+ // CheckEvent diretamente em vez de TalkToTrainer.
+ if(ROM_HASHES.has(sha)&&SPECIAL_INDEX.has(mapId)){
+   for(const [ordinal,bit] of SPECIAL_INDEX.get(mapId)){
+     if(expected.has(ordinal)&&expected.get(ordinal)!==bit)
+       return {verified:false,source:'CONFLITO_ENTRE_CABECALHOS_ROM',entries:[]};
+     expected.set(ordinal,bit);
+   }
+   source+=(source==='SEM_CABECALHO_TREINADOR_NORMAL'?'':' + ')+
+     '16_CHECKEVENT_ESPECIAIS_COMPROVADOS_NAS_3_ROMS';
  }
  if(!expected.size)return {verified:false,source:'MAPA_SEM_TREINADORES_AUDITADOS',entries:[]};
  const entries=[];
@@ -71,4 +100,4 @@ function trainerFlagsForCurrentMap(profile,romMap,eventHex){
   unknownTrainerCount:n-entries.length,fullyMapped:n===entries.length,
   semantics:'eventFlagSet significa combate desativado/marcado concluído; não comprova historicamente vitória individual'};
 }
-module.exports={trainerFlagsForCurrentMap,VERIFIED_BY_MAP};
+module.exports={trainerFlagsForCurrentMap,VERIFIED_BY_MAP,SPECIAL_SCRIPT_EVENTS};
