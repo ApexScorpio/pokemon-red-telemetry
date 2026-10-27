@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "pret/pokered master base_stats/*.asm, assembled for Red/Blue; verify hash against player ROM",
-    "sourceVerified": 147,
+    "sourceVerified": 151,
     "coverageTarget": 151,
     "sourceCategory": "ROM static facts; not live RAM",
     "updated": "2026-10-27"
@@ -3657,52 +3657,101 @@
       "internalId": 89,
       "name": "Dragonair",
       "upstreamPath": "data/pokemon/base_stats/dragonair.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 61,
+        "attack": 84,
+        "defense": 65,
+        "speed": 70,
+        "special": 70
+      },
+      "catchRate": 45,
+      "baseExp": 144,
+      "growthRate": "SLOW",
+      "startingMoves": [
+        "WRAP",
+        "LEER",
+        "THUNDER_WAVE"
+      ],
+      "sourceVerified": true
     },
     "149": {
       "dex": 149,
       "internalId": 66,
       "name": "Dragonite",
       "upstreamPath": "data/pokemon/base_stats/dragonite.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Dragon",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 91,
+        "attack": 134,
+        "defense": 95,
+        "speed": 80,
+        "special": 100
+      },
+      "catchRate": 45,
+      "baseExp": 218,
+      "growthRate": "SLOW",
+      "startingMoves": [
+        "WRAP",
+        "LEER",
+        "THUNDER_WAVE",
+        "AGILITY"
+      ],
+      "sourceVerified": true
     },
     "150": {
       "dex": 150,
       "internalId": 131,
       "name": "Mewtwo",
       "upstreamPath": "data/pokemon/base_stats/mewtwo.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 106,
+        "attack": 110,
+        "defense": 90,
+        "speed": 130,
+        "special": 154
+      },
+      "catchRate": 3,
+      "baseExp": 220,
+      "growthRate": "SLOW",
+      "startingMoves": [
+        "CONFUSION",
+        "DISABLE",
+        "SWIFT",
+        "PSYCHIC_M"
+      ],
+      "sourceVerified": true
     },
     "151": {
       "dex": 151,
       "internalId": 21,
       "name": "Mew",
       "upstreamPath": "data/pokemon/base_stats/mew.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 100,
+        "defense": 100,
+        "speed": 100,
+        "special": 100
+      },
+      "catchRate": 45,
+      "baseExp": 64,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "POUND"
+      ],
+      "sourceVerified": true
     }
   }
 }
