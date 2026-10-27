@@ -99,6 +99,24 @@ function readPokemonTables(buffer, symbols) {
   };
 }
 
+function readGrowthRates(buffer, symbols) {
+  const table = readSymbolTable(buffer, symbols, 'GrowthRateTable', 6 * 4);
+  if (!table) return null;
+  return Array.from({ length: 6 }, (_, i) => {
+    const k = i * 4;
+    const fraction = table[k];
+    const quadratic = table[k + 1];
+    const numerator = fraction >> 4, denominator = fraction & 15;
+    if (!numerator || !denominator) return null;
+    return {
+      id: i, numerator, denominator,
+      squaredCoefficient: (quadratic & 0x7F) * (quadratic & 0x80 ? -1 : 1),
+      linearCoefficient: table[k + 2], constantToSubtract: table[k + 3],
+      origin: 'ROM: GrowthRateTable (4 bytes por grupo)'
+    };
+  });
+}
+
 function scanRom(filename, options = {}) {
   if (!fs.existsSync(filename)) throw new Error('ROM não encontrada: ' + filename);
   const buffer = fs.readFileSync(filename);
@@ -129,11 +147,14 @@ function scanRom(filename, options = {}) {
     } else {
       const symbols = parseSym(fs.readFileSync(options.symbolFile, 'utf8'));
       const pokemon = readPokemonTables(buffer, symbols);
+      const growthRates = readGrowthRates(buffer, symbols);
       mapping = {
-        status: pokemon.verified ? 'TABELAS_VERIFICADAS_ESTRUTURALMENTE' : 'INCOMPATÍVEL',
+        status: pokemon.verified && growthRates && growthRates.every(Boolean)
+          ? 'TABELAS_VERIFICADAS_ESTRUTURALMENTE' : 'INCOMPATÍVEL',
         source: path.basename(options.symbolFile),
         warning: 'Hash fornecido externamente; equivalência da .sym à ROM exige prova de que vieram da mesma compilação. Gráficos/scripts não foram integralmente descodificados.',
-        pokemon
+        pokemon,
+        growthRates
       };
     }
   }
@@ -168,4 +189,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { scanRom, bankOffset, parseSym, readPokemonTables, decodeGen1Name };
+module.exports = { scanRom, bankOffset, parseSym, readPokemonTables, readGrowthRates, decodeGen1Name };
