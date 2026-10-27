@@ -15,9 +15,9 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
    stillAvailableConfirmed:hidden.filter(x=>x.isCollected===false).length,
    source:hiddenEvidence.source
  }:null;
- const provenWon=trainers.filter(x=>x.defeated===true).length;
- const provenPending=trainers.filter(x=>x.defeated===false).length;
- const trainerUnknown=trainers.length-provenWon-provenPending;
+ const gatesClosed=trainers.filter(x=>x.eventFlagSet===true).length;
+ const gatesOpen=trainers.filter(x=>x.eventFlagSet===false).length;
+ const trainerUnknown=trainers.length-gatesClosed-gatesOpen;
  const removed=items.filter(x=>x.removedFromMap===true).length;
  const shown=items.filter(x=>x.removedFromMap===false).length;
  const unknown=items.length-removed-shown;
@@ -34,10 +34,12 @@ function makeAreaProgress(romEvidence,hiddenEvidence,romIdentity){
    },
    trainers:{
      totalInRom:trainers.length,
-     defeatedConfirmed:trainerUnknown===trainers.length?null:provenWon,
-     pendingConfirmed:trainerUnknown===trainers.length?null:provenPending,
+     defeatedConfirmed:null, // A flag pode ser ativada por script, sem batalha individual
+     pendingConfirmed:null,
+     eventGatesClosed:gatesClosed,eventGatesOpen:gatesOpen,
+     eventGatesUnknown:trainerUnknown,
      statusUnknown:trainerUnknown,
-     explanation:'Só contar batalhas com cabeçalho ROM e bit RAM associados por mapa.'
+     explanation:'Flag de evento 1 = combate desativado ou concluído; não prova combate histórico. Flag 0 = não desativado por esta flag.'
    },
    remainingConfirmed:hidden?hiddenResult.stillAvailableConfirmed:null,
    remainingScope:'Apenas itens ocultos com bitmap verificado; não é o total da zona.',
