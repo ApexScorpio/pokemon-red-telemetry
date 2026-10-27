@@ -114,3 +114,18 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 11. Nenhum save, binário ROM, token, sessão Antigravity ou ficheiro no disco C foi alterado no PC do utilizador.
 
 **Limites ainda explícitos:** reconhecimento automático sujeito ao esquema Gen I; outras versões com layouts radicalmente diferentes necessitam de descodificadores novos. Sprites originais, scripts completos, múltiplas caixas e RAM variável ainda aguardam validação.
+
+
+## 2026-10-27 — Análise dos ficheiros reais Pokémon Red e Pokémon Blue
+
+- 1. Recebidos do jogador os ficheiros Pokemon Red.gb e Pokemon Blue.gb; analisados diretamente em sandbox, sem alterar, publicar ou copiar os binários para o GitHub.
+- 2. Checksums de cabeçalho e checksums globais válidos para ambos; 1 048 576 bytes e 64 bancos de 16 KiB por ficheiro.
+- 3. Hashes calculados: Red CRC32 9F7FDD53 / SHA256 5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b; Blue CRC32 D6DA8A1A / SHA256 2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d.
+- 4. Descobertas e verificadas por estrutura seis tabelas ROM para cada ficheiro: MonsterNames 0x1C21E, PokedexOrder 0x41024, BaseStats 0x383DE, GrowthRateTable 0x5901D, EvosMovesPointerTable 0x3B05C, MoveNames 0xB0000. A Green International usa 0x41956 para PokedexOrder, demonstrando a necessidade de perfis distintos.
+- 5. Obtidos perfis JSON Red e Blue com 190 IDs internos, 165 nomes de golpes, atributos, evoluções, learnsets e crescimento; comparados com o perfil Green analisado anteriormente.
+- 6. Criado um pacote ZIP para o jogador com os três perfis JSON (sem os binários ROM) e instruções de instalação no disco S:.
+- 7. Expandido romLiveResolver.js para ler simultaneamente JSONs de POKEMON_ROM_PROFILE_DIR e revalidar CRC32 reportado por GET_STATUS. Corrigido o filtro da extensão .json.
+- 8. Atualizado retroarchClient.js para reaprender novos perfis quando se muda de jogo, mesmo que estejam numa pasta de metadados, sem reiniciar o programa para cada troca de ROM.
+- 9. Criado tests/romThreeVersions.test.js e docs/ROMS_RED_BLUE_GREEN_PERFIS.md com validação de hash, localizações distintas de PokedexOrder e instruções.
+- 10. Não foi possível executar um teste end-to-end no RetroArch/iPhone a partir deste ambiente. Os perfis foram testados com os bytes recebidos; o reconhecimento via rede necessita de prova no equipamento real.
+- 11. Não foram alterados saves, sessões Antigravity, chaves, nem ficheiros do projeto original no C:.
