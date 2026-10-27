@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const {decodeToggleables,decodeHiddenItems,fromKnownRom}=require('../romEventState');
+const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins,fromKnownRom}=require('../romEventState');
 const {buildRomAreaEvidence}=require('../romAreaEvidence');
 const HASHES=[
  '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
@@ -70,4 +70,23 @@ test('os três cartuchos comprovam os IDs dos objetos escondidos, não nomes man
   const mtMoon=decodeHiddenItems({hash:{sha256}},61,flags);
   assert.deepEqual(mtMoon.items.map(x=>x.itemId),[10,80]); // Moon Stone, Ether
  }
+});
+
+test('12 moedas ocultas do Game Corner: quantidade ROM e bitmap RAM independentes',()=>{
+ for(const sha256 of HASHES){
+  const flags=Array(2).fill('00');
+  flags[1]='08'; // bit 11, última moeda
+  const result=decodeHiddenCoins({hash:{sha256}},135,flags);
+  assert.equal(result.verified,true);
+  assert.equal(result.coins.length,12);
+  assert.deepEqual(result.coins.map(x=>x.coinAmount),[
+    10,10,20,10,10,20,10,10,10,40,100,10
+  ]);
+  assert.equal(result.coins.filter(x=>x.isCollected).length,1);
+  assert.equal(result.coins[11].isCollected,true);
+  assert.equal(result.coins[0].isCollected,false);
+  assert.equal(decodeHiddenCoins({hash:{sha256}},15,flags).coins.length,0);
+ }
+ assert.equal(decodeHiddenCoins({hash:{sha256:'0'.repeat(64)}},135,['00','00']).verified,false);
+ assert.equal(decodeHiddenCoins({hash:{sha256:HASHES[0]}},135,['00']).verified,false);
 });
