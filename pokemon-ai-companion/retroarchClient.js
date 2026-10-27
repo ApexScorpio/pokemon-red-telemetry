@@ -6,6 +6,7 @@ const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
+const {auditTrainerCoverage,currentMapTrainerCoverage}=require('./romTrainerCoverage');
 const {getTrainerParty}=require('./romTrainerParties');
 const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {captureOpportunities}=require('./romCaptureOpportunities');
@@ -247,6 +248,7 @@ class RetroArchClient extends EventEmitter {
       this.romRegistry.profiles.map(p=>p.title+' '+p.hash.crc32).join(', '));
     if(this.romRegistry.errors.length)console.warn('[ROM Auto] Fontes recusadas:',this.romRegistry.errors.slice(0,8));
     this.activeRomProfile = null;
+    this.trainerCoverageCache = new Map();
     this.lastRomStatusReadAt = 0;
     this.lastRomRegistryRefreshAt = Date.now();
 
@@ -1265,6 +1267,22 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romTrainerFlags=trainerFlagsForCurrentMap(
       this.activeRomProfile,romMap,eventFlagsRaw
     );
+    const currentSha=this.activeRomProfile?.hash?.sha256;
+    let coverage=currentSha ? this.trainerCoverageCache.get(currentSha) : null;
+    if(currentSha&&!coverage){
+      coverage=auditTrainerCoverage(this.activeRomProfile);
+      this.trainerCoverageCache.set(currentSha,coverage);
+    }
+    this.latestState.romTrainerCoverage=coverage?.verified ? {
+      verified:true,source:coverage.source,
+      mapsWithTrainers:coverage.mapsWithTrainers,
+      mapsFullyMapped:coverage.mapsFullyMapped,
+      humanTrainerObjects:coverage.humanTrainerObjects,
+      trainerEventLinksMapped:coverage.trainerEventLinksMapped,
+      trainerEventLinksUnknown:coverage.trainerEventLinksUnknown,
+      currentMap:currentMapTrainerCoverage(coverage,this.latestState.mapId)
+    } : {verified:false,reason:coverage?.reason||'ROM não identificada'};
+
     this.latestState.romStationaryPokemonFlags=stationaryPokemonEvents(
       this.activeRomProfile,romMap,eventFlagsRaw
     );
