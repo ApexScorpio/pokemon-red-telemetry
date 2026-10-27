@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "pret/pokered master base_stats/*.asm, assembled for Red/Blue; verify hash against player ROM",
-    "sourceVerified": 30,
+    "sourceVerified": 45,
     "coverageTarget": 151,
     "sourceCategory": "ROM static facts; not live RAM",
     "updated": "2026-10-27"
@@ -754,195 +754,379 @@
       "internalId": 16,
       "name": "Nidoqueen",
       "upstreamPath": "data/pokemon/base_stats/nidoqueen.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 82,
+        "defense": 87,
+        "speed": 76,
+        "special": 75
+      },
+      "catchRate": 45,
+      "baseExp": 194,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "TACKLE",
+        "SCRATCH",
+        "TAIL_WHIP",
+        "BODY_SLAM"
+      ],
+      "sourceVerified": true
     },
     "32": {
       "dex": 32,
       "internalId": 3,
       "name": "Nidoran♂",
       "upstreamPath": "data/pokemon/base_stats/nidoranm.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 46,
+        "attack": 57,
+        "defense": 40,
+        "speed": 50,
+        "special": 40
+      },
+      "catchRate": 235,
+      "baseExp": 60,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "LEER",
+        "TACKLE"
+      ],
+      "sourceVerified": true
     },
     "33": {
       "dex": 33,
       "internalId": 167,
       "name": "Nidorino",
       "upstreamPath": "data/pokemon/base_stats/nidorino.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 61,
+        "attack": 72,
+        "defense": 57,
+        "speed": 65,
+        "special": 55
+      },
+      "catchRate": 120,
+      "baseExp": 118,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "LEER",
+        "TACKLE",
+        "HORN_ATTACK"
+      ],
+      "sourceVerified": true
     },
     "34": {
       "dex": 34,
       "internalId": 7,
       "name": "Nidoking",
       "upstreamPath": "data/pokemon/base_stats/nidoking.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 81,
+        "attack": 92,
+        "defense": 77,
+        "speed": 85,
+        "special": 75
+      },
+      "catchRate": 45,
+      "baseExp": 195,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "TACKLE",
+        "HORN_ATTACK",
+        "POISON_STING",
+        "THRASH"
+      ],
+      "sourceVerified": true
     },
     "35": {
       "dex": 35,
       "internalId": 4,
       "name": "Clefairy",
       "upstreamPath": "data/pokemon/base_stats/clefairy.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 45,
+        "defense": 48,
+        "speed": 35,
+        "special": 60
+      },
+      "catchRate": 150,
+      "baseExp": 68,
+      "growthRate": "FAST",
+      "startingMoves": [
+        "POUND",
+        "GROWL"
+      ],
+      "sourceVerified": true
     },
     "36": {
       "dex": 36,
       "internalId": 142,
       "name": "Clefable",
       "upstreamPath": "data/pokemon/base_stats/clefable.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 70,
+        "defense": 73,
+        "speed": 60,
+        "special": 85
+      },
+      "catchRate": 25,
+      "baseExp": 129,
+      "growthRate": "FAST",
+      "startingMoves": [
+        "SING",
+        "DOUBLESLAP",
+        "MINIMIZE",
+        "METRONOME"
+      ],
+      "sourceVerified": true
     },
     "37": {
       "dex": 37,
       "internalId": 82,
       "name": "Vulpix",
       "upstreamPath": "data/pokemon/base_stats/vulpix.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 38,
+        "attack": 41,
+        "defense": 40,
+        "speed": 65,
+        "special": 65
+      },
+      "catchRate": 190,
+      "baseExp": 63,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "EMBER",
+        "TAIL_WHIP"
+      ],
+      "sourceVerified": true
     },
     "38": {
       "dex": 38,
       "internalId": 83,
       "name": "Ninetales",
       "upstreamPath": "data/pokemon/base_stats/ninetales.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 73,
+        "attack": 76,
+        "defense": 75,
+        "speed": 100,
+        "special": 100
+      },
+      "catchRate": 75,
+      "baseExp": 178,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "EMBER",
+        "TAIL_WHIP",
+        "QUICK_ATTACK",
+        "ROAR"
+      ],
+      "sourceVerified": true
     },
     "39": {
       "dex": 39,
       "internalId": 100,
       "name": "Jigglypuff",
       "upstreamPath": "data/pokemon/base_stats/jigglypuff.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 115,
+        "attack": 45,
+        "defense": 20,
+        "speed": 20,
+        "special": 25
+      },
+      "catchRate": 170,
+      "baseExp": 76,
+      "growthRate": "FAST",
+      "startingMoves": [
+        "SING"
+      ],
+      "sourceVerified": true
     },
     "40": {
       "dex": 40,
       "internalId": 101,
       "name": "Wigglytuff",
       "upstreamPath": "data/pokemon/base_stats/wigglytuff.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 140,
+        "attack": 70,
+        "defense": 45,
+        "speed": 45,
+        "special": 50
+      },
+      "catchRate": 50,
+      "baseExp": 109,
+      "growthRate": "FAST",
+      "startingMoves": [
+        "SING",
+        "DISABLE",
+        "DEFENSE_CURL",
+        "DOUBLESLAP"
+      ],
+      "sourceVerified": true
     },
     "41": {
       "dex": 41,
       "internalId": 107,
       "name": "Zubat",
       "upstreamPath": "data/pokemon/base_stats/zubat.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 35,
+        "speed": 55,
+        "special": 40
+      },
+      "catchRate": 255,
+      "baseExp": 54,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "LEECH_LIFE"
+      ],
+      "sourceVerified": true
     },
     "42": {
       "dex": 42,
       "internalId": 130,
       "name": "Golbat",
       "upstreamPath": "data/pokemon/base_stats/golbat.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Poison",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 80,
+        "defense": 70,
+        "speed": 90,
+        "special": 75
+      },
+      "catchRate": 90,
+      "baseExp": 171,
+      "growthRate": "MEDIUM_FAST",
+      "startingMoves": [
+        "LEECH_LIFE",
+        "SCREECH",
+        "BITE"
+      ],
+      "sourceVerified": true
     },
     "43": {
       "dex": 43,
       "internalId": 185,
       "name": "Oddish",
       "upstreamPath": "data/pokemon/base_stats/oddish.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 45,
+        "attack": 50,
+        "defense": 55,
+        "speed": 30,
+        "special": 75
+      },
+      "catchRate": 255,
+      "baseExp": 78,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "ABSORB"
+      ],
+      "sourceVerified": true
     },
     "44": {
       "dex": 44,
       "internalId": 186,
       "name": "Gloom",
       "upstreamPath": "data/pokemon/base_stats/gloom.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 65,
+        "defense": 70,
+        "speed": 40,
+        "special": 85
+      },
+      "catchRate": 120,
+      "baseExp": 132,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "ABSORB",
+        "POISONPOWDER",
+        "STUN_SPORE"
+      ],
+      "sourceVerified": true
     },
     "45": {
       "dex": 45,
       "internalId": 187,
       "name": "Vileplume",
       "upstreamPath": "data/pokemon/base_stats/vileplume.asm",
-      "types": null,
-      "baseStats": null,
-      "catchRate": null,
-      "baseExp": null,
-      "growthRate": null,
-      "startingMoves": null,
-      "sourceVerified": false
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 80,
+        "defense": 85,
+        "speed": 50,
+        "special": 100
+      },
+      "catchRate": 45,
+      "baseExp": 184,
+      "growthRate": "MEDIUM_SLOW",
+      "startingMoves": [
+        "STUN_SPORE",
+        "SLEEP_POWDER",
+        "ACID",
+        "PETAL_DANCE"
+      ],
+      "sourceVerified": true
     },
     "46": {
       "dex": 46,
