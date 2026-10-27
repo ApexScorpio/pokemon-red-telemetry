@@ -224,7 +224,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState = cachedState || {
       connected: false,
       lastUpdate: null,
-      romValidation: 'Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)',
+      romValidation: 'ROM não verificada (a aguardar leitura do cabeçalho)',
       trainerName: 'RED',
       rivalName: 'BLUE',
       playerDirection: 'Sul (Baixo ⬇️)',
@@ -254,6 +254,10 @@ class RetroArchClient extends EventEmitter {
       aiAdvice: 'A sincronizar com a memória do Game Boy...'
     };
 
+    // Um estado persistido nunca demonstra uma ROM validada agora.
+    this.latestState.romValidation = 'ROM não verificada nesta sessão';
+    this.latestState.romHeader = { fullRomVerified: false };
+    this.latestState.memoryReadStatus = { verified: false, completeness: 'selected-address-ranges-only' };
     if (cachedState) {
       this.latestState.actionHistory = this.loadPersistedActionHistory();
       this.latestState.dialogHistory = this.loadPersistedDialogHistory();
@@ -434,8 +438,10 @@ class RetroArchClient extends EventEmitter {
 
   // Leitura Exaustiva de Blocos de Memória Contíguos
   async readMemoryBlock(startAddrHex, length) {
-    const CHUNK_SIZE = 1024;
+    // 160 bytes de dados por resposta: manter cada pacote UDP abaixo dos limites\n    // práticos observados com RetroArch/SameBoy. Nunca aceitar leituras parciais.\n    const CHUNK_SIZE = 160;
     const startAddr = parseInt(startAddrHex, 16);
+    if (!Number.isInteger(length) || length < 0 ||
+        !Number.isInteger(startAddr) || startAddr < 0 || startAddr + length > 0x10000) return null;
     const chunks = [];
     for (let offset = 0; offset < length; offset += CHUNK_SIZE) {
       const curAddrHex = (startAddr + offset).toString(16).toUpperCase();
@@ -445,12 +451,15 @@ class RetroArchClient extends EventEmitter {
 
     const allBytes = [];
     for (const c of chunks) {
-      let res = await this.sendRaw(`READ_CORE_MEMORY ${c.addr} ${c.len}`);
-      if (!res) {
-        // Tentativa de recuperação caso o pacote UDP sofra jitter
-        res = await this.sendRaw(`READ_CORE_MEMORY ${c.addr} ${c.len}`);
+      const cmd = `READ_CORE_MEMORY ${c.addr} ${c.len}`;
+      const valid = bytes => Array.isArray(bytes) && bytes.length === c.len &&
+        bytes.every(byte => /^[0-9A-Fa-f]{2}$/.test(byte));
+      let res = await this.sendRaw(cmd);
+      if (!valid(res)) {
+        // Uma resposta -1, truncada ou com bytes inválidos NÃO é memória real.
+        res = await this.sendRaw(cmd);
       }
-      if (!res) return null;
+      if (!valid(res)) return null;
       allBytes.push(...res);
     }
     return allBytes;
@@ -529,9 +538,7 @@ class RetroArchClient extends EventEmitter {
       return;
     }
 
-    this.latestState.connected = true;
-    this.latestState.lastUpdate = new Date().toISOString();
-
+    // Não marcar ONLINE até todas as zonas essenciais serem lidas corretamente.
     // BLOCO 2: Mundo, Eventos (320 bytes), Itens Ocultos, Fauna Selvagem e Equipa Inimiga ($D5A0..$D8AF, 784 bytes)
     const blockWorldEvents = await this.readMemoryBlock('D5A0', 784);
 
@@ -543,6 +550,60 @@ class RetroArchClient extends EventEmitter {
 
     // BLOCO 5: Screen Tilemap Completo 20x18 ($C3A0..$C507, 360 bytes)
     const blockTilemap = await this.readMemoryBlock('C3A0', 360);
+
+    const baseReadStatus = {
+      playerAndParty: !!(blockPlayerParty && blockPlayerParty.length === 530),
+      worldAndEvents: !!(blockWorldEvents && blockWorldEvents.length === 784),
+      currentPcBox: !!(blockBoxTime && blockBoxTime.length === 750),
+      overworldSprites: !!(blockSprites && blockSprites.length === 512),
+      screenTilemap: !!(blockTilemap && blockTilemap.length === 360)
+    };
+    const baseReadComplete = Object.values(baseReadStatus).every(Boolean);
+    this.latestState.memoryReadStatus = {
+      source: 'RetroArch READ_CORE_MEMORY',
+      completeness: 'selected-address-ranges-only',
+      blocks: baseReadStatus,
+      verified: baseReadComplete,
+      checkedAt: new Date().toISOString()
+    };
+    if (!baseReadComplete) {
+      this.latestState.connected = false;
+      this.latestState.lastReadError = 'Leitura incompleta: os valores antigos não são telemetria atual.';
+      this.emit('update', this.latestState);
+      return;
+    }
+    this.latestState.lastReadError = null;
+    this.latestState.connected = true;
+    this.latestState.lastUpdate = new Date().toISOString();
+
+    // A ROM tem bancos: esta leitura opcional valida SOMENTE o cabeçalho
+    // atualmente mapeado; não lê nem certifica a ROM integral.
+    if (!this.lastRomHeaderCheckAt || Date.now() - this.lastRomHeaderCheckAt > 30000) {
+      this.lastRomHeaderCheckAt = Date.now();
+      const romHeader = await this.readMemoryBlock('0100', 80);
+      if (romHeader && romHeader.length === 80) {
+        const h = romHeader.map(b => Number.parseInt(b, 16));
+        let checksum = 0;
+        for (let i = 0x34; i <= 0x4C; i++) checksum = (checksum - h[i] - 1) & 0xFF;
+        const title = String.fromCharCode(...h.slice(0x34, 0x44))
+          .split('\\0')[0].replace(/[^\\x20-\\x7E]/g, '').trim();
+        const valid = checksum === h[0x4D] && title.length > 0;
+        this.latestState.romHeader = {
+          source: 'ROM bank 0 / 0x0100-0x014F',
+          title: valid ? title : null,
+          checksumValid: valid,
+          romSizeCode: h[0x48],
+          readBytes: 80,
+          fullRomVerified: false
+        };
+        this.latestState.romValidation = valid ?
+          `Cabeçalho válido: ${title} (ROM integral NÃO verificada)` :
+          'Cabeçalho da ROM inválido ou não reconhecido';
+      } else {
+        this.latestState.romHeader = { source: '0x0100-0x014F', available: false, fullRomVerified: false };
+        this.latestState.romValidation = 'ROM não verificada (cabeçalho inacessível)';
+      }
+    }
 
     // =========================================================================
     // 1. DESCODIFICAÇÃO DO BLOCO DO JOGADOR, EQUIPA E MOCHILA (BLOCO 1 - $D158)
@@ -829,7 +890,9 @@ class RetroArchClient extends EventEmitter {
     }
 
     // Total de Pokémon Individuais Atuais (Equipa + PC)
+    // Apenas uma caixa do PC é lida neste código; não afirmar total global.
     this.latestState.totalPokemonOwned = partyCount + boxCount;
+    this.latestState.totalPokemonOwnedScope = 'equipa + caixa do PC atualmente selecionada (outras caixas por ler)';
 
     // =========================================================================
     // 4. DESCODIFICAÇÃO DOS SPRITES E ENTIDADES NO MAPA (BLOCO 4 - $C100)
@@ -888,8 +951,11 @@ class RetroArchClient extends EventEmitter {
       const line2 = decodeGen1Text(blockTilemap.slice(301, 319)).trim();
       const onScreenDialog = [line1, line2].filter(Boolean).join(' ');
 
-      if (this.isValidDialogText(onScreenDialog)) {
-        this.latestState.currentDialog = onScreenDialog;
+      // Um texto do tilemap também pode ser um menu ou a lista de golpes.
+      // Limpar a amostra anterior quando deixar de aparecer no ecrã.
+      this.latestState.currentDialog = this.isValidDialogText(onScreenDialog) ? onScreenDialog : null;
+      this.latestState.currentTextSource = 'screen-tilemap (unclassified: dialogue-or-menu)';
+      if (this.latestState.currentDialog) {
         if (!this.latestState.dialogHistory) this.latestState.dialogHistory = [];
         const isDuplicate = this.latestState.dialogHistory.length > 0 && this.latestState.dialogHistory[0].text === onScreenDialog;
         if (!isDuplicate) {
@@ -944,7 +1010,9 @@ class RetroArchClient extends EventEmitter {
       }
     }
 
-    if (effectiveWild.length === 0 && !areaData.isWestRoute4) {
+    const wildFromCurrentRam = effectiveWild.length > 0;
+    if (!wildFromCurrentRam && !areaData.isWestRoute4) {
+      // Referência estática: não confundir com encontros observados na RAM.
       effectiveWild = areaData.wild || [];
     }
 
@@ -1076,6 +1144,7 @@ class RetroArchClient extends EventEmitter {
 
     this.latestState.areaInfo = {
       name: areaData.name,
+      wildSource: wildFromCurrentRam ? 'RAM (tabela de encontros atual)' : 'TABELA_ESTÁTICA (não confirmada na RAM)',
       wild: effectiveWild.map(w => ({
         ...w,
         isCaughtInDex: ownedDexSet.has(w.dex),
