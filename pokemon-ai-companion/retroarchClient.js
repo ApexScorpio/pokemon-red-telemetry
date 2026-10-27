@@ -5,6 +5,7 @@ const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
 const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const {decodeToggleables,decodeHiddenItems}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
+const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -1255,11 +1256,15 @@ class RetroArchClient extends EventEmitter {
       speciesName: this.getPokemonInfo(slot.internalId)?.name || null,
       dex: this.getPokemonInfo(slot.internalId)?.dex || null
     }));
+    this.latestState.romTrainerFlags=trainerFlagsForCurrentMap(
+      this.activeRomProfile,romMap,eventFlagsRaw
+    );
     this.latestState.romAreaEvidence=buildRomAreaEvidence(romMap,
       this.latestState.mapEntities,ITEM_NAMES,{
         romIdentityMatched:!!this.activeRomProfile,
         spritesVerified:!!this.latestState.memoryReadStatus?.blocks?.overworldSprites,
-        toggleables:toggleableEvidence
+        toggleables:toggleableEvidence,
+        trainerFlags:this.latestState.romTrainerFlags
       });
     this.latestState.romWildEncounters = romWild ? {
       mapId: this.latestState.mapId,
