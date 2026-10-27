@@ -117,6 +117,70 @@ function readGrowthRates(buffer, symbols) {
   });
 }
 
+
+function readEvolutionsAndLearnsets(buffer, symbols) {
+  const label = symbols.get('EvosMovesPointerTable');
+  const pointerTable = readSymbolTable(buffer, symbols, 'EvosMovesPointerTable', 190 * 2);
+  if (!label || !pointerTable) return null;
+  const result = [];
+  for (let internalId = 1; internalId <= 190; internalId++) {
+    const cpuPointer = pointerTable.readUInt16LE((internalId - 1) * 2);
+    const start = bankOffset(label.bank, cpuPointer, buffer.length);
+    if (start === null) {
+      result.push({ internalId, valid: false, pointer: cpuPointer });
+      continue;
+    }
+    const limit = Math.min(buffer.length, (label.bank + 1) * BANK_SIZE, start + 256);
+    let pos = start, valid = true;
+    const evolutions = [], learnset = [];
+    let endedEvos = false, endedMoves = false;
+    while (pos < limit && evolutions.length < 12) {
+      const method = buffer[pos++];
+      if (method === 0) { endedEvos = true; break; }
+      const fields = method === 2 ? 3 : (method === 1 || method === 3 ? 2 : 0);
+      if (!fields || pos + fields > limit) { valid = false; break; }
+      const params = [...buffer.subarray(pos, pos + fields)];
+      pos += fields;
+      evolutions.push({ method, params });
+    }
+    if (endedEvos) {
+      while (pos < limit && learnset.length < 100) {
+        const level = buffer[pos++];
+        if (level === 0) { endedMoves = true; break; }
+        if (pos >= limit) { valid = false; break; }
+        const moveId = buffer[pos++];
+        if (!moveId || level > 100) { valid = false; break; }
+        learnset.push({ level, moveId });
+      }
+    }
+    result.push({
+      internalId, pointerCpu: cpuPointer, valid: valid && endedEvos && endedMoves,
+      evolutions, learnset
+    });
+  }
+  const validCount = result.filter(e => e.valid).length;
+  return { total: 190, validCount, entries: result, source: 'ROM EvosMovesPointerTable e scripts de dados da espécie' };
+}
+
+function readMoveNames(buffer, symbols) {
+  const label = symbols.get('MoveNames');
+  if (!label) return null;
+  const start = bankOffset(label.bank, label.cpuAddress, buffer.length);
+  if (start === null) return null;
+  const bankEnd = Math.min(buffer.length, (label.bank + 1) * BANK_SIZE);
+  const entries = [];
+  let p = start;
+  for (let id = 1; id <= 165; id++) {
+    const bytes = [];
+    while (p < bankEnd && bytes.length < 24 && buffer[p] !== 0x50) bytes.push(buffer[p++]);
+    if (p >= bankEnd || buffer[p] !== 0x50) return { valid: false, entries };
+    p++; // terminador Gen I '@' (0x50)
+    const decoded = decodeGen1Name(Buffer.from([...bytes, 0x50]));
+    entries.push({ moveId: id, name: decoded.text, encodedHex: Buffer.from(bytes).toString('hex') });
+  }
+  return { valid: entries.length === 165, entries, source: 'ROM MoveNames' };
+}
+
 function scanRom(filename, options = {}) {
   if (!fs.existsSync(filename)) throw new Error('ROM não encontrada: ' + filename);
   const buffer = fs.readFileSync(filename);
@@ -148,13 +212,17 @@ function scanRom(filename, options = {}) {
       const symbols = parseSym(fs.readFileSync(options.symbolFile, 'utf8'));
       const pokemon = readPokemonTables(buffer, symbols);
       const growthRates = readGrowthRates(buffer, symbols);
+      const evolutionLearnsets = readEvolutionsAndLearnsets(buffer, symbols);
+      const moveNames = readMoveNames(buffer, symbols);
       mapping = {
         status: pokemon.verified && growthRates && growthRates.every(Boolean)
           ? 'TABELAS_VERIFICADAS_ESTRUTURALMENTE' : 'INCOMPATÍVEL',
         source: path.basename(options.symbolFile),
         warning: 'Hash fornecido externamente; equivalência da .sym à ROM exige prova de que vieram da mesma compilação. Gráficos/scripts não foram integralmente descodificados.',
         pokemon,
-        growthRates
+        growthRates,
+        evolutionLearnsets,
+        moveNames
       };
     }
   }
@@ -189,4 +257,5 @@ if (require.main === module) {
   }
 }
 
-module.exports = { scanRom, bankOffset, parseSym, readPokemonTables, readGrowthRates, decodeGen1Name };
+module.exports = { scanRom, bankOffset, parseSym, readPokemonTables, readGrowthRates,
+  readEvolutionsAndLearnsets, readMoveNames, decodeGen1Name };
