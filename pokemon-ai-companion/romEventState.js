@@ -85,4 +85,38 @@ function decodeHiddenItems(profile,mapId,hiddenHex,itemNames=null){
   })};
 }
 
-module.exports={decodeToggleables,decodeHiddenItems,fromKnownRom};
+// Os 12 eventos de moedas escondidas do Game Corner usam D6FE e não o
+// bitmap D6F0 dos itens. O backup está limitado a 3 SHA-256 auditados.
+const AUDITED_HIDDEN_COINS_B64='hwgACocQAQqHCwMUhw4DCocMBAqHDAkUhw8JCocOEAqHEAoKhwcLKIcID2SHDwwK';
+function decodeHiddenCoins(profile,mapId,coinHex){
+ const sha=profile?.hash?.sha256?.toLowerCase();
+ let coins=null,source=null;
+ const scripts=profile?.world?.hiddenItemScripts;
+ if(scripts?.valid && scripts.sha256?.toLowerCase()===sha &&
+    scripts.hiddenCoins?.valid && Array.isArray(scripts.hiddenCoins.coins) &&
+    scripts.hiddenCoins.coins.length===12){
+   coins=scripts.hiddenCoins.coins;
+   source='ROM_HIDDEN_COIN_EVENTS_EXTRACTED';
+ }else if(ROM_COORDS[sha]){
+   const data=Buffer.from(AUDITED_HIDDEN_COINS_B64,'base64');
+   if(data.length===48){
+     coins=Array.from({length:12},(_,i)=>({
+       hiddenIndex:i,mapId:data[i*4],y:data[i*4+1],
+       x:data[i*4+2],coinAmount:data[i*4+3]
+     }));
+     source='ROM_HIDDEN_COINS_AUDITED_THREE_BUILDS';
+   }
+ }
+ const flags=parseHex(coinHex,2);
+ if(!coins||!flags)return {verified:false,coins:[],
+   reason:!coins?'ROM de moedas escondidas não descodificada':'Flags RAM D6FE indisponíveis'};
+ if(coins.some((v,i)=>v.hiddenIndex!==i||!Number.isInteger(v.coinAmount)||
+     ![10,20,40,100].includes(v.coinAmount)))return {
+   verified:false,coins:[],reason:'Estrutura inválida de moedas escondidas'};
+ return {verified:true,source:source+' + RAM_D6FE',mapId,
+   coins:coins.filter(c=>c.mapId===mapId).map(c=>({
+     ...c,isCollected:!!(flags[c.hiddenIndex>>3]&(1<<(c.hiddenIndex&7))),
+     collectionEvidence:'ID_EVENTO_ROM + FLAG_RAM_D6FE'
+   }))};
+}
+module.exports={decodeToggleables,decodeHiddenItems,decodeHiddenCoins,fromKnownRom};
