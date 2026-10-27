@@ -375,6 +375,19 @@ function renderRomAreaEvidence(state) {
       ' / Nº '+t.trainerNumber+' X:'+t.x+' Y:'+t.y+' — '+wonStatus(t)+present(t)),
     '👤 NPCs da ROM: '+evidence.npcs.length
   ];
+  const stationary=evidence.stationaryPokemon||[];
+  if(stationary.length){
+    rows.push('✨ ENCONTROS FIXOS DE POKÉMON ('+stationary.length+
+      ') — NÃO SÃO TREINADORES');
+    for(const mon of stationary){
+      const state=mon.encounterGateClosed===true?
+        '🔒 EVENTO ENCERRADO (não confirma captura)':mon.encounterGateClosed===false?
+        '🎯 EVENTO AINDA ATIVO NA RAM':'❔ Evento por confirmar';
+      rows.push('• '+(mon.speciesName||'Pokémon interno #'+mon.speciesInternalId)+
+        ' Nv.'+mon.encounterLevel+' X:'+mon.x+' Y:'+mon.y+
+        ' — '+state);
+    }
+  }
   if(progress?.trainers){
     const tr=progress.trainers;
     rows.push('📊 Flags de treinadores: '+(tr.eventGatesClosed??0)+
