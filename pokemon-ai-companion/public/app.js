@@ -2575,16 +2575,16 @@ function renderAreaRadar(areaInfo) {
     });
   }
 
-  // Itens Visíveis e Secretos (Filtragem Estrita: Apenas Pendentes em Destaque!)
-  const playerInv = state.inventory || [];
-  const isItemCollected = (it) => {
-    return it.isCollected || it.inInventory || isItemInInventoryFrontend(it.name, playerInv);
-  };
-  const uncollectedVis = vis.filter(item => !isItemCollected(item));
-  const collectedVis = vis.filter(item => isItemCollected(item));
-  const uncollectedHid = hid.filter(item => !isItemCollected(item));
-  const collectedHid = hid.filter(item => isItemCollected(item));
+  // Três estados distintos. Possuir um item igual NÃO prova recolha.
+  const uncollectedVis = vis.filter(item => item.isCollected === false);
+  const collectedVis = vis.filter(item => item.isCollected === true);
+  const unknownVis = vis.filter(item => item.isCollected !== true && item.isCollected !== false);
+  const uncollectedHid = hid.filter(item => item.isCollected === false);
+  const collectedHid = hid.filter(item => item.isCollected === true);
+  const unknownHid = hid.filter(item => item.isCollected !== true && item.isCollected !== false);
   const allCollected = [...collectedVis, ...collectedHid];
+  const unknownItems = [...unknownVis.map(i=>({...i,kind:'visible'})),
+    ...unknownHid.map(i=>({...i,kind:'hidden'}))];
 
   // Itens Disponíveis para Apanhar Agora
   const pendingItems = [
@@ -2595,7 +2595,7 @@ function renderAreaRadar(areaInfo) {
   if (pendingItems.length > 0) {
     const pendTitle = document.createElement('div');
     pendTitle.className = 'radar-category-title';
-    pendTitle.innerHTML = `🔴 ITENS POR APANHAR NESTA ZONA (${pendingItems.length}):`;
+    pendTitle.innerHTML = `🔴 ITENS POSSIVELMENTE POR APANHAR (${pendingItems.length}) — índice RAM ainda por confirmar na ROM:`;
     elAreaItemsList.appendChild(pendTitle);
 
     pendingItems.forEach(item => {
@@ -2621,12 +2621,27 @@ function renderAreaRadar(areaInfo) {
     });
   }
 
+  if (unknownItems.length) {
+    const unknownTitle=document.createElement('div');
+    unknownTitle.className='radar-category-title';
+    unknownTitle.textContent='❔ ITENS COM ESTADO DESCONHECIDO ('+unknownItems.length+')';
+    elAreaItemsList.appendChild(unknownTitle);
+    for(const item of unknownItems){
+      const card=document.createElement('div');
+      card.className='area-item-card';
+      const pos=(Number.isInteger(item.x)&&Number.isInteger(item.y))
+        ? ' X:'+item.x+' Y:'+item.y : '';
+      card.textContent='❔ '+item.name+pos+' — recolha não comprovada (referência manual)';
+      elAreaItemsList.appendChild(card);
+    }
+  }
+
   // Barra Resumida de Itens Já Apanhados (Poupa Espaço Precioso!)
   if (allCollected.length > 0) {
     const collBox = document.createElement('div');
     collBox.className = 'collected-items-chip';
     collBox.style.cssText = 'background:rgba(0,230,118,0.06); border:1px solid rgba(0,230,118,0.2); border-radius:6px; padding:4px 8px; font-size:0.68rem; color:#69f0ae; margin-top:6px;';
-    collBox.innerHTML = `✅ <b>${allCollected.length} Itens Já Apanhados:</b> ${allCollected.map(c => c.name).join(' • ')}`;
+    collBox.innerHTML = `⚠️ <b>${allCollected.length} Itens com flag RAM indicada como recolhidos (associação à ROM por verificar):</b> ${allCollected.map(c => c.name).join(' • ')}`;
     elAreaItemsList.appendChild(collBox);
   } else if (pendingItems.length === 0 && vis.length === 0 && hid.length === 0) {
     const noItemsBox = document.createElement('div');
