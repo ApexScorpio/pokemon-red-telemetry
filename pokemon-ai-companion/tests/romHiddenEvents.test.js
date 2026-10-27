@@ -26,6 +26,10 @@ for(const [name,sha256,handlerHex,coordHex] of FIXTURES){
   assert.equal(parsed.eventMapTable.fileOffset,0x46a40);
   assert.equal(parsed.coordinateTable.fileOffset,parseInt(coordHex,16));
   assert.equal(parsed.hiddenItemHandler.cpuAddress,parseInt(handlerHex,16));
+  assert.equal(parsed.hiddenCoins.valid,true);
+  assert.equal(parsed.hiddenCoins.coins.length,12);
+  assert.deepEqual(parsed.hiddenCoins.coins.map(x=>x.coinAmount),
+    [10,10,20,10,10,20,10,10,10,40,100,10]);
   assert.deepEqual(parsed.items[53],{hiddenIndex:53,mapId:15,y:3,x:40,itemId:3});
   const profile={hash:{sha256},world:{hiddenItemScripts:parsed}};
   const flags=Array(14).fill('00');
