@@ -72,6 +72,16 @@ for(const [version,file] of Object.entries(FILENAMES)){
   assert.deepEqual(result.rosters,fallbackForKnownProfile({hash:{sha256:hash}}).rosters);
  });
 }
+test('a equipa do rival é dependente do inicial e não é assumida por número do objeto',()=>{
+ const p=auditedProfile();
+ for(const trainerClassId of [225,242,243]){
+  const result=getTrainerParty(p,trainerClassId,1);
+  assert.equal(result.variantDependent,true);
+  assert.equal(result.team,null);
+  assert.match(result.source,/VARIANTE/);
+ }
+});
+
 test('uma ROM truncada não pode produzir formações',()=>{
  assert.equal(parseTrainerParties(Buffer.alloc(200)).verified,false);
  assert.equal(parseTrainerParties(Buffer.alloc(2*16384)).verified,false);
