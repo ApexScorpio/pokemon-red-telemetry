@@ -10,10 +10,13 @@ const {
   decodeBcdMoney,
   decodeBadges,
   calculateExpProgress,
+  getGen1LevelFromExp,
+  getGen1ExpForLevel,
   analyzeBattle
 } = require('./data/pokemonData');
 const { getAreaInfo, getUpcomingBossTactics } = require('./data/areaData');
 const { getLiveAdvice } = require('./aiAdvisor');
+const CANONICAL_LEARNSETS = require('./data/gen1CanonicalLearnsets.json').byDex;
 
 function getCompass(playerCoords, targetX, targetY) {
   if (!playerCoords || targetX === undefined || targetY === undefined || targetX === null || targetY === null) {
@@ -941,17 +944,38 @@ class RetroArchClient extends EventEmitter {
           pp: parseInt(blockBoxTime[off + 29 + i], 16) & 0x3F
         };
       }).filter(Boolean);
+      const depositedLevel = parseInt(blockBoxTime[off + 3], 16);
+      const currentLevel = info?.dex ? getGen1LevelFromExp(info.dex, exp) : null;
+      const canonical = info?.dex ? CANONICAL_LEARNSETS[info.dex] : null;
+      const milestones = canonical ? [
+        ...canonical.levelUp.map(m => ({ level: m.level, type: 'MOVE', symbol: m.moveSymbol })),
+        ...canonical.evolutions.filter(e => e.method === 'LEVEL').map(e => ({
+          level: parseInt(e.param1, 10), type: 'EVOLUTION', symbol: e.param2
+        }))
+      ].filter(m => Number.isInteger(m.level) && m.level >= depositedLevel)
+       .sort((a, b) => a.level - b.level) : [];
+      const upcoming = currentLevel !== null
+        ? (milestones.find(m => m.level > currentLevel) || null) : null;
+      const overdue = currentLevel !== null
+        ? milestones.filter(m => m.level <= currentLevel && m.level > depositedLevel) : [];
+      const pickupAtLevel = upcoming ? Math.max(1, upcoming.level - 2) : null;
+      const expUntilPickup = pickupAtLevel !== null && info?.dex
+        ? Math.max(0, getGen1ExpForLevel(info.dex, pickupAtLevel) - exp) : null;
+      const pickupAlert = overdue.length
+        ? `IR BUSCAR: já ultrapassou o marco de nível ${overdue[0].level} (${overdue[0].symbol}) dentro do Daycare.`
+        : upcoming && currentLevel >= pickupAtLevel
+          ? `IR BUSCAR AGORA: ${upcoming.symbol} no nível ${upcoming.level}; faltam ${Math.max(0, upcoming.level - currentLevel)} níveis.`
+          : null;
       this.latestState.daycare = {
-        occupied: true,
-        speciesId,
+        occupied: true, speciesId,
         name: info?.name || `Pokémon #${speciesId} (não identificado)`,
-        dex: info?.dex || null,
-        depositedLevel: parseInt(blockBoxTime[off + 3], 16),
-        totalExpNow: exp,
-        moves,
-        currentLevel: null,
-        levelSource: 'Por calcular a partir do grupo de crescimento validado; nível na ficha da creche é o nível depositado até falar com o responsável',
-        readFromRam: true
+        dex: info?.dex || null, depositedLevel,
+        totalExpNow: exp, moves, currentLevel,
+        levelSource: currentLevel !== null ? 'calculado com EXP da RAM + crescimento pret/pokered' : 'não validado',
+        milestones, nextMilestone: upcoming, overdueMilestones: overdue,
+        pickupAtLevel, expUntilPickup, stepsUntilPickupEstimate: expUntilPickup,
+        pickupAlert, readFromRam: true,
+        note: 'O Daycare ganha EXP a andar; não evolui Pokémon. Os golpes podem ser aplicados automaticamente quando são levantados.'
       };
     } else {
       this.latestState.daycare = {
