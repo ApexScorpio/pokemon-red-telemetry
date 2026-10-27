@@ -35,6 +35,8 @@ let lastAdviceTime = 0;
 let cachedAdvice = null;
 
 async function getLiveAdvice(state, force = false) {
+  if (!state || !state.connected || !state.memoryReadStatus?.verified || state.isSimulation)
+    return 'Telemetria RAM indisponível ou incompleta; não emitir decisões sobre dados antigos ou simulados.';
   const now = Date.now();
   if (!force && now - lastAdviceTime < 15000) {
     return cachedAdvice;
@@ -47,6 +49,15 @@ async function getLiveAdvice(state, force = false) {
     money: state.money,
     badges: (state.badges || []).filter(b => b.obtained).map(b => b.name),
     inventory: (state.inventory || []).map(i => `${i.name} (x${i.qty})`),
+    pcStoredItems: (state.pcItems || []).map(i => `${i.name} (x${i.qty})`),
+    pcCurrentBox: (state.pcBox?.pokemon || []).map(p => ({ name:p.name, level:p.level, dex:p.dex, verified:p.valuesVerified })),
+    daycare: state.daycare || null,
+    pokedexOwned: state.pokedexOwned || [],
+    memoryProvenance: { connected: state.connected, verified: state.memoryReadStatus?.verified,
+      lastRead: state.lastUpdate, rom: state.romValidation,
+      pcAllBoxesRead: false, isSimulation: !!state.isSimulation },
+    areaReference: { wildSource: state.areaInfo?.wildSource, canonicalWildReference: state.areaInfo?.canonicalWildReference,
+      canonicalNpcTrades: state.areaInfo?.canonicalNpcTrades || [] },
     party: (state.party || []).map(p => ({
       name: p.name,
       level: p.level,
@@ -61,7 +72,8 @@ async function getLiveAdvice(state, force = false) {
     } : null
   };
 
-  const systemPrompt = `Ãƒâ€°s o Conselheiro EstratÃƒÂ©gico de Elite de PokÃƒÂ©mon Red (Grok/Groq AI).
+  const systemPrompt = `REGRAS INVIOLÁVEIS DE FIABILIDADE: Só afirmar itens, Pokémon, conquistas, golpes e eventos efetivamente confirmados pela RAM recente; o PC tem mais caixas que não foram lidas; uma Pokédex registada não garante exemplar disponível. Distinguir sempre dados estáticos da ROM, números calculados, probabilidades estimadas, e observações da RAM. Se existir dúvida, diz NÃO CONFIRMADO e não inventes. Nunca garantir vitória ou captura a 100% sem prova matemática completa. Os encontros e trocas devem respeitar Red/Blue Gen 1; Green modificado é desconhecido até validar.
+` + `Ãƒâ€°s o Conselheiro EstratÃƒÂ©gico de Elite de PokÃƒÂ©mon Red (Grok/Groq AI).
 Tens visÃƒÂ£o total em tempo real da memÃƒÂ³ria RAM do jogo no telemÃƒÂ³vel do jogador.
 Regras da tua resposta:
 - Fala em portuguÃƒÂªs de Portugal ou neutro de forma entusiasmante, direta e ultra-estratÃƒÂ©gica como um campeÃƒÂ£o da Liga PokÃƒÂ©mon.
@@ -88,6 +100,15 @@ async function askAdvisor(question, state) {
     money: state.money,
     badges: (state.badges || []).filter(b => b.obtained).map(b => b.name),
     inventory: (state.inventory || []).map(i => `${i.name} (x${i.qty})`),
+    pcStoredItems: (state.pcItems || []).map(i => `${i.name} (x${i.qty})`),
+    pcCurrentBox: (state.pcBox?.pokemon || []).map(p => ({ name:p.name, level:p.level, dex:p.dex, verified:p.valuesVerified })),
+    daycare: state.daycare || null,
+    pokedexOwned: state.pokedexOwned || [],
+    memoryProvenance: { connected: state.connected, verified: state.memoryReadStatus?.verified,
+      lastRead: state.lastUpdate, rom: state.romValidation,
+      pcAllBoxesRead: false, isSimulation: !!state.isSimulation },
+    areaReference: { wildSource: state.areaInfo?.wildSource, canonicalWildReference: state.areaInfo?.canonicalWildReference,
+      canonicalNpcTrades: state.areaInfo?.canonicalNpcTrades || [] },
     party: (state.party || []).map(p => ({
       name: p.name,
       level: p.level,
@@ -97,7 +118,8 @@ async function askAdvisor(question, state) {
     }))
   };
 
-  const systemPrompt = `Ãƒâ€°s o Conselheiro EstratÃƒÂ©gico de PokÃƒÂ©mon Red com telemetria direta da RAM.
+  const systemPrompt = `REGRAS INVIOLÁVEIS DE FIABILIDADE: Só afirmar itens, Pokémon, conquistas, golpes e eventos efetivamente confirmados pela RAM recente; o PC tem mais caixas que não foram lidas; uma Pokédex registada não garante exemplar disponível. Distinguir sempre dados estáticos da ROM, números calculados, probabilidades estimadas, e observações da RAM. Se existir dúvida, diz NÃO CONFIRMADO e não inventes. Nunca garantir vitória ou captura a 100% sem prova matemática completa. Os encontros e trocas devem respeitar Red/Blue Gen 1; Green modificado é desconhecido até validar.
+` + `Ãƒâ€°s o Conselheiro EstratÃƒÂ©gico de PokÃƒÂ©mon Red com telemetria direta da RAM.
 O jogador estÃƒÂ¡ a jogar no seu telemÃƒÂ³vel e fez-te uma pergunta.
 Usa todo o contexto real da equipa, itens e local para responder com a melhor estratÃƒÂ©gia de Gen 1 possÃƒÂ­vel.`;
 
