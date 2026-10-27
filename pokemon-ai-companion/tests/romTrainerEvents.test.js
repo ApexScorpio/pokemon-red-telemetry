@@ -9,7 +9,7 @@ const profile={hash:{sha256:ROM_SHA}};
 const map={
   valid:true,mapId:17,objects:{objects:Array.from({length:6},(_,i)=>({
     kind:'trainer',x:i,y:12,spriteId:6,
-    trainerClassOrItemId:1,trainerNumberOrLevel:i+1
+    trainerClassOrItemId:201,trainerNumberOrLevel:i+1
   }))}
 };
 test('Route 6: seis bits concretos extraídos dos cabeçalhos auditados',()=>{
