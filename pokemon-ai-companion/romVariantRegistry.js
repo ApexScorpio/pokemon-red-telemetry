@@ -3,6 +3,7 @@
 // Só leitura local. Offsets encontrados e validados por estrutura, nunca fixos.
 const fs=require('node:fs'), crypto=require('node:crypto'), path=require('node:path');
 const {inspectWorld}=require('./romWorldData');
+const {spritePngBase64}=require('./romSpriteDecoder');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
 function crc32(buf){let x=0xFFFFFFFF;for(const b of buf)x=crcTable[(x^b)&255]^(x>>>8);return ((x^0xFFFFFFFF)>>>0).toString(16).toUpperCase().padStart(8,'0');}
@@ -124,10 +125,21 @@ function spritePointersFromRom(b,stats,dimsByte){
     verified:false,candidateBanks:candidates,reason:'Banco de sprites não identificado de forma única'
   };
   const bank=candidates[0];
-  return {verified:true,source:'ROM: 2 ponteiros + 2 cabeçalhos comprimidos compatíveis',
-    bank,dimensionsByte:dimsByte,front:{cpuPointer:frontCpu,fileOffset:bank*BANK+frontCpu-0x4000},
-    back:{cpuPointer:backCpu,fileOffset:bank*BANK+backCpu-0x4000},
-    compressed:true,pixelsDecoded:false};
+  const frontOffset=bank*BANK+frontCpu-0x4000,backOffset=bank*BANK+backCpu-0x4000;
+  const result={verified:true,source:'ROM: 2 ponteiros + 2 cabeçalhos comprimidos compatíveis',
+    bank,dimensionsByte:dimsByte,front:{cpuPointer:frontCpu,fileOffset:frontOffset},
+    back:{cpuPointer:backCpu,fileOffset:backOffset},
+    compressed:true,pixelsDecoded:false,paletteSource:'GEN1_4_SHADES_NEUTRAL (SGB/SameBoy recoloring not captured)'};
+  try {
+    result.frontPngBase64=spritePngBase64(b,frontOffset,dimsByte);
+    result.backPngBase64=spritePngBase64(b,backOffset,0x44);
+    result.pixelsDecoded=true;
+    result.spritePngSource='BYTES_DESCOMPRIMIDOS_DA_ROM';
+  }catch(err){
+    result.pixelsDecoded=false;
+    result.spriteDecodeError=err.message;
+  }
+  return result;
 }
 function inspectRom(file){
  const b=fs.readFileSync(file);
@@ -168,6 +180,7 @@ function inspectRom(file){
   species,moveNames:moves.names,growthRates,world,
   spritesVerified:species.filter(x=>x.sprite?.verified).length,
   spritesTotalInBaseStats:species.filter(x=>x.stats).length,
+  spritesWithPixelsDecoded:species.filter(x=>x.sprite?.pixelsDecoded).length,
   unknownLayout:!hasCore,semanticCoveragePercent:null,
   identityMatchedWithRuntime:false};
 }
