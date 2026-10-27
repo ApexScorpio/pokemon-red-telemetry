@@ -85,14 +85,7 @@ const trades = require('./data/gen1NpcTrades.json').trades;
 const maps = require('./data/gen1CanonicalMaps.json').maps;
 const evasm = fs.readFileSync(path.join(__dirname,'data/event_constants.asm'),'utf8');
 let eventNumber=0, eventsChecked=0;
-const parseCount=x=>x.startsWith('
- result:'OK',source:'pret/pokered constants and local .sym',
- internalSpeciesVerified:speciesChecked,moveIdsVerified:movesChecked,
- itemIdsVerified:itemChecked,glitchIdsVerified:glitchIds.length,
- symbolsVerified:Object.keys(expectedAddresses).length,
- specialItemDisplayNames:itemDisplayExceptions
-},null,2));
-)?parseInt(x.slice(1),16):Number(x);
+const parseCount=x=>x.startsWith('$')?parseInt(x.slice(1),16):Number(x);
 for (const raw of evasm.split('\n')) {
   const s=raw.split(';')[0].trim(); let m;
   if ((m=s.match(/^const_def(?:\s+(\$[0-9a-f]+|\d+))?$/i))) eventNumber=m[1]?parseCount(m[1]):0;
