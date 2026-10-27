@@ -364,8 +364,8 @@ function renderRomAreaEvidence(state) {
       ' • visibilidade por confirmar';
   const removedStatus=i=>i.removedFromMap===true?' • removido do mapa (RAM)':
     i.removedFromMap===false?' • não removido do mapa (RAM)':' • remoção desconhecida';
-  const wonStatus=t=>t.defeated===true?'✅ VENCIDO (FLAG RAM)':
-    t.defeated===false?'⚔️ POR VENCER (FLAG RAM)':'❔ Resultado desconhecido';
+  const wonStatus=t=>t.eventFlagSet===true?'🔒 COMBATE DESATIVADO (FLAG RAM)':
+    t.eventFlagSet===false?'⚔️ FLAG AINDA NÃO ATIVADA (RAM)':'❔ FLAG DESCONHECIDA';
   const rows=[
     '📦 OBJETOS DE ITEM NA ROM ('+evidence.items.length+')',
     ...evidence.items.slice(0,20).map(i=>'• '+(i.itemName||'Item #'+i.itemId)+
@@ -377,9 +377,10 @@ function renderRomAreaEvidence(state) {
   ];
   if(progress?.trainers){
     const tr=progress.trainers;
-    rows.push('📊 Batalhas confirmadas: '+(tr.defeatedConfirmed??'—')+
-      ' vencidas / '+(tr.pendingConfirmed??'—')+
-      ' pendentes / '+tr.statusUnknown+' sem flag identificada');
+    rows.push('📊 Flags de treinadores: '+(tr.eventGatesClosed??0)+
+      ' desativadas / '+(tr.eventGatesOpen??0)+
+      ' por ativar / '+tr.statusUnknown+' sem associação');
+    rows.push('ℹ️ Flag desativada não prova que combateste esse treinador: scripts podem ativá-la.');
   }
   if(progress?.visibleItemObjects){
     const it=progress.visibleItemObjects;
@@ -395,11 +396,9 @@ function renderRomAreaEvidence(state) {
       ') — '+(info?.obtainedConfirmed??0)+' obtidos / '+
       (info?.stillAvailableConfirmed??0)+' por apanhar:');
     for(const item of hidden.items.slice(0,15)){
-      const manual=(state.areaInfo?.hiddenItems||[]).find(m=>m.x===item.x&&m.y===item.y);
-      rows.push('• '+(manual?.name||'Item oculto (tipo por descodificar)')+
-        ' X:'+item.x+' Y:'+item.y+' — '+
-        (item.isCollected?'✅ RECOLHIDO (bit RAM)':'🎯 AINDA DISPONÍVEL (bit RAM)')+
-        (manual?.name?' • nome de referência não verificado na ROM':''));
+      rows.push('• '+(item.itemName||'Item #'+item.itemId)+
+        ' [ID ROM '+item.itemId+'] X:'+item.x+' Y:'+item.y+' — '+
+        (item.isCollected?'✅ RECOLHIDO (bit RAM)':'🎯 AINDA DISPONÍVEL (bit RAM)'));
     }
   }else{
     rows.push('🔍 Itens ocultos: sem índice ROM/bitmap RAM confirmado');
