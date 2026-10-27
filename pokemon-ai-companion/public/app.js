@@ -380,7 +380,9 @@ function renderRomAreaEvidence(state) {
     ...evidence.trainers.slice(0,20).map(t=>{
       const team=Array.isArray(t.team)&&t.team.length ?
         ' | Equipa ROM: '+t.team.map(p=>(p.name||'#'+p.internalId)+' Nv.'+p.level).join(', ') :
-        ' | Equipa ainda sem validação ROM';
+        (t.teamVariantDependent?
+          ' | EQUIPA VARIÁVEL CONFORME INICIAL (RAM/script por confirmar)' :
+          ' | Equipa ainda sem validação ROM');
       return '• '+(t.trainerClassName||'Classe #'+t.trainerClassId)+' / Nº '+t.trainerNumber+
         ' X:'+t.x+' Y:'+t.y+' — '+wonStatus(t)+team+present(t);
     }),
