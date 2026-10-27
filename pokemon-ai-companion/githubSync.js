@@ -112,10 +112,14 @@ function formatTelemetryMarkdown(state) {
   const boss = area.upcomingBoss || null;
   const pc = state.pcBox || { boxNum: 1, count: 0, freeSlots: 20, pokemon: [] };
 
-  let md = `# 🎮 Pokémon Red • Relatório de telemetria (Gen 1)\n`;
+  const romIdentity = state.romRuntimeIdentity || {};
+  const gameTitle = romIdentity.matched ? romIdentity.title : (state.romHeader?.title || 'Pokémon Gen I — ROM desconhecida');
+  let md = `# 🎮 ${gameTitle} • Relatório de telemetria (Gen 1)\n`;
   md += `> **Estado da leitura:** **${state.isSimulation ? 'SIMULAÇÃO — NÃO É O JOGO REAL' : isFreshRealRam ? 'RAM lida recentemente e blocos validados' : 'NÃO CONFIRMADO / DESATUALIZADO — não tomar decisões com estes dados'}**\n`;
   md += `> **Identificação ROM:** \`${state.romValidation || 'ROM ainda não verificada'}\`\n`;
-  md += `> **Origem:** RetroArch READ_CORE_MEMORY (apenas endereços selecionados, NÃO 100% da RAM nem da ROM).\n`;
+  md += `> **Correspondência com ROM em execução:** **${romIdentity.matched ? 'CONFIRMADA por CRC32 + perfil de ficheiro ROM' : 'NÃO CONFIRMADA — tabelas estáticas não verificadas nesta ROM'}**.\n`;
+  md += `> **CRC32 no RetroArch:** \`${romIdentity.reportedCRC32 || 'Indisponível'}\` • **SHA-256 do perfil:** \`${romIdentity.profileSha256 || 'Sem correspondência'}\`\n`;
+  md += `> **Origem:** RetroArch READ_CORE_MEMORY (apenas endereços selecionados; dados de ROM identificados por perfil correspondente).\n`;
   md += `> **Última leitura concluída:** \`${state.lastUpdate || 'Nunca'}\` • **Relatório gerado:** ${dateStr}\n\n`;
 
   // =========================================================================
