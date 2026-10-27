@@ -3,6 +3,7 @@ const { buildProfiles, getCurrentRom, pokemonFromProfile, moveNameFromProfile } 
 const { expAtLevel } = require('./gen1EngineMath');
 const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
 const {buildRomAreaEvidence}=require('./romAreaEvidence');
+const {decodeToggleables,decodeHiddenItems}=require('./romEventState');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -947,6 +948,7 @@ class RetroArchClient extends EventEmitter {
     let wildGrassRaw = [];
     let enemyPartyRaw = [];
     let toggleRaw = [];
+    let toggleListRaw = [];
     let hiddenRaw = [];
     let walkBikeSurf = 0;
 
@@ -959,6 +961,8 @@ class RetroArchClient extends EventEmitter {
 
       // Itens no chão / Entidades Missable ($D5A6, offset 6..37, 32 bytes)
       toggleRaw = blockWorldEvents.slice(6, 38);
+      // wToggleableObjectList $D5CE: mapa atual, 17 pares (sprite local, flag global).
+      toggleListRaw = blockWorldEvents.slice(46, 80);
 
       // Itens Ocultos ($D6F0, offset 336..349, 14 bytes cobrindo todos os 54 itens ocultos)
       hiddenRaw = blockWorldEvents.slice(336, 350);
@@ -987,6 +991,15 @@ class RetroArchClient extends EventEmitter {
         return (val & (1 << bitIdx)) !== 0;
       }
       return false;
+    };
+
+    // Estes estados RAM existem mesmo sem atribuir nomes de scripts não validados.
+    const toggleableEvidence=decodeToggleables(toggleRaw,toggleListRaw);
+    this.latestState.toggleableObjectTelemetry={
+      verified:toggleableEvidence.verified,
+      source:toggleableEvidence.source||'RAM D5A6 + D5CE',
+      reason:toggleableEvidence.reason||null,
+      entries:toggleableEvidence.entries
     };
 
     // Todos os 320 bytes de wEventFlags são obtidos diretamente da WRAM.
@@ -1244,7 +1257,8 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romAreaEvidence=buildRomAreaEvidence(romMap,
       this.latestState.mapEntities,ITEM_NAMES,{
         romIdentityMatched:!!this.activeRomProfile,
-        spritesVerified:!!this.latestState.memoryReadStatus?.blocks?.overworldSprites
+        spritesVerified:!!this.latestState.memoryReadStatus?.blocks?.overworldSprites,
+        toggleables:toggleableEvidence
       });
     this.latestState.romWildEncounters = romWild ? {
       mapId: this.latestState.mapId,
@@ -1349,27 +1363,30 @@ class RetroArchClient extends EventEmitter {
     }
 
     // Itens Ocultos e Radar de Itemfinder
-    const hiddenList = (areaData.hiddenItems || []).map(item => {
-      let isCollected = null;
-      let collectionEvidence = 'NÃO_CONFIRMADO_SEM_FLAG_ASSOCIADA';
-      if (Number.isInteger(item.hiddenIndex) && item.hiddenIndex>=0 &&
-          hiddenRaw && Math.floor(item.hiddenIndex/8)<hiddenRaw.length) {
-        const b = Math.floor(item.hiddenIndex / 8),bit = item.hiddenIndex % 8;
-        const raw = hiddenRaw[b];
-        if (/^[0-9a-fA-F]{2}$/.test(raw)) {
-          isCollected = !!(parseInt(raw, 16) & (1 << bit));
-          collectionEvidence='FLAG_RAM + INDICE_DE_REFERÊNCIA_AINDA_POR_VALIDAR_NA_ROM';
-        }
-      }
-      const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
-      // Possuir item idêntico NÃO prova que este exemplar foi recolhido.
-      return {
-        ...item,
-        isCollected,collectionEvidence,
-        referenceSource:'LISTA_MANUAL_DA_ZONA_NÃO_EXTRAÍDA_INTEGRALMENTE_DA_ROM',
-        inInventory
-      };
-    });
+    const hiddenItemEvidence=decodeHiddenItems(this.activeRomProfile,this.latestState.mapId,hiddenRaw);
+    this.latestState.romHiddenItems=hiddenItemEvidence;
+    // Nas três ROMs auditadas, o ordinal da coordenada na tabela ROM corresponde
+    // ao bit de wObtainedHiddenItemsFlags. O ID/nome do item AINDA depende de scripts.
+    const hiddenList = hiddenItemEvidence.verified
+      ? hiddenItemEvidence.items.map(item=>{
+          const manual=(areaData.hiddenItems||[]).find(r=>r.x===item.x&&r.y===item.y);
+          return {
+            ...item,
+            name: manual?.name||'Item oculto (nome por identificar)',
+            nameSource:manual?'REFERÊNCIA_MANUAL_NÃO_COMPROVADA_PELO_SCRIPT_ROM':
+              'NÃO_IDENTIFICADO',
+            source:'COORDENADA_COMPARADA_NA_ROM + FLAG_RAM',
+            inInventory:manual?checkIsItemInInventory(manual.name,inventoryAndPcItems):null,
+            requires:manual?.requires||null,
+            lockReason:manual?.lockReason||null
+          };
+        })
+      : (areaData.hiddenItems||[]).map(item=>({
+          ...item,isCollected:null,
+          collectionEvidence:'ROM_OU_FLAG_RAM_NÃO_VALIDADA',
+          referenceSource:'LISTA_MANUAL_NÃO_CONFIRMADA_NESTA_ROM',
+          inInventory:checkIsItemInInventory(item.name,inventoryAndPcItems)
+        }));
 
     let itemfinderRadar = null;
     if (this.latestState.coords) {
