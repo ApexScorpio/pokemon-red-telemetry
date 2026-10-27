@@ -470,7 +470,7 @@ const AREA_DATABASE = {
       { name: 'Rattata', dex: 19, minLv: 12, maxLv: 15, chance: 15, types: ['Normal'], baseStats: { hp: 30, atk: 56, def: 35, spd: 72, spc: 25 }, rec: 'Comum.' }
     ],
     npcTrades: [
-      { give: 'Drowzee', receive: 'Farfetch\'d', nickname: 'DUX', dex: 83, hint: 'Portão superior do piso 2 da Rota 11', importance: 'Troca alternativa' }
+      { give: 'Nidorino', receive: 'Nidorina', nickname: 'TERRY', dex: 30, hint: '2.º andar do posto de controlo da Rota 11', importance: 'Troca oficial da Geração I conforme pret/pokered' }
     ],
     npcGifts: [],
     npcItems: [
