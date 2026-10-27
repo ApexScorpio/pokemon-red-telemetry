@@ -248,3 +248,20 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 9. Sem alteração de ROMs, saves, sessão Antigravity, chaves, contas ou ficheiros no disco C: do utilizador. Nenhum binário ROM foi publicado.
 
 **Limites pendentes:** `HiddenCoins` do Game Corner são uma estrutura diferente; restantes interações NPC e scripts especiais ainda não estão todos descodificados. Os nomes dos itens provêm do identificador binário confirmado e da tabela de rótulos Gen I, não de texto ASCII na ROM. O CRC32 da sessão continua a não provar criptograficamente o SHA256 do jogo no iPhone.
+
+
+## 2026-10-27 — Fase 6: IDs binários de itens ocultos e recolha de moedas
+
+- 1. Revisto o estado atual do repositório antes de qualquer alteração: `romTrainerEvents.js` já continha 312 associações objeto de treinador ↔ flag de evento. A flag ativa pode significar combate desativado por script, não comprova necessariamente que o treinador foi individualmente derrotado.
+- 2. Lidas as fontes primárias `pret/pokered/data/events/hidden_events.asm`, `engine/events/hidden_items.asm` e `data/events/hidden_coins.asm` para confirmar formato de seis bytes, índices e mapas de coordenadas.
+- 3. Criado `romHiddenEvents.js` para percorrer automaticamente a ROM, localizar a tabela de 85 mapas e 217 eventos, verificar 54 posições ocultas com ponteiros de rotinas e extrair o ID real do item, sem assumir offsets fixos das outras ROMs.
+- 4. Testes Node sobre as três ROMs originais: Red, Blue, Green International v1.2.1 reproduzem 54 itens ocultos, 85 mapas de eventos e 217 registos compilados; os 54 IDs coincidem nas três, apesar de os ponteiros da rotina se deslocarem. Route 4 X40/Y3 tem ID 03 (Great Ball).
+- 5. Alterado `romVariantRegistry.js` para incluir `world.hiddenItemScripts` no perfil gerado a partir do próprio ficheiro. Alterado `romEventState.js` para dar prioridade a esta estrutura verificada por SHA-256, mantendo compatibilidade com perfis anteriores das três ROMs auditadas.
+- 6. Descoberta e validada a tabela das 12 moedas escondidas do Game Corner nas três ROMs, separando-a dos objetos de slot machine que podem partilhar coordenadas. Valores comprovados: 10,10,20,10,10,20,10,10,10,40,100,10 moedas.
+- 7. Acrescentado `decodeHiddenCoins` em `romEventState.js`; lê bits próprios em `D6FE..D6FF`, sem confundir com recolhas de item em `D6F0..D6FD`. O `retroarchClient.js` passou a ler os dois bytes e a publicar `romHiddenCoins` na telemetria da área.
+- 8. Atualizado `public/app.js` para mostrar as moedas, quantidades, coordenadas e recolha realmente indicada pela flag RAM. Também assinala expressamente quando o atlas de treinadores cobre apenas parte de um mapa.
+- 9. Criado `tests/romHiddenEvents.test.js`; reforçados `tests/romEventState.test.js` com casos de moedas e falhas de ROM. Testados localmente os três binários reais com Node e verificada a sintaxe dos sete módulos/testes alterados. A lógica `decodeHiddenCoins` foi executada isoladamente com flags reais simuladas, passando os controlos.
+- 10. Adicionada adenda técnica a `docs/PROGRESSO_ZONA_FLAGS_ROM_RAM_V5.md`, mantendo todas as secções anteriores. Nada foi instalado ou modificado no iPhone nesta sessão; a integração ao vivo ainda precisa de verificação.
+- 11. Nenhuma ROM, save, token, sessão Antigravity, ficheiro de utilizador no C: ou processo local do jogador foi alterado. A identificação automática permanece baseada nos perfis já disponíveis e no CRC32 anunciado pelo emulador.
+
+**Limites ainda pendentes:** validação ao vivo no SameBoy, interpretação da atividade histórica completa dos treinadores, scripts de NPCs especiais, tipos de interação restantes e cobertura de ROM hacks com dados diferentes.
