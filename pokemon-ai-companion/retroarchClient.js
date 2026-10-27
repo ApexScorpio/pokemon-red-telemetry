@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { buildProfiles, getCurrentRom, pokemonFromProfile, moveNameFromProfile } = require('./romLiveResolver');
 const { expAtLevel } = require('./gen1EngineMath');
+const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -235,6 +236,9 @@ class RetroArchClient extends EventEmitter {
     this.isSimulatingBattle = false;
     // ROM local é lida apenas em memória. Nunca alteramos os ficheiros do jogador.
     this.romRegistry = buildProfiles();
+    console.log('[ROM Auto] '+this.romRegistry.profiles.length+' perfil(is): '+
+      this.romRegistry.profiles.map(p=>p.title+' '+p.hash.crc32).join(', '));
+    if(this.romRegistry.errors.length)console.warn('[ROM Auto] Fontes recusadas:',this.romRegistry.errors.slice(0,8));
     this.activeRomProfile = null;
     this.lastRomStatusReadAt = 0;
     this.lastRomRegistryRefreshAt = Date.now();
@@ -275,6 +279,9 @@ class RetroArchClient extends EventEmitter {
 
     // Um estado persistido nunca demonstra uma ROM validada agora.
     this.latestState.isSimulation = false;
+    this.latestState.romAutoDiscovery=this.romRegistry.discovery || {
+      mode:'AUTOMÁTICO_NO_ARRANQUE',profilesLoaded:this.romRegistry.profiles.length
+    };
     this.latestState.romRuntimeIdentity = {
       matched: false, source: 'RetroArch GET_STATUS + ROM local',
       localProfiles: this.romRegistry.profiles.length,
@@ -565,7 +572,8 @@ class RetroArchClient extends EventEmitter {
           process.env.POKEMON_ROM_PROFILE_PATH || process.env.POKEMON_ROM_PATH) &&
           Date.now()-this.lastRomRegistryRefreshAt > 30000) {
         this.lastRomRegistryRefreshAt = Date.now();
-        this.romRegistry = buildProfiles(); // deteta ROMs novas na pasta sem reiniciar
+        this.romRegistry = buildProfiles(); // procura ROMs e ZIPs novos sem reiniciar
+        this.latestState.romAutoDiscovery=this.romRegistry.discovery;
         match = getCurrentRom(status,this.romRegistry.profiles);
       }
       this.activeRomProfile = match;
@@ -819,6 +827,7 @@ class RetroArchClient extends EventEmitter {
       });
     }
     this.latestState.party = party;
+    this.latestState.romProgressAlerts=nextPartyAlerts(this.activeRomProfile,party);
 
     // Pokédex Capturados (151 bits em 19 bytes, offset 415..433)
     const ownedDexSet = new Set();
@@ -1102,37 +1111,26 @@ class RetroArchClient extends EventEmitter {
         };
       }).filter(Boolean);
       const depositedLevel = parseInt(blockBoxTime[off + 3], 16);
-      const currentLevel = info?.dex ? getGen1LevelFromExp(info.dex, exp) : null;
-      const canonical = info?.dex ? CANONICAL_LEARNSETS[info.dex] : null;
-      const milestones = canonical ? [
-        ...canonical.levelUp.map(m => ({ level: m.level, type: 'MOVE', symbol: m.moveSymbol })),
-        ...canonical.evolutions.filter(e => e.method === 'LEVEL').map(e => ({
-          level: parseInt(e.param1, 10), type: 'EVOLUTION', symbol: e.param2
-        }))
-      ].filter(m => Number.isInteger(m.level) && m.level >= depositedLevel)
-       .sort((a, b) => a.level - b.level) : [];
-      const upcoming = currentLevel !== null
-        ? (milestones.find(m => m.level > currentLevel) || null) : null;
-      const overdue = currentLevel !== null
-        ? milestones.filter(m => m.level <= currentLevel && m.level > depositedLevel) : [];
-      const pickupAtLevel = upcoming ? Math.max(1, upcoming.level - 2) : null;
-      const expUntilPickup = pickupAtLevel !== null && info?.dex
-        ? Math.max(0, getGen1ExpForLevel(info.dex, pickupAtLevel) - exp) : null;
-      const pickupAlert = overdue.length
-        ? `IR BUSCAR: já ultrapassou o marco de nível ${overdue[0].level} (${overdue[0].symbol}) dentro do Daycare.`
-        : upcoming && currentLevel >= pickupAtLevel
-          ? `IR BUSCAR AGORA: ${upcoming.symbol} no nível ${upcoming.level}; faltam ${Math.max(0, upcoming.level - currentLevel)} níveis.`
-          : null;
+      const computed=daycareAdvice(this.activeRomProfile,{
+        speciesId,experience:exp,depositedLevel
+      });
       this.latestState.daycare = {
-        occupied: true, speciesId,
-        name: info?.name || `Pokémon #${speciesId} (não identificado)`,
-        dex: info?.dex || null, depositedLevel,
-        totalExpNow: exp, moves, currentLevel,
-        levelSource: currentLevel !== null ? 'calculado com EXP da RAM + crescimento pret/pokered' : 'não validado',
-        milestones, nextMilestone: upcoming, overdueMilestones: overdue,
-        pickupAtLevel, expUntilPickup, stepsUntilPickupEstimate: expUntilPickup,
-        pickupAlert, readFromRam: true,
-        note: 'O Daycare ganha EXP a andar; não evolui Pokémon. Os golpes podem ser aplicados automaticamente quando são levantados.'
+        occupied:true,speciesId,
+        name:info?.name || `Pokémon #${speciesId} (não identificado)`,
+        dex:info?.dex||null,depositedLevel,totalExpNow:exp,moves,
+        currentLevel:computed.verified?computed.currentLevel:null,
+        levelSource:computed.verified?computed.source:'CURVA_NÃO_VERIFICADA_NESTA_ROM',
+        milestones:computed.verified?computed.milestones:[],
+        nextMilestone:computed.verified?computed.nextMilestone:null,
+        overdueMilestones:computed.verified?computed.overdueMilestones:[],
+        pickupAtLevel:computed.verified?computed.pickupAtLevel:null,
+        expUntilPickup:computed.verified?computed.expUntilPickup:null,
+        stepsUntilPickupEstimate:computed.verified?computed.stepsUntilPickupEstimate:null,
+        pickupAlert:computed.verified?computed.pickupAlert:null,
+        readFromRam:true,romMilestonesVerified:computed.verified,
+        note:computed.verified?
+          'Alerta calculado com a EXP RAM e os marcos extraídos da ROM CRC32 correspondente.':
+          'A RAM do Daycare foi lida, mas a curva/marcos desta ROM não puderam ser validados.'
       };
     } else {
       this.latestState.daycare = {
