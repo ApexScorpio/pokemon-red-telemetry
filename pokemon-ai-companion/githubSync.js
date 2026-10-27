@@ -99,6 +99,10 @@ function formatTelemetryMarkdown(state) {
   if (!state) return '# 🎮 Pokémon Red • Telemetria Indisponível\n';
 
   const dateStr = new Date().toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' });
+  const readTime = state && state.lastUpdate ? Date.parse(state.lastUpdate) : NaN;
+  const isFreshRealRam = !!(state && state.connected && state.memoryReadStatus &&
+    state.memoryReadStatus.verified === true && state.isSimulation !== true &&
+    Number.isFinite(readTime) && Date.now() - readTime >= 0 && Date.now() - readTime < 15000);
   const isBattle = state.inBattle && state.battle;
   const party = state.party || [];
   const inv = state.inventory || [];
@@ -107,14 +111,16 @@ function formatTelemetryMarkdown(state) {
   const boss = area.upcomingBoss || null;
   const pc = state.pcBox || { boxNum: 1, count: 0, freeSlots: 20, pokemon: [] };
 
-  let md = `# 🎮 Pokémon Red • Telemetria ao Vivo (Gen 1)\n`;
-  md += `> **ROM Validada:** \`${state.romValidation || 'Pokémon Red (USA/Europe) - Game Boy SGB Enhanced (Gen 1)'}\`\n`;
-  md += `> **Sincronizado diretamente da memória RAM via RetroArch** • **Data:** **${dateStr}**\n\n`;
+  let md = `# 🎮 Pokémon Red • Relatório de telemetria (Gen 1)\n`;
+  md += `> **Estado da leitura:** **${state.isSimulation ? 'SIMULAÇÃO — NÃO É O JOGO REAL' : isFreshRealRam ? 'RAM lida recentemente e blocos validados' : 'NÃO CONFIRMADO / DESATUALIZADO — não tomar decisões com estes dados'}**\n`;
+  md += `> **Identificação ROM:** \`${state.romValidation || 'ROM ainda não verificada'}\`\n`;
+  md += `> **Origem:** RetroArch READ_CORE_MEMORY (apenas endereços selecionados, NÃO 100% da RAM nem da ROM).\n`;
+  md += `> **Última leitura concluída:** \`${state.lastUpdate || 'Nunca'}\` • **Relatório gerado:** ${dateStr}\n\n`;
 
   // =========================================================================
   // PARTE A: ESTADO ATUAL (TELEMETRIA VIVA)
   // =========================================================================
-  md += `# 🟢 PARTE A: ESTADO ATUAL (Telemetria Viva)\n\n`;
+  md += `# ${isFreshRealRam ? '🟢' : '⚠️'} PARTE A: ${isFreshRealRam ? 'ESTADO LIDO DA RAM' : 'INSTANTÂNEO NÃO VALIDADO'}\n\n`;
 
   // 1. Localização e Estado Exato do Jogo
   md += `## 🧭 1. Localização e Estado Exato do Jogo\n`;
@@ -129,7 +135,7 @@ function formatTelemetryMarkdown(state) {
     md += `- **Tempo de Jogo:** \`${state.playTime}\`\n`;
   }
   if (state.currentDialog) {
-    md += `- **💬 Diálogo / Mensagem no Ecrã:** \`${state.currentDialog}\`\n`;
+    md += `- **💬 Texto detetado no ecrã (pode ser menu ou golpes, NÃO necessariamente diálogo):** \`${state.currentDialog}\`\n`;
   }
   md += `- **Dinheiro:** **${(state.money || 0).toLocaleString()} ₽**${state.coins !== undefined ? ` • **Fichas do Casino:** \`${state.coins}\`` : ''}\n`;
   if (state.stepCounter !== undefined) {
@@ -306,11 +312,11 @@ function formatTelemetryMarkdown(state) {
   // 5. Pokédex Completa
   const ownedCount = state.pokedexOwnedCount || (state.pokedexOwned ? state.pokedexOwned.length : 0);
   const seenCount = state.pokedexSeenCount || (state.pokedexSeen ? state.pokedexSeen.length : 0);
-  const totalLiving = state.totalPokemonOwned || (party.length + pc.count);
+  const totalLiving = party.length + pc.count;
   md += `## 📖 5. Coleção da Pokédex (Kanto Gen 1)\n`;
   md += `- **Espécies Registadas na Pokédex:** **${ownedCount} / 151** (Espécies Desbloqueadas)\n`;
   md += `- **Espécies Vistas na Pokédex:** **${seenCount} / 151**\n`;
-  md += `- **Total de Pokémon Individuais Ativos:** **${totalLiving} espécimes** (${party.length} na Equipa + ${pc.count} no PC)\n`;
+  md += `- **Pokémon visíveis neste instantâneo:** **${totalLiving}** (${party.length} na equipa + ${pc.count} na caixa selecionada; **outras caixas não foram lidas**). Não é o total global.\n`;
   if (state.pokedexOwned && state.pokedexOwned.length > 0) {
     const ownedNames = state.pokedexOwned.map(dex => {
       const entry = Object.values(INTERNAL_TO_POKEMON).find(pk => pk.dex === dex);
@@ -321,7 +327,7 @@ function formatTelemetryMarkdown(state) {
   md += `\n`;
 
   // 6. Pokémon no PC
-  md += `## 💾 6. Pokémon Guardados no PC (${pc.count} / 20 na Caixa ${pc.boxNum}) • Vagas Livres: **${pc.freeSlots}**\n`;
+  md += `## 💾 6. Pokémon no PC: APENAS a Caixa ${pc.boxNum} (${pc.count}/20) • Vagas nesta caixa: **${pc.freeSlots}**\n`;
   if (!pc.pokemon || pc.pokemon.length === 0) {
     md += `*Caixa ${pc.boxNum} vazia.*\n\n`;
   } else {
@@ -474,6 +480,14 @@ let lastSyncTimeString = 'Nunca';
 
 // Sincroniza o ficheiro README.md no repositório GitHub ApexScorpio/pokemon-red-telemetry
 async function syncToGitHub(state) {
+  // Nunca publicar um snapshot antigo, parcial ou simulado como telemetria viva.
+  const lastRead = state && state.lastUpdate ? Date.parse(state.lastUpdate) : NaN;
+  if (!state || !state.connected || !state.memoryReadStatus ||
+      state.memoryReadStatus.verified !== true || state.isSimulation === true ||
+      !Number.isFinite(lastRead) || Date.now() - lastRead < 0 ||
+      Date.now() - lastRead >= 15000) {
+    return { success: false, error: 'Telemetria não confirmada, incompleta, desatualizada ou simulada' };
+  }
   if (!GITHUB_TOKEN) return false;
   try {
     const markdown = formatTelemetryMarkdown(state);
@@ -541,7 +555,10 @@ function getStateFingerprint(state) {
 
 // Disparo periódico e seguro com deteção de alterações
 function triggerDebouncedSync(state) {
-  if (!state) return;
+  if (!state || !state.connected || !state.memoryReadStatus ||
+      state.memoryReadStatus.verified !== true || state.isSimulation === true ||
+      !state.lastUpdate || !Number.isFinite(Date.parse(state.lastUpdate)) ||
+      Date.now() - Date.parse(state.lastUpdate) > 15000) return;
 
   // Atualização em disco local em tempo real (a cada ~700ms)
   try {
