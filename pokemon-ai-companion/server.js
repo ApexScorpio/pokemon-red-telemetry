@@ -28,70 +28,32 @@ const server = http.createServer(async (req, res) => {
   // Atualização manual: pull da versão mais recente e reinício pelo supervisor start.js
   if (url.pathname === '/api/update' && req.method === 'POST') {
     const { execFileSync } = require('child_process');
-    try {
-      execFileSync('git', ['fetch', 'origin', 'main'], {
-        cwd: __dirname, stdio: 'pipe', timeout: 30000
-      });
-
-      // Verifica se existem ficheiros de código (.js, .html, .css, etc.) alterados no remote
-      let hasRemoteCodeChanges = false;
-      let changedFiles = [];
-      try {
-        const diffOutput = execFileSync('git', ['diff', '--name-only', 'HEAD', 'origin/main'], {
-          cwd: __dirname, encoding: 'utf8', timeout: 10000
-        });
-        changedFiles = diffOutput.split('\n').map(s => s.trim()).filter(Boolean);
-        hasRemoteCodeChanges = changedFiles.some(f => 
-          !f.endsWith('.md') && 
-          !f.endsWith('.txt') && 
-          !f.includes('battle_history_log') && 
-          !f.includes('dialog_history_log') && 
-          !f.includes('battle_detection_debug') && 
-          !f.includes('last_known_state')
-        );
-      } catch (e) {}
-
-      if (!hasRemoteCodeChanges) {
-        // Já tem o código mais recente!
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ 
-          success: true, 
-          message: 'O teu Pokémon AI Companion já tem a versão de código mais recente instalada! (As atualizações contínuas no GitHub referem-se aos logs de telemetria enviados em tempo real).' 
-        }));
-        return;
-      }
-
-      // Se houver código real no remote, descarta ficheiros gerados em runtime para permitir integração
-      try {
-        execFileSync('git', ['checkout', 'HEAD', '--', ':/'], {
-          cwd: __dirname, stdio: 'ignore', timeout: 10000
-        });
-      } catch (e) {}
-      try {
-        execFileSync('git', ['checkout', '--', ':/README.md', ':/telemetria.md', ':/public/telemetria.md', ':/public/telemetria.txt'], {
-          cwd: __dirname, stdio: 'ignore', timeout: 10000
-        });
-      } catch (e) {}
-
-      try {
-        execFileSync('git', ['pull', '--rebase', '-X', 'theirs', 'origin', 'main'], {
-          cwd: __dirname, stdio: 'pipe', timeout: 30000
-        });
-      } catch (pullErr) {
-        try {
-          execFileSync('git', ['rebase', '--abort'], { cwd: __dirname, stdio: 'ignore', timeout: 10000 });
-        } catch (e) {}
-        execFileSync('git', ['merge', '-X', 'theirs', '--no-edit', 'origin/main'], {
-          cwd: __dirname, stdio: 'pipe', timeout: 30000
-        });
-      }
-
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: true, message: 'Atualização de código instalada com sucesso! A reiniciar o companion...' }));
-      setTimeout(() => process.exit(0), 700);
-    } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: (err.stderr && err.stderr.toString().trim()) || err.message }));
+    const git = (args) => execFileSync('git', args, {
+      cwd: __dirname, encoding:'utf8', stdio:['ignore','pipe','pipe'], timeout:30000
+    }).trim();
+    const json=(status,data)=>{
+      res.writeHead(status,{'Content-Type':'application/json'});
+      res.end(JSON.stringify(data));
+    };
+    try{
+      git(['fetch','origin','main']);
+      const current=git(['rev-parse','HEAD']),target=git(['rev-parse','origin/main']);
+      if(current===target)return json(200,{success:true,message:'Código já atualizado.'});
+      const diff=git(['diff','--name-only',current,target]).split('\n')
+        .map(x=>x.trim()).filter(Boolean);
+      const hasCode=diff.some(x=>!x.endsWith('.md')&&!x.endsWith('.txt')&&
+        !x.includes('last_known_state')&&!x.includes('battle_history_log'));
+      if(!hasCode)return json(200,{success:true,
+        message:'Sem novas alterações de código (apenas documentos/telemetria).'});
+      const dirty=git(['status','--porcelain','--untracked-files=no']);
+      if(dirty)return json(409,{success:false,
+        message:'Atualização não instalada: alterações locais detetadas. Nenhum ficheiro foi apagado.'});
+      // Só fast-forward. Nunca fazer checkout destrutivo nem merge "theirs".
+      git(['merge','--ff-only','origin/main']);
+      json(200,{success:true,message:'Código atualizado sem apagar alterações locais. A reiniciar…'});
+      setTimeout(()=>process.exit(0),700);
+    }catch(err){
+      json(500,{success:false,error:err.stderr?.toString()?.trim()||err.message});
     }
     return;
   }
