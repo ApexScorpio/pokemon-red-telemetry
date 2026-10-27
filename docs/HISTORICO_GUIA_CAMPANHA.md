@@ -353,3 +353,15 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 12. Criado docs/BATALHAS_ESPECIAIS_ROM_RAM_V7.md com a prova compilada, fontes, limites e semântica exata. Não se tocaram os saves, os tokens, o login Antigravity ou o disco C: do utilizador.
 
 **Pendência real:** a S.S. Anne não possui um evento persistente específico de vitória na luta do rival; o Game Corner só dispõe de evidência persistente de abertura do esconderijo, que não demonstra o resultado da luta. Outras variantes ROM exigem validação dos seus próprios scripts. Integração SameBoy ainda por testar.
+
+
+## 2026-10-27 — Auditoria automática de cobertura dos treinadores por ROM
+
+- 1. Revisto o estado atual do repositório. Confirmado que romTrainerEvents.js já tinha 312 cabeçalhos de treinadores e múltiplos scripts especiais, além de regras que distinguem evento desativado de vitória comprovada. Não foi substituído por tabelas menores.
+- 2. Criado romTrainerCoverage.js: percorre os mapas válidos de cada perfil ROM, conta os treinadores humanos definidos como objetos e compara os seus ordinais com o atlas de cabeçalhos e scripts. Produz número de associações conhecidas, desconhecidas e lista dos objetos por auditar.
+- 3. Ligada a auditoria ao retroarchClient.js, com cache por hash SHA-256 do perfil. Publica romTrainerCoverage na telemetria (contagens globais, estado do mapa atual, posições e classes ainda não mapeadas).
+- 4. O dashboard public/app.js passou a apresentar explicitamente a cobertura e os treinadores da zona cujas flags continuam desconhecidas, sem presumir combate realizado ou vitória.
+- 5. Criado tests/romTrainerCoverage.test.js. Validado em execução JavaScript um cenário com seis treinadores na Route 6 conhecidos pelo atlas e um treinador sintético num mapa desconhecido: 6 mapeados, 1 por interpretar. Verificada a sintaxe JavaScript dos módulos alterados.
+- 6. Não foram alterados binários ROM, saves, credenciais, dados locais do utilizador nem o seu disco C:. O histórico anterior foi preservado integralmente.
+
+**Limite:** auditoria de cobertura de metadados; o teste real ponta a ponta com o SameBoy/iPhone ainda é necessário. A contagem global depende dos mapas descodificados e dos perfis instalados no PC. O passo técnico subsequente é interpretar os scripts dos objetos que a auditoria identifica como incompletos.
