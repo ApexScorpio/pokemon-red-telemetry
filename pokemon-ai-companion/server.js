@@ -177,6 +177,9 @@ const server = http.createServer(async (req, res) => {
   // Simulação de batalha para teste visual
   if (url.pathname === '/api/test-battle' && req.method === 'POST') {
     client.isSimulatingBattle = !client.isSimulatingBattle;
+    // Separar expressamente o modo de demonstração da telemetria da RAM.
+    // Nunca sincronizar ou persistir combate simulado como um combate real.
+    client.latestState.isSimulation = client.isSimulatingBattle;
     client.latestState.inBattle = client.isSimulatingBattle;
     if (client.latestState.inBattle) {
       client.latestState.battleType = 'Wild';
