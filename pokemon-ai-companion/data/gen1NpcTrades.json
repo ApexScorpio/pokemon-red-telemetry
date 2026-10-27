@@ -9,7 +9,18 @@
       "dialogType": "TRADE_DIALOGSET_CASUAL",
       "nickname": "TERRY",
       "locationSource": "used in ROUTE_11_GATE_2F",
-      "available": true
+      "available": true,
+      "mapId": 86,
+      "mapSymbol": "ROUTE_11_GATE_2F",
+      "give": {
+        "internalId": 167,
+        "dex": 33
+      },
+      "receive": {
+        "internalId": 168,
+        "dex": 30
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     },
     {
       "giveSymbol": "ABRA",
@@ -17,7 +28,18 @@
       "dialogType": "TRADE_DIALOGSET_CASUAL",
       "nickname": "MARCEL",
       "locationSource": "used in ROUTE_2_TRADE_HOUSE",
-      "available": true
+      "available": true,
+      "mapId": 48,
+      "mapSymbol": "ROUTE_2_TRADE_HOUSE",
+      "give": {
+        "internalId": 148,
+        "dex": 63
+      },
+      "receive": {
+        "internalId": 42,
+        "dex": 122
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     },
     {
       "giveSymbol": "BUTTERFREE",
@@ -33,7 +55,18 @@
       "dialogType": "TRADE_DIALOGSET_CASUAL",
       "nickname": "SAILOR",
       "locationSource": "used in CINNABAR_LAB_FOSSIL_ROOM",
-      "available": true
+      "available": true,
+      "mapId": 170,
+      "mapSymbol": "CINNABAR_LAB_FOSSIL_ROOM",
+      "give": {
+        "internalId": 163,
+        "dex": 77
+      },
+      "receive": {
+        "internalId": 58,
+        "dex": 86
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     },
     {
       "giveSymbol": "SPEAROW",
@@ -41,7 +74,18 @@
       "dialogType": "TRADE_DIALOGSET_HAPPY",
       "nickname": "DUX",
       "locationSource": "used in VERMILION_TRADE_HOUSE",
-      "available": true
+      "available": true,
+      "mapId": 196,
+      "mapSymbol": "VERMILION_TRADE_HOUSE",
+      "give": {
+        "internalId": 5,
+        "dex": 21
+      },
+      "receive": {
+        "internalId": 64,
+        "dex": 83
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     },
     {
       "giveSymbol": "SLOWBRO",
@@ -49,7 +93,18 @@
       "dialogType": "TRADE_DIALOGSET_CASUAL",
       "nickname": "MARC",
       "locationSource": "used in ROUTE_18_GATE_2F",
-      "available": true
+      "available": true,
+      "mapId": 191,
+      "mapSymbol": "ROUTE_18_GATE_2F",
+      "give": {
+        "internalId": 8,
+        "dex": 80
+      },
+      "receive": {
+        "internalId": 11,
+        "dex": 108
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     },
     {
       "giveSymbol": "POLIWHIRL",
@@ -57,7 +112,18 @@
       "dialogType": "TRADE_DIALOGSET_EVOLUTION",
       "nickname": "LOLA",
       "locationSource": "used in CERULEAN_TRADE_HOUSE",
-      "available": true
+      "available": true,
+      "mapId": 63,
+      "mapSymbol": "CERULEAN_TRADE_HOUSE",
+      "give": {
+        "internalId": 110,
+        "dex": 61
+      },
+      "receive": {
+        "internalId": 72,
+        "dex": 124
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     },
     {
       "giveSymbol": "RAICHU",
@@ -65,7 +131,18 @@
       "dialogType": "TRADE_DIALOGSET_EVOLUTION",
       "nickname": "DORIS",
       "locationSource": "used in CINNABAR_LAB_TRADE_ROOM",
-      "available": true
+      "available": true,
+      "mapId": 168,
+      "mapSymbol": "CINNABAR_LAB_TRADE_ROOM",
+      "give": {
+        "internalId": 85,
+        "dex": 26
+      },
+      "receive": {
+        "internalId": 141,
+        "dex": 101
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     },
     {
       "giveSymbol": "VENONAT",
@@ -73,7 +150,18 @@
       "dialogType": "TRADE_DIALOGSET_HAPPY",
       "nickname": "CRINKLES",
       "locationSource": "used in CINNABAR_LAB_TRADE_ROOM",
-      "available": true
+      "available": true,
+      "mapId": 168,
+      "mapSymbol": "CINNABAR_LAB_TRADE_ROOM",
+      "give": {
+        "internalId": 65,
+        "dex": 48
+      },
+      "receive": {
+        "internalId": 30,
+        "dex": 114
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     },
     {
       "giveSymbol": "NIDORAN_M",
@@ -81,7 +169,18 @@
       "dialogType": "TRADE_DIALOGSET_HAPPY",
       "nickname": "SPOT",
       "locationSource": "used in UNDERGROUND_PATH_ROUTE_5",
-      "available": true
+      "available": true,
+      "mapId": 71,
+      "mapSymbol": "UNDERGROUND_PATH_ROUTE_5",
+      "give": {
+        "internalId": 3,
+        "dex": 32
+      },
+      "receive": {
+        "internalId": 15,
+        "dex": 29
+      },
+      "completionStatusSource": "unverified - requires in-game event flag or validated action history"
     }
   ]
 }
