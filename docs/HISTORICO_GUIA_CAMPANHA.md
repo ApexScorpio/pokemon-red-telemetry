@@ -233,3 +233,18 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - 12. **Não foi feito o teste end-to-end no RetroArch/SameBoy do iPhone.** Não há prova de execução no PC do utilizador nesta sessão. ROMs, saves, credenciais, tokens Antigravity e C: do utilizador não foram alterados.
 
 **Pendente:** os 34 NPCs de treinador com scripts especiais, todos os efeitos de scripts de ginásio, histórico comprovado de batalhas observadas e decodificação universal de outros ROM hacks.
+
+
+## 2026-10-27 — Leitura automática do verdadeiro ID dos 54 itens ocultos nas ROMs
+
+- 1. Foi auditado o estado atual de `romTrainerEvents.js`: o repositório **já continha** 312 associações entre objetos de treinador e flags, obtidas por navegação entre ponteiros de texto, rotina e cabeçalho ROM; faltam NPCs especiais. Não se confundem flags de combate desativado com prova histórica de vitória individual.
+- 2. Consultadas as fontes originais pret/pokered para `HiddenEventMaps`, `HiddenEventPointers`, `hidden_event`, `HiddenItemCoords` e `HiddenItems`. Cada evento contém Y, X, argumento ID do item, banco da rotina e ponteiro CPU.
+- 3. Criado o módulo `romHiddenEvents.js`: procura a tabela de 85 mapas e respetivos ponteiros por assinatura estrutural, descodifica eventos de seis bytes, localiza as 54 coordenadas/índices e valida correspondências de coordenadas e rotina única. Nenhum endereço absoluto específico de Red é assumido.
+- 4. Executada a extração local nos três binários originais: em cada ROM, 85 mapas de eventos, 217 registos de eventos e 54 correspondências únicas da lista de itens ocultos. A rotina de tratamento está em banco 1D, CPU 6688 (Red), 6689 (Blue) e 668A (Green). As tabelas de coordenadas estão, respetivamente, nos offsets 766B8, 766B9 e 766BA. Os 54 IDs extraídos coincidem nas três versões.
+- 5. Acrescentado o resultado ao `world.hiddenItemScripts` do perfil gerado diretamente pela ROM no `romVariantRegistry.js`, com SHA256 do ficheiro comprovado e coordenadas/eventos de origem.
+- 6. Ajustado `romEventState.js` para preferir os IDs extraídos do ficheiro ROM efetivamente analisado e associado ao SHA256 do perfil; continua a existir a tabela exata auditada para as três ROMs no pacote JSON v4 anterior, sem exigir nova extração manual. ROMs desconhecidas sem leitura válida mantêm o estado desconhecido.
+- 7. Acrescentado `tests/romHiddenEvents.test.js` com verificações de 54 itens, deslocações do handler nas três ROMs, índice 53 da Route 4 (X40/Y3, item ID 03 Great Ball) e bit RAM de recolha. Os testes que necessitam dos três ficheiros só executam com POKEMON_ROM_DIR (caso contrário ficam explicitamente skipped).
+- 8. Verificados localmente os três binários contra o novo algoritmo equivalente em Node: 54 entradas válidas por ROM, identidade de IDs entre as três, posição e ID da Route 4. Não foi realizado teste final contra o SameBoy do iPhone.
+- 9. Sem alteração de ROMs, saves, sessão Antigravity, chaves, contas ou ficheiros no disco C: do utilizador. Nenhum binário ROM foi publicado.
+
+**Limites pendentes:** `HiddenCoins` do Game Corner são uma estrutura diferente; restantes interações NPC e scripts especiais ainda não estão todos descodificados. Os nomes dos itens provêm do identificador binário confirmado e da tabela de rótulos Gen I, não de texto ASCII na ROM. O CRC32 da sessão continua a não provar criptograficamente o SHA256 do jogo no iPhone.
