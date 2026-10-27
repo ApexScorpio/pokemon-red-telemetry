@@ -42,3 +42,16 @@ A limitação relativa a treinadores foi **parcialmente ultrapassada** após a p
 - A RAM `wEventFlags` fornece o bit atual de cada treinador verificado. O painel distingue VENCIDO / POR VENCER dos restantes, que permanecem ESTADO DESCONHECIDO.
 - Teste de exemplo: Route 6, mapa 17, 6 treinadores, índices 1041 a 1046. Duas flags em 1 produzem exatamente duas vitórias e quatro batalhas pendentes.
 - Ainda faltam os outros mapas e a verificação da ligação em execução no iPhone. A presença na ROM não prova que um treinador esteja visível ou acessível nesse instante.
+
+
+## Adenda — Identificação automática dos 54 itens e 12 moedas ocultas (27/10/2026)
+
+- O novo `romHiddenEvents.js` analisa o próprio binário ROM sem escrever dados: identifica a tabela `HiddenEventMaps` (85 mapas), o conjunto de 217 eventos compilados, os ponteiros das rotinas e a `HiddenItemCoords` (54 tripletos mapa/Y/X). Compara cada coordenada com o seu evento de seis bytes e extrai o **item ID verdadeiro** do argumento da rotina, recusando duplicações e referências ambíguas.
+- Validado em Red, Blue e Green International v1.2.1: 54 IDs iguais, com deslocações dos endereços: `HiddenItemCoords` em `0x766B8 / 0x766B9 / 0x766BA`; rotina `HiddenItems` em `1D:6688 / 1D:6689 / 1D:668A`. O item oculto da Route 4 em X40/Y3 é **item ID 03 (Great Ball)**, e a flag de recolha continua a ser lida da RAM `D6F0`.
+- `romVariantRegistry.js` guarda os resultados com hash em `world.hiddenItemScripts` nos perfis produzidos a partir de uma ROM local. `romEventState.js` prefere esta extração quando o SHA-256 coincide; para os três perfis antigos Red/Blue/Green mantém a tabela de IDs anteriormente auditada, sem exigir uma instalação manual adicional.
+- Foram também identificadas **12 moedas ocultas** no Game Corner. Distinguem-se dos itens e das slot machines mesmo quando partilham uma coordenada. A tabela de coordenadas está em `0x76822 / 0x76823 / 0x76824` e a rotina no banco `1D` nos endereços `6799 / 679A / 679B`. Os valores comprovados por ROM são `10,10,20,10,10,20,10,10,10,40,100,10`.
+- Os bits de recolha das moedas vêm de `wObtainedHiddenCoinsFlags` (`D6FE..D6FF`) e são lidos em separado dos bits de itens (`D6F0..D6FD`), através de `retroarchClient.js`. O painel `public/app.js` mostra quantidades e estado de cada moeda do mapa.
+- Adicionados testes de regressão aos ficheiros `tests/romHiddenEvents.test.js` e `tests/romEventState.test.js`; efetuados testes locais reais nas três ROMs (54 itens, 12 moedas, endereços distintos) e execução isolada da lógica de flags. Verificada sintaxe de todos os módulos alterados. A execução integral no iPhone ainda não foi testada.
+- **Não confundir** recolha real com posse de objetos/quantidades na mochila ou Coin Case; o bitmap marca o evento de recolha. Paletas, scripts completos dos NPCs e os restantes eventos especiais ainda exigem verificação.
+
+Fontes técnicas: <https://github.com/pret/pokered/blob/master/data/events/hidden_events.asm>, <https://github.com/pret/pokered/blob/master/engine/events/hidden_items.asm> e <https://github.com/pret/pokered/blob/master/data/events/hidden_coins.asm>.
