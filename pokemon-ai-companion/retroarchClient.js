@@ -2442,12 +2442,14 @@ class RetroArchClient extends EventEmitter {
       positionVerified:positionWindow.verified===true,
       areaEvidence:this.latestState.romAreaEvidence,
       hiddenItems:this.latestState.romHiddenItems?.items||[],
+      hiddenCoins:this.latestState.romHiddenCoins?.coins||[],
       trainers:[],
       warpGraph:this.latestState.romWarpGraph,
       itemAccess:this.latestState.romItemAccess,
       itemAccessInputs:accessInput,
       hiddenStartIndex:allVisItems.length+extraRomItems.length,
       hiddenFlagsVerified:this.latestState.romHiddenItems?.verified===true,
+      coinFlagsVerified:this.latestState.romHiddenCoins?.verified===true,
       trainerFlagsVerified:this.latestState.romTrainerFlags?.verified===true&&
         this.latestState.romAreaEvidence?.trainerEventRamVerified===true
     });
