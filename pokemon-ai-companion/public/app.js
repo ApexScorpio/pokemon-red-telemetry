@@ -516,6 +516,11 @@ function renderRomAreaEvidence(state) {
            ' (atravessável na tabela estática)':' (bloqueado na tabela estática)')+
           ' — movimento real NÃO comprovado');
       }else rows.push('• Tile atual: sem prova conjunta ROM/RAM');
+      const movementModeWindow=state.romMovementModeWindow;
+      if(movementModeWindow?.verified===false)
+        rows.push('⚠️ MODO DE DESLOCAÇÃO RAM D700 INCOERENTE: '+
+          (movementModeWindow.reason||'releitura indisponível')+
+          '. Direções a pé, bicicleta ou Surf não foram validadas.');
       const movement=state.romMovementOptions;
       if(movement?.verified===true&&movement.mapId===guide.mapId){
         rows.push('👣 MOVIMENTO '+movement.mode+
