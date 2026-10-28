@@ -216,6 +216,7 @@ function summarize(profile){
   warpEntries:profile.world?.warpGraph?.verified?profile.world.warpGraph.totalWarpEntries:0,
   exteriorConnections:profile.world?.outdoorConnections?.verified?profile.world.outdoorConnections.edgeCount:0,
   elevatorFloorMenuOptions:profile.world?.elevatorDestinations?.verified?profile.world.elevatorDestinations.totalMenuFloorChoices:0,
+  directionalLedgeRules:profile.world?.ledgeRules?.verified?profile.world.ledgeRules.count:0,
   landTerrainCells:profile.world?.terrainAtlas?.verified?profile.world.terrainAtlas.totals.terrainCells:0,
   landWalkableCells:profile.world?.terrainAtlas?.verified?profile.world.terrainAtlas.totals.walkableLandTerrainCells:0,
   landBlockedCells:profile.world?.terrainAtlas?.verified?profile.world.terrainAtlas.totals.blockedLandTerrainCells:0};
@@ -259,6 +260,7 @@ function structuredCatalogue(profile){
   outdoorConnections:world.outdoorConnections?.verified?world.outdoorConnections:null,
   elevatorDestinations:world.elevatorDestinations?.verified?world.elevatorDestinations:null,
   landTerrainAtlas:world.terrainAtlas?.verified?world.terrainAtlas:null,
+  ledgeRules:world.ledgeRules?.verified?world.ledgeRules:null,
   economyTradesStatus:profile.economyTrades?{
    verified:profile.economyTrades.verified,failed:profile.economyTrades.failed}:null,
   growthRates:profile.growthRates||null,
