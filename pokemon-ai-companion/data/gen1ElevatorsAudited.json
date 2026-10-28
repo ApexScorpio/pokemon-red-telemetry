@@ -1,0 +1,603 @@
+{
+  "schema": "gen1-elevator-choices-rom-sha256-v1",
+  "derivedWithoutGameBytes": true,
+  "variants": {
+    "5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b": {
+      "verified": true,
+      "romSha256": "5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b",
+      "elevators": [
+        {
+          "mapId": 127,
+          "name": "Celadon Mart Elevator",
+          "sourceBank": 18,
+          "sourceCpuAddress": 17994,
+          "sourceFileOffset": 296522,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 122,
+              "destinationWarpIndex": 5,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 123,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 124,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 3,
+              "destinationMapId": 125,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 4,
+              "destinationMapId": 136,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        },
+        {
+          "mapId": 203,
+          "name": "Rocket Hideout Elevator",
+          "sourceBank": 17,
+          "sourceCpuAddress": 22361,
+          "sourceFileOffset": 284505,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 199,
+              "destinationWarpIndex": 4,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 200,
+              "destinationWarpIndex": 4,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 202,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        },
+        {
+          "mapId": 236,
+          "name": "Silph Co Elevator",
+          "sourceBank": 17,
+          "sourceCpuAddress": 22545,
+          "sourceFileOffset": 284689,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 181,
+              "destinationWarpIndex": 3,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 207,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 208,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 3,
+              "destinationMapId": 209,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 4,
+              "destinationMapId": 210,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 5,
+              "destinationMapId": 211,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 6,
+              "destinationMapId": 212,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 7,
+              "destinationMapId": 213,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 8,
+              "destinationMapId": 233,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 9,
+              "destinationMapId": 234,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 10,
+              "destinationMapId": 235,
+              "destinationWarpIndex": 1,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        }
+      ],
+      "totalElevators": 3,
+      "totalMenuFloorChoices": 19,
+      "source": "SHA verified ROM script data: RocketHideoutElevatorWarpMaps, CeladonMartElevatorWarpMaps, SilphCoElevatorWarpMaps",
+      "warning": "Menu choices are ROM possibilities; the script modifies wWarpEntries and the current destination requires RAM",
+      "runtimeRomSha256Proven": false
+    },
+    "2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d": {
+      "verified": true,
+      "romSha256": "2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d",
+      "elevators": [
+        {
+          "mapId": 127,
+          "name": "Celadon Mart Elevator",
+          "sourceBank": 18,
+          "sourceCpuAddress": 17994,
+          "sourceFileOffset": 296522,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 122,
+              "destinationWarpIndex": 5,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 123,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 124,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 3,
+              "destinationMapId": 125,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 4,
+              "destinationMapId": 136,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        },
+        {
+          "mapId": 203,
+          "name": "Rocket Hideout Elevator",
+          "sourceBank": 17,
+          "sourceCpuAddress": 22361,
+          "sourceFileOffset": 284505,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 199,
+              "destinationWarpIndex": 4,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 200,
+              "destinationWarpIndex": 4,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 202,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        },
+        {
+          "mapId": 236,
+          "name": "Silph Co Elevator",
+          "sourceBank": 17,
+          "sourceCpuAddress": 22545,
+          "sourceFileOffset": 284689,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 181,
+              "destinationWarpIndex": 3,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 207,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 208,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 3,
+              "destinationMapId": 209,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 4,
+              "destinationMapId": 210,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 5,
+              "destinationMapId": 211,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 6,
+              "destinationMapId": 212,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 7,
+              "destinationMapId": 213,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 8,
+              "destinationMapId": 233,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 9,
+              "destinationMapId": 234,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 10,
+              "destinationMapId": 235,
+              "destinationWarpIndex": 1,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        }
+      ],
+      "totalElevators": 3,
+      "totalMenuFloorChoices": 19,
+      "source": "SHA verified ROM script data: RocketHideoutElevatorWarpMaps, CeladonMartElevatorWarpMaps, SilphCoElevatorWarpMaps",
+      "warning": "Menu choices are ROM possibilities; the script modifies wWarpEntries and the current destination requires RAM",
+      "runtimeRomSha256Proven": false
+    },
+    "aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db": {
+      "verified": true,
+      "romSha256": "aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db",
+      "elevators": [
+        {
+          "mapId": 127,
+          "name": "Celadon Mart Elevator",
+          "sourceBank": 18,
+          "sourceCpuAddress": 17994,
+          "sourceFileOffset": 296522,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 122,
+              "destinationWarpIndex": 5,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 123,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 124,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 3,
+              "destinationMapId": 125,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 4,
+              "destinationMapId": 136,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        },
+        {
+          "mapId": 203,
+          "name": "Rocket Hideout Elevator",
+          "sourceBank": 17,
+          "sourceCpuAddress": 22361,
+          "sourceFileOffset": 284505,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 199,
+              "destinationWarpIndex": 4,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 200,
+              "destinationWarpIndex": 4,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 202,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        },
+        {
+          "mapId": 236,
+          "name": "Silph Co Elevator",
+          "sourceBank": 17,
+          "sourceCpuAddress": 22545,
+          "sourceFileOffset": 284689,
+          "availableFloorOptions": [
+            {
+              "floorMenuIndex": 0,
+              "destinationMapId": 181,
+              "destinationWarpIndex": 3,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 1,
+              "destinationMapId": 207,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 2,
+              "destinationMapId": 208,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 3,
+              "destinationMapId": 209,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 4,
+              "destinationMapId": 210,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 5,
+              "destinationMapId": 211,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 6,
+              "destinationMapId": 212,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 7,
+              "destinationMapId": 213,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 8,
+              "destinationMapId": 233,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 9,
+              "destinationMapId": 234,
+              "destinationWarpIndex": 2,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            },
+            {
+              "floorMenuIndex": 10,
+              "destinationMapId": 235,
+              "destinationWarpIndex": 1,
+              "destinationRomVerified": true,
+              "selectedNow": null,
+              "accessibleNow": null
+            }
+          ],
+          "currentFloorFromRamVerified": false,
+          "currentSelectionFromRamVerified": false,
+          "allTravelConditionsVerified": false
+        }
+      ],
+      "totalElevators": 3,
+      "totalMenuFloorChoices": 19,
+      "source": "SHA verified ROM script data: RocketHideoutElevatorWarpMaps, CeladonMartElevatorWarpMaps, SilphCoElevatorWarpMaps",
+      "warning": "Menu choices are ROM possibilities; the script modifies wWarpEntries and the current destination requires RAM",
+      "runtimeRomSha256Proven": false
+    }
+  }
+}
