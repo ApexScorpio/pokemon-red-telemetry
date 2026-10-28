@@ -27,7 +27,7 @@ function toTerrain(g){
 function check(g,{canCut=false,canSurf=false,actors=[],spritesVerified=true,
   position={x:1,y:2},items=[{name:'TEST ITEM',x:6,y:2,type:'visible'}]}={}){
  return planItemAccess({terrain:toTerrain(g),romSha256:sha[0],position,
-  items,modeByte:0,mapSnapshotVerified:true,positionVerified:true,
+  items:items.map(i=>({romItemCoordinatesVerified:true,...i})),modeByte:0,mapSnapshotVerified:true,positionVerified:true,
   spritesVerified,mapEntities:actors,canCut,canSurf});
 }
 test('Cut: só a rota hipotética através de arbusto gera NEEDS_CUT',()=>{
@@ -123,4 +123,12 @@ test('Route 4: depois do salto da encosta, não prometer recuperar TM04 por Cut'
    pairs:m.landBlockedTilePairs};
  const fromBelow=computeReach(g,{x:75,y:12},{canCut:true,canSurf:false});
  assert.equal(candidatePath(fromBelow,{x:57,y:3},{hidden:false}),null);
+});
+
+test('um item com coordenadas apenas manuais não recebe caminho certificado',()=>{
+ const g=makeGrid('boulder');
+ const result=check(g,{items:[{name:'Manual',x:6,y:2,
+   type:'visible',romItemCoordinatesVerified:false}]});
+ assert.equal(result.results[0].accessStatus,'UNVERIFIED_ROM_ITEM');
+ assert.equal(result.results[0].route,null);
 });

@@ -1656,6 +1656,7 @@ class RetroArchClient extends EventEmitter {
         ...item,name:itemName,itemId:romObject?.itemId??null,
         nameSource:romItemName?'ITEM_ID_ROM + NOMES_LOCAIS_NÃO_COMPROVADOS_NO_BINÁRIO':'REFERÊNCIA_MANUAL_NÃO_VERIFICADA',
         isCollected:null, // flag de remoção nunca prova uma recolha específica
+        romItemCoordinatesVerified:!!romObject&&this.latestState.romAreaEvidence?.verified===true,
         removedFromMap:romObject?.removedFromMap??null,
         toggleableFlagIndex:romObject?.toggleableFlagIndex??null,
         collectionEvidence:romObject?.removedSource||'SEM_VÍNCULO_ROM_RAM',
@@ -1674,6 +1675,7 @@ class RetroArchClient extends EventEmitter {
         nameSource:o.itemName?'ITEM_ID_ROM + NOMES_LOCAIS_NÃO_COMPROVADOS_NO_BINÁRIO':'NÃO_IDENTIFICADO',
         itemId:o.itemId,x:o.x,y:o.y,
         isCollected:null,removedFromMap:o.removedFromMap,
+        romItemCoordinatesVerified:this.latestState.romAreaEvidence?.verified===true,
         toggleableFlagIndex:o.toggleableFlagIndex,
         collectionEvidence:o.removedSource,
         referenceSource:o.source,
@@ -1691,6 +1693,7 @@ class RetroArchClient extends EventEmitter {
         ...item,
         isCollected,
         inInventory,
+        romItemCoordinatesVerified:hiddenItemEvidence.verified===true,
         isLocked: !accInfo.accessible,
         lockReason: accInfo.reason,
         compass

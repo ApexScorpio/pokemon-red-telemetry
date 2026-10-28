@@ -174,6 +174,12 @@ function planItemAccess({terrain,romSha256,position,items=[],
      source:'MAPA_ROM_SHA256_LOCAL + RAM_SEQUENCIAL',reason:null,
      abilities:{canCut,canSurf},
      requiresGlobalRouteVerification:true};
+   // Sem vínculo coordenadas↔ROM, a referência manual não prova presença.
+   if(item.romItemCoordinatesVerified!==true){
+     out.accessStatus='UNVERIFIED_ROM_ITEM';
+     out.reason='Objeto ou coordenada sem correspondência validada na ROM do mapa.';
+     return out;
+   }
    if(item.isCollected===true){
      out.accessStatus='COLLECTED_FLAG';out.reason='Flag de item oculto obtido';
      return out;

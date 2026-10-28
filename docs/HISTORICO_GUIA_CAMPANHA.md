@@ -761,3 +761,8 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - `public/app.js` rotula cada item como percurso condicional, necessidade hipotética de Cut/Surf, rota inexistente neste mapa, possível Strength ou estado desconhecido. Remove a apresentação enganadora de «disponível já» e de presentes de NPC sem requisitos verificados.
 - Removido `getAreaInfo` da divisão manual de Route 4 pela coordenada X=30, que escondia itens e apresentava encontros de Mt. Moon como se fossem da relva exterior. Agora os itens conhecidos da Route 4 permanecem no mapa; o acesso é calculado pelo motor.
 - Nota: testes visuais do RetroArch/iPhone ainda pendentes; cálculo Cut/Surf/ledge depende das condições do motor e não prova roteiro multi-mapa ou execução atual.
+
+
+## 2026-10-28 — Presença ROM antes do cálculo de acesso a itens
+- Correção fail-closed: referências manuais sem `romItemCoordinatesVerified` recebem `UNVERIFIED_ROM_ITEM`, mesmo que exista um caminho no terreno. Ligação à ROM obtida de objeto validado ou de item oculto com scripts/flags ROM/RAM. Não confundir uma rota para coordenadas manuais com a presença de um item.
+- Teste de regressão adicionado. Sem manipulação de ROMs, perfis ou saves.
