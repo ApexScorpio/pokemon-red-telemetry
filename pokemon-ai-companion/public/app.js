@@ -490,8 +490,17 @@ function renderRomAreaEvidence(state) {
       ' (posição/flags atuais dependem da RAM)');
     rows.push('🚪 WARP / SAÍDAS ('+guide.warps.length+') — o acesso pode depender de eventos:');
     for(const w of guide.warps){
-      rows.push('• X:'+w.x+' Y:'+w.y+' → mapa #'+w.map+
-        ' (índice '+w.warp+'; acessibilidade não confirmada)');
+      const edge=guide.navigation?.exits?.find(e=>
+        e.sourceWarpIndex===guide.warps.indexOf(w));
+      const destination=w.map===255?
+        'mapa anterior (LAST_MAP: exige RAM)':
+        edge?.status==='SILPH_ELEVATOR_SCRIPT_PATCH_REQUIRED'?
+          'destino do elevador definido por script/RAM':
+          'mapa #'+w.map+' (warp '+w.warp+')';
+      rows.push('• X:'+w.x+' Y:'+w.y+' → '+destination+
+        (edge?.landing?' chegada X:'+edge.landing.x+' Y:'+edge.landing.y:'')+
+        ' · '+(edge?.status||'destino por confirmar')+
+        ' · acesso atual não comprovado');
     }
     rows.push('🪧 PLACAS E INTERAÇÕES DE TEXTO: '+guide.signs.length);
     for(const sign of guide.signs){
