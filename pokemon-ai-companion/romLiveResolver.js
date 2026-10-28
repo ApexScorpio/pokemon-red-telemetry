@@ -4,6 +4,7 @@
 const fs=require('node:fs'),path=require('node:path');
 const {inspectRom,runtimeMatches}=require('./romVariantRegistry');
 const {listCandidates,inspectZipProfiles}=require('./romAutoDiscovery');
+const economyDerivedCatalogue=require('./data/gen1EconomyTradesAudited.json');
 const TYPES={0:'Normal',1:'Fighting',2:'Flying',3:'Poison',4:'Ground',5:'Rock',
   7:'Bug',8:'Ghost',20:'Fire',21:'Water',22:'Grass',23:'Electric',
   24:'Psychic',25:'Ice',26:'Dragon'};
@@ -57,6 +58,22 @@ function profileQuality(profile) {
  return sprite*10+world*100+(verifiedMachineData?50:0)+
    (profile.source==='local-ROM-file'?10000:0);
 }
+// Enrich *already validated* imported profiles using tables derived from the exact
+// same user-supplied 1 MiB ROMs. No ROM bytes, no access to original ROM required.
+// CRC from an emulator is not cryptographic SHA-256 proof of runtime identity.
+function enrichKnownEconomyProfile(profile){
+ const sha=String(profile?.hash?.sha256||'').toLowerCase();
+ const trusted=economyDerivedCatalogue.entries?.[sha];
+ if(!trusted||trusted.verified!==true||trusted.romSha256!==sha||
+    String(profile?.hash?.crc32||'').toUpperCase()!==trusted.expectedCrc32||
+    profile.bytes!==1048576||profile.bytesRead!==profile.bytes)return profile;
+ if(profile.economyTrades?.verified!==true){
+  profile.economyTrades={...trusted,
+   source:'DERIVED_EXACT_ROM_SHA256_PUBLISHED_CATALOGUE; RUNTIME_ROM_SHA_NOT_PROVEN',
+   runtimeIdentityVerified:false,livePurchaseFlagsVerified:false};
+ }
+ return profile;
+}
 function buildProfiles(){
  const profiles=[],errors=[];
  const seen=new Map();
@@ -74,6 +91,7 @@ function buildProfiles(){
        .every(k=>p.offsets?.[k]&&p.validated[k]===true)||
      p.unknownLayout===true)throw Error('perfil JSON inválido/incompleto');
   p.source=source;
+  enrichKnownEconomyProfile(p);
   const other=seen.get(p.hash.sha256);
   if(other!==undefined){
     if(profileQuality(p)>profileQuality(profiles[other]))profiles[other]=p;
@@ -147,4 +165,4 @@ function pokemonFromProfile(profile,internalId,reference){
 function moveNameFromProfile(profile,id){
  return profile&&Number.isInteger(id)&&id>0 ? profile.moveNames?.[id-1]||null : null;
 }
-module.exports={buildProfiles,getCurrentRom,pokemonFromProfile,moveNameFromProfile};
+module.exports={buildProfiles,getCurrentRom,pokemonFromProfile,moveNameFromProfile,enrichKnownEconomyProfile};
