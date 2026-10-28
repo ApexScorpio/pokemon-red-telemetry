@@ -6,6 +6,7 @@ const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const {staticMapGuide}=require('./romAreaGuide');
 const {annotateLastMap}=require('./romLastMapEvidence');
 const {inspectTerrainCell}=require('./romTerrainAtlas');
+const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
@@ -1054,6 +1055,10 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romTerrainCurrentTile=coordsAgree?
       inspectTerrainCell(terrain,pos.x,pos.y):
       {verified:false,reason:'Geometria ROM, dimensões RAM ou posição não coincidem'};
+    this.latestState.romTerrainWarpHints=coordsAgree&&
+      this.latestState.romTerrainCurrentTile?.verified===true?
+      terrainWarpHints(this.latestState.romStaticMapGuide,pos):
+      {verified:false,reason:'Matriz ROM ou coordenadas RAM não corroboradas'};
     if(this.latestState.romTerrainCurrentTile?.verified)
       this.latestState.romTerrainCurrentTile={
         ...this.latestState.romTerrainCurrentTile,
