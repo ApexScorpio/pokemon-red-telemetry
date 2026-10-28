@@ -167,6 +167,11 @@ function staticMapGuide(profile,mapId){
    tilesetId:m.tilesetId,connections:m.connectionFlags,blockHash:m.blockSha256||null,
    blockGrid:validatedBlockGrid(m)},
   warps:(obj.warps||[]).map(normalizeWarp),
+  navigation:(world.warpGraph?.verified===true&&world.warpGraph?.romSha256===sha)?{
+    verified:true,source:'ALL_813_ROM_WARP_ENTRIES_SHA256_VERIFIED',
+    exits:world.warpGraph.edges.filter(edge=>edge.sourceMapId===mapId),
+    staticRouteOnly:true,scriptAndRamGatesUnresolved:true
+  }:{verified:false,reason:'Grafo de saídas da ROM não comprovado no perfil atual'},
   signs:obj.signs||[],npcs:actors.filter(x=>x.kind==='npc'),
   visibleItems:items,hiddenItems:hidden,hiddenCoins:coins,
   trainers:trainersFor(profile,actors).map(t=>({
