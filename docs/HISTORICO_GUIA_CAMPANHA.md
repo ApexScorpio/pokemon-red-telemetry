@@ -559,3 +559,15 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Confirmada a tabela de 13 rácios de precisão no offset `0x3F6CB`, os quatro golpes de crítico elevado na tabela efetiva em `0x3E08E`, e uma cópia não utilizada em `0x3E01E`. Publicado `romBattleRuleTables.js` com validação dos três SHA-256 e cinco testes locais aprovados.
 - Integrado o catálogo auditado no perfil de ROM e a proveniência de críticos elevados na descrição dos golpes. Relatório: `docs/AUDITORIA_REPEL_PRECISAO_CRITICOS_20261028.md`.
 - Total desta fase: 13/13 testes Node locais aprovados, 0 ignorados. Não foi executado teste integral do Companion, interface real ou emulador; cobertura de 100% não certificada. Originais das ROMs preservados.
+
+
+## 2026-10-28 — Execução conjunta: auditoria 64 bancos e cobertura verificável das três ROMs
+
+- Criada API `inspectRomBuffer` em `romVariantRegistry.js`, preservando o método anterior `inspectRom(file)`. O conteúdo Red ZIP pode ser analisado em memória, sem extrair ROMs para disco.
+- Publicado `romComprehensiveAudit.js`: execução combinada Red/Blue/Green, verificação de SHA-256 e cabeçalho, leitura completa dos 64 bancos por ROM, hash por banco, divergências exatas de bytes e intervalos, classificação conservadora de cada byte, catálogo por espécie/golpe/mapa/encontro/treinador/evento com proveniência quando validada, 14 domínios explicitamente não certificados.
+- Resultados diferenciais diretos sobre os três ficheiros reais: Red×Blue 26 670 bytes distintos (14 bancos); Red×Green 147 468 (32 bancos); Blue×Green 162 243 (32 bancos). 3 ROMs de 1 048 576 bytes, total 3 145 728 bytes examinados.
+- Executada prova local com adaptador do atlas histórico: 6/6 testes Node aprovados; em cada ROM 24 580 bytes anotados como descodificados, 22 935 bytes com reconhecimento apenas estrutural e 1 001 061 sem classificação por intervalos, sobre este atlas e não sobre uma desmontagem completa. Não é métrica de % das mecânicas entendidas.
+- Publicado `tests/romComprehensiveAudit.test.js`: 4/4 testes estáticos aprovados; 3 verificações SHA diretas das três ROMs reais aprovadas quando os caminhos são fornecidos. O teste integrado de todos os leitores do repositório fica condicionado à árvore real do projeto e aos três ficheiros ROM locais; não foi executado neste ambiente.
+- Atualizado `package.json` com `npm run audit:roms` e `npm run test:audit:roms`. Gerado inventário JSON local (sem bytes originais) e documentação `docs/AUDITORIA_INTEGRAL_64_BANCOS_3_ROMS_20261028.md`.
+- Nenhuma ROM, save, perfil/tokens/sessão Antigravity, dados TIMI/Maestro/BonChat ou ficheiros C: do computador do utilizador foram alterados. Sem GitHub Actions nem automações de consumo de minutos. Histórico atualizado exclusivamente por acrescento.
+- A cobertura semântica de 100%, snapshot RAM atómico, scripts completos, efeitos de todos os golpes e validação no iPhone continuam não certificados; não apresentar a execução parcial como 100% de jogabilidade.
