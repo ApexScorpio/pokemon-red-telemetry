@@ -42,7 +42,7 @@ for(const [name,key,expectedSha] of [
  test('ROM real '+name+': Route 2 has map items and conditional encounter distribution',
   {skip:!process.env[key]||!process.env.POKEGUIDE_INVENTORY_JSON},()=>{
    const fs=require('node:fs'),crypto=require('node:crypto');
-   const rom=fs.readFileSync(process.env[key]);
+   const rom=require('../romComprehensiveAudit').readRom(process.env[key]);
    assert.equal(crypto.createHash('sha256').update(rom).digest('hex'),expectedSha);
    const audit=JSON.parse(fs.readFileSync(process.env.POKEGUIDE_INVENTORY_JSON,'utf8')).variants[name];
    const g=staticMapGuide({hash:{sha256:expectedSha},unknownLayout:false,
