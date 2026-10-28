@@ -776,3 +776,12 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 ## 2026-10-28 — Síntese de mundo global integrada na leitura RAM
 - `retroarchClient.js` invoca `adviseWorld` em cada ciclo normal para qualquer ID de mapa, a partir do perfil ROM, objetos, itens ocultos, treinadores e transições. Resultado disponibilizado em `latestState.worldAdvisor`; flags e consequências condicionais não são tratadas como resultados garantidos.
 - Limite explícito: o motor de scripts/eventos não está completo; ainda não foi validado num emulador real.
+
+
+## 2026-10-28 — PokéGuide T0/T1: tracking persistente e provas independentes no conselheiro mundial
+
+- Criada branch de trabalho `feature/pokeguide-world-action-tracker-20261028` a partir da branch principal e instituído `docs/TRACKING_POKEGUIDE_100_PERCENT.md` com 12 entregáveis, critérios de prova e estados PARCIAL/EM EXECUÇÃO/PENDENTE. Não foram apagadas entradas anteriores.
+- Corrigido `romWorldStateAdvisor.js`: flags de itens ocultos não são utilizadas para inferir vitória nem estado de treinadores. A classificação separa `VICTORY_SCRIPT_FLAG`, `BATTLE_PLAYED_SCRIPT_FLAG`, `TRAINER_GATE_CLOSED`, `TRAINER_GATE_OPEN` e `UNKNOWN`, exigindo fonte de prova de treinador.
+- Ligados os resultados de `romItemReachability.js` às observações globais apenas quando SHA-256, mapa, índice de origem, coordenadas e verificação ROM coincidem. Duplicados de coordenadas do mesmo tipo são ambíguos e não herdam acesso. As rotas continuam condicionais, nunca acessibilidade garantida.
+- `retroarchClient.js` injeta explicitamente os índices da lista original e evidência por domínio; quando a verificação do mapa falha, descarta conselhos e rotas do mapa antigo.
+- Evidência: commits `6d1682b` e `30283d4` na branch de trabalho. **Não houve suite completa ou E2E de emulador/iPhone nesta etapa; integração ainda sujeita a testes.**
