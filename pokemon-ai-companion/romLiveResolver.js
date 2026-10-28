@@ -8,6 +8,7 @@ const economyDerivedCatalogue=require('./data/gen1EconomyTradesAudited.json');
 const moveEffectDerivedCatalogue=require('./data/gen1MoveEffectDispatchAudited.json');
 const {buildWarpGraph}=require('./romWarpGraph');
 const outdoorDerivedCatalogue=require('./data/gen1OutdoorConnectionsAudited.json');
+const elevatorDerivedCatalogue=require('./data/gen1ElevatorsAudited.json');
 const TYPES={0:'Normal',1:'Fighting',2:'Flying',3:'Poison',4:'Ground',5:'Rock',
   7:'Bug',8:'Ghost',20:'Fire',21:'Water',22:'Grass',23:'Electric',
   24:'Psychic',25:'Ice',26:'Dragon'};
@@ -76,6 +77,12 @@ function enrichKnownEconomyProfile(profile){
      border.reciprocalConnections===78)
    profile.world.outdoorConnections={...border,
     runtimeRomSha256Proven:false};
+ }
+ if(profile.world?.maps?.valid===true&&profile.world.elevatorDestinations?.verified!==true){
+  const elevators=elevatorDerivedCatalogue.variants?.[sha];
+  if(elevators?.verified===true&&elevators.romSha256===sha&&
+     elevators.totalElevators===3&&elevators.totalMenuFloorChoices===19)
+   profile.world.elevatorDestinations={...elevators,runtimeRomSha256Proven:false};
  }
  if(profile.moveEffectDispatch?.verified!==true&&
     moveEffectDerivedCatalogue.verified===true&&
