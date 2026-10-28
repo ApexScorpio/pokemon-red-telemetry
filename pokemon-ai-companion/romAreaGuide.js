@@ -7,6 +7,11 @@ const SHA=new Set([
  '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
  '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
  'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db']);
+// Reference map constants: these 22 IDs have 0x0 dimensions in pret/pokered.
+// This classification is NOT proof that arbitrary hacks lack custom content.
+const REFERENCE_UNUSED_IDS=Object.freeze([11,105,106,107,109,110,111,112,114,115,116,117,
+ 204,205,206,231,237,238,241,242,243,244]);
+const REFERENCE_UNUSED_SET=new Set(REFERENCE_UNUSED_IDS);
 const RIVAL=new Set([225,242,243]);
 const weights=[51,51,39,25,25,25,13,13,11,3];
 function speciesAt(profile,id){
@@ -78,7 +83,16 @@ function staticMapGuide(profile,mapId){
   return {verified:false,reason:'Tabelas de mapas e encontros não validadas'};
  const m=maps.data.find(e=>e.mapId===mapId);
  const w=wild.data.find(e=>e.mapId===mapId);
- if(!m||!m.valid)return {verified:false,mapId,romSha256:sha,reason:'Mapa sem cabeçalho normal validado; não assumir que não tem eventos'};
+ if(!m||!m.valid){
+  const reserved=REFERENCE_UNUSED_SET.has(mapId);
+  return {verified:false,mapId,romSha256:sha,
+    referenceUnusedSlot:reserved,
+    status:reserved?'RESERVED_ID_NO_NORMAL_ROM_HEADER':'UNRESOLVED_MAP_HEADER',
+    referenceSource:reserved?'pret/pokered constants/map_constants.asm UNUSED_MAP IDs with 0x0 dimensions':null,
+    reason:reserved?
+      'ID reservado na tabela de referência e sem cabeçalho normal descodificado; não inferir comportamento de hacks':
+      'Mapa sem cabeçalho normal validado; não assumir que não tem eventos'};
+ }
  if(!w)return {verified:false,mapId,romSha256:sha,reason:'Tabela de encontros do mapa ausente'};
  const obj=m.objects||{},actors=obj.objects||[];
  const items=actors.filter(x=>x.kind==='item').map(o=>({x:o.x,y:o.y,
@@ -106,8 +120,13 @@ function staticMapGuide(profile,mapId){
 }
 function mapGuideIndex(profile){
  if(!profile?.world?.maps?.data)return {verified:false,maps:[]};
- return {verified:true,romSha256:profile.hash.sha256,maps:profile.world.maps.data
-  .map(m=>staticMapGuide(profile,m.mapId)),
-  scope:'Catálogo estático indexado por 248 IDs; locais não validados assinalados, e nenhum estado atual atribuído'};
+ const guides=profile.world.maps.data.map(m=>staticMapGuide(profile,m.mapId));
+ const reserved=guides.filter(m=>m.referenceUnusedSlot===true).length;
+ return {verified:true,romSha256:profile.hash.sha256,maps:guides,
+  normalHeadersValidated:guides.filter(m=>m.verified).length,
+  reservedIdsWithoutHeader:reserved,
+  unresolvedNonReservedIds:guides.filter(m=>!m.verified&&!m.referenceUnusedSlot).length,
+  reservedClassification:'REFERENCE_MAP_CONSTANTS_AND_NO_DECODED_HEADER_NOT_LIVE_PROOF',
+  scope:'Os IDs UNUSED_MAP de referência não são mapas jogáveis a descodificar; não validar conteúdo de hacks sem prova'};
 }
-module.exports={staticMapGuide,mapGuideIndex,encountersFor,trainersFor};
+module.exports={staticMapGuide,mapGuideIndex,encountersFor,trainersFor,REFERENCE_UNUSED_IDS};
