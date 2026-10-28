@@ -576,6 +576,12 @@ class RetroArchClient extends EventEmitter {
         power:romMove.powerByte,pp:romMove.basePp,
         typeId:romMove.typeByte,effectByte:romMove.effectByte,
         accuracyByte:romMove.accuracyByte,
+        // Proveniência dos críticos: tabela efetiva HighCriticalMoves validada
+        // pela SHA256 da ROM LOCAL; não prova o estado do turno no emulador.
+        highCriticalFromAuditedRom:this.activeRomProfile?.battleRuleTables?.verified===true?
+          this.activeRomProfile.battleRuleTables.highCriticalMoveIdsFromRom.includes(id):null,
+        highCriticalDataSource:this.activeRomProfile?.battleRuleTables?.verified===true?
+          'HIGH_CRITICAL_MOVES_ROM_LOCAL_SHA256_VERIFICADA':'NÃO_COMPROVADO',
         // Indicador nominal derivado do byte, NÃO probabilidade efetiva do turno.
         acc:romMove.accuracyByte*100/255,
         accuracySource:'BYTE_ROM_A_APLICAR_A_ESTAGIOS_DO_TURNO',
