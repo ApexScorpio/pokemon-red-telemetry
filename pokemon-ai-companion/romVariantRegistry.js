@@ -148,7 +148,10 @@ function spritePointersFromRom(b,stats,dimsByte){
   return result;
 }
 function inspectRom(file){
- const b=fs.readFileSync(file);
+ return inspectRomBuffer(fs.readFileSync(file),path.basename(file));
+}
+function inspectRomBuffer(b,file='ROM_EM_MEMORIA.gb'){
+ if(!Buffer.isBuffer(b))throw Error('É necessário um Buffer de ROM');
  if(b.length<0x150||b.length%BANK)throw Error('ROM sem bancos Game Boy completos');
  let h=0;for(let i=0x134;i<=0x14c;i++)h=(h-b[i]-1)&255;
  if(h!==b[0x14d])throw Error('Checksum do cabeçalho inválido');
@@ -215,7 +218,7 @@ function runtimeMatches(profile,status){
  const m=String(status||'').match(/\bcrc32=([0-9a-f]{8})\b/i);
  return !!(profile&&m&&m[1].toUpperCase()===profile.hash.crc32);
 }
-module.exports={inspectRom,runtimeMatches,crc32,spritePointersFromRom};
+module.exports={inspectRom,inspectRomBuffer,runtimeMatches,crc32,spritePointersFromRom};
 if(require.main===module)try{
  if(!process.argv[2])throw Error('Uso: node romVariantRegistry.js "caminho\\jogo.gb"');
  const p=inspectRom(process.argv[2]);
