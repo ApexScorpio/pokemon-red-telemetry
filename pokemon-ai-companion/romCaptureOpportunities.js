@@ -13,16 +13,18 @@ function captureOpportunities(romWild,owned,seen,{romMatched=false,partyRamVerif
  for(const kind of ['grass','water']){
   const data=romWild[kind];
   if(!data||!Array.isArray(data.slots)||!Number.isInteger(data.rateByte))continue;
-  if(data.rateByte<0||data.rateByte>255||
-     (data.rateByte>0 && data.slots.reduce((w,slot)=>w+(
-       Number.isInteger(slot.rollWeight)&&slot.rollWeight>=0&&slot.rollWeight<=256?slot.rollWeight:-10000),0)!==SUM_WEIGHTS)) {
+  const invalidSlot=data.slots.some(slot=>!slot||
+    !Number.isInteger(slot.dex)||slot.dex<1||slot.dex>151||
+    !Number.isInteger(slot.level)||slot.level<1||slot.level>100||
+    !Number.isInteger(slot.rollWeight)||slot.rollWeight<1||slot.rollWeight>256);
+  if(data.rateByte<0||data.rateByte>255||invalidSlot||
+     (data.rateByte===0&&data.slots.length!==0)||
+     (data.rateByte>0&&(data.slots.length===0||
+       data.slots.reduce((w,slot)=>w+slot.rollWeight,0)!==SUM_WEIGHTS))) {
     return {verified:false,reason:'Pesos dos slots ou taxa ROM inválidos para o mapa',zones:[]};
   }
   const entries=new Map();
   for(const s of data.slots){
-   if(!Number.isInteger(s.dex)||s.dex<1||s.dex>151||
-      !Number.isInteger(s.level)||s.level<1||s.level>100||
-      !Number.isInteger(s.rollWeight)||s.rollWeight<0||s.rollWeight>256)continue;
    if(!entries.has(s.dex))entries.set(s.dex,{
      dex:s.dex,name:s.speciesName||'Espécie #'+s.dex,
      levels:[],weight:0,levelWeights:new Map(),caught:ownedSet.has(s.dex),seen:seenSet.has(s.dex)
@@ -43,9 +45,9 @@ function captureOpportunities(romWild,owned,seen,{romMatched=false,partyRamVerif
    species:[...entries.values()].map(e=>({
      dex:e.dex,name:e.name,levels:[...new Set(e.levels)].sort((a,b)=>a-b),
      conditionalChanceOutOf256:e.weight,
-     conditionalChancePercent:Math.round(e.weight*10000/SUM_WEIGHTS)/100,
+     conditionalChancePercent:e.weight*100/SUM_WEIGHTS,
      byLevel:[...e.levelWeights.entries()].sort((a,b)=>a[0]-b[0]).map(([level,weight])=>({
-       level,ways:weight,outOf:SUM_WEIGHTS,conditionalChancePercent:Math.round(weight*10000/SUM_WEIGHTS)/100
+       level,ways:weight,outOf:SUM_WEIGHTS,conditionalChancePercent:weight*100/SUM_WEIGHTS
      })),
      // Probabilidade por nível é condicional a encontro: NÃO é percentagem por passo.
      alreadyCaught:e.caught,alreadySeen:e.seen
