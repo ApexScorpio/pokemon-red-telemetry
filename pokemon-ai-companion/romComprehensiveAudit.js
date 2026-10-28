@@ -6,6 +6,8 @@ const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
 const zlib=require('node:zlib');
+const {auditMapCodeAtlas}=require('./romMapCodeAtlas');
+const {mapGuideIndex}=require('./romAreaGuide');
 const BANK=0x4000, ROM_BYTES=64*BANK;
 const KNOWN=Object.freeze({
  red:'5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
@@ -266,9 +268,12 @@ function auditOne(label,b,decoder){
  const profile=decoder(b,label+'.gb');
  if(!profile||profile.hash?.sha256!==sha256)throw Error(label+': perfil/ROM divergentes');
  const ledger=coverageLedger(b,profile),data=summarize(profile);
+ const decodedMaps=profile.world?.maps?.valid===true?profile.world.maps.data:null;
+ const mapCode=decodedMaps?auditMapCodeAtlas(b,decodedMaps):null;
  return {identity:{variant:label,sha256,title:h.title,bytes:b.length,
   crc32:crc32(b).toString(16).toUpperCase().padStart(8,'0'),headerChecksumValid:true},
   counts:data,coverage:ledger,catalogue:structuredCatalogue(profile),
+  mapScriptsAndCode:mapCode,mapGuides:mapGuideIndex(profile),
   unresolved:GAP_DOMAINS.map(([domain,reason])=>({domain,status:'NOT_CERTIFIED',reason})),
   runtimeProven:false,semantic100PercentCertified:false};
 }
