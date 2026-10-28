@@ -91,3 +91,36 @@ test('22 UNUSED_MAP reference slots are not misreported as undecoded playable ar
   assert.equal(entry.referenceUnusedSlot,true);
  }
 });
+
+test('binary map-object schema exposes real item/trainer/wild IDs and normalized warp bytes',()=>{
+ const q=structuredClone(p);
+ q.world.maps.data[0].objects={
+  warps:[{x:5,y:5,destinationMap:37,destinationWarp:0},
+   {x:9,y:8,destinationMap:255,destinationWarp:1}],
+  signs:[{x:1,y:2,textId:4}],
+  objects:[
+   {spriteId:11,x:4,y:4,textId:129,kind:'item',trainerClassOrItemId:204},
+   {spriteId:12,x:5,y:6,textId:65,kind:'trainer',
+    trainerClassOrItemId:203,trainerNumberOrLevel:4},
+   {spriteId:13,x:7,y:8,textId:66,kind:'wildPokemon',
+    wildSpeciesInternalId:150,wildLevel:70}
+  ]
+ };
+ q.world.maps.data[0].trainerEvents=[{objectOrdinal:2,eventBitIndex:91,source:'ROM_TEST'}];
+ q.world.maps.data[0].staticEncounterEvents=[{objectOrdinal:3,eventBitIndex:92,source:'ROM_TEST'}];
+ const guide=staticMapGuide(q,13);
+ assert.equal(guide.verified,true);
+ assert.equal(guide.visibleItems[0].itemId,204);
+ assert.equal(guide.visibleItems[0].ordinal,1);
+ assert.equal(guide.trainers[0].trainerClassId,203);
+ assert.equal(guide.trainers[0].trainerNumber,4);
+ assert.equal(guide.trainers[0].ordinal,2);
+ assert.equal(guide.trainers[0].eventFlagIndex,91);
+ assert.equal(guide.trainers[0].defeated,null);
+ assert.equal(guide.staticPokemon[0].speciesInternalId,150);
+ assert.equal(guide.staticPokemon[0].level,70);
+ assert.equal(guide.staticPokemon[0].eventFlagIndex,92);
+ assert.equal(guide.staticPokemon[0].caughtFromThisEvent,null);
+ assert.deepEqual(guide.warps.map(w=>[w.map,w.warp]),[[37,0],[255,1]]);
+ assert.equal(guide.warps[1].destinationMode,'LAST_MAP_FROM_RAM');
+});
