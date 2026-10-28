@@ -45,7 +45,7 @@ const input={red:process.env.POKEMON_RED_ROM,blue:process.env.POKEMON_BLUE_ROM,g
 const atlasPath=process.env.POKEGUIDE_INVENTORY_JSON;
 for(const name of Object.keys(SHA)){
  test('real ROM '+name+' / map header pointers and graph',{skip:!input[name]||!atlasPath},()=>{
-  const b=fs.readFileSync(input[name]);assert.equal(crypto.createHash('sha256').update(b).digest('hex'),SHA[name]);
+  const b=require('../romComprehensiveAudit').readRom(input[name]);assert.equal(crypto.createHash('sha256').update(b).digest('hex'),SHA[name]);
   const maps=JSON.parse(fs.readFileSync(atlasPath,'utf8')).variants[name].catalogue.maps;
   const result=auditMapCodeAtlas(b,maps,{maxInstructions:40000});
   assert.equal(result.totals.scriptSeeds,226);
