@@ -32,7 +32,13 @@ function captureOpportunities(romWild,owned,seen,{romMatched=false,partyRamVerif
    row.levelWeights.set(s.level,(row.levelWeights.get(s.level)||0)+s.rollWeight);
   }
   zones.push({kind,encounterRateByte:data.rateByte,
+   // Em TryDoWildEncounter: hRandomAdd < wGrassRate/wWaterRate;
+   // comparação contra byte uniforme 0..255 -> taxa/256 por verificação
+   // elegível. Não equivale a probabilidade de encontro por passo.
+   eligibleCheckOutOf256:data.rateByte,
+   eligibleCheckPercent:data.rateByte*100/256,
    encounterChanceExact:false,
+   perStepChanceVerified:false,
    requires:kind==='water'?'Acesso a água e Surf':'Acesso à relva do mapa',
    species:[...entries.values()].map(e=>({
      dex:e.dex,name:e.name,levels:[...new Set(e.levels)].sort((a,b)=>a-b),
@@ -50,6 +56,6 @@ function captureOpportunities(romWild,owned,seen,{romMatched=false,partyRamVerif
  return {verified:true,source:'PERFIL_ROM_CRC32 + POKEDEX_RAM',
   mapId:romWild.mapId,zones,missingSpecies:[...new Set(zones.flatMap(z=>
    z.species.filter(s=>!s.alreadyCaught).map(s=>s.dex)))].length,
-  warning:'Disponibilidade depende da zona acessível e dos meios de deslocação; taxas são condicionais ao encontro.'};
+  warning:'Taxa/256: apenas verificação RNG em terreno elegível e sem bloqueios. Pesos por espécie/nível: condicionais a encontro. Sem prova de probabilidade por passo.'};
 }
 module.exports={captureOpportunities};
