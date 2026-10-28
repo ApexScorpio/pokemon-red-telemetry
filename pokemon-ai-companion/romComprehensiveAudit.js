@@ -207,7 +207,9 @@ function summarize(profile){
   martScripts:profile.economyTrades?.martShops?.verified?profile.economyTrades.martShops.shopCount:0,
   npcTrades:profile.economyTrades?.npcTrades?.verified?profile.economyTrades.npcTrades.recordCount:0,
   prizeProducts:profile.economyTrades?.prizeCorner?.verified?profile.economyTrades.prizeCorner.menus.reduce((n,m)=>n+m.products.length,0):0,
-  superRodMaps:profile.economyTrades?.fishing?.verified?profile.economyTrades.fishing.superRodMaps:0};
+  superRodMaps:profile.economyTrades?.fishing?.verified?profile.economyTrades.fishing.superRodMaps:0,
+  itemEffectDispatchEntries:profile.economyTrades?.itemDispatch?.verified?profile.economyTrades.itemDispatch.itemCount:0,
+  itemEffectHandlerCount:profile.economyTrades?.itemDispatch?.verified?profile.economyTrades.itemDispatch.distinctHandlers:0};
 }
 const GAP_DOMAINS=[
  ['cpuReachability','Sem CFG completo de instruções, chamadas bancadas e handlers'],
