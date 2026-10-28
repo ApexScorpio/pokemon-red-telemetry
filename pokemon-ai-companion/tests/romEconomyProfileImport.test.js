@@ -17,6 +17,11 @@ test('all three exact SHA+CRC imported profiles gain ROM-derived economy without
   assert.equal(result.economyTrades?.npcTrades?.recordCount,10);
   assert.equal(result.economyTrades?.itemDispatch?.entries?.length,83);
   assert.equal(result.economyTrades?.runtimeIdentityVerified,false);
+  assert.equal(result.moveEffectDispatch?.verified,true);
+  assert.equal(result.moveEffectDispatch?.moves?.length,165);
+  assert.equal(result.moveEffectDispatch?.handlers?.length,86);
+  assert.equal(result.moveEffectDispatch?.runtimeRomSha256Proven,false);
+  assert.equal(result.moveEffectDispatch?.allEffectsSemanticallyCertified,false);
   assert.equal(result.economyTrades?.livePurchaseFlagsVerified,false);
  }
 });
@@ -29,6 +34,7 @@ test('wrong CRC, unknown SHA or wrong ROM length cannot inherit catalogue',()=>{
   {hash:{sha256:sha,crc32},bytes:1048576,bytesRead:1000000}
  ]){
   assert.equal(enrichKnownEconomyProfile(p).economyTrades,undefined);
+  assert.equal(p.moveEffectDispatch,undefined);
  }
 });
 test('already locally re-read and SHA-verified catalogue is never overwritten',()=>{
