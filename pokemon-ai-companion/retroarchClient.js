@@ -1973,7 +1973,7 @@ class RetroArchClient extends EventEmitter {
         level:bLevel,
         partyPos: realPartyPos,
         status:{NONE:'HEALTHY',SLP:'SLEEP',PSN:'POISON',BRN:'BURN',FRZ:'FREEZE',PAR:'PARALYSIS'}[
-          (function(b){if(b===0)return 'NONE';if((b&~7)===0)return 'SLP';return {8:'PSN',16:'BRN',32:'FRZ',64:'PAR'}[b]||'NONE';})(bStatusVal)
+          battleEvidence.player.status
         ],
         statusByte:bStatusVal,
         typeIds:battleEvidence.player.typeIds,
