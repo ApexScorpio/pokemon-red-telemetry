@@ -1,11 +1,12 @@
 'use strict';
 // Global advisor: covers any map ID, refuses to fabricate event outcomes.
 const {findStaticWarpRoute}=require('./romWarpGraph');
+const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],trainers=[],warpGraph,flagsVerified=false,positionVerified=false}={}){
  const hash=profile?.hash?.sha256;
  const maps=profile?.world?.maps;
- if(!hash||maps?.valid!==true||!Array.isArray(maps.data)||maps.data.length!==248||!byte(mapId))
+ if(!isKnownAuditedRomSha(hash)||profile?.unknownLayout===true||maps?.valid!==true||!Array.isArray(maps.data)||maps.data.length!==248||!byte(mapId))
   return {verified:false,mapId,observations:[],reason:'ROM ou mapa não comprovados'};
  const map=maps.data[mapId];
  if(!map?.valid)return {verified:false,mapId,observations:[],reason:'Mapa reservado ou não descodificado'};
