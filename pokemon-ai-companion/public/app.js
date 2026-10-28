@@ -484,6 +484,27 @@ function renderRomAreaEvidence(state) {
         ' — '+(coin.isCollected?'✅ RECOLHIDAS (RAM D6FE)':'🎯 POR RECOLHER (RAM D6FE)'));
     }
   }
+  const guide=state.romStaticMapGuide;
+  if(guide?.verified){
+    rows.push('🧭 GUIA ESTÁTICO COMPLETO DA ROM PARA O MAPA #'+guide.mapId+
+      ' (posição/flags atuais dependem da RAM)');
+    rows.push('🚪 WARP / SAÍDAS ('+guide.warps.length+') — o acesso pode depender de eventos:');
+    for(const w of guide.warps){
+      rows.push('• X:'+w.x+' Y:'+w.y+' → mapa #'+w.map+
+        ' (índice '+w.warp+'; acessibilidade não confirmada)');
+    }
+    rows.push('🪧 PLACAS E INTERAÇÕES DE TEXTO: '+guide.signs.length);
+    for(const sign of guide.signs){
+      rows.push('• X:'+sign.x+' Y:'+sign.y+' → texto interno #'+sign.textId+
+        ' (condições/diálogo por interpretar)');
+    }
+    rows.push('👥 NPCs ESTÁTICOS DO MAPA: '+guide.npcs.length+
+      ' | Itens visíveis na ROM: '+guide.visibleItems.length+
+      ' | Treinadores na ROM: '+guide.trainers.length);
+    rows.push('⚠️ Os scripts completos deste mapa ainda não estão semanticamente auditados.');
+  }else{
+    rows.push('🧭 Guia estático ROM: '+(guide?.reason||'não validado para este mapa'));
+  }
   if(!validatedBattles||state.romTrainerFlags?.unknownTrainerCount>0)
     rows.push('⚠️ Batalhas: '+(state.romTrainerFlags?.unknownTrainerCount??'?')+
       ' treinadores sem associação válida neste mapa. Estado desconhecido.');
