@@ -42,15 +42,42 @@ function encountersFor(profile,wild){
  }
  return {verified:terrain.every(x=>x.verified),terrain};
 }
+// The actual binary reader romWorldData.js returns independent fields, not
+// synthetic metadata arrays. Preserve support for old exported JSON layouts.
+function actorMetadata(actor) {
+ const data=Array.isArray(actor?.metadata)?actor.metadata:[];
+ return {
+  ordinal:actor?.ordinal??null,
+  itemOrClassId:actor?.trainerClassOrItemId??data[0]??null,
+  numberOrLevel:actor?.trainerNumberOrLevel??data[1]??null,
+  sprite:actor?.spriteId??actor?.sprite??null
+ };
+}
+function normalizeWarp(w) {
+ const map=w.destinationMap??w.map;
+ const warp=w.destinationWarp??w.warp;
+ if(!Number.isInteger(map)||map<0||map>255||
+    !Number.isInteger(warp)||warp<0||warp>255)
+  return {...w,verified:false,reason:'Par de destino ROM malformado'};
+ return {
+  ...w, map,warp,destinationMap:map,destinationWarp:warp,
+  source:'ROM_MAP_OBJECT_WARP_BYTES',
+  destinationMode:map===255?'LAST_MAP_FROM_RAM':'STATIC_MAP_ID',
+  destinationMapRequiresRam:map===255,
+  accessibleNow:null,
+  runtimeDestinationConfirmed:false
+ };
+}
 function trainersFor(profile,objects){
  const table=profile.trainerParties;
  return objects.filter(o=>o.kind==='trainer').map(o=>{
-  const trainerClassId=o.metadata?.[0],trainerNumber=o.metadata?.[1];
+  const meta=actorMetadata(o);
+  const trainerClassId=meta.itemOrClassId,trainerNumber=meta.numberOrLevel;
   const index=trainerClassId-201;
   const members=table?.verified&&Array.isArray(table.rosters?.[index])&&
     Number.isInteger(trainerNumber)?table.rosters[index][trainerNumber-1]:null;
   const variantDependent=RIVAL.has(trainerClassId);
-  return {x:o.x,y:o.y,ordinal:o.ordinal,trainerClassId,trainerNumber,
+  return {x:o.x,y:o.y,ordinal:meta.ordinal,trainerClassId,trainerNumber,
    defeated:null,defeatedStatus:'RAM_EVENT_FLAG_NOT_READ',
    variantDependent,
    party:!variantDependent&&Array.isArray(members)&&members.length?members.map(([id,level])=>({
@@ -124,8 +151,8 @@ function staticMapGuide(profile,mapId){
  }
  if(!w)return {verified:false,mapId,romSha256:sha,reason:'Tabela de encontros do mapa ausente'};
  const obj=m.objects||{},actors=obj.objects||[];
- const items=actors.filter(x=>x.kind==='item').map(o=>({x:o.x,y:o.y,
-  ordinal:o.ordinal,itemId:o.metadata?.[0]??null,obtained:null,
+ const items=actors.filter(x=>x.kind==='item').map((o,i)=>({x:o.x,y:o.y,
+  ordinal:o.ordinal??actors.indexOf(o)+1,itemId:actorMetadata(o).itemOrClassId,obtained:null,
   obtainedStatus:'RAM_EVENT_FLAG_NOT_READ'}));
  const hidden=world.hiddenItemScripts?.valid?world.hiddenItemScripts.items.filter(x=>x.mapId===mapId)
    .map(x=>({x:x.x,y:x.y,itemId:x.itemId,obtained:null,obtainedStatus:'RAM_HIDDEN_FLAGS_NOT_READ'})):null;
@@ -136,12 +163,14 @@ function staticMapGuide(profile,mapId){
   romSha256:sha,mapId,layout:{bank:m.mapBank,widthTiles:m.widthTiles,heightTiles:m.heightTiles,
    tilesetId:m.tilesetId,connections:m.connectionFlags,blockHash:m.blockSha256||null,
    blockGrid:validatedBlockGrid(m)},
-  warps:(obj.warps||[]).map(v=>({...v,accessibleNow:null})),
+  warps:(obj.warps||[]).map(normalizeWarp),
   signs:obj.signs||[],npcs:actors.filter(x=>x.kind==='npc'),
   visibleItems:items,hiddenItems:hidden,hiddenCoins:coins,
   trainers:trainersFor(profile,actors),
   staticPokemon:actors.filter(x=>x.kind==='wildPokemon').map(x=>({x:x.x,y:x.y,
-    metadata:x.metadata||[],battleTriggered:null})),
+    speciesInternalId:x.wildSpeciesInternalId??actorMetadata(x).itemOrClassId,
+    level:x.wildLevel??actorMetadata(x).numberOrLevel,
+    objectOrdinal:x.ordinal??actors.indexOf(x)+1,battleTriggered:null})), 
   encounters:encountersFor(profile,w),
   services:staticServicesForMap(profile,mapId),
   mapScripts:{decodedSemanticEvents:false,reason:'O ponteiro para código por mapa, só por si, não descodifica os estados dos scripts'},
@@ -159,4 +188,4 @@ function mapGuideIndex(profile){
   reservedClassification:'REFERENCE_MAP_CONSTANTS_AND_NO_DECODED_HEADER_NOT_LIVE_PROOF',
   scope:'Os IDs UNUSED_MAP de referência não são mapas jogáveis a descodificar; não validar conteúdo de hacks sem prova'};
 }
-module.exports={staticMapGuide,mapGuideIndex,encountersFor,trainersFor,staticServicesForMap,REFERENCE_UNUSED_IDS};
+module.exports={staticMapGuide,mapGuideIndex,encountersFor,trainersFor,staticServicesForMap,REFERENCE_UNUSED_IDS,actorMetadata,normalizeWarp};
