@@ -7,6 +7,7 @@ const {listCandidates,inspectZipProfiles}=require('./romAutoDiscovery');
 const economyDerivedCatalogue=require('./data/gen1EconomyTradesAudited.json');
 const moveEffectDerivedCatalogue=require('./data/gen1MoveEffectDispatchAudited.json');
 const {buildWarpGraph}=require('./romWarpGraph');
+const outdoorDerivedCatalogue=require('./data/gen1OutdoorConnectionsAudited.json');
 const TYPES={0:'Normal',1:'Fighting',2:'Flying',3:'Poison',4:'Ground',5:'Rock',
   7:'Bug',8:'Ghost',20:'Fire',21:'Water',22:'Grass',23:'Electric',
   24:'Psychic',25:'Ice',26:'Dragon'};
@@ -69,6 +70,13 @@ function enrichKnownEconomyProfile(profile){
  if(!trusted||trusted.verified!==true||trusted.romSha256!==sha||
     String(profile?.hash?.crc32||'').toUpperCase()!==trusted.expectedCrc32||
     profile.bytes!==1048576||profile.bytesRead!==profile.bytes)return profile;
+ if(profile.world?.maps?.valid===true&&profile.world.outdoorConnections?.verified!==true){
+  const border=outdoorDerivedCatalogue.versions?.[sha];
+  if(border?.verified===true&&border.romSha256===sha&&border.edgeCount===78&&
+     border.reciprocalConnections===78)
+   profile.world.outdoorConnections={...border,
+    runtimeRomSha256Proven:false};
+ }
  if(profile.moveEffectDispatch?.verified!==true&&
     moveEffectDerivedCatalogue.verified===true&&
     moveEffectDerivedCatalogue.versionsVerified.includes(sha)){
