@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node start.js",
-    "test": "node --test"
+    "test": "node --test",
+    "audit:roms": "node romComprehensiveAudit.js",
+    "test:audit:roms": "node --test tests/romComprehensiveAudit.test.js"
   },
   "dependencies": {
     "ws": "^8.18.0"
