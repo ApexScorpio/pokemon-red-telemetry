@@ -19,11 +19,11 @@ test('10 pesos e limiares são derivados de 20 bytes ROM, somando 256',()=>{
  assert.equal(data.weights.reduce((a,b)=>a+b,0),256);
 });
 test('a ROM pode mudar pesos finais, se os limiares continuarem válidos',()=>{
- const bytes=sample();bytes[0x12000+14]=229; // slot7 passa 14, slot8 12
+ const bytes=sample();bytes[0x12000+12]=229; // slot7 passa 14, slot8 12
  const data=findGen1EncounterWeights(bytes);
  assert.equal(data.verified,true);
- assert.equal(data.weights[7],14);
- assert.equal(data.weights[8],12);
+ assert.equal(data.weights[6],14);
+ assert.equal(data.weights[7],12);
 });
 test('tabela ambígua, truncada ou inválida é recusada',()=>{
  const a=sample();Buffer.from(HEX,'hex').copy(a,0x14000);
