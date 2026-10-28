@@ -49,3 +49,12 @@
 - **PG-006 EM EXECUÇÃO:** `romWorldStateAdvisor.js` passou a diferenciar flags ocultas e de treinadores e a anexar percurso condicional apenas por chave ROM/mapa/índice/posição validada. Commit `6d1682b`.
 - **PG-005 EM EXECUÇÃO:** `retroarchClient.js` envia o resultado de `planItemAccess` ao conselheiro global; mapa divergente apaga a projeção antiga. Commit `30283d4`.
 - **Falta:** testes positivos/negativos, UI de ações, visual real, scripts completos, percurso multimapa.
+
+
+### T2/T3 — 2026-10-28: painel, expiração e fichas ocultas
+
+- **PG-011 — CÓDIGO IMPLEMENTADO / E2E PENDENTE:** novo painel por mapa. Estados textuais separados, sem `innerHTML`, expiração RAM, corte imediato no WebSocket; necessita screenshot da aplicação real e testes integrados.
+- **PG-006 — CÓDIGO PARCIAL VALIDADO:** flags de itens/treinadores/fichas independentes, percurso condicional associado, UI mostra resultados sem assumir final de script. 6 testes de lógica isolados aprovados com dependências substituídas; suíte do projeto não executada.
+- **PG-004 — PARCIAL:** inseridas 12 fichas ocultas, mantendo D6FE independente de D6F0; continua a faltar descodificar todos os NPC scripts e resultados de eventos.
+- **PG-009 — PARCIAL:** novos 13 testes de regressão publicados, **por executar no checkout completo**; pré-visualização sintética em Chromium analisada, não é screenshot do jogo.
+- **Bloqueios remanescentes:** acesso às ROMs reais e emulador ativo para E2E, integridade atómica da RAM, scripts e regras dinâmicas, navegação multimapa.
