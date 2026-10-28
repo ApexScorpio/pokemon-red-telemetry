@@ -681,6 +681,8 @@ function renderWorldAdvisor(state) {
     NOT_REMOVED_FLAG:'Não removido pela flag RAM; visibilidade por confirmar',
     REMOVED_NOT_PROOF_OF_COLLECTION:'Removido do mapa; recolha NÃO comprovada',
     COLLECTED_FLAG:'Item oculto recolhido (flag específica)',
+    COIN_COLLECTED_FLAG:'Fichas ocultas recolhidas (flag específica)',
+    COIN_NOT_COLLECTED_FLAG:'Fichas ocultas por recolher (flag específica)',
     NOT_COLLECTED_FLAG:'Item oculto por recolher (flag específica)',
     VICTORY_SCRIPT_FLAG:'Vitória registada no script/flag específica',
     BATTLE_PLAYED_SCRIPT_FLAG:'Batalha realizada; vitória não comprovada',
@@ -708,23 +710,24 @@ function renderWorldAdvisor(state) {
   };
   const typeText={
     ITEM:'📦 Item visível',HIDDEN_ITEM:'🔎 Item oculto',
+    HIDDEN_COIN:'🪙 Fichas ocultas',
     TRAINER:'⚔️ Treinador',NPC:'💬 NPC',
     STATIC_POKEMON:'✨ Encontro fixo',WARP:'🚪 Saída',
     BORDER:'🧭 Fronteira'
   };
   const priority={
-    NOT_COLLECTED_FLAG:0,TRAINER_GATE_OPEN:1,NOT_REMOVED_FLAG:2,
+    NOT_COLLECTED_FLAG:0,COIN_NOT_COLLECTED_FLAG:0,TRAINER_GATE_OPEN:1,NOT_REMOVED_FLAG:2,
     EVENT_CONDITIONAL:3,STATIC_TRANSITION:4,
     STATIC_ROM_ONLY:5,INTERACTION_UNRESOLVED:6,UNKNOWN:7,
     REMOVED_NOT_PROOF_OF_COLLECTION:8,TRAINER_GATE_CLOSED:9,
     ENCOUNTER_GATE_CLOSED:10,BATTLE_PLAYED_SCRIPT_FLAG:11,
-    VICTORY_SCRIPT_FLAG:12,COLLECTED_FLAG:13
+    VICTORY_SCRIPT_FLAG:12,COLLECTED_FLAG:13,COIN_COLLECTED_FLAG:13
   };
   const obs=advice.observations;
   const ordered=obs.map((o,i)=>({o,i})).sort((a,b)=>
     (priority[a.o.status]??7)-(priority[b.o.status]??7)||a.i-b.i);
   const n=kind=>obs.filter(o=>o.kind===kind).length;
-  const counts=['ITEM','HIDDEN_ITEM','TRAINER','NPC','STATIC_POKEMON','WARP','BORDER']
+  const counts=['ITEM','HIDDEN_ITEM','HIDDEN_COIN','TRAINER','NPC','STATIC_POKEMON','WARP','BORDER']
     .map(kind=>kind+': '+n(kind)).join(' · ');
   const lines=[
     '🗺️ '+(advice.mapName||'Mapa #'+advice.mapId)+
@@ -735,7 +738,8 @@ function renderWorldAdvisor(state) {
       'Posição não comprovada'),
     '🔒 Estado: parcial. Script, animações e acesso imediato não certificados.',
     'Flags de treinadores: '+(advice.trainerFlagsVerified?'confirmadas na fonte específica':'por confirmar')+
-      ' · Itens ocultos: '+(advice.hiddenFlagsVerified?'confirmados':'por confirmar'),
+      ' · Itens ocultos: '+(advice.hiddenFlagsVerified?'confirmados':'por confirmar')+
+      ' · Fichas: '+(advice.coinFlagsVerified?'confirmadas':'por confirmar'),
     '--- AÇÕES E CONDIÇÕES (ordem orientativa, não rota garantida) ---'
   ];
   for(const {o} of ordered){
