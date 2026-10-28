@@ -43,7 +43,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],trainer
  for(const item of liveArea?.items||[]){
    if(!byte(item.x)||!byte(item.y))continue;
    const state=item.removedFromMap===true?'REMOVED_NOT_PROOF_OF_COLLECTION':
-     item.removedFromMap===false?'PRESENT_IN_RAM':'STATIC_ROM_ONLY';
+     item.removedFromMap===false?'NOT_REMOVED_FLAG':'STATIC_ROM_ONLY';
    add('ITEM',state,item.itemName||'Item #'+item.itemId,
      'Interagir pode atribuir o item indicado no script; resultado real requer flags e execução.',
      item.source||'ROM', {x:item.x,y:item.y,itemId:item.itemId,
@@ -54,7 +54,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],trainer
    add('HIDDEN_ITEM',hiddenFlagsVerified&&item.isCollected===true?'COLLECTED_FLAG':
       hiddenFlagsVerified&&item.isCollected===false?'NOT_COLLECTED_FLAG':'UNKNOWN',
       item.itemName||'Item oculto #'+item.itemId,
-      item.isCollected===true?'Flag de obtenção ativada.':
+      hiddenFlagsVerified&&item.isCollected===true?'Flag específica de obtenção confirmada.':
       'Pesquisar na coordenada pode acionar o evento; acesso e resultado ainda não confirmados.',
       item.collectionEvidence||'ROM + RAM', {x:item.x,y:item.y,itemId:item.itemId,
        ...accessFor('HIDDEN_ITEM',item.x,item.y)});
@@ -80,7 +80,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],trainer
  }
  for(const mon of liveArea?.stationaryPokemon||[]){
    if(!byte(mon.x)||!byte(mon.y))continue;
-   add('STATIC_POKEMON',mon.encounterGateClosed===true?'ENCOUNTER_GATE_CLOSED':'EVENT_CONDITIONAL',
+   add('STATIC_POKEMON',liveArea.stationaryEncounterRamVerified&&mon.encounterGateClosed===true?'ENCOUNTER_GATE_CLOSED':'EVENT_CONDITIONAL',
      mon.speciesName||'Pokémon fixo',
      'Interagir pode iniciar encontro; capturado/derrotado não é inferido da remoção.',
      mon.completionSource,{x:mon.x,y:mon.y});
