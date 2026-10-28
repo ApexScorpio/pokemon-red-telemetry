@@ -3,6 +3,7 @@ const { buildProfiles, getCurrentRom, pokemonFromProfile, moveNameFromProfile } 
 const { expAtLevel } = require('./gen1EngineMath');
 const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
 const {buildRomAreaEvidence}=require('./romAreaEvidence');
+const {staticMapGuide}=require('./romAreaGuide');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
@@ -712,6 +713,8 @@ class RetroArchClient extends EventEmitter {
       this.latestState.connected=false;
       this.latestState.lastReadError=mapConfirmation.reason+
         ': descartar esta amostra e reler o mapa.';
+      this.latestState.romStaticMapGuide={verified:false,
+        reason:'Amostra RAM de mapas diferentes; descartar guia estático anterior'};
       this.latestState.romAreaEvidence={verified:false,
         source:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES',items:[],trainers:[],npcs:[]};
       this.latestState.romTrainerFlags={verified:false,entries:[],
@@ -980,6 +983,11 @@ class RetroArchClient extends EventEmitter {
     // Mapa ID ($D35E, offset 518) e Dimensões
     const mapId = parseInt(blockPlayerParty[518], 16);
     this.latestState.mapId = mapId;
+    // Guia estático derivado da ROM local, válido apenas após reler/confirmar D35E.
+    // Não afirmar que itens, treinadores ou Pokémon já foram tratados na partida.
+    this.latestState.romStaticMapGuide=(this.activeRomProfile&&mapConfirmation.verified)?
+      staticMapGuide(this.activeRomProfile,mapId):
+      {verified:false,reason:'ROM local ou mapa RAM não confirmados'};
     const mapName = MAP_NAMES[mapId] || `Mapa #0x${mapId.toString(16).toUpperCase()}`;
     if (this.latestState.mapName !== mapName && this.latestState.mapName !== 'Desconhecido') {
       this.addHistoryEvent(`Entrou em ${mapName}`);
