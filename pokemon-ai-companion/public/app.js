@@ -510,6 +510,26 @@ function renderRomAreaEvidence(state) {
            ' (atravessável na tabela estática)':' (bloqueado na tabela estática)')+
           ' — movimento real NÃO comprovado');
       }else rows.push('• Tile atual: sem prova conjunta ROM/RAM');
+      const movement=state.romMovementOptions;
+      if(movement?.verified===true&&movement.mapId===guide.mapId){
+        rows.push('👣 MOVIMENTO '+movement.mode+
+          ' — análise estática nas quatro direções; não garante passagem:');
+        for(const n of movement.neighbors){
+          const direction={north:'Norte',east:'Este',south:'Sul',west:'Oeste'}[n.direction]||n.direction;
+          const outcome=String(n.staticOutcome||'DESCONHECIDO');
+          const message=outcome==='OUTSIDE_MAP_NEEDS_BORDER'?'fronteira; consultar ligações do mapa':
+            outcome==='SURF_CAN_CONTINUE_IF_NO_DYNAMIC_OBSTACLE'?'pode continuar a surfar se não houver obstáculos':
+            outcome==='SURF_CAN_DISEMBARK_IF_NO_DYNAMIC_OBSTACLE'?'pode desembarcar se não houver obstáculos':
+            outcome==='LAND_STATIC_PERMITTED_IF_NO_DYNAMIC_OBSTACLE'?'terreno permite, sujeito a NPCs e eventos':
+            outcome==='SURF_PAIR_COLLISION'?'par de tiles bloqueado durante Surf':
+            outcome==='LAND_PAIR_COLLISION_POSSIBLE_LEDGE_EXCEPTION'?'colisão de par; verificar exceções de saliência':
+            outcome==='SURF_STATIC_BLOCKED'?'terreno bloqueado para Surf':
+            outcome==='LAND_STATIC_BLOCKED_POSSIBLE_LEDGE_EXCEPTION'?'terreno bloqueado; saliências/scripts podem alterar':
+            'não confirmado';
+          rows.push('• '+direction+': '+message);
+        }
+        rows.push('⚠️ Regras ROM + modo D700; leitura UDP não atómica, movimento real por confirmar.');
+      }else rows.push('👣 Movimento nas quatro direções: '+(movement?.reason||'sem prova ROM/RAM'));
       const hints=state.romTerrainWarpHints;
       if(hints?.verified&&hints.mapId===guide.mapId){
         const viable=hints.candidates.filter(c=>c.theoreticalTerrainPathFound).slice(0,6);
