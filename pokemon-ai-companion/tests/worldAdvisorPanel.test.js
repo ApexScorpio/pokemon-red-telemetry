@@ -55,3 +55,15 @@ test('reject map mismatch and ROM identity mismatch',()=>{
  const unknown=live();unknown.romRuntimeIdentity.matched=false;
  assert.match(render(unknown).source.textContent,/sem prova/);
 });
+
+test('hidden coins are shown with own status and no fake collection of items',()=>{
+ const state=live();
+ state.worldAdvisor.observations=[{kind:'HIDDEN_COIN',what:'20 fichas ocultas',
+   x:4,y:4,status:'COIN_NOT_COLLECTED_FLAG',
+   consequence:'Interagir pode revelar fichas'}];
+ state.worldAdvisor.coinFlagsVerified=true;
+ const {body}=render(state);
+ assert.match(body.textContent,/Fichas ocultas por recolher/);
+ assert.match(body.textContent,/HIDDEN_COIN: 1/);
+ assert.doesNotMatch(body.textContent,/Item oculto recolhido/);
+});
