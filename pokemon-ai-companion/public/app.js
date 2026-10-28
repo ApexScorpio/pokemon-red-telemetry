@@ -2396,11 +2396,26 @@ function renderBattle(battle, battleType) {
     } else {
       // Não reaproveitar previsões de dano, críticos ou KO de turnos anteriores.
       // Os nomes/PP são informação descritiva, NÃO previsões matemáticas.
-      elPlayerBattleMoves.textContent = (playerActive.moves || [])
-        .map(m => (typeof m === 'object' ? (m.name || 'Golpe sem nome validado') :
-          String(m)) + (typeof m === 'object' && Number.isInteger(m.pp) ?
-          ' • PP ' + m.pp : '')).join(' | ') ||
-        'Golpes indisponíveis na leitura atual';
+      if(battle.preview?.conditional&&battle.preview.moves?.length){
+        elPlayerBattleMoves.replaceChildren();
+        for(const m of battle.preview.moves) {
+          const row=document.createElement('div');row.className='move-row';
+          const title=document.createElement('div');title.className='move-name';
+          title.textContent=m.name+' • PP '+m.pp+' • Poder ROM '+m.powerByte;
+          const details=document.createElement('div');details.className='move-pp';
+          details.textContent=Number.isFinite(m.hitPercent)?
+            'Precisão condicional '+m.hitPercent.toFixed(2)+'% ('+m.hitOutOf256+
+            '/256), só teste padrão':
+            'Precisão não determinada (efeito/condições pendentes)';
+          row.append(title,details);elPlayerBattleMoves.appendChild(row);
+        }
+      } else {
+        elPlayerBattleMoves.textContent = (playerActive.moves || [])
+          .map(m => (typeof m === 'object' ? (m.name || 'Golpe sem nome validado') :
+            String(m)) + (typeof m === 'object' && Number.isInteger(m.pp) ?
+            ' • PP ' + m.pp : '')).join(' | ') ||
+          'Golpes indisponíveis na leitura atual';
+      }
     }
   }
 
@@ -2487,12 +2502,32 @@ function renderBattle(battle, battleType) {
     elRecMoveTitle.textContent = 'Sem recomendação matemática validada';
     elRecMoveDesc.textContent = battle.exactTurnMathReason ||
       'Aguardar leituras e fórmulas completas do turno real.';
-    elTacticalAlerts.textContent =
-      'Dano, precisão, crítico, KO e captura não certificados neste turno.';
-    elCatchCalculator.style.display = 'none';
-    elChancePokeball.textContent = '--%';
-    elChanceGreatball.textContent = '--%';
-    elChanceUltraball.textContent = '--%';
+    const preview=battle.preview;
+    if(preview?.conditional){
+      elMatchupRatingText.textContent='CÁLCULO CONDICIONAL';
+      elRecMoveTitle.textContent='Golpes e PP da RAM, tabelas da ROM local';
+      elRecMoveDesc.textContent=preview.reason;
+      elTacticalAlerts.textContent='Precisão apenas para golpes simples. Dano, crítico, KO e melhor ataque continuam sem cálculo certificado.';
+    } else {
+      elTacticalAlerts.textContent=
+        'Dano, precisão, crítico, KO e captura não certificados neste turno.';
+    }
+    const odds=preview?.conditional&&battleType==='Wild'?preview.captureOdds:null;
+    if(odds&&Object.values(odds).every(Number.isFinite)){
+      elCatchCalculator.style.display='block';
+      elChancePokeball.textContent=odds.pokeball.toFixed(2)+'%*';
+      elChanceGreatball.textContent=odds.greatball.toFixed(2)+'%*';
+      elChanceUltraball.textContent=odds.ultraball.toFixed(2)+'%*';
+      let hint=document.getElementById('catch-extra-odds');
+      if(!hint){hint=document.createElement('div');hint.id='catch-extra-odds';
+        elCatchCalculator.appendChild(hint);}
+      hint.textContent='* '+preview.captureCondition;
+    }else{
+      elCatchCalculator.style.display='none';
+      elChancePokeball.textContent='--%';
+      elChanceGreatball.textContent='--%';
+      elChanceUltraball.textContent='--%';
+    }
   }
 }
 

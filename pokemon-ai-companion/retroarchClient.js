@@ -20,6 +20,7 @@ const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {captureOpportunities}=require('./romCaptureOpportunities');
 const {parseRomBattleEvidence}=require('./romBattleEvidence');
 const {verifyBattleWindow}=require('./romBattleSnapshotConsistency');
+const {buildLiveBattlePreview}=require('./gen1LiveBattlePreview');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -2067,7 +2068,7 @@ class RetroArchClient extends EventEmitter {
       const moveList = bMoves.map((mId, mIdx) => {
         if (!mId) return null;
         const mData = this.getMoveInfo(mId) || { name: `Golpe #${mId} (não identificado)`, type: 'Desconhecido', power: null, acc: null, pp: null };
-        const currentLivePP = (partyMon && partyMon.moves && partyMon.moves[mIdx]) ? partyMon.moves[mIdx].pp : (bPPs[mIdx] !== undefined ? bPPs[mIdx] : null);
+        const currentLivePP = bPPs[mIdx] !== undefined ? (bPPs[mIdx] & 63) : null; // PP efetivo do BattleMon, não valor anterior da equipa
         return {
           id: mId,
           name: mData.name,
@@ -2103,8 +2104,10 @@ class RetroArchClient extends EventEmitter {
         artworkUrl: pInfo.dex ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pInfo.dex}.png` : ''
       };
 
-      // Não apresentar estimativas do conselheiro legado como resultados exatos.
+      // Pré-visualização RAM/ROM condicional, sem reativar a estratégia antiga.
       const strategy=null;
+      const preview=buildLiveBattlePreview({romProfile:this.activeRomProfile,
+        battleEvidence,battleWindow,battleType:this.latestState.battleType});
 
       const currentTurn = parseInt(blockBattleMods[181], 16) || 1;
       const lastPlayerMove = this.getMoveInfo(parseInt(blockBattleMods[188], 16))?.name || null;
@@ -2118,7 +2121,7 @@ class RetroArchClient extends EventEmitter {
         turn: currentTurn,
         lastPlayerMove,
         lastEnemyMove,
-        strategy,
+        strategy,preview,
         trainerPartyCount: enemyTrainerCount,
         trainerPartySpecies: enemyTrainerSpecies
       };
