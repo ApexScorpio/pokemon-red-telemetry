@@ -2,6 +2,7 @@
 // Query a COMPLETE static per-map snapshot as far as the verified binary decoders reach.
 // Never assert a trainer has been defeated, an item collected, a door unlocked,
 // or that an encounter is eligible without evidence from the live emulator.
+const crypto=require('node:crypto');
 const SHA=new Set([
  '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
  '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
@@ -54,6 +55,20 @@ function trainersFor(profile,objects){
    className:table?.classNames?.[index]||null};
  });
 }
+function validatedBlockGrid(m){
+ if(typeof m.blockDataBase64!=='string'||!Number.isInteger(m.widthBlocks)||
+    !Number.isInteger(m.heightBlocks)||!m.blockSha256)
+   return {verified:false,reason:'Blocos 2D não disponíveis no perfil da ROM'};
+ const data=Buffer.from(m.blockDataBase64,'base64');
+ const expected=m.widthBlocks*m.heightBlocks;
+ if(expected<1||expected>10000||data.length!==expected||
+    crypto.createHash('sha256').update(data).digest('hex')!==m.blockSha256)
+   return {verified:false,reason:'Dados de blocos 2D ou SHA incompatíveis'};
+ return {verified:true,widthBlocks:m.widthBlocks,heightBlocks:m.heightBlocks,
+   bytes:data.length,sha256:m.blockSha256,
+   blockIdsBase64:m.blockDataBase64,
+   interpretation:'IDs de metabloco verificados; NÃO é matriz de colisão nem pixels da tileset'};
+}
 function staticMapGuide(profile,mapId){
  const sha=profile?.hash?.sha256?.toLowerCase();
  if(!SHA.has(sha)||profile.unknownLayout||!Number.isInteger(mapId)||mapId<0||mapId>247)
@@ -76,7 +91,8 @@ function staticMapGuide(profile,mapId){
    collected:null,engineAwardConditionVerified:world.hiddenItemScripts.hiddenCoins.fortyCoinBranchVerified||false})):null;
  return {verified:true,source:'ROM_SHA256_LOCAL_MAP_HEADERS_WILD_AND_OBJECT_TABLES',
   romSha256:sha,mapId,layout:{bank:m.mapBank,widthTiles:m.widthTiles,heightTiles:m.heightTiles,
-   tilesetId:m.tilesetId,connections:m.connectionFlags,blockHash:m.blockSha256||null},
+   tilesetId:m.tilesetId,connections:m.connectionFlags,blockHash:m.blockSha256||null,
+   blockGrid:validatedBlockGrid(m)},
   warps:(obj.warps||[]).map(v=>({...v,accessibleNow:null})),
   signs:obj.signs||[],npcs:actors.filter(x=>x.kind==='npc'),
   visibleItems:items,hiddenItems:hidden,hiddenCoins:coins,
