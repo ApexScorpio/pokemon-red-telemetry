@@ -65,6 +65,8 @@ function parseRomBattleEvidence({
   }
   if(!mapSnapshotVerified)
     return {verified:false,reason:'Amostra do mapa não validada'};
+  enemy.status=captureStatus(enemy.statusByte);
+  player.status=captureStatus(player.statusByte);
   return {
     verified:true,
     source:'RetroArch READ_CORE_MEMORY (três blocos validados; amostragem sequencial)',
