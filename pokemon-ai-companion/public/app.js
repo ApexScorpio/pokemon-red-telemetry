@@ -644,6 +644,114 @@ function renderRomAreaEvidence(state) {
   body.textContent=rows.join('\n');
 }
 
+
+/**
+ * Conselhos universais: um registo para cada objeto/evento local catalogado
+ * na ROM. Não usa HTML dinâmico: a ROM e a RAM são dados não fiáveis para UI.
+ * Nenhum percurso estático é anunciado como disponibilidade garantida.
+ */
+function renderWorldAdvisor(state) {
+  const body=document.getElementById('world-advisor-content');
+  const source=document.getElementById('world-advisor-source');
+  if(!body||!source)return;
+  const readAge=Date.now()-Date.parse(state?.lastUpdate||'');
+  if(!state?.connected||state.memoryReadStatus?.verified!==true||
+     !Number.isFinite(readAge)||readAge<0||readAge>15000||
+     state.memoryReadStatus?.positionWindow?.verified!==true){
+    source.textContent='Sem RAM atual e coerente';
+    body.textContent='Aguardar nova leitura confirmada do mapa e coordenadas; conselhos anteriores ocultados.';
+    return;
+  }
+  const advice=state.worldAdvisor;
+  if(state.romRuntimeIdentity?.matched!==true||advice?.verified!==true||
+     advice.mapId!==state.mapId||!Array.isArray(advice.observations)){
+    source.textContent='ROM/mapa sem prova suficiente';
+    body.textContent='Não é seguro mostrar ações com a identidade ou o mapa atuais. '+
+      (advice?.reason||'A aguardar confirmação.');
+    return;
+  }
+  const statusText={
+    STATIC_ROM_ONLY:'Definido na ROM; presença por confirmar',
+    NOT_REMOVED_FLAG:'Não removido pela flag RAM; visibilidade por confirmar',
+    REMOVED_NOT_PROOF_OF_COLLECTION:'Removido do mapa; recolha NÃO comprovada',
+    COLLECTED_FLAG:'Item oculto recolhido (flag específica)',
+    NOT_COLLECTED_FLAG:'Item oculto por recolher (flag específica)',
+    VICTORY_SCRIPT_FLAG:'Vitória registada no script/flag específica',
+    BATTLE_PLAYED_SCRIPT_FLAG:'Batalha realizada; vitória não comprovada',
+    TRAINER_GATE_CLOSED:'Evento de treinador fechado; vitória não comprovada',
+    TRAINER_GATE_OPEN:'Flag do evento de treinador aberta; acesso condicional',
+    INTERACTION_UNRESOLVED:'NPC: resultado do diálogo por interpretar',
+    ENCOUNTER_GATE_CLOSED:'Encontro fixo encerrado; captura não comprovada',
+    EVENT_CONDITIONAL:'Encontro dependente de evento',
+    STATIC_TRANSITION:'Ligação do mapa; travessia por confirmar',
+    UNKNOWN:'Estado não comprovado'
+  };
+  const accessText={
+    CONDITIONAL_PATH:'Percurso local geométrico condicional',
+    NEEDS_CUT:'Possível passagem dependente de Cut',
+    NEEDS_SURF:'Possível passagem dependente de Surf',
+    NEEDS_CUT_AND_SURF_POSSIBLY:'Possível dependência de Cut e Surf',
+    CUT_CAPABILITY_UNKNOWN:'Cut: capacidade ainda não confirmada',
+    SURF_CAPABILITY_UNKNOWN:'Surf: capacidade ainda não confirmada',
+    POSSIBLE_STRENGTH_BARRIER:'Rocha: Strength/empurrão não comprovados',
+    NO_SAME_MAP_PATH:'Sem percurso local: verificar outro mapa/warp/desnível',
+    UNVERIFIED_ROM_ITEM:'Coordenadas do item não associadas à ROM',
+    COLLECTED_FLAG:'Já recolhido segundo flag específica',
+    REMOVED_FLAG:'Sprite removido; não prova recolha',
+    UNKNOWN:'Acesso desconhecido'
+  };
+  const typeText={
+    ITEM:'📦 Item visível',HIDDEN_ITEM:'🔎 Item oculto',
+    TRAINER:'⚔️ Treinador',NPC:'💬 NPC',
+    STATIC_POKEMON:'✨ Encontro fixo',WARP:'🚪 Saída',
+    BORDER:'🧭 Fronteira'
+  };
+  const priority={
+    NOT_COLLECTED_FLAG:0,TRAINER_GATE_OPEN:1,NOT_REMOVED_FLAG:2,
+    EVENT_CONDITIONAL:3,STATIC_TRANSITION:4,
+    STATIC_ROM_ONLY:5,INTERACTION_UNRESOLVED:6,UNKNOWN:7,
+    REMOVED_NOT_PROOF_OF_COLLECTION:8,TRAINER_GATE_CLOSED:9,
+    ENCOUNTER_GATE_CLOSED:10,BATTLE_PLAYED_SCRIPT_FLAG:11,
+    VICTORY_SCRIPT_FLAG:12,COLLECTED_FLAG:13
+  };
+  const obs=advice.observations;
+  const ordered=obs.map((o,i)=>({o,i})).sort((a,b)=>
+    (priority[a.o.status]??7)-(priority[b.o.status]??7)||a.i-b.i);
+  const n=kind=>obs.filter(o=>o.kind===kind).length;
+  const counts=['ITEM','HIDDEN_ITEM','TRAINER','NPC','STATIC_POKEMON','WARP','BORDER']
+    .map(kind=>kind+': '+n(kind)).join(' · ');
+  const lines=[
+    '🗺️ '+(advice.mapName||'Mapa #'+advice.mapId)+
+      ' (#'+advice.mapId+') — '+obs.length+' referências nesta zona',
+    counts,
+    '📍 '+(advice.position?
+      'Posição RAM corroborada X:'+advice.position.x+' Y:'+advice.position.y:
+      'Posição não comprovada'),
+    '🔒 Estado: parcial. Script, animações e acesso imediato não certificados.',
+    'Flags de treinadores: '+(advice.trainerFlagsVerified?'confirmadas na fonte específica':'por confirmar')+
+      ' · Itens ocultos: '+(advice.hiddenFlagsVerified?'confirmados':'por confirmar'),
+    '--- AÇÕES E CONDIÇÕES (ordem orientativa, não rota garantida) ---'
+  ];
+  for(const {o} of ordered){
+    const place=Number.isInteger(o.x)&&Number.isInteger(o.y)?
+      ' X:'+o.x+' Y:'+o.y:'';
+    const label=typeText[o.kind]||'Evento';
+    lines.push(label+': '+String(o.what||'Sem nome')+place+
+      ' — '+(statusText[o.status]||'Por confirmar'));
+    if(o.accessStatus){
+      const route=o.accessRoute;
+      const steps=Number.isInteger(route?.steps)?' ('+route.steps+' passos teóricos)':'';
+      lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
+    }
+    if(o.consequence)lines.push('  ↳ Consequência: '+o.consequence);
+  }
+  if(!obs.length)lines.push('Nenhum objeto confirmado para listar; isto não prova zona vazia.');
+  lines.push('⚠️ Grafo de saídas e caminhos são hipóteses; o estado da partida pode alterar acessos.');
+  source.textContent='ROM auditada '+String(advice.romSha256||'').slice(0,8)+
+    '… · leitura RAM recente · progresso parcial';
+  body.textContent=lines.join('\n');
+}
+
 // Renderização Principal do Cockpit
 function renderState(state) {
   if (state.connected) {
@@ -746,6 +854,7 @@ function renderState(state) {
   renderDaycareTracker(state);
   renderRomProgress(state);
   renderRomAreaEvidence(state);
+  renderWorldAdvisor(state);
 
   // Radar da Área (Fauna e Itens com RAM bit flags reais)
   renderAreaRadar(state.areaInfo);
