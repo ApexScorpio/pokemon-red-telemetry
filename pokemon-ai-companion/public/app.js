@@ -502,6 +502,12 @@ function renderRomAreaEvidence(state) {
         rows.push('• Versão atual: '+variation.inThisVariant+
           ' · a acessibilidade efetiva continua dependente dos eventos e da RAM');
       }
+      const observedPosition=state.romTerrainPositionWindow;
+      if(observedPosition?.verified===false){
+        rows.push('⚠️ POSIÇÃO RAM NÃO CONFIRMADA ENTRE LEITURAS: '+
+          (observedPosition.reason||'coordenadas incoerentes')+
+          '. Tile, direções e percursos desta amostra não são apresentados como válidos.');
+      }
       const here=state.romTerrainCurrentTile;
       if(here?.verified===true&&here.mapId===guide.mapId){
         rows.push('• Posição RAM X:'+here.x+' Y:'+here.y+
