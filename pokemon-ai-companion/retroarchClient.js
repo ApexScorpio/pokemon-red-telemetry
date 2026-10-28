@@ -10,6 +10,7 @@ const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {inspectMovementOptions}=require('./romTerrainMovement');
 const {planItemAccess}=require('./romItemReachability');
 const {adviseWorld}=require('./romWorldStateAdvisor');
+const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
@@ -2418,6 +2419,18 @@ class RetroArchClient extends EventEmitter {
 
     // Síntese global para qualquer mapa normal da ROM, atualizada a cada leitura.
     // Só as flags comprovadas são conclusivas; não inferir scripts concluídos.
+    if (this.activeRomProfile) {
+      const sha=this.activeRomProfile.hash?.sha256;
+      if (this._warpGraphSha!==sha || !this._warpGraph) {
+        this._warpGraph=buildWarpGraph(this.activeRomProfile);
+        this._warpGraphSha=sha;
+      }
+      this.latestState.romWarpGraph=this._warpGraph;
+    } else {
+      this._warpGraph=null;
+      this._warpGraphSha=null;
+      this.latestState.romWarpGraph={verified:false,reason:'ROM não identificada'};
+    }
     this.latestState.worldAdvisor=adviseWorld({
       profile:this.activeRomProfile,
       mapId:this.latestState.mapId,
