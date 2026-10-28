@@ -3,7 +3,12 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),zlib=require('node:zlib');
 const {readRom}=require('../romComprehensiveAudit');
 const {auditTerrainCollision,terrainTileAt,terrainStepEvidence,matchDerivedTerrain}=require('../romTerrainCollision');
-const input={red:process.env.POKEMON_RED_ROM,blue:process.env.POKEMON_BLUE_ROM,green:process.env.POKEMON_GREEN_ROM};
+const dir=process.env.POKEMON_ROM_DIR;
+const input={
+ red:process.env.POKEMON_RED_ROM||(dir&&path.join(dir,'Pokemon - Red Version (UE)[!].zip')),
+ blue:process.env.POKEMON_BLUE_ROM||(dir&&path.join(dir,'Pokemon Blue.gb')),
+ green:process.env.POKEMON_GREEN_ROM||(dir&&path.join(dir,'Pokemon%20Green%20International%20v1.2.1.gb'))
+};
 const atlasPath=process.env.POKEGUIDE_ATLAS_JSON;
 const ready=atlasPath&&fs.existsSync(atlasPath)&&Object.values(input).every(f=>f&&fs.existsSync(f));
 const exact=ready?JSON.parse(fs.readFileSync(atlasPath,'utf8')).variants:null;
