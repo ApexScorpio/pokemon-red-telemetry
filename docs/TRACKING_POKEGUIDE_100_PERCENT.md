@@ -58,3 +58,13 @@
 - **PG-004 — PARCIAL:** inseridas 12 fichas ocultas, mantendo D6FE independente de D6F0; continua a faltar descodificar todos os NPC scripts e resultados de eventos.
 - **PG-009 — PARCIAL:** novos 13 testes de regressão publicados, **por executar no checkout completo**; pré-visualização sintética em Chromium analisada, não é screenshot do jogo.
 - **Bloqueios remanescentes:** acesso às ROMs reais e emulador ativo para E2E, integridade atómica da RAM, scripts e regras dinâmicas, navegação multimapa.
+
+
+### T4 — 2026-10-28: síntese de Kanto em vez de apenas o mapa atual
+
+- **PG-004 PARCIAL:** `romCampaignLedger.js` reúne flags dos 226 mapas normais para 54 itens ocultos, 12 fichas, treinadores com evento associado e encontros fixos; distingue evento encerrado de vitória/captura. Falta a semântica completa de scripts e presentes/itens visíveis.
+- **PG-006 PARCIAL:** painel já cruza conselho local, percursos condicionais e progresso global, sem deduzir acessibilidade imediata nem consequências garantidas.
+- **PG-008 PARCIAL:** livro global falha fechado em ROM/RAM não comprovadas, mas a leitura sequencial não certifica instantâneo atómico nem SHA da ROM ativa no emulador.
+- **PG-009 PARCIAL:** **18 novos casos de teste publicados no repositório, ainda por executar com dependências reais**; num ambiente isolado com dependências simuladas correram **12/12 testes**. Screenshot sintético analisado; falta prova de interface verdadeira e três ROMs originais nesta execução.
+- **PG-011 CÓDIGO IMPLEMENTADO / E2E PENDENTE:** síntese de 226 mapas apresentada apenas com identidade SHA coincidente; `textContent` protege texto não fiável; expiração/offline invalida informação.
+- **Meta 100%:** mantém-se **NÃO CERTIFICADA**. Sem percentagem inventada. Próximas entregas: correr testes reais, concluir scripts e efeitos, navegação dinâmica multimapa e E2E do Companion com RetroArch/SameBoy/iPhone.
