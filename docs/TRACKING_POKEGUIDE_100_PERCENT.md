@@ -68,3 +68,11 @@
 - **PG-009 PARCIAL:** **18 novos casos de teste publicados no repositório, ainda por executar com dependências reais**; num ambiente isolado com dependências simuladas correram **12/12 testes**. Screenshot sintético analisado; falta prova de interface verdadeira e três ROMs originais nesta execução.
 - **PG-011 CÓDIGO IMPLEMENTADO / E2E PENDENTE:** síntese de 226 mapas apresentada apenas com identidade SHA coincidente; `textContent` protege texto não fiável; expiração/offline invalida informação.
 - **Meta 100%:** mantém-se **NÃO CERTIFICADA**. Sem percentagem inventada. Próximas entregas: correr testes reais, concluir scripts e efeitos, navegação dinâmica multimapa e E2E do Companion com RetroArch/SameBoy/iPhone.
+
+
+### T5 — 2026-10-28: PR de integração e proteção da versão principal
+
+- **PR de trabalho:** <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>, estado **Draft**, porque falta execução do checkout real, testes das três ROMs e prova visual em RetroArch/SameBoy/iPhone.
+- **Branch:** `feature/pokeguide-world-action-tracker-20261028`; `main` permanece inalterada até integração validada. Alterações não substituíram a versão principal.
+- **Critérios de desbloqueio:** 18 regressões novas + suite anterior a passar no checkout completo, testes ROM SHA reais com falha explícita se faltar binário, confirmação de ausência de falsos conselhos sob deslocação/fecho da ligação, screenshots reais e correção dos casos encontrados.
+- **Pendências depois da integração do PR:** scripts de todos os NPCs, efeitos especiais de movimentos, navegação multimapa com portas dinâmicas, coerência temporal RAM e paridade de resultados de eventos ao vivo.
