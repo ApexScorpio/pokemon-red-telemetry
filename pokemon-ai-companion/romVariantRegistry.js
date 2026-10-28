@@ -9,6 +9,7 @@ const {spritePngBase64}=require('./romSpriteDecoder');
 const {findGen1MoveTable}=require('./romMoveTable');
 const {findGen1TypeMatchups}=require('./romTypeMatchups');
 const {inspectCatchRamLayout}=require('./romCaptureLayout');
+const {readRomBattleRuleTables}=require('./romBattleRuleTables');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
 function crc32(buf){let x=0xFFFFFFFF;for(const b of buf)x=crcTable[(x^b)&255]^(x>>>8);return ((x^0xFFFFFFFF)>>>0).toString(16).toUpperCase().padStart(8,'0');}
@@ -156,6 +157,7 @@ function inspectRom(file){
  const romMoves=findGen1MoveTable(b);
  const types=findGen1TypeMatchups(b);
  const battleCaptureLayout=inspectCatchRamLayout(b);
+ const battleRuleTables=readRomBattleRuleTables(b);
  offsets.evolutions=evos.offset;offsets.moveNames=moves.offset;
  offsets.moveData=romMoves.valid?romMoves.offset:null;
  offsets.typeMatchups=types.verified?types.offset:null;
@@ -202,7 +204,7 @@ function inspectRom(file){
     bank:types.verified?types.bank:null,reason:types.reason||null},
   moveStatsStatus:{verified:romMoves.valid,source:romMoves.source||null,
     reason:romMoves.reason||null,totalRomMoves:romMoves.valid?romMoves.rows.length:0},
-  growthRates,world,trainerParties,battleCaptureLayout,
+  growthRates,world,trainerParties,battleCaptureLayout,battleRuleTables,
   spritesVerified:species.filter(x=>x.sprite?.verified).length,
   spritesTotalInBaseStats:species.filter(x=>x.stats).length,
   spritesWithPixelsDecoded:species.filter(x=>x.sprite?.pixelsDecoded).length,
