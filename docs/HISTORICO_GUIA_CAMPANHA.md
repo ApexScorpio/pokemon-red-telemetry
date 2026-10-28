@@ -766,3 +766,8 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 ## 2026-10-28 — Presença ROM antes do cálculo de acesso a itens
 - Correção fail-closed: referências manuais sem `romItemCoordinatesVerified` recebem `UNVERIFIED_ROM_ITEM`, mesmo que exista um caminho no terreno. Ligação à ROM obtida de objeto validado ou de item oculto com scripts/flags ROM/RAM. Não confundir uma rota para coordenadas manuais com a presença de um item.
 - Teste de regressão adicionado. Sem manipulação de ROMs, perfis ou saves.
+
+
+## 2026-10-28 — Itemfinder ordenado pelo percurso ROM/RAM
+- O alvo do radar de itens ocultos deixa de ser escolhido exclusivamente pela distância Manhattan: dá prioridade aos objetos que possuem percurso local condicional calculado, depois a rotas com Cut/Surf hipotéticos e finalmente aos desconhecidos. Confronta flags `isCollected===false` e preserva estado/caminho/motivo sem afirmar acesso confirmado.
+- Distância geométrica mantém-se como referência, sem confundir com o número de passos. `isHot` é desativado por não demonstrar alcance de interação durante o frame real.

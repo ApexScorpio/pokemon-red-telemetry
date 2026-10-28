@@ -1744,14 +1744,34 @@ class RetroArchClient extends EventEmitter {
     });
     const visibleWithPath=withPath.slice(0,allVisItems.length+extraRomItems.length);
     const hiddenWithPath=withPath.slice(allVisItems.length+extraRomItems.length);
-    // A disponibilidade do Itemfinder também respeita a posição/obstáculos.
-    // Não se promove o mais próximo em linha reta a item alcançável.
-    if(itemfinderRadar){
-      const matching=hiddenWithPath.find(i=>i.isCollected===false&&
-        i.name===itemfinderRadar.targetName);
-      itemfinderRadar.accessStatus=matching?.accessStatus||'UNKNOWN';
-      itemfinderRadar.routeSteps=matching?.accessRoute?.steps??null;
-      itemfinderRadar.routeVerifiedNow=false;
+    // A ordem do Itemfinder dá prioridade a caminhos locais condicionalmente
+    // calculados; nunca a um item mais próximo apenas por distância Manhattan.
+    const candidatesHidden=hiddenWithPath.filter(i=>i.isCollected===false);
+    if(candidatesHidden.length&&this.latestState.coords){
+      candidatesHidden.sort((left,right)=>{
+        const rank=i=>i.accessStatus==='CONDITIONAL_PATH'?0:
+          i.accessRoute?1:2;
+        const r=rank(left)-rank(right);
+        if(r!==0)return r;
+        const leftSteps=left.accessRoute?.steps??Infinity;
+        const rightSteps=right.accessRoute?.steps??Infinity;
+        if(leftSteps!==rightSteps)return leftSteps-rightSteps;
+        const distance=i=>Math.abs(i.x-this.latestState.coords.x)+
+          Math.abs(i.y-this.latestState.coords.y);
+        return distance(left)-distance(right);
+      });
+      const chosen=candidatesHidden[0];
+      const compass=getCompass(this.latestState.coords,chosen.x,chosen.y);
+      itemfinderRadar={
+        targetName:chosen.name,geometricDistance:compass?.dist??null,
+        distance:compass?.dist??null,direction:compass?.direction||'',
+        badge:compass?.badge||'',isHot:false,
+        routeSteps:chosen.accessRoute?.steps??null,
+        nextStep:chosen.accessRoute?.nextStep||null,
+        accessStatus:chosen.accessStatus||'UNKNOWN',
+        routeVerifiedNow:false,
+        reason:'O alvo tem distância geométrica e/ou percurso ROM condicional; não prova que está acessível agora.'
+      };
     }
 
     const allNpcItems = (areaData.npcItems || []).map(item => {
