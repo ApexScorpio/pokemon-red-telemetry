@@ -201,7 +201,13 @@ function summarize(profile){
   evolutionEntries:evo.reduce((n,s)=>n+(s.evolutions?.length||0),0),
   levelLearnsetEntries:evo.reduce((n,s)=>n+(s.learnset?.length||0),0),
   battleCaptureLayoutVerified:profile.battleCaptureLayout?.verified===true,
-  battleRuleTablesVerified:profile.battleRuleTables?.verified===true};
+  battleRuleTablesVerified:profile.battleRuleTables?.verified===true,
+  economyTradesVerified:profile.economyTrades?.verified===true,
+  itemPrices:profile.economyTrades?.itemPrices?.verified?profile.economyTrades.itemPrices.itemCount:0,
+  martScripts:profile.economyTrades?.martShops?.verified?profile.economyTrades.martShops.shopCount:0,
+  npcTrades:profile.economyTrades?.npcTrades?.verified?profile.economyTrades.npcTrades.recordCount:0,
+  prizeProducts:profile.economyTrades?.prizeCorner?.verified?profile.economyTrades.prizeCorner.menus.reduce((n,m)=>n+m.products.length,0):0,
+  superRodMaps:profile.economyTrades?.fishing?.verified?profile.economyTrades.fishing.superRodMaps:0};
 }
 const GAP_DOMAINS=[
  ['cpuReachability','Sem CFG completo de instruções, chamadas bancadas e handlers'],
@@ -236,6 +242,9 @@ function structuredCatalogue(profile){
   typeRules:profile.typeMatchupsStatus?.verified?profile.typeMatchups:null,
   typeRulesStatus:profile.typeMatchupsStatus||null,
   battleRules:profile.battleRuleTables?.verified?profile.battleRuleTables:null,
+  economyTrades:profile.economyTrades?.verified?profile.economyTrades:null,
+  economyTradesStatus:profile.economyTrades?{
+   verified:profile.economyTrades.verified,failed:profile.economyTrades.failed}:null,
   growthRates:profile.growthRates||null,
   wildEncounters:wild.valid===true?(wild.data||[]).map(m=>({
    mapId:m.mapId,grass:m.grass,water:m.water,pointerCpu:m.pointerCpu
