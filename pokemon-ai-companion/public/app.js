@@ -493,6 +493,15 @@ function renderRomAreaEvidence(state) {
       rows.push('🧱 COLISÃO BÁSICA DO TERRENO DA ROM — '+t.width+'×'+t.height+
         ' posições; '+t.landTerrainWalkableCells+' permitidas pelos tilesets / '+
         t.landTerrainBlockedCells+' bloqueadas');
+      const variation=guide.terrainVariantNotice;
+      if(variation?.verified===true){
+        rows.push('🧬 CERULEAN CAVE — diferenças reais de terreno entre versões: '+
+          variation.staticTerrainCellsDifferent+' células neste piso; Green tem '+
+          variation.greenWalkableCellsAdded+' posições permitidas adicionais e '+
+          variation.greenWalkableCellsRemoved+' posições antes permitidas agora bloqueadas');
+        rows.push('• Versão atual: '+variation.inThisVariant+
+          ' · a acessibilidade efetiva continua dependente dos eventos e da RAM');
+      }
       const here=state.romTerrainCurrentTile;
       if(here?.verified===true&&here.mapId===guide.mapId){
         rows.push('• Posição RAM X:'+here.x+' Y:'+here.y+
