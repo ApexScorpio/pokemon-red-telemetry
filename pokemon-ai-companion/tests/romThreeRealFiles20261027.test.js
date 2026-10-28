@@ -26,6 +26,13 @@ test('3 ROMs locais: SHA exato, 165 golpes, 248 mapas, 334 treinadores, 106 iten
     const bytes=fs.readFileSync(process.env[spec.env]);
     assert.equal(bytes.length,1048576,spec.name+' tamanho');
     assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),spec.sha,spec.name+' SHA256');
+    // ItemUseBall em banco 3: ambas as leituras da taxa usada na captura
+    // são LD A,[D007], iguais nas três ROMs verificadas por SHA.
+    // Fonte: pret/pokered/engine/items/item_effects.asm e pokered.sym
+    assert.equal(bytes.subarray(0xD777,0xD77A).toString('hex'),'fa07d0',
+      spec.name+' capture rate use #1');
+    assert.equal(bytes.subarray(0xD797,0xD79A).toString('hex'),'fa07d0',
+      spec.name+' capture rate use #2');
     const moves=findGen1MoveTable(bytes);
     assert.equal(moves.valid,true,spec.name+' Moves');
     assert.equal(moves.rows.length,165,spec.name+' 165');
