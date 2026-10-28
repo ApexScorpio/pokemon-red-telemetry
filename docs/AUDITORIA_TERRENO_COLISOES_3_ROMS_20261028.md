@@ -41,7 +41,7 @@ Executados com Node.js v22.16.0 sobre os três binários reais (Red lida em mem�
 
 - `tests/romTerrainAtlas.test.js`: **6/6 testes aprovados**, 0 ignorados. Três testes completos de ROM, dois de alterações inválidas/corrompidas e um de colisão entre pares de tiles.
 - `tests/romTerrainRouteHints.test.js`: **4/4 testes aprovados**, 0 ignorados, com simulação de percurso nos mapas originais das três versões e rejeição de identidade falsa.
-- `tests/romTerrainCatalogueIntegrity.test.js`: **3/3 testes aprovados**, 0 ignorados, percorrendo **todos os 285 396 pixels de colisão lógica** dos três catálogos derivados e verificando hash, tile, bitmap e listas de tilesets.
+- `tests/romTerrainCatalogueIntegrity.test.js`: **3/3 testes aprovados**, 0 ignorados, percorrendo **todas as 285 396 posições de colisão lógica** dos três catálogos derivados e verificando hash, tile, bitmap e listas de tilesets.
 - Enriquecimento do `romLiveResolver.js` publicado validado isoladamente em V8 para os três perfis: 226 mapas carregados por variante; alteração maliciosa de um só hash de mapa rejeitada. Não é teste end-to-end.
 
 **Total desta fase: 13/13 testes Node locais aprovados, sem skips**, incluindo o catálogo completo derivado. As verificações estáticas de sintaxe dos módulos atualizados foram efetuadas separadamente.
@@ -55,3 +55,9 @@ A grelha mede um **passo em terreno permitido pela tabela da ROM**, não a possi
 Fontes canónicas: `pret/pokered/data/tilesets/tileset_headers.asm`, `collision_tile_ids.asm`, `pair_collision_tile_ids.asm`, `gfx/tilesets.asm`, `home/overworld.asm` (rotinas `CheckTilePassable` e `CheckForTilePairCollisions`). Binários reais confirmados por SHA-256 em cada teste.
 
 Sem modificação de ROMs, saves ou perfis do Windows; sem GitHub Actions, minutos de CI ou pastas C:.
+
+## Verificação rigorosa sem falsos resultados
+
+Foi publicado `pokemon-ai-companion/scripts/verifyRealRomTerrain.js`, que exige **as três ROMs verdadeiras e um atlas por SHA-256**. Na falta de qualquer ficheiro, devolve erro e código de saída não zero — não apresenta testes ignorados como prova de execução. O comando no diretório `pokemon-ai-companion` é `npm run audit:terrain:strict`, após configurar `POKEMON_ROM_DIR` e `POKEGUIDE_ATLAS_JSON` (ou os caminhos individuais das três ROMs). O comando `npm run test:terrain` executa os testes de regressão e integridade sem gastar minutos de Actions.
+
+Execução rigorosa local neste ambiente: `RESULTADO=3/3_ROMS_REAIS_VERIFICADAS cells=285396 walkable=145578`. Apenas leitura; sem novos ficheiros nas unidades do computador do utilizador.
