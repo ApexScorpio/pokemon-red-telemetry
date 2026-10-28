@@ -20,7 +20,8 @@ function captureStatus(statusByte){
 }
 
 function parseRomBattleEvidence({
-  combatBlock,playerBlock,modifierBlock,battleFlag,romMatched=false,mapSnapshotVerified=false
+  combatBlock,playerBlock,modifierBlock,battleFlag,romMatched=false,mapSnapshotVerified=false,
+  captureLayoutVerified=false
 }={}) {
   if(!integer(battleFlag,1,2))return {verified:false,reason:'Flag de batalha não comprovada ou combate inexistente'};
   if(!blockOk(combatBlock,255)||!blockOk(playerBlock,30)||!blockOk(modifierBlock,280))
@@ -78,10 +79,11 @@ function parseRomBattleEvidence({
     enemy,player,stages,
     // O byte D007 é comprovadamente o utilizado pela rotina de captura;
     // isto prova a leitura do campo, NÃO atomicidade ou elegibilidade da bola.
-    actualCatchRateVerified:battleFlag===1,
-    actualCatchRate:battleFlag===1?enemy.actualCatchRate:null,
-    catchStatusFromRam:battleFlag===1?captureStatus(enemy.statusByte):null,
-    captureInputs:battleFlag===1&&enemy.hp>0?{
+    actualCatchRateVerified:battleFlag===1&&romMatched&&captureLayoutVerified,
+    actualCatchRate:battleFlag===1&&romMatched&&captureLayoutVerified?enemy.actualCatchRate:null,
+    catchStatusFromRam:battleFlag===1&&romMatched&&captureLayoutVerified?
+      captureStatus(enemy.statusByte):null,
+    captureInputs:battleFlag===1&&romMatched&&captureLayoutVerified&&enemy.hp>0?{
       actualCatchRateFromRam:enemy.actualCatchRate,
       hpFromRam:enemy.hp,maxHpFromRam:enemy.maxHp,
       statusFromRam:captureStatus(enemy.statusByte),
