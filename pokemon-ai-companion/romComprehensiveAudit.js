@@ -209,7 +209,10 @@ function summarize(profile){
   prizeProducts:profile.economyTrades?.prizeCorner?.verified?profile.economyTrades.prizeCorner.menus.reduce((n,m)=>n+m.products.length,0):0,
   superRodMaps:profile.economyTrades?.fishing?.verified?profile.economyTrades.fishing.superRodMaps:0,
   itemEffectDispatchEntries:profile.economyTrades?.itemDispatch?.verified?profile.economyTrades.itemDispatch.itemCount:0,
-  itemEffectHandlerCount:profile.economyTrades?.itemDispatch?.verified?profile.economyTrades.itemDispatch.distinctHandlers:0};
+  itemEffectHandlerCount:profile.economyTrades?.itemDispatch?.verified?profile.economyTrades.itemDispatch.distinctHandlers:0,
+  moveEffectsVerified:profile.moveEffectDispatch?.verified===true,
+  moveEffectSlots:profile.moveEffectDispatch?.verified?profile.moveEffectDispatch.effectSlots:0,
+  movesWithKnownEffectDestination:profile.moveEffectDispatch?.verified?profile.moveEffectDispatch.moveCount:0};
 }
 const GAP_DOMAINS=[
  ['cpuReachability','Sem CFG completo de instruções, chamadas bancadas e handlers'],
@@ -245,6 +248,7 @@ function structuredCatalogue(profile){
   typeRulesStatus:profile.typeMatchupsStatus||null,
   battleRules:profile.battleRuleTables?.verified?profile.battleRuleTables:null,
   economyTrades:profile.economyTrades?.verified?profile.economyTrades:null,
+  moveEffectDispatch:profile.moveEffectDispatch?.verified?profile.moveEffectDispatch:null,
   economyTradesStatus:profile.economyTrades?{
    verified:profile.economyTrades.verified,failed:profile.economyTrades.failed}:null,
   growthRates:profile.growthRates||null,
