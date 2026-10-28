@@ -212,7 +212,9 @@ function summarize(profile){
   itemEffectHandlerCount:profile.economyTrades?.itemDispatch?.verified?profile.economyTrades.itemDispatch.distinctHandlers:0,
   moveEffectsVerified:profile.moveEffectDispatch?.verified===true,
   moveEffectSlots:profile.moveEffectDispatch?.verified?profile.moveEffectDispatch.effectSlots:0,
-  movesWithKnownEffectDestination:profile.moveEffectDispatch?.verified?profile.moveEffectDispatch.moveCount:0};
+  movesWithKnownEffectDestination:profile.moveEffectDispatch?.verified?profile.moveEffectDispatch.moveCount:0,
+  warpEntries:profile.world?.warpGraph?.verified?profile.world.warpGraph.totalWarpEntries:0,
+  exteriorConnections:profile.world?.outdoorConnections?.verified?profile.world.outdoorConnections.edgeCount:0};
 }
 const GAP_DOMAINS=[
  ['cpuReachability','Sem CFG completo de instruções, chamadas bancadas e handlers'],
@@ -249,6 +251,8 @@ function structuredCatalogue(profile){
   battleRules:profile.battleRuleTables?.verified?profile.battleRuleTables:null,
   economyTrades:profile.economyTrades?.verified?profile.economyTrades:null,
   moveEffectDispatch:profile.moveEffectDispatch?.verified?profile.moveEffectDispatch:null,
+  warpGraph:world.warpGraph?.verified?world.warpGraph:null,
+  outdoorConnections:world.outdoorConnections?.verified?world.outdoorConnections:null,
   economyTradesStatus:profile.economyTrades?{
    verified:profile.economyTrades.verified,failed:profile.economyTrades.failed}:null,
   growthRates:profile.growthRates||null,
