@@ -522,11 +522,14 @@ function renderRomAreaEvidence(state) {
             outcome==='SURF_CAN_DISEMBARK_IF_NO_DYNAMIC_OBSTACLE'?'pode desembarcar se não houver obstáculos':
             outcome==='LAND_STATIC_PERMITTED_IF_NO_DYNAMIC_OBSTACLE'?'terreno permite, sujeito a NPCs e eventos':
             outcome==='SURF_PAIR_COLLISION'?'par de tiles bloqueado durante Surf':
+            outcome==='LAND_LEDGE_HOP_CANDIDATE_REQUIRES_JOYPAD_AND_FLAGS'?
+              'saliência saltável pela ROM se tecla/direção e flags permitirem (salto atual NÃO comprovado)':
             outcome==='LAND_PAIR_COLLISION_POSSIBLE_LEDGE_EXCEPTION'?'colisão de par; verificar exceções de saliência':
             outcome==='SURF_STATIC_BLOCKED'?'terreno bloqueado para Surf':
             outcome==='LAND_STATIC_BLOCKED_POSSIBLE_LEDGE_EXCEPTION'?'terreno bloqueado; saliências/scripts podem alterar':
             'não confirmado';
-          rows.push('• '+direction+': '+message);
+          rows.push('• '+direction+': '+message+
+            (n.ledgeEvidence?.ledgeCandidate?' · tecla: '+n.ledgeEvidence.requiredPadMask.toString(16).toUpperCase():'') );
         }
         rows.push('⚠️ Regras ROM + modo D700; leitura UDP não atómica, movimento real por confirmar.');
       }else rows.push('👣 Movimento nas quatro direções: '+(movement?.reason||'sem prova ROM/RAM'));
