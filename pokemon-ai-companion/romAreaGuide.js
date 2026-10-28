@@ -172,6 +172,8 @@ function staticMapGuide(profile,mapId){
     exits:world.warpGraph.edges.filter(edge=>edge.sourceMapId===mapId),
     outdoorExits:world.warpGraph.outdoorConnections?.edges.filter(edge=>edge.sourceMapId===mapId)||[],
     outdoorHeaderConnectionsDecoded:world.warpGraph.outdoorHeaderConnectionsDecoded===true,
+    elevatorMenu:world.elevatorDestinations?.verified===true&&world.elevatorDestinations.romSha256===sha?
+      (world.elevatorDestinations.elevators.find(e=>e.mapId===mapId)||null):null,
     staticRouteOnly:true,scriptAndRamGatesUnresolved:true
   }:{verified:false,reason:'Grafo de saídas da ROM não comprovado no perfil atual'},
   signs:obj.signs||[],npcs:actors.filter(x=>x.kind==='npc'),
