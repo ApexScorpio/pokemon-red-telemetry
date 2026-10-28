@@ -51,7 +51,7 @@ test('golpes RAM: previsão condicional de dano, crítico e KO não crítico',()
  assert.ok(r.moves[0].damage.koGivenNormalHitPercent>=0);
  assert.ok(r.moves[0].criticalPercentWithoutFocus>0);
  assert.ok(r.conditionalBestMove);assert.equal(r.enemyThreats.length,1);
- assert.equal(r.moves[2].damage,null);
+ assert.ok(r.moves[2].damage); // Ember: primeiro acerto normal, sem calcular burn
  assert.ok(r.captureOdds.pokeball>=0&&r.captureOdds.pokeball<=100);
 });
 test('recusa SHA desconhecido, janela incoerente e HP zero',()=>{
@@ -108,11 +108,30 @@ test('treinador não tem percentagem de captura; efeito especial sem previsão d
  const a=scenario();a.battleType='Trainer';a.battleEvidence.battleType='Trainer';
  const r=buildLiveBattlePreview(a);
  assert.equal(r.captureOdds,null);
- assert.equal(r.moves[2].hitPercent,null);
+ assert.ok(r.moves[2].hitPercent>0); // burn e imunidade não modelados
 });
 test('crítico base: valores só sem Focus Energy, sem chamar probabilidade real',()=>{
  const x=criticalConditionalWithoutFocus(100,40,false);
  const y=criticalConditionalWithoutFocus(100,40,true);
  assert.equal(x.outOf256,50);assert.equal(y.outOf256,255);
  assert.equal(criticalConditionalWithoutFocus(100,0,false).outOf256,0);
+});
+
+test('efeitos secundários têm apenas a componente de dano e não são candidatos ótimos',()=>{
+ const x=scenario();
+ const r=buildLiveBattlePreview(x);
+ assert.equal(r.moves[2].effectByte,4);
+ assert.ok(r.moves[2].damage.min>0);
+ assert.equal(r.moves[2].secondaryEffectNotModelled,true);
+ assert.ok(r.conditionalBestMove);
+ assert.notEqual(r.conditionalBestMove.id,52);
+});
+test('multi-hit e OHKO não recebem dano de turno calculado por golpe simples',()=>{
+ const x=scenario();
+ x.romProfile.moveStats[4].effectByte=29;
+ x.romProfile.moveStats[0].effectByte=38;
+ const r=buildLiveBattlePreview(x);
+ assert.equal(r.moves[0].damage,null);
+ assert.equal(r.moves[1].hitPercent,null);
+ assert.equal(r.moves[1].damage,null);
 });

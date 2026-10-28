@@ -737,3 +737,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Corrigido `romLiveResolver.js`: perfis conhecidos (SHA256, CRC32 e tamanho de 1 MiB coincidentes com catálogo auditado) passam a receber movimentos/efeitos/tipos/rácios/layout de captura quando não trazem essas tabelas e não existe uma ROM local. São 165 movimentos do catálogo de despacho auditado e 82 pares TypeEffects derivados iguais nas três ROMs.
 - Perfis reais que contêm tabelas validadas mantêm-nas inalteradas. Campo `basePp:null` é explícito porque o catálogo derivado não preserva PP base. Sem provas falsas de SHA runtime ou de instantâneo RAM atómico.
 - Testes Node em `tests/romImportedBattleTables.test.js` incluem três variantes, recusas SHA/CRC/tamanho e preservação dos dados de ROM local. Não há teste visual no iPhone/emulador nesta fase.
+
+
+## 2026-10-28 — Ampliação do dano condicional a golpes com efeitos secundários
+- O painel anterior calculava apenas golpes cujo effect byte era 0, deixando de fora grande parte dos ataques mais comuns. A mesma fórmula de **dano de um acerto** passa a abranger a lista estrita de efeitos 0,2,3,4,5,6,16,31,33,34,36,37,48,68,69,70,71,76, cujos ataques iniciais percorrem o ramo padrão. Efeitos secundários (veneno, burn, recoil, flinch, drops) permanecem explicitamente fora do cálculo.
+- OHKO, golpes múltiplos, carga, trapping, dano fixo e efeitos não classificados continuam bloqueados: não são falsamente representados como golpe único. O candidato 'melhor golpe' limita-se aos efeitos 0 sem secundários, embora os intervalos condicionais apareçam para outros.
+- Regressão de duas suites com fixtures: `tests/gen1LiveBattleAdvisor.test.js` e `tests/gen1LiveBattlePreview.test.js`. Nenhuma prova de emulador/iPhone.

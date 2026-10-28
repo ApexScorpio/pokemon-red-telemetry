@@ -6,6 +6,11 @@ const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const PHYSICAL_TYPES=new Set([0,1,2,3,4,5,7,8]);
 const SPECIAL_TYPES=new Set([20,21,22,23,24,25,26]);
 const ROM_TYPE_IDS=new Set([...PHYSICAL_TYPES,...SPECIAL_TYPES]);
+// Apenas efeitos cujo PRIMEIRO acerto segue o percurso de dano padrão.
+// Não modela flinch, poison, burn, freeze, drain, recoil nem alterações de stats.
+const DIRECT_HIT_EFFECTS=new Set([
+  0,2,3,4,5,6,16,31,33,34,36,37,48,68,69,70,71,76
+]);
 function accuracyConditional(accuracy,attacker,defender,ratios) {
   if(!Number.isInteger(accuracy)||accuracy<0||accuracy>255||
      !Number.isInteger(attacker)||attacker<1||attacker>13||
@@ -129,20 +134,20 @@ function buildLiveBattlePreview({romProfile,battleEvidence,battleWindow,battleTy
     if(!between(id,1,165))return null;
     const info=romProfile.moveStats[id-1];
     if(info?.id!==id)return null;
-    const plain=info.effectByte===0&&info.powerByte>0;
-    const hit=plain?accuracyConditional(info.accuracyByte,
+    const standardHit=DIRECT_HIT_EFFECTS.has(info.effectByte)&&info.powerByte>0;
+    const hit=standardHit?accuracyConditional(info.accuracyByte,
       attackerStages?.[4],defenderStages?.[5],ratios):null;
     const atkType=info.typeByte;
     const atkStats=PHYSICAL_TYPES.has(atkType)?attacker.attack:attacker.special;
     const defStats=PHYSICAL_TYPES.has(atkType)?defender.defense:defender.special;
-    const damage=plain&&rules?typedDamageConditional({
+    const damage=standardHit&&rules?typedDamageConditional({
       level:attacker.level,power:info.powerByte,moveType:atkType,
       attackerTypes:attacker.typeIds,defenderTypes:defender.typeIds,
       attack:atkStats,defense:defStats,attackerStages,defenderStages,
       attackerStatus:attacker.status,orderedRules:rules,targetHp:defender.hp
     }):null;
     const baseSpeed=romProfile.species?.[attacker.speciesId-1]?.stats?.speed;
-    const crit=plain&&Array.isArray(highCritical)?
+    const crit=standardHit&&Array.isArray(highCritical)?
       criticalConditionalWithoutFocus(baseSpeed,info.powerByte,
         highCritical.includes(id)):null;
     return {id,slot:slot+1,
@@ -150,6 +155,7 @@ function buildLiveBattlePreview({romProfile,battleEvidence,battleWindow,battleTy
       pp:between(pp,0,255)?pp&63:null,
       powerByte:info.powerByte,typeByte:atkType,
       accuracyByte:info.accuracyByte,effectByte:info.effectByte,
+      secondaryEffectNotModelled:info.effectByte!==0,
       hitOutOf256:hit?.hitOutOf256??null,
       hitPercent:hit?.percent??null,
       criticalPercentWithoutFocus:crit?.percent??null,
@@ -163,7 +169,10 @@ function buildLiveBattlePreview({romProfile,battleEvidence,battleWindow,battleTy
         scaledStats:damage.scaledStats
       }:null,
       hitCondition:hit?'Se executar MoveHitTest normal':'Ramo/efeito especial',
-      damageCondition:damage?.assumptions||'Efeito ou estado não permitido para este cálculo'};
+      damageCondition:damage?
+        damage.assumptions+(info.effectByte?
+          '; efeitos secundários NÃO modelados; válida só a componente de dano de um acerto':''):
+        'Efeito ou estado não permitido para este cálculo'};
   };
   const moves=ids.map((id,i)=>makeMove(id,i,pps[i],battleEvidence.player,
     battleEvidence.enemy,battleEvidence.stages?.player,
@@ -173,7 +182,7 @@ function buildLiveBattlePreview({romProfile,battleEvidence,battleWindow,battleTy
       battleEvidence.player,battleEvidence.stages?.enemy,
       battleEvidence.stages?.player)).filter(Boolean);
   const candidates=moves.filter(m=>m.pp>0&&m.damage&&
-    Number.isFinite(m.hitPercent));
+    Number.isFinite(m.hitPercent)&&!m.secondaryEffectNotModelled);
   const best=candidates.slice().sort((a,b)=>{
     const av=a.damage.expectedNormalHit*a.hitPercent/100;
     const bv=b.damage.expectedNormalHit*b.hitPercent/100;
@@ -199,7 +208,7 @@ function buildLiveBattlePreview({romProfile,battleEvidence,battleWindow,battleTy
     runtimeSha256Verified:false,atomicSnapshotVerified:false,
     reason:'Resultados condicionais: CRC32 da ROM do RetroArch corresponde à ROM local; leituras RAM repetidas coincidiram. A identidade SHA de execução, flags Reflect/Light Screen, efeitos, Focus Energy, RNG e atomicidade não estão comprovados.',
     captureCondition:'Só se o lançamento for legal e executar PokeBallEffect normal: não certifica Safari, inventário, turnos bloqueados ou RNG.',
-    assumptions:'Dano: golpe de efeito padrão, sem crítico, estágios relevantes neutros, sem Reflect/Light Screen e sem condições especiais. A probabilidade KO é condicional e não inclui críticos.',
+    assumptions:'Dano de UM ACERTO: ramo normal, sem crítico, sem Reflect/Light Screen, sem alterações de estado especiais. Nos golpes com efeitos secundários, estes não estão incluídos. KO condicional não inclui críticos.',
     moves,enemyThreats,conditionalBestMove,captureOdds};
 }
 module.exports={buildLiveBattlePreview,accuracyConditional,captureConditional,
