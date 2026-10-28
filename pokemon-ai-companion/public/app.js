@@ -501,7 +501,19 @@ function renderRomAreaEvidence(state) {
            ' (atravessável na tabela estática)':' (bloqueado na tabela estática)')+
           ' — movimento real NÃO comprovado');
       }else rows.push('• Tile atual: sem prova conjunta ROM/RAM');
-      rows.push('⚠️ Colisões de NPCs, relevo/ledges, Surf, scripts, Cut e Strength por resolver no terreno');
+      const hints=state.romTerrainWarpHints;
+      if(hints?.verified&&hints.mapId===guide.mapId){
+        const viable=hints.candidates.filter(c=>c.theoreticalTerrainPathFound).slice(0,6);
+        rows.push('🧭 ATÉ ÀS SAÍDAS — '+viable.length+
+          ' propostas APENAS PELO TERRENO (não são rotas garantidas):');
+        for(const h of viable){
+          rows.push('• Saída #'+(h.warpIndex+1)+' X:'+h.x+' Y:'+h.y+
+            ' — '+h.theoreticalSteps+' passos pela grelha estática'+
+            (h.nextTerrainDirection?' · primeiro passo: '+h.nextTerrainDirection:'')+
+            ' · acessibilidade atual desconhecida');
+        }
+      }else rows.push('🧭 Percursos de terreno: posição ROM/RAM por confirmar');
+      rows.push('⚠️ Propostas não incluem NPCs, ledges dinâmicos, Surf, scripts, Cut ou Strength');
     }else rows.push('🧱 Matriz de colisão: sem confirmação SHA para este mapa');
     rows.push('🚪 WARP / SAÍDAS ('+guide.warps.length+') — o acesso pode depender de eventos:');
     for(const w of guide.warps){
