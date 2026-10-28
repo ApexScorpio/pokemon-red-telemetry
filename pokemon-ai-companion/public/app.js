@@ -501,6 +501,43 @@ function renderRomAreaEvidence(state) {
     rows.push('👥 NPCs ESTÁTICOS DO MAPA: '+guide.npcs.length+
       ' | Itens visíveis na ROM: '+guide.visibleItems.length+
       ' | Treinadores na ROM: '+guide.trainers.length);
+    const commerce=guide.services;
+    if(commerce?.verified){
+      for(const shop of commerce.shops||[]){
+        rows.push('🛒 LOJA '+shop.label+' — inventário lido da ROM (abertura não confirmada):');
+        for(const item of shop.inventory)
+          rows.push('• '+item.name+' — '+(Number.isInteger(item.pricePokedollars)?
+            item.pricePokedollars+' ₽':'preço não confirmado')+
+            ' · compra permitida nesta partida: desconhecido');
+      }
+      for(const t of commerce.trades||[]){
+        rows.push('🔄 TROCA NPC #'+t.index+' (local segundo referência; script por confirmar): '+
+          (t.requested.name||'Pokémon #'+t.requested.internalId)+' → '+
+          (t.received.name||'Pokémon #'+t.received.internalId)+
+          ' / alcunha '+t.nickname+' · efetuada: desconhecido');
+      }
+      if(commerce.gameCorner){
+        rows.push('🎰 PRÉMIOS GAME CORNER — custos em MOEDAS, não Pokédólares:');
+        for(const menu of commerce.gameCorner.menus)
+          for(const product of menu.products)
+            rows.push('• '+(product.species?.name||product.itemName||'ID '+product.id)+
+              (product.level?' Nv.'+product.level:'')+' — '+product.coinPrice+' moedas'+
+              ' · compra disponível agora: desconhecido');
+      }
+      if(commerce.vending){
+        rows.push('🥤 MÁQUINA DE BEBIDAS — itens e preços da ROM:');
+        for(const v of commerce.vending.inventory)
+          rows.push('• '+v.name+': '+v.pricePokedollars+' ₽');
+      }
+      const rods=commerce.fishing;
+      if(rods?.superRod){
+        rows.push('🎣 SUPER ROD — espécies/níveis desta zona (ROM; não prova água ou posse da cana):');
+        for(const mon of rods.superRod.slots)
+          rows.push('• Pokémon interno #'+mon.speciesInternalId+' Nv.'+mon.level+
+            ' · 1/'+rods.superRod.slots.length+' se houver picada');
+        rows.push('• Probabilidade de não picar numa tentativa elegível: 1/2');
+      }
+    }else rows.push('🛒 Lojas/trocas/pesca: tabelas da ROM não verificadas nesta sessão');
     rows.push('⚠️ Os scripts completos deste mapa ainda não estão semanticamente auditados.');
   }else{
     rows.push('🧭 Guia estático ROM: '+(guide?.reason||'não validado para este mapa'));
