@@ -24,7 +24,13 @@ for(const version of Object.keys(files)){
  testRoms(version+' exact 1 MiB ROM: all 7 economy/trade/fishing catalogues validated',()=>{
   const rom=file(version),a=auditEconomyTrades(rom);profiles[version]=a;
   assert.equal(a.verified,true,JSON.stringify(a.failed));assert.equal(a.romSha256,SHA[version]);
-  assert.equal(a.itemPrices.itemCount,83);assert.equal(a.itemPrices.floorIdEntries,14);
+  assert.equal(a.itemPrices.itemCount,83);
+  assert.equal(a.itemDispatch.verified,true);
+  assert.equal(a.itemDispatch.itemCount,83);
+  assert.equal(a.itemDispatch.distinctHandlers,30);
+  assert.equal(a.itemDispatch.entries[75].handler,'ItemUseOldRod');
+  assert.equal(a.itemDispatch.entries[76].handler,'ItemUseGoodRod');
+  assert.equal(a.itemDispatch.entries[77].handler,'ItemUseSuperRod');assert.equal(a.itemPrices.floorIdEntries,14);
   assert.equal(a.itemPrices.items.find(x=>x.name==='NUGGET').pricePokedollars,10000);
   assert.equal(a.itemPrices.items.find(x=>x.name==='POKE_BALL').pricePokedollars,200);
   assert.equal(a.itemPrices.items.find(x=>x.name==='COIN').pricePokedollars,10);
@@ -78,4 +84,10 @@ testRoms('all shop stocks match referenced mart-script counts with zero guessed 
 testRoms('tampered real 1 MiB ROM does not inherit exact SHA-verified tables',()=>{
  const b=file('blue'),changed=Buffer.from(b);changed[0x4608]^=1;
  assert.equal(auditEconomyTrades(changed).verified,false);
+});
+
+testRoms('83 item dispatch pointers are identical across Red Blue and Green, but do not certify all effects',()=>{
+ const red=profiles.red.itemDispatch.entries.map(x=>x.pointerCpu);
+ for(const name of ['blue','green'])assert.deepEqual(red,profiles[name].itemDispatch.entries.map(x=>x.pointerCpu));
+ assert.equal(profiles.green.itemDispatch.allHandlerEffectsCertified,false);
 });
