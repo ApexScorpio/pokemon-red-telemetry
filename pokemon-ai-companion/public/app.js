@@ -745,6 +745,21 @@ function renderWorldAdvisor(state) {
       ' · Fichas: '+(advice.coinFlagsVerified?'confirmadas':'por confirmar'),
     '--- AÇÕES E CONDIÇÕES (ordem orientativa, não rota garantida) ---'
   ];
+  // Resumo mundial é uma leitura das flags auditadas dos 226 mapas, NÃO
+  // uma afirmação de 100% de história, de acessibilidade ou de capturas.
+  const global=state.globalCampaignLedger;
+  if(global?.verified===true&&global.romSha256===advice.romSha256&&
+     global.mapCount===226&&global.totals){
+    const t=global.totals;
+    lines.splice(2,0,
+      '🌍 KANTO (226 mapas): itens ocultos '+t.hiddenItemsCollected+'/'+t.hiddenItems+
+        ' · fichas '+t.hiddenCoinsCollected+'/'+t.hiddenCoins,
+      '📜 Eventos de treinador: '+t.trainerGatesClosed+' portões fechados'+
+        ' · '+t.trainersUnknown+' treinadores sem flag mapeada'+
+        ' · '+t.scriptedVictories+' vitórias de script comprovadas',
+      '✨ Encontros fixos: '+t.stationaryGatesClosed+
+        ' eventos encerrados (não prova captura)');
+  }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
   for(const {o} of ordered){
     const place=Number.isInteger(o.x)&&Number.isInteger(o.y)?
       ' X:'+o.x+' Y:'+o.y:'';
