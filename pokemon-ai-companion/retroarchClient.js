@@ -1858,8 +1858,15 @@ class RetroArchClient extends EventEmitter {
         hp: eHp,
         maxHp:eMaxHp,
         level:eLevel,
-        catchRate:null,
-        catchRateSource:'RAM_OFFSET_NAO_CERTIFICADO',
+        catchRate:battleEvidence.actualCatchRate,
+        catchRateSource:battleEvidence.actualCatchRateVerified?
+          'D007_RAM_TAXA_EFETIVA_AMOSTRA_SEQUENCIAL':'NÃO_CONFIRMADO',
+        catchRateVerified:battleEvidence.actualCatchRateVerified,
+        captureInputs:battleEvidence.captureInputs,
+        // CFE9 é o estado realmente lido, sem inferências da espécie.
+        status:battleEvidence.catchStatusFromRam,
+        statusByte:battleEvidence.enemy.statusByte,
+        typeIds:battleEvidence.enemy.typeIds,
         baseStats:{spd:this.activeRomProfile&&String(eInfo.source||'').includes('ROM') ? (eInfo.baseSpeed??null) : null},
         stats:{attack:eAttack,defense:eDefense,speed:eSpeed,special:eSpecial},
         statMods: eMods,
@@ -1942,7 +1949,11 @@ class RetroArchClient extends EventEmitter {
         maxHp:bMaxHp,
         level:bLevel,
         partyPos: realPartyPos,
-        status: bStatusVal === 0 ? 'HEALTHY' : (bStatusVal & 0x7 ? 'SLEEP' : (bStatusVal & 0x8 ? 'POISON' : (bStatusVal & 0x40 ? 'PARALYSIS' : 'BURN'))),
+        status:{NONE:'HEALTHY',SLP:'SLEEP',PSN:'POISON',BRN:'BURN',FRZ:'FREEZE',PAR:'PARALYSIS'}[
+          (function(b){if(b===0)return 'NONE';if((b&~7)===0)return 'SLP';return {8:'PSN',16:'BRN',32:'FRZ',64:'PAR'}[b]||'NONE';})(bStatusVal)
+        ],
+        statusByte:bStatusVal,
+        typeIds:battleEvidence.player.typeIds,
         stats:{attack:bAttack,defense:bDefense,speed:bSpeed,special:bSpecial},
         statMods: pMods,
         moves: partyMon ? partyMon.moves : moveList,
