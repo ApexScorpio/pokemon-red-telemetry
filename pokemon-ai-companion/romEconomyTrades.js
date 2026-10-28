@@ -200,12 +200,48 @@ function fishing(rom){
   conditionalProbabilitiesOnly:true,canFishCurrentTileVerified:false,
   source:'ROM SuperRodData, GoodRodMons and pret/pokered engine/items/item_effects.asm'};
 }
+// The ItemUsePtrTable is an 83-entry bank-3 dispatch table. This describes
+// which *handler* the engine calls, not whether the item is allowed now.
+const ITEM_HANDLERS=Object.freeze({
+ 0x5687:'ItemUseBall',0x5968:'ItemUseTownMap',0x5977:'ItemUseBicycle',
+ 0x59b4:'ItemUseSurfboard',0x5a56:'ItemUsePokedex',0x5a5b:'ItemUseEvoStone',
+ 0x5ab4:'ItemUseVitamin',0x5abb:'ItemUseMedicine',0x5f52:'ItemUseBait',
+ 0x5f67:'ItemUseRock',0x5faf:'ItemUseEscapeRope',0x6003:'ItemUseRepel',
+ 0x6013:'ItemUseXAccuracy',0x6022:'ItemUseCardKey',0x60cd:'ItemUsePokeDoll',
+ 0x60dc:'ItemUseGuardSpec',0x60eb:'ItemUseSuperRepel',0x60f0:'ItemUseMaxRepel',
+ 0x60f5:'ItemUseDireHit',0x6104:'ItemUseXStat',0x6140:'ItemUsePokeFlute',
+ 0x623a:'ItemUseCoinCase',0x624c:'ItemUseOldRod',0x6259:'ItemUseGoodRod',
+ 0x6283:'ItemUseSuperRod',0x62de:'ItemUseOaksParcel',0x62e1:'ItemUseItemfinder',
+ 0x6317:'ItemUsePPUp',0x631e:'ItemUsePPRestore',0x6476:'UnusableItem'
+});
+function itemDispatch(rom){
+ const at=0xd5e1,entries=[];
+ if(rom.length<at+83*2)return {verified:false,reason:'Item dispatch table truncated'};
+ for(let i=0;i<83;i++){
+  const pointer=rom.readUInt16LE(at+i*2),handler=ITEM_HANDLERS[pointer];
+  if(!handler)return {verified:false,reason:'Unknown item handler',index:i,pointer};
+  entries.push({itemId:i+1,itemName:itemName(i+1),handler,pointerCpu:pointer,
+   handlerBank:3,handlerLocation:bankAt(3*BANK+pointer-0x4000),
+   currentUseAllowed:null,effectBranchFullyProven:false});
+ }
+ if(entries.slice(0,4).some(e=>e.handler!=='ItemUseBall')||
+    entries.filter(e=>e.handler==='UnusableItem').length!==20||
+    new Set(entries.map(e=>e.handler)).size!==30||
+    entries[75].handler!=='ItemUseOldRod'||
+    entries[76].handler!=='ItemUseGoodRod'||
+    entries[77].handler!=='ItemUseSuperRod')
+   return {verified:false,reason:'ItemUsePtrTable structural invariants differ'};
+ return {verified:true,location:bankAt(at),itemCount:83,distinctHandlers:30,
+   entries,source:'ROM bank 3 ItemUsePtrTable + pret/pokered engine/items/item_effects.asm',
+   specialOverloadedItemIds:[21,22],
+   allHandlerEffectsCertified:false};
+}
 function auditEconomyTrades(rom){
  if(!Buffer.isBuffer(rom)||rom.length!==BYTES)return {verified:false,reason:'ROM expected 1048576 bytes'};
  const digest=sha(rom),version=Object.keys(SHA).find(k=>SHA[k]===digest);
  if(!version)return {verified:false,reason:'ROM SHA-256 is not an audited Red/Blue/Green variant',sha256:digest};
  const fields={itemPrices:sourceList(rom),martShops:marts(rom),tmPrices:technicalMachinePrices(rom),
-  vending:vending(rom),npcTrades:trades(rom),prizeCorner:prizeCorner(rom),fishing:fishing(rom)};
+  vending:vending(rom),npcTrades:trades(rom),prizeCorner:prizeCorner(rom),fishing:fishing(rom),itemDispatch:itemDispatch(rom)};
  const failed=Object.entries(fields).filter(([,v])=>!v.verified).map(([key,v])=>({table:key,reason:v.reason}));
  return {schema:'pokeguide-gen1-economy-trades-v1',romSha256:digest,version,
   verified:failed.length===0,failed,source:'EXACT_LOCAL_ROM_BYTES_SHA256_AND_TABLE_STRUCTURE',
