@@ -493,7 +493,9 @@ function renderRomAreaEvidence(state) {
       const edge=guide.navigation?.exits?.find(e=>
         e.sourceWarpIndex===guide.warps.indexOf(w));
       const destination=w.map===255?
-        'mapa anterior (LAST_MAP: exige RAM)':
+        (w.ramResolvedDestinationVerified===true?
+          'mapa #'+w.resolvedMapId+' (LAST_MAP, D365 repetido; RAM não atómica)':
+          'mapa anterior (LAST_MAP: exige RAM válida)'):
         edge?.status==='SILPH_ELEVATOR_SCRIPT_PATCH_REQUIRED'?
           'destino do elevador definido por script/RAM':
           'mapa #'+w.map+' (warp '+w.warp+')';
