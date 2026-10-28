@@ -74,6 +74,35 @@ function validatedBlockGrid(m){
    blockIdsBase64:m.blockDataBase64,
    interpretation:'IDs de metabloco verificados; NÃO é matriz de colisão nem pixels da tileset'};
 }
+// Only static inventory/offers come from ROM. Location bindings originate from
+// pret/pokered reference map IDs and do not prove Green's modified script.
+function staticServicesForMap(profile,mapId){
+ const economy=profile?.economyTrades;
+ if(economy?.verified!==true)return {verified:false,reason:'Catálogo ROM de economia ainda não validado'};
+ const priceById=new Map(economy.itemPrices.items.map(i=>[i.id,i]));
+ const tmById=new Map(economy.tmPrices.entries.map(i=>[i.itemId,i]));
+ const shops=economy.martShops.shops.filter(i=>i.mapId===mapId).map(shop=>({
+  label:shop.label,source:'ROM_SHOP_SCRIPT_AND_PRET_MAP_REFERENCE',mapAssociationProvenInActiveGame:false,
+  inventory:shop.inventory.map(i=>({...i,pricePokedollars:(priceById.get(i.id)||tmById.get(i.id))?.pricePokedollars??null,
+    stockAvailableNow:null})),shopIsOpenNow:null}));
+ const trades=economy.npcTrades.trades.filter(i=>i.mapId===mapId).map(t=>({
+  index:t.index,mapIdReferenceOnly:true,liveNpcScriptVerified:false,
+  requested:speciesAt(profile,t.requestedInternalId),
+  received:speciesAt(profile,t.receivedInternalId),nickname:t.receivedNickname,
+  completed:null,playerHasRequestedPokemon:null}));
+ const gameCorner=mapId===economy.prizeCorner.mapId?{
+  menus:economy.prizeCorner.menus.map(m=>({kind:m.kind,products:m.products.map(p=>({
+   ...p,species:m.kind==='pokemon'?speciesAt(profile,p.id):null,
+   purchasableNow:null}))})),liveOfferVerified:false}:null;
+ const vending=mapId===economy.vending.mapId?{
+  inventory:economy.vending.items,liveVendingMachineVerified:false}:null;
+ const fishing=economy.fishing.superRod.find(x=>x.mapId===mapId);
+ return {verified:true,romSha256:economy.romSha256,shops,trades,gameCorner,vending,
+  fishing:{superRod:fishing?{...fishing,currentTileCanFish:null}:null,
+   goodRod:economy.fishing.goodRod,oldRod:economy.fishing.oldRod,
+   rodInInventoryVerified:false,eligibleFishingActionVerified:false},
+  referenceAssociationsRequireScriptValidation:true,hasLiveStateProof:false};
+}
 function staticMapGuide(profile,mapId){
  const sha=profile?.hash?.sha256?.toLowerCase();
  if(!SHA.has(sha)||profile.unknownLayout||!Number.isInteger(mapId)||mapId<0||mapId>247)
@@ -114,6 +143,7 @@ function staticMapGuide(profile,mapId){
   staticPokemon:actors.filter(x=>x.kind==='wildPokemon').map(x=>({x:x.x,y:x.y,
     metadata:x.metadata||[],battleTriggered:null})),
   encounters:encountersFor(profile,w),
+  services:staticServicesForMap(profile,mapId),
   mapScripts:{decodedSemanticEvents:false,reason:'O ponteiro para código por mapa, só por si, não descodifica os estados dos scripts'},
   currentPositionVerified:false,currentEventFlagsVerified:false,
   allContentsKnown:false};
@@ -129,4 +159,4 @@ function mapGuideIndex(profile){
   reservedClassification:'REFERENCE_MAP_CONSTANTS_AND_NO_DECODED_HEADER_NOT_LIVE_PROOF',
   scope:'Os IDs UNUSED_MAP de referência não são mapas jogáveis a descodificar; não validar conteúdo de hacks sem prova'};
 }
-module.exports={staticMapGuide,mapGuideIndex,encountersFor,trainersFor,REFERENCE_UNUSED_IDS};
+module.exports={staticMapGuide,mapGuideIndex,encountersFor,trainersFor,staticServicesForMap,REFERENCE_UNUSED_IDS};
