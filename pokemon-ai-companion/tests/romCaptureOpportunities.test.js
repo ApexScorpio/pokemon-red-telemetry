@@ -37,3 +37,13 @@ test('não apresenta percentagens de slots que não totalizam 256 na ROM',()=>{
  const r=captureOpportunities(invalid,[],[],{romMatched:true,partyRamVerified:true});
  assert.equal(r.verified,false);
 });
+
+test('a verificação de encontro da ROM usa taxa/256, nunca taxa/255 ou chance por passo',()=>{
+ const result=captureOpportunities(data,[],[],{romMatched:true,partyRamVerified:true});
+ assert.equal(result.verified,true);
+ assert.equal(result.zones[0].eligibleCheckOutOf256,15);
+ assert.equal(result.zones[0].eligibleCheckPercent,15*100/256);
+ assert.equal(result.zones[0].perStepChanceVerified,false);
+ assert.equal(result.zones[1].eligibleCheckOutOf256,0);
+ assert.equal(result.zones[1].eligibleCheckPercent,0);
+});
