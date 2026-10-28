@@ -262,6 +262,24 @@
             A aguardar identificação da ROM e mapa atual.
           </div>
         </section>
+        <!-- Global ROM/RAM adviser. All text is rendered with textContent,
+             not inserted as HTML. Any stale/unknown proof hides old advice. -->
+        <section class="card-glass inventory-deck-card" id="world-advisor-card">
+          <div class="card-header-compact">
+            <div class="header-left">
+              <span class="icon-avatar">🧭</span>
+              <div>
+                <h4>POKÉGUIDE — AÇÕES DESTA ZONA</h4>
+                <span class="sub-small" id="world-advisor-source">A aguardar ROM/RAM verificadas</span>
+              </div>
+            </div>
+          </div>
+          <div class="daycare-tracker-body" id="world-advisor-content"
+               style="white-space:pre-line;line-height:1.55;max-height:380px;overflow-y:auto"
+               aria-live="polite" aria-atomic="true">
+            A aguardar a leitura do mapa atual.
+          </div>
+        </section>
       </aside>
 
       <!-- COLUNA 2: CENTRO TÁTICO (ARENA DE COMBATE OU RADAR DA ÁREA) -->
@@ -502,6 +520,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=2.25"></script>
+  <script src="app.js?v=2.26"></script>
 </body>
 </html>
