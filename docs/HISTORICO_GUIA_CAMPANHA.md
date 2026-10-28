@@ -550,3 +550,12 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 13. Confirmada execução Node direta de dois módulos com SHA de blob Git igual à fonte publicada, contra as três ROMs carregadas, com **6/6 resultados positivos**. A existência de ROMs nesta sessão não elimina os três SKIP de um executor JS diferente sem acesso aos caminhos de ficheiro. Sem executar o emulador do iPhone, a UI ou o servidor ativo.
 
 **Estado de fecho:** tudo o que foi modificado nesta fase está publicado no GitHub, mas a verificação ponta a ponta ao vivo permanece pendente. Não atribuir certificação de 100% à cobertura do jogo.
+
+
+## 2026-10-28 — Repel e tabelas de batalha verificados em três ROMs
+
+- Confirmado em pret/pokered que Repel com apenas 1 passo restante termina sem sorteio. Nos restantes passos ativos, o nível do primeiro Pokémon filtra os dez slots de encontro.
+- Publicado `gen1WildEncounterCheck.js` e o teste `tests/gen1WildEncounterCheck.test.js`: oito testes Node locais aprovados, três deles executados diretamente nas ROMs Red, Blue e Green com SHA-256 verificado. Route 2: 25/256 sem Repel, ou 1025/65536 com Repel ativo e primeiro Pokémon no nível 5, por tentativa elegível e sob o modelo RNG explícito.
+- Confirmada a tabela de 13 rácios de precisão no offset `0x3F6CB`, os quatro golpes de crítico elevado na tabela efetiva em `0x3E08E`, e uma cópia não utilizada em `0x3E01E`. Publicado `romBattleRuleTables.js` com validação dos três SHA-256 e cinco testes locais aprovados.
+- Integrado o catálogo auditado no perfil de ROM e a proveniência de críticos elevados na descrição dos golpes. Relatório: `docs/AUDITORIA_REPEL_PRECISAO_CRITICOS_20261028.md`.
+- Total desta fase: 13/13 testes Node locais aprovados, 0 ignorados. Não foi executado teste integral do Companion, interface real ou emulador; cobertura de 100% não certificada. Originais das ROMs preservados.
