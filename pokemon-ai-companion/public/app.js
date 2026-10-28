@@ -488,6 +488,21 @@ function renderRomAreaEvidence(state) {
   if(guide?.verified){
     rows.push('🧭 GUIA ESTÁTICO COMPLETO DA ROM PARA O MAPA #'+guide.mapId+
       ' (posição/flags atuais dependem da RAM)');
+    if(guide.terrain?.verified===true){
+      const t=guide.terrain;
+      rows.push('🧱 COLISÃO BÁSICA DO TERRENO DA ROM — '+t.width+'×'+t.height+
+        ' posições; '+t.landTerrainWalkableCells+' permitidas pelos tilesets / '+
+        t.landTerrainBlockedCells+' bloqueadas');
+      const here=state.romTerrainCurrentTile;
+      if(here?.verified===true&&here.mapId===guide.mapId){
+        rows.push('• Posição RAM X:'+here.x+' Y:'+here.y+
+          ' → tile #'+here.tileId+
+          (here.passableByStaticLandTileset?
+           ' (atravessável na tabela estática)':' (bloqueado na tabela estática)')+
+          ' — movimento real NÃO comprovado');
+      }else rows.push('• Tile atual: sem prova conjunta ROM/RAM');
+      rows.push('⚠️ Colisões de NPCs, relevo/ledges, Surf, scripts, Cut e Strength por resolver no terreno');
+    }else rows.push('🧱 Matriz de colisão: sem confirmação SHA para este mapa');
     rows.push('🚪 WARP / SAÍDAS ('+guide.warps.length+') — o acesso pode depender de eventos:');
     for(const w of guide.warps){
       const edge=guide.navigation?.exits?.find(e=>
