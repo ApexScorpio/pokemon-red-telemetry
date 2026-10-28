@@ -12,6 +12,7 @@ const {getTrainerParty}=require('./romTrainerParties');
 const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {captureOpportunities}=require('./romCaptureOpportunities');
 const {parseRomBattleEvidence}=require('./romBattleEvidence');
+const {verifyBattleWindow}=require('./romBattleSnapshotConsistency');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -1777,14 +1778,36 @@ class RetroArchClient extends EventEmitter {
       romMatched:!!this.activeRomProfile,
       mapSnapshotVerified:!!this.latestState.memoryReadStatus?.mapSnapshot?.verified
     });
+    // Segunda leitura independente: os valores podem alterar-se enquanto
+    // o emulador executa. Nunca considerar blocos sequenciais como atómicos.
+    let battleWindow={verified:false,reason:'Sem releitura confirmatória'};
+    if(this.latestState.inBattle&&!this.isSimulatingBattle&&battleEvidence.verified){
+      const rereadEnemy=await this.readMemoryBlock('CFE5',40);
+      const rereadPlayer=await this.readMemoryBlock('D014',29);
+      const rereadStages=await this.readMemoryBlock('CD1A',26);
+      const rereadFlag=await this.readMemoryBlock('D057',1);
+      const rereadMapId=await this.readMemoryBlock('D35E',1);
+      battleWindow=verifyBattleWindow({
+        combatBlock:blockCombat,playerBlock:blockPlayerBattle,modifierBlock:blockBattleMods,
+        battleFlag:Number.parseInt(directBattleFlag,16),mapId:this.latestState.mapId,
+        rereadEnemy,rereadPlayer,rereadStages,rereadFlag,rereadMapId
+      });
+    }
+    battleEvidence.consistentWindowVerified=battleWindow.verified;
+    const battleReadingVerified=battleEvidence.verified&&battleWindow.verified;
     this.latestState.battleReadStatus={
-      verified:battleEvidence.verified,reason:battleEvidence.reason||battleEvidence.exactTurnMathReason||null,
+      verified:battleReadingVerified,
+      structureVerified:battleEvidence.verified,
+      consistentWindowVerified:battleWindow.verified,
+      reason:!battleEvidence.verified?battleEvidence.reason:!battleWindow.verified?
+        battleWindow.reason:battleEvidence.exactTurnMathReason,
       source:battleEvidence.source||'RetroArch READ_CORE_MEMORY',
       atomicSnapshotVerified:false,exactTurnMathReady:false
     };
-    if(this.latestState.inBattle&&!this.isSimulatingBattle&&!battleEvidence.verified){
+    if(this.latestState.inBattle&&!this.isSimulatingBattle&&!battleReadingVerified){
       this.latestState.battle=null;
-      this.latestState.aiAdvice='Dados de combate indisponíveis: '+battleEvidence.reason;
+      this.latestState.aiAdvice='Dados de combate indisponíveis: '+
+        this.latestState.battleReadStatus.reason;
     }
 
     const isDialog = this.latestState.currentDialog && this.latestState.currentDialog.length > 0;
@@ -1796,7 +1819,7 @@ class RetroArchClient extends EventEmitter {
       this.latestState.playerMode = `🗺️ Exploração Livre (${this.latestState.movementMode || 'A Pé'})`;
     }
 
-    if (this.latestState.inBattle && !this.isSimulatingBattle && battleEvidence.verified) {
+    if (this.latestState.inBattle && !this.isSimulatingBattle && battleReadingVerified) {
       // Repel steps ($D0DB, offset 251)
       this.latestState.repelSteps = parseInt(blockCombat[251], 16) || 0;
 
