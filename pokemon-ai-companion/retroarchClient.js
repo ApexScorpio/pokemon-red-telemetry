@@ -14,6 +14,7 @@ const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
 const {auditTrainerCoverage,currentMapTrainerCoverage}=require('./romTrainerCoverage');
 const {verifyMapSnapshot}=require('./romSnapshotIntegrity');
 const {verifyMapPositionWindow}=require('./romMapPositionConsistency');
+const {verifyMovementModeWindow}=require('./romMovementModeConsistency');
 const {getTrainerParty}=require('./romTrainerParties');
 const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {captureOpportunities}=require('./romCaptureOpportunities');
@@ -1135,13 +1136,22 @@ class RetroArchClient extends EventEmitter {
       enemyPartyRaw = blockWorldEvents.slice(764, 772);
     }
 
+    // The original D700 byte came from a large sequential world-data block.
+    // Re-read D700 just before predicting movement to reject Surf/bike state drift.
+    const modeWindow=verifyMovementModeWindow({
+      firstModeByte:blockWorldEvents?.[352],
+      secondModeBytes:await this.readMemoryBlock('D700',1)
+    });
+    this.latestState.romMovementModeWindow=modeWindow;
+    if(!modeWindow.verified)
+      this.latestState.movementMode='❔ Modo de deslocação alterado ou não confirmado';
     this.latestState.romMovementOptions=
       inspectMovementOptions(
         this.latestState.romStaticMapGuide?.terrain,
         this.activeRomProfile?.world?.terrainAtlas,
         this.latestState.coords,
-        walkBikeSurf,
-        {mapSnapshotVerified:mapConfirmation.verified&&positionWindow.verified}
+        modeWindow.verified?modeWindow.modeByte:null,
+        {mapSnapshotVerified:mapConfirmation.verified&&positionWindow.verified&&modeWindow.verified}
       );
     // Only static rules are inferred. These UDP reads are not atomic.
     // Verificador Canónico de Event Flags da RAM
