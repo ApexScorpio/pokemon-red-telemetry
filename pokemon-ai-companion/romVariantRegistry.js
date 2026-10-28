@@ -15,7 +15,6 @@ const {auditMoveEffectDispatch}=require('./romMoveEffectDispatch');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {extractOutdoorConnections}=require('./romOutdoorConnections');
 const {auditElevatorDestinations}=require('./romElevatorDestinations');
-const {auditTerrainCollision}=require('./romTerrainCollision');
 const {readRomTerrain}=require('./romTerrainAtlas');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
@@ -185,7 +184,6 @@ function inspectRomBuffer(b,file='ROM_EM_MEMORIA.gb'){
  world.hiddenItemScripts=extractHiddenItemsFromRom(b);
  world.outdoorConnections=extractOutdoorConnections(b,world.maps);
  world.elevatorDestinations=auditElevatorDestinations(b,world);
- world.terrainCollision=auditTerrainCollision(b,world.maps);
  world.terrainAtlas=readRomTerrain(b,world);
  world.warpGraph=buildWarpGraph({hash:{sha256:crypto.createHash('sha256').update(b).digest('hex')},world});
  const species=[],hasCore=offsets.names!==null&&offsets.dexOrder!==null&&offsets.baseStats!==null;
