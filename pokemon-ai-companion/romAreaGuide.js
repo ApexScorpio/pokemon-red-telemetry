@@ -3,6 +3,7 @@
 // Never assert a trainer has been defeated, an item collected, a door unlocked,
 // or that an encounter is eligible without evidence from the live emulator.
 const crypto=require('node:crypto');
+const verifiedTerrainDifferences=require('./data/gen1TerrainDifferences.json');
 const SHA=new Set([
  '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
  '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
@@ -200,6 +201,25 @@ function staticMapGuide(profile,mapId){
     eventFlagValueFromRam:null,battleTriggered:null,caughtFromThisEvent:null
   })), 
   terrain,
+  terrainVariantNotice:terrain?.verified&&
+    ['5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+     '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+     'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db']
+      .includes(sha)&&
+    verifiedTerrainDifferences.redGreen?.verified===true?
+      (()=>{
+        const row=verifiedTerrainDifferences.redGreen.maps.find(x=>x.mapId===mapId);
+        return row?{
+          verified:true,mapId,comparison:'GREEN_INTERNATIONAL_VS_RED_BLUE',
+          inThisVariant:sha==='aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'?
+            'GREEN_INTERNATIONAL':'RED_OR_BLUE',
+          staticTerrainCellsDifferent:row.cellsChanged,
+          greenWalkableCellsAdded:row.passableAddedInB,
+          greenWalkableCellsRemoved:row.passableRemovedInB,
+          livePathAccessVerified:false,
+          source:'EXACT_SHA_ROM_LAND_PASSABILITY_DIFF'
+        }:null;
+      })():null,
   encounters:encountersFor(profile,w),
   services:staticServicesForMap(profile,mapId),
   mapScripts:{decodedSemanticEvents:false,reason:'O ponteiro para código por mapa, só por si, não descodifica os estados dos scripts'},
