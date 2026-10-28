@@ -10,6 +10,7 @@ const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {inspectMovementOptions}=require('./romTerrainMovement');
 const {planItemAccess}=require('./romItemReachability');
 const {adviseWorld}=require('./romWorldStateAdvisor');
+const {buildCampaignLedger}=require('./romCampaignLedger');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
@@ -766,6 +767,8 @@ class RetroArchClient extends EventEmitter {
         reason:'Mapa RAM incoerente; todos os percursos antigos descartados'};
       this.latestState.worldAdvisor={verified:false,observations:[],
         reason:'Mapa RAM incoerente; conselhos do mapa anterior descartados'};
+      this.latestState.globalCampaignLedger={verified:false,mapProgress:[],
+        reason:'Mapa RAM incoerente; progresso global anterior descartado'};
       this.latestState.romWildEncounters=null;
       this.latestState.romMap=null;
       this.latestState.mapEntities=[];
@@ -2435,6 +2438,15 @@ class RetroArchClient extends EventEmitter {
       this._warpGraphSha=null;
       this.latestState.romWarpGraph={verified:false,reason:'ROM não identificada'};
     }
+    this.latestState.globalCampaignLedger=buildCampaignLedger({
+      profile:this.activeRomProfile,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true,
+      eventFlagsHex:eventFlagsRaw,
+      hiddenItemHex:hiddenRaw,
+      hiddenCoinHex:hiddenCoinsRaw
+    });
     this.latestState.worldAdvisor=adviseWorld({
       profile:this.activeRomProfile,
       mapId:this.latestState.mapId,
