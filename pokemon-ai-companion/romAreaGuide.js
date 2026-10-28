@@ -150,7 +150,10 @@ function staticMapGuide(profile,mapId){
       'Mapa sem cabeçalho normal validado; não assumir que não tem eventos'};
  }
  if(!w)return {verified:false,mapId,romSha256:sha,reason:'Tabela de encontros do mapa ausente'};
- const obj=m.objects||{},actors=obj.objects||[];
+ const obj=m.objects||{},actors=(obj.objects||[]).map((actor,index)=>({
+  ...actor,ordinal:actor.ordinal??index+1}));
+ const trainerEvents=new Map((m.trainerEvents||[]).map(e=>[e.objectOrdinal,e]));
+ const stationaryEvents=new Map((m.staticEncounterEvents||[]).map(e=>[e.objectOrdinal,e]));
  const items=actors.filter(x=>x.kind==='item').map((o,i)=>({x:o.x,y:o.y,
   ordinal:o.ordinal??actors.indexOf(o)+1,itemId:actorMetadata(o).itemOrClassId,obtained:null,
   obtainedStatus:'RAM_EVENT_FLAG_NOT_READ'}));
@@ -166,11 +169,20 @@ function staticMapGuide(profile,mapId){
   warps:(obj.warps||[]).map(normalizeWarp),
   signs:obj.signs||[],npcs:actors.filter(x=>x.kind==='npc'),
   visibleItems:items,hiddenItems:hidden,hiddenCoins:coins,
-  trainers:trainersFor(profile,actors),
-  staticPokemon:actors.filter(x=>x.kind==='wildPokemon').map(x=>({x:x.x,y:x.y,
+  trainers:trainersFor(profile,actors).map(t=>({
+    ...t,eventFlagIndex:trainerEvents.get(t.ordinal)?.eventBitIndex??null,
+    eventFlagSource:trainerEvents.get(t.ordinal)?.source??null,
+    eventFlagValueFromRam:null,flagDoesNotProveVictory:true
+  })),
+  staticPokemon:actors.filter(x=>x.kind==='wildPokemon').map(x=>({
+    x:x.x,y:x.y,
     speciesInternalId:x.wildSpeciesInternalId??actorMetadata(x).itemOrClassId,
     level:x.wildLevel??actorMetadata(x).numberOrLevel,
-    objectOrdinal:x.ordinal??actors.indexOf(x)+1,battleTriggered:null})), 
+    objectOrdinal:x.ordinal,
+    eventFlagIndex:stationaryEvents.get(x.ordinal)?.eventBitIndex??null,
+    eventFlagSource:stationaryEvents.get(x.ordinal)?.source??null,
+    eventFlagValueFromRam:null,battleTriggered:null,caughtFromThisEvent:null
+  })), 
   encounters:encountersFor(profile,w),
   services:staticServicesForMap(profile,mapId),
   mapScripts:{decodedSemanticEvents:false,reason:'O ponteiro para código por mapa, só por si, não descodifica os estados dos scripts'},
