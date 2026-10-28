@@ -1,24 +1,27 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
+const fs=require('node:fs'),path=require('node:path');
+const {readRom}=require('../romComprehensiveAudit');
 const {auditEconomyTrades,bcd,ITEM_NAMES,SHA}=require('../romEconomyTrades');
-const dir=process.env.POKEMON_ROM_DIR||'/mnt/data';
-const files={red:path.join(dir,'Pokemon - Red Version (UE)[!].zip'),blue:path.join(dir,'Pokemon Blue.gb'),
- green:path.join(dir,'Pokemon%20Green%20International%20v1.2.1.gb')};
-function file(variant){return variant==='red'?cp.execFileSync('unzip',['-p',files.red,'Pokemon Red.gb'],{maxBuffer:2**21}):fs.readFileSync(files[variant]);}
+const dir=process.env.POKEMON_ROM_DIR||null;
+const files={red:process.env.POKEMON_RED_ROM||(dir&&path.join(dir,'Pokemon - Red Version (UE)[!].zip')),
+ blue:process.env.POKEMON_BLUE_ROM||(dir&&path.join(dir,'Pokemon Blue.gb')),
+ green:process.env.POKEMON_GREEN_ROM||(dir&&path.join(dir,'Pokemon%20Green%20International%20v1.2.1.gb'))};
+const ready=Object.values(files).every(f=>f&&fs.existsSync(f));
+const testRoms=ready?test:test.skip;
+function file(variant){return readRom(files[variant]);}
 const profiles={};
 test('BCD decodes with strict digit validation',()=>{
  assert.equal(bcd(Buffer.from([0x01,0x23])),123);
  assert.equal(bcd(Buffer.from([0x12,0x34,0x56])),123456);
  assert.equal(bcd(Buffer.from([0x1a])),null);
 });
-test('fail-closed for unrecognised or tampered ROM SHA',()=>{
+test('fail-closed for unrecognised ROM SHA',()=>{
  const fake=Buffer.alloc(1048576);assert.equal(auditEconomyTrades(fake).verified,false);
- const b=file('blue'),changed=Buffer.from(b);changed[0x4608]^=1;
- assert.equal(auditEconomyTrades(changed).verified,false);
+ assert.equal(auditEconomyTrades(Buffer.alloc(32)).verified,false);
 });
 for(const version of Object.keys(files)){
- test(version+' exact 1 MiB ROM: all 7 economy/trade/fishing catalogues validated',()=>{
+ testRoms(version+' exact 1 MiB ROM: all 7 economy/trade/fishing catalogues validated',()=>{
   const rom=file(version),a=auditEconomyTrades(rom);profiles[version]=a;
   assert.equal(a.verified,true,JSON.stringify(a.failed));assert.equal(a.romSha256,SHA[version]);
   assert.equal(a.itemPrices.itemCount,83);assert.equal(a.itemPrices.floorIdEntries,14);
@@ -41,7 +44,7 @@ for(const version of Object.keys(files)){
   assert.equal(a.runtimeIdentityVerified,false);assert.equal(a.livePurchaseFlagsVerified,false);
  });
 }
-test('Red and Blue share NPC trades but Green International genuinely changes them',()=>{
+testRoms('Red and Blue share NPC trades but Green International genuinely changes them',()=>{
  const red=profiles.red.npcTrades.trades,blue=profiles.blue.npcTrades.trades,green=profiles.green.npcTrades.trades;
  assert.deepEqual(red.map(x=>[x.requestedInternalId,x.receivedInternalId,x.receivedNickname]),blue.map(x=>[x.requestedInternalId,x.receivedInternalId,x.receivedNickname]));
  assert.notDeepEqual(red.map(x=>x.requestedInternalId),green.map(x=>x.requestedInternalId));
@@ -49,7 +52,7 @@ test('Red and Blue share NPC trades but Green International genuinely changes th
  assert.deepEqual(green[0]&&[green[0].requestedInternalId,green[0].receivedInternalId,green[0].receivedNickname],[1,2,'RODIN']);
  assert.deepEqual(green[9]&&[green[9].requestedInternalId,green[9].receivedInternalId,green[9].receivedNickname],[165,71,'SWIRLY']);
 });
-test('Game Corner prizes and received levels differ for each exact ROM while TM prizes stay fixed',()=>{
+testRoms('Game Corner prizes and received levels differ for each exact ROM while TM prizes stay fixed',()=>{
  const red=profiles.red.prizeCorner,blue=profiles.blue.prizeCorner,green=profiles.green.prizeCorner;
  assert.equal(red.menus[0].products[0].coinPrice,180);
  assert.equal(blue.menus[0].products[0].coinPrice,120);
@@ -60,7 +63,7 @@ test('Game Corner prizes and received levels differ for each exact ROM while TM 
  assert.equal(green.menus[0].products[0].level,8);
  assert.deepEqual(red.menus[2],blue.menus[2]);assert.deepEqual(red.menus[2],green.menus[2]);
 });
-test('all shop stocks match referenced mart-script counts with zero guessed accessibility',()=>{
+testRoms('all shop stocks match referenced mart-script counts with zero guessed accessibility',()=>{
  for(const version of Object.keys(profiles)){
   const shops=profiles[version].martShops.shops;
   assert.deepEqual(shops[0].inventory.map(x=>x.id),[4,11,15,12]);
@@ -70,4 +73,9 @@ test('all shop stocks match referenced mart-script counts with zero guessed acce
   assert.equal(shops[15].mapId,174);
   assert.equal(shops.every(x=>x.liveAccessible===null),true);
  }
+});
+
+testRoms('tampered real 1 MiB ROM does not inherit exact SHA-verified tables',()=>{
+ const b=file('blue'),changed=Buffer.from(b);changed[0x4608]^=1;
+ assert.equal(auditEconomyTrades(changed).verified,false);
 });
