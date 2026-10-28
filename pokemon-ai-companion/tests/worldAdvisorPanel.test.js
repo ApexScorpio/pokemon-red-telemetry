@@ -14,7 +14,7 @@ function render(state){
  let body={textContent:'',innerHTML:null},source={textContent:'',innerHTML:null};
  const document={getElementById:id=>id==='world-advisor-content'?body:
     id==='world-advisor-source'?source:null};
- const context={document,Date};
+ const context={document,Date,state};
  vm.runInNewContext(script.slice(start,end)+'\nrenderWorldAdvisor(state);',context);
  return {body,source};
 }
