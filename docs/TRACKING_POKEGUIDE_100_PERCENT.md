@@ -42,3 +42,10 @@
 - Percentagem geral de conclusão: **indeterminada** enquanto os critérios não estiverem todos auditados.
 - Estado end-to-end iPhone/emulador: **não demonstrado nesta fase**.
 - Cobertura total dos scripts e efeitos: **não demonstrada**.
+
+
+### T1 — 2026-10-28: associação global de acessibilidade e flags
+
+- **PG-006 EM EXECUÇÃO:** `romWorldStateAdvisor.js` passou a diferenciar flags ocultas e de treinadores e a anexar percurso condicional apenas por chave ROM/mapa/índice/posição validada. Commit `6d1682b`.
+- **PG-005 EM EXECUÇÃO:** `retroarchClient.js` envia o resultado de `planItemAccess` ao conselheiro global; mapa divergente apaga a projeção antiga. Commit `30283d4`.
+- **Falta:** testes positivos/negativos, UI de ações, visual real, scripts completos, percurso multimapa.
