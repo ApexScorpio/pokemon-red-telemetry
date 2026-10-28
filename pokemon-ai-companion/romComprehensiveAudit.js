@@ -7,7 +7,7 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const zlib=require('node:zlib');
 const {auditMapCodeAtlas}=require('./romMapCodeAtlas');
-const {mapGuideIndex}=require('./romAreaGuide');
+const {mapGuideIndex,REFERENCE_UNUSED_IDS}=require('./romAreaGuide');
 const BANK=0x4000, ROM_BYTES=64*BANK;
 const KNOWN=Object.freeze({
  red:'5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
@@ -177,7 +177,12 @@ function summarize(profile){
  const mapData=(maps.data||[]).filter(x=>x.valid);
  const actors=mapData.flatMap(m=>m.objects?.objects||[]);
  const evo=profile.species||[];
+ const referenceUnused=new Set(REFERENCE_UNUSED_IDS);
+ const reservedEntries=(maps.data||[]).filter(m=>referenceUnused.has(m.mapId)&&!m.valid).length;
+ const unresolvedNonReservedEntries=(maps.data||[]).filter(m=>!m.valid&&!referenceUnused.has(m.mapId)).length;
  return {knownLayout:!profile.unknownLayout,
+  reservedMapIdsWithoutHeader:reservedEntries,
+  unresolvedMapIdsBeyondReserved:unresolvedNonReservedEntries,
   pokemonInternalSlots:evo.length,baseStats:evo.filter(s=>s.stats).length,
   moves:profile.moveStatsStatus?.verified?profile.moveStats?.length:0,
   typeRules:profile.typeMatchupsStatus?.verified?profile.typeMatchups?.length:0,
@@ -329,6 +334,8 @@ if(require.main===module){
     unclassifiedBytes:v.coverage.unclassifiedBytes,counts:v.counts,
     mapGuides:v.mapGuides?.maps.length||0,
     normalMapGuidesValidated:v.mapGuides?.maps.filter(x=>x.verified).length||0,
+    reservedUnusedMapIds:v.mapGuides?.reservedIdsWithoutHeader??null,
+    unresolvedNonReservedMapIds:v.mapGuides?.unresolvedNonReservedIds??null,
     mapScriptRoots:v.mapScriptsAndCode?.totals?.scriptSeeds||0,
     mapTextReferences:v.mapScriptsAndCode?.totals?.referencedTextEntries||0,
     codeCandidateInstructions:v.mapScriptsAndCode?.graph?.instructions||0,
