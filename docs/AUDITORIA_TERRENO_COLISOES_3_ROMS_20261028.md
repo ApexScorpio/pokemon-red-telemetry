@@ -61,3 +61,21 @@ Sem modificação de ROMs, saves ou perfis do Windows; sem GitHub Actions, minut
 Foi publicado `pokemon-ai-companion/scripts/verifyRealRomTerrain.js`, que exige **as três ROMs verdadeiras e um atlas por SHA-256**. Na falta de qualquer ficheiro, devolve erro e código de saída não zero — não apresenta testes ignorados como prova de execução. O comando no diretório `pokemon-ai-companion` é `npm run audit:terrain:strict`, após configurar `POKEMON_ROM_DIR` e `POKEGUIDE_ATLAS_JSON` (ou os caminhos individuais das três ROMs). O comando `npm run test:terrain` executa os testes de regressão e integridade sem gastar minutos de Actions.
 
 Execução rigorosa local neste ambiente: `RESULTADO=3/3_ROMS_REAIS_VERIFICADAS cells=285396 walkable=145578`. Apenas leitura; sem novos ficheiros nas unidades do computador do utilizador.
+
+
+## Adenda — a diferença de 66 posições na Green foi localizada exatamente
+
+A diferença líquida de 66 células **não significa que apenas 66 células mudaram**. A comparação dos bitmaps de passagem célula a célula em 226 mapas demonstra:
+
+| Mapa | Nome | Células com classificação alterada | Bloqueado em Red/Blue → permitido em Green | Permitido em Red/Blue → bloqueado em Green |
+|---|---|---:|---:|---:|
+| 226 | Cerulean Cave 2F | 216 | 115 | 101 |
+| 227 | Cerulean Cave B1F | 236 | 138 | 98 |
+| 228 | Cerulean Cave 1F | 190 | 101 | 89 |
+| **Total** | | **642** | **354** | **288** |
+
+Todos os restantes **223 mapas** têm a mesma classificação de tiles atravessáveis. **Red × Blue: 0 diferenças**. **Blue × Green: as mesmas 642 alterações**.
+
+Publicados `romTerrainVariantDiff.js`, `data/gen1TerrainDifferences.json` (coordenadas de todas as 642 alterações e hashes dos binários) e testes. O guia e a interface identificam estas diferenças nos três pisos da Cerulean Cave apenas quando o perfil e o terreno estiverem validados, sem presumir que uma célula está acessível naquele momento.
+
+O comando `npm run test:terrain` inclui agora todas as quatro baterias. **Execução local conjunta: 17/17 testes Node aprovados, 0 ignorados**. A verificação rigorosa `npm run audit:terrain:strict` passou sobre **3/3 ROMs originais** neste ambiente. Continuam pendentes a suite global e os testes da interface no emulador real.
