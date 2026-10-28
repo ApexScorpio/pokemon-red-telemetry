@@ -43,3 +43,11 @@ Os 6 mapas não atingíveis através **deste grafo restrito** não devem ser rot
 A identidade real da ROM a correr no emulador, a atomicidade de RAM, flags de scripts, obstáculos e colisões, caminhos dependentes da história, os efeitos internos de todos os golpes e itens e validação da UI no iPhone/RetroArch permanecem por certificar. Uma rede estática completa de saídas não é sinónimo de 100% das mecânicas de jogo.
 
 **Proteções:** os originais das ROMs, saves, perfis, sessões e tokens do utilizador não foram modificados; sem GitHub Actions, nem operações no Windows do utilizador, nem ficheiros temporários criados em C:.
+
+## Adenda — resolução segura dos 251 warps LAST_MAP
+
+Foi implementado `romLastMapEvidence.js`: a partir do campo `wLastMap = D365`, compara o byte do primeiro bloco RAM com o da releitura de `D35E..D365` (8 bytes contíguos), exigindo também que `D35E` conserve o mesmo ID de mapa e que o mapa de destino e o índice de warp existam no perfil ROM auditado. A resolução altera **apenas a anotação** do guia estático, preservando o byte original `destinationMap=255`; não transforma `LAST_MAP` num destino estático. Leituras divergentes, mapas reservados e índices inexistentes são rejeitados. A igualdade de duas amostras UDP **não é atomicidade temporal**.
+
+O `retroarchClient.js` foi atualizado para solicitar uma única releitura contígua de `D35E..D365` em vez de reler só `D35E`. Se o mapa não coincidir, descarta-se a amostra antiga e o destino `LAST_MAP`. Se for coerente, `romStaticMapGuide` recebe `resolvedMapId` por warp, com `atomicSnapshotVerified=false`, e o painel indica expressamente que a origem é a RAM repetida. Dados temporais do próprio turno continuam sem certificação.
+
+**3/3 testes locais específicos de `romLastMapEvidence` aprovados, 0 ignorados**: caso positivo, divergência de D365/mapa, ROM desconhecida e índice de warp inválido. O total das **cinco** novas baterias de navegação desta fase é **19/19 testes locais aprovados** (5 warps + 4 fronteiras + 3 integração + 4 elevadores + 3 LAST_MAP). As integrações do cliente em execução no emulador e os screenshots não foram testados.
