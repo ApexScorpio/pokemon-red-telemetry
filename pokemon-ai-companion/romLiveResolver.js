@@ -5,6 +5,7 @@ const fs=require('node:fs'),path=require('node:path');
 const {inspectRom,runtimeMatches}=require('./romVariantRegistry');
 const {listCandidates,inspectZipProfiles}=require('./romAutoDiscovery');
 const economyDerivedCatalogue=require('./data/gen1EconomyTradesAudited.json');
+const moveEffectDerivedCatalogue=require('./data/gen1MoveEffectDispatchAudited.json');
 const TYPES={0:'Normal',1:'Fighting',2:'Flying',3:'Poison',4:'Ground',5:'Rock',
   7:'Bug',8:'Ghost',20:'Fire',21:'Water',22:'Grass',23:'Electric',
   24:'Psychic',25:'Ice',26:'Dragon'};
@@ -67,6 +68,13 @@ function enrichKnownEconomyProfile(profile){
  if(!trusted||trusted.verified!==true||trusted.romSha256!==sha||
     String(profile?.hash?.crc32||'').toUpperCase()!==trusted.expectedCrc32||
     profile.bytes!==1048576||profile.bytesRead!==profile.bytes)return profile;
+ if(profile.moveEffectDispatch?.verified!==true&&
+    moveEffectDerivedCatalogue.verified===true&&
+    moveEffectDerivedCatalogue.versionsVerified.includes(sha)){
+  profile.moveEffectDispatch={...moveEffectDerivedCatalogue,sha256:sha,
+   source:'DERIVED_IDENTICAL_MOVE_EFFECT_DISPATCH_FROM_3_EXACT_SHA_ROMS',
+   runtimeRomSha256Proven:false,allEffectsSemanticallyCertified:false};
+ }
  if(profile.economyTrades?.verified!==true){
   profile.economyTrades={...trusted,
    source:'DERIVED_EXACT_ROM_SHA256_PUBLISHED_CATALOGUE; RUNTIME_ROM_SHA_NOT_PROVEN',
