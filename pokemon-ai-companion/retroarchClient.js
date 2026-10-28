@@ -729,6 +729,10 @@ class RetroArchClient extends EventEmitter {
         ': descartar esta amostra e reler o mapa.';
       this.latestState.romStaticMapGuide={verified:false,
         reason:'Amostra RAM de mapas diferentes; descartar guia estático anterior'};
+      this.latestState.romTerrainCurrentTile={verified:false,
+        reason:'Mapa RAM incoerente; tile do terreno anterior descartado'};
+      this.latestState.romTerrainWarpHints={verified:false,
+        reason:'Mapa RAM incoerente; percursos do terreno anterior descartados'};
       this.latestState.romLastMapEvidence={verified:false,
         reason:'Mapa mudou entre leituras; destino D365 descartado',atomicSnapshotVerified:false};
       this.latestState.romAreaEvidence={verified:false,
