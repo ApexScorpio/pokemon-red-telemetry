@@ -4,6 +4,7 @@ const fs=require('node:fs'),path=require('node:path');
 const {readRom}=require('../romComprehensiveAudit');
 const {readRomTerrain}=require('../romTerrainAtlas');
 const {readCollisionAtlas}=require('../romTilesetCollisionAudit');
+const {readLedgeRules}=require('../romLedgeRules');
 const expected={
  red:'5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
  blue:'2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
@@ -60,6 +61,9 @@ function main(){
      JSON.stringify(priorWater)!==JSON.stringify(otherWater)||
      compared!==95132)
      throw Error(name+': PAIR_COLLISION_OR_COVERAGE_MISMATCH');
+  const ledges=readLedgeRules(b);
+  if(!ledges.verified||ledges.romSha256!==expected[name]||ledges.count!==8)
+    throw Error(name+': LEDGE_RULES_NOT_VERIFIED '+(ledges.reason||'count mismatch'));
   sumCells+=t.totals.terrainCells;sumPassable+=t.totals.walkableLandTerrainCells;
   process.stdout.write('PASS_REAL_ROM '+name+' '+t.romSha256+' maps=226 tilesets=24 cells=95132 walkable='+t.totals.walkableLandTerrainCells+' independent_decoder_same_tiles=95132\n');
  }
