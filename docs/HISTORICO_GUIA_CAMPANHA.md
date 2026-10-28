@@ -542,3 +542,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 10. Publicado `docs/AUDITORIA_CAPTURA_D007_E_SLOTS_20261028.md`, com os bytes/offsets e limitações. Não houve alteração visual da UI nesta fase; screenshots não foram realizados, nem se alegam. Todo o trabalho foi feito em isolamento e publicado como código/documentação/testes; não foram modificados ROMs, saves, processos, sessão, tokens/backups do Antigravity nem ficheiros em C: do utilizador.
 
 **Próximo bloqueio:** comparar e validar os efeitos especiais da captura, dados temporais/estatísticas de batalha e identidade ROM do emulador. O motor ainda não pode declarar probabilidades de captura/dano totalmente certificadas em live gameplay; cobertura global 100% permanece não certificada.
+
+### Verificação final da revisão (2026-10-28)
+
+11. Após todas as alterações de proteção de layout ROM, repetida a bateria isolada recuperando os ficheiros da branch `main` do GitHub: **25/25 testes JavaScript aprovados, 3 SKIP dependentes de caminhos de ROM no executor isolado, zero falhas**. Os testes ativos abrangem validação RAM, segunda leitura de consistência, limiares de slots e probabilidades condicionais de encontros. Não confundir com `npm test` integral.
+12. Sintaxe JavaScript verificada nos dez módulos/ficheiros de código e testes implicados, incluindo `romWorldData.js`, `romVariantRegistry.js`, `romCaptureLayout.js` e `retroarchClient.js`; nenhuma falha sintática. Confirmada na revisão remota a integração de `slotWeightsFromRom`, `battleCaptureLayout` e histórico exclusivamente acrescentado.
+13. Confirmada execução Node direta de dois módulos com SHA de blob Git igual à fonte publicada, contra as três ROMs carregadas, com **6/6 resultados positivos**. A existência de ROMs nesta sessão não elimina os três SKIP de um executor JS diferente sem acesso aos caminhos de ficheiro. Sem executar o emulador do iPhone, a UI ou o servidor ativo.
+
+**Estado de fecho:** tudo o que foi modificado nesta fase está publicado no GitHub, mas a verificação ponta a ponta ao vivo permanece pendente. Não atribuir certificação de 100% à cobertura do jogo.
