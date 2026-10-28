@@ -9,6 +9,17 @@ const EXPECTED=new Map([
  ['2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',48504],
  ['aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db',48570]
 ]);
+const LAND_PAIR_BYTES=Buffer.from([
+  17,32,5,17,65,5,3,48,46,17,42,5,17,5,33,3,82,46,
+  3,85,46,3,86,46,3,32,46,3,94,46,3,95,46,255]);
+const WATER_PAIR_BYTES=Buffer.from([3,20,46,3,72,46,17,20,5,255]);
+function collisionPairs(rom,signature){
+ const at=rom.indexOf(signature);
+ if(at<0||rom.indexOf(signature,at+1)!==-1)return null;
+ return Array.from({length:(signature.length-1)/3},(_,i)=>({
+  tilesetId:signature[i*3],tile1:signature[i*3+1],tile2:signature[i*3+2],
+  fileOffset:at+i*3}));
+}
 const sha256=b=>crypto.createHash('sha256').update(b).digest('hex');
 const checkInt=(n,l,h)=>Number.isInteger(n)&&n>=l&&n<=h;
 const fail=(reason,detail)=>({verified:false,reason,detail:detail??null,semanticsCertified:false});
@@ -19,6 +30,9 @@ function readRomTerrain(rom,world){
  const maps=world?.maps;
  if(maps?.valid!==true||!Array.isArray(maps.data)||maps.data.length!==248||
    maps.data.some((m,id)=>m.mapId!==id))return fail('Catálogo de 248 IDs de mapa não confirmado');
+ const landPairs=collisionPairs(rom,LAND_PAIR_BYTES),waterPairs=collisionPairs(rom,WATER_PAIR_BYTES);
+ if(!landPairs||landPairs.length!==11||!waterPairs||waterPairs.length!==3)
+  return fail('Regras ROM de colisão entre pares de tiles incompletas');
  const tileSets=[];
  for(let id=0;id<TILESETS;id++){
   const base=TILESET_HEADER+id*12,bank=rom[base];
@@ -81,7 +95,11 @@ function readRomTerrain(rom,world){
    landTerrainBlockedCells:cellCount-landWalkable,
    tileIdsBase64:tileIds.toString('base64'),tileIdsSha256:sha256(tileIds),
    walkingBitsBase64:bitset.toString('base64'),walkingBitsSha256:sha256(bitset),
-   blockDataSha256:blockSha,source:'EXACT_SHA256_ROM_TILESET_BLOCKS_COLLISION_TILE_IDS',
+   blockDataSha256:blockSha,
+   landBlockedTilePairs:landPairs.filter(p=>p.tilesetId===m.tilesetId)
+     .map(({tile1,tile2})=>[tile1,tile2]),
+   landTilePairRulesAppliedDuringPathfinding:true,
+   source:'EXACT_SHA256_ROM_TILESET_BLOCKS_COLLISION_TILE_IDS',
    liveSpriteGatesVerified:false,waterMovementVerified:false,ledgePairsVerified:false,
    currentPositionVerified:false,pathAccessibilityVerified:false});
  }
@@ -90,7 +108,7 @@ function readRomTerrain(rom,world){
   return fail('Cobertura ou contagem de terreno não coincide com as ROMs originais',
    {maps:results.length,tilesets:usedSets.size,blocks:blockCount,cells,passable,expectedWalkable});
  return {verified:true,romSha256:sha,source:'THREE_AUDITED_SHA256_ROM_BINARIES',
-  tilesets:tileSets,maps:results,
+  tilesets:tileSets,maps:results,landTilePairs:landPairs,waterTilePairs:waterPairs,
   totals:{tilesets:24,maps:226,metablocks:blockCount,terrainCells:cells,
    walkableLandTerrainCells:passable,blockedLandTerrainCells:cells-passable},
   semanticsCertified:false,walkabilityType:'LAND_TILESET_BASE_ONLY',
@@ -123,8 +141,15 @@ function findTerrainRoute(map,from,to,{maxSteps=2000}={}){
     !checkInt(to.x,0,map.width-1)||!checkInt(to.y,0,map.height-1))
   return fail('Mapa/posições não validados para percurso de terreno');
  const bits=Buffer.from(map.walkingBitsBase64||'','base64');
+ const tiles=Buffer.from(map.tileIdsBase64||'','base64');
  if(bits.length!==Math.ceil(map.width*map.height/8)||
-    sha256(bits)!==map.walkingBitsSha256)return fail('Bitmap de terreno não confirmado');
+    tiles.length!==map.width*map.height||
+    sha256(bits)!==map.walkingBitsSha256||sha256(tiles)!==map.tileIdsSha256)
+  return fail('Bitmap ou tiles de terreno não confirmados');
+ const pairs=map.landBlockedTilePairs||[];
+ if(!Array.isArray(pairs)||pairs.some(p=>!Array.isArray(p)||p.length!==2||
+    !p.every(id=>checkInt(id,0,95))))return fail('Colisões de pares de tiles inválidas');
+ const pairForbidden=(a,b)=>pairs.some(p=>(p[0]===a&&p[1]===b)||(p[1]===a&&p[0]===b));
  const width=map.width,limit=map.width*map.height,
   start=from.y*width+from.x,end=to.y*width+to.x;
  const walkable=i=>Boolean(bits[i>>3]&(1<<(i&7)));
@@ -141,7 +166,7 @@ function findTerrainRoute(map,from,to,{maxSteps=2000}={}){
   if(x+1<width)neighbors.push(i+1);
   if(y+1<map.height)neighbors.push(i+width);
   if(x>0)neighbors.push(i-1);
-  for(const n of neighbors)if(previous[n]===-1&&walkable(n)){
+   for(const n of neighbors)if(previous[n]===-1&&walkable(n)&&!pairForbidden(tiles[i],tiles[n])){
    previous[n]=i;queue[tail++]=n;
   }
  }
@@ -155,7 +180,7 @@ function findTerrainRoute(map,from,to,{maxSteps=2000}={}){
   shortestTerrainLength:route.length-1,inaccessibleInLiveGameProven:false};
  return {verified:true,mapId:map.mapId,path:route,stepsOnStaticTerrain:route.length-1,
   routeNavigableNowProven:false,accessibilityFromRam:null,
-  landTilePairRulesApplied:false,objectsAndScriptsApplied:false,
+  landTilePairRulesApplied:true,objectsAndScriptsApplied:false,
   source:'EXACT_ROM_SHA256_TERRAIN_ONLY',
   warning:'Percurso de terreno teórico: não inclui objetos, pessoas, ledges, eventos, Surf nem obstáculos dinâmicos'};
 }
