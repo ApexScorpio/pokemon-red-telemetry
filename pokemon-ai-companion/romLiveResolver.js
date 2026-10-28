@@ -73,12 +73,68 @@ function profileQuality(profile) {
 // Enrich *already validated* imported profiles using tables derived from the exact
 // same user-supplied 1 MiB ROMs. No ROM bytes, no access to original ROM required.
 // CRC from an emulator is not cryptographic SHA-256 proof of runtime identity.
+
+// Os 82 pares TypeEffects foram lidos dos mesmos três ficheiros SHA-256 e
+// conferidos byte a byte (offset 0x3e474, 246 bytes + FF).
+// SÓ derivação de dados; um CRC32 reportado pelo emulador não prova SHA runtime.
+const BATTLE_TYPE_RULES=[[21,20,20],[20,22,20],[20,25,20],[22,21,20],[23,21,20],[21,5,20],[4,2,0],[21,21,5],[20,20,5],[23,23,5],[25,25,5],[22,22,5],[24,24,5],[20,21,5],[22,20,5],[21,22,5],[23,22,5],[0,5,5],[0,8,0],[8,8,20],[20,7,20],[20,5,5],[21,4,20],[23,4,0],[23,2,20],[22,4,20],[22,7,5],[22,3,5],[22,5,20],[22,2,5],[25,21,5],[25,22,20],[25,4,20],[25,2,20],[1,0,20],[1,3,5],[1,2,5],[1,24,5],[1,7,5],[1,5,20],[1,25,20],[1,8,0],[3,22,20],[3,3,5],[3,4,5],[3,7,20],[3,5,5],[3,8,5],[4,20,20],[4,23,20],[4,22,5],[4,7,5],[4,5,20],[4,3,20],[2,23,5],[2,1,20],[2,7,20],[2,22,20],[2,5,5],[24,1,20],[24,3,20],[7,20,5],[7,22,20],[7,1,5],[7,2,5],[7,24,20],[7,8,5],[7,3,20],[5,20,20],[5,1,5],[5,4,5],[5,2,20],[5,7,20],[5,25,20],[8,0,0],[8,24,0],[20,26,5],[21,26,5],[23,26,5],[22,26,5],[25,26,20],[26,26,20]].map(([attackType,defenderType,multiplier],i)=>({
+  attackType,defenderType,multiplier,romFileOffset:0x3e474+3*i
+}));
+const BATTLE_RATIOS=[[25,100],[28,100],[33,100],[40,100],[50,100],[66,100],
+  [1,1],[15,10],[2,1],[25,10],[3,1],[35,10],[4,1]]
+ .map(([numerator,denominator])=>({numerator,denominator}));
+function enrichKnownBattleProfile(profile) {
+  // Esta rotina só é chamada APÓS SHA, CRC32 e tamanho terem coincidido
+  // com o catálogo derivado; um JSON de perfil importado não é ROM re-lida.
+  const sha=String(profile.hash.sha256).toLowerCase();
+  const data=moveEffectDerivedCatalogue;
+  if(data.verified!==true||data.moveCount!==165||
+     data.moves?.length!==165||!data.versionsVerified?.includes(sha)||
+     BATTLE_TYPE_RULES.length!==82)return profile;
+  const rows=data.moves.map((x,i)=>({
+    id:x.moveId,effectByte:x.effectId,powerByte:x.powerByte,
+    typeByte:x.typeByte,accuracyByte:x.accuracyByte,
+    basePp:null,romFileOffset:0x38000+i*6,romBank:14
+  }));
+  if(!rows.every((x,i)=>x.id===i+1&&
+       [x.effectByte,x.powerByte,x.typeByte,x.accuracyByte]
+        .every(n=>Number.isInteger(n)&&n>=0&&n<=255)))return profile;
+  if(!Array.isArray(profile.moveStats)||profile.moveStats.length!==165){
+    profile.moveStats=rows;
+    profile.moveStatsStatus={verified:true,totalRomMoves:165,
+      source:'MOVES_DERIVADOS_DOS_3_SHA256_CONHECIDOS; PP_BASE_NAO_CONSERVADO',
+      runtimeRomSha256Proven:false};
+  }
+  if(profile.typeMatchupsStatus?.verified!==true){
+    profile.typeMatchups=BATTLE_TYPE_RULES.map(x=>({...x}));
+    profile.typeMatchupsStatus={verified:true,count:82,
+      source:'82_TYPE_EFFECTS_DERIVADOS_DAS_3_ROM',
+      runtimeRomSha256Proven:false};
+  }
+  if(profile.battleRuleTables?.verified!==true){
+    profile.battleRuleTables={verified:true,sha256:sha,
+      statModifierRatiosFromRom:BATTLE_RATIOS.map(x=>({...x})),
+      highCriticalMoveIdsFromRom:[2,75,152,163],
+      source:'RATIOS_E_HIGH_CRITICAL_DERIVADOS_DAS_3_ROM',
+      runtimeRomSha256Proven:false};
+  }
+  if(profile.battleCaptureLayout?.verified!==true){
+    profile.battleCaptureLayout={verified:true,romSha256:sha,
+      actualCatchRateAddress:0xd007,enemyBattleMonStart:0xcfe5,
+      statusAddress:0xcfe9,
+      source:'CAPTURA_D007_DERIVADA_DAS_3_ROM',
+      runtimeRomSha256Proven:false};
+  }
+  return profile;
+}
+
 function enrichKnownEconomyProfile(profile){
  const sha=String(profile?.hash?.sha256||'').toLowerCase();
  const trusted=economyDerivedCatalogue.entries?.[sha];
  if(!trusted||trusted.verified!==true||trusted.romSha256!==sha||
     String(profile?.hash?.crc32||'').toUpperCase()!==trusted.expectedCrc32||
     profile.bytes!==1048576||profile.bytesRead!==profile.bytes)return profile;
+ enrichKnownBattleProfile(profile);
  if(profile.world?.maps?.valid===true&&profile.world.terrainAtlas?.verified!==true){
   const candidate=terrainBySha.get(sha);
   const validMaps=profile.world.maps.data?.filter(m=>m.valid)||[];

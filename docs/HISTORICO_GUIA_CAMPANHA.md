@@ -731,3 +731,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Os quatro golpes do jogador e os golpes disponíveis do adversário são tratados independentemente. É identificado apenas um candidato de maior dano médio **entre golpes calculáveis**, sem alegar ser ótimo com críticos/efeitos. Efeitos especiais, burn físico, estágios relevantes alterados, ROM não auditada ou RAM incoerente recusam cálculo sem estimativas inventadas.
 - `public/app.js` apresenta dano min–max, chance condicional de KO, crítico teórico e ameaças adversárias; cada rótulo indica explicitamente os pressupostos. Não permite marcar `exactTurnMathReady:true` nem `verified:true` com CRC32, nem pretende detetar Reflect/Light Screen sem flags RAM.
 - Testes unitários acrescentados em `tests/gen1LiveBattleAdvisor.test.js` (9 casos), incluindo dano tipado, imunidade, escalonamento, burn, boosts, KO, captura, crítico, recusa de prova e compatibilidade com os motores pré-existentes. Estes testes usaram fixture de valores de combate e não são uma execução do emulador/iPhone.
+
+
+## 2026-10-28 — Perfil importado: tabelas de combate disponíveis sem ROM relida
+- Corrigido `romLiveResolver.js`: perfis conhecidos (SHA256, CRC32 e tamanho de 1 MiB coincidentes com catálogo auditado) passam a receber movimentos/efeitos/tipos/rácios/layout de captura quando não trazem essas tabelas e não existe uma ROM local. São 165 movimentos do catálogo de despacho auditado e 82 pares TypeEffects derivados iguais nas três ROMs.
+- Perfis reais que contêm tabelas validadas mantêm-nas inalteradas. Campo `basePp:null` é explícito porque o catálogo derivado não preserva PP base. Sem provas falsas de SHA runtime ou de instantâneo RAM atómico.
+- Testes Node em `tests/romImportedBattleTables.test.js` incluem três variantes, recusas SHA/CRC/tamanho e preservação dos dados de ROM local. Não há teste visual no iPhone/emulador nesta fase.
