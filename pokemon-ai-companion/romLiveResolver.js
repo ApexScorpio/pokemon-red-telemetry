@@ -9,6 +9,14 @@ const moveEffectDerivedCatalogue=require('./data/gen1MoveEffectDispatchAudited.j
 const {buildWarpGraph}=require('./romWarpGraph');
 const outdoorDerivedCatalogue=require('./data/gen1OutdoorConnectionsAudited.json');
 const elevatorDerivedCatalogue=require('./data/gen1ElevatorsAudited.json');
+const terrainBySha=new Map([
+ ['5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+  require('./data/romTerrain_red.json')],
+ ['2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+  require('./data/romTerrain_blue.json')],
+ ['aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db',
+  require('./data/romTerrain_green.json')]
+]);
 const TYPES={0:'Normal',1:'Fighting',2:'Flying',3:'Poison',4:'Ground',5:'Rock',
   7:'Bug',8:'Ghost',20:'Fire',21:'Water',22:'Grass',23:'Electric',
   24:'Psychic',25:'Ice',26:'Dragon'};
@@ -71,6 +79,24 @@ function enrichKnownEconomyProfile(profile){
  if(!trusted||trusted.verified!==true||trusted.romSha256!==sha||
     String(profile?.hash?.crc32||'').toUpperCase()!==trusted.expectedCrc32||
     profile.bytes!==1048576||profile.bytesRead!==profile.bytes)return profile;
+ if(profile.world?.maps?.valid===true&&profile.world.terrainAtlas?.verified!==true){
+  const candidate=terrainBySha.get(sha);
+  const validMaps=profile.world.maps.data?.filter(m=>m.valid)||[];
+  const byId=new Map(candidate?.maps?.map(m=>[m.mapId,m])||[]);
+  const mapsAgree=validMaps.length===226&&validMaps.every(m=>{
+   const row=byId.get(m.mapId);
+   return row&&typeof m.blockSha256==='string'&&
+    row.blockDataSha256===m.blockSha256&&
+    row.tilesetId===m.tilesetId&&
+    row.width===((m.widthBlocks??m.widthTiles/2)*2)&&
+    row.height===((m.heightBlocks??m.heightTiles/2)*2);
+  });
+  if(candidate?.verified===true&&candidate.romSha256===sha&&
+     candidate.totals?.terrainCells===95132&&mapsAgree)
+   profile.world.terrainAtlas={...candidate,
+    source:'DERIVED_FROM_EXACT_SHA256_ROM; ORIGINAL_ROM_NOT_RELOADED',
+    runtimeRomSha256Proven:false};
+ }
  if(profile.world?.maps?.valid===true&&profile.world.outdoorConnections?.verified!==true){
   const border=outdoorDerivedCatalogue.versions?.[sha];
   if(border?.verified===true&&border.romSha256===sha&&border.edgeCount===78&&
