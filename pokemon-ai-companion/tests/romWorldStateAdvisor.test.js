@@ -99,3 +99,14 @@ test('reject unknown ROM SHA and reserved map even with tempting flags',()=>{
  assert.equal(adviseWorld({profile:p,mapId:15,areaEvidence:evidence()}).verified,false);
  assert.equal(run({mapId:237}).verified,false);
 });
+
+test('coins use D6FE evidence only, never the hidden-item flag',()=>{
+ const coins=[{mapId:15,x:9,y:8,actualAwardIfClaimed:20,isCollected:true}];
+ const unknown=run({hiddenCoins:coins,coinFlagsVerified:false,hiddenFlagsVerified:true});
+ assert.equal(unknown.observations.find(o=>o.kind==='HIDDEN_COIN').status,'UNKNOWN');
+ const got=run({hiddenCoins:coins,coinFlagsVerified:true,hiddenFlagsVerified:false});
+ const obs=got.observations.find(o=>o.kind==='HIDDEN_COIN');
+ assert.equal(obs.status,'COIN_COLLECTED_FLAG');
+ assert.equal(obs.coinAmount,20);
+ assert.equal(got.observations.find(o=>o.kind==='HIDDEN_ITEM').status,'UNKNOWN');
+});
