@@ -807,3 +807,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - **Verificação visual:** criada maqueta HTML com estado sintético, capturada e inspecionada imagem no Chromium; foram corrigidas quebras de linha, contagens e explicações. Não foi retirada nem analisada captura da interface real com emulador/iPhone nesta etapa.
 - **Pendências globais:** execução `npm test` no checkout completo, auditorias rigorosas com os três ficheiros originais, snapshot RAM coerente/atómico, confirmação criptográfica da ROM ativa, caminhos multidestino com scripts/portas dinâmicas, interpretação exaustiva dos scripts e handlers, testes diferenciais e screenshots reais de cada passo.
 - Nenhuma ROM/save foi publicada ou alterada. Sem alterações a sessões Antigravity, TIMI/Maestro/BonChat nem ao disco Windows C: do utilizador. Histórico mantido exclusivamente por acrescento.
+
+
+## 2026-10-28 — PokéGuide T5: revisão Git e proposta de integração protegida
+
+- Comparação GitHub `main...feature/pokeguide-world-action-tracker-20261028` confirmou branch adiantada **25 commits e zero atrás** antes da criação do PR, com 10 ficheiros alterados, incluindo dois históricos/trackers, três ficheiros de testes e integração do livro global. A branch base continuava em `d52d6dad10219a28cee28c4ec7ccb81332ce97bf`.
+- Aberto o **PR #1, em modo Draft**, para revisão da integração sem sobrepor automaticamente `main`: <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>.
+- A publicação na branch e a abertura do PR são comprovadas pelo GitHub, mas não equivalem à passagem de testes do checkout completo nem à validação do cliente em execução; a versão principal permanece preservada. Ainda não é adequado declarar os 100% solicitados ou fundir sem evidência adicional.
+- Os bloqueios e as provas de T0–T4 ficam documentados no tracking. Histórico atualizado **apenas com novas linhas**, sem reescrever as anteriores.
