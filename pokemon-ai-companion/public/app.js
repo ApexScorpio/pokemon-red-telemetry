@@ -502,6 +502,14 @@ function renderRomAreaEvidence(state) {
         ' · '+(edge?.status||'destino por confirmar')+
         ' · acesso atual não comprovado');
     }
+    if(guide.navigation?.elevatorMenu){
+      const lift=guide.navigation.elevatorMenu;
+      rows.push('🛗 '+lift.name.toUpperCase()+
+        ' — '+lift.availableFloorOptions.length+' pisos possíveis na ROM:');
+      for(const floor of lift.availableFloorOptions)
+        rows.push('• Opção #'+(floor.floorMenuIndex+1)+' → mapa #'+floor.destinationMapId+
+          ' (warp '+floor.destinationWarpIndex+') · seleção atual por confirmar na RAM');
+    }
     if(guide.navigation?.outdoorHeaderConnectionsDecoded===true){
       rows.push('🧭 LIGAÇÕES EXTERIORES: '+guide.navigation.outdoorExits.length+
         ' (passagem atual depende de bloqueios e posição)');
