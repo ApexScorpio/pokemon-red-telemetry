@@ -569,6 +569,8 @@ class RetroArchClient extends EventEmitter {
     const reference=MOVES[id]||null;
     const exact=Number.isInteger(id) && this.activeRomProfile?.moveStats?.[id-1];
     const romMove=exact && exact.id===id ? exact : null;
+    const effectRecord=this.activeRomProfile?.moveEffectDispatch?.verified===true&&Number.isInteger(id)?
+      this.activeRomProfile.moveEffectDispatch.moves?.[id-1]:null;
     if(romMove) {
       return {
         ...(reference||{}),
@@ -576,6 +578,11 @@ class RetroArchClient extends EventEmitter {
         nameSource:romName?'PERFIL_ROM_LOCAL_CRC32':'REFERÊNCIA_EXTERN_NÃO_COMPROVADA',
         power:romMove.powerByte,pp:romMove.basePp,
         typeId:romMove.typeByte,effectByte:romMove.effectByte,
+        effectHandlerFromAuditedRom:effectRecord?.moveId===id?effectRecord.handler:null,
+        effectHandlerPointerCpu:effectRecord?.moveId===id?effectRecord.pointerCpu:null,
+        effectHandlerDispatchSource:effectRecord?.moveId===id?
+          'SHA256_ROM_LOCAL_MOVE_EFFECT_POINTER_TABLE':'NÃO_COMPROVADO',
+        effectOutcomeCertified:false,
         accuracyByte:romMove.accuracyByte,
         // Proveniência dos críticos: tabela efetiva HighCriticalMoves validada
         // pela SHA256 da ROM LOCAL; não prova o estado do turno no emulador.
