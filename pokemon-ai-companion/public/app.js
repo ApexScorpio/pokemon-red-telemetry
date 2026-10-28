@@ -727,8 +727,11 @@ function renderWorldAdvisor(state) {
   const ordered=obs.map((o,i)=>({o,i})).sort((a,b)=>
     (priority[a.o.status]??7)-(priority[b.o.status]??7)||a.i-b.i);
   const n=kind=>obs.filter(o=>o.kind===kind).length;
-  const counts=['ITEM','HIDDEN_ITEM','HIDDEN_COIN','TRAINER','NPC','STATIC_POKEMON','WARP','BORDER']
-    .map(kind=>kind+': '+n(kind)).join(' · ');
+  const countLabels={ITEM:'Itens',HIDDEN_ITEM:'Ocultos',
+    HIDDEN_COIN:'Fichas',TRAINER:'Treinadores',NPC:'NPCs',
+    STATIC_POKEMON:'Encontros fixos',WARP:'Saídas',BORDER:'Fronteiras'};
+  const counts=Object.entries(countLabels).filter(([kind])=>n(kind)>0)
+    .map(([kind,label])=>label+': '+n(kind)).join(' · ');
   const lines=[
     '🗺️ '+(advice.mapName||'Mapa #'+advice.mapId)+
       ' (#'+advice.mapId+') — '+obs.length+' referências nesta zona',
@@ -752,8 +755,10 @@ function renderWorldAdvisor(state) {
       const route=o.accessRoute;
       const steps=Number.isInteger(route?.steps)?' ('+route.steps+' passos teóricos)':'';
       lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
+      if(o.accessReason)lines.push('  ↳ Motivo: '+o.accessReason);
     }
     if(o.consequence)lines.push('  ↳ Consequência: '+o.consequence);
+    lines.push('');
   }
   if(!obs.length)lines.push('Nenhum objeto confirmado para listar; isto não prova zona vazia.');
   lines.push('⚠️ Grafo de saídas e caminhos são hipóteses; o estado da partida pode alterar acessos.');
