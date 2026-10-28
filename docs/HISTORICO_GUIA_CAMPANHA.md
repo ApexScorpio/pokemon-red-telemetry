@@ -743,3 +743,8 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - O painel anterior calculava apenas golpes cujo effect byte era 0, deixando de fora grande parte dos ataques mais comuns. A mesma fórmula de **dano de um acerto** passa a abranger a lista estrita de efeitos 0,2,3,4,5,6,16,31,33,34,36,37,48,68,69,70,71,76, cujos ataques iniciais percorrem o ramo padrão. Efeitos secundários (veneno, burn, recoil, flinch, drops) permanecem explicitamente fora do cálculo.
 - OHKO, golpes múltiplos, carga, trapping, dano fixo e efeitos não classificados continuam bloqueados: não são falsamente representados como golpe único. O candidato 'melhor golpe' limita-se aos efeitos 0 sem secundários, embora os intervalos condicionais apareçam para outros.
 - Regressão de duas suites com fixtures: `tests/gen1LiveBattleAdvisor.test.js` e `tests/gen1LiveBattlePreview.test.js`. Nenhuma prova de emulador/iPhone.
+
+
+## 2026-10-28 — Teste integrado do pipeline RAM → motor de batalha
+- Testes em `tests/gen1BattleRamToUiPipeline.test.js`: constroem blocos HEX completos com offsets `CFE0/D014/CC20`, executam `parseRomBattleEvidence → verifyBattleWindow → buildLiveBattlePreview` e verificam precisão/dano/PP/efeitos/captura nas três variantes, usando catálogos ROM SHA-fixados.
+- Testadas rejeições de HP/estágios divergentes, amostra de mapa não validada e SHA alterado; nenhuma regressão permite reutilizar previsão obsoleta. Blocos de RAM são **fixtures sintéticas**, não snapshots reais de emulador, e não se alega E2E em iPhone.
