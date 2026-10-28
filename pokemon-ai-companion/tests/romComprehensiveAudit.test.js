@@ -60,6 +60,11 @@ test('FULL 3-ROM pipeline invokes all existing decoders and returns gaps',
   assert.equal(report.semantic100PercentCertified,false);
   assert.equal(report.unresolved.length,14);
   assert.equal(report.coverage.errors.length,0,variant+': invalid evidence intervals');
+  assert.equal(report.mapScriptsAndCode?.totals?.scriptSeeds,226,variant+': map script pointer count');
+  assert.equal(report.mapScriptsAndCode?.totals?.invalidTextPointers,0,variant+': text IDs and flags');
+  assert.equal(report.mapScriptsAndCode?.graph?.verified,false,'Code candidate is not semantic proof');
+  assert.equal(report.mapGuides?.maps?.length,248,variant+': one static guide per map ID');
+  assert.equal(report.mapGuides.maps.filter(m=>m.verified).length,226);
  }
  for(const x of Object.values(output.comparisons)){
   assert.ok(x.differentBytes>0);
