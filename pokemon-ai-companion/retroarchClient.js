@@ -13,6 +13,7 @@ const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
 const {auditTrainerCoverage,currentMapTrainerCoverage}=require('./romTrainerCoverage');
 const {verifyMapSnapshot}=require('./romSnapshotIntegrity');
+const {verifyMapPositionWindow}=require('./romMapPositionConsistency');
 const {getTrainerParty}=require('./romTrainerParties');
 const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {captureOpportunities}=require('./romCaptureOpportunities');
@@ -723,6 +724,16 @@ class RetroArchClient extends EventEmitter {
       repeatMapAndLastMap.length===8?[repeatMapAndLastMap[0]]:[]
     );
     this.latestState.memoryReadStatus.mapSnapshot=mapConfirmation;
+    // D35E is unchanged even when the player moves INSIDE the same map.
+    // Also corroborate D361/D362 before recommending tile or direction.
+    const positionWindow=verifyMapPositionWindow({
+      firstMapByte:blockPlayerParty[518],
+      firstYByte:blockPlayerParty[521],
+      firstXByte:blockPlayerParty[522],
+      secondMapAndLastMapBytes:repeatMapAndLastMap
+    });
+    this.latestState.memoryReadStatus.positionWindow=positionWindow;
+    this.latestState.romTerrainPositionWindow=positionWindow;
     if(!mapConfirmation.verified){
       this.latestState.memoryReadStatus.verified=false;
       this.latestState.connected=false;
@@ -1054,14 +1065,16 @@ class RetroArchClient extends EventEmitter {
     // Never treat LAND tile passability as proof of free movement right now.
     const terrain=this.latestState.romStaticMapGuide?.terrain;
     const pos=this.latestState.coords;
-    const coordsAgree=terrain?.verified===true &&
+    const coordsAgree=terrain?.verified===true && positionWindow.verified===true &&
       terrain.width===this.latestState.mapDimensions.width &&
       terrain.height===this.latestState.mapDimensions.height &&
       Number.isInteger(pos.x)&&Number.isInteger(pos.y)&&
       pos.x>=0&&pos.y>=0&&pos.x<terrain.width&&pos.y<terrain.height;
     this.latestState.romTerrainCurrentTile=coordsAgree?
       inspectTerrainCell(terrain,pos.x,pos.y):
-      {verified:false,reason:'Geometria ROM, dimensões RAM ou posição não coincidem'};
+      {verified:false,reason:positionWindow.verified===false?
+        'Coordenadas mudaram ou não foram confirmadas entre leituras RAM: '+positionWindow.reason:
+        'Geometria ROM, dimensões RAM ou posição não coincidem'};
     this.latestState.romTerrainWarpHints=coordsAgree&&
       this.latestState.romTerrainCurrentTile?.verified===true?
       terrainWarpHints(this.latestState.romStaticMapGuide,pos):
@@ -1070,6 +1083,7 @@ class RetroArchClient extends EventEmitter {
       this.latestState.romTerrainCurrentTile={
         ...this.latestState.romTerrainCurrentTile,
         ramMapCorroborated:mapConfirmation.verified,
+        ramPositionCorroborated:positionWindow.verified,
         liveMovementPassableVerified:false,
         atomicSnapshotVerified:false
       };
@@ -1127,7 +1141,7 @@ class RetroArchClient extends EventEmitter {
         this.activeRomProfile?.world?.terrainAtlas,
         this.latestState.coords,
         walkBikeSurf,
-        {mapSnapshotVerified:mapConfirmation.verified}
+        {mapSnapshotVerified:mapConfirmation.verified&&positionWindow.verified}
       );
     // Only static rules are inferred. These UDP reads are not atomic.
     // Verificador Canónico de Event Flags da RAM
