@@ -2,16 +2,18 @@
 // Extrai mapas e encontros da ROM real. Nunca inventa offsets nem altera ficheiros.
 // Motor Gen I: WildDataPointers, MapHeaderPointers, MapHeaderBanks, object events.
 const crypto=require('node:crypto');
-const BANK_SIZE=16384, MAPS=248, WEIGHTS=[51,51,39,25,25,25,13,13,11,3];
+const {findGen1EncounterWeights}=require('./romEncounterWeights');
+const BANK_SIZE=16384, MAPS=248;
 function u16(b,p){return b[p]|(b[p+1]<<8);}
 function romAddress(bank,cpu,bytes){return bank>0&&cpu>=0x4000&&cpu<0x8000
     ? bank*BANK_SIZE+cpu-0x4000<bytes?bank*BANK_SIZE+cpu-0x4000:null:null;}
 function bankLocation(pos){return pos===null?null:{
   fileOffset:pos,bank:Math.floor(pos/BANK_SIZE),
   cpuAddress:pos<BANK_SIZE?pos:0x4000+pos%BANK_SIZE};}
-function readEncounter(b,bank,pointer){
+function readEncounter(b,bank,pointer,validatedWeights){
+ const weights=validatedWeights||findGen1EncounterWeights(b).weights;
  const p=romAddress(bank,pointer,b.length),end=(bank+1)*BANK_SIZE;
- if(p===null)return null;
+ if(p===null||!Array.isArray(weights)||weights.length!==10)return null;
  let q=p;const out={pointerCpu:pointer};
  for(const kind of ['grass','water']){
   if(q>=end)return null;
@@ -22,7 +24,7 @@ function readEncounter(b,bank,pointer){
    for(let i=0;i<10;i++){
     const level=b[q++],speciesId=b[q++];
     if(level<1||level>100||speciesId<1||speciesId>190)return null;
-    slots.push({slot:i,level,internalId:speciesId,rollWeight:WEIGHTS[i],rollOutOf:256});
+    slots.push({slot:i,level,internalId:speciesId,rollWeight:weights[i],rollOutOf:256});
    }
   }
   out[kind]={rateByte:rate,slots};
@@ -30,6 +32,8 @@ function readEncounter(b,bank,pointer){
  return out;
 }
 function findWildData(b){
+ const rngTable=findGen1EncounterWeights(b);
+ if(!rngTable.verified)return {valid:false,reason:'Limiar dos slots não validado nesta ROM: '+rngTable.reason};
  const countBanks=b.length/BANK_SIZE;
  const matches=[];
  for(let bank=1;bank<countBanks;bank++){
@@ -48,19 +52,22 @@ function findWildData(b){
    const unique=[...new Set(pointers)];
    if(unique.length<25||unique.length>125)continue;
    let valid=true;
-   for(const cpu of unique){if(!readEncounter(b,bank,cpu)){valid=false;break;}}
+   for(const cpu of unique){if(!readEncounter(b,bank,cpu,rngTable.weights)){valid=false;break;}}
    if(!valid)continue;
-   const route1=readEncounter(b,bank,pointers[12]);
+   const route1=readEncounter(b,bank,pointers[12],rngTable.weights);
    if(!route1?.grass?.slots.length)continue;
    matches.push({offset:pos,bank,pointers});
   }
  }
  if(matches.length!==1)return {valid:false,reason:'Nenhuma tabela única de 248 ponteiros de encontros validada',candidates:matches.length};
  const m=matches[0],data=m.pointers.map((cpu,mapId)=>{
-   const item=readEncounter(b,m.bank,cpu);
+   const item=readEncounter(b,m.bank,cpu,rngTable.weights);
    return {mapId,...item};
  });
  return {valid:true,pointerTable:bankLocation(m.offset),
+   slotWeightsFromRom:{offset:rngTable.offset,bank:rngTable.bank,
+     weights:rngTable.weights,thresholdsInclusive:rngTable.thresholdsInclusive,
+     rawHex:rngTable.rawHex,source:rngTable.source},
    uniqueDataRecords:new Set(m.pointers).size,totalMapIds:MAPS,
    source:'ROM: WildDataPointers → grass/water (gen1)',
    data};
