@@ -53,11 +53,15 @@ function buildWarpGraph(profile){
   }
  }
  const counts={};for(const edge of edges)counts[edge.status]=(counts[edge.status]||0)+1;
+ const borders=profile.world?.outdoorConnections;
+ const borderValid=borders?.verified===true&&borders.romSha256===sha&&borders.edgeCount===78&&borders.reciprocalConnections===78;
  return {verified:true,romSha256:sha,normalMapHeaders:byId.size,
   reservedReferenceMapIds:RESERVED.size,totalWarpEntries:edges.length,
   statusCounts:counts,edges,
-  completeness:'ALL_ROM_OBJECT_WARPS_ONLY',
-  outdoorHeaderConnectionsDecoded:false,scriptGatesResolved:false,
+  outdoorConnections:borderValid?borders:null,
+  outdoorConnectionCount:borderValid?borders.edgeCount:0,
+  completeness:borderValid?'ALL_ROM_WARPS_AND_78_OUTDOOR_CONNECTIONS':'ALL_ROM_OBJECT_WARPS_ONLY',
+  outdoorHeaderConnectionsDecoded:borderValid,scriptGatesResolved:false,
   liveDestinationProof:false,
   notes:'Static warp transitions are not proof of access. LAST_MAP requires wLastMap RAM; elevators patch wWarpEntries.'};
 }
@@ -65,7 +69,11 @@ function findStaticWarpRoute(graph,sourceId,targetId,{maxHops=24}={}){
  if(!graph?.verified||!intByte(sourceId)||!intByte(targetId)||
     !Number.isInteger(maxHops)||maxHops<1||maxHops>64)
   return {verified:false,reason:'Grafo ou argumentos não validados'};
- const eligible=graph.edges.filter(e=>e.status==='STATIC_DESTINATION_WARP_VALIDATED');
+ const eligible=graph.edges.filter(e=>e.status==='STATIC_DESTINATION_WARP_VALIDATED')
+  .map(e=>({...e,pathKind:'STATIC_WARP'}));
+ if(graph.outdoorConnections?.verified===true)
+  eligible.push(...graph.outdoorConnections.edges.map(e=>({...e,pathKind:'OUTDOOR_BOUNDARY',
+   accessibleNow:null,scriptGateVerified:false})));
  if(sourceId===targetId)return {verified:true,sourceMapId:sourceId,targetMapId:targetId,
     edges:[],hopCount:0,routeNavigableNowProven:false,includesOutdoorConnections:false};
  const visited=new Set([sourceId]),queue=[{id:sourceId,path:[]}];
@@ -76,13 +84,13 @@ function findStaticWarpRoute(graph,sourceId,targetId,{maxHops=24}={}){
    const path=[...item.path,e];
    if(e.destinationMapId===targetId)return {verified:true,sourceMapId:sourceId,
      targetMapId:targetId,hopCount:path.length,edges:path,
-     routeNavigableNowProven:false,includesOutdoorConnections:false,
-     warning:'Somente warps estáticos: faltam ligações de fronteira, elevadores e condições de scripts/RAM'};
+     routeNavigableNowProven:false,includesOutdoorConnections:path.some(x=>x.pathKind==='OUTDOOR_BOUNDARY'),
+     warning:'Só ligações de mapa: faltam condições de scripts/RAM, colisões, elevadores e posições para caminhar'};
    visited.add(e.destinationMapId);queue.push({id:e.destinationMapId,path});
   }
  }
  return {verified:false,sourceMapId:sourceId,targetMapId:targetId,
-  reason:'Não há percurso por warps estáticos; isso não prova inacessibilidade no jogo',
+  reason:'Sem percurso nos warps/bordas estáticos verificados; isso não prova inacessibilidade no jogo',
   pathUnavailableIsNotUnreachable:true};
 }
 module.exports={buildWarpGraph,findStaticWarpRoute,normalizedWarp};
