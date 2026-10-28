@@ -9,8 +9,6 @@ const moveEffectDerivedCatalogue=require('./data/gen1MoveEffectDispatchAudited.j
 const {buildWarpGraph}=require('./romWarpGraph');
 const outdoorDerivedCatalogue=require('./data/gen1OutdoorConnectionsAudited.json');
 const elevatorDerivedCatalogue=require('./data/gen1ElevatorsAudited.json');
-const terrainDerivedCatalogue=require('./data/gen1TerrainCollisionAudited.json');
-const {matchDerivedTerrain}=require('./romTerrainCollision');
 const terrainBySha=new Map([
  ['5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
   require('./data/romTerrain_red.json')],
@@ -144,10 +142,6 @@ function buildProfiles(){
      p.unknownLayout===true)throw Error('perfil JSON inválido/incompleto');
   p.source=source;
   enrichKnownEconomyProfile(p);
-  if(p.world?.maps?.valid===true&&p.world.terrainCollision?.verified!==true){
-    const terrain=matchDerivedTerrain(p,terrainDerivedCatalogue);
-    if(terrain)p.world.terrainCollision=terrain;
-  }
   if(p.world?.maps?.valid===true&&p.world.warpGraph?.verified!==true)
     p.world.warpGraph=buildWarpGraph(p);
   const other=seen.get(p.hash.sha256);
