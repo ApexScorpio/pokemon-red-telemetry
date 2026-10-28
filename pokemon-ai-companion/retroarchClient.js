@@ -9,6 +9,7 @@ const {inspectTerrainCell}=require('./romTerrainAtlas');
 const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {inspectMovementOptions}=require('./romTerrainMovement');
 const {planItemAccess}=require('./romItemReachability');
+const {adviseWorld}=require('./romWorldStateAdvisor');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
@@ -2415,6 +2416,19 @@ class RetroArchClient extends EventEmitter {
       })();
     }
 
+    // Síntese global para qualquer mapa normal da ROM, atualizada a cada leitura.
+    // Só as flags comprovadas são conclusivas; não inferir scripts concluídos.
+    this.latestState.worldAdvisor=adviseWorld({
+      profile:this.activeRomProfile,
+      mapId:this.latestState.mapId,
+      position:this.latestState.coords,
+      positionVerified:this.latestState.memoryReadStatus?.mapPosition?.verified===true,
+      areaEvidence:this.latestState.romAreaEvidence,
+      hiddenItems:this.latestState.romHiddenItems?.items||[],
+      trainers:this.latestState.romTrainerFlags?.trainers||[],
+      warpGraph:this.latestState.romWarpGraph,
+      flagsVerified:this.latestState.romHiddenItems?.verified===true
+    });
     this.persistState(this.latestState);
     this.emit('update', this.latestState);
   }
