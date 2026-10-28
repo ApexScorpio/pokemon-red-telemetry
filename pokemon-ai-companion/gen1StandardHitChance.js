@@ -1,4 +1,5 @@
 'use strict';
+const {isKnownAuditedRomSha}=require('./romKnownSha256');
 
 // Apenas para golpes que executam MoveHitTest/CalcHitChance.
 // Fontes primárias: pret/pokered/engine/battle/core.asm (CalcHitChance, MoveHitTest)
@@ -22,7 +23,7 @@ function standardHitChance({
 } = {}) {
   if (!evidence || evidence.exactRomSha256Verified !== true ||
       evidence.liveRamSnapshotVerified !== true || evidence.standardHitTestAppliesVerified !== true ||
-      typeof evidence.romSha256 !== 'string' || !/^[0-9a-f]{64}$/i.test(evidence.romSha256)) {
+      typeof evidence.romSha256 !== 'string' || !isKnownAuditedRomSha(evidence.romSha256)) {
     return { verified: false, reason: 'ROM/RAM ou aplicabilidade do teste de precisão não comprovadas' };
   }
 

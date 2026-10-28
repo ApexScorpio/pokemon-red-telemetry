@@ -1,4 +1,5 @@
 'use strict';
+const {isKnownAuditedRomSha}=require('./romKnownSha256');
 
 // Mecânicas Gen I validadas por pret/pokered engine/battle/core.asm:
 // CriticalHitTest, CalculateDamage e RandomizeDamage.
@@ -12,7 +13,7 @@ function numberIn(n, low, high, field) {
 function guard(evidence, scope) {
   if (!evidence || evidence.exactRomSha256Verified !== true ||
       evidence.liveRamSnapshotVerified !== true || evidence[scope] !== true ||
-      typeof evidence.romSha256 !== 'string' || !/^[a-f0-9]{64}$/i.test(evidence.romSha256)) {
+      typeof evidence.romSha256 !== 'string' || !isKnownAuditedRomSha(evidence.romSha256)) {
     return {verified:false,reason:`Identidade ROM, RAM contemporânea ou aplicabilidade ${scope} não comprovadas`};
   }
   return null;

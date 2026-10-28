@@ -1,4 +1,5 @@
 'use strict';
+const {isKnownAuditedRomSha}=require('./romKnownSha256');
 
 // Probabilidade exata do ramo normal de captura Gen I.
 // Fonte primária: pret/pokered/engine/items/item_effects.asm (PokeBallEffect).
@@ -13,7 +14,7 @@ function captureProbability({ball, actualCatchRateFromRam, hpFromRam, maxHpFromR
   if (!evidence || evidence.exactRomSha256Verified!==true ||
       evidence.liveRamSnapshotVerified!==true || evidence.ordinaryBallEffectVerified!==true ||
       evidence.legalThrowVerified!==true ||
-      typeof evidence.romSha256!=='string' || !/^[a-f0-9]{64}$/i.test(evidence.romSha256)) {
+      typeof evidence.romSha256!=='string' || !isKnownAuditedRomSha(evidence.romSha256)) {
     return {verified:false,reason:'ROM/RAM ou condições de lançamento e efeito normal não confirmadas'};
   }
   if (ball === 'MASTER_BALL') return {verified:true,probability:1,percent:100,

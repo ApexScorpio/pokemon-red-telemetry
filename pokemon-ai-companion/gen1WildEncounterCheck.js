@@ -1,4 +1,5 @@
 'use strict';
+const {isKnownAuditedRomSha}=require('./romKnownSha256');
 // Gen I TryDoWildEncounter (pret/pokered/engine/battle/wild_encounters.asm).
 // Probabilidade teórica por verificação elegível, NÃO por passo universal.
 // Não prevê o valor RNG que sairá; a aplicação live deve provar pré-condições.
@@ -13,7 +14,7 @@ const refuse=reason=>({verified:false,reason});
 function wildEncounterCheckOdds({rateByteFromRom,slotsFromRom,
   repelStepsFromRam,firstPartyLevelFromRam,evidence}={}) {
   if(!evidence||evidence.identifiedRomSha256Verified!==true||
-     !/^[a-f0-9]{64}$/i.test(evidence.romSha256||'')||
+     !isKnownAuditedRomSha(evidence.romSha256)||
      evidence.encounterTableFromSameRomVerified!==true||
      evidence.liveRamSnapshotVerified!==true||
      evidence.preEncounterChecksPassedVerified!==true||
