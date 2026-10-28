@@ -134,7 +134,7 @@ function buildLiveBattlePreview({romProfile,battleEvidence,battleWindow,battleTy
     if(!between(id,1,165))return null;
     const info=romProfile.moveStats[id-1];
     if(info?.id!==id)return null;
-    const standardHit=DIRECT_HIT_EFFECTS.has(info.effectByte)&&info.powerByte>0;
+    const standardHit=id!==165&&DIRECT_HIT_EFFECTS.has(info.effectByte)&&info.powerByte>0; // Struggle ignora a tabela normal de tipos
     const hit=standardHit?accuracyConditional(info.accuracyByte,
       attackerStages?.[4],defenderStages?.[5],ratios):null;
     const atkType=info.typeByte;
@@ -146,6 +146,10 @@ function buildLiveBattlePreview({romProfile,battleEvidence,battleWindow,battleTy
       attack:atkStats,defense:defStats,attackerStages,defenderStages,
       attackerStatus:attacker.status,orderedRules:rules,targetHp:defender.hp
     }):null;
+    const effectRecord=romProfile.moveEffectDispatch?.verified===true?
+      romProfile.moveEffectDispatch.moves?.[id-1]:null;
+    const effectHandler=effectRecord?.moveId===id?
+      effectRecord.handler:null;
     const baseSpeed=romProfile.species?.[attacker.speciesId-1]?.stats?.speed;
     const crit=standardHit&&Array.isArray(highCritical)?
       criticalConditionalWithoutFocus(baseSpeed,info.powerByte,
@@ -156,6 +160,7 @@ function buildLiveBattlePreview({romProfile,battleEvidence,battleWindow,battleTy
       powerByte:info.powerByte,typeByte:atkType,
       accuracyByte:info.accuracyByte,effectByte:info.effectByte,
       secondaryEffectNotModelled:info.effectByte!==0,
+      effectHandler,effectOutcomeCertified:false,
       hitOutOf256:hit?.hitOutOf256??null,
       hitPercent:hit?.percent??null,
       criticalPercentWithoutFocus:crit?.percent??null,

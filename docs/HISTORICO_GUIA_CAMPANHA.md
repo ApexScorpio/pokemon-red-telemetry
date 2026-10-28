@@ -748,3 +748,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 ## 2026-10-28 — Teste integrado do pipeline RAM → motor de batalha
 - Testes em `tests/gen1BattleRamToUiPipeline.test.js`: constroem blocos HEX completos com offsets `CFE0/D014/CC20`, executam `parseRomBattleEvidence → verifyBattleWindow → buildLiveBattlePreview` e verificam precisão/dano/PP/efeitos/captura nas três variantes, usando catálogos ROM SHA-fixados.
 - Testadas rejeições de HP/estágios divergentes, amostra de mapa não validada e SHA alterado; nenhuma regressão permite reutilizar previsão obsoleta. Blocos de RAM são **fixtures sintéticas**, não snapshots reais de emulador, e não se alega E2E em iPhone.
+
+
+## 2026-10-28 — Exceção de Struggle e visibilidade do handler ROM
+- A rotina de recoil inclui o golpe 165 (Struggle), que na Gen I não segue a eficácia de tipo normal. O painel deixa de aplicar a fórmula de dano de tipo/STAB a Struggle por engano.
+- O painel mostra o nome do handler de efeitos da ROM auditada para cada golpe com efeito não trivial, mas marca `effectOutcomeCertified:false`; não confunde reconhecimento do nome da rotina com prova do resultado dos seus ramos.
+- Acrescentados dois testes e reexecutadas as suites isoladas de pré-visualização de combate. Sem acesso E2E ao emulador/iPhone.

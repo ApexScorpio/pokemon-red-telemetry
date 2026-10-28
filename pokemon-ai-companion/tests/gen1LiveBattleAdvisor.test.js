@@ -135,3 +135,24 @@ test('multi-hit e OHKO não recebem dano de turno calculado por golpe simples',(
  assert.equal(r.moves[1].hitPercent,null);
  assert.equal(r.moves[1].damage,null);
 });
+
+test('Struggle não usa dano normal de tipo apesar do effect byte de recoil',()=>{
+ const x=scenario();
+ x.romProfile.moveStats[164]={id:165,effectByte:48,powerByte:50,
+   typeByte:0,accuracyByte:255};
+ x.battleEvidence.player.moves=[165,1,0,0];
+ const move=buildLiveBattlePreview(x).moves[0];
+ assert.equal(move.id,165);
+ assert.equal(move.damage,null);
+ assert.equal(move.hitPercent,null);
+});
+test('a rotina de efeito é apresentada como metadado sem certificar o resultado',()=>{
+ const x=scenario();
+ x.romProfile.moveEffectDispatch={verified:true,
+   moves:Array(165).fill(null)};
+ x.romProfile.moveEffectDispatch.moves[51]={moveId:52,
+   handler:'FreezeBurnParalyzeEffect'};
+ const move=buildLiveBattlePreview(x).moves.find(y=>y.id===52);
+ assert.equal(move.effectHandler,'FreezeBurnParalyzeEffect');
+ assert.equal(move.effectOutcomeCertified,false);
+});

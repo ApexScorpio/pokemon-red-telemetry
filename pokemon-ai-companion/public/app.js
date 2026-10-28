@@ -2415,6 +2415,8 @@ function renderBattle(battle, battleType) {
           if(Number.isFinite(m.criticalPercentWithoutFocus))
             extras.push('Crítico teórico sem Focus Energy '+
               m.criticalPercentWithoutFocus.toFixed(1)+'%');
+          if(m.effectHandler&&m.effectByte!==0)
+            extras.push('Rotina ROM: '+m.effectHandler+' (efeito não certificado)');
           details.textContent=extras.join(' • ');
           row.append(title,details);elPlayerBattleMoves.appendChild(row);
         }
