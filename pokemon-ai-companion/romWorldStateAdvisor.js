@@ -3,8 +3,8 @@
 const {findStaticWarpRoute}=require('./romWarpGraph');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
-function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],trainers=[],
- warpGraph,hiddenFlagsVerified=false,trainerFlagsVerified=false,
+function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
+ warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
  itemAccess=null,itemAccessInputs=[],hiddenStartIndex=0,
  positionVerified=false}={}){
 
@@ -59,6 +59,22 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],trainer
       item.collectionEvidence||'ROM + RAM', {x:item.x,y:item.y,itemId:item.itemId,
        ...accessFor('HIDDEN_ITEM',item.x,item.y)});
  }
+ // Hidden coins have a different WRAM bitmap (D6FE..D6FF). Their state
+ // cannot be inferred from the hidden-item bitmap at D6F0..D6FD.
+ for(const coin of hiddenCoins){
+   if(coin?.mapId!==mapId||!byte(coin.x)||!byte(coin.y))continue;
+   const knownAmount=Number.isInteger(coin.actualAwardIfClaimed)&&
+     coin.actualAwardIfClaimed>=0?coin.actualAwardIfClaimed:null;
+   const label=knownAmount===null?'Fichas ocultas (quantia por confirmar)':
+     knownAmount+' fichas ocultas';
+   add('HIDDEN_COIN',coinFlagsVerified&&coin.isCollected===true?
+      'COIN_COLLECTED_FLAG':
+      coinFlagsVerified&&coin.isCollected===false?
+      'COIN_NOT_COLLECTED_FLAG':'UNKNOWN',
+      label,'Pesquisar o chão pode revelar fichas; a atribuição requer o evento real.',
+      coin.collectionEvidence||'ROM + RAM COINS', {x:coin.x,y:coin.y,
+        coinAmount:knownAmount});
+ }
  for(const t of [...(liveArea?.trainers||[]),...trainers]) {
    if(!byte(t.x)||!byte(t.y))continue;
    // Hidden-item flags can NEVER attest a trainer outcome. Even a trainer
@@ -107,13 +123,14 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],trainer
    liveAreaEvidenceVerified:!!liveArea,
    itemReachabilityEvidenceVerified:accessByKey.size>0,
    hiddenFlagsVerified:hiddenFlagsVerified===true,
+   coinFlagsVerified:coinFlagsVerified===true,
    trainerFlagsVerified:trainerFlagsVerified===true,
    counts:observations.reduce((a,o)=>(a[o.status]=(a[o.status]||0)+1,a),{}),
    routes:routes.filter(r=>r.verified),progressCompleteness:'PARTIAL',
    futureOutcomeGuaranteed:false,globalCoverage:'248_IDS_226_NORMAL_HEADERS',
    limitations:['Scripts e ramificações não interpretados integralmente',
      'Percursos geométricos são condicionais, não demonstram acesso imediato',
-     'Provas de itens ocultos e treinadores são independentes',
+     'Provas de itens, fichas ocultas e treinadores são independentes',
      'Flags de progresso só são conclusivas quando lidas e ligadas ao evento',
      'Uma consequência prevista não é prova de execução']};
 }
