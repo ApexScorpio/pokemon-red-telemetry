@@ -43,3 +43,20 @@ O novo leitor confronta os 24 cabeçalhos binários de tileset de 12 bytes (banc
 **Fonte técnica:** `pret/pokered/home/overworld.asm` (`DrawTileBlock`, `CheckTilePassable` e colisões entre pares); `pret/pokered/engine/overworld/player_state.asm` (amostragem do tile sob jogador); `pret/pokered/data/tilesets/{tileset_headers,collision_tile_ids,pair_collision_tile_ids}.asm`.
 
 **Proteções:** não foram adicionados binários ROM, saves, dados pessoais ou tokens. Nenhuma alteração ao Windows, às aplicações protegidas ou aos ficheiros originais. Todos os resultados só autorizam alegações sobre os bytes das três ROMs específicas.
+
+
+## Adenda — 8 regras ROM de salto de saliências
+
+As oito entradas `LedgeTiles` foram encontradas no **banco 6, CPU `0x66CF`** das três ROMs reais (offset absoluto `0x1A6CF`), com a mesma sequência de **33 bytes** terminada por `0xFF`. A tabela codifica `direção do sprite, tile sob o jogador, tile em frente, botão exigido`. A rotina `HandleLedges` só consulta a tabela quando o tileset atual é **OVERWORLD (0)** e quando `BIT_LEDGE_OR_FISHING` não impede novo salto.
+
+| Direção | Tile sob jogador | Tile em frente | Botão | Registos |
+|---|---|---|---|---:|
+| Sul | `0x2C` / `0x39` | `0x37` ou `0x36` | `PAD_DOWN (0x80)` | 3 |
+| Oeste | `0x2C` / `0x39` | `0x27` | `PAD_LEFT (0x20)` | 2 |
+| Este | `0x2C` / `0x39` | `0x0D` ou `0x1D` | `PAD_RIGHT (0x10)` | 3 |
+
+`romLedgeRules.js` verifica SHA-256 completo da ROM e a tabela dos 33 bytes e disponibiliza `ledgeCandidate(...)` para reconhecer o padrão em cada direção. `romTerrainMovement.js` agora devolve `LAND_LEDGE_HOP_CANDIDATE_REQUIRES_JOYPAD_AND_FLAGS` e os metadados `ledgeEvidence` quando aplicável. O estado real continua `ledgeJumpInCurrentFrameVerified=false`. A UI apresenta a possibilidade e identifica expressamente que não demonstra a execução de um salto.
+
+Os perfis obtidos diretamente do binário incluem `world.ledgeRules`; o atlas geral expõe a tabela validada e a sua contagem. Os perfis antigos continuam a poder usar a verificação de padrão condicional à identidade SHA do catálogo de terreno. Foi acrescentado `tests/romLedgeRules.test.js` ao comando `test:terrain` e a auditoria rigorosa `scripts/verifyRealRomTerrain.js` recusa uma ROM sem os oito registos exatos.
+
+**Provas desta adenda:** 4/4 testes Node locais aprovados (Red ZIP, Blue GB, Green International GB e casos inválidos), combinados com os 5/5 testes do segundo descodificador de terreno: **9/9 PASS, 0 SKIP**. Não houve validação visual/temporal com emulador; a suite integral do servidor continua não executada neste ambiente. A simples presença do padrão não demonstra o botão efetivamente premido, as flags de movimento nem o salto concluído.
