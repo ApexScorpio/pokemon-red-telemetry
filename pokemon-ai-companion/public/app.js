@@ -2207,7 +2207,7 @@ function renderBattleStandby(state) {
               <span class="move-eff-tag eff-none">${m.type} • Pwr ${m.power || '--'}</span>
             </div>
             <div class="move-pp" style="margin-top:2px;">
-              <span>PP: <b>${m.pp}</b></span> • <span>Precisão: ${m.accuracy || 100}%</span>
+              <span>PP: <b>${m.pp ?? '--'}</b></span> • <span>Precisão base: ${Number.isFinite(m.accuracy) ? m.accuracy.toFixed(2)+'% (sem modificadores)' : 'não validada'}</span>
             </div>
           </div>
         </div>
@@ -2263,7 +2263,7 @@ function renderBattleStandby(state) {
     // Painel de Recomendação Tática
     elMatchupRatingText.textContent = 'MODO DE ESPERA';
     elRecMoveTitle.textContent = leadMon ? `Líder: ${leadMon.name} (Lv. ${leadMon.level})` : 'Equipa a Sincronizar...';
-    elRecMoveDesc.textContent = 'Quando entrares na relva alta ou desafiares um treinador, a IA calcula instantaneamente o dano exato, fraquezas, probabilidades de K.O. e chances de captura da 1ª Geração!';
+    elRecMoveDesc.textContent = 'Quando começares um combate, o Companion mostra o estado lido da ROM/RAM e os cálculos aplicáveis. Dano, K.O. e melhor golpe só serão apresentados quando forem efetivamente comprovados.';
   }
 
   // Alertas Táticos & Lista Resumida de Batalhas da Área
@@ -2293,7 +2293,7 @@ function renderBattleStandby(state) {
     </div>
   `).join('');
 
-  elCatchCalculator.style.display = 'block';
+  elCatchCalculator.style.display = 'none'; // Fora de combate não há alvo capturável atual
   elChancePokeball.textContent = '--%';
   elChanceGreatball.textContent = '--%';
   elChanceUltraball.textContent = '--%';

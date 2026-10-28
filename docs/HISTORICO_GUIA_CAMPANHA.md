@@ -718,3 +718,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Integrado `buildLiveBattlePreview` no `retroarchClient.js` e painel de batalha `public/app.js`. Corrigida origem do PP durante a batalha: `wBattleMon` lido agora, não estado antigo da equipa.
 - Todos estes valores são rotulados `verified:false` porque RetroArch fornece CRC32, não SHA256 dos bytes de execução, e as duas amostras RAM não são atómicas. Não são disponibilizadas previsões não fundamentadas de dano, crítico, KO ou melhor golpe.
 - Testes unitários em `tests/gen1LiveBattlePreview.test.js` distinguem RAM/ROM recusada, efeitos especiais, compatibilidade com motores de precisão/captura e batalha de treinador. Não existem testes reais do emulador/iPhone nesta alteração.
+
+
+## 2026-10-28 — Interface sem probabilidades inventadas em espera
+- Removido fallback de `100%` de precisão quando o golpe da equipa não traz o respetivo byte validado; mostra agora `não validada` e distingue precisão base sem modificadores.
+- Em standby deixa de prometer que IA já calcula dano/KO exato de imediato e oculta a caixa de captura sem alvo selvagem atual.
+- Confirmada sintaxe do `public/app.js`; testes de interface em dispositivo continuam por realizar.
