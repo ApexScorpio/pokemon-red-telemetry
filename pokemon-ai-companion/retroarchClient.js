@@ -1776,6 +1776,7 @@ class RetroArchClient extends EventEmitter {
       combatBlock:blockCombat,playerBlock:blockPlayerBattle,modifierBlock:blockBattleMods,
       battleFlag:directBattleFlag===null?null:Number.parseInt(directBattleFlag,16),
       romMatched:!!this.activeRomProfile,
+      captureLayoutVerified:!!this.activeRomProfile?.battleCaptureLayout?.verified,
       mapSnapshotVerified:!!this.latestState.memoryReadStatus?.mapSnapshot?.verified
     });
     // Segunda leitura independente: os valores podem alterar-se enquanto
@@ -1798,6 +1799,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.battleReadStatus={
       verified:battleReadingVerified,
       structureVerified:battleEvidence.verified,
+      captureLayoutVerified:!!this.activeRomProfile?.battleCaptureLayout?.verified,
       consistentWindowVerified:battleWindow.verified,
       reason:!battleEvidence.verified?battleEvidence.reason:!battleWindow.verified?
         battleWindow.reason:battleEvidence.exactTurnMathReason,
