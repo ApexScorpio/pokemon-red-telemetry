@@ -13,6 +13,7 @@ const {readRomBattleRuleTables}=require('./romBattleRuleTables');
 const {auditEconomyTrades}=require('./romEconomyTrades');
 const {auditMoveEffectDispatch}=require('./romMoveEffectDispatch');
 const {buildWarpGraph}=require('./romWarpGraph');
+const {extractOutdoorConnections}=require('./romOutdoorConnections');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
 function crc32(buf){let x=0xFFFFFFFF;for(const b of buf)x=crcTable[(x^b)&255]^(x>>>8);return ((x^0xFFFFFFFF)>>>0).toString(16).toUpperCase().padStart(8,'0');}
@@ -179,6 +180,7 @@ function inspectRomBuffer(b,file='ROM_EM_MEMORIA.gb'){
  const world=inspectWorld(b);
  const trainerParties=parseTrainerParties(b);
  world.hiddenItemScripts=extractHiddenItemsFromRom(b);
+ world.outdoorConnections=extractOutdoorConnections(b,world.maps);
  world.warpGraph=buildWarpGraph({hash:{sha256:crypto.createHash('sha256').update(b).digest('hex')},world});
  const species=[],hasCore=offsets.names!==null&&offsets.dexOrder!==null&&offsets.baseStats!==null;
  if(hasCore)for(let id=1;id<=INTERNAL;id++){
