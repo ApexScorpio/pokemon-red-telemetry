@@ -5,6 +5,7 @@ const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
 const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const {staticMapGuide}=require('./romAreaGuide');
 const {annotateLastMap}=require('./romLastMapEvidence');
+const {inspectTerrainCell}=require('./romTerrainAtlas');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
@@ -1041,6 +1042,25 @@ class RetroArchClient extends EventEmitter {
       height: rawMapH * 2,
       width: rawMapW * 2
     };
+    // Terrain geometry is derived from the actual SHA-audited ROM.
+    // Never treat LAND tile passability as proof of free movement right now.
+    const terrain=this.latestState.romStaticMapGuide?.terrain;
+    const pos=this.latestState.coords;
+    const coordsAgree=terrain?.verified===true &&
+      terrain.width===this.latestState.mapDimensions.width &&
+      terrain.height===this.latestState.mapDimensions.height &&
+      Number.isInteger(pos.x)&&Number.isInteger(pos.y)&&
+      pos.x>=0&&pos.y>=0&&pos.x<terrain.width&&pos.y<terrain.height;
+    this.latestState.romTerrainCurrentTile=coordsAgree?
+      inspectTerrainCell(terrain,pos.x,pos.y):
+      {verified:false,reason:'Geometria ROM, dimensões RAM ou posição não coincidem'};
+    if(this.latestState.romTerrainCurrentTile?.verified)
+      this.latestState.romTerrainCurrentTile={
+        ...this.latestState.romTerrainCurrentTile,
+        ramMapCorroborated:mapConfirmation.verified,
+        liveMovementPassableVerified:false,
+        atomicSnapshotVerified:false
+      };
 
     // =========================================================================
     // 2. DESCODIFICAÇÃO DO BLOCO DO MUNDO E EVENTOS (BLOCO 2 - $D5A0)
