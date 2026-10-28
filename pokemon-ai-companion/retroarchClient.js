@@ -7,6 +7,7 @@ const {staticMapGuide}=require('./romAreaGuide');
 const {annotateLastMap}=require('./romLastMapEvidence');
 const {inspectTerrainCell}=require('./romTerrainAtlas');
 const {terrainWarpHints}=require('./romTerrainRouteHints');
+const {inspectMovementOptions}=require('./romTerrainMovement');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
@@ -733,6 +734,8 @@ class RetroArchClient extends EventEmitter {
         reason:'Mapa RAM incoerente; tile do terreno anterior descartado'};
       this.latestState.romTerrainWarpHints={verified:false,
         reason:'Mapa RAM incoerente; percursos do terreno anterior descartados'};
+      this.latestState.romMovementOptions={verified:false,
+        reason:'Mapa RAM incoerente; descartar direções anteriores'};
       this.latestState.romLastMapEvidence={verified:false,
         reason:'Mapa mudou entre leituras; destino D365 descartado',atomicSnapshotVerified:false};
       this.latestState.romAreaEvidence={verified:false,
@@ -1081,7 +1084,7 @@ class RetroArchClient extends EventEmitter {
     let toggleListRaw = [];
     let hiddenRaw = [];
     let hiddenCoinsRaw = [];
-    let walkBikeSurf = 0;
+    let walkBikeSurf = null;
 
     if (blockWorldEvents && blockWorldEvents.length >= 784) {
       // Caixa do PC Atual ($D5A0, offset 0)
@@ -1101,8 +1104,12 @@ class RetroArchClient extends EventEmitter {
       hiddenCoinsRaw = blockWorldEvents.slice(350, 352);
 
       // Modo de Deslocação ($D700, offset 352: 0 = Pé, 1 = Bicicleta, 2 = Surf)
-      walkBikeSurf = parseInt(blockWorldEvents[352], 16) || 0;
-      this.latestState.movementMode = walkBikeSurf === 1 ? '🚲 Bicicleta' : walkBikeSurf === 2 ? '🌊 A Surfar' : '🚶 A Pé';
+      const movementByte=blockWorldEvents[352];
+      walkBikeSurf=typeof movementByte==='string'&&/^[a-f0-9]{2}$/i.test(movementByte)?
+        parseInt(movementByte,16):null;
+      if(![0,1,2].includes(walkBikeSurf))walkBikeSurf=null;
+      this.latestState.movementMode=walkBikeSurf===1?'🚲 Bicicleta':
+        walkBikeSurf===2?'🌊 A Surfar':walkBikeSurf===0?'🚶 A Pé':'Desconhecido (RAM D700 não validada)';
 
       // EVENT FLAGS COMPLETAS ($D747, offset 423..742 = 320 BYTES = 2,560 EVENT BITS!)
       eventFlagsRaw = blockWorldEvents.slice(423, 743);
@@ -1114,6 +1121,15 @@ class RetroArchClient extends EventEmitter {
       enemyPartyRaw = blockWorldEvents.slice(764, 772);
     }
 
+    this.latestState.romMovementOptions=
+      inspectMovementOptions(
+        this.latestState.romStaticMapGuide?.terrain,
+        this.activeRomProfile?.world?.terrainAtlas,
+        this.latestState.coords,
+        walkBikeSurf,
+        {mapSnapshotVerified:mapConfirmation.verified}
+      );
+    // Only static rules are inferred. These UDP reads are not atomic.
     // Verificador Canónico de Event Flags da RAM
     const checkEventFlag = (eventId) => {
       if (eventId === undefined || eventId === null || !eventFlagsRaw || eventFlagsRaw.length === 0) return false;
