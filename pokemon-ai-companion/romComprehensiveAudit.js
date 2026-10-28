@@ -215,7 +215,10 @@ function summarize(profile){
   movesWithKnownEffectDestination:profile.moveEffectDispatch?.verified?profile.moveEffectDispatch.moveCount:0,
   warpEntries:profile.world?.warpGraph?.verified?profile.world.warpGraph.totalWarpEntries:0,
   exteriorConnections:profile.world?.outdoorConnections?.verified?profile.world.outdoorConnections.edgeCount:0,
-  elevatorFloorMenuOptions:profile.world?.elevatorDestinations?.verified?profile.world.elevatorDestinations.totalMenuFloorChoices:0};
+  elevatorFloorMenuOptions:profile.world?.elevatorDestinations?.verified?profile.world.elevatorDestinations.totalMenuFloorChoices:0,
+  landTerrainCells:profile.world?.terrainAtlas?.verified?profile.world.terrainAtlas.totals.terrainCells:0,
+  landWalkableCells:profile.world?.terrainAtlas?.verified?profile.world.terrainAtlas.totals.walkableLandTerrainCells:0,
+  landBlockedCells:profile.world?.terrainAtlas?.verified?profile.world.terrainAtlas.totals.blockedLandTerrainCells:0};
 }
 const GAP_DOMAINS=[
  ['cpuReachability','Sem CFG completo de instruções, chamadas bancadas e handlers'],
@@ -255,6 +258,7 @@ function structuredCatalogue(profile){
   warpGraph:world.warpGraph?.verified?world.warpGraph:null,
   outdoorConnections:world.outdoorConnections?.verified?world.outdoorConnections:null,
   elevatorDestinations:world.elevatorDestinations?.verified?world.elevatorDestinations:null,
+  landTerrainAtlas:world.terrainAtlas?.verified?world.terrainAtlas:null,
   economyTradesStatus:profile.economyTrades?{
    verified:profile.economyTrades.verified,failed:profile.economyTrades.failed}:null,
   growthRates:profile.growthRates||null,
