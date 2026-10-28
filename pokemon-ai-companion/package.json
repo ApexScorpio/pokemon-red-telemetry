@@ -10,7 +10,8 @@
     "test:audit:roms": "node --test tests/romComprehensiveAudit.test.js",
     "test:terrain": "node --test tests/romTerrainAtlas.test.js tests/romTerrainRouteHints.test.js tests/romTerrainCatalogueIntegrity.test.js tests/romTerrainVariantDiff.test.js tests/romTerrainCollision.test.js tests/romTerrainMovement.test.js tests/romTilesetCollisionAudit.test.js tests/romLedgeRules.test.js",
     "audit:terrain:strict": "node scripts/verifyRealRomTerrain.js",
-    "test:terrain:real": "node scripts/verifyRealRomTerrain.js && npm run test:terrain"
+    "test:terrain:real": "node scripts/verifyRealRomTerrain.js && npm run test:terrain",
+    "test:ram:consistency": "node --test tests/romSnapshotIntegrity.test.js tests/romMapPositionConsistency.test.js tests/romMovementModeConsistency.test.js tests/romBattleSnapshotConsistency.test.js tests/romTerrainMovement.test.js"
   },
   "dependencies": {
     "ws": "^8.18.0"
