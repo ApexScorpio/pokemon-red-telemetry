@@ -67,3 +67,16 @@ test('hidden coins are shown with own status and no fake collection of items',()
  assert.match(body.textContent,/HIDDEN_COIN: 1/);
  assert.doesNotMatch(body.textContent,/Item oculto recolhido/);
 });
+
+test('global campaign rollup is shown only when ROM SHA and map coverage match',()=>{
+ const s=live();
+ s.globalCampaignLedger={verified:true,romSha256:s.worldAdvisor.romSha256,
+   mapCount:226,totals:{hiddenItemsCollected:10,hiddenItems:54,
+     hiddenCoinsCollected:2,hiddenCoins:12,trainerGatesClosed:11,
+     trainersUnknown:5,scriptedVictories:1,stationaryGatesClosed:3}};
+ assert.match(render(s).body.textContent,/KANTO \(226 mapas\)/);
+ assert.match(render(s).body.textContent,/11 portões fechados/);
+ assert.match(render(s).body.textContent,/não prova captura/);
+ s.globalCampaignLedger.romSha256='0'.repeat(64);
+ assert.match(render(s).body.textContent,/sem prova global RAM\/ROM/);
+});
