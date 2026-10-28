@@ -6,6 +6,7 @@ const {inspectRom,runtimeMatches}=require('./romVariantRegistry');
 const {listCandidates,inspectZipProfiles}=require('./romAutoDiscovery');
 const economyDerivedCatalogue=require('./data/gen1EconomyTradesAudited.json');
 const moveEffectDerivedCatalogue=require('./data/gen1MoveEffectDispatchAudited.json');
+const {buildWarpGraph}=require('./romWarpGraph');
 const TYPES={0:'Normal',1:'Fighting',2:'Flying',3:'Poison',4:'Ground',5:'Rock',
   7:'Bug',8:'Ghost',20:'Fire',21:'Water',22:'Grass',23:'Electric',
   24:'Psychic',25:'Ice',26:'Dragon'};
@@ -100,6 +101,8 @@ function buildProfiles(){
      p.unknownLayout===true)throw Error('perfil JSON inválido/incompleto');
   p.source=source;
   enrichKnownEconomyProfile(p);
+  if(p.world?.maps?.valid===true&&p.world.warpGraph?.verified!==true)
+    p.world.warpGraph=buildWarpGraph(p);
   const other=seen.get(p.hash.sha256);
   if(other!==undefined){
     if(profileQuality(p)>profileQuality(profiles[other]))profiles[other]=p;
