@@ -2403,10 +2403,19 @@ function renderBattle(battle, battleType) {
           const title=document.createElement('div');title.className='move-name';
           title.textContent=m.name+' • PP '+m.pp+' • Poder ROM '+m.powerByte;
           const details=document.createElement('div');details.className='move-pp';
-          details.textContent=Number.isFinite(m.hitPercent)?
-            'Precisão condicional '+m.hitPercent.toFixed(2)+'% ('+m.hitOutOf256+
-            '/256), só teste padrão':
-            'Precisão não determinada (efeito/condições pendentes)';
+          const extras=[];
+          extras.push(Number.isFinite(m.hitPercent)?
+            'Acerto condicional '+m.hitPercent.toFixed(2)+'% ('+m.hitOutOf256+'/256)':
+            'Acerto não determinado');
+          if(m.damage){
+            extras.push('Dano não crítico '+m.damage.min+'–'+m.damage.max);
+            extras.push('KO sem crítico, condicionado ao acerto '+
+              m.damage.koGivenNormalHitPercent.toFixed(1)+'%');
+          }else extras.push('Dano não calculável neste estado');
+          if(Number.isFinite(m.criticalPercentWithoutFocus))
+            extras.push('Crítico teórico sem Focus Energy '+
+              m.criticalPercentWithoutFocus.toFixed(1)+'%');
+          details.textContent=extras.join(' • ');
           row.append(title,details);elPlayerBattleMoves.appendChild(row);
         }
       } else {
@@ -2505,9 +2514,19 @@ function renderBattle(battle, battleType) {
     const preview=battle.preview;
     if(preview?.conditional){
       elMatchupRatingText.textContent='CÁLCULO CONDICIONAL';
-      elRecMoveTitle.textContent='Golpes e PP da RAM, tabelas da ROM local';
-      elRecMoveDesc.textContent=preview.reason;
-      elTacticalAlerts.textContent='Precisão apenas para golpes simples. Dano, crítico, KO e melhor ataque continuam sem cálculo certificado.';
+      const best=preview.conditionalBestMove;
+      elRecMoveTitle.textContent=best?
+        'Candidato condicional: '+best.name:
+        'Golpes e PP atuais da RAM, tabela da ROM local';
+      elRecMoveDesc.textContent=(best?
+        'Sob pressupostos e sem crítico: dano médio ponderado por acerto '+
+        best.expectedNormalDamageWithMisses.toFixed(1)+' HP. ':
+        '')+preview.reason;
+      const threats=(preview.enemyThreats||[]).filter(m=>m.damage&&m.pp>0)
+        .map(m=>m.name+': '+m.damage.min+'–'+m.damage.max+' HP sem crítico');
+      elTacticalAlerts.textContent=preview.assumptions+
+        (threats.length?' | Golpes adversários possíveis: '+threats.join('; '):'')+
+        ' | Não constitui recomendação ótima comprovada nem previsão do RNG.';
     } else {
       elTacticalAlerts.textContent=
         'Dano, precisão, crítico, KO e captura não certificados neste turno.';

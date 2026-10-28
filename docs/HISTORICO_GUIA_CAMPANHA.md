@@ -724,3 +724,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Removido fallback de `100%` de precisão quando o golpe da equipa não traz o respetivo byte validado; mostra agora `não validada` e distingue precisão base sem modificadores.
 - Em standby deixa de prometer que IA já calcula dano/KO exato de imediato e oculta a caixa de captura sem alvo selvagem atual.
 - Confirmada sintaxe do `public/app.js`; testes de interface em dispositivo continuam por realizar.
+
+
+## 2026-10-28 — Motor de batalha: dano por tipos, STAB e KO condicional
+- `gen1LiveBattlePreview.js` agora integra o dano padrão para efeitos 0, tipos físicos/especiais da Gen I, STAB, regras ordenadas dos 82 pares TypeEffects, escalonamento da Gen I quando ataque/defesa >255, 39 resultados da rolagem 217–255, probabilidade condicional de KO sem crítico, precisão e base crítica sem Focus Energy.
+- Os quatro golpes do jogador e os golpes disponíveis do adversário são tratados independentemente. É identificado apenas um candidato de maior dano médio **entre golpes calculáveis**, sem alegar ser ótimo com críticos/efeitos. Efeitos especiais, burn físico, estágios relevantes alterados, ROM não auditada ou RAM incoerente recusam cálculo sem estimativas inventadas.
+- `public/app.js` apresenta dano min–max, chance condicional de KO, crítico teórico e ameaças adversárias; cada rótulo indica explicitamente os pressupostos. Não permite marcar `exactTurnMathReady:true` nem `verified:true` com CRC32, nem pretende detetar Reflect/Light Screen sem flags RAM.
+- Testes unitários acrescentados em `tests/gen1LiveBattleAdvisor.test.js` (9 casos), incluindo dano tipado, imunidade, escalonamento, burn, boosts, KO, captura, crítico, recusa de prova e compatibilidade com os motores pré-existentes. Estes testes usaram fixture de valores de combate e não são uma execução do emulador/iPhone.
