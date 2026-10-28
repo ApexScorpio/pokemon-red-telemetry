@@ -3,6 +3,7 @@
 // terrain maps, but NEVER actual movement in a running game. Source:
 // pret/pokered home/overworld.asm CollisionCheckOnLand/CollisionCheckOnWater.
 const {inspectTerrainCell}=require('./romTerrainAtlas');
+const {ledgeCandidate}=require('./romLedgeRules');
 const valid=(n,lo,hi)=>Number.isInteger(n)&&n>=lo&&n<=hi;
 const checks={
   noVerifiedPosition:'Amostra RAM / mapa inválidos',
@@ -39,6 +40,10 @@ function inspectMovementOptions(terrainMap,worldTerrain,position,modeByte,{mapSn
     traversableNowVerified:false};
   const blockedLandPair=matchesPair(landPairs,here.tileId,dest.tileId);
   const blockedWaterPair=matchesPair(waterPairs,here.tileId,dest.tileId);
+  const ledge=modeByte!==2?ledgeCandidate({romSha256:worldTerrain.romSha256,
+    tilesetId:terrainMap.tilesetId,standingTileId:here.tileId,
+    ledgeTileId:dest.tileId,direction}):
+    {verified:false,ledgeCandidate:false,reason:'Surf não usa saltos de ledge terrestre'};
   let outcome;
   if(modeByte===2){
    if(blockedWaterPair)outcome='SURF_PAIR_COLLISION';
@@ -47,13 +52,16 @@ function inspectMovementOptions(terrainMap,worldTerrain,position,modeByte,{mapSn
     outcome='SURF_CAN_CONTINUE_IF_NO_DYNAMIC_OBSTACLE';
    else if(dest.passableByStaticLandTileset)outcome='SURF_CAN_DISEMBARK_IF_NO_DYNAMIC_OBSTACLE';
    else outcome='SURF_STATIC_BLOCKED';
-  }else if(blockedLandPair)outcome='LAND_PAIR_COLLISION_POSSIBLE_LEDGE_EXCEPTION';
+  }else if(ledge.verified&&ledge.ledgeCandidate)
+    outcome='LAND_LEDGE_HOP_CANDIDATE_REQUIRES_JOYPAD_AND_FLAGS';
+  else if(blockedLandPair)outcome='LAND_PAIR_COLLISION_POSSIBLE_LEDGE_EXCEPTION';
   else if(dest.passableByStaticLandTileset)outcome='LAND_STATIC_PERMITTED_IF_NO_DYNAMIC_OBSTACLE';
   else outcome='LAND_STATIC_BLOCKED_POSSIBLE_LEDGE_EXCEPTION';
   return {direction,x,y,insideMap:true,tileId:dest.tileId,
    destinationLandPassable:dest.passableByStaticLandTileset,
    pairCollision:modeByte===2?blockedWaterPair:blockedLandPair,
-   staticOutcome:outcome,traversableNowVerified:false,srcTileId:here.tileId};
+   staticOutcome:outcome,traversableNowVerified:false,srcTileId:here.tileId,
+   ledgeEvidence:ledge,ledgeJumpInCurrentFrameVerified:false};
  });
  return {verified:true,mapId:terrainMap.mapId,position:{x:position.x,y:position.y},
   modeByte,mode:modeByte===2?'SURF':modeByte===1?'BIKE':'WALK',neighbors,
