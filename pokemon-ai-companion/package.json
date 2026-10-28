@@ -11,7 +11,9 @@
     "test:terrain": "node --test tests/romTerrainAtlas.test.js tests/romTerrainRouteHints.test.js tests/romTerrainCatalogueIntegrity.test.js tests/romTerrainVariantDiff.test.js tests/romTerrainCollision.test.js tests/romTerrainMovement.test.js tests/romTilesetCollisionAudit.test.js tests/romLedgeRules.test.js",
     "audit:terrain:strict": "node scripts/verifyRealRomTerrain.js",
     "test:terrain:real": "node scripts/verifyRealRomTerrain.js && npm run test:terrain",
-    "test:ram:consistency": "node --test tests/romSnapshotIntegrity.test.js tests/romMapPositionConsistency.test.js tests/romMovementModeConsistency.test.js tests/romBattleSnapshotConsistency.test.js tests/romTerrainMovement.test.js"
+    "test:ram:consistency": "node --test tests/romSnapshotIntegrity.test.js tests/romMapPositionConsistency.test.js tests/romMovementModeConsistency.test.js tests/romBattleSnapshotConsistency.test.js tests/romTerrainMovement.test.js",
+    "audit:battle:real": "node scripts/verifyRealRomBattleTables.js",
+    "test:battle:real": "node --test scripts/verifyBattleTablesStrict.cjs"
   },
   "dependencies": {
     "ws": "^8.18.0"
