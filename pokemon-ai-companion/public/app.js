@@ -2890,12 +2890,12 @@ function renderAreaRadar(areaInfo) {
   if (npcItemsList.length > 0) {
     const npcTitle = document.createElement('div');
     npcTitle.className = 'radar-category-title';
-    npcTitle.innerHTML = '📜 ITENS DADOS POR NPCS & EVENTOS:';
+    npcTitle.textContent = '📜 RECOMPENSAS DE NPCS E EVENTOS — CONDIÇÕES A CONFIRMAR';
     elAreaItemsList.appendChild(npcTitle);
 
     npcItemsList.forEach(item => {
       const card = document.createElement('div');
-      card.className = 'area-item-card item-available';
+      card.className = 'area-item-card';
       card.innerHTML = `
         <div class="item-top-row">
           <div class="item-name-block">
@@ -2912,6 +2912,29 @@ function renderAreaRadar(areaInfo) {
       elAreaItemsList.appendChild(card);
     });
   }
+
+  // Acessibilidade deriva de tiles da ROM e RAM; nunca afirmar "disponível já".
+  const statusText={
+    CONDITIONAL_PATH:'🧭 Percurso local possível (não comprovado no jogo)',
+    NEEDS_CUT:'✂️ Passagem hipotética requer Cut',
+    NEEDS_SURF:'🌊 Passagem hipotética requer Surf',
+    NEEDS_CUT_AND_SURF_POSSIBLY:'✂️🌊 Possível necessidade de Cut e Surf',
+    CUT_CAPABILITY_UNKNOWN:'❔ Cut: capacidade não comprovada',
+    SURF_CAPABILITY_UNKNOWN:'❔ Surf: capacidade não comprovada',
+    POSSIBLE_STRENGTH_BARRIER:'🪨 Rocha observada; empurrar por confirmar',
+    NO_SAME_MAP_PATH:'↩️ Sem caminho interno; considerar desnível/warp/outro mapa',
+    REMOVED_FLAG:'⭕ Objeto removido do mapa (não prova recolha)',
+    COLLECTED_FLAG:'✅ Flag de item oculto obtido',
+    UNKNOWN:'❔ Acessibilidade desconhecida'
+  };
+  const renderAccess=item=>{
+    const label=statusText[item.accessStatus]||statusText.UNKNOWN;
+    const route=item.accessRoute;
+    const steps=Number.isInteger(route?.steps)?' • '+route.steps+' passos teóricos':'';
+    const next=route?.nextStep?' • Próximo tile X:'+route.nextStep.x+
+      ' Y:'+route.nextStep.y:'';
+    return label+steps+next;
+  };
 
   // Três estados distintos. Possuir um item igual NÃO prova recolha.
   const uncollectedVis = vis.filter(item => item.isCollected === false);
@@ -2933,7 +2956,7 @@ function renderAreaRadar(areaInfo) {
   if (pendingItems.length > 0) {
     const pendTitle = document.createElement('div');
     pendTitle.className = 'radar-category-title';
-    pendTitle.innerHTML = `🔴 ITENS POSSIVELMENTE POR APANHAR (${pendingItems.length}) — índice RAM ainda por confirmar na ROM:`;
+    pendTitle.textContent='🧭 ITENS NÃO RECOLHIDOS — ACESSO A VALIDAR ('+pendingItems.length+')';
     elAreaItemsList.appendChild(pendTitle);
 
     pendingItems.forEach(item => {
@@ -2952,9 +2975,13 @@ function renderAreaRadar(areaInfo) {
           </div>
           <span class="item-badge-pill ${tagClass}">${tagText}</span>
         </div>
-        <div class="item-hint-box">📍 <b>Local:</b> ${item.hint}</div>
+        <div class="item-hint-box">📍 <b>Local:</b> ${item.hint||'Coordenadas extraídas da ROM'}</div>
         ${item.importance ? `<div class="item-importance-box">💡 <b>Utilidade:</b> ${item.importance}</div>` : ''}
       `;
+      const note=document.createElement('div');
+      note.className='item-hint-box';
+      note.textContent=renderAccess(item)+' — '+(item.accessReason||'');
+      card.appendChild(note);
       elAreaItemsList.appendChild(card);
     });
   }
@@ -2969,7 +2996,8 @@ function renderAreaRadar(areaInfo) {
       card.className='area-item-card';
       const pos=(Number.isInteger(item.x)&&Number.isInteger(item.y))
         ? ' X:'+item.x+' Y:'+item.y : '';
-      card.textContent='❔ '+item.name+pos+' — recolha não comprovada (referência manual)';
+      card.textContent='❔ '+item.name+pos+' — recolha não comprovada. '+
+        renderAccess(item)+' — '+(item.accessReason||'');
       elAreaItemsList.appendChild(card);
     }
   }
@@ -2996,7 +3024,7 @@ function renderAreaRadar(areaInfo) {
   if (allLocked.length > 0) {
     const lockedTitle = document.createElement('div');
     lockedTitle.className = 'radar-category-title locked-category-title';
-    lockedTitle.innerHTML = '🔒 BLOQUEADO / INACESSÍVEL NESTE MOMENTO:';
+    lockedTitle.textContent='🔒 PERCURSOS CONDICIONADOS / EVENTOS COM REQUISITOS:';
     elAreaItemsList.appendChild(lockedTitle);
 
     allLocked.forEach(item => {
@@ -3012,7 +3040,7 @@ function renderAreaRadar(areaInfo) {
         </div>
         <div class="item-hint-box">📍 <b>Local:</b> ${item.hint || ''}</div>
         ${item.importance ? `<div class="item-importance-box">💡 <b>Utilidade:</b> ${item.importance}</div>` : ''}
-        <div class="aitem-lock-reason">⛔ ${item.lockReason || 'Requisito em falta'}</div>
+        <div class="aitem-lock-reason">⛔ ${item.accessStatus?renderAccess(item):'Requisito referencial'} — ${item.lockReason || 'Não comprovado'}</div>
       `;
       elAreaItemsList.appendChild(card);
     });

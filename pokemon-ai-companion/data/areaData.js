@@ -525,33 +525,9 @@ if (AREA_DATABASE[22]) {
 }
 
 function getAreaInfo(mapId, coords = null) {
-  if (mapId === 15) {
-    // A Route 4 está dividida geograficamente pelo Mt. Moon:
-    // - Secção Oeste (X < 30): Entrada da montanha e Centro Pokémon. Não tem relva alta nem itens no chão.
-    // - Secção Leste (X >= 30): Saída da montanha com relva alta (Rattata, Spearow, Ekans), TM04 e Great Ball.
-    if (!coords || coords.x < 30) {
-      return {
-        name: 'Route 4 (Oeste - Entrada Mt. Moon)',
-        isWestRoute4: true,
-        wild: [
-          { name: 'Zubat', dex: 41, minLv: 7, maxLv: 10, chance: 79, types: ['Poison', 'Flying'], baseStats: { hp: 40, atk: 45, def: 35, spd: 55, spc: 40 }, rec: '🦇 Mt. Moon (Entrada ao lado X:18 Y:5): Muito comum na caverna. Confunde com Supersonic.' },
-          { name: 'Geodude', dex: 74, minLv: 8, maxLv: 10, chance: 15, types: ['Rock', 'Ground'], baseStats: { hp: 40, atk: 80, def: 100, spd: 20, spc: 30 }, rec: '🛡️ Mt. Moon: Defesa física 100 maciça. Usa Butterfree com Confusion para derrotar!' },
-          { name: 'Paras', dex: 46, minLv: 8, maxLv: 8, chance: 5, types: ['Bug', 'Grass'], baseStats: { hp: 35, atk: 70, def: 55, spd: 25, spc: 55 }, rec: '🍄 Mt. Moon: Tipo Inseto/Planta. Fraco contra Fogo e Voador.' },
-          { name: 'Clefairy', dex: 35, minLv: 8, maxLv: 8, chance: 1, types: ['Normal'], baseStats: { hp: 70, atk: 45, def: 48, spd: 35, spc: 60 }, rec: '⭐ RARO (1%)! Apanha e usa a Moon Stone da caverna para evoluir em Clefable!' }
-        ],
-        npcTrades: [],
-        npcGifts: [
-          { name: 'Magikarp (500₽)', dex: 129, type: 'gift', x: 11, y: 5, hint: 'Dentro do Centro Pokémon logo ao teu lado (X:11 Y:5)', importance: '⭐ ESSENCIAL! Evolui no Lv. 20 para o lendário Gyarados!' }
-        ],
-        npcItems: [
-          { name: 'Entrada do Mt. Moon', x: 18, y: 5, hint: 'Caverna a Este (X:18 Y:5)', importance: 'Entra na montanha para avançar rumo a Cerulean City.' },
-          { name: 'Centro Pokémon de Mt. Moon', x: 11, y: 5, hint: 'Edifício logo ao teu lado (X:11 Y:5)', importance: 'Cura a equipa e tem PC para gerir Pokémon.' }
-        ],
-        visibleItems: [], // TM04 fica do lado leste após atravessar a montanha
-        hiddenItems: []  // Great Ball fica no planalto leste perto de Cerulean
-      };
-    }
-  }
+  // Não ocultar itens da Route 4 através de um corte manual X<30.
+  // A existência na ROM é independente do percurso desde a posição atual;
+  // o motor romItemReachability classifica a acessibilidade por tiles/flags.
 
   if (AREA_DATABASE[mapId]) {
     return AREA_DATABASE[mapId];

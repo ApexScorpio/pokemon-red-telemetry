@@ -754,3 +754,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - A rotina de recoil inclui o golpe 165 (Struggle), que na Gen I não segue a eficácia de tipo normal. O painel deixa de aplicar a fórmula de dano de tipo/STAB a Struggle por engano.
 - O painel mostra o nome do handler de efeitos da ROM auditada para cada golpe com efeito não trivial, mas marca `effectOutcomeCertified:false`; não confunde reconhecimento do nome da rotina com prova do resultado dos seus ramos.
 - Acrescentados dois testes e reexecutadas as suites isoladas de pré-visualização de combate. Sem acesso E2E ao emulador/iPhone.
+
+
+## 2026-10-28 — Radar de itens integrado com navegação ROM/RAM
+- `retroarchClient.js` chama `planItemAccess` com grelha/posição, 2.ª leitura RAM, sprites, modo de deslocação, capacidades Cut/Surf verificadas na equipa e insígnias. O resultado por item inclui `accessStatus`, motivo e próximo tile teórico; não confunde recolha, remoção, itens ocultos e caminho acessível.
+- `public/app.js` rotula cada item como percurso condicional, necessidade hipotética de Cut/Surf, rota inexistente neste mapa, possível Strength ou estado desconhecido. Remove a apresentação enganadora de «disponível já» e de presentes de NPC sem requisitos verificados.
+- Removido `getAreaInfo` da divisão manual de Route 4 pela coordenada X=30, que escondia itens e apresentava encontros de Mt. Moon como se fossem da relva exterior. Agora os itens conhecidos da Route 4 permanecem no mapa; o acesso é calculado pelo motor.
+- Nota: testes visuais do RetroArch/iPhone ainda pendentes; cálculo Cut/Surf/ledge depende das condições do motor e não prova roteiro multi-mapa ou execução atual.

@@ -8,6 +8,7 @@ const {annotateLastMap}=require('./romLastMapEvidence');
 const {inspectTerrainCell}=require('./romTerrainAtlas');
 const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {inspectMovementOptions}=require('./romTerrainMovement');
+const {planItemAccess}=require('./romItemReachability');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
@@ -1677,6 +1678,7 @@ class RetroArchClient extends EventEmitter {
         collectionEvidence:o.removedSource,
         referenceSource:o.source,
         inInventory:null,isLocked:false,lockReason:null,
+        observedInRam:o.observedInRam,
         compass:getCompass(this.latestState.coords,o.x,o.y)
       }));
 
@@ -1694,6 +1696,60 @@ class RetroArchClient extends EventEmitter {
         compass
       };
     });
+
+    // Classificação efetiva do percurso: índices de itens da ROM, terreno,
+    // sprites e posição RAM. Uma rota local nunca é garantia de acesso real.
+    const accessInput=[...allVisItems,...extraRomItems,...allHiddenItems];
+    const accessBadge=(this.latestState.badges||[]);
+    const partyConfirmed=this.latestState.memoryReadStatus?.blocks?.playerAndParty===true;
+    const badgeConfirmed=partyConfirmed&&this.latestState.memoryReadStatus?.mapSnapshot?.verified===true;
+    const knowsMove=(id,name)=> (this.latestState.party||[]).some(p=>
+      (p.moves||[]).some(m=>m?.id===id||String(m?.name||'').toUpperCase()===name));
+    const abilityCut=badgeConfirmed?
+      (accessBadge.some(b=>b.obtained&&/cascade/i.test(b.name||''))&&knowsMove(15,'CUT')):null;
+    const abilitySurf=badgeConfirmed?
+      (accessBadge.some(b=>b.obtained&&/soul/i.test(b.name||''))&&knowsMove(57,'SURF')):null;
+    const itemAccess=planItemAccess({
+      terrain:this.latestState.romStaticMapGuide?.terrain,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      position:this.latestState.coords,
+      items:accessInput,
+      mapSnapshotVerified:mapConfirmation.verified,
+      positionVerified:positionWindow.verified,
+      modeByte:modeWindow.verified?modeWindow.modeByte:null,
+      spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true,
+      mapEntities:this.latestState.mapEntities,
+      canCut:abilityCut,canSurf:abilitySurf
+    });
+    this.latestState.romItemAccess=itemAccess;
+    const accessSummary=itemAccess.results||[];
+    const withPath=accessInput.map((entry,i)=>{
+      const access=accessSummary[i]||null;
+      const status=access?.accessStatus||'UNKNOWN';
+      const withinMapBlocked=['NEEDS_CUT','NEEDS_SURF','NEEDS_CUT_AND_SURF_POSSIBLY']
+        .includes(status);
+      return {...entry,
+        // Um requisito manual não é prova de bloqueio físico.
+        manualRequirementHint:entry.requires||null,
+        isLocked:withinMapBlocked,
+        accessStatus:status,
+        accessReason:access?.reason||'Sem leitura de percurso confirmada',
+        accessRoute:access?.route||null,
+        accessScope:'PERCURSO_NESTE_MAPA_SEM_WARPS',
+        accessibleNow:null,
+        lockReason:withinMapBlocked?access?.reason:null};
+    });
+    const visibleWithPath=withPath.slice(0,allVisItems.length+extraRomItems.length);
+    const hiddenWithPath=withPath.slice(allVisItems.length+extraRomItems.length);
+    // A disponibilidade do Itemfinder também respeita a posição/obstáculos.
+    // Não se promove o mais próximo em linha reta a item alcançável.
+    if(itemfinderRadar){
+      const matching=hiddenWithPath.find(i=>i.isCollected===false&&
+        i.name===itemfinderRadar.targetName);
+      itemfinderRadar.accessStatus=matching?.accessStatus||'UNKNOWN';
+      itemfinderRadar.routeSteps=matching?.accessRoute?.steps??null;
+      itemfinderRadar.routeVerifiedNow=false;
+    }
 
     const allNpcItems = (areaData.npcItems || []).map(item => {
       const inInventory = checkIsItemInInventory(item.name, inventoryAndPcItems);
@@ -1775,9 +1831,11 @@ class RetroArchClient extends EventEmitter {
       })),
       npcItems: allNpcItems.filter(i => !i.isLocked),
       lockedNpcItems: allNpcItems.filter(i => i.isLocked),
-      visibleItems: [...allVisItems,...extraRomItems].filter(i => !i.isLocked),
-      hiddenItems: allHiddenItems.filter(i => !i.isLocked),
-      lockedItems: [...allVisItems.filter(i => i.isLocked), ...allHiddenItems.filter(i => i.isLocked)],
+      visibleItems: visibleWithPath.filter(i => !i.isLocked),
+      hiddenItems: hiddenWithPath.filter(i => !i.isLocked),
+      lockedItems: [...visibleWithPath,...hiddenWithPath].filter(i=>i.isLocked),
+      itemAccessSummary:{verified:itemAccess.verified,counts:itemAccess.counts||{},
+        currentMapRouteVerified:false,accessibleNowGuaranteed:false},
       itemfinder: itemfinderRadar,
       upcomingBoss
     };
