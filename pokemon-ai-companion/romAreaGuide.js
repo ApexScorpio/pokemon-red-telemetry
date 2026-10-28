@@ -170,6 +170,8 @@ function staticMapGuide(profile,mapId){
   navigation:(world.warpGraph?.verified===true&&world.warpGraph?.romSha256===sha)?{
     verified:true,source:'ALL_813_ROM_WARP_ENTRIES_SHA256_VERIFIED',
     exits:world.warpGraph.edges.filter(edge=>edge.sourceMapId===mapId),
+    outdoorExits:world.warpGraph.outdoorConnections?.edges.filter(edge=>edge.sourceMapId===mapId)||[],
+    outdoorHeaderConnectionsDecoded:world.warpGraph.outdoorHeaderConnectionsDecoded===true,
     staticRouteOnly:true,scriptAndRamGatesUnresolved:true
   }:{verified:false,reason:'Grafo de saídas da ROM não comprovado no perfil atual'},
   signs:obj.signs||[],npcs:actors.filter(x=>x.kind==='npc'),
