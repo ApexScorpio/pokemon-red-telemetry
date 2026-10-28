@@ -53,6 +53,13 @@ function buildWarpGraph(profile){
   }
  }
  const counts={};for(const edge of edges)counts[edge.status]=(counts[edge.status]||0)+1;
+ if(byId.size!==226||edges.length!==813||
+   counts.STATIC_DESTINATION_WARP_VALIDATED!==560||
+   counts.LAST_MAP_RAM_REQUIRED!==251||
+   counts.SILPH_ELEVATOR_SCRIPT_PATCH_REQUIRED!==2||
+   Object.keys(counts).length!==3)
+  return {verified:false,reason:'812+1 warp entries or destinations differ from exact audited three-ROM evidence',
+   foundWarps:edges.length,statusCounts:counts};
  const borders=profile.world?.outdoorConnections;
  const borderValid=borders?.verified===true&&borders.romSha256===sha&&borders.edgeCount===78&&borders.reciprocalConnections===78;
  return {verified:true,romSha256:sha,normalMapHeaders:byId.size,
