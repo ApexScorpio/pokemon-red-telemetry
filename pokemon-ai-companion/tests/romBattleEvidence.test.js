@@ -21,7 +21,11 @@ test('preserves observed RAM data without imputing estimates',()=>{
  assert.equal(x.verified,true);assert.equal(x.enemy.hp,35);assert.equal(x.enemy.level,15);
  assert.equal(x.enemy.maxHp,38);assert.equal(x.enemy.attack,27);
  assert.equal(x.player.hp,40);assert.equal(x.player.level,20);
- assert.equal(x.actualCatchRate,null);
+ assert.equal(x.actualCatchRate,0);
+ assert.equal(x.actualCatchRateVerified,true);
+ assert.equal(x.captureInputs.actualCatchRateFromRam,0);
+ assert.equal(x.captureInputs.statusFromRam,'NONE');
+ assert.equal(x.captureInputs.legalThrowVerified,false);
  assert.equal(x.exactTurnMathReady,false);assert.equal(x.atomicSnapshotVerified,false);
 });
 test('rejects missing, truncated and nonhex blocks',()=>{
@@ -44,4 +48,43 @@ test('does not mistake ROM identity for atomic turn proof',()=>{
  const x=parseRomBattleEvidence({...d,romMatched:true,battleFlag:2});
  assert.equal(x.romMatched,true);assert.equal(x.battleType,'Trainer');
  assert.equal(x.exactTurnMathReady,false);assert.equal(x.atomicSnapshotVerified,false);
+});
+
+test('Lê D007 taxa de captura EFETIVA, sem confundir com CFEC base',()=>{
+ const d=fixtures();
+ set(d.combatBlock,12,45); // CFEC, taxa da ficha
+ set(d.combatBlock,39,175); // D007, ajustada pelo motor
+ set(d.combatBlock,9,0x20); // CFE9, congelado
+ const x=parseRomBattleEvidence(d);
+ assert.equal(x.verified,true);
+ assert.equal(x.enemy.baseCatchRate,45);
+ assert.equal(x.actualCatchRate,175);
+ assert.equal(x.catchStatusFromRam,'FRZ');
+ assert.equal(x.captureInputs.actualCatchRateFromRam,175);
+ assert.equal(x.captureInputs.hpFromRam,35);
+ assert.equal(x.captureInputs.maxHpFromRam,38);
+ assert.equal(x.atomicSnapshotVerified,false);
+});
+test('Adormecido, envenenado, queimado e paralisado são descodificados a partir da RAM',()=>{
+ const expected=[[1,'SLP'],[7,'SLP'],[8,'PSN'],[16,'BRN'],[32,'FRZ'],[64,'PAR']];
+ for(const [byte,status] of expected){
+  const d=fixtures();set(d.combatBlock,9,byte);
+  assert.equal(parseRomBattleEvidence(d).catchStatusFromRam,status);
+ }
+});
+test('Estados incompatíveis ou bytes RAM não aceites são recusados',()=>{
+ const d=fixtures();set(d.combatBlock,9,0x30);
+ assert.equal(parseRomBattleEvidence(d).verified,false);
+ const b=fixtures();b.combatBlock[39]='GG';
+ assert.equal(parseRomBattleEvidence(b).verified,false);
+});
+test('Captura indisponível em combate de treinador e quando o alvo está desmaiado',()=>{
+ const d=fixtures();set(d.combatBlock,39,200);
+ const trainer=parseRomBattleEvidence({...d,battleFlag:2});
+ assert.equal(trainer.verified,true);
+ assert.equal(trainer.actualCatchRateVerified,false);
+ assert.equal(trainer.actualCatchRate,null);
+ assert.equal(trainer.captureInputs,null);
+ const fainted=fixtures();set16(fainted.combatBlock,6,0);
+ assert.equal(parseRomBattleEvidence(fainted).captureInputs,null);
 });
