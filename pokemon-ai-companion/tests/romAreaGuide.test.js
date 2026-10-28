@@ -67,3 +67,27 @@ test('metabloco 2D requer bytes exatos e SHA-256; nunca inferir colisão',()=>{
  const corrupt=structuredClone(pp);corrupt.world.maps.data[0].blockSha256='0'.repeat(64);
  assert.equal(staticMapGuide(corrupt,13).layout.blockGrid.verified,false);
 });
+
+test('22 UNUSED_MAP reference slots are not misreported as undecoded playable areas',()=>{
+ const {REFERENCE_UNUSED_IDS}=require('../romAreaGuide');
+ assert.equal(REFERENCE_UNUSED_IDS.length,22);
+ const reserved=new Set(REFERENCE_UNUSED_IDS);
+ const synthetic=structuredClone(p);
+ synthetic.world.maps.data=Array.from({length:248},(_,id)=>({
+   mapId:id,valid:!reserved.has(id),mapBank:1,
+   objects:{warps:[],signs:[],objects:[]}
+ }));
+ synthetic.world.wildEncounters.data=Array.from({length:248},(_,id)=>({
+   mapId:id,grass:{rateByte:0,slots:[]},water:{rateByte:0,slots:[]}
+ }));
+ const report=mapGuideIndex(synthetic);
+ assert.equal(report.normalHeadersValidated,226);
+ assert.equal(report.reservedIdsWithoutHeader,22);
+ assert.equal(report.unresolvedNonReservedIds,0);
+ for(const id of reserved){
+  const entry=report.maps[id];
+  assert.equal(entry.verified,false);
+  assert.equal(entry.status,'RESERVED_ID_NO_NORMAL_ROM_HEADER');
+  assert.equal(entry.referenceUnusedSlot,true);
+ }
+});
