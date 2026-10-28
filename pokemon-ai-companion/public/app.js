@@ -502,6 +502,13 @@ function renderRomAreaEvidence(state) {
         ' · '+(edge?.status||'destino por confirmar')+
         ' · acesso atual não comprovado');
     }
+    if(guide.navigation?.outdoorHeaderConnectionsDecoded===true){
+      rows.push('🧭 LIGAÇÕES EXTERIORES: '+guide.navigation.outdoorExits.length+
+        ' (passagem atual depende de bloqueios e posição)');
+      for(const edge of guide.navigation.outdoorExits)
+        rows.push('• '+edge.direction.toUpperCase()+' → mapa #'+edge.destinationMapId+
+          ' (cabeçalho ROM verificado; acessibilidade não comprovada)');
+    }else rows.push('🧭 Limites exteriores: ainda sem prova ROM nesta sessão');
     rows.push('🪧 PLACAS E INTERAÇÕES DE TEXTO: '+guide.signs.length);
     for(const sign of guide.signs){
       rows.push('• X:'+sign.x+' Y:'+sign.y+' → texto interno #'+sign.textId+
