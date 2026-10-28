@@ -100,7 +100,9 @@ function validatedBlockGrid(m){
  return {verified:true,widthBlocks:m.widthBlocks,heightBlocks:m.heightBlocks,
    bytes:data.length,sha256:m.blockSha256,
    blockIdsBase64:m.blockDataBase64,
-   interpretation:'IDs de metabloco verificados; NÃO é matriz de colisão nem pixels da tileset'};
+   interpretation:'IDs de metabloco verificados; NÃO é matriz de colisão nem pixels da tileset',
+   movement:{verified:false,reason:'Falta interpretar tabela de 12 bytes de cada tileset, blocksets 4x4 tiles, lista de colisões e bloqueios dependentes de RAM'},
+   perTileWalkable:null};
 }
 // Only static inventory/offers come from ROM. Location bindings originate from
 // pret/pokered reference map IDs and do not prove Green's modified script.
