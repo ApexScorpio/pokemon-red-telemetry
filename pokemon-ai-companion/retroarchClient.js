@@ -4,6 +4,7 @@ const { expAtLevel } = require('./gen1EngineMath');
 const {nextPartyAlerts,daycareAdvice}=require('./romProgressAdvisor');
 const {buildRomAreaEvidence}=require('./romAreaEvidence');
 const {staticMapGuide}=require('./romAreaGuide');
+const {annotateLastMap}=require('./romLastMapEvidence');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
@@ -711,8 +712,12 @@ class RetroArchClient extends EventEmitter {
     }
     // Verificar se o mapa mudou durante as leituras sequenciais. Se mudou,
     // nunca publicar flags de eventos, itens e treinadores sob o ID antigo.
+    // D35E..D365 contiguous: second map ID and wLastMap from same UDP read.
+    // Still NOT an atomic snapshot of all game memory.
+    const repeatMapAndLastMap=await this.readMemoryBlock('D35E',8);
     const mapConfirmation = verifyMapSnapshot(
-      blockPlayerParty[518],await this.readMemoryBlock('D35E',1)
+      blockPlayerParty[518],Array.isArray(repeatMapAndLastMap)&&
+      repeatMapAndLastMap.length===8?[repeatMapAndLastMap[0]]:[]
     );
     this.latestState.memoryReadStatus.mapSnapshot=mapConfirmation;
     if(!mapConfirmation.verified){
@@ -722,6 +727,8 @@ class RetroArchClient extends EventEmitter {
         ': descartar esta amostra e reler o mapa.';
       this.latestState.romStaticMapGuide={verified:false,
         reason:'Amostra RAM de mapas diferentes; descartar guia estático anterior'};
+      this.latestState.romLastMapEvidence={verified:false,
+        reason:'Mapa mudou entre leituras; destino D365 descartado',atomicSnapshotVerified:false};
       this.latestState.romAreaEvidence={verified:false,
         source:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES',items:[],trainers:[],npcs:[]};
       this.latestState.romTrainerFlags={verified:false,entries:[],
@@ -995,6 +1002,26 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romStaticMapGuide=(this.activeRomProfile&&mapConfirmation.verified)?
       staticMapGuide(this.activeRomProfile,mapId):
       {verified:false,reason:'ROM local ou mapa RAM não confirmados'};
+    if(this.latestState.romStaticMapGuide?.verified&&
+       this.latestState.romStaticMapGuide.warps.some(w=>w.map===255)){
+      const lastMapProof=annotateLastMap(this.latestState.romStaticMapGuide,
+        this.activeRomProfile,{
+          firstByte:blockPlayerParty[525],
+          secondByte:repeatMapAndLastMap?.[7],
+          mapSnapshotVerified:mapConfirmation.verified
+        });
+      if(lastMapProof.verified)this.latestState.romStaticMapGuide=lastMapProof.guide;
+      this.latestState.romLastMapEvidence={
+        verified:lastMapProof.verified,
+        lastMapId:lastMapProof.verified?lastMapProof.resolvedLastMapId:null,
+        resolvedWarps:lastMapProof.verified?lastMapProof.resolvedWarpCount:0,
+        reason:lastMapProof.reason||null,atomicSnapshotVerified:false
+      };
+    }else{
+      this.latestState.romLastMapEvidence={
+        verified:false,reason:'Área sem warp LAST_MAP validado',atomicSnapshotVerified:false
+      };
+    }
     const mapName = MAP_NAMES[mapId] || `Mapa #0x${mapId.toString(16).toUpperCase()}`;
     if (this.latestState.mapName !== mapName && this.latestState.mapName !== 'Desconhecido') {
       this.addHistoryEvent(`Entrou em ${mapName}`);
