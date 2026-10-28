@@ -247,9 +247,15 @@ function connectWebSocket() {
   socket.onclose = () => {
     elConnectionStatus.textContent = 'DESLIGADO';
     elConnectionPulse.classList.remove('active');
+    // A telemetria antiga não pode continuar a aconselhar enquanto o socket
+    // tenta religar; a recolha real ainda não foi restabelecida.
+    if(lastState)renderWorldAdvisor({...lastState,connected:false});
     setTimeout(connectWebSocket, 2000);
   };
 }
+// Mesmo sem um evento WebSocket de fecho, uma fonte silenciosa pode ficar
+// desatualizada. Revalidar apenas o painel (sem reenviar pedidos ao jogo).
+setInterval(()=>{if(lastState)renderWorldAdvisor(lastState);},5000);
 
 // Painel Daycare: nível estimado exclusivamente a partir da EXP lida e da curva canónica.
 function renderDaycareTracker(state) {
