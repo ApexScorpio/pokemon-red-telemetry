@@ -133,6 +133,10 @@ function coverageLedger(b,profile){
      cover('mapObjects',op,end-op,'warps, signs e atores no mapa '+map.mapId);
    }
   }
+  if(profile.trainerParties?.verified===true&&
+     Number.isInteger(profile.trainerParties.pointerTableFileOffset))
+    cover('trainerPartyPointers',profile.trainerParties.pointerTableFileOffset,47*2,
+      '47 classes de treinadores; apontadores estruturais');
   const hidden=world?.hiddenItemScripts;
   if(hidden?.valid){
    const c=at(hidden.coordinateTable),e=at(hidden.eventMapTable);
@@ -184,7 +188,8 @@ function summarize(profile){
   staticEncounterLinks:maps.staticEncountersVerified||0,
   hiddenItemCoordinates:hidden.valid?hidden.items?.length:0,
   hiddenCoins:hidden.hiddenCoins?.valid?hidden.hiddenCoins.coins?.length:0,
-  trainerPartiesStatus:profile.trainerParties?.valid??null,
+  trainerPartiesVerified:profile.trainerParties?.verified===true,
+  trainerPartiesCount:profile.trainerParties?.verified?profile.trainerParties.teamCount:null,
   spritePixelsDecoded:evo.filter(s=>s.sprite?.pixelsDecoded).length,
   evolutionEntries:evo.reduce((n,s)=>n+(s.evolutions?.length||0),0),
   levelLearnsetEntries:evo.reduce((n,s)=>n+(s.learnset?.length||0),0),
@@ -207,6 +212,52 @@ const GAP_DOMAINS=[
  ['loadedRomIdentity','CRC do emulador não comprova por si só SHA-256 do binário carregado'],
  ['endToEndVisual','Sem screenshots analisadas do ecrã real e interação iPhone']
 ];
+function structuredCatalogue(profile){
+ const world=profile.world||{},maps=world.maps||{},wild=world.wildEncounters||{};
+ return {
+  provenance:'Extraído do binário local identificado por SHA-256; observações estáticas, não estado do jogador',
+  species:(profile.species||[]).map(s=>({
+   internalId:s.internalId,name:s.name,dex:s.dex,baseStats:s.stats||null,
+   evolutions:s.evolutions||null,learnset:s.learnset||null,
+   sprites:s.sprite?{bank:s.sprite.bank||null,verified:s.sprite.verified===true,
+     pixelsDecoded:s.sprite.pixelsDecoded===true,front:s.sprite.front||null,
+     back:s.sprite.back||null}:null
+  })),
+  moveNames:profile.moveNames||null,
+  moves:profile.moveStatsStatus?.verified?profile.moveStats:null,
+  moveStatsStatus:profile.moveStatsStatus||null,
+  typeRules:profile.typeMatchupsStatus?.verified?profile.typeMatchups:null,
+  typeRulesStatus:profile.typeMatchupsStatus||null,
+  battleRules:profile.battleRuleTables?.verified?profile.battleRuleTables:null,
+  growthRates:profile.growthRates||null,
+  wildEncounters:wild.valid===true?(wild.data||[]).map(m=>({
+   mapId:m.mapId,grass:m.grass,water:m.water,pointerCpu:m.pointerCpu
+  })):null,
+  maps:maps.valid===true?(maps.data||[]).map(m=>m.valid?({
+   mapId:m.mapId,valid:true,mapBank:m.mapBank,
+   mapHeaderPointerCpu:m.mapHeaderPointerCpu,tilesetId:m.tilesetId,
+   heightTiles:m.heightTiles,widthTiles:m.widthTiles,
+   blockSha256:m.blockSha256,blocksPointerCpu:m.blocksPointerCpu,
+   scriptPointerCpu:m.scriptPointerCpu,textPointerCpu:m.textPointerCpu,
+   connectionFlags:m.connectionFlags,
+   objects:m.objects?{warps:m.objects.warps,signs:m.objects.signs,
+     objects:m.objects.objects}:null,
+   trainerEvents:m.trainerEvents||[],staticEncounterEvents:m.staticEncounterEvents||[]
+  }):{mapId:m.mapId,valid:false,reason:m.invalidReason||'Sem cabeçalho normal validado'}):null,
+  trainerParties:profile.trainerParties?.verified?{
+   source:profile.trainerParties.source,rosters:profile.trainerParties.rosters,
+   classNames:profile.trainerParties.classNames||null,
+   classCount:profile.trainerParties.classCount,
+   teamCount:profile.trainerParties.teamCount}:null,
+  hiddenEvents:world.hiddenItemScripts?.valid?{
+   source:world.hiddenItemScripts.source,
+   items:world.hiddenItemScripts.items,
+   hiddenCoins:world.hiddenItemScripts.hiddenCoins||null,
+   totalEvents:world.hiddenItemScripts.totalEvents,
+   maps:world.hiddenItemScripts.maps}:null,
+  captureLayout:profile.battleCaptureLayout?.verified?profile.battleCaptureLayout:null
+ };
+}
 function auditOne(label,b,decoder){
  if(!Buffer.isBuffer(b)||b.length!==ROM_BYTES)throw Error(label+': tamanho ROM inválido');
  const sha256=hash(b);
@@ -217,7 +268,7 @@ function auditOne(label,b,decoder){
  const ledger=coverageLedger(b,profile),data=summarize(profile);
  return {identity:{variant:label,sha256,title:h.title,bytes:b.length,
   crc32:crc32(b).toString(16).toUpperCase().padStart(8,'0'),headerChecksumValid:true},
-  counts:data,coverage:ledger,
+  counts:data,coverage:ledger,catalogue:structuredCatalogue(profile),
   unresolved:GAP_DOMAINS.map(([domain,reason])=>({domain,status:'NOT_CERTIFIED',reason})),
   runtimeProven:false,semantic100PercentCertified:false};
 }
@@ -273,4 +324,4 @@ if(require.main===module){
    semantic100PercentCertified:false},null,2));
  }catch(e){console.error('INVENTARIO_ROM_FALHOU: '+e.message);process.exitCode=1;}
 }
-module.exports={readRom,coverageLedger,auditOne,compareRomBanks,runBatch,KNOWN};
+module.exports={readRom,coverageLedger,structuredCatalogue,auditOne,compareRomBanks,runBatch,KNOWN};
