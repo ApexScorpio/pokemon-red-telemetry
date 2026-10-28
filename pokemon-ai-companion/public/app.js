@@ -441,7 +441,8 @@ function renderRomAreaEvidence(state) {
     rows.push('🌿 TODOS OS POKÉMON DA ZONA — '+catches.missingSpecies+' espécies ainda por capturar');
     for(const group of catches.zones){
       rows.push((group.kind==='grass'?'🌿 RELVA':'🌊 ÁGUA / SURF')+
-        ' • taxa ROM '+group.encounterRateByte+'/255 (NÃO equivale à probabilidade por passo)');
+        ' • verificação RNG da ROM: '+group.eligibleCheckOutOf256+'/256 ('+
+        group.eligibleCheckPercent.toFixed(5)+'%) SE o local/estado permitir encontros; NÃO é chance por passo');
       if(!group.species.length){rows.push('• Sem espécies registadas neste meio na ROM.');continue;}
       for(const mon of group.species){
         const levelOdds=Array.isArray(mon.byLevel) ? mon.byLevel.map(item=>
