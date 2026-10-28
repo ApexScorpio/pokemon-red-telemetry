@@ -56,3 +56,14 @@ for(const [name,key,expectedSha] of [
    assert.equal(g.encounters.terrain[0].speciesAndLevels.reduce((sum,x)=>sum+x.weight,0),256);
   });
 }
+test('metabloco 2D requer bytes exatos e SHA-256; nunca inferir colisão',()=>{
+ const crypto=require('node:crypto');
+ const pp=structuredClone(p);const data=Buffer.from([1,2,3,4,5,6]);
+ Object.assign(pp.world.maps.data[0],{
+  widthBlocks:3,heightBlocks:2,blockDataBase64:data.toString('base64'),
+  blockSha256:crypto.createHash('sha256').update(data).digest('hex')});
+ const good=staticMapGuide(pp,13).layout.blockGrid;
+ assert.equal(good.verified,true);assert.equal(good.bytes,6);
+ const corrupt=structuredClone(pp);corrupt.world.maps.data[0].blockSha256='0'.repeat(64);
+ assert.equal(staticMapGuide(corrupt,13).layout.blockGrid.verified,false);
+});
