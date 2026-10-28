@@ -29,12 +29,25 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],trainer
       'Pesquisar na coordenada pode acionar o evento; acesso e resultado ainda não confirmados.',
       item.collectionEvidence||'ROM + RAM', {x:item.x,y:item.y,itemId:item.itemId});
  }
- for(const t of trainers){
+ for(const t of [...(areaEvidence?.trainers||[]),...trainers]){
    if(!byte(t.x)||!byte(t.y))continue;
-   add('TRAINER',t.defeated===true&&flagsVerified?'DEFEATED_FLAG':
+   add('TRAINER',t.defeated===true?'DEFEATED_FLAG':
      t.defeated===false&&flagsVerified?'NOT_DEFEATED_FLAG':'UNKNOWN',
-     t.name||'Treinador', 'Aproximação pode iniciar combate, sujeita a visão, scripts e flags.',
+     t.trainerClassName||t.name||'Treinador', 'Aproximação pode iniciar combate, sujeita a visão, scripts e flags.',
      t.source||'ROM', {x:t.x,y:t.y});
+ }
+ for(const npc of areaEvidence?.npcs||[]){
+   if(!byte(npc.x)||!byte(npc.y))continue;
+   add('NPC','INTERACTION_UNRESOLVED','NPC #'+npc.objectOrdinal,
+     'O resultado do diálogo depende do script e do estado da partida.',
+     npc.source,{x:npc.x,y:npc.y});
+ }
+ for(const mon of areaEvidence?.stationaryPokemon||[]){
+   if(!byte(mon.x)||!byte(mon.y))continue;
+   add('STATIC_POKEMON',mon.encounterGateClosed===true?'ENCOUNTER_GATE_CLOSED':'EVENT_CONDITIONAL',
+     mon.speciesName||'Pokémon fixo',
+     'Interagir pode iniciar encontro; capturado/derrotado não é inferido da remoção.',
+     mon.completionSource,{x:mon.x,y:mon.y});
  }
  for(const w of map.objects?.warps||[]){
    if(!byte(w.x)||!byte(w.y))continue;

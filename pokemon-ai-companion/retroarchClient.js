@@ -2422,10 +2422,10 @@ class RetroArchClient extends EventEmitter {
       profile:this.activeRomProfile,
       mapId:this.latestState.mapId,
       position:this.latestState.coords,
-      positionVerified:this.latestState.memoryReadStatus?.mapPosition?.verified===true,
+      positionVerified:positionWindow.verified===true,
       areaEvidence:this.latestState.romAreaEvidence,
       hiddenItems:this.latestState.romHiddenItems?.items||[],
-      trainers:this.latestState.romTrainerFlags?.trainers||[],
+      trainers:[],
       warpGraph:this.latestState.romWarpGraph,
       flagsVerified:this.latestState.romHiddenItems?.verified===true
     });
