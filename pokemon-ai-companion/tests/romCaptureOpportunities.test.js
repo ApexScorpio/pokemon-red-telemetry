@@ -13,7 +13,7 @@ test('cruza espécies, níveis e peso dos slots com Pokédex RAM',()=>{
  assert.equal(r.missingSpecies,1);
  const oddish=r.zones[0].species.find(s=>s.dex===43);
  assert.deepEqual(oddish.levels,[13,15]);
- assert.equal(oddish.conditionalChancePercent,39.84);
+ assert.equal(oddish.conditionalChancePercent,102*100/256);
  assert.equal(oddish.alreadySeen,true);
  assert.equal(oddish.alreadyCaught,false);
 });
@@ -46,4 +46,15 @@ test('a verificação de encontro da ROM usa taxa/256, nunca taxa/255 ou chance 
  assert.equal(result.zones[0].perStepChanceVerified,false);
  assert.equal(result.zones[1].eligibleCheckOutOf256,0);
  assert.equal(result.zones[1].eligibleCheckPercent,0);
+});
+
+test('percentagens condicionais não perdem precisão: 51/256 = 19,921875%',()=>{
+ const r=captureOpportunities(data,[],[],{romMatched:true,partyRamVerified:true});
+ assert.equal(r.zones[0].species.find(s=>s.dex===43).byLevel[0].conditionalChancePercent,19.921875);
+});
+test('dados corrompidos da ROM são recusados, nunca eliminados silenciosamente',()=>{
+ const wrong={...data,grass:{...data.grass,slots:data.grass.slots.map((x,i)=>i===0?{...x,dex:0}:x)}};
+ assert.equal(captureOpportunities(wrong,[],[],{romMatched:true,partyRamVerified:true}).verified,false);
+ const phantom={...data,water:{rateByte:0,slots:[{dex:43,level:13,rollWeight:256}]}};
+ assert.equal(captureOpportunities(phantom,[],[],{romMatched:true,partyRamVerified:true}).verified,false);
 });
