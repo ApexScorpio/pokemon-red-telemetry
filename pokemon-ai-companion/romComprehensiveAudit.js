@@ -324,7 +324,13 @@ if(require.main===module){
    versions:Object.fromEntries(Object.entries(result.variants).map(([name,v])=>[name,{
     sha256:v.identity.sha256,decodedBytes:v.coverage.decodedBytes,
     structuredBytes:v.coverage.structuredOnlyBytes,
-    unclassifiedBytes:v.coverage.unclassifiedBytes,counts:v.counts
+    unclassifiedBytes:v.coverage.unclassifiedBytes,counts:v.counts,
+    mapGuides:v.mapGuides?.maps.length||0,
+    normalMapGuidesValidated:v.mapGuides?.maps.filter(x=>x.verified).length||0,
+    mapScriptRoots:v.mapScriptsAndCode?.totals?.scriptSeeds||0,
+    mapTextReferences:v.mapScriptsAndCode?.totals?.referencedTextEntries||0,
+    codeCandidateInstructions:v.mapScriptsAndCode?.graph?.instructions||0,
+    codeUnresolvedTransfers:v.mapScriptsAndCode?.graph?.unresolvedTargets?.length||0
    }])),comparisons:Object.fromEntries(Object.entries(result.comparisons).map(([k,v])=>[k,v.differentBytes])),
    semantic100PercentCertified:false},null,2));
  }catch(e){console.error('INVENTARIO_ROM_FALHOU: '+e.message);process.exitCode=1;}
