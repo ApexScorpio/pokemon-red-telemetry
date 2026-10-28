@@ -14,7 +14,8 @@ function fixtures(){
  [34,32,40,28].forEach((v,i)=>set16(playerBlock,17+i*2,v));
  [33,45,0,0].forEach((v,i)=>set(playerBlock,8+i,v));
  for(const i of [250,251,252,253,254,255,270,271,272,273,274,275])set(modifierBlock,i,7);
- return {combatBlock,playerBlock,modifierBlock,battleFlag:1,romMatched:true,mapSnapshotVerified:true};
+ return {combatBlock,playerBlock,modifierBlock,battleFlag:1,romMatched:true,mapSnapshotVerified:true,
+  captureLayoutVerified:true};
 }
 test('preserves observed RAM data without imputing estimates',()=>{
  const x=parseRomBattleEvidence(fixtures());
@@ -87,4 +88,16 @@ test('Captura indisponível em combate de treinador e quando o alvo está desmai
  assert.equal(trainer.captureInputs,null);
  const fainted=fixtures();set16(fainted.combatBlock,6,0);
  assert.equal(parseRomBattleEvidence(fainted).captureInputs,null);
+});
+
+test('ROM sem layout D007 auditado NÃO liberta taxa de captura',()=>{
+ const d=fixtures();
+ const x=parseRomBattleEvidence({...d,captureLayoutVerified:false});
+ assert.equal(x.verified,true);
+ assert.equal(x.actualCatchRateVerified,false);
+ assert.equal(x.actualCatchRate,null);
+ assert.equal(x.captureInputs,null);
+ const y=parseRomBattleEvidence({...d,romMatched:false});
+ assert.equal(y.actualCatchRateVerified,false);
+ assert.equal(y.captureInputs,null);
 });
