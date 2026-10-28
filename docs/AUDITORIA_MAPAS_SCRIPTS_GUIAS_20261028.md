@@ -52,3 +52,11 @@ Os ficheiros de auditoria **não** incluem os bytes originais dos jogos ou saves
 5. Suite integral real do projeto, comparação com emulador e validação visual da interface.
 
 **Proibição de alegações falsas:** 100% dos bytes **lidos** não equivale a 100% das regras **entendidas** nem 100% do jogo **acompanhado em direto**.
+
+## Adenda — matrizes completas de blocos dos mapas normais
+
+Para os três binários SHA-256 confirmados, foi possível reconstruir e conferir, sem modificar o jogo, a sequência de IDs de metabloco dos **226 mapas normais por versão**. São **23 783 bytes de blocos por ROM**, com dimensões verificadas pelos cabeçalhos de cada mapa, totalizando **71 349 bytes de metabloco nos três ficheiros**. Cada matriz da ficha do mapa inclui a sua própria SHA-256; se os bytes não coincidirem com a dimensão e o hash, `layout.blockGrid.verified=false` e a interface não deve apresentar a matriz como válida.
+
+Importante: a matriz dos IDs dos metabloco **não é ainda o mapa gráfico final**, nem prova a colisão dos tiles, eventos no terreno ou paletas do SameBoy. O atlas de trabalho local da fase contém os IDs completos, sem incluir ROMs originais nem saves. O código `romAreaGuide.js` exporta `layout.blockGrid` para os perfis onde a tabela de blocos se encontra comprovada; `romComprehensiveAudit.js` preserva esses blocos no catálogo offline, por versão.
+
+Teste adicional de integridade e rejeição de hash adulterado: aprovado. Total da nova bateria de módulos de mapas/scripts/guia: **16 testes Node aprovados, sem skips**, com os três ficheiros originais, incluindo Red diretamente dentro do ZIP. Os testes do servidor ativo, iPhone e emulador continuam por executar.
