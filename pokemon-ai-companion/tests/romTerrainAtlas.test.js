@@ -66,3 +66,17 @@ test('ROM data cannot be silently altered without invalidating terrain evidence'
  wrong[0].blocksPointerCpu++;
  assert.equal(readRomTerrain(real,{maps:{valid:true,data:wrong}}).verified,false);
 });
+test('land tile-pair elevation restriction blocks otherwise walkable 2-tile corridor',()=>{
+ const t=Buffer.from([1,2]),bits=Buffer.from([0x03]);
+ const map={mapId:17,width:2,height:1,source:'TEST_GRID',
+  tileIdsBase64:t.toString('base64'),tileIdsSha256:sha256(t),
+  walkingBitsBase64:bits.toString('base64'),walkingBitsSha256:sha256(bits),
+  landBlockedTilePairs:[[1,2]]};
+ const r=findTerrainRoute(map,{x:0,y:0},{x:1,y:0});
+ assert.equal(r.verified,false);
+ assert.equal(r.inaccessibleInLiveGameProven,false);
+ const allowed=findTerrainRoute({...map,landBlockedTilePairs:[]},{x:0,y:0},{x:1,y:0});
+ assert.equal(allowed.verified,true);
+ assert.equal(allowed.stepsOnStaticTerrain,1);
+ assert.equal(allowed.landTilePairRulesApplied,true);
+});
