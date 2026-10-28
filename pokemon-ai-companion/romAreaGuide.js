@@ -154,6 +154,13 @@ function staticMapGuide(profile,mapId){
   ...actor,ordinal:actor.ordinal??index+1}));
  const trainerEvents=new Map((m.trainerEvents||[]).map(e=>[e.objectOrdinal,e]));
  const stationaryEvents=new Map((m.staticEncounterEvents||[]).map(e=>[e.objectOrdinal,e]));
+ const terrainCandidate=world.terrainAtlas?.verified===true&&
+   world.terrainAtlas.romSha256===sha?
+   world.terrainAtlas.maps?.find(t=>t.mapId===mapId):null;
+ const terrain=terrainCandidate&&terrainCandidate.blockDataSha256===m.blockSha256&&
+   terrainCandidate.tilesetId===m.tilesetId?
+     {...terrainCandidate,verified:true,routeNavigableNowProven:false}:
+     {verified:false,reason:'Colisões do terreno ainda não validadas para este mapa/perfil'};
  const items=actors.filter(x=>x.kind==='item').map((o,i)=>({x:o.x,y:o.y,
   ordinal:o.ordinal??actors.indexOf(o)+1,itemId:actorMetadata(o).itemOrClassId,obtained:null,
   obtainedStatus:'RAM_EVENT_FLAG_NOT_READ'}));
@@ -192,6 +199,7 @@ function staticMapGuide(profile,mapId){
     eventFlagSource:stationaryEvents.get(x.ordinal)?.source??null,
     eventFlagValueFromRam:null,battleTriggered:null,caughtFromThisEvent:null
   })), 
+  terrain,
   encounters:encountersFor(profile,w),
   services:staticServicesForMap(profile,mapId),
   mapScripts:{decodedSemanticEvents:false,reason:'O ponteiro para código por mapa, só por si, não descodifica os estados dos scripts'},
