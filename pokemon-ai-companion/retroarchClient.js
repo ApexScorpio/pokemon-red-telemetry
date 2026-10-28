@@ -762,6 +762,10 @@ class RetroArchClient extends EventEmitter {
         reason:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES'};
       this.latestState.romAreaProgress={verified:false,
         source:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES'};
+      this.latestState.romItemAccess={verified:false,results:[],
+        reason:'Mapa RAM incoerente; todos os percursos antigos descartados'};
+      this.latestState.worldAdvisor={verified:false,observations:[],
+        reason:'Mapa RAM incoerente; conselhos do mapa anterior descartados'};
       this.latestState.romWildEncounters=null;
       this.latestState.romMap=null;
       this.latestState.mapEntities=[];
@@ -2440,7 +2444,12 @@ class RetroArchClient extends EventEmitter {
       hiddenItems:this.latestState.romHiddenItems?.items||[],
       trainers:[],
       warpGraph:this.latestState.romWarpGraph,
-      flagsVerified:this.latestState.romHiddenItems?.verified===true
+      itemAccess:this.latestState.romItemAccess,
+      itemAccessInputs:accessInput,
+      hiddenStartIndex:allVisItems.length+extraRomItems.length,
+      hiddenFlagsVerified:this.latestState.romHiddenItems?.verified===true,
+      trainerFlagsVerified:this.latestState.romTrainerFlags?.verified===true&&
+        this.latestState.romAreaEvidence?.trainerEventRamVerified===true
     });
     this.persistState(this.latestState);
     this.emit('update', this.latestState);
