@@ -7,7 +7,9 @@
     "start": "node start.js",
     "test": "node --test",
     "audit:roms": "node romComprehensiveAudit.js",
-    "test:audit:roms": "node --test tests/romComprehensiveAudit.test.js"
+    "test:audit:roms": "node --test tests/romComprehensiveAudit.test.js",
+    "test:terrain": "node --test tests/romTerrainAtlas.test.js tests/romTerrainRouteHints.test.js tests/romTerrainCatalogueIntegrity.test.js",
+    "audit:terrain:strict": "node scripts/verifyRealRomTerrain.js"
   },
   "dependencies": {
     "ws": "^8.18.0"
