@@ -240,6 +240,8 @@ function structuredCatalogue(profile){
    mapHeaderPointerCpu:m.mapHeaderPointerCpu,tilesetId:m.tilesetId,
    heightTiles:m.heightTiles,widthTiles:m.widthTiles,
    blockSha256:m.blockSha256,blocksPointerCpu:m.blocksPointerCpu,
+   widthBlocks:m.widthBlocks,heightBlocks:m.heightBlocks,
+   blockDataBase64:m.blockDataBase64||null,blockBytes:m.blockBytes||null,
    scriptPointerCpu:m.scriptPointerCpu,textPointerCpu:m.textPointerCpu,
    connectionFlags:m.connectionFlags,
    objects:m.objects?{warps:m.objects.warps,signs:m.objects.signs,
