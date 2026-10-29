@@ -998,6 +998,25 @@ function renderWorldAdvisor(state) {
           detour.nextTerrainTile.x+' Y:'+detour.nextTerrainTile.y);
       }
     }
+    const cycles=state.romWorldDetourCycles;
+    if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
+       detour?.found!==true&&cycles?.verified===true&&
+       cycles.romSha256===advice.romSha256&&
+       cycles.mapId===advice.mapId&&
+       cycles.target?.mapId===advice.mapId&&
+       cycles.target.x===o.x&&cycles.target.y===o.y&&
+       Array.isArray(cycles.candidates)&&cycles.candidates.length){
+      lines.push('  ↳ Voltas ENTRE MAPAS para investigar (NÃO são percursos até ao item):');
+      for(const suggestion of cycles.candidates.slice(0,2)){
+        if(!Array.isArray(suggestion.mapIds)||suggestion.mapIds.length<3)
+          continue;
+        lines.push('     • Mapas #'+suggestion.mapIds.join(' → #')+
+          ' ('+suggestion.transitions+' transições estáticas hipotéticas)');
+        if(suggestion.includesOutdoorBorder)
+          lines.push('       Contém fronteira sem coordenadas de travessia verificadas.');
+      }
+      lines.push('  ⚠️ NÃO comprovado que a volta regresse do lado acessível do item.');
+    }
     if(o.kind==='WILD_ENCOUNTER'&&Array.isArray(o.slots)){
       // Probabilidades condicionais, NÃO probabilidades reais por passo.
       const groups=new Map();
