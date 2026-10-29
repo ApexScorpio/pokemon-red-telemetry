@@ -722,13 +722,13 @@ test('Painel usa sequências textuais ROM estáticas, sem executar HTML ou scrip
          containsRuntimeVariables:false,dialogueExecuted:false,
          textOutcomeVerified:false,program:{
            verified:true,scriptComplete:true,text:'Hi | <script>alert(1)</script>',
-           segmentCount:2,containsRuntimeText:false,
+           segmentCount:2,termination:'TEXT_PROMPT',containsRuntimeText:false,
            containsRuntimeCommands:true,dialogueExecuted:false,
            textOutcomeVerified:false,scriptEffectsVerified:false}}]
        ]:[]}
    }))};
  const output=render(s);
- assert.match(output.body.textContent,/Segmentos literais ROM \(2, TX_END corroborado\)/);
+ assert.match(output.body.textContent,/Segmentos literais ROM \(2, fecho TEXT_PROMPT corroborado\)/);
  assert.match(output.body.textContent,/<script>alert\(1\)<\/script>/);
  assert.match(output.body.textContent,/há conteúdo dependente da RAM/);
  assert.match(output.body.textContent,/condições e efeitos por interpretar/);
