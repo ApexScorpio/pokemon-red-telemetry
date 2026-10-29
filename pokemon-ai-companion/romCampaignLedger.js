@@ -39,6 +39,7 @@ const interactionTuple=(ordinal,x,y,textId,evidence,romSha256,mapId)=>{
          dialogueExecuted:false,textOutcomeVerified:false};
        const program=p.program;
        if(program?.verified===true&&program.scriptComplete===true&&
+          ['TX_END','TEXT_DONE','TEXT_PROMPT'].includes(program.termination)&&
           program.dialogueExecuted===false&&
           program.textOutcomeVerified===false&&
           program.scriptEffectsVerified===false&&
@@ -49,6 +50,7 @@ const interactionTuple=(ordinal,x,y,textId,evidence,romSha256,mapId)=>{
           typeof program.containsRuntimeText==='boolean'&&
           typeof program.containsRuntimeCommands==='boolean')
          preview.program={verified:true,scriptComplete:true,
+           termination:program.termination,
            text:program.text,segmentCount:program.segmentCount,
            containsRuntimeText:program.containsRuntimeText,
            containsRuntimeCommands:program.containsRuntimeCommands,
