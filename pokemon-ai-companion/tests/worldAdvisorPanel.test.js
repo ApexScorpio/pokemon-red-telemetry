@@ -464,3 +464,19 @@ test('strength hypothesis is never labelled as confirmed movement',()=>{
  assert.match(t,/execução por confirmar/);
  assert.doesNotMatch(t,/Strength concluído|acesso garantido/);
 });
+
+test('Strength UI marks first push as hypothetical, not a free walking step',()=>{
+ const s=live();
+ s.worldAdvisor.observations=[{
+   kind:'ITEM',what:'Rocha à frente',x:5,y:3,
+   status:'NOT_REMOVED_FLAG',
+   accessStatus:'STRENGTH_SEQUENCE_HYPOTHESIS',
+   accessRoute:{steps:5,usesStrength:true,pushCount:2,nextStep:null,
+     firstPush:{direction:'east',from:{x:2,y:3},to:{x:3,y:3}}}
+ }];
+ const output=render(s).body.textContent;
+ assert.match(output,/Primeiro empurrão TEÓRICO: east/);
+ assert.match(output,/de posição|da posição/);
+ assert.match(output,/execução por confirmar/);
+ assert.doesNotMatch(output,/passagem garantida/);
+});

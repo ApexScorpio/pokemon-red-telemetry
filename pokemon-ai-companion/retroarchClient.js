@@ -346,6 +346,7 @@ class RetroArchClient extends EventEmitter {
   invalidateWorldEvidence(reason='Leitura interrompida'){
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
     if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
+    this._strengthPlanCacheScope=null;this._strengthPlanCache=new Map();
     this._crossMapRouteKey=null;this._crossMapRoute=null;
     this.latestState.globalCampaignLedger={verified:false,mapProgress:[],reason};
     this.latestState.globalCampaignObjectives={verified:false,objectives:[],reason};
@@ -841,6 +842,7 @@ class RetroArchClient extends EventEmitter {
       this.latestState.globalCampaignObjectives={verified:false,objectives:[],
         reason:'Mapa RAM incoerente; objetivos anteriores descartados'};
       this._crossMapRouteKey=null;this._crossMapRoute=null;
+      this._strengthPlanCacheScope=null;this._strengthPlanCache=new Map();
       this.latestState.romCrossMapItemRoute={verified:false,found:false,
         reason:'Mapa RAM incoerente; desvios do mapa anterior descartados'};
       this.latestState.romCrossMapItemRoutes={verified:false,results:[],
@@ -1823,6 +1825,17 @@ class RetroArchClient extends EventEmitter {
     // Only inspect RAM-confirmed boulder positions for ROM-matched items
     // that are already classified as POSSIBLE_STRENGTH_BARRIER.
     const verifiedSprites=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true;
+    const strengthScope=JSON.stringify([
+      this.activeRomProfile?.hash?.sha256,this.latestState.mapId,
+      this.latestState.coords,abilityStrength,
+      verifiedSprites,positionWindow.verified===true,
+      (this.latestState.mapEntities||[]).map(a=>
+        [a.x,a.y,a.type,a.pictureId])
+    ]);
+    if(this._strengthPlanCacheScope!==strengthScope){
+      this._strengthPlanCacheScope=strengthScope;
+      this._strengthPlanCache=new Map();
+    }
     if(itemAccess.verified===true&&verifiedSprites)
       for(const entry of itemAccess.results||[]){
         if(entry.accessStatus!=='POSSIBLE_STRENGTH_BARRIER'||
@@ -1830,22 +1843,29 @@ class RetroArchClient extends EventEmitter {
         const item=accessInput[entry.index];
         const hidden=item.type==='hidden'||item.kind==='hidden'||
           item.hiddenIndex!==undefined;
-        const strength=planStrengthPushes({
-          terrain:this.latestState.romStaticMapGuide?.terrain,
-          romSha256:this.activeRomProfile?.hash?.sha256,
-          position:this.latestState.coords,
-          target:{x:item.x,y:item.y,hidden},
-          positionVerified:positionWindow.verified===true,
-          spritesVerified:verifiedSprites,
-          actors:Array.isArray(this.latestState.mapEntities)?
-            this.latestState.mapEntities:[],
-          canStrength:abilityStrength,maxStates:1400,maxPushes:8
-        });
+        const strengthKey=JSON.stringify([item.x,item.y,hidden]);
+        let strength=this._strengthPlanCache.get(strengthKey);
+        if(!strength){
+          strength=planStrengthPushes({
+            terrain:this.latestState.romStaticMapGuide?.terrain,
+            romSha256:this.activeRomProfile?.hash?.sha256,
+            position:this.latestState.coords,
+            target:{x:item.x,y:item.y,hidden},
+            positionVerified:positionWindow.verified===true,
+            spritesVerified:verifiedSprites,
+            actors:Array.isArray(this.latestState.mapEntities)?
+              this.latestState.mapEntities:[],
+            canStrength:abilityStrength,maxStates:1400,maxPushes:8
+          });
+          if(this._strengthPlanCache.size>=64)this._strengthPlanCache.clear();
+          this._strengthPlanCache.set(strengthKey,strength);
+        }
         if(strength.verified===true&&strength.found===true){
           entry.accessStatus=abilityStrength===true?
             'STRENGTH_SEQUENCE_HYPOTHESIS':
             abilityStrength===false?'NEEDS_STRENGTH':'STRENGTH_CAPABILITY_UNKNOWN';
-          entry.route={steps:strength.steps,nextStep:strength.firstStep,
+          entry.route={steps:strength.steps,nextStep:null,
+            firstPush:strength.pushes[0]||null,
             usesStrength:true,pushCount:strength.pushCount,pushes:strength.pushes,
             withinCurrentMapOnly:true};
           entry.reason='Sequência teórica de '+strength.pushCount+

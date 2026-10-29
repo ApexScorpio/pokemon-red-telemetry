@@ -1028,9 +1028,14 @@ function renderWorldAdvisor(state) {
       const route=o.accessRoute;
       const steps=Number.isInteger(route?.steps)?' ('+route.steps+' passos teóricos)':'';
       lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
-      if(route?.usesStrength===true)
+      if(route?.usesStrength===true){
         lines.push('  ↳ Rochas: '+route.pushCount+
           ' empurrões teóricos; ativação de Strength e execução por confirmar.');
+        if(route.firstPush)lines.push('  ↳ Primeiro empurrão TEÓRICO: '+
+          route.firstPush.direction+' da posição X:'+
+          route.firstPush.from.x+' Y:'+route.firstPush.from.y+
+          ' para X:'+route.firstPush.to.x+' Y:'+route.firstPush.to.y);
+      }
       if(o.accessReason)lines.push('  ↳ Motivo: '+o.accessReason);
     }
     const batch=state.romCrossMapItemRoutes;

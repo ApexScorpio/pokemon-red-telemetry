@@ -210,3 +210,15 @@ test('global detours also inspect ROM items blocked by Cut Surf and Strength',()
  const unverified=all.map((r,i)=>({...r,romItemCoordinatesVerified:i!==1}));
  assert.equal(fn(unverified).includes('NEEDS_CUT'),false);
 });
+
+test('Strength memoization is scoped to position abilities and RAM sprites',()=>{
+ const invalidation=method('invalidateWorldEvidence','loadPersistedState');
+ assert.match(invalidation,/this\._strengthPlanCacheScope=null/);
+ assert.match(invalidation,/this\._strengthPlanCache=new Map\(\)/);
+ const persisted=method('persistState','loadPersistedActionHistory');
+ assert.doesNotMatch(persisted,/_strengthPlanCache/);
+ assert.match(source,/this\._strengthPlanCacheScope!==strengthScope/);
+ assert.match(source,/this\._strengthPlanCache\.get\(strengthKey\)/);
+ assert.match(source,/this\._strengthPlanCache\.size>=64/);
+ assert.match(source,/entry\.route=\{steps:strength\.steps,nextStep:null/);
+});
