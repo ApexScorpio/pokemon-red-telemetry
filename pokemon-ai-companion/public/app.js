@@ -765,6 +765,34 @@ function renderWorldAdvisor(state) {
       '✨ Encontros fixos: '+t.stationaryGatesClosed+
         ' eventos encerrados (não prova captura)');
   }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  const objectives=state.globalCampaignObjectives;
+  if(objectives?.verified===true&&objectives.romSha256===advice.romSha256&&
+     objectives.sourceMapId===advice.mapId&&
+     objectives.mapCount===226&&Array.isArray(objectives.objectives)){
+    const agenda=['--- OBJETIVOS DE KANTO (FLAGS / ROTAS ESTÁTICAS) ---',
+      'Mapas com flags pendentes: '+objectives.mapsWithPending+
+      ' · com eventos desconhecidos: '+objectives.mapsWithUnknown];
+    for(const goal of objectives.objectives.slice(0,8)){
+      const p=goal.pending||{},u=goal.unknown||{};
+      const todo=[
+        p.hiddenItems>0?p.hiddenItems+' itens ocultos':'',
+        p.hiddenCoins>0?p.hiddenCoins+' fichas ocultas':'',
+        p.trainerGatesOpen>0?p.trainerGatesOpen+' portões de treino abertos':'',
+        p.stationaryGatesOpen>0?p.stationaryGatesOpen+' encontros fixos disponíveis por flag':''
+      ].filter(Boolean);
+      const uncertain=(u.trainers||0)+(u.stationaryPokemon||0);
+      if(uncertain)todo.push(uncertain+' eventos por esclarecer');
+      const hops=goal.mapHopCount===0?'mapa atual':
+        Number.isInteger(goal.mapHopCount)?
+        goal.mapHopCount+' transições estáticas (acesso por confirmar)':
+        'rota estática não determinada';
+      agenda.push('• '+goal.mapName+' (#'+goal.mapId+'): '+
+        todo.join(', ')+' — '+hops);
+    }
+    agenda.push('⚠️ Nem um percurso curto nem uma flag por concluir provam acesso imediato.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion!==-1)lines.splice(insertion,0,...agenda);
+  }
   for(const {o} of ordered){
     const place=Number.isInteger(o.x)&&Number.isInteger(o.y)?
       ' X:'+o.x+' Y:'+o.y:'';
