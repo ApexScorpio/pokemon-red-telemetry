@@ -94,3 +94,24 @@ test('returned evidence is a copy, not an editable internal timeline reference',
  const r=sample(s,next);r.recent.events[0].amount=100;
  assert.equal(s.events[0].amount,1);
 });
+
+test('inconsistent exact bit evidence clears a previously verified timeline',()=>{
+ const s=new CampaignFlagSession();
+ const first=makeLedger();
+ sample(s,first);
+ const changed=clone(first);changed.mapProgress[15].hiddenItems.collected=1;
+ sample(s,changed);
+ assert.equal(s.events.length,1);
+ const broken=clone(changed);
+ broken.mapProgress[15].flagRecords={
+   hiddenItems:[{recordId:'x',bitIndex:0,flagSet:true}],
+   hiddenCoins:[],trainers:[],stationaryPokemon:[]};
+ const result=sample(s,broken);
+ assert.equal(result.delta.verified,false);
+ assert.equal(result.recent.verified,false);
+ assert.equal(result.recent.events.length,0);
+ assert.equal(s.baseline,null);
+ const fresh=sample(s,changed);
+ assert.equal(fresh.delta.baselineRequired,true);
+ assert.equal(fresh.recent.events.length,0);
+});
