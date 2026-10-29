@@ -7,11 +7,12 @@ const mk=(bytes,offset=0x18000)=>{
 };
 test('desmonta dois TX_START e TX_END sem atribuir ações ao jogador',()=>{
  const r=decodeRomTextProgram(mk([
-   0,0x87,0xa8,0x57,0,0x93,0xa7,0xa4,0xb1,0xa4,0x58,0x50]));
+   0,0x87,0xa8,0x50,0,0x93,0xa7,0xa4,0xb1,0xa4,0x58,0x50]));
  assert.equal(r.verified,true);
  assert.equal(r.scriptComplete,true);
  assert.equal(r.text,'Hi | There');
  assert.equal(r.segmentCount,2);
+ assert.equal(r.termination,'TEXT_PROMPT');
  assert.deepEqual(r.commands,['TX_START','TX_START']);
  assert.equal(r.dialogueExecuted,false);
  assert.equal(r.textOutcomeVerified,false);
@@ -59,21 +60,21 @@ test('comandos TX_BCD, TX_NUM e TX_BOX respeitam operandos',()=>{
  assert.deepEqual(r.commands,['TX_BCD','TX_NUM','TX_BOX','TX_START']);
 });
 test('não declara programa completo perante ASM ou outro TX_FAR',()=>{
- const x=mk([0,0x80,0x57,0x08,0x50]);
+ const x=mk([0,0x80,0x50,0x08,0x50]);
  assert.equal(decodeRomTextProgram(x).verified,false);
- const y=mk([0,0x80,0x57,0x17,0x00,0x40,0x29,0x50]);
+ const y=mk([0,0x80,0x50,0x17,0x00,0x40,0x29,0x50]);
  assert.equal(decodeRomTextProgram(y).verified,false);
 });
 test('não atravessa banco físico nem usa padding zero como texto válido',()=>{
- const x=mk([0,0x80,0x57],0x1bffd);
+ const x=mk([0,0x80,0x57],0x1bffe);
  assert.equal(decodeRomTextProgram(x).verified,false);
- const y=mk([0,0x80,0x57,0xff,0x50]);
+ const y=mk([0,0x80,0x50,0xff,0x50]);
  assert.equal(decodeRomTextProgram(y).verified,false);
 });
 test('truncaturas, bytes inválidos e cadeias longas não viram prova',()=>{
  assert.equal(decodeRomTextProgram(mk([0x01,0x42,0x50])).verified,false);
  assert.equal(decodeRomTextProgram(mk([0,0x80,0x08,0x57,0x50])).verified,false);
- assert.equal(decodeRomTextProgram(mk([0,0x80,0x57])).verified,false);
+ assert.equal(decodeRomTextProgram(mk([0,0x80,0x50])).verified,false);
  const s=mk([0,0x80,0x57,0x50]);
  assert.equal(decodeRomTextProgram({...s,maxBytes:3}).verified,false);
  assert.equal(decodeRomTextProgram({...s,maxCommands:1}).verified,false);
@@ -83,4 +84,21 @@ test('truncaturas, bytes inválidos e cadeias longas não viram prova',()=>{
 });
 test('um TX_END vazio não cria fala nem conclusão',()=>{
  assert.equal(decodeRomTextProgram(mk([0x50])).verified,false);
+});
+
+test('DONE e PROMPT terminam diretamente o texto, sem executar bytes seguintes',()=>{
+ const a=decodeRomTextProgram(mk([0,0x80,0x57,0x08,0x50]));
+ assert.equal(a.verified,true);
+ assert.equal(a.termination,'TEXT_DONE');
+ assert.equal(a.text,'A');
+ assert.equal(a.byteLength,3);
+ const b=decodeRomTextProgram(mk([0,0x81,0x58,0x17,0x00,0x40,0x29]));
+ assert.equal(b.verified,true);
+ assert.equal(b.termination,'TEXT_PROMPT');
+ assert.equal(b.text,'B');
+});
+test('DEXEND não pode ser confundido com fim linear de diálogo',()=>{
+ const a=decodeRomTextProgram(mk([0,0x80,0x5f,0x50]));
+ assert.equal(a.verified,false);
+ assert.match(a.reason,/DEXEND/);
 });
