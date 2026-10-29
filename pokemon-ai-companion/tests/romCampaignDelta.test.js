@@ -65,3 +65,63 @@ test('unchanged snapshots produce zero events, not false completions',()=>{
  assert.equal(d.changes.length,0);
  assert.equal(d.actionObserved,false);
 });
+
+function withExactRecords(l){
+ for(const m of l.mapProgress){
+   m.flagRecords={hiddenItems:[],hiddenCoins:[],trainers:[],stationaryPokemon:[]};
+ }
+ return l;
+}
+test('exact hidden bits disclose which map coordinate changed, not merely total',()=>{
+ const previous=withExactRecords(ledger());
+ const item0={recordId:'hidden-item-0',bitIndex:0,flagSet:false,x:3,y:6};
+ const item1={recordId:'hidden-item-1',bitIndex:1,flagSet:false,x:7,y:8};
+ previous.mapProgress[15].flagRecords.hiddenItems=[item0,item1];
+ const current=copy(previous);
+ current.mapProgress[15].flagRecords.hiddenItems[1].flagSet=true;
+ current.mapProgress[15].hiddenItems.collected=1;
+ const d=diffCampaignProgress({previous,current});
+ assert.equal(d.verified,true);
+ assert.equal(d.granularity,'EXACT_ROM_EVENT_BIT');
+ assert.equal(d.changes.length,1);
+ assert.equal(d.changes[0].recordId,'hidden-item-1');
+ assert.equal(d.changes[0].x,7);
+ assert.equal(d.changes[0].y,8);
+});
+test('same overall total with a reset bit aborts instead of hiding a save reload',()=>{
+ const previous=withExactRecords(ledger());
+ previous.mapProgress[15].flagRecords.hiddenItems=[
+   {recordId:'hidden-item-0',bitIndex:0,flagSet:true,x:3,y:6},
+   {recordId:'hidden-item-1',bitIndex:1,flagSet:false,x:7,y:8}];
+ previous.mapProgress[15].hiddenItems.collected=1;
+ const current=copy(previous);
+ current.mapProgress[15].flagRecords.hiddenItems[0].flagSet=false;
+ current.mapProgress[15].flagRecords.hiddenItems[1].flagSet=true;
+ // Count stays 1, but two individual flags changed in opposite directions.
+ const d=diffCampaignProgress({previous,current});
+ assert.equal(d.verified,false);
+ assert.equal(d.resetSuspected,true);
+ assert.equal(d.changes.length,0);
+});
+test('special script-victory event is distinct from ordinary trainer gate',()=>{
+ const previous=withExactRecords(ledger());
+ previous.mapProgress[3].flagRecords.trainers=[
+   {recordId:'trainer-1',bitIndex:100,flagSet:false,outcomeEvidence:null},
+   {recordId:'trainer-2',bitIndex:152,flagSet:false,outcomeEvidence:'SCRIPT_VICTORY'}];
+ const current=copy(previous);
+ current.mapProgress[3].flagRecords.trainers[0].flagSet=true;
+ current.mapProgress[3].flagRecords.trainers[1].flagSet=true;
+ current.mapProgress[3].trainers.gatesClosed=2;
+ current.mapProgress[3].trainers.scriptedVictories=1;
+ const d=diffCampaignProgress({previous,current});
+ assert.equal(d.verified,true);
+ assert.deepEqual(d.changes.map(x=>x.kind),[
+   'TRAINER_GATE_FLAG_RAISED','SCRIPT_VICTORY_FLAG_RAISED']);
+});
+test('partially populated bit records reject summary instead of falling back',()=>{
+ const previous=withExactRecords(ledger()),current=copy(previous);
+ delete current.mapProgress[15].flagRecords;
+ const d=diffCampaignProgress({previous,current});
+ assert.equal(d.verified,false);
+ assert.equal(d.changes.length,0);
+});
