@@ -69,7 +69,8 @@ test('reject inconsistent totals, coordinates and invalid bounds',()=>{
  const dup=fixture();dup.ledger.mapProgress[17].mapId=16;
  assert.equal(campaignObjectives(dup).verified,false);
  assert.equal(campaignObjectives({...fixture(),sourceMapId:237}).verified,false);
- assert.equal(campaignObjectives({...fixture(),maxResults:100}).verified,false);
+ assert.equal(campaignObjectives({...fixture(),maxResults:100}).verified,true);
+ assert.equal(campaignObjectives({...fixture(),maxResults:227}).verified,false);
 });
 test('outdoor links are usable only when independently verified',()=>{
  const cfg=fixture();

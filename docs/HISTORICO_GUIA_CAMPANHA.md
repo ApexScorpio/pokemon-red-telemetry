@@ -1199,3 +1199,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 
 - Após T48, dois testes de integração ainda assumiam o formato anterior: `maxResults:226` nos dados detalhados e uma janela de inspeção de 450 caracteres que não incluía o literal `maxResults:12`. Corrigidas ambas as asserções para distinguir índice mundial de 226 mapas e preview detalhada de 12 objetivos.
 - Os 53 testes de `worldAdvisorPanel.test.js` e `romClientCampaignIntegration.test.js` foram reexecutados a partir dos ficheiros efetivamente publicados na branch com adaptação V8 de `node:vm` e `node:fs`: **53/53 aprovados**. Nenhum dado real de ROM, RAM ou cliente foi alterado nesta correção. Sem prova Node nativa.
+
+
+## 2026-10-29 — T48c: atualizar teste de limites 100→226 após auditoria conjunta
+
+- A execução conjunta dos testes do índice mundial e objetivos de itens apontou **24/25**: teste pré-T44 ainda tratava `maxResults:100` como inválido, apesar de o motor agora suportar até 226 mapas. Conferido que o código efetivo rejeita 227 e aceita 100 sem violar os limites da ROM.
+- Asserção antiga corrigida para exigir `maxResults:100` válido e `maxResults:227` inválido. A suite será reexecutada depois da alteração. Sem mudança de lógica funcional ou de saves; a `main` permanece intocada.
