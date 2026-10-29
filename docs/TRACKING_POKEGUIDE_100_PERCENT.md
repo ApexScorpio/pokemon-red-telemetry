@@ -94,3 +94,21 @@
 - **Testes desta fase:** 26/26 publicados aprovados no executor **V8 isolado com simulação das APIs Node**; seis módulos com parsing válido e nove verificações de integração de strings/ordem. **Pendente**: suite integral `npm test`, ROMs reais, E2E de cliente e screenshots do jogo.
 - **Tracking visual:** imagem sintética final capturada e inspecionada; HTML/imagem de teste provisórios apagados. Imagem não corresponde a partida real.
 - **Ponto de retoma seguinte:** obter checkout/test runner Node real sem depender de GitHub Actions esgotadas; validar a suite toda e os três ficheiros ROM contra o SHA esperado; corrigir falhas; depois testar o Companion no emulador real e atacar scripts/handlers/rotas dinâmicas por cobertura e evidência, nunca por alegação.
+
+
+### T10–T14 — 2026-10-29: navegação física, eventos ROM e progresso entre leituras
+
+| Entrega | Estado atualizado | Evidência de código | Ainda falta para fechar |
+|---|---|---|---|
+| PG-002/003 | PARCIAL | `romCampaignObjectives.js` prioriza primeiro warp por percurso terrestre da ROM corroborado com posição RAM; rejeita hints fora do mapa/SHA | Interior dos outros mapas, Cut/Surf/Strength dinâmico, portas, scripts, elevadores e saída exterior |
+| PG-004 | PARCIAL | `romCampaignDelta.js` distingue aumentos de flags em seis domínios e anula a inferência se houver regressão de contagens; `SIGN` expõe eventos textuais | Semântica completa de cada script, vínculo ação→evento, histórico exato por bit individual e snapshot atómico |
+| PG-005 | PARCIAL | `romCrossMapItemRoute.js` pesquisa itinerários hipotéticos de terreno e warps para itens sem caminho local; cache e invalidação na telemetria | Validar passagem real/warps dinâmicos e atualizações frame a frame |
+| PG-006 | PARCIAL | `romWorldStateAdvisor.js` inclui sinais e tabelas de encontros condicionais por espécie+nível, para quaisquer mapas normais auditados | Consequências dos NPCs, encontros realmente elegíveis no frame e efeitos de escolhas |
+| PG-008 | PARCIAL | `activeRomSha256Verified:false` explícito; a UI distingue SHA do perfil local de CRC32 do RetroArch | Provar SHA256 da ROM executada; confirmar estado RAM atómico/coerente |
+| PG-009 | PARCIAL | **45/45 testes das 6 suites novas passaram no V8 isolado** com APIs Node/digest simulados; sintaxe e ligações verificadas | `npm test` nativo, três binários reais, testes E2E e screenshots do jogo |
+| PG-011 | CÓDIGO IMPLEMENTADO / E2E PENDENTE | UI apresenta primeiro warp condicional, fauna por pesos ROM, sinais e mudanças de flags na sessão | Verificar interface real com emulador em movimento e testes visuais por etapa |
+| PG-012 | PARCIAL | 226 mapas normais e 813 warps catalogados anteriormente | Todos os scripts, comportamentos, handlers e condições reais de gameplay interpretados e comparados |
+ 
+**Checkpoint técnico:** <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>, **Draft** não fundido; `main` preservada. A conclusão global continua **NÃO CERTIFICADA / percentagem indeterminada**. Nenhum resultado de teste sintético equivale a uma validação com ROMs originais/emulador ou a 100% de jogabilidade.
+
+**Retoma objetiva:** suite Node completa no checkout real, SHA das três ROMs fornecidas, screenshots de execução, diferenciais de combate e scripts, multi-rota com portas/warps exteriores, e ligação causal entre eventos do jogo e flags verificadas. O histórico `HISTORICO_GUIA_CAMPANHA.md` é exclusivamente append-only.
