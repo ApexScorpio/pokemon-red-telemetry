@@ -56,12 +56,15 @@ function suggestWorldDetours({warpGraph,localExits,romSha256,
    if(['THEORETICAL_TERRAIN_PATH',
      'TERRAIN_PATH_REQUIRES_CUT_ACTION',
      'TERRAIN_PATH_REQUIRES_SURF_ACTION'].includes(current.terrainStatus))return 0;
+   if(current.terrainStatus==='BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED')
+     return 0;
    if(current.terrainStatus==='BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN')
      return 1;
    if(['CUT_NOT_USABLE_IN_CURRENT_PARTY','SURF_NOT_USABLE_IN_CURRENT_PARTY',
      'CUT_CAPABILITY_NOT_VERIFIED','SURF_CAPABILITY_NOT_VERIFIED',
      'CUT_AND_SURF_HYPOTHETICAL',
-     'BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN'].includes(current.terrainStatus))
+     'BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN',
+     'BORDER_ALIGNED_REQUIRES_CAPABILITY_TRANSFER_UNVERIFIED'].includes(current.terrainStatus))
      return 2;
    if(['NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK',
      'NO_LOCAL_TERRAIN_PATH_NOT_PROOF_OF_LOCK',
@@ -106,12 +109,16 @@ function suggestWorldDetours({warpGraph,localExits,romSha256,
            const firstStep=observed.kind==='OUTDOOR_BORDER'?
              observed.borderEvidence?.borderTiles?.[0]?.firstTerrainStep:
              observed.approach?.nextStep;
+           const borderDestination=observed.kind==='OUTDOOR_BORDER'?
+             observed.borderEvidence?.borderTiles?.[0]?.destinationTile:null;
            return {known:true,kind:first.kind,
              fromMapId:mapId,toMapId:first.destinationMapId,
              terrainStatus:observed.terrainStatus,
              firstTerrainStep:firstStep??null,
              candidateBorderTile:borderTile??null,
-             crossingAlignmentVerified:false,
+             candidateDestinationTile:borderDestination??null,
+             crossingAlignmentVerified:observed.kind==='OUTDOOR_BORDER'&&
+               observed.neighborAlignmentVerified===true,
              canTraverseNowProven:false};
          })(),
          scriptsAndDynamicBarriersVerified:false,
@@ -138,6 +145,6 @@ function suggestWorldDetours({warpGraph,localExits,romSha256,
    targetAccessProven:false,currentTraversalProven:false,
    geometryBeyondFirstMapVerified:false,
    includesOnlyStaticMapLinks:true,
-   warning:'Ciclos topológicos, não caminhos até ao item: falta comprovar em que tile se regressa ao mapa, Cut/Surf, colisões e scripts.'};
+   warning:'Ciclos topológicos: pode estar alinhado o primeiro cruzamento ROM, mas faltam os seguintes, Cut/Surf, colisões, scripts e o lado do item.'};
 }
 module.exports={suggestWorldDetours};
