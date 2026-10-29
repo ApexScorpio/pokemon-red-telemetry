@@ -1,0 +1,30 @@
+{
+  "schema": "pokeguide-rom-text-pointer-audit-v1",
+  "date": "2026-10-29",
+  "source": "Three original ROM files read directly in Node.js v22.16.0, with independent Python cross-check",
+  "romSizeBytes": 1048576,
+  "variants": [
+    "5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b",
+    "2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d",
+    "aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db"
+  ],
+  "perRom": {
+    "interactions": 674,
+    "npcs": 472,
+    "signs": 202,
+    "directSameBankTextPointersCorroborated": 616,
+    "unresolved": 58,
+    "firstByteCounts": {
+      "17": 409,
+      "08": 177,
+      "f5": 3,
+      "f6": 12,
+      "f7": 3,
+      "ff": 12
+    }
+  },
+  "passesOnAllVariants": true,
+  "dialogueSemanticsComplete": false,
+  "executedInEmulator": false,
+  "note": "The 58 unresolved same-bank pointer lookups may correspond to special text/script mechanisms and must not be treated as invalid game data or missing content."
+}
