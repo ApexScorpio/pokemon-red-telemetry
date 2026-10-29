@@ -770,6 +770,48 @@ function renderWorldAdvisor(state) {
       '✨ Encontros fixos: '+t.stationaryGatesClosed+
         ' eventos encerrados (não prova captura)');
   }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  const worldFlags=state.romWorldEventAtlas;
+  if(worldFlags?.verified===true&&
+     worldFlags.romSha256===advice.romSha256&&
+     worldFlags.summary?.namedEventBits===507&&
+     worldFlags.summary?.referenceToggleBits===228){
+    const g=worldFlags.summary;
+    const title=['--- EVENTOS DO JOGO: BITS DE REFERÊNCIA + RAM ---',
+      'Eventos nomeados com bit ativo: '+g.namedEventBitsSet+'/507',
+      'Flags de remoção de objetos ativas: '+
+        g.toggleRemovedFlagBitsSet+'/228'];
+    const milestoneNames={
+      EVENT_GOT_STARTER:'Pokémon inicial',
+      EVENT_GOT_POKEDEX:'Pokédex',
+      EVENT_BEAT_BROCK:'Brock',
+      EVENT_BEAT_MISTY:'Misty',
+      EVENT_GOT_BICYCLE:'Bicicleta',
+      EVENT_GOT_HM01:'HM01 Cut',
+      EVENT_GOT_HM02:'HM02 Fly',
+      EVENT_GOT_HM03:'HM03 Surf',
+      EVENT_GOT_HM04:'HM04 Strength',
+      EVENT_GOT_HM05:'HM05 Flash',
+      EVENT_GOT_POKE_FLUTE:'Poké Flute',
+      EVENT_BEAT_SABRINA:'Sabrina'
+    };
+    for(const e of worldFlags.milestones||[]){
+      if(!Object.hasOwn(milestoneNames,e.name))continue;
+      title.push('• '+milestoneNames[e.name]+
+        ': bit '+(e.flagSet===true?'ativo':'inativo')+
+        ' (não prova utilização nem acesso)');
+    }
+    const here=(worldFlags.toggleFlags||[]).filter(x=>
+      x.mapId===advice.mapId).slice(0,10);
+    if(here.length){
+      title.push('Referências de objetos deste mapa:');
+      for(const t of here)title.push('• '+
+        String(t.name).replace(/^TOGGLE_/,'').replaceAll('_',' ')+
+        ': remoção '+(t.removedFlagSet===true?'marcada na RAM':'não marcada na RAM'));
+    }
+    title.push('⚠️ Flags de referência não certificam conclusão de história, posição do objeto ou acesso.','');
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...title);
+  }
   const recent=state.worldRecentFlagChanges;
   if(recent?.verified===true&&recent.romSha256===advice.romSha256&&
      Array.isArray(recent.events)&&recent.events.length){
