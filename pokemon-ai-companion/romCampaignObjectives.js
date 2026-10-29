@@ -6,7 +6,8 @@ const id=n=>Number.isInteger(n)&&n>=0&&n<248;
 const nonnegative=n=>Number.isInteger(n)&&n>=0;
 const invalid=reason=>({verified:false,reason,objectives:[],
   routeGraphVerified:false,progressCompleteness:'UNKNOWN'});
-function campaignObjectives({ledger,warpGraph,sourceMapId,maxResults=12}={}){
+function campaignObjectives({ledger,warpGraph,sourceMapId,
+ firstMapTerrainHints=null,position=null,maxResults=12}={}){
  if(ledger?.verified!==true||ledger.progressCompleteness!=='PARTIAL'||
     !isKnownAuditedRomSha(ledger.romSha256)||ledger.mapCount!==226||
     !Array.isArray(ledger.mapProgress)||ledger.mapProgress.length!==226)
@@ -51,14 +52,47 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,maxResults=12}={}){
        add(e.sourceMapId,e.destinationMapId,'OUTDOOR_BOUNDARY',
          {direction:e.direction??null});
  }
+ // Order the FIRST transition by corroborated *static land* terrain.
+ // A failed land-only route is not proof of a game lock: Surf, Cut, scripted
+ // doors and moved sprites can make another outcome possible.
+ const hintsOK=graphOK&&firstMapTerrainHints?.verified===true&&
+   firstMapTerrainHints.mapId===sourceMapId&&
+   firstMapTerrainHints.romSha256===ledger.romSha256&&
+   firstMapTerrainHints.positionFromRam?.x===position?.x&&
+   firstMapTerrainHints.positionFromRam?.y===position?.y&&
+   Array.isArray(firstMapTerrainHints.candidates);
+ const firstRank=edge=>{
+   if(edge.kind!=='STATIC_WARP'||!hintsOK)return 1;
+   const h=firstMapTerrainHints.candidates.find(x=>
+     x.warpIndex===edge.sourceWarpIndex&&
+     x.destinationMapId===edge.destinationMapId);
+   if(!h)return 1;
+   return h.theoreticalTerrainPathFound===true?0:
+     h.theoreticalTerrainPathFound===false?2:1;
+ };
+ const labels=['LOCAL_TERRAIN_PATH_CANDIDATE','TERRAIN_NOT_VERIFIED',
+   'NO_LOCAL_LAND_PATH_FOUND_NOT_PROOF_OF_BLOCK'];
  const prev=new Map([[sourceMapId,null]]);
- const queue=[sourceMapId];
- for(let index=0;index<queue.length;index++){
-   const map=queue[index];
-   for(const edge of links.get(map)||[]){
-     if(prev.has(edge.destinationMapId))continue;
-     prev.set(edge.destinationMapId,{from:map,edge});
+ const firstTerrain=new Map([[sourceMapId,'CURRENT_MAP']]);
+ // Three BFS waves. Prefer a first warp with a static-terrain solution,
+ // even if another first warp offers fewer map hops. Within each wave,
+ // the BFS is shortest in static transitions, never in player steps.
+ for(const tier of [0,1,2]){
+   const queue=[];
+   for(const edge of links.get(sourceMapId)||[]){
+     if(firstRank(edge)!==tier||prev.has(edge.destinationMapId))continue;
+     prev.set(edge.destinationMapId,{from:sourceMapId,edge});
+     firstTerrain.set(edge.destinationMapId,labels[tier]);
      queue.push(edge.destinationMapId);
+   }
+   for(let index=0;index<queue.length;index++){
+     const map=queue[index];
+     for(const edge of links.get(map)||[]){
+       if(prev.has(edge.destinationMapId))continue;
+       prev.set(edge.destinationMapId,{from:map,edge});
+       firstTerrain.set(edge.destinationMapId,labels[tier]);
+       queue.push(edge.destinationMapId);
+     }
    }
  }
  const pathTo=target=>{
@@ -96,6 +130,8 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,maxResults=12}={}){
      // A topological link count, NOT walking steps or current reachability.
      mapHopCount:route?.length??null,
      route:route?.map(e=>({...e}))??null,
+     firstTransitionTerrainEvidence:route?
+       (firstTerrain.get(m.mapId)||'TERRAIN_NOT_VERIFIED'):null,
      routeNavigableNowProven:false,
      locationAccessibleNow:null,
      kind:pendingFlags>0?'VERIFIED_OPEN_FLAGS':'UNRESOLVED_FLAGS_ONLY'
@@ -112,6 +148,7 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,maxResults=12}={}){
  });
  return {verified:true,romSha256:ledger.romSha256,
    sourceMapId,routeGraphVerified:graphOK,
+   firstMapTerrainHintsCorroborated:hintsOK,
    mapCount:ledger.mapCount,mapsWithPending,mapsWithUnknown,
    totalObjectives:goals.length,objectives:goals.slice(0,maxResults),
    progressCompleteness:'PARTIAL',
@@ -119,6 +156,8 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,maxResults=12}={}){
    warnings:[
      'Uma flag não ativada pode indicar evento não concluído, mas não prova acesso atual',
      'Distâncias são transições entre mapas estáticos, não passos nem rotas desbloqueadas',
+     'Apenas a primeira transição usa terreno local; as ligações seguintes carecem de geometria e scripts',
+     'Ausência de caminho terrestre não prova bloqueio: Surf e Cut podem mudar o resultado',
      'LAST_MAP, elevadores, Cut/Surf/Strength, portas e scripts dinâmicos não estão resolvidos',
      'Os eventos sem flags mapeadas não são tratados como concluídos'
    ]};
