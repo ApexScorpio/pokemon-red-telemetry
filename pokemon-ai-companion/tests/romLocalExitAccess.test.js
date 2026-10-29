@@ -55,7 +55,7 @@ test('all local warps and audited border are listed without claiming entry',()=>
  assert.equal(result.exits[1].terrainStatus,'CUT_NOT_USABLE_IN_CURRENT_PARTY');
  assert.equal(result.exits[1].accessibleNow,null);
  assert.equal(result.exits[3].terrainStatus,
-   'BORDER_CROSSING_TILE_NOT_VERIFIED');
+   'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN');
  assert.equal(result.routeNavigableNowProven,undefined);
  assert.equal(result.accessNowProven,false);
 });
@@ -169,7 +169,8 @@ test('source border remains hypothetical when sprites prevent all approaches',()
    {x:0,y:0,type:'npc',pictureId:2},
    {x:1,y:0,type:'npc',pictureId:2},
    {x:3,y:0,type:'npc',pictureId:2},
-   {x:4,y:0,type:'npc',pictureId:2}
+   {x:4,y:0,type:'npc',pictureId:2},
+   {x:2,y:0,type:'npc',pictureId:2}
  ];
  const r=localExitAccess(cfg);
  const b=r.exits.find(x=>x.kind==='OUTDOOR_BORDER');
