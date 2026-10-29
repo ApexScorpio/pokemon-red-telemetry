@@ -13,7 +13,7 @@
 | PG-002 | Atlas mundial e ligações | PARCIAL | 248 IDs, 226 cabeçalhos normais, 813 warps e 78 fronteiras por ROM; `romWarpGraph.js` | Resolver LAST_MAP/elevadores/portas e testar transições reais |
 | PG-003 | Terreno e movimento | PARCIAL | 24 tilesets, 95 132 células por ROM; Cut/Surf/ledge e desvio multimapa com fronteiras alinhadas (T25, hipóteses condicionais) | Validar colisões dinâmicas, Strength, scripts, frames e travessia real |
 | PG-004 | Flags e eventos da campanha | PARCIAL | `romEventState.js`, `romTrainerEvents.js`; flags específicas limitadas | Interpretar todos os scripts, presentes, diálogos, ramificações e consequências |
-| PG-005 | Radar de itens e acessibilidade | PARCIAL | `romItemReachability.js` e `romCrossMapItemRoute.js`; warps e fronteiras alinhadas ROM, 9/9 testes isolados T25 | Validar caminhos multimapa em jogo, Cut/Surf à chegada, objetos/NPCs dinâmicos |
+| PG-005 | Radar de itens e acessibilidade | PARCIAL | T26: pesquisa partilhada de até 64 itens locais com ROM validada; warps e fronteiras alinhadas, 13/13 V8 isolados | Validar rotas no emulador, Cut/Surf/Strength, NPCs e orçamento em mapas reais |
 | PG-006 | Conselheiro universal de ações | EM EXECUÇÃO | `romWorldStateAdvisor.js` publica observações por mapa | Distinguir provas independentes e ligar ações, bloqueios e resultados na UI, sem garantias falsas |
 | PG-007 | Combate e probabilidades | PARCIAL | `gen1LiveBattlePreview.js` e testes do pipeline com RAM sintética | Todos os handlers, RNG, golpes especiais e confronto diferencial ao vivo |
 | PG-008 | Coerência telemetria RAM | PARCIAL | Releituras de mapa, coordenadas e modo; rejeição de divergências | Snapshots atómicos ou barreira equivalente confirmada e expiração de conselhos |

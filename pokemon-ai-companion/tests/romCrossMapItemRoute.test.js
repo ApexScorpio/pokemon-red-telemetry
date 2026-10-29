@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const crypto=require('node:crypto');
-const {findCrossMapItemPath}=require('../romCrossMapItemRoute');
+const {findCrossMapItemPath,findCrossMapItemPaths}=require('../romCrossMapItemRoute');
 const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 function terrain(mapId,{wall=false}={}){
@@ -123,4 +123,39 @@ test('destination water without a proven landing never becomes free access',()=>
  m.tileIdsSha256=hash(tiles);m.walkingBitsSha256=hash(bits);
  const r=findCrossMapItemPath(f);
  assert.equal(r.found,false);assert.equal(r.accessibleNow,null);
+});
+
+test('batch finds distinct items with one shared search',()=>{
+ const f=fixture(),r=findCrossMapItemPaths({...f,target:null,targets:[
+   {mapId:0,x:4,y:2},{mapId:0,x:4,y:3},
+   {mapId:0,x:0,y:2,hidden:true}]});
+ assert.equal(r.verified,true);
+ assert.equal(r.requestedCount,3);assert.equal(r.foundCount,3);
+ assert.deepEqual(r.results.map(x=>x.warpTransitions),[2,2,0]);
+ assert.equal(r.routeNavigableNowProven,false);
+ assert.equal(r.accessibleNow,null);
+});
+test('batch never attributes the only reachable path to a blocked item',()=>{
+ const f=fixture();f.warpGraph.edges[1].status='LAST_MAP_RAM_REQUIRED';
+ const r=findCrossMapItemPaths({...f,targets:[
+   {mapId:0,x:4,y:2},{mapId:0,x:0,y:2}]});
+ assert.equal(r.verified,true);
+ assert.deepEqual(r.results.map(x=>x.found),[false,true]);
+ assert.equal(r.foundCount,1);
+});
+test('invalid batch targets and unknown SHA do not create routes',()=>{
+ const f=fixture();
+ assert.equal(findCrossMapItemPaths({...f,targets:[]}).verified,false);
+ assert.equal(findCrossMapItemPaths({...f,targets:[{mapId:0,x:-1,y:0}]}).verified,false);
+ assert.equal(findCrossMapItemPaths({...f,romSha256:'0'.repeat(64),
+   targets:[{mapId:0,x:4,y:2}]}).verified,false);
+});
+test('budget exhaustion remains unknown rather than blocked',()=>{
+ const f=fixture(),r=findCrossMapItemPaths({...f,maxStates:1,
+   targets:[{mapId:0,x:4,y:2}]});
+ assert.equal(r.verified,true);
+ assert.equal(r.results[0].found,false);
+ assert.equal(r.results[0].maxStatesExceeded,true);
+ assert.equal(r.results[0].accessibleNow,null);
+ assert.match(r.results[0].reason,/Limite de pesquisa/);
 });

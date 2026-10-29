@@ -1,6 +1,6 @@
 'use strict';
 // Bounded multi-map ROUTE HYPOTHESIS for SHA-audited Gen I ROM maps.
-// Crosses only static warps with verified landing coordinates. Neither a
+// Crosses static warps and ROM-aligned outdoor candidate borders. Neither a
 // candidate path nor failure to find one proves actual access or blockage.
 const {terrainBytes,computeReach,candidatePath}=require('./romItemReachability');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
@@ -37,13 +37,15 @@ function exactTilePath(reach,p){
  return best;
 }
 function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
- sourceMapId,position,target,outdoorAlignment=null,positionVerified=false,
+ sourceMapId,position,target=null,targets=null,outdoorAlignment=null,positionVerified=false,
  currentModeByte=null,canCut=false,canSurf=false,
  spritesVerified=false,currentMapEntities=[],maxTransitions=10,
  maxStates=180}={}){
  const sha=String(romSha256||'').toLowerCase();
- if(!isKnownAuditedRomSha(sha)||!positionVerified||!byte(sourceMapId)||
-    !byte(target?.mapId)||!pos(position)||!pos(target)||
+ const multi=targets!==null,requested=multi?targets:[target];
+ if(!Array.isArray(requested)||!requested.length||requested.length>64||
+    requested.some(t=>!byte(t?.mapId)||!pos(t))||
+    !isKnownAuditedRomSha(sha)||!positionVerified||!byte(sourceMapId)||!pos(position)||
     ![0,1,2].includes(currentModeByte)||typeof canCut!=='boolean'||
     typeof canSurf!=='boolean'||!Number.isInteger(maxTransitions)||
     maxTransitions<0||maxTransitions>20||!Number.isInteger(maxStates)||
@@ -60,7 +62,7 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
    if(!byte(m.mapId)||maps.has(m.mapId))return reject('Terreno de mapa duplicado ou inválido');
    maps.set(m.mapId,m);
  }
- if(!maps.has(sourceMapId)||!maps.has(target.mapId))
+ if(!maps.has(sourceMapId)||requested.some(t=>!maps.has(t.mapId)))
   return reject('Origem ou destino fora dos 226 mapas de terreno auditados');
  const exits=new Map();
  for(const e of warpGraph.edges){
@@ -119,6 +121,8 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
  const seen=new Set([key(sourceMapId,position.x,position.y)]);
  const queue=[{mapId:sourceMapId,x:position.x,y:position.y,
    segments:[],steps:0}];
+ const results=new Array(requested.length).fill(null);
+ const pending=new Set(requested.map((_,i)=>i));
  let explored=0,cursor=0;
  for(;cursor<queue.length&&explored<maxStates;cursor++){
    const state=queue[cursor],grid=gridFor(state.mapId);
@@ -131,11 +135,15 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
      spritesVerified:state.segments.length===0&&spritesVerified
    });
    if(!reach)continue;
-   if(state.mapId===target.mapId&&target.x<grid.width&&target.y<grid.height){
-     const last=candidatePath(reach,target,{hidden:target.hidden===true});
-     if(last)return {verified:true,found:true,sourceMapId,
-       target:{mapId:target.mapId,x:target.x,y:target.y,
-         hidden:target.hidden===true},
+
+   // Share one route graph search between distinct item coordinates.
+   for(const index of pending){
+     const t=requested[index];
+     if(state.mapId!==t.mapId||t.x>=grid.width||t.y>=grid.height)continue;
+     const last=candidatePath(reach,t,{hidden:t.hidden===true});
+     if(!last)continue;
+     const result={verified:true,found:true,sourceMapId,
+       target:{mapId:t.mapId,x:t.x,y:t.y,hidden:t.hidden===true},
        romSha256:sha,transitionCount:state.segments.length,
        warpTransitions:state.segments.filter(e=>e.kind!=='OUTDOOR_BORDER').length,
        outdoorTransitions:state.segments.filter(e=>e.kind==='OUTDOOR_BORDER').length,
@@ -143,15 +151,17 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
        segments:state.segments,finalLocalRoute:last,
        nextTerrainTile:state.segments[0]?.localRoute?.nextStep||
          last.nextStep||null,
-       exploredStates:explored,
-       routeNavigableNowProven:false,accessibleNow:null,
-       scriptsAndDynamicBarriersVerified:false,
+       exploredStates:explored,routeNavigableNowProven:false,
+       accessibleNow:null,scriptsAndDynamicBarriersVerified:false,
        snapshotAtomicVerified:false,
        scope:state.segments.some(e=>e.kind==='OUTDOOR_BORDER')?
          'STATIC_WARPS_AND_ALIGNED_OUTDOOR_BORDER_HYPOTHESES':
          'STATIC_WARPS_ONLY_NO_OUTDOOR_CONNECTIONS',
-       note:'Hipótese topológica e de terreno ROM. Falta validar portas, NPC, flags, Surf/Cut e warps ativos.'};
+       note:'Hipótese geométrica ROM. Portas, NPC, flags e ações de campo não comprovados.'};
+     results[index]=result;pending.delete(index);
+     if(!multi)return result;
    }
+   if(pending.size===0)break;
    if(state.segments.length>=maxTransitions)continue;
    for(const e of exits.get(state.mapId)||[]){
      if(e.x>=grid.width||e.y>=grid.height)continue;
@@ -210,12 +220,25 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
      }
    }
  }
- return {verified:true,found:false,romSha256:sha,sourceMapId,
-   target:{mapId:target.mapId,x:target.x,y:target.y},
-   exploredStates:explored,maxStatesExceeded:cursor<queue.length,
+
+ const incomplete=cursor<queue.length&&pending.size>0;
+ const reason=incomplete?
+   'Limite de pesquisa atingido antes de verificar todas as rotas. Não prova bloqueio.':
+   'Sem percurso no cenário geométrico ROM conhecido. Não prova bloqueio: faltam scripts e obstáculos dinâmicos.';
+ const unresolved=t=>({verified:true,found:false,romSha256:sha,sourceMapId,
+   target:{mapId:t.mapId,x:t.x,y:t.y,hidden:t.hidden===true},
+   exploredStates:explored,maxStatesExceeded:incomplete,
    outdoorAlignmentUsed:borderLinks.size>0,
-   accessibleNow:null,routeNavigableNowProven:false,
-   reason:'Sem percurso neste cenário de terreno, warps estáticos e capacidades consideradas. '+
-     'Isso não prova bloqueio: faltam ligações exteriores, Cut/Surf dinâmicos, elevadores e scripts.'};
+   accessibleNow:null,routeNavigableNowProven:false,reason});
+ if(!multi)return unresolved(requested[0]);
+ return {verified:true,romSha256:sha,sourceMapId,
+   results:requested.map((t,i)=>results[i]||unresolved(t)),
+   requestedCount:requested.length,foundCount:requested.length-pending.size,
+   exploredStates:explored,maxStatesExceeded:incomplete,
+   routeNavigableNowProven:false,accessibleNow:null,
+   scope:'MULTIPLE_ROM_ITEM_TARGETS_SINGLE_SHARED_GRAPH_SEARCH'};
 }
-module.exports={findCrossMapItemPath,exactTilePath};
+function findCrossMapItemPaths(args={}){
+ return findCrossMapItemPath({...args,target:null,targets:args.targets});
+}
+module.exports={findCrossMapItemPath,findCrossMapItemPaths,exactTilePath};

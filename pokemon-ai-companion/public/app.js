@@ -1027,7 +1027,13 @@ function renderWorldAdvisor(state) {
       lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
       if(o.accessReason)lines.push('  ↳ Motivo: '+o.accessReason);
     }
-    const detour=state.romCrossMapItemRoute;
+    const batch=state.romCrossMapItemRoutes;
+    const matchedRoute=batch?.verified===true&&
+      batch.romSha256===advice.romSha256&&
+      batch.sourceMapId===advice.mapId&&Array.isArray(batch.results)?
+      batch.results.find(r=>r.target?.mapId===advice.mapId&&
+        r.target?.x===o.x&&r.target?.y===o.y):null;
+    const detour=batch?.verified===true?matchedRoute:state.romCrossMapItemRoute;
     const exactDetourForThisItem=detour?.verified===true&&
        detour.found===true&&detour.romSha256===advice.romSha256&&
        detour.sourceMapId===advice.mapId&&

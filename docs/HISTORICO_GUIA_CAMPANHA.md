@@ -995,3 +995,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Reobtidos os seis ficheiros atuais diretamente da revisão GitHub `6198a19ecfd6cd5ea65a4de7ce5310b1a1403961`: `romCrossMapItemRoute.js`, `romItemReachability.js`, `romKnownSha256.js`, `romLedgeRules.js`, `romOutdoorAlignment.js` e `tests/romCrossMapItemRoute.test.js`.
 - Executadas as nove funções de teste da suite publicada, sem alterações ao texto dos testes, num V8 isolado que carregou o JS real dos módulos; `Buffer`, `node:test` e `node:crypto` foram simulados. **Resultado: 9/9 PASS**, incluindo os três casos novos da T25; 0 falhas. O cálculo de hash de teste é explicitamente NÃO SHA-256 criptográfico.
 - Não houve execução nativa de `node --test` num checkout com ROMs reais, nem validação com RetroArch/SameBoy/iPhone ou captura de ecrã do jogo. Não considerar 9/9 V8 prova de integração ou de 100%.
+
+
+## 2026-10-29 — T26: pesquisa multimapa partilhada para os itens da zona
+
+- Antes só o primeiro item ROM com `NO_SAME_MAP_PATH` recebia análise. O motor `romCrossMapItemRoute.js` agora aceita até 64 alvos em `findCrossMapItemPaths` e reutiliza uma só BFS de warps e ligações exteriores alinhadas. O resultado mantém correspondência individual mapa/coordenada e `accessibleNow:null`, sem assumir travessia observada. API singular preservada.
+- O motor diferencia `maxStatesExceeded` de ausência de percurso e não confunde os resultados de itens distintos. O cliente transmite todos os itens elegíveis, calcula a pesquisa uma vez por alteração da RAM/posição/itens e expõe `romCrossMapItemRoutes`; `public/app.js` usa o resultado específico do item. Invalidação de RAM e exclusão de cache persistente atualizadas.
+- Quatro testes acrescentados: múltiplos alvos, separação entre resultados, rejeição de entrada inválida e orçamento insuficiente. Antes da publicação, **13/13** passaram em teste isolado V8 com adaptadores simulados para Buffer/crypto. Não equivale a Node nativo nem E2E real.
+- Neste ambiente a tentativa de obter o checkout através do GitHub falhou por indisponibilidade DNS; a escrita foi efetuada por ligação GitHub. ROMs, saves, sessões e armazenamento local do utilizador não foram alterados. Ficam por validar a cobertura e o desempenho reais no emulador.
