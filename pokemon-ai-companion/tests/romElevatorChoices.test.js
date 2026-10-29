@@ -3,11 +3,11 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const {elevatorOptionsForMap}=require('../romElevatorChoices');
 const records=require('../data/gen1ElevatorsAudited.json');
 const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
-function fixture(){
+function fixture(version=sha){
  const maps=Array.from({length:248},(_,mapId)=>({
    mapId,valid:mapId<226,objects:{warps:[]}
  }));
- for(const e of records.variants[sha].elevators){
+ for(const e of records.variants[version].elevators){
    maps[e.mapId].valid=true;
    for(const o of e.availableFloorOptions){
      const m=maps[o.destinationMapId];
@@ -19,14 +19,14 @@ function fixture(){
  // Keep exactly 226 normal headers after replacing any previously invalid ID.
  let count=maps.filter(m=>m.valid).length;
  for(let i=225;i>=0&&count>226;i--)if(![127,203,236].includes(i)){
-   const needed=records.variants[sha].elevators.some(e=>
+   const needed=records.variants[version].elevators.some(e=>
      e.availableFloorOptions.some(o=>o.destinationMapId===i));
    if(!needed){maps[i].valid=false;count--;}
  }
- return {profile:{hash:{sha256:sha},world:{maps:{valid:true,data:maps}}},
+ return {profile:{hash:{sha256:version},world:{maps:{valid:true,data:maps}}},
    romIdentityMatched:true,mapWindowVerified:true,mapId:127};
 }
-test('three ROM elevator menus expose exactly 5,3,11 destinations',()=>{
+test('three elevator menus in the audited Red ROM expose exactly 5,3,11 destinations',()=>{
  const x=fixture(),counts=[[127,5],[203,3],[236,11]];
  for(const [mapId,n] of counts){
    const r=elevatorOptionsForMap({...x,mapId});
@@ -65,4 +65,14 @@ test('no menu current floor may be asserted from static ROM option lists',()=>{
  assert.equal(v.selectedFloorVerified,false);
  assert.equal(v.routeNavigableNowProven,false);
  assert.equal(v.snapshotAtomicVerified,false);
+});
+
+test('all three SHA-audited ROM variants expose their own 19 menu destinations',()=>{
+ for(const version of Object.keys(records.variants)){
+   const rig=fixture(version);
+   const all=[127,203,236].map(mapId=>elevatorOptionsForMap({...rig,mapId}));
+   assert.ok(all.every(r=>r.verified===true&&r.romSha256===version));
+   assert.equal(all.reduce((n,r)=>n+r.options.length,0),19);
+   assert.ok(all.every(r=>r.selectedFloorVerified===false));
+ }
 });
