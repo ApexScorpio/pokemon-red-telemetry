@@ -196,3 +196,23 @@ test('reference event flags and Route 4 toggle remain clearly conditional',()=>{
  s.romWorldEventAtlas.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/EVENTOS DO JOGO: BITS/);
 });
+
+test('named event transitions show change of flag but never claim completion',()=>{
+ const s=live();
+ s.worldRecentNamedChanges={
+   verified:true,romSha256:s.worldAdvisor.romSha256,
+   events:[
+     {kind:'NAMED_EVENT_BIT_CHANGED',name:'EVENT_GOT_HM01',
+       eventBitIndex:1504,flagSet:true},
+     {kind:'OBJECT_TOGGLE_BIT_CHANGED',name:'TOGGLE_ROUTE_4_ITEM',
+       mapId:15,toggleIndex:27,flagSet:false}
+   ]
+ };
+ const text=render(s).body.textContent;
+ assert.match(text,/MUDANÇAS EM EVENTOS E OBJETOS NOMEADOS/);
+ assert.match(text,/GOT HM01: bit ativado/);
+ assert.match(text,/ROUTE 4 ITEM \(#15\): flag de remoção desativada/);
+ assert.match(text,/não provam quem agiu, missão terminada ou passagem aberta/);
+ s.worldRecentNamedChanges.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/MUDANÇAS EM EVENTOS E OBJETOS NOMEADOS/);
+});
