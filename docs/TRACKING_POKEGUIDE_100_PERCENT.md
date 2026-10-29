@@ -163,3 +163,16 @@
 | PG-009 — Execução de testes | **57/57 casos de teste distintos passaram** nos três grupos mencionados, com o código publicado no GitHub | Executor V8 isolado, Node fs/crypto/Buffer/vm simulados, dados JSON reais das três variantes | `npm test` nativo, SHA256 criptográfico no teste, três binários ROM originais e E2E com emulador |
  
 **Estado:** PROGRESSO REAL / **NÃO 100%**. O PR #1 continua em Draft; `main` intacta. O arquivo de referência das ligações não basta para inventar coordenadas de chegada à zona seguinte. A próxima etapa de navegação precisa dos bytes da ROM original e testes de transição real; continuamos a não afirmar acessibilidade sem essa evidência.
+
+
+### T24 — 2026-10-29: 78 fronteiras ROM alinhadas com destino e compatibilidade terrestre global
+
+| Área | Implementado e publicado | Prova disponível | Pendente |
+|---|---|---|---|
+| PG-002/PG-003 — Fronteiras Kanto | `data/gen1OutdoorConnectionOffsetsReference.json` com 78 offsets retirados de 36 cabeçalhos da desmontagem; `romOutdoorAlignment.js` confere offsets com ponteiros de blocos ROM | 78 descritores recíprocos × 3 perfis; 34/36 mapas de destino com múltiplos ponteiros independentes consistentes; 6/6 testes | ROM binário ativo, frame RAM atómico, NPCs e scripts que impedem saída |
+| PG-003 — Percurso tile→tile exterior | `romOutdoorBoundaryCandidates.js` elimina pontos fora da sobreposição ou sem destino estático compatível; apresenta tile de destino e classe Cut/Surf/terra, sem afirmar execução | 5/5 testes com Route4, Route3 e Cerulean das três variantes, incluindo `(7,17)→(57,0)` e `(89,4)→(0,12)`; `(6,17)` excluído por destino estático bloqueado | Jogo real, ponto de entrada pós-transição, flags dinâmicas e empurrões Strength |
+| PG-004 — Atlas mundial de transições | `romOutdoorOverlapIndex.js` calcula 78 ligações, 1484 pares de tiles alinhados, 400 pares terrestres estáticos, 70 fronteiras com par terrestre, 8 sem par e 24 com candidatos de água | 6/6 testes usando as matrizes arquivadas Red/Blue/Green; em memória por variante SHA, sem persistir como prova RAM | Interpretar as 8 zonas sem terra e atravessar cada zona no jogo, scripts/portas |
+| PG-005 — Objetivos e desvios | Rotas globais recebem contagem de sobreposição terrestre/água; primeiro salto do desvio entre mapas mostra tile de destino quando o offset está corroborado | 54/54 testes das suites de objetivos, ciclos, painel e cache | Confirmar cada salto e lado exato de regresso ao item |
+| PG-009 — Regressão desta etapa | **85/85 casos distintos aprovados** em grupos V8 usando código da branch + arquivos JSON auditados e SHA simulado/mapeado de teste | Parsing JS e asserts de testes relevantes | `npm test` nativo, hashes executados por Node real, ROMs binários e emulador ativo |
+ 
+**Situação:** PR #1 continua Draft, `main` não fundida. O avanço T24 é geométrico e de auditoria ROM, não afirma jogabilidade já provada ou finalização a 100%. A utilização de `pret/pokered` é referência independente: <https://github.com/pret/pokered/blob/master/macros/scripts/maps.asm>. Ações futuras exigem execução nativa e amostras ROM/RAM originais.
