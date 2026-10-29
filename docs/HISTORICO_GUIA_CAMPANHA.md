@@ -1092,3 +1092,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - O motor aceita agora duas provas mutuamente exclusivas: `localPathAbsent:true` para `NO_SAME_MAP_PATH`, ou `localPathConditional:true` para capacidades/obstáculos locais que ainda podem ter alternativa via mapa adjacente. Ambos os modos continuam hipóteses topológicas, sem `targetAccessProven`.
 - O cliente envia o modo de forma explícita por `accessStatus` e inclui o estado na chave de cache, evitando reutilizar uma hipótese anterior com premissa diferente. O resultado publicado inclui `localPathEvidence: NO_SAME_MAP_PATH|CONDITIONAL_LOCAL_BARRIER`.
 - Adicionados testes à suite do motor e à integração. Verificação em V8 com módulo efetivo: ciclo de três mapas encontrado nos dois modos, ambos os modos ausentes ou ambos presentes rejeitados, e sem acesso garantido. Parsing JS completo dos quatro ficheiros validado. Teste nativo Node integral e emulador continuam não realizados.
+
+
+## 2026-10-29 — T38: regressão conjunta UI + integração e atualização da asserção multimapa
+
+- Reexecutados em V8 os testes existentes `tests/worldAdvisorPanel.test.js` e `tests/romClientCampaignIntegration.test.js` com código literal extraído da branch. Um primeiro adaptador de `vm.runInNewContext` não conservava variáveis globais e não devolvia expressões, gerando falsos negativos; adaptador corrigido preservou as mutações de contexto.
+- Após corrigir o adaptador, **43/44** passaram. A única falha real era uma asserção desatualizada à mensagem antiga `Desvio multimapa TEÓRICO: 2 warps`; desde T25 o painel corretamente mostra `2 transições (2 warps, 0 fronteiras)`.
+- Teste alterado para conferir a formatação nova, sem relaxar os controlos de mesma SHA, mapa, coordenadas e acesso não garantido. A alteração afeta a suite de regressão, não altera o jogo nem altera o resultado da UI.
+- Motor Strength/flag RAM/ciclos: regressão conjunta anterior foi de **21/21** em V8, usando fontes publicadas, `Buffer` e hash simulados. Suite de UI/integração utiliza `fs`/`vm` simulados; ambas continuam distintas do teste Node nativo, cuja execução sobre o checkout completo está pendente.
