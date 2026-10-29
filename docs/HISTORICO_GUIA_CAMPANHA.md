@@ -1136,3 +1136,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - A cache T40b era sensível a mapa/posição/flags e bool do alinhamento exterior, mas a perda de `romWarpGraph.verified` ou a inconsistência da janela RAM não estavam explicitamente contempladas na prontidão da pesquisa. Corrigido `retroarchClient.js`: `remoteSearchReady` exige terreno da variante, grafo da mesma SHA, mapa e coordenadas corroborados.
 - A chave de cache inclui `remoteSearchReady`, validade do grafo ROM e prova de referência das conexões exteriores; a perda de prova descarta resultados antigos e devolve `verified:false` em vez de mostrar percursos de uma leitura passada.
 - Regressão acrescentada à suite de integração com execução do bloco real do cliente: 2 leituras iguais usam 1 pesquisa, perda de grafo invalida, restituição reexecuta (2), perda de posição invalida novamente. V8/parsing aprovados; não equivale a Node ou gameplay nativo.
+
+
+## 2026-10-29 — T42: verificar identidade exata das rotas globais de itens ocultos
+
+- Endurecida `romGlobalFlagItemRoutes.js`: o resultado global da pesquisa de terreno exige agora `verified:true`, mesma SHA e mapa de origem. Cada rota individual tem ainda de apresentar o mesmo mapa/X/Y/hidden do alvo pedido, com `accessibleNow:null` e `routeNavigableNowProven:false`. Um índice de array já não é, por si, prova de correspondência de objetivo.
+- Regressão acrescentada à suite para um item oculto remoto ligado por warp estático num atlas sintético de 226 mapas e 813 entradas de warp. Espera um desvio geométrico até à coordenada do item, mantendo acesso não comprovado. A execução nativa desta regressão continua pendente.
+- Prova isolada do módulo em V8 com pesquisa injetada: resposta válida aceite; resposta com coordenada do item alterada rejeitada com `verified:false`. Parsing de módulo e testes aprovado. Histórico acrescentado; `main` intacta.

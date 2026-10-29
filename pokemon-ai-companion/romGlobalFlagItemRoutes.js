@@ -76,9 +76,21 @@ function planGlobalFlagItemRoutes({ledger,objectives,terrainAtlas,warpGraph,
    targets:selected.items.map(x=>({mapId:x.mapId,x:x.x,y:x.y,hidden:true})),
    maxStates,maxTransitions
  });
- if(paths?.verified!==true||!Array.isArray(paths.results)||
+ if(paths?.verified!==true||paths.romSha256!==selected.romSha256||
+    paths.sourceMapId!==sourceMapId||!Array.isArray(paths.results)||
     paths.results.length!==selected.items.length)
-   return fail('O motor multimapa não validou a geometria dos alvos remotos');
+   return fail('Motor multimapa sem resultados correspondentes à ROM e origem');
+ // Never associate one remote item with another merely by array order.
+ for(let i=0;i<selected.items.length;i++){
+   const goal=selected.items[i],r=paths.results[i];
+   if(r?.verified!==true||r.romSha256!==selected.romSha256||
+      r.sourceMapId!==sourceMapId||
+      r.target?.mapId!==goal.mapId||
+      r.target?.x!==goal.x||r.target?.y!==goal.y||
+      r.target?.hidden!==true||r.accessibleNow!==null||
+      r.routeNavigableNowProven!==false)
+     return fail('Percurso não corresponde ao mapa, tile ou SHA do item remoto');
+ }
  return {...selected,foundCount:paths.foundCount,
    exploredStates:paths.exploredStates,maxStatesExceeded:paths.maxStatesExceeded,
    items:selected.items.map((item,i)=>({...item,
