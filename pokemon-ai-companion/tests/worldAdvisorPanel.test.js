@@ -216,3 +216,20 @@ test('named event transitions show change of flag but never claim completion',()
  s.worldRecentNamedChanges.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/MUDANÇAS EM EVENTOS E OBJETOS NOMEADOS/);
 });
+
+test('verified elevator menu shows ROM choices without claiming a selected floor',()=>{
+ const s=live();
+ s.romElevatorOptions={verified:true,hasElevator:true,
+   romSha256:s.worldAdvisor.romSha256,mapId:15,
+   elevatorName:'Elevador de teste (não real)',
+   options:[{floorMenuIndex:0,destinationMapId:122,destinationWarpIndex:5},
+     {floorMenuIndex:1,destinationMapId:123,destinationWarpIndex:2}]};
+ const body=render(s).body.textContent;
+ assert.match(body,/ELEVADOR — PISOS POSSÍVEIS DA ROM/);
+ assert.match(body,/Piso\/opção 1: mapa #122/);
+ assert.match(body,/Piso\/opção 2: mapa #123/);
+ assert.match(body,/disponível agora: por confirmar/);
+ assert.match(body,/condições do script não observadas/);
+ s.romElevatorOptions.mapId=127;
+ assert.doesNotMatch(render(s).body.textContent,/ELEVADOR — PISOS POSSÍVEIS/);
+});
