@@ -6,7 +6,8 @@ const assert=require('node:assert/strict');
 const {diffCampaignProgress}=require('../romCampaignDelta');
 const fs=require('node:fs');
 const path=require('node:path');
-const vm=require('node:vm');
+const {bindMartPrices}=require('../romMartPriceBinding');
+const auditedEconomy=require('../data/gen1EconomyTradesAudited.json');
 const src=fs.readFileSync(path.join(__dirname,'../romCampaignLedger.js'),'utf8');
 const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
 function rig({coinCount=12}={}){
@@ -19,6 +20,8 @@ function rig({coinCount=12}={}){
  const hidden=Array.from({length:54},(_,hiddenIndex)=>({
    hiddenIndex,mapId:15,x:3,y:hiddenIndex%20}));
  const mock={
+  './romMartPriceBinding':{bindMartPrices},
+  './data/gen1EconomyTradesAudited.json':auditedEconomy,
   './romKnownSha256':{isKnownAuditedRomSha:x=>x===sha},
   './romTrainerEvents':{trainerFlagsForCurrentMap:(p,m,flags)=>({
     verified:m.mapId===15,entries:m.mapId===15?[{
@@ -36,10 +39,12 @@ function rig({coinCount=12}={}){
        isCollected:(parseInt(flags[i>>3]||'00',16)&(1<<(i&7)))!==0})):[]})}
  };
  const mod={exports:{}};
- vm.runInNewContext(src,{module:mod,require:id=>{
+ // Execute trusted repository source in the same Node realm to keep
+ // array prototypes identical for deepStrictEqual assertions.
+ new Function('module','require',src)(mod,id=>{
    if(!Object.hasOwn(mock,id))throw Error('Unexpected dependency '+id);
    return mock[id];
- }});
+ });
  return {build:mod.exports.buildCampaignLedger,profile,hex,items,coins};
 }
 function evaluate(x){return x.build({profile:x.profile,
