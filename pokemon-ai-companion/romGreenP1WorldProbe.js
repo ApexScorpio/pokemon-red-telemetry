@@ -50,24 +50,43 @@ function inspectGreenP1Layout(rom){
    if(q===null||q+2>=end)continue;
    q++;const warps=rom[q++];
    if(warps>64||q+4*warps>=end)continue;
-   q+=4*warps;
+   const warpDetails=[];
+   for(let j=0;j<warps;j++){
+     const y=rom[q++],x=rom[q++],destinationWarp=rom[q++],destinationMap=rom[q++];
+     warpDetails.push({ordinal:j+1,x,y,destinationMap,destinationWarp,
+       destinationRequiresRam:destinationMap===255,
+       accessibleNow:null,source:'GREEN_U_P1_ROM_WARP_BYTES'});
+   }
    const signs=rom[q++];
    if(signs>40||q+3*signs>=end)continue;
-   q+=3*signs;
+   const signDetails=[];
+   for(let j=0;j<signs;j++){
+     const y=rom[q++],x=rom[q++],textId=rom[q++];
+     signDetails.push({ordinal:j+1,x,y,textId,
+       textMeaningVerified:false,source:'GREEN_U_P1_ROM_SIGN_BYTES'});
+   }
    const actorCount=rom[q++];
    if(actorCount>48)continue;
    const local={npc:0,trainer:0,item:0,wildPokemon:0};
+   const actorDetails=[];
    let valid=true;
    for(let j=0;j<actorCount;j++){
      if(q+6>end){valid=false;break;}
-     const textId=rom[q+5];q+=6;
+     const spriteId=rom[q],yRaw=rom[q+1],xRaw=rom[q+2],
+       movementByte=rom[q+3],facingByte=rom[q+4],textId=rom[q+5];
+     q+=6;
      const extra=(textId&0x40)?2:(textId&0x80)?1:0;
      if(q+extra>end){valid=false;break;}
-     const meta=extra?rom[q]:null;q+=extra;
+     const metadata=[...rom.subarray(q,q+extra)];
+     const meta=extra?metadata[0]:null;q+=extra;
      const type=(textId&0x40)?
        (meta>=1&&meta<=190?'wildPokemon':'trainer'):
        (textId&0x80?'item':'npc');
      local[type]++;
+     actorDetails.push({ordinal:j+1,type,spriteId,
+       x:xRaw-4,y:yRaw-4,xRaw,yRaw,movementByte,facingByte,textId,
+       metadata,completionVerified:false,accessibleNow:null,
+       textMeaningVerified:false,source:'GREEN_U_P1_ROM_ACTOR_BYTES'});
    }
    if(!valid)continue;
    counts.mapCount++;counts.warps+=warps;counts.signs+=signs;
@@ -76,6 +95,9 @@ function inspectGreenP1Layout(rom){
      heightBlocks:height,warpObjects:warps,signObjects:signs,
      npcObjects:local.npc,trainerObjects:local.trainer,
      visibleItemObjects:local.item,stationaryPokemonObjects:local.wildPokemon,
+     staticObjects:{warps:warpDetails,signs:signDetails,actors:actorDetails,
+       source:'SHA_BOUND_GREEN_U_P1_RAW_OBJECT_RECORDS',
+       liveStateRead:false,conditionalAccessVerified:false},
      accessCurrentlyProven:false,scriptEffectsVerified:false});
  }
  if(Object.entries(expected).some(([k,v])=>counts[k]!==v))
