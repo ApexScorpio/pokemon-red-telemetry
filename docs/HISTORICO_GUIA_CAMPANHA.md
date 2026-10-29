@@ -983,3 +983,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - `retroarchClient.js` passa o alinhamento ROM já disponível e invalida a cache quando a prova de alinhamento muda; `public/app.js` mostra separadamente warps, fronteiras e coordenada de chegada teórica, sem afirmar travessia observada.
 - Acrescentados três testes de regressão em `tests/romCrossMapItemRoute.test.js`: desvio exterior com duas transições, SHA incoerente, chegada sobre água. Corrigida a indicação de esgotamento do orçamento da busca. Mantêm-se `accessibleNow:null` e `routeNavigableNowProven:false`.
 - Verificação desta etapa: parsing JavaScript dos ficheiros alterados; testes de regressão acrescentados mas `npm test` nativo e E2E com ROM/emulador continuam pendentes. O progresso do projeto continua PARCIAL.
+
+## 2026-10-29 — T25b: ordem dos tiles candidatos e prova de teste isolado
+
+- O primeiro teste isolado do código T25 passou 8/9 casos. A nova prova de desvio exterior falhou porque a pesquisa colocava o tile de borda de Y=0 na fila antes do tile de Y=2, junto à posição RAM sintética, embora ambos dessem duas transições. Os outros 8 casos passaram.
+- Corrigido `romCrossMapItemRoute.js` para ordenar as hipóteses de travessia de cada fronteira pelo comprimento geométrico do caminho local antes de as colocar na BFS; desempate estável por Y/X. Sem alteração à prova de acesso: as transições continuam condicionais.
+- Teste nativo Node e funcionamento real em emulador continuam pendentes. A falha e a correção foram acrescentadas sem apagar entradas anteriores.

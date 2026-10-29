@@ -178,6 +178,7 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
      if(!dest)continue;
      const ns=edge.direction==='north'||edge.direction==='south';
      const length=ns?grid.width:grid.height;
+     const options=[];
      for(let axis=0;axis<length;axis++){
        const from=ns?{x:axis,y:edge.direction==='north'?0:grid.height-1}:
          {x:edge.direction==='west'?0:grid.width-1,y:axis};
@@ -189,6 +190,12 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
           tile===0x48||(dest.tilesetId===0&&tile===0x3d))continue;
        const localRoute=exactTilePath(reach,from);
        if(!localRoute)continue;
+       options.push({from,arrival,localRoute});
+     }
+     // Prefer the nearest reachable source tile rather than map-edge order.
+     options.sort((a,b)=>a.localRoute.steps-b.localRoute.steps||
+       a.from.y-b.from.y||a.from.x-b.from.x);
+     for(const {from,arrival,localRoute} of options){
        const destKey=key(edge.destinationMapId,arrival.x,arrival.y);
        if(seen.has(destKey)||queue.length>=maxStates*4)continue;
        seen.add(destKey);
