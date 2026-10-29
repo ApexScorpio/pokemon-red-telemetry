@@ -4,6 +4,7 @@
 const fs=require('node:fs');
 const zlib=require('node:zlib');
 const {KNOWN}=require('./romComprehensiveAudit');
+const {inspectRomBuffer}=require('./romVariantRegistry');
 const {inspectZipProfiles}=require('./romAutoDiscovery');
 
 const ENTRIES=Object.freeze({
@@ -117,11 +118,17 @@ function writeArchiveEntries(entries){
  return zip;
 }
 function buildVerifiedProfileArchive(profiles){
+ // Re-run the real ROM decoder for every variant. Never trust caller-supplied profile JSON.
  if(!profiles||typeof profiles!=='object'||
     Object.keys(profiles).sort().join(',')!=='blue,green,red')
   throw Error('Sao obrigatorios os tres perfis originais Red/Blue/Green International');
- const list=Object.keys(ENTRIES).map(variant=>
-  [ENTRIES[variant],derivedProfile(profiles[variant],variant)]);
+ const list=Object.keys(ENTRIES).map(variant=>{
+  const bytes=profiles[variant];
+  if(!Buffer.isBuffer(bytes)||bytes.length!==1048576)
+   throw Error('ROM original nao fornecida como Buffer completo: '+variant);
+  const profile=inspectRomBuffer(bytes,variant+'.gb');
+  return [ENTRIES[variant],derivedProfile(profile,variant)];
+ });
  return writeArchiveEntries(list);
 }
 function saveVerifiedProfileArchive(destination,profiles){
@@ -146,4 +153,4 @@ function saveVerifiedProfileArchive(destination,profiles){
   throw e;
  }
 }
-module.exports={buildVerifiedProfileArchive,saveVerifiedProfileArchive,derivedProfile};
+module.exports={buildVerifiedProfileArchive,saveVerifiedProfileArchive};
