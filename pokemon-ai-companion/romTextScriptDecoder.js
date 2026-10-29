@@ -45,9 +45,27 @@ function decodeRomTextProgram({rom,offset,maxBytes=1024,maxCommands=64}={}){
        source:'GEN1_ROM_LINEAR_TEXT_COMMAND_STREAM'};
    }
    if(op===0x00){
-     const remaining=Math.min(240,end-ptr);
+     const remaining=Math.min(1024,end-ptr);
      if(remaining<2)return fail('TX_START truncado');
-     const piece=decodeFirstRomText({rom,offset:ptr,maxBytes:remaining-1});
+     // In original Red/Blue a Hall of Fame TX_START literal spans 300
+     // bytes. The 240-byte preview limit is intentionally unchanged;
+     // extended reads are only enabled for this bounded script decoder.
+     if(rom[ptr+1]===0x57||rom[ptr+1]===0x58){
+       // A legal zero-character DONE/PROMPT ends a text command stream.
+       // It has no printable preview and cannot establish an NPC outcome.
+       const endMarker=rom[ptr+1];
+       commands.push('TX_START');
+       return {verified:true,scriptComplete:true,firstStringOnly:false,
+         termination:endMarker===0x57?'TEXT_DONE':'TEXT_PROMPT',
+         text:segments.join(' | '),segments,segmentCount:segments.length,
+         commands,commandCount,byteLength:ptr-offset+2,
+         containsRuntimeText,containsRuntimeCommands,hasDisplayControls,
+         dialogueExecuted:false,textOutcomeVerified:false,
+         npcScriptExecuted:false,scriptEffectsVerified:false,
+         source:'GEN1_ROM_LINEAR_TEXT_COMMAND_STREAM'};
+     }
+     const piece=decodeFirstRomText({rom,offset:ptr,
+       maxBytes:remaining-1,allowExtended:true});
      if(piece.verified!==true)return fail('TX_START não descodificável: '+piece.reason);
      if(segments.length>=12||segments.join('').length+piece.text.length>720)
        return fail('Limite de segmentos literais excedido');
