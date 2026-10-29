@@ -163,3 +163,45 @@ test('wrong map, stale position or truncated exit proof is ignored',()=>{
  cfg.firstMapExitAccess.romSha256='0'.repeat(64);
  assert.equal(campaignObjectives(cfg).firstMapExitAccessCorroborated,false);
 });
+
+test('ROM-aligned outdoor first hop outranks unknown unaligned alternatives',()=>{
+ const cfg=fixture();
+ cfg.position={x:11,y:5};
+ cfg.warpGraph.outdoorConnections.edges=[
+   {sourceMapId:15,destinationMapId:17,direction:'east'}];
+ cfg.firstMapExitAccess={verified:true,romSha256:sha,mapId:15,
+   positionFromRam:{x:11,y:5},truncated:false,exits:[
+     {kind:'WARP',sourceWarpIndex:2,destinationMapId:16,
+       staticDestinationStatus:'STATIC_DESTINATION_WARP_VALIDATED',
+       terrainStatus:'CUT_NOT_USABLE_IN_CURRENT_PARTY'},
+     {kind:'OUTDOOR_BORDER',direction:'east',destinationMapId:17,
+       terrainStatus:'BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED',
+       accessibleNow:null,neighborAlignmentVerified:true}
+   ]};
+ const r=campaignObjectives(cfg);
+ const goal=r.objectives.find(o=>o.mapId===17);
+ assert.equal(r.verified,true);
+ assert.equal(goal.mapHopCount,1);
+ assert.equal(goal.route[0].kind,'OUTDOOR_BOUNDARY');
+ assert.equal(goal.firstTransitionConditionalAccess,
+   'BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED');
+ assert.equal(goal.routeNavigableNowProven,false);
+});
+test('source border with no aligned candidate does not outrank Cut-gated route',()=>{
+ const cfg=fixture();
+ cfg.position={x:11,y:5};
+ cfg.warpGraph.outdoorConnections.edges=[
+   {sourceMapId:15,destinationMapId:17,direction:'east'}];
+ cfg.firstMapExitAccess={verified:true,romSha256:sha,mapId:15,
+   positionFromRam:{x:11,y:5},truncated:false,exits:[
+     {kind:'WARP',sourceWarpIndex:2,destinationMapId:16,
+      staticDestinationStatus:'STATIC_DESTINATION_WARP_VALIDATED',
+      terrainStatus:'THEORETICAL_TERRAIN_PATH'},
+     {kind:'OUTDOOR_BORDER',direction:'east',destinationMapId:17,
+      terrainStatus:'NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK'}
+   ]};
+ const r=campaignObjectives(cfg);
+ const goal=r.objectives.find(o=>o.mapId===17);
+ assert.equal(goal.mapHopCount,2);
+ assert.equal(goal.route[0].kind,'STATIC_WARP');
+});
