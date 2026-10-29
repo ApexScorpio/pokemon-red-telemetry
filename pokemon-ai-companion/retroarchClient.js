@@ -14,6 +14,7 @@ const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
 const {localExitAccess}=require('./romLocalExitAccess');
+const {verifyTerrainVariant}=require('./romTerrainVariantGuard');
 const {suggestWorldDetours}=require('./romWorldDetourCycles');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
@@ -353,6 +354,7 @@ class RetroArchClient extends EventEmitter {
       verified:false,events:[],reason,actionsProven:false};
     this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
     this.latestState.romLocalExitAccess={verified:false,exits:[],reason};
+    this.latestState.romVariantTerrainEvidence={verified:false,reason};
     this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
     this.latestState.romWorldDetourCycles={verified:false,candidates:[],reason};
     this.latestState.worldAdvisor={verified:false,observations:[],reason};
@@ -388,7 +390,8 @@ class RetroArchClient extends EventEmitter {
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
         'romCrossMapItemRoute','romWorldEventAtlas',
         'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions',
-        'romLocalExitAccess','romWorldDetourCycles'
+        'romLocalExitAccess','romWorldDetourCycles',
+        'romVariantTerrainEvidence'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
@@ -1137,7 +1140,10 @@ class RetroArchClient extends EventEmitter {
     };
     // Terrain geometry is derived from the actual SHA-audited ROM.
     // Never treat LAND tile passability as proof of free movement right now.
-    const terrain=this.latestState.romStaticMapGuide?.terrain;
+    this.latestState.romVariantTerrainEvidence=verifyTerrainVariant(
+      this.activeRomProfile);
+    const terrain=this.latestState.romVariantTerrainEvidence.verified===true?
+      this.latestState.romStaticMapGuide?.terrain:null;
     const pos=this.latestState.coords;
     const coordsAgree=terrain?.verified===true && positionWindow.verified===true &&
       terrain.width===this.latestState.mapDimensions.width &&
@@ -1220,7 +1226,7 @@ class RetroArchClient extends EventEmitter {
       this.latestState.movementMode='❔ Modo de deslocação alterado ou não confirmado';
     this.latestState.romMovementOptions=
       inspectMovementOptions(
-        this.latestState.romStaticMapGuide?.terrain,
+        terrain,
         this.activeRomProfile?.world?.terrainAtlas,
         this.latestState.coords,
         modeWindow.verified?modeWindow.modeByte:null,
@@ -1784,7 +1790,8 @@ class RetroArchClient extends EventEmitter {
     const abilitySurf=badgeConfirmed?
       (accessBadge.some(b=>b.obtained&&/soul/i.test(b.name||''))&&knowsMove(57,'SURF')):null;
     const itemAccess=planItemAccess({
-      terrain:this.latestState.romStaticMapGuide?.terrain,
+      terrain:this.latestState.romVariantTerrainEvidence?.verified===true?
+        this.latestState.romStaticMapGuide?.terrain:null,
       romSha256:this.activeRomProfile?.hash?.sha256,
       position:this.latestState.coords,
       items:accessInput,
@@ -2505,7 +2512,8 @@ class RetroArchClient extends EventEmitter {
     const detourTarget=withPath.find(i=>i.romItemCoordinatesVerified===true&&
       i.accessStatus==='NO_SAME_MAP_PATH'&&
       i.isCollected!==true&&Number.isInteger(i.x)&&Number.isInteger(i.y));
-    if(detourTarget&&this.activeRomProfile?.world?.terrainAtlas?.verified===true&&
+    if(detourTarget&&this.latestState.romVariantTerrainEvidence?.verified===true&&
+      this.activeRomProfile?.world?.terrainAtlas?.verified===true&&
       this.latestState.romWarpGraph?.verified===true&&positionWindow.verified===true){
       const spritePositions=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
         Array.isArray(this.latestState.mapEntities)?
@@ -2574,7 +2582,9 @@ class RetroArchClient extends EventEmitter {
     });
     // All local exits are inspected against current ROM terrain and the
     // corroborated RAM position. Outdoor borders/elevators remain conditional.
-    this.latestState.romLocalExitAccess=localExitAccess({
+    this.latestState.romLocalExitAccess=
+      this.latestState.romVariantTerrainEvidence?.verified===true?
+      localExitAccess({
       profile:this.activeRomProfile,
       warpGraph:this.latestState.romWarpGraph,
       mapId:this.latestState.mapId,
@@ -2588,7 +2598,8 @@ class RetroArchClient extends EventEmitter {
       mapEntities:Array.isArray(this.latestState.mapEntities)?
         this.latestState.mapEntities:[],
       elevatorChoices:this.latestState.romElevatorOptions
-    });
+    }):{verified:false,exits:[],
+      reason:'Matrizes de terreno não correspondem à ROM desta variante'};
     // If a local item cannot be approached, search map-level return loops.
     // This NEVER proves that a loop lands on the other side of the ledge.
     if(detourTarget&&this.latestState.romLocalExitAccess?.verified===true&&
