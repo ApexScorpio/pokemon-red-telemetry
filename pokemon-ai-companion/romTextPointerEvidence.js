@@ -1,6 +1,7 @@
 'use strict';
 // Exact Gen I ROM text table address classification, never script outcome.
 const {decodeFirstRomText}=require('./romStaticDialogue');
+const {decodeRomTextProgram}=require('./romTextScriptDecoder');
 const BANK=0x4000;
 const validByte=x=>Number.isInteger(x)&&x>=0&&x<=255;
 const cpuToFile=(rom,bank,cpu)=>{
@@ -56,12 +57,23 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
      fileOffset:target,startsWithTxStart:true});
    // Incomplete or unknown text must NOT invalidate a structurally valid TX_FAR.
    const preview=decodeFirstRomText({rom,offset:target});
-   if(preview.verified===true)
+   if(preview.verified===true){
+     const program=decodeRomTextProgram({rom,offset:target});
      staticTextPreview={verified:true,text:preview.text,
        firstStringOnly:true,
        containsRuntimeVariables:preview.containsRuntimeVariables,
        dialogueExecuted:false,textOutcomeVerified:false,
        source:preview.source};
+     // The entire linear TX_START/TX_* stream is only advertised if its
+     // bytecode ends at TX_END. An ASM jump or nested far call is unproven.
+     if(program.verified===true&&program.scriptComplete===true)
+       staticTextPreview.program={verified:true,scriptComplete:true,
+         text:program.text,segmentCount:program.segmentCount,
+         containsRuntimeText:program.containsRuntimeText,
+         containsRuntimeCommands:program.containsRuntimeCommands,
+         dialogueExecuted:false,textOutcomeVerified:false,
+         scriptEffectsVerified:false};
+   }
  }
  return {verified:true,romBank:at<BANK?0:mapBank,
    textPointerCpu:raw,textFileOffset:at,firstByte,
