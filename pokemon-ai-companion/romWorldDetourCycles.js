@@ -7,11 +7,15 @@ const validId=n=>Number.isInteger(n)&&n>=0&&n<248;
 const fail=reason=>({verified:false,reason,candidates:[],
   targetAccessProven:false,currentTraversalProven:false});
 function suggestWorldDetours({warpGraph,localExits,romSha256,
- mapId,target,localPathAbsent=false,maxHops=9,maxStates=800,
+ mapId,target,localPathAbsent=false,localPathConditional=false,
+ maxHops=9,maxStates=800,
  maxSuggestions=4}={}){
  const sha=String(romSha256||'').toLowerCase();
  if(!isKnownAuditedRomSha(sha)||!validId(mapId)||
-    !localPathAbsent||target?.mapId!==mapId||
+    (localPathAbsent===localPathConditional)||
+    typeof localPathAbsent!=='boolean'||
+    typeof localPathConditional!=='boolean'||
+    target?.mapId!==mapId||
     !Number.isInteger(target.x)||target.x<0||
     !Number.isInteger(target.y)||target.y<0||
     !Number.isInteger(maxHops)||maxHops<2||maxHops>16||
@@ -139,6 +143,8 @@ function suggestWorldDetours({warpGraph,localExits,romSha256,
    a.transitions-b.transitions||a.mapIds.join(':').localeCompare(b.mapIds.join(':')));
  return {verified:true,romSha256:sha,mapId,
    target:{mapId,x:target.x,y:target.y},
+   localPathEvidence:localPathAbsent?
+     'NO_SAME_MAP_PATH':'CONDITIONAL_LOCAL_BARRIER',
    candidates,exploredStates:explored,
    searchBudgetExhausted:queue.length>0&&explored>=maxStates,
    suggestionsTruncated:queue.length>0&&candidates.length>=maxSuggestions,

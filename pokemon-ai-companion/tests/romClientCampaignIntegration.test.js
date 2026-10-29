@@ -234,3 +234,9 @@ test('Strength D728 is decoded from existing world RAM and excluded from persist
  assert.match(method('invalidateWorldEvidence','loadPersistedState'),
    /romStrengthFieldEvidence=\{verified:false,activeAtSample:null/);
 });
+
+test('world return cycles never falsely call conditional Cut/Surf/Strength an absent path',()=>{
+ assert.match(source,/localPathAbsent:detourTarget\.accessStatus==='NO_SAME_MAP_PATH'/);
+ assert.match(source,/localPathConditional:detourTarget\.accessStatus!=='NO_SAME_MAP_PATH'/);
+ assert.match(source,/detourTarget\.x,detourTarget\.y,detourTarget\.accessStatus/);
+});

@@ -1084,3 +1084,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Novo módulo `romStrengthFieldEvidence.js` exige SHA conhecida, identidade da ROM ativa, janela do mapa e coordenadas corroboradas, bloco de 784 bytes completo e hexadecimal válido. Devolve `activeAtSample` verdadeiro/falso ou `null` quando falta prova; conserva `snapshotAtomicVerified:false` e `pushObserved:false`.
 - O cliente integra a flag com os resultados de Strength e publica `romStrengthFieldEvidence` apenas como dado transitório, invalidado e não persistido em caches. A interface distingue flag ativa, inativa ou desconhecida, sem confundir esse bit com um empurrão realmente executado.
 - Testes de decoder, ligação RAM→cliente e renderização adicionados. Em V8 a rotina efetivamente editada distinguiu corretamente 00/02 (inativo), 01/81 (ativo) e rejeitou mapa incoerente; parsing de seis ficheiros concluído. Não foi executado `npm test` nativo nem prova E2E da ROM ativa.
+
+
+## 2026-10-29 — T37: distinguir desvio por percurso local inexistente de capacidade condicional
+
+- Após T33, os ciclos de retorno `suggestWorldDetours` eram chamados com `localPathAbsent:true` para **todos** os itens, incluindo os que têm caminho local condicional (Cut, Surf ou Strength). Corrigida essa falsa premissa.
+- O motor aceita agora duas provas mutuamente exclusivas: `localPathAbsent:true` para `NO_SAME_MAP_PATH`, ou `localPathConditional:true` para capacidades/obstáculos locais que ainda podem ter alternativa via mapa adjacente. Ambos os modos continuam hipóteses topológicas, sem `targetAccessProven`.
+- O cliente envia o modo de forma explícita por `accessStatus` e inclui o estado na chave de cache, evitando reutilizar uma hipótese anterior com premissa diferente. O resultado publicado inclui `localPathEvidence: NO_SAME_MAP_PATH|CONDITIONAL_LOCAL_BARRIER`.
+- Adicionados testes à suite do motor e à integração. Verificação em V8 com módulo efetivo: ciclo de três mapas encontrado nos dois modos, ambos os modos ausentes ou ambos presentes rejeitados, e sem acesso garantido. Parsing JS completo dos quatro ficheiros validado. Teste nativo Node integral e emulador continuam não realizados.

@@ -2752,7 +2752,7 @@ class RetroArchClient extends EventEmitter {
       const key=JSON.stringify([
         this.activeRomProfile?.hash?.sha256,
         this.latestState.mapId,this.latestState.coords,
-        detourTarget.x,detourTarget.y,
+        detourTarget.x,detourTarget.y,detourTarget.accessStatus,
         this.latestState.romLocalExitAccess.exits.map(e=>[
           e.kind,e.sourceWarpIndex,e.destinationMapId,e.terrainStatus])
       ]);
@@ -2764,7 +2764,9 @@ class RetroArchClient extends EventEmitter {
           mapId:this.latestState.mapId,
           target:{mapId:this.latestState.mapId,
             x:detourTarget.x,y:detourTarget.y},
-          localPathAbsent:true,maxHops:9,maxStates:500,maxSuggestions:3
+          localPathAbsent:detourTarget.accessStatus==='NO_SAME_MAP_PATH',
+          localPathConditional:detourTarget.accessStatus!=='NO_SAME_MAP_PATH',
+          maxHops:9,maxStates:500,maxSuggestions:3
         });
         this._worldDetourCyclesKey=key;
       }

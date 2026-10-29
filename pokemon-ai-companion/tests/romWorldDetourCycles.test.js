@@ -135,3 +135,19 @@ test('return-cycle carries ROM-aligned outdoor landing without declaring travers
  assert.equal(first.canTraverseNowProven,false);
  assert.equal(r.candidates[0].returnsToTargetSideProven,false);
 });
+
+test('a conditional Cut or Strength route can motivate a cycle without falsifying local-path absence',()=>{
+ const f=fixture();
+ const cut=suggestWorldDetours({...f,localPathAbsent:false,
+   localPathConditional:true});
+ assert.equal(cut.verified,true,cut.reason);
+ assert.equal(cut.localPathEvidence,'CONDITIONAL_LOCAL_BARRIER');
+ assert.equal(cut.candidates.length,1);
+ assert.equal(cut.targetAccessProven,false);
+ const noPath=suggestWorldDetours(f);
+ assert.equal(noPath.localPathEvidence,'NO_SAME_MAP_PATH');
+ assert.equal(suggestWorldDetours({...f,localPathAbsent:false,
+   localPathConditional:false}).verified,false);
+ assert.equal(suggestWorldDetours({...f,localPathAbsent:true,
+   localPathConditional:true}).verified,false);
+});
