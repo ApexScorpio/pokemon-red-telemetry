@@ -2818,6 +2818,11 @@ class RetroArchClient extends EventEmitter {
     const remoteTerrainOK=this.latestState.romVariantTerrainEvidence?.verified===true&&
       this.latestState.romVariantTerrainEvidence?.romSha256===
       this.activeRomProfile?.hash?.sha256;
+    const remoteGraphOK=this.latestState.romWarpGraph?.verified===true&&
+      this.latestState.romWarpGraph?.romSha256===
+      this.activeRomProfile?.hash?.sha256;
+    const remoteSearchReady=remoteTerrainOK&&remoteGraphOK&&
+      mapConfirmation.verified===true&&positionWindow.verified===true;
     const remoteSpriteSnapshot=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
       Array.isArray(this.latestState.mapEntities)?
       this.latestState.mapEntities.map(a=>[a.x,a.y,a.type,a.pictureId]):null;
@@ -2826,13 +2831,15 @@ class RetroArchClient extends EventEmitter {
       this.latestState.mapId,this.latestState.coords,
       remoteSelection.verified===true?
         remoteSelection.items.map(t=>[t.kind,t.mapId,t.x,t.y,t.bitIndex]):null,
-      remoteTerrainOK,abilityCut,abilitySurf,
+      remoteSearchReady,remoteGraphOK,
+      this.latestState.romOutdoorReferenceEvidence?.verified===true,
+      abilityCut,abilitySurf,
       modeWindow.verified?modeWindow.modeByte:null,
       this.latestState.romOutdoorAlignment?.verified===true,
       remoteSpriteSnapshot
     ]);
     if(this._globalFlagItemKey!==remoteKey){
-      this._globalFlagItemRoutes=remoteTerrainOK?
+      this._globalFlagItemRoutes=remoteSearchReady?
         planGlobalFlagItemRoutes({
           ledger:this.latestState.globalCampaignLedger,
           objectives:this.latestState.globalCampaignObjectives,
@@ -2849,7 +2856,7 @@ class RetroArchClient extends EventEmitter {
           maxTargets:4,maxStates:180,maxTransitions:10
         }):
         {verified:false,items:[],accessibleNow:null,
-          reason:'Terreno da variante ROM não corroborado para rotas mundiais'};
+          reason:'Terreno, grafo ROM ou janela de posição não corroborados para rotas mundiais'};
       this._globalFlagItemKey=remoteKey;
     }
     this.latestState.globalFlagItemRoutes=this._globalFlagItemRoutes;

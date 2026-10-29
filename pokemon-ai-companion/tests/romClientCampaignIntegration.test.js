@@ -285,3 +285,34 @@ test('remote pending flag items are routed once with verified ROM and RAM and ne
  assert.match(method('invalidateWorldEvidence','loadPersistedState'),
    /globalFlagItemRoutes=\{verified:false,items:\[\],reason\}/);
 });
+
+test('remote flags cache closes when warp graph or position window loses proof',()=>{
+ const first=source.indexOf('    const remoteSelection=selectGlobalFlagTargets({');
+ const end=source.indexOf('    this.latestState.worldAdvisor=adviseWorld({',first);
+ assert.ok(first>=0&&end>first);
+ const block=source.slice(first,end);
+ assert.match(block,/remoteGraphOK/);
+ assert.match(block,/remoteSearchReady/);
+ assert.match(block,/this\._globalFlagItemRoutes=remoteSearchReady\?/);
+ const fn=vm.runInNewContext('(function(mapConfirmation,positionWindow,modeWindow,abilityCut,abilitySurf,selectGlobalFlagTargets,planGlobalFlagItemRoutes){'+
+   block+'\nreturn this.latestState.globalFlagItemRoutes;})');
+ const context={activeRomProfile:{hash:{sha256:'sha'},world:{terrainAtlas:{verified:true}}},
+   latestState:{mapId:15,coords:{x:1,y:1},
+     romVariantTerrainEvidence:{verified:true,romSha256:'sha'},
+     romWarpGraph:{verified:true,romSha256:'sha'},
+     romOutdoorReferenceEvidence:{verified:true},
+     romOutdoorAlignment:{verified:true},
+     memoryReadStatus:{blocks:{overworldSprites:true}},mapEntities:[],
+     globalCampaignLedger:{verified:true},globalCampaignObjectives:{verified:true}}};
+ let calls=0;
+ const select=()=>({verified:true,items:[{kind:'HIDDEN_ITEM',mapId:3,x:5,y:5,bitIndex:4}]});
+ const route=()=>{calls++;return {verified:true,items:[],foundCount:0}};
+ const run=(positionVerified=true)=>fn.call(context,{verified:true},{verified:positionVerified},
+   {verified:true,modeByte:0},false,false,select,route);
+ assert.equal(run().verified,true);assert.equal(run().verified,true);assert.equal(calls,1);
+ context.latestState.romWarpGraph.verified=false;
+ assert.equal(run().verified,false);assert.equal(calls,1);
+ context.latestState.romWarpGraph.verified=true;
+ assert.equal(run().verified,true);assert.equal(calls,2);
+ assert.equal(run(false).verified,false);assert.equal(calls,2);
+});

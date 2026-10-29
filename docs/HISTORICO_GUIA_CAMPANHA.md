@@ -1129,3 +1129,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - A pesquisa partilhada fica limitada a 180 estados e 10 transições, com cache dependente da posição, mapa, flags selecionadas, capacidades, sprites e alinhamento das fronteiras. `globalFlagItemRoutes` é invalidado com a sessão RAM e excluído de ambas as caches em disco.
 - `public/app.js` mostra até quatro alvos remotos, o mapa, coordenadas ROM, número teórico de warps/fronteiras e primeira saída candidata. Nunca apresenta acesso ou recolha garantidos. SHA ou mapa divergente suprimem a secção.
 - Adicionados testes à integração e ao painel, com parsing JS aprovado. Estes testes foram publicados para execução; não equivalem a `npm test` nativo nem ao emulador ativo.
+
+
+## 2026-10-29 — T41: invalidação de rotas mundiais ao perder prova RAM/ROM
+
+- A cache T40b era sensível a mapa/posição/flags e bool do alinhamento exterior, mas a perda de `romWarpGraph.verified` ou a inconsistência da janela RAM não estavam explicitamente contempladas na prontidão da pesquisa. Corrigido `retroarchClient.js`: `remoteSearchReady` exige terreno da variante, grafo da mesma SHA, mapa e coordenadas corroborados.
+- A chave de cache inclui `remoteSearchReady`, validade do grafo ROM e prova de referência das conexões exteriores; a perda de prova descarta resultados antigos e devolve `verified:false` em vez de mostrar percursos de uma leitura passada.
+- Regressão acrescentada à suite de integração com execução do bloco real do cliente: 2 leituras iguais usam 1 pesquisa, perda de grafo invalida, restituição reexecuta (2), perda de posição invalida novamente. V8/parsing aprovados; não equivale a Node ou gameplay nativo.
