@@ -20,10 +20,12 @@ const symbols=new Map([
 const dynamicBytes=new Set([0x52,0x53,0x59,0x5a]);
 const fail=reason=>({verified:false,reason,text:null,firstStringOnly:true,
  textOutcomeVerified:false,dialogueExecuted:false});
-function decodeFirstRomText({rom,offset,maxBytes=240}={}){
+function decodeFirstRomText({rom,offset,maxBytes=240,allowExtended=false}={}){
  if(!Buffer.isBuffer(rom)||rom.length!==1048576||
     !Number.isInteger(offset)||offset<0||offset>=rom.length||
-    !Number.isInteger(maxBytes)||maxBytes<1||maxBytes>240)
+    !Number.isInteger(maxBytes)||maxBytes<1||
+    maxBytes>(allowExtended===true?1024:240)||
+    typeof allowExtended!=='boolean')
    return fail('Parâmetros ou ROM inválidos');
  if(rom[offset]!==0x00)return fail('Destino não é TX_START');
  const bankEnd=Math.min(rom.length,(Math.floor(offset/BANK_SIZE)+1)*BANK_SIZE);
