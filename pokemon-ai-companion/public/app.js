@@ -1117,7 +1117,7 @@ function renderWorldAdvisor(state) {
           (Number.isInteger(item.itemId)?' • ID item ROM #'+item.itemId:'')+
           ' — recolha por confirmar; '+(
             Number.isInteger(row.mapHopCount)?
-              row.mapHopCount+' transições estáticas hipotéticas':
+              row.mapHopCount+(row.mapHopCount===1? ' transição estática hipotética':' transições estáticas hipotéticas'):
               'rota estática por determinar'));
       }
       summary.push('⚠️ Presença estática na ROM não significa item ainda disponível.','');
@@ -1178,7 +1178,7 @@ function renderWorldAdvisor(state) {
             ' / CPU 0x'+textCpu.toString(16).toUpperCase()+']':'')+
           preview+' — diálogo/texto restante e efeitos por interpretar; '+
           (Number.isInteger(row.mapHopCount)?
-            row.mapHopCount+' transições estáticas hipotéticas':
+            row.mapHopCount+(row.mapHopCount===1? ' transição estática hipotética':' transições estáticas hipotéticas'):
             'rota estática por determinar'));
       }
       summary.push('⚠️ Coordenada ROM não demonstra que a interação esteja disponível agora.','');
