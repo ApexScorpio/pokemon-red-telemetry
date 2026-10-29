@@ -843,6 +843,8 @@ function renderWorldAdvisor(state) {
             out.push('   Tile DESTINO de referência: X:'+
               candidate.destinationTile.x+' Y:'+candidate.destinationTile.y+
               ' ('+candidate.destinationTerrainStatus+
+              '; '+(candidate.destinationCapabilityStatus||
+                'capacidade de chegada não verificada')+
               '; transferência no jogo NÃO comprovada)');
         }
       }
