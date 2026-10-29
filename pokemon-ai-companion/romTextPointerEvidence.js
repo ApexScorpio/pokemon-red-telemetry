@@ -1,5 +1,6 @@
 'use strict';
 // Exact Gen I ROM text table address classification, never script outcome.
+const {decodeFirstRomText}=require('./romStaticDialogue');
 const BANK=0x4000;
 const validByte=x=>Number.isInteger(x)&&x>=0&&x<=255;
 const cpuToFile=(rom,bank,cpu)=>{
@@ -28,6 +29,7 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
    return fail('Destino de texto não corroborado em ROM0 ou ROMX');
  const firstByte=rom[at],command=labels[firstByte]||'TEXT_OPCODE_UNCLASSIFIED';
  const far={verified:false};
+ let staticTextPreview=null;
  // TX_SCRIPT_MART ($FE) has [opcode, count, item IDs..., $FF].
  // This is a static ROM list, never evidence that the shop was opened.
  let mart=null;
@@ -52,10 +54,18 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
      return fail('Segundo destino TX_FAR não corroborado');
    Object.assign(far,{verified:true,cpu:farCpu,bank:farBank,
      fileOffset:target,startsWithTxStart:true});
+   // Incomplete or unknown text must NOT invalidate a structurally valid TX_FAR.
+   const preview=decodeFirstRomText({rom,offset:target});
+   if(preview.verified===true)
+     staticTextPreview={verified:true,text:preview.text,
+       firstStringOnly:true,
+       containsRuntimeVariables:preview.containsRuntimeVariables,
+       dialogueExecuted:false,textOutcomeVerified:false,
+       source:preview.source};
  }
  return {verified:true,romBank:at<BANK?0:mapBank,
    textPointerCpu:raw,textFileOffset:at,firstByte,
-   command,far:far.verified?far:null,mart,
+   command,far:far.verified?far:null,mart,staticTextPreview,
    textOutcomeVerified:false,dialogueExecuted:false,
    source:'ROM_STATIC_TEXT_POINTER_ONLY'};
 }
