@@ -1,0 +1,115 @@
+{
+  "schema": "POKEGUIDE_ROM_UPLOAD_T65_AUDIT_V1",
+  "date": "2026-10-29",
+  "provenance": "Independent read-only Python port of published ROM header/text algorithms over three exact user-provided binaries; not a native Node/emulator run",
+  "roms": [
+    {
+      "variant": "RED",
+      "container": "Pokemon - Red Version (UE)[!](1).zip",
+      "entry": "Pokemon Red.gb",
+      "sizeBytes": 1048576,
+      "sha256": "5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b",
+      "acceptedByExistingCompanion": true,
+      "mapPointerTableOffset": 430,
+      "mapBankTableOffset": 49725,
+      "counts": {
+        "maps": 226,
+        "warps": 813,
+        "signs": 202,
+        "npc": 472,
+        "trainer": 334,
+        "visibleItems": 106,
+        "stationaryPokemon": 12,
+        "interactions": 674,
+        "textPointersResolved": 674,
+        "farTextTargets": 453
+      },
+      "linearText": {
+        "targets": 453,
+        "complete": 453,
+        "literalSegments": 452,
+        "emptyScripts": 1,
+        "readFromRam": 4,
+        "terminationTextDone": 438,
+        "terminationTxEnd": 15,
+        "multiSegmentScripts": 0
+      },
+      "textEffectsVerified": false
+    },
+    {
+      "variant": "BLUE",
+      "container": "Pokemon_Blue_Version[romsretro.com].zip",
+      "entry": "Pokemon Blue.gb",
+      "sizeBytes": 1048576,
+      "sha256": "2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d",
+      "acceptedByExistingCompanion": true,
+      "mapPointerTableOffset": 430,
+      "mapBankTableOffset": 49725,
+      "counts": {
+        "maps": 226,
+        "warps": 813,
+        "signs": 202,
+        "npc": 472,
+        "trainer": 334,
+        "visibleItems": 106,
+        "stationaryPokemon": 12,
+        "interactions": 674,
+        "textPointersResolved": 674,
+        "farTextTargets": 453
+      },
+      "linearText": {
+        "targets": 453,
+        "complete": 453,
+        "literalSegments": 452,
+        "emptyScripts": 1,
+        "readFromRam": 4,
+        "terminationTextDone": 438,
+        "terminationTxEnd": 15,
+        "multiSegmentScripts": 0
+      },
+      "textEffectsVerified": false
+    },
+    {
+      "variant": "GREEN_U_P1",
+      "file": "Pokemon Green (U) [p1][!].gb",
+      "sizeBytes": 1048576,
+      "sha256": "5f31568f93c9d238b25e8f0f21e0f70dd1e20279065ff4d359d6147b8b692eeb",
+      "acceptedByExistingCompanion": false,
+      "existingGreenInternationalSha256": "aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db",
+      "mapPointerTableOffset": 7115,
+      "mapBankTableOffset": 51331,
+      "counts": {
+        "maps": 226,
+        "warps": 813,
+        "signs": 204,
+        "npc": 472,
+        "trainer": 334,
+        "visibleItems": 106,
+        "stationaryPokemon": 12,
+        "interactions": 676,
+        "textPointersResolved": 676
+      },
+      "textFirstByteHistogram": {
+        "20": 1,
+        "ed": 431,
+        "08": 177,
+        "00": 22,
+        "ff": 12,
+        "f6": 12,
+        "fe": 14,
+        "f5": 3,
+        "f7": 3,
+        "cb": 1
+      },
+      "textOpcodeMeaningVerified": false,
+      "liveCompanionSupported": false,
+      "notes": "Static header/object alignment only; must not classify $ed as TX_FAR or apply Red/Blue English charmap."
+    }
+  ],
+  "constraints": {
+    "romOrSaveBytesPublished": false,
+    "gameplayExecuted": false,
+    "emulatorRamObserved": false,
+    "sourceModuleNativeNodeTestsAfterFix": false
+  }
+}
