@@ -3,6 +3,7 @@
 // are NOT a substitute for 3 original ROMs and live emulator snapshots.
 const test=require('node:test');
 const assert=require('node:assert/strict');
+const {diffCampaignProgress}=require('../romCampaignDelta');
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
@@ -90,4 +91,25 @@ test('no global state on uncorroborated live map or ROM',()=>{
 test('missing any one of 12 hidden coin records rejects completeness',()=>{
  const x=rig({coinCount:11});
  assert.equal(evaluate(x).verified,false);
+});
+
+test('end-to-end ledger snapshots yield exact, distinct bit changes',()=>{
+ const x=rig();
+ const before=evaluate(x);
+ x.items[0]='01';
+ x.coins[0]='01';
+ x.hex[1]='04';
+ x.hex[0]='01';
+ const after=evaluate(x);
+ assert.equal(before.verified,true);
+ assert.equal(after.verified,true);
+ const d=diffCampaignProgress({previous:before,current:after});
+ assert.equal(d.verified,true);
+ assert.equal(d.granularity,'EXACT_ROM_EVENT_BIT');
+ assert.deepEqual(d.changes.map(c=>c.kind).sort(),[
+   'HIDDEN_COIN_FLAG_RAISED','HIDDEN_ITEM_FLAG_RAISED',
+   'STATIONARY_GATE_FLAG_RAISED','TRAINER_GATE_FLAG_RAISED'
+ ].sort());
+ assert.ok(d.changes.every(c=>Number.isInteger(c.bitIndex)));
+ assert.ok(d.changes.every(c=>c.playerActionConfirmed===false));
 });
