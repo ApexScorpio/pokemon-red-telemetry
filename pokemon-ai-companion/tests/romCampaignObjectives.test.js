@@ -125,3 +125,41 @@ test('stale or wrong SHA first-hop hint is ignored, never certifies a path',()=>
  r=campaignObjectives(cfg);
  assert.equal(r.firstMapTerrainHintsCorroborated,false);
 });
+
+test('live Cut-capable first warp outranks shorter unreachable local warp',()=>{
+ const cfg=fixture();
+ cfg.warpGraph.edges[2]={sourceMapId:15,destinationMapId:17,
+   status:'STATIC_DESTINATION_WARP_VALIDATED',landing:{mapId:17},
+   sourceWarpIndex:7};
+ cfg.position={x:11,y:5};
+ cfg.firstMapExitAccess={verified:true,romSha256:sha,mapId:15,
+   positionFromRam:{x:11,y:5},truncated:false,exits:[
+    {kind:'WARP',sourceWarpIndex:2,destinationMapId:16,
+     staticDestinationStatus:'STATIC_DESTINATION_WARP_VALIDATED',
+     terrainStatus:'TERRAIN_PATH_REQUIRES_CUT_ACTION'},
+    {kind:'WARP',sourceWarpIndex:7,destinationMapId:17,
+     staticDestinationStatus:'STATIC_DESTINATION_WARP_VALIDATED',
+     terrainStatus:'NO_LOCAL_TERRAIN_PATH_NOT_PROOF_OF_LOCK'}
+   ]};
+ const r=campaignObjectives(cfg),goal=r.objectives.find(x=>x.mapId===17);
+ assert.equal(r.verified,true);
+ assert.equal(r.firstMapExitAccessCorroborated,true);
+ assert.equal(goal.mapHopCount,2);
+ assert.equal(goal.route[0].destinationMapId,16);
+ assert.equal(goal.firstTransitionConditionalAccess,
+   'TERRAIN_PATH_REQUIRES_CUT_ACTION');
+ assert.equal(goal.routeNavigableNowProven,false);
+});
+test('wrong map, stale position or truncated exit proof is ignored',()=>{
+ const cfg=fixture();
+ cfg.position={x:11,y:5};
+ cfg.firstMapExitAccess={verified:true,romSha256:sha,mapId:15,
+   positionFromRam:{x:8,y:5},truncated:false,exits:[]};
+ assert.equal(campaignObjectives(cfg).firstMapExitAccessCorroborated,false);
+ cfg.firstMapExitAccess.positionFromRam={x:11,y:5};
+ cfg.firstMapExitAccess.truncated=true;
+ assert.equal(campaignObjectives(cfg).firstMapExitAccessCorroborated,false);
+ cfg.firstMapExitAccess.truncated=false;
+ cfg.firstMapExitAccess.romSha256='0'.repeat(64);
+ assert.equal(campaignObjectives(cfg).firstMapExitAccessCorroborated,false);
+});
