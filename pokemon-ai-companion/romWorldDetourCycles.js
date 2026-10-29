@@ -46,19 +46,28 @@ function suggestWorldDetours({warpGraph,localExits,romSha256,
    for(const e of borders.edges)add({kind:'OUTDOOR_BORDER',
      sourceMapId:e.sourceMapId,destinationMapId:e.destinationMapId,
      direction:e.direction});
+ const evidenceFor=e=>localExits.exits.find(x=>
+   x.kind===e.kind&&x.destinationMapId===e.destinationMapId&&
+   (e.kind!=='WARP'||x.sourceWarpIndex===e.sourceWarpIndex)&&
+   (e.kind!=='OUTDOOR_BORDER'||x.direction===e.direction))||null;
  const firstRank=e=>{
-   const current=localExits.exits.find(x=>
-     x.kind===e.kind&&x.destinationMapId===e.destinationMapId&&
-     (e.kind!=='WARP'||x.sourceWarpIndex===e.sourceWarpIndex));
+   const current=evidenceFor(e);
    if(!current)return 4;
    if(['THEORETICAL_TERRAIN_PATH',
      'TERRAIN_PATH_REQUIRES_CUT_ACTION',
      'TERRAIN_PATH_REQUIRES_SURF_ACTION'].includes(current.terrainStatus))return 0;
+   if(current.terrainStatus==='BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN')
+     return 1;
    if(['CUT_NOT_USABLE_IN_CURRENT_PARTY','SURF_NOT_USABLE_IN_CURRENT_PARTY',
      'CUT_CAPABILITY_NOT_VERIFIED','SURF_CAPABILITY_NOT_VERIFIED',
-     'CUT_AND_SURF_HYPOTHETICAL'].includes(current.terrainStatus))return 2;
-   if(e.kind==='OUTDOOR_BORDER')return 1;
-   return 3;
+     'CUT_AND_SURF_HYPOTHETICAL',
+     'BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN'].includes(current.terrainStatus))
+     return 2;
+   if(['NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK',
+     'NO_LOCAL_TERRAIN_PATH_NOT_PROOF_OF_LOCK',
+     'ROM_EXIT_TILE_OUTSIDE_MAP'].includes(current.terrainStatus))
+     return 3;
+   return 4;
  };
  const firsts=(links.get(mapId)||[]).slice().sort((a,b)=>
    firstRank(a)-firstRank(b));
@@ -89,6 +98,22 @@ function suggestWorldDetours({warpGraph,localExits,romSha256,
          transitionsEvidence:path,firstExitTerrainRank:state.firstRank,
          startsWithConditionalCapability:state.firstRank===2,
          includesOutdoorBorder:path.some(x=>x.kind==='OUTDOOR_BORDER'),
+         firstExitEvidence:(()=>{
+           const observed=evidenceFor(first);
+           if(!observed)return {known:false};
+           const borderTile=observed.kind==='OUTDOOR_BORDER'?
+             observed.borderEvidence?.borderTiles?.[0]?.tile:null;
+           const firstStep=observed.kind==='OUTDOOR_BORDER'?
+             observed.borderEvidence?.borderTiles?.[0]?.firstTerrainStep:
+             observed.approach?.nextStep;
+           return {known:true,kind:first.kind,
+             fromMapId:mapId,toMapId:first.destinationMapId,
+             terrainStatus:observed.terrainStatus,
+             firstTerrainStep:firstStep??null,
+             candidateBorderTile:borderTile??null,
+             crossingAlignmentVerified:false,
+             canTraverseNowProven:false};
+         })(),
          scriptsAndDynamicBarriersVerified:false,
          returnsToTargetSideProven:false,
          passageIntoItemTileProven:false,usableNow:null});
