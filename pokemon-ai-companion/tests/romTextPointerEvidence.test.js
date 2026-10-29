@@ -118,3 +118,29 @@ test('TX_FAR mantém primeira prévia mas nunca certifica programa ASM',()=>{
  assert.equal(r.staticTextPreview.program,undefined);
  assert.equal(r.textOutcomeVerified,false);
 });
+
+test('TX_FAR long Hall of Fame style text is no longer silently omitted',()=>{
+ const f=fixture(),target=41*0x4000+0x374;
+ f.rom.writeUInt16LE(0x24e5,f.table);
+ f.rom.set([0x17,0x74,0x43,41],0x24e5);
+ f.rom.set([0,...Array(298).fill(0x80),0x57],target);
+ const r=resolveStaticTextPointer({...f,textId:1});
+ assert.equal(r.verified,true);
+ assert.equal(r.staticTextPreview.verified,true);
+ assert.equal(r.staticTextPreview.text.length,298);
+ assert.equal(r.staticTextPreview.program.verified,true);
+ assert.equal(r.staticTextPreview.program.termination,'TEXT_DONE');
+ assert.equal(r.staticTextPreview.program.segmentCount,1);
+ assert.equal(r.staticTextPreview.dialogueExecuted,false);
+});
+test('TX_FAR empty DONE is structurally valid but has no invented dialogue',()=>{
+ const f=fixture(),target=41*0x4000+0x374;
+ f.rom.writeUInt16LE(0x24e5,f.table);
+ f.rom.set([0x17,0x74,0x43,41],0x24e5);
+ f.rom.set([0,0x57],target);
+ const r=resolveStaticTextPointer({...f,textId:1});
+ assert.equal(r.verified,true);
+ assert.equal(r.far.verified,true);
+ assert.equal(r.staticTextPreview,null);
+ assert.equal(r.dialogueExecuted,false);
+});
