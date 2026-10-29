@@ -29,8 +29,8 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,maxResults=12}={}){
  // an expensive one-to-one route search for each possible goal.
  const graphOK=warpGraph?.verified===true&&
    warpGraph.romSha256===ledger.romSha256&&
-   Array.isArray(warpGraph.edges)&&
-   warpGraph.totalWarpEntries===813;
+   Array.isArray(warpGraph.edges)&&warpGraph.edges.length===813&&
+   warpGraph.totalWarpEntries===813&&warpGraph.normalMapHeaders===226;
  const links=new Map();
  const add=(source,dest,kind,detail)=>{
    if(!mapIds.has(source)||!mapIds.has(dest))return;
