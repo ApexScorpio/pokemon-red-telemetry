@@ -989,3 +989,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - O primeiro teste isolado do código T25 passou 8/9 casos. A nova prova de desvio exterior falhou porque a pesquisa colocava o tile de borda de Y=0 na fila antes do tile de Y=2, junto à posição RAM sintética, embora ambos dessem duas transições. Os outros 8 casos passaram.
 - Corrigido `romCrossMapItemRoute.js` para ordenar as hipóteses de travessia de cada fronteira pelo comprimento geométrico do caminho local antes de as colocar na BFS; desempate estável por Y/X. Sem alteração à prova de acesso: as transições continuam condicionais.
 - Teste nativo Node e funcionamento real em emulador continuam pendentes. A falha e a correção foram acrescentadas sem apagar entradas anteriores.
+
+## 2026-10-29 — T25c: reexecução do código já publicado após correção
+
+- Reobtidos os seis ficheiros atuais diretamente da revisão GitHub `6198a19ecfd6cd5ea65a4de7ce5310b1a1403961`: `romCrossMapItemRoute.js`, `romItemReachability.js`, `romKnownSha256.js`, `romLedgeRules.js`, `romOutdoorAlignment.js` e `tests/romCrossMapItemRoute.test.js`.
+- Executadas as nove funções de teste da suite publicada, sem alterações ao texto dos testes, num V8 isolado que carregou o JS real dos módulos; `Buffer`, `node:test` e `node:crypto` foram simulados. **Resultado: 9/9 PASS**, incluindo os três casos novos da T25; 0 falhas. O cálculo de hash de teste é explicitamente NÃO SHA-256 criptográfico.
+- Não houve execução nativa de `node --test` num checkout com ROMs reais, nem validação com RetroArch/SameBoy/iPhone ou captura de ecrã do jogo. Não considerar 9/9 V8 prova de integração ou de 100%.
