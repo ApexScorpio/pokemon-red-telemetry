@@ -16,6 +16,7 @@ const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
 const {WorldReferenceFlagSession}=require('./romWorldReferenceSession');
+const {elevatorOptionsForMap}=require('./romElevatorChoices');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
@@ -343,6 +344,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.globalCampaignObjectives={verified:false,objectives:[],reason};
     this.latestState.romWorldEventAtlas={verified:false,events:[],toggleFlags:[],reason};
     this.latestState.romWorldReferenceDelta={verified:false,changes:[],reason};
+    this.latestState.romElevatorOptions={verified:false,options:[],reason};
     this.latestState.worldRecentNamedChanges={verified:false,events:[],reason};
     this.latestState.globalCampaignDelta={verified:false,changes:[],reason};
     this.latestState.worldRecentFlagChanges={
@@ -380,7 +382,7 @@ class RetroArchClient extends EventEmitter {
         'globalCampaignLedger','globalCampaignObjectives',
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
         'romCrossMapItemRoute','romWorldEventAtlas',
-        'romWorldReferenceDelta','worldRecentNamedChanges'
+        'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
@@ -2558,6 +2560,12 @@ class RetroArchClient extends EventEmitter {
     });
     this.latestState.romWorldReferenceDelta=namedChanges.delta;
     this.latestState.worldRecentNamedChanges=namedChanges.recent;
+    this.latestState.romElevatorOptions=elevatorOptionsForMap({
+      profile:this.activeRomProfile,
+      mapId:this.latestState.mapId,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&positionWindow.verified===true
+    });
     const campaignSession=this._worldCampaignSession.ingest({
       ledger:this.latestState.globalCampaignLedger,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
