@@ -21,14 +21,17 @@ function rig({coinCount=12}={}){
   './romKnownSha256':{isKnownAuditedRomSha:x=>x===sha},
   './romTrainerEvents':{trainerFlagsForCurrentMap:(p,m,flags)=>({
     verified:m.mapId===15,entries:m.mapId===15?[{
+      objectOrdinal:1,eventBitIndex:10,
       eventFlagSet:(parseInt(flags[1],16)&4)!==0,victoryRecorded:null,
       battleWasPlayed:null}]:[]})},
   './romStaticEncounterEvents':{stationaryPokemonEvents:(p,m,flags)=>({
     verified:m.mapId===83,entries:m.mapId===83?[{
+      objectOrdinal:1,eventBitIndex:0,
       encounterGateClosed:(parseInt(flags[0],16)&1)!==0}]:[]})},
   './romEventState':{fromKnownRom:()=>hidden,
     decodeHiddenCoins:(p,mapId,flags)=>({
      verified:true,coins:mapId===135?Array.from({length:coinCount},(_,i)=>({
+       hiddenIndex:i,x:i%6,y:3,
        isCollected:(parseInt(flags[i>>3]||'00',16)&(1<<(i&7)))!==0})):[]})}
  };
  const mod={exports:{}};
@@ -58,6 +61,13 @@ test('global world count and independent event domains, not fake victories',()=>
  assert.equal(res.trainerGateClosedIsVictory,false);
  assert.equal(res.accessCurrentlyProven,false);
  assert.equal(res.snapshotAtomicVerified,false);
+ assert.equal(res.bitwiseEventEvidenceAvailable,true);
+ assert.equal(res.mapProgress[15].flagRecords.hiddenItems.length,54);
+ assert.equal(res.mapProgress[15].flagRecords.hiddenItems[0].bitIndex,0);
+ assert.equal(res.mapProgress[15].flagRecords.hiddenItems[0].flagSet,true);
+ assert.equal(res.mapProgress[15].flagRecords.trainers[0].bitIndex,10);
+ assert.equal(res.mapProgress[83].flagRecords.stationaryPokemon[0].bitIndex,0);
+ assert.equal(res.mapProgress[135].flagRecords.hiddenCoins.length,12);
 });
 test('refuses incomplete RAM and unknown ROM identity, no partial values',()=>{
  const x=rig();
