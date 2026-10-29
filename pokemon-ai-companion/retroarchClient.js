@@ -2452,7 +2452,8 @@ class RetroArchClient extends EventEmitter {
       i.isCollected!==true&&Number.isInteger(i.x)&&Number.isInteger(i.y));
     if(detourTarget&&this.activeRomProfile?.world?.terrainAtlas?.verified===true&&
       this.latestState.romWarpGraph?.verified===true&&positionWindow.verified===true){
-      const spritePositions=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true?
+      const spritePositions=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
+        Array.isArray(this.latestState.mapEntities)?
         this.latestState.mapEntities.map(o=>[o.x,o.y,o.type,o.pictureId]):null;
       const key=JSON.stringify([
         this.activeRomProfile.hash?.sha256,this.latestState.mapId,
