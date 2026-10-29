@@ -790,6 +790,9 @@ function renderWorldAdvisor(state) {
       NO_LOCAL_TERRAIN_PATH_NOT_PROOF_OF_LOCK:'sem caminho local demonstrado; pode haver desvio',
       ROM_EXIT_TILE_OUTSIDE_MAP:'coordenadas de saída incoerentes com o terreno',
       BORDER_CROSSING_TILE_NOT_VERIFIED:'fronteira ROM; ponto de travessia por confirmar',
+      BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN:'tiles de borda alcançáveis na ROM; alinhamento com mapa seguinte desconhecido',
+      BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN:'borda apenas com hipótese Cut/Surf; alinhamento desconhecido',
+      NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK:'sem tile de borda alcançável neste cenário; não prova bloqueio',
       FLOOR_SELECTION_AND_SCRIPT_NOT_VERIFIED:'opção de piso ROM; menu e condições por confirmar'
     };
     out.push('Warps: '+(localExits.counts?.WARP||0)+
@@ -809,6 +812,16 @@ function renderWorldAdvisor(state) {
       if(e.kind==='WARP'&&e.approach?.nextStep)
         out.push('   Primeiro tile teórico: X:'+e.approach.nextStep.x+
           ' Y:'+e.approach.nextStep.y);
+      if(e.kind==='OUTDOOR_BORDER'&&e.borderEvidence?.verified===true){
+        const b=e.borderEvidence;
+        out.push('   Borda de origem: '+b.terrainCandidateCount+
+          ' tiles candidatos no terreno; travessia e destino NÃO confirmados');
+        for(const candidate of b.borderTiles.slice(0,2)){
+          out.push('   Tile de borda possível: X:'+candidate.tile.x+
+            ' Y:'+candidate.tile.y+' ('+candidate.steps+
+            ' passos teóricos; '+candidate.terrainStatus+')');
+        }
+      }
     }
     if(localExits.truncated)
       out.push('⚠️ Lista truncada; '+localExits.totalExits+' saídas no total.');
