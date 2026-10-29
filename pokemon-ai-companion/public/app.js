@@ -770,6 +770,21 @@ function renderWorldAdvisor(state) {
       '✨ Encontros fixos: '+t.stationaryGatesClosed+
         ' eventos encerrados (não prova captura)');
   }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  const globalOverlap=state.romOutdoorOverlapIndex;
+  if(globalOverlap?.verified===true&&
+     globalOverlap.romSha256===advice.romSha256&&
+     globalOverlap.edgeCount===78){
+    const info=['--- FRONTEIRAS DE KANTO — MATRIZ ROM MUNDIAL ---',
+      '78 ligações alinhadas; '+globalOverlap.overlappingTilePairs+
+        ' pares de tiles sobrepostos; '+
+        globalOverlap.staticLandCompatiblePairs+
+        ' pares caminháveis dos dois lados no terreno estático.',
+      globalOverlap.bordersWithoutLandPairs+
+        ' fronteiras sem par terrestre estático: Surf, Cut ou scripts por confirmar.',
+      '⚠️ Estes são dados ROM: 0 travessias executadas comprovadas por este índice.',''];
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...info);
+  }
   const localExits=state.romLocalExitAccess;
   if(localExits?.verified===true&&
      localExits.romSha256===advice.romSha256&&
@@ -984,9 +999,15 @@ function renderWorldAdvisor(state) {
         ' • Cut: capacidade desconhecida':
         conditional==='SURF_CAPABILITY_NOT_VERIFIED'?
         ' • Surf: capacidade desconhecida':'';
+      const unconfirmedTerrainBorders=Array.isArray(goal.route)?
+        goal.route.filter(e=>e.kind==='OUTDOOR_BOUNDARY'&&
+          e.romAlignedBorder===true&&e.staticLandCompatiblePairs===0).length:0;
+      const borderWarning=unconfirmedTerrainBorders?
+        ' • '+unconfirmedTerrainBorders+
+        ' fronteira(s) da rota sem par terrestre ROM; Surf/script por confirmar':'';
       agenda.push('• '+goal.mapName+' (#'+goal.mapId+'): '+
         todo.join(', ')+' — '+hops+
-        (goal.mapHopCount===0?'':first+requiredAction));
+        (goal.mapHopCount===0?'':first+requiredAction+borderWarning));
     }
     agenda.push('⚠️ Nem um percurso curto nem uma flag por concluir provam acesso imediato.','');
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
