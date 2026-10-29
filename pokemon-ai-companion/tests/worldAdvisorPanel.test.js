@@ -64,7 +64,7 @@ test('hidden coins are shown with own status and no fake collection of items',()
  state.worldAdvisor.coinFlagsVerified=true;
  const {body}=render(state);
  assert.match(body.textContent,/Fichas ocultas por recolher/);
- assert.match(body.textContent,/HIDDEN_COIN: 1/);
+ assert.match(body.textContent,/Fichas: 1/);
  assert.doesNotMatch(body.textContent,/Item oculto recolhido/);
 });
 
