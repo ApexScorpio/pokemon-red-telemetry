@@ -17,6 +17,7 @@ const {localExitAccess}=require('./romLocalExitAccess');
 const {verifyTerrainVariant}=require('./romTerrainVariantGuard');
 const {verifyOutdoorConnectionVariant}=require('./romOutdoorReferenceGuard');
 const {validateOutdoorAlignment}=require('./romOutdoorAlignment');
+const {buildOutdoorOverlapIndex}=require('./romOutdoorOverlapIndex');
 const {suggestWorldDetours}=require('./romWorldDetourCycles');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
@@ -359,6 +360,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romVariantTerrainEvidence={verified:false,reason};
     this.latestState.romOutdoorReferenceEvidence={verified:false,reason};
     this.latestState.romOutdoorAlignment={verified:false,reason};
+    this.latestState.romOutdoorOverlapIndex={verified:false,edges:[],reason};
     this.latestState.romWarpGraph={verified:false,reason};
     this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
     this.latestState.romWorldDetourCycles={verified:false,candidates:[],reason};
@@ -397,7 +399,7 @@ class RetroArchClient extends EventEmitter {
         'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions',
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
-        'romOutdoorAlignment',
+        'romOutdoorAlignment','romOutdoorOverlapIndex',
         'romWarpGraph'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
@@ -2522,6 +2524,16 @@ class RetroArchClient extends EventEmitter {
         this.latestState.romOutdoorReferenceEvidence.verified===true?
         this._outdoorAlignment:{verified:false,
           reason:'Descritores exteriores não coincidem com esta ROM'};
+      if(this._outdoorOverlapSha!==sha||!this._outdoorOverlapIndex){
+        this._outdoorOverlapIndex=buildOutdoorOverlapIndex({
+          profile:this.activeRomProfile,alignment:this._outdoorAlignment
+        });
+        this._outdoorOverlapSha=sha;
+      }
+      this.latestState.romOutdoorOverlapIndex=
+        this.latestState.romOutdoorAlignment.verified===true?
+        this._outdoorOverlapIndex:{verified:false,edges:[],
+          reason:'Alinhamento exterior não confirmado'};
       // Never let an unrecognized outdoor descriptor enter a world
       // path search. Keep validated static warps independent.
       this.latestState.romWarpGraph=
@@ -2533,6 +2545,7 @@ class RetroArchClient extends EventEmitter {
       this._warpGraph=null;
       this._warpGraphSha=null;
       this._outdoorAlignmentSha=null;this._outdoorAlignment=null;
+      this._outdoorOverlapSha=null;this._outdoorOverlapIndex=null;
       this.latestState.romOutdoorAlignment={verified:false,
         reason:'ROM não identificada'};
       this.latestState.romOutdoorReferenceEvidence={verified:false,
@@ -2678,6 +2691,7 @@ class RetroArchClient extends EventEmitter {
       sourceMapId:this.latestState.mapId,
       firstMapTerrainHints:this.latestState.romTerrainWarpHints,
       firstMapExitAccess:this.latestState.romLocalExitAccess,
+      outdoorOverlapIndex:this.latestState.romOutdoorOverlapIndex,
       position:this.latestState.coords,
       maxResults:12
     });
