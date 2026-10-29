@@ -2832,6 +2832,7 @@ class RetroArchClient extends EventEmitter {
       remoteSelection.verified===true?
         remoteSelection.items.map(t=>[t.kind,t.mapId,t.x,t.y,
           t.bitIndex,t.mapHopCount,t.staticRouteKnown]):null,
+      remoteSelection.pendingSignature??null,
       remoteSearchReady,remoteGraphOK,
       this.latestState.romOutdoorReferenceEvidence?.verified===true,
       abilityCut,abilitySurf,

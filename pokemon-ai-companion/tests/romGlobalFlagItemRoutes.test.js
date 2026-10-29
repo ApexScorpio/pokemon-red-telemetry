@@ -159,3 +159,20 @@ test('hidden goal beyond preview 12 survives compact 226-map remote index',()=>{
    remoteObjectiveIndex:[{mapId:10,mapHopCount:2},{mapId:10,mapHopCount:2}]};
  assert.equal(selectGlobalFlagTargets({...f,objectives:bad}).verified,false);
 });
+
+test('flags outside first four remote slots change the full backlog signature',()=>{
+ const f=fixture();
+ f.ledger.mapProgress[10].flagRecords.hiddenItems.push(
+   {bitIndex:18,flagSet:false,x:2,y:2},
+   {bitIndex:19,flagSet:false,x:3,y:2},
+   {bitIndex:20,flagSet:false,x:4,y:2});
+ const first=selectGlobalFlagTargets({...f,maxTargets:2});
+ const savedNames=first.items.map(x=>x.recordId);
+ const signature=first.pendingSignature;
+ assert.equal(first.totalPendingRemote,6);
+ f.ledger.mapProgress[10].flagRecords.hiddenItems[4].flagSet=true;
+ const second=selectGlobalFlagTargets({...f,maxTargets:2});
+ assert.deepEqual(second.items.map(x=>x.recordId),savedNames);
+ assert.equal(second.totalPendingRemote,5);
+ assert.notEqual(second.pendingSignature,signature);
+});

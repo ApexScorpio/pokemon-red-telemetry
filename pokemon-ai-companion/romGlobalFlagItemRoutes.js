@@ -68,6 +68,12 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
    if(bucket.length)buckets.push(bucket);
  }
  const totalPendingRemote=buckets.reduce((n,bucket)=>n+bucket.length,0);
+ // Complete exact backlog fingerprint, BEFORE the four-slot window mutates
+ // the buckets. No probabilistic hash: distinct known flags stay distinct.
+ const pendingSignature=buckets.map(bucket=>bucket.map(item=>[
+   item.kind,item.mapId,item.bitIndex,item.x,item.y,
+   item.mapHopCount
+ ].join(':')).join(';')).join('|');
  const mapsWithPendingRemote=buckets.length;
  const totalWithoutStaticRoute=buckets.reduce((n,bucket)=>
    n+bucket.filter(item=>item.staticRouteKnown===false).length,0);
@@ -81,6 +87,7 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
  }
  return {verified:true,romSha256:sha,sourceMapId,items:out,
    totalPendingRemote,mapsWithPendingRemote,totalWithoutStaticRoute,
+   pendingSignature,
    limited:buckets.some(bucket=>bucket.length>0),
    accessibleNow:null,routeNavigableNowProven:false};
 }

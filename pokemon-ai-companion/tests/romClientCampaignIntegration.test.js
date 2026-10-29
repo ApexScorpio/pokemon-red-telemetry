@@ -367,3 +367,31 @@ test('world objectives use small UI payload but remote selector reads compact fu
  assert.match(source.slice(start,start+650),/maxResults:12/);
  assert.match(source,/selectGlobalFlagTargets\(\{/);
 });
+
+test('all pending remote flags invalidate route cache, not only four selected tiles',()=>{
+ const start=source.indexOf('    const remoteSelection=selectGlobalFlagTargets({');
+ const end=source.indexOf('    this.latestState.worldAdvisor=adviseWorld({',start);
+ const actual=source.slice(start,end);
+ assert.match(actual,/remoteSelection\.pendingSignature\?\?null/);
+ const execute=vm.runInNewContext('(function(mapConfirmation,positionWindow,modeWindow,'+
+   'abilityCut,abilitySurf,selectGlobalFlagTargets,planGlobalFlagItemRoutes){'+
+   actual+'\nreturn this.latestState.globalFlagItemRoutes;})');
+ const context={activeRomProfile:{hash:{sha256:'sha'},world:{terrainAtlas:{}}},
+  latestState:{mapId:15,coords:{x:2,y:3},
+    romVariantTerrainEvidence:{verified:true,romSha256:'sha'},
+    romWarpGraph:{verified:true,romSha256:'sha'},
+    romOutdoorReferenceEvidence:{verified:true},
+    romOutdoorAlignment:{verified:true},
+    memoryReadStatus:{blocks:{overworldSprites:true}},mapEntities:[],
+    globalCampaignLedger:{verified:true},globalCampaignObjectives:{verified:true}}};
+ let signature='a',calls=0;
+ const select=()=>({verified:true,pendingSignature:signature,
+   items:[{kind:'HIDDEN_ITEM',mapId:3,x:1,y:2,bitIndex:0,
+     mapHopCount:1,staticRouteKnown:true}]});
+ const route=()=>{calls++;return {verified:true,items:[],count:calls};};
+ const update=()=>execute.call(context,{verified:true},{verified:true},
+   {verified:true,modeByte:0},false,false,select,route);
+ assert.equal(update().count,1);
+ assert.equal(update().count,1);assert.equal(calls,1);
+ signature='b';assert.equal(update().count,2);assert.equal(calls,2);
+});

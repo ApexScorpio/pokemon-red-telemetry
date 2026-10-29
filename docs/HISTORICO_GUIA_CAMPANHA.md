@@ -1205,3 +1205,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 
 - A execução conjunta dos testes do índice mundial e objetivos de itens apontou **24/25**: teste pré-T44 ainda tratava `maxResults:100` como inválido, apesar de o motor agora suportar até 226 mapas. Conferido que o código efetivo rejeita 227 e aceita 100 sem violar os limites da ROM.
 - Asserção antiga corrigida para exigir `maxResults:100` válido e `maxResults:227` inválido. A suite será reexecutada depois da alteração. Sem mudança de lógica funcional ou de saves; a `main` permanece intocada.
+
+
+## 2026-10-29 — T49: invalidação da cache quando muda qualquer flag remota pendente
+
+- T47 deu ao painel contadores de todas as flags remotas, mas a cache do cliente T46 dependia apenas dos quatro itens selecionados e da conectividade desses alvos. Uma flag num quinto item podia mudar e deixar o contador stale, mesmo com RAM e SHA válidas.
+- `selectGlobalFlagTargets` emite `pendingSignature`, identificação textual exata de **todos** os alvos pendentes no catálogo, antes de consumir os quatro lugares. A chave de cache remota depende agora dessa assinatura além do estado dos alvos exibidos. Usa os próprios IDs/bitIndex/mapa/posição/ligação, sem hashes aproximados e sem criar dados fictícios.
+- Testes de módulo e integração adicionados. Ensaio V8 do módulo real: os dois alvos selecionados ficaram iguais, a flag de um terceiro passou a recolhida e o total mudou 4→3, com assinatura diferente. Parsing dos quatro ficheiros JavaScript passou. Sem `node --test` integral ou gameplay real.
