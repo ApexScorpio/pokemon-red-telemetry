@@ -1150,3 +1150,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - A primeira fixture de `romGlobalFlagItemRoutes.test.js` era internamente impossível: o item remoto estava em X5, mas o atlas sintético tinha apenas 5 colunas (X0..X4). A geometria do ensaio foi corrigida para 7×5 tiles com 35 células por mapa, sem alterar os alvos ROM do teste.
 - Reexecutado o teste literal completo do repositório com `romGlobalFlagItemRoutes.js`, `romCrossMapItemRoute.js`, `romItemReachability.js` e `romLedgeRules.js` originais da branch, usando adaptadores V8 para `Buffer` e SHA-256. **6/6 casos passaram**, incluindo uma rota real do algoritmo através de um warp estático de mapa 0 para mapa 10, até ao item remoto na coordenada X5/Y4; continua `accessibleNow:null`.
 - O teste com atlas de 226 mapas é sintético; estas provas não substituem Node nativo, a verificação SHA criptográfica nem a telemetria de jogo. A alteração foi só na fixture e no histórico acrescentado.
+
+
+## 2026-10-29 — T43: seleção de objetivos mundiais diversificada por mapa
+
+- O limite conservador de quatro alvos de T40 podia ser consumido por quatro flags não recolhidas no mesmo mapa, não deixando aparecer mapas próximos com outros objetivos. `romGlobalFlagItemRoutes.js` passou a agrupar as flags pendentes por mapa, percorrer uma vez cada mapa candidato na ordem estática do conselheiro e só depois repetir mapas com novos objetivos.
+- Continua a usar exclusivamente `flagSet:false`, posições ROM auditadas e mapas com rota topológica conhecida; não aumenta o orçamento de pesquisa nem declara acesso confirmado. A origem e os objetivos já recolhidos continuam excluídos.
+- Regressões adaptadas à nova ordenação e acrescentado cenário de três mapas e quatro vagas que exige `[10,20,30,10]`. A seleção efetiva passou em V8, e parsing do módulo e testes foi aprovado. Testes nativos, recolha de gameplay e screenshots reais continuam pendentes.

@@ -25,37 +25,45 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
      return fail('Registos de flags dos 226 mapas incompletos ou duplicados');
    records.set(map.mapId,map);
  }
- const seen=new Set(),out=[];
+
+ // Prefer one pending item per distinct destination map before consuming a
+ // second slot for the same map. Preserve the objective planner's map order.
+ const seen=new Set(),buckets=[];
  for(const goal of objectives.objectives){
    if(!inMap(goal?.mapId)||goal.mapId===sourceMapId||
       !Number.isInteger(goal.mapHopCount)||goal.mapHopCount<1)continue;
    const record=records.get(goal.mapId);
    if(!record)continue;
+   const bucket=[];
    for(const [kind,items] of [
      ['HIDDEN_ITEM',record.flagRecords.hiddenItems],
      ['HIDDEN_COIN',record.flagRecords.hiddenCoins]
-   ]){
-     for(const item of items){
-       if(item.flagSet!==false||!coord(item.x)||!coord(item.y)||
-          !Number.isInteger(item.bitIndex))continue;
-       const key=kind+':'+goal.mapId+':'+item.bitIndex;
-       if(seen.has(key))continue;
-       seen.add(key);
-       out.push({kind,mapId:goal.mapId,mapName:record.name||goal.mapName||
-         'Mapa #'+goal.mapId,
-         x:item.x,y:item.y,bitIndex:item.bitIndex,
-         mapHopCount:goal.mapHopCount,
-         flagPendingVerified:true,visibleNowVerified:false,
-         collectedNow:false,accessibleNow:null,
-         recordId:item.recordId||key});
-       if(out.length===maxTargets)return {verified:true,romSha256:sha,
-         sourceMapId,items:out,limited:true,accessibleNow:null,
-         routeNavigableNowProven:false};
-     }
+   ])for(const item of items){
+     if(item.flagSet!==false||!coord(item.x)||!coord(item.y)||
+        !Number.isInteger(item.bitIndex))continue;
+     const key=kind+':'+goal.mapId+':'+item.bitIndex;
+     if(seen.has(key))continue;
+     seen.add(key);
+     bucket.push({kind,mapId:goal.mapId,
+       mapName:record.name||goal.mapName||'Mapa #'+goal.mapId,
+       x:item.x,y:item.y,bitIndex:item.bitIndex,
+       mapHopCount:goal.mapHopCount,
+       flagPendingVerified:true,visibleNowVerified:false,
+       collectedNow:false,accessibleNow:null,recordId:item.recordId||key});
+   }
+   if(bucket.length)buckets.push(bucket);
+ }
+ const out=[];
+ while(out.length<maxTargets&&buckets.some(bucket=>bucket.length)){
+   for(const bucket of buckets){
+     if(!bucket.length)continue;
+     out.push(bucket.shift());
+     if(out.length===maxTargets)break;
    }
  }
  return {verified:true,romSha256:sha,sourceMapId,items:out,
-   limited:false,accessibleNow:null,routeNavigableNowProven:false};
+   limited:buckets.some(bucket=>bucket.length>0),
+   accessibleNow:null,routeNavigableNowProven:false};
 }
 function planGlobalFlagItemRoutes({ledger,objectives,terrainAtlas,warpGraph,
  outdoorAlignment=null,sourceMapId,position,positionVerified=false,

@@ -26,8 +26,8 @@ test('selects exact remote hidden flags rather than generic map names',()=>{
  assert.equal(s.verified,true,s.reason);
  assert.equal(s.items.length,3);
  assert.deepEqual(s.items.map(x=>[x.kind,x.mapId,x.x,x.y]),
-   [['HIDDEN_ITEM',10,5,4],['HIDDEN_COIN',10,1,2],
-     ['HIDDEN_ITEM',20,4,4]]);
+   [['HIDDEN_ITEM',10,5,4],['HIDDEN_ITEM',20,4,4],
+     ['HIDDEN_COIN',10,1,2]]);
  assert.equal(s.items[0].flagPendingVerified,true);
  assert.equal(s.items[0].accessibleNow,null);
 });
@@ -43,7 +43,7 @@ test('collected and local records never become remote to-dos',()=>{
 test('fewer requested targets conservatively truncates without changing order',()=>{
  const s=selectGlobalFlagTargets({...fixture(),maxTargets:2});
  assert.equal(s.items.length,2);assert.equal(s.limited,true);
- assert.equal(s.items[1].kind,'HIDDEN_COIN');
+ assert.equal(s.items[1].mapId,20);
 });
 test('unknown SHA, mismatched current map or forged ledger fail closed',()=>{
  const f=fixture();
@@ -93,4 +93,18 @@ test('remote pending hidden item gets its exact one-warp static route, never gua
  assert.equal(result.items[0].route.target.y,4);
  assert.equal(result.items[0].accessibleNow,null);
  assert.equal(result.items[0].route.routeNavigableNowProven,false);
+});
+
+test('four-slot window gives distinct remote maps first, then remaining items',()=>{
+ const f=fixture();
+ f.ledger.mapProgress[10].flagRecords.hiddenItems.push(
+   {bitIndex:12,flagSet:false,x:3,y:3},
+   {bitIndex:13,flagSet:false,x:4,y:3});
+ f.ledger.mapProgress[30].flagRecords.hiddenItems.push(
+   {bitIndex:14,flagSet:false,x:2,y:3});
+ f.objectives.objectives.push({mapId:30,mapHopCount:4});
+ const s=selectGlobalFlagTargets({...f,maxTargets:4});
+ assert.equal(s.verified,true,s.reason);
+ assert.deepEqual(s.items.map(x=>x.mapId),[10,20,30,10]);
+ assert.equal(s.limited,true);
 });
