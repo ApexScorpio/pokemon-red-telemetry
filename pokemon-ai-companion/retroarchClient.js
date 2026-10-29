@@ -15,6 +15,7 @@ const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
 const {localExitAccess}=require('./romLocalExitAccess');
 const {verifyTerrainVariant}=require('./romTerrainVariantGuard');
+const {verifyOutdoorConnectionVariant}=require('./romOutdoorReferenceGuard');
 const {suggestWorldDetours}=require('./romWorldDetourCycles');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
@@ -355,6 +356,8 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
     this.latestState.romLocalExitAccess={verified:false,exits:[],reason};
     this.latestState.romVariantTerrainEvidence={verified:false,reason};
+    this.latestState.romOutdoorReferenceEvidence={verified:false,reason};
+    this.latestState.romWarpGraph={verified:false,reason};
     this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
     this.latestState.romWorldDetourCycles={verified:false,candidates:[],reason};
     this.latestState.worldAdvisor={verified:false,observations:[],reason};
@@ -391,7 +394,8 @@ class RetroArchClient extends EventEmitter {
         'romCrossMapItemRoute','romWorldEventAtlas',
         'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions',
         'romLocalExitAccess','romWorldDetourCycles',
-        'romVariantTerrainEvidence'
+        'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
+        'romWarpGraph'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
@@ -2501,10 +2505,22 @@ class RetroArchClient extends EventEmitter {
         this._warpGraph=buildWarpGraph(this.activeRomProfile);
         this._warpGraphSha=sha;
       }
-      this.latestState.romWarpGraph=this._warpGraph;
+      this.latestState.romOutdoorReferenceEvidence=
+        verifyOutdoorConnectionVariant({
+          warpGraph:this._warpGraph,romSha256:sha
+        });
+      // Never let an unrecognized outdoor descriptor enter a world
+      // path search. Keep validated static warps independent.
+      this.latestState.romWarpGraph=
+        this.latestState.romOutdoorReferenceEvidence.verified===true?
+        this._warpGraph:{...this._warpGraph,outdoorConnections:null,
+          outdoorConnectionCount:0,outdoorHeaderConnectionsDecoded:false,
+          outdoorReferenceMismatch:true};
     } else {
       this._warpGraph=null;
       this._warpGraphSha=null;
+      this.latestState.romOutdoorReferenceEvidence={verified:false,
+        reason:'ROM não identificada'};
       this.latestState.romWarpGraph={verified:false,reason:'ROM não identificada'};
     }
     // Apenas quando não existe percurso local: procurar desvio geométrico
