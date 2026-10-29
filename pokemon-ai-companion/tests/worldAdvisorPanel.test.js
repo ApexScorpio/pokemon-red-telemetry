@@ -233,3 +233,21 @@ test('verified elevator menu shows ROM choices without claiming a selected floor
  s.romElevatorOptions.mapId=127;
  assert.doesNotMatch(render(s).body.textContent,/ELEVADOR — PISOS POSSÍVEIS/);
 });
+
+test('global goals describe Cut and Surf actions rather than guaranteed access',()=>{
+ const s=live();
+ s.globalCampaignObjectives={verified:true,romSha256:s.worldAdvisor.romSha256,
+   sourceMapId:15,mapCount:226,mapsWithPending:1,mapsWithUnknown:0,
+   objectives:[{mapId:16,mapName:'Route 5',
+     pending:{hiddenItems:1,hiddenCoins:0,trainerGatesOpen:0,
+       stationaryGatesOpen:0},unknown:{trainers:0,stationaryPokemon:0},
+     mapHopCount:1,firstTransitionTerrainEvidence:'LOCAL_TERRAIN_PATH_CANDIDATE',
+     firstTransitionConditionalAccess:'TERRAIN_PATH_REQUIRES_CUT_ACTION'}]};
+ const t=render(s).body.textContent;
+ assert.match(t,/Cut: ação em campo ainda por confirmar/);
+ assert.doesNotMatch(t,/acesso garantido/i);
+ s.globalCampaignObjectives.objectives[0].firstTransitionConditionalAccess=
+   'SURF_NOT_USABLE_IN_CURRENT_PARTY';
+ const second=render(s).body.textContent;
+ assert.match(second,/Surf indisponível no estado de capacidades conhecido/);
+});
