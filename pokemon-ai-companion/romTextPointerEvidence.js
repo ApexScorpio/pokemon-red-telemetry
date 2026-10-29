@@ -68,6 +68,7 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
      // bytecode ends at TX_END. An ASM jump or nested far call is unproven.
      if(program.verified===true&&program.scriptComplete===true)
        staticTextPreview.program={verified:true,scriptComplete:true,
+         termination:program.termination,
          text:program.text,segmentCount:program.segmentCount,
          containsRuntimeText:program.containsRuntimeText,
          containsRuntimeCommands:program.containsRuntimeCommands,
