@@ -13,7 +13,7 @@ const {adviseWorld}=require('./romWorldStateAdvisor');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
-const {diffCampaignProgress}=require('./romCampaignDelta');
+const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
@@ -317,6 +317,10 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romValidation = 'ROM não verificada nesta sessão';
     this.latestState.romHeader = { fullRomVerified: false };
     this.latestState.memoryReadStatus = { verified: false, completeness: 'selected-address-ranges-only' };
+    this._worldCampaignSession=new CampaignFlagSession();
+    this._currentSessionSha=null;
+    // Never inherit advice or progress deltas from persisted state.
+    this.invalidateWorldEvidence('Novo arranque: aguardar leituras RAM reais');
     if (cachedState) {
       this.latestState.actionHistory = this.loadPersistedActionHistory();
       this.latestState.dialogHistory = this.loadPersistedDialogHistory();
@@ -326,6 +330,18 @@ class RetroArchClient extends EventEmitter {
     this.lastVideoReadAt = 0;
     this.videoReadInProgress = false;
     this.pendingResolves = new Map();
+  }
+
+  invalidateWorldEvidence(reason='Leitura interrompida'){
+    if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
+    this._crossMapRouteKey=null;this._crossMapRoute=null;
+    this.latestState.globalCampaignLedger={verified:false,mapProgress:[],reason};
+    this.latestState.globalCampaignObjectives={verified:false,objectives:[],reason};
+    this.latestState.globalCampaignDelta={verified:false,changes:[],reason};
+    this.latestState.worldRecentFlagChanges={
+      verified:false,events:[],reason,actionsProven:false};
+    this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
+    this.latestState.worldAdvisor={verified:false,observations:[],reason};
   }
 
   loadPersistedState() {
@@ -427,6 +443,7 @@ class RetroArchClient extends EventEmitter {
     this.socket.on('error', (err) => {
       console.error('[RetroArch UDP Error]:', err.message);
       this.latestState.connected = false;
+      this.invalidateWorldEvidence('Erro no socket do RetroArch');
       this.emit('update', this.latestState);
     });
 
@@ -634,6 +651,11 @@ class RetroArchClient extends EventEmitter {
         this.latestState.romAutoDiscovery=this.romRegistry.discovery;
         match = getCurrentRom(status,this.romRegistry.profiles);
       }
+      const nextSha=match?.hash?.sha256||null;
+      if(this._currentSessionSha!==nextSha){
+        this.invalidateWorldEvidence('ROM ativa mudou ou deixou de estar identificada');
+        this._currentSessionSha=nextSha;
+      }
       this.activeRomProfile = match;
       const crcMatch = status && status.match(/crc32=([0-9a-f]{8})/i);
       this.latestState.romRuntimeIdentity = {
@@ -652,6 +674,7 @@ class RetroArchClient extends EventEmitter {
       if (status && /GET_STATUS\s+CONTENTLESS/i.test(status)) {
         this.latestState.connected=false;
         this.latestState.lastReadError='RetroArch sem ROM carregada.';
+        this.invalidateWorldEvidence('RetroArch sem conteúdo');
         this.emit('update',this.latestState);
         return;
       }
@@ -676,6 +699,7 @@ class RetroArchClient extends EventEmitter {
           socketBound: !!(this.socket && this.socket.address && this.socket.address().port)
         }));
       }
+      this.invalidateWorldEvidence('Bloco principal da RAM indisponível');
       if (this.latestState.connected) {
         this.latestState.connected = false;
         this.emit('update', this.latestState);
@@ -720,6 +744,7 @@ class RetroArchClient extends EventEmitter {
     if (!baseReadComplete) {
       this.latestState.connected = false;
       this.latestState.lastReadError = 'Leitura incompleta: os valores antigos não são telemetria atual.';
+      this.invalidateWorldEvidence('Blocos RAM incompletos');
       this.emit('update', this.latestState);
       return;
     }
@@ -744,6 +769,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.memoryReadStatus.positionWindow=positionWindow;
     this.latestState.romTerrainPositionWindow=positionWindow;
     if(!mapConfirmation.verified){
+      this.invalidateWorldEvidence('Mapa RAM alterado entre leituras');
       this.latestState.memoryReadStatus.verified=false;
       this.latestState.connected=false;
       this.latestState.lastReadError=mapConfirmation.reason+
@@ -2491,7 +2517,6 @@ class RetroArchClient extends EventEmitter {
       this.latestState.romCrossMapItemRoute={verified:false,found:false,
         reason:'Sem item ROM com rota local por resolver ou provas de terreno/posição insuficientes'};
     }
-    const previousGlobalLedger=this.latestState.globalCampaignLedger;
     this.latestState.globalCampaignLedger=buildCampaignLedger({
       profile:this.activeRomProfile,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
@@ -2501,29 +2526,15 @@ class RetroArchClient extends EventEmitter {
       hiddenItemHex:hiddenRaw,
       hiddenCoinHex:hiddenCoinsRaw
     });
-    this.latestState.globalCampaignDelta=diffCampaignProgress({
-      previous:previousGlobalLedger,
-      current:this.latestState.globalCampaignLedger,
+    const campaignSession=this._worldCampaignSession.ingest({
+      ledger:this.latestState.globalCampaignLedger,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true,
       observedAt:this.latestState.lastUpdate
     });
-    const ledgerSha=this.latestState.globalCampaignLedger?.romSha256||null;
-    if(this._worldChangesSha!==ledgerSha){
-      this._worldChangesSha=ledgerSha;this._worldRecentChanges=[];
-    }
-    if(this.latestState.globalCampaignDelta?.verified===true&&
-       this.latestState.globalCampaignDelta.changes.length){
-      this._worldRecentChanges.push(...this.latestState.globalCampaignDelta.changes
-        .map(change=>({...change,observedAt:this.latestState.lastUpdate})));
-      // RAM timeline is a bounded session view; append-only Markdown history
-      // remains in docs/HISTORICO_GUIA_CAMPANHA.md.
-      this._worldRecentChanges=this._worldRecentChanges.slice(-80);
-    }
-    this.latestState.worldRecentFlagChanges={
-      verified:this.latestState.globalCampaignLedger?.verified===true,
-      romSha256:ledgerSha,
-      events:this._worldRecentChanges||[],
-      actionsProven:false
-    };
+    this.latestState.globalCampaignDelta=campaignSession.delta;
+    this.latestState.worldRecentFlagChanges=campaignSession.recent;
     this.latestState.globalCampaignObjectives=campaignObjectives({
       ledger:this.latestState.globalCampaignLedger,
       warpGraph:this.latestState.romWarpGraph,
