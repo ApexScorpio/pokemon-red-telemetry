@@ -119,3 +119,34 @@ test('without validated border graph only static warp candidates appear',()=>{
  assert.equal(result.counts.OUTDOOR_BORDER,undefined);
  assert.equal(result.counts.WARP,3);
 });
+
+test('D365 reread plus exact ROM landing can name LAST_MAP, not guarantee entry',()=>{
+ const rig=fixture();
+ const guide={verified:true,romSha256:sha,mapId:0,
+   lastMapEvidence:{sequentiallyConsistent:true},
+   warps:[{map:1,warp:0},{map:1,warp:1},{
+     map:255,warp:0,ramResolvedDestinationVerified:true,
+     resolvedMapId:18,landingX:3,landingY:4,
+     resolutionSource:'D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE'}]};
+ const result=localExitAccess({...rig,lastMapGuide:guide});
+ const last=result.exits.find(e=>e.sourceWarpIndex===2);
+ assert.equal(last.destinationMapId,18);
+ assert.equal(last.destinationEvidence,'RAM_SEQUENTIAL_LAST_MAP');
+ assert.deepEqual(last.landing,{mapId:18,x:3,y:4});
+ assert.equal(last.destinationRequiresScript,true);
+ assert.equal(last.accessibleNow,null);
+});
+test('stale or uncorroborated D365 cannot invent a LAST_MAP destination',()=>{
+ const rig=fixture();
+ const guide={verified:true,romSha256:sha,mapId:0,
+   lastMapEvidence:{sequentiallyConsistent:false},
+   warps:[{},{},{map:255,warp:0,ramResolvedDestinationVerified:true,
+     resolvedMapId:18,landingX:3,landingY:4,
+     resolutionSource:'D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE'}]};
+ let last=localExitAccess({...rig,lastMapGuide:guide}).exits[2];
+ assert.equal(last.destinationMapId,null);
+ guide.lastMapEvidence.sequentiallyConsistent=true;
+ guide.romSha256='0'.repeat(64);
+ last=localExitAccess({...rig,lastMapGuide:guide}).exits[2];
+ assert.equal(last.destinationMapId,null);
+});
