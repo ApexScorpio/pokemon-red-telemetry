@@ -124,3 +124,18 @@ test('Kanto objectives list separates pending flags and unverified travel',()=>{
  s.globalCampaignObjectives.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/OBJETIVOS DE KANTO/);
 });
+
+test('encounter weights are shown as conditional species distributions, not per-step chances',()=>{
+ const s=live();
+ s.worldAdvisor.observations=[{kind:'WILD_ENCOUNTER',
+   what:'Encontros na relva',status:'ROM_ENCOUNTER_TABLE',
+   slots:[{internalId:25,level:4,weight:51},
+     {internalId:25,level:4,weight:51},
+     {internalId:1,level:3,weight:154}],
+   consequence:'Taxa por passo não calculada'}];
+ const text=render(s).body.textContent;
+ assert.match(text,/Fauna: 1/);
+ assert.match(text,/Espécie interna #25 Nv\.4: 39\.84%/);
+ assert.match(text,/se ocorrer um encontro/);
+ assert.doesNotMatch(text,/39\.84% por passo/);
+});
