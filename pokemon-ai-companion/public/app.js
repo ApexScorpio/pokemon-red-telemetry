@@ -1168,7 +1168,9 @@ function renderWorldAdvisor(state) {
           typeof p.containsRuntimeVariables==='boolean';
         const program=p?.program;
         const hasProgram=hasPreview&&program?.verified===true&&
-          program.scriptComplete===true&&program.dialogueExecuted===false&&
+          program.scriptComplete===true&&
+          ['TX_END','TEXT_DONE','TEXT_PROMPT'].includes(program.termination)&&
+          program.dialogueExecuted===false&&
           program.textOutcomeVerified===false&&
           program.scriptEffectsVerified===false&&
           typeof program.text==='string'&&program.text.length>0&&
@@ -1178,7 +1180,7 @@ function renderWorldAdvisor(state) {
           typeof program.containsRuntimeCommands==='boolean';
         const preview=hasProgram?
           ' • Segmentos literais ROM ('+program.segmentCount+
-          ', TX_END corroborado): «'+
+          ', fecho '+program.termination+' corroborado): «'+
           program.text.replace(/\s+/g,' ').slice(0,210)+'»'+
           (program.containsRuntimeText||program.containsRuntimeCommands?
             ' (há conteúdo dependente da RAM)':''):
