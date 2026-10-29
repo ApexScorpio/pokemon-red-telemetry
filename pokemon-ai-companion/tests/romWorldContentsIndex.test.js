@@ -43,6 +43,9 @@ test('248 map IDs, 226 normal maps, 22 undecoded slots, all static actors retain
  assert.equal(index.totals.reservedOrUnresolvedMapIds,22);
  assert.equal(index.totals.visibleItems,1);
  assert.equal(index.totals.hiddenItems,54);
+ assert.equal(index.totals.hiddenItemsInNormalMaps,54);
+ assert.equal(index.totals.hiddenItemsWithoutNormalHeader,0);
+ assert.deepEqual(index.unassignedHiddenItems,[]);
  assert.equal(index.totals.trainers,1);
  assert.equal(index.totals.npcs,1);
  assert.equal(index.totals.stationaryPokemon,1);
@@ -96,6 +99,8 @@ test('hidden item list is not accepted without same-ROM provenance',()=>{
  assert.equal(index.verified,true);
  assert.equal(index.hiddenItemCoordinatesVerified,false);
  assert.equal(index.totals.hiddenItems,0);
+ assert.equal(index.totals.hiddenItemsInNormalMaps,0);
+ assert.equal(index.totals.hiddenItemsWithoutNormalHeader,0);
  assert.equal(index.totals.visibleItems,1);
 });
 for(const [variant,env] of [
@@ -117,11 +122,28 @@ for(const [variant,env] of [
   assert.equal(index.totals.stationaryPokemon,12);
   assert.ok(index.totals.signs>=200);
   assert.equal(index.totals.hiddenItems,54);
+  assert.equal(index.totals.hiddenItemsInNormalMaps,53);
+  assert.equal(index.totals.hiddenItemsWithoutNormalHeader,1);
+  assert.equal(index.unassignedHiddenItems.length,1);
+  const orphan=index.unassignedHiddenItems[0];
+  assert.equal(orphan.hiddenIndex,34);
+  assert.equal(orphan.mapId,111);
+  assert.equal(orphan.x,14);
+  assert.equal(orphan.y,11);
+  assert.equal(orphan.itemId>0,true);
+  assert.equal(orphan.accessibleNow,null);
+  assert.equal(orphan.collected,null);
+  assert.equal(orphan.completed,null);
+  assert.equal(orphan.scriptBindingVerified,null);
+  assert.equal(index.maps[111].verified,false);
+  assert.equal(index.maps[111].contents,null);
+  assert.equal(index.maps[111].unassignedHiddenItems[0].hiddenIndex,34);
   assert.equal(index.totalMapsWithLiveCompletionVerified,0);
   const all=index.maps.filter(m=>m.verified).reduce(
    (count,m)=>count+Object.values(m.contents).reduce((n,rows)=>n+rows.length,0),0);
   const expected=Object.entries(index.totals).filter(
-   ([key])=>!['normalMaps','reservedOrUnresolvedMapIds'].includes(key))
+   ([key])=>!['normalMaps','reservedOrUnresolvedMapIds',
+     'hiddenItems','hiddenItemsWithoutNormalHeader'].includes(key))
    .reduce((sum,[,value])=>sum+value,0);
   assert.equal(all,expected);
  });
