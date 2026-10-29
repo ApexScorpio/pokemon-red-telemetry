@@ -205,3 +205,28 @@ test('source border with no aligned candidate does not outrank Cut-gated route',
  assert.equal(goal.mapHopCount,2);
  assert.equal(goal.route[0].kind,'STATIC_WARP');
 });
+
+test('global outdoor route carries 78-ROM overlap evidence without proving passage',()=>{
+ const cfg=fixture();
+ cfg.warpGraph.outdoorConnections.edges=[{
+   sourceMapId:15,destinationMapId:18,direction:'north'}];
+ cfg.outdoorOverlapIndex={verified:true,romSha256:sha,edgeCount:78,
+   edges:[{sourceMapId:15,destinationMapId:18,direction:'north',
+     sourceAndDestinationAlignmentVerified:true,
+     staticLandCompatiblePairs:0,waterTerrainPairs:3},
+     ...Array.from({length:77},(_,i)=>({sourceMapId:200+i%20,
+       destinationMapId:201,direction:'south',staticLandCompatiblePairs:3}))]};
+ const r=campaignObjectives(cfg);
+ assert.equal(r.verified,true);
+ assert.equal(r.outdoorGlobalOverlapCorroborated,true);
+ const goal=r.objectives.find(e=>e.mapId===18);
+ assert.equal(goal.mapHopCount,1);
+ assert.equal(goal.route[0].kind,'OUTDOOR_BOUNDARY');
+ assert.equal(goal.route[0].staticLandCompatiblePairs,0);
+ assert.equal(goal.route[0].waterTerrainPairs,3);
+ assert.equal(goal.routeNavigableNowProven,false);
+ cfg.outdoorOverlapIndex.romSha256='0'.repeat(64);
+ const x=campaignObjectives(cfg);
+ assert.equal(x.outdoorGlobalOverlapCorroborated,false);
+ assert.equal(x.objectives.find(e=>e.mapId===18).route[0].staticLandCompatiblePairs,null);
+});
