@@ -7,7 +7,8 @@ const nonnegative=n=>Number.isInteger(n)&&n>=0;
 const invalid=reason=>({verified:false,reason,objectives:[],
   routeGraphVerified:false,progressCompleteness:'UNKNOWN'});
 function campaignObjectives({ledger,warpGraph,sourceMapId,
- firstMapTerrainHints=null,position=null,maxResults=12}={}){
+ firstMapTerrainHints=null,firstMapExitAccess=null,
+ position=null,maxResults=12}={}){
  if(ledger?.verified!==true||ledger.progressCompleteness!=='PARTIAL'||
     !isKnownAuditedRomSha(ledger.romSha256)||ledger.mapCount!==226||
     !Array.isArray(ledger.mapProgress)||ledger.mapProgress.length!==226)
@@ -61,7 +62,39 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
    firstMapTerrainHints.positionFromRam?.x===position?.x&&
    firstMapTerrainHints.positionFromRam?.y===position?.y&&
    Array.isArray(firstMapTerrainHints.candidates);
+ // The local exit engine knows Cut/Surf capabilities from the current
+ // verified RAM window. Prefer it to the old land-only terrain preview.
+ const exitsOK=graphOK&&firstMapExitAccess?.verified===true&&
+   firstMapExitAccess.romSha256===ledger.romSha256&&
+   firstMapExitAccess.mapId===sourceMapId&&
+   firstMapExitAccess.positionFromRam?.x===position?.x&&
+   firstMapExitAccess.positionFromRam?.y===position?.y&&
+   Array.isArray(firstMapExitAccess.exits)&&
+   firstMapExitAccess.truncated!==true;
+ const evidenceFor=edge=>{
+   if(edge.kind!=='STATIC_WARP'||!exitsOK)return null;
+   return firstMapExitAccess.exits.find(x=>x.kind==='WARP'&&
+     x.sourceWarpIndex===edge.sourceWarpIndex&&
+     x.destinationMapId===edge.destinationMapId&&
+     x.staticDestinationStatus==='STATIC_DESTINATION_WARP_VALIDATED')||null;
+ };
  const firstRank=edge=>{
+   const local=evidenceFor(edge);
+   if(local){
+     switch(local.terrainStatus){
+       case 'THEORETICAL_TERRAIN_PATH':
+       case 'TERRAIN_PATH_REQUIRES_CUT_ACTION':
+       case 'TERRAIN_PATH_REQUIRES_SURF_ACTION':return 0;
+       case 'NO_LOCAL_TERRAIN_PATH_NOT_PROOF_OF_LOCK':
+       case 'ROM_EXIT_TILE_OUTSIDE_MAP':
+       case 'CUT_NOT_USABLE_IN_CURRENT_PARTY':
+       case 'SURF_NOT_USABLE_IN_CURRENT_PARTY':
+       case 'CUT_CAPABILITY_NOT_VERIFIED':
+       case 'SURF_CAPABILITY_NOT_VERIFIED':
+       case 'CUT_AND_SURF_HYPOTHETICAL':return 2;
+       default:return 1;
+     }
+   }
    if(edge.kind!=='STATIC_WARP'||!hintsOK)return 1;
    const h=firstMapTerrainHints.candidates.find(x=>
      x.warpIndex===edge.sourceWarpIndex&&
@@ -132,6 +165,8 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
      route:route?.map(e=>({...e}))??null,
      firstTransitionTerrainEvidence:route?
        (firstTerrain.get(m.mapId)||'TERRAIN_NOT_VERIFIED'):null,
+     firstTransitionConditionalAccess:route?.[0]?
+       (evidenceFor(route[0])?.terrainStatus??null):null,
      routeNavigableNowProven:false,
      locationAccessibleNow:null,
      kind:pendingFlags>0?'VERIFIED_OPEN_FLAGS':'UNRESOLVED_FLAGS_ONLY'
@@ -149,6 +184,7 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
  return {verified:true,romSha256:ledger.romSha256,
    sourceMapId,routeGraphVerified:graphOK,
    firstMapTerrainHintsCorroborated:hintsOK,
+   firstMapExitAccessCorroborated:exitsOK,
    mapCount:ledger.mapCount,mapsWithPending,mapsWithUnknown,
    totalObjectives:goals.length,objectives:goals.slice(0,maxResults),
    progressCompleteness:'PARTIAL',
@@ -157,6 +193,7 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
      'Uma flag não ativada pode indicar evento não concluído, mas não prova acesso atual',
      'Distâncias são transições entre mapas estáticos, não passos nem rotas desbloqueadas',
      'Apenas a primeira transição usa terreno local; as ligações seguintes carecem de geometria e scripts',
+     'A preferência por Cut/Surf depende de capacidades na RAM e não confirma que a ação do jogo tenha ocorrido',
      'Ausência de caminho terrestre não prova bloqueio: Surf e Cut podem mudar o resultado',
      'LAST_MAP, elevadores, Cut/Surf/Strength, portas e scripts dinâmicos não estão resolvidos',
      'Os eventos sem flags mapeadas não são tratados como concluídos'
