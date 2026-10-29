@@ -119,3 +119,12 @@ test('outdoor routes are stripped when any of 78 audited map connections diverge
  assert.match(invalidated,/romOutdoorReferenceEvidence=\{verified:false/);
  assert.match(invalidated,/romWarpGraph=\{verified:false/);
 });
+
+test('verified boundary offsets are cached by ROM SHA and never persisted as RAM facts',()=>{
+ assert.match(source,/require\('\.\/romOutdoorAlignment'\)/);
+ assert.match(source,/this\._outdoorAlignment=validateOutdoorAlignment\(\{/);
+ assert.match(source,/outdoorAlignment:this\.latestState\.romOutdoorAlignment/);
+ assert.match(source,/this\.latestState\.romOutdoorAlignment=\{verified:false/);
+ const persisted=method('persistState','loadPersistedActionHistory');
+ assert.match(persisted,/'romOutdoorAlignment'/);
+});
