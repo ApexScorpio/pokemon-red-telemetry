@@ -36,6 +36,14 @@ class CampaignFlagSession {
      this.reason='Contadores diminuíram: referência anterior invalidada';
      return {delta:{...delta,changes:[]},recent:this.status(true)};
    }
+   if(delta.verified!==true&&!delta.baselineRequired){
+     // Malformed or mismatched bit records invalidate the entire timeline.
+     // Do not quietly carry older events into a new inconsistent snapshot.
+     this.events=[];
+     this.baseline=null;
+     this.reason=delta.reason||'Diferença ROM/RAM sem validação';
+     return {delta:{...delta,changes:[]},recent:this.status(false)};
+   }
    if(delta.verified===true){
      this.events.push(...delta.changes.map(e=>({...e,observedAt})));
      this.events=this.events.slice(-80);
