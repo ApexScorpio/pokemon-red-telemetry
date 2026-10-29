@@ -770,6 +770,27 @@ function renderWorldAdvisor(state) {
       '✨ Encontros fixos: '+t.stationaryGatesClosed+
         ' eventos encerrados (não prova captura)');
   }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  const recent=state.worldRecentFlagChanges;
+  if(recent?.verified===true&&recent.romSha256===advice.romSha256&&
+     Array.isArray(recent.events)&&recent.events.length){
+    const labels={
+      HIDDEN_ITEM_FLAG_RAISED:'item oculto assinalado como obtido',
+      HIDDEN_COIN_FLAG_RAISED:'evento de fichas ocultas assinalado como obtido',
+      TRAINER_GATE_FLAG_RAISED:'portão/evento de treinador fechado',
+      SCRIPT_VICTORY_FLAG_RAISED:'flag específica de vitória ativada',
+      BATTLE_PLAYED_FLAG_RAISED:'flag específica de batalha realizada ativada',
+      STATIONARY_GATE_FLAG_RAISED:'evento de Pokémon fixo encerrado'
+    };
+    const summary=['--- MUDANÇAS DE FLAGS OBSERVADAS NESTA SESSÃO ---'];
+    for(const e of recent.events.slice(-6).reverse()){
+      if(!labels[e.kind]||!Number.isInteger(e.amount)||e.amount<1)continue;
+      summary.push('• '+e.mapName+' (#'+e.mapId+'): +'+e.amount+
+        ' '+labels[e.kind]);
+    }
+    summary.push('⚠️ Diferenças entre leituras RAM, não prova de ação, captura ou vitória.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion!==-1)lines.splice(insertion,0,...summary);
+  }
   const objectives=state.globalCampaignObjectives;
   if(objectives?.verified===true&&objectives.romSha256===advice.romSha256&&
      objectives.sourceMapId===advice.mapId&&
