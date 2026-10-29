@@ -86,3 +86,11 @@
 - **PG-011 — CÓDIGO IMPLEMENTADO / E2E PENDENTE:** novo painel de objetivos mundiais e respetivos estados; corrigida flexão singular/plural; imagem sintética antes/depois capturada e analisada (NÃO é o Companion no emulador).
 - **PG-008 — PARCIAL:** ao desligar o WebSocket, `lastState.connected=false` é persistido para impedir que verificações periódicas reapresentem dados antigos. Atomicidade RAM não demonstrada.
 - **Próximo critério de integração:** testes Node reais com dependências originais, 3 ROMs auditadas, screenshots em RetroArch/SameBoy e comparação de flags/rotas reais. Enquanto faltarem, manter o PR como Draft e `main` protegida.
+
+
+### T9 — 2026-10-29: checkpoint verificável para retoma
+
+- **Branch/PR:** `feature/pokeguide-world-action-tracker-20261028` / <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>. Via API: 42 commits à frente de `main`, 0 atrás, 12 ficheiros alterados; PR aberto **Draft**, não fundido. `main` preservada em `d52d6dad`.
+- **Testes desta fase:** 26/26 publicados aprovados no executor **V8 isolado com simulação das APIs Node**; seis módulos com parsing válido e nove verificações de integração de strings/ordem. **Pendente**: suite integral `npm test`, ROMs reais, E2E de cliente e screenshots do jogo.
+- **Tracking visual:** imagem sintética final capturada e inspecionada; HTML/imagem de teste provisórios apagados. Imagem não corresponde a partida real.
+- **Ponto de retoma seguinte:** obter checkout/test runner Node real sem depender de GitHub Actions esgotadas; validar a suite toda e os três ficheiros ROM contra o SHA esperado; corrigir falhas; depois testar o Companion no emulador real e atacar scripts/handlers/rotas dinâmicas por cobertura e evidência, nunca por alegação.
