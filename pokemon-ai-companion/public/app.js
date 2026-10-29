@@ -1166,9 +1166,25 @@ function renderWorldAdvisor(state) {
           p.textOutcomeVerified===false&&
           typeof p.text==='string'&&p.text.length>0&&p.text.length<=240&&
           typeof p.containsRuntimeVariables==='boolean';
-        const preview=hasPreview?
-          ' • Início literal ROM: «'+p.text.replace(/\s+/g,' ').slice(0,120)+
-          '»'+(p.containsRuntimeVariables?' (contém variáveis RAM)':''):'';
+        const program=p?.program;
+        const hasProgram=hasPreview&&program?.verified===true&&
+          program.scriptComplete===true&&program.dialogueExecuted===false&&
+          program.textOutcomeVerified===false&&
+          program.scriptEffectsVerified===false&&
+          typeof program.text==='string'&&program.text.length>0&&
+          program.text.length<=760&&Number.isInteger(program.segmentCount)&&
+          program.segmentCount>=1&&program.segmentCount<=12&&
+          typeof program.containsRuntimeText==='boolean'&&
+          typeof program.containsRuntimeCommands==='boolean';
+        const preview=hasProgram?
+          ' • Segmentos literais ROM ('+program.segmentCount+
+          ', TX_END corroborado): «'+
+          program.text.replace(/\s+/g,' ').slice(0,210)+'»'+
+          (program.containsRuntimeText||program.containsRuntimeCommands?
+            ' (há conteúdo dependente da RAM)':''):
+          hasPreview?
+            ' • Início literal ROM: «'+p.text.replace(/\s+/g,' ').slice(0,120)+
+            '»'+(p.containsRuntimeVariables?' (contém variáveis RAM)':''):'';
         summary.push('• '+row.item.kind+' — '+row.mapName+' (#'+row.mapId+
           ') X:'+x+' Y:'+y+' • índice ROM '+ordinal+
           (Number.isInteger(textId)?' • Text ID #'+textId:'')+
@@ -1176,7 +1192,9 @@ function renderWorldAdvisor(state) {
             Number.isInteger(textCpu)?
             ' • Entrada ROM '+textCommand+' [banco '+textBank+
             ' / CPU 0x'+textCpu.toString(16).toUpperCase()+']':'')+
-          preview+' — diálogo/texto restante e efeitos por interpretar; '+
+          preview+(hasProgram?
+            ' — sequência textual linear analisada; condições e efeitos por interpretar; ':
+            ' — diálogo/texto restante e efeitos por interpretar; ')+
           (Number.isInteger(row.mapHopCount)?
             row.mapHopCount+(row.mapHopCount===1? ' transição estática hipotética':' transições estáticas hipotéticas'):
             'rota estática por determinar'));
