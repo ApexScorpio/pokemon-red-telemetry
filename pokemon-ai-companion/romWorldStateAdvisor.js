@@ -2,6 +2,7 @@
 // Global advisor: covers any map ID, refuses to fabricate event outcomes.
 const {findStaticWarpRoute}=require('./romWarpGraph');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
+const {buildWorldContentsIndex,getMapContents}=require('./romWorldContentsIndex');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -151,7 +152,13 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    .filter(o=>o.destinationMapId!==undefined&&byte(o.destinationMapId))
    .map(o=>o.destinationMapId))).slice(0,32).map(dest=>
      findStaticWarpRoute(warpGraph,mapId,dest,{maxHops:24})): [];
+ const worldIndex=buildWorldContentsIndex(profile);
+ const mapStaticInventory=worldIndex.verified?
+   getMapContents(worldIndex,mapId):null;
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
+   mapStaticInventory,
+   fullWorldStaticIndexVerified:worldIndex.verified,
+   fullWorldStaticTotals:worldIndex.verified?worldIndex.totals:null,
    position:positionVerified?position:null,observations,
    activeRomSha256Verified:false,
    activeRomIdentitySource:'CRC32_RETROARCH_MATCHES_SHA_AUDITED_LOCAL_PROFILE',
