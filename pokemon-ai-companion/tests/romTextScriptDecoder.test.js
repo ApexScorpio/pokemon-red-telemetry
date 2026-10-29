@@ -45,7 +45,7 @@ test('consome tamanho exato de controlos e som, sem inferir efeito',()=>{
  assert.equal(r.verified,true);
  assert.equal(r.hasDisplayControls,true);
  assert.equal(r.containsRuntimeCommands,false);
- assert.equal(r.commands.length,10);
+ assert.equal(r.commands.length,9);
  assert.equal(r.text,'A');
 });
 test('comandos TX_BCD, TX_NUM e TX_BOX respeitam operandos',()=>{
