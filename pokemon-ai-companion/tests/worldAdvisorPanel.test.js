@@ -117,7 +117,7 @@ test('Kanto objectives list separates pending flags and unverified travel',()=>{
    ]};
  const output=render(s).body.textContent;
  assert.match(output,/OBJETIVOS DE KANTO/);
- assert.match(output,/1 itens ocultos/);
+ assert.match(output,/1 item oculto/);
  assert.match(output,/2 portões de treino abertos/);
  assert.match(output,/rota estática não determinada/);
  assert.doesNotMatch(output,/acesso garantido/i);
