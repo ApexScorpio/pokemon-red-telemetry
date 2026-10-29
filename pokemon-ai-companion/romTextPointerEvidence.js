@@ -56,7 +56,8 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
    Object.assign(far,{verified:true,cpu:farCpu,bank:farBank,
      fileOffset:target,startsWithTxStart:true});
    // Incomplete or unknown text must NOT invalidate a structurally valid TX_FAR.
-   const preview=decodeFirstRomText({rom,offset:target});
+   const preview=decodeFirstRomText({rom,offset:target,
+     maxBytes:512,allowExtended:true});
    if(preview.verified===true){
      const program=decodeRomTextProgram({rom,offset:target});
      staticTextPreview={verified:true,text:preview.text,
