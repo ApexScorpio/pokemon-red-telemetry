@@ -49,7 +49,8 @@ function buildWorldContentsIndex(profile){
    Array.isArray(hidden.items)&&hidden.items.length===54&&
    hidden.items.every(h=>byte(h.mapId)&&byte(h.x)&&byte(h.y)&&
      byte(h.itemId)&&Number.isInteger(h.hiddenIndex)&&
-     h.hiddenIndex>=0&&h.hiddenIndex<54);
+     h.hiddenIndex>=0&&h.hiddenIndex<54)&&
+   new Set(hidden.items.map(h=>h.hiddenIndex)).size===54;
  const hiddenByMap=new Map();
  if(hiddenVerified)for(const h of hidden.items){
   const existing=hiddenByMap.get(h.mapId)||[];
@@ -59,15 +60,22 @@ function buildWorldContentsIndex(profile){
  }
  const maps=[];
  const totals={normalMaps:0,reservedOrUnresolvedMapIds:0,
-  visibleItems:0,hiddenItems:0,trainers:0,npcs:0,
+  visibleItems:0,hiddenItems:0,hiddenItemsInNormalMaps:0,
+  hiddenItemsWithoutNormalHeader:0,trainers:0,npcs:0,
   stationaryPokemon:0,signs:0,warps:0};
  for(const m of data){
   if(!m.valid){
    totals.reservedOrUnresolvedMapIds++;
+   const unassignedHiddenItems=(hiddenByMap.get(m.mapId)||[]).map(h=>({
+     ...h,mapId:m.mapId,mapReferenceStatus:'NO_NORMAL_MAP_HEADER',
+     scriptBindingVerified:null,
+     reason:'Referencia de item oculto presente na ROM, mas sem cabecalho normal deste ID'
+   }));
+   totals.hiddenItemsWithoutNormalHeader+=unassignedHiddenItems.length;
    maps.push({mapId:m.mapId,verified:false,
      status:'NO_NORMAL_MAP_HEADER',
      reason:'Sem cabecalho normal descodificado; nao assumir ausencia de eventos',
-     contents:null});
+     contents:null,unassignedHiddenItems});
    continue;
   }
   const raw=m.objects;
@@ -89,15 +97,23 @@ function buildWorldContentsIndex(profile){
   };
   totals.normalMaps++;
   for(const key of Object.keys(contents))totals[key]+=contents[key].length;
+  totals.hiddenItemsInNormalMaps+=contents.hiddenItems.length;
   maps.push({mapId:m.mapId,verified:true,
    mapBank:m.mapBank??null,
    widthBlocks:m.widthBlocks??null,heightBlocks:m.heightBlocks??null,
    status:'ROM_STATIC_CONTENTS',
    contents});
  }
+ // Preserve hidden-item references on reserved IDs rather than silently
+ // dropping them or claiming that those IDs are accessible locations.
+ totals.hiddenItems+=totals.hiddenItemsWithoutNormalHeader;
+ const unassignedHiddenItems=maps.flatMap(m=>m.unassignedHiddenItems||[]);
+ if(hiddenVerified&&(totals.hiddenItems!==54||
+     totals.hiddenItemsInNormalMaps+unassignedHiddenItems.length!==54))
+  return reject('Indice global perdeu referencias de itens ocultos da ROM');
  return {verified:true,romSha256:sha,
   source:'SHA_AUDITED_ROM_PROFILE_ALL_MAP_HEADERS_AND_OBJECT_RECORDS',
-  maps,totals,hiddenItemCoordinatesVerified:hiddenVerified,
+  maps,totals,unassignedHiddenItems,hiddenItemCoordinatesVerified:hiddenVerified,
   runtimeStateVerified:false,
   totalMapsWithLiveCompletionVerified:0,
   globalMapCoverage:'248_REFERENCE_IDS_226_NORMAL_HEADERS',
