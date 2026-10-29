@@ -803,7 +803,9 @@ function renderWorldAdvisor(state) {
         'Elevador — opção '+(e.floorMenuIndex+1);
       const dest=Number.isInteger(e.destinationMapId)?
         ' → mapa #'+e.destinationMapId:' → destino dependente de script/RAM';
-      out.push('• '+label+dest+': '+labels[e.terrainStatus]);
+      out.push('• '+label+dest+': '+labels[e.terrainStatus]+
+        (e.destinationEvidence==='RAM_SEQUENTIAL_LAST_MAP'?
+          ' (destino D365 relido; passagem não comprovada)':''));
       if(e.kind==='WARP'&&e.approach?.nextStep)
         out.push('   Primeiro tile teórico: X:'+e.approach.nextStep.x+
           ' Y:'+e.approach.nextStep.y);
