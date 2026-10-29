@@ -114,3 +114,24 @@ test('candidate border tile never becomes an asserted landing on next map',()=>{
  assert.equal(first.crossingAlignmentVerified,false);
  assert.equal(r.targetAccessProven,false);
 });
+
+test('return-cycle carries ROM-aligned outdoor landing without declaring traverse',()=>{
+ const f=fixture();
+ f.warpGraph.edges[0].status='LAST_MAP_RAM_REQUIRED';
+ f.warpGraph.outdoorConnections.edges[1]={
+   sourceMapId:15,destinationMapId:16,direction:'east'};
+ f.localExits.exits=[{kind:'OUTDOOR_BORDER',
+   destinationMapId:16,direction:'east',
+   terrainStatus:'BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED',
+   neighborAlignmentVerified:true,
+   borderEvidence:{verified:true,borderTiles:[{
+     tile:{x:89,y:4},destinationTile:{x:0,y:12},
+     firstTerrainStep:{x:88,y:4}}]}}];
+ const r=suggestWorldDetours(f),first=r.candidates[0].firstExitEvidence;
+ assert.equal(first.known,true);
+ assert.deepEqual(first.candidateBorderTile,{x:89,y:4});
+ assert.deepEqual(first.candidateDestinationTile,{x:0,y:12});
+ assert.equal(first.crossingAlignmentVerified,true);
+ assert.equal(first.canTraverseNowProven,false);
+ assert.equal(r.candidates[0].returnsToTargetSideProven,false);
+});
