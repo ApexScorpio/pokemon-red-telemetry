@@ -1140,7 +1140,7 @@ function renderWorldAdvisor(state) {
           m.interactionRecords.npcs.map(t=>({kind:'NPC',tuple:t})):[]),
         ...(Array.isArray(m.interactionRecords.signs)?
           m.interactionRecords.signs.map(t=>({kind:'SINAL',tuple:t})):[])
-      ].filter(r=>Array.isArray(r.tuple)&&r.tuple.length===4&&
+      ].filter(r=>Array.isArray(r.tuple)&&r.tuple.length>=4&&
         Number.isInteger(r.tuple[1])&&Number.isInteger(r.tuple[2]));
       if(rows.length)interactionBuckets.push({
         mapId:m.mapId,mapName:m.name,mapHopCount:goal.mapHopCount,rows});
@@ -1157,10 +1157,14 @@ function renderWorldAdvisor(state) {
         'A mostrar '+shown.length+' de '+interactionsTotal+
         ' pontos de interação ROM remotos; efeito e execução DESCONHECIDOS.'];
       for(const row of shown){
-        const [ordinal,x,y,textId]=row.item.tuple;
+        const [ordinal,x,y,textId,textCommand,textBank,textCpu]=row.item.tuple;
         summary.push('• '+row.item.kind+' — '+row.mapName+' (#'+row.mapId+
           ') X:'+x+' Y:'+y+' • índice ROM '+ordinal+
           (Number.isInteger(textId)?' • Text ID #'+textId:'')+
+          (typeof textCommand==='string'&&Number.isInteger(textBank)&&
+            Number.isInteger(textCpu)?
+            ' • Entrada ROM '+textCommand+' [banco '+textBank+
+            ' / CPU 0x'+textCpu.toString(16).toUpperCase()+']':'')+
           ' — diálogo/texto por interpretar; '+
           (Number.isInteger(row.mapHopCount)?
             row.mapHopCount+' transições estáticas hipotéticas':

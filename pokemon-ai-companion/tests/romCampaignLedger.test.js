@@ -167,3 +167,21 @@ test('unlocalized NPC is counted as unknown without fabricating position',()=>{
  assert.equal(r.mapProgress[19].interactions.coordinatesUnverified,1);
  assert.equal(r.mapProgress[19].interactionRecords.npcs.length,0);
 });
+
+test('NPC and sign text pointer evidence enriches tuples without changing flag semantics',()=>{
+ const x=rig();
+ x.profile.world.maps.data[19].objects.signs=[{x:5,y:2,textId:7,
+   textPointerEvidence:{verified:true,command:'TX_FAR',
+     romBank:6,textPointerCpu:0x5400}}];
+ x.profile.world.maps.data[19].objects.objects=[{kind:'npc',x:3,y:4,
+   textId:9,textPointerEvidence:{verified:true,command:'SCRIPT_MART',
+     romBank:0,textPointerCpu:0x24ea}}];
+ const r=evaluate(x);
+ assert.equal(r.verified,true);
+ assert.equal(r.totals.interactionTextPointersVerified,2);
+ assert.deepEqual(r.mapProgress[19].interactionRecords.signs[0],
+   [1,5,2,7,'TX_FAR',6,0x5400]);
+ assert.deepEqual(r.mapProgress[19].interactionRecords.npcs[0],
+   [1,3,4,9,'SCRIPT_MART',0,0x24ea]);
+ assert.equal(r.mapProgress[19].scriptEffectsComplete,false);
+});

@@ -607,3 +607,25 @@ test('ROM-wide NPCs and signs disclose text ids and unknown dialogue outcome',()
  s.globalCampaignLedger.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/NPCS E SINAIS NOUTROS MAPAS/);
 });
+
+test('remote NPC and sign can show verified ROM entry without claiming dialogue outcome',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalCampaignObjectives={verified:true,romSha256:sha,
+   sourceMapId:15,mapCount:226,objectiveIndexCount:1,
+   remoteObjectiveIndex:[{mapId:20,mapHopCount:2}],
+   objectives:[],mapsWithPending:0,mapsWithUnknown:1};
+ s.globalCampaignLedger={verified:true,romSha256:sha,mapCount:226,
+   mapProgress:Array.from({length:226},(_,i)=>({
+     mapId:i,name:'Mapa '+i,visibleItems:{unresolved:0},
+     flagRecords:{visibleItems:[]},
+     interactions:{unresolved:i===20?1:0},
+     interactionRecords:{npcs:i===20?
+       [[1,3,4,7,'TX_FAR',6,0x5400]]:[],signs:[]}
+   }))};
+ const message=render(s).body.textContent;
+ assert.match(message,/Entrada ROM TX_FAR/);
+ assert.match(message,/banco 6/);
+ assert.match(message,/CPU 0x5400/);
+ assert.match(message,/efeito e execução DESCONHECIDOS/);
+ assert.doesNotMatch(message,/diálogo executado/);
+});

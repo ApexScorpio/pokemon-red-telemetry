@@ -8,6 +8,13 @@ const {fromKnownRom,decodeHiddenCoins}=require('./romEventState');
 const goodHex=(xs,n)=>Array.isArray(xs)&&xs.length===n&&
  xs.every(x=>typeof x==='string'&&/^[\da-f]{2}$/i.test(x));
 const bit=(xs,i)=>((parseInt(xs[i>>3],16)>>(i&7))&1)===1;
+// Keep the original four-field tuple for profiles without text evidence.
+const interactionTuple=(ordinal,x,y,textId,evidence)=>{
+ const tuple=[ordinal,x,y,textId];
+ if(evidence?.verified===true)
+   tuple.push(evidence.command,evidence.romBank,evidence.textPointerCpu);
+ return tuple;
+};
 const invalid=reason=>({verified:false,reason,progressCompleteness:'UNKNOWN',
  mapCount:0,mapProgress:[],totals:null});
 function buildCampaignLedger({profile,romIdentityMatched=false,
@@ -37,7 +44,8 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    hiddenItems:{total:0,collected:0,notCollected:0},
    hiddenCoins:{total:0,collected:0,notCollected:0},
    visibleItems:{objects:0,unresolved:0,collectedConfirmed:0},
-   interactions:{npcObjects:0,signs:0,unresolved:0,coordinatesUnverified:0},
+   interactions:{npcObjects:0,signs:0,unresolved:0,coordinatesUnverified:0,
+     textPointersVerified:0},
    interactionRecords:{npcs:[],signs:[]},
    trainers:{objects:0,flagsMapped:0,gatesClosed:0,gatesOpen:0,
      unknown:0,scriptedVictories:0,battlesPlayed:0},
@@ -96,9 +104,12 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
        continue;
      }
      // Compact tuples: [ordinal in ROM, X, Y, text ID or null].
-     summary.interactionRecords.signs.push([ordinal+1,sign.x,sign.y,
+     if(sign.textPointerEvidence?.verified===true)
+       summary.interactions.textPointersVerified++;
+     summary.interactionRecords.signs.push(interactionTuple(
+       ordinal+1,sign.x,sign.y,
        Number.isInteger(sign.textId)&&sign.textId>=0&&sign.textId<=255?
-         sign.textId:null]);
+         sign.textId:null,sign.textPointerEvidence));
    }
    for(let ordinal=0;ordinal<actors.length;ordinal++){
      const actor=actors[ordinal];
@@ -110,9 +121,12 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
        summary.interactions.coordinatesUnverified++;
        continue;
      }
-     summary.interactionRecords.npcs.push([ordinal+1,actor.x,actor.y,
+     if(actor.textPointerEvidence?.verified===true)
+       summary.interactions.textPointersVerified++;
+     summary.interactionRecords.npcs.push(interactionTuple(
+       ordinal+1,actor.x,actor.y,
        Number.isInteger(actor.textId)&&actor.textId>=0&&actor.textId<=255?
-         actor.textId:null]);
+         actor.textId:null,actor.textPointerEvidence));
    }
    // Static visible objects are present in ROM, but unlike hidden-item flags
    // there is no corroborated world-wide pickup bitmap here. Never call
@@ -189,7 +203,7 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
  const total={mapHeaders:maps.length,hiddenItems:54,hiddenCoins:12,
    visibleItemObjects:0,visibleItemsCollectionUnresolved:0,
    npcObjects:0,signObjects:0,interactionOutcomesUnresolved:0,
-   interactionCoordinatesUnverified:0,
+   interactionCoordinatesUnverified:0,interactionTextPointersVerified:0,
    hiddenItemsCollected:0,hiddenItemsNotCollected:0,
    hiddenCoinsCollected:0,hiddenCoinsNotCollected:0,
    trainerObjects:0,trainerFlagsMapped:0,trainerGatesClosed:0,
@@ -207,6 +221,7 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    total.signObjects+=s.interactions.signs;
    total.interactionOutcomesUnresolved+=s.interactions.unresolved;
    total.interactionCoordinatesUnverified+=s.interactions.coordinatesUnverified;
+   total.interactionTextPointersVerified+=s.interactions.textPointersVerified;
    total.trainerObjects+=s.trainers.objects;
    total.trainerFlagsMapped+=s.trainers.flagsMapped;
    total.trainerGatesClosed+=s.trainers.gatesClosed;
