@@ -774,14 +774,18 @@ function renderWorldAdvisor(state) {
       ' · com eventos desconhecidos: '+objectives.mapsWithUnknown];
     for(const goal of objectives.objectives.slice(0,8)){
       const p=goal.pending||{},u=goal.unknown||{};
+      const plural=(n,one,many)=>n+' '+(n===1?one:many);
       const todo=[
-        p.hiddenItems>0?p.hiddenItems+' itens ocultos':'',
-        p.hiddenCoins>0?p.hiddenCoins+' fichas ocultas':'',
-        p.trainerGatesOpen>0?p.trainerGatesOpen+' portões de treino abertos':'',
-        p.stationaryGatesOpen>0?p.stationaryGatesOpen+' encontros fixos disponíveis por flag':''
+        p.hiddenItems>0?plural(p.hiddenItems,'item oculto','itens ocultos'):'',
+        p.hiddenCoins>0?plural(p.hiddenCoins,'ficha oculta','fichas ocultas'):'',
+        p.trainerGatesOpen>0?plural(p.trainerGatesOpen,
+          'portão de treino aberto','portões de treino abertos'):'',
+        p.stationaryGatesOpen>0?plural(p.stationaryGatesOpen,
+          'encontro fixo aberto por flag','encontros fixos abertos por flag'):''
       ].filter(Boolean);
       const uncertain=(u.trainers||0)+(u.stationaryPokemon||0);
-      if(uncertain)todo.push(uncertain+' eventos por esclarecer');
+      if(uncertain)todo.push(plural(uncertain,
+        'evento por esclarecer','eventos por esclarecer'));
       const hops=goal.mapHopCount===0?'mapa atual':
         Number.isInteger(goal.mapHopCount)?
         goal.mapHopCount+' transições estáticas (acesso por confirmar)':
