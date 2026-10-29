@@ -33,6 +33,36 @@ test('ROM Green p1 real pode ser auditada apenas com ficheiro explicitamente for
  assert.deepEqual(r.counts,{mapCount:226,warps:813,signs:204,
    npc:472,trainer:334,item:106,wildPokemon:12});
  assert.equal(r.maps.length,226);
+ assert.equal(r.maps.reduce((n,m)=>n+m.staticObjects.warps.length,0),813);
+ assert.equal(r.maps.reduce((n,m)=>n+m.staticObjects.signs.length,0),204);
+ assert.equal(r.maps.reduce((n,m)=>n+m.staticObjects.actors.length,0),924);
+ for(const map of r.maps){
+   const details=map.staticObjects;
+   assert.equal(details.liveStateRead,false);
+   assert.equal(details.conditionalAccessVerified,false);
+   assert.equal(details.warps.length,map.warpObjects);
+   assert.equal(details.signs.length,map.signObjects);
+   assert.equal(details.actors.length,map.npcObjects+map.trainerObjects+
+     map.visibleItemObjects+map.stationaryPokemonObjects);
+   for(const warp of details.warps){
+     assert.equal(Number.isInteger(warp.x)&&Number.isInteger(warp.y),true);
+     assert.equal(warp.destinationRequiresRam,warp.destinationMap===255);
+     assert.equal(warp.accessibleNow,null);
+   }
+   for(const sign of details.signs){
+     assert.equal(sign.textMeaningVerified,false);
+     assert.equal(Number.isInteger(sign.textId),true);
+   }
+   for(const actor of details.actors){
+     assert.equal(actor.x,actor.xRaw-4);
+     assert.equal(actor.y,actor.yRaw-4);
+     assert.equal(actor.accessibleNow,null);
+     assert.equal(actor.textMeaningVerified,false);
+     assert.equal(actor.completionVerified,false);
+     assert.equal(actor.metadata.length,(actor.textId&0x40)?2:
+       (actor.textId&0x80)?1:0);
+   }
+ }
  assert.equal(r.liveCompanionSupported,false);
  assert.equal(r.textSemanticsVerified,false);
 });
