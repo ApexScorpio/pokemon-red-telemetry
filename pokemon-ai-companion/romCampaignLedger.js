@@ -32,7 +32,7 @@ const interactionTuple=(ordinal,x,y,textId,evidence,romSha256,mapId)=>{
       p.firstStringOnly===true&&p.dialogueExecuted===false&&
       p.textOutcomeVerified===false&&
       typeof p.text==='string'&&p.text.trim().length>0&&
-      p.text.length<=240&&typeof p.containsRuntimeVariables==='boolean')
+      p.text.length<=720&&typeof p.containsRuntimeVariables==='boolean')
      {
        const preview={verified:true,firstStringOnly:true,text:p.text,
          containsRuntimeVariables:p.containsRuntimeVariables,
