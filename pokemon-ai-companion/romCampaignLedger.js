@@ -113,7 +113,7 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
          const actor=actors[entry.objectOrdinal-1];
          summary.flagRecords.stationaryPokemon.push({
            recordId:'stationary-'+entry.objectOrdinal,
-           bitIndex:entry.eventBitIndex,flagSet:entry.eventFlagSet===true,
+           bitIndex:entry.eventBitIndex,flagSet:entry.encounterGateClosed===true,
            objectOrdinal:entry.objectOrdinal,x:actor?.x??null,y:actor?.y??null,
            speciesInternalId:entry.speciesInternalId,
            source:entry.source
