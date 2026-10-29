@@ -8,7 +8,7 @@ const invalid=reason=>({verified:false,reason,objectives:[],
   routeGraphVerified:false,progressCompleteness:'UNKNOWN'});
 function campaignObjectives({ledger,warpGraph,sourceMapId,
  firstMapTerrainHints=null,firstMapExitAccess=null,
- position=null,maxResults=12}={}){
+ outdoorOverlapIndex=null,position=null,maxResults=12}={}){
  if(ledger?.verified!==true||ledger.progressCompleteness!=='PARTIAL'||
     !isKnownAuditedRomSha(ledger.romSha256)||ledger.mapCount!==226||
     !Array.isArray(ledger.mapProgress)||ledger.mapProgress.length!==226)
@@ -33,6 +33,12 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
    warpGraph.romSha256===ledger.romSha256&&
    Array.isArray(warpGraph.edges)&&warpGraph.edges.length===813&&
    warpGraph.totalWarpEntries===813&&warpGraph.normalMapHeaders===226;
+ const overlapsOK=graphOK&&outdoorOverlapIndex?.verified===true&&
+   outdoorOverlapIndex.romSha256===ledger.romSha256&&
+   outdoorOverlapIndex.edgeCount===78&&
+   outdoorOverlapIndex.edges?.length===78;
+ const overlapped=overlapsOK?new Map(outdoorOverlapIndex.edges.map(e=>[
+   e.sourceMapId+':'+e.direction+':'+e.destinationMapId,e])):null;
  const links=new Map();
  const add=(source,dest,kind,detail)=>{
    if(!mapIds.has(source)||!mapIds.has(dest))return;
@@ -49,9 +55,16 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
    }
    if(warpGraph.outdoorConnections?.verified===true&&
       Array.isArray(warpGraph.outdoorConnections.edges))
-     for(const e of warpGraph.outdoorConnections.edges)
+     for(const e of warpGraph.outdoorConnections.edges){
+       const match=overlapped?.get(
+         e.sourceMapId+':'+e.direction+':'+e.destinationMapId);
        add(e.sourceMapId,e.destinationMapId,'OUTDOOR_BOUNDARY',
-         {direction:e.direction??null});
+         {direction:e.direction??null,
+          romAlignedBorder:match?.sourceAndDestinationAlignmentVerified===true,
+          staticLandCompatiblePairs:match?.staticLandCompatiblePairs??null,
+          waterTerrainPairs:match?.waterTerrainPairs??null,
+          passageObserved:false});
+     }
  }
  // Order the FIRST transition by corroborated *static land* terrain.
  // A failed land-only route is not proof of a game lock: Surf, Cut, scripted
@@ -194,6 +207,7 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
    sourceMapId,routeGraphVerified:graphOK,
    firstMapTerrainHintsCorroborated:hintsOK,
    firstMapExitAccessCorroborated:exitsOK,
+   outdoorGlobalOverlapCorroborated:overlapsOK,
    mapCount:ledger.mapCount,mapsWithPending,mapsWithUnknown,
    totalObjectives:goals.length,objectives:goals.slice(0,maxResults),
    progressCompleteness:'PARTIAL',
@@ -204,6 +218,7 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
      'Apenas a primeira transição usa terreno local; as ligações seguintes carecem de geometria e scripts',
      'A preferência por Cut/Surf depende de capacidades na RAM e não confirma que a ação do jogo tenha ocorrido',
      'O alinhamento de bordas via ponteiros ROM não prova a execução da transição na partida',
+     'Zero pares terrestres numa fronteira pode exigir água, Cut ou script; não prova bloqueio',
      'Ausência de caminho terrestre não prova bloqueio: Surf e Cut podem mudar o resultado',
      'LAST_MAP, elevadores, Cut/Surf/Strength, portas e scripts dinâmicos não estão resolvidos',
      'Os eventos sem flags mapeadas não são tratados como concluídos'
