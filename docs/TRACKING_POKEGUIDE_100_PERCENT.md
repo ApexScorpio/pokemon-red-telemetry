@@ -183,3 +183,11 @@
 - O cálculo de pares de coordenadas de fronteira já existente na branch é complementado com classificação de **Cut/Surf na zona de chegada**, independente de poder alcançar a borda na zona de origem. Novos campos: `destinationRequiresCut`, `destinationRequiresSurf`, `destinationCapabilityStatus`, `destinationEntryUsableNow:null`.
 - A interface apresenta estes estados sem declarar transição executada. Novo ensaio de regressão `romOutdoorDestinationCapability.test.js`: **3/3**, V8 isolado com dependências simuladas, não `npm test` real.
 - Limites: atravessamento real, scripts, capacidades temporárias, colisões com atores, SHA do binário efetivamente carregado e navegação E2E ainda por provar. **NÃO 100%.**
+
+ 
+### T61 — 2026-10-29: texto literal ROM dos NPCs/sinais no conselheiro mundial
+
+- **PG-004 / PG-012 — PARCIAL:** `romStaticDialogue.js` reconhece apenas a primeira cadeia `TX_START` de um ponteiro `TX_FAR` comprovado, com limites físicos dos bancos e charmap inglesa Gen I. Mostra variáveis `<PLAYER>`/`<RIVAL>` como marcadores; não decifra os restantes comandos, scripts nem escolhas.
+- **PG-006 / PG-011 — PARCIAL:** prévia tipada integrada no índice mundial e no painel de NPCs/sinais. Nunca afirma diálogo executado, evento concluído ou acesso disponível; a interface mostra texto via `textContent`. Plural de transições corrigido.
+- **PG-009 — VALIDAÇÃO LIMITADA:** sete testes equivalentes de descodificador passaram em Node 22.16.0 com ROMs sintéticas; oito ficheiros publicados passaram o parsing em JavaScript V8 e quatro verificações de integração `TX_FAR → ledger → UI` foram aprovadas no mesmo ambiente isolado; após a correção de plural, seis verificações dirigidas adicionais do painel passaram. As regressões novas estão publicadas, mas **não** houve `npm test` integral sobre checkout real, três ROMs originais nesta execução, nem screenshot E2E. Tentativa de screenshot sintético em Chromium falhou por timeout.
+- **Integridade:** histórico detalhado append-only em `docs/HISTORICO_GUIA_CAMPANHA.md` nas entradas T61a/T61b. `main` não foi alterada; PR #1 mantém-se sem autorização para integração enquanto faltam provas reais. **100% NÃO CERTIFICADO**.
