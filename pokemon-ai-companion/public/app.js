@@ -1038,6 +1038,9 @@ function renderWorldAdvisor(state) {
         if(depart)summary.push('  ↳ Primeira saída: mapa #'+advice.mapId+
           ' X:'+depart.x+' Y:'+depart.y+
           ' → mapa #'+first.destinationMapId+' (não observada)');
+      }else if(item.routeNotAttemptedReason==='NO_STATIC_MAP_ROUTE'){
+        summary.push(prefix+
+          'ligação estática entre mapas por determinar; procura não executada — NÃO prova bloqueio');
       }else{
         summary.push(prefix+(route?.maxStatesExceeded===true?
           'pesquisa limitada por estados':'sem caminho geométrico demonstrado')+

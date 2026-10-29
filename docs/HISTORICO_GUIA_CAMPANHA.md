@@ -1164,3 +1164,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Identificado limite estrutural: `romCampaignObjectives.js` restringia `maxResults` a 50 e `retroarchClient.js` pedia apenas 12; o novo `romGlobalFlagItemRoutes.js` consultava exclusivamente esses 12, podendo nunca receber itens ocultos pendentes em mapas posteriores.
 - `campaignObjectives` permite agora catálogo até **226 mapas**, reportando `totalObjectives` e `catalogueTruncated`; o cliente solicita os 226 mapas normais. O painel mantém no máximo oito objetivos visíveis e a pesquisa multimapa permanece limitada a **quatro alvos**, **180 estados** e **10 transições**. Não se pretende afirmar cobertura semântica total dos scripts.
 - Teste nativo em fonte `romCampaignObjectives.test.js` e regressão de integração adicionados. A execução em V8 da própria função comprovou 226/226 objetivos com `maxResults:226` e 12/226 com `maxResults:12`, assinalando truncagem. Sintaxe dos quatro ficheiros JavaScript passou. Suite completa `node --test` e emulador ainda não executados.
+
+
+## 2026-10-29 — T45: manter itens pendentes sem ligação estática identificada
+
+- O seletor mundial descartava mapas com `mapHopCount:null`; desapareciam do radar itens ocultos e fichas com flags de recolha explicitamente pendentes. Agora conserva-os como `staticRouteKnown:false`, com coordenadas e flag do ledger ROM/RAM.
+- O planeador só pesquisa alvos com ligação topológica conhecida e deixa os restantes com `route:null` e `routeNotAttemptedReason:NO_STATIC_MAP_ROUTE`. Não gasta estados nem afirma que a zona está bloqueada. O painel mostra 'ligação estática entre mapas por determinar; procura não executada — NÃO prova bloqueio'.
+- Testes de módulo e UI acrescentados. Execução em V8 do módulo real com 226 mapas sintéticos confirmou alvo preservado, 0 pesquisas e `accessibleNow:null`. Parsing completo dos quatro ficheiros JavaScript alterados passou. Validação nativa e em jogo continua pendente.

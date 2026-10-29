@@ -515,3 +515,14 @@ test('remote pending item route includes exact map tile but no guaranteed access
  s.globalFlagItemRoutes.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/ITENS OCULTOS NOUTROS MAPAS/);
 });
+
+test('unknown remote connection shows pending item without claiming permanent block',()=>{
+ const state=live(),sha=state.worldAdvisor.romSha256;
+ state.globalFlagItemRoutes={verified:true,romSha256:sha,sourceMapId:15,
+   items:[{kind:'HIDDEN_ITEM',mapName:'Outro mapa',mapId:50,x:2,y:3,
+     route:null,routeNotAttemptedReason:'NO_STATIC_MAP_ROUTE'}]};
+ const shown=render(state).body.textContent;
+ assert.match(shown,/Outro mapa \(#50\) X:2 Y:3/);
+ assert.match(shown,/ligação estática entre mapas por determinar/);
+ assert.match(shown,/NÃO prova bloqueio/);
+});

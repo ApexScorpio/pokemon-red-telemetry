@@ -108,3 +108,19 @@ test('four-slot window gives distinct remote maps first, then remaining items',(
  assert.deepEqual(s.items.map(x=>x.mapId),[10,20,30,10]);
  assert.equal(s.limited,true);
 });
+
+test('unknown static map connections preserve pending hidden flag without route search',()=>{
+ const f=fixture();
+ f.ledger.mapProgress[22].flagRecords.hiddenItems.push(
+   {bitIndex:15,flagSet:false,x:2,y:2});
+ f.objectives.objectives=[{mapId:22,mapHopCount:null}];
+ const picked=selectGlobalFlagTargets(f);
+ assert.equal(picked.verified,true);assert.equal(picked.items.length,1);
+ assert.equal(picked.items[0].staticRouteKnown,false);
+ const routes=planGlobalFlagItemRoutes({...f,position:{x:0,y:0},
+   positionVerified:true,currentModeByte:0});
+ assert.equal(routes.verified,true,routes.reason);
+ assert.equal(routes.items[0].route,null);
+ assert.equal(routes.items[0].routeNotAttemptedReason,'NO_STATIC_MAP_ROUTE');
+ assert.equal(routes.foundCount,0);assert.equal(routes.items[0].accessibleNow,null);
+});

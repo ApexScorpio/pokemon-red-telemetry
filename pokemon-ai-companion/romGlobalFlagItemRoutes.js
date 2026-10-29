@@ -31,7 +31,8 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
  const seen=new Set(),buckets=[];
  for(const goal of objectives.objectives){
    if(!inMap(goal?.mapId)||goal.mapId===sourceMapId||
-      !Number.isInteger(goal.mapHopCount)||goal.mapHopCount<1)continue;
+      !(goal.mapHopCount===null||
+        (Number.isInteger(goal.mapHopCount)&&goal.mapHopCount>=1)))continue;
    const record=records.get(goal.mapId);
    if(!record)continue;
    const bucket=[];
@@ -48,6 +49,7 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
        mapName:record.name||goal.mapName||'Mapa #'+goal.mapId,
        x:item.x,y:item.y,bitIndex:item.bitIndex,
        mapHopCount:goal.mapHopCount,
+       staticRouteKnown:goal.mapHopCount!==null,
        flagPendingVerified:true,visibleNowVerified:false,
        collectedNow:false,accessibleNow:null,recordId:item.recordId||key});
    }
@@ -77,20 +79,27 @@ function planGlobalFlagItemRoutes({ledger,objectives,terrainAtlas,warpGraph,
     ![0,1,2].includes(currentModeByte)||
     typeof canCut!=='boolean'||typeof canSurf!=='boolean')
    return fail('Posição ou capacidade RAM não corroborada para pesquisa remota');
+
+ const routable=selected.items.filter(item=>item.staticRouteKnown===true);
+ if(!routable.length)return {...selected,foundCount:0,exploredStates:0,
+   maxStatesExceeded:false,
+   items:selected.items.map(item=>({...item,route:null,
+     routeNotAttemptedReason:'NO_STATIC_MAP_ROUTE',
+     accessibleNow:null,routeNavigableNowProven:false})),
+   scriptsVerified:false,itemsCollectedNowProven:false};
  const paths=findCrossMapItemPaths({
    romSha256:selected.romSha256,terrainAtlas,warpGraph,outdoorAlignment,
    sourceMapId,position,positionVerified,currentModeByte,
    canCut,canSurf,spritesVerified,currentMapEntities,
-   targets:selected.items.map(x=>({mapId:x.mapId,x:x.x,y:x.y,hidden:true})),
+   targets:routable.map(x=>({mapId:x.mapId,x:x.x,y:x.y,hidden:true})),
    maxStates,maxTransitions
  });
  if(paths?.verified!==true||paths.romSha256!==selected.romSha256||
     paths.sourceMapId!==sourceMapId||!Array.isArray(paths.results)||
-    paths.results.length!==selected.items.length)
+    paths.results.length!==routable.length)
    return fail('Motor multimapa sem resultados correspondentes à ROM e origem');
- // Never associate one remote item with another merely by array order.
- for(let i=0;i<selected.items.length;i++){
-   const goal=selected.items[i],r=paths.results[i];
+ for(let i=0;i<routable.length;i++){
+   const goal=routable[i],r=paths.results[i];
    if(r?.verified!==true||r.romSha256!==selected.romSha256||
       r.sourceMapId!==sourceMapId||
       r.target?.mapId!==goal.mapId||
@@ -99,11 +108,14 @@ function planGlobalFlagItemRoutes({ledger,objectives,terrainAtlas,warpGraph,
       r.routeNavigableNowProven!==false)
      return fail('Percurso não corresponde ao mapa, tile ou SHA do item remoto');
  }
+ let routeIndex=0;
  return {...selected,foundCount:paths.foundCount,
    exploredStates:paths.exploredStates,maxStatesExceeded:paths.maxStatesExceeded,
-   items:selected.items.map((item,i)=>({...item,
-     route:paths.results[i],
-     accessibleNow:null,routeNavigableNowProven:false})),
+   items:selected.items.map(item=>item.staticRouteKnown===true?
+     {...item,route:paths.results[routeIndex++],
+       accessibleNow:null,routeNavigableNowProven:false}:
+     {...item,route:null,routeNotAttemptedReason:'NO_STATIC_MAP_ROUTE',
+       accessibleNow:null,routeNavigableNowProven:false}),
    scriptsVerified:false,itemsCollectedNowProven:false};
 }
 module.exports={selectGlobalFlagTargets,planGlobalFlagItemRoutes};
