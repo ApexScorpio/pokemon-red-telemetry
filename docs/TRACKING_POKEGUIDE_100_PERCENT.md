@@ -199,3 +199,9 @@
 - **PG-009 — validação limitada:** **62/62 testes** de quatro grupos em executor V8 isolado e com dados sintéticos: 10 de leitor de programas, 10 de ponteiros, 39 de UI e 3 de relatório. Integração dirigida adicional no ledger confirmou propagação dos dados e rejeição de metadados contraditórios. São testes de código real da branch com APIs simuladas; **não equivalem a `npm test` nativo nem a E2E**.
 - **Pendências prioritárias:** obter e verificar os três binários originais, correr `npm test` completo e o auditor com SHA-256 reais, interpretar ASM/ramificações e escolhas NPC, cruzar flags e possibilidades de acesso com RAM atómica e capturas do emulador, testar Cut/Surf/Strength e navegação/combate/captura no mapa inteiro. A cobertura global permanece **NÃO CERTIFICADA / percentagem indeterminada**.
 - **Rastreabilidade:** commits T62 e resultados detalhados no histórico append-only `docs/HISTORICO_GUIA_CAMPANHA.md`; PR #1 continua Draft; `main` intocada.
+
+ 
+### T63 — 2026-10-29: distinguir terminador de cadeia de fim de diálogo
+- **PG-006 / PG-009 — corrigido em código:** `<DONE>` e `<PROMPT>` terminam o fluxo real do texto; `@` permite continuar a ler comandos, enquanto `<DEXEND>` é recusado sem prova de controlo de execução. O conselheiro mundial exibe o fecho verdadeiro (`TX_END`, `TEXT_DONE` ou `TEXT_PROMPT`), conservando efeitos/flags/desfechos desconhecidos.
+- **Regressões dirigidas:** 25/25 testes do leitor/ponteiros/auditoria em V8 com Buffer substituto após correção; 39/39 testes do painel em V8 isolado com DOM simulado e condição de fecho atualizada. **Não foi executado `npm test` nativo** nem validação das três ROMs originais. A percentagem global permanece indeterminada.
+- **Próximo checkpoint local:** LPX Bridge poderá localizar a árvore Node em D:/S:, validar versão/branch/arquivos e executar as suites dirigidas com ROMs presentes, sem tocar em Antigravity, Maestro, TIMI, BonChat, Codex, saves ou perfis.
