@@ -947,9 +947,22 @@ function renderWorldAdvisor(state) {
         goal.firstTransitionTerrainEvidence==='NO_LOCAL_LAND_PATH_FOUND_NOT_PROOF_OF_BLOCK'?
         ' • 1.ª saída: sem caminho terrestre demonstrado (não prova bloqueio)':
         ' • 1.ª saída: terreno por confirmar';
+      const conditional=goal.firstTransitionConditionalAccess;
+      const requiredAction=conditional==='TERRAIN_PATH_REQUIRES_CUT_ACTION'?
+        ' • Cut: ação em campo ainda por confirmar':
+        conditional==='TERRAIN_PATH_REQUIRES_SURF_ACTION'?
+        ' • Surf: ação em campo ainda por confirmar':
+        conditional==='CUT_NOT_USABLE_IN_CURRENT_PARTY'?
+        ' • Cut indisponível no estado de capacidades conhecido':
+        conditional==='SURF_NOT_USABLE_IN_CURRENT_PARTY'?
+        ' • Surf indisponível no estado de capacidades conhecido':
+        conditional==='CUT_CAPABILITY_NOT_VERIFIED'?
+        ' • Cut: capacidade desconhecida':
+        conditional==='SURF_CAPABILITY_NOT_VERIFIED'?
+        ' • Surf: capacidade desconhecida':'';
       agenda.push('• '+goal.mapName+' (#'+goal.mapId+'): '+
         todo.join(', ')+' — '+hops+
-        (goal.mapHopCount===0?'':first));
+        (goal.mapHopCount===0?'':first+requiredAction));
     }
     agenda.push('⚠️ Nem um percurso curto nem uma flag por concluir provam acesso imediato.','');
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
