@@ -2608,6 +2608,11 @@ class RetroArchClient extends EventEmitter {
       this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
       this.latestState.romCrossMapItemRoutes={verified:false,results:[],reason};
     }
+    // The shared search produces one result per item. Cycle fallback must
+    // select an unresolved item explicitly; the old singular variable was
+    // removed by T26 and caused ReferenceError in live telemetry.
+    const detourTarget=detourTargets.find((item,index)=>
+      this.latestState.romCrossMapItemRoutes?.results?.[index]?.found!==true)||null;
     this.latestState.globalCampaignLedger=buildCampaignLedger({
       profile:this.activeRomProfile,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
@@ -2661,8 +2666,7 @@ class RetroArchClient extends EventEmitter {
       reason:'Matrizes de terreno não correspondem à ROM desta variante'};
     // If a local item cannot be approached, search map-level return loops.
     // This NEVER proves that a loop lands on the other side of the ledge.
-    if(detourTarget&&this.latestState.romLocalExitAccess?.verified===true&&
-       this.latestState.romCrossMapItemRoute?.found!==true){
+    if(detourTarget&&this.latestState.romLocalExitAccess?.verified===true){
       const key=JSON.stringify([
         this.activeRomProfile?.hash?.sha256,
         this.latestState.mapId,this.latestState.coords,

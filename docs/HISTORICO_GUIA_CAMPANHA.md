@@ -1027,3 +1027,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Os bytes de terreno usados no ensaio foram comparados por igualdade exata Base64 com os arquivos e hashes publicados; o adaptador V8 não recalculou SHA-256 criptográfico. Não é uma prova de que a partida em execução realizou a travessia.
 - Criado `tests/romCrossMapRealTerrainBorders.test.js` para execução nativa futura com os arquivos JSON reais do repositório e `node:test`: três casos reais de fronteira e um caso de SHA incoerente. O teste reconstrói o alinhamento através de 78 descritores/pointers ROM e da rotina `validateOutdoorAlignment`, sem atribuir resultados a ROMs não verificadas. Não executado em Node nativo nesta sessão devido à falta de checkout por DNS.
 - A implementação continua em Draft, sem merge, com Cut/Surf em destinos, scripts e prova E2E pendentes.
+
+
+## 2026-10-29 — T30: correção de ReferenceError após pesquisa partilhada
+
+- Revisão da execução T26–T29 identificou bug real de integração: a declaração singular `detourTarget` fora removida ao introduzir `detourTargets`, mas o cálculo posterior `suggestWorldDetours` continuava a referenciá-la. O JS passava no parsing e falharia em execução com `ReferenceError` na passagem do estado RAM.
+- Restaurada ligação explícita `const detourTarget=detourTargets.find(...)`, selecionando o **primeiro alvo ainda sem rota** no resultado ordenado da pesquisa partilhada. O ciclo topológico deixa de ser ignorado apenas porque outro item encontrou percurso. Quando todas as rotas já têm hipótese, não cria ciclo redundante.
+- Teste de regressão `romClientCampaignIntegration.test.js` extrai e executa a seleção real do cliente com um item encontrado, um não encontrado e nenhum pendente; também verifica que a guarda posterior usa a variável ligada. Prova isolada local do próprio excerto em V8: seleção 2/nenhum/1 correta; parsing completo dos módulos alterados aprovado. Não foi executado `npm test` em Node nativo nem telemetria real.
+- Sem alterações na `main`, ROMs, saves ou aplicações do utilizador. Histórico preservado por acrescento.

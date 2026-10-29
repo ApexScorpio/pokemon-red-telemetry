@@ -143,3 +143,21 @@ test('global 78-border atlas is calculated once per ROM and is never persisted a
  const invalidate=method('invalidateWorldEvidence','loadPersistedState');
  assert.match(invalidate,/romOutdoorOverlapIndex=\{verified:false/);
 });
+
+test('cycle fallback uses the unresolved target even when another batch route is found',()=>{
+ const start=source.indexOf('    const detourTarget=detourTargets.find(');
+ const end=source.indexOf('    this.latestState.globalCampaignLedger=buildCampaignLedger(',start);
+ assert.ok(start>=0&&end>start,'Unresolved target must be explicitly bound');
+ const selection=source.slice(start,end);
+ const choose=(targets,results)=>{
+  const fn=vm.runInNewContext('(function(detourTargets){'+selection+
+   '\nreturn detourTarget;})');
+  return fn.call({latestState:{romCrossMapItemRoutes:{results}}},targets);
+ };
+ const list=[{x:1,y:2},{x:9,y:7},{x:3,y:5}];
+ assert.equal(choose(list,[{found:true},{found:false},{found:false}]).x,9);
+ assert.equal(choose(list,[{found:true},{found:true},{found:true}]),null);
+ assert.equal(choose(list,[]).x,1);
+ assert.match(source,/if\(detourTarget&&this\.latestState\.romLocalExitAccess\?\.verified===true\)\{/);
+ assert.doesNotMatch(source,/if\(detourTarget&&this\.latestState\.romLocalExitAccess\?\.verified===true&&/);
+});
