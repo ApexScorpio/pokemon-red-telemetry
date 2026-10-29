@@ -2597,7 +2597,8 @@ class RetroArchClient extends EventEmitter {
         Array.isArray(this.latestState.mapEntities),
       mapEntities:Array.isArray(this.latestState.mapEntities)?
         this.latestState.mapEntities:[],
-      elevatorChoices:this.latestState.romElevatorOptions
+      elevatorChoices:this.latestState.romElevatorOptions,
+      lastMapGuide:this.latestState.romStaticMapGuide
     }):{verified:false,exits:[],
       reason:'Matrizes de terreno não correspondem à ROM desta variante'};
     // If a local item cannot be approached, search map-level return loops.
