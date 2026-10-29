@@ -673,3 +673,32 @@ test('world mart displays authenticated ROM base prices and names, never live qu
  assert.match(result,/POTION #20 — 300 Poké\$ \(preço-base ROM\)/);
  assert.match(result,/sem prova de compra, preço ou stock atual/);
 });
+
+test('Painel mostra texto TX_FAR sem HTML nem conclusão inventada',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalCampaignObjectives={verified:true,romSha256:sha,
+   sourceMapId:15,mapCount:226,objectiveIndexCount:2,
+   remoteObjectiveIndex:[{mapId:15,mapHopCount:0},{mapId:19,mapHopCount:1}],
+   objectives:[],mapsWithPending:0,mapsWithUnknown:1};
+ s.globalCampaignLedger={verified:true,romSha256:sha,mapCount:226,
+   mapProgress:Array.from({length:226},(_,mapId)=>({
+     mapId,name:'Mapa '+mapId,visibleItems:{unresolved:0},
+     flagRecords:{visibleItems:[]},
+     interactions:{unresolved:mapId===19?1:0},
+     interactionRecords:{npcs:[],signs:mapId===19?[
+       [1,5,2,7,'TX_FAR',6,0x5400,{
+         verified:true,firstStringOnly:true,
+         text:'Hi <PLAYER>! <img onerror=alert(1)>',
+         containsRuntimeVariables:true,dialogueExecuted:false,
+         textOutcomeVerified:false}]
+       ]:[]}
+   }))};
+ const result=render(s);
+ assert.match(result.body.textContent,/Início literal ROM/);
+ assert.match(result.body.textContent,/<img onerror=alert\(1\)>/);
+ assert.match(result.body.textContent,/contém variáveis RAM/);
+ assert.match(result.body.textContent,/efeitos por interpretar/);
+ assert.equal(result.body.innerHTML,null);
+ s.globalCampaignLedger.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/Início literal ROM/);
+});
