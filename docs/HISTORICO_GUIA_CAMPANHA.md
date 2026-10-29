@@ -1052,3 +1052,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Corrigido `retroarchClient.js`: `NEEDS_STRENGTH` não integrava `withinMapBlocked`, o que deixava `isLocked:false` apesar de o utilizador ainda não ter Rainbow Badge ou um Pokémon com Strength. Agora o motivo de bloqueio condicional acompanha a rota teórica.
 - Uma sequência `STRENGTH_SEQUENCE_HYPOTHESIS` com capacidade conhecida permanece condicional e não é certificada acessível; `STRENGTH_CAPABILITY_UNKNOWN` permanece indeterminada, não declarada bloqueio comprovado. A propriedade independente `accessibleNow` continua `null`.
 - Regressão acrescentada à integração: extração/execução real do bloco `withPath` em V8 com cinco estados resultou `[true,false,false,true,false]` para `isLocked`, como esperado; parsing validado. Sem `npm test` nativo e sem gameplay observado.
+
+
+## 2026-10-29 — T33: procurar desvios mundiais quando o bloqueio local é Cut/Surf/Strength
+
+- Até T32, `detourTargets` incluía só `NO_SAME_MAP_PATH`, excluindo itens com bloqueio conhecido ou capacidade incerta de Cut/Surf/Strength. Um bloqueio **local** não prova que não exista outra entrada por warp ou fronteira exterior.
+- Agora são enviados ao motor de pesquisa partilhada, com limites existentes de 64 alvos e 250 estados, os itens ROM validados nos estados `NEEDS_CUT`, `NEEDS_SURF`, capacidades desconhecidas, Cut+Surf hipotético, `POSSIBLE_STRENGTH_BARRIER`, `NEEDS_STRENGTH`, `STRENGTH_CAPABILITY_UNKNOWN`, `STRENGTH_SEQUENCE_HYPOTHESIS` e `NO_SAME_MAP_PATH`. Um `CONDITIONAL_PATH` local não exige pesquisa global adicional. Itens recolhidos/sem coordenadas ROM auditadas continuam excluídos.
+- Teste de integração adicionado: executa a seleção exata extraída de `retroarchClient.js` com 12 estados, espera os 10 bloqueios condicionais e rejeita itens recolhidos ou sem referência ROM. V8 verificou 10/10 selecionados e parsing de cliente/testes aprovado. Sem alegação de acesso real ou teste Node nativo.
+- O resultado global mantém `accessibleNow:null`, pois as sequências entre mapas não comprovam portas, scripts, movimento do jogador ou batalhas. Histórico acrescentado sem apagar entradas antigas.

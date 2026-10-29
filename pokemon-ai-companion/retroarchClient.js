@@ -2596,8 +2596,17 @@ class RetroArchClient extends EventEmitter {
     }
 
     // One shared search, rather than analysing only the first blocked item.
+    // A local Cut/Surf/Strength barrier may have a separate global detour.
+    // Never treat a conditional local route as proof of map-wide lock.
+    const detourTriggerStatuses=new Set([
+      'NO_SAME_MAP_PATH','NEEDS_CUT','NEEDS_SURF',
+      'CUT_CAPABILITY_UNKNOWN','SURF_CAPABILITY_UNKNOWN',
+      'NEEDS_CUT_AND_SURF_POSSIBLY',
+      'POSSIBLE_STRENGTH_BARRIER','NEEDS_STRENGTH',
+      'STRENGTH_CAPABILITY_UNKNOWN','STRENGTH_SEQUENCE_HYPOTHESIS'
+    ]);
     const detourTargets=withPath.filter(i=>i.romItemCoordinatesVerified===true&&
-      i.accessStatus==='NO_SAME_MAP_PATH'&&i.isCollected!==true&&
+      detourTriggerStatuses.has(i.accessStatus)&&i.isCollected!==true&&
       Number.isInteger(i.x)&&Number.isInteger(i.y));
     if(detourTargets.length&&
       this.latestState.romVariantTerrainEvidence?.verified===true&&

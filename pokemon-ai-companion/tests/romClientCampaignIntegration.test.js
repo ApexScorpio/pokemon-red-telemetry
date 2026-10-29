@@ -187,3 +187,26 @@ test('Strength missing capacity is classified blocked, theoretical push is condi
  assert.equal(out[0].accessibleNow,null);
  assert.equal(out[1].accessibleNow,null);
 });
+
+test('global detours also inspect ROM items blocked by Cut Surf and Strength',()=>{
+ const start=source.indexOf('    const detourTriggerStatuses=new Set([');
+ const end=source.indexOf('    if(detourTargets.length&&',start);
+ assert.ok(start>=0&&end>start);
+ const block=source.slice(start,end);
+ const fn=vm.runInNewContext('(function(withPath){'+block+
+   '\nreturn detourTargets.map(x=>x.accessStatus);})');
+ const statuses=[
+  'NO_SAME_MAP_PATH','NEEDS_CUT','NEEDS_SURF',
+  'CUT_CAPABILITY_UNKNOWN','SURF_CAPABILITY_UNKNOWN',
+  'NEEDS_CUT_AND_SURF_POSSIBLY','POSSIBLE_STRENGTH_BARRIER',
+  'NEEDS_STRENGTH','STRENGTH_CAPABILITY_UNKNOWN',
+  'STRENGTH_SEQUENCE_HYPOTHESIS','CONDITIONAL_PATH','COLLECTED_FLAG'
+ ];
+ const all=statuses.map((accessStatus,i)=>({
+   x:i,y:0,romItemCoordinatesVerified:true,
+   isCollected:accessStatus==='COLLECTED_FLAG',accessStatus
+ }));
+ assert.deepEqual(Array.from(fn(all)),statuses.slice(0,10));
+ const unverified=all.map((r,i)=>({...r,romItemCoordinatesVerified:i!==1}));
+ assert.equal(fn(unverified).includes('NEEDS_CUT'),false);
+});
