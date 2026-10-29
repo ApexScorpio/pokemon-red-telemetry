@@ -87,3 +87,41 @@ test('unreachable in static graph never means blocked in real gameplay',()=>{
  assert.equal(x.objectives.find(o=>o.mapId===17).mapHopCount,null);
  assert.ok(x.warnings.some(s=>/portas|scripts|LAST_MAP/.test(s)));
 });
+
+test('first-hop terrain proof beats a shorter but unwalkable-looking static warp',()=>{
+ const cfg=fixture();
+ cfg.warpGraph.edges[2]={sourceMapId:15,destinationMapId:17,
+  status:'STATIC_DESTINATION_WARP_VALIDATED',landing:{mapId:17},
+  sourceWarpIndex:7};
+ cfg.position={x:11,y:5};
+ cfg.firstMapTerrainHints={verified:true,romSha256:sha,mapId:15,
+  positionFromRam:{x:11,y:5},candidates:[
+   {warpIndex:2,destinationMapId:16,theoreticalTerrainPathFound:true},
+   {warpIndex:7,destinationMapId:17,theoreticalTerrainPathFound:false}
+  ]};
+ const advice=campaignObjectives(cfg);
+ const goal=advice.objectives.find(g=>g.mapId===17);
+ assert.equal(advice.firstMapTerrainHintsCorroborated,true);
+ assert.equal(goal.mapHopCount,2);
+ assert.equal(goal.route[0].destinationMapId,16);
+ assert.equal(goal.firstTransitionTerrainEvidence,'LOCAL_TERRAIN_PATH_CANDIDATE');
+ assert.equal(goal.routeNavigableNowProven,false);
+});
+test('stale or wrong SHA first-hop hint is ignored, never certifies a path',()=>{
+ const cfg=fixture();
+ cfg.warpGraph.edges[2]={sourceMapId:15,destinationMapId:17,
+  status:'STATIC_DESTINATION_WARP_VALIDATED',landing:{mapId:17},
+  sourceWarpIndex:7};
+ cfg.position={x:11,y:5};
+ cfg.firstMapTerrainHints={verified:true,romSha256:sha,mapId:15,
+  positionFromRam:{x:7,y:7},candidates:[
+   {warpIndex:7,destinationMapId:17,theoreticalTerrainPathFound:true}]};
+ let r=campaignObjectives(cfg);
+ assert.equal(r.firstMapTerrainHintsCorroborated,false);
+ assert.equal(r.objectives.find(g=>g.mapId===17).firstTransitionTerrainEvidence,
+   'TERRAIN_NOT_VERIFIED');
+ cfg.firstMapTerrainHints.positionFromRam={x:11,y:5};
+ cfg.firstMapTerrainHints.romSha256='0'.repeat(64);
+ r=campaignObjectives(cfg);
+ assert.equal(r.firstMapTerrainHintsCorroborated,false);
+});
