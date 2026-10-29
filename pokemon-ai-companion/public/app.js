@@ -986,6 +986,14 @@ function renderWorldAdvisor(state) {
         todo.push(plural(u.visibleItems,
           'item visível na ROM (recolha por confirmar)',
           'itens visíveis na ROM (recolha por confirmar)'));
+      if(Number.isInteger(u.npcInteractions)&&u.npcInteractions>0)
+        todo.push(plural(u.npcInteractions,
+          'NPC (diálogo por interpretar)',
+          'NPCs (diálogos por interpretar)'));
+      if(Number.isInteger(u.signInteractions)&&u.signInteractions>0)
+        todo.push(plural(u.signInteractions,
+          'sinal (texto por interpretar)',
+          'sinais (textos por interpretar)'));
       const hops=goal.mapHopCount===0?'mapa atual':
         Number.isInteger(goal.mapHopCount)?
         goal.mapHopCount+' transições estáticas (acesso por confirmar)':
@@ -1113,6 +1121,52 @@ function renderWorldAdvisor(state) {
               'rota estática por determinar'));
       }
       summary.push('⚠️ Presença estática na ROM não significa item ainda disponível.','');
+      const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+      if(insertion!==-1)lines.splice(insertion,0,...summary);
+    }
+    // Compact ROM-only coordinates of dialogues and sign text across all
+    // known maps. No completion status, script outcome or current access.
+    const interactionBuckets=[];
+    let interactionsTotal=0;
+    for(const m of worldLedger.mapProgress)
+      if(m.mapId!==advice.mapId&&Number.isInteger(m.interactions?.unresolved))
+        interactionsTotal+=m.interactions.unresolved;
+    for(const goal of visibleIndex){
+      if(goal?.mapId===advice.mapId)continue;
+      const m=maps.get(goal?.mapId);
+      if(!m||!m.interactionRecords)continue;
+      const rows=[
+        ...(Array.isArray(m.interactionRecords.npcs)?
+          m.interactionRecords.npcs.map(t=>({kind:'NPC',tuple:t})):[]),
+        ...(Array.isArray(m.interactionRecords.signs)?
+          m.interactionRecords.signs.map(t=>({kind:'SINAL',tuple:t})):[])
+      ].filter(r=>Array.isArray(r.tuple)&&r.tuple.length===4&&
+        Number.isInteger(r.tuple[1])&&Number.isInteger(r.tuple[2]));
+      if(rows.length)interactionBuckets.push({
+        mapId:m.mapId,mapName:m.name,mapHopCount:goal.mapHopCount,rows});
+    }
+    if(interactionBuckets.length){
+      const shown=[];
+      while(shown.length<4&&interactionBuckets.some(b=>b.rows.length)){
+        for(const b of interactionBuckets){
+          if(b.rows.length)shown.push({...b,item:b.rows.shift()});
+          if(shown.length===4)break;
+        }
+      }
+      const summary=['--- NPCS E SINAIS NOUTROS MAPAS (ROM) ---',
+        'A mostrar '+shown.length+' de '+interactionsTotal+
+        ' pontos de interação ROM remotos; efeito e execução DESCONHECIDOS.'];
+      for(const row of shown){
+        const [ordinal,x,y,textId]=row.item.tuple;
+        summary.push('• '+row.item.kind+' — '+row.mapName+' (#'+row.mapId+
+          ') X:'+x+' Y:'+y+' • índice ROM '+ordinal+
+          (Number.isInteger(textId)?' • Text ID #'+textId:'')+
+          ' — diálogo/texto por interpretar; '+
+          (Number.isInteger(row.mapHopCount)?
+            row.mapHopCount+' transições estáticas hipotéticas':
+            'rota estática por determinar'));
+      }
+      summary.push('⚠️ Coordenada ROM não demonstra que a interação esteja disponível agora.','');
       const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
       if(insertion!==-1)lines.splice(insertion,0,...summary);
     }

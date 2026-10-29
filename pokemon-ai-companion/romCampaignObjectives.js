@@ -23,7 +23,8 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
       ![m.hiddenItems?.notCollected,m.hiddenCoins?.notCollected,
         m.trainers?.gatesOpen,m.trainers?.unknown,
         m.stationaryPokemon?.gatesOpen,m.stationaryPokemon?.unknown,
-        m.visibleItems?.unresolved??0]
+        m.visibleItems?.unresolved??0,
+        m.interactions?.npcObjects??0,m.interactions?.signs??0]
        .every(nonnegative))
      return invalid('Mapa duplicado ou progresso por flag malformado');
    mapIds.add(m.mapId);
@@ -173,7 +174,9 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
    const unknown={
      trainers:m.trainers.unknown,
      stationaryPokemon:m.stationaryPokemon.unknown,
-     visibleItems:m.visibleItems?.unresolved??0
+     visibleItems:m.visibleItems?.unresolved??0,
+     npcInteractions:m.interactions?.npcObjects??0,
+     signInteractions:m.interactions?.signs??0
    };
    const pendingFlags=Object.values(pending).reduce((a,b)=>a+b,0);
    const unknownFlags=Object.values(unknown).reduce((a,b)=>a+b,0);

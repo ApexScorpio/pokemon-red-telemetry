@@ -578,3 +578,32 @@ test('visible objects in other maps show coordinates without pretending still un
  s.globalCampaignLedger.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/ITENS VISÍVEIS NOUTROS MAPAS/);
 });
+
+test('ROM-wide NPCs and signs disclose text ids and unknown dialogue outcome',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalCampaignObjectives={verified:true,romSha256:sha,
+   sourceMapId:15,mapCount:226,objectiveIndexCount:2,
+   remoteObjectiveIndex:[{mapId:15,mapHopCount:0},{mapId:20,mapHopCount:2}],
+   objectives:[{mapId:20,mapName:'Mapa 20',mapHopCount:2,
+     pending:{},unknown:{npcInteractions:1,signInteractions:1}}],
+   mapsWithPending:0,mapsWithUnknown:1};
+ s.globalCampaignLedger={verified:true,romSha256:sha,mapCount:226,
+   mapProgress:Array.from({length:226},(_,id)=>({
+     mapId:id,name:'Mapa '+id,
+     visibleItems:{unresolved:0},
+     flagRecords:{visibleItems:[]},
+     interactions:{unresolved:id===20?2:0},
+     interactionRecords:{npcs:id===20?[[1,3,4,7]]:[],
+       signs:id===20?[[1,5,2,8]]:[]}
+   }))};
+ const output=render(s).body.textContent;
+ assert.match(output,/NPCS E SINAIS NOUTROS MAPAS/);
+ assert.match(output,/A mostrar 2 de 2 pontos de interação/);
+ assert.match(output,/NPC — Mapa 20 \(#20\) X:3 Y:4/);
+ assert.match(output,/SINAL — Mapa 20 \(#20\) X:5 Y:2/);
+ assert.match(output,/Text ID #7/);
+ assert.match(output,/efeito e execução DESCONHECIDOS/);
+ assert.doesNotMatch(output,/diálogo concluído/);
+ s.globalCampaignLedger.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/NPCS E SINAIS NOUTROS MAPAS/);
+});

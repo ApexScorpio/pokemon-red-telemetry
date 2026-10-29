@@ -137,3 +137,33 @@ test('all maps inventory visible item objects without falsely proving pickup',()
    kind:'item',x:-1,y:4});
  assert.equal(evaluate(damaged).verified,false);
 });
+
+test('all-map static NPC and sign inventory conservatively refuses to infer dialog outcome',()=>{
+ const f=rig();
+ f.profile.world.maps.data[19].objects.signs=[
+   {x:5,y:2,textId:7},{x:1,y:3,textId:8}];
+ f.profile.world.maps.data[19].objects.objects.push(
+   {kind:'npc',x:3,y:4,textId:9},
+   {kind:'npc',x:2,y:1,textId:10});
+ const r=evaluate(f);
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.totals.npcObjects,2);
+ assert.equal(r.totals.signObjects,2);
+ assert.equal(r.totals.interactionOutcomesUnresolved,4);
+ assert.deepEqual(r.mapProgress[19].interactionRecords.npcs,
+   [[1,3,4,9],[2,2,1,10]]);
+ assert.deepEqual(r.mapProgress[19].interactionRecords.signs,
+   [[1,5,2,7],[2,1,3,8]]);
+ assert.equal(r.mapProgress[19].interactions.unresolved,4);
+ assert.equal(r.mapProgress[19].scriptEffectsComplete,false);
+});
+test('unlocalized NPC is counted as unknown without fabricating position',()=>{
+ const f=rig();
+ f.profile.world.maps.data[19].objects.objects=[
+   {kind:'npc',x:-1,y:3,textId:5}];
+ const r=evaluate(f);
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.mapProgress[19].interactions.npcObjects,1);
+ assert.equal(r.mapProgress[19].interactions.coordinatesUnverified,1);
+ assert.equal(r.mapProgress[19].interactionRecords.npcs.length,0);
+});

@@ -279,3 +279,16 @@ test('visible item ROM objects add unknown world goals without asserting pickup'
  assert.equal(goal.kind,'UNRESOLVED_FLAGS_ONLY');
  assert.equal(goal.locationAccessibleNow,null);
 });
+
+test('NPC and sign text add unknown goals, not invented completion flags',()=>{
+ const f=fixture();
+ f.ledger.mapProgress[90].interactions={npcObjects:2,signs:1,unresolved:3};
+ const result=campaignObjectives({...f,maxResults:226});
+ assert.equal(result.verified,true);
+ const map=result.objectives.find(x=>x.mapId===90);
+ assert.equal(map.unknown.npcInteractions,2);
+ assert.equal(map.unknown.signInteractions,1);
+ assert.equal(map.pendingFlags,0);
+ assert.equal(map.kind,'UNRESOLVED_FLAGS_ONLY');
+ assert.equal(map.locationAccessibleNow,null);
+});

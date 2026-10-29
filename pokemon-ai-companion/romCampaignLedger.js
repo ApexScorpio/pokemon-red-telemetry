@@ -37,6 +37,8 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    hiddenItems:{total:0,collected:0,notCollected:0},
    hiddenCoins:{total:0,collected:0,notCollected:0},
    visibleItems:{objects:0,unresolved:0,collectedConfirmed:0},
+   interactions:{npcObjects:0,signs:0,unresolved:0,coordinatesUnverified:0},
+   interactionRecords:{npcs:[],signs:[]},
    trainers:{objects:0,flagsMapped:0,gatesClosed:0,gatesOpen:0,
      unknown:0,scriptedVictories:0,battlesPlayed:0},
    stationaryPokemon:{flagsMapped:0,gatesClosed:0,gatesOpen:0,
@@ -78,6 +80,40 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
      else summary.hiddenCoins.notCollected++;
    }
    const actors=map.objects.objects;
+   // Game Freak's ROM object format has signs and NPCs even without a
+   // matching global event flag. Index their coordinates/text ID but never
+   // interpret an interaction's dialogue as already completed.
+   const signs=map.objects.signs??[];
+   if(!Array.isArray(signs))
+     return invalid('Lista ROM de sinais não validada no mapa #'+map.mapId);
+   for(let ordinal=0;ordinal<signs.length;ordinal++){
+     const sign=signs[ordinal];
+     summary.interactions.signs++;
+     summary.interactions.unresolved++;
+     if(!Number.isInteger(sign?.x)||!Number.isInteger(sign?.y)||
+        sign.x<0||sign.y<0||sign.x>255||sign.y>255){
+       summary.interactions.coordinatesUnverified++;
+       continue;
+     }
+     // Compact tuples: [ordinal in ROM, X, Y, text ID or null].
+     summary.interactionRecords.signs.push([ordinal+1,sign.x,sign.y,
+       Number.isInteger(sign.textId)&&sign.textId>=0&&sign.textId<=255?
+         sign.textId:null]);
+   }
+   for(let ordinal=0;ordinal<actors.length;ordinal++){
+     const actor=actors[ordinal];
+     if(actor?.kind!=='npc')continue;
+     summary.interactions.npcObjects++;
+     summary.interactions.unresolved++;
+     if(!Number.isInteger(actor.x)||!Number.isInteger(actor.y)||
+        actor.x<0||actor.y<0||actor.x>255||actor.y>255){
+       summary.interactions.coordinatesUnverified++;
+       continue;
+     }
+     summary.interactionRecords.npcs.push([ordinal+1,actor.x,actor.y,
+       Number.isInteger(actor.textId)&&actor.textId>=0&&actor.textId<=255?
+         actor.textId:null]);
+   }
    // Static visible objects are present in ROM, but unlike hidden-item flags
    // there is no corroborated world-wide pickup bitmap here. Never call
    // them uncollected or collected based on their ROM object definition.
@@ -152,6 +188,8 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
  if(coinCount!==12)return invalid('Tabela das 12 fichas ocultas incompleta: '+coinCount);
  const total={mapHeaders:maps.length,hiddenItems:54,hiddenCoins:12,
    visibleItemObjects:0,visibleItemsCollectionUnresolved:0,
+   npcObjects:0,signObjects:0,interactionOutcomesUnresolved:0,
+   interactionCoordinatesUnverified:0,
    hiddenItemsCollected:0,hiddenItemsNotCollected:0,
    hiddenCoinsCollected:0,hiddenCoinsNotCollected:0,
    trainerObjects:0,trainerFlagsMapped:0,trainerGatesClosed:0,
@@ -165,6 +203,10 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    total.hiddenCoinsNotCollected+=s.hiddenCoins.notCollected;
    total.visibleItemObjects+=s.visibleItems.objects;
    total.visibleItemsCollectionUnresolved+=s.visibleItems.unresolved;
+   total.npcObjects+=s.interactions.npcObjects;
+   total.signObjects+=s.interactions.signs;
+   total.interactionOutcomesUnresolved+=s.interactions.unresolved;
+   total.interactionCoordinatesUnverified+=s.interactions.coordinatesUnverified;
    total.trainerObjects+=s.trainers.objects;
    total.trainerFlagsMapped+=s.trainers.flagsMapped;
    total.trainerGatesClosed+=s.trainers.gatesClosed;
