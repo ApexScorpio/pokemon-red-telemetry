@@ -790,8 +790,14 @@ function renderWorldAdvisor(state) {
         Number.isInteger(goal.mapHopCount)?
         goal.mapHopCount+' transições estáticas (acesso por confirmar)':
         'rota estática não determinada';
+      const first=goal.firstTransitionTerrainEvidence==='LOCAL_TERRAIN_PATH_CANDIDATE'?
+        ' • 1.ª saída: percurso terrestre teórico':
+        goal.firstTransitionTerrainEvidence==='NO_LOCAL_LAND_PATH_FOUND_NOT_PROOF_OF_BLOCK'?
+        ' • 1.ª saída: sem caminho terrestre demonstrado (não prova bloqueio)':
+        ' • 1.ª saída: terreno por confirmar';
       agenda.push('• '+goal.mapName+' (#'+goal.mapId+'): '+
-        todo.join(', ')+' — '+hops);
+        todo.join(', ')+' — '+hops+
+        (goal.mapHopCount===0?'':first));
     }
     agenda.push('⚠️ Nem um percurso curto nem uma flag por concluir provam acesso imediato.','');
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
