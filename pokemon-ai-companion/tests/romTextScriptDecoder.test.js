@@ -102,3 +102,24 @@ test('DEXEND não pode ser confundido com fim linear de diálogo',()=>{
  assert.equal(a.verified,false);
  assert.match(a.reason,/DEXEND/);
 });
+
+test('ROM Hall of Fame: cadeia de 299 bytes antes de DONE é completa',()=>{
+ const x=mk([0,...Array(298).fill(0x80),0x57]);
+ const r=decodeRomTextProgram(x);
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.termination,'TEXT_DONE');
+ assert.equal(r.segmentCount,1);
+ assert.equal(r.text.length,298);
+ assert.equal(r.dialogueExecuted,false);
+});
+test('ROM TX_START seguido imediatamente de DONE tem zero texto visível',()=>{
+ const x=mk([0,0x57,0,0x87,0xa8,0x57]);
+ const r=decodeRomTextProgram(x);
+ assert.equal(r.verified,true);
+ assert.equal(r.scriptComplete,true);
+ assert.equal(r.termination,'TEXT_DONE');
+ assert.equal(r.segmentCount,0);
+ assert.equal(r.text,'');
+ assert.equal(r.byteLength,2);
+ assert.equal(r.textOutcomeVerified,false);
+});
