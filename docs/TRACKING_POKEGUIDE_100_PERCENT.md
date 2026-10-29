@@ -76,3 +76,13 @@
 - **Branch:** `feature/pokeguide-world-action-tracker-20261028`; `main` permanece inalterada até integração validada. Alterações não substituíram a versão principal.
 - **Critérios de desbloqueio:** 18 regressões novas + suite anterior a passar no checkout completo, testes ROM SHA reais com falha explícita se faltar binário, confirmação de ausência de falsos conselhos sob deslocação/fecho da ligação, screenshots reais e correção dos casos encontrados.
 - **Pendências depois da integração do PR:** scripts de todos os NPCs, efeitos especiais de movimentos, navegação multimapa com portas dinâmicas, coerência temporal RAM e paridade de resultados de eventos ao vivo.
+
+
+### T6/T7/T8 — 2026-10-29: teste dos módulos, reconexão, prioridades de todo o Kanto
+
+- **PG-006 — CÓDIGO AMPLIADO / E2E PENDENTE:** o conselheiro separa flags e percursos condicionais; o novo `romCampaignObjectives.js` usa as 226 fichas mundiais para sugerir mapas com flags pendentes e eventos por esclarecer. Cada distância é número de transições estáticas, nunca acesso comprovado.
+- **PG-002 — PARCIAL:** o planeador de objetivos usa BFS de warps e fronteiras estáticas sobre índices validados. LAST_MAP, elevadores, Cut/Surf/Strength, scripts e portas dinâmicas continuam por certificar.
+- **PG-009 — PARCIAL (provas):** 26/26 testes das quatro suites executados diretamente do código publicado no GitHub em **V8 isolado com APIs Node simuladas**; 0 falhas. Isto não substitui `npm test` nem ROMs reais; `git clone` falhou devido a DNS. O teste de reconexão impede reaparecimento de conselhos antigos.
+- **PG-011 — CÓDIGO IMPLEMENTADO / E2E PENDENTE:** novo painel de objetivos mundiais e respetivos estados; corrigida flexão singular/plural; imagem sintética antes/depois capturada e analisada (NÃO é o Companion no emulador).
+- **PG-008 — PARCIAL:** ao desligar o WebSocket, `lastState.connected=false` é persistido para impedir que verificações periódicas reapresentem dados antigos. Atomicidade RAM não demonstrada.
+- **Próximo critério de integração:** testes Node reais com dependências originais, 3 ROMs auditadas, screenshots em RetroArch/SameBoy e comparação de flags/rotas reais. Enquanto faltarem, manter o PR como Draft e `main` protegida.
