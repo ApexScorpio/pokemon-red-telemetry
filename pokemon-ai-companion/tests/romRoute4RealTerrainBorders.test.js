@@ -83,7 +83,7 @@ for(const version of Object.keys(terrain)){
    assert.equal(e.borderEvidence.edgeTileCount,18);
    assert.equal(e.borderEvidence.borderTiles.some(v=>v.tile.x===89&&
      v.tile.y===4&&v.steps===0),true);
-   assert.equal(e.neighborAlignmentVerified,false);
+   assert.equal(e.neighborAlignmentVerified,true);
    assert.equal(e.accessibleNow,null);
    const b=localExitAccess(fixture(version,{x:7,y:17}));
    assert.equal(b.verified,true,b.reason);
