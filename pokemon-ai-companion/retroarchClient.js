@@ -15,6 +15,7 @@ const {adviseWorld}=require('./romWorldStateAdvisor');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPaths}=require('./romCrossMapItemRoute');
+const {selectGlobalFlagTargets,planGlobalFlagItemRoutes}=require('./romGlobalFlagItemRoutes');
 const {localExitAccess}=require('./romLocalExitAccess');
 const {verifyTerrainVariant}=require('./romTerrainVariantGuard');
 const {verifyOutdoorConnectionVariant}=require('./romOutdoorReferenceGuard');
@@ -348,9 +349,11 @@ class RetroArchClient extends EventEmitter {
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
     if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
     this._strengthPlanCacheScope=null;this._strengthPlanCache=new Map();
+    this._globalFlagItemKey=null;this._globalFlagItemRoutes=null;
     this._crossMapRouteKey=null;this._crossMapRoute=null;
     this.latestState.globalCampaignLedger={verified:false,mapProgress:[],reason};
     this.latestState.globalCampaignObjectives={verified:false,objectives:[],reason};
+    this.latestState.globalFlagItemRoutes={verified:false,items:[],reason};
     this.latestState.romWorldEventAtlas={verified:false,events:[],toggleFlags:[],reason};
     this.latestState.romWorldReferenceDelta={verified:false,changes:[],reason};
     this.latestState.romElevatorOptions={verified:false,options:[],reason};
@@ -398,7 +401,7 @@ class RetroArchClient extends EventEmitter {
       // on every polling cycle or reload those rows as fresh evidence.
       const persisted={...state};
       for(const transient of [
-        'globalCampaignLedger','globalCampaignObjectives',
+        'globalCampaignLedger','globalCampaignObjectives','globalFlagItemRoutes',
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
         'romCrossMapItemRoute','romCrossMapItemRoutes','romStrengthFieldEvidence',
         'romWorldEventAtlas',
@@ -2804,6 +2807,52 @@ class RetroArchClient extends EventEmitter {
       position:this.latestState.coords,
       maxResults:12
     });
+    // Remote hidden-item/coin targets are backed by global ROM/RAM flags.
+    // Search at most four concrete coordinates and cache only while the
+    // selected flags, position, actors, abilities and ROM terrain agree.
+    const remoteSelection=selectGlobalFlagTargets({
+      ledger:this.latestState.globalCampaignLedger,
+      objectives:this.latestState.globalCampaignObjectives,
+      sourceMapId:this.latestState.mapId,maxTargets:4
+    });
+    const remoteTerrainOK=this.latestState.romVariantTerrainEvidence?.verified===true&&
+      this.latestState.romVariantTerrainEvidence?.romSha256===
+      this.activeRomProfile?.hash?.sha256;
+    const remoteSpriteSnapshot=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
+      Array.isArray(this.latestState.mapEntities)?
+      this.latestState.mapEntities.map(a=>[a.x,a.y,a.type,a.pictureId]):null;
+    const remoteKey=JSON.stringify([
+      this.activeRomProfile?.hash?.sha256,
+      this.latestState.mapId,this.latestState.coords,
+      remoteSelection.verified===true?
+        remoteSelection.items.map(t=>[t.kind,t.mapId,t.x,t.y,t.bitIndex]):null,
+      remoteTerrainOK,abilityCut,abilitySurf,
+      modeWindow.verified?modeWindow.modeByte:null,
+      this.latestState.romOutdoorAlignment?.verified===true,
+      remoteSpriteSnapshot
+    ]);
+    if(this._globalFlagItemKey!==remoteKey){
+      this._globalFlagItemRoutes=remoteTerrainOK?
+        planGlobalFlagItemRoutes({
+          ledger:this.latestState.globalCampaignLedger,
+          objectives:this.latestState.globalCampaignObjectives,
+          terrainAtlas:this.activeRomProfile?.world?.terrainAtlas,
+          warpGraph:this.latestState.romWarpGraph,
+          outdoorAlignment:this.latestState.romOutdoorAlignment,
+          sourceMapId:this.latestState.mapId,position:this.latestState.coords,
+          positionVerified:positionWindow.verified===true,
+          currentModeByte:modeWindow.verified?modeWindow.modeByte:null,
+          canCut:abilityCut===true,canSurf:abilitySurf===true,
+          spritesVerified:remoteSpriteSnapshot!==null,
+          currentMapEntities:Array.isArray(this.latestState.mapEntities)?
+            this.latestState.mapEntities:[],
+          maxTargets:4,maxStates:180,maxTransitions:10
+        }):
+        {verified:false,items:[],accessibleNow:null,
+          reason:'Terreno da variante ROM não corroborado para rotas mundiais'};
+      this._globalFlagItemKey=remoteKey;
+    }
+    this.latestState.globalFlagItemRoutes=this._globalFlagItemRoutes;
     this.latestState.worldAdvisor=adviseWorld({
       profile:this.activeRomProfile,
       mapId:this.latestState.mapId,

@@ -499,3 +499,19 @@ test('Strength D728 status is not presented as an observed push',()=>{
  t=render(s).body.textContent;
  assert.match(t,/ativação na RAM ainda por confirmar/);
 });
+
+test('remote pending item route includes exact map tile but no guaranteed access',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalFlagItemRoutes={verified:true,romSha256:sha,sourceMapId:15,
+   items:[{kind:'HIDDEN_ITEM',mapName:'Cerulean City',mapId:3,x:0,y:12,
+     route:{verified:true,found:true,transitionCount:1,warpTransitions:0,
+       outdoorTransitions:1,segments:[{kind:'OUTDOOR_BORDER',
+         sourceBorderTile:{x:89,y:4},destinationMapId:3}]}}]};
+ const text=render(s).body.textContent;
+ assert.match(text,/ITENS OCULTOS NOUTROS MAPAS/);
+ assert.match(text,/Cerulean City \(#3\) X:0 Y:12/);
+ assert.match(text,/1 transições teóricas/);
+ assert.match(text,/acesso NÃO garantido/);
+ s.globalFlagItemRoutes.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/ITENS OCULTOS NOUTROS MAPAS/);
+});

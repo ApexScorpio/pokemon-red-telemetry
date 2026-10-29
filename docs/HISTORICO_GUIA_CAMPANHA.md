@@ -1121,3 +1121,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Novo `romGlobalFlagItemRoutes.js` com `selectGlobalFlagTargets`: usa o ledger de 226 mapas validado contra a SHA da ROM, flags D6F0/D6FE e objetivos globais para selecionar até quatro posições específicas de itens e fichas ocultas **fora do mapa atual**. Só escolhe registros com `flagSet:false` e `mapHopCount` estático conhecido; nunca inventa item, coordenada ou flag.
 - `planGlobalFlagItemRoutes` chama o motor multimapa partilhado com as coordenadas ROM dos alvos, mantendo `accessibleNow:null` e `routeNavigableNowProven:false`. Sem prova da posição RAM e sem matriz ROM válida, rejeita a pesquisa em vez de afirmar bloqueio ou acesso.
 - Criados cinco testes em `tests/romGlobalFlagItemRoutes.test.js`: seleção exata, exclusão de recolhidos/locais, limitação de quantidade, rejeição de SHA/mapa mal combinados e ausência de posição. Execução em V8 do módulo real com motor de rotas simulado passou os cenários principais; os testes foram publicados, mas ainda não executados em Node nativo.
+
+
+## 2026-10-29 — T40b: ligar alvos remotos por flags ao companion e ao painel
+
+- `retroarchClient.js` passa a selecionar até 4 itens ocultos/fichas pendentes **noutros mapas** usando o ledger e as metas mundiais, e a procurar hipóteses de percurso até coordenadas ROM exatas com `planGlobalFlagItemRoutes`. O motor só é chamado após `romVariantTerrainEvidence.verified` e SHA da variante ativa correspondentes.
+- A pesquisa partilhada fica limitada a 180 estados e 10 transições, com cache dependente da posição, mapa, flags selecionadas, capacidades, sprites e alinhamento das fronteiras. `globalFlagItemRoutes` é invalidado com a sessão RAM e excluído de ambas as caches em disco.
+- `public/app.js` mostra até quatro alvos remotos, o mapa, coordenadas ROM, número teórico de warps/fronteiras e primeira saída candidata. Nunca apresenta acesso ou recolha garantidos. SHA ou mapa divergente suprimem a secção.
+- Adicionados testes à integração e ao painel, com parsing JS aprovado. Estes testes foram publicados para execução; não equivalem a `npm test` nativo nem ao emulador ativo.

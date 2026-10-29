@@ -1018,6 +1018,36 @@ function renderWorldAdvisor(state) {
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(insertion!==-1)lines.splice(insertion,0,...agenda);
   }
+  const remote=state.globalFlagItemRoutes;
+  if(remote?.verified===true&&remote.romSha256===advice.romSha256&&
+     remote.sourceMapId===advice.mapId&&Array.isArray(remote.items)&&
+     remote.items.length>0){
+    const summary=['--- ITENS OCULTOS NOUTROS MAPAS (FLAGS ROM/RAM) ---'];
+    for(const item of remote.items.slice(0,4)){
+      const label=item.kind==='HIDDEN_COIN'?'Fichas ocultas':'Item oculto';
+      const prefix='• '+label+' — '+item.mapName+' (#'+item.mapId+
+        ') X:'+item.x+' Y:'+item.y+': ';
+      const route=item.route;
+      if(route?.verified===true&&route.found===true){
+        summary.push(prefix+route.transitionCount+
+          ' transições teóricas ('+route.warpTransitions+' warps, '+
+          route.outdoorTransitions+' fronteiras); acesso NÃO garantido');
+        const first=route.segments?.[0];
+        const depart=first?.kind==='OUTDOOR_BORDER'?
+          first.sourceBorderTile:first?.sourceWarpTile;
+        if(depart)summary.push('  ↳ Primeira saída: mapa #'+advice.mapId+
+          ' X:'+depart.x+' Y:'+depart.y+
+          ' → mapa #'+first.destinationMapId+' (não observada)');
+      }else{
+        summary.push(prefix+(route?.maxStatesExceeded===true?
+          'pesquisa limitada por estados':'sem caminho geométrico demonstrado')+
+          ' — NÃO prova bloqueio');
+      }
+    }
+    summary.push('⚠️ Flags por concluir, não são prova de acesso, recolha ou script executado.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion!==-1)lines.splice(insertion,0,...summary);
+  }
   for(const {o} of ordered){
     const place=Number.isInteger(o.x)&&Number.isInteger(o.y)?
       ' X:'+o.x+' Y:'+o.y:'';

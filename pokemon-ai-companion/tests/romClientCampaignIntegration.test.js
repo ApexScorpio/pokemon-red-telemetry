@@ -272,3 +272,16 @@ test('Strength route requires matching variant SHA; changes to terrain fingerpri
  assert.equal(calls,2);
  assert.equal(refused.results[0].accessStatus,'POSSIBLE_STRENGTH_BARRIER');
 });
+
+test('remote pending flag items are routed once with verified ROM and RAM and never persisted',()=>{
+ assert.match(source,/require\('\.\/romGlobalFlagItemRoutes'\)/);
+ assert.match(source,/selectGlobalFlagTargets\(\{/);
+ assert.match(source,/planGlobalFlagItemRoutes\(\{/);
+ assert.match(source,/const remoteTerrainOK=this\.latestState\.romVariantTerrainEvidence\?\.verified===true/);
+ assert.match(source,/maxTargets:4,maxStates:180,maxTransitions:10/);
+ assert.match(source,/this\._globalFlagItemKey!==remoteKey/);
+ assert.match(source,/this\.latestState\.globalFlagItemRoutes=this\._globalFlagItemRoutes/);
+ assert.match(method('persistState','loadPersistedActionHistory'),/'globalFlagItemRoutes'/);
+ assert.match(method('invalidateWorldEvidence','loadPersistedState'),
+   /globalFlagItemRoutes=\{verified:false,items:\[\],reason\}/);
+});
