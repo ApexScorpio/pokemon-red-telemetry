@@ -4,6 +4,7 @@
 // topological possibilities, not actions confirmed in live gameplay.
 const {terrainBytes,computeReach}=require('./romItemReachability');
 const {exactTilePath}=require('./romCrossMapItemRoute');
+const {outdoorBoundaryCandidates}=require('./romOutdoorBoundaryCandidates');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const validId=x=>Number.isInteger(x)&&x>=0&&x<248;
 const validPos=x=>Number.isInteger(x?.x)&&x.x>=0&&
@@ -101,11 +102,27 @@ function localExitAccess({profile,warpGraph,mapId,position,
     Array.isArray(outdoors.edges)&&outdoors.edges.length===78)
    for(const e of outdoors.edges){
      if(e.sourceMapId!==mapId||!validId(e.destinationMapId))continue;
-     exits.push({kind:'OUTDOOR_BORDER',sourceMapId:mapId,
-       direction:e.direction,destinationMapId:e.destinationMapId,
-       terrainStatus:'BORDER_CROSSING_TILE_NOT_VERIFIED',
-       approach:null,accessibleNow:null,routeNavigableNowProven:false,
-       passageGeometryVerified:false});
+     {
+       const border=outdoorBoundaryCandidates({
+         grid,direction:e.direction,reachNormal:base,reachCut:cut,
+         reachSurf:surf,reachBoth:both,canCut,canSurf,maxCandidates:4
+       });
+       const status=!border.verified?'BORDER_CROSSING_TILE_NOT_VERIFIED':
+         border.reachableWithoutNewAbilities>0?
+           'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN':
+         border.requiresHypotheticalAbility>0?
+           'BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN':
+           'NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK';
+       exits.push({kind:'OUTDOOR_BORDER',sourceMapId:mapId,
+         direction:e.direction,destinationMapId:e.destinationMapId,
+         terrainStatus:status,borderEvidence:border,
+         approach:border.verified&&border.borderTiles.length?
+           {nextStep:border.borderTiles[0].firstTerrainStep,
+             borderTile:border.borderTiles[0].tile,
+             steps:border.borderTiles[0].steps}:null,
+         accessibleNow:null,routeNavigableNowProven:false,
+         passageGeometryVerified:false,neighborAlignmentVerified:false});
+     }
    }
  if(elevatorChoices?.verified===true&&elevatorChoices.romSha256===sha&&
     elevatorChoices.mapId===mapId&&elevatorChoices.hasElevator===true&&
@@ -131,6 +148,6 @@ function localExitAccess({profile,warpGraph,mapId,position,
    exits:exits.slice(0,maxResults),
    accessNowProven:false,firstMapTerrainCorroborated:true,
    snapshotAtomicVerified:false,
-   note:'Só a primeira zona tem geometria de tiles validada. Falta validar scripts, comandos, fronteiras, coordenadas posteriores e escolhas reais de piso.'};
+   note:'A primeira zona inclui tiles candidatos nas bordas; falta validar o alinhamento entre mapas, scripts, comandos, coordenadas posteriores e pisos.'};
 }
 module.exports={localExitAccess};
