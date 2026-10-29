@@ -13,7 +13,7 @@ const reject=reason=>({verified:false,reason,exits:[],
 function localExitAccess({profile,warpGraph,mapId,position,
  mapSnapshotVerified=false,positionVerified=false,modeByte=null,
  canCut=null,canSurf=null,spritesVerified=false,mapEntities=[],
- elevatorChoices=null,maxResults=96}={}){
+ elevatorChoices=null,lastMapGuide=null,maxResults=96}={}){
  const sha=String(profile?.hash?.sha256||'').toLowerCase();
  const atlas=profile?.world?.terrainAtlas;
  if(!isKnownAuditedRomSha(sha)||profile?.unknownLayout===true||
@@ -67,15 +67,31 @@ function localExitAccess({profile,warpGraph,mapId,position,
  for(const w of warpGraph.edges){
    if(w?.sourceMapId!==mapId)continue;
    const {status,approach}=statusFor(w);
+   const listed=lastMapGuide?.verified===true&&
+     lastMapGuide.romSha256===sha&&lastMapGuide.mapId===mapId&&
+     lastMapGuide.lastMapEvidence?.sequentiallyConsistent===true?
+     lastMapGuide.warps?.[w.sourceWarpIndex]:null;
+   const resolved=w.status==='LAST_MAP_RAM_REQUIRED'&&listed?.map===255&&
+     listed?.warp===w.destinationWarpIndex&&
+     listed.ramResolvedDestinationVerified===true&&
+     validId(listed.resolvedMapId)&&
+     Number.isInteger(listed.landingX)&&listed.landingX>=0&&
+     Number.isInteger(listed.landingY)&&listed.landingY>=0&&
+     listed.resolutionSource==='D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE';
    exits.push({kind:'WARP',sourceMapId:mapId,
      sourceWarpIndex:w.sourceWarpIndex,sourceTile:{x:w.x,y:w.y},
      destinationMapId:w.status==='STATIC_DESTINATION_WARP_VALIDATED'?
-       w.destinationMapId:null,
+       w.destinationMapId:resolved?listed.resolvedMapId:null,
      staticDestinationStatus:w.status,
+     destinationEvidence:resolved?'RAM_SEQUENTIAL_LAST_MAP':
+       w.status==='STATIC_DESTINATION_WARP_VALIDATED'?'STATIC_ROM_WARP':
+       'SCRIPT_OR_RAM_UNRESOLVED',
      destinationRequiresScript:w.status!=='STATIC_DESTINATION_WARP_VALIDATED',
      destinationWarpIndex:w.destinationWarpIndex,
      landing:w.status==='STATIC_DESTINATION_WARP_VALIDATED'?
-       {mapId:w.landing.mapId,x:w.landing.x,y:w.landing.y}:null,
+       {mapId:w.landing.mapId,x:w.landing.x,y:w.landing.y}:
+       resolved?{mapId:listed.resolvedMapId,
+         x:listed.landingX,y:listed.landingY}:null,
      terrainStatus:status,approach,
      accessibleNow:null,routeNavigableNowProven:false});
  }
