@@ -255,7 +255,7 @@ test('ledger só propaga sequência textual ROM quando todos os campos são segu
    staticTextPreview:{verified:true,firstStringOnly:true,text:'Hi',
      containsRuntimeVariables:false,dialogueExecuted:false,
      textOutcomeVerified:false,program:{verified:true,scriptComplete:true,
-       text:'Hi | There',segmentCount:2,containsRuntimeText:false,
+       text:'Hi | There',segmentCount:2,termination:'TEXT_PROMPT',containsRuntimeText:false,
        containsRuntimeCommands:true,dialogueExecuted:false,
        textOutcomeVerified:false,scriptEffectsVerified:false}}};
  f.profile.world.maps.data[19].objects.signs=[
