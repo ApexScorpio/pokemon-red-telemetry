@@ -286,3 +286,19 @@ test('full ROM geometry route takes precedence over loose cycles only for same i
  assert.doesNotMatch(text,/Desvio multimapa TEÓRICO/);
  assert.match(text,/Voltas ENTRE MAPAS para investigar/);
 });
+
+test('a LAST_MAP D365 destination is labelled as non-atomic evidence, never open',()=>{
+ const s=live();
+ s.romLocalExitAccess={verified:true,romSha256:s.worldAdvisor.romSha256,
+   mapId:15,positionFromRam:{x:12,y:3},
+   counts:{WARP:1},truncated:false,
+   exits:[{kind:'WARP',sourceWarpIndex:1,
+     sourceTile:{x:12,y:4},destinationMapId:18,
+     destinationEvidence:'RAM_SEQUENTIAL_LAST_MAP',
+     staticDestinationStatus:'LAST_MAP_RAM_REQUIRED',
+     terrainStatus:'THEORETICAL_TERRAIN_PATH',approach:null}]};
+ const text=render(s).body.textContent;
+ assert.match(text,/Warp #1/);
+ assert.match(text,/mapa #18/);
+ assert.match(text,/destino D365 relido; passagem não comprovada/);
+});
