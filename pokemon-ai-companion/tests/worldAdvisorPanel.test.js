@@ -102,3 +102,25 @@ test('socket close persists offline state so periodic refresh cannot resurrect a
  periodic();
  assert.deepEqual(observed,[false,false]);
 });
+
+test('Kanto objectives list separates pending flags and unverified travel',()=>{
+ const s=live();
+ s.globalCampaignObjectives={verified:true,romSha256:s.worldAdvisor.romSha256,
+   sourceMapId:15,mapCount:226,mapsWithPending:2,mapsWithUnknown:1,
+   objectives:[
+     {mapId:15,mapName:'Route 4',pending:{hiddenItems:1,hiddenCoins:0,
+       trainerGatesOpen:0,stationaryGatesOpen:0},unknown:{trainers:0,stationaryPokemon:0},
+       mapHopCount:0},
+     {mapId:18,mapName:'Cerulean City',pending:{hiddenItems:0,hiddenCoins:0,
+       trainerGatesOpen:2,stationaryGatesOpen:0},unknown:{trainers:1,stationaryPokemon:0},
+       mapHopCount:null}
+   ]};
+ const output=render(s).body.textContent;
+ assert.match(output,/OBJETIVOS DE KANTO/);
+ assert.match(output,/1 itens ocultos/);
+ assert.match(output,/2 portões de treino abertos/);
+ assert.match(output,/rota estática não determinada/);
+ assert.doesNotMatch(output,/acesso garantido/i);
+ s.globalCampaignObjectives.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/OBJETIVOS DE KANTO/);
+});
