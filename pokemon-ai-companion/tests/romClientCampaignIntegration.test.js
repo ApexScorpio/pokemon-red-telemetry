@@ -99,3 +99,10 @@ test('all new local and multi-map route evidence is ephemeral and invalidated',(
  assert.match(source,/this\.latestState\.romVariantTerrainEvidence=verifyTerrainVariant\(/);
  assert.match(source,/this\._worldDetourCycles=suggestWorldDetours\(/);
 });
+
+test('first-map Cut/Surf and LAST_MAP hints depend on variant-matched ROM grid',()=>{
+ assert.match(source,/this\.latestState\.romVariantTerrainEvidence=verifyTerrainVariant\(/);
+ assert.match(source,/lastMapGuide:this\.latestState\.romStaticMapGuide/);
+ assert.match(source,/this\.latestState\.romVariantTerrainEvidence\?\.verified===true/);
+ assert.match(source,/romWorldDetourCycles=\{verified:false/);
+});
