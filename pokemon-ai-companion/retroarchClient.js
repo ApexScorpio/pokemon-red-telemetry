@@ -2454,6 +2454,8 @@ class RetroArchClient extends EventEmitter {
       ledger:this.latestState.globalCampaignLedger,
       warpGraph:this.latestState.romWarpGraph,
       sourceMapId:this.latestState.mapId,
+      firstMapTerrainHints:this.latestState.romTerrainWarpHints,
+      position:this.latestState.coords,
       maxResults:12
     });
     this.latestState.worldAdvisor=adviseWorld({
