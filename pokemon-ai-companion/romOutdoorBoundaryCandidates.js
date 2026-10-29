@@ -4,11 +4,13 @@
 // records do not carry the full 11-byte spatial alignment or a live transfer
 // frame. Edge tiles here are CANDIDATES, never proven crossing coordinates.
 const {exactTilePath}=require('./romCrossMapItemRoute');
+const {mapArrival}=require('./romOutdoorAlignment');
 const DIRECTIONS=new Set(['north','south','west','east']);
 const missing=reason=>({verified:false,reason,borderTiles:[],
   sourceBorderLandingProven:false,neighborAlignmentVerified:false});
 function outdoorBoundaryCandidates({grid,direction,reachNormal,reachCut,
- reachSurf,reachBoth,canCut=null,canSurf=null,maxCandidates=4}={}){
+ reachSurf,reachBoth,canCut=null,canSurf=null,
+ alignment=null,destinationGrid=null,maxCandidates=4}={}){
  if(!grid||!Number.isInteger(grid.width)||grid.width<1||
     !Number.isInteger(grid.height)||grid.height<1||
     !DIRECTIONS.has(direction)||!reachNormal||
@@ -18,6 +20,18 @@ function outdoorBoundaryCandidates({grid,direction,reachNormal,reachCut,
     !Number.isInteger(maxCandidates)||maxCandidates<1||maxCandidates>16)
    return missing('Terreno, direção ou cenários de movimento não comprovados');
  const candidates=[],n=grid.width*grid.height;
+ const aligned=alignment?.descriptorPointerMatches===true&&
+   alignment?.referenceOffsetCorroborated===true&&
+   alignment.direction===direction&&
+   alignment.sourceWidthTiles===grid.width&&
+   alignment.sourceHeightTiles===grid.height&&
+   destinationGrid?.width===alignment.destinationWidthTiles&&
+   destinationGrid?.height===alignment.destinationHeightTiles&&
+   destinationGrid?.romSha256===grid.romSha256&&
+   destinationGrid?.bits?.length===Math.ceil(
+     destinationGrid.width*destinationGrid.height/8)&&
+   destinationGrid?.tiles?.length===destinationGrid.width*destinationGrid.height;
+ let overlappingTiles=0,compatibleDestinationTiles=0;
  if(![reachNormal,reachCut,reachSurf,reachBoth].every(r=>
     r?.width===grid.width&&r?.height===grid.height&&
     r?.prev?.length===2*n))
@@ -32,6 +46,24 @@ function outdoorBoundaryCandidates({grid,direction,reachNormal,reachCut,
  }
  let reachableWithoutNewAbilities=0,requiresHypotheticalAbility=0;
  for(const tile of at){
+   const destination=aligned?mapArrival(direction,alignment.offsetBlocks,
+     tile,destinationGrid.width,destinationGrid.height):null;
+   if(aligned&&!destination)continue;
+   if(destination)overlappingTiles++;
+   let destinationTerrainStatus=null;
+   if(destination){
+     const index=destination.y*destinationGrid.width+destination.x;
+     const walkable=(destinationGrid.bits[index>>3]&(1<<(index&7)))!==0;
+     const tileId=destinationGrid.tiles[index];
+     const cut=destinationGrid.tilesetId===0&&tileId===0x3d;
+     const surf=tileId===0x14||tileId===0x48;
+     destinationTerrainStatus=walkable?'STATIC_LAND_CANDIDATE':
+       cut?'CUT_REQUIRED_AT_DESTINATION':
+       surf?'SURF_REQUIRED_AT_DESTINATION':
+       'DESTINATION_STATIC_TERRAIN_BLOCKED';
+     if(!walkable&&!cut&&!surf)continue;
+     compatibleDestinationTiles++;
+   }
    let route=exactTilePath(reachNormal,tile),status=null;
    if(route){
      status=route.usesCut?'TERRAIN_TO_BORDER_REQUIRES_CUT':
@@ -54,12 +86,15 @@ function outdoorBoundaryCandidates({grid,direction,reachNormal,reachCut,
      if(route)requiresHypotheticalAbility++;
    }
    if(!route)continue;
-   candidates.push({tile,steps:route.steps,
+   candidates.push({tile,
+     destinationTile:destination??null,
+     destinationTerrainStatus,steps:route.steps,
      firstTerrainStep:route.nextStep,
      terrainStatus:status,
      usesCut:route.usesCut,usesSurf:route.usesSurf,
      borderTransitionProven:false,
-     destinationTileKnown:false});
+     destinationTileKnown:aligned&&destination!==null,
+     destinationCanEnterNowProven:false});
  }
  const rank=c=>['TERRAIN_TO_BORDER_POSSIBLE',
    'TERRAIN_TO_BORDER_REQUIRES_CUT',
@@ -70,10 +105,16 @@ function outdoorBoundaryCandidates({grid,direction,reachNormal,reachCut,
    edgeTileCount:at.length,
    terrainCandidateCount:candidates.length,
    reachableWithoutNewAbilities,requiresHypotheticalAbility,
+   overlappingSourceTiles:aligned?overlappingTiles:null,
+   destinationTerrainCompatibleTiles:aligned?compatibleDestinationTiles:null,
+   neighborAlignmentVerified:aligned,
+   compiledRomPointerFormulaMatched:aligned,
    borderTiles:candidates.slice(0,maxCandidates),
    candidatesTruncated:candidates.length>maxCandidates,
    sourceBorderLandingProven:false,
-   neighborAlignmentVerified:false,accessibleNow:null,
-   note:'Apenas tiles de origem alcançáveis na borda; não comprova sobreposição espacial com o mapa vizinho nem execução da transição.'};
+   accessibleNow:null,
+   note:aligned?
+     'Tiles correspondentes na borda de origem e destino, com deslocamento corroborado por ponteiros ROM. Passagem efetiva e scripts continuam por provar.':
+     'Apenas tiles de origem alcançáveis na borda; não comprova sobreposição espacial com o mapa vizinho nem execução da transição.'};
 }
 module.exports={outdoorBoundaryCandidates};
