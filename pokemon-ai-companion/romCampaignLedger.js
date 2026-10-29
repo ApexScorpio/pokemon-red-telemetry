@@ -33,9 +33,29 @@ const interactionTuple=(ordinal,x,y,textId,evidence,romSha256,mapId)=>{
       p.textOutcomeVerified===false&&
       typeof p.text==='string'&&p.text.trim().length>0&&
       p.text.length<=240&&typeof p.containsRuntimeVariables==='boolean')
-     tuple.push({verified:true,firstStringOnly:true,text:p.text,
-       containsRuntimeVariables:p.containsRuntimeVariables,
-       dialogueExecuted:false,textOutcomeVerified:false});
+     {
+       const preview={verified:true,firstStringOnly:true,text:p.text,
+         containsRuntimeVariables:p.containsRuntimeVariables,
+         dialogueExecuted:false,textOutcomeVerified:false};
+       const program=p.program;
+       if(program?.verified===true&&program.scriptComplete===true&&
+          program.dialogueExecuted===false&&
+          program.textOutcomeVerified===false&&
+          program.scriptEffectsVerified===false&&
+          typeof program.text==='string'&&program.text.length>0&&
+          program.text.length<=760&&
+          Number.isInteger(program.segmentCount)&&
+          program.segmentCount>=1&&program.segmentCount<=12&&
+          typeof program.containsRuntimeText==='boolean'&&
+          typeof program.containsRuntimeCommands==='boolean')
+         preview.program={verified:true,scriptComplete:true,
+           text:program.text,segmentCount:program.segmentCount,
+           containsRuntimeText:program.containsRuntimeText,
+           containsRuntimeCommands:program.containsRuntimeCommands,
+           dialogueExecuted:false,textOutcomeVerified:false,
+           scriptEffectsVerified:false};
+       tuple.push(preview);
+     }
  }
  return tuple;
 };
