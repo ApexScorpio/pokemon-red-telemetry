@@ -848,3 +848,36 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Captura sintética final `objectives-preview-after.png` verificada no contentor, aberta e examinada visualmente. Texto «1 item oculto» e «1 evento por esclarecer» corrigido e sem desbordamento aparente na pré-visualização. Esta imagem não é prova de RetroArch/SameBoy/iPhone.
 - Eliminados o HTML temporário e a imagem intermédia desta fase; conservada apenas a captura final para referência de UI. Não foram removidos backups, ROMs, saves, sessões ou outros ficheiros do utilizador.
 - **Estado da meta: PARCIAL; 100% não certificado.** Continuam como bloqueios `npm test` no checkout verdadeiro, ROMs e emulador ativos, scripts/handlers integrais, dinâmica de acessibilidade, snapshot RAM e comparação visual do jogo real.
+
+
+## 2026-10-29 — T10: planeamento de saídas com terreno da ROM verificado
+
+- `romCampaignObjectives.js` passou a aceitar `firstMapTerrainHints` e a posição RAM corroborada, usando 3 ondas BFS por tipo de prova do PRIMEIRO warp: caminho terrestre teórico, ausência de prova, ou falta de caminho terrestre sem inferir bloqueio permanente. `retroarchClient.js` transmite os hints e a posição RAM; o painel distingue estas situações.
+- Se o índice ROM, os warps, a posição RAM ou o SHA não coincidirem, os hints são ignorados. Isto NÃO valida Cut, Surf, Strength, NPCs dinâmicos, portas, scripts nem a geometria das ligações restantes.
+- Acrescentados 2 testes de prioridade do primeiro warp e rejeição de hints desatualizados. Suite de prioridades: **8/8 no V8 isolado**, NÃO `npm test` integral.
+
+## 2026-10-29 — T11: conteúdo ROM mundial — sinais e fauna
+
+- O `romWorldStateAdvisor.js` passou a expor sinais ROM de texto como `SIGN/SCRIPT_UNRESOLVED`, com posição e identificador de texto, sem presumir interação acessível ou consequência do script.
+- As tabelas `wildEncounters` da ROM auditada entram como `WILD_ENCOUNTER` apenas após validação dos 10 slots e pesos `[51,51,39,25,25,25,13,13,11,3]` por meio (relva/água). A interface apresenta percentagens condicionais por espécie interna+nível, agregando slots repetidos, **não** probabilidade efetiva por passo.
+- Criados testes para sinais, pesos alterados e percentagens condicionais. Falta validar existência real de encontros no frame, Repel, capacidades e flags em todas as condições.
+
+## 2026-10-29 — T12: percurso geométrico multimapa para itens inacessíveis localmente
+
+- Novo `romCrossMapItemRoute.js`: BFS limitada a 120 estados em execução live (máximo 10 warps), a partir de posição RAM corroborada, em grelhas ROM SHA verificadas. Reutiliza `terrainBytes`, `computeReach` e `candidatePath` existentes; só usa warps com destino+posição validados, sem inferir portas/scripts desbloqueados. Conserva no resultado `accessibleNow:null`, `routeNavigableNowProven:false`.
+- Integrado em `retroarchClient.js` apenas para um item do mapa com `NO_SAME_MAP_PATH` e coordenadas realmente associadas à ROM; cache por posição, capacidades, modo e sprites; invalida em mapa incoerente. O painel indica primeira saída, transições e passos *teóricos*, sem prometer recuperação do TM04 ou de outro item.
+- Adicionados 6 testes de terreno+warps incluindo desvio de dois warps, ausência de saída, limite de saltos, ROM SHA errada, sprite obstrutivo. **6/6 aprovados em executor V8 isolado com `Buffer` simulado e hash determinístico não criptográfico**. Não são prova SHA nativa nem emulador real.
+
+## 2026-10-29 — T13: mudanças de progresso observadas entre leituras
+
+- Criado `romCampaignDelta.js` para comparar dois resumos mundiais compatíveis. Detecta mudanças nas contagens de flags de itens/fichas ocultas, portões de treinadores, vitórias especificamente codificadas no script, batalhas e encontros fixos, mantendo cada significado separado. Uma diminuição de contagem bloqueia a inferência e indica possível carregamento de save/amostra inconsistente; SHA diferente ou ausência de baseline também bloqueia.
+- A telemetria guarda até 80 mudanças de flags observadas nesta sessão, com identificação do mapa, sem atribuir causalidade a uma ação ou declarar captura/vitória sem semântica própria. A UI apresenta as últimas seis e explicita que são diferenças RAM não atómicas.
+- Acrescentados 6 testes de alterações, regressões de save, SHA divergente e ausência de mudança; 2 testes de UI para desvio multimapa e histórico. **6/6 no V8 isolado** para o novo módulo.
+
+## 2026-10-29 — T14: prova agregada e honestidade da identidade ROM
+
+- Reexecutados os ficheiros atuais publicados na branch, incluindo motores de mapa/terreno, planeamento, advisor, progresso, timeline e UI: **45/45 testes das seis suites novas aprovados em executor V8 com APIs Node simuladas, zero falhas**. Para o terreno foi utilizado um substituto de digest reprodutível e NÃO um SHA256 criptográfico nativo; não foi executado `npm test` completo nem o emulador com os três binários.
+- Verificada sintaxe JavaScript de `retroarchClient.js`, `romCrossMapItemRoute.js`, `romCampaignDelta.js`, `romWorldStateAdvisor.js` e `public/app.js` e confirmadas ligações de módulos, cache e UI. Corrigida a proteção da lista de sprites opcional, evitando iterar `undefined`.
+- Corrigida a legenda enganadora: o SHA256 é do **perfil ROM local auditado**; a ROM em execução foi apenas associada por CRC32 do RetroArch. `activeRomSha256Verified:false` é explícito e o painel informa «ativo associado por CRC32».
+- Confirmado no GitHub PR #1 **Draft aberto, não fundido**, branch com 68 commits à frente de `main` (`d52d6dad`), 16 ficheiros alterados nesta comparação antes do presente registo. O conteúdo da branch é real; não há E2E da aplicação.
+- **Ainda pendente para 100%:** scripts/bifurcações/eventos e todas as consequências, handlers de combate/captura e probabilidades sob RNG real, itens visíveis com prova específica de recolha, rotas exteriores/warps dinâmicos/elevadores/Strength, snapshot RAM atómico, confirmação SHA do binário realmente em execução, `npm test` integral, ROMs 3×1MiB e screenshots ao vivo da aplicação. **Sem certificado 100%.**
