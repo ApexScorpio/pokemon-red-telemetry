@@ -32,6 +32,7 @@ test('all local object kinds plus exits in every audited map, no guarantee',()=>
  assert.deepEqual(new Set(a.observations.map(o=>o.kind)),
    new Set(['ITEM','HIDDEN_ITEM','TRAINER','NPC','WARP','BORDER']));
  assert.equal(a.futureOutcomeGuaranteed,false);
+ assert.equal(a.activeRomSha256Verified,false);
  assert.equal(a.progressCompleteness,'PARTIAL');
  assert.ok(a.observations.every(o=>o.accessibleNow===null));
 });
