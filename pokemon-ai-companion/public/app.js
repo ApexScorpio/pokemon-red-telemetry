@@ -770,6 +770,50 @@ function renderWorldAdvisor(state) {
       '✨ Encontros fixos: '+t.stationaryGatesClosed+
         ' eventos encerrados (não prova captura)');
   }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  const localExits=state.romLocalExitAccess;
+  if(localExits?.verified===true&&
+     localExits.romSha256===advice.romSha256&&
+     localExits.mapId===advice.mapId&&
+     localExits.positionFromRam?.x===advice.position?.x&&
+     localExits.positionFromRam?.y===advice.position?.y&&
+     Array.isArray(localExits.exits)){
+    const out=['--- SAÍDAS DESTA ZONA: TERRENO / CUT / SURF ---'];
+    const labels={
+      THEORETICAL_TERRAIN_PATH:'percurso estático possível; passagem por confirmar',
+      TERRAIN_PATH_REQUIRES_CUT_ACTION:'percurso com Cut; ação por confirmar',
+      TERRAIN_PATH_REQUIRES_SURF_ACTION:'percurso com Surf; ação por confirmar',
+      CUT_NOT_USABLE_IN_CURRENT_PARTY:'requer Cut (capacidade atual não confirmada como utilizável)',
+      SURF_NOT_USABLE_IN_CURRENT_PARTY:'requer Surf (capacidade atual não confirmada como utilizável)',
+      CUT_CAPABILITY_NOT_VERIFIED:'talvez Cut; capacidade por confirmar',
+      SURF_CAPABILITY_NOT_VERIFIED:'talvez Surf; capacidade por confirmar',
+      CUT_AND_SURF_HYPOTHETICAL:'hipótese apenas com Cut + Surf',
+      NO_LOCAL_TERRAIN_PATH_NOT_PROOF_OF_LOCK:'sem caminho local demonstrado; pode haver desvio',
+      ROM_EXIT_TILE_OUTSIDE_MAP:'coordenadas de saída incoerentes com o terreno',
+      BORDER_CROSSING_TILE_NOT_VERIFIED:'fronteira ROM; ponto de travessia por confirmar',
+      FLOOR_SELECTION_AND_SCRIPT_NOT_VERIFIED:'opção de piso ROM; menu e condições por confirmar'
+    };
+    out.push('Warps: '+(localExits.counts?.WARP||0)+
+      ' · Fronteiras: '+(localExits.counts?.OUTDOOR_BORDER||0)+
+      ' · Opções de elevador: '+(localExits.counts?.ELEVATOR_MENU_CHOICE||0));
+    for(const e of localExits.exits){
+      if(!labels[e.terrainStatus])continue;
+      const label=e.kind==='WARP'?'Warp #'+e.sourceWarpIndex+
+        ' (X:'+e.sourceTile?.x+' Y:'+e.sourceTile?.y+')':
+        e.kind==='OUTDOOR_BORDER'?'Fronteira '+e.direction:
+        'Elevador — opção '+(e.floorMenuIndex+1);
+      const dest=Number.isInteger(e.destinationMapId)?
+        ' → mapa #'+e.destinationMapId:' → destino dependente de script/RAM';
+      out.push('• '+label+dest+': '+labels[e.terrainStatus]);
+      if(e.kind==='WARP'&&e.approach?.nextStep)
+        out.push('   Primeiro tile teórico: X:'+e.approach.nextStep.x+
+          ' Y:'+e.approach.nextStep.y);
+    }
+    if(localExits.truncated)
+      out.push('⚠️ Lista truncada; '+localExits.totalExits+' saídas no total.');
+    out.push('⚠️ Geometria estática não comprova acesso no jogo, sprites móveis, scripts ou travessia.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion>=0)lines.splice(insertion,0,...out);
+  }
   const elevator=state.romElevatorOptions;
   if(elevator?.verified===true&&elevator.hasElevator===true&&
      elevator.romSha256===advice.romSha256&&
