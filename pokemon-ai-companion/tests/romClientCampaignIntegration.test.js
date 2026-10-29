@@ -128,3 +128,14 @@ test('verified boundary offsets are cached by ROM SHA and never persisted as RAM
  const persisted=method('persistState','loadPersistedActionHistory');
  assert.match(persisted,/'romOutdoorAlignment'/);
 });
+
+test('global 78-border atlas is calculated once per ROM and is never persisted as current RAM',()=>{
+ assert.match(source,/require\('\.\/romOutdoorOverlapIndex'\)/);
+ assert.match(source,/this\._outdoorOverlapIndex=buildOutdoorOverlapIndex\(\{/);
+ assert.match(source,/this\._outdoorOverlapSha!==sha/);
+ assert.match(source,/outdoorOverlapIndex:this\.latestState\.romOutdoorOverlapIndex/);
+ const persisted=method('persistState','loadPersistedActionHistory');
+ assert.match(persisted,/'romOutdoorOverlapIndex'/);
+ const invalidate=method('invalidateWorldEvidence','loadPersistedState');
+ assert.match(invalidate,/romOutdoorOverlapIndex=\{verified:false/);
+});
