@@ -249,7 +249,12 @@ function connectWebSocket() {
     elConnectionPulse.classList.remove('active');
     // A telemetria antiga não pode continuar a aconselhar enquanto o socket
     // tenta religar; a recolha real ainda não foi restabelecida.
-    if(lastState)renderWorldAdvisor({...lastState,connected:false});
+    if(lastState){
+      // Persist the disconnected state as well. Otherwise the periodic
+      // freshness checker could resurrect cached advice on the next tick.
+      lastState={...lastState,connected:false};
+      renderWorldAdvisor(lastState);
+    }
     setTimeout(connectWebSocket, 2000);
   };
 }
