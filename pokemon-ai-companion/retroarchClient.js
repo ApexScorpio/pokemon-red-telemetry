@@ -15,6 +15,7 @@ const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
+const {WorldReferenceFlagSession}=require('./romWorldReferenceSession');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
@@ -319,6 +320,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romHeader = { fullRomVerified: false };
     this.latestState.memoryReadStatus = { verified: false, completeness: 'selected-address-ranges-only' };
     this._worldCampaignSession=new CampaignFlagSession();
+    this._worldReferenceSession=new WorldReferenceFlagSession();
     this._currentSessionSha=null;
     // Never inherit advice or progress deltas from persisted state.
     this.invalidateWorldEvidence('Novo arranque: aguardar leituras RAM reais');
@@ -335,10 +337,13 @@ class RetroArchClient extends EventEmitter {
 
   invalidateWorldEvidence(reason='Leitura interrompida'){
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
+    if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
     this._crossMapRouteKey=null;this._crossMapRoute=null;
     this.latestState.globalCampaignLedger={verified:false,mapProgress:[],reason};
     this.latestState.globalCampaignObjectives={verified:false,objectives:[],reason};
     this.latestState.romWorldEventAtlas={verified:false,events:[],toggleFlags:[],reason};
+    this.latestState.romWorldReferenceDelta={verified:false,changes:[],reason};
+    this.latestState.worldRecentNamedChanges={verified:false,events:[],reason};
     this.latestState.globalCampaignDelta={verified:false,changes:[],reason};
     this.latestState.worldRecentFlagChanges={
       verified:false,events:[],reason,actionsProven:false};
@@ -374,7 +379,8 @@ class RetroArchClient extends EventEmitter {
       for(const transient of [
         'globalCampaignLedger','globalCampaignObjectives',
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
-        'romCrossMapItemRoute','romWorldEventAtlas'
+        'romCrossMapItemRoute','romWorldEventAtlas',
+        'romWorldReferenceDelta','worldRecentNamedChanges'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
@@ -2546,6 +2552,12 @@ class RetroArchClient extends EventEmitter {
       eventFlagsHex:eventFlagsRaw,
       toggleFlagsHex:toggleRaw
     });
+    const namedChanges=this._worldReferenceSession.ingest({
+      atlas:this.latestState.romWorldEventAtlas,
+      observedAt:this.latestState.lastUpdate
+    });
+    this.latestState.romWorldReferenceDelta=namedChanges.delta;
+    this.latestState.worldRecentNamedChanges=namedChanges.recent;
     const campaignSession=this._worldCampaignSession.ingest({
       ledger:this.latestState.globalCampaignLedger,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
