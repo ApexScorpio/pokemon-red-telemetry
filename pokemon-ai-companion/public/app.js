@@ -1043,6 +1043,13 @@ function renderWorldAdvisor(state) {
        (batch?.verified===true?
          detour.target.hidden===(o.kind==='HIDDEN_ITEM'):true);
     if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
+       !exactDetourForThisItem&&o.accessStatus==='NO_SAME_MAP_PATH'&&
+       matchedRoute?.verified===true&&matchedRoute.found===false){
+      lines.push(matchedRoute.maxStatesExceeded===true?
+        '  ↳ Desvio multimapa: pesquisa interrompida pelo limite de estados; acesso por confirmar.':
+        '  ↳ Desvio multimapa: nenhum caminho demonstrado no modelo ROM; não prova bloqueio.');
+    }
+    if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
        exactDetourForThisItem){
       const first=detour.segments?.[0];
       if(first){

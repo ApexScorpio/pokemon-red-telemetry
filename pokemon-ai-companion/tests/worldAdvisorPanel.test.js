@@ -433,3 +433,21 @@ test('batch routes never cross-identify normal versus hidden item at same coordi
  t=render(s).body.textContent;
  assert.doesNotMatch(t,/Desvio multimapa TEÓRICO/);
 });
+
+test('unresolved batch item distinguishes search exhaustion from geometric no-route',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.worldAdvisor.observations=[{kind:'ITEM',what:'Item sem caminho',
+   x:5,y:3,status:'NOT_REMOVED_FLAG',accessStatus:'NO_SAME_MAP_PATH'}];
+ s.romCrossMapItemRoutes={verified:true,romSha256:sha,sourceMapId:15,
+   results:[{verified:true,found:false,romSha256:sha,sourceMapId:15,
+     target:{mapId:15,x:5,y:3,hidden:false},maxStatesExceeded:true}]};
+ let t=render(s).body.textContent;
+ assert.match(t,/pesquisa interrompida pelo limite de estados/);
+ assert.doesNotMatch(t,/acesso garantido/i);
+ s.romCrossMapItemRoutes.results[0].maxStatesExceeded=false;
+ t=render(s).body.textContent;
+ assert.match(t,/nenhum caminho demonstrado no modelo ROM; não prova bloqueio/);
+ s.romCrossMapItemRoutes.romSha256='0'.repeat(64);
+ t=render(s).body.textContent;
+ assert.doesNotMatch(t,/pesquisa interrompida|nenhum caminho demonstrado no modelo ROM/);
+});
