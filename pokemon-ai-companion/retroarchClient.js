@@ -14,6 +14,7 @@ const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
 const {localExitAccess}=require('./romLocalExitAccess');
+const {suggestWorldDetours}=require('./romWorldDetourCycles');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
 const {WorldReferenceFlagSession}=require('./romWorldReferenceSession');
@@ -352,6 +353,8 @@ class RetroArchClient extends EventEmitter {
       verified:false,events:[],reason,actionsProven:false};
     this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
     this.latestState.romLocalExitAccess={verified:false,exits:[],reason};
+    this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
+    this.latestState.romWorldDetourCycles={verified:false,candidates:[],reason};
     this.latestState.worldAdvisor={verified:false,observations:[],reason};
   }
 
@@ -385,7 +388,7 @@ class RetroArchClient extends EventEmitter {
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
         'romCrossMapItemRoute','romWorldEventAtlas',
         'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions',
-        'romLocalExitAccess'
+        'romLocalExitAccess','romWorldDetourCycles'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
@@ -2586,6 +2589,35 @@ class RetroArchClient extends EventEmitter {
         this.latestState.mapEntities:[],
       elevatorChoices:this.latestState.romElevatorOptions
     });
+    // If a local item cannot be approached, search map-level return loops.
+    // This NEVER proves that a loop lands on the other side of the ledge.
+    if(detourTarget&&this.latestState.romLocalExitAccess?.verified===true&&
+       this.latestState.romCrossMapItemRoute?.found!==true){
+      const key=JSON.stringify([
+        this.activeRomProfile?.hash?.sha256,
+        this.latestState.mapId,this.latestState.coords,
+        detourTarget.x,detourTarget.y,
+        this.latestState.romLocalExitAccess.exits.map(e=>[
+          e.kind,e.sourceWarpIndex,e.destinationMapId,e.terrainStatus])
+      ]);
+      if(this._worldDetourCyclesKey!==key){
+        this._worldDetourCycles=suggestWorldDetours({
+          warpGraph:this.latestState.romWarpGraph,
+          localExits:this.latestState.romLocalExitAccess,
+          romSha256:this.activeRomProfile.hash.sha256,
+          mapId:this.latestState.mapId,
+          target:{mapId:this.latestState.mapId,
+            x:detourTarget.x,y:detourTarget.y},
+          localPathAbsent:true,maxHops:9,maxStates:500,maxSuggestions:3
+        });
+        this._worldDetourCyclesKey=key;
+      }
+      this.latestState.romWorldDetourCycles=this._worldDetourCycles;
+    }else{
+      this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
+      this.latestState.romWorldDetourCycles={verified:false,candidates:[],
+        reason:'Sem item local isolado ou sem provas para procurar ciclo topológico'};
+    }
     const campaignSession=this._worldCampaignSession.ingest({
       ledger:this.latestState.globalCampaignLedger,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
