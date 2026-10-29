@@ -6,7 +6,8 @@ function fixture(){
  const table=6*0x4000+0x1000;return {rom,mapBank,textPointerCpu,table};
 }
 test('ROM0 special mart script resolves with no invented outcome',()=>{
- const f=fixture();f.rom.writeUInt16LE(0x24ea,f.table);f.rom[0x24ea]=0xfe;
+ const f=fixture();f.rom.writeUInt16LE(0x24ea,f.table);
+ f.rom.set([0xfe,1,4,0xff],0x24ea);
  const r=resolveStaticTextPointer({...f,textId:1});
  assert.equal(r.verified,true);assert.equal(r.romBank,0);
  assert.equal(r.command,'SCRIPT_MART');assert.equal(r.dialogueExecuted,false);
