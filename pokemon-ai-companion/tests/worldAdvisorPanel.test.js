@@ -451,3 +451,16 @@ test('unresolved batch item distinguishes search exhaustion from geometric no-ro
  t=render(s).body.textContent;
  assert.doesNotMatch(t,/pesquisa interrompida|nenhum caminho demonstrado no modelo ROM/);
 });
+
+test('strength hypothesis is never labelled as confirmed movement',()=>{
+ const s=live();
+ s.worldAdvisor.observations=[{kind:'ITEM',what:'Objeto para lá da rocha',
+  x:5,y:3,status:'NOT_REMOVED_FLAG',
+  accessStatus:'STRENGTH_SEQUENCE_HYPOTHESIS',
+  accessRoute:{steps:9,usesStrength:true,pushCount:2}}];
+ const t=render(s).body.textContent;
+ assert.match(t,/Possível sequência de empurrões com Strength/);
+ assert.match(t,/2 empurrões teóricos/);
+ assert.match(t,/execução por confirmar/);
+ assert.doesNotMatch(t,/Strength concluído|acesso garantido/);
+});

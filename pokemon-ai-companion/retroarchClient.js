@@ -9,6 +9,7 @@ const {inspectTerrainCell}=require('./romTerrainAtlas');
 const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {inspectMovementOptions}=require('./romTerrainMovement');
 const {planItemAccess}=require('./romItemReachability');
+const {planStrengthPushes}=require('./romStrengthPushPlanner');
 const {adviseWorld}=require('./romWorldStateAdvisor');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
@@ -1801,6 +1802,11 @@ class RetroArchClient extends EventEmitter {
       (accessBadge.some(b=>b.obtained&&/cascade/i.test(b.name||''))&&knowsMove(15,'CUT')):null;
     const abilitySurf=badgeConfirmed?
       (accessBadge.some(b=>b.obtained&&/soul/i.test(b.name||''))&&knowsMove(57,'SURF')):null;
+    // pret/pokered: STRENGTH is move #46 and requires Rainbow Badge.
+    // The active Strength field flag has NOT yet been read from live RAM.
+    const abilityStrength=badgeConfirmed?
+      (accessBadge.some(b=>b.obtained&&/rainbow/i.test(b.name||''))&&
+       knowsMove(46,'STRENGTH')):null;
     const itemAccess=planItemAccess({
       terrain:this.latestState.romVariantTerrainEvidence?.verified===true?
         this.latestState.romStaticMapGuide?.terrain:null,
@@ -1814,6 +1820,38 @@ class RetroArchClient extends EventEmitter {
       mapEntities:this.latestState.mapEntities,
       canCut:abilityCut,canSurf:abilitySurf
     });
+    // Only inspect RAM-confirmed boulder positions for ROM-matched items
+    // that are already classified as POSSIBLE_STRENGTH_BARRIER.
+    const verifiedSprites=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true;
+    if(itemAccess.verified===true&&verifiedSprites)
+      for(const entry of itemAccess.results||[]){
+        if(entry.accessStatus!=='POSSIBLE_STRENGTH_BARRIER'||
+           accessInput[entry.index]?.romItemCoordinatesVerified!==true)continue;
+        const item=accessInput[entry.index];
+        const hidden=item.type==='hidden'||item.kind==='hidden'||
+          item.hiddenIndex!==undefined;
+        const strength=planStrengthPushes({
+          terrain:this.latestState.romStaticMapGuide?.terrain,
+          romSha256:this.activeRomProfile?.hash?.sha256,
+          position:this.latestState.coords,
+          target:{x:item.x,y:item.y,hidden},
+          positionVerified:positionWindow.verified===true,
+          spritesVerified:verifiedSprites,
+          actors:Array.isArray(this.latestState.mapEntities)?
+            this.latestState.mapEntities:[],
+          canStrength:abilityStrength,maxStates:1400,maxPushes:8
+        });
+        if(strength.verified===true&&strength.found===true){
+          entry.accessStatus=abilityStrength===true?
+            'STRENGTH_SEQUENCE_HYPOTHESIS':
+            abilityStrength===false?'NEEDS_STRENGTH':'STRENGTH_CAPABILITY_UNKNOWN';
+          entry.route={steps:strength.steps,nextStep:strength.firstStep,
+            usesStrength:true,pushCount:strength.pushCount,pushes:strength.pushes,
+            withinCurrentMapOnly:true};
+          entry.reason='Sequência teórica de '+strength.pushCount+
+            ' empurrões de rocha. Strength ativado e empurrões reais NÃO comprovados.';
+        }
+      }
     this.latestState.romItemAccess=itemAccess;
     const accessSummary=itemAccess.results||[];
     const withPath=accessInput.map((entry,i)=>{

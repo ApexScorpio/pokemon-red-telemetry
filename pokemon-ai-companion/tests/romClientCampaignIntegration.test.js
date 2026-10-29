@@ -161,3 +161,12 @@ test('cycle fallback uses the unresolved target even when another batch route is
  assert.match(source,/if\(detourTarget&&this\.latestState\.romLocalExitAccess\?\.verified===true\)\{/);
  assert.doesNotMatch(source,/if\(detourTarget&&this\.latestState\.romLocalExitAccess\?\.verified===true&&/);
 });
+
+test('Strength planner uses badge+move, confirmed sprites and never claims active Strength',()=>{
+ assert.match(source,/require\('\.\/romStrengthPushPlanner'\)/);
+ assert.match(source,/knowsMove\(46,'STRENGTH'\)/);
+ assert.match(source,/rainbow/i);
+ assert.match(source,/planStrengthPushes\(\{/);
+ assert.match(source,/spritesVerified:verifiedSprites/);
+ assert.match(source,/Strength ativado e empurrões reais NÃO comprovados/);
+});

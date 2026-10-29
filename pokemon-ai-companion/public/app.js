@@ -709,6 +709,9 @@ function renderWorldAdvisor(state) {
     CUT_CAPABILITY_UNKNOWN:'Cut: capacidade ainda não confirmada',
     SURF_CAPABILITY_UNKNOWN:'Surf: capacidade ainda não confirmada',
     POSSIBLE_STRENGTH_BARRIER:'Rocha: Strength/empurrão não comprovados',
+    STRENGTH_SEQUENCE_HYPOTHESIS:'Possível sequência de empurrões com Strength',
+    NEEDS_STRENGTH:'Percurso teórico: requer Strength e Rainbow Badge',
+    STRENGTH_CAPABILITY_UNKNOWN:'Strength: capacidade de utilização não confirmada',
     NO_SAME_MAP_PATH:'Sem percurso local: verificar outro mapa/warp/desnível',
     UNVERIFIED_ROM_ITEM:'Coordenadas do item não associadas à ROM',
     COLLECTED_FLAG:'Já recolhido segundo flag específica',
@@ -1025,6 +1028,9 @@ function renderWorldAdvisor(state) {
       const route=o.accessRoute;
       const steps=Number.isInteger(route?.steps)?' ('+route.steps+' passos teóricos)':'';
       lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
+      if(route?.usesStrength===true)
+        lines.push('  ↳ Rochas: '+route.pushCount+
+          ' empurrões teóricos; ativação de Strength e execução por confirmar.');
       if(o.accessReason)lines.push('  ↳ Motivo: '+o.accessReason);
     }
     const batch=state.romCrossMapItemRoutes;

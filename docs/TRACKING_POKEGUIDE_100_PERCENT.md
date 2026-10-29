@@ -11,7 +11,7 @@
 |---|---|---|---|---|
 | PG-001 | Identidade das 3 ROMs Red/Blue/Green Intl 1.2.1 | PARCIAL | SHA-256 conhecidos em `romKnownSha256.js`; ROMs locais auditadas em relatórios | Confirmar SHA do cartucho *efetivamente carregado* no emulador/iPhone |
 | PG-002 | Atlas mundial e ligações | PARCIAL | 248 IDs, 226 cabeçalhos normais, 813 warps e 78 fronteiras por ROM; `romWarpGraph.js` | Resolver LAST_MAP/elevadores/portas e testar transições reais |
-| PG-003 | Terreno e movimento | PARCIAL | 24 tilesets, 95 132 células por ROM; Cut/Surf/ledge e desvio multimapa com fronteiras alinhadas (T25, hipóteses condicionais) | Validar colisões dinâmicas, Strength, scripts, frames e travessia real |
+| PG-003 | Terreno e movimento | PARCIAL | T31: Cut/Surf/ledge, fronteiras ROM e planeador conservador de empurrões Strength com sprites RAM | Testar empurrões reais, buracos/interruptores, colisões dinâmicas, scripts e transições em emulador |
 | PG-004 | Flags e eventos da campanha | PARCIAL | `romEventState.js`, `romTrainerEvents.js`; flags específicas limitadas | Interpretar todos os scripts, presentes, diálogos, ramificações e consequências |
 | PG-005 | Radar de itens e acessibilidade | PARCIAL | T26: pesquisa partilhada de até 64 itens locais com ROM validada; warps e fronteiras alinhadas, 13/13 V8 isolados | Validar rotas no emulador, Cut/Surf/Strength, NPCs e orçamento em mapas reais |
 | PG-006 | Conselheiro universal de ações | EM EXECUÇÃO | `romWorldStateAdvisor.js` e T30: correção de integração dos desvios para vários itens, com fallback de ciclo por alvo por resolver | Distinguir provas independentes, testar telemetria real e consequências na UI sem garantias falsas |
