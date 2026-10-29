@@ -80,3 +80,25 @@ test('global campaign rollup is shown only when ROM SHA and map coverage match',
  s.globalCampaignLedger.romSha256='0'.repeat(64);
  assert.match(render(s).body.textContent,/sem prova global RAM\/ROM/);
 });
+
+test('socket close persists offline state so periodic refresh cannot resurrect advice',()=>{
+ const from=script.indexOf('// WebSocket Connection');
+ const to=script.indexOf('// Painel Daycare:',from);
+ assert.ok(from>=0&&to>from);
+ const observed=[];
+ let periodic=null;
+ class FakeSocket {constructor(url){this.url=url;}}
+ const context={
+   WebSocket:FakeSocket,window:{location:{protocol:'http:',host:'localhost'}},
+   elConnectionStatus:{textContent:''},
+   elConnectionPulse:{classList:{add(){},remove(){}}},
+   renderWorldAdvisor:s=>observed.push(s.connected),
+   setTimeout:()=>null,setInterval:cb=>{periodic=cb;},
+   lastState:{connected:true},socket:null
+ };
+ vm.runInNewContext(script.slice(from,to)+'\nconnectWebSocket(); socket.onclose();',context);
+ assert.equal(context.lastState.connected,false);
+ assert.deepEqual(observed,[false]);
+ periodic();
+ assert.deepEqual(observed,[false,false]);
+});
