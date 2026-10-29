@@ -791,6 +791,8 @@ function renderWorldAdvisor(state) {
       ROM_EXIT_TILE_OUTSIDE_MAP:'coordenadas de saída incoerentes com o terreno',
       BORDER_CROSSING_TILE_NOT_VERIFIED:'fronteira ROM; ponto de travessia por confirmar',
       BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN:'tiles de borda alcançáveis na ROM; alinhamento com mapa seguinte desconhecido',
+      BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED:'tiles de origem e destino alinhados pelos ponteiros ROM; travessia no jogo por confirmar',
+      BORDER_ALIGNED_REQUIRES_CAPABILITY_TRANSFER_UNVERIFIED:'alinhamento ROM calculado, mas requer Cut/Surf hipotético e travessia por confirmar',
       BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN:'borda apenas com hipótese Cut/Surf; alinhamento desconhecido',
       NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK:'sem tile de borda alcançável neste cenário; não prova bloqueio',
       FLOOR_SELECTION_AND_SCRIPT_NOT_VERIFIED:'opção de piso ROM; menu e condições por confirmar'
@@ -815,11 +817,18 @@ function renderWorldAdvisor(state) {
       if(e.kind==='OUTDOOR_BORDER'&&e.borderEvidence?.verified===true){
         const b=e.borderEvidence;
         out.push('   Borda de origem: '+b.terrainCandidateCount+
-          ' tiles candidatos no terreno; travessia e destino NÃO confirmados');
+          ' tiles candidatos no terreno; '+(b.neighborAlignmentVerified?
+           'alinhamento ROM conferido, travessia NÃO confirmada':
+           'travessia e destino NÃO confirmados'));
         for(const candidate of b.borderTiles.slice(0,2)){
           out.push('   Tile de borda possível: X:'+candidate.tile.x+
             ' Y:'+candidate.tile.y+' ('+candidate.steps+
             ' passos teóricos; '+candidate.terrainStatus+')');
+          if(candidate.destinationTile)
+            out.push('   Tile DESTINO de referência: X:'+
+              candidate.destinationTile.x+' Y:'+candidate.destinationTile.y+
+              ' ('+candidate.destinationTerrainStatus+
+              '; transferência no jogo NÃO comprovada)');
         }
       }
     }
