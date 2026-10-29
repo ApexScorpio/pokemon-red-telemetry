@@ -2,6 +2,7 @@
 // Read-only Gen I text table pointer audit. A resolved pointer is NOT a decoded script.
 const fs=require('node:fs');
 const {auditWorldObjects}=require('./auditRealWorldInteractions');
+const {summarizeStaticTextTargets}=require('../romStaticTextCoverage');
 const BANK=0x4000,MAPS=248;
 const expected={interactions:674,npcs:472,signs:202,resolved:674,unresolved:0,
   rom0:58,romx:616,
@@ -17,6 +18,7 @@ function auditTextPointers(rom){
   const counts={interactions:0,npcs:0,signs:0,resolved:0,unresolved:0,rom0:0,romx:0};
   const firstBytes={},unresolvedByMap=[],sourceSamples=[];
   const far={total:0,resolved:0,startText:0,invalid:0};
+  const farTextTargets=[];
   for(let mapId=0;mapId<MAPS;mapId++){
     const bank=rom[bankTable+mapId],h=valid(bank,u16(rom,0x1ae+mapId*2),rom.length);
     if(h===null||rom[h]>24||rom[h+1]<1||rom[h+1]>80||
@@ -67,7 +69,9 @@ function auditTextPointers(rom){
           const target=dest+4<=(bank+1)*BANK?
             valid(rom[dest+3],u16(rom,dest+1),rom.length):null;
           if(target===null)far.invalid++;
-          else{far.resolved++;if(rom[target]===0x00)far.startText++;}
+          else{far.resolved++;if(rom[target]===0x00){
+            far.startText++;farTextTargets.push(target);
+          }}
         }
         if(sourceSamples.length<8)sourceSamples.push({mapId,kind:e.kind,
           ordinal:e.ordinal,x:e.x,y:e.y,textId:e.textId,
@@ -87,7 +91,12 @@ function auditTextPointers(rom){
     throw Error('Categorias desconhecidas de bytes iniciais de texto');
   if(far.total!==453||far.resolved!==453||far.startText!==453||far.invalid!==0)
     throw Error('Destino far text de TX_FAR não corroborado na ROM');
-  return {verified:true,romSha256:world.sha256,counts,firstBytes,far,
+  const staticPrograms=summarizeStaticTextTargets({rom,targets:farTextTargets});
+  if(staticPrograms.verified!==true||staticPrograms.inspected!==far.startText||
+     staticPrograms.completeLinearScripts+
+       staticPrograms.incompleteOrNonlinearScripts!==far.startText)
+    throw Error('Cobertura dos programas textuais TX_FAR incongruente');
+  return {verified:true,romSha256:world.sha256,counts,firstBytes,far,staticPrograms,
     unresolvedExamples:unresolvedByMap.slice(0,6),sourceSamples,
     staticTextPointerVerified:counts.resolved,
     dialogueEffectsVerified:false,liveInteractionVerified:false,
