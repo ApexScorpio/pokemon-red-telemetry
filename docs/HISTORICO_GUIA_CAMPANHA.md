@@ -1114,3 +1114,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Corrigido o desfasamento entre `planItemAccess` e o motor Strength: antes um plano Strength podia usar terreno do guia estático sem exigir `romVariantTerrainEvidence.verified`. Agora exige `verified=true`, SHA igual à identidade ROM ativa e terreno com `verified=true`, senão conserva `POSSIBLE_STRENGTH_BARRIER` sem proposta de empurrão.
 - A cache inclui os fingerprints `tileIdsSha256` e `walkingBitsSha256`; quando muda a grelha é recalculada, e um estado de variante não validada não utiliza resultados antigos.
 - Teste adicionado à integração com o bloco real extraído de `retroarchClient.js`. Em V8: duas leituras iguais executam 1 pesquisa, alteração do hash executa uma segunda, invalidação da variante interrompe novas pesquisas e não promove o estado. Parser JS aprovado. Não foram executados `npm test` nativo nem provas de emulador.
+
+
+## 2026-10-29 — T40a: alvos exatos de itens ocultos por recolher em Kanto
+
+- Novo `romGlobalFlagItemRoutes.js` com `selectGlobalFlagTargets`: usa o ledger de 226 mapas validado contra a SHA da ROM, flags D6F0/D6FE e objetivos globais para selecionar até quatro posições específicas de itens e fichas ocultas **fora do mapa atual**. Só escolhe registros com `flagSet:false` e `mapHopCount` estático conhecido; nunca inventa item, coordenada ou flag.
+- `planGlobalFlagItemRoutes` chama o motor multimapa partilhado com as coordenadas ROM dos alvos, mantendo `accessibleNow:null` e `routeNavigableNowProven:false`. Sem prova da posição RAM e sem matriz ROM válida, rejeita a pesquisa em vez de afirmar bloqueio ou acesso.
+- Criados cinco testes em `tests/romGlobalFlagItemRoutes.test.js`: seleção exata, exclusão de recolhidos/locais, limitação de quantidade, rejeição de SHA/mapa mal combinados e ausência de posição. Execução em V8 do módulo real com motor de rotas simulado passou os cenários principais; os testes foram publicados, mas ainda não executados em Node nativo.
