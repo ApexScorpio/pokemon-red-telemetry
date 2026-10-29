@@ -39,7 +39,7 @@ test('every one of 78 original connection macro offsets is reciprocal',()=>{
    const back=refs.edges.find(r=>r.sourceMapId===edge.destinationMapId&&
      r.destinationMapId===edge.sourceMapId);
    assert.ok(back,'Missing reciprocal '+getKey(edge));
-   assert.equal(edge.offsetBlocks,-back.offsetBlocks);
+   assert.equal(edge.offsetBlocks+back.offsetBlocks,0);
  }
 });
 test('all 78 ROM descriptor strip pointers agree for every variant',()=>{
