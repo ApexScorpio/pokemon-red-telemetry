@@ -222,3 +222,15 @@ test('Strength memoization is scoped to position abilities and RAM sprites',()=>
  assert.match(source,/this\._strengthPlanCache\.size>=64/);
  assert.match(source,/entry\.route=\{steps:strength\.steps,nextStep:null/);
 });
+
+test('Strength D728 is decoded from existing world RAM and excluded from persistence',()=>{
+ assert.match(source,/require\('\.\/romStrengthFieldEvidence'\)/);
+ assert.match(source,/worldBlockHex:blockWorldEvents/);
+ assert.match(source,/mapWindowVerified:mapConfirmation\.verified===true/);
+ assert.match(source,/positionWindowVerified:positionWindow\.verified===true/);
+ assert.match(source,/strengthFieldActiveAtSample:strengthFlag\.verified===true/);
+ assert.match(method('persistState','loadPersistedActionHistory'),
+   /'romStrengthFieldEvidence'/);
+ assert.match(method('invalidateWorldEvidence','loadPersistedState'),
+   /romStrengthFieldEvidence=\{verified:false,activeAtSample:null/);
+});

@@ -10,6 +10,7 @@ const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {inspectMovementOptions}=require('./romTerrainMovement');
 const {planItemAccess}=require('./romItemReachability');
 const {planStrengthPushes}=require('./romStrengthPushPlanner');
+const {readStrengthFieldEvidence}=require('./romStrengthFieldEvidence');
 const {adviseWorld}=require('./romWorldStateAdvisor');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
@@ -359,6 +360,7 @@ class RetroArchClient extends EventEmitter {
       verified:false,events:[],reason,actionsProven:false};
     this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
     this.latestState.romCrossMapItemRoutes={verified:false,results:[],reason};
+    this.latestState.romStrengthFieldEvidence={verified:false,activeAtSample:null,reason};
     this.latestState.romLocalExitAccess={verified:false,exits:[],reason};
     this.latestState.romVariantTerrainEvidence={verified:false,reason};
     this.latestState.romOutdoorReferenceEvidence={verified:false,reason};
@@ -398,7 +400,8 @@ class RetroArchClient extends EventEmitter {
       for(const transient of [
         'globalCampaignLedger','globalCampaignObjectives',
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
-        'romCrossMapItemRoute','romCrossMapItemRoutes','romWorldEventAtlas',
+        'romCrossMapItemRoute','romCrossMapItemRoutes','romStrengthFieldEvidence',
+        'romWorldEventAtlas',
         'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions',
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
@@ -1804,8 +1807,16 @@ class RetroArchClient extends EventEmitter {
       (accessBadge.some(b=>b.obtained&&/cascade/i.test(b.name||''))&&knowsMove(15,'CUT')):null;
     const abilitySurf=badgeConfirmed?
       (accessBadge.some(b=>b.obtained&&/soul/i.test(b.name||''))&&knowsMove(57,'SURF')):null;
+    // The existing D5A0 block includes wStatusFlags1 at D728 (bit 0).
+    const strengthFlag=readStrengthFieldEvidence({
+      worldBlockHex:blockWorldEvents,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true,
+      positionWindowVerified:positionWindow.verified===true
+    });
+    this.latestState.romStrengthFieldEvidence=strengthFlag;
     // pret/pokered: STRENGTH is move #46 and requires Rainbow Badge.
-    // The active Strength field flag has NOT yet been read from live RAM.
     const abilityStrength=badgeConfirmed?
       (accessBadge.some(b=>b.obtained&&/rainbow/i.test(b.name||''))&&
        knowsMove(46,'STRENGTH')):null;
@@ -1867,6 +1878,9 @@ class RetroArchClient extends EventEmitter {
           entry.route={steps:strength.steps,nextStep:null,
             firstPush:strength.pushes[0]||null,
             usesStrength:true,pushCount:strength.pushCount,pushes:strength.pushes,
+            strengthFieldActiveAtSample:strengthFlag.verified===true?
+              strengthFlag.activeAtSample:null,
+            strengthFieldEvidenceAtomic:false,
             withinCurrentMapOnly:true};
           entry.reason='Sequência teórica de '+strength.pushCount+
             ' empurrões de rocha. Strength ativado e empurrões reais NÃO comprovados.';

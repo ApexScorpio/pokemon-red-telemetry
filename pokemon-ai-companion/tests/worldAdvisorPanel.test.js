@@ -480,3 +480,21 @@ test('Strength UI marks first push as hypothetical, not a free walking step',()=
  assert.match(output,/execução por confirmar/);
  assert.doesNotMatch(output,/passagem garantida/);
 });
+
+test('Strength D728 status is not presented as an observed push',()=>{
+ const s=live();
+ s.worldAdvisor.observations=[{kind:'ITEM',what:'Item após rocha',
+   x:5,y:3,status:'NOT_REMOVED_FLAG',
+   accessStatus:'STRENGTH_SEQUENCE_HYPOTHESIS',
+   accessRoute:{steps:4,usesStrength:true,pushCount:1,
+     strengthFieldActiveAtSample:true}}];
+ let t=render(s).body.textContent;
+ assert.match(t,/bit RAM \$D728 ativo nesta leitura/);
+ assert.match(t,/não prova empurrão/);
+ s.worldAdvisor.observations[0].accessRoute.strengthFieldActiveAtSample=false;
+ t=render(s).body.textContent;
+ assert.match(t,/bit RAM \$D728 inativo/);
+ s.worldAdvisor.observations[0].accessRoute.strengthFieldActiveAtSample=null;
+ t=render(s).body.textContent;
+ assert.match(t,/ativação na RAM ainda por confirmar/);
+});

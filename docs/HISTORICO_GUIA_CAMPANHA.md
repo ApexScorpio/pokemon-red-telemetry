@@ -1076,3 +1076,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Três testes novos em `tests/romStrengthPushPlanner.test.js` cobrem rocha deslocada para um nicho, item visível presente no alvo, NPC substituto e item oculto na mesma coordenada.
 - A execução em V8 do módulo JavaScript efetivamente editado, com adaptador local do terreno, passou os três cenários: um empurrão norte para abrir o corredor, NPC sem caminho, item oculto sem caminho; sintaxe do módulo e testes passou. O adaptador não realiza SHA-256, nem emulador, pelo que **não** conta como testes nativos integrais.
 - Esta alteração não mexe na `main`, nos ficheiros ROM/saves nem noutras aplicações protegidas.
+
+
+## 2026-10-29 — T36: ler diretamente o bit de ativação Strength em D728
+
+- `pret/pokered ram/wram.asm` e `constants/ram_constants.asm`: `wStatusFlags1` fica em **D728** e `BIT_STRENGTH_ACTIVE` é o bit 0. O bloco de RAM existente D5A0–D8AF já inclui o byte no offset **0x188/392**, sem novos pedidos ao emulador.
+- Novo módulo `romStrengthFieldEvidence.js` exige SHA conhecida, identidade da ROM ativa, janela do mapa e coordenadas corroboradas, bloco de 784 bytes completo e hexadecimal válido. Devolve `activeAtSample` verdadeiro/falso ou `null` quando falta prova; conserva `snapshotAtomicVerified:false` e `pushObserved:false`.
+- O cliente integra a flag com os resultados de Strength e publica `romStrengthFieldEvidence` apenas como dado transitório, invalidado e não persistido em caches. A interface distingue flag ativa, inativa ou desconhecida, sem confundir esse bit com um empurrão realmente executado.
+- Testes de decoder, ligação RAM→cliente e renderização adicionados. Em V8 a rotina efetivamente editada distinguiu corretamente 00/02 (inativo), 01/81 (ativo) e rejeitou mapa incoerente; parsing de seis ficheiros concluído. Não foi executado `npm test` nativo nem prova E2E da ROM ativa.

@@ -1030,7 +1030,13 @@ function renderWorldAdvisor(state) {
       lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
       if(route?.usesStrength===true){
         lines.push('  ↳ Rochas: '+route.pushCount+
-          ' empurrões teóricos; ativação de Strength e execução por confirmar.');
+          ' empurrões teóricos; execução por confirmar.');
+        const field=route.strengthFieldActiveAtSample;
+        lines.push(field===true?
+          '  ↳ Strength: bit RAM $D728 ativo nesta leitura (não prova empurrão).':
+          field===false?
+          '  ↳ Strength: bit RAM $D728 inativo nesta leitura; é preciso ativar o golpe.':
+          '  ↳ Strength: ativação na RAM ainda por confirmar.');
         if(route.firstPush)lines.push('  ↳ Primeiro empurrão TEÓRICO: '+
           route.firstPush.direction+' da posição X:'+
           route.firstPush.from.x+' Y:'+route.firstPush.from.y+
