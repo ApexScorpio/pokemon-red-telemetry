@@ -14,7 +14,8 @@ function elevatorOptionsForMap({profile,mapId,romIdentityMatched=false,
    return fail('ROM, identidade emulada ou janela RAM por confirmar');
  const maps=profile?.world?.maps?.data;
  if(profile?.world?.maps?.valid!==true||!Array.isArray(maps)||
-    maps.length!==248||maps.some((m,i)=>m?.mapId!==i))
+    maps.length!==248||maps.some((m,i)=>m?.mapId!==i)||
+    maps.filter(m=>m.valid===true).length!==226)
    return fail('Cabeçalhos ROM não comprovados');
  const variant=DATA.variants?.[sha];
  if(variant?.verified!==true||variant.romSha256!==sha||
