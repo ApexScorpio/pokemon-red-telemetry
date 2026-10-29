@@ -247,3 +247,28 @@ test('Tuplo TX_FAR com prévia textual não prova diálogo nem efeitos',()=>{
    .staticTextPreview.textOutcomeVerified=true;
  assert.equal(evaluate(x).mapProgress[19].interactionRecords.signs[0].length,7);
 });
+
+test('ledger só propaga sequência textual ROM quando todos os campos são seguros',()=>{
+ const f=rig();
+ const pointer={verified:true,command:'TX_FAR',romBank:0,
+   textPointerCpu:0x24e5,
+   staticTextPreview:{verified:true,firstStringOnly:true,text:'Hi',
+     containsRuntimeVariables:false,dialogueExecuted:false,
+     textOutcomeVerified:false,program:{verified:true,scriptComplete:true,
+       text:'Hi | There',segmentCount:2,containsRuntimeText:false,
+       containsRuntimeCommands:true,dialogueExecuted:false,
+       textOutcomeVerified:false,scriptEffectsVerified:false}}};
+ f.profile.world.maps.data[19].objects.signs=[
+   {x:5,y:2,textId:7,textPointerEvidence:pointer}];
+ let r=evaluate(f);
+ let preview=r.mapProgress[19].interactionRecords.signs[0][7];
+ assert.equal(preview.program.verified,true);
+ assert.equal(preview.program.text,'Hi | There');
+ assert.equal(preview.program.containsRuntimeCommands,true);
+ assert.equal(r.mapProgress[19].scriptEffectsComplete,false);
+ pointer.staticTextPreview.program.scriptEffectsVerified=true;
+ r=evaluate(f);
+ preview=r.mapProgress[19].interactionRecords.signs[0][7];
+ assert.equal(preview.text,'Hi');
+ assert.equal(preview.program,undefined);
+});
