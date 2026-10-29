@@ -87,3 +87,33 @@ test('texto inválido não desmente um ponteiro TX_FAR estruturalmente válido',
  assert.equal(r.far.verified,true);
  assert.equal(r.staticTextPreview,null);
 });
+
+test('TX_FAR preserva segmentos completos da sequência ROM e variáveis RAM',()=>{
+ const f=fixture(),target=41*0x4000+0x374;
+ f.rom.writeUInt16LE(0x24e5,f.table);
+ f.rom.set([0x17,0x74,0x43,41],0x24e5);
+ f.rom.set([
+   0,0x87,0xa8,0x57,0x01,0x00,0xc0,
+   0,0x93,0xa7,0xa4,0xb1,0xa4,0x58,0x50
+ ],target);
+ const r=resolveStaticTextPointer({...f,textId:1});
+ assert.equal(r.verified,true);
+ assert.equal(r.staticTextPreview.text,'Hi');
+ assert.equal(r.staticTextPreview.program.verified,true);
+ assert.equal(r.staticTextPreview.program.scriptComplete,true);
+ assert.equal(r.staticTextPreview.program.text,'Hi | There');
+ assert.equal(r.staticTextPreview.program.segmentCount,2);
+ assert.equal(r.staticTextPreview.program.containsRuntimeCommands,true);
+ assert.equal(r.staticTextPreview.program.dialogueExecuted,false);
+});
+test('TX_FAR mantém primeira prévia mas nunca certifica programa ASM',()=>{
+ const f=fixture(),target=41*0x4000+0x374;
+ f.rom.writeUInt16LE(0x24e5,f.table);
+ f.rom.set([0x17,0x74,0x43,41],0x24e5);
+ f.rom.set([0,0x80,0x57,0x08,0x50],target);
+ const r=resolveStaticTextPointer({...f,textId:1});
+ assert.equal(r.verified,true);
+ assert.equal(r.staticTextPreview.text,'A');
+ assert.equal(r.staticTextPreview.program,undefined);
+ assert.equal(r.textOutcomeVerified,false);
+});
