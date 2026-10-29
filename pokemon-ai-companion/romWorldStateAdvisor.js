@@ -101,6 +101,39 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      'Interagir pode iniciar encontro; capturado/derrotado não é inferido da remoção.',
      mon.completionSource,{x:mon.x,y:mon.y});
  }
+ // Signs are ROM text events; an interaction may be a dialogue, switch,
+ // quest instruction or nothing until the current script state is checked.
+ for(const sign of map.objects?.signs||[]){
+   if(!byte(sign.x)||!byte(sign.y)||!byte(sign.textId))continue;
+   add('SIGN','SCRIPT_UNRESOLVED','Sinal / texto #'+sign.textId,
+     'Interagir pode ler texto ou acionar um evento; efeito e requisitos ainda não descodificados.',
+     'ROM_SIGN_OBJECT',{x:sign.x,y:sign.y,textId:sign.textId});
+ }
+ // Encounter slots are conditional RNG weights from the SHA-audited ROM.
+ // rateByte is NOT claimed to be the effective per-step encounter chance.
+ const wild=profile.world?.wildEncounters;
+ const rows=wild?.valid===true&&Array.isArray(wild.data)&&wild.data.length===248?
+   wild.data[mapId]:null;
+ if(rows?.mapId===mapId){
+   const weights=[51,51,39,25,25,25,13,13,11,3];
+   for(const medium of ['grass','water']){
+     const entry=rows[medium];
+     if(!byte(entry?.rateByte)||entry.rateByte===0||
+        !Array.isArray(entry.slots)||entry.slots.length!==10||
+        entry.slots.some((s,i)=>s.slot!==i||
+          !Number.isInteger(s.level)||s.level<1||s.level>100||
+          !Number.isInteger(s.internalId)||s.internalId<1||s.internalId>190||
+          (s.rollWeight??s.weight)!==weights[i]))continue;
+     const slots=entry.slots.map(s=>({internalId:s.internalId,level:s.level,
+       weight:s.rollWeight??s.weight,denominator:256}));
+     add('WILD_ENCOUNTER','ROM_ENCOUNTER_TABLE',
+       medium==='grass'?'Encontros na relva':'Encontros na água',
+       'Se ocorrer encontro neste terreno, a distribuição por slot é ROM/256. '+
+       'A probabilidade por passo depende do motor e do estado atual.',
+       'SHA256_ROM_WILD_TABLE',{medium,rateByte:entry.rateByte,slots,
+         encounterPossibleNow:null,effectiveChancePerStep:null});
+   }
+ }
  for(const w of map.objects?.warps||[]){
    if(!byte(w.x)||!byte(w.y))continue;
    const dest=w.destinationMap??w.map;
@@ -132,6 +165,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      'Percursos geométricos são condicionais, não demonstram acesso imediato',
      'Provas de itens, fichas ocultas e treinadores são independentes',
      'Flags de progresso só são conclusivas quando lidas e ligadas ao evento',
-     'Uma consequência prevista não é prova de execução']};
+     'Uma consequência prevista não é prova de execução',
+     'Pesos de encontros ROM são condicionais ao encontro, não probabilidade real por passo']};
 }
 module.exports={adviseWorld};
