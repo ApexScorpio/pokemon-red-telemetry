@@ -1050,7 +1050,14 @@ function renderWorldAdvisor(state) {
             lines.push('       Tile de borda CANDIDATO: X:'+
               firstExit.candidateBorderTile.x+' Y:'+
               firstExit.candidateBorderTile.y+
-              ' — alinhamento com destino NÃO verificado');
+              (firstExit.crossingAlignmentVerified?
+               ' — alinhamento confirmado por ponteiros ROM':
+               ' — alinhamento com destino NÃO verificado'));
+          if(firstExit.candidateDestinationTile)
+            lines.push('       Tile DESTINO de referência: X:'+
+              firstExit.candidateDestinationTile.x+
+              ' Y:'+firstExit.candidateDestinationTile.y+
+              ' — passagem efetiva NÃO observada');
         }
       }
       lines.push('  ⚠️ NÃO comprovado que a volta regresse do lado acessível do item.');
