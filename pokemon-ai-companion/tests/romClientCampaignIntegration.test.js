@@ -1,0 +1,68 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const source=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
+function method(from,to){
+ const start=source.indexOf('  '+from+'(');
+ const end=source.indexOf('  '+to+'(',start+2);
+ assert.ok(start>=0&&end>start,'Method boundaries must exist');
+ return source.slice(start,end);
+}
+const transient=[
+ 'globalCampaignLedger','globalCampaignObjectives','globalCampaignDelta',
+ 'worldRecentFlagChanges','worldAdvisor','romCrossMapItemRoute'
+];
+test('persistState excludes transient RAM/ROM evidence from both on-disk caches',()=>{
+ const writes=[];
+ const fakeFs={writeFileSync:(p,s)=>writes.push({p,s})};
+ const Agent=vm.runInNewContext('(class Agent {\n'+
+   method('persistState','loadPersistedActionHistory')+'\n})',{
+   fs:fakeFs,require:name=>{
+     assert.equal(name,'path');
+     return {join:(...s)=>s.join('/')};
+   },__dirname:'/mock/app'
+ });
+ const client=new Agent();
+ const state={connected:true,isSimulation:false,trainerName:'RED',
+   areaInfo:{name:'Route 4'},mapId:15,party:[{speciesId:25}],badges:[],
+   worldAdvisor:{verified:true},
+   globalCampaignLedger:{verified:true,mapProgress:[{mapId:15}]},
+   globalCampaignDelta:{verified:true,changes:[{kind:'HIDDEN_ITEM_FLAG_RAISED'}]},
+   worldRecentFlagChanges:{verified:true,events:[{mapId:15}]},
+   romCrossMapItemRoute:{verified:true,found:true},
+   globalCampaignObjectives:{verified:true,objectives:[{mapId:15}]}};
+ client.persistState(state);
+ assert.equal(writes.length,2);
+ assert.equal(writes[0].s,writes[1].s);
+ const saved=JSON.parse(writes[0].s);
+ for(const name of transient)assert.equal(Object.hasOwn(saved,name),false);
+ assert.equal(saved.party[0].speciesId,25);
+ assert.equal(state.globalCampaignLedger.verified,true);
+});
+test('saved history remains untouched by world invalidation',()=>{
+ const Agent=vm.runInNewContext('(class Agent {\n'+
+   method('invalidateWorldEvidence','loadPersistedState')+'\n})');
+ const agent=new Agent();
+ let resets=0;
+ agent._worldCampaignSession={reset:()=>resets++};
+ agent.latestState={actionHistory:[{text:'Treinador'}],
+   dialogHistory:[{text:'Ola'}],worldAdvisor:{verified:true},
+   globalCampaignLedger:{verified:true},
+   worldRecentFlagChanges:{verified:true,events:[{kind:'OLD'}]}};
+ agent.invalidateWorldEvidence('ROM não coincide');
+ assert.equal(resets,1);
+ assert.equal(agent.latestState.worldAdvisor.verified,false);
+ assert.equal(agent.latestState.globalCampaignLedger.verified,false);
+ assert.equal(agent.latestState.worldRecentFlagChanges.events.length,0);
+ assert.equal(agent.latestState.actionHistory[0].text,'Treinador');
+ assert.equal(agent.latestState.dialogHistory[0].text,'Ola');
+});
+test('connection and ROM changes invalidate cached world evidence before publishing',()=>{
+ assert.match(source,/this\._worldCampaignSession=new CampaignFlagSession\(\)/);
+ assert.match(source,/this\.invalidateWorldEvidence\('Novo arranque/);
+ assert.match(source,/this\.invalidateWorldEvidence\('ROM ativa mudou/);
+ assert.match(source,/this\.invalidateWorldEvidence\('Blocos RAM incompletos/);
+ assert.match(source,/this\.invalidateWorldEvidence\('Mapa RAM alterado/);
+ assert.match(source,/this\._worldCampaignSession\.ingest\(/);
+ assert.doesNotMatch(source,/previousGlobalLedger=this\.latestState\.globalCampaignLedger/);
+});
