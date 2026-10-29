@@ -14,6 +14,7 @@ const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
 const {CampaignFlagSession}=require('./romCampaignSession');
+const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
@@ -337,6 +338,7 @@ class RetroArchClient extends EventEmitter {
     this._crossMapRouteKey=null;this._crossMapRoute=null;
     this.latestState.globalCampaignLedger={verified:false,mapProgress:[],reason};
     this.latestState.globalCampaignObjectives={verified:false,objectives:[],reason};
+    this.latestState.romWorldEventAtlas={verified:false,events:[],toggleFlags:[],reason};
     this.latestState.globalCampaignDelta={verified:false,changes:[],reason};
     this.latestState.worldRecentFlagChanges={
       verified:false,events:[],reason,actionsProven:false};
@@ -372,7 +374,7 @@ class RetroArchClient extends EventEmitter {
       for(const transient of [
         'globalCampaignLedger','globalCampaignObjectives',
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
-        'romCrossMapItemRoute'
+        'romCrossMapItemRoute','romWorldEventAtlas'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
@@ -2535,6 +2537,14 @@ class RetroArchClient extends EventEmitter {
       eventFlagsHex:eventFlagsRaw,
       hiddenItemHex:hiddenRaw,
       hiddenCoinHex:hiddenCoinsRaw
+    });
+    this.latestState.romWorldEventAtlas=buildWorldEventAtlas({
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true,
+      eventFlagsHex:eventFlagsRaw,
+      toggleFlagsHex:toggleRaw
     });
     const campaignSession=this._worldCampaignSession.ingest({
       ledger:this.latestState.globalCampaignLedger,
