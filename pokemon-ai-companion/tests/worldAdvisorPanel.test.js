@@ -704,3 +704,39 @@ test('Painel mostra texto TX_FAR sem HTML nem conclusão inventada',()=>{
  s.globalCampaignLedger.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/Início literal ROM/);
 });
+
+test('Painel usa sequências textuais ROM estáticas, sem executar HTML ou scripts',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalCampaignObjectives={verified:true,romSha256:sha,
+   sourceMapId:15,mapCount:226,objectiveIndexCount:2,
+   remoteObjectiveIndex:[{mapId:15,mapHopCount:0},{mapId:19,mapHopCount:1}],
+   objectives:[],mapsWithPending:0,mapsWithUnknown:1};
+ s.globalCampaignLedger={verified:true,romSha256:sha,mapCount:226,
+   mapProgress:Array.from({length:226},(_,mapId)=>({
+     mapId,name:'Mapa '+mapId,visibleItems:{unresolved:0},
+     flagRecords:{visibleItems:[]},
+     interactions:{unresolved:mapId===19?1:0},
+     interactionRecords:{npcs:[],signs:mapId===19?[
+       [1,5,2,7,'TX_FAR',6,0x5400,{
+         verified:true,firstStringOnly:true,text:'Hi',
+         containsRuntimeVariables:false,dialogueExecuted:false,
+         textOutcomeVerified:false,program:{
+           verified:true,scriptComplete:true,text:'Hi | <script>alert(1)</script>',
+           segmentCount:2,containsRuntimeText:false,
+           containsRuntimeCommands:true,dialogueExecuted:false,
+           textOutcomeVerified:false,scriptEffectsVerified:false}}]
+       ]:[]}
+   }))};
+ const output=render(s);
+ assert.match(output.body.textContent,/Segmentos literais ROM \(2, TX_END corroborado\)/);
+ assert.match(output.body.textContent,/<script>alert\(1\)<\/script>/);
+ assert.match(output.body.textContent,/há conteúdo dependente da RAM/);
+ assert.match(output.body.textContent,/condições e efeitos por interpretar/);
+ assert.doesNotMatch(output.body.textContent,/Início literal ROM/);
+ assert.equal(output.body.innerHTML,null);
+ s.globalCampaignLedger.mapProgress[19].interactionRecords.signs[0][7]
+  .program.scriptEffectsVerified=true;
+ const fallback=render(s);
+ assert.match(fallback.body.textContent,/Início literal ROM/);
+ assert.doesNotMatch(fallback.body.textContent,/Segmentos literais ROM/);
+});
