@@ -1064,6 +1064,59 @@ function renderWorldAdvisor(state) {
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(insertion!==-1)lines.splice(insertion,0,...summary);
   }
+  // Visible pickups throughout Kanto are ROM-static objects, not flags.
+  // Their collection state in other maps has NOT been read from live RAM.
+  const worldLedger=state.globalCampaignLedger;
+  const visibleIndex=objectives?.remoteObjectiveIndex;
+  if(worldLedger?.verified===true&&
+     worldLedger.romSha256===advice.romSha256&&
+     worldLedger.mapCount===226&&Array.isArray(worldLedger.mapProgress)&&
+     worldLedger.mapProgress.length===226&&
+     objectives?.verified===true&&objectives.romSha256===advice.romSha256&&
+     objectives.sourceMapId===advice.mapId&&
+     Array.isArray(visibleIndex)&&
+     visibleIndex.length===objectives.objectiveIndexCount){
+    const maps=new Map(worldLedger.mapProgress.map(m=>[m.mapId,m]));
+    const buckets=[],sourceMapId=advice.mapId;
+    let totalRemoteVisible=0;
+    for(const m of worldLedger.mapProgress)
+      if(m.mapId!==sourceMapId)
+        totalRemoteVisible+=Number.isInteger(m.visibleItems?.unresolved)?
+          m.visibleItems.unresolved:0;
+    for(const goal of visibleIndex){
+      if(goal?.mapId===sourceMapId)continue;
+      const m=maps.get(goal?.mapId),rows=m?.flagRecords?.visibleItems;
+      if(!Array.isArray(rows)||!rows.length)continue;
+      const valid=rows.filter(r=>Number.isInteger(r?.x)&&
+        Number.isInteger(r?.y)&&r.collected===null);
+      if(valid.length)buckets.push({mapId:m.mapId,mapName:m.name,
+        mapHopCount:goal.mapHopCount,items:valid});
+    }
+    if(buckets.length){
+      const summary=['--- ITENS VISÍVEIS NOUTROS MAPAS (INVENTÁRIO ROM) ---'];
+      const shown=[];
+      while(shown.length<4&&buckets.some(b=>b.items.length))
+        for(const b of buckets){
+          if(b.items.length)shown.push({...b,item:b.items.shift()});
+          if(shown.length===4)break;
+        }
+      summary.push('A mostrar '+shown.length+' de '+totalRemoteVisible+
+        ' objetos visíveis ROM remotos; recolha individual DESCONHECIDA.');
+      for(const row of shown){
+        const item=row.item;
+        summary.push('• '+row.mapName+' (#'+row.mapId+
+          ') X:'+item.x+' Y:'+item.y+
+          (Number.isInteger(item.itemId)?' • ID item ROM #'+item.itemId:'')+
+          ' — recolha por confirmar; '+(
+            Number.isInteger(row.mapHopCount)?
+              row.mapHopCount+' transições estáticas hipotéticas':
+              'rota estática por determinar'));
+      }
+      summary.push('⚠️ Presença estática na ROM não significa item ainda disponível.','');
+      const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+      if(insertion!==-1)lines.splice(insertion,0,...summary);
+    }
+  }
   for(const {o} of ordered){
     const place=Number.isInteger(o.x)&&Number.isInteger(o.y)?
       ' X:'+o.x+' Y:'+o.y:'';

@@ -553,3 +553,28 @@ test('world agenda labels visible ROM objects as unconfirmed, never uncollected'
  assert.match(output,/2 itens visíveis na ROM \(recolha por confirmar\)/);
  assert.doesNotMatch(output,/itens visíveis por recolher/);
 });
+
+test('visible objects in other maps show coordinates without pretending still uncollected',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalCampaignObjectives={verified:true,romSha256:sha,
+   sourceMapId:15,mapCount:226,objectiveIndexCount:2,
+   remoteObjectiveIndex:[{mapId:15,mapHopCount:0},{mapId:20,mapHopCount:2}],
+   objectives:[],mapsWithPending:0,mapsWithUnknown:1};
+ const mapProgress=Array.from({length:226},(_,i)=>({
+   mapId:i,name:i===20?'Mapa 20':'Mapa '+i,
+   visibleItems:{unresolved:i===20?2:0},
+   flagRecords:{visibleItems:i===20?[
+     {x:3,y:6,itemId:42,collected:null},
+     {x:2,y:1,itemId:43,collected:null}]:[]}
+ }));
+ s.globalCampaignLedger={verified:true,romSha256:sha,mapCount:226,mapProgress};
+ const output=render(s).body.textContent;
+ assert.match(output,/ITENS VISÍVEIS NOUTROS MAPAS/);
+ assert.match(output,/A mostrar 2 de 2 objetos visíveis ROM remotos/);
+ assert.match(output,/Mapa 20 \(#20\) X:3 Y:6/);
+ assert.match(output,/ID item ROM #42/);
+ assert.match(output,/recolha individual DESCONHECIDA/);
+ assert.match(output,/Presença estática na ROM não significa item ainda disponível/);
+ s.globalCampaignLedger.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/ITENS VISÍVEIS NOUTROS MAPAS/);
+});
