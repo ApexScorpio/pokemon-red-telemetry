@@ -1164,7 +1164,7 @@ function renderWorldAdvisor(state) {
         const hasPreview=textCommand==='TX_FAR'&&p?.verified===true&&
           p.firstStringOnly===true&&p.dialogueExecuted===false&&
           p.textOutcomeVerified===false&&
-          typeof p.text==='string'&&p.text.length>0&&p.text.length<=240&&
+          typeof p.text==='string'&&p.text.length>0&&p.text.length<=720&&
           typeof p.containsRuntimeVariables==='boolean';
         const program=p?.program;
         const hasProgram=hasPreview&&program?.verified===true&&
