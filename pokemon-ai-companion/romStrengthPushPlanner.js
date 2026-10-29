@@ -26,7 +26,7 @@ function planStrengthPushes({terrain,romSha256,position,target,
  const inside=p=>p.x>=0&&p.y>=0&&p.x<width&&p.y<height;
  if(!inside(position)||!inside(target))return fail('Coordenadas fora do mapa ROM');
  const id=p=>p.y*width+p.x,xy=n=>({x:n%width,y:Math.floor(n/width)});
- const boulders=[],occupied=new Set(),all=new Set();
+ const boulders=[],occupied=new Set(),itemSprites=new Set(),all=new Set();
  for(const actor of actors){
    if(!validPos(actor)||!inside(actor))
      return fail('Sprite RAM com coordenadas inválidas');
@@ -34,7 +34,10 @@ function planStrengthPushes({terrain,romSha256,position,target,
    if(all.has(i))return fail('Sprites sobrepostos na mesma célula RAM');
    all.add(i);
    if(actor.type==='boulder'||actor.pictureId===63)boulders.push(i);
-   else occupied.add(i);
+   else {
+     occupied.add(i);
+     if(actor.type==='item')itemSprites.add(i);
+   }
  }
  if(!boulders.length||boulders.length>8)
    return fail('Sem rocha observada ou excesso de rochas para pesquisa limitada');
@@ -59,8 +62,13 @@ function planStrengthPushes({terrain,romSha256,position,target,
    const player=xy(s.player);
    const adjacent=Math.abs(player.x-target.x)+Math.abs(player.y-target.y)===1;
    const same=player.x===target.x&&player.y===target.y;
+   // A visible Poké Ball is an interaction target, not an NPC blocking
+   // interaction with itself. It still blocks walking and boulder movement.
+   // A hidden item beneath any sprite remains unproven.
+   const visibleItemSprite=target.hidden!==true&&itemSprites.has(id(target));
    return (target.hidden===true?same||adjacent:adjacent)&&
-     !s.rocks.includes(id(target))&&!occupied.has(id(target));
+     !s.rocks.includes(id(target))&&
+     (!occupied.has(id(target))||visibleItemSprite);
  };
  for(;cursor<queue.length&&processed<maxStates;cursor++){
    const s=queue[cursor];processed++;

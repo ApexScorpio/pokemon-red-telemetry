@@ -1067,3 +1067,12 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - O cálculo T31 fazia BFS até 1400 estados em cada leitura RAM por item dependente de rocha. Implementada uma cache **apenas em memória**, indexada por SHA, mapa, posição, capacidade Strength, confiança nos sprites e todas as posições/tipos/pictureIds observados. Cada alvo é identificado também por X/Y e pelo seu tipo oculto/visível. Limite máximo de 64 entradas; invalidação obrigatória em falhas de mapa e `invalidateWorldEvidence`. Não persiste informações transitórias no disco.
 - `entry.route.nextStep` de um plano de Strength passa a `null`: o primeiro tile do plano pode ser ocupado pela própria rocha e não é seguro apresentá-lo no Itemfinder como um passo de caminhada. A rota fornece separadamente `firstPush` com direção e origem/destino como **empurrão teórico**, mostrado no painel.
 - Adicionados casos à integração e testes da interface. Verificação V8 da secção real do cliente: duas leituras iguais executaram a procura **uma vez**, mudança do sprite executou nova procura (total 2); parsing cliente/UI/testes validado. Sem teste nativo Node completo, ROM ativa ou screenshot do emulador.
+
+
+## 2026-10-29 — T35: correção de item visível com sprite na RAM como destino de Strength
+
+- Revisão do novo planeador T31 encontrou um falso negativo: `itemContact` rejeitava qualquer sprite em `target`, incluindo o próprio item visível da ROM que deve ser alcançado por adjacência. Isso impedia a maioria das rotas com Poké Ball realmente presente no ecrã.
+- `romStrengthPushPlanner.js` mantém sprites de itens na colisão física de caminhar e empurrar, mas permite interação por tile adjacente quando o objeto na coordenada alvo é explicitamente `type:'item'`. Um NPC ou sprite genérico sobre esse alvo continua a ser impeditivo; item oculto sob um sprite continua sem caminho demonstrado.
+- Três testes novos em `tests/romStrengthPushPlanner.test.js` cobrem rocha deslocada para um nicho, item visível presente no alvo, NPC substituto e item oculto na mesma coordenada.
+- A execução em V8 do módulo JavaScript efetivamente editado, com adaptador local do terreno, passou os três cenários: um empurrão norte para abrir o corredor, NPC sem caminho, item oculto sem caminho; sintaxe do módulo e testes passou. O adaptador não realiza SHA-256, nem emulador, pelo que **não** conta como testes nativos integrais.
+- Esta alteração não mexe na `main`, nos ficheiros ROM/saves nem noutras aplicações protegidas.

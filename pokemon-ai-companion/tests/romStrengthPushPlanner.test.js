@@ -51,3 +51,49 @@ test('insufficient number of pushes is not evidence of permanent blockage',()=>{
  assert.equal(r.found,false);assert.equal(r.accessibleNow,null);
  assert.match(r.reason,/não prova bloqueio/i);
 });
+
+function itemSpriteFixture(){
+ const f=fixture(),width=7,height=5;
+ const tiles=Buffer.alloc(width*height,0x10);
+ const bits=Buffer.alloc(Math.ceil(width*height/8));
+ const allow=(x,y)=>{
+   const n=y*width+x;tiles[n]=0x2c;bits[n>>3]|=1<<(n&7);
+ };
+ for(let x=1;x<=5;x++)allow(x,2);
+ for(let x=1;x<=3;x++)allow(x,3);
+ allow(3,1);
+ const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+ Object.assign(f.terrain,{width,height,
+   tileIdsBase64:tiles.toString('base64'),
+   walkingBitsBase64:bits.toString('base64'),
+   tileIdsSha256:hash(tiles),walkingBitsSha256:hash(bits)});
+ f.position={x:1,y:2};f.target={x:5,y:2,hidden:false};
+ f.actors=[{x:3,y:2,type:'boulder',pictureId:63},
+   {x:5,y:2,type:'item',pictureId:61}];
+ return f;
+}
+test('visible item sprite at target remains interactable after a legal side push',()=>{
+ const f=itemSpriteFixture(),r=planStrengthPushes(f);
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.found,true,r.reason);
+ assert.equal(r.pushCount,1);
+ assert.deepEqual(r.pushes[0].from,{x:3,y:2});
+ assert.deepEqual(r.pushes[0].to,{x:3,y:1});
+ assert.equal(r.accessibleNow,null);
+ assert.equal(r.pushExecutionVerified,false);
+});
+test('NPC at exact item target remains a genuine blocker, not an item sprite',()=>{
+ const f=itemSpriteFixture();
+ f.actors[1]={x:5,y:2,type:'npc',pictureId:13};
+ const r=planStrengthPushes(f);
+ assert.equal(r.verified,true);
+ assert.equal(r.found,false);
+ assert.equal(r.accessibleNow,null);
+});
+test('hidden item behind occupied sprite cannot claim a legal interaction',()=>{
+ const f=itemSpriteFixture();
+ f.target.hidden=true;
+ const r=planStrengthPushes(f);
+ assert.equal(r.verified,true);
+ assert.equal(r.found,false);
+});
