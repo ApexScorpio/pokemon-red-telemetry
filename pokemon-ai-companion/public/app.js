@@ -812,6 +812,27 @@ function renderWorldAdvisor(state) {
     const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(point>=0)lines.splice(point,0,...title);
   }
+  const namedChanges=state.worldRecentNamedChanges;
+  if(namedChanges?.verified===true&&
+     namedChanges.romSha256===advice.romSha256&&
+     Array.isArray(namedChanges.events)&&namedChanges.events.length){
+    const changes=['--- MUDANÇAS EM EVENTOS E OBJETOS NOMEADOS ---'];
+    for(const e of namedChanges.events.slice(-6).reverse()){
+      if(e.kind==='NAMED_EVENT_BIT_CHANGED'){
+        changes.push('• '+e.name.replace(/^EVENT_/,'').replaceAll('_',' ')+
+          ': bit '+(e.flagSet?'ativado':'desativado')+
+          ' (localização e efeito por confirmar)');
+      }else if(e.kind==='OBJECT_TOGGLE_BIT_CHANGED'){
+        changes.push('• '+e.name.replace(/^TOGGLE_/,'').replaceAll('_',' ')+
+          ' (#'+e.mapId+'): flag de remoção '+
+          (e.flagSet?'ativada':'desativada')+
+          ' (não comprova item recolhido)');
+      }
+    }
+    changes.push('⚠️ Alterações entre duas leituras RAM; não provam quem agiu, missão terminada ou passagem aberta.','');
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...changes);
+  }
   const recent=state.worldRecentFlagChanges;
   if(recent?.verified===true&&recent.romSha256===advice.romSha256&&
      Array.isArray(recent.events)&&recent.events.length){
