@@ -41,3 +41,16 @@ test('Limites explícitos não podem permitir leitura fora da ROM',()=>{
  assert.equal(decodeFirstRomText({...x,offset:-1}).verified,false);
  assert.equal(decodeFirstRomText({...x,maxBytes:1}).verified,false);
 });
+
+test('Hall of Fame ROM-style first text over 240 bytes needs explicit bounded opt-in',()=>{
+ const x=mk([...Array(298).fill(0x80),0x57]);
+ assert.equal(decodeFirstRomText({...x,maxBytes:512}).verified,false);
+ const extended=decodeFirstRomText({...x,maxBytes:512,
+   allowExtended:true});
+ assert.equal(extended.verified,true);
+ assert.equal(extended.text.length,298);
+ assert.equal(extended.terminatorByte,0x57);
+ assert.equal(extended.dialogueExecuted,false);
+ assert.equal(decodeFirstRomText({...x,maxBytes:1025,
+   allowExtended:true}).verified,false);
+});
