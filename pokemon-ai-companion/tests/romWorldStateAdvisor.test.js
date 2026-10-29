@@ -141,3 +141,31 @@ test('ROM encounter slots are conditional and only copied with all 10 audited we
  assert.equal(run({profile:p}).observations.some(o=>
    o.kind==='WILD_ENCOUNTER'),false);
 });
+
+test('advisor exposes all-map static inventory without inventing current progress',()=>{
+ const reserved=new Set([11,105,106,107,109,110,111,112,114,115,116,117,
+   204,205,206,231,237,238,241,242,243,244]);
+ const p=fakeProfile();
+ p.world.maps.validMapHeaders=226;
+ p.world.maps.data=Array.from({length:248},(_,mapId)=>({
+   mapId,valid:!reserved.has(mapId),mapBank:1,
+   objects:{warps:[],signs:[],objects:[]}
+ }));
+ p.world.maps.data[15].objects={
+   warps:[{x:3,y:4,destinationMap:5,destinationWarp:0}],
+   signs:[],
+   objects:[{kind:'item',x:6,y:4,spriteId:10,textId:129,
+     trainerClassOrItemId:35}]
+ };
+ const result=adviseWorld({profile:p,mapId:15});
+ assert.equal(result.verified,true);
+ assert.equal(result.fullWorldStaticIndexVerified,true);
+ assert.equal(result.fullWorldStaticTotals.normalMaps,226);
+ assert.equal(result.mapStaticInventory.verified,true);
+ const item=result.mapStaticInventory.contents.visibleItems[0];
+ assert.equal(item.itemOrTrainerId,35);
+ assert.equal(item.accessibleNow,null);
+ assert.equal(item.collected,null);
+ assert.equal(result.mapStaticInventory.liveProgressVerified,false);
+ assert.equal(result.futureOutcomeGuaranteed,false);
+});
