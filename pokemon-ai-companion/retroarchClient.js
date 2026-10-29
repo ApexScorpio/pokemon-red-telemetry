@@ -13,6 +13,7 @@ const {adviseWorld}=require('./romWorldStateAdvisor');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
+const {localExitAccess}=require('./romLocalExitAccess');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
 const {WorldReferenceFlagSession}=require('./romWorldReferenceSession');
@@ -350,6 +351,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.worldRecentFlagChanges={
       verified:false,events:[],reason,actionsProven:false};
     this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
+    this.latestState.romLocalExitAccess={verified:false,exits:[],reason};
     this.latestState.worldAdvisor={verified:false,observations:[],reason};
   }
 
@@ -382,7 +384,8 @@ class RetroArchClient extends EventEmitter {
         'globalCampaignLedger','globalCampaignObjectives',
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
         'romCrossMapItemRoute','romWorldEventAtlas',
-        'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions'
+        'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions',
+        'romLocalExitAccess'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
@@ -2565,6 +2568,23 @@ class RetroArchClient extends EventEmitter {
       mapId:this.latestState.mapId,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
       mapWindowVerified:mapConfirmation.verified===true&&positionWindow.verified===true
+    });
+    // All local exits are inspected against current ROM terrain and the
+    // corroborated RAM position. Outdoor borders/elevators remain conditional.
+    this.latestState.romLocalExitAccess=localExitAccess({
+      profile:this.activeRomProfile,
+      warpGraph:this.latestState.romWarpGraph,
+      mapId:this.latestState.mapId,
+      position:this.latestState.coords,
+      mapSnapshotVerified:mapConfirmation.verified===true,
+      positionVerified:positionWindow.verified===true,
+      modeByte:modeWindow.verified?modeWindow.modeByte:null,
+      canCut:abilityCut,canSurf:abilitySurf,
+      spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
+        Array.isArray(this.latestState.mapEntities),
+      mapEntities:Array.isArray(this.latestState.mapEntities)?
+        this.latestState.mapEntities:[],
+      elevatorChoices:this.latestState.romElevatorOptions
     });
     const campaignSession=this._worldCampaignSession.ingest({
       ledger:this.latestState.globalCampaignLedger,
