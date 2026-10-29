@@ -153,6 +153,8 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      findStaticWarpRoute(warpGraph,mapId,dest,{maxHops:24})): [];
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
    position:positionVerified?position:null,observations,
+   activeRomSha256Verified:false,
+   activeRomIdentitySource:'CRC32_RETROARCH_MATCHES_SHA_AUDITED_LOCAL_PROFILE',
    liveAreaEvidenceVerified:!!liveArea,
    itemReachabilityEvidenceVerified:accessByKey.size>0,
    hiddenFlagsVerified:hiddenFlagsVerified===true,
