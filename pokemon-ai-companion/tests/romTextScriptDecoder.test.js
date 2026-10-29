@@ -75,7 +75,7 @@ test('truncaturas, bytes inválidos e cadeias longas não viram prova',()=>{
  assert.equal(decodeRomTextProgram(mk([0x01,0x42,0x50])).verified,false);
  assert.equal(decodeRomTextProgram(mk([0,0x80,0x08,0x57,0x50])).verified,false);
  assert.equal(decodeRomTextProgram(mk([0,0x80,0x50])).verified,false);
- const s=mk([0,0x80,0x57,0x50]);
+ const s=mk([0,0x80,0x50,0x50]);
  assert.equal(decodeRomTextProgram({...s,maxBytes:3}).verified,false);
  assert.equal(decodeRomTextProgram({...s,maxCommands:1}).verified,false);
  assert.equal(decodeRomTextProgram({...s,maxBytes:1025}).verified,false);
