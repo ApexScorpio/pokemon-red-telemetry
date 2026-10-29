@@ -110,3 +110,33 @@ test('coins use D6FE evidence only, never the hidden-item flag',()=>{
  assert.equal(obs.coinAmount,20);
  assert.equal(got.observations.find(o=>o.kind==='HIDDEN_ITEM').status,'UNKNOWN');
 });
+
+test('all ROM signs surfaced without claiming dialogue or scripted result',()=>{
+ const p=fakeProfile();
+ p.world.maps.data[15].objects.signs=[
+   {x:11,y:4,textId:1},{x:9,y:5,textId:2}];
+ const r=run({profile:p});
+ const signs=r.observations.filter(o=>o.kind==='SIGN');
+ assert.equal(signs.length,2);
+ assert.ok(signs.every(o=>o.status==='SCRIPT_UNRESOLVED'&&
+   o.accessibleNow===null));
+});
+test('ROM encounter slots are conditional and only copied with all 10 audited weights',()=>{
+ const p=fakeProfile();
+ const data=Array.from({length:248},(_,mapId)=>({mapId,grass:{
+   rateByte:0,slots:[]},water:{rateByte:0,slots:[]}}));
+ const weights=[51,51,39,25,25,25,13,13,11,3];
+ data[15].grass={rateByte:12,slots:weights.map((weight,slot)=>({
+   slot,level:10+slot,internalId:1,rollWeight:weight}))};
+ p.world.wildEncounters={valid:true,data};
+ const result=run({profile:p});
+ const a=result.observations.find(o=>o.kind==='WILD_ENCOUNTER');
+ assert.equal(a.rateByte,12);
+ assert.equal(a.slots.reduce((sum,s)=>sum+s.weight,0),256);
+ assert.equal(a.effectiveChancePerStep,null);
+ assert.equal(a.accessibleNow,null);
+ // Corrupted wild table is not silently presented as confirmed.
+ p.world.wildEncounters.data[15].grass.slots[0].rollWeight=52;
+ assert.equal(run({profile:p}).observations.some(o=>
+   o.kind==='WILD_ENCOUNTER'),false);
+});
