@@ -150,3 +150,16 @@
 | PG-011 | A interface mostra condições por warp, capacidade Cut/Surf, fronteira, elevador, LAST_MAP relido e voltas para investigar sem prometer acessibilidade | Testes UI e de cliente/cache aprovados no mesmo executor | Observação visual e interativa ao vivo, ações e consequências em todos os mapas |
  
 **Checkpoint:** PR #1 <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>, branch `feature/pokeguide-world-action-tracker-20261028` ainda Draft, `main` não alterada. Projeto **PARCIAL, não 100%**. Retoma por validar a suite Node/ROM/emulador e, depois, os scripts, colisões dinâmicas e mecânicas de combate/captura restantes. Todas as alterações a este tracking e a `HISTORICO_GUIA_CAMPANHA.md` são append-only.
+
+
+### T23 — 2026-10-29: fronteiras físicas na ROM e propostas de primeira saída
+
+| Componente | Estado implementado | Prova disponível | O que ainda falta |
+|---|---|---|---|
+| PG-002/PG-003 — Bordas de todos os mapas | `romOutdoorBoundaryCandidates.js`: inspeciona os tiles na borda do mapa atual, calcula passos geométricos e Cut/Surf condicional; `romLocalExitAccess.js` expõe origem, número de candidatos e classificação | 41/41 testes das suites locais, ciclos e interface após atualização; Route4 conferida nos três arquivos | Alinhamento do destino entre mapas, scripts que impedem travessia, observação da RAM/posição no mesmo frame |
+| PG-005 — Voltas para itens isolados | `romWorldDetourCycles.js` identifica primeiro passo e tile de borda candidato associado à volta, sem afirmar que a volta chega do lado necessário do item | Casos com e sem Cut, fronteiras sem prova de chegada e validação de item/mapa/ROM | Navegação efetiva em todos os segmentos; comprovar a região de chegada ao mapa do item |
+| PG-008 — Integridade das fronteiras | `romOutdoorReferenceGuard.js`: verifica os **78 descritores** contra o arquivo específico de Red, Blue ou Green e suspende o subgrafo exterior se houver divergência | 13/13 testes com cliente, incluindo casos de adulteração, mistura de ROM e invalidação de cache | Provar SHA256 da ROM realmente em execução; voltar a ler os bytes completos de cada descritor e sincronizar leitura ROM/RAM |
+| PG-012 — Route 4 | Bordas ROM: mapa 15, 90×18; 10 células estáticas caminháveis a sul para mapa 14 (Route3) e 8 a este para mapa 3 (Cerulean). Exemplos só estáticos: (6,17) e (89,4) | 3/3 testes com dados dos três arquivos de terreno e 78 ligações, usando V8 e digest de teste pré-mapeado | Não interpretar exemplos como posição do jogador nem passagem confirmada; Cut/desníveis/itens específicos ainda precisam de prova contextual |
+| PG-009 — Execução de testes | **57/57 casos de teste distintos passaram** nos três grupos mencionados, com o código publicado no GitHub | Executor V8 isolado, Node fs/crypto/Buffer/vm simulados, dados JSON reais das três variantes | `npm test` nativo, SHA256 criptográfico no teste, três binários ROM originais e E2E com emulador |
+ 
+**Estado:** PROGRESSO REAL / **NÃO 100%**. O PR #1 continua em Draft; `main` intacta. O arquivo de referência das ligações não basta para inventar coordenadas de chegada à zona seguinte. A próxima etapa de navegação precisa dos bytes da ROM original e testes de transição real; continuamos a não afirmar acessibilidade sem essa evidência.
