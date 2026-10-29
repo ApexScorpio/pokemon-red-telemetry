@@ -224,3 +224,26 @@ test('mart tuple adds audited names and base ROM prices only for exact map and S
  const changed=evaluate(f);
  assert.equal(changed.mapProgress[56].interactionRecords.npcs[0].length,8);
 });
+
+test('Tuplo TX_FAR com prévia textual não prova diálogo nem efeitos',()=>{
+ const x=rig();
+ x.profile.world.maps.data[19].objects.signs=[{
+   x:5,y:2,textId:7,textPointerEvidence:{
+     verified:true,command:'TX_FAR',romBank:6,textPointerCpu:0x5400,
+     staticTextPreview:{verified:true,text:'Hi <PLAYER>!',
+       firstStringOnly:true,containsRuntimeVariables:true,
+       dialogueExecuted:false,textOutcomeVerified:false}
+   }
+ }];
+ const r=evaluate(x);
+ assert.equal(r.verified,true);
+ const entry=r.mapProgress[19].interactionRecords.signs[0];
+ assert.equal(entry.length,8);
+ assert.equal(entry[7].text,'Hi <PLAYER>!');
+ assert.equal(entry[7].containsRuntimeVariables,true);
+ assert.equal(entry[7].dialogueExecuted,false);
+ assert.equal(r.mapProgress[19].scriptEffectsComplete,false);
+ x.profile.world.maps.data[19].objects.signs[0].textPointerEvidence
+   .staticTextPreview.textOutcomeVerified=true;
+ assert.equal(evaluate(x).mapProgress[19].interactionRecords.signs[0].length,7);
+});
