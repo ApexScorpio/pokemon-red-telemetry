@@ -1158,6 +1158,17 @@ function renderWorldAdvisor(state) {
         ' pontos de interação ROM remotos; efeito e execução DESCONHECIDOS.'];
       for(const row of shown){
         const [ordinal,x,y,textId,textCommand,textBank,textCpu]=row.item.tuple;
+        const p=row.item.tuple[7];
+        // Only static FIRST TX_FAR string, never an NPC's current dialogue.
+        // Summary output is inserted with textContent, not innerHTML.
+        const hasPreview=textCommand==='TX_FAR'&&p?.verified===true&&
+          p.firstStringOnly===true&&p.dialogueExecuted===false&&
+          p.textOutcomeVerified===false&&
+          typeof p.text==='string'&&p.text.length>0&&p.text.length<=240&&
+          typeof p.containsRuntimeVariables==='boolean';
+        const preview=hasPreview?
+          ' • Início literal ROM: «'+p.text.replace(/\s+/g,' ').slice(0,120)+
+          '»'+(p.containsRuntimeVariables?' (contém variáveis RAM)':''):'';
         summary.push('• '+row.item.kind+' — '+row.mapName+' (#'+row.mapId+
           ') X:'+x+' Y:'+y+' • índice ROM '+ordinal+
           (Number.isInteger(textId)?' • Text ID #'+textId:'')+
@@ -1165,7 +1176,7 @@ function renderWorldAdvisor(state) {
             Number.isInteger(textCpu)?
             ' • Entrada ROM '+textCommand+' [banco '+textBank+
             ' / CPU 0x'+textCpu.toString(16).toUpperCase()+']':'')+
-          ' — diálogo/texto por interpretar; '+
+          preview+' — diálogo/texto restante e efeitos por interpretar; '+
           (Number.isInteger(row.mapHopCount)?
             row.mapHopCount+' transições estáticas hipotéticas':
             'rota estática por determinar'));
