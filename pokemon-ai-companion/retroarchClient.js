@@ -12,6 +12,7 @@ const {planItemAccess}=require('./romItemReachability');
 const {adviseWorld}=require('./romWorldStateAdvisor');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
+const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
@@ -772,6 +773,9 @@ class RetroArchClient extends EventEmitter {
         reason:'Mapa RAM incoerente; progresso global anterior descartado'};
       this.latestState.globalCampaignObjectives={verified:false,objectives:[],
         reason:'Mapa RAM incoerente; objetivos anteriores descartados'};
+      this._crossMapRouteKey=null;this._crossMapRoute=null;
+      this.latestState.romCrossMapItemRoute={verified:false,found:false,
+        reason:'Mapa RAM incoerente; desvios do mapa anterior descartados'};
       this.latestState.romWildEncounters=null;
       this.latestState.romMap=null;
       this.latestState.mapEntities=[];
@@ -2440,6 +2444,46 @@ class RetroArchClient extends EventEmitter {
       this._warpGraph=null;
       this._warpGraphSha=null;
       this.latestState.romWarpGraph={verified:false,reason:'ROM não identificada'};
+    }
+    // Apenas quando não existe percurso local: procurar desvio geométrico
+    // através de warps estáticos. Uma rota não certifica porta ou script.
+    const detourTarget=withPath.find(i=>i.romItemCoordinatesVerified===true&&
+      i.accessStatus==='NO_SAME_MAP_PATH'&&
+      i.isCollected!==true&&Number.isInteger(i.x)&&Number.isInteger(i.y));
+    if(detourTarget&&this.activeRomProfile?.world?.terrainAtlas?.verified===true&&
+      this.latestState.romWarpGraph?.verified===true&&positionWindow.verified===true){
+      const spritePositions=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true?
+        this.latestState.mapEntities.map(o=>[o.x,o.y,o.type,o.pictureId]):null;
+      const key=JSON.stringify([
+        this.activeRomProfile.hash?.sha256,this.latestState.mapId,
+        this.latestState.coords,detourTarget.x,detourTarget.y,
+        modeWindow.verified?modeWindow.modeByte:null,
+        abilityCut===true,abilitySurf===true,spritePositions]);
+      if(this._crossMapRouteKey!==key){
+        this._crossMapRoute=findCrossMapItemPath({
+          romSha256:this.activeRomProfile.hash?.sha256,
+          terrainAtlas:this.activeRomProfile.world.terrainAtlas,
+          warpGraph:this.latestState.romWarpGraph,
+          sourceMapId:this.latestState.mapId,position:this.latestState.coords,
+          target:{mapId:this.latestState.mapId,x:detourTarget.x,
+            y:detourTarget.y,hidden:detourTarget.hiddenIndex!==undefined||
+              detourTarget.type==='hidden'},
+          positionVerified:positionWindow.verified===true,
+          currentModeByte:modeWindow.verified?modeWindow.modeByte:null,
+          canCut:abilityCut===true,canSurf:abilitySurf===true,
+          spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true,
+          currentMapEntities:this.latestState.mapEntities,
+          maxTransitions:10,maxStates:120
+        });
+        this._crossMapRouteKey=key;
+      }
+      this.latestState.romCrossMapItemRoute={
+        ...this._crossMapRoute,itemId:detourTarget.itemId??null,
+        itemName:detourTarget.name||null};
+    }else{
+      this._crossMapRouteKey=null;this._crossMapRoute=null;
+      this.latestState.romCrossMapItemRoute={verified:false,found:false,
+        reason:'Sem item ROM com rota local por resolver ou provas de terreno/posição insuficientes'};
     }
     this.latestState.globalCampaignLedger=buildCampaignLedger({
       profile:this.activeRomProfile,
