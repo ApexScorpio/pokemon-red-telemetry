@@ -1857,7 +1857,8 @@ class RetroArchClient extends EventEmitter {
     const withPath=accessInput.map((entry,i)=>{
       const access=accessSummary[i]||null;
       const status=access?.accessStatus||'UNKNOWN';
-      const withinMapBlocked=['NEEDS_CUT','NEEDS_SURF','NEEDS_CUT_AND_SURF_POSSIBLY']
+      const withinMapBlocked=['NEEDS_CUT','NEEDS_SURF',
+        'NEEDS_CUT_AND_SURF_POSSIBLY','NEEDS_STRENGTH']
         .includes(status);
       return {...entry,
         // Um requisito manual não é prova de bloqueio físico.

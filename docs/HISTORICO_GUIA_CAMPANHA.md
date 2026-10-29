@@ -1045,3 +1045,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - `public/app.js` distingue capacidade e empurrões teóricos, sem garantia de recolha. Adicionados `romStrengthPushPlanner.test.js` e novos cenários em `worldAdvisorPanel.test.js` e `romClientCampaignIntegration.test.js`.
 - Verificação executada: parsing dos seis ficheiros JS alterados e quatro cenários runtime do novo planeador em V8, usando `terrainBytes` simulado com grelha sintética: sequência encontrada, NPC bloqueante rejeitado, limite de empurrões e SHA errado rejeitados. Não equivale à suite nativa nem a execução real no emulador. Não foram criadas capturas do jogo porque não há ligação a um emulador autenticado nesta sessão.
 - As situações de buracos, interruptores, correntes e scripts que dependem da posição da rocha continuam PENDENTES. Nada foi alterado nos saves, sessões protegidas ou no disco C:.
+
+
+## 2026-10-29 — T32: incapacidade Strength corretamente marcada como bloqueio local
+
+- Corrigido `retroarchClient.js`: `NEEDS_STRENGTH` não integrava `withinMapBlocked`, o que deixava `isLocked:false` apesar de o utilizador ainda não ter Rainbow Badge ou um Pokémon com Strength. Agora o motivo de bloqueio condicional acompanha a rota teórica.
+- Uma sequência `STRENGTH_SEQUENCE_HYPOTHESIS` com capacidade conhecida permanece condicional e não é certificada acessível; `STRENGTH_CAPABILITY_UNKNOWN` permanece indeterminada, não declarada bloqueio comprovado. A propriedade independente `accessibleNow` continua `null`.
+- Regressão acrescentada à integração: extração/execução real do bloco `withPath` em V8 com cinco estados resultou `[true,false,false,true,false]` para `isLocked`, como esperado; parsing validado. Sem `npm test` nativo e sem gameplay observado.

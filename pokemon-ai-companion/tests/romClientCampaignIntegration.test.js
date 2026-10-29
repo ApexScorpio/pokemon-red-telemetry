@@ -170,3 +170,20 @@ test('Strength planner uses badge+move, confirmed sprites and never claims activ
  assert.match(source,/spritesVerified:verifiedSprites/);
  assert.match(source,/Strength ativado e empurrões reais NÃO comprovados/);
 });
+
+test('Strength missing capacity is classified blocked, theoretical push is conditional',()=>{
+ const a=source.indexOf('    const withPath=accessInput.map(');
+ const b=source.indexOf('    const visibleWithPath=',a);
+ assert.ok(a>=0&&b>a);
+ const block=source.slice(a,b);
+ const generate=vm.runInNewContext('(function(accessInput,accessSummary){'+block+
+   '\nreturn withPath;})');
+ const kinds=['NEEDS_STRENGTH','STRENGTH_SEQUENCE_HYPOTHESIS',
+   'STRENGTH_CAPABILITY_UNKNOWN','NEEDS_SURF','NO_SAME_MAP_PATH'];
+ const items=kinds.map((name,index)=>({name,x:index,y:1}));
+ const rows=kinds.map(accessStatus=>({accessStatus,reason:'Unverified ability'}));
+ const out=generate(items,rows);
+ assert.deepEqual(Array.from(out,x=>x.isLocked),[true,false,false,true,false]);
+ assert.equal(out[0].accessibleNow,null);
+ assert.equal(out[1].accessibleNow,null);
+});
