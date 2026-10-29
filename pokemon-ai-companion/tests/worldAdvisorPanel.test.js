@@ -321,3 +321,20 @@ test('source-only outdoor crossing tile is never described as confirmed destinat
  assert.match(body,/Tile de borda possível: X:12 Y:0/);
  assert.match(body,/travessia e destino NÃO confirmados/);
 });
+
+test('map-return hint shows only source first step and border tile without arrival proof',()=>{
+ const s=live();
+ s.romWorldDetourCycles={verified:true,romSha256:s.worldAdvisor.romSha256,
+   mapId:15,target:{mapId:15,x:5,y:3},
+   candidates:[{mapIds:[15,16,17,15],transitions:3,
+     includesOutdoorBorder:true,
+     firstExitEvidence:{known:true,kind:'OUTDOOR_BORDER',
+       fromMapId:15,toMapId:16,terrainStatus:'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN',
+       firstTerrainStep:{x:4,y:3},candidateBorderTile:{x:89,y:3},
+       crossingAlignmentVerified:false}}]};
+ const body=render(s).body.textContent;
+ assert.match(body,/Primeira saída candidata: mapa #15 → #16/);
+ assert.match(body,/Primeiro passo TEÓRICO: X:4 Y:3/);
+ assert.match(body,/Tile de borda CANDIDATO: X:89 Y:3/);
+ assert.match(body,/alinhamento com destino NÃO verificado/);
+});
