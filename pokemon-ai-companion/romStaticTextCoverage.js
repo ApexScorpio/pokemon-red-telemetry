@@ -13,7 +13,8 @@ function summarizeStaticTextTargets({rom,targets}={}){
  const data={verified:true,inspected:targets.length,
    uniqueTargetOffsets:new Set(targets).size,
    completeLinearScripts:0,incompleteOrNonlinearScripts:0,
-   multilineScripts:0,runtimeDependentScripts:0,totalLiteralSegments:0,
+   multilineScripts:0,emptyLinearScripts:0,
+   runtimeDependentScripts:0,totalLiteralSegments:0,
    failureReasons:{},samples:[],dialogueExecuted:false,
    scriptEffectsVerified:false,source:'ROM_TX_FAR_LINEAR_STATIC_AUDIT'};
  for(const fileOffset of targets){
@@ -28,6 +29,7 @@ function summarizeStaticTextTargets({rom,targets}={}){
    }
    data.completeLinearScripts++;
    data.totalLiteralSegments+=p.segmentCount;
+   if(p.segmentCount===0)data.emptyLinearScripts++;
    if(p.segmentCount>1)data.multilineScripts++;
    if(p.containsRuntimeText||p.containsRuntimeCommands)
      data.runtimeDependentScripts++;
