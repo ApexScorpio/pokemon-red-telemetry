@@ -881,3 +881,29 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Corrigida a legenda enganadora: o SHA256 é do **perfil ROM local auditado**; a ROM em execução foi apenas associada por CRC32 do RetroArch. `activeRomSha256Verified:false` é explícito e o painel informa «ativo associado por CRC32».
 - Confirmado no GitHub PR #1 **Draft aberto, não fundido**, branch com 68 commits à frente de `main` (`d52d6dad`), 16 ficheiros alterados nesta comparação antes do presente registo. O conteúdo da branch é real; não há E2E da aplicação.
 - **Ainda pendente para 100%:** scripts/bifurcações/eventos e todas as consequências, handlers de combate/captura e probabilidades sob RNG real, itens visíveis com prova específica de recolha, rotas exteriores/warps dinâmicos/elevadores/Strength, snapshot RAM atómico, confirmação SHA do binário realmente em execução, `npm test` integral, ROMs 3×1MiB e screenshots ao vivo da aplicação. **Sem certificado 100%.**
+
+
+## 2026-10-29 — T15: eliminar falsos eventos após arranque ou perda de ligação
+
+- Auditoria da integração `retroarchClient.js` revelou que `previousGlobalLedger=this.latestState.globalCampaignLedger` podia usar uma leitura **persistida da sessão anterior** como ponto de partida. Isso podia gerar falsas «mudanças» após reabrir a aplicação, entrar noutra ROM ou recuperar de uma quebra de leitura RAM.
+- Criado `romCampaignSession.js` com `CampaignFlagSession`: primeira leitura validada da sessão gera **apenas baseline**, a seguinte pode produzir deltas; alterações de identidade ROM, mapa inconsistente, GET_STATUS CONTENTLESS, bloco RAM ausente/incompleto e erro UDP invalidam baseline e timeline. Diminuição de contagem limpa os eventos e reinicia baseline como possível carregamento de save.
+- `retroarchClient.js` atualizado com `invalidateWorldEvidence`, reset no arranque e nestas transições, sem tocar em `actionHistory` e `dialogHistory`. Não volta a comparar um `globalCampaignLedger` guardado em disco com a RAM corrente.
+- Adicionados 8 testes de regressão de sessão: primeiro baseline, incrementos, desconexão, mudança Red→Blue, save carregado, capacidade de 80 eventos, mapas não corroborados e cópia dos dados de saída. **8/8 aprovados em V8 isolado com código publicado no GitHub**.
+
+## 2026-10-29 — T16: flags individuais em vez de apenas contagens
+
+- O livro de 226 mapas ganhou `flagRecords` independentes por mapa: itens ocultos, fichas ocultas, treinadores humanos mapeados e encontros Pokémon fixos. Cada registo contém identificador ROM, bit efetivo, flag e coordenada, quando conhecidos. Não presume estado de eventos sem bit mapeado.
+- `romCampaignDelta.js` agora compara os identificadores e bits, recusando mapas incompletos, atlas divergente ou bit que voltou de 1→0 **mesmo quando o total nesse mapa permanece igual**. Usa `EXACT_ROM_EVENT_BIT` se as 452 fichas (226 por amostra) trazem arrays completos; `MAP_COUNTER_ONLY` é identificado nos formatos legados sem estes registos.
+- Uma subida de flag de portão de treinador normal não é rotulada como vitória. Só os casos com `outcomeEvidence:'SCRIPT_VICTORY'` têm o evento `SCRIPT_VICTORY_FLAG_RAISED`; os casos de batalha apenas realizada são separados.
+- Adicionados 4 testes específicos de bits (coordenada, troca de flags com contagem igual, vitória de script e rejeição de atlas parcial) e 1 teste de integração entre o livro global e o comparador. Foi detetada uma incoerência entre `eventFlagSet` e `encounterGateClosed` para Pokémon fixos; a construção de `flagRecords.stationaryPokemon` usa agora a mesma propriedade `encounterGateClosed` que o total global (commit `d2a8fca`). Os **5 testes do livro global aprovaram após a correção**.
+
+## 2026-10-29 — T17: reduzir estado persistido obsoleto e testar métodos reais do cliente
+
+- `persistState(state)` já não grava `globalCampaignLedger`, `globalCampaignObjectives`, `globalCampaignDelta`, `worldRecentFlagChanges`, `worldAdvisor` nem `romCrossMapItemRoute` nas duas caches JSON preexistentes. Continua a conservar a informação histórica e restante estado para retoma. Isto reduz dados redundantes e impede que evidência temporal seja transportada como se fosse recente.
+- Criado `tests/romClientCampaignIntegration.test.js` com 3 provas sobre os métodos efetivos extraídos de `retroarchClient.js`: serialização das duas caches sem telemetria volátil, invalidação que preserva os históricos e guardas de arranque/ROM/desconexão. **3/3 testes no V8 isolado**; não foram efetuadas escritas no computador do utilizador.
+
+## 2026-10-29 — T18: execução agregada após correções
+
+- Confirmado o código efetivo na branch do GitHub: **61/61 testes** nas oito suites novas passaram num executor **V8 isolado**, com substituições explícitas das APIs Node para módulos, `vm`, `Buffer` e hash de testes não criptográfico. **20/20 ficheiros JavaScript analisados passaram o parsing.** Um erro inicial de sintaxe no *harness* foi corrigido antes desta execução; não foi contabilizado como teste aprovado.
+- PR #1 confirmado por API como `open/draft`, não fundido, **81 commits à frente da `main`**, nenhum atrás, 19 ficheiros alterados antes destes dois documentos; a `main` permaneceu em `d52d6dad10219a28cee28c4ec7ccb81332ce97bf`.
+- **Limites de prova**: não foi possível obter checkout completo com dependências, executar `npm test` com Node sem shims, nem validar as ROMs Red/Blue/Green (binários originais) e o emulador vivo. A SHA256 da ROM *executada* continua sem certificação direta; só o perfil local é auditado e o RetroArch foi associado por CRC32. O estado mundial **não é 100% completo**; scripts, interações, combate, captura, warps dinâmicos e navegação por restrições precisam de validação integral.
