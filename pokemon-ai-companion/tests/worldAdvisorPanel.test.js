@@ -302,3 +302,22 @@ test('a LAST_MAP D365 destination is labelled as non-atomic evidence, never open
  assert.match(text,/mapa #18/);
  assert.match(text,/destino D365 relido; passagem não comprovada/);
 });
+
+test('source-only outdoor crossing tile is never described as confirmed destination',()=>{
+ const s=live();
+ s.romLocalExitAccess={verified:true,romSha256:s.worldAdvisor.romSha256,
+   mapId:15,positionFromRam:{x:12,y:3},
+   counts:{OUTDOOR_BORDER:1},truncated:false,
+   exits:[{kind:'OUTDOOR_BORDER',direction:'north',destinationMapId:4,
+     terrainStatus:'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN',
+     borderEvidence:{verified:true,terrainCandidateCount:2,
+       neighborAlignmentVerified:false,borderTiles:[
+         {tile:{x:12,y:0},steps:3,terrainStatus:'TERRAIN_TO_BORDER_POSSIBLE'},
+         {tile:{x:13,y:0},steps:4,terrainStatus:'TERRAIN_TO_BORDER_POSSIBLE'}
+       ]}}]};
+ const body=render(s).body.textContent;
+ assert.match(body,/tiles de borda alcançáveis na ROM/);
+ assert.match(body,/Borda de origem: 2 tiles candidatos/);
+ assert.match(body,/Tile de borda possível: X:12 Y:0/);
+ assert.match(body,/travessia e destino NÃO confirmados/);
+});
