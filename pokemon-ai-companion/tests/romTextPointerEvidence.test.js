@@ -111,7 +111,7 @@ test('TX_FAR mantém primeira prévia mas nunca certifica programa ASM',()=>{
  const f=fixture(),target=41*0x4000+0x374;
  f.rom.writeUInt16LE(0x24e5,f.table);
  f.rom.set([0x17,0x74,0x43,41],0x24e5);
- f.rom.set([0,0x80,0x57,0x08,0x50],target);
+ f.rom.set([0,0x80,0x50,0x08,0x50],target);
  const r=resolveStaticTextPointer({...f,textId:1});
  assert.equal(r.verified,true);
  assert.equal(r.staticTextPreview.text,'A');
