@@ -53,7 +53,7 @@ test('missing or duplicated normal map fails closed',()=>{
 test('profile identity, tampered fingerprint and unknown ROM are rejected',()=>{
  const invalid=profile(r);invalid.hash.sha256='0'.repeat(64);
  assert.equal(verifyTerrainVariant(invalid).verified,false);
- const bad=clone(r);bad.maps[15].walkingBitsSha256='0'.repeat(64);
+ const bad=clone(r);bad.maps.find(m=>m.mapId===15).walkingBitsSha256='0'.repeat(64);
  assert.equal(verifyTerrainVariant(profile(bad)).mapId,15);
  const unknown=profile(r);unknown.unknownLayout=true;
  assert.equal(verifyTerrainVariant(unknown).verified,false);
