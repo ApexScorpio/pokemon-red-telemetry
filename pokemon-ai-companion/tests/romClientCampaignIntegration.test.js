@@ -11,6 +11,7 @@ function method(from,to){
 const transient=[
  'globalCampaignLedger','globalCampaignObjectives','globalCampaignDelta',
  'worldRecentFlagChanges','worldAdvisor','romCrossMapItemRoute',
+ 'romCrossMapItemRoutes',
  'romWorldEventAtlas','romWorldReferenceDelta','worldRecentNamedChanges',
  'romElevatorOptions'
 ];
@@ -32,6 +33,7 @@ test('persistState excludes transient RAM/ROM evidence from both on-disk caches'
    globalCampaignDelta:{verified:true,changes:[{kind:'HIDDEN_ITEM_FLAG_RAISED'}]},
    worldRecentFlagChanges:{verified:true,events:[{mapId:15}]},
    romCrossMapItemRoute:{verified:true,found:true},
+   romCrossMapItemRoutes:{verified:true,results:[{found:true}]},
    globalCampaignObjectives:{verified:true,objectives:[{mapId:15}]},
    romWorldEventAtlas:{verified:true,events:[{eventBitIndex:34}]},
    romWorldReferenceDelta:{verified:true,changes:[{eventBitIndex:34}]},
@@ -61,6 +63,8 @@ test('saved history remains untouched by world invalidation',()=>{
  assert.equal(agent.latestState.worldAdvisor.verified,false);
  assert.equal(agent.latestState.globalCampaignLedger.verified,false);
  assert.equal(agent.latestState.worldRecentFlagChanges.events.length,0);
+ assert.equal(agent.latestState.romCrossMapItemRoutes.verified,false);
+ assert.equal(agent.latestState.romCrossMapItemRoutes.results.length,0);
  assert.equal(agent.latestState.romElevatorOptions.verified,false);
  assert.equal(agent.latestState.worldRecentNamedChanges.verified,false);
  assert.equal(agent.latestState.actionHistory[0].text,'Treinador');

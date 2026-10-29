@@ -1003,3 +1003,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - O motor diferencia `maxStatesExceeded` de ausência de percurso e não confunde os resultados de itens distintos. O cliente transmite todos os itens elegíveis, calcula a pesquisa uma vez por alteração da RAM/posição/itens e expõe `romCrossMapItemRoutes`; `public/app.js` usa o resultado específico do item. Invalidação de RAM e exclusão de cache persistente atualizadas.
 - Quatro testes acrescentados: múltiplos alvos, separação entre resultados, rejeição de entrada inválida e orçamento insuficiente. Antes da publicação, **13/13** passaram em teste isolado V8 com adaptadores simulados para Buffer/crypto. Não equivale a Node nativo nem E2E real.
 - Neste ambiente a tentativa de obter o checkout através do GitHub falhou por indisponibilidade DNS; a escrita foi efetuada por ligação GitHub. ROMs, saves, sessões e armazenamento local do utilizador não foram alterados. Ficam por validar a cobertura e o desempenho reais no emulador.
+
+
+## 2026-10-29 — T27: prova de isolamento entre itens visíveis e ocultos no painel
+
+- A pesquisa T26 indexava rotas por posição e tipo de item, mas `public/app.js` comparava apenas mapa/X/Y. A interface passou a exigir também `target.hidden` igual ao tipo do evento ROM (`ITEM` ou `HIDDEN_ITEM`), evitando atribuir o percurso de um objeto visível a um item oculto nas mesmas coordenadas.
+- Acrescentado teste de regressão à suite `worldAdvisorPanel.test.js` para colisão de coordenadas entre tipos. A suite `romClientCampaignIntegration.test.js` passou a exigir exclusão de `romCrossMapItemRoutes` das duas caches persistentes e invalidação dos resultados numa sessão RAM incoerente.
+- Verificação real desta etapa: secção de renderização obtida do `app.js` efetivo e executada em V8 com estado sintético; uma rota visível produz uma sugestão, uma rota oculta produz uma, ambas produzem duas e SHA divergente produz zero. Parsing JS dos três ficheiros alterados aprovado. Sem screenshot de gameplay, teste nativo integral ou validação em emulador.

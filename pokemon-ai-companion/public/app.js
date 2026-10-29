@@ -1032,13 +1032,16 @@ function renderWorldAdvisor(state) {
       batch.romSha256===advice.romSha256&&
       batch.sourceMapId===advice.mapId&&Array.isArray(batch.results)?
       batch.results.find(r=>r.target?.mapId===advice.mapId&&
-        r.target?.x===o.x&&r.target?.y===o.y):null;
+        r.target?.x===o.x&&r.target?.y===o.y&&
+        r.target?.hidden===(o.kind==='HIDDEN_ITEM')):null;
     const detour=batch?.verified===true?matchedRoute:state.romCrossMapItemRoute;
     const exactDetourForThisItem=detour?.verified===true&&
        detour.found===true&&detour.romSha256===advice.romSha256&&
        detour.sourceMapId===advice.mapId&&
        detour.target?.mapId===advice.mapId&&
-       detour.target.x===o.x&&detour.target.y===o.y;
+       detour.target.x===o.x&&detour.target.y===o.y&&
+       (batch?.verified===true?
+         detour.target.hidden===(o.kind==='HIDDEN_ITEM'):true);
     if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
        exactDetourForThisItem){
       const first=detour.segments?.[0];

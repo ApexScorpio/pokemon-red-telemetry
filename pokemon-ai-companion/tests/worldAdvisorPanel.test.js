@@ -406,3 +406,30 @@ test('global objectives flag zero-land border but do not mark it blocked',()=>{
  assert.match(text,/Surf\/script por confirmar/);
  assert.doesNotMatch(text,/permanentemente bloqueado/);
 });
+
+test('batch routes never cross-identify normal versus hidden item at same coordinates',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.worldAdvisor.observations=[
+  {kind:'ITEM',what:'Visível',x:5,y:3,status:'NOT_REMOVED_FLAG'},
+  {kind:'HIDDEN_ITEM',what:'Oculto',x:5,y:3,status:'NOT_COLLECTED_FLAG'}
+ ];
+ const route=hidden=>({
+   verified:true,found:true,romSha256:sha,sourceMapId:15,
+   target:{mapId:15,x:5,y:3,hidden},warpTransitions:1,
+   outdoorTransitions:0,transitionCount:1,theoreticalSteps:8,
+   segments:[{kind:'WARP',sourceWarpTile:{x:3,y:5},destinationMapId:6}]
+ });
+ s.romCrossMapItemRoutes={verified:true,romSha256:sha,sourceMapId:15,
+   results:[route(false)]};
+ let t=render(s).body.textContent;
+ assert.equal((t.match(/Desvio multimapa TEÓRICO/g)||[]).length,1);
+ s.romCrossMapItemRoutes.results=[route(true)];
+ t=render(s).body.textContent;
+ assert.equal((t.match(/Desvio multimapa TEÓRICO/g)||[]).length,1);
+ s.romCrossMapItemRoutes.results=[route(false),route(true)];
+ t=render(s).body.textContent;
+ assert.equal((t.match(/Desvio multimapa TEÓRICO/g)||[]).length,2);
+ s.romCrossMapItemRoutes.romSha256='0'.repeat(64);
+ t=render(s).body.textContent;
+ assert.doesNotMatch(t,/Desvio multimapa TEÓRICO/);
+});
