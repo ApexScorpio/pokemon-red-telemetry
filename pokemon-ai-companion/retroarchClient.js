@@ -2600,6 +2600,7 @@ class RetroArchClient extends EventEmitter {
       warpGraph:this.latestState.romWarpGraph,
       sourceMapId:this.latestState.mapId,
       firstMapTerrainHints:this.latestState.romTerrainWarpHints,
+      firstMapExitAccess:this.latestState.romLocalExitAccess,
       position:this.latestState.coords,
       maxResults:12
     });
