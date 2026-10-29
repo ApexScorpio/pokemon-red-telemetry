@@ -1171,3 +1171,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - O seletor mundial descartava mapas com `mapHopCount:null`; desapareciam do radar itens ocultos e fichas com flags de recolha explicitamente pendentes. Agora conserva-os como `staticRouteKnown:false`, com coordenadas e flag do ledger ROM/RAM.
 - O planeador só pesquisa alvos com ligação topológica conhecida e deixa os restantes com `route:null` e `routeNotAttemptedReason:NO_STATIC_MAP_ROUTE`. Não gasta estados nem afirma que a zona está bloqueada. O painel mostra 'ligação estática entre mapas por determinar; procura não executada — NÃO prova bloqueio'.
 - Testes de módulo e UI acrescentados. Execução em V8 do módulo real com 226 mapas sintéticos confirmou alvo preservado, 0 pesquisas e `accessibleNow:null`. Parsing completo dos quatro ficheiros JavaScript alterados passou. Validação nativa e em jogo continua pendente.
+
+
+## 2026-10-29 — T46: cache de rotas remotas segue mudanças de conectividade
+
+- A T45 preserva itens cuja `mapHopCount` era `null`, mas a cache do cliente só usava tipo/mapa/X/Y/bit da flag. Se a mesma coordenada passasse de 'sem rota estática' para 'rota estática conhecida' (ou vice-versa) sem mudar de posição, a cache podia continuar a mostrar uma conclusão antiga.
+- `retroarchClient.js` acrescentou `mapHopCount` e `staticRouteKnown` de cada objetivo à chave de cache. Teste de integração e execução do bloco real em V8 comprovaram 4 leituras: desconhecida, desconhecida (cache), rota identificada (recalcula), desconhecida (recalcula). Foram efetuadas 3 pesquisas em vez de 4, sem servir estados antigos.
+- O histórico permanece append-only e a `main` intocada. Os ensaios continuam isolados e não substituem `node --test` nem leitura de jogo real.

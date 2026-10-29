@@ -323,3 +323,40 @@ test('global objective catalogue covers 226 maps while the UI and route BFS rema
  assert.match(text,/sourceMapId:this\.latestState\.mapId,maxTargets:4/);
  assert.match(text,/maxTargets:4,maxStates:180,maxTransitions:10/);
 });
+
+test('remote route cache must update when static connectivity changes for same hidden tile',()=>{
+ const first=source.indexOf('    const remoteSelection=selectGlobalFlagTargets({');
+ const end=source.indexOf('    this.latestState.worldAdvisor=adviseWorld({',first);
+ const actual=source.slice(first,end);
+ assert.match(actual,/t\.bitIndex,t\.mapHopCount,t\.staticRouteKnown/);
+ const execute=vm.runInNewContext(
+   '(function(mapConfirmation,positionWindow,modeWindow,abilityCut,abilitySurf,'+
+   'selectGlobalFlagTargets,planGlobalFlagItemRoutes){'+actual+
+   '\nreturn this.latestState.globalFlagItemRoutes;})');
+ const context={activeRomProfile:{hash:{sha256:'sha'},
+     world:{terrainAtlas:{verified:true}}},
+   latestState:{mapId:15,coords:{x:3,y:4},
+     romVariantTerrainEvidence:{verified:true,romSha256:'sha'},
+     romWarpGraph:{verified:true,romSha256:'sha'},
+     romOutdoorReferenceEvidence:{verified:true},
+     romOutdoorAlignment:{verified:true},
+     memoryReadStatus:{blocks:{overworldSprites:true}},mapEntities:[],
+     globalCampaignLedger:{verified:true},globalCampaignObjectives:{verified:true}}};
+ let known=false,calls=0;
+ const selected=()=>({verified:true,items:[{kind:'HIDDEN_ITEM',
+   mapId:48,x:9,y:11,bitIndex:3,
+   mapHopCount:known?2:null,staticRouteKnown:known}]});
+ const route=()=>{calls++;return {verified:true,items:[],
+   reason:known?'hypothesis':'unknown static graph'};};
+ const read=()=>execute.call(context,{verified:true},{verified:true},
+   {verified:true,modeByte:0},false,false,selected,route);
+ assert.equal(read().reason,'unknown static graph');
+ assert.equal(read().reason,'unknown static graph');
+ assert.equal(calls,1);
+ known=true;
+ assert.equal(read().reason,'hypothesis');
+ assert.equal(calls,2);
+ known=false;
+ assert.equal(read().reason,'unknown static graph');
+ assert.equal(calls,3);
+});
