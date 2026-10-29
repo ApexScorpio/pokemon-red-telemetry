@@ -10,7 +10,9 @@ function method(from,to){
 }
 const transient=[
  'globalCampaignLedger','globalCampaignObjectives','globalCampaignDelta',
- 'worldRecentFlagChanges','worldAdvisor','romCrossMapItemRoute'
+ 'worldRecentFlagChanges','worldAdvisor','romCrossMapItemRoute',
+ 'romWorldEventAtlas','romWorldReferenceDelta','worldRecentNamedChanges',
+ 'romElevatorOptions'
 ];
 test('persistState excludes transient RAM/ROM evidence from both on-disk caches',()=>{
  const writes=[];
@@ -30,7 +32,11 @@ test('persistState excludes transient RAM/ROM evidence from both on-disk caches'
    globalCampaignDelta:{verified:true,changes:[{kind:'HIDDEN_ITEM_FLAG_RAISED'}]},
    worldRecentFlagChanges:{verified:true,events:[{mapId:15}]},
    romCrossMapItemRoute:{verified:true,found:true},
-   globalCampaignObjectives:{verified:true,objectives:[{mapId:15}]}};
+   globalCampaignObjectives:{verified:true,objectives:[{mapId:15}]},
+   romWorldEventAtlas:{verified:true,events:[{eventBitIndex:34}]},
+   romWorldReferenceDelta:{verified:true,changes:[{eventBitIndex:34}]},
+   worldRecentNamedChanges:{verified:true,events:[{eventBitIndex:34}]},
+   romElevatorOptions:{verified:true,options:[{destinationMapId:127}]}};
  client.persistState(state);
  assert.equal(writes.length,2);
  assert.equal(writes[0].s,writes[1].s);
@@ -45,15 +51,18 @@ test('saved history remains untouched by world invalidation',()=>{
  const agent=new Agent();
  let resets=0;
  agent._worldCampaignSession={reset:()=>resets++};
+ agent._worldReferenceSession={reset:()=>resets++};
  agent.latestState={actionHistory:[{text:'Treinador'}],
    dialogHistory:[{text:'Ola'}],worldAdvisor:{verified:true},
    globalCampaignLedger:{verified:true},
    worldRecentFlagChanges:{verified:true,events:[{kind:'OLD'}]}};
  agent.invalidateWorldEvidence('ROM não coincide');
- assert.equal(resets,1);
+ assert.equal(resets,2);
  assert.equal(agent.latestState.worldAdvisor.verified,false);
  assert.equal(agent.latestState.globalCampaignLedger.verified,false);
  assert.equal(agent.latestState.worldRecentFlagChanges.events.length,0);
+ assert.equal(agent.latestState.romElevatorOptions.verified,false);
+ assert.equal(agent.latestState.worldRecentNamedChanges.verified,false);
  assert.equal(agent.latestState.actionHistory[0].text,'Treinador');
  assert.equal(agent.latestState.dialogHistory[0].text,'Ola');
 });
@@ -65,4 +74,13 @@ test('connection and ROM changes invalidate cached world evidence before publish
  assert.match(source,/this\.invalidateWorldEvidence\('Mapa RAM alterado/);
  assert.match(source,/this\._worldCampaignSession\.ingest\(/);
  assert.doesNotMatch(source,/previousGlobalLedger=this\.latestState\.globalCampaignLedger/);
+});
+
+test('world reference and elevator adapters are imported, refreshed and invalidated',()=>{
+ assert.match(source,/require\('\.\/romWorldReferenceSession'\)/);
+ assert.match(source,/require\('\.\/romElevatorChoices'\)/);
+ assert.match(source,/this\._worldReferenceSession\.ingest\(/);
+ assert.match(source,/this\.latestState\.romElevatorOptions=elevatorOptionsForMap\(/);
+ assert.match(source,/this\.latestState\.worldRecentNamedChanges=namedChanges\.recent/);
+ assert.match(source,/this\._worldReferenceSession\.reset\(reason\)/);
 });
