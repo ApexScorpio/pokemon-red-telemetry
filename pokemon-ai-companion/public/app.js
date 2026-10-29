@@ -981,12 +981,13 @@ function renderWorldAdvisor(state) {
       if(o.accessReason)lines.push('  ↳ Motivo: '+o.accessReason);
     }
     const detour=state.romCrossMapItemRoute;
-    if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
-       detour?.verified===true&&detour.found===true&&
-       detour.romSha256===advice.romSha256&&
+    const exactDetourForThisItem=detour?.verified===true&&
+       detour.found===true&&detour.romSha256===advice.romSha256&&
        detour.sourceMapId===advice.mapId&&
        detour.target?.mapId===advice.mapId&&
-       detour.target.x===o.x&&detour.target.y===o.y){
+       detour.target.x===o.x&&detour.target.y===o.y;
+    if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
+       exactDetourForThisItem){
       const first=detour.segments?.[0];
       if(first){
         lines.push('  ↳ Desvio multimapa TEÓRICO: '+
@@ -1000,7 +1001,7 @@ function renderWorldAdvisor(state) {
     }
     const cycles=state.romWorldDetourCycles;
     if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
-       detour?.found!==true&&cycles?.verified===true&&
+       !exactDetourForThisItem&&cycles?.verified===true&&
        cycles.romSha256===advice.romSha256&&
        cycles.mapId===advice.mapId&&
        cycles.target?.mapId===advice.mapId&&
