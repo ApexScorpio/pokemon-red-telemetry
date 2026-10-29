@@ -876,8 +876,8 @@ function renderWorldAdvisor(state) {
   }
   if(!obs.length)lines.push('Nenhum objeto confirmado para listar; isto não prova zona vazia.');
   lines.push('⚠️ Grafo de saídas e caminhos são hipóteses; o estado da partida pode alterar acessos.');
-  source.textContent='ROM auditada '+String(advice.romSha256||'').slice(0,8)+
-    '… · leitura RAM recente · progresso parcial';
+  source.textContent='Perfil ROM local SHA '+String(advice.romSha256||'').slice(0,8)+
+    '… (ativo associado por CRC32) · RAM recente · progresso parcial';
   body.textContent=lines.join('\n');
 }
 
