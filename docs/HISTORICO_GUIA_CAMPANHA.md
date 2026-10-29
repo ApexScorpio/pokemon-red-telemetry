@@ -1143,3 +1143,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Endurecida `romGlobalFlagItemRoutes.js`: o resultado global da pesquisa de terreno exige agora `verified:true`, mesma SHA e mapa de origem. Cada rota individual tem ainda de apresentar o mesmo mapa/X/Y/hidden do alvo pedido, com `accessibleNow:null` e `routeNavigableNowProven:false`. Um índice de array já não é, por si, prova de correspondência de objetivo.
 - Regressão acrescentada à suite para um item oculto remoto ligado por warp estático num atlas sintético de 226 mapas e 813 entradas de warp. Espera um desvio geométrico até à coordenada do item, mantendo acesso não comprovado. A execução nativa desta regressão continua pendente.
 - Prova isolada do módulo em V8 com pesquisa injetada: resposta válida aceite; resposta com coordenada do item alterada rejeitada com `verified:false`. Parsing de módulo e testes aprovado. Histórico acrescentado; `main` intacta.
+
+
+## 2026-10-29 — T42b: fixture multimapa corrigida e regressão isolada integral 6/6
+
+- A primeira fixture de `romGlobalFlagItemRoutes.test.js` era internamente impossível: o item remoto estava em X5, mas o atlas sintético tinha apenas 5 colunas (X0..X4). A geometria do ensaio foi corrigida para 7×5 tiles com 35 células por mapa, sem alterar os alvos ROM do teste.
+- Reexecutado o teste literal completo do repositório com `romGlobalFlagItemRoutes.js`, `romCrossMapItemRoute.js`, `romItemReachability.js` e `romLedgeRules.js` originais da branch, usando adaptadores V8 para `Buffer` e SHA-256. **6/6 casos passaram**, incluindo uma rota real do algoritmo através de um warp estático de mapa 0 para mapa 10, até ao item remoto na coordenada X5/Y4; continua `accessibleNow:null`.
+- O teste com atlas de 226 mapas é sintético; estas provas não substituem Node nativo, a verificação SHA criptográfica nem a telemetria de jogo. A alteração foi só na fixture e no histórico acrescentado.

@@ -66,9 +66,9 @@ test('remote pending hidden item gets its exact one-warp static route, never gua
  const f=fixture(),crypto=require('node:crypto');
  const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
  const maps=Array.from({length:226},(_,mapId)=>{
-   const n=25,tiles=Buffer.alloc(n,0x2c);
+   const n=35,tiles=Buffer.alloc(n,0x2c);
    const bits=Buffer.alloc(Math.ceil(n/8),0xff);
-   return {mapId,width:5,height:5,tilesetId:0,verified:true,
+   return {mapId,width:7,height:5,tilesetId:0,verified:true,
      tileIdsBase64:tiles.toString('base64'),walkingBitsBase64:bits.toString('base64'),
      tileIdsSha256:hash(tiles),walkingBitsSha256:hash(bits),
      landBlockedTilePairs:[]};
