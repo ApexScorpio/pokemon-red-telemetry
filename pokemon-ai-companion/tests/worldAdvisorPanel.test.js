@@ -698,6 +698,8 @@ test('Painel mostra texto TX_FAR sem HTML nem conclusão inventada',()=>{
  assert.match(result.body.textContent,/<img onerror=alert\(1\)>/);
  assert.match(result.body.textContent,/contém variáveis RAM/);
  assert.match(result.body.textContent,/efeitos por interpretar/);
+ assert.match(result.body.textContent,/1 transição estática hipotética/);
+ assert.doesNotMatch(result.body.textContent,/1 transições estáticas hipotéticas/);
  assert.equal(result.body.innerHTML,null);
  s.globalCampaignLedger.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/Início literal ROM/);
