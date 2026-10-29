@@ -230,3 +230,20 @@ test('global outdoor route carries 78-ROM overlap evidence without proving passa
  assert.equal(x.outdoorGlobalOverlapCorroborated,false);
  assert.equal(x.objectives.find(e=>e.mapId===18).route[0].staticLandCompatiblePairs,null);
 });
+
+test('226-map objective catalogue is not silently cut to first twelve targets',()=>{
+ const cfg=fixture();
+ for(const map of cfg.ledger.mapProgress)map.hiddenItems.notCollected=1;
+ const full=campaignObjectives({...cfg,maxResults:226});
+ assert.equal(full.verified,true);
+ assert.equal(full.totalObjectives,226);
+ assert.equal(full.objectives.length,226);
+ assert.equal(full.catalogueTruncated,false);
+ assert.equal(full.objectives[0].mapId,15);
+ const preview=campaignObjectives({...cfg,maxResults:12});
+ assert.equal(preview.verified,true);
+ assert.equal(preview.totalObjectives,226);
+ assert.equal(preview.objectives.length,12);
+ assert.equal(preview.catalogueTruncated,true);
+ assert.equal(campaignObjectives({...cfg,maxResults:227}).verified,false);
+});

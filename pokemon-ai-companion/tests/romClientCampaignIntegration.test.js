@@ -316,3 +316,10 @@ test('remote flags cache closes when warp graph or position window loses proof',
  assert.equal(run().verified,true);assert.equal(calls,2);
  assert.equal(run(false).verified,false);assert.equal(calls,2);
 });
+
+test('global objective catalogue covers 226 maps while the UI and route BFS remain bounded',()=>{
+ const text=source.slice(source.indexOf('    this.latestState.globalCampaignObjectives=campaignObjectives({'));
+ assert.match(text,/maxResults:226/);
+ assert.match(text,/sourceMapId:this\.latestState\.mapId,maxTargets:4/);
+ assert.match(text,/maxTargets:4,maxStates:180,maxTransitions:10/);
+});

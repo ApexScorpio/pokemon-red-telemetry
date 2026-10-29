@@ -1157,3 +1157,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - O limite conservador de quatro alvos de T40 podia ser consumido por quatro flags não recolhidas no mesmo mapa, não deixando aparecer mapas próximos com outros objetivos. `romGlobalFlagItemRoutes.js` passou a agrupar as flags pendentes por mapa, percorrer uma vez cada mapa candidato na ordem estática do conselheiro e só depois repetir mapas com novos objetivos.
 - Continua a usar exclusivamente `flagSet:false`, posições ROM auditadas e mapas com rota topológica conhecida; não aumenta o orçamento de pesquisa nem declara acesso confirmado. A origem e os objetivos já recolhidos continuam excluídos.
 - Regressões adaptadas à nova ordenação e acrescentado cenário de três mapas e quatro vagas que exige `[10,20,30,10]`. A seleção efetiva passou em V8, e parsing do módulo e testes foi aprovado. Testes nativos, recolha de gameplay e screenshots reais continuam pendentes.
+
+
+## 2026-10-29 — T44: catálogo mundial de objetivos sem corte silencioso aos 12 mapas
+
+- Identificado limite estrutural: `romCampaignObjectives.js` restringia `maxResults` a 50 e `retroarchClient.js` pedia apenas 12; o novo `romGlobalFlagItemRoutes.js` consultava exclusivamente esses 12, podendo nunca receber itens ocultos pendentes em mapas posteriores.
+- `campaignObjectives` permite agora catálogo até **226 mapas**, reportando `totalObjectives` e `catalogueTruncated`; o cliente solicita os 226 mapas normais. O painel mantém no máximo oito objetivos visíveis e a pesquisa multimapa permanece limitada a **quatro alvos**, **180 estados** e **10 transições**. Não se pretende afirmar cobertura semântica total dos scripts.
+- Teste nativo em fonte `romCampaignObjectives.test.js` e regressão de integração adicionados. A execução em V8 da própria função comprovou 226/226 objetivos com `maxResults:226` e 12/226 com `maxResults:12`, assinalando truncagem. Sintaxe dos quatro ficheiros JavaScript passou. Suite completa `node --test` e emulador ainda não executados.

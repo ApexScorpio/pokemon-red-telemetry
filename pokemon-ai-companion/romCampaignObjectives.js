@@ -15,7 +15,7 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
   return invalid('Progresso ROM/RAM mundial ainda não comprovado');
  if(!id(sourceMapId)||!ledger.mapProgress.some(m=>m.mapId===sourceMapId))
   return invalid('Mapa atual não corresponde aos 226 cabeçalhos normais auditados');
- if(!Number.isInteger(maxResults)||maxResults<1||maxResults>50)
+ if(!Number.isInteger(maxResults)||maxResults<1||maxResults>226)
   return invalid('Limite de sugestões inválido');
  const mapIds=new Set();
  for(const m of ledger.mapProgress){
@@ -210,6 +210,7 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
    outdoorGlobalOverlapCorroborated:overlapsOK,
    mapCount:ledger.mapCount,mapsWithPending,mapsWithUnknown,
    totalObjectives:goals.length,objectives:goals.slice(0,maxResults),
+   catalogueTruncated:goals.length>maxResults,
    progressCompleteness:'PARTIAL',
    routeNavigableNowProven:false,
    warnings:[
