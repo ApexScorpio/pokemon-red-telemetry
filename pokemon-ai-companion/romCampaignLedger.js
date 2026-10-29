@@ -25,6 +25,17 @@ const interactionTuple=(ordinal,x,y,textId,evidence,romSha256,mapId)=>{
        catalogue:auditedEconomy});
      if(pricing.verified===true)tuple.push(pricing.offers);
    }
+   // Optional eighth field for TX_FAR is a typed preview, not a mart list.
+   // Never read it as proof of dialogue, NPC choice or completed event.
+   const p=evidence.staticTextPreview;
+   if(evidence.command==='TX_FAR'&&p?.verified===true&&
+      p.firstStringOnly===true&&p.dialogueExecuted===false&&
+      p.textOutcomeVerified===false&&
+      typeof p.text==='string'&&p.text.trim().length>0&&
+      p.text.length<=240&&typeof p.containsRuntimeVariables==='boolean')
+     tuple.push({verified:true,firstStringOnly:true,text:p.text,
+       containsRuntimeVariables:p.containsRuntimeVariables,
+       dialogueExecuted:false,textOutcomeVerified:false});
  }
  return tuple;
 };
