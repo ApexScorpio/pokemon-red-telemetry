@@ -176,3 +176,10 @@
 | PG-009 — Regressão desta etapa | **85/85 casos distintos aprovados** em grupos V8 usando código da branch + arquivos JSON auditados e SHA simulado/mapeado de teste | Parsing JS e asserts de testes relevantes | `npm test` nativo, hashes executados por Node real, ROMs binários e emulador ativo |
  
 **Situação:** PR #1 continua Draft, `main` não fundida. O avanço T24 é geométrico e de auditoria ROM, não afirma jogabilidade já provada ou finalização a 100%. A utilização de `pret/pokered` é referência independente: <https://github.com/pret/pokered/blob/master/macros/scripts/maps.asm>. Ações futuras exigem execução nativa e amostras ROM/RAM originais.
+
+
+### T24 — 2026-10-29: capacidades exigidas no tile de destino
+
+- O cálculo de pares de coordenadas de fronteira já existente na branch é complementado com classificação de **Cut/Surf na zona de chegada**, independente de poder alcançar a borda na zona de origem. Novos campos: `destinationRequiresCut`, `destinationRequiresSurf`, `destinationCapabilityStatus`, `destinationEntryUsableNow:null`.
+- A interface apresenta estes estados sem declarar transição executada. Novo ensaio de regressão `romOutdoorDestinationCapability.test.js`: **3/3**, V8 isolado com dependências simuladas, não `npm test` real.
+- Limites: atravessamento real, scripts, capacidades temporárias, colisões com atores, SHA do binário efetivamente carregado e navegação E2E ainda por provar. **NÃO 100%.**
