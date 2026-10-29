@@ -1174,6 +1174,41 @@ function renderWorldAdvisor(state) {
       const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
       if(insertion!==-1)lines.splice(insertion,0,...summary);
     }
+    // The ROM list is static. No proof of price, stock or access now.
+    const martRows=[];
+    for(const goal of visibleIndex){
+      const m=maps.get(goal?.mapId);
+      if(!m||m.mapId===advice.mapId)continue;
+      const npcRows=m.interactionRecords?.npcs;
+      if(!Array.isArray(npcRows))continue;
+      for(const row of npcRows){
+        const items=row?.[7];
+        if(row?.[4]!=='SCRIPT_MART'||!Array.isArray(items)||
+           items.length===0||items.length>32||
+           !items.every(id=>Number.isInteger(id)&&id>0&&id<255)||
+           !Number.isInteger(row[1])||!Number.isInteger(row[2]))
+          continue;
+        martRows.push({mapId:m.mapId,name:m.name,x:row[1],y:row[2],
+          ordinal:row[0],items:[...items],mapHopCount:goal.mapHopCount});
+      }
+    }
+    if(martRows.length){
+      const summary=['--- LOJAS IDENTIFICADAS NA ROM (CATÁLOGO ESTÁTICO) ---',
+        'A mostrar '+Math.min(4,martRows.length)+' de '+martRows.length+
+        ' balcões de loja remotos; preços e acesso atual DESCONHECIDOS.'];
+      for(const shop of martRows.slice(0,4)){
+        summary.push('• '+shop.name+' (#'+shop.mapId+
+          ') X:'+shop.x+' Y:'+shop.y+
+          ' • Artigos ROM ('+shop.items.length+'): '+shop.items.join(', ')+
+          ' — sem prova de compra, preço ou stock atual; '+
+          (Number.isInteger(shop.mapHopCount)?
+            shop.mapHopCount+' transições estáticas hipotéticas':
+            'rota estática por determinar'));
+      }
+      summary.push('⚠️ IDs ROM não demonstram que a loja esteja acessível nesta partida.','');
+      const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+      if(insertion!==-1)lines.splice(insertion,0,...summary);
+    }
   }
   for(const {o} of ordered){
     const place=Number.isInteger(o.x)&&Number.isInteger(o.y)?

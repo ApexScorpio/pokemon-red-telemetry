@@ -34,3 +34,29 @@ test('missing index and invalid text table cannot become verified',()=>{
  assert.equal(resolveStaticTextPointer({...f,textId:64}).verified,false);
  assert.equal(resolveStaticTextPointer({...f,textId:1,textPointerCpu:0}).verified,false);
 });
+
+test('ROM0 mart inventory gives item IDs, never prices or executed purchase',()=>{
+ const f=fixture(),addr=0x24ea;
+ f.rom.writeUInt16LE(addr,f.table);
+ f.rom.set([0xfe,3,4,20,29,0xff],addr);
+ const r=resolveStaticTextPointer({...f,textId:1});
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.command,'SCRIPT_MART');
+ assert.deepEqual(r.mart.itemIds,[4,20,29]);
+ assert.equal(r.mart.itemCount,3);
+ assert.equal(r.mart.inventoryAvailableNow,null);
+ assert.equal(r.mart.pricesVerified,false);
+ assert.equal(r.mart.purchaseObserved,false);
+ assert.equal(r.dialogueExecuted,false);
+});
+test('mart list rejects invalid length, IDs or terminator',()=>{
+ const f=fixture(),addr=0x24ea;
+ f.rom.writeUInt16LE(addr,f.table);
+ f.rom.set([0xfe,3,4,20,29,0xff],addr);
+ for(const [index,value] of [[1,0],[1,33],[2,0],[5,0]]){
+   const original=Buffer.from(f.rom);
+   f.rom[addr+index]=value;
+   assert.equal(resolveStaticTextPointer({...f,textId:1}).verified,false);
+   original.copy(f.rom);
+ }
+});

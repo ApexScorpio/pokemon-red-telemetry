@@ -11,8 +11,14 @@ const bit=(xs,i)=>((parseInt(xs[i>>3],16)>>(i&7))&1)===1;
 // Keep the original four-field tuple for profiles without text evidence.
 const interactionTuple=(ordinal,x,y,textId,evidence)=>{
  const tuple=[ordinal,x,y,textId];
- if(evidence?.verified===true)
+ if(evidence?.verified===true){
    tuple.push(evidence.command,evidence.romBank,evidence.textPointerCpu);
+   const items=evidence.mart?.itemIds;
+   if(evidence.command==='SCRIPT_MART'&&evidence.mart?.verified===true&&
+      Array.isArray(items)&&items.length>0&&items.length<=32&&
+      items.every(id=>Number.isInteger(id)&&id>0&&id<255))
+     tuple.push([...items]);
+ }
  return tuple;
 };
 const invalid=reason=>({verified:false,reason,progressCompleteness:'UNKNOWN',

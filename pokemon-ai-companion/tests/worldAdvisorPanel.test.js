@@ -629,3 +629,25 @@ test('remote NPC and sign can show verified ROM entry without claiming dialogue 
  assert.match(message,/efeito e execução DESCONHECIDOS/);
  assert.doesNotMatch(message,/diálogo executado/);
 });
+
+test('world ROM mart lists show exact article IDs without invented prices or availability',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalCampaignObjectives={verified:true,romSha256:sha,
+   sourceMapId:15,mapCount:226,objectiveIndexCount:2,
+   remoteObjectiveIndex:[{mapId:15,mapHopCount:0},{mapId:20,mapHopCount:2}],
+   objectives:[],mapsWithPending:0,mapsWithUnknown:1};
+ s.globalCampaignLedger={verified:true,romSha256:sha,mapCount:226,
+   mapProgress:Array.from({length:226},(_,id)=>({
+     mapId:id,name:'Mapa '+id,visibleItems:{unresolved:0},
+     flagRecords:{visibleItems:[]},interactions:{unresolved:id===20?1:0},
+     interactionRecords:{npcs:id===20?
+       [[1,3,4,7,'SCRIPT_MART',0,0x24ea,[4,20,29]]]:[],signs:[]}
+   }))};
+ const output=render(s).body.textContent;
+ assert.match(output,/LOJAS IDENTIFICADAS NA ROM/);
+ assert.match(output,/Artigos ROM \(3\): 4, 20, 29/);
+ assert.match(output,/preços e acesso atual DESCONHECIDOS/);
+ assert.match(output,/sem prova de compra, preço ou stock atual/);
+ s.globalCampaignLedger.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/LOJAS IDENTIFICADAS NA ROM/);
+});

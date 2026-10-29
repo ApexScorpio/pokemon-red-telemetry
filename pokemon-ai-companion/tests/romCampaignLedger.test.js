@@ -185,3 +185,20 @@ test('NPC and sign text pointer evidence enriches tuples without changing flag s
    [1,3,4,9,'SCRIPT_MART',0,0x24ea]);
  assert.equal(r.mapProgress[19].scriptEffectsComplete,false);
 });
+
+test('only verified static mart lists add optional eighth tuple element',()=>{
+ const f=rig();
+ f.profile.world.maps.data[19].objects.objects=[
+   {kind:'npc',x:3,y:4,textId:9,textPointerEvidence:{
+     verified:true,command:'SCRIPT_MART',romBank:0,textPointerCpu:0x24ea,
+     mart:{verified:true,itemIds:[4,20,29]}}}
+ ];
+ const r=evaluate(f);
+ assert.equal(r.verified,true);
+ assert.deepEqual(r.mapProgress[19].interactionRecords.npcs[0],
+   [1,3,4,9,'SCRIPT_MART',0,0x24ea,[4,20,29]]);
+ assert.equal(r.mapProgress[19].scriptEffectsComplete,false);
+ f.profile.world.maps.data[19].objects.objects[0].textPointerEvidence.mart.itemIds=[0];
+ const invalid=evaluate(f);
+ assert.equal(invalid.mapProgress[19].interactionRecords.npcs[0].length,7);
+});

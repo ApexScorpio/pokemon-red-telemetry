@@ -28,6 +28,22 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
    return fail('Destino de texto não corroborado em ROM0 ou ROMX');
  const firstByte=rom[at],command=labels[firstByte]||'TEXT_OPCODE_UNCLASSIFIED';
  const far={verified:false};
+ // TX_SCRIPT_MART ($FE) has [opcode, count, item IDs..., $FF].
+ // This is a static ROM list, never evidence that the shop was opened.
+ let mart=null;
+ if(firstByte===0xfe){
+   const limit=at<BANK?BANK:end;
+   if(at+3>limit)return fail('Lista de loja ROM incompleta');
+   const count=rom[at+1];
+   if(count<1||count>32||at+count+3>limit)
+     return fail('Comprimento da lista de loja ROM inválido');
+   const items=[...rom.subarray(at+2,at+2+count)];
+   if(items.some(id=>id===0||id===0xff)||rom[at+2+count]!==0xff)
+     return fail('IDs ou terminador da lista de loja ROM inválidos');
+   mart={verified:true,itemIds:items,itemCount:count,
+     inventoryAvailableNow:null,purchaseObserved:false,
+     pricesVerified:false,source:'ROM_STATIC_MART_ITEM_LIST'};
+ }
  if(firstByte===0x17){
    if(at+4>(at<BANK?BANK:end))return fail('TX_FAR truncado');
    const farCpu=rom.readUInt16LE(at+1),farBank=rom[at+3];
@@ -39,7 +55,7 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
  }
  return {verified:true,romBank:at<BANK?0:mapBank,
    textPointerCpu:raw,textFileOffset:at,firstByte,
-   command,far:far.verified?far:null,
+   command,far:far.verified?far:null,mart,
    textOutcomeVerified:false,dialogueExecuted:false,
    source:'ROM_STATIC_TEXT_POINTER_ONLY'};
 }
