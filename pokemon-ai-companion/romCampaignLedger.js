@@ -39,14 +39,23 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    trainers:{objects:0,flagsMapped:0,gatesClosed:0,gatesOpen:0,
      unknown:0,scriptedVictories:0,battlesPlayed:0},
    stationaryPokemon:{flagsMapped:0,gatesClosed:0,gatesOpen:0,
-     unknown:0},scriptEffectsComplete:false,
+     unknown:0},
+   flagRecords:{hiddenItems:[],hiddenCoins:[],trainers:[],stationaryPokemon:[]},
+   scriptEffectsComplete:false,
    accessCurrentlyProven:false
  }]));
  for(const row of hidden){
    const m=byMap.get(row.mapId);
    if(!m)return invalid('Item oculto referencia mapa não normal #'+row.mapId);
    m.hiddenItems.total++;
-   if(bit(hiddenItemHex,row.hiddenIndex))m.hiddenItems.collected++;
+   const flagSet=bit(hiddenItemHex,row.hiddenIndex);
+   m.flagRecords.hiddenItems.push({
+     recordId:'hidden-item-'+row.hiddenIndex,bitIndex:row.hiddenIndex,
+     flagSet,x:row.x,y:row.y,
+     itemId:Number.isInteger(row.itemId)?row.itemId:null,
+     source:'ROM_HIDDEN_ITEM_INDEX + RAM_D6F0'
+   });
+   if(flagSet)m.hiddenItems.collected++;
    else m.hiddenItems.notCollected++;
  }
  let coinCount=0;
@@ -58,6 +67,11 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    coinCount+=coins.coins.length;
    for(const coin of coins.coins){
      summary.hiddenCoins.total++;
+     summary.flagRecords.hiddenCoins.push({
+       recordId:'hidden-coin-'+coin.hiddenIndex,bitIndex:coin.hiddenIndex,
+       flagSet:coin.isCollected===true,x:coin.x,y:coin.y,
+       source:'ROM_HIDDEN_COIN_INDEX + RAM_D6FE'
+     });
      if(coin.isCollected===true)summary.hiddenCoins.collected++;
      else summary.hiddenCoins.notCollected++;
    }
@@ -73,6 +87,14 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
        t.flagsMapped=flags.entries.length;
        t.unknown=Math.max(0,trainers.length-flags.entries.length);
        for(const entry of flags.entries){
+         const actor=actors[entry.objectOrdinal-1];
+         summary.flagRecords.trainers.push({
+           recordId:'trainer-'+entry.objectOrdinal,
+           bitIndex:entry.eventBitIndex,flagSet:entry.eventFlagSet===true,
+           objectOrdinal:entry.objectOrdinal,x:actor?.x??null,y:actor?.y??null,
+           outcomeEvidence:entry.outcomeEvidence??null,
+           source:entry.source
+         });
          if(entry.eventFlagSet===true)t.gatesClosed++;
          else if(entry.eventFlagSet===false)t.gatesOpen++;
          if(entry.victoryRecorded===true)t.scriptedVictories++;
@@ -87,6 +109,16 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
      const f=stationaryPokemonEvents(profile,map,eventFlagsHex);
      if(f.verified===true&&Array.isArray(f.entries)){
        summary.stationaryPokemon.flagsMapped=f.entries.length;
+       for(const entry of f.entries){
+         const actor=actors[entry.objectOrdinal-1];
+         summary.flagRecords.stationaryPokemon.push({
+           recordId:'stationary-'+entry.objectOrdinal,
+           bitIndex:entry.eventBitIndex,flagSet:entry.eventFlagSet===true,
+           objectOrdinal:entry.objectOrdinal,x:actor?.x??null,y:actor?.y??null,
+           speciesInternalId:entry.speciesInternalId,
+           source:entry.source
+         });
+       }
        summary.stationaryPokemon.gatesClosed=f.entries.filter(x=>
          x.encounterGateClosed===true).length;
        summary.stationaryPokemon.gatesOpen=f.entries.filter(x=>
@@ -123,6 +155,8 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
  return {verified:true,romSha256:sha,mapCount:maps.length,
    mapProgress:[...byMap.values()],totals:total,
    progressCompleteness:'PARTIAL',snapshotAtomicVerified:false,
+   flagRecordCompleteness:'KNOWN_ROM_MAPPING_ONLY',
+   bitwiseEventEvidenceAvailable:true,
    trainerGateClosedIsVictory:false,stationaryGateClosedIsCaptured:false,
    accessCurrentlyProven:false,
    limitations:['Flags de eventos não são prova universal de vitória ou recolha de itens visíveis',
