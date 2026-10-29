@@ -112,3 +112,17 @@
 **Checkpoint técnico:** <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>, **Draft** não fundido; `main` preservada. A conclusão global continua **NÃO CERTIFICADA / percentagem indeterminada**. Nenhum resultado de teste sintético equivale a uma validação com ROMs originais/emulador ou a 100% de jogabilidade.
 
 **Retoma objetiva:** suite Node completa no checkout real, SHA das três ROMs fornecidas, screenshots de execução, diferenciais de combate e scripts, multi-rota com portas/warps exteriores, e ligação causal entre eventos do jogo e flags verificadas. O histórico `HISTORICO_GUIA_CAMPANHA.md` é exclusivamente append-only.
+
+
+### T15–T18 — 2026-10-29: precisão das flags, isolamento de sessão e 61 testes
+
+| Área | Resultado real desta etapa | Limite atual |
+|---|---|---|
+| PG-004 — Progresso factual | `romCampaignLedger.js` publica `flagRecords` de itens, fichas, treinadores e Pokémon fixos; `romCampaignDelta.js` compara bits individuais, distingue vitória de script e rejeita trocas 1→0 ocultadas por totais iguais | Só flags com correspondência ROM auditada; scripts e eventos sem bit continuam desconhecidos |
+| PG-008 — Segurança da telemetria | `CampaignFlagSession` cria baseline apenas com leitura RAM desta sessão, limpa após desconexão/ROM nova/falha e não reutiliza JSON guardado | Leituras RAM continuam sequenciais, não snapshot atómico; mudanças não são prova causal de ação do jogador |
+| PG-009 — Testes | **61/61 testes em 8 suites novas passaram com código da branch, em V8 isolado e APIs Node simuladas**; **20 ficheiros JS com parsing válido**; um teste de integração real entre saídas do ledger e detector de bits | `npm test` real, 3 ROMs originais, emulador ativo, screenshots e prova de SHA256 ativa ainda pendentes |
+| PG-011 — Interface e cache | `persistState` deixa de escrever a telemetria mundial transitória nas duas caches existentes; os históricos de ação e diálogo permanecem | Testes no cliente e visualização real em RetroArch/SameBoy ainda pendentes |
+ 
+**Ponto de retoma verificável:** PR #1 <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1> permanece **Draft**, sem integração na `main`. No último compare verificado: **81 commits à frente, 0 atrás, 19 ficheiros alterados** antes deste registo. Nenhuma percentagem de conclusão global deve ser atribuída sem auditoria dos sistemas de combate, scripts, itens, evolução, mapas dinâmicos e RAM com as ROMs originais.
+
+**Critérios seguintes:** executar as suites na stack Node verdadeira e corrigir discrepâncias; confirmar ROM exata da partida ativa, comparar flags após ação real (incluindo save reload), instrumentar scripts sem estado conhecido e ligar restrições dinâmicas a cada movimento/mudança de mapa. Preservar histórico append-only.
