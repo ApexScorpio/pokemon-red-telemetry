@@ -150,3 +150,42 @@ test('stale or uncorroborated D365 cannot invent a LAST_MAP destination',()=>{
  last=localExitAccess({...rig,lastMapGuide:guide}).exits[2];
  assert.equal(last.destinationMapId,null);
 });
+
+test('outdoor border reports only reachable source-map edge tiles, not a transfer',()=>{
+ const r=localExitAccess(fixture());
+ const border=r.exits.find(x=>x.kind==='OUTDOOR_BORDER');
+ assert.equal(border.terrainStatus,'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN');
+ assert.equal(border.borderEvidence.verified,true);
+ assert.equal(border.borderEvidence.edgeTileCount,5);
+ assert.ok(border.borderEvidence.reachableWithoutNewAbilities>=1);
+ assert.equal(border.borderEvidence.neighborAlignmentVerified,false);
+ assert.equal(border.borderEvidence.sourceBorderLandingProven,false);
+ assert.ok(border.borderEvidence.borderTiles.every(x=>x.tile.y===0));
+ assert.equal(border.accessibleNow,null);
+});
+test('source border remains hypothetical when sprites prevent all approaches',()=>{
+ const cfg=fixture();
+ cfg.mapEntities=[
+   {x:0,y:0,type:'npc',pictureId:2},
+   {x:1,y:0,type:'npc',pictureId:2},
+   {x:3,y:0,type:'npc',pictureId:2},
+   {x:4,y:0,type:'npc',pictureId:2}
+ ];
+ const r=localExitAccess(cfg);
+ const b=r.exits.find(x=>x.kind==='OUTDOOR_BORDER');
+ assert.equal(b.terrainStatus,'NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK');
+ assert.equal(b.borderEvidence.terrainCandidateCount,0);
+ assert.equal(b.passageGeometryVerified,false);
+});
+test('border edge candidates distinguish not-owned Cut from terrain passability',()=>{
+ const cfg=fixture();
+ cfg.warpGraph.outdoorConnections.edges[0].direction='east';
+ const a=localExitAccess(cfg).exits.find(x=>x.kind==='OUTDOOR_BORDER');
+ assert.equal(a.terrainStatus,'BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN');
+ assert.ok(a.borderEvidence.borderTiles.some(c=>c.terrainStatus==='NEEDS_CUT'));
+ const enabled=localExitAccess({...cfg,canCut:true})
+   .exits.find(x=>x.kind==='OUTDOOR_BORDER');
+ assert.equal(enabled.terrainStatus,'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN');
+ assert.ok(enabled.borderEvidence.borderTiles.some(c=>c.usesCut));
+ assert.equal(enabled.neighborAlignmentVerified,false);
+});
