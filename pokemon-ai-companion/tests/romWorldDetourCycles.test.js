@@ -84,3 +84,33 @@ test('bounded map search differentiates budget exhaustion from suggestion limit'
  assert.equal(noBudget.searchBudgetExhausted,true);
  assert.equal(noBudget.candidates.length,0);
 });
+
+test('return-cycle shows only a first step backed by source-map terrain',()=>{
+ const cfg=fixture();
+ cfg.localExits.exits[0].approach={nextStep:{x:2,y:3},steps:7};
+ const result=suggestWorldDetours(cfg);
+ assert.equal(result.verified,true);
+ const first=result.candidates[0].firstExitEvidence;
+ assert.equal(first.known,true);
+ assert.equal(first.kind,'WARP');
+ assert.deepEqual(first.firstTerrainStep,{x:2,y:3});
+ assert.equal(first.crossingAlignmentVerified,false);
+ assert.equal(result.candidates[0].returnsToTargetSideProven,false);
+});
+test('candidate border tile never becomes an asserted landing on next map',()=>{
+ const cfg=fixture();
+ cfg.warpGraph.edges[0].status='LAST_MAP_RAM_REQUIRED';
+ cfg.warpGraph.outdoorConnections.edges[1]={
+   sourceMapId:15,destinationMapId:16,direction:'east'};
+ cfg.localExits.exits=[{kind:'OUTDOOR_BORDER',destinationMapId:16,
+   direction:'east',terrainStatus:'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN',
+   borderEvidence:{verified:true,borderTiles:[{
+     tile:{x:4,y:2},firstTerrainStep:{x:1,y:2}}]}}];
+ const r=suggestWorldDetours(cfg);
+ assert.equal(r.candidates.length,1);
+ const first=r.candidates[0].firstExitEvidence;
+ assert.deepEqual(first.candidateBorderTile,{x:4,y:2});
+ assert.deepEqual(first.firstTerrainStep,{x:1,y:2});
+ assert.equal(first.crossingAlignmentVerified,false);
+ assert.equal(r.targetAccessProven,false);
+});
