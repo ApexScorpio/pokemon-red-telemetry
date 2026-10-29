@@ -365,10 +365,20 @@ class RetroArchClient extends EventEmitter {
     if (!state.areaInfo || !state.areaInfo.name || state.areaInfo.name === 'Desconhecido') return;
     if (state.mapId === 0 && (state.badges && state.badges.some(b => b.obtained))) return;
     try {
+      // This file is a convenience cache, never a source for live ROM/RAM
+      // flags. Do not write hundreds of per-map event rows and live advice
+      // on every polling cycle or reload those rows as fresh evidence.
+      const persisted={...state};
+      for(const transient of [
+        'globalCampaignLedger','globalCampaignObjectives',
+        'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
+        'romCrossMapItemRoute'
+      ])delete persisted[transient];
+      const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
-      fs.writeFileSync(p, JSON.stringify(state, null, 2), 'utf8');
+      fs.writeFileSync(p, content, 'utf8');
       const rootP = require('path').join(__dirname, '..', 'data', 'last_known_state.json');
-      fs.writeFileSync(rootP, JSON.stringify(state, null, 2), 'utf8');
+      fs.writeFileSync(rootP, content, 'utf8');
     } catch (e) {}
   }
 
