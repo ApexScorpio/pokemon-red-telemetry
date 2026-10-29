@@ -1030,6 +1030,19 @@ function renderWorldAdvisor(state) {
           ' ('+suggestion.transitions+' transições estáticas hipotéticas)');
         if(suggestion.includesOutdoorBorder)
           lines.push('       Contém fronteira sem coordenadas de travessia verificadas.');
+        const firstExit=suggestion.firstExitEvidence;
+        if(firstExit?.known===true){
+          lines.push('       Primeira saída candidata: mapa #'+firstExit.fromMapId+
+            ' → #'+firstExit.toMapId+' ('+firstExit.terrainStatus+')');
+          if(firstExit.firstTerrainStep)
+            lines.push('       Primeiro passo TEÓRICO: X:'+
+              firstExit.firstTerrainStep.x+' Y:'+firstExit.firstTerrainStep.y);
+          if(firstExit.candidateBorderTile)
+            lines.push('       Tile de borda CANDIDATO: X:'+
+              firstExit.candidateBorderTile.x+' Y:'+
+              firstExit.candidateBorderTile.y+
+              ' — alinhamento com destino NÃO verificado');
+        }
       }
       lines.push('  ⚠️ NÃO comprovado que a volta regresse do lado acessível do item.');
     }
