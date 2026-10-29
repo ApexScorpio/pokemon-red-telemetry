@@ -2472,8 +2472,10 @@ class RetroArchClient extends EventEmitter {
           positionVerified:positionWindow.verified===true,
           currentModeByte:modeWindow.verified?modeWindow.modeByte:null,
           canCut:abilityCut===true,canSurf:abilitySurf===true,
-          spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true,
-          currentMapEntities:this.latestState.mapEntities,
+          spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
+            Array.isArray(this.latestState.mapEntities),
+          currentMapEntities:Array.isArray(this.latestState.mapEntities)?
+            this.latestState.mapEntities:[],
           maxTransitions:10,maxStates:120
         });
         this._crossMapRouteKey=key;
