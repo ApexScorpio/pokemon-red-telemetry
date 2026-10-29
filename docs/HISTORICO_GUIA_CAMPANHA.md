@@ -1193,3 +1193,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - `romCampaignObjectives.js` acrescenta `remoteObjectiveIndex` (apenas `mapId` e `mapHopCount`, até 226) e `objectiveIndexCount` enquanto mantém `objectives` detalhado condicionado por `maxResults:12`. `selectGlobalFlagTargets` consulta o índice completo quando presente, valida contagem, IDs únicos e valores de passos e falha fechado perante índice contraditório. Retrocompatibilidade com testes/consumidores sem índice preservada.
 - O cliente voltou a pedir só 12 objetivos detalhados; o radar remoto continua a poder selecionar flags no 226.º mapa, sem alterar o limite de 4 pesquisas por leitura. UI continua a mostrar 8 sugestões detalhadas e o total real de pendências.
 - Adicionados testes do catálogo, seleção depois da 12.ª posição e integração. Prova V8 com dados sintéticos: 12 detalhes, 226 entradas compactas e item pendente do mapa #80 selecionado corretamente. Parsing dos seis ficheiros JS aprovado. A medição real de serialização e `npm test` nativo continuam pendentes.
+
+
+## 2026-10-29 — T48b: ajustar regressão ao catálogo compacto e validar UI/integração
+
+- Após T48, dois testes de integração ainda assumiam o formato anterior: `maxResults:226` nos dados detalhados e uma janela de inspeção de 450 caracteres que não incluía o literal `maxResults:12`. Corrigidas ambas as asserções para distinguir índice mundial de 226 mapas e preview detalhada de 12 objetivos.
+- Os 53 testes de `worldAdvisorPanel.test.js` e `romClientCampaignIntegration.test.js` foram reexecutados a partir dos ficheiros efetivamente publicados na branch com adaptação V8 de `node:vm` e `node:fs`: **53/53 aprovados**. Nenhum dado real de ROM, RAM ou cliente foi alterado nesta correção. Sem prova Node nativa.

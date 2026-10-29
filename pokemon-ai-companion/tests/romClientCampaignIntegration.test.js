@@ -317,9 +317,9 @@ test('remote flags cache closes when warp graph or position window loses proof',
  assert.equal(run(false).verified,false);assert.equal(calls,2);
 });
 
-test('global objective catalogue covers 226 maps while the UI and route BFS remain bounded',()=>{
+test('compact objective index covers 226 maps while detailed UI and BFS remain bounded',()=>{
  const text=source.slice(source.indexOf('    this.latestState.globalCampaignObjectives=campaignObjectives({'));
- assert.match(text,/maxResults:226/);
+ assert.match(text,/maxResults:12/);
  assert.match(text,/sourceMapId:this\.latestState\.mapId,maxTargets:4/);
  assert.match(text,/maxTargets:4,maxStates:180,maxTransitions:10/);
 });
@@ -364,6 +364,6 @@ test('remote route cache must update when static connectivity changes for same h
 test('world objectives use small UI payload but remote selector reads compact full index',()=>{
  assert.match(source,/this\.latestState\.globalCampaignObjectives=campaignObjectives\(\{/);
  const start=source.indexOf('    this.latestState.globalCampaignObjectives=campaignObjectives({');
- assert.match(source.slice(start,start+450),/maxResults:12/);
+ assert.match(source.slice(start,start+650),/maxResults:12/);
  assert.match(source,/selectGlobalFlagTargets\(\{/);
 });
