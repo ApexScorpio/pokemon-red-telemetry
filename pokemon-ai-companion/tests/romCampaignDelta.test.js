@@ -125,3 +125,29 @@ test('partially populated bit records reject summary instead of falling back',()
  assert.equal(d.verified,false);
  assert.equal(d.changes.length,0);
 });
+
+test('contradictory bit totals fail closed instead of displaying inconsistent progress',()=>{
+ const prev=withExactRecords(ledger());
+ const now=copy(prev);
+ prev.mapProgress[15].flagRecords.hiddenItems=[
+   {recordId:'hidden-item-0',bitIndex:0,flagSet:false,x:3,y:6}];
+ now.mapProgress[15].flagRecords.hiddenItems=[
+   {recordId:'hidden-item-0',bitIndex:0,flagSet:true,x:3,y:6}];
+ now.mapProgress[15].hiddenItems.collected=2; // One bit changed, not two.
+ const result=diffCampaignProgress({previous:prev,current:now});
+ assert.equal(result.verified,false);
+ assert.match(result.reason,/diverge dos bits/);
+});
+test('a trainer gate bit cannot masquerade as two script victories',()=>{
+ const before=withExactRecords(ledger());
+ before.mapProgress[3].flagRecords.trainers=[
+   {recordId:'trainer-1',bitIndex:152,flagSet:false,
+     outcomeEvidence:'SCRIPT_VICTORY'}];
+ const after=copy(before);
+ after.mapProgress[3].flagRecords.trainers[0].flagSet=true;
+ after.mapProgress[3].trainers.gatesClosed=1;
+ after.mapProgress[3].trainers.scriptedVictories=2;
+ const result=diffCampaignProgress({previous:before,current:after});
+ assert.equal(result.verified,false);
+ assert.match(result.reason,/scriptedVictories/);
+});
