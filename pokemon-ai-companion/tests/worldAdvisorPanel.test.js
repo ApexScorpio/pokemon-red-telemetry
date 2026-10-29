@@ -251,3 +251,38 @@ test('global goals describe Cut and Surf actions rather than guaranteed access',
  const second=render(s).body.textContent;
  assert.match(second,/Surf indisponível no estado de capacidades conhecido/);
 });
+
+test('map-level return-cycle is only a hypothesis for exactly the same ROM item',()=>{
+ const s=live();
+ s.romWorldDetourCycles={verified:true,romSha256:s.worldAdvisor.romSha256,
+   mapId:15,target:{mapId:15,x:5,y:3},
+   candidates:[{mapIds:[15,16,17,15],transitions:3,
+     includesOutdoorBorder:true,returnsToTargetSideProven:false}]};
+ let text=render(s).body.textContent;
+ assert.match(text,/Voltas ENTRE MAPAS para investigar/);
+ assert.match(text,/Mapas #15 → #16 → #17 → #15/);
+ assert.match(text,/NÃO comprovado que a volta regresse do lado acessível/);
+ s.romWorldDetourCycles.target.x=8;
+ assert.doesNotMatch(render(s).body.textContent,/Voltas ENTRE MAPAS para investigar/);
+ s.romWorldDetourCycles.target.x=5;
+ s.romWorldDetourCycles.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/Voltas ENTRE MAPAS para investigar/);
+});
+test('full ROM geometry route takes precedence over loose cycles only for same item',()=>{
+ const s=live();
+ s.romWorldDetourCycles={verified:true,romSha256:s.worldAdvisor.romSha256,
+   mapId:15,target:{mapId:15,x:5,y:3},
+   candidates:[{mapIds:[15,16,17,15],transitions:3,
+     includesOutdoorBorder:true}]};
+ s.romCrossMapItemRoute={verified:true,found:true,
+   romSha256:s.worldAdvisor.romSha256,sourceMapId:15,
+   target:{mapId:15,x:5,y:3},warpTransitions:2,theoreticalSteps:14,
+   segments:[{sourceWarpTile:{x:4,y:3},destinationMapId:16}]};
+ let text=render(s).body.textContent;
+ assert.match(text,/Desvio multimapa TEÓRICO/);
+ assert.doesNotMatch(text,/Voltas ENTRE MAPAS para investigar/);
+ s.romCrossMapItemRoute.target.x=40;
+ text=render(s).body.textContent;
+ assert.doesNotMatch(text,/Desvio multimapa TEÓRICO/);
+ assert.match(text,/Voltas ENTRE MAPAS para investigar/);
+});
