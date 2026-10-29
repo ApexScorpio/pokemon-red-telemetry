@@ -1023,6 +1023,15 @@ function renderWorldAdvisor(state) {
      remote.sourceMapId===advice.mapId&&Array.isArray(remote.items)&&
      remote.items.length>0){
     const summary=['--- ITENS OCULTOS NOUTROS MAPAS (FLAGS ROM/RAM) ---'];
+    if(Number.isInteger(remote.totalPendingRemote))
+      summary.push('A mostrar '+remote.items.length+' de '+
+        remote.totalPendingRemote+' objetivos ocultos pendentes fora deste mapa'+
+        (Number.isInteger(remote.mapsWithPendingRemote)?
+          ' em '+remote.mapsWithPendingRemote+' mapas':'')+'.');
+    if(Number.isInteger(remote.totalWithoutStaticRoute)&&
+       remote.totalWithoutStaticRoute>0)
+      summary.push('Rotas estáticas por determinar: '+
+        remote.totalWithoutStaticRoute+' objetivos; NÃO significa bloqueados.');
     for(const item of remote.items.slice(0,4)){
       const label=item.kind==='HIDDEN_COIN'?'Fichas ocultas':'Item oculto';
       const prefix='• '+label+' — '+item.mapName+' (#'+item.mapId+

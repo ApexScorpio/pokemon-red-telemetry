@@ -526,3 +526,17 @@ test('unknown remote connection shows pending item without claiming permanent bl
  assert.match(shown,/ligação estática entre mapas por determinar/);
  assert.match(shown,/NÃO prova bloqueio/);
 });
+
+test('remote panel distinguishes total backlog from the four visible route slots',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalFlagItemRoutes={verified:true,romSha256:sha,sourceMapId:15,
+   totalPendingRemote:17,mapsWithPendingRemote:9,
+   totalWithoutStaticRoute:7,items:[{
+     kind:'HIDDEN_ITEM',mapName:'Mapa remoto',mapId:50,x:4,y:5,
+     route:null,routeNotAttemptedReason:'NO_STATIC_MAP_ROUTE'}]};
+ const result=render(s).body.textContent;
+ assert.match(result,/A mostrar 1 de 17 objetivos ocultos pendentes/);
+ assert.match(result,/em 9 mapas/);
+ assert.match(result,/Rotas estáticas por determinar: 7 objetivos/);
+ assert.match(result,/NÃO significa bloqueados/);
+});

@@ -124,3 +124,18 @@ test('unknown static map connections preserve pending hidden flag without route 
  assert.equal(routes.items[0].routeNotAttemptedReason,'NO_STATIC_MAP_ROUTE');
  assert.equal(routes.foundCount,0);assert.equal(routes.items[0].accessibleNow,null);
 });
+
+test('full remote backlog is counted even when only two targets are displayed',()=>{
+ const f=fixture();
+ f.ledger.mapProgress[10].flagRecords.hiddenItems.push(
+   {bitIndex:15,flagSet:false,x:3,y:3});
+ const r=selectGlobalFlagTargets({...f,maxTargets:2});
+ assert.equal(r.totalPendingRemote,4);
+ assert.equal(r.mapsWithPendingRemote,2);
+ assert.equal(r.totalWithoutStaticRoute,0);
+ assert.equal(r.items.length,2);assert.equal(r.limited,true);
+ f.objectives.objectives[1].mapHopCount=null;
+ const changed=selectGlobalFlagTargets({...f,maxTargets:2});
+ assert.equal(changed.totalWithoutStaticRoute,1);
+ assert.equal(changed.totalPendingRemote,4);
+});

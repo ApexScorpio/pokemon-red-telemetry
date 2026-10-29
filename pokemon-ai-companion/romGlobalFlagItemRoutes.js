@@ -55,6 +55,10 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
    }
    if(bucket.length)buckets.push(bucket);
  }
+ const totalPendingRemote=buckets.reduce((n,bucket)=>n+bucket.length,0);
+ const mapsWithPendingRemote=buckets.length;
+ const totalWithoutStaticRoute=buckets.reduce((n,bucket)=>
+   n+bucket.filter(item=>item.staticRouteKnown===false).length,0);
  const out=[];
  while(out.length<maxTargets&&buckets.some(bucket=>bucket.length)){
    for(const bucket of buckets){
@@ -64,6 +68,7 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
    }
  }
  return {verified:true,romSha256:sha,sourceMapId,items:out,
+   totalPendingRemote,mapsWithPendingRemote,totalWithoutStaticRoute,
    limited:buckets.some(bucket=>bucket.length>0),
    accessibleNow:null,routeNavigableNowProven:false};
 }

@@ -1178,3 +1178,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - A T45 preserva itens cuja `mapHopCount` era `null`, mas a cache do cliente só usava tipo/mapa/X/Y/bit da flag. Se a mesma coordenada passasse de 'sem rota estática' para 'rota estática conhecida' (ou vice-versa) sem mudar de posição, a cache podia continuar a mostrar uma conclusão antiga.
 - `retroarchClient.js` acrescentou `mapHopCount` e `staticRouteKnown` de cada objetivo à chave de cache. Teste de integração e execução do bloco real em V8 comprovaram 4 leituras: desconhecida, desconhecida (cache), rota identificada (recalcula), desconhecida (recalcula). Foram efetuadas 3 pesquisas em vez de 4, sem servir estados antigos.
 - O histórico permanece append-only e a `main` intocada. Os ensaios continuam isolados e não substituem `node --test` nem leitura de jogo real.
+
+
+## 2026-10-29 — T47: cobertura mundial explícita, sem confundir quatro sugestões com o total
+
+- Os quatro alvos da pesquisa multimapa eram um orçamento de CPU, não uma contagem do backlog; o painel não diferenciava isso. `selectGlobalFlagTargets` agora calcula `totalPendingRemote` de todos os itens/fichas com flags pendentes e coordenadas auditadas nos mapas do catálogo, `mapsWithPendingRemote` e `totalWithoutStaticRoute` antes de limitar os alvos visíveis.
+- `public/app.js` passa a indicar quantos objetivos remotos existem e quantos mostra (por exemplo, 1 de 17), bem como os que continuam sem rota estática identificada, distinguindo desconhecimento de bloqueio. Não inventa números: mostra os contadores apenas quando os recebe de uma seleção validada.
+- Regressões acrescentadas ao módulo e à interface. Execução V8 com 226 mapas sintéticos confirmou 3 alvos pendentes em 2 mapas, 1 sem rota estática e só 2 selecionados. Parsing dos quatro ficheiros passou. Ainda não há prova de jogo/emulador ou suite nativa.
