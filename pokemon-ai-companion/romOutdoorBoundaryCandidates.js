@@ -63,6 +63,11 @@ function outdoorBoundaryCandidates({grid,direction,reachNormal,reachCut,
        'DESTINATION_STATIC_TERRAIN_BLOCKED';
      if(!walkable&&!cut&&!surf)continue;
      compatibleDestinationTiles++;
+     // A water or Cut tile is not a normal accessible landing. Track the
+     // requirement independently from the source terrain route.
+     // "canSurf"/"canCut" describe the observed party capability only,
+     // not whether the border transition was executed.
+
    }
    let route=exactTilePath(reachNormal,tile),status=null;
    if(route){
@@ -86,9 +91,23 @@ function outdoorBoundaryCandidates({grid,direction,reachNormal,reachCut,
      if(route)requiresHypotheticalAbility++;
    }
    if(!route)continue;
+   const destinationNeedsCut=destinationTerrainStatus===
+     'CUT_REQUIRED_AT_DESTINATION';
+   const destinationNeedsSurf=destinationTerrainStatus===
+     'SURF_REQUIRED_AT_DESTINATION';
+   const destinationCapabilityStatus=!destination?
+     'DESTINATION_NOT_MAPPED':
+     destinationNeedsCut?(canCut===true?'CUT_ABILITY_KNOWN_ACTION_UNOBSERVED':
+       canCut===false?'CUT_NOT_AVAILABLE':'CUT_CAPABILITY_UNKNOWN'):
+     destinationNeedsSurf?(canSurf===true?'SURF_ABILITY_KNOWN_ACTION_UNOBSERVED':
+       canSurf===false?'SURF_NOT_AVAILABLE':'SURF_CAPABILITY_UNKNOWN'):
+     'STATIC_LAND_POSSIBLE';
    candidates.push({tile,
      destinationTile:destination??null,
-     destinationTerrainStatus,steps:route.steps,
+     destinationTerrainStatus,destinationCapabilityStatus,
+     destinationRequiresCut:destinationNeedsCut,
+     destinationRequiresSurf:destinationNeedsSurf,
+     destinationEntryUsableNow:null,steps:route.steps,
      firstTerrainStep:route.nextStep,
      terrainStatus:status,
      usesCut:route.usesCut,usesSurf:route.usesSurf,
