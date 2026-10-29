@@ -820,6 +820,24 @@ function renderWorldAdvisor(state) {
       lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
       if(o.accessReason)lines.push('  ↳ Motivo: '+o.accessReason);
     }
+    const detour=state.romCrossMapItemRoute;
+    if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
+       detour?.verified===true&&detour.found===true&&
+       detour.romSha256===advice.romSha256&&
+       detour.sourceMapId===advice.mapId&&
+       detour.target?.mapId===advice.mapId&&
+       detour.target.x===o.x&&detour.target.y===o.y){
+      const first=detour.segments?.[0];
+      if(first){
+        lines.push('  ↳ Desvio multimapa TEÓRICO: '+
+          detour.warpTransitions+' warps e '+detour.theoreticalSteps+
+          ' passos geométricos (acesso NÃO garantido)');
+        lines.push('  ↳ Primeira saída: X:'+first.sourceWarpTile.x+
+          ' Y:'+first.sourceWarpTile.y+' para mapa #'+first.destinationMapId);
+        if(detour.nextTerrainTile)lines.push('  ↳ Primeiro tile candidato: X:'+
+          detour.nextTerrainTile.x+' Y:'+detour.nextTerrainTile.y);
+      }
+    }
     if(o.kind==='WILD_ENCOUNTER'&&Array.isArray(o.slots)){
       // Probabilidades condicionais, NÃO probabilidades reais por passo.
       const groups=new Map();
