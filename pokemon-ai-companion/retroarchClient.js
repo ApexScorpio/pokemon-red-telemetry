@@ -16,6 +16,7 @@ const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
 const {localExitAccess}=require('./romLocalExitAccess');
 const {verifyTerrainVariant}=require('./romTerrainVariantGuard');
 const {verifyOutdoorConnectionVariant}=require('./romOutdoorReferenceGuard');
+const {validateOutdoorAlignment}=require('./romOutdoorAlignment');
 const {suggestWorldDetours}=require('./romWorldDetourCycles');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
@@ -357,6 +358,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romLocalExitAccess={verified:false,exits:[],reason};
     this.latestState.romVariantTerrainEvidence={verified:false,reason};
     this.latestState.romOutdoorReferenceEvidence={verified:false,reason};
+    this.latestState.romOutdoorAlignment={verified:false,reason};
     this.latestState.romWarpGraph={verified:false,reason};
     this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
     this.latestState.romWorldDetourCycles={verified:false,candidates:[],reason};
@@ -395,6 +397,7 @@ class RetroArchClient extends EventEmitter {
         'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions',
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
+        'romOutdoorAlignment',
         'romWarpGraph'
       ])delete persisted[transient];
       const content=JSON.stringify(persisted,null,2);
@@ -2509,6 +2512,16 @@ class RetroArchClient extends EventEmitter {
         verifyOutdoorConnectionVariant({
           warpGraph:this._warpGraph,romSha256:sha
         });
+      if(this._outdoorAlignmentSha!==sha||!this._outdoorAlignment){
+        this._outdoorAlignment=validateOutdoorAlignment({
+          profile:this.activeRomProfile,warpGraph:this._warpGraph
+        });
+        this._outdoorAlignmentSha=sha;
+      }
+      this.latestState.romOutdoorAlignment=
+        this.latestState.romOutdoorReferenceEvidence.verified===true?
+        this._outdoorAlignment:{verified:false,
+          reason:'Descritores exteriores não coincidem com esta ROM'};
       // Never let an unrecognized outdoor descriptor enter a world
       // path search. Keep validated static warps independent.
       this.latestState.romWarpGraph=
@@ -2519,6 +2532,9 @@ class RetroArchClient extends EventEmitter {
     } else {
       this._warpGraph=null;
       this._warpGraphSha=null;
+      this._outdoorAlignmentSha=null;this._outdoorAlignment=null;
+      this.latestState.romOutdoorAlignment={verified:false,
+        reason:'ROM não identificada'};
       this.latestState.romOutdoorReferenceEvidence={verified:false,
         reason:'ROM não identificada'};
       this.latestState.romWarpGraph={verified:false,reason:'ROM não identificada'};
@@ -2614,7 +2630,8 @@ class RetroArchClient extends EventEmitter {
       mapEntities:Array.isArray(this.latestState.mapEntities)?
         this.latestState.mapEntities:[],
       elevatorChoices:this.latestState.romElevatorOptions,
-      lastMapGuide:this.latestState.romStaticMapGuide
+      lastMapGuide:this.latestState.romStaticMapGuide,
+      outdoorAlignment:this.latestState.romOutdoorAlignment
     }):{verified:false,exits:[],
       reason:'Matrizes de terreno não correspondem à ROM desta variante'};
     // If a local item cannot be approached, search map-level return loops.
