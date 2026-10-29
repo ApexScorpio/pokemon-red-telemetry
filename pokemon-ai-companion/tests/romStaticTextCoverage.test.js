@@ -1,0 +1,40 @@
+'use strict';
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const {summarizeStaticTextTargets}=require('../romStaticTextCoverage');
+test('mede todos os destinos incluindo repetidos, não ações de NPC',()=>{
+ const rom=Buffer.alloc(1048576);
+ const first=0x18000,second=0x18100,bad=0x18200,asm=0x18300;
+ rom.set([0,0x80,0x57,0x50],first);
+ rom.set([0,0x87,0xa8,0x57,0,0x81,0x52,0x58,0x50],second);
+ rom.set([0,0x80,0x57,0x08,0x50],asm);
+ rom.set([0,0x80,0x08,0x57,0x50],bad);
+ const r=summarizeStaticTextTargets({rom,targets:[first,second,asm,bad,first]});
+ assert.equal(r.verified,true);
+ assert.equal(r.inspected,5);
+ assert.equal(r.uniqueTargetOffsets,4);
+ assert.equal(r.completeLinearScripts,3);
+ assert.equal(r.incompleteOrNonlinearScripts,2);
+ assert.equal(r.multilineScripts,1);
+ assert.equal(r.runtimeDependentScripts,1);
+ assert.equal(r.totalLiteralSegments,4);
+ assert.equal(Object.values(r.failureReasons).reduce((a,b)=>a+b,0),2);
+ assert.equal(r.dialogueExecuted,false);
+ assert.equal(r.scriptEffectsVerified,false);
+ assert.ok(r.samples.length<=12);
+});
+test('falta de prova ou offsets inválidos não são contabilizados',()=>{
+ const rom=Buffer.alloc(1048576);
+ assert.equal(summarizeStaticTextTargets({rom,targets:[-1]}).verified,false);
+ assert.equal(summarizeStaticTextTargets({rom,targets:[1048576]}).verified,false);
+ assert.equal(summarizeStaticTextTargets({rom,targets:[1.3]}).verified,false);
+ assert.equal(summarizeStaticTextTargets({rom,targets:new Array(1001).fill(0)}).verified,false);
+ assert.equal(summarizeStaticTextTargets({rom:Buffer.alloc(30),targets:[]}).verified,false);
+});
+test('lista válida vazia mostra explicitamente zero inspeções',()=>{
+ const r=summarizeStaticTextTargets({rom:Buffer.alloc(1048576),targets:[]});
+ assert.equal(r.verified,true);
+ assert.equal(r.inspected,0);
+ assert.equal(r.completeLinearScripts,0);
+ assert.equal(r.incompleteOrNonlinearScripts,0);
+});
