@@ -770,6 +770,25 @@ function renderWorldAdvisor(state) {
       '✨ Encontros fixos: '+t.stationaryGatesClosed+
         ' eventos encerrados (não prova captura)');
   }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  const elevator=state.romElevatorOptions;
+  if(elevator?.verified===true&&elevator.hasElevator===true&&
+     elevator.romSha256===advice.romSha256&&
+     elevator.mapId===advice.mapId&&Array.isArray(elevator.options)){
+    const choices=['--- ELEVADOR — PISOS POSSÍVEIS DA ROM ---',
+      elevator.elevatorName||'Elevador'];
+    for(const option of elevator.options){
+      if(!Number.isInteger(option.floorMenuIndex)||
+         !Number.isInteger(option.destinationMapId)||
+         !Number.isInteger(option.destinationWarpIndex))continue;
+      choices.push('• Piso/opção '+(option.floorMenuIndex+1)+
+        ': mapa #'+option.destinationMapId+
+        ', entrada #'+option.destinationWarpIndex+
+        ' — disponível agora: por confirmar');
+    }
+    choices.push('⚠️ Escolha de piso, portas e condições do script não observadas.','');
+    const i=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(i>=0)lines.splice(i,0,...choices);
+  }
   const worldFlags=state.romWorldEventAtlas;
   if(worldFlags?.verified===true&&
      worldFlags.romSha256===advice.romSha256&&
