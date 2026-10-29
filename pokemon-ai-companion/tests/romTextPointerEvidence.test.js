@@ -60,3 +60,30 @@ test('mart list rejects invalid length, IDs or terminator',()=>{
    original.copy(f.rom);
  }
 });
+
+test('TX_FAR fornece primeira cadeia auditada sem afirmar diálogo',()=>{
+ const f=fixture(),target=41*0x4000+0x374;
+ f.rom.writeUInt16LE(0x24e5,f.table);
+ f.rom[0x24e5]=0x17;
+ f.rom.writeUInt16LE(0x4374,0x24e6);f.rom[0x24e8]=41;
+ f.rom.set([0,0x87,0xa8,0x7f,0x52,0xe7,0x57],target);
+ const r=resolveStaticTextPointer({...f,textId:1});
+ assert.equal(r.verified,true);
+ assert.equal(r.far.verified,true);
+ assert.equal(r.staticTextPreview.verified,true);
+ assert.equal(r.staticTextPreview.text,'Hi <PLAYER>!');
+ assert.equal(r.staticTextPreview.containsRuntimeVariables,true);
+ assert.equal(r.staticTextPreview.dialogueExecuted,false);
+ assert.equal(r.staticTextPreview.textOutcomeVerified,false);
+});
+test('texto inválido não desmente um ponteiro TX_FAR estruturalmente válido',()=>{
+ const f=fixture(),target=41*0x4000+0x374;
+ f.rom.writeUInt16LE(0x24e5,f.table);
+ f.rom[0x24e5]=0x17;f.rom.writeUInt16LE(0x4374,0x24e6);
+ f.rom[0x24e8]=41;
+ f.rom.set([0,0x80,0x08,0x50],target);
+ const r=resolveStaticTextPointer({...f,textId:1});
+ assert.equal(r.verified,true);
+ assert.equal(r.far.verified,true);
+ assert.equal(r.staticTextPreview,null);
+});
