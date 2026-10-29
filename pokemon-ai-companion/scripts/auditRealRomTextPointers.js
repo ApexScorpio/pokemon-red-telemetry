@@ -3,14 +3,18 @@
 const fs=require('node:fs');
 const {auditWorldObjects}=require('./auditRealWorldInteractions');
 const BANK=0x4000,MAPS=248;
-const expected={interactions:674,npcs:472,signs:202,resolved:616,unresolved:58,
-  firstBytes:{'08':177,'17':409,'f5':3,'f6':12,'f7':3,'ff':12}};
+const expected={interactions:674,npcs:472,signs:202,resolved:674,unresolved:0,
+  rom0:58,romx:616,
+  firstBytes:{'08':177,'17':453,'f5':3,'f6':12,'f7':3,'fe':14,'ff':12}};
 const valid=(bank,cpu,size)=>bank>0&&cpu>=0x4000&&cpu<0x8000&&
   bank*BANK+cpu-0x4000<size?bank*BANK+cpu-0x4000:null;
 const u16=(b,p)=>b[p]|b[p+1]<<8;
+// Text tables can legally point to the fixed bank ROM0 ($0001..$3fff).
+// Ordinary map headers and their tables still live in switched ROMX.
+const textTarget=(bank,cpu,size)=>cpu>0&&cpu<0x4000?cpu:valid(bank,cpu,size);
 function auditTextPointers(rom){
   const world=auditWorldObjects(rom),bankTable=world.counts.bankTableOffset;
-  const counts={interactions:0,npcs:0,signs:0,resolved:0,unresolved:0};
+  const counts={interactions:0,npcs:0,signs:0,resolved:0,unresolved:0,rom0:0,romx:0};
   const firstBytes={},unresolvedByMap=[],sourceSamples=[];
   const far={total:0,resolved:0,startText:0,invalid:0};
   for(let mapId=0;mapId<MAPS;mapId++){
@@ -45,7 +49,7 @@ function auditTextPointers(rom){
       let dest=null;
       if(e.index>=1&&e.index<=63&&textTable!==null&&
          textTable+(e.index-1)*2+1<end){
-        dest=valid(bank,u16(rom,textTable+(e.index-1)*2),rom.length);
+        dest=textTarget(bank,u16(rom,textTable+(e.index-1)*2),rom.length);
         if(dest!==null&&dest>=end)dest=null;
       }
       if(dest===null){
@@ -53,7 +57,7 @@ function auditTextPointers(rom){
         unresolvedByMap.push({mapId,kind:e.kind,ordinal:e.ordinal,
           textId:e.textId,reason:'SAME_BANK_TEXT_POINTER_NOT_CORROBORATED'});
       }else{
-        counts.resolved++;
+        counts.resolved++;counts[dest<BANK?'rom0':'romx']++;
         const code=rom[dest].toString(16).padStart(2,'0');
         firstBytes[code]=(firstBytes[code]||0)+1;
         // pret/pokered TX_FAR ($17): [opcode, CPU low, CPU high, bank].
@@ -81,7 +85,7 @@ function auditTextPointers(rom){
       ' divergente: '+firstBytes[code]+' != '+count);
   if(Object.keys(firstBytes).length!==Object.keys(expected.firstBytes).length)
     throw Error('Categorias desconhecidas de bytes iniciais de texto');
-  if(far.total!==409||far.resolved!==409||far.startText!==409||far.invalid!==0)
+  if(far.total!==453||far.resolved!==453||far.startText!==453||far.invalid!==0)
     throw Error('Destino far text de TX_FAR não corroborado na ROM');
   return {verified:true,romSha256:world.sha256,counts,firstBytes,far,
     unresolvedExamples:unresolvedByMap.slice(0,6),sourceSamples,
