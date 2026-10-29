@@ -338,3 +338,40 @@ test('map-return hint shows only source first step and border tile without arriv
  assert.match(body,/Tile de borda CANDIDATO: X:89 Y:3/);
  assert.match(body,/alinhamento com destino NÃO verificado/);
 });
+
+test('pointer-aligned border shows separate source and destination, not traversed',()=>{
+ const s=live();
+ s.romLocalExitAccess={verified:true,
+   romSha256:s.worldAdvisor.romSha256,mapId:15,
+   positionFromRam:{x:12,y:3},truncated:false,
+   counts:{OUTDOOR_BORDER:1},
+   exits:[{kind:'OUTDOOR_BORDER',direction:'east',destinationMapId:3,
+     terrainStatus:'BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED',
+     borderEvidence:{verified:true,neighborAlignmentVerified:true,
+       terrainCandidateCount:1,borderTiles:[{
+         tile:{x:89,y:4},destinationTile:{x:0,y:12},steps:1,
+         terrainStatus:'TERRAIN_TO_BORDER_POSSIBLE',
+         destinationTerrainStatus:'STATIC_LAND_CANDIDATE'
+       }]}}]};
+ const body=render(s).body.textContent;
+ assert.match(body,/alinhamento ROM conferido, travessia NÃO confirmada/);
+ assert.match(body,/Tile DESTINO de referência: X:0 Y:12/);
+ assert.match(body,/transferência no jogo NÃO comprovada/);
+});
+test('aligned first return-cycle step still cannot certify target item access',()=>{
+ const s=live();
+ s.romWorldDetourCycles={verified:true,romSha256:s.worldAdvisor.romSha256,
+   mapId:15,target:{mapId:15,x:5,y:3},
+   candidates:[{mapIds:[15,16,17,15],transitions:3,
+     includesOutdoorBorder:true,firstExitEvidence:{
+       known:true,kind:'OUTDOOR_BORDER',fromMapId:15,toMapId:16,
+       terrainStatus:'BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED',
+       firstTerrainStep:{x:88,y:4},candidateBorderTile:{x:89,y:4},
+       candidateDestinationTile:{x:0,y:12},
+       crossingAlignmentVerified:true}}]};
+ const body=render(s).body.textContent;
+ assert.match(body,/alinhamento confirmado por ponteiros ROM/);
+ assert.match(body,/Tile DESTINO de referência: X:0 Y:12/);
+ assert.match(body,/passagem efetiva NÃO observada/);
+ assert.match(body,/NÃO comprovado que a volta regresse do lado acessível/);
+});
