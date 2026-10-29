@@ -139,3 +139,23 @@ test('full remote backlog is counted even when only two targets are displayed',(
  assert.equal(changed.totalWithoutStaticRoute,1);
  assert.equal(changed.totalPendingRemote,4);
 });
+
+test('hidden goal beyond preview 12 survives compact 226-map remote index',()=>{
+ const f=fixture();
+ f.ledger.mapProgress[80].flagRecords.hiddenItems.push({
+   bitIndex:17,flagSet:false,x:2,y:4});
+ f.objectives.objectives=f.objectives.objectives.slice(0,1);
+ f.objectives.remoteObjectiveIndex=[
+   {mapId:10,mapHopCount:2},{mapId:20,mapHopCount:3},
+   {mapId:80,mapHopCount:7}
+ ];
+ f.objectives.totalObjectives=3;
+ f.objectives.objectiveIndexCount=3;
+ const selected=selectGlobalFlagTargets(f);
+ assert.equal(selected.verified,true,selected.reason);
+ assert.equal(selected.items.some(x=>x.mapId===80),true);
+ assert.equal(selected.items.find(x=>x.mapId===80).mapHopCount,7);
+ const bad={...f.objectives,
+   remoteObjectiveIndex:[{mapId:10,mapHopCount:2},{mapId:10,mapHopCount:2}]};
+ assert.equal(selectGlobalFlagTargets({...f,objectives:bad}).verified,false);
+});

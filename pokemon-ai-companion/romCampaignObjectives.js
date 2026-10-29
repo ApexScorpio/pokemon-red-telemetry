@@ -210,6 +210,12 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
    outdoorGlobalOverlapCorroborated:overlapsOK,
    mapCount:ledger.mapCount,mapsWithPending,mapsWithUnknown,
    totalObjectives:goals.length,objectives:goals.slice(0,maxResults),
+   // A compact 226-map index survives the UI preview cap without
+   // serializing each destination's full sequence of warp objects.
+   remoteObjectiveIndex:goals.map(g=>({
+     mapId:g.mapId,mapHopCount:g.mapHopCount
+   })),
+   objectiveIndexCount:goals.length,
    catalogueTruncated:goals.length>maxResults,
    progressCompleteness:'PARTIAL',
    routeNavigableNowProven:false,

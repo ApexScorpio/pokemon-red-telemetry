@@ -2805,7 +2805,7 @@ class RetroArchClient extends EventEmitter {
       firstMapExitAccess:this.latestState.romLocalExitAccess,
       outdoorOverlapIndex:this.latestState.romOutdoorOverlapIndex,
       position:this.latestState.coords,
-      maxResults:226
+      maxResults:12
     });
     // Remote hidden-item/coin targets are backed by global ROM/RAM flags.
     // Search at most four concrete coordinates and cache only while the

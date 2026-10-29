@@ -247,3 +247,19 @@ test('226-map objective catalogue is not silently cut to first twelve targets',(
  assert.equal(preview.catalogueTruncated,true);
  assert.equal(campaignObjectives({...cfg,maxResults:227}).verified,false);
 });
+
+test('twelve detailed goals coexist with an exhaustive 226-map compact index',()=>{
+ const f=fixture();
+ for(const m of f.ledger.mapProgress)m.hiddenItems.notCollected=1;
+ const r=campaignObjectives({...f,maxResults:12});
+ assert.equal(r.verified,true);
+ assert.equal(r.objectives.length,12);
+ assert.equal(r.totalObjectives,226);
+ assert.equal(r.remoteObjectiveIndex.length,226);
+ assert.equal(r.objectiveIndexCount,226);
+ assert.equal(r.catalogueTruncated,true);
+ assert.equal(new Set(r.remoteObjectiveIndex.map(g=>g.mapId)).size,226);
+ assert.equal(r.remoteObjectiveIndex[0].mapId,15);
+ assert.equal(r.remoteObjectiveIndex[0].mapHopCount,0);
+ assert.equal(r.remoteObjectiveIndex[0].route,undefined);
+});

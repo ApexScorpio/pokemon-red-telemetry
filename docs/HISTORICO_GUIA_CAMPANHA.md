@@ -1185,3 +1185,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Os quatro alvos da pesquisa multimapa eram um orçamento de CPU, não uma contagem do backlog; o painel não diferenciava isso. `selectGlobalFlagTargets` agora calcula `totalPendingRemote` de todos os itens/fichas com flags pendentes e coordenadas auditadas nos mapas do catálogo, `mapsWithPendingRemote` e `totalWithoutStaticRoute` antes de limitar os alvos visíveis.
 - `public/app.js` passa a indicar quantos objetivos remotos existem e quantos mostra (por exemplo, 1 de 17), bem como os que continuam sem rota estática identificada, distinguindo desconhecimento de bloqueio. Não inventa números: mostra os contadores apenas quando os recebe de uma seleção validada.
 - Regressões acrescentadas ao módulo e à interface. Execução V8 com 226 mapas sintéticos confirmou 3 alvos pendentes em 2 mapas, 1 sem rota estática e só 2 selecionados. Parsing dos quatro ficheiros passou. Ainda não há prova de jogo/emulador ou suite nativa.
+
+
+## 2026-10-29 — T48: índice compacto dos 226 mapas sem inflacionar a telemetria
+
+- Após T44, `retroarchClient.js` publicava 226 objetivos completos no WebSocket, cada um podendo incluir uma sequência longa de warps e metadados estáticos, apesar de o painel só utilizar 8. Corrigido o custo sem voltar a perder cobertura.
+- `romCampaignObjectives.js` acrescenta `remoteObjectiveIndex` (apenas `mapId` e `mapHopCount`, até 226) e `objectiveIndexCount` enquanto mantém `objectives` detalhado condicionado por `maxResults:12`. `selectGlobalFlagTargets` consulta o índice completo quando presente, valida contagem, IDs únicos e valores de passos e falha fechado perante índice contraditório. Retrocompatibilidade com testes/consumidores sem índice preservada.
+- O cliente voltou a pedir só 12 objetivos detalhados; o radar remoto continua a poder selecionar flags no 226.º mapa, sem alterar o limite de 4 pesquisas por leitura. UI continua a mostrar 8 sugestões detalhadas e o total real de pendências.
+- Adicionados testes do catálogo, seleção depois da 12.ª posição e integração. Prova V8 com dados sintéticos: 12 detalhes, 226 entradas compactas e item pendente do mapa #80 selecionado corretamente. Parsing dos seis ficheiros JS aprovado. A medição real de serialização e `npm test` nativo continuam pendentes.

@@ -28,8 +28,20 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
 
  // Prefer one pending item per distinct destination map before consuming a
  // second slot for the same map. Preserve the objective planner's map order.
+ const fullIndex=objectives.remoteObjectiveIndex;
+ if(fullIndex!==undefined&&(
+      !Array.isArray(fullIndex)||
+      fullIndex.length!==objectives.objectiveIndexCount||
+      fullIndex.length!==objectives.totalObjectives||
+      fullIndex.length>226||
+      new Set(fullIndex.map(g=>g?.mapId)).size!==fullIndex.length||
+      fullIndex.some(g=>!inMap(g?.mapId)||
+        !(g.mapHopCount===null||
+          (Number.isInteger(g.mapHopCount)&&g.mapHopCount>=0)))))
+   return fail('Índice compacto de objetivos mundiais incompleto ou duplicado');
+ const activeGoals=fullIndex===undefined?objectives.objectives:fullIndex;
  const seen=new Set(),buckets=[];
- for(const goal of objectives.objectives){
+ for(const goal of activeGoals){
    if(!inMap(goal?.mapId)||goal.mapId===sourceMapId||
       !(goal.mapHopCount===null||
         (Number.isInteger(goal.mapHopCount)&&goal.mapHopCount>=1)))continue;

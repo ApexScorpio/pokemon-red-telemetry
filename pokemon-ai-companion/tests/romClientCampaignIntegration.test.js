@@ -360,3 +360,10 @@ test('remote route cache must update when static connectivity changes for same h
  assert.equal(read().reason,'unknown static graph');
  assert.equal(calls,3);
 });
+
+test('world objectives use small UI payload but remote selector reads compact full index',()=>{
+ assert.match(source,/this\.latestState\.globalCampaignObjectives=campaignObjectives\(\{/);
+ const start=source.indexOf('    this.latestState.globalCampaignObjectives=campaignObjectives({');
+ assert.match(source.slice(start,start+450),/maxResults:12/);
+ assert.match(source,/selectGlobalFlagTargets\(\{/);
+});
