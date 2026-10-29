@@ -72,11 +72,15 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
    Array.isArray(firstMapExitAccess.exits)&&
    firstMapExitAccess.truncated!==true;
  const evidenceFor=edge=>{
-   if(edge.kind!=='STATIC_WARP'||!exitsOK)return null;
-   return firstMapExitAccess.exits.find(x=>x.kind==='WARP'&&
-     x.sourceWarpIndex===edge.sourceWarpIndex&&
+   if(!exitsOK)return null;
+   if(edge.kind==='STATIC_WARP')return firstMapExitAccess.exits.find(x=>
+     x.kind==='WARP'&&x.sourceWarpIndex===edge.sourceWarpIndex&&
      x.destinationMapId===edge.destinationMapId&&
      x.staticDestinationStatus==='STATIC_DESTINATION_WARP_VALIDATED')||null;
+   if(edge.kind==='OUTDOOR_BOUNDARY')return firstMapExitAccess.exits.find(x=>
+     x.kind==='OUTDOOR_BORDER'&&x.direction===edge.direction&&
+     x.destinationMapId===edge.destinationMapId)||null;
+   return null;
  };
  const firstRank=edge=>{
    const local=evidenceFor(edge);
@@ -84,7 +88,12 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
      switch(local.terrainStatus){
        case 'THEORETICAL_TERRAIN_PATH':
        case 'TERRAIN_PATH_REQUIRES_CUT_ACTION':
-       case 'TERRAIN_PATH_REQUIRES_SURF_ACTION':return 0;
+       case 'TERRAIN_PATH_REQUIRES_SURF_ACTION':
+       case 'BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED':return 0;
+       case 'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN':return 1;
+       case 'BORDER_ALIGNED_REQUIRES_CAPABILITY_TRANSFER_UNVERIFIED':
+       case 'BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN':
+       case 'NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK':return 2;
        case 'NO_LOCAL_TERRAIN_PATH_NOT_PROOF_OF_LOCK':
        case 'ROM_EXIT_TILE_OUTSIDE_MAP':
        case 'CUT_NOT_USABLE_IN_CURRENT_PARTY':
@@ -194,6 +203,7 @@ function campaignObjectives({ledger,warpGraph,sourceMapId,
      'Distâncias são transições entre mapas estáticos, não passos nem rotas desbloqueadas',
      'Apenas a primeira transição usa terreno local; as ligações seguintes carecem de geometria e scripts',
      'A preferência por Cut/Surf depende de capacidades na RAM e não confirma que a ação do jogo tenha ocorrido',
+     'O alinhamento de bordas via ponteiros ROM não prova a execução da transição na partida',
      'Ausência de caminho terrestre não prova bloqueio: Surf e Cut podem mudar o resultado',
      'LAST_MAP, elevadores, Cut/Surf/Strength, portas e scripts dinâmicos não estão resolvidos',
      'Os eventos sem flags mapeadas não são tratados como concluídos'
