@@ -113,3 +113,27 @@ test('end-to-end ledger snapshots yield exact, distinct bit changes',()=>{
  assert.ok(d.changes.every(c=>Number.isInteger(c.bitIndex)));
  assert.ok(d.changes.every(c=>c.playerActionConfirmed===false));
 });
+
+test('all maps inventory visible item objects without falsely proving pickup',()=>{
+ const x=rig();
+ x.profile.world.maps.data[18].objects.objects.push({
+   kind:'item',x:7,y:3,trainerClassOrItemId:42});
+ x.profile.world.maps.data[18].objects.objects.push({
+   kind:'item',x:2,y:4,trainerClassOrItemId:43});
+ const r=evaluate(x);
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.mapProgress[18].visibleItems.objects,2);
+ assert.equal(r.mapProgress[18].visibleItems.unresolved,2);
+ assert.equal(r.totals.visibleItemObjects,2);
+ assert.equal(r.totals.visibleItemsCollectionUnresolved,2);
+ assert.equal(r.mapProgress[18].flagRecords.visibleItems.length,2);
+ assert.equal(r.mapProgress[18].flagRecords.visibleItems[0].x,7);
+ assert.equal(r.mapProgress[18].flagRecords.visibleItems[0].itemId,42);
+ assert.equal(r.mapProgress[18].flagRecords.visibleItems[0].collected,null);
+ assert.equal(r.mapProgress[18].flagRecords.visibleItems[0].removedFromCurrentMap,null);
+ assert.equal(r.mapProgress[18].hiddenItems.notCollected,0);
+ const damaged=rig();
+ damaged.profile.world.maps.data[18].objects.objects.push({
+   kind:'item',x:-1,y:4});
+ assert.equal(evaluate(damaged).verified,false);
+});

@@ -540,3 +540,16 @@ test('remote panel distinguishes total backlog from the four visible route slots
  assert.match(result,/Rotas estáticas por determinar: 7 objetivos/);
  assert.match(result,/NÃO significa bloqueados/);
 });
+
+test('world agenda labels visible ROM objects as unconfirmed, never uncollected',()=>{
+ const state=live(),sha=state.worldAdvisor.romSha256;
+ state.globalCampaignObjectives={verified:true,romSha256:sha,
+   sourceMapId:15,mapCount:226,mapsWithPending:0,mapsWithUnknown:1,
+   objectives:[{mapId:15,mapName:'Route 4',mapHopCount:0,
+     pending:{hiddenItems:0,hiddenCoins:0,trainerGatesOpen:0,
+       stationaryGatesOpen:0},
+     unknown:{trainers:0,stationaryPokemon:0,visibleItems:2}}]};
+ const output=render(state).body.textContent;
+ assert.match(output,/2 itens visíveis na ROM \(recolha por confirmar\)/);
+ assert.doesNotMatch(output,/itens visíveis por recolher/);
+});

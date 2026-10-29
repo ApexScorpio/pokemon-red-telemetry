@@ -982,6 +982,10 @@ function renderWorldAdvisor(state) {
       const uncertain=(u.trainers||0)+(u.stationaryPokemon||0);
       if(uncertain)todo.push(plural(uncertain,
         'evento por esclarecer','eventos por esclarecer'));
+      if(Number.isInteger(u.visibleItems)&&u.visibleItems>0)
+        todo.push(plural(u.visibleItems,
+          'item visível na ROM (recolha por confirmar)',
+          'itens visíveis na ROM (recolha por confirmar)'));
       const hops=goal.mapHopCount===0?'mapa atual':
         Number.isInteger(goal.mapHopCount)?
         goal.mapHopCount+' transições estáticas (acesso por confirmar)':

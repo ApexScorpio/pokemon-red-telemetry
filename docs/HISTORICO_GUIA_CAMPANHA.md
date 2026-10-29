@@ -1212,3 +1212,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - T47 deu ao painel contadores de todas as flags remotas, mas a cache do cliente T46 dependia apenas dos quatro itens selecionados e da conectividade desses alvos. Uma flag num quinto item podia mudar e deixar o contador stale, mesmo com RAM e SHA válidas.
 - `selectGlobalFlagTargets` emite `pendingSignature`, identificação textual exata de **todos** os alvos pendentes no catálogo, antes de consumir os quatro lugares. A chave de cache remota depende agora dessa assinatura além do estado dos alvos exibidos. Usa os próprios IDs/bitIndex/mapa/posição/ligação, sem hashes aproximados e sem criar dados fictícios.
 - Testes de módulo e integração adicionados. Ensaio V8 do módulo real: os dois alvos selecionados ficaram iguais, a flag de um terceiro passou a recolhida e o total mudou 4→3, com assinatura diferente. Parsing dos quatro ficheiros JavaScript passou. Sem `node --test` integral ou gameplay real.
+
+
+## 2026-10-29 — T50: inventário mundial dos itens visíveis da ROM, sem falsa recolha
+
+- O ledger de 226 mapas continha flags de itens ocultos/fichas/treinadores/Pokémon fixos, mas não um inventário mundial dos objetos de tipo `item` presentes nos cabeçalhos da ROM. Sem este domínio, o PokéGuide podia omitir objetos visíveis de um mapa inteiro.
+- `romCampaignLedger.js` percorre agora todos os objetos `kind:'item'` dos mapas auditados, valida X/Y, regista `mapId`, ordinal, coordenadas e ID de item ROM quando existe. Cada objeto fica com `collected:null` e `removedFromCurrentMap:null`; **não** existe flag global de recolha comprovada neste módulo. Os totais são calculados dos objetos reais, não inventados.
+- `romCampaignObjectives.js` acrescenta `visibleItems` aos desconhecidos dos mapas; a UI mostra 'itens visíveis na ROM (recolha por confirmar)' em vez de 'por recolher'. Estes objetivos entram no índice compacto dos 226 mapas, mas nunca como pendências confirmadas.
+- Testes de ledger, objetivos mundiais e UI acrescentados. Em V8 com código real e perfil ROM sintético de 248 entradas/226 mapas válidos: 2 itens visíveis num mapa contabilizados como 2 desconhecidos e 0 recolhas afirmadas; parsing dos seis JS aprovado. Falta execução Node nativa e prova no jogo.

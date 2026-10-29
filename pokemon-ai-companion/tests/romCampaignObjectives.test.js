@@ -264,3 +264,18 @@ test('twelve detailed goals coexist with an exhaustive 226-map compact index',()
  assert.equal(r.remoteObjectiveIndex[0].mapHopCount,0);
  assert.equal(r.remoteObjectiveIndex[0].route,undefined);
 });
+
+test('visible item ROM objects add unknown world goals without asserting pickup',()=>{
+ const f=fixture();
+ f.ledger.mapProgress[90].visibleItems={objects:2,unresolved:2};
+ const g=campaignObjectives(f);
+ assert.equal(g.verified,true);
+ const v=g.remoteObjectiveIndex.find(x=>x.mapId===90);
+ assert.ok(v,'Visible object unknown map must enter worldwide index');
+ const full=campaignObjectives({...f,maxResults:226});
+ const goal=full.objectives.find(x=>x.mapId===90);
+ assert.equal(goal.pendingFlags,0);
+ assert.equal(goal.unknown.visibleItems,2);
+ assert.equal(goal.kind,'UNRESOLVED_FLAGS_ONLY');
+ assert.equal(goal.locationAccessibleNow,null);
+});

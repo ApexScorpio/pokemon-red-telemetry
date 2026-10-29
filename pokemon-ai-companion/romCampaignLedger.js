@@ -36,11 +36,13 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    mapId:m.mapId,name:m.name||'Mapa #'+m.mapId,
    hiddenItems:{total:0,collected:0,notCollected:0},
    hiddenCoins:{total:0,collected:0,notCollected:0},
+   visibleItems:{objects:0,unresolved:0,collectedConfirmed:0},
    trainers:{objects:0,flagsMapped:0,gatesClosed:0,gatesOpen:0,
      unknown:0,scriptedVictories:0,battlesPlayed:0},
    stationaryPokemon:{flagsMapped:0,gatesClosed:0,gatesOpen:0,
      unknown:0},
-   flagRecords:{hiddenItems:[],hiddenCoins:[],trainers:[],stationaryPokemon:[]},
+   flagRecords:{hiddenItems:[],hiddenCoins:[],visibleItems:[],
+     trainers:[],stationaryPokemon:[]},
    scriptEffectsComplete:false,
    accessCurrentlyProven:false
  }]));
@@ -76,6 +78,26 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
      else summary.hiddenCoins.notCollected++;
    }
    const actors=map.objects.objects;
+   // Static visible objects are present in ROM, but unlike hidden-item flags
+   // there is no corroborated world-wide pickup bitmap here. Never call
+   // them uncollected or collected based on their ROM object definition.
+   for(let ordinal=0;ordinal<actors.length;ordinal++){
+     const actor=actors[ordinal];
+     if(actor?.kind!=='item')continue;
+     if(!Number.isInteger(actor.x)||!Number.isInteger(actor.y)||
+        actor.x<0||actor.y<0||actor.x>255||actor.y>255)
+       return invalid('Coordenada de item visível ROM inválida no mapa #'+map.mapId);
+     summary.visibleItems.objects++;
+     summary.visibleItems.unresolved++;
+     summary.flagRecords.visibleItems.push({
+       recordId:'visible-item-'+map.mapId+'-'+(ordinal+1),
+       objectOrdinal:ordinal+1,x:actor.x,y:actor.y,
+       itemId:Number.isInteger(actor.trainerClassOrItemId)?
+         actor.trainerClassOrItemId:null,
+       collected:null,removedFromCurrentMap:null,
+       source:'ROM_MAP_OBJECT_STATIC_NO_GLOBAL_PICKUP_FLAG'
+     });
+   }
    const trainers=actors.filter(x=>x.kind==='trainer'&&
      !(Number.isInteger(x.trainerClassOrItemId)&&
        x.trainerClassOrItemId>=1&&x.trainerClassOrItemId<=190));
@@ -129,6 +151,7 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
  }
  if(coinCount!==12)return invalid('Tabela das 12 fichas ocultas incompleta: '+coinCount);
  const total={mapHeaders:maps.length,hiddenItems:54,hiddenCoins:12,
+   visibleItemObjects:0,visibleItemsCollectionUnresolved:0,
    hiddenItemsCollected:0,hiddenItemsNotCollected:0,
    hiddenCoinsCollected:0,hiddenCoinsNotCollected:0,
    trainerObjects:0,trainerFlagsMapped:0,trainerGatesClosed:0,
@@ -140,6 +163,8 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    total.hiddenItemsNotCollected+=s.hiddenItems.notCollected;
    total.hiddenCoinsCollected+=s.hiddenCoins.collected;
    total.hiddenCoinsNotCollected+=s.hiddenCoins.notCollected;
+   total.visibleItemObjects+=s.visibleItems.objects;
+   total.visibleItemsCollectionUnresolved+=s.visibleItems.unresolved;
    total.trainerObjects+=s.trainers.objects;
    total.trainerFlagsMapped+=s.trainers.flagsMapped;
    total.trainerGatesClosed+=s.trainers.gatesClosed;
