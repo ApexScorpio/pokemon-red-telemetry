@@ -13,6 +13,7 @@ const {adviseWorld}=require('./romWorldStateAdvisor');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPath}=require('./romCrossMapItemRoute');
+const {diffCampaignProgress}=require('./romCampaignDelta');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
@@ -776,6 +777,8 @@ class RetroArchClient extends EventEmitter {
       this._crossMapRouteKey=null;this._crossMapRoute=null;
       this.latestState.romCrossMapItemRoute={verified:false,found:false,
         reason:'Mapa RAM incoerente; desvios do mapa anterior descartados'};
+      this.latestState.globalCampaignDelta={verified:false,changes:[],
+        reason:'Mapa RAM incoerente; diferença de flags descartada'};
       this.latestState.romWildEncounters=null;
       this.latestState.romMap=null;
       this.latestState.mapEntities=[];
@@ -2488,6 +2491,7 @@ class RetroArchClient extends EventEmitter {
       this.latestState.romCrossMapItemRoute={verified:false,found:false,
         reason:'Sem item ROM com rota local por resolver ou provas de terreno/posição insuficientes'};
     }
+    const previousGlobalLedger=this.latestState.globalCampaignLedger;
     this.latestState.globalCampaignLedger=buildCampaignLedger({
       profile:this.activeRomProfile,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
@@ -2497,6 +2501,29 @@ class RetroArchClient extends EventEmitter {
       hiddenItemHex:hiddenRaw,
       hiddenCoinHex:hiddenCoinsRaw
     });
+    this.latestState.globalCampaignDelta=diffCampaignProgress({
+      previous:previousGlobalLedger,
+      current:this.latestState.globalCampaignLedger,
+      observedAt:this.latestState.lastUpdate
+    });
+    const ledgerSha=this.latestState.globalCampaignLedger?.romSha256||null;
+    if(this._worldChangesSha!==ledgerSha){
+      this._worldChangesSha=ledgerSha;this._worldRecentChanges=[];
+    }
+    if(this.latestState.globalCampaignDelta?.verified===true&&
+       this.latestState.globalCampaignDelta.changes.length){
+      this._worldRecentChanges.push(...this.latestState.globalCampaignDelta.changes
+        .map(change=>({...change,observedAt:this.latestState.lastUpdate})));
+      // RAM timeline is a bounded session view; append-only Markdown history
+      // remains in docs/HISTORICO_GUIA_CAMPANHA.md.
+      this._worldRecentChanges=this._worldRecentChanges.slice(-80);
+    }
+    this.latestState.worldRecentFlagChanges={
+      verified:this.latestState.globalCampaignLedger?.verified===true,
+      romSha256:ledgerSha,
+      events:this._worldRecentChanges||[],
+      actionsProven:false
+    };
     this.latestState.globalCampaignObjectives=campaignObjectives({
       ledger:this.latestState.globalCampaignLedger,
       warpGraph:this.latestState.romWarpGraph,
