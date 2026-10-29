@@ -1107,3 +1107,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - A primeira edição T38 tinha escapado duas vezes os parênteses no regex JavaScript, introduzindo uma falha no teste novo apesar da saída correta do painel. O erro foi reproduzido em V8.
 - Substituída por duas asserções independentes, para `2 transições` e `2 warps, 0 fronteiras`, evitando escapes frágeis. A suite `worldAdvisorPanel.test.js` + `romClientCampaignIntegration.test.js`, usando as fontes literais da branch e adaptadores para `vm`/`fs`, terminou com **44/44 PASS**, sem regressões.
 - O teste continua isolado em V8; Node nativo com dependências de projeto e UI no emulador não foram executados nesta sessão. A `main` e o histórico prévio permanecem intactos.
+
+
+## 2026-10-29 — T39: Strength exige terreno da variante ROM e cache ligada aos hashes
+
+- Corrigido o desfasamento entre `planItemAccess` e o motor Strength: antes um plano Strength podia usar terreno do guia estático sem exigir `romVariantTerrainEvidence.verified`. Agora exige `verified=true`, SHA igual à identidade ROM ativa e terreno com `verified=true`, senão conserva `POSSIBLE_STRENGTH_BARRIER` sem proposta de empurrão.
+- A cache inclui os fingerprints `tileIdsSha256` e `walkingBitsSha256`; quando muda a grelha é recalculada, e um estado de variante não validada não utiliza resultados antigos.
+- Teste adicionado à integração com o bloco real extraído de `retroarchClient.js`. Em V8: duas leituras iguais executam 1 pesquisa, alteração do hash executa uma segunda, invalidação da variante interrompe novas pesquisas e não promove o estado. Parser JS aprovado. Não foram executados `npm test` nativo nem provas de emulador.

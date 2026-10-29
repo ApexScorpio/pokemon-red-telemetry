@@ -1836,9 +1836,18 @@ class RetroArchClient extends EventEmitter {
     // Only inspect RAM-confirmed boulder positions for ROM-matched items
     // that are already classified as POSSIBLE_STRENGTH_BARRIER.
     const verifiedSprites=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true;
+    const strengthVariantVerified=
+      this.latestState.romVariantTerrainEvidence?.verified===true&&
+      this.latestState.romStaticMapGuide?.terrain?.verified===true&&
+      this.latestState.romVariantTerrainEvidence?.romSha256===
+        this.activeRomProfile?.hash?.sha256;
+    const strengthTerrain=strengthVariantVerified?
+      this.latestState.romStaticMapGuide.terrain:null;
     const strengthScope=JSON.stringify([
       this.activeRomProfile?.hash?.sha256,this.latestState.mapId,
       this.latestState.coords,abilityStrength,
+      strengthVariantVerified,
+      strengthTerrain?.tileIdsSha256,strengthTerrain?.walkingBitsSha256,
       verifiedSprites,positionWindow.verified===true,
       (this.latestState.mapEntities||[]).map(a=>
         [a.x,a.y,a.type,a.pictureId])
@@ -1847,7 +1856,7 @@ class RetroArchClient extends EventEmitter {
       this._strengthPlanCacheScope=strengthScope;
       this._strengthPlanCache=new Map();
     }
-    if(itemAccess.verified===true&&verifiedSprites)
+    if(strengthVariantVerified&&itemAccess.verified===true&&verifiedSprites)
       for(const entry of itemAccess.results||[]){
         if(entry.accessStatus!=='POSSIBLE_STRENGTH_BARRIER'||
            accessInput[entry.index]?.romItemCoordinatesVerified!==true)continue;
@@ -1858,7 +1867,7 @@ class RetroArchClient extends EventEmitter {
         let strength=this._strengthPlanCache.get(strengthKey);
         if(!strength){
           strength=planStrengthPushes({
-            terrain:this.latestState.romStaticMapGuide?.terrain,
+            terrain:strengthTerrain,
             romSha256:this.activeRomProfile?.hash?.sha256,
             position:this.latestState.coords,
             target:{x:item.x,y:item.y,hidden},
