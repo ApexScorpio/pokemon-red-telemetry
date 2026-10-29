@@ -21,6 +21,36 @@ function exactEvidence(previous,current){
  const count=entries.filter(m=>RECORD_DOMAINS.every(d=>Array.isArray(m.flagRecords?.[d]))).length;
  if(count===0)return {available:false,changes:[]};
  if(count!==452)return {available:false,reason:'Fichas bit a bit incompletas'};
+ // Verify that any counters supplied by the verified ROM ledger match the
+ // underlying bits. Comparing a malformed summary can silently hide events.
+ for(const row of entries){
+   const f=row.flagRecords;
+   const on=domain=>f[domain].filter(x=>x.flagSet===true).length;
+   const tests=[
+     ['hiddenItems','collected',on('hiddenItems')],
+     ['hiddenItems','notCollected',f.hiddenItems.length-on('hiddenItems')],
+     ['hiddenItems','total',f.hiddenItems.length],
+     ['hiddenCoins','collected',on('hiddenCoins')],
+     ['hiddenCoins','notCollected',f.hiddenCoins.length-on('hiddenCoins')],
+     ['hiddenCoins','total',f.hiddenCoins.length],
+     ['trainers','flagsMapped',f.trainers.length],
+     ['trainers','gatesClosed',on('trainers')],
+     ['trainers','gatesOpen',f.trainers.length-on('trainers')],
+     ['trainers','scriptedVictories',f.trainers.filter(x=>
+       x.flagSet===true&&x.outcomeEvidence==='SCRIPT_VICTORY').length],
+     ['trainers','battlesPlayed',f.trainers.filter(x=>
+       x.flagSet===true&&x.outcomeEvidence==='BATTLE_WAS_PLAYED').length],
+     ['stationaryPokemon','flagsMapped',f.stationaryPokemon.length],
+     ['stationaryPokemon','gatesClosed',on('stationaryPokemon')],
+     ['stationaryPokemon','gatesOpen',f.stationaryPokemon.length-on('stationaryPokemon')]
+   ];
+   for(const [domain,field,expected] of tests){
+     const number=row[domain]?.[field];
+     if(number!==undefined&&(!good(number)||number!==expected))
+       return {reason:'Contador '+domain+'.'+field+
+         ' diverge dos bits ROM/RAM no mapa '+row.mapId};
+   }
+ }
  const before=new Map(previous.mapProgress.map(m=>[m.mapId,m]));
  const changes=[];
  for(const row of current.mapProgress){
