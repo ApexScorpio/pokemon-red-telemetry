@@ -168,3 +168,31 @@ test('recent flag changes keep victory and gate closure distinct, without causal
  s.worldRecentFlagChanges.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/MUDANÇAS DE FLAGS/);
 });
+
+test('reference event flags and Route 4 toggle remain clearly conditional',()=>{
+ const s=live();
+ s.romWorldEventAtlas={
+   verified:true,romSha256:s.worldAdvisor.romSha256,
+   summary:{namedEventBits:507,namedEventBitsSet:2,
+     referenceToggleBits:228,toggleRemovedFlagBitsSet:1},
+   milestones:[
+     {name:'EVENT_GOT_HM01',flagSet:true},
+     {name:'EVENT_GOT_HM03',flagSet:false}
+   ],
+   toggleFlags:[{
+     mapId:15,name:'TOGGLE_ROUTE_4_ITEM',removedFlagSet:true
+   },{
+     mapId:3,name:'TOGGLE_CERULEAN_RIVAL',removedFlagSet:true
+   }]
+ };
+ const output=render(s).body.textContent;
+ assert.match(output,/Eventos nomeados com bit ativo: 2\/507/);
+ assert.match(output,/remoção de objetos ativas: 1\/228/);
+ assert.match(output,/HM01 Cut: bit ativo/);
+ assert.match(output,/HM03 Surf: bit inativo/);
+ assert.match(output,/ROUTE 4 ITEM: remoção marcada na RAM/);
+ assert.doesNotMatch(output,/CERULEAN RIVAL/);
+ assert.match(output,/não certificam conclusão de história/);
+ s.romWorldEventAtlas.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/EVENTOS DO JOGO: BITS/);
+});
