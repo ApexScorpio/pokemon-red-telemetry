@@ -202,3 +202,20 @@ test('only verified static mart lists add optional eighth tuple element',()=>{
  const invalid=evaluate(f);
  assert.equal(invalid.mapProgress[19].interactionRecords.npcs[0].length,7);
 });
+
+test('mart tuple adds audited names and base ROM prices only for exact map and SHA',()=>{
+ const f=rig();
+ f.profile.world.maps.data[56].objects.objects=[{
+   kind:'npc',x:2,y:3,textId:1,textPointerEvidence:{
+     verified:true,command:'SCRIPT_MART',romBank:0,textPointerCpu:0x24ea,
+     mart:{verified:true,itemIds:[4,20,29,11,12,14,15]}}}];
+ const r=evaluate(f),row=r.mapProgress[56].interactionRecords.npcs[0];
+ assert.equal(r.verified,true);
+ assert.equal(row.length,9);
+ assert.equal(row[8][0].name,'POKE_BALL');
+ assert.equal(row[8][0].baseRomPricePokedollars,200);
+ assert.equal(row[8][0].priceIsLive,false);
+ f.profile.world.maps.data[56].objects.objects[0].textPointerEvidence.mart.itemIds.reverse();
+ const changed=evaluate(f);
+ assert.equal(changed.mapProgress[56].interactionRecords.npcs[0].length,8);
+});

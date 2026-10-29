@@ -5,11 +5,13 @@ const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {trainerFlagsForCurrentMap}=require('./romTrainerEvents');
 const {stationaryPokemonEvents}=require('./romStaticEncounterEvents');
 const {fromKnownRom,decodeHiddenCoins}=require('./romEventState');
+const {bindMartPrices}=require('./romMartPriceBinding');
+const auditedEconomy=require('./data/gen1EconomyTradesAudited.json');
 const goodHex=(xs,n)=>Array.isArray(xs)&&xs.length===n&&
  xs.every(x=>typeof x==='string'&&/^[\da-f]{2}$/i.test(x));
 const bit=(xs,i)=>((parseInt(xs[i>>3],16)>>(i&7))&1)===1;
 // Keep the original four-field tuple for profiles without text evidence.
-const interactionTuple=(ordinal,x,y,textId,evidence)=>{
+const interactionTuple=(ordinal,x,y,textId,evidence,romSha256,mapId)=>{
  const tuple=[ordinal,x,y,textId];
  if(evidence?.verified===true){
    tuple.push(evidence.command,evidence.romBank,evidence.textPointerCpu);
@@ -17,7 +19,12 @@ const interactionTuple=(ordinal,x,y,textId,evidence)=>{
    if(evidence.command==='SCRIPT_MART'&&evidence.mart?.verified===true&&
       Array.isArray(items)&&items.length>0&&items.length<=32&&
       items.every(id=>Number.isInteger(id)&&id>0&&id<255))
+   {
      tuple.push([...items]);
+     const pricing=bindMartPrices({romSha256,mapId,itemIds:items,
+       catalogue:auditedEconomy});
+     if(pricing.verified===true)tuple.push(pricing.offers);
+   }
  }
  return tuple;
 };
@@ -115,7 +122,7 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
      summary.interactionRecords.signs.push(interactionTuple(
        ordinal+1,sign.x,sign.y,
        Number.isInteger(sign.textId)&&sign.textId>=0&&sign.textId<=255?
-         sign.textId:null,sign.textPointerEvidence));
+         sign.textId:null,sign.textPointerEvidence,sha,map.mapId));
    }
    for(let ordinal=0;ordinal<actors.length;ordinal++){
      const actor=actors[ordinal];
@@ -132,7 +139,7 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
      summary.interactionRecords.npcs.push(interactionTuple(
        ordinal+1,actor.x,actor.y,
        Number.isInteger(actor.textId)&&actor.textId>=0&&actor.textId<=255?
-         actor.textId:null,actor.textPointerEvidence));
+         actor.textId:null,actor.textPointerEvidence,sha,map.mapId));
    }
    // Static visible objects are present in ROM, but unlike hidden-item flags
    // there is no corroborated world-wide pickup bitmap here. Never call

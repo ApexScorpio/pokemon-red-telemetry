@@ -1188,8 +1188,15 @@ function renderWorldAdvisor(state) {
            !items.every(id=>Number.isInteger(id)&&id>0&&id<255)||
            !Number.isInteger(row[1])||!Number.isInteger(row[2]))
           continue;
+        const prices=Array.isArray(row[8])&&row[8].length===items.length&&
+          row[8].every((offer,i)=>offer?.id===items[i]&&
+            typeof offer.name==='string'&&offer.name.length>0&&
+            (offer.baseRomPricePokedollars===null||
+             (Number.isInteger(offer.baseRomPricePokedollars)&&
+              offer.baseRomPricePokedollars>0))&&offer.priceIsLive===false)?
+          row[8]:null;
         martRows.push({mapId:m.mapId,name:m.name,x:row[1],y:row[2],
-          ordinal:row[0],items:[...items],mapHopCount:goal.mapHopCount});
+          ordinal:row[0],items:[...items],prices,mapHopCount:goal.mapHopCount});
       }
     }
     if(martRows.length){
@@ -1199,7 +1206,13 @@ function renderWorldAdvisor(state) {
       for(const shop of martRows.slice(0,4)){
         summary.push('• '+shop.name+' (#'+shop.mapId+
           ') X:'+shop.x+' Y:'+shop.y+
-          ' • Artigos ROM ('+shop.items.length+'): '+shop.items.join(', ')+
+          ' • Artigos ROM ('+shop.items.length+'): '+(
+            shop.prices?
+              shop.prices.map(offer=>offer.name+' #'+offer.id+
+                (offer.baseRomPricePokedollars!==null?
+                  ' — '+offer.baseRomPricePokedollars+
+                  ' Poké$ (preço-base ROM)':' — preço-base ROM não confirmado'))
+                .join(', '):shop.items.join(', '))+
           ' — sem prova de compra, preço ou stock atual; '+
           (Number.isInteger(shop.mapHopCount)?
             shop.mapHopCount+' transições estáticas hipotéticas':

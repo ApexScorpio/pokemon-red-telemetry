@@ -651,3 +651,25 @@ test('world ROM mart lists show exact article IDs without invented prices or ava
  s.globalCampaignLedger.romSha256='0'.repeat(64);
  assert.doesNotMatch(render(s).body.textContent,/LOJAS IDENTIFICADAS NA ROM/);
 });
+
+test('world mart displays authenticated ROM base prices and names, never live quote',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.globalCampaignObjectives={verified:true,romSha256:sha,
+   sourceMapId:15,mapCount:226,objectiveIndexCount:2,
+   remoteObjectiveIndex:[{mapId:15,mapHopCount:0},{mapId:56,mapHopCount:2}],
+   objectives:[],mapsWithPending:0,mapsWithUnknown:1};
+ s.globalCampaignLedger={verified:true,romSha256:sha,mapCount:226,
+   mapProgress:Array.from({length:226},(_,id)=>({
+     mapId:id,name:'Mapa '+id,visibleItems:{unresolved:0},
+     flagRecords:{visibleItems:[]},interactions:{unresolved:id===56?1:0},
+     interactionRecords:{npcs:id===56?[[
+       1,3,4,7,'SCRIPT_MART',0,0x24ea,[4,20],
+       [{id:4,name:'POKE_BALL',baseRomPricePokedollars:200,priceIsLive:false},
+        {id:20,name:'POTION',baseRomPricePokedollars:300,priceIsLive:false}]
+     ]]:[],signs:[]}
+   }))};
+ const result=render(s).body.textContent;
+ assert.match(result,/POKE_BALL #4 — 200 Poké\$ \(preço-base ROM\)/);
+ assert.match(result,/POTION #20 — 300 Poké\$ \(preço-base ROM\)/);
+ assert.match(result,/sem prova de compra, preço ou stock atual/);
+});
