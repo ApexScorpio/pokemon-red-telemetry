@@ -14,7 +14,8 @@ const reject=reason=>({verified:false,reason,exits:[],
 function localExitAccess({profile,warpGraph,mapId,position,
  mapSnapshotVerified=false,positionVerified=false,modeByte=null,
  canCut=null,canSurf=null,spritesVerified=false,mapEntities=[],
- elevatorChoices=null,lastMapGuide=null,maxResults=96}={}){
+ elevatorChoices=null,lastMapGuide=null,outdoorAlignment=null,
+ maxResults=96}={}){
  const sha=String(profile?.hash?.sha256||'').toLowerCase();
  const atlas=profile?.world?.terrainAtlas;
  if(!isKnownAuditedRomSha(sha)||profile?.unknownLayout===true||
@@ -103,11 +104,24 @@ function localExitAccess({profile,warpGraph,mapId,position,
    for(const e of outdoors.edges){
      if(e.sourceMapId!==mapId||!validId(e.destinationMapId))continue;
      {
+       const pair=outdoorAlignment?.verified===true&&
+         outdoorAlignment.romSha256===sha?
+         outdoorAlignment.connections.find(x=>
+           x.sourceMapId===mapId&&x.destinationMapId===e.destinationMapId&&
+           x.direction===e.direction):null;
+       const other=pair?atlas.maps.find(m=>m.mapId===e.destinationMapId):null;
+       const destinationGrid=other?
+         terrainBytes({...other,verified:true},sha):null;
        const border=outdoorBoundaryCandidates({
          grid,direction:e.direction,reachNormal:base,reachCut:cut,
-         reachSurf:surf,reachBoth:both,canCut,canSurf,maxCandidates:4
+         reachSurf:surf,reachBoth:both,canCut,canSurf,
+         alignment:pair,destinationGrid,maxCandidates:4
        });
        const status=!border.verified?'BORDER_CROSSING_TILE_NOT_VERIFIED':
+         border.neighborAlignmentVerified&&border.reachableWithoutNewAbilities>0?
+           'BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED':
+         border.neighborAlignmentVerified&&border.requiresHypotheticalAbility>0?
+           'BORDER_ALIGNED_REQUIRES_CAPABILITY_TRANSFER_UNVERIFIED':
          border.reachableWithoutNewAbilities>0?
            'BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN':
          border.requiresHypotheticalAbility>0?
@@ -121,7 +135,10 @@ function localExitAccess({profile,warpGraph,mapId,position,
              borderTile:border.borderTiles[0].tile,
              steps:border.borderTiles[0].steps}:null,
          accessibleNow:null,routeNavigableNowProven:false,
-         passageGeometryVerified:false,neighborAlignmentVerified:false});
+         passageGeometryVerified:false,
+         neighborAlignmentVerified:border.neighborAlignmentVerified===true,
+         compiledRomPointerFormulaMatched:
+           border.compiledRomPointerFormulaMatched===true});
      }
    }
  if(elevatorChoices?.verified===true&&elevatorChoices.romSha256===sha&&
@@ -148,6 +165,6 @@ function localExitAccess({profile,warpGraph,mapId,position,
    exits:exits.slice(0,maxResults),
    accessNowProven:false,firstMapTerrainCorroborated:true,
    snapshotAtomicVerified:false,
-   note:'A primeira zona inclui tiles candidatos nas bordas; falta validar o alinhamento entre mapas, scripts, comandos, coordenadas posteriores e pisos.'};
+   note:'A primeira zona inclui tiles candidatos nas bordas. Se os ponteiros ROM conferirem, alinha origem/destino; scripts, travessia real e condições permanecem por provar.'};
 }
 module.exports={localExitAccess};
