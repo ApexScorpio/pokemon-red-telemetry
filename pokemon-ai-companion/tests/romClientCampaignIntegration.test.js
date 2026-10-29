@@ -89,10 +89,13 @@ test('all new local and multi-map route evidence is ephemeral and invalidated',(
  const sourceBody=method('persistState','loadPersistedActionHistory');
  assert.match(sourceBody,/'romLocalExitAccess'/);
  assert.match(sourceBody,/'romWorldDetourCycles'/);
+ assert.match(sourceBody,/'romVariantTerrainEvidence'/);
  const invalidation=method('invalidateWorldEvidence','loadPersistedState');
  assert.match(invalidation,/romLocalExitAccess=\{verified:false/);
  assert.match(invalidation,/romWorldDetourCycles=\{verified:false/);
+ assert.match(invalidation,/romVariantTerrainEvidence=\{verified:false/);
  assert.match(invalidation,/this\._worldDetourCyclesKey=null/);
- assert.match(source,/this\.latestState\.romLocalExitAccess=localExitAccess\(/);
+ assert.match(source,/localExitAccess\(\{/);
+ assert.match(source,/this\.latestState\.romVariantTerrainEvidence=verifyTerrainVariant\(/);
  assert.match(source,/this\._worldDetourCycles=suggestWorldDetours\(/);
 });
