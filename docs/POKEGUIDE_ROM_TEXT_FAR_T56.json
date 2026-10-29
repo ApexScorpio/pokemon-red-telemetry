@@ -1,0 +1,23 @@
+{
+  "schema": "pokeguide-rom-tx-far-target-audit-v1",
+  "date": "2026-10-29",
+  "source": "Three original 1MiB ROMs read with native Node.js v22.16.0 and independently cross-checked in Python; no ROM files committed",
+  "sha256": [
+    "5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b",
+    "2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d",
+    "aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db"
+  ],
+  "perRom": {
+    "totalInteractions": 674,
+    "directEntries": 616,
+    "unresolvedDirectEntries": 58,
+    "txFarOpcode": 23,
+    "txFarEntries": 409,
+    "txFarSecondBankPointersValid": 409,
+    "txFarTargetsStartWithTxStart": 409,
+    "txFarUnresolved": 0
+  },
+  "textCommandSource": "https://github.com/pret/pokered/blob/master/macros/scripts/text.asm",
+  "semanticsDecoded": false,
+  "gameplayVerified": false
+}

@@ -16,3 +16,11 @@ test('text pointer CLI requires all three variants',()=>{
  assert.throws(()=>main([]),/três caminhos/);
  assert.throws(()=>main(['only-one']),/três caminhos/);
 });
+
+test('all 409 verified TX_FAR command entries need real ROM-bank destinations',()=>{
+ const count=expected.firstBytes['17'];
+ assert.equal(count,409);
+ assert.equal(expected.interactions,expected.resolved+expected.unresolved);
+ // A real binary with unknown SHA is rejected before decoding anything.
+ assert.throws(()=>auditTextPointers(Buffer.alloc(1048576)),/SHA-256/);
+});

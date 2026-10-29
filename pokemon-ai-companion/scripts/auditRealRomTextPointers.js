@@ -12,6 +12,7 @@ function auditTextPointers(rom){
   const world=auditWorldObjects(rom),bankTable=world.counts.bankTableOffset;
   const counts={interactions:0,npcs:0,signs:0,resolved:0,unresolved:0};
   const firstBytes={},unresolvedByMap=[],sourceSamples=[];
+  const far={total:0,resolved:0,startText:0,invalid:0};
   for(let mapId=0;mapId<MAPS;mapId++){
     const bank=rom[bankTable+mapId],h=valid(bank,u16(rom,0x1ae+mapId*2),rom.length);
     if(h===null||rom[h]>24||rom[h+1]<1||rom[h+1]>80||
@@ -55,6 +56,15 @@ function auditTextPointers(rom){
         counts.resolved++;
         const code=rom[dest].toString(16).padStart(2,'0');
         firstBytes[code]=(firstBytes[code]||0)+1;
+        // pret/pokered TX_FAR ($17): [opcode, CPU low, CPU high, bank].
+        // A far target validates a text start, never the dialogue outcome.
+        if(code==='17'){
+          far.total++;
+          const target=dest+4<=(bank+1)*BANK?
+            valid(rom[dest+3],u16(rom,dest+1),rom.length):null;
+          if(target===null)far.invalid++;
+          else{far.resolved++;if(rom[target]===0x00)far.startText++;}
+        }
         if(sourceSamples.length<8)sourceSamples.push({mapId,kind:e.kind,
           ordinal:e.ordinal,x:e.x,y:e.y,textId:e.textId,
           entryBank:bank,entryFileOffset:dest,firstByteHex:code});
@@ -71,7 +81,9 @@ function auditTextPointers(rom){
       ' divergente: '+firstBytes[code]+' != '+count);
   if(Object.keys(firstBytes).length!==Object.keys(expected.firstBytes).length)
     throw Error('Categorias desconhecidas de bytes iniciais de texto');
-  return {verified:true,romSha256:world.sha256,counts,firstBytes,
+  if(far.total!==409||far.resolved!==409||far.startText!==409||far.invalid!==0)
+    throw Error('Destino far text de TX_FAR não corroborado na ROM');
+  return {verified:true,romSha256:world.sha256,counts,firstBytes,far,
     unresolvedExamples:unresolvedByMap.slice(0,6),sourceSamples,
     staticTextPointerVerified:counts.resolved,
     dialogueEffectsVerified:false,liveInteractionVerified:false,
