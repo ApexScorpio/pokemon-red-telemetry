@@ -975,3 +975,11 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - `public/app.js` apresenta agora o requisito de capacidade no tile de destino, além do tipo de terreno e do aviso de que a transferência não foi comprovada.
 - Criado `tests/romOutdoorDestinationCapability.test.js` com três casos para água de destino, Cut de destino e terra comum, todos mantendo `borderTransitionProven:false`. **3/3 aprovados em V8 isolado com simulação explícita dos módulos de procura de percurso e de alinhamento; não são provas E2E nem substituem Node/ROM reais.**
 - A validação com binário ROM ativo e emulador continua pendente. O projeto permanece PARCIAL.
+
+
+## 2026-10-29 — T25: rotas multimapa através de fronteiras alinhadas
+
+- A busca geométrica `romCrossMapItemRoute.js` passa a considerar as 78 fronteiras exteriores de Kanto, além dos warps, quando a identidade SHA, as referências ROM, os offsets e a dimensão dos mapas coincidem. O tile de origem só é elegível com caminho local; o destino tem de ser terreno terrestre caminhável. Água, Cut e scripts dinâmicos na chegada não são fingidos como passagem livre.
+- `retroarchClient.js` passa o alinhamento ROM já disponível e invalida a cache quando a prova de alinhamento muda; `public/app.js` mostra separadamente warps, fronteiras e coordenada de chegada teórica, sem afirmar travessia observada.
+- Acrescentados três testes de regressão em `tests/romCrossMapItemRoute.test.js`: desvio exterior com duas transições, SHA incoerente, chegada sobre água. Corrigida a indicação de esgotamento do orçamento da busca. Mantêm-se `accessibleNow:null` e `routeNavigableNowProven:false`.
+- Verificação desta etapa: parsing JavaScript dos ficheiros alterados; testes de regressão acrescentados mas `npm test` nativo e E2E com ROM/emulador continuam pendentes. O progresso do projeto continua PARCIAL.

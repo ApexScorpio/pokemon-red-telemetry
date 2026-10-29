@@ -76,3 +76,51 @@ test('route is not confused with a local unreachable item',()=>{
  const r=findCrossMapItemPath(f);
  assert.equal(r.found,false);
 });
+
+function outdoorCase(){
+ const f=fixture();f.warpGraph.edges[0].status='LAST_MAP_RAM_REQUIRED';
+ f.warpGraph.edges[1].status='LAST_MAP_RAM_REQUIRED';
+ const edges=[{sourceMapId:0,destinationMapId:1,direction:'west'},
+              {sourceMapId:1,destinationMapId:0,direction:'south'}];
+ for(let i=0;i<76;i++)edges.push({
+   sourceMapId:10+i,destinationMapId:11+i,direction:'east'});
+ f.warpGraph.outdoorConnections={verified:true,romSha256:sha,
+   edgeCount:78,reciprocalConnections:78,edges};
+ f.outdoorAlignment={verified:true,romSha256:sha,
+   verifiedConnections:78,descriptorPointerFormulaVerified:true,
+   referenceOffsetCorroborated:true,
+   connections:edges.map(e=>({...e,offsetBlocks:0,
+     sourceWidthTiles:5,sourceHeightTiles:5,destinationWidthTiles:5,
+     destinationHeightTiles:5,descriptorPointerMatches:true,
+     referenceOffsetCorroborated:true}))};
+ return f;
+}
+test('aligned outdoor borders form a conditional two-border detour',()=>{
+ const r=findCrossMapItemPath(outdoorCase());
+ assert.equal(r.verified,true);
+ assert.equal(r.found,true,r.reason);
+ assert.equal(r.transitionCount,2);
+ assert.equal(r.warpTransitions,0);
+ assert.equal(r.outdoorTransitions,2);
+ assert.deepEqual(r.segments.map(s=>s.kind),['OUTDOOR_BORDER','OUTDOOR_BORDER']);
+ assert.deepEqual(r.segments[0].destinationTile,{x:4,y:2});
+ assert.equal(r.accessibleNow,null);
+ assert.equal(r.routeNavigableNowProven,false);
+});
+test('wrong outdoor alignment SHA cannot propose a crossing',()=>{
+ const f=outdoorCase();f.outdoorAlignment.romSha256='0'.repeat(64);
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,true);assert.equal(r.found,false);
+ assert.equal(r.outdoorAlignmentUsed,false);
+});
+test('destination water without a proven landing never becomes free access',()=>{
+ const f=outdoorCase(),m=f.terrainAtlas.maps[0];
+ const tiles=Buffer.from(m.tileIdsBase64,'base64');
+ const bits=Buffer.from(m.walkingBitsBase64,'base64');
+ for(const x of [3,4]){tiles[x]=0x14;bits[x>>3]&=~(1<<(x&7));}
+ m.tileIdsBase64=tiles.toString('base64');
+ m.walkingBitsBase64=bits.toString('base64');
+ m.tileIdsSha256=hash(tiles);m.walkingBitsSha256=hash(bits);
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.found,false);assert.equal(r.accessibleNow,null);
+});

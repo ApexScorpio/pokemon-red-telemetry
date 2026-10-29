@@ -4,6 +4,7 @@
 // candidate path nor failure to find one proves actual access or blockage.
 const {terrainBytes,computeReach,candidatePath}=require('./romItemReachability');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
+const {mapArrival}=require('./romOutdoorAlignment');
 const byte=x=>Number.isInteger(x)&&x>=0&&x<248;
 const pos=p=>Number.isInteger(p?.x)&&Number.isInteger(p?.y)&&p.x>=0&&p.y>=0;
 const reject=reason=>({verified:false,found:false,reason,
@@ -36,7 +37,7 @@ function exactTilePath(reach,p){
  return best;
 }
 function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
- sourceMapId,position,target,positionVerified=false,
+ sourceMapId,position,target,outdoorAlignment=null,positionVerified=false,
  currentModeByte=null,canCut=false,canSurf=false,
  spritesVerified=false,currentMapEntities=[],maxTransitions=10,
  maxStates=180}={}){
@@ -77,6 +78,40 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
    const verified=terrainBytes({...m,verified:true},sha);
    grids.set(id,verified);return verified;
  };
+
+ // Only trust edges independently aligned against the same audited ROM SHA.
+ const outdoor=warpGraph.outdoorConnections;
+ const alignmentOK=outdoorAlignment?.verified===true&&
+   outdoorAlignment.romSha256===sha&&
+   outdoorAlignment.verifiedConnections===78&&
+   outdoorAlignment.descriptorPointerFormulaVerified===true&&
+   outdoorAlignment.referenceOffsetCorroborated===true&&
+   Array.isArray(outdoorAlignment.connections)&&
+   outdoorAlignment.connections.length===78&&outdoor?.verified===true&&
+   outdoor.romSha256===sha&&outdoor.edgeCount===78&&
+   outdoor.reciprocalConnections===78&&Array.isArray(outdoor.edges)&&
+   outdoor.edges.length===78;
+ const borderLinks=new Map();
+ if(alignmentOK){
+   const keys=new Set(outdoor.edges.map(e=>
+     e.sourceMapId+':'+e.direction+':'+e.destinationMapId));
+   if(keys.size===78&&outdoorAlignment.connections.every(e=>
+     keys.has(e.sourceMapId+':'+e.direction+':'+e.destinationMapId)&&
+     e.descriptorPointerMatches===true&&
+     e.referenceOffsetCorroborated===true&&
+     Number.isInteger(e.offsetBlocks)&&Math.abs(e.offsetBlocks)<=100&&
+     ['north','south','east','west'].includes(e.direction)&&
+     maps.has(e.sourceMapId)&&maps.has(e.destinationMapId)&&
+     maps.get(e.sourceMapId).width===e.sourceWidthTiles&&
+     maps.get(e.sourceMapId).height===e.sourceHeightTiles&&
+     maps.get(e.destinationMapId).width===e.destinationWidthTiles&&
+     maps.get(e.destinationMapId).height===e.destinationHeightTiles)){
+     for(const e of outdoorAlignment.connections){
+       if(!borderLinks.has(e.sourceMapId))borderLinks.set(e.sourceMapId,[]);
+       borderLinks.get(e.sourceMapId).push(e);
+     }
+   }
+ }
  const first=gridFor(sourceMapId);
  if(!first||position.x>=first.width||position.y>=first.height)
   return reject('Coordenadas RAM fora do terreno da ROM de origem');
@@ -84,8 +119,8 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
  const seen=new Set([key(sourceMapId,position.x,position.y)]);
  const queue=[{mapId:sourceMapId,x:position.x,y:position.y,
    segments:[],steps:0}];
- let explored=0;
- for(let cursor=0;cursor<queue.length&&explored<maxStates;cursor++){
+ let explored=0,cursor=0;
+ for(;cursor<queue.length&&explored<maxStates;cursor++){
    const state=queue[cursor],grid=gridFor(state.mapId);
    explored++;
    if(!grid||state.x>=grid.width||state.y>=grid.height)continue;
@@ -101,7 +136,9 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
      if(last)return {verified:true,found:true,sourceMapId,
        target:{mapId:target.mapId,x:target.x,y:target.y,
          hidden:target.hidden===true},
-       romSha256:sha,warpTransitions:state.segments.length,
+       romSha256:sha,transitionCount:state.segments.length,
+       warpTransitions:state.segments.filter(e=>e.kind!=='OUTDOOR_BORDER').length,
+       outdoorTransitions:state.segments.filter(e=>e.kind==='OUTDOOR_BORDER').length,
        theoreticalSteps:state.steps+last.steps,
        segments:state.segments,finalLocalRoute:last,
        nextTerrainTile:state.segments[0]?.localRoute?.nextStep||
@@ -110,7 +147,9 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
        routeNavigableNowProven:false,accessibleNow:null,
        scriptsAndDynamicBarriersVerified:false,
        snapshotAtomicVerified:false,
-       scope:'STATIC_WARPS_ONLY_NO_OUTDOOR_CONNECTIONS',
+       scope:state.segments.some(e=>e.kind==='OUTDOOR_BORDER')?
+         'STATIC_WARPS_AND_ALIGNED_OUTDOOR_BORDER_HYPOTHESES':
+         'STATIC_WARPS_ONLY_NO_OUTDOOR_CONNECTIONS',
        note:'Hipótese topológica e de terreno ROM. Falta validar portas, NPC, flags, Surf/Cut e warps ativos.'};
    }
    if(state.segments.length>=maxTransitions)continue;
@@ -130,12 +169,44 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
          sourceWarpTile:{x:e.x,y:e.y},
          destinationMapId:landing.mapId,destinationWarpIndex:landing.warpIndex,
          landing:{x:landing.x,y:landing.y},localRoute:approach,
-         transitionGuaranteed:false}]});
+         kind:'WARP',transitionGuaranteed:false}]});
+   }
+   // No gameplay crossing is proven here. Destination must be static land:
+   // Cut trees and Surf water require separate transition-state evidence.
+   for(const edge of borderLinks.get(state.mapId)||[]){
+     const dest=gridFor(edge.destinationMapId);
+     if(!dest)continue;
+     const ns=edge.direction==='north'||edge.direction==='south';
+     const length=ns?grid.width:grid.height;
+     for(let axis=0;axis<length;axis++){
+       const from=ns?{x:axis,y:edge.direction==='north'?0:grid.height-1}:
+         {x:edge.direction==='west'?0:grid.width-1,y:axis};
+       const arrival=mapArrival(edge.direction,edge.offsetBlocks,from,
+         dest.width,dest.height);
+       if(!arrival)continue;
+       const i=arrival.y*dest.width+arrival.x,tile=dest.tiles[i];
+       if(!(dest.bits[i>>3]&(1<<(i&7)))||tile===0x14||
+          tile===0x48||(dest.tilesetId===0&&tile===0x3d))continue;
+       const localRoute=exactTilePath(reach,from);
+       if(!localRoute)continue;
+       const destKey=key(edge.destinationMapId,arrival.x,arrival.y);
+       if(seen.has(destKey)||queue.length>=maxStates*4)continue;
+       seen.add(destKey);
+       queue.push({mapId:edge.destinationMapId,x:arrival.x,y:arrival.y,
+         segments:[...state.segments,{
+           kind:'OUTDOOR_BORDER',sourceMapId:state.mapId,
+           sourceBorderTile:from,destinationMapId:edge.destinationMapId,
+           destinationTile:arrival,direction:edge.direction,
+           localRoute,romAlignmentVerified:true,
+           transitionGuaranteed:false}],
+         steps:state.steps+localRoute.steps});
+     }
    }
  }
  return {verified:true,found:false,romSha256:sha,sourceMapId,
    target:{mapId:target.mapId,x:target.x,y:target.y},
-   exploredStates:explored,maxStatesExceeded:queue.length>maxStates,
+   exploredStates:explored,maxStatesExceeded:cursor<queue.length,
+   outdoorAlignmentUsed:borderLinks.size>0,
    accessibleNow:null,routeNavigableNowProven:false,
    reason:'Sem percurso neste cenário de terreno, warps estáticos e capacidades consideradas. '+
      'Isso não prova bloqueio: faltam ligações exteriores, Cut/Surf dinâmicos, elevadores e scripts.'};

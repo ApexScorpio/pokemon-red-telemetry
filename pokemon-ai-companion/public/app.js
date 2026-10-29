@@ -1038,10 +1038,20 @@ function renderWorldAdvisor(state) {
       const first=detour.segments?.[0];
       if(first){
         lines.push('  ↳ Desvio multimapa TEÓRICO: '+
-          detour.warpTransitions+' warps e '+detour.theoreticalSteps+
+          (detour.transitionCount??detour.warpTransitions)+' transições ('+
+          detour.warpTransitions+' warps, '+(detour.outdoorTransitions||0)+
+          ' fronteiras) e '+detour.theoreticalSteps+
           ' passos geométricos (acesso NÃO garantido)');
-        lines.push('  ↳ Primeira saída: X:'+first.sourceWarpTile.x+
-          ' Y:'+first.sourceWarpTile.y+' para mapa #'+first.destinationMapId);
+        const departure=first.kind==='OUTDOOR_BORDER'?
+          first.sourceBorderTile:first.sourceWarpTile;
+        if(departure)lines.push('  ↳ Primeira saída '+(
+          first.kind==='OUTDOOR_BORDER'?'pela fronteira '+first.direction:
+          'por warp')+': X:'+departure.x+' Y:'+departure.y+
+          ' para mapa #'+first.destinationMapId);
+        if(first.kind==='OUTDOOR_BORDER'&&first.destinationTile)
+          lines.push('  ↳ Chegada ROM candidata: X:'+
+            first.destinationTile.x+' Y:'+first.destinationTile.y+
+            ' (passagem NÃO observada)');
         if(detour.nextTerrainTile)lines.push('  ↳ Primeiro tile candidato: X:'+
           detour.nextTerrainTile.x+' Y:'+detour.nextTerrainTile.y);
       }

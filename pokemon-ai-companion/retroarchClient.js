@@ -2567,12 +2567,14 @@ class RetroArchClient extends EventEmitter {
         this.activeRomProfile.hash?.sha256,this.latestState.mapId,
         this.latestState.coords,detourTarget.x,detourTarget.y,
         modeWindow.verified?modeWindow.modeByte:null,
-        abilityCut===true,abilitySurf===true,spritePositions]);
+        abilityCut===true,abilitySurf===true,spritePositions,
+        this.latestState.romOutdoorAlignment?.verified===true]);
       if(this._crossMapRouteKey!==key){
         this._crossMapRoute=findCrossMapItemPath({
           romSha256:this.activeRomProfile.hash?.sha256,
           terrainAtlas:this.activeRomProfile.world.terrainAtlas,
           warpGraph:this.latestState.romWarpGraph,
+          outdoorAlignment:this.latestState.romOutdoorAlignment,
           sourceMapId:this.latestState.mapId,position:this.latestState.coords,
           target:{mapId:this.latestState.mapId,x:detourTarget.x,
             y:detourTarget.y,hidden:detourTarget.hiddenIndex!==undefined||
