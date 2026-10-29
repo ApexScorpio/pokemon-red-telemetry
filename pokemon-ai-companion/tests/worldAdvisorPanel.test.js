@@ -139,3 +139,32 @@ test('encounter weights are shown as conditional species distributions, not per-
  assert.match(text,/se ocorrer um encontro/);
  assert.doesNotMatch(text,/39\.84% por passo/);
 });
+
+test('cross-map detour appears only for same SHA and exact item coordinates',()=>{
+ const s=live();
+ s.romCrossMapItemRoute={verified:true,found:true,romSha256:s.worldAdvisor.romSha256,
+   sourceMapId:15,target:{mapId:15,x:5,y:3},
+   warpTransitions:2,theoreticalSteps:29,
+   segments:[{sourceWarpTile:{x:3,y:5},destinationMapId:6}],
+   nextTerrainTile:{x:4,y:3}};
+ let text=render(s).body.textContent;
+ assert.match(text,/Desvio multimapa TEÓRICO: 2 warps/);
+ assert.match(text,/acesso NÃO garantido/);
+ s.romCrossMapItemRoute.target.x=99;
+ text=render(s).body.textContent;
+ assert.doesNotMatch(text,/Desvio multimapa TEÓRICO/);
+});
+test('recent flag changes keep victory and gate closure distinct, without causal claims',()=>{
+ const s=live();
+ s.worldRecentFlagChanges={verified:true,romSha256:s.worldAdvisor.romSha256,
+   events:[{kind:'TRAINER_GATE_FLAG_RAISED',amount:1,mapId:15,
+      mapName:'Route 4'},
+     {kind:'SCRIPT_VICTORY_FLAG_RAISED',amount:1,mapId:3,
+      mapName:'Cerulean City'}]};
+ const text=render(s).body.textContent;
+ assert.match(text,/portão\/evento de treinador fechado/);
+ assert.match(text,/flag específica de vitória ativada/);
+ assert.match(text,/não prova de ação, captura ou vitória/);
+ s.worldRecentFlagChanges.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/MUDANÇAS DE FLAGS/);
+});
