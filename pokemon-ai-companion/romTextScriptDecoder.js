@@ -37,7 +37,7 @@ function decodeRomTextProgram({rom,offset,maxBytes=1024,maxCommands=64}={}){
    if(op===0x50){
      if(!segments.length)return fail('TX_END sem segmentos literais');
      return {verified:true,scriptComplete:true,firstStringOnly:false,
-       text:segments.join(' | '),segments,segmentCount:segments.length,
+       termination:'TX_END',text:segments.join(' | '),segments,segmentCount:segments.length,
        commands,commandCount,byteLength:ptr-offset+1,
        containsRuntimeText,containsRuntimeCommands,hasDisplayControls,
        dialogueExecuted:false,textOutcomeVerified:false,
@@ -55,6 +55,21 @@ function decodeRomTextProgram({rom,offset,maxBytes=1024,maxCommands=64}={}){
      containsRuntimeText ||=piece.containsRuntimeVariables;
      commands.push('TX_START');
      ptr+=piece.byteLength;
+     // Gen I PlaceString handles DONE/PROMPT by transferring control
+     // to DoneText (the synthetic TX_END in home/text.asm). Bytes after
+     // these glyphs do not form the next command of this text program.
+     // Do not confuse these glyphs with the ordinary @ ($50) terminator.
+     if(piece.terminatorByte===0x5f)
+       return fail('DEXEND requer controlo específico e não é fluxo linear provado');
+     if(piece.terminatorByte===0x57||piece.terminatorByte===0x58)
+       return {verified:true,scriptComplete:true,firstStringOnly:false,
+         termination:piece.terminatorByte===0x57?'TEXT_DONE':'TEXT_PROMPT',
+         text:segments.join(' | '),segments,segmentCount:segments.length,
+         commands,commandCount,byteLength:ptr-offset,
+         containsRuntimeText,containsRuntimeCommands,hasDisplayControls,
+         dialogueExecuted:false,textOutcomeVerified:false,
+         npcScriptExecuted:false,scriptEffectsVerified:false,
+         source:'GEN1_ROM_LINEAR_TEXT_COMMAND_STREAM'};
      continue;
    }
    if(!Object.hasOwn(names,op))
