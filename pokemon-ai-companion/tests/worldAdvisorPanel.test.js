@@ -375,3 +375,34 @@ test('aligned first return-cycle step still cannot certify target item access',(
  assert.match(body,/passagem efetiva NÃO observada/);
  assert.match(body,/NÃO comprovado que a volta regresse do lado acessível/);
 });
+
+test('worldwide 78-border geometry is reported as reference, not unlocked route',()=>{
+ const s=live();
+ s.romOutdoorOverlapIndex={verified:true,romSha256:s.worldAdvisor.romSha256,
+   edgeCount:78,overlappingTilePairs:1484,
+   staticLandCompatiblePairs:400,bordersWithoutLandPairs:8};
+ const text=render(s).body.textContent;
+ assert.match(text,/FRONTEIRAS DE KANTO — MATRIZ ROM MUNDIAL/);
+ assert.match(text,/78 ligações alinhadas/);
+ assert.match(text,/1?484 pares de tiles sobrepostos/);
+ assert.match(text,/8 fronteiras sem par terrestre estático/);
+ assert.match(text,/0 travessias executadas comprovadas/);
+ s.romOutdoorOverlapIndex.romSha256='0'.repeat(64);
+ assert.doesNotMatch(render(s).body.textContent,/FRONTEIRAS DE KANTO — MATRIZ ROM MUNDIAL/);
+});
+test('global objectives flag zero-land border but do not mark it blocked',()=>{
+ const s=live();
+ s.globalCampaignObjectives={verified:true,romSha256:s.worldAdvisor.romSha256,
+   sourceMapId:15,mapCount:226,mapsWithPending:1,mapsWithUnknown:0,
+   objectives:[{mapId:16,mapName:'Rota de teste',
+     pending:{hiddenItems:1,hiddenCoins:0,trainerGatesOpen:0,
+       stationaryGatesOpen:0},unknown:{trainers:0,stationaryPokemon:0},
+     mapHopCount:1,
+     route:[{kind:'OUTDOOR_BOUNDARY',romAlignedBorder:true,
+       staticLandCompatiblePairs:0}],
+     firstTransitionTerrainEvidence:'TERRAIN_NOT_VERIFIED'}]};
+ const text=render(s).body.textContent;
+ assert.match(text,/fronteira\(s\) da rota sem par terrestre ROM/);
+ assert.match(text,/Surf\/script por confirmar/);
+ assert.doesNotMatch(text,/permanentemente bloqueado/);
+});
