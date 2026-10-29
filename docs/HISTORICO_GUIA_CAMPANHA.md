@@ -1100,3 +1100,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Após corrigir o adaptador, **43/44** passaram. A única falha real era uma asserção desatualizada à mensagem antiga `Desvio multimapa TEÓRICO: 2 warps`; desde T25 o painel corretamente mostra `2 transições (2 warps, 0 fronteiras)`.
 - Teste alterado para conferir a formatação nova, sem relaxar os controlos de mesma SHA, mapa, coordenadas e acesso não garantido. A alteração afeta a suite de regressão, não altera o jogo nem altera o resultado da UI.
 - Motor Strength/flag RAM/ciclos: regressão conjunta anterior foi de **21/21** em V8, usando fontes publicadas, `Buffer` e hash simulados. Suite de UI/integração utiliza `fs`/`vm` simulados; ambas continuam distintas do teste Node nativo, cuja execução sobre o checkout completo está pendente.
+
+
+## 2026-10-29 — T38b: correção da asserção e validação 44/44 UI/integração
+
+- A primeira edição T38 tinha escapado duas vezes os parênteses no regex JavaScript, introduzindo uma falha no teste novo apesar da saída correta do painel. O erro foi reproduzido em V8.
+- Substituída por duas asserções independentes, para `2 transições` e `2 warps, 0 fronteiras`, evitando escapes frágeis. A suite `worldAdvisorPanel.test.js` + `romClientCampaignIntegration.test.js`, usando as fontes literais da branch e adaptadores para `vm`/`fs`, terminou com **44/44 PASS**, sem regressões.
+- O teste continua isolado em V8; Node nativo com dependências de projeto e UI no emulador não foram executados nesta sessão. A `main` e o histórico prévio permanecem intactos.

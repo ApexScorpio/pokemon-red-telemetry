@@ -148,7 +148,8 @@ test('cross-map detour appears only for same SHA and exact item coordinates',()=
    segments:[{sourceWarpTile:{x:3,y:5},destinationMapId:6}],
    nextTerrainTile:{x:4,y:3}};
  let text=render(s).body.textContent;
- assert.match(text,/Desvio multimapa TEÓRICO: 2 transições \\(2 warps, 0 fronteiras\\)/);
+ assert.match(text,/Desvio multimapa TEÓRICO: 2 transições/);
+ assert.match(text,/2 warps, 0 fronteiras/);
  assert.match(text,/acesso NÃO garantido/);
  s.romCrossMapItemRoute.target.x=99;
  text=render(s).body.textContent;
