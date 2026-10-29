@@ -106,3 +106,16 @@ test('first-map Cut/Surf and LAST_MAP hints depend on variant-matched ROM grid',
  assert.match(source,/this\.latestState\.romVariantTerrainEvidence\?\.verified===true/);
  assert.match(source,/romWorldDetourCycles=\{verified:false/);
 });
+
+test('outdoor routes are stripped when any of 78 audited map connections diverges',()=>{
+ assert.match(source,/require\('\.\/romOutdoorReferenceGuard'\)/);
+ assert.match(source,/verifyOutdoorConnectionVariant\(\{/);
+ assert.match(source,/outdoorReferenceMismatch:true/);
+ assert.match(source,/outdoorConnections:null/);
+ const persisted=method('persistState','loadPersistedActionHistory');
+ assert.match(persisted,/'romOutdoorReferenceEvidence'/);
+ assert.match(persisted,/'romWarpGraph'/);
+ const invalidated=method('invalidateWorldEvidence','loadPersistedState');
+ assert.match(invalidated,/romOutdoorReferenceEvidence=\{verified:false/);
+ assert.match(invalidated,/romWarpGraph=\{verified:false/);
+});
