@@ -694,6 +694,8 @@ function renderWorldAdvisor(state) {
     TRAINER_GATE_CLOSED:'Evento de treinador fechado; vitória não comprovada',
     TRAINER_GATE_OPEN:'Flag do evento de treinador aberta; acesso condicional',
     INTERACTION_UNRESOLVED:'NPC: resultado do diálogo por interpretar',
+    SCRIPT_UNRESOLVED:'Evento de texto: script por interpretar',
+    ROM_ENCOUNTER_TABLE:'Distribuição de encontros da ROM (condicional)',
     ENCOUNTER_GATE_CLOSED:'Encontro fixo encerrado; captura não comprovada',
     EVENT_CONDITIONAL:'Encontro dependente de evento',
     STATIC_TRANSITION:'Ligação do mapa; travessia por confirmar',
@@ -717,13 +719,15 @@ function renderWorldAdvisor(state) {
     ITEM:'📦 Item visível',HIDDEN_ITEM:'🔎 Item oculto',
     HIDDEN_COIN:'🪙 Fichas ocultas',
     TRAINER:'⚔️ Treinador',NPC:'💬 NPC',
+    SIGN:'🪧 Sinal/evento',WILD_ENCOUNTER:'🌿 Encontros selvagens',
     STATIC_POKEMON:'✨ Encontro fixo',WARP:'🚪 Saída',
     BORDER:'🧭 Fronteira'
   };
   const priority={
     NOT_COLLECTED_FLAG:0,COIN_NOT_COLLECTED_FLAG:0,TRAINER_GATE_OPEN:1,NOT_REMOVED_FLAG:2,
     EVENT_CONDITIONAL:3,STATIC_TRANSITION:4,
-    STATIC_ROM_ONLY:5,INTERACTION_UNRESOLVED:6,UNKNOWN:7,
+    STATIC_ROM_ONLY:5,INTERACTION_UNRESOLVED:6,
+    SCRIPT_UNRESOLVED:6,ROM_ENCOUNTER_TABLE:6,UNKNOWN:7,
     REMOVED_NOT_PROOF_OF_COLLECTION:8,TRAINER_GATE_CLOSED:9,
     ENCOUNTER_GATE_CLOSED:10,BATTLE_PLAYED_SCRIPT_FLAG:11,
     VICTORY_SCRIPT_FLAG:12,COLLECTED_FLAG:13,COIN_COLLECTED_FLAG:13
@@ -734,7 +738,8 @@ function renderWorldAdvisor(state) {
   const n=kind=>obs.filter(o=>o.kind===kind).length;
   const countLabels={ITEM:'Itens',HIDDEN_ITEM:'Ocultos',
     HIDDEN_COIN:'Fichas',TRAINER:'Treinadores',NPC:'NPCs',
-    STATIC_POKEMON:'Encontros fixos',WARP:'Saídas',BORDER:'Fronteiras'};
+    STATIC_POKEMON:'Encontros fixos',SIGN:'Sinais',
+    WILD_ENCOUNTER:'Fauna',WARP:'Saídas',BORDER:'Fronteiras'};
   const counts=Object.entries(countLabels).filter(([kind])=>n(kind)>0)
     .map(([kind,label])=>label+': '+n(kind)).join(' · ');
   const lines=[
@@ -814,6 +819,18 @@ function renderWorldAdvisor(state) {
       const steps=Number.isInteger(route?.steps)?' ('+route.steps+' passos teóricos)':'';
       lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
       if(o.accessReason)lines.push('  ↳ Motivo: '+o.accessReason);
+    }
+    if(o.kind==='WILD_ENCOUNTER'&&Array.isArray(o.slots)){
+      // Probabilidades condicionais, NÃO probabilidades reais por passo.
+      const groups=new Map();
+      for(const slot of o.slots){
+        const label='Espécie interna #'+slot.internalId+' Nv.'+slot.level;
+        groups.set(label,(groups.get(label)||0)+slot.weight);
+      }
+      for(const [label,weight] of groups){
+        lines.push('  ↳ '+label+': '+(weight*100/256).toFixed(2)+
+          '% dos encontros deste terreno (se ocorrer um encontro)');
+      }
     }
     if(o.consequence)lines.push('  ↳ Consequência: '+o.consequence);
     lines.push('');
