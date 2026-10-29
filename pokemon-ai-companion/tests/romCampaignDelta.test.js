@@ -1,7 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const {diffCampaignProgress}=require('../romCampaignDelta');
-const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98ac0bdb3148e750671092631ea9dc1eb7db';
 // Known audited RED SHA; do not substitute a sample or guess from headers.
 const known='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
 function ledger(){
