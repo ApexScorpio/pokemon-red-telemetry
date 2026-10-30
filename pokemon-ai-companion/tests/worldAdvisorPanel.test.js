@@ -104,6 +104,30 @@ test('ROM-verified bit branch and two TX_FAR pointers show as static alternative
  s.worldAdvisor.romStaticFlagCandidates[0].readerTwoAlternativeTextScriptsVerified=false;
  assert.doesNotMatch(render(s).body.textContent,/Dois textos TX_FAR confirmados/);
 });
+test('external map and event names are labeled as reference, not ROM-executed truth',()=>{
+ const s=live();
+ s.worldAdvisor.romStaticFlagCandidatesVerified=true;
+ s.worldAdvisor.romStaticFlagCausalEffectsVerified=false;
+ s.worldAdvisor.romStaticFlagCandidatesWorldTotal=8;
+ s.worldAdvisor.romStaticFlagCandidates=[{
+  bitIndex:1231,possibleWriterMapId:148,possibleReaderMapId:149,
+  possibleWriterKind:'NPC',possibleReaderKind:'NPC',
+  possibleWriterOrdinal:4,possibleReaderOrdinal:1,
+  possibleWriteOpcode:'SET_BIT',verifiedActionDependency:false,
+  causalLinkObserved:false,referenceNameSource:'pret/pokered',
+  referenceNameIsRomIntrinsic:false,referenceEventName:'EVENT_RESCUED_MR_FUJI',
+  writerReferenceMapName:'POKEMON_TOWER_7F',
+  readerReferenceMapName:'MR_FUJIS_HOUSE'
+ }];
+ const r=render(s);
+ assert.match(r.body.textContent,/EVENT_RESCUED_MR_FUJI/);
+ assert.match(r.body.textContent,/POKEMON_TOWER_7F/);
+ assert.match(r.body.textContent,/MR_FUJIS_HOUSE/);
+ assert.match(r.body.textContent,/EXTERNOS à ROM/);
+ assert.equal(r.body.innerHTML,null);
+ s.worldAdvisor.romStaticFlagCandidates[0].referenceNameSource='UNVERIFIED';
+ assert.doesNotMatch(render(s).body.textContent,/EVENT_RESCUED_MR_FUJI/);
+});
 test('offline and stale samples hide all old action details',()=>{
  const old=live();old.connected=false;
  assert.doesNotMatch(render(old).body.textContent,/NEEDS_CUT|<img/);
