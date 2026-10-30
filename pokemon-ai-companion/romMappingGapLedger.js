@@ -52,11 +52,25 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
   const missingPointers=referenced.filter(x=>x.textPointerVerified!==true).length;
   const missingEffects=referenced.filter(x=>x.scriptEffectsVerified!==true).length;
   const asm=referenced.filter(x=>x.scriptCommand==='TX_START_ASM');
-  const asmOffsets=new Set();
+  const asmOffsets=new Set(),asmEntryDetails=new Map();
   for(const item of asm){
    if(item.asmCandidate?.verified!==true||item.scriptFileOffset!==item.asmCandidate.txAsmFileOffset)
     return invalid('ASM sem entrada de codigo candidata: '+mapId);
    asmOffsets.add(item.scriptFileOffset);allAsmOffsets.add(item.scriptFileOffset);
+   const candidate=item.asmCandidate;
+   if(!asmEntryDetails.has(item.scriptFileOffset))
+    asmEntryDetails.set(item.scriptFileOffset,{
+     fileOffset:item.scriptFileOffset,bank:candidate.bank,
+     candidateInstructions:candidate.opcodeCandidateCount,
+     pendingCalls:candidate.callsNotFollowed,
+     pendingTargets:candidate.unresolvedBranchTargets,
+     initialBudgetHit:candidate.firstPassLimitReached===true,
+     expanded:candidate.candidateExpansionApplied===true,
+     stillLimited:candidate.residualLimitReached===true,
+     scriptEffectsVerified:false,
+     references:0
+    });
+   asmEntryDetails.get(item.scriptFileOffset).references++;
   }
   const unprovenRuntime=actions.filter(x=>x.completedNow!==true&&x.completedNow!==false).length;
   textPointersPending+=missingPointers;
@@ -73,6 +87,9 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
   maps.push({mapId,staticHeaderVerified:true,
    staticActionCount:actions.length,interactionCount:referenced.length,
    asmReferences:asm.length,uniqueAsmEntrypoints:asmOffsets.size,
+   asmHandlerCandidates:[...asmEntryDetails.values()].sort(
+    (x,y)=>y.pendingTargets-x.pendingTargets||
+     y.pendingCalls-x.pendingCalls||x.fileOffset-y.fileOffset),
    missingTextPointers:missingPointers,unverifiedScriptEffects:missingEffects,
    runtimeActionsUnproven:unprovenRuntime,
    status:reasons.length?'PARTIAL_STATIC_MAPPING':'PROVEN_STATIC_AND_RUNTIME',
