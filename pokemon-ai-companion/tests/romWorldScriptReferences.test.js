@@ -66,8 +66,10 @@ for(const [name,env,sha] of cases){
   assert.equal(joinedLive.summary.verifiedEncounterGatesClosed,0);
   // Two real map trainers have no proved event bit and must never
   // be converted to arbitrary live gate states.
-  const unbound=joinedLive.maps.filter(x=>x.verified).flatMap(x=>x.actions)
-   .filter(x=>x.kind==='TRAINER'&&x.scriptEventBitBindingVerified===false);
+  const unbound=joinedLive.maps.filter(x=>x.verified)
+   .flatMap(m=>m.actions.filter(x=>x.kind==='TRAINER'&&
+    x.scriptEventBitBindingVerified===false)
+    .map(x=>({...x,mapId:m.mapId})));
   assert.deepEqual(unbound.map(x=>[x.mapId,x.ordinal]).sort((a,b)=>a[0]-b[0]),
    [[96,2],[135,11]]);
   assert.ok(unbound.every(x=>
