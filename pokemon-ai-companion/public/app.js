@@ -713,6 +713,8 @@ function formatCampaignChecklistSection(advice) {
         ' instruções; '+action.scriptAsmCandidate.callsNotFollowed+
         ' chamadas não percorridas; '+action.scriptAsmCandidate.unresolvedBranchTargets+
         ' destinos não resolvidos'+
+        (action.scriptAsmCandidate.candidateExpansionApplied?
+         ', análise alargada 64→256 (candidatos, não execução)':'')+
         (action.scriptAsmCandidate.limitReached?', limite de análise atingido':'')+
         ' (sem prova de efeito)':'';
 
