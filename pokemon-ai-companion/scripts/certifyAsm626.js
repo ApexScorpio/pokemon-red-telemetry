@@ -176,6 +176,12 @@ function main(){
    gaps.summary.unverifiedScriptEffects===1126&&
    gaps.summary.textPointersPending===0&&
    a.summary.rom0BranchTargetOccurrences===537&&
+   a.summary.rom0FirstPassLimitHits===13&&
+   a.summary.rom0ExpandedTargets===13&&
+   a.summary.rom0AdditionalCandidateInstructions>0&&
+   a.summary.rom0ExpandedStillLimited===a.summary.rom0StillBudgetLimited&&
+   a.summary.rom0ExpandedStillLimited<=13&&
+   a.summary.rom0EffectSemanticsCertified===0&&
    a.summary.physicallyMappedRom0Targets===a.summary.distinctRom0PhysicalTargets&&
    a.summary.rom0CallTargetOccurrences===1016&&
    gaps.summary.mappedRom0CallReferences===1016&&
@@ -206,7 +212,12 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_ROM0_OPCODE_CANDIDATES='+gaps.summary.boundedRom0OpcodeCandidates);
   log('ROM_'+variant.toUpperCase()+'_ROM0_EFFECTS_STILL_UNKNOWN='+gaps.summary.rom0StillSemanticallyUnknown);
   log('ROM_'+variant.toUpperCase()+'_ROM0_DECODE_PROBLEMS='+a.summary.rom0DecodeProblems);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_FIRST_PASS_LIMITS='+a.summary.rom0FirstPassLimitHits);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_EXPANDED_TARGETS='+a.summary.rom0ExpandedTargets);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_ADDITIONAL_CANDIDATE_INSTRUCTIONS='+a.summary.rom0AdditionalCandidateInstructions);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_RESIDUAL_LIMITS='+a.summary.rom0ExpandedStillLimited);
   log('ROM_'+variant.toUpperCase()+'_ROM0_SCAN_LIMITS='+a.summary.rom0StillBudgetLimited);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPT_EFFECTS_CERTIFIED=0');
 
   log('ROM_'+variant.toUpperCase()+'_RUNTIME_ACTIONS_UNPROVEN='+gaps.summary.runtimeActionsUnproven);
   log('ROM_'+variant.toUpperCase()+'_GAP_HOTSPOTS='+JSON.stringify(gaps.priorities));
