@@ -358,6 +358,9 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_TEST_CANDIDATES='+a.summary.uniqueAsmFlagBitTestCandidates);
   log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_SET_CANDIDATES='+a.summary.uniqueAsmFlagBitSetCandidates);
   log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_RESET_CANDIDATES='+a.summary.uniqueAsmFlagBitResetCandidates);
+  log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_POTENTIAL_LINKS='+a.summary.staticFlagCandidateLinks);
+  log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CROSS_MAP_POTENTIAL_LINKS='+a.summary.staticFlagCandidateCrossMapLinks);
+  log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CAUSAL_LINKS_VERIFIED=0');
   log('ROM_'+variant.toUpperCase()+'_ASM_MEMORY_WRITES_EXECUTED=0');
   log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_CLASS_COUNTS='+JSON.stringify(a.summary.dispatchClassCounts));
   log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_COMMAND_COUNTS='+JSON.stringify(a.summary.commandCounts));
@@ -390,6 +393,7 @@ function main(){
   'tests/romTxAsmHandlerAtlas.test.js',
   'tests/romAsmAbsoluteMemoryEvidence.test.js',
   'tests/romAsmEventBitEvidence.test.js',
+  'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
