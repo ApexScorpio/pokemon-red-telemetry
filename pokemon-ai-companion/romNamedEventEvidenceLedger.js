@@ -112,7 +112,33 @@ function buildNamedEventEvidenceLedger({atlas}={}){
  if(Object.values(reasonCounts).reduce((n,x)=>n+x,0)!==507||
     withOpcodes+reasonCounts.HEADER_BINDING_ONLY+noEvidence!==507)
   return fail('Named event coverage categories incomplete');
+ // Exact, reproducible engineering backlog. These are reference labels
+ // lacking *direct ROM evidence*, not uncompleted gameplay events.
+ const noDirectEvidenceFlags=flags.filter(x=>
+  x.evidenceCategory==='NO_DIRECT_EVIDENCE').map(x=>({
+   bitIndex:x.bitIndex,referenceEventName:x.referenceEventName,
+   romOpcodeCount:0,romHeaderActorCount:0,
+   eventCompleted:null,source:'pret/pokered'
+  }));
+ const headerOnlyFlags=flags.filter(x=>
+  x.evidenceCategory==='HEADER_BINDING_ONLY').map(x=>({
+   bitIndex:x.bitIndex,referenceEventName:x.referenceEventName,
+   romOpcodeCount:0,romHeaderActorCount:x.romHeaderActorCount,
+   eventCompleted:null,source:'pret/pokered'
+  }));
+ if(noDirectEvidenceFlags.length!==noEvidence||
+    headerOnlyFlags.length!==reasonCounts.HEADER_BINDING_ONLY||
+    noDirectEvidenceFlags.some(x=>x.eventCompleted!==null)||
+    headerOnlyFlags.some(x=>x.eventCompleted!==null))
+  return fail('Reference flag evidence gap ledger inconsistent');
  return {verified:true,romSha256:sha,flags,
+  unresolvedNamedFlagEvidence:{
+   noDirectEvidenceFlags,headerOnlyFlags,
+   noDirectEvidenceCount:noDirectEvidenceFlags.length,
+   headerOnlyCount:headerOnlyFlags.length,
+   gameplayCompletionEvidence:false,
+   source:'PINNED_EXTERNAL_EVENT_LABELS_NO_DIRECT_ROM_EVIDENCE'
+  },
   summary:{totalEventFlagBitSlots:2560,namedReferenceEvents:507,
    unnamedOrReservedBitSlots:2053,
    namedBitsWithRomOpcode:withOpcodes,
