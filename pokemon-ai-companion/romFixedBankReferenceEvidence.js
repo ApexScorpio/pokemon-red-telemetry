@@ -110,9 +110,14 @@ function inspectFixedRom0TargetAdaptive({
   firstPassCandidateInstructions:baseline.opcodeCandidateCount,
   candidateExpansionApplied:expanded,
   firstDeepPassLimitReached:intermediate.limitReached,
+  pendingAt128:intermediate.remainingQueue,
+  frontierAt128:intermediate.remainingQueueSample,
+  problemsAt128:intermediate.candidateDecodeProblems,
   thirdPassApplied:fullPass,
   thirdPassAdditionalCandidateInstructions:
    advanced.opcodeCandidateCount-intermediate.opcodeCandidateCount,
+  thirdPassAdditionalDecodeProblems:
+   advanced.candidateDecodeProblems-intermediate.candidateDecodeProblems,
   thirdPassCandidateInstructionCount:fullPass?advanced.opcodeCandidateCount:null,
   additionalCandidateInstructions:
    advanced.opcodeCandidateCount-baseline.opcodeCandidateCount,
