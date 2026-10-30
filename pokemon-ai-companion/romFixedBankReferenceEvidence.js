@@ -10,7 +10,7 @@ const fail=reason=>({verified:false,reason,physicalRom0Mapped:false,
 function inspectFixedRom0Target({rom,targetCpu,budget=24}={}){
  if(!Buffer.isBuffer(rom)||rom.length!==ROM_BYTES||
    !Number.isInteger(targetCpu)||targetCpu<0||targetCpu>=ROM0_END||
-   !Number.isInteger(budget)||budget<1||budget>128)
+   !Number.isInteger(budget)||budget<1||budget>ROM0_END)
   return fail('ROM, ROM0 target CPU or bounded scan budget invalid');
  const todo=[targetCpu],scheduled=new Set(todo),visited=new Set();
  const usedBytes=new Set();const candidateInstructions=[];
@@ -81,32 +81,45 @@ function inspectFixedRom0Target({rom,targetCpu,budget=24}={}){
 // fixed-bank candidates. This reduces uninspected code-candidate paths,
 // not uncertainty about actual execution, banks, flags, or game effects.
 function inspectFixedRom0TargetAdaptive({
- rom,targetCpu,initialBudget=24,deepBudget=128
+ rom,targetCpu,initialBudget=24,deepBudget=128,wholeRom0Budget=ROM0_END
 }={}){
  if(!Number.isInteger(initialBudget)||!Number.isInteger(deepBudget)||
-    initialBudget<1||deepBudget<=initialBudget||deepBudget>128)
+    initialBudget<1||deepBudget<=initialBudget||deepBudget>=wholeRom0Budget||
+    !Number.isInteger(wholeRom0Budget)||wholeRom0Budget>ROM0_END)
   return fail('ROM0 adaptive scan budgets invalid');
  const baseline=inspectFixedRom0Target({rom,targetCpu,budget:initialBudget});
  if(baseline.verified!==true)return baseline;
  const expanded=baseline.limitReached===true;
- const advanced=expanded?
+ const intermediate=expanded?
   inspectFixedRom0Target({rom,targetCpu,budget:deepBudget}):baseline;
+ if(intermediate.verified!==true)return intermediate;
+ const fullPass=intermediate.limitReached===true;
+ const advanced=fullPass?
+  inspectFixedRom0Target({rom,targetCpu,budget:wholeRom0Budget}):intermediate;
  if(advanced.verified!==true)return advanced;
- if(advanced.opcodeCandidateCount<baseline.opcodeCandidateCount||
-    advanced.candidateInstructionBytes<baseline.candidateInstructionBytes||
-    advanced.candidateDecodeProblems<baseline.candidateDecodeProblems||
-    advanced.unfollowedCalls<baseline.unfollowedCalls)
-  return fail('Expanded ROM0 candidate scan contradicted first pass');
+ for(const [first,second] of [[baseline,intermediate],[intermediate,advanced]]){
+  if(second.opcodeCandidateCount<first.opcodeCandidateCount||
+     second.candidateInstructionBytes<first.candidateInstructionBytes||
+     second.candidateDecodeProblems<first.candidateDecodeProblems||
+     second.unfollowedCalls<first.unfollowedCalls)
+   return fail('ROM0 candidate scan contradicted earlier evidence');
+ }
  return {...advanced,initialBudget,
-  maxInstructionsBudget:expanded?deepBudget:initialBudget,
+  maxInstructionsBudget:fullPass?wholeRom0Budget:expanded?deepBudget:initialBudget,
   firstPassLimitReached:baseline.limitReached,
   firstPassCandidateInstructions:baseline.opcodeCandidateCount,
   candidateExpansionApplied:expanded,
+  firstDeepPassLimitReached:intermediate.limitReached,
+  thirdPassApplied:fullPass,
+  thirdPassAdditionalCandidateInstructions:
+   advanced.opcodeCandidateCount-intermediate.opcodeCandidateCount,
+  thirdPassCandidateInstructionCount:fullPass?advanced.opcodeCandidateCount:null,
   additionalCandidateInstructions:
    advanced.opcodeCandidateCount-baseline.opcodeCandidateCount,
   residualLimitReached:advanced.limitReached,
+  fixedBankCandidateWalkExhausted:!advanced.limitReached,
   branchExecuted:false,effectVerified:false,semanticsComplete:false,
-  source:'ROM0_PHYSICAL_BYTES_ADAPTIVE_CPU_CANDIDATES',
-  warning:'ROM0 physical opcode candidates only. Expansion does not prove gameplay execution, active ROMX bank, RAM flags or script effects'};
+  source:'ROM0_PHYSICAL_BYTES_THREE_STAGE_CPU_CANDIDATES',
+  warning:'Exhausting statically reachable ROM0 opcode candidates does NOT prove game execution, valid program control flow, ROMX bank state, RAM conditions or script effects'};
 }
 module.exports={inspectFixedRom0Target,inspectFixedRom0TargetAdaptive};
