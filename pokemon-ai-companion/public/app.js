@@ -661,6 +661,56 @@ function renderRomAreaEvidence(state) {
  * na ROM. Não usa HTML dinâmico: a ROM e a RAM são dados não fiáveis para UI.
  * Nenhum percurso estático é anunciado como disponibilidade garantida.
  */
+function formatCampaignChecklistSection(advice) {
+  const campaign=advice?.campaignSummary;
+  const checklist=advice?.mapChecklist;
+  if(advice?.verified!==true||advice.fullWorldStaticIndexVerified!==true||
+     campaign?.normalMaps!==226||checklist?.verified!==true||
+     checklist.mapId!==advice.mapId||
+     checklist.romSha256!==advice.romSha256||
+     !Array.isArray(checklist.actions))return [];
+  const s=checklist.summary||{};
+  const lines=[
+    '--- CHECKLIST COMPLETA DESTE MAPA (ROM + PROVAS) ---',
+    '🌍 KANTO: '+campaign.allStaticActions+' objetos/ações estáticos em '+
+      campaign.normalMaps+' mapas descodificados; '+
+      campaign.unresolvedMapIds+' IDs sem cabeçalho normal.',
+    '📋 Esta zona: '+s.total+' ações/objetos · '+
+      s.confirmedCollected+' itens ocultos recolhidos por flag · '+
+      s.confirmedNotCollected+' itens ocultos por recolher por flag · '+
+      s.progressUnverified+' sem prova de conclusão.',
+    '🧭 Cut: '+s.needsCutCandidates+' percursos condicionais · Surf: '+
+      s.needsSurfCandidates+' percursos condicionais (não garantem acesso).',
+    '📍 Mapas com observação RAM corroborada nesta leitura: '+
+      campaign.observedMapCount+'/'+campaign.normalMaps+'. '+
+      'Não representa o progresso total da campanha.'
+  ];
+  const labels={ITEM:'Item visível',HIDDEN_ITEM:'Item oculto',
+    TRAINER:'Treinador',NPC:'NPC',STATIC_POKEMON:'Pokémon fixo',
+    SIGN:'Sinal',WARP:'Saída'};
+  const progress={COLLECTED_CONFIRMED_FLAG:'flag de recolha confirmada',
+    NOT_COLLECTED_CONFIRMED_FLAG:'flag indica não recolhido',
+    NOT_PROVEN:'progresso por confirmar'};
+  for(const action of checklist.actions){
+    if(!Object.hasOwn(labels,action.kind)||
+       !Number.isInteger(action.x)||!Number.isInteger(action.y))continue;
+    const type=labels[action.kind];
+    const position='X:'+action.x+' Y:'+action.y;
+    const id=action.kind==='HIDDEN_ITEM'?
+      action.staticObject?.hiddenIndex:
+      action.kind==='ITEM'?action.staticObject?.itemOrTrainerId:null;
+    const identity=Number.isInteger(id)?
+      (action.kind==='HIDDEN_ITEM'?' · índice evento #':' · ID objeto #')+id:'';
+    const condition=typeof action.routeCondition==='string'?
+      ' · hipótese de caminho: '+action.routeCondition:'';
+    lines.push('• '+type+' ('+position+')'+identity+' — '+
+      (progress[action.progress]||'progresso por confirmar')+condition);
+  }
+  lines.push('⚠️ Objetos ROM não provam presença atual. Cut/Surf não provam acesso; '+
+    'NPCs, treinadores e scripts requerem evidência independente.');
+  return lines;
+}
+
 function renderWorldAdvisor(state) {
   const body=document.getElementById('world-advisor-content');
   const source=document.getElementById('world-advisor-source');
@@ -773,6 +823,11 @@ function renderWorldAdvisor(state) {
       '✨ Encontros fixos: '+t.stationaryGatesClosed+
         ' eventos encerrados (não prova captura)');
   }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  const campaignLines=formatCampaignChecklistSection(advice);
+  if(campaignLines.length){
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion>=0)lines.splice(insertion,0,...campaignLines,'');
+  }
   const globalOverlap=state.romOutdoorOverlapIndex;
   if(globalOverlap?.verified===true&&
      globalOverlap.romSha256===advice.romSha256&&
