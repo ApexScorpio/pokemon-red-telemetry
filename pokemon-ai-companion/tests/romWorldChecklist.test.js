@@ -24,7 +24,7 @@ function advisor(overrides={}){
     accessStatus:'NEEDS_CUT'},
    {kind:'ITEM',x:7,y:2,itemId:202,status:'REMOVED_NOT_PROOF_OF_COLLECTION',
     accessStatus:'NEEDS_SURF'},
-   {kind:'HIDDEN_ITEM',x:7,y:4,itemId:30,status:'COLLECTED_FLAG'},
+   {kind:'HIDDEN_ITEM',x:7,y:4,itemId:30,hiddenIndex:1,status:'COLLECTED_FLAG'},
    {kind:'TRAINER',x:9,y:2,status:'VICTORY_SCRIPT_FLAG'},
    {kind:'WARP',x:3,y:5,destinationMapId:6,status:'STATIC_TRANSITION'}
   ],...overrides};
@@ -78,4 +78,29 @@ test('reserved map cannot be treated as empty or accessible',()=>{
  assert.equal(r.unresolvedHiddenReferences.length,1);
  assert.equal(r.unresolvedHiddenReferences[0].hiddenIndex,34);
  assert.deepEqual(r.actions,[]);
+});
+
+test('hidden collection requires exact ROM event index, not just same map/item/coordinates',()=>{
+ for(const entry of [
+  {hiddenIndex:2,status:'COLLECTED_FLAG'},
+  {hiddenIndex:null,status:'COLLECTED_FLAG'},
+  {status:'COLLECTED_FLAG'}
+ ]){
+  const a=advisor();
+  a.observations=a.observations.map(o=>o.kind==='HIDDEN_ITEM'?{
+   kind:'HIDDEN_ITEM',x:7,y:4,itemId:30,...entry
+  }:o);
+  const r=buildMapChecklist({index:index(),mapId:15,advisor:a});
+  assert.equal(r.summary.confirmedCollected,0);
+  assert.equal(r.actions.find(row=>row.kind==='HIDDEN_ITEM').joinProven,false);
+ }
+});
+test('the exact hidden bit 1 can distinguish collected from uncollected without certifying access',()=>{
+ const a=advisor();
+ a.observations=a.observations.map(o=>o.kind==='HIDDEN_ITEM'?
+  {...o,status:'NOT_COLLECTED_FLAG'}:o);
+ const r=buildMapChecklist({index:index(),mapId:15,advisor:a});
+ assert.equal(r.summary.confirmedNotCollected,1);
+ assert.equal(r.summary.confirmedCollected,0);
+ assert.equal(r.actions.find(row=>row.kind==='HIDDEN_ITEM').accessibleNow,null);
 });
