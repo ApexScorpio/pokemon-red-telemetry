@@ -72,6 +72,38 @@ test('world map shows physical candidate cross-map flag hints without causal cla
  state.connected=false;
  assert.doesNotMatch(render(state).body.textContent,/Flag candidata #81/);
 });
+test('ROM-verified bit branch and two TX_FAR pointers show as static alternatives only',()=>{
+ const s=live();
+ s.worldAdvisor.romStaticFlagCandidatesVerified=true;
+ s.worldAdvisor.romStaticFlagCausalEffectsVerified=false;
+ s.worldAdvisor.romStaticFlagCandidatesWorldTotal=8;
+ s.worldAdvisor.romStaticFlagCandidates=[{
+  bitIndex:1231,possibleWriterMapId:148,possibleReaderMapId:149,
+  possibleWriterKind:'NPC',possibleReaderKind:'NPC',
+  possibleWriterOrdinal:4,possibleReaderOrdinal:1,
+  possibleWriteOpcode:'SET_BIT',verifiedActionDependency:false,
+  causalLinkObserved:false,readerConditionalDirectionVerified:true,
+  readerBranchCondition:{verified:true,condition:'NZ',
+   takenTargetCpu:22728,jumpTakenIfBitSet:true,branchActuallyTaken:null},
+  readerTwoAlternativeTextScriptsVerified:true,
+  readerDualTextChoice:{
+   alternativeTextScriptsStaticallyProven:true,
+   textOnBitClearPointerCpu:22737,textOnBitSetPointerCpu:22742
+  }
+ }];
+ const r=render(s);
+ assert.match(r.body.textContent,/Flag candidata #1231/);
+ assert.match(r.body.textContent,/ramo NZ se bit ativo/);
+ assert.match(r.body.textContent,/Dois textos TX_FAR confirmados/);
+ assert.match(r.body.textContent,/bit 0/);
+ assert.match(r.body.textContent,/bit 1/);
+ assert.match(r.body.textContent,/NÃO está comprovado/);
+ assert.equal(r.body.innerHTML,null);
+ s.worldAdvisor.romStaticFlagCandidates[0].readerBranchCondition.branchActuallyTaken=true;
+ assert.doesNotMatch(render(s).body.textContent,/ramo NZ se bit ativo/);
+ s.worldAdvisor.romStaticFlagCandidates[0].readerTwoAlternativeTextScriptsVerified=false;
+ assert.doesNotMatch(render(s).body.textContent,/Dois textos TX_FAR confirmados/);
+});
 test('offline and stale samples hide all old action details',()=>{
  const old=live();old.connected=false;
  assert.doesNotMatch(render(old).body.textContent,/NEEDS_CUT|<img/);
