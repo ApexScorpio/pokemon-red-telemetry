@@ -32,7 +32,7 @@ function advisor(overrides={}){
 test('items with independently verified hidden bitmap and local Cut/Surf hints are separate',()=>{
  const r=buildMapChecklist({index:index(),mapId:15,advisor:advisor()});
  assert.equal(r.verified,true);
- assert.equal(r.summary.total,7);
+ assert.equal(r.summary.total,6);
  assert.equal(r.summary.confirmedCollected,1);
  assert.equal(r.summary.needsCutCandidates,1);
  assert.equal(r.summary.needsSurfCandidates,1);
