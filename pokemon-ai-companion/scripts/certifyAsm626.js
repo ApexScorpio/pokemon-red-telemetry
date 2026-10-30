@@ -384,12 +384,15 @@ function main(){
   'tests/romWorldScriptReferences.test.js',
   'tests/romGlobalFlagReadback.test.js',
   'tests/romLiveStateAudit.test.js',
+  'tests/romReadOnlyRetroArchProbe.test.js',
   'tests/romCampaignUi.test.js',
   'tests/worldAdvisorPanel.test.js'
  ],env,40,0);
  log('GLOBAL_FLAG_READBACK_336_BYTES_TESTED_SYNTHETICALLY=TRUE');
  log('GLOBAL_FLAG_RUNTIME_READBACK_OBSERVED=FALSE');
  log('LIVE_COMPANION_HTTP_PROBE_DURING_CERTIFICATION=NOT_RUN');
+ log('RETROARCH_REMOTE_UDP_READ_ONLY_PROBE_DURING_CERTIFICATION=NOT_RUN');
+ log('RETROARCH_REMOTE_UDP_PROBE_TESTS_SYNTHETIC_ONLY=TRUE');
  log('LIVE_COMPANION_AUDIT_TESTS_SYNTHETIC_ONLY=TRUE');
  log('STEP=THREE_PROFILE_ARCHIVE');
  const zip=path.join(work,'pokemon_gen1_red_blue_green_profiles_v4.zip');
