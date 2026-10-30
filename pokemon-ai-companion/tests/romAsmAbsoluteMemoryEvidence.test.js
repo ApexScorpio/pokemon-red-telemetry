@@ -72,7 +72,7 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
   assert.equal(profile.hash.sha256,KNOWN[name]);
   const atlas=profile.world.interactionScriptAtlas;
   assert.equal(atlas.verified,true);
-  const rows=atlas.references.filter(x=>x.scriptCommand==='TX_START_ASM');
+  const rows=atlas.maps.flatMap(m=>m.interactions||[]).filter(x=>x.scriptCommand==='TX_START_ASM');
   assert.equal(rows.length,626);
   const unique=new Map();
   for(const row of rows){
