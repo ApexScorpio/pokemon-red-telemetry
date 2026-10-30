@@ -874,6 +874,27 @@ function renderWorldAdvisor(state) {
         ', '+c.possibleWriteOpcode+') ⇢ mapa #'+c.possibleReaderMapId+
         ' (interação '+c.possibleReaderKind+' #'+c.possibleReaderOrdinal+
         ', teste de bit).');
+      const gate=c.readerBranchCondition;
+      if(c.readerConditionalDirectionVerified===true&&
+         gate?.verified===true&&
+         (gate.condition==='Z'||gate.condition==='NZ')&&
+         Number.isInteger(gate.takenTargetCpu)&&
+         gate.branchActuallyTaken===null){
+        hints.push('  ↳ Condição ROM: ramo '+gate.condition+
+          ' se bit '+(gate.jumpTakenIfBitSet?'ativo':'inativo')+
+          ' (destino CPU '+gate.takenTargetCpu+
+          '; execução no jogo NÃO observada).');
+      }
+      const dual=c.readerDualTextChoice;
+      if(c.readerTwoAlternativeTextScriptsVerified===true&&
+         dual?.alternativeTextScriptsStaticallyProven===true&&
+         Number.isInteger(dual.textOnBitClearPointerCpu)&&
+         Number.isInteger(dual.textOnBitSetPointerCpu)){
+        hints.push('  ↳ Dois textos TX_FAR confirmados na ROM: bit 0 → CPU '+
+          dual.textOnBitClearPointerCpu+'; bit 1 → CPU '+
+          dual.textOnBitSetPointerCpu+
+          '. Qual apareceu no jogo NÃO está comprovado.');
+      }
     }
     hints.push('⚠️ Mesma flag na ROM NÃO comprova sequência, condição, recompensa ou desbloqueio.','');
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
