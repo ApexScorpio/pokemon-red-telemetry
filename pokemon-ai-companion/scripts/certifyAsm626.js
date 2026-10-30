@@ -215,6 +215,43 @@ function main(){
      reasonCounts:x.problemReasonCounts,
      problems:x.problemDetails,
      truncated:x.problemDetailsTruncated}))));
+  // Distinct CPU instruction forms, independently corroborated by each ROM.
+  // None of them makes any event, script effect or runtime target known.
+  const indirect=a.distinctRom0IndirectJumpEvidence||[];
+  const actualByPc=new Map(indirect.map(x=>[x.jumpPc,x]));
+  const expectedJumps=variant==='green'?
+   {table:0x1b5e,bc:0x35ca,de:0x3e73,tableCpu:0x1ca8}:
+   {table:0x1b77,bc:0x35e3,de:0x3e8c,tableCpu:0x1cc1};
+  const jumpTable=actualByPc.get(expectedJumps.table);
+  const bcJump=actualByPc.get(expectedJumps.bc);
+  const deJump=actualByPc.get(expectedJumps.de);
+  assert(indirect.length===3&&
+   a.summary.rom0UniqueIndirectJumpInstructions===3&&
+   a.summary.rom0LiteralJumpTables===1&&
+   a.summary.rom0LiteralJumpTableCandidateTargets===14&&
+   a.summary.rom0HlReturnTrampolines===2&&
+   a.summary.rom0IndirectRuntimeTargetsVerified===0&&
+   jumpTable?.kind==='GUARDED_ROM0_LITERAL_JUMP_TABLE'&&
+   jumpTable.indexBoundExclusive===14&&
+   jumpTable.tableCpu===expectedJumps.tableCpu&&
+   jumpTable.candidateTargetsCpu.length===14&&
+   jumpTable.candidateTargetsCpu.every(pc=>Number.isInteger(pc)&&pc<0x4000)&&
+   bcJump?.kind==='PUSH_RETURN_AND_JUMP_RUNTIME_HL'&&
+   bcJump.stackRegister==='BC'&&bcJump.returnPc===expectedJumps.bc+1&&
+   deJump?.kind==='PUSH_RETURN_AND_JUMP_RUNTIME_HL'&&
+   deJump.stackRegister==='DE'&&deJump.returnPc===expectedJumps.de+1&&
+   indirect.every(x=>x.runtimeTargetKnown===false&&
+    x.runtimeExecuted===false&&x.gameEffectVerified===false),
+   'Literal JP HL provenance/ROM identity mismatch: '+variant);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_INDIRECT_FORMS='+
+   JSON.stringify(indirect.map(x=>({
+    jumpPc:'0x'+x.jumpPc.toString(16),
+    kind:x.kind,tableCpu:x.tableCpu??null,
+    candidateTargets:x.candidateTargetsCpu.map(pc=>'0x'+pc.toString(16)),
+    stackRegister:x.stackRegister??null,
+    returnPc:x.returnPc??null,
+    runtimeTargetKnown:x.runtimeTargetKnown,
+    gameEffectVerified:x.gameEffectVerified}))));
   const gaps=buildMappingGapLedger({profile:p,index:i,scriptAtlas:a,tracker});
   assert(gaps.verified===true&&
    gaps.summary.mapIds===248&&gaps.summary.normalMapHeaders===226&&
@@ -309,6 +346,7 @@ function main(){
   'tests/romTxAsmHandlerAtlas.test.js',
   'tests/romMappingGapLedger.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
+  'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romCampaignUi.test.js',
   'tests/worldAdvisorPanel.test.js'
