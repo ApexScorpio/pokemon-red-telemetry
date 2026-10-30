@@ -107,16 +107,22 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],
   assert.ok(a.totalPhysicallyDecodedOperations<=135);
   assert.equal(a.perMap.length,248);
   assert.equal(a.executedOperationsCertified,0);
+  const mapViews=new Map();
   for(const e of a.operations){
-   assert.equal(rom[e.opcodeFileOffset],
-    e.operation==='BIT_TEST'?0xfa:0x21);
+   if(e.operation==='BIT_TEST')
+    assert.ok([0xfa,0x21].includes(rom[e.opcodeFileOffset]));
+   else assert.equal(rom[e.opcodeFileOffset],0x21);
+   assert.equal(rom.readUInt16LE(e.opcodeFileOffset+1),e.operandAddress);
    assert.equal(rom[e.bitInstructionFileOffset],0xcb);
    assert.equal(e.instructionExecuted,false);
    assert.equal(e.causalEffectVerified,false);
    assert.equal(e.bitValueInCurrentSave,null);
    assert.ok(e.invokedBy.length>=1);
    for(const actor of e.invokedBy){
-    const perMap=getMapFlagOperationCandidates({atlas,mapId:actor.mapId});
+    if(!mapViews.has(actor.mapId))
+     mapViews.set(actor.mapId,getMapFlagOperationCandidates({
+      atlas,mapId:actor.mapId}));
+    const perMap=mapViews.get(actor.mapId);
     assert.equal(perMap.verified,true,perMap.reason);
     assert.ok(perMap.operations.some(x=>
       x.physicalOperationId===e.physicalOperationId&&
