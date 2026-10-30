@@ -3,6 +3,7 @@
 const {findStaticWarpRoute}=require('./romWarpGraph');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {buildWorldContentsIndex,getMapContents}=require('./romWorldContentsIndex');
+const {buildMapChecklist}=require('./romWorldChecklist');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -155,8 +156,13 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  const worldIndex=buildWorldContentsIndex(profile);
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
+ const mapChecklist=worldIndex.verified?buildMapChecklist({
+   index:worldIndex,mapId,
+   advisor:{verified:true,mapId,romSha256:hash,observations,
+     hiddenFlagsVerified:hiddenFlagsVerified===true}
+ }):null;
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
-   mapStaticInventory,
+   mapStaticInventory,mapChecklist,
    fullWorldStaticIndexVerified:worldIndex.verified,
    fullWorldStaticTotals:worldIndex.verified?worldIndex.totals:null,
    position:positionVerified?position:null,observations,
