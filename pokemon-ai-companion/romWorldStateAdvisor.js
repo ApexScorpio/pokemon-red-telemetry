@@ -5,6 +5,7 @@ const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {buildWorldContentsIndex,getMapContents}=require('./romWorldContentsIndex');
 const {buildMapChecklist}=require('./romWorldChecklist');
 const {buildCampaignWorldTracker}=require('./romCampaignWorldTracker');
+const {candidateFlagLinksForMap}=require('./romStaticWorldFlagDependencies');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -157,6 +158,9 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      findStaticWarpRoute(warpGraph,mapId,dest,{maxHops:24})): [];
  const worldIndex=buildWorldContentsIndex(profile);
  const scriptAtlas=profile?.world?.interactionScriptAtlas??null;
+ // On-demand ROM-only cross-map links from the compact 1126-actor atlas.
+ // Never turn a shared opcode bit into an executed game consequence.
+ const candidateFlags=candidateFlagLinksForMap({atlas:scriptAtlas,mapId});
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
  const campaign=worldIndex.verified?buildCampaignWorldTracker({
@@ -175,6 +179,17 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  }):null;
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
    mapStaticInventory,mapChecklist,
+   romStaticFlagCandidatesVerified:candidateFlags.verified===true,
+   romStaticFlagCandidates:candidateFlags.verified===true?
+    candidateFlags.links:[],
+   romStaticFlagCandidatesForCurrentMap:candidateFlags.verified===true?
+    candidateFlags.candidateLinkCount:0,
+   romStaticFlagCandidatesWorldTotal:candidateFlags.verified===true?
+    candidateFlags.wholeWorldCandidateLinks:0,
+   romStaticFlagCandidatesCrossMap:candidateFlags.verified===true?
+    candidateFlags.crossMapCandidateCount:0,
+   romStaticFlagCausalEffectsVerified:false,
+   romStaticFlagCandidateReason:candidateFlags.reason||null,
    campaignSummary:campaign?.verified===true?campaign.summary:null,
    campaignCurrentMapConfirmed:campaign?.currentMapConfirmed===true,
    worldwideTrainerGatesClosed:campaign?.summary?.verifiedTrainerGatesClosed??0,
