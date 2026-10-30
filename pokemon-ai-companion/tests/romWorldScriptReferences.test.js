@@ -6,6 +6,7 @@ const {readRom}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
 const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
+const {buildCampaignLedger}=require('../romCampaignLedger');
 const {AUDITED_ROM_SHA256}=require('../romKnownSha256');
 const cases=[
  ['red','POKEMON_RED_ROM',AUDITED_ROM_SHA256.RED],
@@ -39,6 +40,37 @@ for(const [name,env,sha] of cases){
   assert.equal(tracker.verified,true);
   assert.equal(tracker.scriptAtlasBound,true);
   assert.equal(tracker.summary.scriptReferencesBound,1126);
+  // Deterministic synthetic RAM (all flags clear) tests the real-ROM
+  // structure + global flag joins. This is NOT an emulator observation.
+  const ledger=buildCampaignLedger({profile,
+   romIdentityMatched:true,mapWindowVerified:true,
+   eventFlagsHex:Array(320).fill('00'),
+   hiddenItemHex:Array(14).fill('00'),
+   hiddenCoinHex:Array(2).fill('00')});
+  assert.equal(ledger.verified,true,ledger.reason);
+  assert.equal(ledger.mapCount,226);
+  assert.equal(ledger.totals.hiddenItems,54);
+  assert.equal(ledger.totals.hiddenItemsWithoutNormalHeader,1);
+  assert.equal(ledger.unassignedHiddenItemRecords.length,1);
+  assert.equal(ledger.unassignedHiddenItemRecords[0].mapHeaderVerified,false);
+  assert.equal(ledger.unassignedHiddenItemRecords[0].accessibleNow,null);
+  const joinedLive=buildCampaignWorldTracker({
+   index:mapIndex,scriptAtlas:profile.world.interactionScriptAtlas,
+   worldFlagLedger:ledger});
+  assert.equal(joinedLive.verified,true);
+  assert.equal(joinedLive.globalEventFlagSnapshotMatched,true);
+  assert.equal(joinedLive.summary.verifiedScriptEventFlagStates,346);
+  assert.equal(joinedLive.summary.verifiedTrainerGatesOpen,334);
+  assert.equal(joinedLive.summary.verifiedTrainerGatesClosed,0);
+  assert.equal(joinedLive.summary.verifiedEncounterGatesOpen,12);
+  assert.equal(joinedLive.summary.verifiedEncounterGatesClosed,0);
+  const joinedActions=joinedLive.maps.filter(m=>m.verified)
+   .flatMap(m=>m.actions).filter(a=>a.scriptEventFlagSnapshotVerified);
+  assert.equal(joinedActions.length,346);
+  assert.ok(joinedActions.every(a=>
+   a.completedNow===null&&a.accessibleNow===null&&
+   a.scriptEffectSemanticsVerified===false));
+
   // WARP has no Text ID. It belongs to ROM warp routing, not the
   // 1126 interactions (signs, actors and pickups). Hidden items are
   // bound separately to their own 54 script/bitmap references.
