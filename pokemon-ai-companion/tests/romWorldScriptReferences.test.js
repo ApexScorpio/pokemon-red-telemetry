@@ -78,6 +78,12 @@ for(const [name,env,sha] of cases){
   assert.equal(atlas.maps.length,248);
   assert.equal(atlas.maps.filter(m=>m.verified).length,226);
   assert.equal(atlas.summary.mapScriptPointers,226);
+  assert.equal(atlas.summary.asmTextReferences,626);
+  assert.equal(atlas.summary.asmEntrypointsLocated,626);
+  assert.ok(atlas.summary.uniqueAsmEntrypoints>0);
+  assert.ok(atlas.summary.uniqueAsmEntrypoints<=626);
+  assert.equal(atlas.summary.asmSemanticallyCertified,0);
+
   assert.equal(atlas.references.length,1126);
   assert.deepEqual(atlas.summary.byKind,{
    SIGN:202,NPC:472,TRAINER:334,ITEM:106,STATIC_POKEMON:12
@@ -102,6 +108,13 @@ for(const [name,env,sha] of cases){
    assert.equal(r.scriptEffectsVerified,false);
    assert.equal(r.effectBranchesVerified,false);
    assert.equal(r.interactionExecuted,false);
+   if(r.scriptCommand==='TX_START_ASM'){
+    assert.equal(r.asmCandidate?.verified,true);
+    assert.equal(r.asmCandidate.txAsmFileOffset,r.scriptFileOffset);
+    assert.equal(r.asmCandidate.scriptEffectsVerified,false);
+    assert.equal(r.asmCandidate.conditionsVerified,false);
+   }else assert.equal(r.asmCandidate,null);
+
    assert.equal(r.accessibleNow,null);
    assert.equal(r.alreadyCompleted,null);
    if(r.textPointerVerified){
