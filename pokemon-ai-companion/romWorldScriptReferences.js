@@ -231,6 +231,15 @@ function auditWorldScriptReferences({rom,profile}={}){
     (n,x)=>n+(x.additionalCandidateInstructions||0),0),
    rom0ExpandedStillLimited:rom0Evidence.filter(x=>
     x.candidateExpansionApplied===true&&x.residualLimitReached===true).length,
+   rom0Intermediate128LimitHits:rom0Evidence.filter(x=>
+    x.firstDeepPassLimitReached===true).length,
+   rom0WholeBankPasses:rom0Evidence.filter(x=>x.thirdPassApplied===true).length,
+   rom0ThirdPassAdditionalCandidateInstructions:rom0Evidence.reduce(
+    (n,x)=>n+(x.thirdPassAdditionalCandidateInstructions||0),0),
+   rom0WholeBankResidualLimits:rom0Evidence.filter(x=>
+    x.thirdPassApplied===true&&x.residualLimitReached===true).length,
+   rom0StaticCandidateWalkExhausted:rom0Evidence.filter(x=>
+    x.fixedBankCandidateWalkExhausted===true).length,
    rom0EffectSemanticsCertified:0,
    rom0TargetsWithWorldOrigins:rom0Evidence.filter(x=>
     x.referencingMapIds.length>0&&x.referencingAsmOffsets.length>0).length,
