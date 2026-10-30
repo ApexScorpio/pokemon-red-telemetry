@@ -103,6 +103,13 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
   index.totals.hiddenItems!==54||unassignedHidden!==index.totals.hiddenItemsWithoutNormalHeader||
   staticActions!==tracker.summary.allStaticActions)
   return invalid('Contagem mundial nao fecha; recusar cobertura global ficticia');
+ const rom0=scriptAtlas.summary;
+ if(rom0.rom0BranchTargetOccurrences!==
+     rom0.asmUnresolvedReasonCounts?.ROM0_OUTSIDE_LOCAL_GRAPH||
+    rom0.physicallyMappedRom0Targets!==rom0.distinctRom0BranchDestinations||
+    rom0.rom0EffectSemanticsCertified!==0||
+    scriptAtlas.rom0PhysicalAddressMappingCertified!==true)
+  return invalid('Prova fisica ROM0 nao concorda com destinos ASM');
  const unresolvedReasons=scriptAtlas.summary.asmUnresolvedReasonCounts||{};
  const callReasons=scriptAtlas.summary.asmUnfollowedCallClasses||{};
  const n=x=>Object.values(x).reduce((sum,v)=>sum+v,0);
@@ -124,6 +131,11 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    uniqueAsmEntrypoints:allAsmOffsets.size,asmTextReferences,
    candidateInstructions:scriptAtlas.summary.uniqueAsmCandidateInstructions,
    unresolvedAsmTargets:scriptAtlas.summary.uniqueAsmUnresolvedTargets,
+   mappedRom0BranchReferences:rom0.rom0BranchTargetOccurrences,
+   distinctRom0PhysicalTargets:rom0.distinctRom0BranchDestinations,
+   boundedRom0OpcodeCandidates:rom0.rom0OpcodeCandidateInstructions,
+   rom0StillSemanticallyUnknown:rom0.rom0BranchTargetOccurrences,
+   rom0EffectsProven:0,
    untraversedAsmCalls:scriptAtlas.summary.uniqueAsmCallsNotFollowed,
    asmInitiallyCapped:scriptAtlas.summary.uniqueAsmFirstPassLimitHits,
    asmExpanded:scriptAtlas.summary.uniqueAsmExpandedEntrypoints,
