@@ -262,15 +262,19 @@ function main(){
    gaps.summary.asmTextReferences===626&&
    gaps.summary.uniqueAsmEntrypoints===516&&
    gaps.summary.unverifiedScriptEffects===1126&&
-   gaps.summary.verifiedRomEventBitBindings===346&&
-   gaps.summary.verifiedTrainerScriptEventBitBindings===334&&
+   gaps.summary.verifiedRomEventBitBindings===344&&
+   gaps.summary.verifiedTrainerScriptEventBitBindings===332&&
    gaps.summary.verifiedStaticEncounterScriptEventBitBindings===12&&
    gaps.summary.verifiedSpecialTrainerScriptEventBitBindings===22&&
    gaps.summary.liveEventBitValuesVerified===0&&
-   a.summary.trainerEventFlagBindings===334&&
+   a.summary.trainerEventFlagBindings===332&&
    a.summary.stationaryEventFlagBindings===12&&
    a.summary.specialTrainerEventFlagBindings===22&&
-   a.summary.trainerEventFlagBindingsMissing===0&&
+   a.summary.trainerEventFlagBindingsMissing===2&&
+   gaps.summary.trainerScriptEventBitsUnresolved===2&&
+   JSON.stringify(gaps.summary.trainerScriptUnresolvedReferences
+    .map(x=>[x.mapId,x.ordinal,x.eventBitIndex]))===
+    JSON.stringify([[96,2,null],[135,11,null]])&&
    gaps.summary.textPointersPending===0&&
    a.summary.rom0BranchTargetOccurrences===537&&
    a.summary.rom0FirstPassLimitHits===13&&
@@ -314,6 +318,8 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_STATIC_ENCOUNTER_SCRIPT_BITS_LINKED='+a.summary.stationaryEventFlagBindings);
   log('ROM_'+variant.toUpperCase()+'_SPECIAL_TRAINER_BITS_LINKED='+a.summary.specialTrainerEventFlagBindings);
   log('ROM_'+variant.toUpperCase()+'_TRAINER_SCRIPT_BITS_MISSING='+a.summary.trainerEventFlagBindingsMissing);
+  log('ROM_'+variant.toUpperCase()+'_TRAINER_SCRIPT_BITS_UNKNOWN_CONTEXT='+
+   JSON.stringify(gaps.summary.trainerScriptUnresolvedReferences));
   log('ROM_'+variant.toUpperCase()+'_RUNTIME_EVENT_BITS_VERIFIED='+gaps.summary.liveEventBitValuesVerified);
   log('ROM_'+variant.toUpperCase()+'_ROM0_BRANCH_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0BranchReferences);
   log('ROM_'+variant.toUpperCase()+'_ROM0_CALL_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0CallReferences);
