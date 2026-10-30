@@ -46,6 +46,32 @@ test('displays conditional route without HTML injection or guaranteed access',()
  assert.equal(body.innerHTML,null);
  assert.match(source.textContent,/leitura RAM recente/);
 });
+test('world map shows physical candidate cross-map flag hints without causal claims',()=>{
+ const state=live();
+ state.worldAdvisor.romStaticFlagCandidatesVerified=true;
+ state.worldAdvisor.romStaticFlagCausalEffectsVerified=false;
+ state.worldAdvisor.romStaticFlagCandidatesWorldTotal=8;
+ state.worldAdvisor.romStaticFlagCandidates=[{
+  bitIndex:81,possibleWriterMapId:15,possibleReaderMapId:45,
+  possibleWriterKind:'NPC',possibleReaderKind:'TRAINER',
+  possibleWriterOrdinal:2,possibleReaderOrdinal:3,
+  possibleWriteOpcode:'SET_BIT',
+  verifiedActionDependency:false,causalLinkObserved:false
+ }];
+ const output=render(state);
+ assert.match(output.body.textContent,/RELAÇÕES ENTRE MAPAS/);
+ assert.match(output.body.textContent,/8 na ROM/);
+ assert.match(output.body.textContent,/Flag candidata #81/);
+ assert.match(output.body.textContent,/mapa #15/);
+ assert.match(output.body.textContent,/mapa #45/);
+ assert.match(output.body.textContent,/NÃO comprova sequência/);
+ assert.equal(output.body.innerHTML,null);
+ state.worldAdvisor.romStaticFlagCausalEffectsVerified=true;
+ assert.doesNotMatch(render(state).body.textContent,/Flag candidata #81/);
+ state.worldAdvisor.romStaticFlagCausalEffectsVerified=false;
+ state.connected=false;
+ assert.doesNotMatch(render(state).body.textContent,/Flag candidata #81/);
+});
 test('offline and stale samples hide all old action details',()=>{
  const old=live();old.connected=false;
  assert.doesNotMatch(render(old).body.textContent,/NEEDS_CUT|<img/);
