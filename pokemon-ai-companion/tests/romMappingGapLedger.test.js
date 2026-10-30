@@ -38,6 +38,11 @@ for(const [variant,name] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM
   assert.equal(ledger.summary.asmTextReferences,626);
   assert.equal(ledger.summary.uniqueAsmEntrypoints,516);
   assert.equal(ledger.summary.unverifiedScriptEffects,1126);
+  assert.equal(ledger.summary.mappedRom0BranchReferences,537);
+  assert.equal(ledger.summary.rom0StillSemanticallyUnknown,537);
+  assert.equal(ledger.summary.rom0EffectsProven,0);
+  assert.ok(ledger.summary.distinctRom0PhysicalTargets>0);
+  assert.ok(ledger.summary.boundedRom0OpcodeCandidates>0);
   assert.equal(ledger.summary.asmInitiallyCapped,7);
   assert.equal(ledger.summary.asmExpanded,7);
   assert.equal(ledger.mapping100PercentCertified,false);
