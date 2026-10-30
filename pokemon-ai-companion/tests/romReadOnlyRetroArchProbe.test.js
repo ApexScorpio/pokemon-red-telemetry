@@ -34,7 +34,7 @@ function mockServer({crc='9F7FDD53',mutation=false,changeMap=false,
      if(absolute===0xD361)arr[i]=5;
      if(absolute===0xD362)arr[i]=changePosition&&
       commands.filter(x=>x==='READ_CORE_MEMORY D361 2').length>1?9:8;
-     if(mutation&&absolute===0xD747)arr[i]=0x80;
+     if(mutation&&addr>=0xD6F0&&absolute===0xD747)arr[i]=0x80;
     }
     reply='READ_CORE_MEMORY '+match[1]+' '+
      [...arr].map(n=>n.toString(16).toUpperCase().padStart(2,'0')).join(' ');
