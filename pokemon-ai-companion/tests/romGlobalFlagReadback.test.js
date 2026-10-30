@@ -72,4 +72,11 @@ test('live RetroArch pipeline requires corroboration before global ledgers',()=>
  assert.ok(i>=0&&j>i);
  assert.match(src.slice(i,j),/positionWindow\.verified===true&&globalFlagReadback\.verified===true/);
  assert.match(src.slice(j,j+470),/positionWindow\.verified===true&&globalFlagReadback\.verified===true/);
+ const advisor=src.indexOf('this.latestState.worldAdvisor=adviseWorld({');
+ assert.ok(advisor>j);
+ assert.match(src.slice(advisor,advisor+250),/globalFlagReadback,/);
+ assert.match(src,/if\(globalFlagReadback\.verified!==true\)/);
+ const advisorSource=fs.readFileSync(path.join(__dirname,'../romWorldStateAdvisor.js'),'utf8');
+ assert.match(advisorSource,/globalFlagReadbackVerified:globalFlagReadback\?\.verified===true/);
+ assert.match(advisorSource,/globalFlagSnapshotAtomicVerified:false/);
 });
