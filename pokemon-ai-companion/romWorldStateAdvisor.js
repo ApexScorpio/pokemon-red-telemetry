@@ -7,6 +7,7 @@ const {buildMapChecklist}=require('./romWorldChecklist');
 const {buildCampaignWorldTracker}=require('./romCampaignWorldTracker');
 const {candidateFlagLinksForMap}=require('./romStaticWorldFlagDependencies');
 const {getMapFlagOperationCandidates}=require('./romGlobalFlagOperationCatalogue');
+const {buildNamedEventEvidenceLedger}=require('./romNamedEventEvidenceLedger');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -163,6 +164,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  // Never turn a shared opcode bit into an executed game consequence.
  const candidateFlags=candidateFlagLinksForMap({atlas:scriptAtlas,mapId});
  const flagOperations=getMapFlagOperationCandidates({atlas:scriptAtlas,mapId});
+ const namedEventEvidence=buildNamedEventEvidenceLedger({atlas:scriptAtlas});
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
  const campaign=worldIndex.verified?buildCampaignWorldTracker({
@@ -181,6 +183,11 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  }):null;
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
    mapStaticInventory,mapChecklist,
+   romNamedEventEvidenceVerified:namedEventEvidence.verified===true,
+   romNamedEventEvidenceSummary:namedEventEvidence.verified===true?
+    namedEventEvidence.summary:null,
+   romNamedEventEffectsExecutedVerified:false,
+   romNamedEventEvidenceReason:namedEventEvidence.reason||null,
    romAllFlagOperationsVerified:flagOperations.verified===true,
    romAllFlagOperations:flagOperations.verified===true?
     flagOperations.operations:[],
