@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
+const {buildStaticWorldFlagDependencies,candidateFlagLinksForMap}=require('../romStaticWorldFlagDependencies');
 const {readRom,KNOWN}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
 function syntheticAtlas(){
@@ -53,6 +53,27 @@ test('compact map storage builds same dependencies as flat original audit',()=>{
  broken.maps[5]={mapId:6,interactions:maps[5].interactions};
  assert.equal(buildStaticWorldFlagDependencies({atlas:broken}).verified,false);
 });
+test('per-map candidate hints are symmetric and never prove consequences',()=>{
+ const input=syntheticAtlas();
+ const mapWriter=candidateFlagLinksForMap({atlas:input,mapId:10});
+ const mapReader=candidateFlagLinksForMap({atlas:input,mapId:20});
+ const unrelated=candidateFlagLinksForMap({atlas:input,mapId:21});
+ assert.equal(mapWriter.verified,true);
+ assert.equal(mapReader.verified,true);
+ assert.equal(unrelated.verified,true);
+ assert.equal(mapWriter.candidateLinkCount,1);
+ assert.equal(mapReader.candidateLinkCount,1);
+ assert.equal(unrelated.candidateLinkCount,0);
+ assert.deepEqual(mapReader.links,mapWriter.links);
+ assert.equal(mapReader.links[0].possibleWriterMapId,10);
+ assert.equal(mapReader.links[0].possibleReaderMapId,20);
+ assert.equal(mapReader.links[0].possibleWriterOrdinal,1);
+ assert.equal(mapReader.links[0].possibleReaderOrdinal,1);
+ assert.equal(mapReader.provenCausalLinks,0);
+ assert.equal(mapReader.actionEffectsCertified,false);
+ assert.equal(candidateFlagLinksForMap({atlas:input,mapId:248}).verified,false);
+ assert.equal(candidateFlagLinksForMap({atlas:{},mapId:10}).verified,false);
+});
 test('missing exact ROM identity or forged event evidence fails closed',()=>{
  assert.equal(buildStaticWorldFlagDependencies({}).verified,false);
  const unknown=syntheticAtlas();unknown.romSha256='f'.repeat(64);
@@ -82,6 +103,21 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
   assert.equal(graph.summary.totalWorldObjects,1126);
   assert.equal(graph.summary.totalPotentialLinks,graph.candidateLinks.length);
   assert.equal(graph.summary.trustedCausalLinks,0);
+  assert.equal(graph.summary.totalPotentialLinks,8);
+  assert.equal(graph.summary.crossMapPotentialLinks,5);
+  for(const link of graph.candidateLinks){
+   assert.ok(link.possibleWriterMapId>=0&&link.possibleWriterMapId<248);
+   assert.ok(link.possibleReaderMapId>=0&&link.possibleReaderMapId<248);
+   assert.ok(Number.isInteger(link.possibleWriterOrdinal));
+   assert.ok(Number.isInteger(link.possibleReaderOrdinal));
+   const perMap=candidateFlagLinksForMap({atlas:a,
+    mapId:link.possibleReaderMapId});
+   assert.equal(perMap.verified,true,perMap.reason);
+   assert.ok(perMap.links.some(row=>row.key===link.key&&
+    row.possibleWriter===link.possibleWriter&&
+    row.possibleReader===link.possibleReader));
+   assert.equal(perMap.provenCausalLinks,0);
+  }
   assert.equal(a.summary.staticFlagCandidateLinks,graph.candidateLinks.length);
   assert.equal(a.summary.staticFlagCandidateCrossMapLinks,
    graph.summary.crossMapPotentialLinks);
