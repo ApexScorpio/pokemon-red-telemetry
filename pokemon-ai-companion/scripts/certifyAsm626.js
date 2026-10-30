@@ -8,6 +8,7 @@ const {readRom,KNOWN}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
 const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
+const {buildMappingGapLedger}=require('../romMappingGapLedger');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
 
 const JOB=/^PSB-\d{8}-\d{4}-POKEGUIDE-[A-Z0-9-]+-\d{3}$/.test(process.env.POKEGUIDE_CERT_JOB_ID||'')?process.env.POKEGUIDE_CERT_JOB_ID:'PSB-20261030-1054-POKEGUIDE-ASM626-004';
@@ -148,6 +149,19 @@ function main(){
    i.verified===true&&i.totals.warps===813&&i.totals.hiddenItems===54&&
    tracker.verified===true&&tracker.summary.scriptReferencesBound===1126,
    'Invalid world/ASM mapping: '+variant);
+  const gaps=buildMappingGapLedger({profile:p,index:i,scriptAtlas:a,tracker});
+  assert(gaps.verified===true&&
+   gaps.summary.mapIds===248&&gaps.summary.normalMapHeaders===226&&
+   gaps.summary.idsWithoutNormalHeader===22&&
+   gaps.summary.hiddenItemsWithoutNormalHeader===1&&
+   gaps.summary.staticallyIndexedActions===1992&&
+   gaps.summary.scriptReferences===1126&&
+   gaps.summary.asmTextReferences===626&&
+   gaps.summary.uniqueAsmEntrypoints===516&&
+   gaps.summary.unverifiedScriptEffects===1126&&
+   gaps.summary.textPointersPending===0&&
+   gaps.mapping100PercentCertified===false,
+   'Global ROM mapping gap ledger discrepancy: '+variant+': '+gaps.reason);
   const rows=a.maps.flatMap(m=>m.interactions)
    .filter(x=>x.scriptCommand==='TX_START_ASM');
   assert(rows.length===626&&rows.every(x=>x.asmCandidate?.verified===true&&
@@ -157,6 +171,13 @@ function main(){
   originals[variant]=rom;
   fs.writeFileSync(path.join(work,OUTPUTS[variant]),rom,{flag:'wx'});
   fs.writeFileSync(path.join(work,PROFILES[variant]),JSON.stringify(p),{flag:'wx'});
+  log('ROM_'+variant.toUpperCase()+'_MAPS_WITH_NORMAL_HEADER='+gaps.summary.normalMapHeaders);
+  log('ROM_'+variant.toUpperCase()+'_MAP_IDS_WITHOUT_NORMAL_HEADER='+gaps.summary.idsWithoutNormalHeader);
+  log('ROM_'+variant.toUpperCase()+'_HIDDEN_ITEMS_UNASSIGNED='+gaps.summary.hiddenItemsWithoutNormalHeader);
+  log('ROM_'+variant.toUpperCase()+'_STATIC_ACTIONS='+gaps.summary.staticallyIndexedActions);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPT_EFFECTS_UNVERIFIED='+gaps.summary.unverifiedScriptEffects);
+  log('ROM_'+variant.toUpperCase()+'_RUNTIME_ACTIONS_UNPROVEN='+gaps.summary.runtimeActionsUnproven);
+  log('ROM_'+variant.toUpperCase()+'_GAP_HOTSPOTS='+JSON.stringify(gaps.priorities));
   log('ROM_'+variant.toUpperCase()+'_ASM_REFERENCES=626');
   log('ROM_'+variant.toUpperCase()+'_UNIQUE_ENTRYPOINTS='+a.summary.uniqueAsmEntrypoints);
   log('ROM_'+variant.toUpperCase()+'_CANDIDATE_INSTRUCTIONS='+a.summary.uniqueAsmCandidateInstructions);
@@ -181,6 +202,7 @@ function main(){
  log('STEP=TARGETED_ASM_AND_UI_TESTS');
  runTests('ASM_TARGETED',[
   'tests/romTxAsmHandlerAtlas.test.js',
+  'tests/romMappingGapLedger.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romCampaignUi.test.js',
   'tests/worldAdvisorPanel.test.js'
