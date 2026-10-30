@@ -13,6 +13,7 @@ const {planStrengthPushes}=require('./romStrengthPushPlanner');
 const {readStrengthFieldEvidence}=require('./romStrengthFieldEvidence');
 const {adviseWorld}=require('./romWorldStateAdvisor');
 const {buildCampaignLedger}=require('./romCampaignLedger');
+const {verifyGlobalFlagReadback}=require('./romGlobalFlagReadback');
 const {campaignObjectives}=require('./romCampaignObjectives');
 const {findCrossMapItemPaths}=require('./romCrossMapItemRoute');
 const {selectGlobalFlagTargets,planGlobalFlagItemRoutes}=require('./romGlobalFlagItemRoutes');
@@ -1235,6 +1236,20 @@ class RetroArchClient extends EventEmitter {
       // EQUIPA INIMIGA COMPLETA DO TREINADOR ($D89C, offset 764..771, 7 bytes)
       enemyPartyRaw = blockWorldEvents.slice(764, 772);
     }
+
+    // Re-read the entire global flag domains (D6F0..D886), then the map ID.
+    // A duplicate RAM read that differs cannot justify global completed/open
+    // flags in the world panel. This does not claim an atomic snapshot.
+    const globalFlagReadback=verifyGlobalFlagReadback({
+      firstWorldBlockHex:blockWorldEvents,
+      repeatFlagWindowHex:await this.readMemoryBlock('D6F0',407),
+      repeatMapHex:await this.readMemoryBlock('D35E',1),
+      expectedMapId:this.latestState.mapId,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true,
+      positionWindowVerified:positionWindow.verified===true
+    });
+    this.latestState.memoryReadStatus.globalFlagReadback=globalFlagReadback;
 
     // The original D700 byte came from a large sequential world-data block.
     // Re-read D700 just before predicting movement to reject Surf/bike state drift.
@@ -2711,7 +2726,7 @@ class RetroArchClient extends EventEmitter {
       profile:this.activeRomProfile,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
       mapWindowVerified:mapConfirmation.verified===true&&
-        positionWindow.verified===true,
+        positionWindow.verified===true&&globalFlagReadback.verified===true,
       eventFlagsHex:eventFlagsRaw,
       hiddenItemHex:hiddenRaw,
       hiddenCoinHex:hiddenCoinsRaw
@@ -2720,7 +2735,7 @@ class RetroArchClient extends EventEmitter {
       romSha256:this.activeRomProfile?.hash?.sha256,
       romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
       mapWindowVerified:mapConfirmation.verified===true&&
-        positionWindow.verified===true,
+        positionWindow.verified===true&&globalFlagReadback.verified===true,
       eventFlagsHex:eventFlagsRaw,
       toggleFlagsHex:toggleRaw
     });
