@@ -83,6 +83,8 @@ test('direct UDP probe sends only readonly commands and validates repeated bytes
   assert.equal(r.verified,true);
   assert.equal(r.status,'REMOTE_RAM_FLAGS_REPEAT_CORROBORATED');
   assert.equal(r.variant,'red');
+  assert.equal(r.romProfileCRC32Matched,true);
+  assert.equal(r.activeRomSha256Verified,false);
   assert.equal(r.mapId,10);
   assert.equal(r.matchedFlagBytes,336);
   assert.equal(r.playerActionConfirmed,false);
@@ -104,6 +106,18 @@ test('a changed event flag between reads is rejected, even when ROM CRC matches'
   assert.equal(r.rejectedDomain,'WORLD_EVENTS');
   assert.equal(r.gameEffectsCertified,false);
  });
+});
+test('Blue and Green International CRCs are recognized without claiming SHA identity',async()=>{
+ for(const [crc,variant] of [['D6DA8A1A','blue'],['3C2DD8AE','green-international']]){
+  await withMock({crc},async m=>{
+   const r=await probeReadOnlyRetroArch({host:'127.0.0.1',port:m.port,timeoutMs:900});
+   assert.equal(r.verified,true);
+   assert.equal(r.variant,variant);
+   assert.equal(r.romProfileCRC32Matched,true);
+   assert.equal(r.activeRomSha256Verified,false);
+   assert.equal(r.gameEffectsCertified,false);
+  });
+ }
 });
 test('moving map or position between remote reads never certifies progress',async()=>{
  for(const [config,field] of [[{changeMap:true},'mapRepeated'],
