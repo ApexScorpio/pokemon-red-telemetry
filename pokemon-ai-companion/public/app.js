@@ -708,9 +708,17 @@ function formatCampaignChecklistSection(advice) {
         (action.scriptTextPointerVerified===true?' (ponteiro válido)':
          ' (ponteiro por resolver)')+
         ' · efeito não certificado':'';
+    const asm=action.scriptAsmCandidate?.verified===true?
+      ' · ASM candidato: '+action.scriptAsmCandidate.opcodeCandidateCount+
+        ' instruções; '+action.scriptAsmCandidate.callsNotFollowed+
+        ' chamadas não percorridas; '+action.scriptAsmCandidate.unresolvedBranchTargets+
+        ' destinos não resolvidos'+
+        (action.scriptAsmCandidate.limitReached?', limite de análise atingido':'')+
+        ' (sem prova de efeito)':'';
+
 
     lines.push('• '+type+' ('+position+')'+identity+' — '+
-      (progress[action.progress]||'progresso por confirmar')+condition+entry);
+      (progress[action.progress]||'progresso por confirmar')+condition+entry+asm);
   }
   if(campaign.scriptReferencesBound>0)
     lines.push('🧩 Referências de scripts ROM ligadas a objetos do mundo: '+
