@@ -161,6 +161,8 @@ test('advisor exposes all-map static inventory without inventing current progres
  assert.equal(result.verified,true);
  assert.equal(result.fullWorldStaticIndexVerified,true);
  assert.equal(result.fullWorldStaticTotals.normalMaps,226);
+ assert.equal(result.campaignSummary.normalMaps,226);
+ assert.equal(result.campaignGlobalCompletionVerified,false);
  assert.equal(result.mapStaticInventory.verified,true);
  const item=result.mapStaticInventory.contents.visibleItems[0];
  assert.equal(item.itemOrTrainerId,35);
