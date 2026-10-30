@@ -6,6 +6,7 @@ const {buildWorldContentsIndex,getMapContents}=require('./romWorldContentsIndex'
 const {buildMapChecklist}=require('./romWorldChecklist');
 const {buildCampaignWorldTracker}=require('./romCampaignWorldTracker');
 const {candidateFlagLinksForMap}=require('./romStaticWorldFlagDependencies');
+const {getMapFlagOperationCandidates}=require('./romGlobalFlagOperationCatalogue');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -161,6 +162,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  // On-demand ROM-only cross-map links from the compact 1126-actor atlas.
  // Never turn a shared opcode bit into an executed game consequence.
  const candidateFlags=candidateFlagLinksForMap({atlas:scriptAtlas,mapId});
+ const flagOperations=getMapFlagOperationCandidates({atlas:scriptAtlas,mapId});
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
  const campaign=worldIndex.verified?buildCampaignWorldTracker({
@@ -179,6 +181,19 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  }):null;
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
    mapStaticInventory,mapChecklist,
+   romAllFlagOperationsVerified:flagOperations.verified===true,
+   romAllFlagOperations:flagOperations.verified===true?
+    flagOperations.operations:[],
+   romAllFlagOperationsCurrentMap:flagOperations.verified===true?
+    flagOperations.operationReferences:0,
+   romAllFlagOperationsWorldUnique:flagOperations.verified===true?
+    flagOperations.worldUniquePhysicalOperations:0,
+   romAllFlagOperationsHandlerScoped:flagOperations.verified===true?
+    flagOperations.worldHandlerScopedOperations:0,
+   romAllFlagOperationsMaps:flagOperations.verified===true?
+    flagOperations.worldMapsWithOperations:0,
+   romAllFlagOperationsRuntimeEffectsVerified:false,
+   romAllFlagOperationsReason:flagOperations.reason||null,
    romStaticFlagCandidatesVerified:candidateFlags.verified===true,
    romStaticFlagCandidates:candidateFlags.verified===true?
     candidateFlags.links:[],
