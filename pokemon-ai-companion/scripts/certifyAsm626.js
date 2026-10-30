@@ -92,7 +92,20 @@ function parseTap(label,output,status,minTests,expectedSkips){
    numbers.cancelled!==0||
    numbers.tests!==numbers.pass+numbers.skipped+numbers.todo){
   const block=String(output).split(/\r?\n/);
-  for(const line of block.slice(-75))if(line.trim())log(label+'_DETAIL='+line);
+  // TAP failures may occur hundreds of lines before the footer. Include
+  // each offending assertion's diagnostics, not just the last 75 lines.
+  let remaining=0,shown=0;
+  for(const line of block){
+   if(/^\s*not ok\s+\d+/.test(line))remaining=50;
+   if(remaining>0&&shown<200){
+    log(label+'_FAILED_ASSERTION='+line);
+    shown++;
+    remaining--;
+    if(/^\s*\.\.\.\s*$/.test(line))remaining=0;
+   }
+  }
+  if(shown===0)
+   for(const line of block.slice(-75))if(line.trim())log(label+'_DETAIL='+line);
   throw Error(label+' FAIL, exit='+status);
  }
  log(label+'_VALIDATED=TRUE');
