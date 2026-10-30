@@ -7,7 +7,7 @@ const {classifyLiveWorldState,readRunningCompanion}
 const RED='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
 const state=()=>({
  connected:true,isSimulation:false,mapId:5,
- lastUpdate:'2026-10-30T19:00:00Z',
+ lastUpdate:new Date().toISOString(),
  romRuntimeIdentity:{matched:true,profileSha256:RED},
  memoryReadStatus:{globalFlagReadback:{
   verified:true,readbackBytesMatched:336,
@@ -29,6 +29,14 @@ test('live state requires same-ROM readback across 336 bytes but never proves ac
  assert.equal(r.atomicMemorySnapshotCertified,false);
  assert.equal(r.playerActionConfirmed,false);
  assert.equal(r.activeMapId,5);
+});
+test('stale or missing lastUpdate is never represented as a live ROM observation',()=>{
+ const old=state();old.lastUpdate='2001-01-01T00:00:00Z';
+ assert.equal(classifyLiveWorldState(old).status,'STATE_TIMESTAMP_NOT_CURRENT');
+ const missing=state();delete missing.lastUpdate;
+ assert.equal(classifyLiveWorldState(missing).status,'STATE_TIMESTAMP_NOT_CURRENT');
+ const future=state();future.lastUpdate='2999-01-01T00:00:00Z';
+ assert.equal(classifyLiveWorldState(future).status,'STATE_TIMESTAMP_NOT_CURRENT');
 });
 test('old server, no connection, simulation and wrong ROM remain unverified',()=>{
  assert.equal(classifyLiveWorldState(null).status,'STATE_INVALID');
