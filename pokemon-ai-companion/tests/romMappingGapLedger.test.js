@@ -38,13 +38,16 @@ for(const [variant,name] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM
   assert.equal(ledger.summary.asmTextReferences,626);
   assert.equal(ledger.summary.uniqueAsmEntrypoints,516);
   assert.equal(ledger.summary.unverifiedScriptEffects,1126);
-  assert.equal(ledger.summary.verifiedRomEventBitBindings,346);
-  assert.equal(ledger.summary.verifiedTrainerScriptEventBitBindings,334);
+  assert.equal(ledger.summary.verifiedRomEventBitBindings,344);
+  assert.equal(ledger.summary.verifiedTrainerScriptEventBitBindings,332);
   assert.equal(ledger.summary.verifiedStaticEncounterScriptEventBitBindings,12);
   assert.equal(ledger.summary.verifiedSpecialTrainerScriptEventBitBindings,22);
   assert.equal(ledger.summary.liveEventBitValuesVerified,0);
+  assert.equal(ledger.summary.trainerScriptEventBitsUnresolved,2);
+  assert.deepEqual(ledger.summary.trainerScriptUnresolvedReferences.map(x=>
+   [x.mapId,x.ordinal,x.eventBitIndex]),[[96,2,null],[135,11,null]]);
   assert.equal(ledger.maps.filter(x=>x.staticHeaderVerified).reduce(
-   (n,x)=>n+x.verifiedRomEventBitBindings,0),346);
+   (n,x)=>n+x.verifiedRomEventBitBindings,0),344);
   assert.equal(ledger.summary.mappedRom0BranchReferences,537);
   assert.equal(ledger.summary.mappedRom0CallReferences,1016);
   assert.equal(ledger.summary.rom0CallEffectsProven,0);
