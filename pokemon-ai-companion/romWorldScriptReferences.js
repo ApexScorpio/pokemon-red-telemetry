@@ -288,6 +288,13 @@ function auditWorldScriptReferences({rom,profile}={}){
    uniqueAsmWramPointerLiterals:[...asmEntrypoints.values()].reduce(
     (n,x)=>n+(x.wramPointerLiteralCount||0),0),
    asmMemoryWritesExecuted:0,
+   uniqueAsmFlagBitTestCandidates:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.adjacentRomFlagBitTests||0),0),
+   uniqueAsmFlagBitSetCandidates:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.adjacentRomFlagBitSetCandidates||0),0),
+   uniqueAsmFlagBitResetCandidates:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.adjacentRomFlagBitResetCandidates||0),0),
+   asmBitEffectsExecuted:0,
    asmEntrypointsLocated:all.filter(x=>x.asmCandidate?.verified===true).length,
    uniqueAsmCandidateInstructions:[...asmEntrypoints.values()].reduce(
     (n,x)=>n+(x.opcodeCandidateCount||0),0),
