@@ -128,8 +128,14 @@ function writeArchiveEntries(entries){
  const centralSize=central.reduce((sum,b)=>sum+b.length,0);
  const tail=Buffer.alloc(22);
  tail.writeUInt32LE(0x06054b50,0);
- tail.writeUInt16LE(entries.length,8);
- tail.writeUInt16LE(entries.length,10);
+ // ZIP EOCD counts *physical file members*, not logical ROM profiles.
+ // One verified JSON may be split into 2 or 3 independently CRC-checked
+ // members; using entries.length silently hid all but the first chunk.
+ if(normalized.length<1||normalized.length>256||
+    central.length!==normalized.length*2)
+  throw Error('Indice ZIP central inconsistente com os fragmentos fisicos');
+ tail.writeUInt16LE(normalized.length,8);
+ tail.writeUInt16LE(normalized.length,10);
  tail.writeUInt32LE(centralSize,12);
  tail.writeUInt32LE(position,16);
  const zip=Buffer.concat([...locals,...central,tail]);
