@@ -848,6 +848,46 @@ function renderWorldAdvisor(state) {
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(insertion>=0)lines.splice(insertion,0,...campaignLines,'');
   }
+  // Include every physical candidate bit operation, not just bits shared
+  // between two actors. This is ROM code evidence, never gameplay progress.
+  if(advice.romAllFlagOperationsVerified===true&&
+     advice.romAllFlagOperationsRuntimeEffectsVerified===false&&
+     Array.isArray(advice.romAllFlagOperations)&&
+     advice.romAllFlagOperations.length<=150){
+    const ops=[
+      '--- BIT TEST / SET / RES: TODOS OS SCRIPTS DESTE MAPA ---',
+      advice.romAllFlagOperations.length+' referencias locais a operandos ROM; '+
+       (advice.romAllFlagOperationsHandlerScoped??'?')+
+       ' operacoes identificadas nos handlers mundiais. '+
+       'Estas contagens NAO provam execucao.'
+    ];
+    for(const r of advice.romAllFlagOperations){
+      if(!Number.isInteger(r.bitIndex)||r.bitIndex<0||
+         !['BIT_TEST','SET_BIT','RESET_BIT'].includes(r.operation)||
+         !['WORLD_EVENT_BIT','HIDDEN_ITEM_BIT','HIDDEN_COIN_BIT'].includes(r.domain)||
+         !Number.isInteger(r.actorOrdinal)||r.actorOrdinal<1||
+         r.instructionExecuted!==false||
+         r.causalEffectVerified!==false||
+         r.bitValueInCurrentSave!==null)continue;
+      const title=r.externalLabelSource==='pret/pokered'&&
+        r.labelIntrinsicToRom===false&&
+        typeof r.externalEventLabel==='string'?
+         ' · '+r.externalEventLabel+' (nome externo)':'';
+      ops.push('• '+r.operation+' bit '+r.bitIndex+' ['+r.domain+']'+
+        title+' · '+r.actorKind+' #'+r.actorOrdinal+
+        ' · opcode ROM '+r.opcodeFileOffset+'.');
+      const cond=r.conditionalBranch;
+      if(cond?.verified===true&&cond.branchActuallyTaken===null&&
+         (cond.condition==='NZ'||cond.condition==='Z'))
+        ops.push('  ↳ Condicao de codigo: '+cond.condition+
+          ', ramo se bit '+(cond.jumpTakenIfBitSet?'ativo':'inativo')+
+          '; nenhuma execucao comprovada.');
+    }
+    ops.push('⚠️ Ler/setar bit em codigo ROM nao prova que o NPC foi ativado, '+ 
+      'que a recompensa foi recebida nem que a acao esteja acessivel.','');
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...ops);
+  }
   // Shared ROM opcode bits are a lead for research, NOT evidence that an
   // action will unlock another map. Never attach a completion/access status.
   if(advice.romStaticFlagCandidatesVerified===true&&
