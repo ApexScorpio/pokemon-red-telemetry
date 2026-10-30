@@ -57,7 +57,11 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
   const p=inspectRomBuffer(rom,name+'.gb');
   assert.equal(p.hash.sha256,KNOWN[name]);
   const a=p.world.interactionScriptAtlas;
-  const graph=a.staticWorldFlagDependencies;
+  // Persisted profiles intentionally store the 248 per-map lists instead of
+  // a duplicate global reference array and a potentially large cross-map graph.
+  // Build its candidate links on demand from the verified map rows.
+  const graph=buildStaticWorldFlagDependencies({atlas:{...a,
+   references:a.maps.flatMap(m=>m.interactions||[])}});
   assert.equal(a.verified,true);
   assert.equal(graph.verified,true,graph.reason);
   assert.equal(graph.romSha256,p.hash.sha256);
