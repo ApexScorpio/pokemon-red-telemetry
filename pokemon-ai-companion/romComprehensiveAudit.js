@@ -308,6 +308,7 @@ function auditOne(label,b,decoder){
   crc32:crc32(b).toString(16).toUpperCase().padStart(8,'0'),headerChecksumValid:true},
   counts:data,coverage:ledger,catalogue:structuredCatalogue(profile),
   mapScriptsAndCode:mapCode,mapGuides:mapGuideIndex(profile),
+  interactionScriptIndex:profile.world?.interactionScriptAtlas??null,
   unresolved:GAP_DOMAINS.map(([domain,reason])=>({domain,status:'NOT_CERTIFIED',reason})),
   runtimeProven:false,semantic100PercentCertified:false};
 }
@@ -365,6 +366,10 @@ if(require.main===module){
     unresolvedNonReservedMapIds:v.mapGuides?.unresolvedNonReservedIds??null,
     mapScriptRoots:v.mapScriptsAndCode?.totals?.scriptSeeds||0,
     mapTextReferences:v.mapScriptsAndCode?.totals?.referencedTextEntries||0,
+    interactionScriptReferences:v.interactionScriptIndex?.summary?.referencedInteractions??null,
+    structurallyResolvedTextPointers:v.interactionScriptIndex?.summary?.resolvedTextPointers??null,
+    semanticallyCertifiedInteractionScripts:
+      v.interactionScriptIndex?.summary?.semanticallyCertifiedInteractionScripts??null,
     codeCandidateInstructions:v.mapScriptsAndCode?.graph?.instructions||0,
     codeUnresolvedTransfers:v.mapScriptsAndCode?.graph?.unresolvedTargets?.length||0
    }])),comparisons:Object.fromEntries(Object.entries(result.comparisons).map(([k,v])=>[k,v.differentBytes])),
