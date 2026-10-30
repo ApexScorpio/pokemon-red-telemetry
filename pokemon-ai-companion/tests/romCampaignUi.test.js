@@ -29,7 +29,7 @@ function good(){
       scriptReferenceBound:true,scriptCommand:'TX_START_ASM',
       scriptTextPointerVerified:true,
       scriptAsmCandidate:{verified:true,opcodeCandidateCount:18,
-       callsNotFollowed:2,unresolvedBranchTargets:1,limitReached:true}},
+       callsNotFollowed:2,unresolvedBranchTargets:1,limitReached:true,candidateExpansionApplied:true}},
     {kind:'TRAINER',x:9,y:2,progress:'NOT_PROVEN',
       staticObject:{},routeCondition:null}
    ]}
@@ -43,6 +43,7 @@ test('live UI enumerates every static object and identifies real hidden event bi
  assert.ok(lines.some(l=>l.includes('NEEDS_CUT')&&l.includes('hipótese')));
  assert.ok(lines.some(l=>l.includes('TX_START_ASM')&&l.includes('efeito não certificado')));
  assert.ok(lines.some(l=>l.includes('ASM candidato: 18 instruções')&&l.includes('sem prova de efeito')));
+ assert.ok(lines.some(l=>l.includes('análise alargada 64→256')&&l.includes('não execução')));
  assert.ok(lines.some(l=>l.includes('Treinador')&&l.includes('progresso por confirmar')));
  assert.ok(lines.some(l=>l.includes('não provam acesso')));
 });
