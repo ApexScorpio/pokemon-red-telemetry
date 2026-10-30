@@ -9,6 +9,7 @@ const zlib=require('node:zlib');
 
 const MAX_DIR_ENTRIES=5000, MAX_ZIP_SIZE=32*1024*1024;
 const MAX_JSON_UNCOMPRESSED=4*1024*1024, MAX_PROFILES=32;
+const MAX_PROFILE_PARTS=3; // individual ZIP entries remain capped at 4 MiB
 const ROM_EXT=/\.(?:gb|gbc)$/i;
 const PROFILE_NAME=/^pokemon_(?:red|blue|green)(?:_international.*?)?_rom_profile\.json$/i;
 const PROFILE_ZIP_NAME=/^pokemon_gen1_red_blue_green_profiles(?:_v\d+)?\.zip$/i;
@@ -111,7 +112,7 @@ function inspectZipProfiles(filename){
  const count=zip.readUInt16LE(end+10),indexSize=zip.readUInt32LE(end+12);
  let pos=zip.readUInt32LE(end+16);
  if(count>256||pos+indexSize>zip.length)throw Error('Índice ZIP inválido');
- const profiles=[];
+ const profiles=[],split=new Map(),unsplit=new Set();
  for(let i=0;i<count;i++){
   if(pos+46>zip.length||zip.readUInt32LE(pos)!==0x02014b50)throw Error('Índice ZIP corrupto');
   const flags=zip.readUInt16LE(pos+8),method=zip.readUInt16LE(pos+10);
@@ -120,7 +121,10 @@ function inspectZipProfiles(filename){
     extra=zip.readUInt16LE(pos+30),comment=zip.readUInt16LE(pos+32);
   const local=zip.readUInt32LE(pos+42),name=zip.subarray(pos+46,pos+46+nameLen).toString('utf8');
   pos+=46+nameLen+extra+comment;
-  if(!PROFILE_NAME.test(name)||name.includes('/')||name.includes('\\'))continue;
+  const partName=/^(.+\.json)\.part(\d{2})$/i.exec(name);
+  const normal=PROFILE_NAME.test(name);
+  const isPart=partName!==null&&PROFILE_NAME.test(partName[1]);
+  if((!normal&&!isPart)||name.includes('/')||name.includes('\\'))continue;
   if((flags&1)!==0||![0,8].includes(method)||uncompressed>MAX_JSON_UNCOMPRESSED||
      compressed>MAX_JSON_UNCOMPRESSED||local+30>zip.length||
      zip.readUInt32LE(local)!==0x04034b50)throw Error('Perfil comprimido inválido');
@@ -131,8 +135,36 @@ function inspectZipProfiles(filename){
   const data=method===8?zlib.inflateRawSync(raw,{maxOutputLength:MAX_JSON_UNCOMPRESSED}):raw;
   if(data.length!==uncompressed||crc32(data)!==expectedCrc)
    throw Error('CRC ou tamanho de perfil ZIP incorreto');
-  profiles.push({name,profile:JSON.parse(data.toString('utf8'))});
-  if(profiles.length>=MAX_PROFILES)break;
+  if(normal){
+   const key=name.toLowerCase();
+   if(unsplit.has(key)||split.has(key))
+    throw Error('Perfil duplicado ou misturado com partes no ZIP');
+   unsplit.add(key);
+   profiles.push({name,profile:JSON.parse(data.toString('utf8'))});
+  }else{
+   const key=partName[1].toLowerCase(),index=Number(partName[2]);
+   if(index>=MAX_PROFILE_PARTS||unsplit.has(key))
+    throw Error('Indice de fragmento de perfil fora do limite');
+   if(!split.has(key))split.set(key,{name:partName[1],parts:new Map()});
+   const parts=split.get(key).parts;
+   if(parts.has(index))
+    throw Error('Fragmento de perfil duplicado no ZIP');
+   parts.set(index,data);
+  }
+  if(profiles.length+split.size>MAX_PROFILES)
+   throw Error('Demasiados perfis no ZIP');
+ }
+ for(const {name,parts} of split.values()){
+  if(parts.size<2||parts.size>MAX_PROFILE_PARTS||
+     Array.from({length:parts.size},(_,i)=>parts.has(i)).some(x=>!x))
+   throw Error('Perfil ZIP dividido incompleto ou fora de ordem');
+  const segments=Array.from({length:parts.size},(_,i)=>parts.get(i));
+  const total=segments.reduce((n,x)=>n+x.length,0);
+  if(total<=MAX_JSON_UNCOMPRESSED||
+     total>MAX_JSON_UNCOMPRESSED*MAX_PROFILE_PARTS)
+   throw Error('Perfil ZIP dividido excede limites de reconstituicao');
+  const joined=Buffer.concat(segments,total);
+  profiles.push({name,profile:JSON.parse(joined.toString('utf8'))});
  }
  return profiles;
 }
