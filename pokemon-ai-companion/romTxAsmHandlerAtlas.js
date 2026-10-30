@@ -4,6 +4,7 @@
 // flags, branches and completed player actions remain UNKNOWN.
 const {decodeOpcode}=require('./romMapCodeAtlas');
 const {inspectAbsoluteOperand}=require('./romAsmAbsoluteMemoryEvidence');
+const {inspectAdjacentFlagPatterns}=require('./romAsmEventBitEvidence');
 const BANK=0x4000,ROM_BYTES=1048576;
 function fail(reason){return {verified:false,reason,source:'ROM_TX_ASM_LOCAL_CODE_CANDIDATES',
  scriptEffectsVerified:false,conditionsVerified:false,executed:false};}
@@ -39,7 +40,7 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
    unresolved.push({from:at,target:null,reason:d.reason});
    continue;
   }
-  record.push({offset:at,cpu:pc,opcode:d.opcode,size:d.size,kind:d.kind});
+  record.push({offset:at,cpu:pc,bank,opcode:d.opcode,size:d.size,kind:d.kind});
   const operand=inspectAbsoluteOperand({rom,decoded:d});
   if(operand)absoluteMemoryOperands.push(operand);
   if(d.kind==='branch')branchCount++;
@@ -87,6 +88,9 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
  const rom0BranchTargetOccurrences=unresolved.filter(u=>
   u.reason==='ROM0_OUTSIDE_LOCAL_GRAPH').length;
  const instructionBytes=record.reduce((n,r)=>n+r.size,0);
+ const bitEvidence=inspectAdjacentFlagPatterns({rom,instructions:record});
+ if(bitEvidence.verified!==true)
+  return fail('ROM adjacent bit instruction evidence inconsistent');
  return {verified:true,bank,txAsmFileOffset:fileOffset,
   handlerStartOffset:startOffset,cpu:rootCpu,
   initialOpcode:rom[startOffset],opcodeCandidateCount:record.length,
@@ -102,6 +106,11 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   limitReached,queueRemaining:queue.length,
   sampledOpcodes:record.slice(0,6),
   absoluteMemoryOperands,
+  adjacentRomFlagBitPatterns:bitEvidence.patterns,
+  adjacentRomFlagBitTests:bitEvidence.testedBitCandidates,
+  adjacentRomFlagBitSetCandidates:bitEvidence.setBitCandidates,
+  adjacentRomFlagBitResetCandidates:bitEvidence.resetBitCandidates,
+  adjacentRomFlagBitInstructionsExecuted:false,
   absoluteMemoryOperandCount:absoluteMemoryOperands.length,
   directWramReadCandidateCount:absoluteMemoryOperands.filter(x=>
    x.directWramReadCandidate).length,
