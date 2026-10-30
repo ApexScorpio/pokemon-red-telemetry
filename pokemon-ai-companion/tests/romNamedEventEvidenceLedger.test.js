@@ -42,6 +42,28 @@ for(const [variant,env] of [['red','POKEMON_RED_ROM'],
   assert.equal(s.eventCompletionsObserved,0);
   assert.equal(ledger.semanticallyComplete,false);
   assert.equal(ledger.flagsCurrentValuesObserved,false);
+  const gaps=ledger.unresolvedNamedFlagEvidence;
+  assert.equal(gaps.gameplayCompletionEvidence,false);
+  assert.equal(gaps.noDirectEvidenceCount,
+   s.categories.NO_DIRECT_EVIDENCE);
+  assert.equal(gaps.headerOnlyCount,
+   s.categories.HEADER_BINDING_ONLY);
+  assert.equal(gaps.noDirectEvidenceFlags.length,gaps.noDirectEvidenceCount);
+  assert.equal(gaps.headerOnlyFlags.length,gaps.headerOnlyCount);
+  assert.equal(gaps.noDirectEvidenceFlags.every(x=>
+   x.eventCompleted===null&&x.romOpcodeCount===0&&
+   x.romHeaderActorCount===0),true);
+  assert.equal(gaps.headerOnlyFlags.every(x=>
+   x.eventCompleted===null&&x.romOpcodeCount===0&&
+   x.romHeaderActorCount>0),true);
+  const expectedNoEvidence=ledger.flags.filter(x=>
+   x.evidenceCategory==='NO_DIRECT_EVIDENCE').map(x=>x.bitIndex);
+  const expectedHeaderOnly=ledger.flags.filter(x=>
+   x.evidenceCategory==='HEADER_BINDING_ONLY').map(x=>x.bitIndex);
+  assert.deepEqual(gaps.noDirectEvidenceFlags.map(x=>x.bitIndex),
+   expectedNoEvidence);
+  assert.deepEqual(gaps.headerOnlyFlags.map(x=>x.bitIndex),
+   expectedHeaderOnly);
   const named=new Map(ledger.flags.map(x=>[x.bitIndex,x]));
   assert.equal(named.size,507);
   for(const [bit,name] of [
