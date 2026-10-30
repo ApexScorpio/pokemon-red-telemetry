@@ -102,11 +102,29 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    scriptEffectsComplete:false,
    accessCurrentlyProven:false
  }]));
+ const unassignedHiddenItemRecords=[];
  for(const row of hidden){
    const m=byMap.get(row.mapId);
-   if(!m)return invalid('Item oculto referencia mapa não normal #'+row.mapId);
-   m.hiddenItems.total++;
    const flagSet=bit(hiddenItemHex,row.hiddenIndex);
+   if(!m){
+    // A reserved/unnormalized map ID is not an empty map and must not
+    // invalidate the other 225+ valid map records or lose this ROM flag.
+    if(!Number.isInteger(row.mapId)||row.mapId<0||row.mapId>=248||
+       mapIndex.data[row.mapId]?.valid!==false)
+     return invalid('Item oculto referencia mapa inexistente ou contraditorio #'+row.mapId);
+    unassignedHiddenItemRecords.push({
+     recordId:'hidden-item-'+row.hiddenIndex,
+     hiddenIndex:row.hiddenIndex,mapId:row.mapId,
+     bitIndex:row.hiddenIndex,flagSet,
+     x:row.x,y:row.y,
+     itemId:Number.isInteger(row.itemId)?row.itemId:null,
+     mapHeaderVerified:false,accessibleNow:null,
+     collectedFlagOnly:true,
+     source:'ROM_HIDDEN_ITEM_INDEX + RAM_D6F0 + NO_NORMAL_MAP_HEADER'
+    });
+    continue;
+   }
+   m.hiddenItems.total++;
    m.flagRecords.hiddenItems.push({
      recordId:'hidden-item-'+row.hiddenIndex,bitIndex:row.hiddenIndex,
      flagSet,x:row.x,y:row.y,
@@ -251,6 +269,10 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    npcObjects:0,signObjects:0,interactionOutcomesUnresolved:0,
    interactionCoordinatesUnverified:0,interactionTextPointersVerified:0,
    hiddenItemsCollected:0,hiddenItemsNotCollected:0,
+   hiddenItemsInNormalMaps:54-unassignedHiddenItemRecords.length,
+   hiddenItemsWithoutNormalHeader:unassignedHiddenItemRecords.length,
+   unassignedHiddenItemFlagsSet:unassignedHiddenItemRecords.filter(x=>x.flagSet).length,
+   unassignedHiddenItemFlagsClear:unassignedHiddenItemRecords.filter(x=>!x.flagSet).length,
    hiddenCoinsCollected:0,hiddenCoinsNotCollected:0,
    trainerObjects:0,trainerFlagsMapped:0,trainerGatesClosed:0,
    trainerGatesOpen:0,trainersUnknown:0,scriptedVictories:0,
@@ -280,14 +302,23 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
    total.stationaryGatesOpen+=s.stationaryPokemon.gatesOpen;
    total.stationaryUnknown+=s.stationaryPokemon.unknown;
  }
+ // The global bitmap counts even flags whose ROM map ID has no normal header.
+ // Do not allocate those objects to an invented accessible map.
+ total.hiddenItemsCollected+=total.unassignedHiddenItemFlagsSet;
+ total.hiddenItemsNotCollected+=total.unassignedHiddenItemFlagsClear;
+ if(total.hiddenItemsCollected+total.hiddenItemsNotCollected!==54||
+    total.hiddenItemsInNormalMaps+total.hiddenItemsWithoutNormalHeader!==54)
+  return invalid('Contagem mundial de 54 flags ocultas perdeu referencias');
  return {verified:true,romSha256:sha,mapCount:maps.length,
-   mapProgress:[...byMap.values()],totals:total,
+   mapProgress:[...byMap.values()],
+   unassignedHiddenItemRecords,totals,
    progressCompleteness:'PARTIAL',snapshotAtomicVerified:false,
    flagRecordCompleteness:'KNOWN_ROM_MAPPING_ONLY',
    bitwiseEventEvidenceAvailable:true,
    trainerGateClosedIsVictory:false,stationaryGateClosedIsCaptured:false,
    accessCurrentlyProven:false,
-   limitations:['Flags de eventos não são prova universal de vitória ou recolha de itens visíveis',
+   limitations:['Item oculto de mapa sem cabeçalho normal preservado sem inventar acesso',
+     'Flags de eventos não são prova universal de vitória ou recolha de itens visíveis',
      'Snapshots RAM sequenciais; não há atomicidade comprovada',
      'Scripts, NPCs e percursos globais não estão semanticamente completos',
      'As ROMs conhecidas não comprovam o hash da ROM efetivamente executada no emulador']};
