@@ -10,6 +10,7 @@ const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
+const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
 const referenceEventNames=require('../data/gen1EventNamesPret.json');
 const referenceMapNames=require('../data/gen1MapNamesPret.json');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
@@ -140,6 +141,7 @@ function main(){
  for(const name of Object.keys(FILENAMES))log('ROM_'+name.toUpperCase()+'_FOUND=TRUE');
  const atlas=JSON.parse(fs.readFileSync(ATLAS,'utf8'));
  const originals={};
+ const crossRomFlagGraphs={};
  log('STEP=VERIFY_SHA_AND_WORLD_ROM');
  for(const variant of ['red','blue','green']){
   const rom=readRom(found[variant]),p=inspectRomBuffer(rom,OUTPUTS[variant]);
@@ -390,6 +392,7 @@ function main(){
    'Pinned disassembly reference labels invalid');
   log('ROM_'+variant.toUpperCase()+'_REFERENCE_NAMED_EVENT_BITS=507');
   log('ROM_'+variant.toUpperCase()+'_REFERENCE_NAMED_MAP_IDS=248');
+  crossRomFlagGraphs[variant]=candidateGraph;
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CAUSAL_LINKS_VERIFIED=0');
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CANDIDATE_DETAILS='+JSON.stringify(
    candidateGraph.candidateLinks.map(link=>({
@@ -441,6 +444,18 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_UNFOLLOWED_CALL_CLASSES='+JSON.stringify(a.summary.asmUnfollowedCallClasses));
   log('ROM_'+variant.toUpperCase()+'_SCAN_LIMIT_HITS='+a.summary.uniqueAsmScanLimitHits);
  }
+ log('STEP=CROSS_ROM_FLAG_CONDITION_COMPARISON');
+ const comparison=compareCrossVariantFlagSemantics({graphs:crossRomFlagGraphs});
+ assert(comparison.verified===true&&
+  comparison.linkedFlagCandidatesPerRom===8&&
+  comparison.crossMapCandidatesPerRom===5&&
+  comparison.totalPermittedCallRelocations===4&&
+  comparison.sameCausalOutcomeVerified===false,
+  'Cross-version static flag evidence inconsistent: '+comparison.reason);
+ log('CROSS_ROM_FLAG_SEMANTICS_COMPARED=TRUE');
+ log('CROSS_ROM_EXPECTED_CALL_RELOCATIONS=4');
+ log('CROSS_ROM_DIFFERENCES='+JSON.stringify(comparison.differences));
+ log('CROSS_ROM_SAME_GAMEPLAY_OUTCOME_CERTIFIED=FALSE');
  env.POKEMON_RED_ROM=path.join(work,OUTPUTS.red);
  env.POKEMON_BLUE_ROM=path.join(work,OUTPUTS.blue);
  env.POKEMON_GREEN_ROM=path.join(work,OUTPUTS.green);
@@ -456,6 +471,7 @@ function main(){
   'tests/romAsmEventBitEvidence.test.js',
   'tests/romAsmFlagBranchAnalysis.test.js',
   'tests/romReferenceSemantics.test.js',
+  'tests/romCrossVariantFlagSemantics.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
