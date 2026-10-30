@@ -13,7 +13,7 @@ const cpuToFile=(rom,bank,cpu)=>{
 };
 const fail=reason=>({verified:false,reason,textOutcomeVerified:false,
   dialogueExecuted:false});
-// All 9 first-byte dispatcher cases are documented in pret/pokered
+// All 10 first-byte dispatcher cases are documented in pret/pokered
 // macros/scripts/text.asm + home/text_script.asm (FD/FC/F9 were missing).
 const labels={0x17:'TX_FAR',0x08:'TX_START_ASM',
   0xff:'SCRIPT_POKECENTER_NURSE',0xfe:'SCRIPT_MART',
