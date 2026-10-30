@@ -136,6 +136,11 @@ function main(){
    a.summary.asmSemanticallyCertified===0&&
    a.summary.uniqueAsmEntrypoints>0&&a.summary.uniqueAsmEntrypoints<=626&&
    a.summary.uniqueAsmCandidateInstructions>0&&
+   a.summary.uniqueAsmFirstPassLimitHits===7&&
+   a.summary.uniqueAsmExpandedEntrypoints===7&&
+   a.summary.uniqueAsmAdditionalCandidateInstructions>=0&&
+   a.summary.uniqueAsmExpandedStillLimited<=7&&
+   a.summary.uniqueAsmScanLimitHits<=7&&
    i.verified===true&&i.totals.warps===813&&i.totals.hiddenItems===54&&
    tracker.verified===true&&tracker.summary.scriptReferencesBound===1126,
    'Invalid world/ASM mapping: '+variant);
@@ -153,6 +158,10 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_CANDIDATE_INSTRUCTIONS='+a.summary.uniqueAsmCandidateInstructions);
   log('ROM_'+variant.toUpperCase()+'_UNFOLLOWED_CALLS='+a.summary.uniqueAsmCallsNotFollowed);
   log('ROM_'+variant.toUpperCase()+'_UNRESOLVED_TARGETS='+a.summary.uniqueAsmUnresolvedTargets);
+  log('ROM_'+variant.toUpperCase()+'_FIRST_PASS_LIMIT_HITS='+a.summary.uniqueAsmFirstPassLimitHits);
+  log('ROM_'+variant.toUpperCase()+'_EXPANDED_ENTRYPOINTS='+a.summary.uniqueAsmExpandedEntrypoints);
+  log('ROM_'+variant.toUpperCase()+'_ADDITIONAL_CANDIDATE_INSTRUCTIONS='+a.summary.uniqueAsmAdditionalCandidateInstructions);
+  log('ROM_'+variant.toUpperCase()+'_EXPANDED_STILL_LIMITED='+a.summary.uniqueAsmExpandedStillLimited);
   log('ROM_'+variant.toUpperCase()+'_SCAN_LIMIT_HITS='+a.summary.uniqueAsmScanLimitHits);
  }
  env.POKEMON_RED_ROM=path.join(work,OUTPUTS.red);
