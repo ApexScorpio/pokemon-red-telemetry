@@ -5,7 +5,7 @@ const {buildMapChecklist}=require('./romWorldChecklist');
 const MAP_IDS=248, NORMAL_MAPS=226;
 const invalid=reason=>({verified:false,reason,maps:[],summary:null});
 function buildCampaignWorldTracker({index,evidenceByMap=[],currentMapId=null,
- currentMapVerified=false}={}){
+ currentMapVerified=false,scriptAtlas=null}={}){
  const maps=index?.maps;
  if(index?.verified!==true||!Array.isArray(maps)||maps.length!==MAP_IDS||
     maps.some((m,i)=>m?.mapId!==i||typeof m.verified!=='boolean')||
@@ -36,10 +36,11 @@ function buildCampaignWorldTracker({index,evidenceByMap=[],currentMapId=null,
   observedMapCount:0,confirmedHiddenCollected:0,confirmedHiddenNotCollected:0,
   conditionalNeedsCut:0,conditionalNeedsSurf:0,progressUnknown:0,
   unresolvedHiddenReferences:0,ambiguousMapSnapshots:ambiguous.size,
-  rejectedSnapshots
+  rejectedSnapshots,scriptReferencesBound:0
  };
  for(let mapId=0;mapId<MAP_IDS;mapId++){
-  const checklist=buildMapChecklist({index,mapId,advisor:advisors.get(mapId)||null});
+  const checklist=buildMapChecklist({index,mapId,
+   advisor:advisors.get(mapId)||null,scriptAtlas});
   if(checklist.verified!==true){
    summary.unresolvedMapIds++;
    summary.unresolvedHiddenReferences+=checklist.unresolvedHiddenReferences?.length||0;
@@ -55,6 +56,7 @@ function buildCampaignWorldTracker({index,evidenceByMap=[],currentMapId=null,
   summary.conditionalNeedsCut+=checklist.summary.needsCutCandidates;
   summary.conditionalNeedsSurf+=checklist.summary.needsSurfCandidates;
   summary.progressUnknown+=checklist.summary.progressUnverified;
+  summary.scriptReferencesBound+=checklist.summary.scriptReferencesBound||0;
   if(checklist.advisorEvidenceMatched)summary.observedMapCount++;
   perMap.push({mapId,verified:true,status:'ROM_STATIC_MAP',
    evidenceMatched:checklist.advisorEvidenceMatched,
@@ -66,7 +68,10 @@ function buildCampaignWorldTracker({index,evidenceByMap=[],currentMapId=null,
    perMap[currentMapId]?.verified===true&&
    advisors.has(currentMapId)?currentMapId:null;
  return {verified:true,romSha256:index.romSha256,maps:perMap,
-  summary,currentMapId:activeMap,
+  summary,scriptAtlasBound:scriptAtlas?.verified===true&&
+    scriptAtlas.romSha256===index.romSha256&&
+    summary.scriptReferencesBound===1126,
+  currentMapId:activeMap,
   currentMapConfirmed:activeMap!==null,
   storyCompletionVerified:false,
   globalAccessVerified:false,
