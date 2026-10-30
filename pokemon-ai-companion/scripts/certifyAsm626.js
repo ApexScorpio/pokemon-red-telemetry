@@ -141,6 +141,10 @@ function main(){
    a.summary.uniqueAsmAdditionalCandidateInstructions>=0&&
    a.summary.uniqueAsmExpandedStillLimited<=7&&
    a.summary.uniqueAsmScanLimitHits<=7&&
+   Object.values(a.summary.asmUnresolvedReasonCounts||{}).reduce((n,x)=>n+x,0)===
+    a.summary.uniqueAsmUnresolvedTargets&&
+   Object.values(a.summary.asmUnfollowedCallClasses||{}).reduce((n,x)=>n+x,0)===
+    a.summary.uniqueAsmCallsNotFollowed&&
    i.verified===true&&i.totals.warps===813&&i.totals.hiddenItems===54&&
    tracker.verified===true&&tracker.summary.scriptReferencesBound===1126,
    'Invalid world/ASM mapping: '+variant);
@@ -162,6 +166,8 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_EXPANDED_ENTRYPOINTS='+a.summary.uniqueAsmExpandedEntrypoints);
   log('ROM_'+variant.toUpperCase()+'_ADDITIONAL_CANDIDATE_INSTRUCTIONS='+a.summary.uniqueAsmAdditionalCandidateInstructions);
   log('ROM_'+variant.toUpperCase()+'_EXPANDED_STILL_LIMITED='+a.summary.uniqueAsmExpandedStillLimited);
+  log('ROM_'+variant.toUpperCase()+'_UNRESOLVED_REASON_COUNTS='+JSON.stringify(a.summary.asmUnresolvedReasonCounts));
+  log('ROM_'+variant.toUpperCase()+'_UNFOLLOWED_CALL_CLASSES='+JSON.stringify(a.summary.asmUnfollowedCallClasses));
   log('ROM_'+variant.toUpperCase()+'_SCAN_LIMIT_HITS='+a.summary.uniqueAsmScanLimitHits);
  }
  env.POKEMON_RED_ROM=path.join(work,OUTPUTS.red);
