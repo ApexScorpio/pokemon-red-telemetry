@@ -218,6 +218,12 @@ function inspectRomBuffer(b,file='ROM_EM_MEMORIA.gb'){
  world.interactionScriptAtlas=interactionAudit.verified===true?{
   verified:true,romSha256:interactionAudit.romSha256,
   summary:interactionAudit.summary,maps:interactionAudit.maps,
+  // Keep the exact ROM0 proof fields from the independent static audit.
+  // Omission here previously turned proven physical address coverage into
+  // undefined; never promote address coverage to proven game semantics.
+  fixedRom0BranchEvidence:interactionAudit.fixedRom0BranchEvidence,
+  rom0PhysicalAddressMappingCertified:
+   interactionAudit.rom0PhysicalAddressMappingCertified,
   scriptEffectsSemanticallyComplete:false,
   runtimeFlagsVerified:false,
   source:interactionAudit.source
