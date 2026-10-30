@@ -161,7 +161,9 @@ function main(){
    gaps.summary.unverifiedScriptEffects===1126&&
    gaps.summary.textPointersPending===0&&
    a.summary.rom0BranchTargetOccurrences===537&&
-   a.summary.physicallyMappedRom0Targets===a.summary.distinctRom0BranchDestinations&&
+   a.summary.physicallyMappedRom0Targets===a.summary.distinctRom0PhysicalTargets&&
+   a.summary.rom0CallTargetOccurrences===1016&&
+   gaps.summary.mappedRom0CallReferences===1016&&
    a.summary.rom0EffectSemanticsCertified===0&&
    gaps.summary.mappedRom0BranchReferences===537&&
    gaps.summary.rom0StillSemanticallyUnknown===537&&
@@ -183,6 +185,8 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_STATIC_ACTIONS='+gaps.summary.staticallyIndexedActions);
   log('ROM_'+variant.toUpperCase()+'_SCRIPT_EFFECTS_UNVERIFIED='+gaps.summary.unverifiedScriptEffects);
   log('ROM_'+variant.toUpperCase()+'_ROM0_BRANCH_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0BranchReferences);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_CALL_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0CallReferences);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_UNION_DISTINCT_TARGETS='+gaps.summary.distinctRom0PhysicalTargets);
   log('ROM_'+variant.toUpperCase()+'_ROM0_DISTINCT_PHYSICAL_TARGETS='+gaps.summary.distinctRom0PhysicalTargets);
   log('ROM_'+variant.toUpperCase()+'_ROM0_OPCODE_CANDIDATES='+gaps.summary.boundedRom0OpcodeCandidates);
   log('ROM_'+variant.toUpperCase()+'_ROM0_EFFECTS_STILL_UNKNOWN='+gaps.summary.rom0StillSemanticallyUnknown);
