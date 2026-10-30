@@ -116,6 +116,8 @@ function auditWorldScriptReferences({rom,profile}={}){
    asmRomFlagBitTestCandidates:asmCandidate?.adjacentRomFlagBitTests??0,
    asmRomFlagBitSetCandidates:asmCandidate?.adjacentRomFlagBitSetCandidates??0,
    asmRomFlagBitResetCandidates:asmCandidate?.adjacentRomFlagBitResetCandidates??0,
+   asmFlagConditionalBranchesDecoded:asmCandidate?.adjacentRomFlagBranchConditionsDecoded??0,
+   asmFlagTextAlternativesDecoded:asmCandidate?.adjacentRomFlagDualTextChoices??0,
    asmEventFlagBitsExecuted:false,
    scriptFileOffset:textPointerVerified?evidence.textFileOffset:null,
    textPointerCpu:textPointerVerified?evidence.textPointerCpu:null,
@@ -295,6 +297,12 @@ function auditWorldScriptReferences({rom,profile}={}){
     (n,x)=>n+(x.adjacentRomFlagBitSetCandidates||0),0),
    uniqueAsmFlagBitResetCandidates:[...asmEntrypoints.values()].reduce(
     (n,x)=>n+(x.adjacentRomFlagBitResetCandidates||0),0),
+   uniqueAsmFlagConditionalBranchGates:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.adjacentRomFlagBranchConditionsDecoded||0),0),
+   uniqueAsmFlagInterveningSafeLoads:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.adjacentRomFlagBranchPreservingInterveningLoad||0),0),
+   uniqueAsmFlagDualTextAlternatives:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.adjacentRomFlagDualTextChoices||0),0),
    asmBitEffectsExecuted:0,
    asmEntrypointsLocated:all.filter(x=>x.asmCandidate?.verified===true).length,
    uniqueAsmCandidateInstructions:[...asmEntrypoints.values()].reduce(
