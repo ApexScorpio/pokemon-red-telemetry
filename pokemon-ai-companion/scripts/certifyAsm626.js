@@ -182,6 +182,13 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_HIDDEN_ITEMS_UNASSIGNED='+gaps.summary.hiddenItemsWithoutNormalHeader);
   log('ROM_'+variant.toUpperCase()+'_STATIC_ACTIONS='+gaps.summary.staticallyIndexedActions);
   log('ROM_'+variant.toUpperCase()+'_SCRIPT_EFFECTS_UNVERIFIED='+gaps.summary.unverifiedScriptEffects);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_BRANCH_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0BranchReferences);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_DISTINCT_PHYSICAL_TARGETS='+gaps.summary.distinctRom0PhysicalTargets);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_OPCODE_CANDIDATES='+gaps.summary.boundedRom0OpcodeCandidates);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_EFFECTS_STILL_UNKNOWN='+gaps.summary.rom0StillSemanticallyUnknown);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_DECODE_PROBLEMS='+a.summary.rom0DecodeProblems);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_SCAN_LIMITS='+a.summary.rom0StillBudgetLimited);
+
   log('ROM_'+variant.toUpperCase()+'_RUNTIME_ACTIONS_UNPROVEN='+gaps.summary.runtimeActionsUnproven);
   log('ROM_'+variant.toUpperCase()+'_GAP_HOTSPOTS='+JSON.stringify(gaps.priorities));
   log('ROM_'+variant.toUpperCase()+'_ASM_REFERENCES=626');
