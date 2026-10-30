@@ -107,13 +107,26 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
   staticActions!==tracker.summary.allStaticActions)
   return invalid('Contagem mundial nao fecha; recusar cobertura global ficticia');
  const rom0=scriptAtlas.summary;
- if(rom0.rom0BranchTargetOccurrences!==
-     rom0.asmUnresolvedReasonCounts?.ROM0_OUTSIDE_LOCAL_GRAPH||
-    rom0.physicallyMappedRom0Targets!==rom0.distinctRom0PhysicalTargets||
-    rom0.rom0CallTargetOccurrences!==rom0.asmUnfollowedCallClasses?.ROM0_FIXED||
-    rom0.rom0EffectSemanticsCertified!==0||
-    scriptAtlas.rom0PhysicalAddressMappingCertified!==true)
-  return invalid('Prova fisica ROM0 nao concorda com destinos ASM');
+ // Each invariant gets its own diagnostic: never weaken the fail-closed gate
+ // or hide a mismatch behind one generic error.
+ const checks=[
+  ['BRANCH_REFERENCES',rom0.rom0BranchTargetOccurrences,
+    rom0.asmUnresolvedReasonCounts?.ROM0_OUTSIDE_LOCAL_GRAPH],
+  ['PHYSICAL_TARGET_UNION',rom0.physicallyMappedRom0Targets,
+    rom0.distinctRom0PhysicalTargets],
+  ['CALL_REFERENCES',rom0.rom0CallTargetOccurrences,
+    rom0.asmUnfollowedCallClasses?.ROM0_FIXED],
+  ['CERTIFIED_EFFECTS',rom0.rom0EffectSemanticsCertified,0],
+  ['ALL_PHYSICAL_ADDRESSES',scriptAtlas.rom0PhysicalAddressMappingCertified,true]
+ ];
+ for(const [name,actual,expected] of checks)
+  if(actual!==expected)
+   return invalid('ROM0_'+name+'_MISMATCH actual='+String(actual)+
+    ' expected='+String(expected)+
+    ' [branches='+String(rom0.rom0BranchTargetOccurrences)+
+    ', mapped='+String(rom0.physicallyMappedRom0Targets)+
+    ', unique='+String(rom0.distinctRom0PhysicalTargets)+
+    ', calls='+String(rom0.rom0CallTargetOccurrences)+']');
  const unresolvedReasons=scriptAtlas.summary.asmUnresolvedReasonCounts||{};
  const callReasons=scriptAtlas.summary.asmUnfollowedCallClasses||{};
  const n=x=>Object.values(x).reduce((sum,v)=>sum+v,0);
