@@ -95,13 +95,15 @@ test('reordered entries with the same identity are not a false variant differenc
  assert.equal(result.verified,true,result.reason);
  assert.equal(result.differences.length,4);
 });
-test('real original ROMs: only the four permitted TX_FAR shared-call offsets differ',()=>{
- const paths={
-  red:process.env.POKEMON_RED_ROM,
-  blue:process.env.POKEMON_BLUE_ROM,
-  green:process.env.POKEMON_GREEN_ROM
- };
- if(Object.values(paths).some(x=>!x))return;
+const originalRomPaths={
+ red:process.env.POKEMON_RED_ROM,
+ blue:process.env.POKEMON_BLUE_ROM,
+ green:process.env.POKEMON_GREEN_ROM
+};
+test('real original ROMs: only the four permitted TX_FAR shared-call offsets differ',
+ {skip:Object.values(originalRomPaths).some(x=>!x)?
+  'Red, Blue and Green original ROM paths not provided':false},()=>{
+ const paths=originalRomPaths;
  const graphs={};
  for(const [variant,loc] of Object.entries(paths)){
   const rom=readRom(loc);
@@ -114,5 +116,5 @@ test('real original ROMs: only the four permitted TX_FAR shared-call offsets dif
  const result=compareCrossVariantFlagSemantics({graphs});
  assert.equal(result.verified,true,result.reason);
  assert.equal(result.differences.length,4);
- assert.deepEqual([...new Set(result.differences.map(x=>x.key))].length,4);
+ assert.equal(new Set(result.differences.map(x=>x.key)).size,4);
 });
