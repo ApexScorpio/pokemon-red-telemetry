@@ -159,8 +159,13 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
  const campaign=worldIndex.verified?buildCampaignWorldTracker({
-   index:worldIndex,evidenceByMap:[{verified:true,mapId,romSha256:hash,
-     observations,hiddenFlagsVerified:hiddenFlagsVerified===true}]
+   index:worldIndex,
+   evidenceByMap:positionVerified===true?[{
+     verified:true,mapId,romSha256:hash,
+     observations,hiddenFlagsVerified:hiddenFlagsVerified===true
+   }]:[],
+   currentMapId:mapId,
+   currentMapVerified:positionVerified===true
  }):null;
  const mapChecklist=worldIndex.verified?buildMapChecklist({
    index:worldIndex,mapId,
@@ -170,6 +175,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
    mapStaticInventory,mapChecklist,
    campaignSummary:campaign?.verified===true?campaign.summary:null,
+   campaignCurrentMapConfirmed:campaign?.currentMapConfirmed===true,
    campaignGlobalCompletionVerified:false,
    fullWorldStaticIndexVerified:worldIndex.verified,
    fullWorldStaticTotals:worldIndex.verified?worldIndex.totals:null,
