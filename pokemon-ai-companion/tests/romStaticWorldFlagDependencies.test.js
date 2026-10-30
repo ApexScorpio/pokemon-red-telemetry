@@ -4,6 +4,7 @@ const assert=require('node:assert/strict');
 const {buildStaticWorldFlagDependencies,candidateFlagLinksForMap}=require('../romStaticWorldFlagDependencies');
 const {readRom,KNOWN}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
+const {adviseWorld}=require('../romWorldStateAdvisor');
 function syntheticAtlas(){
  const refs=Array.from({length:1126},(_,i)=>({
   mapId:i%226,kind:'NPC',ordinal:Math.floor(i/226)+1,
@@ -122,6 +123,16 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
   assert.equal(a.summary.staticFlagCandidateCrossMapLinks,
    graph.summary.crossMapPotentialLinks);
   assert.equal(a.summary.staticFlagCausalLinksVerified,0);
+  const receiver=graph.candidateLinks[0].possibleReaderMapId;
+  const advisor=adviseWorld({profile:p,mapId:receiver});
+  assert.equal(advisor.verified,true,advisor.reason);
+  assert.equal(advisor.romStaticFlagCandidatesVerified,true);
+  assert.equal(advisor.romStaticFlagCandidatesWorldTotal,8);
+  assert.equal(advisor.romStaticFlagCausalEffectsVerified,false);
+  assert.ok(advisor.romStaticFlagCandidates.some(x=>
+   x.possibleReaderMapId===receiver&&
+   x.verifiedActionDependency===false&&
+   x.causalLinkObserved===false));
   assert.ok(graph.entries.length>0);
   for(const entry of graph.entries){
    const actual=rom[entry.opcodeOffset];
