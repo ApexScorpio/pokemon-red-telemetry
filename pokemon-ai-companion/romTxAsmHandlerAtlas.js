@@ -67,6 +67,10 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   }
  }
  const limitReached=queue.length>0;
+ const reasons={};
+ for(const u of unresolved)reasons[u.reason]=(reasons[u.reason]||0)+1;
+ const callClasses={};
+ for(const c of callTargets)callClasses[c.mapping]=(callClasses[c.mapping]||0)+1;
  const instructionBytes=record.reduce((n,r)=>n+r.size,0);
  return {verified:true,bank,txAsmFileOffset:fileOffset,
   handlerStartOffset:startOffset,cpu:rootCpu,
@@ -76,6 +80,7 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   returnsObserved,invalidOpcodes,indirectTransfers,
   callsNotFollowed:callTargets.length,
   unresolvedBranchTargets:unresolved.length,
+  unresolvedReasonCounts:reasons,callClassCounts:callClasses,
   limitReached,queueRemaining:queue.length,
   sampledOpcodes:record.slice(0,6),
   callTargets:callTargets.slice(0,12),
