@@ -119,7 +119,8 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
      x:row.x,y:row.y,
      itemId:Number.isInteger(row.itemId)?row.itemId:null,
      mapHeaderVerified:false,accessibleNow:null,
-     collectedFlagOnly:true,
+     itemInBagConfirmed:null,
+     eventFlagMeaning:'BITMAP_FLAG_ONLY_NOT_PHYSICAL_ACCESS',
      source:'ROM_HIDDEN_ITEM_INDEX + RAM_D6F0 + NO_NORMAL_MAP_HEADER'
     });
     continue;
