@@ -6,6 +6,7 @@
 const crypto=require('node:crypto');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
+const {inspectTxAsmHandler}=require('./romTxAsmHandlerAtlas');
 const MAP_IDS=248,NORMAL_MAPS=226,EXPECTED_REFERENCES=1126;
 const BY_KIND=Object.freeze({
  SIGN:'signs',NPC:'npcs',TRAINER:'trainers',
@@ -27,6 +28,7 @@ function auditWorldScriptReferences({rom,profile}={}){
   return invalid('SHA exato, atlas de 248 IDs e 226 cabecalhos nao concordam');
  const all=[],world=[],byKind=Object.fromEntries(Object.keys(BY_KIND).map(x=>[x,0]));
  const commandCounts={},unresolvedReasons={};
+ const asmEntrypoints=new Map();
  let resolvedTextPointers=0,linearTextPrograms=0,nonLinearOrUnknown=0,
   martInventoryLists=0,mapScriptPointers=0,unresolvedMapIDs=0;
  const push=(map,kind,ordinal,x,y,rawTextId,actor)=>{
@@ -47,6 +49,13 @@ function auditWorldScriptReferences({rom,profile}={}){
   if(command==='TX_START_ASM'||command==='UNRESOLVED_TEXT_REFERENCE'||
      command==='TEXT_OPCODE_UNCLASSIFIED')nonLinearOrUnknown++;
   if(evidence.mart?.verified===true)martInventoryLists++;
+  let asmCandidate=null;
+  if(textPointerVerified&&command==='TX_START_ASM'){
+   const offset=evidence.textFileOffset;
+   if(!asmEntrypoints.has(offset))
+    asmEntrypoints.set(offset,inspectTxAsmHandler({rom,fileOffset:offset}));
+   asmCandidate=asmEntrypoints.get(offset);
+  }
   const trainer=kind==='TRAINER'?(map.trainerEvents||[]).find(
    row=>row.objectOrdinal===ordinal):null;
   const stationary=kind==='STATIC_POKEMON'?(map.staticEncounterEvents||[]).find(
@@ -59,6 +68,7 @@ function auditWorldScriptReferences({rom,profile}={}){
     kind==='STATIC_POKEMON'?{speciesInternalId:actor.wildSpeciesInternalId??null,
       level:actor.wildLevel??null}:null,
    textPointerVerified,scriptCommand:command,
+   asmCandidate,
    scriptFileOffset:textPointerVerified?evidence.textFileOffset:null,
    textPointerCpu:textPointerVerified?evidence.textPointerCpu:null,
    indirectTextTarget:evidence.far?.verified===true?{
@@ -129,7 +139,18 @@ function auditWorldScriptReferences({rom,profile}={}){
    resolvedTextPointers,unresolvedTextPointers:all.length-resolvedTextPointers,
    linearTextPrograms,nonLinearOrUnknown,martInventoryLists,
    commandCounts,unresolvedReasons,
-   semanticallyCertifiedInteractionScripts:0},
+   asmTextReferences:all.filter(x=>x.scriptCommand==='TX_START_ASM').length,
+   uniqueAsmEntrypoints:asmEntrypoints.size,
+   asmEntrypointsLocated:all.filter(x=>x.asmCandidate?.verified===true).length,
+   uniqueAsmCandidateInstructions:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.opcodeCandidateCount||0),0),
+   uniqueAsmCallsNotFollowed:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.callsNotFollowed||0),0),
+   uniqueAsmUnresolvedTargets:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.unresolvedBranchTargets||0),0),
+   uniqueAsmScanLimitHits:[...asmEntrypoints.values()].filter(
+    x=>x.limitReached===true).length,
+   semanticallyCertifiedInteractionScripts:0,asmSemanticallyCertified:0},
   allMapEntriesEnumerated:true,
   allScriptEffectsUnderstood:false,
   scriptEffectsSemanticallyComplete:false,
