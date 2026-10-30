@@ -28,6 +28,13 @@ function auditWorldScriptReferences({rom,profile}={}){
   return invalid('SHA exato, atlas de 248 IDs e 226 cabecalhos nao concordam');
  const all=[],world=[],byKind=Object.fromEntries(Object.keys(BY_KIND).map(x=>[x,0]));
  const commandCounts={},unresolvedReasons={};
+ const aggregateAsmCounts=(property)=>{
+  const totals={};
+  for(const graph of asmEntrypoints.values())
+   for(const [kind,n] of Object.entries(graph[property]||{}))
+    totals[kind]=(totals[kind]||0)+n;
+  return totals;
+ };
  const asmEntrypoints=new Map();
  let resolvedTextPointers=0,linearTextPrograms=0,nonLinearOrUnknown=0,
   martInventoryLists=0,mapScriptPointers=0,unresolvedMapIDs=0;
@@ -158,6 +165,8 @@ function auditWorldScriptReferences({rom,profile}={}){
     (n,x)=>n+(x.additionalCandidateInstructions||0),0),
    uniqueAsmExpandedStillLimited:[...asmEntrypoints.values()].filter(
     x=>x.candidateExpansionApplied===true&&x.residualLimitReached===true).length,
+   asmUnresolvedReasonCounts:aggregateAsmCounts('unresolvedReasonCounts'),
+   asmUnfollowedCallClasses:aggregateAsmCounts('callClassCounts'),
    semanticallyCertifiedInteractionScripts:0,asmSemanticallyCertified:0},
   allMapEntriesEnumerated:true,
   allScriptEffectsUnderstood:false,
