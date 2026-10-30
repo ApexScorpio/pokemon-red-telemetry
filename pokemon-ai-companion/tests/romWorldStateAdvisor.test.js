@@ -169,3 +169,14 @@ test('advisor exposes all-map static inventory without inventing current progres
  assert.equal(result.mapStaticInventory.liveProgressVerified,false);
  assert.equal(result.futureOutcomeGuaranteed,false);
 });
+
+test('advisor carries exact hidden event index to prevent a wrong RAM bit joining an item',()=>{
+ const a=run({hiddenItems:[{mapId:15,x:7,y:4,itemId:201,
+  hiddenIndex:12,isCollected:true}]});
+ const row=a.observations.find(o=>o.kind==='HIDDEN_ITEM');
+ assert.equal(row.hiddenIndex,12);
+ assert.equal(row.status,'COLLECTED_FLAG');
+ const unknown=run({hiddenItems:[{mapId:15,x:7,y:4,itemId:201,
+  isCollected:true}]});
+ assert.equal(unknown.observations.find(o=>o.kind==='HIDDEN_ITEM').hiddenIndex,null);
+});
