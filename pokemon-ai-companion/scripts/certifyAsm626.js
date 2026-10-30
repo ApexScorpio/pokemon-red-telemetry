@@ -183,6 +183,20 @@ function main(){
     a.summary.rom0DecodeProblems,
    'ROM0 detailed static diagnostics mismatch: '+variant);
   const cpuHex=pc=>'0x'+pc.toString(16).padStart(4,'0');
+  log('ROM_'+variant.toUpperCase()+'_ROM0_WHOLE_BANK_PASS_DETAILS='+
+   JSON.stringify(rom0Details.filter(x=>x.thirdPassApplied===true)
+    .map(x=>({target:cpuHex(x.targetCpu),
+     mapCount:x.referencingMapIds.length,
+     mapIdsSample:x.referencingMapIds.slice(0,15),
+     handlerCount:x.referencingAsmOffsets.length,
+     initial128InstructionCount:x.firstDeepPassLimitReached?128:null,
+     frontierAt128:x.frontierAt128.map(cpuHex),
+     pendingAt128:x.pendingAt128,
+     completedStaticCandidateInstructions:x.opcodeCandidateCount,
+     newlyInspectedInstructions:x.thirdPassAdditionalCandidateInstructions,
+     newlyObservedUnresolvedTargets:x.thirdPassAdditionalDecodeProblems,
+     stillLimited:x.residualLimitReached,
+     reasonCounts:x.problemReasonCounts}))));
   log('ROM_'+variant.toUpperCase()+'_ROM0_RESIDUAL_TARGET_DETAILS='+
    JSON.stringify(rom0Details.filter(x=>x.residualLimitReached)
     .map(x=>({target:cpuHex(x.targetCpu),
@@ -217,7 +231,12 @@ function main(){
    a.summary.rom0ExpandedTargets===13&&
    a.summary.rom0AdditionalCandidateInstructions>0&&
    a.summary.rom0ExpandedStillLimited===a.summary.rom0StillBudgetLimited&&
-   a.summary.rom0ExpandedStillLimited<=13&&
+   a.summary.rom0Intermediate128LimitHits===3&&
+   a.summary.rom0WholeBankPasses===3&&
+   a.summary.rom0WholeBankResidualLimits===0&&
+   a.summary.rom0StillBudgetLimited===0&&
+   a.summary.rom0StaticCandidateWalkExhausted===59&&
+   a.summary.rom0ThirdPassAdditionalCandidateInstructions>0&&
    a.summary.rom0EffectSemanticsCertified===0&&
    a.summary.physicallyMappedRom0Targets===a.summary.distinctRom0PhysicalTargets&&
    a.summary.rom0CallTargetOccurrences===1016&&
@@ -252,6 +271,10 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_ROM0_FIRST_PASS_LIMITS='+a.summary.rom0FirstPassLimitHits);
   log('ROM_'+variant.toUpperCase()+'_ROM0_EXPANDED_TARGETS='+a.summary.rom0ExpandedTargets);
   log('ROM_'+variant.toUpperCase()+'_ROM0_ADDITIONAL_CANDIDATE_INSTRUCTIONS='+a.summary.rom0AdditionalCandidateInstructions);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_INTERMEDIATE_128_LIMITS='+a.summary.rom0Intermediate128LimitHits);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_WHOLE_BANK_PASSES='+a.summary.rom0WholeBankPasses);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_WHOLE_BANK_NEW_INSTRUCTIONS='+a.summary.rom0ThirdPassAdditionalCandidateInstructions);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_STATIC_CANDIDATE_WALKS_DRAINED='+a.summary.rom0StaticCandidateWalkExhausted);
   log('ROM_'+variant.toUpperCase()+'_ROM0_RESIDUAL_LIMITS='+a.summary.rom0ExpandedStillLimited);
   log('ROM_'+variant.toUpperCase()+'_ROM0_SCAN_LIMITS='+a.summary.rom0StillBudgetLimited);
   log('ROM_'+variant.toUpperCase()+'_SCRIPT_EFFECTS_CERTIFIED=0');
