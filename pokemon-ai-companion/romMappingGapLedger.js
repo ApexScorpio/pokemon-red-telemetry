@@ -23,7 +23,7 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
  const maps=[];const allScriptRows=[];
  let normalMaps=0,unresolvedMapIds=0,unassignedHidden=0,
   textPointersPending=0,unverifiedEffects=0,asmTextReferences=0,
-  pendingRuntimeActions=0,staticActions=0;
+  eventBitBindings=0,pendingRuntimeActions=0,staticActions=0;
  const allAsmOffsets=new Set(),unknownEffects=[];
  for(let mapId=0;mapId<MAP_IDS;mapId++){
   const map=index.maps[mapId],script=scriptAtlas.maps[mapId],progress=tracker.maps[mapId];
@@ -79,6 +79,9 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
   textPointersPending+=missingPointers;
   unverifiedEffects+=missingEffects;
   asmTextReferences+=asm.length;
+  eventBitBindings+=referenced.filter(x=>x.eventBitBindingVerified===true&&
+   Number.isInteger(x.eventBitIndex)&&x.eventBitIndex>=0&&
+   x.eventBitIndex<2560).length;
   pendingRuntimeActions+=unprovenRuntime;
   staticActions+=actions.length;
   allScriptRows.push(...referenced);
@@ -90,6 +93,8 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
   maps.push({mapId,staticHeaderVerified:true,
    staticActionCount:actions.length,interactionCount:referenced.length,
    asmReferences:asm.length,uniqueAsmEntrypoints:asmOffsets.size,
+   verifiedRomEventBitBindings:referenced.filter(x=>
+    x.eventBitBindingVerified===true).length,
    asmHandlerCandidates:[...asmEntryDetails.values()].sort(
     (x,y)=>y.pendingTargets-x.pendingTargets||
      y.pendingCalls-x.pendingCalls||x.fileOffset-y.fileOffset),
@@ -103,6 +108,11 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
  if(normalMaps!==NORMAL_MAPS||unresolvedMapIds!==22||
   allScriptRows.length!==REFERENCES||asmTextReferences!==ASM_REFERENCES||
   allAsmOffsets.size!==ASM_UNIQUE||unverifiedEffects!==REFERENCES||
+  scriptAtlas.summary?.trainerEventFlagBindings!==334||
+  scriptAtlas.summary?.stationaryEventFlagBindings!==12||
+  scriptAtlas.summary?.specialTrainerEventFlagBindings!==22||
+  scriptAtlas.summary?.trainerEventFlagBindingsMissing!==0||
+  eventBitBindings!==346||
   index.totals.hiddenItems!==54||unassignedHidden!==index.totals.hiddenItemsWithoutNormalHeader||
   staticActions!==tracker.summary.allStaticActions)
   return invalid('Contagem mundial nao fecha; recusar cobertura global ficticia');
@@ -145,6 +155,11 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    hiddenItemsWithoutNormalHeader:unassignedHidden,
    staticallyIndexedActions:staticActions,
    scriptReferences:REFERENCES,textPointersPending,
+   verifiedRomEventBitBindings:eventBitBindings,
+   verifiedTrainerScriptEventBitBindings:334,
+   verifiedStaticEncounterScriptEventBitBindings:12,
+   verifiedSpecialTrainerScriptEventBitBindings:22,
+   liveEventBitValuesVerified:0,
    uniqueAsmEntrypoints:allAsmOffsets.size,asmTextReferences,
    candidateInstructions:scriptAtlas.summary.uniqueAsmCandidateInstructions,
    unresolvedAsmTargets:scriptAtlas.summary.uniqueAsmUnresolvedTargets,
