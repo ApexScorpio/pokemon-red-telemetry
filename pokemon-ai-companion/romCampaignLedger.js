@@ -312,7 +312,7 @@ function buildCampaignLedger({profile,romIdentityMatched=false,
   return invalid('Contagem mundial de 54 flags ocultas perdeu referencias');
  return {verified:true,romSha256:sha,mapCount:maps.length,
    mapProgress:[...byMap.values()],
-   unassignedHiddenItemRecords,totals,
+   unassignedHiddenItemRecords,totals:total,
    progressCompleteness:'PARTIAL',snapshotAtomicVerified:false,
    flagRecordCompleteness:'KNOWN_ROM_MAPPING_ONLY',
    bitwiseEventEvidenceAvailable:true,
