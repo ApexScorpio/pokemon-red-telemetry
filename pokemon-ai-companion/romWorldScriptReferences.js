@@ -102,6 +102,10 @@ function auditWorldScriptReferences({rom,profile}={}){
       level:actor.wildLevel??null}:null,
    textPointerVerified,scriptCommand:command,
    asmCandidate,
+   asmDirectWramReadCandidates:asmCandidate?.directWramReadCandidateCount??0,
+   asmDirectWramWriteCandidates:asmCandidate?.directWramWriteCandidateCount??0,
+   asmWramPointerLiteralCandidates:asmCandidate?.wramPointerLiteralCount??0,
+   asmMemoryEffectExecuted:false,
    scriptFileOffset:textPointerVerified?evidence.textFileOffset:null,
    textPointerCpu:textPointerVerified?evidence.textPointerCpu:null,
    indirectTextTarget:evidence.far?.verified===true?{
@@ -265,6 +269,15 @@ function auditWorldScriptReferences({rom,profile}={}){
    })),
    asmTextReferences:all.filter(x=>x.scriptCommand==='TX_START_ASM').length,
    uniqueAsmEntrypoints:asmEntrypoints.size,
+   uniqueAsmMemoryOperandInstructions:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.absoluteMemoryOperandCount||0),0),
+   uniqueAsmDirectWramReadCandidates:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.directWramReadCandidateCount||0),0),
+   uniqueAsmDirectWramWriteCandidates:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.directWramWriteCandidateCount||0),0),
+   uniqueAsmWramPointerLiterals:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.wramPointerLiteralCount||0),0),
+   asmMemoryWritesExecuted:0,
    asmEntrypointsLocated:all.filter(x=>x.asmCandidate?.verified===true).length,
    uniqueAsmCandidateInstructions:[...asmEntrypoints.values()].reduce(
     (n,x)=>n+(x.opcodeCandidateCount||0),0),
@@ -335,7 +348,8 @@ function auditWorldScriptReferences({rom,profile}={}){
    'O programa de texto linear pode terminar antes de ramificacoes de assembly',
    'A interpretacao de texto nao demonstra condicoes, acessibilidade ou efeito',
    'Mapas reservados e handlers bancados continuam por resolver',
-   'A lista de loja e estaticamente extraida; compras nao sao confirmadas'],
+   'A lista de loja e estaticamente extraida; compras nao sao confirmadas',
+   'Enderecos WRAM diretos sao candidatos estaticos, nao prova de execucao'],
   source:'SHA_AUDITED_ROM_ALL_MAP_OBJECT_TEXT_REFERENCES'};
 }
 module.exports={auditWorldScriptReferences};
