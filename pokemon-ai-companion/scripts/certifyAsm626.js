@@ -203,6 +203,7 @@ function main(){
  runTests('ASM_TARGETED',[
   'tests/romTxAsmHandlerAtlas.test.js',
   'tests/romMappingGapLedger.test.js',
+  'tests/romFixedBankReferenceEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romCampaignUi.test.js',
   'tests/worldAdvisorPanel.test.js'
