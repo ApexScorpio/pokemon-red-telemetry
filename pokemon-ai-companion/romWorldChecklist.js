@@ -18,7 +18,8 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
  const scriptMap=scriptAtlas?.verified===true&&
   scriptAtlas.romSha256===hash&&
   Array.isArray(scriptAtlas.maps)&&scriptAtlas.maps.length===248&&
-  scriptAtlas.maps[mapId]?.verified===true?
+  scriptAtlas.maps[mapId]?.verified===true&&
+  Array.isArray(scriptAtlas.maps[mapId].interactions)?
   scriptAtlas.maps[mapId]:null;
  const matchingScript=(kind,obj)=>{
   if(!scriptMap||kind==='HIDDEN_ITEM')return null;
