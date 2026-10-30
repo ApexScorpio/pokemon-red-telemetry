@@ -15,7 +15,11 @@ const ENTRIES=Object.freeze({
 const EXPECTED_CRC=Object.freeze({
  red:'9F7FDD53',blue:'D6DA8A1A',green:'3C2DD8AE'
 });
+// Preserve the strict 4 MiB *per-entry* inflation bound enforced by the
+// independent reader. A larger verified profile is losslessly split into
+// at most three bounded ZIP members and reconstructed in memory.
 const MAX_ENTRY=4*1024*1024;
+const MAX_PARTS=3;
 const MAX_ARCHIVE=32*1024*1024;
 const CRC_TABLE=Array.from({length:256},(_,start)=>{
  let value=start;
@@ -74,9 +78,24 @@ function derivedProfile(profile,variant){
 function writeArchiveEntries(entries){
  const locals=[],central=[];
  let position=0;
+ const normalized=[];
  for(const [name,json] of entries){
-  const filename=Buffer.from(name,'utf8');
+  if(!/^pokemon_(?:red|blue|green)(?:_international.*?)?_rom_profile\.json$/i.test(name))
+   throw Error('Nome de perfil ROM nao permitido no ZIP');
   const original=Buffer.from(JSON.stringify(json),'utf8');
+  if(original.length===0||original.length>MAX_ENTRY*MAX_PARTS)
+   throw Error('Perfil ROM ultrapassa limite total dividido ('+
+    original.length+' bytes)');
+  if(original.length<=MAX_ENTRY)normalized.push([name,original]);
+  else {
+   const count=Math.ceil(original.length/MAX_ENTRY);
+   for(let i=0;i<count;i++)
+    normalized.push([name+'.part'+String(i).padStart(2,'0'),
+     original.subarray(i*MAX_ENTRY,(i+1)*MAX_ENTRY)]);
+  }
+ }
+ for(const [name,original] of normalized){
+  const filename=Buffer.from(name,'utf8');
   if(filename.length>255||original.length===0||original.length>MAX_ENTRY)
    throw Error('Entrada ZIP excede limites da auditora');
   const compressed=zlib.deflateRawSync(original,{level:6});
@@ -153,4 +172,4 @@ function saveVerifiedProfileArchive(destination,profiles){
   throw e;
  }
 }
-module.exports={buildVerifiedProfileArchive,saveVerifiedProfileArchive};
+module.exports={buildVerifiedProfileArchive,saveVerifiedProfileArchive,writeArchiveEntries};
