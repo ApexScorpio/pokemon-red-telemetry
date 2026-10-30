@@ -149,6 +149,21 @@ function main(){
    i.verified===true&&i.totals.warps===813&&i.totals.hiddenItems===54&&
    tracker.verified===true&&tracker.summary.scriptReferencesBound===1126,
    'Invalid world/ASM mapping: '+variant);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_INVARIANTS='+JSON.stringify({
+   branchReferences:a.summary.rom0BranchTargetOccurrences,
+   branchClasses:a.summary.asmUnresolvedReasonCounts?.ROM0_OUTSIDE_LOCAL_GRAPH,
+   fixedCallReferences:a.summary.rom0CallTargetOccurrences,
+   fixedCallClasses:a.summary.asmUnfollowedCallClasses?.ROM0_FIXED,
+   distinctBranch:a.summary.distinctRom0BranchDestinations,
+   distinctCalls:a.summary.distinctRom0CallDestinations,
+   distinctUnion:a.summary.distinctRom0PhysicalTargets,
+   physicallyMapped:a.summary.physicallyMappedRom0Targets,
+   physicalMappingCertified:a.rom0PhysicalAddressMappingCertified,
+   semanticallyCertified:a.summary.rom0EffectSemanticsCertified,
+   invalidPhysicalExamples:(a.fixedRom0BranchEvidence||[])
+    .filter(x=>x.verified!==true||x.physicalRom0Mapped!==true)
+    .slice(0,8).map(x=>({cpu:x.targetCpu,reason:x.reason}))
+  }));
   const gaps=buildMappingGapLedger({profile:p,index:i,scriptAtlas:a,tracker});
   assert(gaps.verified===true&&
    gaps.summary.mapIds===248&&gaps.summary.normalMapHeaders===226&&
