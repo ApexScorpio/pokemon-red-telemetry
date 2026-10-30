@@ -1,0 +1,144 @@
+'use strict';
+// Full-world interaction-script entry index, from verified Gen I ROM bytes.
+// Covers all 1,126 referenced map objects (NPC, trainer, pickup, static
+// Pokemon and sign), without treating an entrypoint as understood behavior.
+// Every script outcome, RAM requirement and effect is explicitly unverified.
+const crypto=require('node:crypto');
+const {isKnownAuditedRomSha}=require('./romKnownSha256');
+const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
+const MAP_IDS=248,NORMAL_MAPS=226,EXPECTED_REFERENCES=1126;
+const BY_KIND=Object.freeze({
+ SIGN:'signs',NPC:'npcs',TRAINER:'trainers',
+ ITEM:'visibleItems',STATIC_POKEMON:'stationaryPokemon'
+});
+const invalid=reason=>({verified:false,reason,maps:[],references:[],
+  summary:null,scriptEffectsSemanticallyComplete:false});
+function auditWorldScriptReferences({rom,profile}={}){
+ if(!Buffer.isBuffer(rom)||rom.length!==1048576)
+  return invalid('ROM de exatamente 1 MiB nao fornecida');
+ const sha=crypto.createHash('sha256').update(rom).digest('hex');
+ const maps=profile?.world?.maps;
+ if(!isKnownAuditedRomSha(sha)||profile?.hash?.sha256?.toLowerCase()!==sha||
+    profile?.unknownLayout===true||maps?.valid!==true||
+    maps.validMapHeaders!==NORMAL_MAPS||!Array.isArray(maps.data)||
+    maps.data.length!==MAP_IDS||
+    maps.data.some((m,i)=>m?.mapId!==i||typeof m.valid!=='boolean')||
+    maps.data.filter(m=>m.valid).length!==NORMAL_MAPS)
+  return invalid('SHA exato, atlas de 248 IDs e 226 cabecalhos nao concordam');
+ const all=[],world=[],byKind=Object.fromEntries(Object.keys(BY_KIND).map(x=>[x,0]));
+ const commandCounts={},unresolvedReasons={};
+ let resolvedTextPointers=0,linearTextPrograms=0,nonLinearOrUnknown=0,
+  martInventoryLists=0,mapScriptPointers=0,unresolvedMapIDs=0;
+ const push=(map,kind,ordinal,x,y,rawTextId,actor)=>{
+  const textId=kind==='SIGN'?rawTextId:(rawTextId&0x3f);
+  const evidence=resolveStaticTextPointer({rom,mapBank:map.mapBank,
+   textPointerCpu:map.textPointerCpu,textId});
+  const textPointerVerified=evidence.verified===true;
+  const command=textPointerVerified?evidence.command:'UNRESOLVED_TEXT_REFERENCE';
+  if(textPointerVerified)resolvedTextPointers++;
+  else{
+   unresolvedReasons[evidence.reason||'UNKNOWN']=(unresolvedReasons[evidence.reason||'UNKNOWN']||0)+1;
+  }
+  commandCounts[command]=(commandCounts[command]||0)+1;
+  const preview=evidence.staticTextPreview?.verified===true?
+    evidence.staticTextPreview:null;
+  if(preview?.program?.verified===true&&preview.program.scriptComplete===true)
+   linearTextPrograms++;
+  if(command==='TX_START_ASM'||command==='UNRESOLVED_TEXT_REFERENCE'||
+     command==='TEXT_OPCODE_UNCLASSIFIED')nonLinearOrUnknown++;
+  if(evidence.mart?.verified===true)martInventoryLists++;
+  const trainer=kind==='TRAINER'?(map.trainerEvents||[]).find(
+   row=>row.objectOrdinal===ordinal):null;
+  const stationary=kind==='STATIC_POKEMON'?(map.staticEncounterEvents||[]).find(
+   row=>row.objectOrdinal===ordinal):null;
+  const row={
+   mapId:map.mapId,kind,ordinal,x,y,rawTextId,textId,
+   actorRomMetadata:kind==='ITEM'?{itemId:actor.trainerClassOrItemId??null}:
+    kind==='TRAINER'?{trainerClassId:actor.trainerClassOrItemId??null,
+      trainerNumber:actor.trainerNumberOrLevel??null}:
+    kind==='STATIC_POKEMON'?{speciesInternalId:actor.wildSpeciesInternalId??null,
+      level:actor.wildLevel??null}:null,
+   textPointerVerified,scriptCommand:command,
+   scriptFileOffset:textPointerVerified?evidence.textFileOffset:null,
+   textPointerCpu:textPointerVerified?evidence.textPointerCpu:null,
+   indirectTextTarget:evidence.far?.verified===true?{
+    fileOffset:evidence.far.fileOffset,bank:evidence.far.bank,cpu:evidence.far.cpu
+   }:null,
+   staticText:preview?{
+    firstStringOnly:true,text:preview.text,
+    runtimeVariables:preview.containsRuntimeVariables===true,
+    linearProgramComplete:preview.program?.scriptComplete===true,
+    literalSegmentCount:preview.program?.segmentCount??null
+   }:null,
+   martStaticItemIds:evidence.mart?.verified===true?
+    evidence.mart.itemIds:null,
+   eventBitIndex:trainer?.eventBitIndex??stationary?.eventBitIndex??null,
+   eventBitBindingVerified:!!(trainer||stationary),
+   conditionsFullyDecoded:false,scriptEffectsVerified:false,
+   effectBranchesVerified:false,interactionExecuted:false,
+   accessibleNow:null,alreadyCompleted:null,
+   unresolvedReason:textPointerVerified?null:(evidence.reason||'UNKNOWN'),
+   source:'SHA_AUDITED_ROM_MAP_OBJECT_AND_TEXT_POINTER'
+  };
+  all.push(row);
+  byKind[kind]++;
+  return row;
+ };
+ for(const map of maps.data){
+  if(!map.valid){
+   unresolvedMapIDs++;
+   world.push({mapId:map.mapId,verified:false,reason:'NO_NORMAL_MAP_HEADER',
+    scriptPointerCpu:null,interactions:[]});
+   continue;
+  }
+  const objects=map.objects;
+  if(!Number.isInteger(map.mapBank)||map.mapBank<1||map.mapBank>=64||
+     !Number.isInteger(map.scriptPointerCpu)||
+     !Number.isInteger(map.textPointerCpu)||
+     !objects||!Array.isArray(objects.objects)||!Array.isArray(objects.signs))
+   return invalid('Cabecalho/objetos do mapa '+map.mapId+' incompletos');
+  mapScriptPointers++;
+  const interactions=[];
+  for(let i=0;i<objects.signs.length;i++){
+   const a=objects.signs[i];
+   if(!Number.isInteger(a.textId)||a.textId<0||a.textId>255)
+    return invalid('Text ID de sinal invalido no mapa '+map.mapId);
+   interactions.push(push(map,'SIGN',i+1,a.x,a.y,a.textId,a));
+  }
+  for(let i=0;i<objects.objects.length;i++){
+   const a=objects.objects[i];
+   const kind={npc:'NPC',trainer:'TRAINER',item:'ITEM',
+    wildPokemon:'STATIC_POKEMON'}[a.kind];
+   if(!kind||!Number.isInteger(a.textId)||a.textId<0||a.textId>255)
+    return invalid('Objeto ou Text ID invalido no mapa '+map.mapId);
+   interactions.push(push(map,kind,i+1,a.x,a.y,a.textId,a));
+  }
+  world.push({mapId:map.mapId,verified:true,
+   scriptPointerCpu:map.scriptPointerCpu,mapBank:map.mapBank,
+   scriptEntrySemanticsVerified:false,interactions,
+   conditionsFullyDecoded:false,scriptEffectsVerified:false});
+ }
+ if(world.length!==MAP_IDS||mapScriptPointers!==NORMAL_MAPS||
+    unresolvedMapIDs!==MAP_IDS-NORMAL_MAPS||all.length!==EXPECTED_REFERENCES||
+    byKind.SIGN!==202||byKind.NPC!==472||byKind.TRAINER!==334||
+    byKind.ITEM!==106||byKind.STATIC_POKEMON!==12)
+  return invalid('Inventario de 1126 interacoes da ROM nao fecha');
+ return {verified:true,romSha256:sha,maps:world,references:all,
+  summary:{mapIds:MAP_IDS,normalMaps:NORMAL_MAPS,unresolvedMapIDs,
+   mapScriptPointers,referencedInteractions:all.length,byKind,
+   resolvedTextPointers,unresolvedTextPointers:all.length-resolvedTextPointers,
+   linearTextPrograms,nonLinearOrUnknown,martInventoryLists,
+   commandCounts,unresolvedReasons,
+   semanticallyCertifiedInteractionScripts:0},
+  allMapEntriesEnumerated:true,
+  allScriptEffectsUnderstood:false,
+  scriptEffectsSemanticallyComplete:false,
+  runtimeFlagsVerified:false,
+  warnings:['Uma referencia de texto/script nao demonstra o que o NPC faz',
+   'O programa de texto linear pode terminar antes de ramificacoes de assembly',
+   'A interpretacao de texto nao demonstra condicoes, acessibilidade ou efeito',
+   'Mapas reservados e handlers bancados continuam por resolver',
+   'A lista de loja e estaticamente extraida; compras nao sao confirmadas'],
+  source:'SHA_AUDITED_ROM_ALL_MAP_OBJECT_TEXT_REFERENCES'};
+}
+module.exports={auditWorldScriptReferences};
