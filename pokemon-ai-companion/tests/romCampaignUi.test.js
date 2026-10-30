@@ -25,7 +25,9 @@ function good(){
     {kind:'HIDDEN_ITEM',x:7,y:4,progress:'COLLECTED_CONFIRMED_FLAG',
       staticObject:{hiddenIndex:3},routeCondition:null},
     {kind:'ITEM',x:6,y:4,progress:'NOT_PROVEN',
-      staticObject:{itemOrTrainerId:19},routeCondition:'NEEDS_CUT'},
+      staticObject:{itemOrTrainerId:19},routeCondition:'NEEDS_CUT',
+      scriptReferenceBound:true,scriptCommand:'TX_START_ASM',
+      scriptTextPointerVerified:true},
     {kind:'TRAINER',x:9,y:2,progress:'NOT_PROVEN',
       staticObject:{},routeCondition:null}
    ]}
@@ -37,6 +39,7 @@ test('live UI enumerates every static object and identifies real hidden event bi
  assert.ok(lines.some(l=>l.includes('1/226')));
  assert.ok(lines.some(l=>l.includes('índice evento #3')&&l.includes('flag de recolha')));
  assert.ok(lines.some(l=>l.includes('NEEDS_CUT')&&l.includes('hipótese')));
+ assert.ok(lines.some(l=>l.includes('TX_START_ASM')&&l.includes('efeito não certificado')));
  assert.ok(lines.some(l=>l.includes('Treinador')&&l.includes('progresso por confirmar')));
  assert.ok(lines.some(l=>l.includes('não provam acesso')));
 });
