@@ -59,6 +59,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
       hiddenFlagsVerified&&item.isCollected===true?'Flag específica de obtenção confirmada.':
       'Pesquisar na coordenada pode acionar o evento; acesso e resultado ainda não confirmados.',
       item.collectionEvidence||'ROM + RAM', {x:item.x,y:item.y,itemId:item.itemId,
+       hiddenIndex:Number.isInteger(item.hiddenIndex)?item.hiddenIndex:null,
        ...accessFor('HIDDEN_ITEM',item.x,item.y)});
  }
  // Hidden coins have a different WRAM bitmap (D6FE..D6FF). Their state
