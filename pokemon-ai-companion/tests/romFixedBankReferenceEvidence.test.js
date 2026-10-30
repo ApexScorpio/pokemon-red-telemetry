@@ -97,6 +97,28 @@ test('adaptive ROM0 scan rejects invalid budgets and incomplete ROMs',()=>{
   rom:Buffer.alloc(0),targetCpu:0x100
  }).verified,false);
 });
+test('ROM0 problem reason counts and location diagnostics stay consistent',()=>{
+ const rom=makeRom();rom.set([0xc3,0x00,0x50],0x100);
+ const r=inspectFixedRom0TargetAdaptive({rom,targetCpu:0x100});
+ assert.equal(r.verified,true);
+ assert.equal(r.candidateDecodeProblems,1);
+ assert.deepEqual(r.problemReasonCounts,{ROMX_ACTIVE_BANK_UNKNOWN:1});
+ assert.deepEqual(r.problemDetails,[{
+  pc:0x100,targetCpu:0x5000,reason:'ROMX_ACTIVE_BANK_UNKNOWN'
+ }]);
+ assert.equal(r.problemDetailsTruncated,false);
+ assert.deepEqual(r.remainingQueueSample,[]);
+ assert.equal(r.effectVerified,false);
+});
+test('ROM0 capped frontier is reported without claiming completed semantics',()=>{
+ const r=inspectFixedRom0TargetAdaptive({rom:makeRom(),targetCpu:0x100});
+ assert.equal(r.verified,true);
+ assert.equal(r.residualLimitReached,true);
+ assert.equal(r.remainingQueue,r.remainingQueueSample.length);
+ assert.deepEqual(r.remainingQueueSample,[0x180]);
+ assert.equal(r.lastCandidateInstructions.length,6);
+ assert.equal(r.effectVerified,false);
+});
 for(const [variant,key] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
  ['green','POKEMON_GREEN_ROM']]){
  test('original '+variant+' ROM proves all fixed ROM0 physical destinations separately from gameplay effects',
@@ -108,6 +130,19 @@ for(const [variant,key] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'
   const s=scripts.summary;
   assert.equal(s.rom0BranchTargetOccurrences,537);
   assert.equal(s.rom0EffectSemanticsCertified,0);
+  assert.equal(s.rom0TargetsWithWorldOrigins,59);
+  assert.equal(s.rom0StillBudgetLimited,3);
+  assert.equal(s.rom0DecodeProblems,10);
+  assert.equal(scripts.fixedRom0BranchEvidence.filter(x=>x.residualLimitReached).length,3);
+  assert.ok(scripts.fixedRom0BranchEvidence.every(x=>
+   Number.isInteger(x.targetCpu)&&x.referencingMapIds.length>0&&
+   x.referencingAsmOffsets.length>0&&
+   x.referencingMapIds.every(Number.isInteger)&&
+   x.referencingAsmOffsets.every(Number.isInteger)&&
+   x.problemDetails.length<=32&&
+   Object.values(x.problemReasonCounts).reduce((n,v)=>n+v,0)===
+    x.candidateDecodeProblems&&
+   x.effectVerified===false&&x.branchExecuted===false));
   assert.equal(s.rom0FirstPassLimitHits,13);
   assert.equal(s.rom0ExpandedTargets,13);
   assert.ok(s.rom0AdditionalCandidateInstructions>0);
