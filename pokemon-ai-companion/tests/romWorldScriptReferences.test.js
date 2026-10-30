@@ -59,14 +59,24 @@ for(const [name,env,sha] of cases){
    worldFlagLedger:ledger});
   assert.equal(joinedLive.verified,true);
   assert.equal(joinedLive.globalEventFlagSnapshotMatched,true);
-  assert.equal(joinedLive.summary.verifiedScriptEventFlagStates,346);
-  assert.equal(joinedLive.summary.verifiedTrainerGatesOpen,334);
+  assert.equal(joinedLive.summary.verifiedScriptEventFlagStates,344);
+  assert.equal(joinedLive.summary.verifiedTrainerGatesOpen,332);
   assert.equal(joinedLive.summary.verifiedTrainerGatesClosed,0);
   assert.equal(joinedLive.summary.verifiedEncounterGatesOpen,12);
   assert.equal(joinedLive.summary.verifiedEncounterGatesClosed,0);
+  // Two real map trainers have no proved event bit and must never
+  // be converted to arbitrary live gate states.
+  const unbound=joinedLive.maps.filter(x=>x.verified).flatMap(x=>x.actions)
+   .filter(x=>x.kind==='TRAINER'&&x.scriptEventBitBindingVerified===false);
+  assert.deepEqual(unbound.map(x=>[x.mapId,x.ordinal]).sort((a,b)=>a[0]-b[0]),
+   [[96,2],[135,11]]);
+  assert.ok(unbound.every(x=>
+   x.scriptEventBitIndex===null&&x.scriptEventFlagSet===null&&
+   x.scriptEventFlagSnapshotVerified!==true&&
+   x.completedNow===null&&x.scriptEffectSemanticsVerified===false));
   const joinedActions=joinedLive.maps.filter(m=>m.verified)
    .flatMap(m=>m.actions).filter(a=>a.scriptEventFlagSnapshotVerified);
-  assert.equal(joinedActions.length,346);
+  assert.equal(joinedActions.length,344);
   assert.ok(joinedActions.every(a=>
    a.completedNow===null&&a.accessibleNow===null&&
    a.scriptEffectSemanticsVerified===false));
