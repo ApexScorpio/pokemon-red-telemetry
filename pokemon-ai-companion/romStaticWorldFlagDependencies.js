@@ -71,6 +71,11 @@ function buildStaticWorldFlagDependencies({atlas}={}){
      return fail('Cross-reference graph too large to validate');
     candidateLinks.push({key,domain:writer.domain,bitIndex:writer.bitIndex,
      possibleWriter:writer.actorId,possibleReader:reader.actorId,
+     possibleWriterMapId:writer.mapId,possibleReaderMapId:reader.mapId,
+     possibleWriterKind:writer.kind,possibleReaderKind:reader.kind,
+     possibleWriterOrdinal:writer.ordinal,possibleReaderOrdinal:reader.ordinal,
+     writerRomHandlerOffset:writer.romHandlerOffset,
+     readerRomHandlerOffset:reader.romHandlerOffset,
      possibleWriteOpcode:writer.operation,
      sameMap:writer.mapId===reader.mapId,
      verifiedActionDependency:false,scriptEffectVerified:false,
@@ -96,4 +101,23 @@ function buildStaticWorldFlagDependencies({atlas}={}){
   eventsCompletedCertified:false,scriptEffectsCertified:false,
   note:'Static same-bit candidates only: dynamic RAM values, branch selection, movement, rewards and causal effects unobserved'};
 }
-module.exports={buildStaticWorldFlagDependencies};
+// Build a small, read-only per-map view of the physical ROM candidates.
+// This does not assert that speaking to one NPC changes another NPC.
+function candidateFlagLinksForMap({atlas,mapId}={}){
+ if(!Number.isInteger(mapId)||mapId<0||mapId>247)
+  return {verified:false,mapId,reason:'ID de mapa invalido',links:[]};
+ const graph=buildStaticWorldFlagDependencies({atlas});
+ if(graph.verified!==true)
+  return {verified:false,mapId,reason:graph.reason,links:[]};
+ const links=graph.candidateLinks.filter(x=>
+  x.possibleWriterMapId===mapId||x.possibleReaderMapId===mapId);
+ return {verified:true,mapId,romSha256:graph.romSha256,links,
+  candidateLinkCount:links.length,
+  crossMapCandidateCount:links.filter(x=>!x.sameMap).length,
+  wholeWorldCandidateLinks:graph.summary.totalPotentialLinks,
+  wholeWorldCrossMapCandidates:graph.summary.crossMapPotentialLinks,
+  provenCausalLinks:0,actionEffectsCertified:false,
+  source:'ROM_STATIC_SHARED_FLAG_OPCODE_CANDIDATES',
+  caveat:'O mesmo bit em dois scripts nao prova dependencias, acessibilidade nem efeitos'};
+}
+module.exports={buildStaticWorldFlagDependencies,candidateFlagLinksForMap};
