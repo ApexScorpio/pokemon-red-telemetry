@@ -9,7 +9,7 @@ const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
  itemAccess=null,itemAccessInputs=[],hiddenStartIndex=0,
- positionVerified=false}={}){
+ positionVerified=false,worldFlagLedger=null}={}){
 
  const hash=profile?.hash?.sha256;
  const maps=profile?.world?.maps;
@@ -160,7 +160,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
  const campaign=worldIndex.verified?buildCampaignWorldTracker({
-   index:worldIndex,scriptAtlas,
+   index:worldIndex,scriptAtlas,worldFlagLedger,
    evidenceByMap:positionVerified===true?[{
      verified:true,mapId,romSha256:hash,
      observations,hiddenFlagsVerified:hiddenFlagsVerified===true
@@ -169,7 +169,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    currentMapVerified:positionVerified===true
  }):null;
  const mapChecklist=worldIndex.verified?buildMapChecklist({
-   index:worldIndex,mapId,scriptAtlas,
+   index:worldIndex,mapId,scriptAtlas,worldFlagLedger,
    advisor:{verified:true,mapId,romSha256:hash,observations,
      hiddenFlagsVerified:hiddenFlagsVerified===true}
  }):null;
@@ -177,6 +177,12 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    mapStaticInventory,mapChecklist,
    campaignSummary:campaign?.verified===true?campaign.summary:null,
    campaignCurrentMapConfirmed:campaign?.currentMapConfirmed===true,
+   worldwideTrainerGatesClosed:campaign?.summary?.verifiedTrainerGatesClosed??0,
+   worldwideTrainerGatesOpen:campaign?.summary?.verifiedTrainerGatesOpen??0,
+   worldwideEncounterGatesClosed:campaign?.summary?.verifiedEncounterGatesClosed??0,
+   worldwideEncounterGatesOpen:campaign?.summary?.verifiedEncounterGatesOpen??0,
+   worldwideScriptEventBitStatesVerified:campaign?.summary?.verifiedScriptEventFlagStates??0,
+   worldEventFlagSnapshotMatched:campaign?.globalEventFlagSnapshotMatched===true,
    romScriptReferenceIndexVerified:campaign?.scriptAtlasBound===true,
    campaignGlobalCompletionVerified:false,
    fullWorldStaticIndexVerified:worldIndex.verified,
