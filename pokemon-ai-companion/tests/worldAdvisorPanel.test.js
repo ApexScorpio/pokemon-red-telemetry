@@ -745,3 +745,36 @@ test('Painel usa sequências textuais ROM estáticas, sem executar HTML ou scrip
  assert.match(fallback.body.textContent,/Início literal ROM/);
  assert.doesNotMatch(fallback.body.textContent,/Segmentos literais ROM/);
 });
+
+test('isolated world panel renders live ROM checklist only under corroborated RAM',()=>{
+ const s=live(),sha=s.worldAdvisor.romSha256;
+ s.worldAdvisor.fullWorldStaticIndexVerified=true;
+ s.worldAdvisor.campaignSummary={
+  allStaticActions:1992,normalMaps:226,unresolvedMapIds:22,
+  observedMapCount:1,scriptReferencesBound:1126
+ };
+ s.worldAdvisor.mapChecklist={
+  verified:true,mapId:15,romSha256:sha,
+  summary:{total:2,confirmedCollected:1,confirmedNotCollected:0,
+   progressUnverified:1,needsCutCandidates:1,needsSurfCandidates:0},
+  actions:[{
+   kind:'HIDDEN_ITEM',x:7,y:4,progress:'COLLECTED_CONFIRMED_FLAG',
+   staticObject:{hiddenIndex:3},scriptReferenceBound:false
+  },{
+   kind:'ITEM',x:5,y:3,progress:'NOT_PROVEN',
+   staticObject:{itemOrTrainerId:19},routeCondition:'NEEDS_CUT',
+   scriptReferenceBound:true,scriptCommand:'TX_START_ASM',
+   scriptTextPointerVerified:true
+  }]
+ };
+ const content=render(s).body.textContent;
+ assert.match(content,/CHECKLIST COMPLETA DESTE MAPA/);
+ assert.match(content,/índice evento #3/);
+ assert.match(content,/TX_START_ASM/);
+ assert.match(content,/efeito não certificado/);
+ assert.match(content,/1992 objetos/);
+ s.memoryReadStatus.positionWindow.verified=false;
+ const stale=render(s).body.textContent;
+ assert.doesNotMatch(stale,/CHECKLIST COMPLETA/);
+ assert.match(stale,/Aguardar nova leitura/);
+});
