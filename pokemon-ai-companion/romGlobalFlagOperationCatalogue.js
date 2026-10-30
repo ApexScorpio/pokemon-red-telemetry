@@ -24,8 +24,9 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
  const byPhysical=new Map(),mapIndexes=Array.from({length:248},(_,mapId)=>({
   mapId,operationReferences:0,uniquePhysicalOperationIds:new Set(),actors:new Set()
  }));
- const seenActorPatterns=new Set();
- let references=0,asmReferences=0;
+ const seenActorPatterns=new Set(),seenHandlers=new Set();
+ const handlerOperations={BIT_TEST:0,SET_BIT:0,RESET_BIT:0};
+ let references=0,asmReferences=0,handlerBranches=0,handlerDualTexts=0;
  for(const row of all){
   if(!Number.isInteger(row?.mapId)||row.mapId<0||row.mapId>=248||
      !Number.isInteger(row?.ordinal)||row.ordinal<=0||
@@ -40,6 +41,7 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
      handler.adjacentRomFlagBitInstructionsExecuted!==false)
    return fail('ASM handler operation evidence malformed');
   const actorKey=row.mapId+':'+row.kind+':'+row.ordinal;
+  const newHandler=!seenHandlers.has(row.scriptFileOffset);
   for(const p of handler.adjacentRomFlagBitPatterns){
    if(!OPS.has(p.operation)||!Object.hasOwn(DOMAINS,p.domain)||
       !Number.isInteger(p.bitIndex)||p.bitIndex<0||
@@ -51,6 +53,13 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
       p.instructionSequenceExecuted!==false||
       p.eventBitValueKnown!==false||p.eventOutcomeCertified!==false)
     return fail('Physical flag opcode insufficiently verified');
+   if(newHandler){
+    handlerOperations[p.operation]++;
+    if(p.operation==='BIT_TEST'&&p.staticConditionalBranch?.verified===true)
+     handlerBranches++;
+    if(p.staticDualTextChoice?.alternativeTextScriptsStaticallyProven===true)
+     handlerDualTexts++;
+   }
    const key=p.offset+':'+p.secondOffset+':'+p.operation;
    const actorPatternKey=key+':'+actorKey;
    if(seenActorPatterns.has(actorPatternKey))
@@ -99,6 +108,7 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
     actorId:actorKey,
     scriptExecuted:false,interactionEffectVerified:false});
   }
+  seenHandlers.add(row.scriptFileOffset);
  }
  const operations=[...byPhysical.values()].sort((a,b)=>
   a.opcodeFileOffset-b.opcodeFileOffset||
@@ -110,31 +120,35 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
   RESET_BIT:operations.filter(x=>x.operation==='RESET_BIT').length
  };
  const s=atlas.summary;
- if(asmReferences!==626||operations.length!==135||
-    counts.BIT_TEST!==90||counts.SET_BIT!==41||counts.RESET_BIT!==4||
+ if(asmReferences!==626||seenHandlers.size!==516||
+    handlerOperations.BIT_TEST!==90||
+    handlerOperations.SET_BIT!==41||handlerOperations.RESET_BIT!==4||
     s.uniqueAsmFlagBitTestCandidates!==90||
     s.uniqueAsmFlagBitSetCandidates!==41||
     s.uniqueAsmFlagBitResetCandidates!==4)
-  return fail('Total unique physical flag operations differs from original ROM evidence');
+  return fail('Handler-scoped operation evidence differs from audited ROM');
  const branches=operations.filter(x=>
   x.operation==='BIT_TEST'&&x.conditionalBranch?.verified===true).length;
  const textChoices=operations.filter(x=>
   x.dualTextChoice?.alternativeTextScriptsStaticallyProven===true).length;
- if(branches!==88||textChoices!==16||
+ if(handlerBranches!==88||handlerDualTexts!==16||
     s.uniqueAsmFlagConditionalBranchGates!==88||
     s.uniqueAsmFlagDualTextAlternatives!==16)
-  return fail('Static branch or alternative-text evidence mismatch');
+  return fail('Handler-scoped branch or alternative-text counts mismatch');
  const perMap=mapIndexes.map(row=>({
   mapId:row.mapId,operationReferences:row.operationReferences,
   uniquePhysicalOperationCount:row.uniquePhysicalOperationIds.size,
   actorCount:row.actors.size
  }));
  return {verified:true,romSha256:sha,operations,perMap,
-  totalPhysicallyDecodedOperations:135,
+  totalPhysicallyDecodedOperations:operations.length,
+  totalHandlerScopedOperations:135,
   operationReferences:references,
-  distinctHandlerRefs:asmReferences,
-  operationCounts:counts,
+  distinctHandlerRefs:seenHandlers.size,asmActorReferences:asmReferences,
+  operationCounts:counts,handlerScopedOperationCounts:handlerOperations,
   conditionalBitBranches:branches,dualTextChoices:textChoices,
+  handlerScopedBitBranches:handlerBranches,
+  handlerScopedDualTextChoices:handlerDualTexts,
   mapsWithBitOperations:perMap.filter(x=>x.operationReferences>0).length,
   eventNamedOperations:operations.filter(x=>
    x.domain==='WORLD_EVENT_BIT'&&x.externalEventLabel!==null).length,
@@ -168,6 +182,7 @@ function getMapFlagOperationCandidates({atlas,mapId}={}){
  return {verified:true,mapId,romSha256:world.romSha256,operations,
   operationReferences:operations.length,
   worldUniquePhysicalOperations:world.totalPhysicallyDecodedOperations,
+  worldHandlerScopedOperations:world.totalHandlerScopedOperations,
   worldActorOperationReferences:world.operationReferences,
   worldMapsWithOperations:world.mapsWithBitOperations,
   currentProgressKnown:false,eventsExecutedVerified:0,
