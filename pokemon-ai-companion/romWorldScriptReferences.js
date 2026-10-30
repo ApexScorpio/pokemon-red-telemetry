@@ -119,6 +119,8 @@ function auditWorldScriptReferences({rom,profile}={}){
    eventBitBindingVerified:bitIndex!==null,
    eventBitBindingSource:flagSource,
    eventBitMeaning:flagMeaning,
+   eventBitUnknownReason:kind==='TRAINER'&&bitIndex===null?
+    'EVENT_BIT_NOT_PROVEN_FROM_ROM_SCRIPT_OR_TRAINER_HEADER':null,
    eventFlagSet:null,
    eventFlagSnapshotVerified:false,
    conditionsFullyDecoded:false,scriptEffectsVerified:false,
@@ -222,6 +224,17 @@ function auditWorldScriptReferences({rom,profile}={}){
     distinctIndirectByPc.set(x.jumpPc,x);
   }
  const indirectProofs=[...distinctIndirectByPc.values()];
+ const unmappedTrainers=all.filter(x=>
+  x.kind==='TRAINER'&&x.eventBitBindingVerified!==true);
+ // These two exact unbound trainer scripts occur in all 3 audited ROMs.
+ // A ship-departed flag and poster event cannot substitute battle gating.
+ const expectedUnmapped=['96:2','135:11'];
+ if(unmappedTrainers.length!==expectedUnmapped.length||
+    unmappedTrainers.some(x=>!expectedUnmapped.includes(
+     x.mapId+':'+x.ordinal)))
+  return invalid('Trainer event binding candidates differ from original ROM: '+
+   JSON.stringify(unmappedTrainers.map(x=>({
+    mapId:x.mapId,ordinal:x.ordinal,reason:x.eventBitUnknownReason}))));
  if(bindingConflicts.length)
   return invalid('Conflito de bit entre cabecalho ROM e script especial: '+
    JSON.stringify(bindingConflicts.slice(0,8)));
@@ -243,8 +256,13 @@ function auditWorldScriptReferences({rom,profile}={}){
    specialTrainerEventFlagBindings:all.filter(x=>
     x.kind==='TRAINER'&&['SHA_AUDITED_CHECKEVENT_SPECIAL',
      'SHA_AUDITED_GUARDED_BATTLE_SCRIPT'].includes(x.eventBitBindingSource)).length,
-   trainerEventFlagBindingsMissing:all.filter(x=>
-    x.kind==='TRAINER'&&!x.eventBitBindingVerified).length,
+   trainerEventFlagBindingsMissing:unmappedTrainers.length,
+   trainerEventFlagBindingsUnresolved:unmappedTrainers.map(x=>({
+    mapId:x.mapId,ordinal:x.ordinal,x:x.x,y:x.y,
+    rawTextId:x.rawTextId,
+    reason:x.eventBitUnknownReason,
+    eventBitIndex:null,scriptEffectsVerified:false
+   })),
    asmTextReferences:all.filter(x=>x.scriptCommand==='TX_START_ASM').length,
    uniqueAsmEntrypoints:asmEntrypoints.size,
    asmEntrypointsLocated:all.filter(x=>x.asmCandidate?.verified===true).length,
