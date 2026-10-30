@@ -70,6 +70,12 @@ for(const [name,env,sha] of cases){
      x.rawTextId===r.staticObject.textId);
     assert.equal(matches.length,1,
      'interaction object mismatch in map '+m.mapId);
+    assert.equal(r.scriptEventBitBindingVerified,
+     matches[0].eventBitBindingVerified);
+    assert.equal(r.scriptEventBitIndex,
+     matches[0].eventBitBindingVerified?matches[0].eventBitIndex:null);
+    assert.equal(r.scriptEventFlagSet,null);
+    assert.equal(r.scriptEffectSemanticsVerified,false);
    }
   }
   assert.ok(tracker.maps.every(m=>!m.verified||
@@ -83,6 +89,31 @@ for(const [name,env,sha] of cases){
   assert.ok(atlas.summary.uniqueAsmEntrypoints>0);
   assert.ok(atlas.summary.uniqueAsmEntrypoints<=626);
   assert.equal(atlas.summary.asmSemanticallyCertified,0);
+  assert.equal(atlas.summary.trainerEventFlagBindings,334);
+  assert.equal(atlas.summary.stationaryEventFlagBindings,12);
+  assert.equal(atlas.summary.specialTrainerEventFlagBindings,22);
+  assert.equal(atlas.summary.trainerEventFlagBindingsMissing,0);
+  for(const kind of ['TRAINER','STATIC_POKEMON']){
+   const expected=kind==='TRAINER'?334:12;
+   const actorRows=atlas.references.filter(x=>x.kind===kind);
+   assert.equal(actorRows.length,expected);
+   assert.ok(actorRows.every(x=>
+    x.eventBitBindingVerified===true&&
+    Number.isInteger(x.eventBitIndex)&&
+    x.eventBitIndex>=0&&x.eventBitIndex<2560&&
+    typeof x.eventBitBindingSource==='string'&&
+    typeof x.eventBitMeaning==='string'&&
+    x.eventFlagSet===null&&x.eventFlagSnapshotVerified===false&&
+    x.alreadyCompleted===null&&x.scriptEffectsVerified===false));
+  }
+  const special=atlas.references.filter(x=>
+   x.eventBitBindingSource==='SHA_AUDITED_CHECKEVENT_SPECIAL'||
+   x.eventBitBindingSource==='SHA_AUDITED_GUARDED_BATTLE_SCRIPT');
+  assert.equal(special.length,22);
+  assert.equal(special.filter(x=>
+   x.eventBitMeaning==='SCRIPT_VICTORY_FLAG_NOT_RUNTIME_VERIFIED').length,3);
+  assert.equal(special.filter(x=>
+   x.eventBitMeaning==='BATTLE_WAS_PLAYED_FLAG_NOT_RUNTIME_VERIFIED').length,1);
 
   assert.equal(atlas.references.length,1126);
   assert.deepEqual(atlas.summary.byKind,{
