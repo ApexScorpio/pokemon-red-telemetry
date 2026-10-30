@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const {inspectFixedRom0Target}=require('../romFixedBankReferenceEvidence');
+const {inspectFixedRom0Target,inspectFixedRom0TargetAdaptive}=require('../romFixedBankReferenceEvidence');
 const {inspectTxAsmHandler}=require('../romTxAsmHandlerAtlas');
 const {inspectRomBuffer}=require('../romVariantRegistry');
 const {readRom,KNOWN}=require('../romComprehensiveAudit');
@@ -56,6 +56,47 @@ test('ASM source stores every unique fixed-ROM0 branch target, not just samples'
  assert.equal(g.unresolvedReasonCounts.ROM0_OUTSIDE_LOCAL_GRAPH,2);
  assert.equal(g.scriptEffectsVerified,false);
 });
+test('adaptive ROM0 scan resolves short finite code after first pass reaches cap',()=>{
+ const rom=makeRom();
+ rom[0x130]=0xc9;
+ const r=inspectFixedRom0TargetAdaptive({rom,targetCpu:0x100});
+ assert.equal(r.verified,true);
+ assert.equal(r.firstPassLimitReached,true);
+ assert.equal(r.firstPassCandidateInstructions,24);
+ assert.equal(r.candidateExpansionApplied,true);
+ assert.equal(r.opcodeCandidateCount,49);
+ assert.equal(r.additionalCandidateInstructions,25);
+ assert.equal(r.residualLimitReached,false);
+ assert.equal(r.effectVerified,false);
+ assert.equal(r.branchExecuted,false);
+ assert.equal(r.semanticsComplete,false);
+});
+test('adaptive ROM0 scan never silently calls a residual 128-instruction cap complete',()=>{
+ const r=inspectFixedRom0TargetAdaptive({rom:makeRom(),targetCpu:0x100});
+ assert.equal(r.verified,true);
+ assert.equal(r.firstPassLimitReached,true);
+ assert.equal(r.opcodeCandidateCount,128);
+ assert.equal(r.additionalCandidateInstructions,104);
+ assert.equal(r.residualLimitReached,true);
+ assert.equal(r.effectVerified,false);
+});
+test('adaptive ROM0 scan skips second pass when first pass is sufficient',()=>{
+ const rom=makeRom();rom[0x100]=0xc9;
+ const r=inspectFixedRom0TargetAdaptive({rom,targetCpu:0x100});
+ assert.equal(r.verified,true);
+ assert.equal(r.candidateExpansionApplied,false);
+ assert.equal(r.maxInstructionsBudget,24);
+ assert.equal(r.firstPassLimitReached,false);
+ assert.equal(r.additionalCandidateInstructions,0);
+});
+test('adaptive ROM0 scan rejects invalid budgets and incomplete ROMs',()=>{
+ assert.equal(inspectFixedRom0TargetAdaptive({
+  rom:makeRom(),targetCpu:0x100,initialBudget:128,deepBudget:128
+ }).verified,false);
+ assert.equal(inspectFixedRom0TargetAdaptive({
+  rom:Buffer.alloc(0),targetCpu:0x100
+ }).verified,false);
+});
 for(const [variant,key] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
  ['green','POKEMON_GREEN_ROM']]){
  test('original '+variant+' ROM proves all fixed ROM0 physical destinations separately from gameplay effects',
@@ -67,6 +108,13 @@ for(const [variant,key] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'
   const s=scripts.summary;
   assert.equal(s.rom0BranchTargetOccurrences,537);
   assert.equal(s.rom0EffectSemanticsCertified,0);
+  assert.equal(s.rom0FirstPassLimitHits,13);
+  assert.equal(s.rom0ExpandedTargets,13);
+  assert.ok(s.rom0AdditionalCandidateInstructions>0);
+  assert.equal(s.rom0ExpandedStillLimited,s.rom0StillBudgetLimited);
+  assert.ok(s.rom0ExpandedStillLimited<=13);
+  assert.equal(s.rom0EffectSemanticsCertified,0);
+  assert.equal(scripts.rom0PhysicalAddressMappingCertified,true);
   assert.equal(s.rom0BranchTargetOccurrences,
    s.asmUnresolvedReasonCounts.ROM0_OUTSIDE_LOCAL_GRAPH);
   assert.ok(s.distinctRom0BranchDestinations>0);
