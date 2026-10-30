@@ -95,6 +95,7 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
     scriptCommand:romScript?.scriptCommand??null,
     scriptTextPointerVerified:romScript?.textPointerVerified===true,
     scriptStaticText:romScript?.staticText??null,
+    scriptAsmCandidate:romScript?.asmCandidate??null,
     scriptEffectSemanticsVerified:false,
     predictedOutcomeVerified:false,
     joinProven:!!proof,
