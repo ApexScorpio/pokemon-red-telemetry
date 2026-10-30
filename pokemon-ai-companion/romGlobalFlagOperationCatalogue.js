@@ -4,6 +4,7 @@
 // NOT evidence of executed behaviour, saved-state progress or causal effects.
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {lookupRomReference}=require('./romReferenceSemantics');
+const {inferBitOpcodeSemantics}=require('./romBitOpcodeSemantics');
 const KINDS=new Set(['NPC','TRAINER','ITEM','STATIC_POKEMON','SIGN']);
 const DOMAINS=Object.freeze({
  WORLD_EVENT_BIT:{bits:2560,base:0xd747},
@@ -101,6 +102,15 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
      return fail('Static branch falsely marked executed');
     const dual=p.staticDualTextChoice?.verified===true?
       p.staticDualTextChoice:null;
+    const semantics=inferBitOpcodeSemantics({
+     operation:p.operation,bitNumber:p.bitNumber,
+     register:p.firstOpcode===0xfa?'A':'HL_INDIRECT',
+     operandAddress:p.address,bitIndex:p.bitIndex,cbOpcode:p.cbOpcode
+    });
+    if(semantics.verified!==true||
+       semantics.instructionActuallyExecuted!==false||
+       semantics.scriptRewardVerified!==false)
+     return fail('LR35902 conditional semantics not provable: '+semantics.reason);
     entry={
      physicalOperationId:key,opcodeFileOffset:p.offset,
      bitInstructionFileOffset:p.secondOffset,
@@ -108,6 +118,7 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
      domain:p.domain,bitIndex:p.bitIndex,
      operandAddress:p.address,bitNumber:p.bitNumber,
      operation:p.operation,
+     ifExecuted:semantics,
      externalEventLabel:label?.referenceEventName||null,
      externalLabelSource:label?'pret/pokered':null,
      labelIntrinsicToRom:false,
@@ -167,6 +178,11 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
   conditionalBitBranches:branches,dualTextChoices:textChoices,
   handlerScopedBitBranches:handlerBranches,
   handlerScopedDualTextChoices:handlerDualTexts,
+  conditionalMemoryWritesIfExecuted:operations.filter(x=>
+   x.ifExecuted.memoryBitWriteIfExecuted===true).length,
+  handlerScopedWritesIfExecuted:handlerOperations.SET_BIT+
+   handlerOperations.RESET_BIT,
+  unconditionalGameplayEffectsCertified:0,
   mapsWithBitOperations:perMap.filter(x=>x.operationReferences>0).length,
   eventNamedOperations:operations.filter(x=>
    x.domain==='WORLD_EVENT_BIT'&&x.externalEventLabel!==null).length,
@@ -186,6 +202,7 @@ function getMapFlagOperationCandidates({atlas,mapId}={}){
    opcodeFileOffset:op.opcodeFileOffset,
    bitInstructionFileOffset:op.bitInstructionFileOffset,
    domain:op.domain,bitIndex:op.bitIndex,operation:op.operation,
+   ifExecuted:op.ifExecuted,
    externalEventLabel:op.externalEventLabel,
    externalLabelSource:op.externalLabelSource,
    labelIntrinsicToRom:false,
