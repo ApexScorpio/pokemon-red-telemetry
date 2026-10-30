@@ -3,6 +3,7 @@
 // This never infers game effects. Calls, bank switching, RAM computed jumps,
 // flags, branches and completed player actions remain UNKNOWN.
 const {decodeOpcode}=require('./romMapCodeAtlas');
+const {inspectAbsoluteOperand}=require('./romAsmAbsoluteMemoryEvidence');
 const BANK=0x4000,ROM_BYTES=1048576;
 function fail(reason){return {verified:false,reason,source:'ROM_TX_ASM_LOCAL_CODE_CANDIDATES',
  scriptEffectsVerified:false,conditionsVerified:false,executed:false};}
@@ -18,6 +19,7 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
  const rootCpu=bank===0?startOffset:0x4000+(startOffset-bank*BANK);
  const queue=[rootCpu],queued=new Set([rootCpu]),visited=new Set();
  const record=[],unresolved=[],callTargets=[],edges=[];
+ const absoluteMemoryOperands=[];
  let branchCount=0,conditionalReturnCount=0,returnsObserved=0,
   invalidOpcodes=0,indirectTransfers=0;
  const toOffset=pc=>{
@@ -38,6 +40,8 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
    continue;
   }
   record.push({offset:at,cpu:pc,opcode:d.opcode,size:d.size,kind:d.kind});
+  const operand=inspectAbsoluteOperand({rom,decoded:d});
+  if(operand)absoluteMemoryOperands.push(operand);
   if(d.kind==='branch')branchCount++;
   if(d.kind==='conditional-return')conditionalReturnCount++;
   if(d.kind==='return')returnsObserved++;
@@ -97,6 +101,15 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   rom0PhysicalAddressOnly:true,
   limitReached,queueRemaining:queue.length,
   sampledOpcodes:record.slice(0,6),
+  absoluteMemoryOperands,
+  absoluteMemoryOperandCount:absoluteMemoryOperands.length,
+  directWramReadCandidateCount:absoluteMemoryOperands.filter(x=>
+   x.directWramReadCandidate).length,
+  directWramWriteCandidateCount:absoluteMemoryOperands.filter(x=>
+   x.directWramWriteCandidate).length,
+  wramPointerLiteralCount:absoluteMemoryOperands.filter(x=>
+   x.pointerConstantOnly&&x.absoluteWramOperand).length,
+  memoryEffectsExecuted:false,
   callTargets:callTargets.slice(0,12),
   unresolved:unresolved.slice(0,12),
   source:'ROM_TX_ASM_LOCAL_CODE_CANDIDATES',
