@@ -53,7 +53,13 @@ function buildMapChecklist({index,mapId,advisor=null}={}){
    const matches=id===null||id===undefined?[]:byId.get(identity(kind,obj.x,obj.y,id))||[];
    const spot=bySpot.get(key)||[];
    const sameKindStatic=entry.contents[group].filter(o=>o.x===obj.x&&o.y===obj.y);
-   const unique=matches.length===1&&spot.length===1&&sameKindStatic.length===1;
+   // Hidden-item status is the bitmap bit for a ROM event index.
+   // Matching map, coordinates and item ID is insufficient without that index.
+   const sameHiddenBit=kind!=='HIDDEN_ITEM'||
+     (Number.isInteger(obj.hiddenIndex)&&
+      matches[0]?.hiddenIndex===obj.hiddenIndex);
+   const unique=matches.length===1&&spot.length===1&&
+     sameKindStatic.length===1&&sameHiddenBit;
    const proof=unique?matches[0]:null;
    let progress='NOT_PROVEN',evidence='ROM_STATIC_ONLY',routeCondition=null;
    if(proof&&kind==='HIDDEN_ITEM'&&advisor.hiddenFlagsVerified===true){
