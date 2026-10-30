@@ -63,6 +63,9 @@ test('all 135 handler-scoped patterns are indexed by physical opcode, actor and 
   {BIT_TEST:90,SET_BIT:41,RESET_BIT:4});
  assert.equal(a.handlerScopedBitBranches,88);
  assert.equal(a.handlerScopedDualTextChoices,16);
+ assert.equal(a.handlerScopedWritesIfExecuted,45);
+ assert.equal(a.conditionalMemoryWritesIfExecuted,45);
+ assert.equal(a.unconditionalGameplayEffectsCertified,0);
  assert.equal(a.operationReferences,245);
  assert.ok(a.mapsWithBitOperations>0);
  const map0=getMapFlagOperationCandidates({atlas,mapId:0});
@@ -74,6 +77,9 @@ test('all 135 handler-scoped patterns are indexed by physical opcode, actor and 
   x.interactionEffectVerified===false&&
   x.bitValueInCurrentSave===null));
  assert.equal(map0.eventsExecutedVerified,0);
+ assert.ok(map0.operations.every(x=>
+  x.ifExecuted?.verified===true&&
+  x.ifExecuted.instructionActuallyExecuted===false));
  const empty=getMapFlagOperationCandidates({atlas,mapId:247});
  assert.equal(empty.verified,true);
  assert.equal(empty.operations.length,0);
@@ -106,6 +112,10 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],
    {BIT_TEST:90,SET_BIT:41,RESET_BIT:4});
   assert.equal(a.handlerScopedBitBranches,88);
   assert.equal(a.handlerScopedDualTextChoices,16);
+  assert.equal(a.handlerScopedWritesIfExecuted,45);
+  assert.ok(a.conditionalMemoryWritesIfExecuted>0);
+  assert.ok(a.conditionalMemoryWritesIfExecuted<=45);
+  assert.equal(a.unconditionalGameplayEffectsCertified,0);
   assert.equal(a.asmActorReferences,626);
   assert.equal(a.distinctHandlerRefs,516);
   assert.ok(a.totalPhysicallyDecodedOperations>0);
@@ -122,6 +132,11 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],
    assert.equal(e.instructionExecuted,false);
    assert.equal(e.causalEffectVerified,false);
    assert.equal(e.bitValueInCurrentSave,null);
+   assert.equal(e.ifExecuted.verified,true);
+   assert.equal(e.ifExecuted.instructionActuallyExecuted,false);
+   assert.equal(e.ifExecuted.scriptRewardVerified,false);
+   assert.equal(e.ifExecuted.memoryBitWriteIfExecuted,
+    e.operation==='SET_BIT'||e.operation==='RESET_BIT');
    assert.ok(e.invokedBy.length>=1);
    for(const actor of e.invokedBy){
     if(!mapViews.has(actor.mapId))
