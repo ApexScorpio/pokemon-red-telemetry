@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const {inspectTxAsmHandler}=require('../romTxAsmHandlerAtlas');
+const {inspectTxAsmHandler,inspectTxAsmHandlerAdaptive}=require('../romTxAsmHandlerAtlas');
 const {readRom,KNOWN}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
 function fixture(offset=0x18000,bytes=[0x08,0x20,0x04,0xcd,0x34,0x12,0xc9,0xc9]){
@@ -64,16 +64,57 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],
   assert.ok(atlas.summary.uniqueAsmEntrypoints<=626);
   assert.ok(atlas.summary.uniqueAsmCandidateInstructions>=1);
   assert.equal(atlas.summary.asmSemanticallyCertified,0);
+  assert.equal(atlas.summary.uniqueAsmFirstPassLimitHits,7);
+  assert.equal(atlas.summary.uniqueAsmExpandedEntrypoints,7);
+  assert.ok(atlas.summary.uniqueAsmAdditionalCandidateInstructions>=0);
+  assert.ok(atlas.summary.uniqueAsmScanLimitHits<=7);
+  assert.ok(atlas.summary.uniqueAsmExpandedStillLimited<=7);
+
   const entries=atlas.maps.flatMap(m=>m.interactions)
    .filter(r=>r.scriptCommand==='TX_START_ASM');
   assert.equal(entries.length,626);
   assert.ok(entries.every(r=>
    r.asmCandidate?.verified===true&&
    r.asmCandidate.txAsmFileOffset===r.scriptFileOffset&&
-   r.asmCandidate.source==='ROM_TX_ASM_LOCAL_CODE_CANDIDATES'&&
+   r.asmCandidate.source==='ROM_TX_ASM_ADAPTIVE_BANK_LOCAL_CANDIDATES'&&
    r.asmCandidate.scriptEffectsVerified===false&&
    r.asmCandidate.conditionsVerified===false&&
    r.asmCandidate.executed===false&&
-   r.asmCandidate.opcodeCandidateCount<=64));
+   r.asmCandidate.opcodeCandidateCount<=256));
  });
 }
+
+test('adaptive ROM CPU scan only expands a genuinely capped 64-instruction graph',()=>{
+ const f=fixture();
+ const simple=inspectTxAsmHandlerAdaptive(f);
+ assert.equal(simple.verified,true);
+ assert.equal(simple.candidateExpansionApplied,false);
+ assert.equal(simple.maxInstructionsBudget,64);
+ assert.equal(simple.firstPassLimitReached,false);
+ assert.equal(simple.additionalCandidateInstructions,0);
+ assert.equal(simple.scriptEffectsVerified,false);
+ const long=fixture(0x18000,[0x08,...Array(300).fill(0x00)]);
+ const initial=inspectTxAsmHandler({...long,maxInstructions:64});
+ const extended=inspectTxAsmHandlerAdaptive(long);
+ assert.equal(initial.limitReached,true);
+ assert.equal(initial.opcodeCandidateCount,64);
+ assert.equal(extended.verified,true);
+ assert.equal(extended.candidateExpansionApplied,true);
+ assert.equal(extended.firstPassCandidateInstructions,64);
+ assert.equal(extended.opcodeCandidateCount,256);
+ assert.equal(extended.maxInstructionsBudget,256);
+ assert.equal(extended.additionalCandidateInstructions,192);
+ assert.equal(extended.residualLimitReached,true);
+ assert.equal(extended.scriptEffectsVerified,false);
+ assert.equal(extended.conditionsVerified,false);
+ assert.equal(extended.executed,false);
+});
+test('adaptive budget refuses contradictory and invalid settings without guessing',()=>{
+ for(const opts of [{initialBudget:0,deepBudget:256},
+  {initialBudget:64,deepBudget:64},
+  {initialBudget:128,deepBudget:300},
+  {initialBudget:2.5,deepBudget:10}]){
+  const result=inspectTxAsmHandlerAdaptive({...fixture(),...opts});
+  assert.equal(result.verified,false);
+ }
+});
