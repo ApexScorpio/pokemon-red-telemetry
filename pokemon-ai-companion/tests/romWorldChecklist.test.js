@@ -104,3 +104,70 @@ test('the exact hidden bit 1 can distinguish collected from uncollected without 
  assert.equal(r.summary.confirmedCollected,0);
  assert.equal(r.actions.find(row=>row.kind==='HIDDEN_ITEM').accessibleNow,null);
 });
+
+
+function trainerGateFixtures(){
+ const i=index();
+ i.maps[15].contents.trainers[0]={...i.maps[15].contents.trainers[0],
+  ordinal:2,textId:4};
+ const maps=Array.from({length:248},(_,mapId)=>({
+  mapId,verified:false,interactions:[]
+ }));
+ maps[15]={mapId:15,verified:true,interactions:[{
+  kind:'TRAINER',ordinal:2,x:9,y:2,rawTextId:4,
+  eventBitBindingVerified:true,eventBitIndex:156,
+  eventBitBindingSource:'ROM_TRAINER_HEADER',
+  eventBitMeaning:'TRAINER_GATE_FLAG_ONLY',
+  scriptCommand:'TX_START_ASM',textPointerVerified:true
+ }]};
+ const scriptAtlas={verified:true,romSha256:sha,maps};
+ const worldFlagLedger={verified:true,romSha256:sha,mapCount:226,
+  mapProgress:Array.from({length:226},(_,mapId)=>({
+   mapId,flagRecords:{trainers:[],stationaryPokemon:[]}
+  }))};
+ worldFlagLedger.mapProgress[15].flagRecords.trainers=[{
+  objectOrdinal:2,bitIndex:156,flagSet:true,x:9,y:2
+ }];
+ return {i,scriptAtlas,worldFlagLedger};
+}
+test('worldwide ledger joins one exact trainer ROM bit, not victory or completion',()=>{
+ const {i,scriptAtlas,worldFlagLedger}=trainerGateFixtures();
+ const result=buildMapChecklist({index:i,mapId:15,scriptAtlas,worldFlagLedger});
+ assert.equal(result.verified,true);
+ const row=result.actions.find(x=>x.kind==='TRAINER');
+ assert.equal(row.scriptReferenceBound,true);
+ assert.equal(row.scriptEventBitIndex,156);
+ assert.equal(row.scriptEventFlagSet,true);
+ assert.equal(row.scriptEventFlagSnapshotVerified,true);
+ assert.equal(row.progress,'TRAINER_GATE_CLOSED_FLAG');
+ assert.equal(row.completedNow,null);
+ assert.equal(row.predictedOutcomeVerified,false);
+ assert.equal(row.scriptEffectSemanticsVerified,false);
+ assert.equal(result.summary.verifiedTrainerGatesClosed,1);
+ assert.equal(result.summary.verifiedScriptEventFlagStates,1);
+});
+test('worldwide gate is unknown for wrong SHA, duplicate maps, wrong bit or coordinate',()=>{
+ const {i,scriptAtlas,worldFlagLedger}=trainerGateFixtures();
+ const bad=[
+  {...worldFlagLedger,romSha256:'0'.repeat(64)},
+  {...worldFlagLedger,mapProgress:[...worldFlagLedger.mapProgress.slice(0,225),
+   worldFlagLedger.mapProgress[15]]},
+  {...worldFlagLedger,mapProgress:worldFlagLedger.mapProgress.map((m,index)=>
+   index===15?{...m,flagRecords:{...m.flagRecords,
+    trainers:[{...m.flagRecords.trainers[0],bitIndex:155}]}}:m)},
+  {...worldFlagLedger,mapProgress:worldFlagLedger.mapProgress.map((m,index)=>
+   index===15?{...m,flagRecords:{...m.flagRecords,
+    trainers:[{...m.flagRecords.trainers[0],x:8}]}}:m)},
+  {...worldFlagLedger,mapProgress:worldFlagLedger.mapProgress.map((m,index)=>
+   index===15?{...m,flagRecords:{...m.flagRecords,
+    trainers:[...m.flagRecords.trainers,m.flagRecords.trainers[0]]}}:m)}
+ ];
+ for(const ledger of bad){
+  const r=buildMapChecklist({index:i,mapId:15,scriptAtlas,worldFlagLedger:ledger});
+  const row=r.actions.find(x=>x.kind==='TRAINER');
+  assert.equal(row.scriptEventFlagSet,null);
+  assert.equal(row.scriptEventFlagSnapshotVerified,false);
+  assert.equal(row.completedNow,null);
+  assert.equal(r.summary.verifiedTrainerGatesClosed,0);
+ }
+});
