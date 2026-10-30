@@ -139,13 +139,21 @@ function auditWorldScriptReferences({rom,profile}={}){
  // Classify all physically addressable ROM0 targets from deduplicated ASM
  // handlers, not only the first twelve samples. This is a separate candidate
  // scan and does NOT resolve the original branch's runtime meaning.
- const rom0Targets=new Map();
- let rom0BranchOccurrences=0;
+ const rom0Targets=new Map(),rom0BranchDistinct=new Set(),rom0CallDistinct=new Set();
+ let rom0BranchOccurrences=0,rom0CallOccurrences=0;
  for(const graph of asmEntrypoints.values()){
   rom0BranchOccurrences+=graph.rom0BranchTargetOccurrences||0;
-  for(const pc of graph.rom0BranchTargetCpus||[])
+  rom0CallOccurrences+=graph.rom0CallTargetOccurrences||0;
+  for(const pc of graph.rom0BranchTargetCpus||[]){
+   rom0BranchDistinct.add(pc);
    if(!rom0Targets.has(pc))
     rom0Targets.set(pc,inspectFixedRom0Target({rom,targetCpu:pc}));
+  }
+  for(const pc of graph.rom0CallTargetCpus||[]){
+   rom0CallDistinct.add(pc);
+   if(!rom0Targets.has(pc))
+    rom0Targets.set(pc,inspectFixedRom0Target({rom,targetCpu:pc}));
+  }
  }
  const rom0Evidence=[...rom0Targets.values()];
  if(world.length!==MAP_IDS||mapScriptPointers!==NORMAL_MAPS||
@@ -179,7 +187,10 @@ function auditWorldScriptReferences({rom,profile}={}){
    uniqueAsmExpandedStillLimited:[...asmEntrypoints.values()].filter(
     x=>x.candidateExpansionApplied===true&&x.residualLimitReached===true).length,
    rom0BranchTargetOccurrences:rom0BranchOccurrences,
-   distinctRom0BranchDestinations:rom0Targets.size,
+   distinctRom0BranchDestinations:rom0BranchDistinct.size,
+   rom0CallTargetOccurrences:rom0CallOccurrences,
+   distinctRom0CallDestinations:rom0CallDistinct.size,
+   distinctRom0PhysicalTargets:rom0Targets.size,
    physicallyMappedRom0Targets:rom0Evidence.filter(x=>
     x.verified===true&&x.physicalRom0Mapped===true).length,
    rom0OpcodeCandidateInstructions:rom0Evidence.reduce(
