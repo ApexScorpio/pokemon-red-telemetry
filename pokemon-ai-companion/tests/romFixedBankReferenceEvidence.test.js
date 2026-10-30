@@ -71,8 +71,10 @@ for(const [variant,key] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'
    s.asmUnresolvedReasonCounts.ROM0_OUTSIDE_LOCAL_GRAPH);
   assert.ok(s.distinctRom0BranchDestinations>0);
   assert.ok(s.distinctRom0BranchDestinations<=537);
-  assert.equal(s.physicallyMappedRom0Targets,s.distinctRom0BranchDestinations);
-  assert.equal(scripts.fixedRom0BranchEvidence.length,s.distinctRom0BranchDestinations);
+  assert.equal(s.rom0CallTargetOccurrences,1016);
+  assert.ok(s.distinctRom0CallDestinations>0);
+  assert.equal(s.physicallyMappedRom0Targets,s.distinctRom0PhysicalTargets);
+  assert.equal(scripts.fixedRom0BranchEvidence.length,s.distinctRom0PhysicalTargets);
   assert.ok(scripts.fixedRom0BranchEvidence.every(x=>
    x.verified===true&&x.physicalRom0Mapped===true&&
    x.romFileOffset===x.targetCpu&&x.effectVerified===false&&
