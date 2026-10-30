@@ -85,4 +85,37 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   semantic100PercentCertified:false,
   warning:'Opcode candidates and local edges only; no call/branch execution, RAM conditions or effects proven'};
 }
-module.exports={inspectTxAsmHandler};
+// Escalate only handlers where the original 64-instruction scan actually
+// exhausts its budget. A larger *candidate scan* is not a proof of execution.
+// Never follow CALL/RST, infer an active MBC bank or mark effects as known.
+function inspectTxAsmHandlerAdaptive({
+ rom,fileOffset,initialBudget=64,deepBudget=256
+}={}){
+ if(!Number.isInteger(initialBudget)||!Number.isInteger(deepBudget)||
+    initialBudget<1||deepBudget<=initialBudget||deepBudget>256)
+  return fail('Orcamentos de analise invalidados');
+ const baseline=inspectTxAsmHandler({rom,fileOffset,maxInstructions:initialBudget});
+ if(baseline.verified!==true)return baseline;
+ const escalate=baseline.limitReached===true;
+ const advanced=escalate?
+  inspectTxAsmHandler({rom,fileOffset,maxInstructions:deepBudget}):baseline;
+ if(advanced.verified!==true)return advanced;
+ // Deepening a candidate graph must never silently discard earlier evidence.
+ if(advanced.opcodeCandidateCount<baseline.opcodeCandidateCount||
+    advanced.callsNotFollowed<baseline.callsNotFollowed||
+    advanced.unresolvedBranchTargets<baseline.unresolvedBranchTargets)
+  return fail('Analise alargada contradiz o primeiro limite');
+ return {...advanced,initialBudget,maxInstructionsBudget:
+   escalate?deepBudget:initialBudget,
+  candidateExpansionApplied:escalate,
+  firstPassLimitReached:baseline.limitReached,
+  firstPassCandidateInstructions:baseline.opcodeCandidateCount,
+  additionalCandidateInstructions:
+   advanced.opcodeCandidateCount-baseline.opcodeCandidateCount,
+  residualLimitReached:advanced.limitReached,
+  effectInterpretationStillRequired:true,
+  source:'ROM_TX_ASM_ADAPTIVE_BANK_LOCAL_CANDIDATES',
+  scriptEffectsVerified:false,conditionsVerified:false,executed:false,
+  semantic100PercentCertified:false};
+}
+module.exports={inspectTxAsmHandler,inspectTxAsmHandlerAdaptive};
