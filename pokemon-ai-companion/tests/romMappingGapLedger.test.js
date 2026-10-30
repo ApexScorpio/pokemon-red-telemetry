@@ -48,7 +48,14 @@ for(const [variant,name] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM
   assert.ok(ledger.priorities.length>0);
   const refs=ledger.maps.reduce((sum,m)=>sum+(m.interactionCount||0),0);
   assert.equal(refs,1126);
-  assert.deepEqual(ledger.priorities.map(x=>x.mapId).length,15);
+  assert.equal(ledger.priorities.length,15);
+  for(const map of ledger.maps.filter(x=>x.staticHeaderVerified)){
+   assert.equal(map.asmHandlerCandidates.length,map.uniqueAsmEntrypoints);
+   assert.equal(map.asmHandlerCandidates.reduce((n,x)=>n+x.references,0),map.asmReferences);
+   assert.ok(map.asmHandlerCandidates.every(x=>x.scriptEffectsVerified===false&&
+    Number.isInteger(x.fileOffset)&&Number.isInteger(x.pendingTargets)&&
+    Number.isInteger(x.pendingCalls)));
+  }
   const wrong=buildMappingGapLedger({profile,index,scriptAtlas,
    tracker:{...tracker,romSha256:'0'.repeat(64)}});
   assert.equal(wrong.verified,false);
