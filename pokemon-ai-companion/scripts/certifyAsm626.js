@@ -10,6 +10,8 @@ const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
+const referenceEventNames=require('../data/gen1EventNamesPret.json');
+const referenceMapNames=require('../data/gen1MapNamesPret.json');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
 
 const JOB=/^PSB-\d{8}-\d{4}-POKEGUIDE-[A-Z0-9-]+-\d{3}$/.test(process.env.POKEGUIDE_CERT_JOB_ID||'')?process.env.POKEGUIDE_CERT_JOB_ID:'PSB-20261030-1054-POKEGUIDE-ASM626-004';
@@ -370,8 +372,24 @@ function main(){
    candidateGraph.summary.crossMapPotentialLinks===5&&
    candidateGraph.summary.conditionalBranchLinksDecoded===8&&
    candidateGraph.summary.dualTextChoiceLinksDecoded===4&&
-   candidateGraph.summary.trustedCausalLinks===0,
+   candidateGraph.summary.trustedCausalLinks===0&&
+   candidateGraph.candidateLinks.every(x=>
+    x.referenceNameSource==='pret/pokered'&&
+    x.referenceNameIsRomIntrinsic===false&&
+    typeof x.referenceEventName==='string'&&
+    referenceMapNames.mapNamesById[x.possibleWriterMapId]===
+      x.writerReferenceMapName&&
+    referenceMapNames.mapNamesById[x.possibleReaderMapId]===
+      x.readerReferenceMapName&&
+    referenceEventNames.eventNamesByBit[x.bitIndex]===x.referenceEventName),
+
    'Original ROM map candidate flag links invalid: '+variant);
+  assert(referenceEventNames.namedBitCount===507&&
+   referenceMapNames.totalMapIds===248&&
+   referenceMapNames.mapNamesById.length===248,
+   'Pinned disassembly reference labels invalid');
+  log('ROM_'+variant.toUpperCase()+'_REFERENCE_NAMED_EVENT_BITS=507');
+  log('ROM_'+variant.toUpperCase()+'_REFERENCE_NAMED_MAP_IDS=248');
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CAUSAL_LINKS_VERIFIED=0');
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CANDIDATE_DETAILS='+JSON.stringify(
    candidateGraph.candidateLinks.map(link=>({
@@ -380,11 +398,16 @@ function main(){
     writerKind:link.possibleWriterKind,
     writerOrdinal:link.possibleWriterOrdinal,
     writerAsmOffset:link.writerRomHandlerOffset,
+    writerExternalMapLabel:link.writerReferenceMapName,
+    externalEventLabel:link.referenceEventName,
+    externalLabelsSource:link.referenceNameSource,
+    labelsNotFromRomBytes:true,
     writeOpcode:link.possibleWriteOpcode,
     readerMapId:link.possibleReaderMapId,
     readerKind:link.possibleReaderKind,
     readerOrdinal:link.possibleReaderOrdinal,
     readerAsmOffset:link.readerRomHandlerOffset,
+    readerExternalMapLabel:link.readerReferenceMapName,
     crossMap:!link.sameMap,
     readerBranchCondition:link.readerBranchCondition?.condition||null,
     readerBranchCpu:link.readerBranchCondition?.branchCpu??null,
@@ -432,6 +455,7 @@ function main(){
   'tests/romAsmAbsoluteMemoryEvidence.test.js',
   'tests/romAsmEventBitEvidence.test.js',
   'tests/romAsmFlagBranchAnalysis.test.js',
+  'tests/romReferenceSemantics.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
