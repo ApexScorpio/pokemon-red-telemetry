@@ -26,11 +26,16 @@ function fixture(){
    const dual=order<16?{verified:true,
     alternativeTextScriptsStaticallyProven:true,
     dialogueShown:false,playerEffectVerified:false}:null;
+   const src=op==='BIT_TEST'?0xfa:0x21;
+   const cbBase=op==='BIT_TEST'?0x40:op==='SET_BIT'?0xc0:0x80;
    pattern.push({
     operation:op,domain:'WORLD_EVENT_BIT',bitIndex:order,
     address:0xd747+Math.floor(order/8),offset:handlerOffset+1,
     secondOffset:handlerOffset+4,bitNumber:order%8,bank:6,
-    cpu:0x4001,operandsAndAdjacencyVerified:true,
+    cpu:0x4000+(handlerOffset+1)%0x4000,
+    firstOpcode:src,secondOpcode:0xcb,
+    cbOpcode:cbBase+((order%8)<<3)+(src===0xfa?7:6),
+    operandsAndAdjacencyVerified:true,
     instructionSequenceExecuted:false,eventBitValueKnown:false,
     eventOutcomeCertified:false,staticConditionalBranch:branch,
     staticDualTextChoice:dual
