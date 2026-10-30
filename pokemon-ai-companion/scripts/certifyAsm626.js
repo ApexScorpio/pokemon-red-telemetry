@@ -386,6 +386,7 @@ function main(){
  runTests('ASM_TARGETED',[
   'tests/romTxAsmHandlerAtlas.test.js',
   'tests/romAsmAbsoluteMemoryEvidence.test.js',
+  'tests/romAsmEventBitEvidence.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
