@@ -128,6 +128,41 @@ test('external map and event names are labeled as reference, not ROM-executed tr
  s.worldAdvisor.romStaticFlagCandidates[0].referenceNameSource='UNVERIFIED';
  assert.doesNotMatch(render(s).body.textContent,/EVENT_RESCUED_MR_FUJI/);
 });
+test('all physical BIT SET RES operations in current map are shown without gameplay claims',()=>{
+ const s=live();
+ s.worldAdvisor.romAllFlagOperationsVerified=true;
+ s.worldAdvisor.romAllFlagOperationsRuntimeEffectsVerified=false;
+ s.worldAdvisor.romAllFlagOperationsHandlerScoped=135;
+ s.worldAdvisor.romAllFlagOperations=[{
+  bitIndex:1231,domain:'WORLD_EVENT_BIT',operation:'BIT_TEST',
+  actorKind:'NPC',actorOrdinal:2,opcodeFileOffset:121016,
+  externalLabelSource:'pret/pokered',labelIntrinsicToRom:false,
+  externalEventLabel:'EVENT_RESCUED_MR_FUJI',
+  instructionExecuted:false,causalEffectVerified:false,
+  bitValueInCurrentSave:null,conditionalBranch:{
+   verified:true,condition:'NZ',branchActuallyTaken:null,
+   jumpTakenIfBitSet:true
+  }
+ },{
+  bitIndex:7,domain:'HIDDEN_ITEM_BIT',operation:'SET_BIT',
+  actorKind:'NPC',actorOrdinal:1,opcodeFileOffset:5555,
+  labelIntrinsicToRom:false,instructionExecuted:false,
+  causalEffectVerified:false,bitValueInCurrentSave:null
+ }];
+ const shown=render(s).body.textContent;
+ assert.match(shown,/TODOS OS SCRIPTS DESTE MAPA/);
+ assert.match(shown,/135 operacoes identificadas/);
+ assert.match(shown,/EVENT_RESCUED_MR_FUJI/);
+ assert.match(shown,/BIT_TEST bit 1231/);
+ assert.match(shown,/SET_BIT bit 7/);
+ assert.match(shown,/nenhuma execucao comprovada/);
+ assert.match(shown,/nao prova que o NPC foi ativado/);
+ s.worldAdvisor.romAllFlagOperationsRuntimeEffectsVerified=true;
+ assert.doesNotMatch(render(s).body.textContent,/BIT_TEST bit 1231/);
+ s.worldAdvisor.romAllFlagOperationsRuntimeEffectsVerified=false;
+ s.connected=false;
+ assert.doesNotMatch(render(s).body.textContent,/BIT_TEST bit 1231/);
+});
 test('offline and stale samples hide all old action details',()=>{
  const old=live();old.connected=false;
  assert.doesNotMatch(render(old).body.textContent,/NEEDS_CUT|<img/);
