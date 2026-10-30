@@ -68,7 +68,7 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
   assert.equal(p.hash.sha256,KNOWN[name]);
   const atlas=p.world.interactionScriptAtlas;
   assert.equal(atlas.verified,true);
-  const unique=new Map(atlas.references.filter(x=>x.scriptCommand==='TX_START_ASM')
+  const unique=new Map(atlas.maps.flatMap(m=>m.interactions||[]).filter(x=>x.scriptCommand==='TX_START_ASM')
    .map(row=>[row.scriptFileOffset,row.asmCandidate]));
   assert.equal(unique.size,516);
   let tests=0,sets=0,resets=0;
