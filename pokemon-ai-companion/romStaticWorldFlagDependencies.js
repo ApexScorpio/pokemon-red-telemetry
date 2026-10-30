@@ -4,6 +4,7 @@
 // references share an event flag candidate; it is NOT proof A enables B.
 // No execution, conditions, active MBC banks or previous save state inferred.
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
+const {lookupRomReference}=require('./romReferenceSemantics');
 const fail=reason=>({verified:false,reason,entries:[],candidateLinks:[],
  summary:null,eventsCompletedCertified:false});
 const KINDS=new Set(['SIGN','NPC','TRAINER','ITEM','STATIC_POKEMON']);
@@ -73,7 +74,16 @@ function buildStaticWorldFlagDependencies({atlas}={}){
     if(writer.actorId===reader.actorId)continue;
     if(candidateLinks.length>=20000)
      return fail('Cross-reference graph too large to validate');
+    const wLabel=lookupRomReference({romSha256:sha,mapId:writer.mapId,
+     eventBitIndex:writer.domain==='WORLD_EVENT_BIT'?writer.bitIndex:null});
+    const rLabel=lookupRomReference({romSha256:sha,mapId:reader.mapId,
+     eventBitIndex:reader.domain==='WORLD_EVENT_BIT'?reader.bitIndex:null});
     candidateLinks.push({key,domain:writer.domain,bitIndex:writer.bitIndex,
+     writerReferenceMapName:wLabel.verified?wLabel.referenceMapName:null,
+     readerReferenceMapName:rLabel.verified?rLabel.referenceMapName:null,
+     referenceEventName:wLabel.verified?wLabel.referenceEventName:null,
+     referenceNameSource:wLabel.verified?'pret/pokered':null,
+     referenceNameIsRomIntrinsic:false,
      possibleWriter:writer.actorId,possibleReader:reader.actorId,
      possibleWriterMapId:writer.mapId,possibleReaderMapId:reader.mapId,
      possibleWriterKind:writer.kind,possibleReaderKind:reader.kind,
