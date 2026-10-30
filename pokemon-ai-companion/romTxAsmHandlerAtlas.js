@@ -110,7 +110,12 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   adjacentRomFlagBitTests:bitEvidence.testedBitCandidates,
   adjacentRomFlagBitSetCandidates:bitEvidence.setBitCandidates,
   adjacentRomFlagBitResetCandidates:bitEvidence.resetBitCandidates,
+  adjacentRomFlagBranchConditionsDecoded:bitEvidence.romBitBranchesWithProvenCondition,
+  adjacentRomFlagBranchPreservingInterveningLoad:
+   bitEvidence.romBitBranchesSkippingFlagSafeInstruction,
+  adjacentRomFlagDualTextChoices:bitEvidence.romBitDualTextChoices,
   adjacentRomFlagBitInstructionsExecuted:false,
+  conditionalBranchesExecuted:false,dialogueAlternativesObserved:false,
   absoluteMemoryOperandCount:absoluteMemoryOperands.length,
   directWramReadCandidateCount:absoluteMemoryOperands.filter(x=>
    x.directWramReadCandidate).length,
