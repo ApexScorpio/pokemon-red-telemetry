@@ -848,6 +848,29 @@ function renderWorldAdvisor(state) {
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(insertion>=0)lines.splice(insertion,0,...campaignLines,'');
   }
+  // Static evidence coverage of 507 externally named event bits.
+  // This number NEVER represents campaign completion percentage.
+  const named=advice.romNamedEventEvidenceSummary;
+  if(advice.romNamedEventEvidenceVerified===true&&
+     advice.romNamedEventEffectsExecutedVerified===false&&
+     named?.namedReferenceEvents===507&&
+     named?.fullyExplainedNamedEvents===0&&
+     named?.eventCompletionsObserved===0){
+    const evidence=[
+      '--- COBERTURA DAS 507 FLAGS COM NOME ---',
+      'Nomes externos pret/pokered: 507 de 2560 bits. '+
+        named.namedBitsWithRomOpcode+
+        ' nomes com operacoes ROM diretas; '+
+        named.namedBitsWithActorHeaderBinding+
+        ' com associacao a objeto/cabecalho; '+
+        named.namedBitsWithoutAnyDirectEvidence+
+        ' sem referencia direta neste atlas.',
+      '⚠️ Os grupos podem sobrepor-se. '+
+        'NENHUM evento e considerado concluido apenas por este catalogo.',''
+    ];
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...evidence);
+  }
   // Include every physical candidate bit operation, not just bits shared
   // between two actors. This is ROM code evidence, never gameplay progress.
   if(advice.romAllFlagOperationsVerified===true&&
@@ -876,6 +899,18 @@ function renderWorldAdvisor(state) {
       ops.push('• '+r.operation+' bit '+r.bitIndex+' ['+r.domain+']'+
         title+' · '+r.actorKind+' #'+r.actorOrdinal+
         ' · opcode ROM '+r.opcodeFileOffset+'.');
+      const effect=r.ifExecuted;
+      if(effect?.verified===true&&effect.instructionActuallyExecuted===false&&
+         effect.scriptRewardVerified===false){
+        const action=effect.effectIfInstructionExecuted==='SET_BIT_TO_ONE'?
+         'se esta instrucao executar, o bit passa a 1':
+         effect.effectIfInstructionExecuted==='RESET_BIT_TO_ZERO'?
+         'se esta instrucao executar, o bit passa a 0':
+         effect.effectIfInstructionExecuted==='TEST_BIT_WITHOUT_MEMORY_WRITE'?
+         'se executar, apenas testa o bit, sem o alterar':null;
+        if(action)ops.push('  ↳ Semantica CPU: '+action+
+          '; execucao e resultado de historia DESCONHECIDOS.');
+      }
       const cond=r.conditionalBranch;
       if(cond?.verified===true&&cond.branchActuallyTaken===null&&
          (cond.condition==='NZ'||cond.condition==='Z'))
