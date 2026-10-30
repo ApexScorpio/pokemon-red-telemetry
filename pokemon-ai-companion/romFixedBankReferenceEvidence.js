@@ -4,6 +4,7 @@
 // the branch executes, a game effect occurs, or an MBC state is known.
 // Pan Docs memory map: CPU 0000-3FFF is fixed ROM0; 4000-7FFF is ROMX.
 const {decodeOpcode}=require('./romMapCodeAtlas');
+const {inspectRom0IndirectJump}=require('./rom0IndirectJumpEvidence');
 const ROM_BYTES=1048576,ROM0_END=0x4000;
 const fail=reason=>({verified:false,reason,physicalRom0Mapped:false,
  branchExecuted:false,effectVerified:false});
@@ -14,7 +15,7 @@ function inspectFixedRom0Target({rom,targetCpu,budget=24}={}){
   return fail('ROM, ROM0 target CPU or bounded scan budget invalid');
  const todo=[targetCpu],scheduled=new Set(todo),visited=new Set();
  const usedBytes=new Set();const candidateInstructions=[];
- const problems=[],unfollowedCalls=[];
+ const problems=[],unfollowedCalls=[],indirectJumpDetails=[];
  let valid=0;
  while(todo.length&&valid<budget){
   const pc=todo.shift();
@@ -33,7 +34,13 @@ function inspectFixedRom0Target({rom,targetCpu,budget=24}={}){
   for(let i=0;i<d.size;i++)usedBytes.add(pc+i);
   valid++;
   candidateInstructions.push({pc,opcode:d.opcode,size:d.size,kind:d.kind});
-  if(d.kind==='indirect')problems.push({pc,reason:'JP_HL_RUNTIME_UNKNOWN'});
+  if(d.kind==='indirect'){
+   // Decode the physical form of this jump without removing the
+   // unresolved runtime-transfer classification.
+   const detail=inspectRom0IndirectJump({rom,jumpPc:pc});
+   indirectJumpDetails.push(detail);
+   problems.push({pc,reason:'JP_HL_RUNTIME_UNKNOWN'});
+  }
   for(const edge of d.targets){
    if(edge.kind==='call'||edge.kind==='restart'){
     unfollowedCalls.push({pc,targetCpu:edge.pc,kind:edge.kind,
@@ -63,6 +70,12 @@ function inspectFixedRom0Target({rom,targetCpu,budget=24}={}){
   sampleInstructions:candidateInstructions.slice(0,6),
   sampleProblems:problems.slice(0,6),
   sampleCalls:unfollowedCalls.slice(0,6),
+  indirectJumpDetails,
+  indirectJumpPatternCounts:indirectJumpDetails.reduce((a,x)=>{
+   a[x.kind]=(a[x.kind]||0)+1;return a;
+  },{}),
+  jumpTableCandidateTargets:indirectJumpDetails.reduce((n,x)=>
+   n+(x.candidateTargetsCpu?.length||0),0),
   // Bounded diagnostic evidence for every remaining ROM0 candidate:
   // include CPU locations, pending frontier and exact reason classes.
   // These are static decoder observations, not executed game paths.
