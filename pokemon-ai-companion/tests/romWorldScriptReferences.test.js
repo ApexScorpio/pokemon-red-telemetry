@@ -121,20 +121,25 @@ for(const [name,env,sha] of cases){
   assert.ok(atlas.summary.uniqueAsmEntrypoints>0);
   assert.ok(atlas.summary.uniqueAsmEntrypoints<=626);
   assert.equal(atlas.summary.asmSemanticallyCertified,0);
-  assert.equal(atlas.summary.trainerEventFlagBindings,334);
+  assert.equal(atlas.summary.trainerEventFlagBindings,332);
   assert.equal(atlas.summary.stationaryEventFlagBindings,12);
   assert.equal(atlas.summary.specialTrainerEventFlagBindings,22);
-  assert.equal(atlas.summary.trainerEventFlagBindingsMissing,0);
+  assert.equal(atlas.summary.trainerEventFlagBindingsMissing,2);
+  assert.deepEqual(atlas.summary.trainerEventFlagBindingsUnresolved
+   .map(x=>[x.mapId,x.ordinal,x.eventBitIndex]),[[96,2,null],[135,11,null]]);
   for(const kind of ['TRAINER','STATIC_POKEMON']){
    const expected=kind==='TRAINER'?334:12;
    const actorRows=atlas.references.filter(x=>x.kind===kind);
    assert.equal(actorRows.length,expected);
    assert.ok(actorRows.every(x=>
-    x.eventBitBindingVerified===true&&
-    Number.isInteger(x.eventBitIndex)&&
-    x.eventBitIndex>=0&&x.eventBitIndex<2560&&
-    typeof x.eventBitBindingSource==='string'&&
-    typeof x.eventBitMeaning==='string'&&
+    (x.eventBitBindingVerified===true?
+      Number.isInteger(x.eventBitIndex)&&
+      x.eventBitIndex>=0&&x.eventBitIndex<2560&&
+      typeof x.eventBitBindingSource==='string'&&
+      typeof x.eventBitMeaning==='string':
+      x.kind==='TRAINER'&&x.eventBitIndex===null&&
+      x.eventBitBindingSource===null&&
+      x.eventBitUnknownReason==='EVENT_BIT_NOT_PROVEN_FROM_ROM_SCRIPT_OR_TRAINER_HEADER')&&
     x.eventFlagSet===null&&x.eventFlagSnapshotVerified===false&&
     x.alreadyCompleted===null&&x.scriptEffectsVerified===false));
   }
