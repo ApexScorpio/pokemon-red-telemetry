@@ -42,7 +42,7 @@ test('bounded analyzer rejects outside ROM0, malformed ROM and invalid budgets',
   {rom:makeRom(),targetCpu:0x4000},
   {rom:makeRom(),targetCpu:-1},
   {rom:Buffer.alloc(32768),targetCpu:0x100},
-  {rom:makeRom(),targetCpu:0x100,budget:129}
+  {rom:makeRom(),targetCpu:0x100,budget:16385}
  ])assert.equal(inspectFixedRom0Target(args).verified,false);
 });
 test('ASM source stores every unique fixed-ROM0 branch target, not just samples',()=>{
@@ -71,14 +71,23 @@ test('adaptive ROM0 scan resolves short finite code after first pass reaches cap
  assert.equal(r.branchExecuted,false);
  assert.equal(r.semanticsComplete,false);
 });
-test('adaptive ROM0 scan never silently calls a residual 128-instruction cap complete',()=>{
+test('ROM0 whole-bank candidate walk drains a residual 128 scan without inferring effects',()=>{
  const r=inspectFixedRom0TargetAdaptive({rom:makeRom(),targetCpu:0x100});
  assert.equal(r.verified,true);
  assert.equal(r.firstPassLimitReached,true);
- assert.equal(r.opcodeCandidateCount,128);
- assert.equal(r.additionalCandidateInstructions,104);
- assert.equal(r.residualLimitReached,true);
+ assert.equal(r.firstDeepPassLimitReached,true);
+ assert.equal(r.pendingAt128,1);
+ assert.deepEqual(r.frontierAt128,[0x180]);
+ assert.equal(r.thirdPassApplied,true);
+ assert.equal(r.maxInstructionsBudget,16384);
+ assert.equal(r.opcodeCandidateCount,16128);
+ assert.equal(r.thirdPassAdditionalCandidateInstructions,16000);
+ assert.equal(r.additionalCandidateInstructions,16104);
+ assert.equal(r.residualLimitReached,false);
+ assert.equal(r.fixedBankCandidateWalkExhausted,true);
  assert.equal(r.effectVerified,false);
+ assert.equal(r.branchExecuted,false);
+ assert.equal(r.semanticsComplete,false);
 });
 test('adaptive ROM0 scan skips second pass when first pass is sufficient',()=>{
  const rom=makeRom();rom[0x100]=0xc9;
@@ -110,12 +119,15 @@ test('ROM0 problem reason counts and location diagnostics stay consistent',()=>{
  assert.deepEqual(r.remainingQueueSample,[]);
  assert.equal(r.effectVerified,false);
 });
-test('ROM0 capped frontier is reported without claiming completed semantics',()=>{
+test('ROM0 finished static frontier retains pre-128 evidence and no semantic claim',()=>{
  const r=inspectFixedRom0TargetAdaptive({rom:makeRom(),targetCpu:0x100});
  assert.equal(r.verified,true);
- assert.equal(r.residualLimitReached,true);
- assert.equal(r.remainingQueue,r.remainingQueueSample.length);
- assert.deepEqual(r.remainingQueueSample,[0x180]);
+ assert.equal(r.thirdPassApplied,true);
+ assert.equal(r.pendingAt128,1);
+ assert.deepEqual(r.frontierAt128,[0x180]);
+ assert.equal(r.residualLimitReached,false);
+ assert.equal(r.remainingQueue,0);
+ assert.deepEqual(r.remainingQueueSample,[]);
  assert.equal(r.lastCandidateInstructions.length,6);
  assert.equal(r.effectVerified,false);
 });
@@ -131,9 +143,15 @@ for(const [variant,key] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'
   assert.equal(s.rom0BranchTargetOccurrences,537);
   assert.equal(s.rom0EffectSemanticsCertified,0);
   assert.equal(s.rom0TargetsWithWorldOrigins,59);
-  assert.equal(s.rom0StillBudgetLimited,3);
-  assert.equal(s.rom0DecodeProblems,10);
-  assert.equal(scripts.fixedRom0BranchEvidence.filter(x=>x.residualLimitReached).length,3);
+  assert.equal(s.rom0Intermediate128LimitHits,3);
+  assert.equal(s.rom0WholeBankPasses,3);
+  assert.equal(s.rom0WholeBankResidualLimits,0);
+  assert.equal(s.rom0StillBudgetLimited,0);
+  assert.equal(s.rom0StaticCandidateWalkExhausted,59);
+  assert.ok(s.rom0ThirdPassAdditionalCandidateInstructions>0);
+  assert.ok(s.rom0DecodeProblems>=10);
+  assert.equal(scripts.fixedRom0BranchEvidence.filter(x=>x.thirdPassApplied).length,3);
+  assert.equal(scripts.fixedRom0BranchEvidence.filter(x=>x.residualLimitReached).length,0);
   assert.ok(scripts.fixedRom0BranchEvidence.every(x=>
    Number.isInteger(x.targetCpu)&&x.referencingMapIds.length>0&&
    x.referencingAsmOffsets.length>0&&
