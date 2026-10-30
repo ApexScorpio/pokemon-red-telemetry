@@ -39,9 +39,39 @@ for(const [name,env,sha] of cases){
   assert.equal(tracker.verified,true);
   assert.equal(tracker.scriptAtlasBound,true);
   assert.equal(tracker.summary.scriptReferencesBound,1126);
-  assert.ok(tracker.maps.every(m=>!m.verified||
-   m.actions.every(row=>row.kind==='HIDDEN_ITEM'?
-    row.scriptReferenceBound===false:row.scriptReferenceBound===true)));
+  // WARP has no Text ID. It belongs to ROM warp routing, not the
+  // 1126 interactions (signs, actors and pickups). Hidden items are
+  // bound separately to their own 54 script/bitmap references.
+  const allActions=tracker.maps.filter(m=>m.verified).flatMap(m=>m.actions);
+  const scripted=allActions.filter(r=>r.kind!=='WARP'&&r.kind!=='HIDDEN_ITEM');
+  const warps=allActions.filter(r=>r.kind==='WARP');
+  const hidden=allActions.filter(r=>r.kind==='HIDDEN_ITEM');
+  assert.equal(scripted.length,1126);
+  assert.equal(warps.length,813);
+  assert.equal(hidden.length,53);
+  assert.ok(scripted.every(row=>row.scriptReferenceBound===true));
+  assert.ok(warps.every(row=>row.scriptReferenceBound===false));
+  assert.ok(hidden.every(row=>row.scriptReferenceBound===false));
+  const expectedPerKind={SIGN:202,NPC:472,TRAINER:334,
+   ITEM:106,STATIC_POKEMON:12};
+  for(const [kind,n] of Object.entries(expectedPerKind))
+   assert.equal(scripted.filter(row=>row.kind===kind&&
+    row.scriptReferenceBound===true).length,n);
+  for(const m of tracker.maps){
+   if(!m.verified)continue;
+   const expectedBindings=atlas.maps[m.mapId].interactions;
+   const actual=m.actions.filter(r=>r.scriptReferenceBound);
+   assert.equal(actual.length,expectedBindings.length,
+    'mismatch in map #'+m.mapId);
+   for(const r of actual){
+    const matches=expectedBindings.filter(x=>
+     x.kind===r.kind&&x.ordinal===r.ordinal&&
+     x.x===r.x&&x.y===r.y&&
+     x.rawTextId===r.staticObject.textId);
+    assert.equal(matches.length,1,
+     'interaction object mismatch in map '+m.mapId);
+   }
+  }
   assert.ok(tracker.maps.every(m=>!m.verified||
    m.actions.every(row=>row.scriptEffectSemanticsVerified===false)));
 
