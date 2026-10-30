@@ -58,6 +58,9 @@ for(const [variant,name] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM
    assert.equal(map.asmHandlerCandidates.length,map.uniqueAsmEntrypoints);
    assert.equal(map.asmHandlerCandidates.reduce((n,x)=>n+x.references,0),map.asmReferences);
    assert.ok(map.asmHandlerCandidates.every(x=>x.scriptEffectsVerified===false&&
+    Array.isArray(x.physicalRom0TargetCpus)&&
+    x.physicalRom0AddressKnownOnly===true&&
+    x.rom0BranchesExecuted===false&&
     Number.isInteger(x.fileOffset)&&Number.isInteger(x.pendingTargets)&&
     Number.isInteger(x.pendingCalls)));
   }
