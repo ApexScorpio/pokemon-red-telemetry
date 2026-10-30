@@ -6,7 +6,7 @@
 const crypto=require('node:crypto');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
-const {inspectTxAsmHandler}=require('./romTxAsmHandlerAtlas');
+const {inspectTxAsmHandlerAdaptive}=require('./romTxAsmHandlerAtlas');
 const MAP_IDS=248,NORMAL_MAPS=226,EXPECTED_REFERENCES=1126;
 const BY_KIND=Object.freeze({
  SIGN:'signs',NPC:'npcs',TRAINER:'trainers',
@@ -53,7 +53,7 @@ function auditWorldScriptReferences({rom,profile}={}){
   if(textPointerVerified&&command==='TX_START_ASM'){
    const offset=evidence.textFileOffset;
    if(!asmEntrypoints.has(offset))
-    asmEntrypoints.set(offset,inspectTxAsmHandler({rom,fileOffset:offset}));
+    asmEntrypoints.set(offset,inspectTxAsmHandlerAdaptive({rom,fileOffset:offset}));
    asmCandidate=asmEntrypoints.get(offset);
   }
   const trainer=kind==='TRAINER'?(map.trainerEvents||[]).find(
@@ -148,8 +148,16 @@ function auditWorldScriptReferences({rom,profile}={}){
     (n,x)=>n+(x.callsNotFollowed||0),0),
    uniqueAsmUnresolvedTargets:[...asmEntrypoints.values()].reduce(
     (n,x)=>n+(x.unresolvedBranchTargets||0),0),
+   uniqueAsmFirstPassLimitHits:[...asmEntrypoints.values()].filter(
+    x=>x.firstPassLimitReached===true).length,
    uniqueAsmScanLimitHits:[...asmEntrypoints.values()].filter(
     x=>x.limitReached===true).length,
+   uniqueAsmExpandedEntrypoints:[...asmEntrypoints.values()].filter(
+    x=>x.candidateExpansionApplied===true).length,
+   uniqueAsmAdditionalCandidateInstructions:[...asmEntrypoints.values()].reduce(
+    (n,x)=>n+(x.additionalCandidateInstructions||0),0),
+   uniqueAsmExpandedStillLimited:[...asmEntrypoints.values()].filter(
+    x=>x.candidateExpansionApplied===true&&x.residualLimitReached===true).length,
    semanticallyCertifiedInteractionScripts:0,asmSemanticallyCertified:0},
   allMapEntriesEnumerated:true,
   allScriptEffectsUnderstood:false,
