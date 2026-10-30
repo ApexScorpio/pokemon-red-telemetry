@@ -52,6 +52,10 @@ function buildStaticWorldFlagDependencies({atlas}={}){
     ordinal:row.ordinal,romHandlerOffset:row.scriptFileOffset,
     opcodeOffset:p.offset,bitInstructionOffset:p.secondOffset,
     physicallyDecoded:true,branchTakenVerified:false,
+    staticConditionalBranch:p.staticConditionalBranch?.verified===true?
+     p.staticConditionalBranch:null,
+    staticDualTextChoice:p.staticDualTextChoice?.verified===true?
+     p.staticDualTextChoice:null,
     gameEffectVerified:false,completedNow:null,
     source:'ROM_ADJACENT_FLAG_OPERATION_CANDIDATE'};
    entries.push(candidate);
@@ -77,6 +81,12 @@ function buildStaticWorldFlagDependencies({atlas}={}){
      writerRomHandlerOffset:writer.romHandlerOffset,
      readerRomHandlerOffset:reader.romHandlerOffset,
      possibleWriteOpcode:writer.operation,
+     readerBranchCondition:reader.staticConditionalBranch,
+     readerDualTextChoice:reader.staticDualTextChoice,
+     readerConditionalDirectionVerified:
+      reader.staticConditionalBranch?.verified===true,
+     readerTwoAlternativeTextScriptsVerified:
+      reader.staticDualTextChoice?.alternativeTextScriptsStaticallyProven===true,
      sameMap:writer.mapId===reader.mapId,
      verifiedActionDependency:false,scriptEffectVerified:false,
      causalLinkObserved:false});
@@ -94,6 +104,10 @@ function buildStaticWorldFlagDependencies({atlas}={}){
    crossMapPotentialLinks:candidateLinks.filter(x=>!x.sameMap).length,
    sameMapPotentialLinks:candidateLinks.filter(x=>x.sameMap).length,
    totalPotentialLinks:candidateLinks.length,
+   conditionalBranchLinksDecoded:candidateLinks.filter(x=>
+    x.readerConditionalDirectionVerified===true).length,
+   dualTextChoiceLinksDecoded:candidateLinks.filter(x=>
+    x.readerTwoAlternativeTextScriptsVerified===true).length,
    testedBitCandidateReferences:entries.filter(x=>x.operation==='BIT_TEST').length,
    setBitCandidateReferences:entries.filter(x=>x.operation==='SET_BIT').length,
    resetBitCandidateReferences:entries.filter(x=>x.operation==='RESET_BIT').length,
