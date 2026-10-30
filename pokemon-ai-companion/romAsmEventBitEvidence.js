@@ -3,6 +3,7 @@
 // Only classify where *both* decoded instructions are in the bank-local
 // candidate graph and the source register/address is a direct literal.
 // No MBC bank inference, no CALL traversal, no assertion the branch executes.
+const {inspectFlagBranch,inspectDualTextChoice}=require('./romAsmFlagBranchAnalysis');
 const WORLD=0xd747,END=0xd886;
 function domain(address){
  if(address>=WORLD&&address<=END)return {
@@ -61,7 +62,24 @@ function inspectAdjacentFlagPatterns({rom,instructions}={}){
    source:'ROM_EXACT_ADJACENT_LR35902_OPCODES'
   });
  }
+ for(const pattern of patterns){
+  if(pattern.operation!=='BIT_TEST'){
+   pattern.staticConditionalBranch=null;
+   pattern.staticDualTextChoice=null;
+   continue;
+  }
+  const gate=inspectFlagBranch({rom,instructions,pattern});
+  pattern.staticConditionalBranch=gate;
+  pattern.staticDualTextChoice=gate?
+   inspectDualTextChoice({rom,instructions,pattern,gate}):null;
+ }
  return {verified:true,patterns,
+  romBitBranchesWithProvenCondition:patterns.filter(x=>
+   x.staticConditionalBranch?.verified===true).length,
+  romBitBranchesSkippingFlagSafeInstruction:patterns.filter(x=>
+   x.staticConditionalBranch?.interveningFlagsPreservingInstruction).length,
+  romBitDualTextChoices:patterns.filter(x=>
+   x.staticDualTextChoice?.alternativeTextScriptsStaticallyProven===true).length,
   testedBitCandidates:patterns.filter(x=>x.operation==='BIT_TEST').length,
   setBitCandidates:patterns.filter(x=>x.operation==='SET_BIT').length,
   resetBitCandidates:patterns.filter(x=>x.operation==='RESET_BIT').length,
