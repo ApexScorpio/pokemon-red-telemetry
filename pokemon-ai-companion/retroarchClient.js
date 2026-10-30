@@ -2864,6 +2864,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.globalFlagItemRoutes=this._globalFlagItemRoutes;
     this.latestState.worldAdvisor=adviseWorld({
       profile:this.activeRomProfile,
+      worldFlagLedger:this.latestState.globalCampaignLedger,
       mapId:this.latestState.mapId,
       position:this.latestState.coords,
       positionVerified:positionWindow.verified===true,
