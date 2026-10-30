@@ -37,7 +37,7 @@ test('indirect JP and instruction budget never claim full disassembly',()=>{
  assert.equal(r.verified,true);
  assert.equal(r.indirectTransfers,1);
  assert.equal(r.unresolvedBranchTargets,1);
- const many=inspectTxAsmHandler(fixture(0x18000,[0x08,...Array(100).fill(0x00)]),maxInstructions:8);
+ const many=inspectTxAsmHandler({...fixture(0x18000,[0x08,...Array(100).fill(0x00)]),maxInstructions:8});
  assert.equal(many.verified,true);
  assert.equal(many.opcodeCandidateCount,8);
  assert.equal(many.limitReached,true);
