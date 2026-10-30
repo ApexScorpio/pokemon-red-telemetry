@@ -68,6 +68,10 @@ test('ZIP profiles exceeding 4 MiB are preserved byte-for-byte in bounded chunks
   assert.ok(archive.length<32*1024*1024);
   assert.ok(archive.includes(Buffer.from('pokemon_red_rom_profile.json.part00')));
   assert.ok(archive.includes(Buffer.from('pokemon_red_rom_profile.json.part01')));
+  const eocd=archive.length-22;
+  assert.equal(archive.readUInt32LE(eocd),0x06054b50);
+  assert.equal(archive.readUInt16LE(eocd+8),2);
+  assert.equal(archive.readUInt16LE(eocd+10),2);
   fs.writeFileSync(destination,archive,{flag:'wx'});
   const scanned=inspectZipProfiles(destination);
   assert.equal(scanned.length,1);
@@ -83,6 +87,10 @@ test('ZIP reader handles three bounded chunks but rejects missing or duplicate m
   fs.writeFileSync(full,bytes,{flag:'wx'});
   assert.deepEqual(inspectZipProfiles(full)[0].profile,source);
   assert.ok(bytes.includes(Buffer.from('pokemon_blue_rom_profile.json.part02')));
+  const eocd=bytes.length-22;
+  assert.equal(bytes.readUInt32LE(eocd),0x06054b50);
+  assert.equal(bytes.readUInt16LE(eocd+8),3);
+  assert.equal(bytes.readUInt16LE(eocd+10),3);
   const tampered=Buffer.from(bytes);
   const from=Buffer.from('pokemon_blue_rom_profile.json.part01');
   const to=Buffer.from('pokemon_blue_rom_profile.json.part09');
@@ -97,6 +105,30 @@ test('ZIP reader handles three bounded chunks but rejects missing or duplicate m
    ['pokemon_red_rom_profile.json',{name:'second'}]
   ]),{flag:'wx'});
   assert.throws(()=>inspectZipProfiles(duplicates),/duplicado/);
+ }finally{fs.rmSync(root,{recursive:true,force:true})}
+});
+
+test('three logical profiles can have more central ZIP entries than profiles',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'pokeguide-three-profile-parts-'));
+ try{
+  const payloads=[
+   ['pokemon_red_rom_profile.json',{label:'red',payload:'r'.repeat(4*1024*1024+123)}],
+   ['pokemon_blue_rom_profile.json',{label:'blue',payload:'b'.repeat(4*1024*1024+456)}],
+   ['pokemon_green_international_rom_profile.json',{label:'green',payload:'g'.repeat(4*1024*1024+789)}]
+  ];
+  const zip=writeArchiveEntries(payloads);
+  const eocd=zip.length-22;
+  assert.equal(zip.readUInt16LE(eocd+8),6);
+  assert.equal(zip.readUInt16LE(eocd+10),6);
+  const dest=path.join(root,'three.zip');
+  fs.writeFileSync(dest,zip,{flag:'wx'});
+  const profiles=inspectZipProfiles(dest);
+  assert.equal(profiles.length,3);
+  for(const [name,original] of payloads){
+   const reconstituted=profiles.find(x=>x.name===name);
+   assert.ok(reconstituted,'Missing original profile: '+name);
+   assert.deepEqual(reconstituted.profile,original);
+  }
  }finally{fs.rmSync(root,{recursive:true,force:true})}
 });
 test('archive fails closed above the total bounded three-part JSON capacity',()=>{
