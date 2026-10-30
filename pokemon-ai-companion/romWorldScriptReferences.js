@@ -183,6 +183,16 @@ function auditWorldScriptReferences({rom,profile}={}){
    branchInteractionReferences:origins?.branchInteractionRefs||0,
    callInteractionReferences:origins?.callInteractionRefs||0};
  });
+ // Deduplicate opcode addresses across roots: scanning a single JP HL
+ // from several map objects must not fabricate several distinct tables.
+ const distinctIndirectByPc=new Map();
+ for(const candidate of rom0Evidence)
+  for(const x of candidate.indirectJumpDetails||[]){
+   const previous=distinctIndirectByPc.get(x.jumpPc);
+   if(!previous||previous.kind==='UNCLASSIFIED_JP_HL')
+    distinctIndirectByPc.set(x.jumpPc,x);
+  }
+ const indirectProofs=[...distinctIndirectByPc.values()];
  if(world.length!==MAP_IDS||mapScriptPointers!==NORMAL_MAPS||
     unresolvedMapIDs!==MAP_IDS-NORMAL_MAPS||all.length!==EXPECTED_REFERENCES||
     byKind.SIGN!==202||byKind.NPC!==472||byKind.TRAINER!==334||
@@ -241,12 +251,21 @@ function auditWorldScriptReferences({rom,profile}={}){
    rom0StaticCandidateWalkExhausted:rom0Evidence.filter(x=>
     x.fixedBankCandidateWalkExhausted===true).length,
    rom0EffectSemanticsCertified:0,
+   rom0UniqueIndirectJumpInstructions:indirectProofs.length,
+   rom0LiteralJumpTables:indirectProofs.filter(x=>
+    x.kind==='GUARDED_ROM0_LITERAL_JUMP_TABLE').length,
+   rom0LiteralJumpTableCandidateTargets:indirectProofs.reduce((n,x)=>
+    n+(x.candidateTargetsCpu?.length||0),0),
+   rom0HlReturnTrampolines:indirectProofs.filter(x=>
+    x.kind==='PUSH_RETURN_AND_JUMP_RUNTIME_HL').length,
+   rom0IndirectRuntimeTargetsVerified:0,
    rom0TargetsWithWorldOrigins:rom0Evidence.filter(x=>
     x.referencingMapIds.length>0&&x.referencingAsmOffsets.length>0).length,
    asmUnresolvedReasonCounts:aggregateAsmCounts('unresolvedReasonCounts'),
    asmUnfollowedCallClasses:aggregateAsmCounts('callClassCounts'),
    semanticallyCertifiedInteractionScripts:0,asmSemanticallyCertified:0},
   fixedRom0BranchEvidence:rom0Evidence,
+  distinctRom0IndirectJumpEvidence:indirectProofs,
   rom0PhysicalAddressMappingCertified:rom0Evidence.every(x=>
    x.verified===true&&x.physicalRom0Mapped===true),
   allMapEntriesEnumerated:true,
