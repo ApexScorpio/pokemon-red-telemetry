@@ -38,7 +38,10 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
  const ledgerMatches=worldFlagLedger?.verified===true&&
   worldFlagLedger.romSha256===hash&&worldFlagLedger.mapCount===226&&
   Array.isArray(worldFlagLedger.mapProgress)&&
-  worldFlagLedger.mapProgress.length===226;
+  worldFlagLedger.mapProgress.length===226&&
+  worldFlagLedger.mapProgress.every(m=>Number.isInteger(m?.mapId)&&
+   m.mapId>=0&&m.mapId<248)&&
+  new Set(worldFlagLedger.mapProgress.map(m=>m.mapId)).size===226;
  const ledgerRows=ledgerMatches?worldFlagLedger.mapProgress.filter(x=>x?.mapId===mapId):[];
  const ledgerMap=ledgerRows.length===1?ledgerRows[0]:null;
  const identity=(kind,x,y,id)=>kind+':'+x+':'+y+':'+String(id??'');
