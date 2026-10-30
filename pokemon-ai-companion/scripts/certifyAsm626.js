@@ -11,6 +11,7 @@ const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
 const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
+const {buildGlobalFlagOperationCatalogue}=require('../romGlobalFlagOperationCatalogue');
 const referenceEventNames=require('../data/gen1EventNamesPret.json');
 const referenceMapNames=require('../data/gen1MapNamesPret.json');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
@@ -393,6 +394,30 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_REFERENCE_NAMED_EVENT_BITS=507');
   log('ROM_'+variant.toUpperCase()+'_REFERENCE_NAMED_MAP_IDS=248');
   crossRomFlagGraphs[variant]=candidateGraph;
+  const everyFlag=buildGlobalFlagOperationCatalogue({atlas:a});
+  assert(everyFlag.verified===true&&everyFlag.totalHandlerScopedOperations===135&&
+   everyFlag.handlerScopedOperationCounts.BIT_TEST===90&&
+   everyFlag.handlerScopedOperationCounts.SET_BIT===41&&
+   everyFlag.handlerScopedOperationCounts.RESET_BIT===4&&
+   everyFlag.handlerScopedBitBranches===88&&
+   everyFlag.handlerScopedDualTextChoices===16&&
+   everyFlag.executedOperationsCertified===0,
+   'All-map static WRAM-bit operation catalogue invalid: '+variant+
+   ': '+everyFlag.reason);
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_UNIQUE_PHYSICAL_OPERATIONS='+
+   everyFlag.totalPhysicallyDecodedOperations);
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_HANDLER_SCOPED_OPERATIONS=135');
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_ACTOR_REFERENCES='+
+   everyFlag.operationReferences);
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_MAPS_WITH_OPERATIONS='+
+   everyFlag.mapsWithBitOperations);
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_REFERENCED_NAMED_EVENTS='+
+   everyFlag.eventNamedOperations);
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_OPERATIONS_EXECUTED=0');
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_OPERATIONS_COUNTS='+
+   JSON.stringify(everyFlag.handlerScopedOperationCounts));
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_MAP_COUNTS='+
+   JSON.stringify(everyFlag.perMap.filter(x=>x.operationReferences>0)));
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CAUSAL_LINKS_VERIFIED=0');
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CANDIDATE_DETAILS='+JSON.stringify(
    candidateGraph.candidateLinks.map(link=>({
@@ -472,6 +497,7 @@ function main(){
   'tests/romAsmFlagBranchAnalysis.test.js',
   'tests/romReferenceSemantics.test.js',
   'tests/romCrossVariantFlagSemantics.test.js',
+  'tests/romGlobalFlagOperationCatalogue.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
