@@ -10,7 +10,7 @@ const {bindMartPrices}=require('../romMartPriceBinding');
 const auditedEconomy=require('../data/gen1EconomyTradesAudited.json');
 const src=fs.readFileSync(path.join(__dirname,'../romCampaignLedger.js'),'utf8');
 const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
-function rig({coinCount=12}={}){
+function rig({coinCount=12,orphanHiddenIndex=null}={}){
  const data=Array.from({length:248},(_,mapId)=>({
    mapId,valid:mapId<226,objects:{objects:[]}}));
  data[15].objects.objects=[{kind:'trainer',trainerClassOrItemId:201}];
@@ -18,7 +18,8 @@ function rig({coinCount=12}={}){
  const profile={hash:{sha256:sha},world:{maps:{valid:true,data}}};
  const hex=Array(320).fill('00'),items=Array(14).fill('00'),coins=Array(2).fill('00');
  const hidden=Array.from({length:54},(_,hiddenIndex)=>({
-   hiddenIndex,mapId:15,x:3,y:hiddenIndex%20}));
+   hiddenIndex,mapId:hiddenIndex===orphanHiddenIndex?230:15,
+   x:3,y:hiddenIndex%20}));
  const mock={
   './romMartPriceBinding':{bindMartPrices},
   './data/gen1EconomyTradesAudited.json':auditedEconomy,
@@ -271,4 +272,40 @@ test('ledger só propaga sequência textual ROM quando todos os campos são segu
  preview=r.mapProgress[19].interactionRecords.signs[0][7];
  assert.equal(preview.text,'Hi');
  assert.equal(preview.program,undefined);
+});
+
+test('reserved map hidden event is preserved outside 226 normal map summaries',()=>{
+ const x=rig({orphanHiddenIndex:53});
+ const before=evaluate(x);
+ assert.equal(before.verified,true,before.reason);
+ assert.equal(before.totals.hiddenItems,54);
+ assert.equal(before.totals.hiddenItemsInNormalMaps,53);
+ assert.equal(before.totals.hiddenItemsWithoutNormalHeader,1);
+ assert.equal(before.mapProgress[15].hiddenItems.total,53);
+ assert.equal(before.unassignedHiddenItemRecords.length,1);
+ const orphan=before.unassignedHiddenItemRecords[0];
+ assert.equal(orphan.hiddenIndex,53);
+ assert.equal(orphan.mapId,230);
+ assert.equal(orphan.flagSet,false);
+ assert.equal(orphan.mapHeaderVerified,false);
+ assert.equal(orphan.accessibleNow,null);
+ assert.equal(before.totals.hiddenItemsCollected+before.totals.hiddenItemsNotCollected,54);
+ x.items[6]='20';
+ const after=evaluate(x);
+ assert.equal(after.verified,true,after.reason);
+ assert.equal(after.totals.hiddenItemsCollected,1);
+ assert.equal(after.totals.unassignedHiddenItemFlagsSet,1);
+ assert.equal(after.unassignedHiddenItemRecords[0].flagSet,true);
+ assert.equal(after.mapProgress[15].hiddenItems.collected,0);
+ const delta=diffCampaignProgress({previous:before,current:after});
+ assert.equal(delta.verified,true,delta.reason);
+ assert.equal(delta.granularity,'EXACT_ROM_EVENT_BIT');
+ assert.equal(delta.changes.length,1);
+ assert.equal(delta.changes[0].mapId,230);
+ assert.equal(delta.changes[0].bitIndex,53);
+ assert.equal(delta.changes[0].mapHeaderVerified,false);
+ assert.equal(delta.changes[0].playerActionConfirmed,false);
+ const reset=diffCampaignProgress({previous:after,current:before});
+ assert.equal(reset.verified,false);
+ assert.equal(reset.resetSuspected,true);
 });
