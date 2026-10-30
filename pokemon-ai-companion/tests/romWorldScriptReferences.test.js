@@ -8,7 +8,7 @@ const {AUDITED_ROM_SHA256}=require('../romKnownSha256');
 const cases=[
  ['red','POKEMON_RED_ROM',AUDITED_ROM_SHA256.RED],
  ['blue','POKEMON_BLUE_ROM',AUDITED_ROM_SHA256.BLUE],
- ['green','POKEMON_GREEN_ROM',AUDITED_ROM_SHA256.GREEN]
+ ['green','POKEMON_GREEN_ROM',AUDITED_ROM_SHA256.GREEN_INTERNATIONAL_1_2_1]
 ];
 test('refuses a short ROM or unknown SHA without inventing script outcomes',()=>{
  const a=auditWorldScriptReferences({rom:Buffer.alloc(1024),profile:{}});
