@@ -164,6 +164,43 @@ function main(){
     .filter(x=>x.verified!==true||x.physicalRom0Mapped!==true)
     .slice(0,8).map(x=>({cpu:x.targetCpu,reason:x.reason}))
   }));
+  // Certify detailed static ROM0 triage against previously validated totals.
+  // It is evidence for follow-up disassembly, never execution proof.
+  const rom0Details=a.fixedRom0BranchEvidence||[];
+  assert(rom0Details.length===a.summary.distinctRom0PhysicalTargets&&
+   a.summary.rom0TargetsWithWorldOrigins===rom0Details.length&&
+   rom0Details.every(x=>Number.isInteger(x.targetCpu)&&
+    x.referencingMapIds?.length>0&&x.referencingAsmOffsets?.length>0&&
+    Array.isArray(x.problemDetails)&&
+    x.problemDetails.length<=32&&
+    Array.isArray(x.remainingQueueSample)&&
+    Object.values(x.problemReasonCounts||{}).reduce((n,v)=>n+v,0)===
+     x.candidateDecodeProblems&&
+    x.effectVerified===false&&x.branchExecuted===false)&&
+   rom0Details.filter(x=>x.residualLimitReached).length===
+    a.summary.rom0StillBudgetLimited&&
+   rom0Details.reduce((n,x)=>n+x.candidateDecodeProblems,0)===
+    a.summary.rom0DecodeProblems,
+   'ROM0 detailed static diagnostics mismatch: '+variant);
+  const cpuHex=pc=>'0x'+pc.toString(16).padStart(4,'0');
+  log('ROM_'+variant.toUpperCase()+'_ROM0_RESIDUAL_TARGET_DETAILS='+
+   JSON.stringify(rom0Details.filter(x=>x.residualLimitReached)
+    .map(x=>({target:cpuHex(x.targetCpu),
+     opcodeCandidates:x.opcodeCandidateCount,
+     remainingQueue:x.remainingQueue,
+     frontierCpus:x.remainingQueueSample.map(cpuHex),
+     maps:x.referencingMapIds,
+     handlerCount:x.referencingAsmOffsets.length,
+     handlerOffsets:x.referencingAsmOffsets.slice(0,16),
+     lastOpcodes:x.lastCandidateInstructions,
+     reasonCounts:x.problemReasonCounts}))));
+  log('ROM_'+variant.toUpperCase()+'_ROM0_DECODE_PROBLEM_DETAILS='+
+   JSON.stringify(rom0Details.filter(x=>x.candidateDecodeProblems>0)
+    .map(x=>({target:cpuHex(x.targetCpu),maps:x.referencingMapIds,
+     count:x.candidateDecodeProblems,
+     reasonCounts:x.problemReasonCounts,
+     problems:x.problemDetails,
+     truncated:x.problemDetailsTruncated}))));
   const gaps=buildMappingGapLedger({profile:p,index:i,scriptAtlas:a,tracker});
   assert(gaps.verified===true&&
    gaps.summary.mapIds===248&&gaps.summary.normalMapHeaders===226&&
