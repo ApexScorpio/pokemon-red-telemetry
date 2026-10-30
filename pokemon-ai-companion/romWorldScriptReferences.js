@@ -7,6 +7,7 @@ const crypto=require('node:crypto');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
 const {inspectTxAsmHandlerAdaptive}=require('./romTxAsmHandlerAtlas');
+const {inspectFixedRom0Target}=require('./romFixedBankReferenceEvidence');
 const MAP_IDS=248,NORMAL_MAPS=226,EXPECTED_REFERENCES=1126;
 const BY_KIND=Object.freeze({
  SIGN:'signs',NPC:'npcs',TRAINER:'trainers',
@@ -135,6 +136,18 @@ function auditWorldScriptReferences({rom,profile}={}){
    scriptEntrySemanticsVerified:false,interactions,
    conditionsFullyDecoded:false,scriptEffectsVerified:false});
  }
+ // Classify all physically addressable ROM0 targets from deduplicated ASM
+ // handlers, not only the first twelve samples. This is a separate candidate
+ // scan and does NOT resolve the original branch's runtime meaning.
+ const rom0Targets=new Map();
+ let rom0BranchOccurrences=0;
+ for(const graph of asmEntrypoints.values()){
+  rom0BranchOccurrences+=graph.rom0BranchTargetOccurrences||0;
+  for(const pc of graph.rom0BranchTargetCpus||[])
+   if(!rom0Targets.has(pc))
+    rom0Targets.set(pc,inspectFixedRom0Target({rom,targetCpu:pc}));
+ }
+ const rom0Evidence=[...rom0Targets.values()];
  if(world.length!==MAP_IDS||mapScriptPointers!==NORMAL_MAPS||
     unresolvedMapIDs!==MAP_IDS-NORMAL_MAPS||all.length!==EXPECTED_REFERENCES||
     byKind.SIGN!==202||byKind.NPC!==472||byKind.TRAINER!==334||
@@ -165,9 +178,22 @@ function auditWorldScriptReferences({rom,profile}={}){
     (n,x)=>n+(x.additionalCandidateInstructions||0),0),
    uniqueAsmExpandedStillLimited:[...asmEntrypoints.values()].filter(
     x=>x.candidateExpansionApplied===true&&x.residualLimitReached===true).length,
+   rom0BranchTargetOccurrences:rom0BranchOccurrences,
+   distinctRom0BranchDestinations:rom0Targets.size,
+   physicallyMappedRom0Targets:rom0Evidence.filter(x=>
+    x.verified===true&&x.physicalRom0Mapped===true).length,
+   rom0OpcodeCandidateInstructions:rom0Evidence.reduce(
+    (n,x)=>n+(x.opcodeCandidateCount||0),0),
+   rom0DecodeProblems:rom0Evidence.reduce(
+    (n,x)=>n+(x.candidateDecodeProblems||0),0),
+   rom0StillBudgetLimited:rom0Evidence.filter(x=>x.limitReached===true).length,
+   rom0EffectSemanticsCertified:0,
    asmUnresolvedReasonCounts:aggregateAsmCounts('unresolvedReasonCounts'),
    asmUnfollowedCallClasses:aggregateAsmCounts('callClassCounts'),
    semanticallyCertifiedInteractionScripts:0,asmSemanticallyCertified:0},
+  fixedRom0BranchEvidence:rom0Evidence,
+  rom0PhysicalAddressMappingCertified:rom0Evidence.every(x=>
+   x.verified===true&&x.physicalRom0Mapped===true),
   allMapEntriesEnumerated:true,
   allScriptEffectsUnderstood:false,
   scriptEffectsSemanticallyComplete:false,
