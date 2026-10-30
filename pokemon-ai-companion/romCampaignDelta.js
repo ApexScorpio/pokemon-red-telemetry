@@ -96,6 +96,49 @@ function exactEvidence(previous,current){
      }
    }
  }
+ const priorOrphans=previous.unassignedHiddenItemRecords;
+ const currentOrphans=current.unassignedHiddenItemRecords;
+ if((priorOrphans===undefined)!==(currentOrphans===undefined))
+  return {reason:'Referencias de itens ocultos sem cabecalho mudaram'};
+ if(priorOrphans!==undefined){
+  if(!Array.isArray(priorOrphans)||!Array.isArray(currentOrphans)||
+     priorOrphans.length!==currentOrphans.length)
+   return {reason:'Itens ocultos sem cabecalho inconsistentes'};
+  const oldByKey=new Map();
+  for(const row of priorOrphans){
+   if(typeof row?.recordId!=='string'||!good(row.bitIndex)||
+      !good(row.hiddenIndex)||row.hiddenIndex!==row.bitIndex||
+      !good(row.mapId)||row.mapId>=248||
+      row.mapHeaderVerified!==false||typeof row.flagSet!=='boolean'||
+      oldByKey.has(row.recordId))
+    return {reason:'Item oculto sem cabecalho anterior invalido'};
+   oldByKey.set(row.recordId,row);
+  }
+  const seenOrphans=new Set();
+  for(const row of currentOrphans){
+   const old=oldByKey.get(row?.recordId);
+   if(!old||seenOrphans.has(row.recordId)||
+      row.bitIndex!==old.bitIndex||row.hiddenIndex!==old.hiddenIndex||
+      row.mapId!==old.mapId||row.x!==old.x||row.y!==old.y||
+      row.itemId!==old.itemId||row.mapHeaderVerified!==false||
+      typeof row.flagSet!=='boolean')
+    return {reason:'Ligacao ROM do item oculto sem cabecalho mudou'};
+   seenOrphans.add(row.recordId);
+   if(old.flagSet&&!row.flagSet)
+    return {reason:'Flag oculta sem cabecalho diminuiu: possivel save recarregado',
+     resetSuspected:true};
+   if(!old.flagSet&&row.flagSet)
+    changes.push({
+     kind:'HIDDEN_ITEM_FLAG_RAISED',
+     mapId:row.mapId,mapName:'Mapa #'+row.mapId+' (sem cabecalho normal)',
+     amount:1,recordId:row.recordId,bitIndex:row.bitIndex,
+     x:row.x,y:row.y,
+     accessibleNow:null,mapHeaderVerified:false,
+     source:'ROM_ORPHAN_HIDDEN_EVENT_BIT + RAM_SEQUENCIAL',
+     playerActionConfirmed:false
+    });
+  }
+ }
  return {available:true,changes};
 }
 function diffCampaignProgress({previous,current,observedAt}={}){
