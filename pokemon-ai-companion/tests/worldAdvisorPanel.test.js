@@ -163,6 +163,56 @@ test('all physical BIT SET RES operations in current map are shown without gamep
  s.connected=false;
  assert.doesNotMatch(render(s).body.textContent,/BIT_TEST bit 1231/);
 });
+test('507 named events show direct evidence coverage rather than campaign completion',()=>{
+ const s=live();
+ s.worldAdvisor.romNamedEventEvidenceVerified=true;
+ s.worldAdvisor.romNamedEventEffectsExecutedVerified=false;
+ s.worldAdvisor.romNamedEventEvidenceSummary={
+  namedReferenceEvents:507,fullyExplainedNamedEvents:0,
+  eventCompletionsObserved:0,namedBitsWithRomOpcode:72,
+  namedBitsWithActorHeaderBinding:225,
+  namedBitsWithoutAnyDirectEvidence:210
+ };
+ const body=render(s).body.textContent;
+ assert.match(body,/COBERTURA DAS 507 FLAGS COM NOME/);
+ assert.match(body,/72 nomes com operacoes ROM diretas/);
+ assert.match(body,/225 com associacao a objeto/);
+ assert.match(body,/210 sem referencia direta/);
+ assert.match(body,/NENHUM evento e considerado concluido/);
+ s.worldAdvisor.romNamedEventEffectsExecutedVerified=true;
+ assert.doesNotMatch(render(s).body.textContent,/COBERTURA DAS 507 FLAGS/);
+ s.worldAdvisor.romNamedEventEffectsExecutedVerified=false;
+ s.connected=false;
+ assert.doesNotMatch(render(s).body.textContent,/COBERTURA DAS 507 FLAGS/);
+});
+test('conditional SET and RES show real CPU effects but never grant a reward',()=>{
+ const s=live();
+ s.worldAdvisor.romAllFlagOperationsVerified=true;
+ s.worldAdvisor.romAllFlagOperationsRuntimeEffectsVerified=false;
+ s.worldAdvisor.romAllFlagOperationsHandlerScoped=135;
+ s.worldAdvisor.romAllFlagOperations=[
+  {bitIndex:3,domain:'WORLD_EVENT_BIT',operation:'SET_BIT',
+   actorKind:'NPC',actorOrdinal:1,opcodeFileOffset:11111,
+   instructionExecuted:false,causalEffectVerified:false,
+   bitValueInCurrentSave:null,ifExecuted:{verified:true,
+    effectIfInstructionExecuted:'SET_BIT_TO_ONE',
+    instructionActuallyExecuted:false,scriptRewardVerified:false}},
+  {bitIndex:4,domain:'WORLD_EVENT_BIT',operation:'RESET_BIT',
+   actorKind:'NPC',actorOrdinal:2,opcodeFileOffset:22222,
+   instructionExecuted:false,causalEffectVerified:false,
+   bitValueInCurrentSave:null,ifExecuted:{verified:true,
+    effectIfInstructionExecuted:'RESET_BIT_TO_ZERO',
+    instructionActuallyExecuted:false,scriptRewardVerified:false}}
+ ];
+ const text=render(s).body.textContent;
+ assert.match(text,/bit passa a 1/);
+ assert.match(text,/bit passa a 0/);
+ assert.match(text,/DESCONHECIDOS/);
+ assert.doesNotMatch(text,/recompensa recebida/);
+ assert.equal(render(s).body.innerHTML,null);
+ s.worldAdvisor.romAllFlagOperations[0].ifExecuted.instructionActuallyExecuted=true;
+ assert.equal((render(s).body.textContent.match(/Semantica CPU:/g)||[]).length,1);
+});
 test('offline and stale samples hide all old action details',()=>{
  const old=live();old.connected=false;
  assert.doesNotMatch(render(old).body.textContent,/NEEDS_CUT|<img/);
