@@ -7,9 +7,14 @@ const vm=require('node:vm');
 // Isolate the actual browser renderer without running the full cockpit's
 // background polling, timers or RetroArch connection.
 const script=fs.readFileSync(path.join(__dirname,'../public/app.js'),'utf8');
-const start=script.indexOf('function renderWorldAdvisor(state) {');
-const end=script.indexOf('// Renderização Principal do Cockpit',start);
-if(start<0||end<0)throw Error('renderWorldAdvisor section unavailable');
+// The real renderer depends on the immediately preceding checklist formatter.
+// Include both production functions in this isolated VM; never mock away the
+// formatter or silently suppress ReferenceError from integration.
+const start=script.indexOf('function formatCampaignChecklistSection(advice) {');
+const renderStart=script.indexOf('function renderWorldAdvisor(state) {',start);
+const end=script.indexOf('// Renderização Principal do Cockpit',renderStart);
+if(start<0||renderStart<=start||end<=renderStart)
+ throw Error('World checklist formatter or renderer section unavailable');
 function render(state){
  let body={textContent:'',innerHTML:null},source={textContent:'',innerHTML:null};
  const document={getElementById:id=>id==='world-advisor-content'?body:
