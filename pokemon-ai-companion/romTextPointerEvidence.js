@@ -13,9 +13,14 @@ const cpuToFile=(rom,bank,cpu)=>{
 };
 const fail=reason=>({verified:false,reason,textOutcomeVerified:false,
   dialogueExecuted:false});
-const labels={0x17:'TX_FAR',0x08:'TX_START_ASM',0xff:'SCRIPT_POKECENTER_NURSE',
-  0xfe:'SCRIPT_MART',0xf5:'SCRIPT_VENDING_MACHINE',
-  0xf6:'SCRIPT_CABLE_CLUB_RECEPTIONIST',0xf7:'SCRIPT_PRIZE_VENDOR'};
+// All 9 first-byte dispatcher cases are documented in pret/pokered
+// macros/scripts/text.asm + home/text_script.asm (FD/FC/F9 were missing).
+const labels={0x17:'TX_FAR',0x08:'TX_START_ASM',
+  0xff:'SCRIPT_POKECENTER_NURSE',0xfe:'SCRIPT_MART',
+  0xfd:'SCRIPT_BILLS_PC',0xfc:'SCRIPT_PLAYERS_PC',
+  0xf9:'SCRIPT_POKECENTER_PC',
+  0xf7:'SCRIPT_PRIZE_VENDOR',0xf6:'SCRIPT_CABLE_CLUB_RECEPTIONIST',
+  0xf5:'SCRIPT_VENDING_MACHINE'};
 function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
  if(!Buffer.isBuffer(rom)||rom.length!==1048576||
     !Number.isInteger(mapBank)||mapBank<1||mapBank>=rom.length/BANK||
@@ -38,7 +43,7 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
    const limit=at<BANK?BANK:end;
    if(at+3>limit)return fail('Lista de loja ROM incompleta');
    const count=rom[at+1];
-   if(count<1||count>32||at+count+3>limit)
+   if(count>32||at+count+3>limit)
      return fail('Comprimento da lista de loja ROM inválido');
    const items=[...rom.subarray(at+2,at+2+count)];
    if(items.some(id=>id===0||id===0xff)||rom[at+2+count]!==0xff)
@@ -77,9 +82,17 @@ function resolveStaticTextPointer({rom,mapBank,textPointerCpu,textId}={}){
          scriptEffectsVerified:false};
    }
  }
+ const dispatchClass=firstByte===0x17?'FAR_TEXT':
+    firstByte===0x08?'ASM_HANDLER':
+    command.startsWith('SCRIPT_')?'SPECIAL_TEXT_DISPATCH':'UNCLASSIFIED';
  return {verified:true,romBank:at<BANK?0:mapBank,
    textPointerCpu:raw,textFileOffset:at,firstByte,
-   command,far:far.verified?far:null,mart,staticTextPreview,
+   command,dispatchClass,
+   dispatchOpcodePhysicallyVerified:true,
+   dispatchHandlerCodeSemanticsVerified:false,
+   dispatchOutcomeVerified:false,
+   dispatchReference:'pret/pokered/macros/scripts/text.asm + home/text_script.asm',
+   far:far.verified?far:null,mart,staticTextPreview,
    textOutcomeVerified:false,dialogueExecuted:false,
    source:'ROM_STATIC_TEXT_POINTER_ONLY'};
 }
