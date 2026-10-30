@@ -359,12 +359,17 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_TEST_CANDIDATES='+a.summary.uniqueAsmFlagBitTestCandidates);
   log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_SET_CANDIDATES='+a.summary.uniqueAsmFlagBitSetCandidates);
   log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_RESET_CANDIDATES='+a.summary.uniqueAsmFlagBitResetCandidates);
+  log('ROM_'+variant.toUpperCase()+'_FLAG_CONDITIONAL_BRANCH_GATES='+a.summary.uniqueAsmFlagConditionalBranchGates);
+  log('ROM_'+variant.toUpperCase()+'_FLAG_BRANCH_INTERVENING_SAFE_LOADS='+a.summary.uniqueAsmFlagInterveningSafeLoads);
+  log('ROM_'+variant.toUpperCase()+'_FLAG_DUAL_TX_FAR_ALTERNATIVES='+a.summary.uniqueAsmFlagDualTextAlternatives);
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_POTENTIAL_LINKS='+a.summary.staticFlagCandidateLinks);
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CROSS_MAP_POTENTIAL_LINKS='+a.summary.staticFlagCandidateCrossMapLinks);
   const candidateGraph=buildStaticWorldFlagDependencies({atlas:a});
   assert(candidateGraph.verified===true&&
    candidateGraph.summary.totalPotentialLinks===8&&
    candidateGraph.summary.crossMapPotentialLinks===5&&
+   candidateGraph.summary.conditionalBranchLinksDecoded===8&&
+   candidateGraph.summary.dualTextChoiceLinksDecoded===4&&
    candidateGraph.summary.trustedCausalLinks===0,
    'Original ROM map candidate flag links invalid: '+variant);
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CAUSAL_LINKS_VERIFIED=0');
@@ -381,6 +386,16 @@ function main(){
     readerOrdinal:link.possibleReaderOrdinal,
     readerAsmOffset:link.readerRomHandlerOffset,
     crossMap:!link.sameMap,
+    readerBranchCondition:link.readerBranchCondition?.condition||null,
+    readerBranchCpu:link.readerBranchCondition?.branchCpu??null,
+    readerBranchTargetCpu:link.readerBranchCondition?.takenTargetCpu??null,
+    readerJumpTakenIfBitSet:link.readerBranchCondition?.jumpTakenIfBitSet??null,
+    readerInterveningFlagPreservingLoad:
+     link.readerBranchCondition?.interveningFlagsPreservingInstruction?.opcode??null,
+    twoRomTxFarTextOptionsVerified:link.readerTwoAlternativeTextScriptsVerified,
+    textOnBitClearCpu:link.readerDualTextChoice?.textOnBitClearPointerCpu??null,
+    textOnBitSetCpu:link.readerDualTextChoice?.textOnBitSetPointerCpu??null,
+    sharedTextCallCpu:link.readerDualTextChoice?.sharedCallCpu??null,
     causalEffectCertified:false
    }))
   ));
@@ -416,6 +431,7 @@ function main(){
   'tests/romTxAsmHandlerAtlas.test.js',
   'tests/romAsmAbsoluteMemoryEvidence.test.js',
   'tests/romAsmEventBitEvidence.test.js',
+  'tests/romAsmFlagBranchAnalysis.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
