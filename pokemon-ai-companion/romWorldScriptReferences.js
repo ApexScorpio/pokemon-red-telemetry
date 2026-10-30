@@ -155,7 +155,34 @@ function auditWorldScriptReferences({rom,profile}={}){
     rom0Targets.set(pc,inspectFixedRom0TargetAdaptive({rom,targetCpu:pc}));
   }
  }
- const rom0Evidence=[...rom0Targets.values()];
+ // Link decoder diagnostics back to actual world object references.
+ // These are static references, not proof an NPC/action executes the target.
+ const targetOrigins=new Map();
+ for(const row of all){
+  if(row.scriptCommand!=='TX_START_ASM'||row.asmCandidate?.verified!==true)
+   continue;
+  const kinds=[['branch',row.asmCandidate.rom0BranchTargetCpus||[]],
+               ['call',row.asmCandidate.rom0CallTargetCpus||[]]];
+  for(const [kind,targetCpus] of kinds)
+   for(const cpu of new Set(targetCpus)){
+    if(!targetOrigins.has(cpu))targetOrigins.set(cpu,{
+     maps:new Set(),handlers:new Set(),branchInteractionRefs:0,
+     callInteractionRefs:0
+    });
+    const entry=targetOrigins.get(cpu);
+    entry.maps.add(row.mapId);entry.handlers.add(row.scriptFileOffset);
+    if(kind==='branch')entry.branchInteractionRefs++;
+    else entry.callInteractionRefs++;
+   }
+ }
+ const rom0Evidence=[...rom0Targets.values()].map(x=>{
+  const origins=targetOrigins.get(x.targetCpu);
+  return {...x,
+   referencingMapIds:[...(origins?.maps||[])].sort((a,b)=>a-b),
+   referencingAsmOffsets:[...(origins?.handlers||[])].sort((a,b)=>a-b),
+   branchInteractionReferences:origins?.branchInteractionRefs||0,
+   callInteractionReferences:origins?.callInteractionRefs||0};
+ });
  if(world.length!==MAP_IDS||mapScriptPointers!==NORMAL_MAPS||
     unresolvedMapIDs!==MAP_IDS-NORMAL_MAPS||all.length!==EXPECTED_REFERENCES||
     byKind.SIGN!==202||byKind.NPC!==472||byKind.TRAINER!==334||
@@ -205,6 +232,8 @@ function auditWorldScriptReferences({rom,profile}={}){
    rom0ExpandedStillLimited:rom0Evidence.filter(x=>
     x.candidateExpansionApplied===true&&x.residualLimitReached===true).length,
    rom0EffectSemanticsCertified:0,
+   rom0TargetsWithWorldOrigins:rom0Evidence.filter(x=>
+    x.referencingMapIds.length>0&&x.referencingAsmOffsets.length>0).length,
    asmUnresolvedReasonCounts:aggregateAsmCounts('unresolvedReasonCounts'),
    asmUnfollowedCallClasses:aggregateAsmCounts('callClassCounts'),
    semanticallyCertifiedInteractionScripts:0,asmSemanticallyCertified:0},
