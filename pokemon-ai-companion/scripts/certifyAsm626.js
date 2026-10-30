@@ -262,6 +262,15 @@ function main(){
    gaps.summary.asmTextReferences===626&&
    gaps.summary.uniqueAsmEntrypoints===516&&
    gaps.summary.unverifiedScriptEffects===1126&&
+   gaps.summary.verifiedRomEventBitBindings===346&&
+   gaps.summary.verifiedTrainerScriptEventBitBindings===334&&
+   gaps.summary.verifiedStaticEncounterScriptEventBitBindings===12&&
+   gaps.summary.verifiedSpecialTrainerScriptEventBitBindings===22&&
+   gaps.summary.liveEventBitValuesVerified===0&&
+   a.summary.trainerEventFlagBindings===334&&
+   a.summary.stationaryEventFlagBindings===12&&
+   a.summary.specialTrainerEventFlagBindings===22&&
+   a.summary.trainerEventFlagBindingsMissing===0&&
    gaps.summary.textPointersPending===0&&
    a.summary.rom0BranchTargetOccurrences===537&&
    a.summary.rom0FirstPassLimitHits===13&&
@@ -300,6 +309,12 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_HIDDEN_ITEMS_UNASSIGNED='+gaps.summary.hiddenItemsWithoutNormalHeader);
   log('ROM_'+variant.toUpperCase()+'_STATIC_ACTIONS='+gaps.summary.staticallyIndexedActions);
   log('ROM_'+variant.toUpperCase()+'_SCRIPT_EFFECTS_UNVERIFIED='+gaps.summary.unverifiedScriptEffects);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPT_EVENT_BITS_LINKED='+gaps.summary.verifiedRomEventBitBindings);
+  log('ROM_'+variant.toUpperCase()+'_TRAINER_SCRIPT_BITS_LINKED='+a.summary.trainerEventFlagBindings);
+  log('ROM_'+variant.toUpperCase()+'_STATIC_ENCOUNTER_SCRIPT_BITS_LINKED='+a.summary.stationaryEventFlagBindings);
+  log('ROM_'+variant.toUpperCase()+'_SPECIAL_TRAINER_BITS_LINKED='+a.summary.specialTrainerEventFlagBindings);
+  log('ROM_'+variant.toUpperCase()+'_TRAINER_SCRIPT_BITS_MISSING='+a.summary.trainerEventFlagBindingsMissing);
+  log('ROM_'+variant.toUpperCase()+'_RUNTIME_EVENT_BITS_VERIFIED='+gaps.summary.liveEventBitValuesVerified);
   log('ROM_'+variant.toUpperCase()+'_ROM0_BRANCH_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0BranchReferences);
   log('ROM_'+variant.toUpperCase()+'_ROM0_CALL_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0CallReferences);
   log('ROM_'+variant.toUpperCase()+'_ROM0_UNION_DISTINCT_TARGETS='+gaps.summary.distinctRom0PhysicalTargets);
