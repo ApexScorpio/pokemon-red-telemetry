@@ -75,6 +75,11 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   u.reason==='ROM0_OUTSIDE_LOCAL_GRAPH'&&
   Number.isInteger(u.targetCpu)&&u.targetCpu>=0&&u.targetCpu<0x4000)
   .map(u=>u.targetCpu))].sort((a,b)=>a-b);
+ const rom0CallTargetCpus=[...new Set(callTargets.filter(c=>
+  c.mapping==='ROM0_FIXED'&&Number.isInteger(c.cpu)&&
+  c.cpu>=0&&c.cpu<0x4000).map(c=>c.cpu))].sort((a,b)=>a-b);
+ const rom0CallTargetOccurrences=callTargets.filter(c=>
+  c.mapping==='ROM0_FIXED').length;
  const rom0BranchTargetOccurrences=unresolved.filter(u=>
   u.reason==='ROM0_OUTSIDE_LOCAL_GRAPH').length;
  const instructionBytes=record.reduce((n,r)=>n+r.size,0);
@@ -88,6 +93,7 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   unresolvedBranchTargets:unresolved.length,
   unresolvedReasonCounts:reasons,callClassCounts:callClasses,
   rom0BranchTargetCpus,rom0BranchTargetOccurrences,
+  rom0CallTargetCpus,rom0CallTargetOccurrences,
   rom0PhysicalAddressOnly:true,
   limitReached,queueRemaining:queue.length,
   sampledOpcodes:record.slice(0,6),
