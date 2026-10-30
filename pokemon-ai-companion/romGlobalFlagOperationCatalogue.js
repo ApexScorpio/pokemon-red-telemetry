@@ -6,7 +6,9 @@ const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {lookupRomReference}=require('./romReferenceSemantics');
 const KINDS=new Set(['NPC','TRAINER','ITEM','STATIC_POKEMON','SIGN']);
 const DOMAINS=Object.freeze({
- WORLD_EVENT_BIT:2560,HIDDEN_ITEM_BIT:112,HIDDEN_COIN_BIT:16
+ WORLD_EVENT_BIT:{bits:2560,base:0xd747},
+ HIDDEN_ITEM_BIT:{bits:112,base:0xd6f0},
+ HIDDEN_COIN_BIT:{bits:16,base:0xd6fe}
 });
 const OPS=new Set(['BIT_TEST','SET_BIT','RESET_BIT']);
 const fail=reason=>({verified:false,reason,operations:[],perMap:[],
@@ -45,10 +47,26 @@ function buildGlobalFlagOperationCatalogue({atlas}={}){
   for(const p of handler.adjacentRomFlagBitPatterns){
    if(!OPS.has(p.operation)||!Object.hasOwn(DOMAINS,p.domain)||
       !Number.isInteger(p.bitIndex)||p.bitIndex<0||
-      p.bitIndex>=DOMAINS[p.domain]||
+      p.bitIndex>=DOMAINS[p.domain].bits||
       !Number.isInteger(p.offset)||p.offset<0||p.offset>=1048576||
       !Number.isInteger(p.secondOffset)||p.secondOffset!==p.offset+3||
-      !Number.isInteger(p.address)||p.address<0xc000||p.address>0xdfff||
+      !Number.isInteger(p.bank)||p.bank<0||p.bank>=64||
+      !Number.isInteger(p.cpu)||p.cpu<0||p.cpu>=0x8000||
+      p.offset!==(p.cpu<0x4000?p.cpu:
+       p.bank*0x4000+p.cpu-0x4000)||
+      !Number.isInteger(p.address)||
+      p.address!==DOMAINS[p.domain].base+Math.floor(p.bitIndex/8)||
+      !Number.isInteger(p.bitNumber)||p.bitNumber!==p.bitIndex%8||
+      p.secondOpcode!==0xcb||
+      !Number.isInteger(p.cbOpcode)||
+      (p.operation==='BIT_TEST'?
+       p.cbOpcode<0x40||p.cbOpcode>=0x80:
+       p.operation==='SET_BIT'?
+        p.cbOpcode<0xc0:p.cbOpcode<0x80||p.cbOpcode>=0xc0)||
+      ![0xfa,0x21].includes(p.firstOpcode)||
+      (p.operation!=='BIT_TEST'&&p.firstOpcode!==0x21)||
+      (p.cbOpcode&7)!==(p.firstOpcode===0xfa?7:6)||
+      ((p.cbOpcode>>3)&7)!==p.bitNumber||
       p.operandsAndAdjacencyVerified!==true||
       p.instructionSequenceExecuted!==false||
       p.eventBitValueKnown!==false||p.eventOutcomeCertified!==false)
