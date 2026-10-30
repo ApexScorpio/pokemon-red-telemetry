@@ -71,9 +71,10 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
   assert.equal(profile.hash.sha256,KNOWN[name]);
   const a=profile.world.interactionScriptAtlas;
   assert.equal(a.verified,true);
-  assert.equal(a.references.length,1126);
+  const rows=a.maps.flatMap(m=>m.interactions||[]);
+  assert.equal(rows.length,1126);
   const observed={};
-  for(const row of a.references){
+  for(const row of rows){
    assert.ok(typeof row.scriptDispatchClass==='string');
    assert.equal(row.scriptDispatchOutcomeVerified,false);
    assert.equal(row.scriptDispatchCodeSemanticsVerified,false);
