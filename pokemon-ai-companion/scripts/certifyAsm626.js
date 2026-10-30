@@ -356,6 +356,8 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_ASM_DIRECT_WRAM_WRITE_CANDIDATES='+a.summary.uniqueAsmDirectWramWriteCandidates);
   log('ROM_'+variant.toUpperCase()+'_ASM_WRAM_POINTER_CONSTANTS='+a.summary.uniqueAsmWramPointerLiterals);
   log('ROM_'+variant.toUpperCase()+'_ASM_MEMORY_WRITES_EXECUTED=0');
+  log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_CLASS_COUNTS='+JSON.stringify(a.summary.dispatchClassCounts));
+  log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_COMMAND_COUNTS='+JSON.stringify(a.summary.commandCounts));
 
   log('ROM_'+variant.toUpperCase()+'_RUNTIME_ACTIONS_UNPROVEN='+gaps.summary.runtimeActionsUnproven);
   log('ROM_'+variant.toUpperCase()+'_GAP_HOTSPOTS='+JSON.stringify(gaps.priorities));
@@ -384,6 +386,7 @@ function main(){
  runTests('ASM_TARGETED',[
   'tests/romTxAsmHandlerAtlas.test.js',
   'tests/romAsmAbsoluteMemoryEvidence.test.js',
+  'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
