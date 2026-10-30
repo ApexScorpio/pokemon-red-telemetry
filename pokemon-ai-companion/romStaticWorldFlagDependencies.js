@@ -10,13 +10,23 @@ const KINDS=new Set(['SIGN','NPC','TRAINER','ITEM','STATIC_POKEMON']);
 const OPS=new Set(['BIT_TEST','SET_BIT','RESET_BIT']);
 function buildStaticWorldFlagDependencies({atlas}={}){
  const sha=String(atlas?.romSha256||'').toLowerCase();
+ // The full in-memory audit has a flat references array; verified saved
+ // profiles deliberately store only maps[].interactions to avoid duplicate
+ // JSON/ZIP payloads. Both representations must produce the same graph.
+ let references=atlas?.references;
+ if(!Array.isArray(references)&&Array.isArray(atlas?.maps)&&
+    atlas.maps.length===248){
+  if(atlas.maps.some((m,i)=>m?.mapId!==i||!Array.isArray(m.interactions)))
+   return fail('Persisted map interaction catalogue incomplete');
+  references=atlas.maps.flatMap(m=>m.interactions);
+ }
  if(atlas?.verified!==true||!isKnownAuditedRomSha(sha)||
     atlas?.summary?.referencedInteractions!==1126||
-    !Array.isArray(atlas.references)||atlas.references.length!==1126)
+    !Array.isArray(references)||references.length!==1126)
   return fail('ROM SHA and complete world interaction atlas not verified');
  const entries=[],index=new Map();
  const unique=new Map();
- for(const row of atlas.references){
+ for(const row of references){
   if(!Number.isInteger(row?.mapId)||row.mapId<0||row.mapId>247||
      !Number.isInteger(row.ordinal)||row.ordinal<1||
      !KINDS.has(row.kind)||row.asmMemoryEffectExecuted!==false)
