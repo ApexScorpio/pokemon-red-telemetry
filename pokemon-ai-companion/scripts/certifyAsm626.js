@@ -9,6 +9,7 @@ const {inspectRomBuffer}=require('../romVariantRegistry');
 const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
+const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
 
 const JOB=/^PSB-\d{8}-\d{4}-POKEGUIDE-[A-Z0-9-]+-\d{3}$/.test(process.env.POKEGUIDE_CERT_JOB_ID||'')?process.env.POKEGUIDE_CERT_JOB_ID:'PSB-20261030-1054-POKEGUIDE-ASM626-004';
@@ -360,7 +361,29 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_RESET_CANDIDATES='+a.summary.uniqueAsmFlagBitResetCandidates);
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_POTENTIAL_LINKS='+a.summary.staticFlagCandidateLinks);
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CROSS_MAP_POTENTIAL_LINKS='+a.summary.staticFlagCandidateCrossMapLinks);
+  const candidateGraph=buildStaticWorldFlagDependencies({atlas:a});
+  assert(candidateGraph.verified===true&&
+   candidateGraph.summary.totalPotentialLinks===8&&
+   candidateGraph.summary.crossMapPotentialLinks===5&&
+   candidateGraph.summary.trustedCausalLinks===0,
+   'Original ROM map candidate flag links invalid: '+variant);
   log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CAUSAL_LINKS_VERIFIED=0');
+  log('ROM_'+variant.toUpperCase()+'_STATIC_FLAG_CANDIDATE_DETAILS='+JSON.stringify(
+   candidateGraph.candidateLinks.map(link=>({
+    domain:link.domain,bitIndex:link.bitIndex,
+    writerMapId:link.possibleWriterMapId,
+    writerKind:link.possibleWriterKind,
+    writerOrdinal:link.possibleWriterOrdinal,
+    writerAsmOffset:link.writerRomHandlerOffset,
+    writeOpcode:link.possibleWriteOpcode,
+    readerMapId:link.possibleReaderMapId,
+    readerKind:link.possibleReaderKind,
+    readerOrdinal:link.possibleReaderOrdinal,
+    readerAsmOffset:link.readerRomHandlerOffset,
+    crossMap:!link.sameMap,
+    causalEffectCertified:false
+   }))
+  ));
   log('ROM_'+variant.toUpperCase()+'_ASM_MEMORY_WRITES_EXECUTED=0');
   log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_CLASS_COUNTS='+JSON.stringify(a.summary.dispatchClassCounts));
   log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_COMMAND_COUNTS='+JSON.stringify(a.summary.commandCounts));
