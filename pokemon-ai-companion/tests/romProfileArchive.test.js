@@ -4,7 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const os=require('node:os');
 const path=require('node:path');
-const {buildVerifiedProfileArchive,saveVerifiedProfileArchive}=require('../romProfileArchive');
+const {buildVerifiedProfileArchive,saveVerifiedProfileArchive,writeArchiveEntries}=require('../romProfileArchive');
 const {readRom}=require('../romComprehensiveAudit');
 const {inspectZipProfiles}=require('../romAutoDiscovery');
 const {parseArguments}=require('../scripts/createRealProfileArchive');
@@ -41,6 +41,69 @@ test('failed ROM identity check does not create a file',()=>{
   }));
   assert.equal(fs.existsSync(output),false);
  }finally{fs.rmSync(root,{recursive:true,force:true})}
+});
+
+test('ZIP writer stays compatible with original single-member profile JSON',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'pokeguide-archive-legacy-'));
+ try{
+  const destination=path.join(root,'legacy.zip');
+  const payload={schema:'test',hash:{sha256:'a'.repeat(64)},name:'Red'};
+  fs.writeFileSync(destination,writeArchiveEntries([
+   ['pokemon_red_rom_profile.json',payload]
+  ]),{flag:'wx'});
+  const found=inspectZipProfiles(destination);
+  assert.equal(found.length,1);
+  assert.deepEqual(found[0].profile,payload);
+ }finally{fs.rmSync(root,{recursive:true,force:true})}
+});
+test('ZIP profiles exceeding 4 MiB are preserved byte-for-byte in bounded chunks',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'pokeguide-archive-split-'));
+ try{
+  // Include multibyte UTF-8 characters across chunk boundaries.
+  const payload={schema:'test',message:'Olá 🇵🇹',detail:'x'.repeat(4*1024*1024+99)};
+  const destination=path.join(root,'split.zip');
+  const archive=writeArchiveEntries([
+   ['pokemon_red_rom_profile.json',payload]
+  ]);
+  assert.ok(archive.length<32*1024*1024);
+  assert.ok(archive.includes(Buffer.from('pokemon_red_rom_profile.json.part00')));
+  assert.ok(archive.includes(Buffer.from('pokemon_red_rom_profile.json.part01')));
+  fs.writeFileSync(destination,archive,{flag:'wx'});
+  const scanned=inspectZipProfiles(destination);
+  assert.equal(scanned.length,1);
+  assert.deepEqual(scanned[0].profile,payload);
+ }finally{fs.rmSync(root,{recursive:true,force:true})}
+});
+test('ZIP reader handles three bounded chunks but rejects missing or duplicate members',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'pokeguide-archive-fragments-'));
+ try{
+  const source={schema:'test',payload:'z'.repeat(8*1024*1024+100)};
+  const bytes=writeArchiveEntries([['pokemon_blue_rom_profile.json',source]]);
+  const full=path.join(root,'full.zip');
+  fs.writeFileSync(full,bytes,{flag:'wx'});
+  assert.deepEqual(inspectZipProfiles(full)[0].profile,source);
+  assert.ok(bytes.includes(Buffer.from('pokemon_blue_rom_profile.json.part02')));
+  const tampered=Buffer.from(bytes);
+  const from=Buffer.from('pokemon_blue_rom_profile.json.part01');
+  const to=Buffer.from('pokemon_blue_rom_profile.json.part09');
+  for(let at=tampered.indexOf(from);at>=0;at=tampered.indexOf(from,at+from.length))
+   to.copy(tampered,at);
+  const broken=path.join(root,'broken.zip');
+  fs.writeFileSync(broken,tampered,{flag:'wx'});
+  assert.throws(()=>inspectZipProfiles(broken),/fragmento|fragment/i);
+  const duplicates=path.join(root,'duplicate.zip');
+  fs.writeFileSync(duplicates,writeArchiveEntries([
+   ['pokemon_red_rom_profile.json',{name:'first'}],
+   ['pokemon_red_rom_profile.json',{name:'second'}]
+  ]),{flag:'wx'});
+  assert.throws(()=>inspectZipProfiles(duplicates),/duplicado/);
+ }finally{fs.rmSync(root,{recursive:true,force:true})}
+});
+test('archive fails closed above the total bounded three-part JSON capacity',()=>{
+ assert.throws(()=>writeArchiveEntries([
+  ['pokemon_green_international_rom_profile.json',
+   {data:'a'.repeat(12*1024*1024+1)}]
+ ]),/limite total dividido/);
 });
 const configured=['POKEMON_RED_ROM','POKEMON_BLUE_ROM','POKEMON_GREEN_ROM']
  .every(key=>Boolean(process.env[key]));
