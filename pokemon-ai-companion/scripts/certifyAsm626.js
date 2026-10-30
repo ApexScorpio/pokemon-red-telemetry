@@ -160,6 +160,12 @@ function main(){
    gaps.summary.uniqueAsmEntrypoints===516&&
    gaps.summary.unverifiedScriptEffects===1126&&
    gaps.summary.textPointersPending===0&&
+   a.summary.rom0BranchTargetOccurrences===537&&
+   a.summary.physicallyMappedRom0Targets===a.summary.distinctRom0BranchDestinations&&
+   a.summary.rom0EffectSemanticsCertified===0&&
+   gaps.summary.mappedRom0BranchReferences===537&&
+   gaps.summary.rom0StillSemanticallyUnknown===537&&
+   gaps.summary.rom0EffectsProven===0&&
    gaps.mapping100PercentCertified===false,
    'Global ROM mapping gap ledger discrepancy: '+variant+': '+gaps.reason);
   const rows=a.maps.flatMap(m=>m.interactions)
