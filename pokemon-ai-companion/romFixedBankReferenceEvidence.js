@@ -63,6 +63,16 @@ function inspectFixedRom0Target({rom,targetCpu,budget=24}={}){
   sampleInstructions:candidateInstructions.slice(0,6),
   sampleProblems:problems.slice(0,6),
   sampleCalls:unfollowedCalls.slice(0,6),
+  // Bounded diagnostic evidence for every remaining ROM0 candidate:
+  // include CPU locations, pending frontier and exact reason classes.
+  // These are static decoder observations, not executed game paths.
+  problemDetails:problems.slice(0,32),
+  problemDetailsTruncated:problems.length>32,
+  problemReasonCounts:problems.reduce((acc,x)=>{
+   acc[x.reason]=(acc[x.reason]||0)+1;return acc;
+  },{}),
+  remainingQueueSample:todo.slice(0,16),
+  lastCandidateInstructions:candidateInstructions.slice(-6),
   branchExecuted:false,effectVerified:false,semanticsComplete:false,
   source:'ROM0_PHYSICAL_BYTES_BOUNDED_CPU_CANDIDATES',
   warning:'Fixed ROM0 address and candidate opcodes only. No execution, RAM flags, switchable bank state or script effect proven'};
