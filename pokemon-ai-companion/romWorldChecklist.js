@@ -9,7 +9,7 @@ const KINDS=Object.freeze({
 });
 const ACTIONS=Object.keys(KINDS);
 const validId=n=>Number.isInteger(n)&&n>=0&&n<=247;
-function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
+function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagLedger=null}={}){
  const entry=getMapContents(index,mapId);
  if(entry.verified!==true)
   return {verified:false,mapId,reason:entry.reason||'Mapa sem cabecalho normal confirmado',
@@ -32,6 +32,15 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
   advisor.romSha256===hash&&Array.isArray(advisor.observations);
  // One-to-one matching only. Two observations sharing a position are ambiguous.
  const observations=advisorMatches?advisor.observations:[];
+ // Global wEventFlags is one 320-byte RAM bitmap for the whole world,
+ // but it must come from a verified same-ROM, map-correlated reading.
+ // This is independent of whether the player is in this particular map.
+ const ledgerMatches=worldFlagLedger?.verified===true&&
+  worldFlagLedger.romSha256===hash&&worldFlagLedger.mapCount===226&&
+  Array.isArray(worldFlagLedger.mapProgress)&&
+  worldFlagLedger.mapProgress.length===226;
+ const ledgerRows=ledgerMatches?worldFlagLedger.mapProgress.filter(x=>x?.mapId===mapId):[];
+ const ledgerMap=ledgerRows.length===1?ledgerRows[0]:null;
  const identity=(kind,x,y,id)=>kind+':'+x+':'+y+':'+String(id??'');
  const tag=(kind,obj)=>identity(kind,obj.x,obj.y,
   kind==='ITEM'||kind==='HIDDEN_ITEM'?obj.itemId??obj.itemOrTrainerId:
@@ -88,6 +97,28 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
        'NO_SAME_MAP_PATH'].includes(proof.accessStatus))
     routeCondition=proof.accessStatus;
    const romScript=matchingScript(kind,obj);
+   let gateFlag=null,gateSource=null;
+   if((kind==='TRAINER'||kind==='STATIC_POKEMON')&&
+      romScript?.eventBitBindingVerified===true&&
+      Number.isInteger(obj.ordinal)&&
+      Array.isArray(ledgerMap?.flagRecords?.[
+       kind==='TRAINER'?'trainers':'stationaryPokemon'
+      ])){
+    const domain=kind==='TRAINER'?'trainers':'stationaryPokemon';
+    const candidates=ledgerMap.flagRecords[domain].filter(x=>
+     x?.objectOrdinal===obj.ordinal&&
+     x.bitIndex===romScript.eventBitIndex&&
+     x.x===obj.x&&x.y===obj.y&&
+     typeof x.flagSet==='boolean');
+    if(candidates.length===1){
+     gateFlag=candidates[0].flagSet;
+     gateSource='ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747';
+     progress=kind==='TRAINER'?
+      gateFlag?'TRAINER_GATE_CLOSED_FLAG':'TRAINER_GATE_OPEN_FLAG':
+      gateFlag?'ENCOUNTER_GATE_CLOSED_FLAG':'ENCOUNTER_GATE_OPEN_FLAG';
+     evidence=gateSource;
+    }
+   }
    rows.push({group,kind,ordinal:obj.ordinal??obj.hiddenIndex??null,
     x:obj.x,y:obj.y,staticObject:obj,progress,evidence,
     routeCondition,accessibleNow:null,completedNow:null,
@@ -103,7 +134,9 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
     scriptEventBitBindingVerified:romScript?.eventBitBindingVerified===true,
     scriptEventBitBindingSource:romScript?.eventBitBindingSource??null,
     scriptEventBitMeaning:romScript?.eventBitMeaning??null,
-    scriptEventFlagSet:null,
+    scriptEventFlagSet:gateFlag,
+    scriptEventFlagSnapshotVerified:gateFlag!==null,
+    scriptEventFlagEvidence:gateSource,
     scriptEffectSemanticsVerified:false,
     predictedOutcomeVerified:false,
     joinProven:!!proof,
@@ -119,6 +152,16 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
    needsCutCandidates:rows.filter(r=>r.routeCondition==='NEEDS_CUT').length,
    needsSurfCandidates:rows.filter(r=>r.routeCondition==='NEEDS_SURF').length,
    progressUnverified:rows.filter(r=>r.progress==='NOT_PROVEN').length,
+   verifiedTrainerGatesClosed:rows.filter(r=>
+    r.progress==='TRAINER_GATE_CLOSED_FLAG').length,
+   verifiedTrainerGatesOpen:rows.filter(r=>
+    r.progress==='TRAINER_GATE_OPEN_FLAG').length,
+   verifiedEncounterGatesClosed:rows.filter(r=>
+    r.progress==='ENCOUNTER_GATE_CLOSED_FLAG').length,
+   verifiedEncounterGatesOpen:rows.filter(r=>
+    r.progress==='ENCOUNTER_GATE_OPEN_FLAG').length,
+   verifiedScriptEventFlagStates:rows.filter(r=>
+    r.scriptEventFlagSnapshotVerified===true).length,
    scriptReferencesBound:rows.filter(r=>r.scriptReferenceBound).length},
   scriptAtlasBound:scriptMap!==null,
   routeCertainty:'LOCAL_GEOMETRY_ONLY',
