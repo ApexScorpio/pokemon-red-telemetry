@@ -4,6 +4,8 @@ const assert=require('node:assert/strict');
 const {auditWorldScriptReferences}=require('../romWorldScriptReferences');
 const {readRom}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
+const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
+const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {AUDITED_ROM_SHA256}=require('../romKnownSha256');
 const cases=[
  ['red','POKEMON_RED_ROM',AUDITED_ROM_SHA256.RED],
@@ -28,6 +30,21 @@ for(const [name,env,sha] of cases){
   const atlas=auditWorldScriptReferences({rom:buffer,profile});
   assert.equal(atlas.verified,true,atlas.reason);
   assert.equal(atlas.romSha256,sha);
+  assert.equal(profile.world.interactionScriptAtlas?.verified,true);
+  assert.equal(profile.world.interactionScriptAtlas.summary.referencedInteractions,1126);
+  assert.equal(profile.world.interactionScriptAtlas.maps.length,248);
+  const mapIndex=buildWorldContentsIndex(profile);
+  const tracker=buildCampaignWorldTracker({index:mapIndex,
+   scriptAtlas:profile.world.interactionScriptAtlas});
+  assert.equal(tracker.verified,true);
+  assert.equal(tracker.scriptAtlasBound,true);
+  assert.equal(tracker.summary.scriptReferencesBound,1126);
+  assert.ok(tracker.maps.every(m=>!m.verified||
+   m.actions.every(row=>row.kind==='HIDDEN_ITEM'?
+    row.scriptReferenceBound===false:row.scriptReferenceBound===true)));
+  assert.ok(tracker.maps.every(m=>!m.verified||
+   m.actions.every(row=>row.scriptEffectSemanticsVerified===false)));
+
   assert.equal(atlas.maps.length,248);
   assert.equal(atlas.maps.filter(m=>m.verified).length,226);
   assert.equal(atlas.summary.mapScriptPointers,226);
