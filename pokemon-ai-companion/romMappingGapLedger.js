@@ -109,7 +109,8 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
  const rom0=scriptAtlas.summary;
  if(rom0.rom0BranchTargetOccurrences!==
      rom0.asmUnresolvedReasonCounts?.ROM0_OUTSIDE_LOCAL_GRAPH||
-    rom0.physicallyMappedRom0Targets!==rom0.distinctRom0BranchDestinations||
+    rom0.physicallyMappedRom0Targets!==rom0.distinctRom0PhysicalTargets||
+    rom0.rom0CallTargetOccurrences!==rom0.asmUnfollowedCallClasses?.ROM0_FIXED||
     rom0.rom0EffectSemanticsCertified!==0||
     scriptAtlas.rom0PhysicalAddressMappingCertified!==true)
   return invalid('Prova fisica ROM0 nao concorda com destinos ASM');
@@ -135,7 +136,11 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    candidateInstructions:scriptAtlas.summary.uniqueAsmCandidateInstructions,
    unresolvedAsmTargets:scriptAtlas.summary.uniqueAsmUnresolvedTargets,
    mappedRom0BranchReferences:rom0.rom0BranchTargetOccurrences,
-   distinctRom0PhysicalTargets:rom0.distinctRom0BranchDestinations,
+   distinctRom0PhysicalTargets:rom0.distinctRom0PhysicalTargets,
+   distinctRom0BranchTargets:rom0.distinctRom0BranchDestinations,
+   mappedRom0CallReferences:rom0.rom0CallTargetOccurrences,
+   distinctRom0CallTargets:rom0.distinctRom0CallDestinations,
+   rom0CallEffectsProven:0,
    boundedRom0OpcodeCandidates:rom0.rom0OpcodeCandidateInstructions,
    rom0StillSemanticallyUnknown:rom0.rom0BranchTargetOccurrences,
    rom0EffectsProven:0,
