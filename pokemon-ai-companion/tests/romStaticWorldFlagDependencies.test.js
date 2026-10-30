@@ -106,7 +106,15 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
   assert.equal(graph.summary.trustedCausalLinks,0);
   assert.equal(graph.summary.totalPotentialLinks,8);
   assert.equal(graph.summary.crossMapPotentialLinks,5);
+  assert.equal(graph.summary.conditionalBranchLinksDecoded,8);
+  assert.equal(graph.summary.dualTextChoiceLinksDecoded,4);
   for(const link of graph.candidateLinks){
+   assert.equal(link.readerConditionalDirectionVerified,true);
+   assert.equal(link.readerBranchCondition.condition,'NZ');
+   assert.equal(link.readerBranchCondition.jumpTakenIfBitSet,true);
+   assert.equal(link.readerBranchCondition.branchActuallyTaken,null);
+   assert.equal(link.readerTwoAlternativeTextScriptsVerified,link.bitIndex===1231);
+   assert.equal(link.causalLinkObserved,false);
    assert.ok(link.possibleWriterMapId>=0&&link.possibleWriterMapId<248);
    assert.ok(link.possibleReaderMapId>=0&&link.possibleReaderMapId<248);
    assert.ok(Number.isInteger(link.possibleWriterOrdinal));
