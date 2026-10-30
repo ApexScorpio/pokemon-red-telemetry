@@ -236,7 +236,9 @@ function main(){
    a.summary.rom0WholeBankResidualLimits===0&&
    a.summary.rom0StillBudgetLimited===0&&
    a.summary.rom0StaticCandidateWalkExhausted===59&&
-   a.summary.rom0ThirdPassAdditionalCandidateInstructions>0&&
+   a.summary.rom0ThirdPassAdditionalCandidateInstructions===127&&
+   a.summary.rom0OpcodeCandidateInstructions===1735&&
+   a.summary.rom0DecodeProblems===10&&
    a.summary.rom0EffectSemanticsCertified===0&&
    a.summary.physicallyMappedRom0Targets===a.summary.distinctRom0PhysicalTargets&&
    a.summary.rom0CallTargetOccurrences===1016&&
