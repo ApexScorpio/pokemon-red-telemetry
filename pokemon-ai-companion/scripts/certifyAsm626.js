@@ -355,6 +355,9 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_ASM_DIRECT_WRAM_READ_CANDIDATES='+a.summary.uniqueAsmDirectWramReadCandidates);
   log('ROM_'+variant.toUpperCase()+'_ASM_DIRECT_WRAM_WRITE_CANDIDATES='+a.summary.uniqueAsmDirectWramWriteCandidates);
   log('ROM_'+variant.toUpperCase()+'_ASM_WRAM_POINTER_CONSTANTS='+a.summary.uniqueAsmWramPointerLiterals);
+  log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_TEST_CANDIDATES='+a.summary.uniqueAsmFlagBitTestCandidates);
+  log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_SET_CANDIDATES='+a.summary.uniqueAsmFlagBitSetCandidates);
+  log('ROM_'+variant.toUpperCase()+'_ASM_EVENT_BIT_RESET_CANDIDATES='+a.summary.uniqueAsmFlagBitResetCandidates);
   log('ROM_'+variant.toUpperCase()+'_ASM_MEMORY_WRITES_EXECUTED=0');
   log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_CLASS_COUNTS='+JSON.stringify(a.summary.dispatchClassCounts));
   log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_COMMAND_COUNTS='+JSON.stringify(a.summary.commandCounts));
