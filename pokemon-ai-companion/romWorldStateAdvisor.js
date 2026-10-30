@@ -156,10 +156,11 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    .map(o=>o.destinationMapId))).slice(0,32).map(dest=>
      findStaticWarpRoute(warpGraph,mapId,dest,{maxHops:24})): [];
  const worldIndex=buildWorldContentsIndex(profile);
+ const scriptAtlas=profile?.world?.interactionScriptAtlas??null;
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
  const campaign=worldIndex.verified?buildCampaignWorldTracker({
-   index:worldIndex,
+   index:worldIndex,scriptAtlas,
    evidenceByMap:positionVerified===true?[{
      verified:true,mapId,romSha256:hash,
      observations,hiddenFlagsVerified:hiddenFlagsVerified===true
@@ -168,7 +169,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    currentMapVerified:positionVerified===true
  }):null;
  const mapChecklist=worldIndex.verified?buildMapChecklist({
-   index:worldIndex,mapId,
+   index:worldIndex,mapId,scriptAtlas,
    advisor:{verified:true,mapId,romSha256:hash,observations,
      hiddenFlagsVerified:hiddenFlagsVerified===true}
  }):null;
@@ -176,6 +177,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    mapStaticInventory,mapChecklist,
    campaignSummary:campaign?.verified===true?campaign.summary:null,
    campaignCurrentMapConfirmed:campaign?.currentMapConfirmed===true,
+   romScriptReferenceIndexVerified:campaign?.scriptAtlasBound===true,
    campaignGlobalCompletionVerified:false,
    fullWorldStaticIndexVerified:worldIndex.verified,
    fullWorldStaticTotals:worldIndex.verified?worldIndex.totals:null,
