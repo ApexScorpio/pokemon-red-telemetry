@@ -436,6 +436,17 @@ function main(){
    namedCoverage.summary.namedBitsWithoutAnyDirectEvidence);
   log('ROM_'+variant.toUpperCase()+'_EVENT_EVIDENCE_CATEGORIES='+
    JSON.stringify(namedCoverage.summary.categories));
+  const gapIndex=namedCoverage.unresolvedNamedFlagEvidence;
+  assert(gapIndex?.gameplayCompletionEvidence===false&&
+   gapIndex.noDirectEvidenceCount===
+    namedCoverage.summary.categories.NO_DIRECT_EVIDENCE&&
+   gapIndex.headerOnlyCount===
+    namedCoverage.summary.categories.HEADER_BINDING_ONLY,
+   'Named event gap index inconsistent: '+variant);
+  log('ROM_'+variant.toUpperCase()+'_EVENT_NO_DIRECT_EVIDENCE_FIRST_20='+
+   JSON.stringify(gapIndex.noDirectEvidenceFlags.slice(0,20)));
+  log('ROM_'+variant.toUpperCase()+'_EVENT_HEADER_ONLY_FIRST_20='+
+   JSON.stringify(gapIndex.headerOnlyFlags.slice(0,20)));
   log('ROM_'+variant.toUpperCase()+'_EVENTS_FULLY_EXPLAINED=0');
   log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_OPERATIONS_COUNTS='+
    JSON.stringify(everyFlag.handlerScopedOperationCounts));
