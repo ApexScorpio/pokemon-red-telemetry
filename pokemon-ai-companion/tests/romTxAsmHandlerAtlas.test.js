@@ -18,6 +18,8 @@ test('conditional JR and ROM0 CALL become static candidates, not executed effect
  assert.equal(r.callsNotFollowed,1);
  assert.equal(r.returnsObserved,2);
  assert.equal(r.unresolvedBranchTargets,0);
+ assert.equal(Object.values(r.unresolvedReasonCounts).reduce((n,x)=>n+x,0),0);
+ assert.equal(r.callClassCounts.ROM0_FIXED,1);
  assert.equal(r.callTargets[0].cpu,0x1234);
  assert.equal(r.callTargets[0].mapping,'ROM0_FIXED');
  assert.equal(r.scriptEffectsVerified,false);
@@ -69,6 +71,13 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],
   assert.ok(atlas.summary.uniqueAsmAdditionalCandidateInstructions>=0);
   assert.ok(atlas.summary.uniqueAsmScanLimitHits<=7);
   assert.ok(atlas.summary.uniqueAsmExpandedStillLimited<=7);
+  assert.equal(
+   Object.values(atlas.summary.asmUnresolvedReasonCounts).reduce((n,x)=>n+x,0),
+   atlas.summary.uniqueAsmUnresolvedTargets);
+  assert.equal(
+   Object.values(atlas.summary.asmUnfollowedCallClasses).reduce((n,x)=>n+x,0),
+   atlas.summary.uniqueAsmCallsNotFollowed);
+
 
   const entries=atlas.maps.flatMap(m=>m.interactions)
    .filter(r=>r.scriptCommand==='TX_START_ASM');
