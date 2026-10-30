@@ -2739,6 +2739,13 @@ class RetroArchClient extends EventEmitter {
       eventFlagsHex:eventFlagsRaw,
       toggleFlagsHex:toggleRaw
     });
+    if(globalFlagReadback.verified!==true){
+      const why='Readback mundial recusado: '+globalFlagReadback.reason;
+      this.latestState.globalCampaignLedger={
+        ...this.latestState.globalCampaignLedger,verified:false,reason:why};
+      this.latestState.romWorldEventAtlas={
+        ...this.latestState.romWorldEventAtlas,verified:false,reason:why};
+    }
     const namedChanges=this._worldReferenceSession.ingest({
       atlas:this.latestState.romWorldEventAtlas,
       observedAt:this.latestState.lastUpdate
@@ -2880,6 +2887,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.worldAdvisor=adviseWorld({
       profile:this.activeRomProfile,
       worldFlagLedger:this.latestState.globalCampaignLedger,
+      globalFlagReadback,
       mapId:this.latestState.mapId,
       position:this.latestState.coords,
       positionVerified:positionWindow.verified===true,
