@@ -12,6 +12,7 @@ const {buildMappingGapLedger}=require('../romMappingGapLedger');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
 const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
 const {buildGlobalFlagOperationCatalogue}=require('../romGlobalFlagOperationCatalogue');
+const {buildNamedEventEvidenceLedger}=require('../romNamedEventEvidenceLedger');
 const referenceEventNames=require('../data/gen1EventNamesPret.json');
 const referenceMapNames=require('../data/gen1MapNamesPret.json');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
@@ -401,6 +402,8 @@ function main(){
    everyFlag.handlerScopedOperationCounts.RESET_BIT===4&&
    everyFlag.handlerScopedBitBranches===88&&
    everyFlag.handlerScopedDualTextChoices===16&&
+   everyFlag.handlerScopedWritesIfExecuted===45&&
+   everyFlag.conditionalMemoryWritesIfExecuted>=1&&
    everyFlag.executedOperationsCertified===0,
    'All-map static WRAM-bit operation catalogue invalid: '+variant+
    ': '+everyFlag.reason);
@@ -414,6 +417,26 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_REFERENCED_NAMED_EVENTS='+
    everyFlag.eventNamedOperations);
   log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_OPERATIONS_EXECUTED=0');
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_CONDITIONAL_WRITES_PER_HANDLER=45');
+  log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_CONDITIONAL_PHYSICAL_WRITES='+
+   everyFlag.conditionalMemoryWritesIfExecuted);
+  const namedCoverage=buildNamedEventEvidenceLedger({atlas:a});
+  assert(namedCoverage.verified===true&&namedCoverage.flags.length===507&&
+   namedCoverage.summary.namedReferenceEvents===507&&
+   namedCoverage.summary.fullyExplainedNamedEvents===0&&
+   namedCoverage.summary.eventCompletionsObserved===0&&
+   namedCoverage.semanticallyComplete===false,
+   'Named event coverage evidence invalid: '+variant+' '+namedCoverage.reason);
+  log('ROM_'+variant.toUpperCase()+'_EVENT_LABELS_TOTAL=507');
+  log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_WITH_OPCODE_EVIDENCE='+
+   namedCoverage.summary.namedBitsWithRomOpcode);
+  log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_WITH_HEADER_BINDINGS='+
+   namedCoverage.summary.namedBitsWithActorHeaderBinding);
+  log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_WITHOUT_DIRECT_EVIDENCE='+
+   namedCoverage.summary.namedBitsWithoutAnyDirectEvidence);
+  log('ROM_'+variant.toUpperCase()+'_EVENT_EVIDENCE_CATEGORIES='+
+   JSON.stringify(namedCoverage.summary.categories));
+  log('ROM_'+variant.toUpperCase()+'_EVENTS_FULLY_EXPLAINED=0');
   log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_OPERATIONS_COUNTS='+
    JSON.stringify(everyFlag.handlerScopedOperationCounts));
   log('ROM_'+variant.toUpperCase()+'_ALL_FLAG_MAP_COUNTS='+
@@ -498,6 +521,8 @@ function main(){
   'tests/romReferenceSemantics.test.js',
   'tests/romCrossVariantFlagSemantics.test.js',
   'tests/romGlobalFlagOperationCatalogue.test.js',
+  'tests/romBitOpcodeSemantics.test.js',
+  'tests/romNamedEventEvidenceLedger.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
