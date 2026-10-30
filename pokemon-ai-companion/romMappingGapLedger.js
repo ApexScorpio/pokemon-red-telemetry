@@ -105,17 +105,45 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    runtimeCompletionVerified:false});
   if(missingEffects)unknownEffects.push({mapId,count:missingEffects});
  }
+ // Surface the actual difference rather than concealing two unbound
+ // ROM events in a generic "world counts" failure.
+ const auditedCounts=[
+  ['normalMapHeaders',normalMaps,NORMAL_MAPS],
+  ['unresolvedMapIds',unresolvedMapIds,22],
+  ['scriptReferences',allScriptRows.length,REFERENCES],
+  ['asmTextReferences',asmTextReferences,ASM_REFERENCES],
+  ['uniqueAsmEntrypoints',allAsmOffsets.size,ASM_UNIQUE],
+  ['unverifiedEffects',unverifiedEffects,REFERENCES],
+  ['trainerEventFlagBindings',scriptAtlas.summary?.trainerEventFlagBindings,332],
+  ['stationaryEventFlagBindings',scriptAtlas.summary?.stationaryEventFlagBindings,12],
+  ['specialTrainerEventFlagBindings',scriptAtlas.summary?.specialTrainerEventFlagBindings,22],
+  ['trainerEventFlagBindingsMissing',scriptAtlas.summary?.trainerEventFlagBindingsMissing,2],
+  ['eventBitBindings',eventBitBindings,344],
+  ['indexedHiddenItems',index.totals.hiddenItems,54],
+  ['unassignedHiddenRefs',unassignedHidden,
+   index.totals.hiddenItemsWithoutNormalHeader],
+  ['staticActions',staticActions,tracker.summary.allStaticActions]
+ ];
+ const mismatches=auditedCounts.filter(([,actual,expected])=>actual!==expected);
+ if(mismatches.length)
+  return invalid('WORLD_COUNT_MISMATCH '+mismatches.map(([name,actual,expected])=>
+   name+'='+String(actual)+' expected='+String(expected)).join('; '));
+ const missing=scriptAtlas.summary?.trainerEventFlagBindingsUnresolved;
+ if(!Array.isArray(missing)||missing.length!==2||
+    !missing.some(x=>x.mapId===96&&x.ordinal===2&&x.eventBitIndex===null)||
+    !missing.some(x=>x.mapId===135&&x.ordinal===11&&x.eventBitIndex===null))
+  return invalid('UNBOUND_TRAINER_IDENTITIES_MISMATCH expected 96:2 and 135:11');
  if(normalMaps!==NORMAL_MAPS||unresolvedMapIds!==22||
   allScriptRows.length!==REFERENCES||asmTextReferences!==ASM_REFERENCES||
   allAsmOffsets.size!==ASM_UNIQUE||unverifiedEffects!==REFERENCES||
-  scriptAtlas.summary?.trainerEventFlagBindings!==334||
+  scriptAtlas.summary?.trainerEventFlagBindings!==332||
   scriptAtlas.summary?.stationaryEventFlagBindings!==12||
   scriptAtlas.summary?.specialTrainerEventFlagBindings!==22||
-  scriptAtlas.summary?.trainerEventFlagBindingsMissing!==0||
-  eventBitBindings!==346||
+  scriptAtlas.summary?.trainerEventFlagBindingsMissing!==2||
+  eventBitBindings!==344||
   index.totals.hiddenItems!==54||unassignedHidden!==index.totals.hiddenItemsWithoutNormalHeader||
   staticActions!==tracker.summary.allStaticActions)
-  return invalid('Contagem mundial nao fecha; recusar cobertura global ficticia');
+  return invalid('WORLD_COUNT_POSTCHECK_MISMATCH: pontos da auditoria fora de sincronia');
  const rom0=scriptAtlas.summary;
  // Each invariant gets its own diagnostic: never weaken the fail-closed gate
  // or hide a mismatch behind one generic error.
@@ -156,7 +184,11 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    staticallyIndexedActions:staticActions,
    scriptReferences:REFERENCES,textPointersPending,
    verifiedRomEventBitBindings:eventBitBindings,
-   verifiedTrainerScriptEventBitBindings:334,
+   trainerScriptEventBitsUnresolved:scriptAtlas.summary.trainerEventFlagBindingsMissing,
+   trainerScriptUnresolvedReferences:
+    (scriptAtlas.summary.trainerEventFlagBindingsUnresolved||[])
+    .map(x=>({...x})),
+   verifiedTrainerScriptEventBitBindings:332,
    verifiedStaticEncounterScriptEventBitBindings:12,
    verifiedSpecialTrainerScriptEventBitBindings:22,
    liveEventBitValuesVerified:0,
