@@ -48,6 +48,7 @@ function oneQuery(socket,host,port,command,timeoutMs){
    if(done)return;done=true;
    clearTimeout(timer);
    socket.removeListener('message',message);
+   socket.removeListener('error',socketError);
    if(error)reject(error);
    else resolve(value);
   };
@@ -59,8 +60,10 @@ function oneQuery(socket,host,port,command,timeoutMs){
    if(!text.toUpperCase().startsWith(expected))return;
    complete(null,text);
   };
+  const socketError=error=>complete(error);
   const timer=setTimeout(()=>complete(new Error('UDP_READ_TIMEOUT')),timeoutMs);
   socket.on('message',message);
+  socket.on('error',socketError);
   socket.send(Buffer.from(command,'ascii'),port,host,error=>{
    if(error)complete(error);
   });
