@@ -222,6 +222,7 @@ function inspectRomBuffer(b,file='ROM_EM_MEMORIA.gb'){
   // Omission here previously turned proven physical address coverage into
   // undefined; never promote address coverage to proven game semantics.
   fixedRom0BranchEvidence:interactionAudit.fixedRom0BranchEvidence,
+  distinctRom0IndirectJumpEvidence:interactionAudit.distinctRom0IndirectJumpEvidence,
   rom0PhysicalAddressMappingCertified:
    interactionAudit.rom0PhysicalAddressMappingCertified,
   scriptEffectsSemanticallyComplete:false,
