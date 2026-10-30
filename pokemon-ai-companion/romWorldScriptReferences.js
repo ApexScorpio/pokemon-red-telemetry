@@ -8,6 +8,7 @@ const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
 const {inspectTxAsmHandlerAdaptive}=require('./romTxAsmHandlerAtlas');
 const {inspectFixedRom0TargetAdaptive}=require('./romFixedBankReferenceEvidence');
+const {SPECIAL_SCRIPT_EVENTS,GUARDED_SPECIAL_BATTLES}=require('./romTrainerEvents');
 const MAP_IDS=248,NORMAL_MAPS=226,EXPECTED_REFERENCES=1126;
 const BY_KIND=Object.freeze({
  SIGN:'signs',NPC:'npcs',TRAINER:'trainers',
@@ -27,7 +28,8 @@ function auditWorldScriptReferences({rom,profile}={}){
     maps.data.some((m,i)=>m?.mapId!==i||typeof m.valid!=='boolean')||
     maps.data.filter(m=>m.valid).length!==NORMAL_MAPS)
   return invalid('SHA exato, atlas de 248 IDs e 226 cabecalhos nao concordam');
- const all=[],world=[],byKind=Object.fromEntries(Object.keys(BY_KIND).map(x=>[x,0]));
+ const all=[],world=[],bindingConflicts=[],
+  byKind=Object.fromEntries(Object.keys(BY_KIND).map(x=>[x,0]));
  const commandCounts={},unresolvedReasons={};
  const aggregateAsmCounts=(property)=>{
   const totals={};
@@ -68,6 +70,29 @@ function auditWorldScriptReferences({rom,profile}={}){
    row=>row.objectOrdinal===ordinal):null;
   const stationary=kind==='STATIC_POKEMON'?(map.staticEncounterEvents||[]).find(
    row=>row.objectOrdinal===ordinal):null;
+  // Independently audited scripts complement the normal trainer header bits.
+  // Do not infer effects or outcomes from the existence of a mapped bit.
+  const special=kind==='TRAINER'?SPECIAL_SCRIPT_EVENTS[map.mapId]?.[ordinal]:null;
+  const guarded=kind==='TRAINER'?GUARDED_SPECIAL_BATTLES[map.mapId]?.[ordinal]:null;
+  const candidates=[trainer?.eventBitIndex,stationary?.eventBitIndex,
+   special,guarded?.bit].filter(Number.isInteger);
+  const bitIndex=candidates.length?candidates[0]:null;
+  if(candidates.some(v=>v!==bitIndex||v<0||v>=2560)||
+     (Number.isInteger(special)||guarded)&&(
+      kind!=='TRAINER'||!Number.isInteger(actor.trainerClassOrItemId)||
+      actor.trainerClassOrItemId<201)){
+   bindingConflicts.push({mapId:map.mapId,ordinal,kind,candidates});
+  }
+  const flagSource=trainer?'ROM_TRAINER_HEADER':
+   stationary?'ROM_STATIONARY_ENCOUNTER_HEADER':
+   Number.isInteger(special)?'SHA_AUDITED_CHECKEVENT_SPECIAL':
+   guarded?'SHA_AUDITED_GUARDED_BATTLE_SCRIPT':null;
+  const flagMeaning=guarded?.kind==='SCRIPT_VICTORY'?
+   'SCRIPT_VICTORY_FLAG_NOT_RUNTIME_VERIFIED':
+   guarded?.kind==='BATTLE_WAS_PLAYED'?
+   'BATTLE_WAS_PLAYED_FLAG_NOT_RUNTIME_VERIFIED':
+   kind==='TRAINER'&&bitIndex!==null?'TRAINER_GATE_FLAG_ONLY':
+   kind==='STATIC_POKEMON'&&bitIndex!==null?'ENCOUNTER_GATE_FLAG_ONLY':null;
   const row={
    mapId:map.mapId,kind,ordinal,x,y,rawTextId,textId,
    actorRomMetadata:kind==='ITEM'?{itemId:actor.trainerClassOrItemId??null}:
@@ -90,8 +115,12 @@ function auditWorldScriptReferences({rom,profile}={}){
    }:null,
    martStaticItemIds:evidence.mart?.verified===true?
     evidence.mart.itemIds:null,
-   eventBitIndex:trainer?.eventBitIndex??stationary?.eventBitIndex??null,
-   eventBitBindingVerified:!!(trainer||stationary),
+   eventBitIndex:bitIndex,
+   eventBitBindingVerified:bitIndex!==null,
+   eventBitBindingSource:flagSource,
+   eventBitMeaning:flagMeaning,
+   eventFlagSet:null,
+   eventFlagSnapshotVerified:false,
    conditionsFullyDecoded:false,scriptEffectsVerified:false,
    effectBranchesVerified:false,interactionExecuted:false,
    accessibleNow:null,alreadyCompleted:null,
@@ -193,6 +222,9 @@ function auditWorldScriptReferences({rom,profile}={}){
     distinctIndirectByPc.set(x.jumpPc,x);
   }
  const indirectProofs=[...distinctIndirectByPc.values()];
+ if(bindingConflicts.length)
+  return invalid('Conflito de bit entre cabecalho ROM e script especial: '+
+   JSON.stringify(bindingConflicts.slice(0,8)));
  if(world.length!==MAP_IDS||mapScriptPointers!==NORMAL_MAPS||
     unresolvedMapIDs!==MAP_IDS-NORMAL_MAPS||all.length!==EXPECTED_REFERENCES||
     byKind.SIGN!==202||byKind.NPC!==472||byKind.TRAINER!==334||
@@ -204,6 +236,15 @@ function auditWorldScriptReferences({rom,profile}={}){
    resolvedTextPointers,unresolvedTextPointers:all.length-resolvedTextPointers,
    linearTextPrograms,nonLinearOrUnknown,martInventoryLists,
    commandCounts,unresolvedReasons,
+   trainerEventFlagBindings:all.filter(x=>
+    x.kind==='TRAINER'&&x.eventBitBindingVerified).length,
+   stationaryEventFlagBindings:all.filter(x=>
+    x.kind==='STATIC_POKEMON'&&x.eventBitBindingVerified).length,
+   specialTrainerEventFlagBindings:all.filter(x=>
+    x.kind==='TRAINER'&&['SHA_AUDITED_CHECKEVENT_SPECIAL',
+     'SHA_AUDITED_GUARDED_BATTLE_SCRIPT'].includes(x.eventBitBindingSource)).length,
+   trainerEventFlagBindingsMissing:all.filter(x=>
+    x.kind==='TRAINER'&&!x.eventBitBindingVerified).length,
    asmTextReferences:all.filter(x=>x.scriptCommand==='TX_START_ASM').length,
    uniqueAsmEntrypoints:asmEntrypoints.size,
    asmEntrypointsLocated:all.filter(x=>x.asmCandidate?.verified===true).length,
