@@ -145,6 +145,16 @@ for(const [variant,key] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'
   assert.equal(s.rom0TargetsWithWorldOrigins,59);
   assert.equal(s.rom0Intermediate128LimitHits,3);
   assert.equal(s.rom0WholeBankPasses,3);
+  const expectedThirdPass=variant==='green'?
+   [[0x193c,190],[0x2bcd,184],[0x31b3,137]]:
+   [[0x1955,190],[0x2be6,184],[0x31cc,137]];
+  const actualThirdPass=scripts.fixedRom0BranchEvidence
+   .filter(x=>x.thirdPassApplied)
+   .map(x=>[x.targetCpu,x.opcodeCandidateCount])
+   .sort((x,y)=>x[0]-y[0]);
+  assert.deepEqual(actualThirdPass,expectedThirdPass);
+  assert.equal(s.rom0ThirdPassAdditionalCandidateInstructions,127);
+  assert.equal(s.rom0OpcodeCandidateInstructions,1735);
   assert.equal(s.rom0WholeBankResidualLimits,0);
   assert.equal(s.rom0StillBudgetLimited,0);
   assert.equal(s.rom0StaticCandidateWalkExhausted,59);
