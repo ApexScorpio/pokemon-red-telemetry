@@ -67,4 +67,36 @@ function inspectFixedRom0Target({rom,targetCpu,budget=24}={}){
   source:'ROM0_PHYSICAL_BYTES_BOUNDED_CPU_CANDIDATES',
   warning:'Fixed ROM0 address and candidate opcodes only. No execution, RAM flags, switchable bank state or script effect proven'};
 }
-module.exports={inspectFixedRom0Target};
+// A second, deeper pass is triggered only for genuinely budget-limited
+// fixed-bank candidates. This reduces uninspected code-candidate paths,
+// not uncertainty about actual execution, banks, flags, or game effects.
+function inspectFixedRom0TargetAdaptive({
+ rom,targetCpu,initialBudget=24,deepBudget=128
+}={}){
+ if(!Number.isInteger(initialBudget)||!Number.isInteger(deepBudget)||
+    initialBudget<1||deepBudget<=initialBudget||deepBudget>128)
+  return fail('ROM0 adaptive scan budgets invalid');
+ const baseline=inspectFixedRom0Target({rom,targetCpu,budget:initialBudget});
+ if(baseline.verified!==true)return baseline;
+ const expanded=baseline.limitReached===true;
+ const advanced=expanded?
+  inspectFixedRom0Target({rom,targetCpu,budget:deepBudget}):baseline;
+ if(advanced.verified!==true)return advanced;
+ if(advanced.opcodeCandidateCount<baseline.opcodeCandidateCount||
+    advanced.candidateInstructionBytes<baseline.candidateInstructionBytes||
+    advanced.candidateDecodeProblems<baseline.candidateDecodeProblems||
+    advanced.unfollowedCalls<baseline.unfollowedCalls)
+  return fail('Expanded ROM0 candidate scan contradicted first pass');
+ return {...advanced,initialBudget,
+  maxInstructionsBudget:expanded?deepBudget:initialBudget,
+  firstPassLimitReached:baseline.limitReached,
+  firstPassCandidateInstructions:baseline.opcodeCandidateCount,
+  candidateExpansionApplied:expanded,
+  additionalCandidateInstructions:
+   advanced.opcodeCandidateCount-baseline.opcodeCandidateCount,
+  residualLimitReached:advanced.limitReached,
+  branchExecuted:false,effectVerified:false,semanticsComplete:false,
+  source:'ROM0_PHYSICAL_BYTES_ADAPTIVE_CPU_CANDIDATES',
+  warning:'ROM0 physical opcode candidates only. Expansion does not prove gameplay execution, active ROMX bank, RAM flags or script effects'};
+}
+module.exports={inspectFixedRom0Target,inspectFixedRom0TargetAdaptive};
