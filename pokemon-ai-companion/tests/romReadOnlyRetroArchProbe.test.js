@@ -7,12 +7,13 @@ const {probeReadOnlyRetroArch,parseStatus,parseMemory,privateIpv4}
 const world=Buffer.alloc(784);
 world[336]=0x03;world[350]=0x40;world[423]=0xaa;world[742]=0x80;
 function mockServer({crc='9F7FDD53',mutation=false,changeMap=false,
- changePosition=false,contentless=false}={}){
+ changePosition=false,contentless=false,dropAll=false}={}){
  const socket=dgram.createSocket('udp4'),commands=[];
  let statusCount=0;
  socket.on('message',(packet,remote)=>{
   const cmd=packet.toString('ascii');
   commands.push(cmd);
+  if(dropAll)return;
   let reply=null;
   if(cmd==='GET_STATUS'){
    statusCount++;
@@ -128,9 +129,12 @@ test('contentless or CRC outside the three known ROMs never reads RAM',async()=>
 test('invalid address or timeout is reported without claiming a live session',async()=>{
  const invalid=await probeReadOnlyRetroArch({host:'8.8.8.8'});
  assert.equal(invalid.status,'PROBE_TARGET_NOT_PRIVATE_OR_INVALID');
- const noReply=await probeReadOnlyRetroArch({
-  host:'127.0.0.1',port:65533,timeoutMs:300
+ await withMock({dropAll:true},async m=>{
+  const noReply=await probeReadOnlyRetroArch({
+   host:'127.0.0.1',port:m.port,timeoutMs:300
+  });
+  assert.equal(noReply.verified,false);
+  assert.equal(noReply.status,'RETROARCH_UDP_NO_REPLY');
+  assert.deepEqual(m.commands,['GET_STATUS']);
  });
- assert.equal(noReply.verified,false);
- assert.equal(noReply.status,'RETROARCH_UDP_NO_REPLY');
 });
