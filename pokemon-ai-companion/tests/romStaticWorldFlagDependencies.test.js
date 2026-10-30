@@ -38,6 +38,21 @@ test('cross-map same-bit SET and TEST yield only a causal candidate link',()=>{
  assert.equal(a.summary.trustedCausalLinks,0);
  assert.equal(a.eventsCompletedCertified,false);
 });
+test('compact map storage builds same dependencies as flat original audit',()=>{
+ const input=syntheticAtlas();
+ const flat=buildStaticWorldFlagDependencies({atlas:input});
+ const maps=Array.from({length:248},(_,mapId)=>({mapId,interactions:[]}));
+ for(const row of input.references)maps[row.mapId].interactions.push(row);
+ const compact={verified:true,romSha256:KNOWN.red,
+  summary:{referencedInteractions:1126},maps};
+ const result=buildStaticWorldFlagDependencies({atlas:compact});
+ assert.equal(result.verified,true,result.reason);
+ assert.deepEqual(result.candidateLinks,flat.candidateLinks);
+ assert.deepEqual(result.summary,flat.summary);
+ const broken={...compact,maps:[...maps]};
+ broken.maps[5]={mapId:6,interactions:maps[5].interactions};
+ assert.equal(buildStaticWorldFlagDependencies({atlas:broken}).verified,false);
+});
 test('missing exact ROM identity or forged event evidence fails closed',()=>{
  assert.equal(buildStaticWorldFlagDependencies({}).verified,false);
  const unknown=syntheticAtlas();unknown.romSha256='f'.repeat(64);
@@ -57,11 +72,10 @@ for(const [name,env] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
   const p=inspectRomBuffer(rom,name+'.gb');
   assert.equal(p.hash.sha256,KNOWN[name]);
   const a=p.world.interactionScriptAtlas;
-  // Persisted profiles intentionally store the 248 per-map lists instead of
-  // a duplicate global reference array and a potentially large cross-map graph.
-  // Build its candidate links on demand from the verified map rows.
-  const graph=buildStaticWorldFlagDependencies({atlas:{...a,
-   references:a.maps.flatMap(m=>m.interactions||[])}});
+  // The production API must accept compact profiles directly, without
+  // allocating or persisting a duplicate flat 1126-reference world array.
+  assert.equal(a.references,undefined);
+  const graph=buildStaticWorldFlagDependencies({atlas:a});
   assert.equal(a.verified,true);
   assert.equal(graph.verified,true,graph.reason);
   assert.equal(graph.romSha256,p.hash.sha256);
