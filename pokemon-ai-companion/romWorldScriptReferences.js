@@ -7,7 +7,7 @@ const crypto=require('node:crypto');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
 const {inspectTxAsmHandlerAdaptive}=require('./romTxAsmHandlerAtlas');
-const {inspectFixedRom0Target}=require('./romFixedBankReferenceEvidence');
+const {inspectFixedRom0TargetAdaptive}=require('./romFixedBankReferenceEvidence');
 const MAP_IDS=248,NORMAL_MAPS=226,EXPECTED_REFERENCES=1126;
 const BY_KIND=Object.freeze({
  SIGN:'signs',NPC:'npcs',TRAINER:'trainers',
@@ -147,12 +147,12 @@ function auditWorldScriptReferences({rom,profile}={}){
   for(const pc of graph.rom0BranchTargetCpus||[]){
    rom0BranchDistinct.add(pc);
    if(!rom0Targets.has(pc))
-    rom0Targets.set(pc,inspectFixedRom0Target({rom,targetCpu:pc}));
+    rom0Targets.set(pc,inspectFixedRom0TargetAdaptive({rom,targetCpu:pc}));
   }
   for(const pc of graph.rom0CallTargetCpus||[]){
    rom0CallDistinct.add(pc);
    if(!rom0Targets.has(pc))
-    rom0Targets.set(pc,inspectFixedRom0Target({rom,targetCpu:pc}));
+    rom0Targets.set(pc,inspectFixedRom0TargetAdaptive({rom,targetCpu:pc}));
   }
  }
  const rom0Evidence=[...rom0Targets.values()];
@@ -198,6 +198,12 @@ function auditWorldScriptReferences({rom,profile}={}){
    rom0DecodeProblems:rom0Evidence.reduce(
     (n,x)=>n+(x.candidateDecodeProblems||0),0),
    rom0StillBudgetLimited:rom0Evidence.filter(x=>x.limitReached===true).length,
+   rom0FirstPassLimitHits:rom0Evidence.filter(x=>x.firstPassLimitReached===true).length,
+   rom0ExpandedTargets:rom0Evidence.filter(x=>x.candidateExpansionApplied===true).length,
+   rom0AdditionalCandidateInstructions:rom0Evidence.reduce(
+    (n,x)=>n+(x.additionalCandidateInstructions||0),0),
+   rom0ExpandedStillLimited:rom0Evidence.filter(x=>
+    x.candidateExpansionApplied===true&&x.residualLimitReached===true).length,
    rom0EffectSemanticsCertified:0,
    asmUnresolvedReasonCounts:aggregateAsmCounts('unresolvedReasonCounts'),
    asmUnfollowedCallClasses:aggregateAsmCounts('callClassCounts'),
