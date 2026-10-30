@@ -10,7 +10,7 @@ const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
 
-const JOB='PSB-20261030-1030-POKEGUIDE-ASM626-004';
+const JOB='PSB-20261030-1054-POKEGUIDE-ASM626-004';
 const BASE='D:\\Pokeguide';
 const ROOT=path.join(BASE,'_qa');
 const HISTORY=path.join(BASE,'HISTORICO_BRIDGE_VALIDACOES.md');
