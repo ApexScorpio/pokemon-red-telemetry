@@ -96,6 +96,14 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
     scriptTextPointerVerified:romScript?.textPointerVerified===true,
     scriptStaticText:romScript?.staticText??null,
     scriptAsmCandidate:romScript?.asmCandidate??null,
+    // Exact ROM/script event bits may be used by the separate live RAM
+    // ledger. A static bit binding does not tell whether the bit is set.
+    scriptEventBitIndex:romScript?.eventBitBindingVerified===true?
+     romScript.eventBitIndex:null,
+    scriptEventBitBindingVerified:romScript?.eventBitBindingVerified===true,
+    scriptEventBitBindingSource:romScript?.eventBitBindingSource??null,
+    scriptEventBitMeaning:romScript?.eventBitMeaning??null,
+    scriptEventFlagSet:null,
     scriptEffectSemanticsVerified:false,
     predictedOutcomeVerified:false,
     joinProven:!!proof,
