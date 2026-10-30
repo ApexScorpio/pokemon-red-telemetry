@@ -4,6 +4,7 @@ const {findStaticWarpRoute}=require('./romWarpGraph');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {buildWorldContentsIndex,getMapContents}=require('./romWorldContentsIndex');
 const {buildMapChecklist}=require('./romWorldChecklist');
+const {buildCampaignWorldTracker}=require('./romCampaignWorldTracker');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -157,6 +158,10 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  const worldIndex=buildWorldContentsIndex(profile);
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
+ const campaign=worldIndex.verified?buildCampaignWorldTracker({
+   index:worldIndex,evidenceByMap:[{verified:true,mapId,romSha256:hash,
+     observations,hiddenFlagsVerified:hiddenFlagsVerified===true}]
+ }):null;
  const mapChecklist=worldIndex.verified?buildMapChecklist({
    index:worldIndex,mapId,
    advisor:{verified:true,mapId,romSha256:hash,observations,
@@ -164,6 +169,8 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  }):null;
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
    mapStaticInventory,mapChecklist,
+   campaignSummary:campaign?.verified===true?campaign.summary:null,
+   campaignGlobalCompletionVerified:false,
    fullWorldStaticIndexVerified:worldIndex.verified,
    fullWorldStaticTotals:worldIndex.verified?worldIndex.totals:null,
    position:positionVerified?position:null,observations,
