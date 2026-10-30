@@ -6,6 +6,7 @@
 const crypto=require('node:crypto');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
+const {buildStaticWorldFlagDependencies}=require('./romStaticWorldFlagDependencies');
 const {inspectTxAsmHandlerAdaptive}=require('./romTxAsmHandlerAtlas');
 const {inspectFixedRom0TargetAdaptive}=require('./romFixedBankReferenceEvidence');
 const {SPECIAL_SCRIPT_EVENTS,GUARDED_SPECIAL_BATTLES}=require('./romTrainerEvents');
@@ -257,7 +258,7 @@ function auditWorldScriptReferences({rom,profile}={}){
     byKind.SIGN!==202||byKind.NPC!==472||byKind.TRAINER!==334||
     byKind.ITEM!==106||byKind.STATIC_POKEMON!==12)
   return invalid('Inventario de 1126 interacoes da ROM nao fecha');
- return {verified:true,romSha256:sha,maps:world,references:all,
+ const output={verified:true,romSha256:sha,maps:world,references:all,
   summary:{mapIds:MAP_IDS,normalMaps:NORMAL_MAPS,unresolvedMapIDs,
    mapScriptPointers,referencedInteractions:all.length,byKind,
    resolvedTextPointers,unresolvedTextPointers:all.length-resolvedTextPointers,
@@ -368,5 +369,14 @@ function auditWorldScriptReferences({rom,profile}={}){
    'A lista de loja e estaticamente extraida; compras nao sao confirmadas',
    'Enderecos WRAM diretos sao candidatos estaticos, nao prova de execucao'],
   source:'SHA_AUDITED_ROM_ALL_MAP_OBJECT_TEXT_REFERENCES'};
+ const links=buildStaticWorldFlagDependencies({atlas:output});
+ if(links.verified!==true)
+  return invalid('World flag dependency candidate graph invalid: '+links.reason);
+ output.staticWorldFlagDependencies=links;
+ output.summary.staticFlagCandidateLinks=links.summary.totalPotentialLinks;
+ output.summary.staticFlagCandidateCrossMapLinks=links.summary.crossMapPotentialLinks;
+ output.summary.staticFlagKeysReferenced=links.summary.bitKeysReferenced;
+ output.summary.staticFlagCausalLinksVerified=0;
+ return output;
 }
 module.exports={auditWorldScriptReferences};
