@@ -131,13 +131,14 @@ async function probeReadOnlyRetroArch({
    });
   return {verified:true,status:'REMOTE_RAM_FLAGS_REPEAT_CORROBORATED',
    variant:initial.variant,activeRomCRC32:initial.crc32,
+   romProfileCRC32Matched:true,activeRomSha256Verified:false,
    mapId:parseInt(firstMap[0],16),matchedFlagBytes:336,
    mapRepeated:true,positionRepeated:true,
    readOnlyRequests:sent.length,
    playerActionConfirmed:false,snapshotAtomicVerified:false,
    gameEffectsCertified:false,
    source:'RETROARCH_UDP_READ_ONLY_DIRECT',
-   note:'Duas leituras iguais nao demonstram snapshot atomico, resultado de batalhas ou scripts'};
+   note:'CRC32 identifica a correspondencia com o perfil local, nao prova SHA256 da ROM em execucao. Duas leituras iguais nao demonstram snapshot atomico, resultado de batalhas ou scripts'};
  }catch(error){
   return fail(error?.message==='UDP_READ_TIMEOUT'?
    'RETROARCH_UDP_NO_REPLY':
