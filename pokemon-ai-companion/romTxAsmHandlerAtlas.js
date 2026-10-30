@@ -71,6 +71,12 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
  for(const u of unresolved)reasons[u.reason]=(reasons[u.reason]||0)+1;
  const callClasses={};
  for(const c of callTargets)callClasses[c.mapping]=(callClasses[c.mapping]||0)+1;
+ const rom0BranchTargetCpus=[...new Set(unresolved.filter(u=>
+  u.reason==='ROM0_OUTSIDE_LOCAL_GRAPH'&&
+  Number.isInteger(u.targetCpu)&&u.targetCpu>=0&&u.targetCpu<0x4000)
+  .map(u=>u.targetCpu))].sort((a,b)=>a-b);
+ const rom0BranchTargetOccurrences=unresolved.filter(u=>
+  u.reason==='ROM0_OUTSIDE_LOCAL_GRAPH').length;
  const instructionBytes=record.reduce((n,r)=>n+r.size,0);
  return {verified:true,bank,txAsmFileOffset:fileOffset,
   handlerStartOffset:startOffset,cpu:rootCpu,
@@ -81,6 +87,8 @@ function inspectTxAsmHandler({rom,fileOffset,maxInstructions=64}={}){
   callsNotFollowed:callTargets.length,
   unresolvedBranchTargets:unresolved.length,
   unresolvedReasonCounts:reasons,callClassCounts:callClasses,
+  rom0BranchTargetCpus,rom0BranchTargetOccurrences,
+  rom0PhysicalAddressOnly:true,
   limitReached,queueRemaining:queue.length,
   sampledOpcodes:record.slice(0,6),
   callTargets:callTargets.slice(0,12),
