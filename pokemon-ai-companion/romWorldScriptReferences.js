@@ -30,7 +30,7 @@ function auditWorldScriptReferences({rom,profile}={}){
   return invalid('SHA exato, atlas de 248 IDs e 226 cabecalhos nao concordam');
  const all=[],world=[],bindingConflicts=[],
   byKind=Object.fromEntries(Object.keys(BY_KIND).map(x=>[x,0]));
- const commandCounts={},unresolvedReasons={};
+ const commandCounts={},dispatchClassCounts={},unresolvedReasons={};
  const aggregateAsmCounts=(property)=>{
   const totals={};
   for(const graph of asmEntrypoints.values())
@@ -52,6 +52,8 @@ function auditWorldScriptReferences({rom,profile}={}){
    unresolvedReasons[evidence.reason||'UNKNOWN']=(unresolvedReasons[evidence.reason||'UNKNOWN']||0)+1;
   }
   commandCounts[command]=(commandCounts[command]||0)+1;
+  const dispatchClass=textPointerVerified?evidence.dispatchClass:'UNRESOLVED';
+  dispatchClassCounts[dispatchClass]=(dispatchClassCounts[dispatchClass]||0)+1;
   const preview=evidence.staticTextPreview?.verified===true?
     evidence.staticTextPreview:null;
   if(preview?.program?.verified===true&&preview.program.scriptComplete===true)
@@ -101,6 +103,10 @@ function auditWorldScriptReferences({rom,profile}={}){
     kind==='STATIC_POKEMON'?{speciesInternalId:actor.wildSpeciesInternalId??null,
       level:actor.wildLevel??null}:null,
    textPointerVerified,scriptCommand:command,
+   scriptDispatchClass:dispatchClass,
+   scriptDispatchOpcodeVerified:evidence.dispatchOpcodePhysicallyVerified===true,
+   scriptDispatchCodeSemanticsVerified:false,
+   scriptDispatchOutcomeVerified:false,
    asmCandidate,
    asmDirectWramReadCandidates:asmCandidate?.directWramReadCandidateCount??0,
    asmDirectWramWriteCandidates:asmCandidate?.directWramWriteCandidateCount??0,
@@ -252,7 +258,7 @@ function auditWorldScriptReferences({rom,profile}={}){
    mapScriptPointers,referencedInteractions:all.length,byKind,
    resolvedTextPointers,unresolvedTextPointers:all.length-resolvedTextPointers,
    linearTextPrograms,nonLinearOrUnknown,martInventoryLists,
-   commandCounts,unresolvedReasons,
+   commandCounts,dispatchClassCounts,unresolvedReasons,
    trainerEventFlagBindings:all.filter(x=>
     x.kind==='TRAINER'&&x.eventBitBindingVerified).length,
    stationaryEventFlagBindings:all.filter(x=>
