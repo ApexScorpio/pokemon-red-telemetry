@@ -703,9 +703,19 @@ function formatCampaignChecklistSection(advice) {
       (action.kind==='HIDDEN_ITEM'?' · índice evento #':' · ID objeto #')+id:'';
     const condition=typeof action.routeCondition==='string'?
       ' · hipótese de caminho: '+action.routeCondition:'';
+    const entry=action.scriptReferenceBound===true?
+      ' · entrada script ROM: '+(action.scriptCommand||'não classificada')+
+        (action.scriptTextPointerVerified===true?' (ponteiro válido)':
+         ' (ponteiro por resolver)')+
+        ' · efeito não certificado':'';
+
     lines.push('• '+type+' ('+position+')'+identity+' — '+
-      (progress[action.progress]||'progresso por confirmar')+condition);
+      (progress[action.progress]||'progresso por confirmar')+condition+entry);
   }
+  if(campaign.scriptReferencesBound>0)
+    lines.push('🧩 Referências de scripts ROM ligadas a objetos do mundo: '+
+      campaign.scriptReferencesBound+
+      ' (o efeito/ramificações NÃO estão integralmente descodificados).');
   lines.push('⚠️ Objetos ROM não provam presença atual. Cut/Surf não provam acesso; '+
     'NPCs, treinadores e scripts requerem evidência independente.');
   return lines;
