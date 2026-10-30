@@ -182,3 +182,23 @@ test('advisor carries exact hidden event index to prevent a wrong RAM bit joinin
   isCollected:true}]});
  assert.equal(unknown.observations.find(o=>o.kind==='HIDDEN_ITEM').hiddenIndex,null);
 });
+
+test('campaign observations are counted only when map/position RAM window is confirmed',()=>{
+ const reserved=new Set([11,105,106,107,109,110,111,112,114,115,116,117,
+  204,205,206,231,237,238,241,242,243,244]);
+ const p=fakeProfile();
+ p.world.maps.validMapHeaders=226;
+ p.world.maps.data=Array.from({length:248},(_,mapId)=>({
+  mapId,valid:!reserved.has(mapId),
+  objects:{warps:[],signs:[],objects:[]}
+ }));
+ const absent=adviseWorld({profile:p,mapId:15,positionVerified:false});
+ assert.equal(absent.verified,true);
+ assert.equal(absent.campaignCurrentMapConfirmed,false);
+ assert.equal(absent.campaignSummary.observedMapCount,0);
+ const checked=adviseWorld({profile:p,mapId:15,positionVerified:true});
+ assert.equal(checked.verified,true);
+ assert.equal(checked.campaignCurrentMapConfirmed,true);
+ assert.equal(checked.campaignSummary.observedMapCount,1);
+ assert.equal(checked.campaignGlobalCompletionVerified,false);
+});
