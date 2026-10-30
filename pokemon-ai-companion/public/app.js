@@ -874,6 +874,16 @@ function renderWorldAdvisor(state) {
         ', '+c.possibleWriteOpcode+') ⇢ mapa #'+c.possibleReaderMapId+
         ' (interação '+c.possibleReaderKind+' #'+c.possibleReaderOrdinal+
         ', teste de bit).');
+      if(c.referenceNameSource==='pret/pokered'&&
+         c.referenceNameIsRomIntrinsic===false&&
+         typeof c.referenceEventName==='string'&&
+         typeof c.writerReferenceMapName==='string'&&
+         typeof c.readerReferenceMapName==='string'){
+        hints.push('  ↳ Rótulos de referência pret/pokered: '+
+          c.referenceEventName+' · '+c.writerReferenceMapName+
+          ' ⇢ '+c.readerReferenceMapName+
+          '. Nomes EXTERNOS à ROM, não prova de evento realizado.');
+      }
       const gate=c.readerBranchCondition;
       if(c.readerConditionalDirectionVerified===true&&
          gate?.verified===true&&
