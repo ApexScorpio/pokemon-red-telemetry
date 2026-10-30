@@ -9,12 +9,24 @@ const KINDS=Object.freeze({
 });
 const ACTIONS=Object.keys(KINDS);
 const validId=n=>Number.isInteger(n)&&n>=0&&n<=247;
-function buildMapChecklist({index,mapId,advisor=null}={}){
+function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null}={}){
  const entry=getMapContents(index,mapId);
  if(entry.verified!==true)
   return {verified:false,mapId,reason:entry.reason||'Mapa sem cabecalho normal confirmado',
    unresolvedHiddenReferences:entry.unassignedHiddenItems||[],actions:[]};
  const hash=index.romSha256;
+ const scriptMap=scriptAtlas?.verified===true&&
+  scriptAtlas.romSha256===hash&&
+  Array.isArray(scriptAtlas.maps)&&scriptAtlas.maps.length===248&&
+  scriptAtlas.maps[mapId]?.verified===true?
+  scriptAtlas.maps[mapId]:null;
+ const matchingScript=(kind,obj)=>{
+  if(!scriptMap||kind==='HIDDEN_ITEM')return null;
+  const matches=scriptMap.interactions.filter(s=>s.kind===kind&&
+   s.ordinal===obj.ordinal&&s.x===obj.x&&s.y===obj.y&&
+   s.rawTextId===obj.textId);
+  return matches.length===1?matches[0]:null;
+ };
  const advisorMatches=advisor?.verified===true&&advisor.mapId===mapId&&
   advisor.romSha256===hash&&Array.isArray(advisor.observations);
  // One-to-one matching only. Two observations sharing a position are ambiguous.
@@ -74,9 +86,15 @@ function buildMapChecklist({index,mapId,advisor=null}={}){
        'POSSIBLE_STRENGTH_BARRIER','CONDITIONAL_PATH',
        'NO_SAME_MAP_PATH'].includes(proof.accessStatus))
     routeCondition=proof.accessStatus;
+   const romScript=matchingScript(kind,obj);
    rows.push({group,kind,ordinal:obj.ordinal??obj.hiddenIndex??null,
     x:obj.x,y:obj.y,staticObject:obj,progress,evidence,
     routeCondition,accessibleNow:null,completedNow:null,
+    scriptReferenceBound:!!romScript,
+    scriptCommand:romScript?.scriptCommand??null,
+    scriptTextPointerVerified:romScript?.textPointerVerified===true,
+    scriptStaticText:romScript?.staticText??null,
+    scriptEffectSemanticsVerified:false,
     predictedOutcomeVerified:false,
     joinProven:!!proof,
     requiresLiveScripts:true});
@@ -90,7 +108,9 @@ function buildMapChecklist({index,mapId,advisor=null}={}){
    confirmedNotCollected:rows.filter(r=>r.progress==='NOT_COLLECTED_CONFIRMED_FLAG').length,
    needsCutCandidates:rows.filter(r=>r.routeCondition==='NEEDS_CUT').length,
    needsSurfCandidates:rows.filter(r=>r.routeCondition==='NEEDS_SURF').length,
-   progressUnverified:rows.filter(r=>r.progress==='NOT_PROVEN').length},
+   progressUnverified:rows.filter(r=>r.progress==='NOT_PROVEN').length,
+   scriptReferencesBound:rows.filter(r=>r.scriptReferenceBound).length},
+  scriptAtlasBound:scriptMap!==null,
   routeCertainty:'LOCAL_GEOMETRY_ONLY',
   globalStateCertified:false};
 }
