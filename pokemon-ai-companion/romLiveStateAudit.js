@@ -12,11 +12,18 @@ const result=(status,extra={})=>({
  status,liveGameCertified:false,playerActionConfirmed:false,
  atomicMemorySnapshotCertified:false,...extra
 });
-function classifyLiveWorldState(state){
+function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
  if(!state||typeof state!=='object'||Array.isArray(state))
   return result('STATE_INVALID');
  if(state.isSimulation===true)return result('SIMULATION_REJECTED');
  if(state.connected!==true)return result('BACKEND_NOT_CONNECTED_TO_GAME');
+ // 'connected' may be left over from a previous poll. Never label
+ // stale cached telemetry as a current live game observation.
+ const timestamp=Date.parse(state.lastUpdate||'');
+ if(!Number.isFinite(timestamp)||!Number.isFinite(nowMs)||
+    !Number.isInteger(maxAgeMs)||maxAgeMs<1000||
+    timestamp>nowMs+2000||nowMs-timestamp>maxAgeMs)
+  return result('STATE_TIMESTAMP_NOT_CURRENT');
  const identity=state.romRuntimeIdentity||{};
  const sha=String(identity.profileSha256||'').toLowerCase();
  if(identity.matched!==true||!KNOWN.has(sha))
