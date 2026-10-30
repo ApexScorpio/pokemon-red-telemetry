@@ -9,7 +9,7 @@ const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
  itemAccess=null,itemAccessInputs=[],hiddenStartIndex=0,
- positionVerified=false,worldFlagLedger=null}={}){
+ positionVerified=false,worldFlagLedger=null,globalFlagReadback=null}={}){
 
  const hash=profile?.hash?.sha256;
  const maps=profile?.world?.maps;
@@ -183,6 +183,12 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    worldwideEncounterGatesOpen:campaign?.summary?.verifiedEncounterGatesOpen??0,
    worldwideScriptEventBitStatesVerified:campaign?.summary?.verifiedScriptEventFlagStates??0,
    worldEventFlagSnapshotMatched:campaign?.globalEventFlagSnapshotMatched===true,
+   globalFlagReadbackVerified:globalFlagReadback?.verified===true,
+   globalFlagReadbackMatchedBytes:globalFlagReadback?.verified===true?
+     globalFlagReadback.readbackBytesMatched:0,
+   globalFlagReadbackReason:globalFlagReadback?.verified===true?null:
+     globalFlagReadback?.reason||'A segunda leitura RAM ainda nao foi corroborada',
+   globalFlagSnapshotAtomicVerified:false,
    romScriptReferenceIndexVerified:campaign?.scriptAtlasBound===true,
    campaignGlobalCompletionVerified:false,
    fullWorldStaticIndexVerified:worldIndex.verified,
