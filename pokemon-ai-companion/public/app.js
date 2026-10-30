@@ -848,6 +848,37 @@ function renderWorldAdvisor(state) {
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(insertion>=0)lines.splice(insertion,0,...campaignLines,'');
   }
+  // Shared ROM opcode bits are a lead for research, NOT evidence that an
+  // action will unlock another map. Never attach a completion/access status.
+  if(advice.romStaticFlagCandidatesVerified===true&&
+     Array.isArray(advice.romStaticFlagCandidates)&&
+     advice.romStaticFlagCausalEffectsVerified===false&&
+     advice.romStaticFlagCandidates.length>0&&
+     advice.romStaticFlagCandidates.length<=100){
+    const hints=[
+      '--- RELAÇÕES ENTRE MAPAS: PISTAS ESTÁTICAS DA ROM ---',
+      advice.romStaticFlagCandidates.length+
+        ' candidatos neste mapa ('+
+        (advice.romStaticFlagCandidatesWorldTotal??'?')+
+        ' na ROM); NENHUMA dependência causal certificada.'
+    ];
+    for(const c of advice.romStaticFlagCandidates){
+      if(!Number.isInteger(c.bitIndex)||c.bitIndex<0||c.bitIndex>=2560||
+         !Number.isInteger(c.possibleWriterMapId)||
+         !Number.isInteger(c.possibleReaderMapId)||
+         c.verifiedActionDependency!==false||
+         c.causalLinkObserved!==false)continue;
+      hints.push('• Flag candidata #'+c.bitIndex+
+        ': mapa #'+c.possibleWriterMapId+
+        ' (interação '+c.possibleWriterKind+' #'+c.possibleWriterOrdinal+
+        ', '+c.possibleWriteOpcode+') ⇢ mapa #'+c.possibleReaderMapId+
+        ' (interação '+c.possibleReaderKind+' #'+c.possibleReaderOrdinal+
+        ', teste de bit).');
+    }
+    hints.push('⚠️ Mesma flag na ROM NÃO comprova sequência, condição, recompensa ou desbloqueio.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion>=0)lines.splice(insertion,0,...hints);
+  }
   const globalOverlap=state.romOutdoorOverlapIndex;
   if(globalOverlap?.verified===true&&
      globalOverlap.romSha256===advice.romSha256&&
