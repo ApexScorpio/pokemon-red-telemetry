@@ -112,6 +112,10 @@ function auditWorldScriptReferences({rom,profile}={}){
    asmDirectWramWriteCandidates:asmCandidate?.directWramWriteCandidateCount??0,
    asmWramPointerLiteralCandidates:asmCandidate?.wramPointerLiteralCount??0,
    asmMemoryEffectExecuted:false,
+   asmRomFlagBitTestCandidates:asmCandidate?.adjacentRomFlagBitTests??0,
+   asmRomFlagBitSetCandidates:asmCandidate?.adjacentRomFlagBitSetCandidates??0,
+   asmRomFlagBitResetCandidates:asmCandidate?.adjacentRomFlagBitResetCandidates??0,
+   asmEventFlagBitsExecuted:false,
    scriptFileOffset:textPointerVerified?evidence.textFileOffset:null,
    textPointerCpu:textPointerVerified?evidence.textPointerCpu:null,
    indirectTextTarget:evidence.far?.verified===true?{
