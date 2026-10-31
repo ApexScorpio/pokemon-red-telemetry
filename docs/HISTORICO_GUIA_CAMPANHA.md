@@ -1991,3 +1991,10 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - PROVA NESTA FASE: arquivos publicados no GitHub. Testes nativos e auditoria efetiva Red/Blue/Green ainda não executados nesta fase; devem ser confirmados pela LPX PowerShell Bridge. Nenhuma contagem de percursos novos foi inventada.
 - Limites obrigatórios: os caminhos observados são candidatos estáticos; efeitos de scripts, ROMX ativo, saltos indiretos e execução em RAM continuam desconhecidos. O mapeamento integral mantém estado NÃO CERTIFICADO.
 - Proteções: `main`, servidor PID 29624, sessões, Antigravity, TIMI, MAESTRO, BonChat, Codex, ROMs e saves não modificados por esta alteração remota.
+
+
+### 2026-10-31 — ROM0 CALL/RST interprocedimental, fase B
+- `scripts/certifyAsm626.js` passou a executar a nova análise estática interprocedimental para cada ROM Red, Blue e Green International previamente validada, a partir dos 59 destinos ROM0 conhecidos.
+- Novo relatório `ROM_<VARIANT>_ROM0_CALL_CLOSURE` inclui instruções candidatas, chamadas diretas, RST, saltos, destinos ROM0, operações com banco ROMX desconhecido, JP HL, causas de incerteza, fronteira restante e limites atingidos; nunca define efeitos de jogo como verificados.
+- Commit publicado: `0230906522e3806a8e01eb86d6e5d6a5d67ef850`. Certificação Bridge e testes com os três binários reais pendentes de execução; nenhuma contagem nova atribuída sem resultado.
+- `main`, instalação em execução, perfis, tokens, backups, ROMs e saves permanecem fora desta alteração de GitHub.
