@@ -48,7 +48,7 @@ function buildMapNamedEventEvidence({ledger,worldEventAtlas,mapId}={}){
     return refuse('Associação a ator ROM malformada');
    if(actor.mapId===mapId)actors.push({
     kind:actor.kind,ordinal:actor.ordinal,
-    scriptExecuted:false,bitBindingEvidence:actor.bitBindingEvidence
+    scriptExecutionObserved:false,bitBindingEvidence:actor.bitBindingEvidence
    });
   }
   const physical=[];
@@ -60,7 +60,7 @@ function buildMapNamedEventEvidence({ledger,worldEventAtlas,mapId}={}){
     return refuse('Evidência de opcode ROM com mapa desconhecido');
    if(op.referencedMaps.includes(mapId))physical.push({
     operation:op.operation,opcodeFileOffset:op.opcodeFileOffset,
-    instructionExecuted:false,gameplayEffectVerified:false
+    instructionExecutionObserved:false,gameplayEffectVerified:false
    });
   }
   if(!actors.length&&!physical.length)continue;
@@ -70,8 +70,8 @@ function buildMapNamedEventEvidence({ledger,worldEventAtlas,mapId}={}){
    localEvidence:actors.length&&physical.length?'ACTOR_AND_OPCODE':
      actors.length?'ACTOR_HEADER_ONLY':'OPCODE_HANDLER_ONLY',
    actorReferences:actors,romOpcodeReferences:physical,
-   exactEventLocationProven:false,scriptExecuted:false,
-   eventCompleted:false,playerActionConfirmed:false,
+   exactEventLocationProven:false,scriptExecutionObserved:false,
+   eventCompleted:null,playerActionConfirmed:false,
    resultOrRewardCertified:false
   });
  }

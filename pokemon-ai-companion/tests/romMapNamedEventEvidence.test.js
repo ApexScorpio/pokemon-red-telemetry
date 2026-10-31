@@ -42,7 +42,7 @@ test('same bit joins only with mapped actor/ROM handler and never certifies acti
  assert.equal(r.events[0].localEvidence,'ACTOR_AND_OPCODE');
  assert.equal(r.events[0].actorReferences.length,1);
  assert.equal(r.events[0].romOpcodeReferences.length,1);
- assert.equal(r.events[0].eventCompleted,false);
+ assert.equal(r.events[0].eventCompleted,null);
  assert.equal(r.events[0].playerActionConfirmed,false);
  assert.equal(r.events[0].resultOrRewardCertified,false);
  assert.equal(r.summary.mapEventBitCandidates,1);
@@ -115,7 +115,7 @@ for(const [variant,env] of [
    for(const e of result.events){
     assert.ok(e.actorReferences.length+e.romOpcodeReferences.length>0);
     assert.equal(e.flagSet,false);
-    assert.equal(e.eventCompleted,false);
+    assert.equal(e.eventCompleted,null);
     assert.equal(e.playerActionConfirmed,false);
     assert.equal(e.exactEventLocationProven,false);
     seen++;
