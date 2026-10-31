@@ -16,7 +16,10 @@ const AUDITED_CRC=Object.freeze({
 });
 const fail=(status,extra={})=>({verified:false,status,
  playerActionConfirmed:false,snapshotAtomicVerified:false,
- gameEffectsCertified:false,...extra});
+ gameEffectsCertified:false,readOnlyRequests:0,
+ readOnlyRequestsAttempted:0,statusRequestsAttempted:0,
+ memoryReadRequestsAttempted:0,lastAttemptedCommand:null,
+ ...extra});
 function privateIpv4(host){
  if(net.isIP(host)!==4)return false;
  const a=host.split('.').map(Number);
@@ -83,6 +86,17 @@ async function probeReadOnlyRetroArch({
   return fail('PROBE_TARGET_NOT_PRIVATE_OR_INVALID');
  const socket=dgram.createSocket('udp4');
  const sent=[];
+ const tracedFail=(status,extra={})=>fail(status,{
+  readOnlyRequests:sent.length,
+  readOnlyRequestsAttempted:sent.length,
+  statusRequestsAttempted:sent.filter(x=>x==='GET_STATUS').length,
+  memoryReadRequestsAttempted:sent.filter(x=>x==='READ_CORE_MEMORY').length,
+  lastAttemptedCommand:sent.at(-1)??null,
+  probeTargetHost:host,probeTargetPort:port,
+  mbc3SourceReadbackRequested:mbc3SourceReadback,
+  mbc3SourceReadbackVerified:false,
+  ...extra
+ });
  const request=async command=>{
   if(command!=='GET_STATUS'&&
      !/^READ_CORE_MEMORY [0-9A-F]{4} (?:[1-9]|[1-9][0-9]|1[0-5][0-9]|160)$/.test(command))
@@ -104,9 +118,9 @@ async function probeReadOnlyRetroArch({
  };
  try{
   const initial=parseStatus(await request('GET_STATUS'));
-  if(!initial)return fail('RETROARCH_STATUS_INVALID');
-  if(!initial.contentLoaded)return fail('RETROARCH_CONTENTLESS');
-  if(!initial.variant)return fail('ROM_CRC_NOT_IN_AUDITED_SET',
+  if(!initial)return tracedFail('RETROARCH_STATUS_INVALID');
+  if(!initial.contentLoaded)return tracedFail('RETROARCH_CONTENTLESS');
+  if(!initial.variant)return tracedFail('ROM_CRC_NOT_IN_AUDITED_SET',
    {reportedCRC32:initial.crc32});
   const firstMap=await read(0xD35E,1);
   const firstPosition=await read(0xD361,2);
@@ -125,7 +139,7 @@ async function probeReadOnlyRetroArch({
   const lastPosition=await read(0xD361,2);
   const final=parseStatus(await request('GET_STATUS'));
   if(!final||!final.contentLoaded||final.crc32!==initial.crc32)
-   return fail('RETROARCH_CONTENT_OR_CRC_CHANGED',
+   return tracedFail('RETROARCH_CONTENT_OR_CRC_CHANGED',
     {variant:initial.variant});
   const mapVerified=firstMap[0]===lastMap[0];
   const positionVerified=firstPosition.length===2&&
@@ -138,7 +152,7 @@ async function probeReadOnlyRetroArch({
    positionWindowVerified:positionVerified
   });
   if(proof.verified!==true)
-   return fail('REMOTE_RAM_READBACK_REJECTED',{
+   return tracedFail('REMOTE_RAM_READBACK_REJECTED',{
     variant:initial.variant,reason:proof.reason,
     rejectedDomain:proof.domain,positionRepeated:positionVerified,
     mapRepeated:mapVerified
@@ -151,7 +165,7 @@ async function probeReadOnlyRetroArch({
    statusRepeated:initial.mode===final.mode
   }):null;
   if(sourceProof&&sourceProof.verified!==true)
-   return fail('MBC3_SOURCE_RAM_READBACK_REJECTED',{
+   return tracedFail('MBC3_SOURCE_RAM_READBACK_REJECTED',{
     variant:initial.variant,reason:sourceProof.status,
     changedAddresses:sourceProof.changedAddresses??[],
     sourceReadbackPerformed:true,sourceBankVerified:false
@@ -165,6 +179,11 @@ async function probeReadOnlyRetroArch({
    matchedTotalFlagBytes:proof.allFlagBytesMatched,
    mapRepeated:true,positionRepeated:true,
    readOnlyRequests:sent.length,
+   readOnlyRequestsAttempted:sent.length,
+   statusRequestsAttempted:sent.filter(x=>x==='GET_STATUS').length,
+   memoryReadRequestsAttempted:sent.filter(x=>x==='READ_CORE_MEMORY').length,
+   lastAttemptedCommand:sent.at(-1)??null,
+   probeTargetHost:host,probeTargetPort:port,
    mbc3SourceReadbackRequested:mbc3SourceReadback,
    mbc3SourceReadbackVerified:sourceProof?.verified===true,
    mbc3SourceStableBytes:sourceProof?.stableRamBytes??0,
@@ -175,7 +194,7 @@ async function probeReadOnlyRetroArch({
    source:'RETROARCH_UDP_READ_ONLY_DIRECT',
    note:'CRC32 identifica a correspondencia com o perfil local, nao prova SHA256 da ROM em execucao. Duas leituras iguais nao demonstram snapshot atomico, resultado de batalhas ou scripts'};
  }catch(error){
-  return fail(error?.message==='UDP_READ_TIMEOUT'?
+  return tracedFail(error?.message==='UDP_READ_TIMEOUT'?
    'RETROARCH_UDP_NO_REPLY':
    error?.message==='CORE_MEMORY_READ_INVALID_OR_UNAVAILABLE'?
    'RETROARCH_CORE_MEMORY_UNAVAILABLE':'RETROARCH_UDP_READ_ERROR');

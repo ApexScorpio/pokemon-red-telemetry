@@ -172,6 +172,13 @@ test('invalid address or timeout is reported without claiming a live session',as
   });
   assert.equal(noReply.verified,false);
   assert.equal(noReply.status,'RETROARCH_UDP_NO_REPLY');
+  assert.equal(noReply.readOnlyRequests,1);
+  assert.equal(noReply.readOnlyRequestsAttempted,1);
+  assert.equal(noReply.statusRequestsAttempted,1);
+  assert.equal(noReply.memoryReadRequestsAttempted,0);
+  assert.equal(noReply.lastAttemptedCommand,'GET_STATUS');
+  assert.equal(noReply.probeTargetHost,'127.0.0.1');
+  assert.equal(noReply.probeTargetPort,m.port);
   assert.deepEqual(m.commands,['GET_STATUS']);
  });
 });
@@ -209,6 +216,38 @@ test('changed MBC3 RAM source rejects sample without bank inference or save writ
   assert.equal(r.reason,'RAM_SOURCE_READBACK_CHANGED');
   assert.deepEqual(r.changedAddresses,[0xc0ef]);
   assert.equal(r.sourceBankVerified,false);
+  assert.ok(m.commands.every(x=>x==='GET_STATUS'||x.startsWith('READ_CORE_MEMORY ')));
+ });
+});
+
+test('CRC mismatch records one status request and refuses memory access',async()=>{
+ await withMock({crc:'00000000'},async m=>{
+  const result=await probeReadOnlyRetroArch({
+   host:'127.0.0.1',port:m.port,timeoutMs:900,mbc3SourceReadback:true
+  });
+  assert.equal(result.status,'ROM_CRC_NOT_IN_AUDITED_SET');
+  assert.equal(result.readOnlyRequests,1);
+  assert.equal(result.readOnlyRequestsAttempted,1);
+  assert.equal(result.statusRequestsAttempted,1);
+  assert.equal(result.memoryReadRequestsAttempted,0);
+  assert.equal(result.mbc3SourceReadbackRequested,true);
+  assert.equal(result.mbc3SourceReadbackVerified,false);
+  assert.equal(m.commands.length,1);
+  assert.equal(m.commands[0],'GET_STATUS');
+ });
+});
+test('unstable RAM source failure retains truthful read-only request counts',async()=>{
+ await withMock({mutationMbc3Source:true},async m=>{
+  const result=await probeReadOnlyRetroArch({
+   host:'127.0.0.1',port:m.port,timeoutMs:900,mbc3SourceReadback:true
+  });
+  assert.equal(result.status,'MBC3_SOURCE_RAM_READBACK_REJECTED');
+  assert.equal(result.readOnlyRequests,31);
+  assert.equal(result.readOnlyRequestsAttempted,31);
+  assert.equal(result.statusRequestsAttempted,2);
+  assert.equal(result.memoryReadRequestsAttempted,29);
+  assert.equal(result.probeTargetHost,'127.0.0.1');
+  assert.equal(result.probeTargetPort,m.port);
   assert.ok(m.commands.every(x=>x==='GET_STATUS'||x.startsWith('READ_CORE_MEMORY ')));
  });
 });
