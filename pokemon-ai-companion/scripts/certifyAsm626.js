@@ -335,7 +335,12 @@ function main(){
    closure.runtimeEffectsVerified===false&&
    closure.semantic100PercentCertified===false&&
    closure.executedBranchesVerified===false&&
-   closure.activeRomBankKnown===false,
+   closure.activeRomBankKnown===false&&
+   closure.allIndirectRuntimeTargetsVerified===false&&
+   closure.boundedIndirectTables.some(x=>
+    x.jumpPc===(variant==='green'?0x1b5e:0x1b77)&&
+    x.indexBoundExclusive===14&&x.caseTargetsCpu.length===14&&
+    x.runtimeIndexKnown===false),
    'ROM0 CALL closure structural evidence invalid: '+variant);
   log('ROM_'+variant.toUpperCase()+'_ROM0_CALL_CLOSURE='+
    JSON.stringify({
@@ -348,6 +353,17 @@ function main(){
     uniqueRom0CallTargets:closure.distinctRom0CallTargets,
     romxUnknown:closure.unresolvedRomxTransfers,
     indirectJumpsUnknown:closure.indirectJumpsUnknown,
+    literalTables:closure.boundedIndirectTables.map(t=>({
+     jumpPc:t.jumpPc,tableCpu:t.tableCpu,
+     indexBoundExclusive:t.indexBoundExclusive,
+     caseTargetsCpu:t.caseTargetsCpu,
+     alternateNonTableBranchCpu:t.alternateNonTableBranchCpu,
+     runtimeIndexKnown:t.runtimeIndexKnown
+    })),
+    literalTableCaseEdges:closure.boundedIndirectCaseEdges,
+    literalTableFallbackEdges:closure.boundedIndirectFallbackEdges,
+    returnTrampolines:closure.indirectReturnTrampolines,
+    allIndirectRuntimeTargetsVerified:closure.allIndirectRuntimeTargetsVerified,
     unresolvedCounts:closure.unresolvedReasonCounts,
     remainingQueue:closure.remainingQueue,
     budgetExhausted:closure.budgetExhausted,
@@ -665,6 +681,7 @@ function main(){
   'tests/romMappingGapLedger.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
+  'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romGlobalFlagReadback.test.js',
   'tests/romLiveStateAudit.test.js',
