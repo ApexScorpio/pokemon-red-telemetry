@@ -133,3 +133,13 @@ test('original Red Blue Green ROMs compare every decoded map actor and warp',
   assert.equal(result.gameplayEquivalent,null);
   assert.equal(result.gameplayCompletionCertified,false);
  });
+
+test('signs and warps use the original ROM coordinate range minus four to 255',()=>{
+ const r=trio();
+ r.red.maps[0].contents.signs[0].x=-4;
+ r.blue.maps[0].contents.warps[0].y=-2;
+ const x=compareCrossVariantWorldContents(r);
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.decodedMapDifferences,1);
+ assert.deepEqual(x.differingMaps[0].categories,['signs','warps']);
+});

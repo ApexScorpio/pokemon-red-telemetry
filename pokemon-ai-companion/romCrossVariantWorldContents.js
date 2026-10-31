@@ -13,6 +13,7 @@ const fail=reason=>({verified:false,reason,mapsCompared:0,
  differingMaps:[],equalDecodedMaps:0,decodedMapDifferences:0,
  gameplayEquivalent:null,gameplayCompletionCertified:false});
 const byte=x=>Number.isInteger(x)&&x>=0&&x<=255;
+const coord=x=>Number.isInteger(x)&&x>=-4&&x<=255;
 const integerOrNull=x=>x===null||Number.isSafeInteger(x)&&x>=0;
 const unknown=x=>x?.accessibleNow===null&&x.collected===null&&
  x.completed===null&&x.needsCut===null&&x.needsSurf===null;
@@ -34,7 +35,7 @@ function captureList(items,key){
    out.push([e.hiddenIndex,e.x,e.y,e.itemId]);
   }else if(key==='warps'){
    if(!Number.isSafeInteger(e.ordinal)||e.ordinal<=0||
-      !byte(e.x)||!byte(e.y)||!byte(e.destinationMap)||
+      !coord(e.x)||!coord(e.y)||!byte(e.destinationMap)||
       !byte(e.destinationWarp)||
       e.destinationDynamic!==(e.destinationMap===255)||
       e.source!=='ROM_MAP_WARP_BYTES'||!unknown(e))return null;
@@ -43,7 +44,7 @@ function captureList(items,key){
    out.push([e.ordinal,e.x,e.y,e.destinationMap,e.destinationWarp]);
   }else if(key==='signs'){
    if(!Number.isSafeInteger(e.ordinal)||e.ordinal<=0||
-      !byte(e.x)||!byte(e.y)||!byte(e.textId)||
+      !coord(e.x)||!coord(e.y)||!byte(e.textId)||
       e.textMeaningVerified!==false||
       e.source!=='ROM_MAP_SIGN_BYTES'||!unknown(e))return null;
    if(seen.has(e.ordinal))return null;
