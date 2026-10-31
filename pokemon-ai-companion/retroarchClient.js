@@ -600,6 +600,50 @@ class RetroArchClient extends EventEmitter {
     return allBytes;
   }
 
+  // A thrown fetch is NOT a harmless skipped poll. It breaks the
+  // continuity required for per-bit event transition histories.
+  // Fail closed before emitting any stale advice; never edit the emulator,
+  // its save state, the ROM profiles, or another process.
+  invalidateUnexpectedPoll(err){
+    const errorCode=typeof err?.code==='string'&&
+      /^[A-Z][A-Z0-9_]{0,39}$/.test(err.code)?
+      err.code:'UNKNOWN';
+    const reason='UNEXPECTED_RAM_POLL_EXCEPTION_'+errorCode;
+    const attempt=Number.isSafeInteger(this.pollExceptionCount)&&
+      this.pollExceptionCount>=0?this.pollExceptionCount+1:1;
+    this.pollExceptionCount=attempt;
+    this.latestState.connected=false;
+    this.latestState.lastUpdate=null;
+    this.latestState.lastReadError='Leitura RAM interrompida por erro inesperado: '+
+      errorCode+'. Estado mundial anterior recusado.';
+    this.latestState.memoryReadStatus={
+      verified:false,completeness:'selected-address-ranges-only',
+      checkedAt:new Date().toISOString(),
+      globalFlagReadback:{verified:false,reason,
+        readbackBytesMatched:0,toggleBytesMatched:0,
+        allFlagBytesMatched:0,romAndMapCorroborated:false,
+        snapshotAtomicVerified:false,playerActionConfirmed:false},
+      pollException:{count:attempt,errorCode,
+        worldEvidenceDiscarded:true}
+    };
+    this.invalidateWorldEvidence(reason);
+    this.latestState.romItemAccess={verified:false,results:[],reason};
+    this.latestState.romStaticMapGuide={verified:false,reason};
+    this.latestState.romTerrainCurrentTile={verified:false,reason};
+    this.latestState.romTerrainWarpHints={verified:false,reason};
+    this.latestState.romMovementOptions={verified:false,reason};
+    this.latestState.romAreaEvidence={
+      verified:false,reason,items:[],trainers:[],npcs:[]};
+    this.latestState.romTrainerFlags={verified:false,entries:[],reason};
+    this.latestState.romHiddenItems={verified:false,items:[],reason};
+    this.latestState.romHiddenCoins={verified:false,coins:[],reason};
+    this.latestState.romMap=null;
+    this.latestState.romWildEncounters=null;
+    this.latestState.mapEntities=[];
+    this.emit('update',this.latestState);
+    return reason;
+  }
+
   startPolling() {
     if (this.isPolling) return;
     this.isPolling = true;
@@ -608,6 +652,9 @@ class RetroArchClient extends EventEmitter {
       try {
         await this.fetchGameState();
       } catch (err) {
+        // An exception can occur anywhere in the asynchronous series of
+        // UDP reads. Reset all baselines before another sample is accepted.
+        this.invalidateUnexpectedPoll(err);
         const now = Date.now();
         if (!this.lastPollingErrorAt || now - this.lastPollingErrorAt >= 2000) {
           this.lastPollingErrorAt = now;

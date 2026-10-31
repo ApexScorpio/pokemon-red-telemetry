@@ -622,6 +622,7 @@ function main(){
   'tests/romWorldNamedEventCoverage.test.js',
   'tests/romCompleteEventBitmap.test.js',
   'tests/romCompleteEventSession.test.js',
+  'tests/romPollingFailureInvalidation.test.js',
   'tests/romMapEventActorApproach.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
@@ -637,6 +638,7 @@ function main(){
  ],env,40,0);
  log('GLOBAL_FLAG_READBACK_368_BYTES_TESTED_SYNTHETICALLY=TRUE');
  log('ALL_2560_EVENT_BIT_TRANSITION_SESSION_TESTED_SYNTHETICALLY=TRUE');
+ log('UNEXPECTED_POLL_FAILURE_INVALIDATION_TESTED_SYNTHETICALLY=TRUE');
  log('LIVE_BIT_TRANSITIONS_OBSERVED_DURING_CERTIFICATION=FALSE');
  log('GLOBAL_FLAG_RUNTIME_READBACK_OBSERVED=FALSE');
  log('LIVE_COMPANION_HTTP_PROBE_DURING_CERTIFICATION=NOT_RUN');
