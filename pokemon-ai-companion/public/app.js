@@ -880,6 +880,34 @@ function renderWorldAdvisor(state) {
     const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(point>=0)lines.splice(point,0,...evidence);
   }
+  // The RAM holds 2,560 bit positions. Only 507 are pinned to labels;
+  // the remaining 2,053 can be reserved or have unknown gameplay meaning.
+  const complete=advice.romCompleteEventBitmap;
+  if(complete?.verified===true&&
+     complete.romSha256===advice.romSha256&&
+     complete.summary?.bitPositionsIndexed===2560&&
+     complete.summary?.namedReferenceBits===507&&
+     complete.summary?.unnamedOrReservedBits===2053&&
+     complete.summary?.ramBytesCorroborated===320&&
+     Array.isArray(complete.bits)&&complete.bits.length===2560&&
+     complete.allBitPositionsIndexed===true&&
+     complete.gameplaySemanticsCertified===false&&
+     complete.gameplayCompletionCertified===false){
+    const c=complete.summary;
+    const evidence=[
+      '--- TODOS OS 2560 BITS DE EVENTOS RAM ---',
+      '320 bytes D747..D886 corroborados: '+c.setBits+
+       ' bits ativos e '+c.clearBits+' inativos.',
+      '507 têm nome externo pret/pokered ('+c.namedSetBits+
+       ' ativos); 2053 sem nome ou reservados ('+c.unnamedSetBits+' ativos).',
+      'Bits sem nome com referência direta em opcode/cabeçalho ROM: '+
+       c.unnamedBitPositionsWithDirectRomEvidence+'.',
+      '⚠️ Leitura dos 2560 estados não significa 2560 missões. '+
+       'Significado, execução e conclusão da jogabilidade continuam por comprovar.',''
+    ];
+    const before=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(before>=0)lines.splice(before,0,...evidence);
+  }
   // All 248 map IDs: candidate event associations, never a quest checklist.
   // A clear bit might be reset, transient, or part of a branch rather than
   // an incomplete mission. Ranking is for investigation, not navigation.

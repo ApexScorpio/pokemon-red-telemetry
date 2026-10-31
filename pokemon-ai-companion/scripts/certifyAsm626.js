@@ -14,6 +14,8 @@ const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantic
 const {buildGlobalFlagOperationCatalogue}=require('../romGlobalFlagOperationCatalogue');
 const {buildNamedEventEvidenceLedger}=require('../romNamedEventEvidenceLedger');
 const {buildWorldwideNamedEventCoverage}=require('../romWorldNamedEventCoverage');
+const {buildCompleteEventBitmap}=require('../romCompleteEventBitmap');
+const {buildWorldEventAtlas}=require('../romWorldEventAtlas');
 const referenceEventNames=require('../data/gen1EventNamesPret.json');
 const referenceMapNames=require('../data/gen1MapNamesPret.json');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
@@ -477,6 +479,39 @@ function main(){
     .slice(0,10).map(x=>({mapId:x.mapId,mapName:x.mapName,
      candidates:x.namedCandidateBits}))));
   log('ROM_'+variant.toUpperCase()+'_WORLD_MAP_BITS_SYNTHETIC_ONLY=TRUE');
+  // Verify ALL 2560 physical D747 bit positions against this ROM's
+  // exact actors and opcodes; zeroed bits are test fixtures, NOT live RAM.
+  const zeroWorldHex=Array(320).fill('00');
+  const worldReference=buildWorldEventAtlas({
+   romSha256:KNOWN[variant],romIdentityMatched:true,
+   mapWindowVerified:true,eventFlagsHex:zeroWorldHex,
+   toggleFlagsHex:Array(32).fill('00')
+  });
+  const bitInventory=buildCompleteEventBitmap({
+   romSha256:KNOWN[variant],romIdentityMatched:true,
+   mapPositionVerified:true,interactionAtlas:a,
+   namedAtlas:worldReference,eventFlagsHex:zeroWorldHex,
+   globalFlagReadback:{
+    verified:true,worldEventBytesMatched:320,allFlagBytesMatched:368,
+    romAndMapCorroborated:true,snapshotAtomicVerified:false
+   }
+  });
+  assert(bitInventory.verified===true&&
+   bitInventory.summary.bitPositionsIndexed===2560&&
+   bitInventory.summary.namedReferenceBits===507&&
+   bitInventory.summary.unnamedOrReservedBits===2053&&
+   bitInventory.summary.bitPositionsWithDirectRomEvidence===
+    400+bitInventory.summary.unnamedBitPositionsWithDirectRomEvidence&&
+   bitInventory.bits.length===2560&&
+   bitInventory.gameplayCompletionCertified===false,
+   'Full 2560-bit static fixture inventory invalid: '+variant+' '+
+    bitInventory.reason);
+  log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_PHYSICAL_POSITIONS=2560');
+  log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_NAMED_REFERENCE=507');
+  log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_UNNAMED_OR_RESERVED=2053');
+  log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_UNNAMED_WITH_DIRECT_ROM_EVIDENCE='+
+   bitInventory.summary.unnamedBitPositionsWithDirectRomEvidence);
+  log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_SYNTHETIC_RAM_ONLY=TRUE');
   log('ROM_'+variant.toUpperCase()+'_EVENT_LABELS_TOTAL=507');
   log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_WITH_OPCODE_EVIDENCE='+
    namedCoverage.summary.namedBitsWithRomOpcode);
@@ -585,6 +620,7 @@ function main(){
   'tests/romBitOpcodeSemantics.test.js',
   'tests/romNamedEventEvidenceLedger.test.js',
   'tests/romWorldNamedEventCoverage.test.js',
+  'tests/romCompleteEventBitmap.test.js',
   'tests/romMapEventActorApproach.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',

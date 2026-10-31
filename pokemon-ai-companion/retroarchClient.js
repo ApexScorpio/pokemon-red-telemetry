@@ -2932,6 +2932,7 @@ class RetroArchClient extends EventEmitter {
       worldFlagLedger:this.latestState.globalCampaignLedger,
       globalFlagReadback,
       namedWorldEventAtlas:this.latestState.romWorldEventAtlas,
+      globalEventFlagsHex:eventFlagsRaw,
       mapId:this.latestState.mapId,
       position:this.latestState.coords,
       positionVerified:positionWindow.verified===true,

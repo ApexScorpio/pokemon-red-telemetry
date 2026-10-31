@@ -210,6 +210,31 @@ test('actor event approaches display Cut and Surf as hypotheses, not game action
  s.memoryReadStatus.latePositionWindow.y=4;
  assert.doesNotMatch(render(s).body.textContent,/PERCURSOS CONDICIONAIS PARA ATORES/);
 });
+test('all 2560 event RAM bits shown as states without inventing 2053 event meanings',()=>{
+ const s=live();
+ s.worldAdvisor.romCompleteEventBitmap={
+  verified:true,romSha256:s.worldAdvisor.romSha256,
+  allBitPositionsIndexed:true,gameplaySemanticsCertified:false,
+  gameplayCompletionCertified:false,
+  bits:Array.from({length:2560},(_,bitIndex)=>({bitIndex,
+   flagSet:bitIndex===2559,referenceName:null})),
+  summary:{bitPositionsIndexed:2560,ramBytesCorroborated:320,
+   namedReferenceBits:507,unnamedOrReservedBits:2053,
+   setBits:1,clearBits:2559,namedSetBits:0,unnamedSetBits:1,
+   unnamedBitPositionsWithDirectRomEvidence:5}
+ };
+ const shown=render(s).body.textContent;
+ assert.match(shown,/TODOS OS 2560 BITS DE EVENTOS RAM/);
+ assert.match(shown,/320 bytes D747/);
+ assert.match(shown,/2053 sem nome ou reservados/);
+ assert.match(shown,/não significa 2560 missões/);
+ assert.equal(render(s).body.innerHTML,null);
+ s.worldAdvisor.romCompleteEventBitmap.romSha256='WRONG';
+ assert.doesNotMatch(render(s).body.textContent,/TODOS OS 2560 BITS/);
+ s.worldAdvisor.romCompleteEventBitmap.romSha256=s.worldAdvisor.romSha256;
+ s.connected=false;
+ assert.doesNotMatch(render(s).body.textContent,/TODOS OS 2560 BITS/);
+});
 test('worldwide 248-map index renders only as conditional ROM evidence',()=>{
  const s=live();
  const maps=Array.from({length:248},(_,mapId)=>({
