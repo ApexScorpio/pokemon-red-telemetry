@@ -2009,3 +2009,8 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Lido e confirmado o job real `PSB-20261031-0810-POKEGUIDE-ROM0CALL-027` (SUCCEEDED, exit 0). Red, Blue e Green International: 59 sementes ROM0, 2648 instruções candidatas, 5066 bytes, 183 CALL, 84 destinos ROM0, 336 ramificações, 12 transferências ROMX com banco desconhecido e 3 JP HL dinâmicos; fronteira estática vazia, efeitos de gameplay não provados.
 - Foi publicado o módulo atualizado `rom0CallClosureEvidence.js`, commit `ecbd30a8561bebfa396383eb7e28312fa612d2f8`: passa a acrescentar **candidatos** de uma tabela literal de saltos ROM0 estruturalmente limitada, incluindo escape condicional, e a classificar separadamente trampolins HL. Nunca converte endereços em execução comprovada nem resolve banco ROMX sem evidência.
 - Testes regressivos e execução native Bridge **pendentes após esta alteração**. `main`, servidor, sessões, saves e ROMs mantidos fora das alterações.
+
+
+### T67b — 2026-10-31: regressões dos destinos indiretos
+- Publicados três novos testes sintéticos: tabela JP HL com múltiplas saídas, tabela adulterada com destino ROMX recusada, trampolim BC de retorno sem destino HL inventado. Casos condicionais para as três ROMs exatas exigem prova de tabela literal de 14 entradas quando houver os binários.
+- Revisão de testes `2e74db4f4d18527a8f45b13d0f989387635a13e7`; **não executados nesta fase**. O scanner limita-se a endereços físicos e fluxo estático; nenhuma confirmação de evento de jogo ou seleção da tabela.
