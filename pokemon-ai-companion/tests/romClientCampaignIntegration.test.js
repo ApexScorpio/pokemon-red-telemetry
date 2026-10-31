@@ -90,7 +90,15 @@ test('connection and ROM changes invalidate cached world evidence before publish
  assert.match(source,/this\.invalidateWorldEvidence\('ROM ativa mudou/);
  assert.match(source,/this\.invalidateWorldEvidence\('Blocos RAM incompletos/);
  assert.match(source,/this\.invalidateWorldEvidence\('Mapa RAM alterado/);
- assert.match(source,/this\._worldCampaignSession\.ingest\(/);
+ const publication=source.indexOf('const targetScopeStable=matchesTargetScope(this,pollTargetScope)');
+ const campaign=source.indexOf('const campaignSession=this._worldCampaignSession.ingestPublished({');
+ const persist=source.lastIndexOf('this.persistState(this.latestState);');
+ assert.ok(publication>0&&campaign>publication&&persist>campaign);
+ assert.doesNotMatch(source,/this\._worldCampaignSession\.ingest\(/);
+ const guarded=source.slice(campaign,campaign+900);
+ assert.match(guarded,/publicationGuardVerified:matchesTargetScope\(this,pollTargetScope\)/);
+ assert.match(guarded,/targetGeneration:pollTargetScope\.generation/);
+ assert.match(guarded,/pollSequence:this\._scriptedBattlePollSequence/);
  assert.doesNotMatch(source,/previousGlobalLedger=this\.latestState\.globalCampaignLedger/);
 });
 

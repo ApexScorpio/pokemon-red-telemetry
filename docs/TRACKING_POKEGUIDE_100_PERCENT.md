@@ -715,3 +715,9 @@
 - Bridge 091 verificou T136 bulk 12/12, T133 12/12, antigo 8/8, ASM 626/626, full 1263 PASS/1 SKIP em 1264, zero falhas; três ROMs. Não certifica gameplay live.
 - `romCompleteEventSession.ingestPublished()` adiciona identidade de ROM, mapa/posição, gate final, destino host/porta/geração e `pollSequence` consecutivo ao histórico dos 2560 bits. Falha de scope ou poll gap apaga transições antigas e cria nova baseline; `ingest()` legado mantém testes existentes mas não pode fornecer baseline à API publicada. Integração `retroarchClient.js` usa campos já validados, sem mais UDP.
 - 12 novos testes e teste de integração antigo atualizado, com certifier. Bridge 092 por executar: expectativa ASM 638/638, full 1275 PASS/1 SKIP de 1276. Main/Antigravity/saves protegidos; histórico apenas por acréscimo.
+
+
+### T138 — 2026-10-31: Bridge 092 certificada, timeline mundial por mapa só após gate final
+- Bridge 092: ASM 638/638, suite 1275 PASS/1 SKIP em 1276, Red/Blue/Green, 0 falhas; integração bitmap 12/12 e antigos 9/9, sem E2E.
+- `CampaignFlagSession.ingestPublished` fecha a lacuna da timeline de flags de campanha: exige ROM, 226 mapas, posição final, alvo/porta/geração e polls consecutivos; não reutiliza baseline legado. O cliente atualiza `globalCampaignDelta` e `worldRecentFlagChanges` só após gate final. Os objetivos/rotas estáticos continuam independentes.
+- 12 testes adicionados com `romPublishedCampaignFlagSession.test.js`, teste de integração anterior revisto e certifier atualizado. Bridge 093 por executar: esperados 650/650 ASM, full 1287 PASS + 1 SKIP de 1288; sem afirmação de 100% gameplay. Histórico acrescentado.

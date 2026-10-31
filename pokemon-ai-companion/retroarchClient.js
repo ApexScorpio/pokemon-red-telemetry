@@ -3013,15 +3013,6 @@ class RetroArchClient extends EventEmitter {
       this.latestState.romWorldDetourCycles={verified:false,candidates:[],
         reason:'Sem item local isolado ou sem provas para procurar ciclo topológico'};
     }
-    const campaignSession=this._worldCampaignSession.ingest({
-      ledger:this.latestState.globalCampaignLedger,
-      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
-      mapWindowVerified:mapConfirmation.verified===true&&
-        positionWindow.verified===true,
-      observedAt:this.latestState.lastUpdate
-    });
-    this.latestState.globalCampaignDelta=campaignSession.delta;
-    this.latestState.worldRecentFlagChanges=campaignSession.recent;
     this.latestState.globalCampaignObjectives=campaignObjectives({
       ledger:this.latestState.globalCampaignLedger,
       warpGraph:this.latestState.romWarpGraph,
@@ -3204,6 +3195,23 @@ class RetroArchClient extends EventEmitter {
       this.emit('update',this.latestState);
       return;
     }
+    // Campaign-wide flags and item/trainer progress belong to the final
+    // target+position publication, not the earlier provisional RAM sample.
+    const campaignSession=this._worldCampaignSession.ingestPublished({
+      ledger:this.latestState.globalCampaignLedger,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true&&latePositionWindow.verified===true&&
+        publicationPositionWindow.verified===true,
+      publicationGuardVerified:matchesTargetScope(this,pollTargetScope),
+      targetHost:pollTargetScope.host,
+      targetPort:pollTargetScope.port,
+      targetGeneration:pollTargetScope.generation,
+      pollSequence:this._scriptedBattlePollSequence,
+      observedAt:this.latestState.lastUpdate
+    });
+    this.latestState.globalCampaignDelta=campaignSession.delta;
+    this.latestState.worldRecentFlagChanges=campaignSession.recent;
     // Named event/toggle bit transitions must have the SAME final
     // publication gate and uninterrupted target/ROM/poll continuity as the
     // full 2560-bit session. Never publish provisional pre-final changes.

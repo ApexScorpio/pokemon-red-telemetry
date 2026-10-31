@@ -7,6 +7,7 @@ class CampaignFlagSession {
  constructor(){this.reset('Aguardando primeira amostra RAM desta sessão');}
  reset(reason='Sessão interrompida'){
    this.sha=null;this.baseline=null;this.events=[];
+   this.publishedScope=null;
    this.reason=reason;return this.status(false);
  }
  status(verified){
@@ -53,6 +54,43 @@ class CampaignFlagSession {
    this.baseline=ledger;
    this.reason=null;
    return {delta,recent:this.status(true)};
+ }
+ // Only use this entrypoint for the live Companion. A checked ledger and
+ // early map read do not prove its RAM read is safe to publish.
+ ingestPublished({ledger,romIdentityMatched=false,mapWindowVerified=false,
+   publicationGuardVerified=false,targetHost,targetPort,targetGeneration,
+   pollSequence,observedAt=null}={}){
+   const reject=reason=>{
+     this.reset(reason);
+     return {delta:{verified:false,changes:[],reason,
+       playerActionConfirmed:false},recent:this.status(false)};
+   };
+   const sha=ledger?.romSha256;
+   if(!isKnownAuditedRomSha(sha)||ledger?.verified!==true||
+      ledger.mapCount!==226||romIdentityMatched!==true||
+      mapWindowVerified!==true||publicationGuardVerified!==true||
+      typeof targetHost!=='string'||!targetHost||
+      !Number.isInteger(targetPort)||targetPort<1||targetPort>65535||
+      !Number.isSafeInteger(targetGeneration)||targetGeneration<0||
+      !Number.isSafeInteger(pollSequence)||pollSequence<1)
+     return reject('MISSING_PUBLISHED_CAMPAIGN_PROOF');
+   const scope={sha,targetHost,targetPort,targetGeneration,pollSequence};
+   const prior=this.publishedScope;
+   // A missed poll, target swap, or ROM change cannot form evidence of
+   // a game action. In all cases keep the next valid reading as baseline.
+   if(prior&&(prior.sha!==scope.sha||
+      prior.targetHost!==scope.targetHost||
+      prior.targetPort!==scope.targetPort||
+      prior.targetGeneration!==scope.targetGeneration||
+      prior.pollSequence+1!==scope.pollSequence))
+     this.reset('CAMPAIGN_PUBLICATION_SCOPE_CHANGED');
+   // Never elevate a baseline created by the legacy ingest API.
+   if(!prior&&this.baseline)this.reset('UNGUARDED_CAMPAIGN_BASELINE');
+   const report=this.ingest({
+     ledger,romIdentityMatched:true,mapWindowVerified:true,observedAt
+   });
+   if(report.recent.verified===true)this.publishedScope=scope;
+   return report;
  }
 }
 module.exports={CampaignFlagSession};
