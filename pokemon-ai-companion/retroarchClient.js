@@ -17,6 +17,7 @@ const {reconcileVisibleItemCoordinates}=
  require('./romVisibleItemCoordinateGuard');
 const {matchLiveActorsToAuditedRom}=require('./romLiveActorIdentity');
 const {RomActorMotionSession}=require('./romActorMotionSession');
+const {captureTargetScope,matchesTargetScope}=require('./romTargetScopeGuard');
 const {collectScriptedBattleLiveReadback}=
  require('./romScriptedBattleLiveReadback');
 const {ScriptedBattleStateSession}=
@@ -347,6 +348,7 @@ class RetroArchClient extends EventEmitter {
     this._romActorMotionSession=new RomActorMotionSession();
     this._scriptedBattlePollSequence=0;
     this._currentSessionSha=null;
+    this._targetGeneration=0;
     // Never inherit advice or progress deltas from persisted state.
     this.invalidateWorldEvidence('Novo arranque: aguardar leituras RAM reais');
     if (cachedState) {
@@ -728,9 +730,45 @@ class RetroArchClient extends EventEmitter {
   }
 
   setTarget(ip, port = 55355) {
-    this.ip = ip;
-    this.port = port;
-    console.log(`[RetroArchClient] Alvo atualizado para ${this.ip}:${this.port}`);
+    if(typeof ip!=='string'||!ip.trim()||
+       !Number.isInteger(port)||port<1||port>65535)
+      throw new RangeError('Alvo RetroArch invalido');
+    if(this.ip===ip&&this.port===port)return false;
+    // No socket teardown or emulator command. Invalidate current-process
+    // interpretation before the first RAM read against this new target.
+    this.ip=ip;
+    this.port=port;
+    this._targetGeneration=(this._targetGeneration||0)+1;
+    const reason='TARGET_SWITCH_REQUIRES_FRESH_GET_STATUS_AND_CRC32';
+    this.activeRomProfile=null;
+    this._currentSessionSha=null;
+    this.lastRomStatusReadAt=0;
+    this.latestState.connected=false;
+    this.latestState.lastUpdate=null;
+    this.latestState.lastReadError=reason;
+    this.latestState.romValidation='ROM ainda nao identificada neste alvo';
+    this.latestState.romRuntimeIdentity={
+      matched:false,source:'TARGET_SWITCH_UNVERIFIED',
+      reportedCRC32:null,profileSha256:null,reason
+    };
+    this.latestState.romHeader={fullRomVerified:false,reason};
+    this.latestState.memoryReadStatus={
+      verified:false,completeness:'selected-address-ranges-only',reason
+    };
+    this.invalidateWorldEvidence(reason);
+    this.latestState.romAreaEvidence={
+      verified:false,reason,items:[],trainers:[],npcs:[]
+    };
+    this.latestState.romLiveActorIdentification={
+      verified:false,reason,identifiedItems:0,identifiedTrainers:0,
+      movingCandidates:0,movingCandidatesCertified:false
+    };
+    this.latestState.romMap=null;
+    this.latestState.romWildEncounters=null;
+    this.latestState.mapEntities=[];
+    this.emit('update',this.latestState);
+    console.log(`[RetroArchClient] Alvo atualizado para ${this.ip}:${this.port}; ROM por validar`);
+    return true;
   }
 
   parseStatStages(stageByte) {
@@ -794,6 +832,7 @@ class RetroArchClient extends EventEmitter {
   }
 
   async fetchGameState() {
+    const pollTargetScope=captureTargetScope(this);
     const actorMotionTargetAtRead={host:this.ip,port:this.port};
     // Every invocation advances continuity, even when it aborts early.
     // No artificial time delay is used to certify consecutive polls.
@@ -801,6 +840,9 @@ class RetroArchClient extends EventEmitter {
     if (!this.lastRomStatusReadAt || Date.now()-this.lastRomStatusReadAt > 4000) {
       this.lastRomStatusReadAt = Date.now();
       const reply = await this.sendRaw('GET_STATUS');
+      // setTarget may run while GET_STATUS is in flight. Never resurrect
+      // the old ROM identity after a target switch.
+      if(!matchesTargetScope(this,pollTargetScope))return;
       const status = reply ? 'GET_STATUS '+reply.join(' ') : null;
       let match = getCurrentRom(status,this.romRegistry.profiles);
       if (!match && Date.now()-this.lastRomRegistryRefreshAt > 30000) {
@@ -3132,13 +3174,16 @@ class RetroArchClient extends EventEmitter {
     });
     this.latestState.memoryReadStatus.publicationPositionWindow=
       publicationPositionWindow;
-    if(publicationPositionWindow.verified!==true||
+    const targetScopeStable=matchesTargetScope(this,pollTargetScope);
+    if(!targetScopeStable||publicationPositionWindow.verified!==true||
        publicationPositionWindow.mapId!==this.latestState.mapId||
        publicationPositionWindow.mapId!==latePositionWindow.mapId||
        publicationPositionWindow.x!==latePositionWindow.x||
        publicationPositionWindow.y!==latePositionWindow.y){
-      const why='Amostra de posicao alterada antes da publicacao: '+
-        (publicationPositionWindow.reason||'MAPA_OU_POSICAO_FINAL_DIVERGENTE');
+      const why=!targetScopeStable
+        ?'TARGET_SWITCH_DURING_POLL_REJECT_PUBLICATION'
+        :'Amostra de posicao alterada antes da publicacao: '+
+          (publicationPositionWindow.reason||'MAPA_OU_POSICAO_FINAL_DIVERGENTE');
       this.latestState.memoryReadStatus.verified=false;
       this.latestState.memoryReadStatus.globalFlagReadback={
         ...globalFlagReadback,verified:false,domain:'POSITION',

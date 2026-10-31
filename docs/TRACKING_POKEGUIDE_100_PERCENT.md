@@ -675,3 +675,9 @@
 - Bridge 085 ainda por executar: 590/590 ASM e suite 1227 PASS/1 SKIP de 1228 esperados. Não tocar na main/preview/ROM/saves/Antigravity; histórico só acrescentado, headless sem screenshots.
 
 - **T130a (ajuste antes da Bridge 085):** `romActorMotionSession` agora diferencia `baselineEstablished` de `comparisonVerified`: amostra inicial e gap não contam como comparação, apenas duas consecutivas coerentes. Acrescentadas assertivas em testes existentes; sem certificar live.
+
+
+### T131 — 2026-10-31: Bridge 085 PASS e invalidação imediata em mudança de RetroArch
+- Resultado Bridge 085 real: motion 12/12, regressões 52/52, ASM 590/590, full 1227 PASS / 1 SKIP de 1228, 0 falhas; Red/Blue/Green presentes. Não é certificação de gameplay 100%.
+- Falha concreta: `setTarget` alterava IP/porta sem invalidar o perfil CRC/ROM, apesar de GET_STATUS poder esperar até 4 s. T131 publica guard por destino + geração, invalida ROM, memória e mapa no momento da mudança, força nova verificação GET_STATUS, rejeita poll antigo tanto no status como no gate final, sem reiniciar socket/emulador, incluindo troca e retorno ao mesmo destino. 12 testes novos `romTargetSwitchInvalidation.test.js` no certificador.
+- Ponte 086 ainda por executar: estimativa 602/602 ASM, 1239 PASS / 1 SKIP de 1240 testes full, 0 falhas. A certificação ao vivo continua em falta. Histórico acrescentado; `main`, preview, ROMs/saves, Antigravity e outros processos protegidos inalterados.
