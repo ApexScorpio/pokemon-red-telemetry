@@ -302,6 +302,16 @@ function main(){
    gaps.summary.unresolvedTrainerActualEventBitsRecovered===0&&
    gaps.summary.unresolvedTrainerHandlerContextVerified===true&&
    gaps.summary.unresolvedTrainerTemporaryBattleBitEvidenceVerified===true&&
+   gaps.summary.unboundTrainerScriptedBattleReferenceVerified===true&&
+   gaps.summary.unboundTrainerScriptedBattleReferenceCount===2&&
+   gaps.summary.unboundTrainerNoOrdinaryFlagRequiredByReference===2&&
+   gaps.summary.unboundTrainerScriptedBattleEventsCompletedVerified===0&&
+   gaps.summary.unboundTrainerScriptedBattleReferenceEvidence.length===2&&
+   gaps.summary.unboundTrainerScriptedBattleReferenceEvidence.every(x=>
+    x.referenceClassification==='SCRIPTED_BATTLE_WITH_MAP_SCRIPT_STATE'&&
+    x.mapScriptStateReadFromCurrentGame===false&&
+    x.battleWon===null&&
+    x.ordinaryTrainerEventBitIndex===null)&&
    gaps.summary.unresolvedTrainerTemporaryBattleBitCandidates===4&&
    gaps.summary.unresolvedTrainerTemporaryBattleWramAddress===0xd72d&&
    gaps.summary.unresolvedTrainerTemporaryBattleBitsNotWorldEvents===true&&
@@ -808,6 +818,12 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_D72D_TEMP_BITS='+
    JSON.stringify(gaps.summary.unresolvedTrainerTemporaryBattleBitEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_D72D_WORLD_EVENT_BITS_RECOVERED=0');
+  log('ROM_'+variant.toUpperCase()+'_SCRIPTED_BATTLES_PINNED_REFERENCE_COUNT='+
+   gaps.summary.unboundTrainerScriptedBattleReferenceCount);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPTED_BATTLES_COMPLETED_VERIFIED='+
+   gaps.summary.unboundTrainerScriptedBattleEventsCompletedVerified);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPTED_BATTLES_REFERENCE_EVIDENCE='+
+   JSON.stringify(gaps.summary.unboundTrainerScriptedBattleReferenceEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_SCRIPT_AUDIT='+
    JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_EVENT_BITS_RECOVERED='+
@@ -1102,6 +1118,7 @@ function main(){
   'tests/romUnboundTrainerScripts.test.js',
   'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romUnboundTrainerTempBattleFlags.test.js',
+  'tests/romScriptedBattleReference.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',

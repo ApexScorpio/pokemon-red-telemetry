@@ -11,6 +11,8 @@ const {buildNamedEventEvidenceLedger}=require('./romNamedEventEvidenceLedger');
 const {buildMapNamedEventEvidence}=require('./romMapNamedEventEvidence');
 const {buildWorldwideNamedEventCoverage}=require('./romWorldNamedEventCoverage');
 const {buildCompleteEventBitmap}=require('./romCompleteEventBitmap');
+const {scriptedBattleGuidanceForMap}=
+ require('./romScriptedBattleReference');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -98,6 +100,32 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      'Aproximação pode iniciar combate; flag de portão não prova vitória nem resultado.',
      t.completionSource||t.source||'ROM',{x:t.x,y:t.y,
        eventBitIndex:t.eventBitIndex??null});
+ }
+ // Special scripted battles are tracked by map script state in the pinned
+ // reference, not by a normal trainer bit. Never infer a battle occurred
+ // or is currently accessible without a matched live map-script snapshot.
+ const specialBattle=scriptedBattleGuidanceForMap({
+  scriptAtlas:profile?.world?.interactionScriptAtlas,mapId});
+ if(specialBattle.verified){
+  for(const row of specialBattle.entries){
+   const isRival=row.mapId===96;
+   add('SCRIPTED_BATTLE','SCRIPT_STATE_UNKNOWN',
+    isRival?'Rival na S.S. Anne 2F':'Rocket junto ao cartaz no Game Corner',
+    isRival?
+     'Na referência, a vitória faz o rival sair e permite prosseguir para o capitão que ensina Cut. A situação desta partida exige leitura do script do mapa.':
+     'Na referência, a vitória faz o Rocket sair; o cartaz tem um evento separado que pode revelar o esconderijo. A situação desta partida exige leitura do script do mapa.',
+    'SHA_AUDITED_ROM_TX_ASM_AND_PINNED_PRET_MAP_SCRIPT_REFERENCE',
+    {mapId:row.mapId,ordinal:row.ordinal,x:row.x,y:row.y,
+     eventBitIndex:null,referenceOnly:true,
+     referenceScriptVariable:row.referenceScriptVariable,
+     referenceScriptSource:row.referencePath,
+     referenceCommit:row.referenceCommit,
+     referenceStates:row.referenceScriptStates,
+     battleWon:null,canBattleNow:null,
+     currentMapScriptValue:null,mapScriptStateVerified:false,
+     nextActionConditional:true,
+     actualRomScriptSemanticsVerified:false});
+  }
  }
  for(const npc of liveArea?.npcs||[]){
    if(!byte(npc.x)||!byte(npc.y))continue;

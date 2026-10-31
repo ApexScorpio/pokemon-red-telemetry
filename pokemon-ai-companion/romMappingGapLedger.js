@@ -59,6 +59,23 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
       m.address!==0xd72d||m.instructionExecuted!==false||
       m.actualMemoryMutationVerified!==false)))
   return invalid('Unbound trainer temporary battle bit evidence contradictory');
+ const scriptedBattleReference=scriptAtlas.scriptedBattleReferenceEvidence;
+ if(scriptedBattleReference?.verified!==true||
+    scriptedBattleReference.romSha256!==sha||
+    scriptedBattleReference.referenceCases!==2||
+    scriptedBattleReference.entries?.length!==2||
+    scriptedBattleReference.standardTrainerFlagsRecovered!==0||
+    scriptedBattleReference.observedBattlesWon!==0||
+    scriptedBattleReference.liveScriptStatesVerified!==0||
+    scriptedBattleReference.entries.some((x,i)=>
+     x.mapId!==[96,135][i]||x.ordinal!==[2,11][i]||
+     x.referenceClassification!=='SCRIPTED_BATTLE_WITH_MAP_SCRIPT_STATE'||
+     x.sourceReferenceOnly!==true||
+     x.referenceSemanticsVerifiedInThisRom!==false||
+     x.ordinaryTrainerBitRequiredByReference!==false||
+     x.ordinaryTrainerEventBitIndex!==null||
+     x.battleWon!==null||x.mapScriptStateReadFromCurrentGame!==false))
+  return invalid('Scripted trainer battle external reference does not reconcile with physical handlers');
  const maps=[];const allScriptRows=[];
  let normalMaps=0,unresolvedMapIds=0,unassignedHidden=0,
   textPointersPending=0,unverifiedEffects=0,asmTextReferences=0,
@@ -249,6 +266,12 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    unresolvedTrainerTemporaryBattleWramAddress:
     temporaryBattleBits.temporaryWramAddress,
    unresolvedTrainerTemporaryBattleBitsNotWorldEvents:true,
+   unboundTrainerScriptedBattleReferenceVerified:true,
+   unboundTrainerScriptedBattleReferenceCount:2,
+   unboundTrainerScriptedBattleReferenceEvidence:
+    scriptedBattleReference.entries,
+   unboundTrainerScriptedBattleEventsCompletedVerified:0,
+   unboundTrainerNoOrdinaryFlagRequiredByReference:2,
    verifiedTrainerScriptEventBitBindings:332,
    verifiedStaticEncounterScriptEventBitBindings:12,
    verifiedSpecialTrainerScriptEventBitBindings:22,

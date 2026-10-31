@@ -202,3 +202,42 @@ test('campaign observations are counted only when map/position RAM window is con
  assert.equal(checked.campaignSummary.observedMapCount,1);
  assert.equal(checked.campaignGlobalCompletionVerified,false);
 });
+
+test('reference-guided scripted battle remains unknown on maps 96 and 135',()=>{
+ const p=fakeProfile();
+ const rows=[{mapId:96,ordinal:2,referenceScriptVariable:'wSSAnne2FCurScript',
+  referencePath:'scripts/SSAnne2F.asm',referenceCommit:'c9181e91388686b6e8618cf6bef58506d93214f8',
+  referenceScriptStates:['SCRIPT_SSANNE2F_DEFAULT'],
+  x:36,y:4,battleWon:null,mapScriptStateReadFromCurrentGame:false},
+ {mapId:135,ordinal:11,referenceScriptVariable:'wGameCornerCurScript',
+  referencePath:'scripts/GameCorner.asm',referenceCommit:'c9181e91388686b6e8618cf6bef58506d93214f8',
+  referenceScriptStates:['SCRIPT_GAMECORNER_DEFAULT'],
+  x:9,y:5,battleWon:null,mapScriptStateReadFromCurrentGame:false}];
+ p.world.interactionScriptAtlas={romSha256:hash,
+  scriptedBattleReferenceEvidence:{verified:true,romSha256:hash,entries:rows}};
+ for(const mapId of [96,135]){
+  p.world.maps.data[mapId]={mapId,valid:true,name:'Reference',
+   objects:{warps:[],signs:[],objects:[]}};
+  const result=adviseWorld({profile:p,mapId});
+  assert.equal(result.verified,true);
+  const battle=result.observations.filter(o=>o.kind==='SCRIPTED_BATTLE');
+  assert.equal(battle.length,1);
+  assert.equal(battle[0].status,'SCRIPT_STATE_UNKNOWN');
+  assert.equal(battle[0].eventBitIndex,null);
+  assert.equal(battle[0].battleWon,null);
+  assert.equal(battle[0].accessibleNow,null);
+  assert.equal(battle[0].mapScriptStateVerified,false);
+  assert.equal(battle[0].nextActionConditional,true);
+ }
+});
+test('unverified scripted battle reference cannot appear as real observed progress',()=>{
+ const p=fakeProfile();
+ p.world.maps.data[96]={mapId:96,valid:true,
+  objects:{warps:[],signs:[],objects:[]}};
+ p.world.interactionScriptAtlas={
+  romSha256:hash,scriptedBattleReferenceEvidence:{
+   verified:false,romSha256:hash,entries:[]}};
+ const a=adviseWorld({profile:p,mapId:96});
+ assert.equal(a.verified,true);
+ assert.equal(a.observations.some(o=>o.kind==='SCRIPTED_BATTLE'),false);
+});
