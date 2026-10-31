@@ -9,6 +9,16 @@ readRunningCompanion({port:PORT}).then(r=>{
   (r.status==='LIVE_WORLD_FLAGS_REPEAT_CORROBORATED'?'TRUE':'FALSE'));
  console.log('POKEGUIDE_LOCAL_WORLD_FLAG_BYTES='+
   (r.matchedFlagBytes??0));
+ console.log('POKEGUIDE_LOCAL_TOGGLE_FLAG_BYTES='+
+  (r.matchedToggleBytes??0));
+ console.log('POKEGUIDE_LOCAL_TOTAL_FLAG_BYTES='+
+  (r.matchedTotalFlagBytes??0));
+ console.log('POKEGUIDE_LOCAL_MAP_POSITION_CORROBORATED='+
+  (r.mapPositionVerified===true?'TRUE':'FALSE'));
+ console.log('POKEGUIDE_LOCAL_NAMED_EVENTS='+
+  (r.namedEventsFlagBits??0));
+ console.log('POKEGUIDE_LOCAL_OBJECT_TOGGLES='+
+  (r.removableObjectFlags??0));
  console.log('POKEGUIDE_LOCAL_ACTIVE_MAP_ID='+
   (r.activeMapId??'UNKNOWN'));
  console.log('POKEGUIDE_LOCAL_OBSERVED_AT='+

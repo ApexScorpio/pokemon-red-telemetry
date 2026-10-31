@@ -9,15 +9,20 @@ const state=()=>({
  connected:true,isSimulation:false,mapId:5,
  lastUpdate:new Date().toISOString(),
  romRuntimeIdentity:{matched:true,profileSha256:RED},
- memoryReadStatus:{globalFlagReadback:{
-  verified:true,readbackBytesMatched:336,toggleBytesMatched:32,
+ memoryReadStatus:{verified:true,mapSnapshot:{verified:true},
+  positionWindow:{verified:true},globalFlagReadback:{
+  verified:true,romAndMapCorroborated:true,
+  readbackBytesMatched:336,toggleBytesMatched:32,
   allFlagBytesMatched:368,toggleReadbackVerified:true,
   snapshotAtomicVerified:false,playerActionConfirmed:false
  }},
  globalCampaignLedger:{verified:true,romSha256:RED,mapCount:226,
   mapProgress:Array.from({length:226},(_,mapId)=>({mapId}))},
- romWorldEventAtlas:{verified:true},
- worldAdvisor:{verified:true,romSha256:RED,
+ romWorldEventAtlas:{verified:true,romSha256:RED,
+  summary:{namedEventBits:507,referenceToggleBits:228},
+  events:Array.from({length:507},()=>({flagSet:false})),
+  toggleFlags:Array.from({length:228},()=>({removedFlagSet:false}))},
+ worldAdvisor:{verified:true,mapId:5,romSha256:RED,
   globalFlagReadbackVerified:true,globalFlagReadbackMatchedBytes:336,
   globalFlagSnapshotAtomicVerified:false}
 });
@@ -32,6 +37,9 @@ test('live state requires same-ROM readback across 336 bytes but never proves ac
  assert.equal(r.atomicMemorySnapshotCertified,false);
  assert.equal(r.playerActionConfirmed,false);
  assert.equal(r.activeMapId,5);
+ assert.equal(r.mapPositionVerified,true);
+ assert.equal(r.namedEventsFlagBits,507);
+ assert.equal(r.removableObjectFlags,228);
 });
 test('stale or missing lastUpdate is never represented as a live ROM observation',()=>{
  const old=state();old.lastUpdate='2001-01-01T00:00:00Z';
@@ -77,6 +85,41 @@ test('incorrect ledger and mismatched advisor do not produce false positives',()
  assert.equal(classifyLiveWorldState(falseToggle).status,'READBACK_GUARD_CONTRACT_MISMATCH');
  const c=state();c.memoryReadStatus.globalFlagReadback.snapshotAtomicVerified=true;
  assert.equal(classifyLiveWorldState(c).status,'READBACK_GUARD_CONTRACT_MISMATCH');
+});
+test('no live location certification from absent or mismatched map and coordinates',()=>{
+ for(const mutate of [
+  s=>{s.memoryReadStatus.verified=false;},
+  s=>{s.memoryReadStatus.mapSnapshot.verified=false;},
+  s=>{s.memoryReadStatus.positionWindow.verified=false;},
+  s=>{s.mapId=248;},
+  s=>{s.mapId=-1;},
+  s=>{delete s.mapId;}
+ ]){
+  const sample=state();mutate(sample);
+  const result=classifyLiveWorldState(sample);
+  assert.equal(result.status,'LIVE_MAP_POSITION_NOT_CORROBORATED');
+  assert.equal(result.liveGameCertified,false);
+ }
+ const staleAdvisor=state();staleAdvisor.worldAdvisor.mapId=4;
+ assert.equal(classifyLiveWorldState(staleAdvisor).status,
+  'WORLD_ADVISOR_NOT_CORROBORATED');
+});
+test('a named-event atlas for another ROM or missing toggles cannot certify live state',()=>{
+ for(const mutate of [
+  s=>{s.romWorldEventAtlas.verified=false;},
+  s=>{s.romWorldEventAtlas.romSha256='0'.repeat(64);},
+  s=>{s.romWorldEventAtlas.summary.namedEventBits=506;},
+  s=>{s.romWorldEventAtlas.summary.referenceToggleBits=227;},
+  s=>{s.romWorldEventAtlas.events=[];},
+  s=>{s.romWorldEventAtlas.toggleFlags=[];}
+ ]){
+  const sample=state();mutate(sample);
+  assert.equal(classifyLiveWorldState(sample).status,
+   'WORLD_EVENT_ATLAS_NOT_CORROBORATED');
+ }
+ const guard=state();guard.memoryReadStatus.globalFlagReadback.romAndMapCorroborated=false;
+ assert.equal(classifyLiveWorldState(guard).status,
+  'READBACK_GUARD_CONTRACT_MISMATCH');
 });
 test('read-only localhost probe only performs GET /api/state, no mutation',async()=>{
  let verbs=[];

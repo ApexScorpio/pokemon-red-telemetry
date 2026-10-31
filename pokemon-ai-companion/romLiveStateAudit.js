@@ -45,17 +45,34 @@ function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
  }
  if(guard.readbackBytesMatched!==336||
     guard.toggleBytesMatched!==32||guard.allFlagBytesMatched!==368||
-    guard.toggleReadbackVerified!==true||
+    guard.toggleReadbackVerified!==true||guard.romAndMapCorroborated!==true||
     guard.snapshotAtomicVerified!==false||
     guard.playerActionConfirmed!==false)
   return result('READBACK_GUARD_CONTRACT_MISMATCH',
    {romProfileMatched:true,readbackVerified:false});
+ // A repeated flag window is not enough to trust a position-specific
+ // recommendation when the map or coordinates went stale mid-poll.
+ if(state.memoryReadStatus?.verified!==true||
+    state.memoryReadStatus?.mapSnapshot?.verified!==true||
+    state.memoryReadStatus?.positionWindow?.verified!==true||
+    !Number.isInteger(state.mapId)||state.mapId<0||state.mapId>=248)
+  return result('LIVE_MAP_POSITION_NOT_CORROBORATED',
+   {romProfileMatched:true,readbackVerified:true});
+ const named=state.romWorldEventAtlas;
+ if(named?.verified!==true||named.romSha256!==sha||
+    named.summary?.namedEventBits!==507||
+    named.summary?.referenceToggleBits!==228||
+    !Array.isArray(named.events)||named.events.length!==507||
+    !Array.isArray(named.toggleFlags)||named.toggleFlags.length!==228)
+  return result('WORLD_EVENT_ATLAS_NOT_CORROBORATED',
+   {romProfileMatched:true,readbackVerified:true,mapPositionVerified:true});
  if(ledger?.verified!==true||ledger.romSha256!==sha||
     ledger.mapCount!==226||!Array.isArray(ledger.mapProgress)||
     ledger.mapProgress.length!==226)
   return result('WORLD_LEDGER_NOT_CORROBORATED',
    {romProfileMatched:true,readbackVerified:true});
  if(advisor?.verified!==true||advisor.romSha256!==sha||
+    advisor.mapId!==state.mapId||
     advisor.globalFlagReadbackVerified!==true||
     advisor.globalFlagReadbackMatchedBytes!==336||
     advisor.globalFlagSnapshotAtomicVerified!==false)
@@ -65,6 +82,7 @@ function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
  return result('LIVE_WORLD_FLAGS_REPEAT_CORROBORATED',{
   romProfileMatched:true,readbackVerified:true,
   ledgerVerified:true,worldAdvisorVerified:true,
+  mapPositionVerified:true,namedEventsFlagBits:507,removableObjectFlags:228,
   matchedFlagBytes:336,matchedToggleBytes:32,matchedTotalFlagBytes:368,
   normalMapHeaders:226,
   activeMapId:Number.isInteger(state.mapId)?state.mapId:null,
