@@ -996,6 +996,36 @@ function renderWorldAdvisor(state) {
       '✨ Encontros fixos: '+t.stationaryGatesClosed+
         ' eventos encerrados (não prova captura)');
   }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  // Manual coordinates that differ from this audited ROM are not pins.
+  // Only the counted reference-only entries may appear in this warning.
+  const visibleProof=state.areaInfo?.visibleItemCoordinateEvidence;
+  const manualRefs=state.areaInfo?.manualVisibleItemReferences;
+  if(visibleProof?.mapId===advice.mapId&&
+     visibleProof.gameplayAccessCertified===false&&
+     Number.isInteger(visibleProof.unmatchedManualCount)&&
+     visibleProof.unmatchedManualCount>=0&&
+     Array.isArray(manualRefs)&&
+     manualRefs.length===visibleProof.unmatchedManualCount&&
+     manualRefs.every(r=>r?.romItemCoordinatesVerified===false&&
+       r.x===null&&r.y===null)){
+    const rows=['--- COORDENADAS DOS ITENS DA VERSÃO ATIVA ---'];
+    if(visibleProof.verified===true&&
+       visibleProof.romSha256===advice.romSha256){
+      rows.push('Objetos de item da ROM desta versão: '+
+        visibleProof.romObjectCount+
+        ' · referências manuais confirmadas: '+
+        visibleProof.matchedManualCount+
+        ' · referências com coordenadas não confirmadas: '+
+        visibleProof.unmatchedManualCount+'.');
+    }else{
+      rows.push('ROM/itens sem prova suficiente: as coordenadas manuais '+
+        'não são pontos de navegação.');
+    }
+    rows.push('⚠️ As referências sem posição ROM comprovada '+
+      'não aparecem como itens para recolher nem como destinos de percurso.','');
+    const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(slot>=0)lines.splice(slot,0,...rows);
+  }
   const campaignLines=formatCampaignChecklistSection(advice);
   if(campaignLines.length){
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));

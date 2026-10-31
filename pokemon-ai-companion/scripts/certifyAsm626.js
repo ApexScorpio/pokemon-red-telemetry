@@ -1285,6 +1285,7 @@ function main(){
   'tests/romWorldGapMatrix.test.js',
   'tests/romCrossVariantWorldGaps.test.js',
   'tests/romCrossVariantWorldContents.test.js',
+  'tests/romVisibleItemCoordinateGuard.test.js',
   'tests/romUnboundTrainerScripts.test.js',
   'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romUnboundTrainerTempBattleFlags.test.js',

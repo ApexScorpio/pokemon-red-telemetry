@@ -13,6 +13,8 @@ const {planEventActorApproaches}=require('./romMapEventActorApproach');
 const {planStrengthPushes}=require('./romStrengthPushPlanner');
 const {readStrengthFieldEvidence}=require('./romStrengthFieldEvidence');
 const {adviseWorld}=require('./romWorldStateAdvisor');
+const {reconcileVisibleItemCoordinates}=
+ require('./romVisibleItemCoordinateGuard');
 const {collectScriptedBattleLiveReadback}=
  require('./romScriptedBattleLiveReadback');
 const {ScriptedBattleStateSession}=
@@ -1899,7 +1901,17 @@ class RetroArchClient extends EventEmitter {
       return { accessible: true, reason: '' };
     };
 
-    const allVisItems = (areaData.visibleItems || []).map(item => {
+    // Only promote manual pickup coordinates when the active audited ROM
+    // contains that exact item object. Green has physically different item
+    // tiles on maps 226/227; manual Red coordinates must not be map targets.
+    const visibleCoordinateGuard=reconcileVisibleItemCoordinates({
+      mapId:this.latestState.mapId,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      romAreaEvidence:this.latestState.romAreaEvidence,
+      manualItems:areaData.visibleItems||[]
+    });
+    const allVisItems=visibleCoordinateGuard.matchedManualItems.map(item => {
       const romObject=this.latestState.romAreaEvidence?.items?.find(o=>o.x===item.x&&o.y===item.y);
       const romItemName=romObject?.itemName && !romObject.itemName.includes('não confirmado') ?
         romObject.itemName : null;
@@ -1921,8 +1933,7 @@ class RetroArchClient extends EventEmitter {
     });
     // Acrescentar todos os objetos de item existentes na ROM deste mapa,
     // inclusive os que não estão no antigo catálogo manual.
-    const extraRomItems=(this.latestState.romAreaEvidence?.items||[])
-      .filter(o=>!allVisItems.some(m=>m.x===o.x&&m.y===o.y))
+    const extraRomItems=visibleCoordinateGuard.remainingRomItems
       .map(o=>({
         name:o.itemName||'Item no mapa (ID não identificado)',
         nameSource:o.itemName?'ITEM_ID_ROM + NOMES_LOCAIS_NÃO_COMPROVADOS_NO_BINÁRIO':'NÃO_IDENTIFICADO',
@@ -2185,6 +2196,23 @@ class RetroArchClient extends EventEmitter {
       npcItems: allNpcItems.filter(i => !i.isLocked),
       lockedNpcItems: allNpcItems.filter(i => i.isLocked),
       visibleItems: visibleWithPath.filter(i => !i.isLocked),
+      // These manual coordinates are reference-only and are deliberately
+      // excluded from navigation, map pins and reachability planning.
+      manualVisibleItemReferences:
+        visibleCoordinateGuard.unmatchedManualReferences,
+      visibleItemCoordinateEvidence:{
+        verified:visibleCoordinateGuard.verified,
+        mapId:this.latestState.mapId,
+        romSha256:visibleCoordinateGuard.romSha256,
+        romObjectCount:visibleCoordinateGuard.romObjectCount,
+        matchedManualCount:visibleCoordinateGuard.matchedManualItems.length,
+        unmatchedManualCount:
+          visibleCoordinateGuard.unmatchedManualReferences.length,
+        remainingRomObjectCount:
+          visibleCoordinateGuard.remainingRomItems.length,
+        gameplayAccessCertified:false,
+        reason:visibleCoordinateGuard.reason||null
+      },
       hiddenItems: hiddenWithPath.filter(i => !i.isLocked),
       lockedItems: [...visibleWithPath,...hiddenWithPath].filter(i=>i.isLocked),
       itemAccessSummary:{verified:itemAccess.verified,counts:itemAccess.counts||{},
