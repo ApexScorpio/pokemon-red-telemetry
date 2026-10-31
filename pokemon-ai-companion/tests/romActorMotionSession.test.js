@@ -39,12 +39,14 @@ const prepare=(seq,x=8,options={})=>{
 test('first coherent sample establishes baseline but does not invent movement',()=>{
  const s=new RomActorMotionSession(),r=s.ingest(prepare(1,8));
  assert.equal(r.verified,true);assert.equal(r.baselineEstablished,true);
- assert.equal(r.changedSpriteSlots,0);assert.equal(r.atomicSnapshotVerified,false);
+ assert.equal(r.changedSpriteSlots,0);assert.equal(r.comparisonVerified,false);
+ assert.equal(r.atomicSnapshotVerified,false);
 });
 test('two consecutive published WALK slot observations record exact position difference',()=>{
  const s=new RomActorMotionSession();s.ingest(prepare(1,8));
  const r=s.ingest(prepare(2,9));assert.equal(r.verified,true);
- assert.equal(r.changedSpriteSlots,1);assert.equal(r.observedPositionChanges[0].previousRam.x,8);
+ assert.equal(r.changedSpriteSlots,1);assert.equal(r.comparisonVerified,true);
+ assert.equal(r.observedPositionChanges[0].previousRam.x,8);
  assert.equal(r.observedPositionChanges[0].currentRam.x,9);
  assert.equal(r.observedPositionChanges[0].actorIdentityVerified,false);
  assert.equal(r.movementCauseCertified,false);
@@ -68,6 +70,7 @@ test('missing intermediate poll does not compare stale sample',()=>{
  const s=new RomActorMotionSession();s.ingest(prepare(1,8));
  const r=s.ingest(prepare(3,9));assert.equal(r.changedSpriteSlots,0);
  assert.equal(r.reason,'NEW_BASELINE_AFTER_SCOPE_OR_POLL_GAP');
+ assert.equal(r.comparisonVerified,false);
 });
 test('map transition starts new baseline',()=>{
  const s=new RomActorMotionSession();s.ingest(prepare(1,8));

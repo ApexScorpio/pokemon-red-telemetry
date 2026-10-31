@@ -5,9 +5,9 @@
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 const slot=n=>Number.isInteger(n)&&n>=1&&n<=15;
-const result=(verified,reason,baselineEstablished=false,changes=[])=>({
+const result=(verified,reason,baselineEstablished=false,changes=[],comparisonVerified=false)=>({
  verified,reason,baselineEstablished,
- comparisonVerified:verified&&baselineEstablished,
+ comparisonVerified,
  observedPositionChanges:changes,
  changedSpriteSlots:changes.length,
  sameActorAcrossFramesCertified:false,
@@ -104,7 +104,7 @@ class RomActorMotionSession{
     source:'TWO_CONSECUTIVE_VALIDATED_ROM_WALK_SLOT_RAM_POSITIONS'
    });
   }
-  return result(true,'SEQUENTIAL_RAM_POSITION_COMPARISON',true,changes);
+  return result(true,'SEQUENTIAL_RAM_POSITION_COMPARISON',true,changes,true);
  }
 }
 module.exports={RomActorMotionSession};
