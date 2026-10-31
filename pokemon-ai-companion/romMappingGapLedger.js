@@ -88,6 +88,26 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
       [96,2,0xd665,197,24,true],
       [135,11,0xd65f,191,18,true]]))
   return invalid('Reference RAM script candidate positions do not reconcile with physical ROM scan');
+ const stateWrites=scriptAtlas.scriptedBattleWriteContexts;
+ if(stateWrites?.verified!==true||stateWrites.romSha256!==sha||
+    stateWrites.entries?.length!==2||
+    stateWrites.decodedCandidateCount!==11||
+    stateWrites.readCandidates!==2||stateWrites.writeCandidates!==9||
+    stateWrites.actualScriptStateVerified!==false||
+    stateWrites.allCandidatesRuntimeExecuted!==false||
+    JSON.stringify(stateWrites.entries.map(x=>[
+     x.mapId,x.ordinal,x.referenceWramAddress,x.handlerBank,
+     x.readCandidateCount,x.writeCandidateCount,x.battleWon]))!==
+     JSON.stringify([
+      [96,2,0xd665,24,1,5,null],
+      [135,11,0xd65f,18,1,4,null]])||
+    stateWrites.entries.some(x=>
+     x.instructionBoundariesProven!==false||
+     x.controlFlowReachabilityVerified!==false||
+     x.writes.some(w=>w.opcodeDecodesAtOffset!==true||
+      w.instructionBoundaryFromControlFlowVerified!==false||
+      w.actualRamWriteVerified!==false)))
+  return invalid('Physical scripted-battle load/store contexts are inconsistent');
  const maps=[];const allScriptRows=[];
  let normalMaps=0,unresolvedMapIds=0,unassignedHidden=0,
   textPointersPending=0,unverifiedEffects=0,asmTextReferences=0,
@@ -290,6 +310,13 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
     n+x.literalLoadACandidateCount,0),
    scriptedBattleRamLiteralStoreTotal:scriptRam.candidates.reduce((n,x)=>
     n+x.literalStoreACandidateCount,0),
+   scriptedBattleWriteContextsVerified:true,
+   scriptedBattleWriteContextEvidence:stateWrites.entries,
+   scriptedBattleDecodedReadWriteCandidates:stateWrites.decodedCandidateCount,
+   scriptedBattleAdjacentValueCandidates:stateWrites.immediateValueCandidates,
+   scriptedBattlePotentialStateAssignments:
+    stateWrites.entries.flatMap(x=>x.referenceStateCandidateValues),
+   scriptedBattleActualWritesVerified:0,
    scriptedBattleRamAddressBoundToRomExecution:false,
    scriptedBattleRamLiveSnapshotVerified:false,
    verifiedTrainerScriptEventBitBindings:332,
