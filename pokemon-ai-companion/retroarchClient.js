@@ -16,6 +16,7 @@ const {adviseWorld}=require('./romWorldStateAdvisor');
 const {reconcileVisibleItemCoordinates}=
  require('./romVisibleItemCoordinateGuard');
 const {matchLiveActorsToAuditedRom}=require('./romLiveActorIdentity');
+const {RomActorMotionSession}=require('./romActorMotionSession');
 const {collectScriptedBattleLiveReadback}=
  require('./romScriptedBattleLiveReadback');
 const {ScriptedBattleStateSession}=
@@ -343,6 +344,7 @@ class RetroArchClient extends EventEmitter {
     this._worldReferenceSession=new WorldReferenceFlagSession();
     this._completeEventBitSession=new CompleteEventBitSession();
     this._scriptedBattleStateSession=new ScriptedBattleStateSession();
+    this._romActorMotionSession=new RomActorMotionSession();
     this._scriptedBattlePollSequence=0;
     this._currentSessionSha=null;
     // Never inherit advice or progress deltas from persisted state.
@@ -363,6 +365,13 @@ class RetroArchClient extends EventEmitter {
     if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
     if(this._completeEventBitSession)this._completeEventBitSession.reset(reason);
     if(this._scriptedBattleStateSession)this._scriptedBattleStateSession.reset(reason);
+    if(this._romActorMotionSession)this._romActorMotionSession.reset(reason);
+    this.latestState.romActorMotionDelta={
+      verified:false,reason,observedPositionChanges:[],
+      changedSpriteSlots:0,baselineEstablished:false,
+      sameActorAcrossFramesCertified:false,
+      movementCauseCertified:false,atomicSnapshotVerified:false
+    };
     this._strengthPlanCacheScope=null;this._strengthPlanCache=new Map();
     this._globalFlagItemKey=null;this._globalFlagItemRoutes=null;
     this._crossMapRouteKey=null;this._crossMapRoute=null;
@@ -420,6 +429,7 @@ class RetroArchClient extends EventEmitter {
           delete saved.romScriptedBattleReadbackStatus;
           delete saved.romScriptedBattleStateDelta;
           delete saved.romRecentScriptedBattleStateChanges;
+          delete saved.romActorMotionDelta;
           if(saved.memoryReadStatus&&
              typeof saved.memoryReadStatus==='object')
             delete saved.memoryReadStatus.scriptedBattleReadback;
@@ -784,6 +794,7 @@ class RetroArchClient extends EventEmitter {
   }
 
   async fetchGameState() {
+    const actorMotionTargetAtRead={host:this.ip,port:this.port};
     // Every invocation advances continuity, even when it aborts early.
     // No artificial time delay is used to certify consecutive polls.
     this._scriptedBattlePollSequence=(this._scriptedBattlePollSequence||0)+1;
@@ -3154,6 +3165,29 @@ class RetroArchClient extends EventEmitter {
       this.emit('update',this.latestState);
       return;
     }
+    // A delta of RAM sprite positions is not the identity of a moving NPC.
+    // Only consecutively published, corroborated ROM+map+position polls may
+    // establish a baseline. No extra emulator read/control is performed.
+    const actorMotion=this._romActorMotionSession.ingest({
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      mapId:this.latestState.mapId,
+      targetHost:actorMotionTargetAtRead.host,
+      targetPort:actorMotionTargetAtRead.port,
+      pollSequence:this._scriptedBattlePollSequence,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      spritesVerified:
+        this.latestState.memoryReadStatus?.blocks?.overworldSprites===true,
+      positionVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true&&
+        latePositionWindow.verified===true,
+      publicationGuardVerified:
+        actorMotionTargetAtRead.host===this.ip&&
+        actorMotionTargetAtRead.port===this.port,
+      isSimulation:this.latestState.isSimulation===true,
+      romAreaEvidence:this.latestState.romAreaEvidence,
+      entities:this.latestState.mapEntities
+    });
+    this.latestState.romActorMotionDelta=actorMotion;
     // Only a successful final publication guard may establish a baseline
     // or expose changes in scripted-battle bytes. No sample is an action.
     // The target used for the read must still be the same at publication.

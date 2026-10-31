@@ -667,3 +667,9 @@
 - Bridge 083: 40/40 regressões de sprites, ASM 566/566, full 1203 PASS / 1 SKIP de 1204, zero falhas, ROM Red/Blue/Green reconhecidas. Sem jogabilidade live.
 - Campo ROM `movement` já lido pelo descodificador; `WALK=0xfe`, `STAY=0xff` (referência `pret/pokered`). O valor X/Y ROM é posição inicial; os NPCs móveis podem ter X/Y RAM diferente, não devendo ser tratados como presença física exata nem como derrotados/desaparecidos.
 - T129 acrescenta `movementByte` aos objetos e `movementCandidate` apenas em WALK com ordinal e imagem correspondentes mas tile diferente; observado atual continua `null`, sem nome/equipa/vitória atribuídos. Exposição `movingCandidatesCertified=false` no estado live; 12 testes novos no certificador. Próxima Bridge 084 esperada 578/578 dirigidos e 1215 PASS/1 SKIP full de 1216 (ainda não executada). Não houve contacto com RetroArch, main, preview ou sessões protegidas; histórico append-only.
+
+
+### T130 — 2026-10-31: Bridge 084 certificada; delta temporal RAM sem alegar identidade
+- Bridge 084: WALK 12/12 PASS; ASM 578/578 PASS; full 1215 PASS + 1 SKIP de 1216, zero falhas, 3 ROMs originais reconhecidas. Sem teste live, sem prova de conclusão 100%.
+- Nova `romActorMotionSession.js` compara slots de NPC/treinadores WALK entre duas amostras consecutivas após o gate final de publicação. Exige SHA auditada, mapa, RAM e coordenadas coerentes, alvo Host/Port inalterado, ordinal + picture + ROM home idênticos; descarta gaps, duplicados, mudança de mapa/ROM/alvo e simulação. Diferenças são `observedPositionChanges` de slot, sem identidade nem movimento do ator certificados, e nunca são tratadas como progresso. Integração em `retroarchClient.js` sem novos UDP; 12 testes em `tests/romActorMotionSession.test.js`.
+- Bridge 085 ainda por executar: 590/590 ASM e suite 1227 PASS/1 SKIP de 1228 esperados. Não tocar na main/preview/ROM/saves/Antigravity; histórico só acrescentado, headless sem screenshots.
