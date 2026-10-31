@@ -7,7 +7,7 @@ const BLUE=AUDITED_ROM_SHA256.BLUE;
 const GREEN=AUDITED_ROM_SHA256.GREEN_INTERNATIONAL_1_2_1;
 const pairs={
  226:{red:[[29,9],[4,15],[13,6]],green:[[5,15],[25,13],[29,9]]},
- 227:{red:[[16,9],[18,9]],green:[[24,7],[24,9]]}
+ 227:{red:[[16,9],[18,1]],green:[[24,7],[24,1]]}
 };
 function proof(mapId,positions){
  return {verified:true,mapId,
@@ -54,7 +54,7 @@ test('Red manual coordinates cannot be advertised as Green map 226 pickups',()=>
  }
  assert.deepEqual(x.remainingRomItems.map(o=>[o.x,o.y]),pairs[226].green);
 });
-test('one coincident Red map-227 coordinate must not hide the other Green item',()=>{
+test('Red map-227 references cannot hide Green objects at different tiles',()=>{
  const x=run(227,GREEN,manual(pairs[227].red),pairs[227].green);
  assert.equal(x.verified,true);
  assert.equal(x.matchedManualItems.length,0);
