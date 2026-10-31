@@ -1307,6 +1307,8 @@ function main(){
   'tests/romVideoEpochGuard.test.js',
   'tests/romVideoPersistenceProjection.test.js',
   'tests/romWorldUiStaleCache.test.js',
+  'tests/romGuardedAdvicePublication.test.js',
+  'tests/romAdvisorContextCache.test.js',
   'tests/romPublishedNamedEvents.test.js',
   'tests/romNamedEventBulkReset.test.js',
   'tests/romUnboundTrainerScripts.test.js',

@@ -69,7 +69,7 @@ const {
   analyzeBattle
 } = require('./data/pokemonData');
 const { getAreaInfo, getUpcomingBossTactics } = require('./data/areaData');
-const { getLiveAdvice } = require('./aiAdvisor');
+const { getLiveAdvice,getLiveAdviceContextKey } = require('./aiAdvisor');
 const CANONICAL_LEARNSETS = require('./data/gen1CanonicalLearnsets.json').byDex;
 const CANONICAL_WILD = require('./data/gen1CanonicalWildEncounters.json').maps;
 const CANONICAL_MAPS = require('./data/gen1CanonicalMaps.json').maps;
@@ -363,6 +363,40 @@ class RetroArchClient extends EventEmitter {
     this.pendingResolves = new Map();
   }
 
+  // Discard AI responses generated for an older ROM, route, inventory,
+  // party state, target generation or evidence epoch.
+  requestGuardedExplorationAdvice(provider=getLiveAdvice){
+    const target=captureTargetScope(this);
+    const epoch=this._videoEvidenceEpoch;
+    const sha=this.activeRomProfile?.hash?.sha256||null;
+    const runtime=[target.host,target.port,target.generation,epoch].join('|');
+    const state={...this.latestState,adviceRuntimeScope:runtime};
+    const key=getLiveAdviceContextKey(state);
+    const current=()=>key!==null&&
+      Number.isSafeInteger(epoch)&&epoch>=1&&
+      this._videoEvidenceEpoch===epoch&&
+      matchesTargetScope(this,target)&&
+      this.activeRomProfile?.hash?.sha256===sha&&
+      this.latestState?.romRuntimeIdentity?.matched===true&&
+      this.latestState?.memoryReadStatus?.verified===true&&
+      this.latestState?.memoryReadStatus?.publicationPositionWindow?.verified===true&&
+      this.latestState?.connected===true&&
+      this.latestState?.isSimulation!==true&&
+      this.latestState?.inBattle!==true&&
+      getLiveAdviceContextKey({
+        ...this.latestState,adviceRuntimeScope:runtime
+      })===key;
+    if(!current())return Promise.resolve(false);
+    let result;
+    try{result=provider(state);}catch(_err){return Promise.resolve(false);}
+    return Promise.resolve(result).then(advice=>{
+      if(typeof advice!=='string'||!advice.trim()||!current())return false;
+      this.latestState.aiAdvice=advice;
+      this.emit('update',this.latestState);
+      return true;
+    }).catch(()=>false);
+  }
+
   invalidateWorldEvidence(reason='Leitura interrompida'){
     // Invalidate even an unfinished VRAM read that might finish after
     // reconnecting to the SAME target, map, coordinates and ROM.
@@ -372,6 +406,18 @@ class RetroArchClient extends EventEmitter {
     // Remove all live-world UI observations from an invalid session.
     // Preserve the last-known textual map, party, badges and history.
     if(this.latestState){
+      // Battle UI, live dialogue and advice must not survive RAM failure.
+      this.latestState.battle=null;
+      this.latestState.inBattle=false;
+      this.latestState.battleType='Unknown';
+      this.latestState.battleFlagVerified=false;
+      this.latestState.battleReadStatus={
+        verified:false,reason,consistentWindowVerified:false,
+        atomicSnapshotVerified:false,exactTurnMathReady:false
+      };
+      this.latestState.currentDialog=null;
+      this.latestState.currentTextSource=null;
+      this.latestState.aiAdvice='A sincronizar com a memória do Game Boy...';
       this.latestState.videoMemory=null;
       this.latestState.romMap=null;
       this.latestState.romWildEncounters=null;
@@ -392,6 +438,10 @@ class RetroArchClient extends EventEmitter {
       this.latestState.romHiddenItems={verified:false,items:[],reason};
       this.latestState.romHiddenCoins={verified:false,coins:[],reason};
     }
+    this.lastBattleKey=null;
+    this.lastBattleEnemy=null;
+    this.lastBattleLogKey=null;
+    this.wasInBattle=false;
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
     if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
     if(this._completeEventBitSession)this._completeEventBitSession.reset(reason);
@@ -458,6 +508,11 @@ class RetroArchClient extends EventEmitter {
           // A saved VRAM canvas is neither a live memory sample nor
           // required to recover the trainer/party after restart.
           delete saved.videoMemory;
+          for(const key of [
+            'battle','battleReadStatus','battleFlagVerified',
+            'inBattle','battleType','aiAdvice','currentDialog',
+            'currentTextSource'
+          ])delete saved[key];
           // Cached terrain, visible actors, encounters and access advice
           // are observations from another polling session, never live proof.
           for(const key of [
@@ -508,6 +563,9 @@ class RetroArchClient extends EventEmitter {
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
         'romWarpGraph','videoMemory',
+        'battle','battleReadStatus','battleFlagVerified',
+        'inBattle','battleType','aiAdvice','currentDialog',
+        'currentTextSource',
         'romMap','romWildEncounters','mapEntities',
         'romStaticMapGuide','romItemAccess',
         'romTerrainCurrentTile','romTerrainWarpHints',
@@ -2774,22 +2832,6 @@ class RetroArchClient extends EventEmitter {
       this.lastBattleKey = null;
     }
 
-    // Conselho tático proativo apenas fora de combate.
-    if (!this.latestState.inBattle) {
-      const now = Date.now();
-      const needsInitialAdvice = !this.latestState.aiAdvice || this.latestState.aiAdvice.includes('A sincronizar');
-      const timeSinceAdvice = now - (this.lastExplorationAdviceTime || 0);
-      if (needsInitialAdvice || timeSinceAdvice > 30000) {
-        this.lastExplorationAdviceTime = now;
-        getLiveAdvice(this.latestState).then(advice => {
-          if (advice) {
-            this.latestState.aiAdvice = advice;
-            this.emit('update', this.latestState);
-          }
-        });
-      }
-    }
-
     if (this.latestState.battle && this.latestState.battle.enemy) {
       this.lastBattleEnemy = `${this.latestState.battle.enemy.name} (Lv. ${this.latestState.battle.enemy.level})`;
     }
@@ -3302,6 +3344,18 @@ class RetroArchClient extends EventEmitter {
           this.videoReadInProgress = false;
         }
       })();
+    }
+
+    // Request AI advice only after the FINAL RAM position and target gate.
+    // Every delayed answer is independently rechecked before publication.
+    if(!this.latestState.inBattle){
+      const now=Date.now();
+      const initial=!this.latestState.aiAdvice||
+        this.latestState.aiAdvice.includes('A sincronizar');
+      if(initial||now-(this.lastExplorationAdviceTime||0)>30000){
+        this.lastExplorationAdviceTime=now;
+        void this.requestGuardedExplorationAdvice();
+      }
     }
 
     // Campaign-wide flags and item/trainer progress belong to the final
