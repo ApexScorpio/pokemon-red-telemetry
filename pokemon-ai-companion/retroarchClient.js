@@ -364,6 +364,8 @@ class RetroArchClient extends EventEmitter {
   }
 
   invalidateWorldEvidence(reason='Leitura interrompida'){
+    // Uma imagem anterior não é prova da RAM ou do mapa atual.
+    if(this.latestState)this.latestState.videoMemory=null;
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
     if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
     if(this._completeEventBitSession)this._completeEventBitSession.reset(reason);
@@ -633,6 +635,47 @@ class RetroArchClient extends EventEmitter {
         pending:Array.from(this.pendingResolves?.keys?.()||[]).slice(0,5)
       }));
     }
+  }
+
+  // Capture one video snapshot without publishing bytes collected for an
+  // earlier target/ROM/map. Reads remain read-only and non-atomic.
+  async captureGuardedVideoMemory({targetScope,mapId,x,y,romSha256}={}){
+    const current=()=>matchesTargetScope(this,targetScope)&&
+      Number.isInteger(mapId)&&
+      Number.isInteger(x)&&Number.isInteger(y)&&
+      typeof romSha256==='string'&&romSha256.length>0&&
+      this.activeRomProfile?.hash?.sha256===romSha256&&
+      this.latestState?.romRuntimeIdentity?.matched===true&&
+      this.latestState?.connected===true&&
+      this.latestState?.mapId===mapId&&
+      this.latestState?.coords?.x===x&&
+      this.latestState?.coords?.y===y;
+    if(!current())return false;
+    const [tilePatterns,bgTileMap,regs,oam]=await Promise.all([
+      this.readMemoryBlock('8000',6144),
+      this.readMemoryBlock('9800',1024),
+      this.readMemoryBlock('FF40',12),
+      this.readMemoryBlock('FE00',160)
+    ]);
+    if(!current())return false;
+    const valid=(bytes,len)=>Array.isArray(bytes)&&bytes.length>=len&&
+      bytes.every(b=>typeof b==='string'&&/^[0-9A-Fa-f]{2}$/.test(b));
+    if(!valid(tilePatterns,6144)||!valid(bgTileMap,1024)||
+       !valid(regs,8))return false;
+    // OAM is optional. An incomplete OAM read is not a sprite snapshot.
+    const convert=bytes=>bytes.map(b=>Number.parseInt(b,16));
+    const r=convert(regs);
+    this.latestState.videoMemory={
+      tilePatterns:convert(tilePatterns),
+      bgTileMap:convert(bgTileMap),
+      lcdc:r[0]||0,scrollY:r[2]||0,scrollX:r[3]||0,
+      bgPalette:r[7]===undefined?0xE4:r[7],
+      obp0:r[8]===undefined?0xE4:r[8],
+      obp1:r[9]===undefined?0xE4:r[9],
+      oam:valid(oam,160)?convert(oam):[]
+    };
+    this.emit('update',this.latestState);
+    return true;
   }
 
   // Leitura Exaustiva de Blocos de Memória Contíguos
@@ -2801,37 +2844,22 @@ class RetroArchClient extends EventEmitter {
       }
     };
 
-    // A VRAM é recolhida em segundo plano para todos os mapas, sem bloquear a leitura principal.
-    // Amostragem da VRAM a 4 Hz; o canvas do mapa completo é redesenhado a 60 Hz.
+    // A VRAM é recolhida em segundo plano; nunca publicar frame que
+    // pertença ao alvo, ROM ou mapa anterior.
     const nowVideo = Date.now();
     if (!this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 250) {
       this.lastVideoReadAt = nowVideo;
       this.videoReadInProgress = true;
+      const videoProof={
+        targetScope:captureTargetScope(this),
+        mapId:this.latestState.mapId,
+        x:this.latestState.coords?.x,
+        y:this.latestState.coords?.y,
+        romSha256:this.activeRomProfile?.hash?.sha256||null
+      };
       (async () => {
         try {
-          const [tilePatterns, bgTileMap, regs, oam] = await Promise.all([
-            this.readMemoryBlock('8000', 6144),
-            this.readMemoryBlock('9800', 1024),
-            this.readMemoryBlock('FF40', 12),
-            this.readMemoryBlock('FE00', 160)
-          ]);
-          if (tilePatterns && tilePatterns.length >= 6144 &&
-              bgTileMap && bgTileMap.length >= 1024 && regs && regs.length >= 8) {
-            const bytes = a => a.map(v => typeof v === 'string' ? parseInt(v, 16) : Number(v));
-            const r = bytes(regs);
-            this.latestState.videoMemory = {
-              tilePatterns: bytes(tilePatterns),
-              bgTileMap: bytes(bgTileMap),
-              lcdc: r[0] || 0,
-              scrollY: r[2] || 0,
-              scrollX: r[3] || 0,
-              bgPalette: r[7] === undefined ? 0xE4 : r[7],
-              obp0: r[8] === undefined ? 0xE4 : r[8],
-              obp1: r[9] === undefined ? 0xE4 : r[9],
-              oam: oam && oam.length >= 160 ? bytes(oam) : []
-            };
-            this.emit('update', this.latestState);
-          }
+          await this.captureGuardedVideoMemory(videoProof);
         } catch (e) {
           // Falha de VRAM não deve interromper a telemetria normal.
         } finally {

@@ -1303,6 +1303,7 @@ function main(){
   'tests/romActorMotionSession.test.js',
   'tests/romTargetSwitchInvalidation.test.js',
   'tests/romUdpTargetIsolation.test.js',
+  'tests/romVideoPublicationIsolation.test.js',
   'tests/romPublishedNamedEvents.test.js',
   'tests/romNamedEventBulkReset.test.js',
   'tests/romUnboundTrainerScripts.test.js',
