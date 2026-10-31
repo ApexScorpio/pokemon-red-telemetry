@@ -107,6 +107,9 @@ async function probeReadOnlyRetroArch({
   const firstMap=await read(0xD35E,1);
   const firstPosition=await read(0xD361,2);
   const world=await read(0xD5A0,784);
+  // Object-removal toggles are a distinct 32-byte region. The shared
+  // readback verifier rejects stale toggles even if all event bits match.
+  const repeatedToggles=await read(0xD5A6,32);
   const repeated=await read(0xD6F0,407);
   const lastMap=await read(0xD35E,1);
   const lastPosition=await read(0xD361,2);
@@ -118,7 +121,8 @@ async function probeReadOnlyRetroArch({
   const positionVerified=firstPosition.length===2&&
    firstPosition.every((x,i)=>x===lastPosition[i]);
   const proof=verifyGlobalFlagReadback({
-   firstWorldBlockHex:world,repeatFlagWindowHex:repeated,
+   firstWorldBlockHex:world,repeatToggleWindowHex:repeatedToggles,
+   repeatFlagWindowHex:repeated,
    repeatMapHex:lastMap,expectedMapId:parseInt(firstMap[0],16),
    romIdentityMatched:true,mapWindowVerified:mapVerified,
    positionWindowVerified:positionVerified
@@ -132,7 +136,10 @@ async function probeReadOnlyRetroArch({
   return {verified:true,status:'REMOTE_RAM_FLAGS_REPEAT_CORROBORATED',
    variant:initial.variant,activeRomCRC32:initial.crc32,
    romProfileCRC32Matched:true,activeRomSha256Verified:false,
-   mapId:parseInt(firstMap[0],16),matchedFlagBytes:336,
+   mapId:parseInt(firstMap[0],16),
+   matchedFlagBytes:proof.readbackBytesMatched,
+   matchedToggleBytes:proof.toggleBytesMatched,
+   matchedTotalFlagBytes:proof.allFlagBytesMatched,
    mapRepeated:true,positionRepeated:true,
    readOnlyRequests:sent.length,
    playerActionConfirmed:false,snapshotAtomicVerified:false,

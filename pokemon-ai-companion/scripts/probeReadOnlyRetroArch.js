@@ -16,6 +16,10 @@ probeReadOnlyRetroArch({host,port}).then(result=>{
   (result.verified===true?result.mapId:'UNKNOWN'));
  console.log('POKEGUIDE_RETROARCH_MATCHED_FLAG_BYTES='+
   (result.matchedFlagBytes??0));
+ console.log('POKEGUIDE_RETROARCH_MATCHED_TOGGLE_BYTES='+
+  (result.matchedToggleBytes??0));
+ console.log('POKEGUIDE_RETROARCH_MATCHED_TOTAL_FLAG_BYTES='+
+  (result.matchedTotalFlagBytes??0));
  console.log('POKEGUIDE_RETROARCH_MAP_REPEATED='+
   (result.mapRepeated===true?'TRUE':'FALSE'));
  console.log('POKEGUIDE_RETROARCH_POSITION_REPEATED='+

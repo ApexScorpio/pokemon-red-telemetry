@@ -7,7 +7,7 @@ const {probeReadOnlyRetroArch,parseStatus,parseMemory,privateIpv4}
 const world=Buffer.alloc(784);
 world[336]=0x03;world[350]=0x40;world[423]=0xaa;world[742]=0x80;
 function mockServer({crc='9F7FDD53',mutation=false,changeMap=false,
- changePosition=false,contentless=false,dropAll=false}={}){
+ changePosition=false,mutationToggle=false,contentless=false,dropAll=false}={}){
  const socket=dgram.createSocket('udp4'),commands=[];
  let statusCount=0;
  socket.on('message',(packet,remote)=>{
@@ -36,6 +36,9 @@ function mockServer({crc='9F7FDD53',mutation=false,changeMap=false,
      if(absolute===0xD362)arr[i]=changePosition&&
       commands.filter(x=>x==='READ_CORE_MEMORY D361 2').length>1?9:8;
      if(mutation&&addr>=0xD6F0&&absolute===0xD747)arr[i]=0x80;
+     // Change ONLY the second D5A6 read, never the first D5A0 block.
+     if(mutationToggle&&addr===0xD5A6&&absolute===0xD5A6)
+      arr[i]^=0x01;
     }
     reply='READ_CORE_MEMORY '+match[1]+' '+
      [...arr].map(n=>n.toString(16).toUpperCase().padStart(2,'0')).join(' ');
@@ -87,12 +90,15 @@ test('direct UDP probe sends only readonly commands and validates repeated bytes
   assert.equal(r.activeRomSha256Verified,false);
   assert.equal(r.mapId,10);
   assert.equal(r.matchedFlagBytes,336);
+  assert.equal(r.matchedToggleBytes,32);
+  assert.equal(r.matchedTotalFlagBytes,368);
   assert.equal(r.playerActionConfirmed,false);
   assert.equal(r.snapshotAtomicVerified,false);
   assert.equal(r.gameEffectsCertified,false);
   assert.equal(r.readOnlyRequests,m.commands.length);
   assert.equal(m.statusCount(),2);
-  assert.equal(m.commands.filter(x=>x.startsWith('READ_CORE_MEMORY')).length,12);
+  assert.equal(m.commands.filter(x=>x.startsWith('READ_CORE_MEMORY')).length,13);
+  assert.equal(m.commands.filter(x=>x==='READ_CORE_MEMORY D5A6 32').length,1);
   assert.ok(m.commands.every(x=>x==='GET_STATUS'||
    /^READ_CORE_MEMORY [A-F0-9]{4} \d+$/.test(x)));
   assert.ok(m.commands.every(x=>!/(WRITE|SAVE|LOAD|QUIT|RESET|PAUSE|MENU|FRAMEADVANCE)/.test(x)));
@@ -107,6 +113,17 @@ test('a changed event flag between reads is rejected, even when ROM CRC matches'
   assert.equal(r.gameEffectsCertified,false);
  });
 });
+test('any changed removable-object toggle fails closed before world progress',async()=>{
+ await withMock({mutationToggle:true},async m=>{
+  const r=await probeReadOnlyRetroArch({host:'127.0.0.1',port:m.port,timeoutMs:900});
+  assert.equal(r.verified,false);
+  assert.equal(r.status,'REMOTE_RAM_READBACK_REJECTED');
+  assert.equal(r.rejectedDomain,'OBJECT_TOGGLES');
+  assert.equal(r.playerActionConfirmed,false);
+  assert.equal(r.gameEffectsCertified,false);
+  assert.equal(m.commands.filter(x=>x==='READ_CORE_MEMORY D5A6 32').length,1);
+ });
+});
 test('Blue and Green International CRCs are recognized without claiming SHA identity',async()=>{
  for(const [crc,variant] of [['D6DA8A1A','blue'],['3C2DD8AE','green-international']]){
   await withMock({crc},async m=>{
@@ -115,6 +132,8 @@ test('Blue and Green International CRCs are recognized without claiming SHA iden
    assert.equal(r.variant,variant);
    assert.equal(r.romProfileCRC32Matched,true);
    assert.equal(r.activeRomSha256Verified,false);
+   assert.equal(r.matchedToggleBytes,32);
+   assert.equal(r.matchedTotalFlagBytes,368);
    assert.equal(r.gameEffectsCertified,false);
   });
  }
