@@ -731,6 +731,143 @@ function formatCampaignChecklistSection(advice) {
   return lines;
 }
 
+
+// Read-only presentation of the two special map-script battles.
+// The data is observable ROM bytes / RAM changes, NOT a verified victory.
+function formatScriptedBattleEvidenceSection(state,advice) {
+  const cases={
+    96:{name:'Rival — S.S. Anne 2F',address:0xd665,ordinal:2,
+      values:[null,1,2,3,4],
+      offsets:[398255,398344,398441,398515,398551],
+      labels:['SCRIPT_SSANNE2F_DEFAULT',
+       'SCRIPT_SSANNE2F_RIVAL_START_BATTLE',
+       'SCRIPT_SSANNE2F_RIVAL_AFTER_BATTLE',
+       'SCRIPT_SSANNE2F_RIVAL_EXIT',
+       'SCRIPT_SSANNE2F_NOOP']},
+    135:{name:'Rocket — Game Corner',address:0xd65f,ordinal:11,
+      values:[null,2,0,1],
+      offsets:[297995,298070,298118,298696],
+      labels:['SCRIPT_GAMECORNER_DEFAULT',
+       'SCRIPT_GAMECORNER_ROCKET_BATTLE',
+       'SCRIPT_GAMECORNER_ROCKET_EXIT']}
+  };
+  const config=cases[advice?.mapId];
+  if(!config||state?.connected!==true||
+     state.romRuntimeIdentity?.matched!==true||
+     state.mapId!==advice.mapId||
+     typeof advice.romSha256!=='string'||
+     !/^[a-f\d]{64}$/i.test(advice.romSha256)||
+     advice.verified!==true||!Array.isArray(advice.observations)||
+     !Number.isFinite(Date.parse(state.lastUpdate||''))||
+     Date.now()-Date.parse(state.lastUpdate)>15000||
+     Date.now()<Date.parse(state.lastUpdate))
+    return [];
+  const memory=state.memoryReadStatus;
+  const p=memory?.positionWindow,l=memory?.latePositionWindow,
+   f=memory?.publicationPositionWindow;
+  if(memory?.verified!==true||
+     [p,l,f].some(w=>w?.verified!==true||w.mapId!==advice.mapId||
+       !Number.isInteger(w.x)||!Number.isInteger(w.y))||
+     p.x!==l.x||p.y!==l.y||l.x!==f.x||l.y!==f.y)
+    return [];
+  const candidates=advice.observations.filter(o=>o?.kind==='SCRIPTED_BATTLE'&&
+    o.mapId===advice.mapId&&o.ordinal===config.ordinal);
+  if(candidates.length!==1)return [];
+  const o=candidates[0];
+  if(o.referenceOnly!==true||o.referenceWramAddress!==config.address||
+     o.battleWon!==null||o.canBattleNow!==null||
+     o.mapScriptStateVerified!==false||
+     o.actualRomScriptSemanticsVerified!==false||
+     o.candidateStateValuesAreCurrentProgress!==false||
+     o.nextActionConditional!==true||
+     !['SCRIPT_STATE_UNKNOWN','SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY']
+       .includes(o.status))
+    return [];
+  const lines=['--- COMBATE ESPECIAL: '+config.name+' ---',
+    'RAM candidata '+config.address.toString(16).toUpperCase()+
+     ' (referência pret/pokered; não prova o efeito executado).'];
+  const writes=o.candidateStateWritesFromRom;
+  const writeProof=o.staticWriteCandidatesVerified===true&&
+    Array.isArray(writes)&&writes.length===config.offsets.length&&
+    o.candidateStateWritesWithUnknownValue===1&&
+    writes.every((w,i)=>w?.mapId===advice.mapId&&
+      w.writeFileOffset===config.offsets[i]&&
+      w.referenceWramAddress===config.address&&
+      w.byteValueCandidate===config.values[i]&&
+      w.referenceLabelCandidate===(config.values[i]===null?
+        null:config.labels[config.values[i]])&&
+      w.executed===false&&w.completedBattle===null&&
+      w.valueProvenOnExecutedPath===false&&
+      w.memoryChangeObserved===false&&
+      w.opcodeCandidatePhysicallyDecoded===true);
+  if(writeProof){
+    lines.push('Possíveis escritas do código ROM (ordem física, NÃO cronológica):');
+    for(let i=0;i<writes.length;i++){
+      const v=config.values[i];
+      lines.push('• Offset '+config.offsets[i]+': '+
+        (v===null?'valor por determinar':
+         'valor candidato '+v+' ('+config.labels[v]+')'));
+    }
+  }else{
+    lines.push('Escritas e estados alternativos: prova física insuficiente.');
+  }
+  const readValid=o.status==='SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY'&&
+    o.mapScriptByteRepeated===true&&
+    Number.isInteger(o.currentMapScriptValue)&&
+    o.currentMapScriptValue>=0&&o.currentMapScriptValue<=255&&
+    o.referenceStateName===
+      (config.labels[o.currentMapScriptValue]??null);
+  if(readValid){
+    lines.push('Byte RAM observado em leitura dupla: '+
+      o.currentMapScriptValue+
+      (o.referenceStateName?' ('+o.referenceStateName+
+        ', nome apenas da referência)':
+       ' (sem nome na referência)')+'.');
+  }else{
+    lines.push('Byte RAM atual: NÃO CONFIRMADO nesta leitura.');
+  }
+  // Accept only scoped, currently published history with consistent evidence.
+  const recent=state.romRecentScriptedBattleStateChanges;
+  const events=recent?.events;
+  const historyOk=readValid&&recent?.verified===true&&
+    recent.baselineEstablished===true&&
+    recent.romSha256===advice.romSha256&&
+    recent.mapId===advice.mapId&&
+    recent.currentScriptByte===o.currentMapScriptValue&&
+    recent.referenceStateName===o.referenceStateName&&
+    recent.playerActionConfirmed===false&&
+    recent.battleWon===null&&recent.gameplayCompleted===false&&
+    recent.snapshotAtomicVerified===false&&
+    Array.isArray(events)&&events.length<=40&&
+    events.every(e=>e?.kind==='SCRIPT_BYTE_CHANGED_BETWEEN_VERIFIED_POLLS'&&
+      e.romSha256===advice.romSha256&&e.mapId===advice.mapId&&
+      Number.isInteger(e.fromScriptByte)&&e.fromScriptByte>=0&&
+      e.fromScriptByte<=255&&
+      Number.isInteger(e.toScriptByte)&&e.toScriptByte>=0&&
+      e.toScriptByte<=255&&
+      e.fromReferenceState===(config.labels[e.fromScriptByte]??null)&&
+      e.toReferenceState===(config.labels[e.toScriptByte]??null)&&
+      e.referenceStateNamesOnly===true&&
+      e.snapshotAtomicVerified===false&&
+      e.controlFlowVerified===false&&
+      e.playerActionConfirmed===false&&
+      e.battleWon===null&&e.gameplayCompleted===false&&
+      e.wasCausedByPlayer===null);
+  if(historyOk){
+    lines.push('Transições RAM verificadas nesta sessão: '+events.length+'.');
+    for(const e of events.slice(-5).reverse())
+      lines.push('• '+e.fromScriptByte+' → '+e.toScriptByte+
+        (e.toReferenceState?' ('+e.toReferenceState+
+         ' — nome da referência)':'')+
+        '; causa e ação do jogador desconhecidas.');
+  }else{
+    lines.push('Histórico de transições: não comprovado para esta publicação.');
+  }
+  lines.push('⚠️ Estado de script e alterações RAM NÃO comprovam '+
+    'vitória, NPC removido, recompensa ou acesso imediato.','');
+  return lines;
+}
+
 function renderWorldAdvisor(state) {
   const body=document.getElementById('world-advisor-content');
   const source=document.getElementById('world-advisor-source');
@@ -778,7 +915,10 @@ function renderWorldAdvisor(state) {
     ENCOUNTER_GATE_CLOSED:'Encontro fixo encerrado; captura não comprovada',
     EVENT_CONDITIONAL:'Encontro dependente de evento',
     STATIC_TRANSITION:'Ligação do mapa; travessia por confirmar',
-    UNKNOWN:'Estado não comprovado'
+    UNKNOWN:'Estado não comprovado',
+    SCRIPT_STATE_UNKNOWN:'Combate especial: script RAM desconhecido',
+    SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY:
+      'Byte de script repetido na RAM; significado apenas de referência'
   };
   const accessText={
     CONDITIONAL_PATH:'Percurso local geométrico condicional',
@@ -803,7 +943,8 @@ function renderWorldAdvisor(state) {
     TRAINER:'⚔️ Treinador',NPC:'💬 NPC',
     SIGN:'🪧 Sinal/evento',WILD_ENCOUNTER:'🌿 Encontros selvagens',
     STATIC_POKEMON:'✨ Encontro fixo',WARP:'🚪 Saída',
-    BORDER:'🧭 Fronteira'
+    BORDER:'🧭 Fronteira',
+    SCRIPTED_BATTLE:'⚔️ Combate especial de história'
   };
   const priority={
     NOT_COLLECTED_FLAG:0,COIN_NOT_COLLECTED_FLAG:0,TRAINER_GATE_OPEN:1,NOT_REMOVED_FLAG:2,
@@ -812,7 +953,9 @@ function renderWorldAdvisor(state) {
     SCRIPT_UNRESOLVED:6,ROM_ENCOUNTER_TABLE:6,UNKNOWN:7,
     REMOVED_NOT_PROOF_OF_COLLECTION:8,TRAINER_GATE_CLOSED:9,
     ENCOUNTER_GATE_CLOSED:10,BATTLE_PLAYED_SCRIPT_FLAG:11,
-    VICTORY_SCRIPT_FLAG:12,COLLECTED_FLAG:13,COIN_COLLECTED_FLAG:13
+    VICTORY_SCRIPT_FLAG:12,COLLECTED_FLAG:13,COIN_COLLECTED_FLAG:13,
+    SCRIPT_STATE_UNKNOWN:6,
+    SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY:6
   };
   const obs=advice.observations;
   const ordered=obs.map((o,i)=>({o,i})).sort((a,b)=>
@@ -821,7 +964,8 @@ function renderWorldAdvisor(state) {
   const countLabels={ITEM:'Itens',HIDDEN_ITEM:'Ocultos',
     HIDDEN_COIN:'Fichas',TRAINER:'Treinadores',NPC:'NPCs',
     STATIC_POKEMON:'Encontros fixos',SIGN:'Sinais',
-    WILD_ENCOUNTER:'Fauna',WARP:'Saídas',BORDER:'Fronteiras'};
+    WILD_ENCOUNTER:'Fauna',WARP:'Saídas',BORDER:'Fronteiras',
+    SCRIPTED_BATTLE:'Combates especiais'};
   const counts=Object.entries(countLabels).filter(([kind])=>n(kind)>0)
     .map(([kind,label])=>label+': '+n(kind)).join(' · ');
   const lines=[
@@ -856,6 +1000,11 @@ function renderWorldAdvisor(state) {
   if(campaignLines.length){
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(insertion>=0)lines.splice(insertion,0,...campaignLines,'');
+  }
+  const scriptedBattleLines=formatScriptedBattleEvidenceSection(state,advice);
+  if(scriptedBattleLines.length){
+    const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(slot>=0)lines.splice(slot,0,...scriptedBattleLines);
   }
   // Static evidence coverage of 507 externally named event bits.
   // This number NEVER represents campaign completion percentage.

@@ -1185,6 +1185,7 @@ function main(){
   'tests/romReadOnlyRetroArchProbe.test.js',
   'tests/romRuntimeConnectionSnapshot.test.js',
   'tests/romCampaignUi.test.js',
+  'tests/romScriptedBattleUi.test.js',
   'tests/worldAdvisorPanel.test.js'
  ],env,40,0);
  log('GLOBAL_FLAG_READBACK_368_BYTES_TESTED_SYNTHETICALLY=TRUE');
