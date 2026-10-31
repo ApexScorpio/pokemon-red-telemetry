@@ -495,6 +495,32 @@ function main(){
      s.registerInputProvenance?.conditionalByte!==null&&
      s.registerInputProvenance?.conditionalByte!==undefined).length,
    'MBC3 register lineage evidence mismatch: '+variant);
+  const atlas=closure.mbc3RomxPhysicalScenarios;
+  assert(atlas.verified===true&&
+   atlas.transferSites===closure.romxTransferSites.length&&
+   atlas.scenarioCount===atlas.scenarios.length&&
+   atlas.executedTransfers===0&&atlas.activeBanksVerified===0&&
+   atlas.causalLinksVerified===0&&
+   atlas.sameStaticWitnessPairs<=atlas.scenarioCount&&
+   atlas.scenarios.every(x=>
+    x.bankWriteExecuted===false&&x.transferExecuted===false&&
+    x.activeBankVerified===false&&x.causalLinkVerified===false&&
+    x.physicalFileOffset>=0x4000&&
+    x.physicalFileOffset<rom.length&&
+    rom[x.physicalFileOffset]===x.physicalFirstOpcodeByte),
+   'MBC3 ROMX conditional physical atlas invalid: '+variant);
+  log(romLabel+'_MBC3_ROMX_STATIC_SCENARIO_COUNT='+atlas.scenarioCount);
+  log(romLabel+'_MBC3_ROMX_STATIC_SAME_WITNESS_PAIRS='+atlas.sameStaticWitnessPairs);
+  log(romLabel+'_MBC3_ROMX_STATIC_DISTINCT_OFFSETS='+atlas.distinctPhysicalOffsetCount);
+  log(romLabel+'_MBC3_ROMX_STATIC_FIRST_OPCODE_DECODABLE='+atlas.firstOpcodeDecodableScenarios);
+  log(romLabel+'_MBC3_ROMX_STATIC_SCENARIO_EVIDENCE='+JSON.stringify(atlas.scenarios.map(x=>({
+   transferPc:x.rom0TransferPc,targetCpu:x.romxTargetCpu,
+   writePc:x.candidateWritePc,bank:x.candidateBankIfExecuted,
+   fileOffset:x.physicalFileOffset,firstByte:x.physicalFirstOpcodeByte,
+   decodable:x.physicalFirstOpcodeDecodable,
+   sameWitness:x.sameStaticWitnessIncludesWrite,
+   executed:false,causalLinkVerified:false
+  }))));
   const conditionalBanks=closure.mbc3ConditionalRomBankCandidates;
   assert(conditionalBanks.verified===true&&
    conditionalBanks.candidateByteSites+conditionalBanks.unknownByteSites===
@@ -904,6 +930,7 @@ function main(){
   'tests/romMbc3RegisterInput.test.js',
   'tests/romMbc3BankSourcePlan.test.js',
   'tests/romMbc3ConditionalBanks.test.js',
+  'tests/romMbc3RomxPhysicalScenarios.test.js',
   'tests/romMbc3RamSourceReadback.test.js',
   'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',

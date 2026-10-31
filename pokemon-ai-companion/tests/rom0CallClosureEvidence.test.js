@@ -292,6 +292,36 @@ test('MBC3 zero literal source maps only to conditional bank 1',()=>{
  assert.equal(bank.executedBankWrites,0);
  assert.equal(bank.activeBankVerified,false);
 });
+test('ROMX conditional cross product computes physical target from an earlier static bank write',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,0x03,0xea,0x00,0x20,0xcd,0x00,0x50,0xc9],0x200);
+ rom[3*0x4000+0x1000]=0xf3;
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ assert.equal(r.verified,true);
+ const atlas=r.mbc3RomxPhysicalScenarios;
+ assert.equal(atlas.verified,true);
+ assert.equal(atlas.transferSites,1);
+ assert.equal(atlas.scenarioCount,1);
+ assert.equal(atlas.scenarios[0].candidateBankIfExecuted,3);
+ assert.equal(atlas.scenarios[0].physicalFileOffset,3*0x4000+0x1000);
+ assert.equal(atlas.scenarios[0].physicalFirstOpcodeByte,0xf3);
+ assert.equal(atlas.sameStaticWitnessPairs,1);
+ assert.equal(atlas.scenarios[0].causalLinkVerified,false);
+ assert.equal(r.romxActiveBanksVerified,0);
+});
+test('unrelated bank source and ROMX transfer remain a noncausal cross product',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0xcd,0x00,0x50,0xc9],0x300);
+ rom.set([0x3e,0x05,0xea,0x00,0x20,0xc9],0x400);
+ const r=traceRom0CallClosure({rom,roots:[0x300,0x400]});
+ const atlas=r.mbc3RomxPhysicalScenarios;
+ assert.equal(atlas.verified,true);
+ assert.equal(atlas.scenarioCount,1);
+ assert.equal(atlas.sameStaticWitnessPairs,0);
+ assert.equal(atlas.scenarios[0].sameStaticWitnessIncludesWrite,false);
+ assert.equal(atlas.scenarios[0].causalLinkVerified,false);
+ assert.equal(atlas.executedTransfers,0);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);

@@ -11,6 +11,7 @@ const {traceMbc3AProvenance}=require('./romMbc3AProvenance');
 const {traceMbc3RegisterInput}=require('./romMbc3RegisterInput');
 const {planMbc3BankInputs}=require('./romMbc3BankSourcePlan');
 const {classifyMbc3ConditionalBanks}=require('./romMbc3ConditionalBanks');
+const {buildMbc3RomxPhysicalScenarios}=require('./romMbc3RomxPhysicalScenarios');
 const ROM_SIZE=1048576,ROM0_END=0x4000;
 const MAX_ROOTS=512;
 const invalid=reason=>({verified:false,reason,source:'ROM0_CALL_CLOSURE_V1',
@@ -200,6 +201,10 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
  const sourceObservationPlan=planMbc3BankInputs({directWriteSites:
   mbc3DirectWriteSites.filter(s=>s.opcode===0xea&&
    s.literalTargets.some(t=>t.registerKind==='ROM_BANK_NUMBER'))});
+ const conditionalRomBankCandidates=classifyMbc3ConditionalBanks({
+  plan:sourceObservationPlan});
+ const staticRomxScenarios=buildMbc3RomxPhysicalScenarios({
+  rom,transferSites:romxTransferSites,conditionalBanks:conditionalRomBankCandidates});
  return {verified:true,source:'ROM0_CALL_CLOSURE_V1',
   uniqueSeedAddresses:uniqueRoots.length,seedAddresses:uniqueRoots,
   candidateInstructions:valid,candidateInstructionBytes:owners.reduce(
@@ -217,8 +222,8 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   romxTransferSites,
   mbc3DirectWriteSites,
   mbc3SourceObservationPlan:sourceObservationPlan,
-  mbc3ConditionalRomBankCandidates:classifyMbc3ConditionalBanks({
-   plan:sourceObservationPlan}),
+  mbc3ConditionalRomBankCandidates:conditionalRomBankCandidates,
+  mbc3RomxPhysicalScenarios:staticRomxScenarios,
   mbc3DirectWriteSiteCount:mbc3DirectWriteSites.length,
   mbc3DirectLiteralAProvenanceSites:mbc3DirectWriteSites.filter(
    s=>s.adjacentLiteralAProvenance!==null).length,
