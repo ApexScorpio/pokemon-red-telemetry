@@ -9,6 +9,7 @@ const {classifyMbc3Rom0LiteralWrites,classifyMbc3AdjacentImmediateA,
  classifyMbc3AdjacentIndirectWrite}=require('./romMbc3RegisterEvidence');
 const {traceMbc3AProvenance}=require('./romMbc3AProvenance');
 const {traceMbc3RegisterInput}=require('./romMbc3RegisterInput');
+const {planMbc3BankInputs}=require('./romMbc3BankSourcePlan');
 const ROM_SIZE=1048576,ROM0_END=0x4000;
 const MAX_ROOTS=512;
 const invalid=reason=>({verified:false,reason,source:'ROM0_CALL_CLOSURE_V1',
@@ -211,6 +212,9 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   indirectSiteDetails,
   romxTransferSites,
   mbc3DirectWriteSites,
+  mbc3SourceObservationPlan:planMbc3BankInputs({directWriteSites:
+   mbc3DirectWriteSites.filter(s=>s.opcode===0xea&&
+    s.literalTargets.some(t=>t.registerKind==='ROM_BANK_NUMBER'))}),
   mbc3DirectWriteSiteCount:mbc3DirectWriteSites.length,
   mbc3DirectLiteralAProvenanceSites:mbc3DirectWriteSites.filter(
    s=>s.adjacentLiteralAProvenance!==null).length,

@@ -495,6 +495,19 @@ function main(){
      s.registerInputProvenance?.conditionalByte!==null&&
      s.registerInputProvenance?.conditionalByte!==undefined).length,
    'MBC3 register lineage evidence mismatch: '+variant);
+  const plan=closure.mbc3SourceObservationPlan;
+  assert(plan.verified===true&&plan.siteCount===closure.mbc3LiteralRomBankWriteSites&&
+   plan.runtimeBankVerified===false&&plan.runtimeReadCount===0&&
+   plan.sites.every(s=>s.executed===false&&s.bankActiveVerified===false&&
+    s.readbackPerformed===false)&&
+   plan.uniqueRamAddresses.every(a=>
+    (a>=0xc000&&a<=0xdfff)||(a>=0xff80&&a<=0xfffe)),
+   'MBC3 read-only observation plan mismatch: '+variant);
+  log(romLabel+'_MBC3_SOURCE_PLAN_KIND_COUNTS='+JSON.stringify(plan.kinds));
+  log(romLabel+'_MBC3_SOURCE_PLAN_RAM_ADDRESSES='+JSON.stringify(plan.uniqueRamAddresses));
+  log(romLabel+'_MBC3_SOURCE_PLAN_RAM_ADDRESS_COUNT='+plan.uniqueRamAddressCount);
+  log(romLabel+'_MBC3_SOURCE_PLAN_RUNTIME_READS='+plan.runtimeReadCount);
+  log(romLabel+'_MBC3_SOURCE_PLAN_SITES='+JSON.stringify(plan.sites));
   log(romLabel+'_MBC3_REGISTER_INPUT_TRACED_SITES='+closure.mbc3RegisterInputTracedSites);
   log(romLabel+'_MBC3_REGISTER_INPUT_CONDITIONAL_BYTE_SITES='+closure.mbc3RegisterInputConditionalByteSites);
   log(romLabel+'_MBC3_REGISTER_INPUT_UNRESOLVED_SITES='+closure.mbc3RegisterInputUnresolvedSites);
@@ -866,6 +879,7 @@ function main(){
   'tests/romMbc3RegisterEvidence.test.js',
   'tests/romMbc3AProvenance.test.js',
   'tests/romMbc3RegisterInput.test.js',
+  'tests/romMbc3BankSourcePlan.test.js',
   'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romGlobalFlagReadback.test.js',

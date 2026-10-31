@@ -245,6 +245,27 @@ test('MBC3 changed B register keeps value unknown at EA',()=>{
  assert.equal(r.mbc3DirectWriteSites[0].registerInputProvenance.conditionalByte,null);
  assert.equal(r.mbc3DirectWritesExecuted,0);
 });
+test('MBC3 source observation plan lists WRAM byte without accessing emulator',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0xfa,0x23,0xd1,0xea,0,0x20,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ assert.equal(r.verified,true);
+ const plan=r.mbc3SourceObservationPlan;
+ assert.equal(plan.verified,true);
+ assert.deepEqual(plan.uniqueRamAddresses,[0xd123]);
+ assert.equal(plan.runtimeReadCount,0);
+ assert.equal(plan.runtimeBankVerified,false);
+ assert.equal(plan.sites[0].executed,false);
+});
+test('MBC3 register-indirect source is not presumed a RAM address',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x0a,0xea,0,0x20,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ assert.equal(r.mbc3SourceObservationPlan.verified,true);
+ assert.equal(r.mbc3SourceObservationPlan.sites[0].memoryPointerUnknown,true);
+ assert.deepEqual(r.mbc3SourceObservationPlan.uniqueRamAddresses,[]);
+ assert.equal(r.romxActiveBanksVerified,0);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);
