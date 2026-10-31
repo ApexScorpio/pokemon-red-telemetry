@@ -69,3 +69,33 @@ test('a changed reference bit never asserts a player action or a captured Pokém
  assert.equal(named.actionObserved,false);
  assert.equal(named.flagMeaning,'FLAG_SET_ONLY');
 });
+
+const pinnedEventNames=require('../data/gen1EventNamesPret.json');
+test('all 507 live event bits match the pinned disassembly indices exactly',()=>{
+ assert.equal(pinnedEventNames.sourceCommit,
+  '171e2c204f9c1ff8e577ca387a4bbb009e130843');
+ assert.equal(Object.keys(events).length,507);
+ for(const [name,bitIndex] of Object.entries(events))
+  assert.equal(pinnedEventNames.eventNamesByBit[bitIndex],name,
+   'RAM event index must match pinned ROM reference: '+name);
+});
+test('Lavender Town events use canonical 0xEE base rather than obsolete minus-45 indices',()=>{
+ for(const [name,expected] of [
+  ['EVENT_POKEMON_TOWER_RIVAL_ON_LEFT',238],
+  ['EVENT_BEAT_POKEMON_TOWER_RIVAL',239],
+  ['EVENT_BEAT_POKEMONTOWER_3_TRAINER_0',241],
+  ['EVENT_BEAT_GHOST_MAROWAK',271],
+  ['EVENT_RESCUED_MR_FUJI_2',279],
+  ['EVENT_GOT_POKE_FLUTE',296]
+ ])assert.equal(events[name],expected);
+ const x=fixture();
+ set(x.eventFlagsHex,271);
+ set(x.eventFlagsHex,296);
+ const state=buildWorldEventAtlas(x);
+ assert.equal(state.verified,true,state.reason);
+ assert.equal(state.events.find(e=>e.name==='EVENT_BEAT_GHOST_MAROWAK')?.flagSet,true);
+ assert.equal(state.events.find(e=>e.name==='EVENT_GOT_POKE_FLUTE')?.flagSet,true);
+ assert.equal(state.events.find(e=>e.name==='EVENT_BEAT_POKEMONTOWER_4_TRAINER_2')?.flagSet,false);
+ assert.equal(state.milestones.find(e=>e.name==='EVENT_GOT_POKE_FLUTE')?.flagSet,true);
+ assert.equal(state.snapshotAtomicVerified,false);
+});

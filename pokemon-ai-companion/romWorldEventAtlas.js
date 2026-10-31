@@ -6,6 +6,7 @@
 // association does not prove the active ROM's full SHA-256.
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const EVENT_REFERENCE=require('./data/exact_events.json');
+const PINNED_EVENT_REFERENCE=require('./data/gen1EventNamesPret.json');
 const TOGGLE_REFERENCE=require('./data/exact_visible_flags.json');
 const hex=(values,count)=>Array.isArray(values)&&values.length===count&&
  values.every(x=>typeof x==='string'&&/^[a-f0-9]{2}$/i.test(x));
@@ -23,6 +24,16 @@ function validateReferenceAtlas(){
     list.some(([name,index])=>!/^EVENT_[A-Z0-9_]+$/.test(name)||
       !Number.isInteger(index)||index<0||index>=2560))
    return {verified:false,reason:'Constantes de eventos não correspondem às 507 referências'};
+ // The two bundled references must point to the exact same W_EVENTFLAGS
+ // bit for every external event label; names alone are insufficient proof.
+ // Historical Lavender Town indices were offset by 45 bits, including the
+ // Poke Flute, so a mismatch must reject every live story-flag inference.
+ if(PINNED_EVENT_REFERENCE.sourceCommit!=='171e2c204f9c1ff8e577ca387a4bbb009e130843'||
+    PINNED_EVENT_REFERENCE.namedBitCount!==507||
+    PINNED_EVENT_REFERENCE.totalWEventFlagsBits!==2560||
+    Object.keys(PINNED_EVENT_REFERENCE.eventNamesByBit||{}).length!==507||
+    list.some(([name,index])=>PINNED_EVENT_REFERENCE.eventNamesByBit[index]!==name))
+   return {verified:false,reason:'Divergencia entre indices de eventos RAM e referencia pret/pokered'};
  const toggles=Object.values(TOGGLE_REFERENCE);
  if(toggles.length!==228||
     toggles.some((row,index)=>row?.toggleIndex!==index||
