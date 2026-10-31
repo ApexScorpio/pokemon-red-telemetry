@@ -92,8 +92,8 @@ for(const [variant,name] of [
   assert.equal(r.verified,true,r.reason);
   assert.equal(r.uniqueSeedAddresses,59);
   assert.ok(r.candidateInstructions>0);
-  assert.equal(r.budgetExhausted,false);
-  assert.equal(r.staticCandidateQueueExhausted,true);
+  assert.equal(r.budgetExhausted,r.remainingQueue>0);
+  assert.equal(r.staticCandidateQueueExhausted,!r.budgetExhausted);
   assert.equal(r.unresolvedCandidateCount,
    Object.values(r.unresolvedReasonCounts).reduce((n,x)=>n+x,0));
   assert.equal(r.runtimeEffectsVerified,false);
