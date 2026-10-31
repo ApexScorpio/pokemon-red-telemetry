@@ -390,6 +390,12 @@ function main(){
      p.bank>=1&&p.bank<64&&
      p.fileOffset===p.bank*0x4000+x.targetCpu-0x4000)),
    'ROM0 ROMX cross-bank physical-location integrity mismatch: '+variant);
+  const romLabel='ROM_'+variant.toUpperCase();
+  log(romLabel+'_ROMX_SITE_COUNT='+closure.romxTransferSites.length);
+  log(romLabel+'_JPHL_SITE_COUNT='+closure.indirectSiteDetails.length);
+  log(romLabel+'_ROMX_PHYSICAL_MAPPING_COUNT='+closure.romxPhysicalMappingsTotal);
+  log(romLabel+'_ROMX_ACTIVE_BANKS_VERIFIED='+closure.romxActiveBanksVerified);
+  log(romLabel+'_ROMX_EVIDENCE_SCHEMA=ROM0_ROMX_WITNESS_V1');
   log('ROM_'+variant.toUpperCase()+'_ROMX_SITE_EVIDENCE='+
    JSON.stringify(closure.romxTransferSites.map(x=>({
     fromRom0Cpu:x.fromRom0Cpu,opcode:x.opcode,
