@@ -9,7 +9,7 @@ const {inspectRomBuffer}=require('../romVariantRegistry');
 const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
-const {buildWorldGapMatrix}=require('../romWorldGapMatrix');
+const {buildWorldGapMatrix,exportWorldGapRowsV2}=require('../romWorldGapMatrix');
 const {traceRom0CallClosure}=require('../rom0CallClosureEvidence');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
 const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
@@ -279,9 +279,21 @@ function main(){
     gameEffectVerified:x.gameEffectVerified}))));
   const gaps=buildMappingGapLedger({profile:p,index:i,scriptAtlas:a,tracker});
   const worldGapMatrix=buildWorldGapMatrix({ledger:gaps});
+  const flatGapRows=exportWorldGapRowsV2({matrix:worldGapMatrix});
   assert(worldGapMatrix.verified===true&&
    worldGapMatrix.romSha256===p.hash.sha256&&
    worldGapMatrix.maps.length===248&&
+   flatGapRows.verified===true&&
+   flatGapRows.rows.length===248&&
+   flatGapRows.counts.mapIds===248&&
+   flatGapRows.counts.normalMapHeaders===226&&
+   flatGapRows.counts.noNormalHeader===22&&
+   flatGapRows.counts.staticallyIndexedActions===1992&&
+   flatGapRows.counts.scriptReferences===1126&&
+   flatGapRows.counts.asmReferences===626&&
+   flatGapRows.counts.runtimeActionsUnproven===
+    worldGapMatrix.summary.runtimeActionsUnproven&&
+   flatGapRows.gameplayCompletionCertified===false&&
    worldGapMatrix.summary.mapIds===248&&
    worldGapMatrix.summary.normalMapHeaders===226&&
    worldGapMatrix.summary.noNormalHeader===22&&
@@ -1128,6 +1140,14 @@ function main(){
     m.actionsWithoutRuntimeProof??null,m.nextEvidence
    ])));
   log('ROM_'+variant.toUpperCase()+'_WORLD_GAP_GAMEPLAY_COMPLETION_PERCENT=NULL');
+  // Structured rows are plain objects, never JSON nested arrays.
+  // Windows PowerShell 5.1 pipelines can wrap an outer JSON array as
+  // one object; the consuming bridge must explicitly enumerate rows.
+  log('ROM_'+variant.toUpperCase()+'_WORLD_GAP_MATRIX_FLAT_V2_VERIFIED=TRUE');
+  log('ROM_'+variant.toUpperCase()+'_WORLD_GAP_MATRIX_FLAT_V2_COUNTS='+
+   JSON.stringify(flatGapRows.counts));
+  log('ROM_'+variant.toUpperCase()+'_WORLD_GAP_MATRIX_FLAT_V2_ROWS='+
+   JSON.stringify(flatGapRows.rows));
   log('ROM_'+variant.toUpperCase()+'_GAP_HOTSPOTS='+JSON.stringify(gaps.priorities));
   log('ROM_'+variant.toUpperCase()+'_ASM_REFERENCES=626');
   log('ROM_'+variant.toUpperCase()+'_UNIQUE_ENTRYPOINTS='+a.summary.uniqueAsmEntrypoints);

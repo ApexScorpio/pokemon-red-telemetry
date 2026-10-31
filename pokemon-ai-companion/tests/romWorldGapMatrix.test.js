@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const {buildWorldGapMatrix,mapWorldGapDetail}=require('../romWorldGapMatrix');
+const {buildWorldGapMatrix,mapWorldGapDetail,exportWorldGapRowsV2}=
+ require('../romWorldGapMatrix');
 const {readRom,KNOWN}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
 const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
@@ -131,5 +132,69 @@ for(const [variant,env] of [['red','POKEMON_RED_ROM'],
   assert.equal(report.gameplayCompletionCertified,false);
   assert.equal(report.topUnresolvedMaps.length,15);
   assert.equal(report.topUnresolvedMaps[0].mapId,ledger.priorities[0].mapId);
+  const flat=exportWorldGapRowsV2({matrix:report});
+  assert.equal(flat.verified,true,flat.reason);
+  assert.equal(flat.rows.length,248);
+  assert.equal(flat.counts.staticallyIndexedActions,1992);
+  assert.equal(flat.counts.scriptReferences,1126);
+  assert.equal(flat.counts.asmReferences,626);
+  assert.equal(flat.gameplayCompletionCertified,false);
  });
 }
+
+test('PowerShell-compatible map rows V2 export all 248 IDs as named objects',()=>{
+ const report=exportWorldGapRowsV2({matrix:buildWorldGapMatrix({ledger:fixture()})});
+ assert.equal(report.verified,true,report.reason);
+ assert.equal(report.version,2);
+ assert.equal(report.rows.length,248);
+ assert.equal(report.counts.normalMapHeaders,226);
+ assert.equal(report.counts.noNormalHeader,22);
+ assert.equal(report.counts.staticallyIndexedActions,1992);
+ assert.equal(report.counts.scriptReferences,1126);
+ assert.equal(report.counts.asmReferences,626);
+ assert.equal(report.counts.runtimeActionsUnproven,1992);
+ assert.equal(report.gameplayCompletionCertified,false);
+ assert.equal(report.counts.gameplayCompletionPercentage,null);
+ assert.deepEqual(Object.keys(report.rows[0]),[
+  'mapId','hasNormalHeader','staticActionCount','scriptReferences',
+  'asmReferences','actionsWithoutRuntimeProof','nextEvidence',
+  'gapClasses','gameplayVerified','completionPercent'
+ ]);
+ assert.equal(report.rows[0].hasNormalHeader,true);
+ assert.equal(report.rows[226].hasNormalHeader,false);
+ assert.equal(report.rows[226].staticActionCount,null);
+});
+test('JSON array round-trip keeps named properties and all 248 records',()=>{
+ const exportData=exportWorldGapRowsV2({matrix:buildWorldGapMatrix({ledger:fixture()})});
+ const json=JSON.stringify(exportData.rows);
+ const rows=JSON.parse(json);
+ assert.equal(rows.length,248);
+ assert.deepEqual(rows.map(x=>x.mapId),Array.from({length:248},(_,i)=>i));
+ assert.equal(rows.every(x=>typeof x==='object'&&!Array.isArray(x)),true);
+ assert.equal(rows[0].gameplayVerified,false);
+ assert.equal(rows[247].completionPercent,null);
+ assert.equal(rows[247].nextEvidence,'Classify unused/reserved ID and any unassigned hidden item reference');
+});
+test('flattened export fails closed on forged runtime completion and row gaps',()=>{
+ const a=buildWorldGapMatrix({ledger:fixture()});
+ a.maps[0].gameplayVerified=true;
+ assert.equal(exportWorldGapRowsV2({matrix:a}).verified,false);
+ const b=buildWorldGapMatrix({ledger:fixture()});
+ b.maps[2].mapId=3;
+ assert.equal(exportWorldGapRowsV2({matrix:b}).verified,false);
+ const c=buildWorldGapMatrix({ledger:fixture()});
+ c.maps[5].actionsWithoutRuntimeProof=900;
+ assert.equal(exportWorldGapRowsV2({matrix:c}).verified,false);
+ const d=buildWorldGapMatrix({ledger:fixture()});
+ d.summary.runtimeActionsUnproven++;
+ assert.equal(exportWorldGapRowsV2({matrix:d}).verified,false);
+});
+test('PowerShell export refuses unknown ROM and non-normal maps with fake actions',()=>{
+ assert.equal(exportWorldGapRowsV2({}).verified,false);
+ const a=buildWorldGapMatrix({ledger:fixture()});
+ a.romSha256='0'.repeat(64);
+ assert.equal(exportWorldGapRowsV2({matrix:a}).verified,false);
+ const b=buildWorldGapMatrix({ledger:fixture()});
+ b.maps[226].staticActionCount=0;
+ assert.equal(exportWorldGapRowsV2({matrix:b}).verified,false);
+});

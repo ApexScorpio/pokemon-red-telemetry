@@ -143,4 +143,80 @@ function mapWorldGapDetail({matrix,mapId}={}){
   ...matrix.maps[mapId],pending:[...matrix.maps[mapId].pending],
   gameplayVerified:false,completionPercent:null};
 }
-module.exports={buildWorldGapMatrix,mapWorldGapDetail};
+
+function exportWorldGapRowsV2({matrix}={}){
+ const denied=reason=>({verified:false,reason,rows:[],counts:null,
+  gameplayCompletionCertified:false});
+ if(matrix?.verified!==true||
+    !isKnownAuditedRomSha(matrix.romSha256)||
+    matrix.source!=='COMPLETE_248_ID_STATIC_WORLD_GAP_MATRIX_V1'||
+    matrix.gameplayCompletionCertified!==false||
+    matrix.mapping100PercentCertified!==false||
+    !Array.isArray(matrix.maps)||matrix.maps.length!==IDS||
+    matrix.summary?.mapIds!==IDS||
+    matrix.summary.normalMapHeaders!==HEADERS||
+    matrix.summary.noNormalHeader!==IDS-HEADERS||
+    matrix.summary.gameplayCompletionPercentage!==null||
+    matrix.summary.allRuntimeBehaviorCertified!==false||
+    matrix.summary.staticallyIndexedActions!==ACTIONS||
+    matrix.summary.scriptReferences!==REFERENCES||
+    matrix.summary.asmReferences!==ASM||
+    matrix.summary.unverifiedScriptEffects!==REFERENCES)
+  return denied('Original 248-ID matrix and its static evidence must be verified');
+ const rows=[];
+ let normal=0,noHeader=0,actions=0,scripts=0,asm=0,pending=0,unverified=0;
+ for(let mapId=0;mapId<IDS;mapId++){
+  const m=matrix.maps[mapId];
+  if(!m||m.mapId!==mapId||m.gameplayVerified!==false||
+     m.completionPercent!==null||
+     typeof m.nextEvidence!=='string'||m.nextEvidence.length<1||
+     !Array.isArray(m.pending)||m.pending.some(x=>typeof x!=='string'))
+   return denied('Invalid or incomplete map '+mapId);
+  if(m.hasNormalHeader===true&&m.category==='NORMAL_MAP_STATIC_CATALOGUE'){
+   const ints=[m.staticActionCount,m.scriptReferences,m.asmReferences,
+    m.actionsWithoutRuntimeProof,m.scriptsWithoutEffectProof];
+   if(ints.some(x=>!Number.isSafeInteger(x)||x<0)||
+      m.asmReferences>m.scriptReferences||
+      m.actionsWithoutRuntimeProof>m.staticActionCount||
+      m.scriptsWithoutEffectProof>m.scriptReferences)
+    return denied('Impossible static and runtime totals for map '+mapId);
+   normal++;
+   actions+=m.staticActionCount;scripts+=m.scriptReferences;
+   asm+=m.asmReferences;pending+=m.actionsWithoutRuntimeProof;
+   unverified+=m.scriptsWithoutEffectProof;
+  }else if(m.hasNormalHeader===false&&
+            m.category==='NO_NORMAL_MAP_HEADER'){
+   if(m.staticActionCount!==null||m.scriptReferences!==null||
+      m.asmReferences!==null||m.actionsWithoutRuntimeProof!==undefined||
+      m.pending.length!==1||
+      m.pending[0]!=='MAP_HEADER_NOT_A_NORMAL_GAMEPLAY_HEADER')
+    return denied('Reserved or non-normal map cannot claim proof '+mapId);
+   noHeader++;
+  }else return denied('Unrecognized map classification '+mapId);
+  rows.push({
+   mapId,hasNormalHeader:m.hasNormalHeader,
+   staticActionCount:m.staticActionCount,
+   scriptReferences:m.scriptReferences,
+   asmReferences:m.asmReferences,
+   actionsWithoutRuntimeProof:m.actionsWithoutRuntimeProof??null,
+   nextEvidence:m.nextEvidence,
+   gapClasses:m.pending.join('|'),
+   gameplayVerified:false,completionPercent:null
+  });
+ }
+ const sum=matrix.summary;
+ if(normal!==HEADERS||noHeader!==IDS-HEADERS||
+    actions!==ACTIONS||scripts!==REFERENCES||asm!==ASM||
+    unverified!==sum.unverifiedScriptEffects||
+    pending!==sum.runtimeActionsUnproven)
+  return denied('Flat export row counters disagree with the source matrix');
+ return {verified:true,version:2,source:'OBJECT_ROWS_FOR_WINDOWS_POWERSHELL',
+  romSha256:matrix.romSha256,
+  counts:{mapIds:IDS,normalMapHeaders:normal,noNormalHeader:noHeader,
+   staticallyIndexedActions:actions,scriptReferences:scripts,
+   asmReferences:asm,runtimeActionsUnproven:pending,
+   unverifiedScriptEffects:unverified,
+   gameplayCompletionPercentage:null},
+  rows,gameplayCompletionCertified:false};
+}
+module.exports={buildWorldGapMatrix,mapWorldGapDetail,exportWorldGapRowsV2};
