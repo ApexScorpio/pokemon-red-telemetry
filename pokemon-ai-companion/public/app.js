@@ -871,6 +871,43 @@ function renderWorldAdvisor(state) {
     const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(point>=0)lines.splice(point,0,...evidence);
   }
+  // Show ROM-backed candidate event bindings for this map only, cross-checked
+  // against the same 507 named bits in a corroborated RAM read.
+  // Never present these links as confirmed script actions or rewards.
+  const namedMap=advice.romMapNamedEventEvidence;
+  if(namedMap?.verified===true&&namedMap.mapId===advice.mapId&&
+     namedMap.romSha256===advice.romSha256&&
+     namedMap.summary?.namedReferenceEvents===507&&
+     Array.isArray(namedMap.events)&&
+     namedMap.events.length===namedMap.summary.mapEventBitCandidates&&
+     namedMap.actionsObserved===false&&
+     namedMap.gameplayCompletionCertified===false){
+    const local=[
+      '--- EVENTOS COM REFERÊNCIA ROM NESTE MAPA ---',
+      namedMap.summary.mapEventBitCandidates+
+        ' eventos nomeados com ator/handler da ROM associado a este mapa; '+
+        namedMap.summary.flagsSet+' bits ativos e '+
+        namedMap.summary.flagsClear+' inativos na RAM.'
+    ];
+    for(const e of namedMap.events.slice(0,16)){
+      if(typeof e.name!=='string'||!Number.isInteger(e.eventBitIndex)||
+         typeof e.flagSet!=='boolean')continue;
+      const origin=e.localEvidence==='ACTOR_AND_OPCODE'?
+        'ator e opcode':e.localEvidence==='ACTOR_HEADER_ONLY'?
+        'objeto/cabeçalho':e.localEvidence==='OPCODE_HANDLER_ONLY'?
+        'handler ASM':'associação insuficiente';
+      local.push('• '+e.name.replace(/^EVENT_/,'').replaceAll('_',' ')+
+        ' (#'+e.eventBitIndex+', '+origin+'): bit '+
+        (e.flagSet?'ativo':'inativo')+
+        '; execução, local exato e consequência por confirmar');
+    }
+    if(namedMap.events.length>16)
+      local.push('… '+(namedMap.events.length-16)+
+        ' outras referências ROM deste mapa (lista limitada no painel).');
+    local.push('⚠️ Referência de ROM não é uma ação comprovada nem garante acesso.','');
+    const where=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(where>=0)lines.splice(where,0,...local);
+  }
   // Include every physical candidate bit operation, not just bits shared
   // between two actors. This is ROM code evidence, never gameplay progress.
   if(advice.romAllFlagOperationsVerified===true&&

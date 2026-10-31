@@ -163,6 +163,34 @@ test('all physical BIT SET RES operations in current map are shown without gamep
  s.connected=false;
  assert.doesNotMatch(render(s).body.textContent,/BIT_TEST bit 1231/);
 });
+test('current map lists named ROM event candidates with independent RAM flag states',()=>{
+ const s=live();
+ s.worldAdvisor.romMapNamedEventEvidence={
+  verified:true,mapId:15,romSha256:s.worldAdvisor.romSha256,
+  actionsObserved:false,gameplayCompletionCertified:false,
+  summary:{namedReferenceEvents:507,mapEventBitCandidates:2,
+   flagsSet:1,flagsClear:1},
+  events:[
+   {name:'EVENT_GOT_POKE_FLUTE',eventBitIndex:296,
+    localEvidence:'ACTOR_HEADER_ONLY',flagSet:true},
+   {name:'EVENT_RESCUED_MR_FUJI',eventBitIndex:1231,
+    localEvidence:'OPCODE_HANDLER_ONLY',flagSet:false}
+  ]
+ };
+ const shown=render(s).body.textContent;
+ assert.match(shown,/EVENTOS COM REFERÊNCIA ROM NESTE MAPA/);
+ assert.match(shown,/2 eventos nomeados/);
+ assert.match(shown,/POKE FLUTE/);
+ assert.match(shown,/#296/);
+ assert.match(shown,/handler ASM/);
+ assert.match(shown,/execução, local exato e consequência por confirmar/);
+ assert.equal(render(s).body.innerHTML,null);
+ s.worldAdvisor.romMapNamedEventEvidence.mapId=16;
+ assert.doesNotMatch(render(s).body.textContent,/EVENTOS COM REFERÊNCIA ROM NESTE MAPA/);
+ s.worldAdvisor.romMapNamedEventEvidence.mapId=15;
+ s.connected=false;
+ assert.doesNotMatch(render(s).body.textContent,/EVENTOS COM REFERÊNCIA ROM NESTE MAPA/);
+});
 test('507 named events show direct evidence coverage rather than campaign completion',()=>{
  const s=live();
  s.worldAdvisor.romNamedEventEvidenceVerified=true;

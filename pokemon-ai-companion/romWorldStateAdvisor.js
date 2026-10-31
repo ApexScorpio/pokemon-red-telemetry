@@ -8,11 +8,13 @@ const {buildCampaignWorldTracker}=require('./romCampaignWorldTracker');
 const {candidateFlagLinksForMap}=require('./romStaticWorldFlagDependencies');
 const {getMapFlagOperationCandidates}=require('./romGlobalFlagOperationCatalogue');
 const {buildNamedEventEvidenceLedger}=require('./romNamedEventEvidenceLedger');
+const {buildMapNamedEventEvidence}=require('./romMapNamedEventEvidence');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
  itemAccess=null,itemAccessInputs=[],hiddenStartIndex=0,
- positionVerified=false,worldFlagLedger=null,globalFlagReadback=null}={}){
+ positionVerified=false,worldFlagLedger=null,globalFlagReadback=null,
+ namedWorldEventAtlas=null}={}){
 
  const hash=profile?.hash?.sha256;
  const maps=profile?.world?.maps;
@@ -165,6 +167,9 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  const candidateFlags=candidateFlagLinksForMap({atlas:scriptAtlas,mapId});
  const flagOperations=getMapFlagOperationCandidates({atlas:scriptAtlas,mapId});
  const namedEventEvidence=buildNamedEventEvidenceLedger({atlas:scriptAtlas});
+ const currentMapNamedEventEvidence=buildMapNamedEventEvidence({
+  ledger:namedEventEvidence,worldEventAtlas:namedWorldEventAtlas,mapId
+ });
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
  const campaign=worldIndex.verified?buildCampaignWorldTracker({
@@ -184,6 +189,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
    mapStaticInventory,mapChecklist,
    romNamedEventEvidenceVerified:namedEventEvidence.verified===true,
+   romMapNamedEventEvidence:currentMapNamedEventEvidence,
    romNamedEventEvidenceSummary:namedEventEvidence.verified===true?
     namedEventEvidence.summary:null,
    romNamedEventEffectsExecutedVerified:false,
