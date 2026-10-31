@@ -721,3 +721,9 @@
 - Bridge 092: ASM 638/638, suite 1275 PASS/1 SKIP em 1276, Red/Blue/Green, 0 falhas; integração bitmap 12/12 e antigos 9/9, sem E2E.
 - `CampaignFlagSession.ingestPublished` fecha a lacuna da timeline de flags de campanha: exige ROM, 226 mapas, posição final, alvo/porta/geração e polls consecutivos; não reutiliza baseline legado. O cliente atualiza `globalCampaignDelta` e `worldRecentFlagChanges` só após gate final. Os objetivos/rotas estáticos continuam independentes.
 - 12 testes adicionados com `romPublishedCampaignFlagSession.test.js`, teste de integração anterior revisto e certifier atualizado. Bridge 093 por executar: esperados 650/650 ASM, full 1287 PASS + 1 SKIP de 1288; sem afirmação de 100% gameplay. Histórico acrescentado.
+
+
+### T139 — 2026-10-31: Bridge 093 PASS; respostas UDP associadas ao destino
+- Bridge 093 verificou ASM 650/650, 1287 PASS/1 SKIP em 1288, 0 FAIL; ROMs Red/Blue/Green sem gameplay live.
+- Novo `romUdpResponseSourceGuard`: em destino IPv4 literal exige origem IP+porta exatamente iguais; `localhost` exige loopback, nomes DNS usam apenas filtro de porta (limite conhecido). UDP `handleResponse` recebe `rinfo` e recusa fontes divergentes; callbacks pendentes escopados com geração e identidade contra timeouts antigos; `setTarget` cancela os pedidos sem fechar socket; `readMemoryBlock` interrompe chunks ao trocar destino e início do poll tem barreiras após primeiras leituras. 12 testes isolados adicionados ao certificador.
+- Risco residual de UDP sem transaction ID: resposta tardia do mesmo IP/porta após geração nova não pode ser provada por essa origem; continuar a testar fases assíncronas. Bridge 094 prevista ASM 662/662, full 1299 PASS/1 SKIP / 1300; não são resultados já executados. Histórico append-only; recursos protegidos intocados.

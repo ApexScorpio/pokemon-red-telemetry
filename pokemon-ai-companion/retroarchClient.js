@@ -18,6 +18,7 @@ const {reconcileVisibleItemCoordinates}=
 const {matchLiveActorsToAuditedRom}=require('./romLiveActorIdentity');
 const {RomActorMotionSession}=require('./romActorMotionSession');
 const {captureTargetScope,matchesTargetScope}=require('./romTargetScopeGuard');
+const {senderMatchesTarget}=require('./romUdpResponseSourceGuard');
 const {collectScriptedBattleLiveReadback}=
  require('./romScriptedBattleLiveReadback');
 const {ScriptedBattleStateSession}=
@@ -548,7 +549,7 @@ class RetroArchClient extends EventEmitter {
         bytes: msg.length,
         response: raw.slice(0, 180)
       }));
-      this.handleResponse(raw);
+      this.handleResponse(raw,rinfo);
     });
 
     this.socket.on('error', (err) => {
@@ -567,66 +568,76 @@ class RetroArchClient extends EventEmitter {
   sendRaw(cmd) {
     return new Promise((resolve) => {
       if (!this.socket) return resolve(null);
-
-      const parts = cmd.trim().split(' ');
-      const key = (parts.length === 1 ? parts[0] : `${parts[0]} ${parts[1]}`).toUpperCase();
-
-      const timeout = setTimeout(() => {
-        if (this.pendingResolves.has(key)) {
+      const target=captureTargetScope(this);
+      const parts=cmd.trim().split(' ');
+      const key=(parts.length===1?parts[0]:
+        parts[0]+' '+parts[1]).toUpperCase();
+      if(!(this.pendingResolves instanceof Map))
+        this.pendingResolves=new Map();
+      // A duplicate request must not share a resolver or an old timer.
+      const previous=this.pendingResolves.get(key);
+      if(typeof previous==='function')previous(null);
+      let settled=false,timeout=null;
+      const pending=(data)=>{
+        if(settled)return;
+        settled=true;
+        if(timeout!==null)clearTimeout(timeout);
+        if(this.pendingResolves.get(key)===pending)
           this.pendingResolves.delete(key);
-          resolve(null);
-        }
-      }, 400);
-
-      this.pendingResolves.set(key, (data) => {
-        clearTimeout(timeout);
-        resolve(data);
-      });
-
-      const buf = Buffer.from(cmd + '\n');
-      this.socket.send(buf, 0, buf.length, this.port, this.ip, (err) => {
-        if (!this.lastUdpSendLogAt) {
-          this.lastUdpSendLogAt = Date.now();
-          console.log('[RetroArchClient] Primeiro envio UDP:', JSON.stringify({
-            target: `${this.ip}:${this.port}`,
-            local: `${this.socket.address().address}:${this.socket.address().port}`,
-            command: cmd,
-            bytes: buf.length,
-            sendError: err ? err.message : null
+        resolve(matchesTargetScope(this,target)?data:null);
+      };
+      pending.targetScope=target;
+      this.pendingResolves.set(key,pending);
+      timeout=setTimeout(()=>pending(null),400);
+      const buf=Buffer.from(cmd+'\n');
+      this.socket.send(buf,0,buf.length,target.port,target.host,(err)=>{
+        if(!this.lastUdpSendLogAt){
+          this.lastUdpSendLogAt=Date.now();
+          console.log('[RetroArchClient] Primeiro envio UDP:',JSON.stringify({
+            target:target.host+':'+target.port,
+            local:this.socket?.address?
+              this.socket.address().address+':'+this.socket.address().port:null,
+            command:cmd,bytes:buf.length,
+            sendError:err?err.message:null
           }));
         }
-        if (err) {
-          console.error('[RetroArchClient] Erro ao enviar UDP:', err.message);
-          clearTimeout(timeout);
-          this.pendingResolves.delete(key);
-          resolve(null);
+        if(err){
+          console.error('[RetroArchClient] Erro ao enviar UDP:',err.message);
+          pending(null);
         }
       });
     });
   }
 
-  handleResponse(str) {
-    const parts = str.split(' ');
-    if (parts.length < 2) return;
-
-    const key = parts[0].toUpperCase() === 'GET_STATUS'
-      ? 'GET_STATUS'
-      : `${parts[0]} ${parts[1]}`.toUpperCase();
-    if (this.pendingResolves.has(key)) {
-      const cb = this.pendingResolves.get(key);
-      this.pendingResolves.delete(key);
-      cb(parts[0].toUpperCase() === 'GET_STATUS' ? parts.slice(1) : parts.slice(2));
-    } else if (!this.lastUnmatchedUdpLogAt || Date.now() - this.lastUnmatchedUdpLogAt >= 2000) {
-      this.lastUnmatchedUdpLogAt = Date.now();
-      console.warn('[RetroArchClient] UDP sem pedido correspondente:', JSON.stringify({
-        response: String(str || '').slice(0, 180),
-        pending: Array.from(this.pendingResolves.keys()).slice(0, 5)
+  handleResponse(str,rinfo) {
+    const parts=str.split(' ');
+    if(parts.length<2)return;
+    const key=parts[0].toUpperCase()==='GET_STATUS'
+      ?'GET_STATUS':(parts[0]+' '+parts[1]).toUpperCase();
+    const pending=this.pendingResolves?.get(key);
+    if(typeof pending==='function'){
+      // Never let a datagram from another emulator or a stale target
+      // satisfy the current command key. A wrong source does not consume it.
+      if(!senderMatchesTarget(rinfo,pending.targetScope))return;
+      if(!matchesTargetScope(this,pending.targetScope)){
+        pending(null);
+        return;
+      }
+      pending(parts[0].toUpperCase()==='GET_STATUS'?
+        parts.slice(1):parts.slice(2));
+    }else if(!this.lastUnmatchedUdpLogAt||
+             Date.now()-this.lastUnmatchedUdpLogAt>=2000){
+      this.lastUnmatchedUdpLogAt=Date.now();
+      console.warn('[RetroArchClient] UDP sem pedido correspondente:',JSON.stringify({
+        response:String(str||'').slice(0,180),
+        pending:Array.from(this.pendingResolves?.keys?.()||[]).slice(0,5)
       }));
     }
   }
 
   // Leitura Exaustiva de Blocos de Memória Contíguos
   async readMemoryBlock(startAddrHex, length) {
+    const blockTargetScope=captureTargetScope(this);
     // Blocos UDP limitados a 160 bytes; nunca aceitar respostas incompletas.
     const CHUNK_SIZE = 160;
     const startAddr = parseInt(startAddrHex, 16);
@@ -641,18 +652,21 @@ class RetroArchClient extends EventEmitter {
 
     const allBytes = [];
     for (const c of chunks) {
+      if(!matchesTargetScope(this,blockTargetScope))return null;
       const cmd = `READ_CORE_MEMORY ${c.addr} ${c.len}`;
       const valid = bytes => Array.isArray(bytes) && bytes.length === c.len &&
         bytes.every(byte => /^[0-9A-Fa-f]{2}$/.test(byte));
       let res = await this.sendRaw(cmd);
+      if(!matchesTargetScope(this,blockTargetScope))return null;
       if (!valid(res)) {
         // Uma resposta -1, truncada ou com bytes inválidos NÃO é memória real.
         res = await this.sendRaw(cmd);
+        if(!matchesTargetScope(this,blockTargetScope))return null;
       }
       if (!valid(res)) return null;
       allBytes.push(...res);
     }
-    return allBytes;
+    return matchesTargetScope(this,blockTargetScope)?allBytes:null;
   }
 
   // A thrown fetch is NOT a harmless skipped poll. It breaks the
@@ -734,6 +748,13 @@ class RetroArchClient extends EventEmitter {
        !Number.isInteger(port)||port<1||port>65535)
       throw new RangeError('Alvo RetroArch invalido');
     if(this.ip===ip&&this.port===port)return false;
+    // Cancel unresolved old-target UDP calls without touching the socket.
+    // Do not let an old timeout delete a future request with the same key.
+    if(this.pendingResolves instanceof Map){
+      for(const cb of [...this.pendingResolves.values()])
+        if(typeof cb==='function')cb(null);
+      this.pendingResolves.clear();
+    }
     // No socket teardown or emulator command. Invalidate current-process
     // interpretation before the first RAM read against this new target.
     this.ip=ip;
@@ -888,6 +909,7 @@ class RetroArchClient extends EventEmitter {
 
     // BLOCO 1: Jogador, Equipa Completa (6 Mons), Mochila, Pokédex e Mapa ($D158..$D369, 530 bytes)
     const blockPlayerParty = await this.readMemoryBlock('D158', 530);
+    if(!matchesTargetScope(this,pollTargetScope))return;
 
     if (!blockPlayerParty || blockPlayerParty.length < 530) {
       const now = Date.now();
@@ -925,6 +947,7 @@ class RetroArchClient extends EventEmitter {
 
     // BLOCO 5: Screen Tilemap Completo 20x18 ($C3A0..$C507, 360 bytes)
     const blockTilemap = await this.readMemoryBlock('C3A0', 360);
+    if(!matchesTargetScope(this,pollTargetScope))return;
 
     const baseReadStatus = {
       playerAndParty: !!(blockPlayerParty && blockPlayerParty.length === 530),
@@ -955,6 +978,7 @@ class RetroArchClient extends EventEmitter {
     // D35E..D365 contiguous: second map ID and wLastMap from same UDP read.
     // Still NOT an atomic snapshot of all game memory.
     const repeatMapAndLastMap=await this.readMemoryBlock('D35E',8);
+    if(!matchesTargetScope(this,pollTargetScope))return;
     const mapConfirmation = verifyMapSnapshot(
       blockPlayerParty[518],Array.isArray(repeatMapAndLastMap)&&
       repeatMapAndLastMap.length===8?[repeatMapAndLastMap[0]]:[]
@@ -1025,6 +1049,7 @@ class RetroArchClient extends EventEmitter {
     if (!this.lastRomHeaderCheckAt || Date.now() - this.lastRomHeaderCheckAt > 30000) {
       this.lastRomHeaderCheckAt = Date.now();
       const romHeader = await this.readMemoryBlock('0100', 80);
+      if(!matchesTargetScope(this,pollTargetScope))return;
       if (romHeader && romHeader.length === 80) {
         const h = romHeader.map(b => Number.parseInt(b, 16));
         let checksum = 0;
@@ -1411,6 +1436,7 @@ class RetroArchClient extends EventEmitter {
     // the entire poll when the map or tile changed during that interval.
     // This still cannot establish an atomic frame or action causality.
     const lateMapAndPosition=await this.readMemoryBlock('D35E',8);
+    if(!matchesTargetScope(this,pollTargetScope))return;
     const latePositionWindow=verifyMapPositionWindow({
       firstMapByte:blockPlayerParty[518],
       firstYByte:blockPlayerParty[521],
@@ -3151,6 +3177,7 @@ class RetroArchClient extends EventEmitter {
     // D35E..D365 immediately before exposing any advice to the cockpit.
     // This does not make the sequential RAM/ROM sample atomic.
     const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);
+    if(!matchesTargetScope(this,pollTargetScope))return;
     const publicationPositionWindow=verifyMapPositionWindow({
       firstMapByte:blockPlayerParty[518],
       firstYByte:blockPlayerParty[521],
