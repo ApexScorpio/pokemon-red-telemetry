@@ -738,7 +738,12 @@ function renderWorldAdvisor(state) {
   const readAge=Date.now()-Date.parse(state?.lastUpdate||'');
   if(!state?.connected||state.memoryReadStatus?.verified!==true||
      !Number.isFinite(readAge)||readAge<0||readAge>15000||
-     state.memoryReadStatus?.positionWindow?.verified!==true){
+     state.memoryReadStatus?.positionWindow?.verified!==true||
+     state.memoryReadStatus?.latePositionWindow?.verified!==true||
+     state.memoryReadStatus.positionWindow.mapId!==state.mapId||
+     state.memoryReadStatus.latePositionWindow.mapId!==state.mapId||
+     state.memoryReadStatus.positionWindow.x!==state.memoryReadStatus.latePositionWindow.x||
+     state.memoryReadStatus.positionWindow.y!==state.memoryReadStatus.latePositionWindow.y){
     source.textContent='Sem RAM atual e coerente';
     body.textContent='Aguardar nova leitura confirmada do mapa e coordenadas; conselhos anteriores ocultados.';
     return;
@@ -896,10 +901,15 @@ function renderWorldAdvisor(state) {
         'ator e opcode':e.localEvidence==='ACTOR_HEADER_ONLY'?
         'objeto/cabeçalho':e.localEvidence==='OPCODE_HANDLER_ONLY'?
         'handler ASM':'associação insuficiente';
+      const actor=Array.isArray(e.actorReferences)?
+        e.actorReferences.find(a=>a.coordinatesFromRomHeader===true&&
+          Number.isInteger(a.x)&&Number.isInteger(a.y)):null;
+      const where=actor?' — objeto ROM em X '+actor.x+', Y '+actor.y:
+        ' — coordenadas de objeto desconhecidas';
       local.push('• '+e.name.replace(/^EVENT_/,'').replaceAll('_',' ')+
-        ' (#'+e.eventBitIndex+', '+origin+'): bit '+
+        ' (#'+e.eventBitIndex+', '+origin+')'+where+': bit '+
         (e.flagSet?'ativo':'inativo')+
-        '; execução, local exato e consequência por confirmar');
+        '; acesso, execução e consequência por confirmar');
     }
     if(namedMap.events.length>16)
       local.push('… '+(namedMap.events.length-16)+

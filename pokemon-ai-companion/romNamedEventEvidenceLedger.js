@@ -67,6 +67,8 @@ function buildNamedEventEvidenceLedger({atlas}={}){
       actor.eventBitIndex<0||actor.eventBitIndex>=2560||
       !KINDS.has(actor.kind)||!Number.isInteger(actor.ordinal)||
       actor.ordinal<1||actor.mapId!==mapId||
+      !Number.isInteger(actor.x)||actor.x<0||actor.x>255||
+      !Number.isInteger(actor.y)||actor.y<0||actor.y>255||
       typeof actor.eventBitBindingSource!=='string'||
       !actor.eventBitBindingSource.length)
     return fail('Invalid ROM object/header event-bit association');
@@ -75,6 +77,7 @@ function buildNamedEventEvidenceLedger({atlas}={}){
    boundActorCount++;
    row.boundActorReferences.push({
     mapId,kind:actor.kind,ordinal:actor.ordinal,
+    x:actor.x,y:actor.y,coordinatesFromRomHeader:true,
     bitBindingEvidence:actor.eventBitBindingSource,
     scriptExecuted:false,eventCompleted:null,
     actorCompletionVerified:false

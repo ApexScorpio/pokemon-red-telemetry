@@ -44,10 +44,14 @@ function buildMapNamedEventEvidence({ledger,worldEventAtlas,mapId}={}){
   const actors=[];
   for(const actor of row.boundActorReferences){
    if(!goodMap(actor?.mapId)||!Number.isInteger(actor.ordinal)||
-      actor.ordinal<1||typeof actor.kind!=='string')
+      actor.ordinal<1||typeof actor.kind!=='string'||
+      !Number.isInteger(actor.x)||actor.x<0||actor.x>255||
+      !Number.isInteger(actor.y)||actor.y<0||actor.y>255||
+      actor.coordinatesFromRomHeader!==true)
     return refuse('Associação a ator ROM malformada');
    if(actor.mapId===mapId)actors.push({
     kind:actor.kind,ordinal:actor.ordinal,
+    x:actor.x,y:actor.y,coordinatesFromRomHeader:true,
     scriptExecutionObserved:false,bitBindingEvidence:actor.bitBindingEvidence
    });
   }

@@ -97,6 +97,9 @@ for(const [variant,env] of [['red','POKEMON_RED_ROM'],
    }
    for(const a of flag.boundActorReferences){
     assert.ok(a.mapId>=0&&a.mapId<248);
+    assert.ok(Number.isInteger(a.x)&&a.x>=0&&a.x<=255);
+    assert.ok(Number.isInteger(a.y)&&a.y>=0&&a.y<=255);
+    assert.equal(a.coordinatesFromRomHeader,true);
     assert.equal(a.scriptExecuted,false);
     assert.equal(a.actorCompletionVerified,false);
    }

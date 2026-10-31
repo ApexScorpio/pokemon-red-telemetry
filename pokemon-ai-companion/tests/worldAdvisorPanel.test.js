@@ -25,7 +25,9 @@ function render(state){
 }
 const live=()=>({
  connected:true,lastUpdate:new Date().toISOString(),mapId:15,
- memoryReadStatus:{verified:true,positionWindow:{verified:true}},
+ memoryReadStatus:{verified:true,
+  positionWindow:{verified:true,mapId:15,x:12,y:3},
+  latePositionWindow:{verified:true,mapId:15,x:12,y:3}},
  romRuntimeIdentity:{matched:true},
  worldAdvisor:{verified:true,mapId:15,mapName:'Route 4',romSha256:'5ca7ba01',
   position:{x:12,y:3},trainerFlagsVerified:false,hiddenFlagsVerified:true,
@@ -45,6 +47,21 @@ test('displays conditional route without HTML injection or guaranteed access',()
  assert.match(body.textContent,/<img src=x onerror/);
  assert.equal(body.innerHTML,null);
  assert.match(source.textContent,/leitura RAM recente/);
+});
+test('world panel refuses a missing or moved late position window',()=>{
+ for(const mutate of [
+  s=>{delete s.memoryReadStatus.latePositionWindow;},
+  s=>{s.memoryReadStatus.latePositionWindow.verified=false;},
+  s=>{s.memoryReadStatus.latePositionWindow.x=13;},
+  s=>{s.memoryReadStatus.latePositionWindow.y=4;},
+  s=>{s.memoryReadStatus.latePositionWindow.mapId=16;},
+  s=>{s.memoryReadStatus.positionWindow.mapId=16;}
+ ]){
+  const s=live();mutate(s);
+  const r=render(s);
+  assert.match(r.source.textContent,/Sem RAM atual e coerente/);
+  assert.doesNotMatch(r.body.textContent,/Possível passagem dependente de Cut/);
+ }
 });
 test('world map shows physical candidate cross-map flag hints without causal claims',()=>{
  const state=live();
@@ -172,7 +189,8 @@ test('current map lists named ROM event candidates with independent RAM flag sta
    flagsSet:1,flagsClear:1},
   events:[
    {name:'EVENT_GOT_POKE_FLUTE',eventBitIndex:296,
-    localEvidence:'ACTOR_HEADER_ONLY',flagSet:true},
+    localEvidence:'ACTOR_HEADER_ONLY',flagSet:true,
+    actorReferences:[{x:8,y:11,coordinatesFromRomHeader:true}]},
    {name:'EVENT_RESCUED_MR_FUJI',eventBitIndex:1231,
     localEvidence:'OPCODE_HANDLER_ONLY',flagSet:false}
   ]
@@ -183,7 +201,9 @@ test('current map lists named ROM event candidates with independent RAM flag sta
  assert.match(shown,/POKE FLUTE/);
  assert.match(shown,/#296/);
  assert.match(shown,/handler ASM/);
- assert.match(shown,/execução, local exato e consequência por confirmar/);
+ assert.match(shown,/objeto ROM em X 8, Y 11/);
+ assert.match(shown,/coordenadas de objeto desconhecidas/);
+ assert.match(shown,/acesso, execução e consequência por confirmar/);
  assert.equal(render(s).body.innerHTML,null);
  s.worldAdvisor.romMapNamedEventEvidence.mapId=16;
  assert.doesNotMatch(render(s).body.textContent,/EVENTOS COM REFERÊNCIA ROM NESTE MAPA/);

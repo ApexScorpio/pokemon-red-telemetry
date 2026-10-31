@@ -24,8 +24,10 @@ test('same bit joins only with mapped actor/ROM handler and never certifies acti
  const bit=names.find(x=>x.name==='EVENT_GOT_POKE_FLUTE').eventBitIndex;
  const row=l.flags.find(x=>x.bitIndex===bit);
  row.boundActorReferences=[
-  {mapId:20,ordinal:1,kind:'NPC',bitBindingEvidence:'ROM_HEADER'},
-  {mapId:21,ordinal:2,kind:'NPC',bitBindingEvidence:'ROM_HEADER'}
+  {mapId:20,ordinal:1,kind:'NPC',x:8,y:11,
+   coordinatesFromRomHeader:true,bitBindingEvidence:'ROM_HEADER'},
+  {mapId:21,ordinal:2,kind:'NPC',x:7,y:9,
+   coordinatesFromRomHeader:true,bitBindingEvidence:'ROM_HEADER'}
  ];
  row.readerPhysicalOpcodes=[{
   operation:'BIT_TEST',opcodeFileOffset:3000,referencedMaps:[20,23]
@@ -41,6 +43,9 @@ test('same bit joins only with mapped actor/ROM handler and never certifies acti
  assert.equal(r.events[0].flagSet,true);
  assert.equal(r.events[0].localEvidence,'ACTOR_AND_OPCODE');
  assert.equal(r.events[0].actorReferences.length,1);
+ assert.deepEqual([r.events[0].actorReferences[0].x,
+  r.events[0].actorReferences[0].y],[8,11]);
+ assert.equal(r.events[0].actorReferences[0].coordinatesFromRomHeader,true);
  assert.equal(r.events[0].romOpcodeReferences.length,1);
  assert.equal(r.events[0].eventCompleted,null);
  assert.equal(r.events[0].playerActionConfirmed,false);
@@ -49,9 +54,12 @@ test('same bit joins only with mapped actor/ROM handler and never certifies acti
  assert.equal(buildMapNamedEventEvidence({
   ledger:l,worldEventAtlas:a,mapId:22
  }).events.length,0);
- assert.equal(buildMapNamedEventEvidence({
+ const neighbor=buildMapNamedEventEvidence({
   ledger:l,worldEventAtlas:a,mapId:21
- }).events[0].localEvidence,'ACTOR_HEADER_ONLY');
+ });
+ assert.equal(neighbor.events[0].localEvidence,'ACTOR_HEADER_ONLY');
+ assert.equal(neighbor.events[0].actorReferences[0].x,7);
+ assert.equal(neighbor.events[0].actorReferences[0].y,9);
  assert.equal(buildMapNamedEventEvidence({
   ledger:l,worldEventAtlas:a,mapId:23
  }).events[0].localEvidence,'OPCODE_HANDLER_ONLY');
@@ -78,6 +86,14 @@ test('refuse malformed event bits, bad map and wrong ROM identities',()=>{
  assert.equal(buildMapNamedEventEvidence({
   ledger:ledger(),worldEventAtlas:a,mapId:20
  }).verified,false);
+ const l=ledger();
+ l.flags[0].boundActorReferences=[{
+  mapId:20,kind:'TRAINER',ordinal:1,x:6,y:7,
+  bitBindingEvidence:'ROM_HEADER'
+ }];
+ assert.equal(buildMapNamedEventEvidence({
+  ledger:l,worldEventAtlas:live(),mapId:20
+ }).verified,false,'Missing coordinate provenance must fail closed');
 });
 test('pipeline passes corroborated event atlas to global map advisor',()=>{
  const fs=require('node:fs'),path=require('node:path');
@@ -116,6 +132,11 @@ for(const [variant,env] of [
     assert.ok(e.actorReferences.length+e.romOpcodeReferences.length>0);
     assert.equal(e.flagSet,false);
     assert.equal(e.eventCompleted,null);
+    for(const a of e.actorReferences){
+     assert.ok(Number.isInteger(a.x)&&a.x>=0&&a.x<=255);
+     assert.ok(Number.isInteger(a.y)&&a.y>=0&&a.y<=255);
+     assert.equal(a.coordinatesFromRomHeader,true);
+    }
     assert.equal(e.playerActionConfirmed,false);
     assert.equal(e.exactEventLocationProven,false);
     seen++;
