@@ -388,13 +388,20 @@ function main(){
     x.physicalMappings.length===63&&
     x.physicalMappings.every(p=>
      p.bank>=1&&p.bank<64&&
-     p.fileOffset===p.bank*0x4000+x.targetCpu-0x4000)),
+     p.fileOffset===p.bank*0x4000+x.targetCpu-0x4000&&
+     p.selectableIfStandardMbc1===(x.standardMbc1Conditional?p.bank!==32:null))&&
+    x.conditionalCandidateCount===(x.standardMbc1Conditional?62:null)&&
+    x.excludedIfStandardMbc1.length===(x.standardMbc1Conditional?1:0))&&
+   closure.romxHeaderConditionalExcludedMappingsTotal===
+    closure.romxStandardMbc1ConditionalSites,
    'ROM0 ROMX cross-bank physical-location integrity mismatch: '+variant);
   const romLabel='ROM_'+variant.toUpperCase();
   log(romLabel+'_ROMX_SITE_COUNT='+closure.romxTransferSites.length);
   log(romLabel+'_JPHL_SITE_COUNT='+closure.indirectSiteDetails.length);
   log(romLabel+'_ROMX_PHYSICAL_MAPPING_COUNT='+closure.romxPhysicalMappingsTotal);
   log(romLabel+'_ROMX_ACTIVE_BANKS_VERIFIED='+closure.romxActiveBanksVerified);
+  log(romLabel+'_ROMX_STANDARD_MBC1_CONDITIONAL_SITES='+closure.romxStandardMbc1ConditionalSites);
+  log(romLabel+'_ROMX_HEADER_CONDITIONAL_EXCLUDED_MAPPINGS='+closure.romxHeaderConditionalExcludedMappingsTotal);
   log(romLabel+'_ROMX_EVIDENCE_SCHEMA=ROM0_ROMX_WITNESS_V1');
   log('ROM_'+variant.toUpperCase()+'_ROMX_SITE_EVIDENCE='+
    JSON.stringify(closure.romxTransferSites.map(x=>({
@@ -402,6 +409,9 @@ function main(){
     transferKind:x.transferKind,targetCpu:x.targetCpu,
     originRootCpu:x.originRootCpu,witnessPath:x.witnessPath,
     physicallyMappedBanks:x.physicallyMappedBanks,
+    standardMbc1Conditional:x.standardMbc1Conditional,
+    excludedIfStandardMbc1:x.excludedIfStandardMbc1,
+    conditionalCandidateCount:x.conditionalCandidateCount,
     firstOpcodeDecodableBanks:x.firstOpcodeDecodableBanks,
     firstOpcodeDecodableBankIds:x.physicalMappings
      .filter(b=>b.firstOpcodeDecodable).map(b=>b.bank),

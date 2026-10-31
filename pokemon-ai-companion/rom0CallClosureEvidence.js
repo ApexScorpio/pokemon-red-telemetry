@@ -4,6 +4,7 @@
 // a verified effect, bank-state evidence, or proof of ROM mapping completion.
 const {decodeOpcode}=require('./romMapCodeAtlas');
 const {inspectRom0IndirectJump}=require('./rom0IndirectJumpEvidence');
+const {classifyRomxHeaderBankCandidates}=require('./romRomxBankAccess');
 const ROM_SIZE=1048576,ROM0_END=0x4000;
 const MAX_ROOTS=512;
 const invalid=reason=>({verified:false,reason,source:'ROM0_CALL_CLOSURE_V1',
@@ -114,19 +115,21 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
    if(!Number.isInteger(to)||to<0||to>=ROM0_END){
     if(to>=ROM0_END&&to<0x8000){
      romxUnknown++;
-     const bankCount=rom.length/ROM0_END;
-     const physicalMappings=[];
-     for(let bank=1;bank<bankCount;bank++){
-      const fileOffset=bank*ROM0_END+to-ROM0_END;
-      const decoded=decodeOpcode(rom,bank,to);
-      physicalMappings.push({bank,fileOffset,
-       firstOpcodeDecodable:decoded.ok===true});
-     }
+     const headerEvidence=classifyRomxHeaderBankCandidates({rom,targetCpu:to});
+     const physicalMappings=headerEvidence.physicalMappings.map(x=>{
+      const decoded=decodeOpcode(rom,x.bank,to);
+      return {...x,firstOpcodeDecodable:decoded.ok===true};
+     });
      romxTransferSites.push({fromRom0Cpu:pc,opcode:d.opcode,
       transferKind:edge.kind,targetCpu:to,
       originRootCpu:witnesses.get(pc)?.rootPc??null,
       witnessPath:witnessPath(pc),
       physicalMappings,
+      cartridgeType:headerEvidence.cartridgeType,
+      romSizeCode:headerEvidence.romSizeCode,
+      standardMbc1Conditional:headerEvidence.standardMbc1Conditional,
+      excludedIfStandardMbc1:headerEvidence.excludedIfStandardMbc1,
+      conditionalCandidateCount:headerEvidence.conditionalCandidateCount,
       physicallyMappedBanks:physicalMappings.length,
       firstOpcodeDecodableBanks:physicalMappings.filter(x=>x.firstOpcodeDecodable).length,
       activeBankKnown:false,selectedFileOffset:null,
@@ -158,6 +161,9 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   indirectSiteDetails,
   romxTransferSites,
   romxPhysicalMappingsTotal:romxTransferSites.reduce((n,x)=>n+x.physicallyMappedBanks,0),
+  romxStandardMbc1ConditionalSites:romxTransferSites.filter(x=>x.standardMbc1Conditional).length,
+  romxHeaderConditionalExcludedMappingsTotal:romxTransferSites.reduce(
+   (n,x)=>n+x.excludedIfStandardMbc1.length,0),
   romxActiveBanksVerified:0,
   allIndirectRuntimeTargetsVerified:false,
   unresolvedCandidateCount:Object.values(byReason).reduce((n,x)=>n+x,0),

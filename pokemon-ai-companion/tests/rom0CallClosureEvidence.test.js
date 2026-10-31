@@ -111,6 +111,21 @@ test('ROMX call source keeps an auditable seed-to-call witness and 63 physical b
  assert.equal(site.gameEffectVerified,false);
  assert.equal(r.romxActiveBanksVerified,0);
 });
+test('ROMX branch classification never invents selected MBC bank',()=>{
+ const rom=fake();rom[0x147]=3;rom[0x148]=5;
+ rom.set([0xc3,0x00,0x50],0x100);
+ const r=traceRom0CallClosure({rom,roots:[0x100]});
+ assert.equal(r.verified,true);
+ assert.equal(r.romxPhysicalMappingsTotal,63);
+ assert.equal(r.romxStandardMbc1ConditionalSites,1);
+ assert.equal(r.romxHeaderConditionalExcludedMappingsTotal,1);
+ const site=r.romxTransferSites[0];
+ assert.deepEqual(site.excludedIfStandardMbc1,[32]);
+ assert.equal(site.conditionalCandidateCount,62);
+ assert.equal(site.physicalMappings[31].selectableIfStandardMbc1,false);
+ assert.equal(site.activeBankKnown,false);
+ assert.equal(r.semantic100PercentCertified,false);
+});
 test('all JP HL sites preserve witness and unknown runtime selection',()=>{
  const rom=fake();
  rom.set([0xcd,0x00,0x02,0xc9],0x100);
