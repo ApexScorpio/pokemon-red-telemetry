@@ -462,6 +462,37 @@ function main(){
      rom[s.rom0Pc-2]===0x3e&&
      rom[s.rom0Pc-1]===s.adjacentLiteralAProvenance.conditionalImmediateAValue)),
    'MBC3 conditional immediate or indirect write provenance invalid: '+variant);
+  assert(closure.mbc3DirectWriteSites.every(s=>
+   s.opcode!==0xea||
+   (s.aSourceProvenance?.verified===true&&
+    s.aSourceProvenance.writePc===s.rom0Pc&&
+    s.aSourceProvenance.executed===false&&
+    s.aSourceProvenance.runtimeValueKnown===false&&
+    s.aSourceProvenance.activeBankKnown===false&&
+    (s.aSourceProvenance.sourcePc===null||
+     (s.aSourceProvenance.sourcePc>=0&&
+      s.aSourceProvenance.sourcePc<s.rom0Pc&&
+      rom[s.aSourceProvenance.sourcePc]===s.aSourceProvenance.sourceOpcode))))&&
+   closure.mbc3ABoundedImmediateSites+
+    closure.mbc3ABoundedRegisterOrMemorySites+
+    closure.mbc3AUnresolvedSites<=closure.mbc3DirectWriteSiteCount,
+   'MBC3 bounded A source evidence invalid: '+variant);
+  log(romLabel+'_MBC3_A_BOUNDED_IMMEDIATE_SITES='+closure.mbc3ABoundedImmediateSites);
+  log(romLabel+'_MBC3_A_BOUNDED_REGISTER_MEMORY_SITES='+closure.mbc3ABoundedRegisterOrMemorySites);
+  log(romLabel+'_MBC3_A_UNRESOLVED_SITES='+closure.mbc3AUnresolvedSites);
+  log(romLabel+'_MBC3_A_SOURCE_EVIDENCE='+JSON.stringify(
+   closure.mbc3DirectWriteSites.filter(s=>s.aSourceProvenance!==null).map(s=>({
+    rom0Pc:s.rom0Pc,originRootCpu:s.originRootCpu,
+    sourcePc:s.aSourceProvenance.sourcePc,
+    sourceKind:s.aSourceProvenance.sourceKind,
+    sourceOpcode:s.aSourceProvenance.sourceOpcode,
+    conditionalByte:s.aSourceProvenance.conditionalByte,
+    sourceAddressCpu:s.aSourceProvenance.sourceAddressCpu,
+    sourceRegister:s.aSourceProvenance.sourceRegister,
+    scannedInstructions:s.aSourceProvenance.scannedInstructions,
+    stopReason:s.aSourceProvenance.stopReason,
+    executed:false,runtimeValueKnown:false
+   }))));
   log(romLabel+'_MBC3_DIRECT_LITERAL_A_SITES='+closure.mbc3DirectLiteralAProvenanceSites);
   log(romLabel+'_MBC3_ADJACENT_INDIRECT_WRITE_SITES='+closure.mbc3AdjacentIndirectWriteSiteCount);
   log(romLabel+'_MBC3_ADJACENT_INDIRECT_ROM_BANK_WRITE_SITES='+closure.mbc3AdjacentIndirectRomBankWriteSites);
@@ -801,6 +832,7 @@ function main(){
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',
   'tests/romMbc3RegisterEvidence.test.js',
+  'tests/romMbc3AProvenance.test.js',
   'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romGlobalFlagReadback.test.js',

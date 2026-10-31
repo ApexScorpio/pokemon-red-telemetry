@@ -200,6 +200,25 @@ test('adjacent literal A before EA records possible byte but not selected bank',
  assert.equal(r.mbc3DirectWriteSites[0].executed,false);
  assert.equal(r.romxActiveBanksVerified,0);
 });
+test('MBC3 linear A provenance survives harmless instruction and stops at modifiers',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,7,0x06,2,0xea,0,0x20,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ assert.equal(r.verified,true);assert.equal(r.mbc3ABoundedImmediateSites,1);
+ assert.equal(r.mbc3ABoundedRegisterOrMemorySites,0);assert.equal(r.mbc3AUnresolvedSites,0);
+ assert.equal(r.mbc3DirectWriteSites[0].aSourceProvenance.sourcePc,0x200);
+ assert.equal(r.mbc3DirectWriteSites[0].aSourceProvenance.conditionalByte,7);
+ assert.equal(r.mbc3DirectWriteSites[0].aSourceProvenance.executed,false);
+ assert.equal(r.romxActiveBanksVerified,0);
+});
+test('MBC3 linear A analysis rejects INC A without false bank selection',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,7,0x3c,0xea,0,0x20,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ assert.equal(r.mbc3ABoundedImmediateSites,0);assert.equal(r.mbc3AUnresolvedSites,1);
+ assert.equal(r.mbc3DirectWriteSites[0].aSourceProvenance.conditionalByte,null);
+ assert.equal(r.runtimeEffectsVerified,false);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);
