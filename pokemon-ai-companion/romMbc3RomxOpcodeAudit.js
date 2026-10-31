@@ -57,7 +57,7 @@ function auditMbc3RomxEntryOpcodes({rom,scenarioAtlas}={}){
   scenariosAudited:scenarioAtlas.scenarioCount,
   firstOpcodeDecodableCount:valid,
   notDecodableCount:nonDecodable.length,
-  notDecodable,reasonCounts:{...reasons},
+  notDecodable:nonDecodable,reasonCounts:{...reasons},
   distinctNonDecodablePhysicalLocations:uniqueLocations,
   distinctNonDecodablePhysicalLocationCount:uniqueLocations.length,
   bankWriteExecutionsVerified:0,romxTransfersExecuted:0,
