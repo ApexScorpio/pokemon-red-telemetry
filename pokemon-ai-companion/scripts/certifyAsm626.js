@@ -1281,6 +1281,7 @@ function main(){
   'tests/romWorldNamedEventCoverage.test.js',
   'tests/romCompleteEventBitmap.test.js',
   'tests/romCompleteEventSession.test.js',
+  'tests/romPublishedCompleteEventSession.test.js',
   'tests/romPollingFailureInvalidation.test.js',
   'tests/romSafeLauncherAutoUpdate.test.js',
   'tests/romLocalPreviewServer.test.js',

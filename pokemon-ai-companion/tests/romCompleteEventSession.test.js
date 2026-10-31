@@ -117,10 +117,14 @@ test('runtime ingestion must occur after the final D35E read',()=>{
  const fs=require('node:fs'),path=require('node:path');
  const client=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
  const check=client.indexOf('const publicationPositionWindow=verifyMapPositionWindow({');
- const ingestAt=client.indexOf('this._completeEventBitSession.ingest({');
+ const ingestAt=client.indexOf('this._completeEventBitSession.ingestPublished({');
  const persistAt=client.lastIndexOf('this.persistState(this.latestState);');
  assert.ok(check>0&&ingestAt>check&&persistAt>ingestAt);
- assert.match(client.slice(ingestAt,persistAt),/publicationGuardVerified:true/);
+ const published=client.slice(ingestAt,persistAt);
+ assert.match(published,/publicationGuardVerified:matchesTargetScope\(this,pollTargetScope\)/);
+ assert.match(published,/targetGeneration:pollTargetScope\.generation/);
+ assert.match(published,/pollSequence:this\._scriptedBattlePollSequence/);
+ assert.equal(client.includes('this._completeEventBitSession.ingest({'),false);
  assert.match(client,/this._completeEventBitSession.reset\(reason\)/);
  assert.match(client,/worldRecentCompleteEventChanges/);
 });

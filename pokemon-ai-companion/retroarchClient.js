@@ -3271,9 +3271,17 @@ class RetroArchClient extends EventEmitter {
         scriptedTransition.recent;
     }
     // Do not compare cached files or aborted poll states.
-    const bitmapChanges=this._completeEventBitSession.ingest({
+    const bitmapChanges=this._completeEventBitSession.ingestPublished({
       bitmap:this.latestState.worldAdvisor?.romCompleteEventBitmap,
-      publicationGuardVerified:true,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      positionVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true&&latePositionWindow.verified===true&&
+        publicationPositionWindow.verified===true,
+      publicationGuardVerified:matchesTargetScope(this,pollTargetScope),
+      targetHost:pollTargetScope.host,
+      targetPort:pollTargetScope.port,
+      targetGeneration:pollTargetScope.generation,
+      pollSequence:this._scriptedBattlePollSequence,
       observedMapId:this.latestState.mapId,
       observedAt:this.latestState.lastUpdate
     });

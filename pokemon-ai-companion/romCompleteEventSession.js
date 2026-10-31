@@ -78,6 +78,7 @@ class CompleteEventBitSession {
  constructor(){this.reset('Aguardar primeiro bitmap válido desta sessão');}
  reset(reason='Sessão RAM interrompida'){
   this.baseline=null;this.sha=null;this.history=[];
+  this.publishedScope=null;
   this.reason=reason;return this.status(false);
  }
  status(verified){
@@ -127,6 +128,43 @@ class CompleteEventBitSession {
    this.history=this.history.slice(-MAX_RECENT);
   this.baseline=bitmap;
   return {delta,recent:this.status(true)};
+ }
+ // Unlike the legacy low-level comparator, live ingestion must reject
+ // gaps and target generations, even when the ROM hash is unchanged.
+ ingestPublished({bitmap,observedMapId=null,observedAt=null,
+  romIdentityMatched=false,positionVerified=false,
+  publicationGuardVerified=false,
+  targetHost,targetPort,targetGeneration,pollSequence}={}){
+  const reject=reason=>{
+   this.reset(reason);
+   return {delta:unavailable(reason),recent:this.status(false)};
+  };
+  const checked=inspectBitmap(bitmap);
+  if(!checked||!guard(observedMapId)||
+     romIdentityMatched!==true||positionVerified!==true||
+     publicationGuardVerified!==true||
+     typeof targetHost!=='string'||!targetHost||
+     !Number.isInteger(targetPort)||targetPort<1||targetPort>65535||
+     !Number.isSafeInteger(targetGeneration)||targetGeneration<0||
+     !Number.isSafeInteger(pollSequence)||pollSequence<1)
+   return reject('MISSING_PUBLISHED_COMPLETE_EVENT_PROOF');
+  const next={sha:checked.sha,targetHost,targetPort,
+   targetGeneration,pollSequence};
+  const prior=this.publishedScope;
+  if(prior&&(prior.sha!==next.sha||
+     prior.targetHost!==next.targetHost||
+     prior.targetPort!==next.targetPort||
+     prior.targetGeneration!==next.targetGeneration||
+     prior.pollSequence+1!==next.pollSequence))
+   this.reset('COMPLETE_EVENT_PUBLICATION_SCOPE_CHANGED');
+  // An old baseline written by the legacy API must not be reclassified
+  // as a previously publication-guarded sample.
+  if(!prior&&this.baseline)this.reset('UNGUARDED_COMPLETE_EVENT_BASELINE');
+  const report=this.ingest({
+   bitmap,observedMapId,observedAt,publicationGuardVerified:true
+  });
+  if(report.recent.verified===true)this.publishedScope=next;
+  return report;
  }
 }
 module.exports={inspectBitmap,compareCompleteEventBitmaps,CompleteEventBitSession};

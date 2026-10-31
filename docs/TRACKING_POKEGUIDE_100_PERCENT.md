@@ -709,3 +709,9 @@
 - Bridge 090 PASS: 31/31 integração, 12/12 T133, 8/8 sessão, ASM 614/614, full 1251 PASS + 1 SKIP / 1252; zero falhas; 3 ROMs verificadas sem E2E live.
 - Inconsistência corrigida: o bitmap completo já tem limiar de 64 alterações simultâneas; o timeline de 507 nomes e 228 toggles não o tinha. T136 aplica `MAX_PUBLISHED_CHANGES=64` a `ingestPublished`, assinala `resetSuspected`, não emite eventos quando há 65+, limpa o histórico e fixa nova baseline; o método legado de comparação não é afetado. Não interpreta flag como ação.
 - `romNamedEventBulkReset.test.js` acrescenta 12 casos com limites e regressões, registado no certifier. Bridge 091 a executar, previsão ASM 626/626 e full 1263 PASS+1 SKIP / 1264; não comprova conclusão da campanha.
+
+
+### T137 — 2026-10-31: Bridge 091 PASS, 2560-bit polling scope seguro
+- Bridge 091 verificou T136 bulk 12/12, T133 12/12, antigo 8/8, ASM 626/626, full 1263 PASS/1 SKIP em 1264, zero falhas; três ROMs. Não certifica gameplay live.
+- `romCompleteEventSession.ingestPublished()` adiciona identidade de ROM, mapa/posição, gate final, destino host/porta/geração e `pollSequence` consecutivo ao histórico dos 2560 bits. Falha de scope ou poll gap apaga transições antigas e cria nova baseline; `ingest()` legado mantém testes existentes mas não pode fornecer baseline à API publicada. Integração `retroarchClient.js` usa campos já validados, sem mais UDP.
+- 12 novos testes e teste de integração antigo atualizado, com certifier. Bridge 092 por executar: expectativa ASM 638/638, full 1275 PASS/1 SKIP de 1276. Main/Antigravity/saves protegidos; histórico apenas por acréscimo.
