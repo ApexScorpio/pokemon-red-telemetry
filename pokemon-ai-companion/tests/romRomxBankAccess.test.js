@@ -32,3 +32,29 @@ test('invalid requests fail closed',()=>{
   assert.equal(r.semantic100PercentCertified,false);
  }
 });
+
+test('header evidence explains MBC1 conditional eligibility rather than claiming runtime selection',()=>{
+ for(const [type,size,family,reason,conditional] of [
+  [0x03,0x05,'MBC1','HEADER_STANDARD_MBC1_1MIB_ONLY',true],
+  [0x01,0x06,'MBC1','HEADER_SIZE_CODE_NOT_1MIB',false],
+  [0x13,0x05,'MBC3','HEADER_TYPE_NOT_STANDARD_MBC1',false],
+  [0x19,0x05,'MBC5','HEADER_TYPE_NOT_STANDARD_MBC1',false],
+  [0x00,0x05,'ROM_ONLY','HEADER_TYPE_NOT_STANDARD_MBC1',false],
+  [0x7f,0x05,'OTHER_OR_UNKNOWN','HEADER_TYPE_NOT_STANDARD_MBC1',false]
+ ]){
+  const result=classifyRomxHeaderBankCandidates({rom:rom(type,size),targetCpu:0x6000});
+  assert.equal(result.verified,true);
+  assert.equal(result.cartridgeType,type);
+  assert.equal(result.romSizeCode,size);
+  assert.equal(result.cartridgeTypeHex,'0x'+type.toString(16).toUpperCase().padStart(2,'0'));
+  assert.equal(result.romSizeCodeHex,'0x'+size.toString(16).toUpperCase().padStart(2,'0'));
+  assert.equal(result.controllerFamilyByHeader,family);
+  assert.equal(result.mbc1ConditionalReason,reason);
+  assert.equal(result.romSizeHeaderMatchesFile,size===5);
+  assert.equal(result.standardMbc1Conditional,conditional);
+  assert.deepEqual(result.excludedIfStandardMbc1,conditional?[32]:[]);
+  assert.equal(result.activeBankKnown,false);
+  assert.equal(result.controllerIdentityRuntimeVerified,false);
+  assert.equal(result.semantic100PercentCertified,false);
+ }
+});
