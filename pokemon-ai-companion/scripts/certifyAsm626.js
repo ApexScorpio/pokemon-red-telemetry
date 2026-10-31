@@ -301,6 +301,16 @@ function main(){
    gaps.summary.unresolvedTrainerReconstructedReferenceCount===1126&&
    gaps.summary.unresolvedTrainerActualEventBitsRecovered===0&&
    gaps.summary.unresolvedTrainerHandlerContextVerified===true&&
+   gaps.summary.unresolvedTrainerTemporaryBattleBitEvidenceVerified===true&&
+   gaps.summary.unresolvedTrainerTemporaryBattleBitCandidates===4&&
+   gaps.summary.unresolvedTrainerTemporaryBattleWramAddress===0xd72d&&
+   gaps.summary.unresolvedTrainerTemporaryBattleBitsNotWorldEvents===true&&
+   gaps.summary.unresolvedTrainerTemporaryBattleBitEvidence.length===2&&
+   gaps.summary.unresolvedTrainerTemporaryBattleBitEvidence.every(x=>
+    x.verified===true&&x.mutations.length===2&&
+    x.mutations.map(m=>m.bit).join(',')==='6,7'&&
+    x.worldEventBitsRecovered===0&&
+    x.executed===false&&x.eventBitIndex===null)&&
    gaps.summary.unresolvedTrainerHandlerContextEvidence.length===2&&
    gaps.summary.unresolvedTrainerHandlerCandidateInstructionCount>=0&&
    gaps.summary.unresolvedTrainerHandlerCallsNotFollowed>=0&&
@@ -793,6 +803,11 @@ function main(){
    gaps.summary.unresolvedTrainerHandlerEventRegionOperandCandidates);
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_HANDLER_CONTEXT='+
    JSON.stringify(gaps.summary.unresolvedTrainerHandlerContextEvidence));
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_D72D_STATIC_SET_CANDIDATES='+
+   gaps.summary.unresolvedTrainerTemporaryBattleBitCandidates);
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_D72D_TEMP_BITS='+
+   JSON.stringify(gaps.summary.unresolvedTrainerTemporaryBattleBitEvidence));
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_D72D_WORLD_EVENT_BITS_RECOVERED=0');
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_SCRIPT_AUDIT='+
    JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_EVENT_BITS_RECOVERED='+
@@ -1086,6 +1101,7 @@ function main(){
   'tests/romMappingGapLedger.test.js',
   'tests/romUnboundTrainerScripts.test.js',
   'tests/romUnboundTrainerHandlerContext.test.js',
+  'tests/romUnboundTrainerTempBattleFlags.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',

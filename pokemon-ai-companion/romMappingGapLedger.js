@@ -40,6 +40,25 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
      JSON.stringify([[96,2,0x0614e6,null],[135,11,0x048e9d,null]]))
   return invalid('Physical unbound TX_ASM handler context invalid: '+
    handlerContext?.reason);
+ const temporaryBattleBits=scriptAtlas.unboundTrainerTempBattleFlags;
+ if(temporaryBattleBits?.verified!==true||
+    temporaryBattleBits.romSha256!==sha||
+    temporaryBattleBits.handlerCount!==2||
+    temporaryBattleBits.handlers.length!==2||
+    temporaryBattleBits.transientSetBitCandidates!==4||
+    temporaryBattleBits.temporaryWramAddress!==0xd72d||
+    temporaryBattleBits.worldEventBitsRecovered!==0||
+    temporaryBattleBits.actualMemoryMutationVerified!==false||
+    temporaryBattleBits.executed!==false||
+    temporaryBattleBits.handlers.some((x,i)=>
+     x.mapId!==[96,135][i]||x.ordinal!==[2,11][i]||
+     x.eventBitIndex!==null||x.trainerVictoryObserved!==null||
+     x.mutations.length!==2||
+     x.mutations[0].bit!==6||x.mutations[1].bit!==7||
+     x.mutations.some(m=>
+      m.address!==0xd72d||m.instructionExecuted!==false||
+      m.actualMemoryMutationVerified!==false)))
+  return invalid('Unbound trainer temporary battle bit evidence contradictory');
  const maps=[];const allScriptRows=[];
  let normalMaps=0,unresolvedMapIds=0,unassignedHidden=0,
   textPointersPending=0,unverifiedEffects=0,asmTextReferences=0,
@@ -222,6 +241,14 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
     handlerContext.callsNotFollowedTotal,
    unresolvedTrainerHandlerEventRegionOperandCandidates:
     handlerContext.eventRegionOperandCandidatesTotal,
+   unresolvedTrainerTemporaryBattleBitEvidence:
+    temporaryBattleBits.handlers,
+   unresolvedTrainerTemporaryBattleBitEvidenceVerified:true,
+   unresolvedTrainerTemporaryBattleBitCandidates:
+    temporaryBattleBits.transientSetBitCandidates,
+   unresolvedTrainerTemporaryBattleWramAddress:
+    temporaryBattleBits.temporaryWramAddress,
+   unresolvedTrainerTemporaryBattleBitsNotWorldEvents:true,
    verifiedTrainerScriptEventBitBindings:332,
    verifiedStaticEncounterScriptEventBitBindings:12,
    verifiedSpecialTrainerScriptEventBitBindings:22,

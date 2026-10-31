@@ -52,6 +52,14 @@ for(const [variant,name] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM
   assert.equal(ledger.summary.unresolvedTrainerReconstructedReferenceCount,1126);
   assert.equal(ledger.summary.unresolvedTrainerActualEventBitsRecovered,0);
   assert.equal(ledger.summary.unresolvedTrainerHandlerContextVerified,true);
+  assert.equal(ledger.summary.unresolvedTrainerTemporaryBattleBitEvidenceVerified,true);
+  assert.equal(ledger.summary.unresolvedTrainerTemporaryBattleBitCandidates,4);
+  assert.equal(ledger.summary.unresolvedTrainerTemporaryBattleWramAddress,0xd72d);
+  assert.equal(ledger.summary.unresolvedTrainerTemporaryBattleBitsNotWorldEvents,true);
+  assert.deepEqual(
+   ledger.summary.unresolvedTrainerTemporaryBattleBitEvidence.map(x=>
+    [x.mapId,x.ordinal,x.eventBitIndex,x.mutations.map(m=>m.bit)]),
+   [[96,2,null,[6,7]],[135,11,null,[6,7]]]);
   assert.equal(ledger.summary.unresolvedTrainerHandlerContextEvidence.length,2);
   assert.deepEqual(ledger.summary.unresolvedTrainerHandlerContextEvidence.map(x=>
    [x.mapId,x.ordinal,x.txAsmFileOffset,x.eventFlagBitIndex]),[
