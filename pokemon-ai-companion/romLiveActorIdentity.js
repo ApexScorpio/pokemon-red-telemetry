@@ -41,18 +41,24 @@ function matchLiveActorsToAuditedRom({
  const enriched=input.map(e=>{
   const out={...e,romActorIdentityVerified:false,
    romActorIdentitySource:'NOT_VERIFIED'};
-  if(!e||(!e.isItem&&!e.isTrainer)||!id(e.spriteIndex)||
+  if(!e||!id(e.spriteIndex)||
      !xy(e.x)||!xy(e.y)||!Number.isSafeInteger(e.pictureId))
    return out;
-  const kind=e.isItem===true?'item':e.isTrainer===true?'trainer':null;
+  // The ROM object header, not the appearance-based icon/classifier,
+  // determines item vs trainer. An NPC-looking sprite may be a trainer,
+  // while a trainer-looking sprite may belong to a normal NPC.
   const candidates=objects.filter(o=>
-   o.kind===kind&&o.objectOrdinal===e.spriteIndex&&
+   o.objectOrdinal===e.spriteIndex&&
    o.x===e.x&&o.y===e.y&&o.pictureId===e.pictureId&&
+   (o.kind==='item'
+     ?e.isItem===true&&e.isTrainer!==true
+     :o.kind==='trainer'&&e.isItem!==true)&&
    o.observedInRam===true&&
    o.removedFromMap!==true);
   if(candidates.length!==1||used.has(candidates[0].objectOrdinal))
    return out;
   const match=candidates[0];
+  const kind=match.kind;
   used.add(match.objectOrdinal);
   out.romActorIdentityVerified=true;
   out.romActorIdentitySource='EXACT_ROM_ORDINAL_COORDINATES_PICTURE_AND_RAM';
@@ -66,6 +72,9 @@ function matchLiveActorsToAuditedRom({
     return out;
    }
    identifiedItems++;
+   out.type='item';
+   out.isItem=true;
+   out.icon='🎒';
    out.itemId=match.itemId;
    out.itemName=typeof match.itemName==='string'?match.itemName:
       'Item #'+match.itemId+' (nome por confirmar)';
@@ -77,6 +86,9 @@ function matchLiveActorsToAuditedRom({
   }else{
    identifiedTrainers++;
    out.isTrainer=true;
+   out.isItem=false;
+   out.type='trainer';
+   out.icon='⚔️';
    out.trainerClassId=match.trainerClassId??null;
    out.trainerNumber=match.trainerNumber??null;
    out.trainerName=match.trainerClassName||null;

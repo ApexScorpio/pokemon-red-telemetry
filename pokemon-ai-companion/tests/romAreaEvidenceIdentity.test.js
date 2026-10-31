@@ -40,8 +40,10 @@ test('different ordinal cannot be replaced by tile match',()=>{
 test('different picture fails exact matching',()=>{
  const l=sprites();l[1].pictureId=6;assert.equal(produce(l).trainers[0].observedInRam,false);
 });
-test('different actor kind fails exact matching',()=>{
- const l=sprites();l[1].isTrainer=false;assert.equal(produce(l).trainers[0].observedInRam,false);
+test('trainer classification comes from ROM object, not graphic appearance',()=>{
+ const l=sprites();l[1].isTrainer=false;
+ l[1].type='npc';
+ assert.equal(produce(l).trainers[0].observedInRam,true);
 });
 test('duplicate RAM sprite slot is ambiguous and not inferred collected',()=>{
  const l=sprites();l.push({...l[0]});const r=produce(l);

@@ -655,3 +655,9 @@
 - Estado certificado da T124 pela Bridge 081: 542/542 ASM e 1179 PASS/1 SKIP full (1180 total), zero falhas; ROM Red/Blue/Green reconhecidas, sem gameplay E2E.
 - Defeito de origem em `romAreaEvidence.js`: observação de treinadores por distância <=1 tile, sem exigir ordinal de sprite RAM; agora só observação exata por ordinal, X/Y, imagem e tipo. Duplicados são desconhecidos, não presentes. `romAreaEvidence.test.js` adaptado e 12 testes novos `romAreaEvidenceIdentity.test.js` integrados no certificador.
 - Publicação não equivale a aprovação: próxima Bridge 082 deve executar 554/554 dirigidos e suite esperada 1191 PASS / 1 SKIP de 1192. Scripts/eventos e prova real de jogabilidade ainda não certificadas. `main`, preview, ROMs/saves e sessões protegidos; sem screenshots por teste headless. Histórico append-only.
+
+
+### T128 — 2026-10-31: Bridge 082 passou; identificação de treinadores não pode depender de aparência
+- **Bridge 082 certificada:** Red/Blue/Green, ASM 554/554 PASS, full 1191 PASS + 1 SKIP / 1192, zero falhas; identity T127 confirmada. Nenhum live gameplay/E2E.
+- **Novo defeito corrigido:** imagem do sprite era usada para classificar treinador; ROM armazena o tipo do objeto separadamente da imagem. Matching final confia apenas na categoria ROM auditada + slot RAM, X/Y, imagem e presença verificada; `boss`, `rival` ou `npc` visual podem corresponder a treinador ROM, sem criar combates fictícios; NPC ROM não vira treinador por sprite gráfico. Teste anterior atualizado, 12 casos novos `romTrainerSpriteTypeAuthority.test.js` integrados no certificador.
+- **Pendente executar Bridge 083:** ASM 566/566, suite 1203 PASS/1 SKIP de 1204 (expectativa). Scripts/economia/eventos e integração ao vivo ainda não 100% certificados. Sem tocar main/preview/ROM/saves/sessões; histórico append-only.

@@ -4,9 +4,12 @@
 // Só se identifica "observado" quando coincidem tipo, coordenadas e sprite.
 function asInt(v) { return Number.isInteger(v) ? v : null; }
 function sameKind(rom, live) {
-  if (rom.kind === 'item') return live.isItem === true;
-  if (rom.kind === 'trainer') return live.isItem !== true && live.isTrainer === true;
-  return live.isItem !== true && live.isTrainer !== true;
+  // Sprite graphics describe an appearance, NOT a trainer battle class.
+  // Trainer/NPC role is encoded in the audited ROM object event itself.
+  // Keep the item graphics discriminator conservative; all actors still
+  // require exact ordinal, X/Y and picture match before RAM observation.
+  if (rom.kind === 'item') return live.isItem === true && live.isTrainer !== true;
+  return live.isItem !== true;
 }
 function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
   if (!romMap || romMap.valid !== true || !romMap.objects ||
