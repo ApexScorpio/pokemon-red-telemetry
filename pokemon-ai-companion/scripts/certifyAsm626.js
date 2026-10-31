@@ -13,6 +13,7 @@ const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependenc
 const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
 const {buildGlobalFlagOperationCatalogue}=require('../romGlobalFlagOperationCatalogue');
 const {buildNamedEventEvidenceLedger}=require('../romNamedEventEvidenceLedger');
+const {buildWorldwideNamedEventCoverage}=require('../romWorldNamedEventCoverage');
 const referenceEventNames=require('../data/gen1EventNamesPret.json');
 const referenceMapNames=require('../data/gen1MapNamesPret.json');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
@@ -427,6 +428,50 @@ function main(){
    namedCoverage.summary.eventCompletionsObserved===0&&
    namedCoverage.semanticallyComplete===false,
    'Named event coverage evidence invalid: '+variant+' '+namedCoverage.reason);
+  // The RAM bits below are intentionally synthetic zeroes, used ONLY to
+  // validate static map associations against each real SHA-audited ROM.
+  // Never report these as active emulator progress.
+  const syntheticEventAtlas={
+   verified:true,romSha256:KNOWN[variant],
+   summary:{namedEventBits:507},
+   events:Object.entries(referenceEventNames.eventNamesByBit).map(
+    ([bit,name])=>({eventBitIndex:Number(bit),name,flagSet:false}))
+  };
+  const worldwideNamed=buildWorldwideNamedEventCoverage({
+   ledger:namedCoverage,worldEventAtlas:syntheticEventAtlas,
+   mapReferences:p.world.maps.data
+  });
+  assert(worldwideNamed.verified===true&&
+   worldwideNamed.summary.mapIds===248&&
+   worldwideNamed.summary.normalHeaders===226&&
+   worldwideNamed.summary.namedBitsWithMapEvidence===400&&
+   worldwideNamed.summary.namedBitsWithNoDirectMapEvidence===107&&
+   worldwideNamed.summary.namedReferenceEvents===507&&
+   worldwideNamed.actionsObserved===false&&
+   worldwideNamed.gameplayComplete===false,
+   'Worldwide named event ROM map coverage inconsistent: '+variant+' '+
+   worldwideNamed.reason);
+  log('ROM_'+variant.toUpperCase()+'_WORLD_MAPS_INDEXED=248');
+  log('ROM_'+variant.toUpperCase()+'_WORLD_NORMAL_HEADERS=226');
+  log('ROM_'+variant.toUpperCase()+'_WORLD_NAMED_BITS_WITH_MAP_EVIDENCE='+
+   worldwideNamed.summary.namedBitsWithMapEvidence);
+  log('ROM_'+variant.toUpperCase()+'_WORLD_NAMED_BITS_WITHOUT_MAP_EVIDENCE='+
+   worldwideNamed.summary.namedBitsWithNoDirectMapEvidence);
+  log('ROM_'+variant.toUpperCase()+'_WORLD_MAPS_WITH_NAMED_EVENTS='+
+   worldwideNamed.summary.mapIdsWithCandidates);
+  log('ROM_'+variant.toUpperCase()+'_WORLD_CANDIDATE_ASSOCIATIONS='+
+   worldwideNamed.summary.worldCandidateAssociations);
+  log('ROM_'+variant.toUpperCase()+'_WORLD_MULTI_MAP_REFERENCED_BITS='+
+   worldwideNamed.summary.multiMapReferencedBits);
+  log('ROM_'+variant.toUpperCase()+'_WORLD_UNMAPPED_NAMES_FIRST_20='+
+   JSON.stringify(worldwideNamed.unmappedEvents.slice(0,20).map(
+    x=>({eventBitIndex:x.eventBitIndex,name:x.name}))));
+  log('ROM_'+variant.toUpperCase()+'_WORLD_TOP_10_REFERENCE_MAPS='+
+   JSON.stringify(worldwideNamed.maps.filter(x=>x.namedCandidateBits>0)
+    .sort((a,b)=>b.namedCandidateBits-a.namedCandidateBits||a.mapId-b.mapId)
+    .slice(0,10).map(x=>({mapId:x.mapId,mapName:x.mapName,
+     candidates:x.namedCandidateBits}))));
+  log('ROM_'+variant.toUpperCase()+'_WORLD_MAP_BITS_SYNTHETIC_ONLY=TRUE');
   log('ROM_'+variant.toUpperCase()+'_EVENT_LABELS_TOTAL=507');
   log('ROM_'+variant.toUpperCase()+'_EVENT_BITS_WITH_OPCODE_EVIDENCE='+
    namedCoverage.summary.namedBitsWithRomOpcode);
