@@ -687,3 +687,9 @@
 - Bridge 086: T131 12/12, movimento 12/12, ASM 602/602 sem falhas; full 1237 PASS / 2 FAIL / 1 SKIP (1240), logo **FAILED**. Falhas: dois testes estáticos esperavam `if(publicationPositionWindow.verified!==true` e ignoravam a nova condição `!targetScopeStable||`, sem evidência de erro de dados ROM.
 - Atualizadas duas asserções de regressão (não código runtime): agora obrigam a testar a segurança de alvo e a posição antes de publicar/integrar batalhas, com invalidação e retorno. Exigida a ordem cronológica dos gates. Não se eliminou qualquer teste, nem se reduziram critérios de segurança; os testes ficaram mais completos.
 - Próxima Bridge 087 por executar: 602/602 ASM e 1239 PASS/1 SKIP de 1240 full são expectativas; utilizar logs resumidos para impedir 400 kB de trechos JSON caso haja falha. Histórico append-only, sem tocar nos recursos protegidos.
+
+
+### T133 — 2026-10-31: confirmação Bridge 087 e gate final dos 507 eventos nomeados
+- Bridge 087: 31/31 campanha, 9/9 posição, 12/12 troca alvo, ASM 602/602, full 1239 PASS + 1 SKIP em 1240, zero falhas; três ROMs confirmadas, sem gameplay E2E.
+- `romWorldReferenceSession.ingestPublished` exige identidade ROM, alvo/porta/geração estáveis, posição e última salvaguarda de publicação, além de `pollSequence` sem interrupções; resets entre escopos. `retroarchClient` só chama a sessão depois do gate final; mantém as diferenças dos 507 eventos e 228 toggles como flags RAM não-causais. 12 testes novos em `romPublishedNamedEvents.test.js` adicionados ao certifier, sem UDP adicional.
+- Bridge 088 ainda não executada: previsão ASM 614/614, full 1251 PASS/1 SKIP de 1252; falta validar runtime real e semântica dos scripts. Histórico apenas acrescentado, recursos protegidos intactos.

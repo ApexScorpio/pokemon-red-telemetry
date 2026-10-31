@@ -47,6 +47,7 @@ class WorldReferenceFlagSession{
  constructor(){this.reset();}
  reset(reason=EMPTY_REASON){
    this.baseline=null;this.events=[];this.sha=null;this.reason=reason;
+   this.publishedScope=null;
    return this.status(false);
  }
  status(verified){
@@ -82,6 +83,39 @@ class WorldReferenceFlagSession{
    }
    this.baseline=atlas;
    return {delta,recent:this.status(true)};
+ }
+ // This is the only path the live client uses. A valid event atlas alone
+ // does not prove a publishable RAM sample or consecutive observation.
+ ingestPublished({atlas,observedAt=null,romIdentityMatched=false,
+   positionVerified=false,publicationGuardVerified=false,
+   targetHost,targetPort,targetGeneration,pollSequence}={}){
+   const deny=reason=>{
+     this.reset(reason);
+     return {delta:unavailable(reason),recent:this.status(false)};
+   };
+   if(!validAtlas(atlas)||romIdentityMatched!==true||
+      positionVerified!==true||publicationGuardVerified!==true||
+      typeof targetHost!=='string'||!targetHost||
+      !Number.isInteger(targetPort)||targetPort<1||targetPort>65535||
+      !Number.isSafeInteger(targetGeneration)||targetGeneration<0||
+      !Number.isSafeInteger(pollSequence)||pollSequence<1)
+     return deny('MISSING_PUBLISHED_NAMED_EVENT_PROOF');
+   const scope={sha:atlas.romSha256,targetHost,targetPort,
+     targetGeneration,pollSequence};
+   const prior=this.publishedScope;
+   // Any scope change or lost poll breaks comparison; the next valid
+   // sample becomes a fresh baseline, never an inferred event transition.
+   if(prior&&(prior.sha!==scope.sha||
+      prior.targetHost!==scope.targetHost||
+      prior.targetPort!==scope.targetPort||
+      prior.targetGeneration!==scope.targetGeneration||
+      prior.pollSequence+1!==scope.pollSequence))
+     this.reset('NAMED_EVENT_PUBLICATION_SCOPE_CHANGED');
+   if(!prior&&this.baseline)
+     this.reset('UNGUARDED_BASELINE_NOT_REUSABLE');
+   const report=this.ingest({atlas,observedAt});
+   if(report.recent.verified===true)this.publishedScope=scope;
+   return report;
  }
 }
 module.exports={compareReferenceBits,WorldReferenceFlagSession};

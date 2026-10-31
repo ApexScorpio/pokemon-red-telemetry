@@ -2955,12 +2955,6 @@ class RetroArchClient extends EventEmitter {
       this.latestState.romWorldEventAtlas={
         ...this.latestState.romWorldEventAtlas,verified:false,reason:why};
     }
-    const namedChanges=this._worldReferenceSession.ingest({
-      atlas:this.latestState.romWorldEventAtlas,
-      observedAt:this.latestState.lastUpdate
-    });
-    this.latestState.romWorldReferenceDelta=namedChanges.delta;
-    this.latestState.worldRecentNamedChanges=namedChanges.recent;
     this.latestState.romElevatorOptions=elevatorOptionsForMap({
       profile:this.activeRomProfile,
       mapId:this.latestState.mapId,
@@ -3210,6 +3204,24 @@ class RetroArchClient extends EventEmitter {
       this.emit('update',this.latestState);
       return;
     }
+    // Named event/toggle bit transitions must have the SAME final
+    // publication gate and uninterrupted target/ROM/poll continuity as the
+    // full 2560-bit session. Never publish provisional pre-final changes.
+    const namedChanges=this._worldReferenceSession.ingestPublished({
+      atlas:this.latestState.romWorldEventAtlas,
+      observedAt:this.latestState.lastUpdate,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      positionVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true&&latePositionWindow.verified===true&&
+        publicationPositionWindow.verified===true,
+      publicationGuardVerified:matchesTargetScope(this,pollTargetScope),
+      targetHost:pollTargetScope.host,
+      targetPort:pollTargetScope.port,
+      targetGeneration:pollTargetScope.generation,
+      pollSequence:this._scriptedBattlePollSequence
+    });
+    this.latestState.romWorldReferenceDelta=namedChanges.delta;
+    this.latestState.worldRecentNamedChanges=namedChanges.recent;
     // A delta of RAM sprite positions is not the identity of a moving NPC.
     // Only consecutively published, corroborated ROM+map+position polls may
     // establish a baseline. No extra emulator read/control is performed.
