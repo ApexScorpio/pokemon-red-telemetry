@@ -1295,6 +1295,7 @@ function main(){
   'tests/romVisibleItemCoordinateGuard.test.js',
   'tests/romVerifiedMinimapMarkers.test.js',
   'tests/romLiveActorIdentity.test.js',
+  'tests/romAreaEvidenceIdentity.test.js',
   'tests/romUnboundTrainerScripts.test.js',
   'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romUnboundTrainerTempBattleFlags.test.js',

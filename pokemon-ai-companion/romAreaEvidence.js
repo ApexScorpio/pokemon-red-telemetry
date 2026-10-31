@@ -3,9 +3,6 @@
 // e a ausência na lista de sprites NÃO implica recolha/derrota.
 // Só se identifica "observado" quando coincidem tipo, coordenadas e sprite.
 function asInt(v) { return Number.isInteger(v) ? v : null; }
-function distance(a,b) {
-  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
-}
 function sameKind(rom, live) {
   if (rom.kind === 'item') return live.isItem === true;
   if (rom.kind === 'trainer') return live.isItem !== true && live.isTrainer === true;
@@ -23,7 +20,18 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
   const stationaryFlags=options.stationaryPokemon?.verified ?
     options.stationaryPokemon.entries : null;
   const live=Array.isArray(entities) ? entities : [];
-  const seen=new Set();
+  // Slots RAM de sprites: 1..15. Proximidade nao prova identidade.
+  // Duplicados no mesmo slot sao ambiguos, mesmo se os dados coincidirem.
+  const spritesByOrdinal=new Map();
+  if(spritesVerified){
+    for(const sprite of live){
+      if(!Number.isInteger(sprite?.spriteIndex)||
+         sprite.spriteIndex<1||sprite.spriteIndex>15)continue;
+      const entries=spritesByOrdinal.get(sprite.spriteIndex)||[];
+      entries.push(sprite);
+      spritesByOrdinal.set(sprite.spriteIndex,entries);
+    }
+  }
   const items=[],trainers=[],npcs=[],stationaryPokemon=[];
   for (let i=0;i<romMap.objects.objects.length;i++) {
     const obj=romMap.objects.objects[i];
@@ -65,14 +73,22 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
     // textuais; não validar a presença de um Pokémon fixo por esse campo.
     if (spritesVerified && kind!=='wildPokemon' &&
         entry.x!==null && entry.y!==null) {
-      const matching=live.find((e,j)=>!seen.has(j) &&
-        Number.isInteger(e.x)&&Number.isInteger(e.y) &&
-        asInt(e.pictureId)===entry.pictureId &&
-        sameKind(entry,e) &&
-        distance(entry,e) <= (kind==='trainer'?1:0));
-      entry.observedInRam=!!matching;
-      entry.visibilitySource=matching?'SPRITE_CORRESPONDENTE_NA_RAM':'NÃO_OBSERVADO_NA_RAM_NÃO_PROVA_CONCLUSÃO';
-      if (matching) seen.add(live.indexOf(matching));
+      const candidates=spritesByOrdinal.get(entry.objectOrdinal)||[];
+      if(candidates.length>1){
+        entry.observedInRam=null;
+        entry.visibilitySource='RAM_SPRITE_ORDINAL_DUPLICADO_AMBIGUO';
+      }else{
+        const sprite=candidates[0];
+        const exact=!!sprite&&
+          Number.isInteger(sprite.x)&&Number.isInteger(sprite.y)&&
+          sprite.x===entry.x&&sprite.y===entry.y&&
+          asInt(sprite.pictureId)===entry.pictureId&&
+          sameKind(entry,sprite);
+        entry.observedInRam=exact;
+        entry.visibilitySource=exact
+          ?'RAM_SPRITE_ORDINAL_X_Y_PICTURE_KIND_EXATOS'
+          :'NÃO_OBSERVADO_NA_RAM_NÃO_PROVA_CONCLUSÃO';
+      }
     }
     if (kind==='trainer'){
       const roster=typeof options.trainerPartyForObject==='function'

@@ -9,9 +9,9 @@ const map={valid:true,mapId:6,objects:{objects:[
   {kind:'npc',x:9,y:8,spriteId:8}
 ]}};
 const live=[
-  {x:4,y:7,pictureId:61,isItem:true},
-  {x:10,y:5,pictureId:7,isTrainer:true},
-  {x:9,y:8,pictureId:8,isItem:false,isTrainer:false}
+  {spriteIndex:1,x:4,y:7,pictureId:61,isItem:true},
+  {spriteIndex:2,x:10,y:5,pictureId:7,isTrainer:true},
+  {spriteIndex:3,x:9,y:8,pictureId:8,isItem:false,isTrainer:false}
 ];
 
 test('objeto item da ROM visto na RAM não significa já apanhado',()=>{
@@ -38,8 +38,8 @@ test('se faltar sprite na RAM, NÃO afirmar recolha/derrota',()=>{
 });
 
 test('não associar outros NPCs por mera proximidade',()=>{
- const others=[{x:4,y:7,pictureId:8,isItem:false,isTrainer:false},
-   {x:11,y:5,pictureId:6,isTrainer:true}];
+ const others=[{spriteIndex:1,x:4,y:7,pictureId:8,isItem:false,isTrainer:false},
+   {spriteIndex:2,x:11,y:5,pictureId:6,isTrainer:true}];
  const r=buildRomAreaEvidence(map,others,{},{
    romIdentityMatched:true,spritesVerified:true});
  assert.equal(r.items[0].observedInRam,false);
