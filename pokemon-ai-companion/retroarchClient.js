@@ -13,6 +13,8 @@ const {planEventActorApproaches}=require('./romMapEventActorApproach');
 const {planStrengthPushes}=require('./romStrengthPushPlanner');
 const {readStrengthFieldEvidence}=require('./romStrengthFieldEvidence');
 const {adviseWorld}=require('./romWorldStateAdvisor');
+const {collectScriptedBattleLiveReadback}=
+ require('./romScriptedBattleLiveReadback');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {verifyGlobalFlagReadback}=require('./romGlobalFlagReadback');
 const {campaignObjectives}=require('./romCampaignObjectives');
@@ -380,6 +382,10 @@ class RetroArchClient extends EventEmitter {
     this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
     this.latestState.romWorldDetourCycles={verified:false,candidates:[],reason};
     this.latestState.worldAdvisor={verified:false,observations:[],reason};
+    this.latestState.romScriptedBattleReadbackStatus={
+      verified:false,status:'WORLD_EVIDENCE_INVALIDATED',
+      reason,readOnlyRequests:0,gameProgressCertified:false
+    };
   }
 
   loadPersistedState() {
@@ -2981,7 +2987,33 @@ class RetroArchClient extends EventEmitter {
       this._globalFlagItemKey=remoteKey;
     }
     this.latestState.globalFlagItemRoutes=this._globalFlagItemRoutes;
+    // Only maps 96/135 require this OPTIONAL extra read-only corroboration.
+    // The helper refuses stale map/position, unknown ROM and simulation
+    // before issuing any extra READ_CORE_MEMORY request. No emulator control.
+    const scriptedBattleSample=await collectScriptedBattleLiveReadback({
+      profile:this.activeRomProfile,
+      mapId:this.latestState.mapId,
+      firstWorldBlockHex:blockWorldEvents,
+      firstMapByte:blockPlayerParty[518],
+      firstYByte:blockPlayerParty[521],
+      firstXByte:blockPlayerParty[522],
+      eligible:this.latestState.romRuntimeIdentity?.matched===true&&
+       this.latestState.isSimulation!==true&&
+       positionWindow.verified===true&&
+       latePositionWindow.verified===true&&
+       globalFlagReadback.verified===true,
+      getTarget:()=>({host:this.ip,port:this.port}),
+      readMemoryBlock:(address,length)=>this.readMemoryBlock(address,length)
+    });
+    // Preserve only a small status in persisted telemetry. The full D5A0
+    // RAM block is passed only in memory to the advisor and is never
+    // reproduced in the readback status.
+    const {readback:scriptedBattleRamReadback,...scriptedBattleStatus}=
+      scriptedBattleSample;
+    this.latestState.romScriptedBattleReadbackStatus=scriptedBattleStatus;
+    this.latestState.memoryReadStatus.scriptedBattleReadback=scriptedBattleStatus;
     this.latestState.worldAdvisor=adviseWorld({
+      scriptedBattleRamReadback,
       profile:this.activeRomProfile,
       worldFlagLedger:this.latestState.globalCampaignLedger,
       globalFlagReadback,

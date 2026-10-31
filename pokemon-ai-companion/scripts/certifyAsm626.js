@@ -1160,6 +1160,7 @@ function main(){
   'tests/romScriptedBattleRam.test.js',
   'tests/romScriptedBattleWriteContexts.test.js',
   'tests/romScriptedBattleStateCandidates.test.js',
+  'tests/romScriptedBattleLiveReadback.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',
