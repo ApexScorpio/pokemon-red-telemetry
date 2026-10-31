@@ -1305,6 +1305,7 @@ function main(){
   'tests/romUdpTargetIsolation.test.js',
   'tests/romVideoPublicationIsolation.test.js',
   'tests/romVideoEpochGuard.test.js',
+  'tests/romVideoPersistenceProjection.test.js',
   'tests/romPublishedNamedEvents.test.js',
   'tests/romNamedEventBulkReset.test.js',
   'tests/romUnboundTrainerScripts.test.js',

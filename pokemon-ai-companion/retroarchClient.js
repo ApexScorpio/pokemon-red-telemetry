@@ -434,6 +434,9 @@ class RetroArchClient extends EventEmitter {
       if (fs.existsSync(p)) {
         const saved = JSON.parse(fs.readFileSync(p, 'utf8'));
         if (saved && saved.party && saved.party.length > 0) {
+          // A saved VRAM canvas is neither a live memory sample nor
+          // required to recover the trainer/party after restart.
+          delete saved.videoMemory;
           // Legacy cache may contain an old successful script readback.
           // It is not live evidence after process restart.
           delete saved.romScriptedBattleReadbackStatus;
@@ -473,7 +476,7 @@ class RetroArchClient extends EventEmitter {
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
-        'romWarpGraph','romScriptedBattleReadbackStatus',
+        'romWarpGraph','videoMemory','romScriptedBattleReadbackStatus',
         'romScriptedBattleStateDelta','romRecentScriptedBattleStateChanges'
       ])delete persisted[transient];
       // Retain the unrelated memory diagnostics, never a stale successful

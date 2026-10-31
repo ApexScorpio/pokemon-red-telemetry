@@ -746,3 +746,9 @@
 ### T143 — 2026-10-31: VRAM válida apenas no mesmo epoch de evidência, Bridge 096 certificada
 - Bridge 096 passou vídeo 12/12, UDP 12/12, integração 31/31, ASM 674/674, full 1311 PASS + 1 SKIP / 1312, três ROMs, zero falhas; não houve live RetroArch.
 - Proteção de vídeo reforçada: epoch de evidência incrementa em toda `invalidateWorldEvidence`; a captura assíncrona exige o mesmo valor antes/depois e só inicia após último gate posição+destino. Evita imagens obsoletas reaparecerem após reconexão ao mesmo mapa, ROM e coords. 12 novos testes, integração no certificador e atualização dos testes VRAM anteriores. Bridge 097 pendente, previsões ASM 686/686 e full 1323 PASS+1 SKIP/1324; não é gameplay certificado.
+
+
+### T144 — 2026-10-31: Bridge 097 certificada, VRAM excluída da cache persistida
+- Bridge 097: 12/12 epoch, 12/12 vídeo antigo, 12/12 UDP, 31/31 integração, ASM 686/686, suite 1323 PASS/1 SKIP de 1324; 3 ROMs, zero falhas. Sem E2E real.
+- `persistState` deixava `videoMemory` (6144 tiles+1024 mapa+160 OAM) entrar nos dois snapshots JSON, `loadPersistedState` podia recuperar VRAM antiga. T144 remove vídeo apenas da projeção persistida e ignora vídeo de cache anterior no carregamento. Não altera ou apaga ficheiros existentes, nem o vídeo vivo; menor volume de cache futuro. 10 testes novos e certifier atualizado.
+- Bridge 098 por executar: espera ASM 696/696 e full 1333 PASS + 1 SKIP/1334. Histórico append-only, ambientes protegidos intocados.
