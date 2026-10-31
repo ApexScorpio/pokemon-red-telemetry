@@ -266,6 +266,32 @@ test('MBC3 register-indirect source is not presumed a RAM address',()=>{
  assert.deepEqual(r.mbc3SourceObservationPlan.uniqueRamAddresses,[]);
  assert.equal(r.romxActiveBanksVerified,0);
 });
+test('MBC3 immediate A write exposes a conditional ROMX bank but no active bank',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,0x05,0xea,0x00,0x20,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ assert.equal(r.verified,true);
+ const bank=r.mbc3ConditionalRomBankCandidates;
+ assert.equal(bank.verified,true);
+ assert.equal(bank.candidateByteSites,1);
+ assert.deepEqual(bank.distinctConditionalBanksInFile,[5]);
+ assert.equal(bank.candidates[0].physicalBankStartOffset,5*0x4000);
+ assert.equal(bank.candidates[0].executed,false);
+ assert.equal(bank.activeBankVerified,false);
+ assert.equal(bank.linkedRomxTransferSites,0);
+ assert.equal(r.romxActiveBanksVerified,0);
+});
+test('MBC3 zero literal source maps only to conditional bank 1',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0xaf,0xea,0x00,0x20,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ const bank=r.mbc3ConditionalRomBankCandidates;
+ assert.equal(bank.verified,true);
+ assert.equal(bank.candidates[0].selectedBankIfExecuted,1);
+ assert.equal(bank.zeroAliasSites,1);
+ assert.equal(bank.executedBankWrites,0);
+ assert.equal(bank.activeBankVerified,false);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);

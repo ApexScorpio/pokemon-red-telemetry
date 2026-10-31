@@ -495,6 +495,29 @@ function main(){
      s.registerInputProvenance?.conditionalByte!==null&&
      s.registerInputProvenance?.conditionalByte!==undefined).length,
    'MBC3 register lineage evidence mismatch: '+variant);
+  const conditionalBanks=closure.mbc3ConditionalRomBankCandidates;
+  assert(conditionalBanks.verified===true&&
+   conditionalBanks.candidateByteSites+conditionalBanks.unknownByteSites===
+    closure.mbc3LiteralRomBankWriteSites&&
+   conditionalBanks.executedBankWrites===0&&
+   conditionalBanks.activeBankVerified===false&&
+   conditionalBanks.linkedRomxTransferSites===0&&
+   conditionalBanks.candidates.every(c=>
+    c.executed===false&&c.activeBankKnown===false&&
+    (c.bankPresentInOneMiBRom?
+     (c.physicalBankStartOffset>=0x4000&&
+      c.physicalBankEndExclusive<=rom.length):
+     (c.physicalBankStartOffset===null&&c.physicalBankEndExclusive===null))),
+   'MBC3 conditional bank candidate contract invalid: '+variant);
+  log(romLabel+'_MBC3_CONDITIONAL_BANK_BYTE_SITES='+conditionalBanks.candidateByteSites);
+  log(romLabel+'_MBC3_CONDITIONAL_BANK_UNKNOWN_SITES='+conditionalBanks.unknownByteSites);
+  log(romLabel+'_MBC3_CONDITIONAL_BANK_IN_FILE_SITES='+conditionalBanks.inPhysicalFileSites);
+  log(romLabel+'_MBC3_CONDITIONAL_BANK_OUTSIDE_FILE_SITES='+conditionalBanks.outsidePhysicalFileSites);
+  log(romLabel+'_MBC3_CONDITIONAL_BANK_DISTINCT_VALUES='+
+   JSON.stringify(conditionalBanks.distinctConditionalBanksInFile));
+  log(romLabel+'_MBC3_CONDITIONAL_BANK_EVIDENCE='+
+   JSON.stringify(conditionalBanks.candidates));
+  log(romLabel+'_MBC3_CONDITIONAL_BANK_EXECUTED='+conditionalBanks.executedBankWrites);
   const plan=closure.mbc3SourceObservationPlan;
   assert(plan.verified===true&&plan.siteCount===closure.mbc3LiteralRomBankWriteSites&&
    plan.runtimeBankVerified===false&&plan.runtimeReadCount===0&&
@@ -880,6 +903,7 @@ function main(){
   'tests/romMbc3AProvenance.test.js',
   'tests/romMbc3RegisterInput.test.js',
   'tests/romMbc3BankSourcePlan.test.js',
+  'tests/romMbc3ConditionalBanks.test.js',
   'tests/romMbc3RamSourceReadback.test.js',
   'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
