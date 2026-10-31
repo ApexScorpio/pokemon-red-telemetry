@@ -20,9 +20,28 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   return invalid('Root is not a physical ROM0 CPU address');
  const uniqueRoots=[...new Set(sourceRoots)].sort((a,b)=>a-b);
  const queue=uniqueRoots.slice(),scheduled=new Set(queue),visited=new Set();
+ const witnesses=new Map(uniqueRoots.map(pc=>[pc,{rootPc:pc,parentPc:null,edgeKind:'ROOT'}]));
+ const enqueue=(to,from,edgeKind)=>{
+  if(scheduled.has(to))return;
+  scheduled.add(to);queue.push(to);
+  const source=witnesses.get(from);
+  witnesses.set(to,{rootPc:source?.rootPc??from,parentPc:from,edgeKind});
+ };
+ const witnessPath=pc=>{
+  const chain=[];let at=pc;
+  for(let depth=0;depth<=ROM0_END;depth++){
+   const item=witnesses.get(at);
+   if(!item)break;
+   chain.push({pc:at,via:item.edgeKind});
+   if(item.parentPc===null)break;
+   at=item.parentPc;
+  }
+  return chain.reverse();
+ };
  const owners=new Int32Array(ROM0_END),instructions=[];
  const problems=[],callTargets=new Set(),byReason=Object.create(null);
- const boundedTables=[],indirectTrampolines=[];
+ const boundedTables=[],indirectTrampolines=[],indirectSiteDetails=[];
+ const romxTransferSites=[];
  let boundedIndirectCaseEdges=0,boundedIndirectFallbackEdges=0;
  let consumed=0,callEdges=0,restartEdges=0,branchEdges=0;
  let romxUnknown=0,indirectUnknown=0,valid=0;
@@ -48,6 +67,11 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   if(d.kind==='indirect'){
    indirectUnknown++;
    const detail=inspectRom0IndirectJump({rom,jumpPc:pc});
+   indirectSiteDetails.push({jumpPc:pc,kind:detail.kind,
+    rootPc:witnesses.get(pc)?.rootPc??null,
+    witnessPath:witnessPath(pc),
+    indexBoundExclusive:detail.indexBoundExclusive??null,
+    runtimeTargetKnown:false});
    if(detail.verified===true&&
       detail.kind==='GUARDED_ROM0_LITERAL_JUMP_TABLE'&&
       detail.allEntriesPhysicallyInsideRom0===true&&
@@ -68,8 +92,8 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
     // An index-limited ROM0 table gives physical *candidate* destinations.
     // Include also the direct conditional escape before JP HL. No claim
     // that any one branch runs, or that a byte sequence is executable.
-    for(const to of [...tableTargets,detail.nonTableBranchCpu])
-     if(!scheduled.has(to)){queue.push(to);scheduled.add(to);}
+    for(const to of tableTargets)enqueue(to,pc,'LITERAL_JP_HL_CASE');
+    enqueue(detail.nonTableBranchCpu,pc,'LITERAL_JP_HL_ESCAPE');
    }else if(detail.verified===true&&
       detail.kind==='PUSH_RETURN_AND_JUMP_RUNTIME_HL'){
     indirectTrampolines.push({
@@ -90,14 +114,29 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
    if(!Number.isInteger(to)||to<0||to>=ROM0_END){
     if(to>=ROM0_END&&to<0x8000){
      romxUnknown++;
+     const bankCount=rom.length/ROM0_END;
+     const physicalMappings=[];
+     for(let bank=1;bank<bankCount;bank++){
+      const fileOffset=bank*ROM0_END+to-ROM0_END;
+      const decoded=decodeOpcode(rom,bank,to);
+      physicalMappings.push({bank,fileOffset,
+       firstOpcodeDecodable:decoded.ok===true});
+     }
+     romxTransferSites.push({fromRom0Cpu:pc,opcode:d.opcode,
+      transferKind:edge.kind,targetCpu:to,
+      originRootCpu:witnesses.get(pc)?.rootPc??null,
+      witnessPath:witnessPath(pc),
+      physicalMappings,
+      physicallyMappedBanks:physicalMappings.length,
+      firstOpcodeDecodableBanks:physicalMappings.filter(x=>x.firstOpcodeDecodable).length,
+      activeBankKnown:false,selectedFileOffset:null,
+      transferExecuted:false,gameEffectVerified:false,
+      note:'Every bank address is physical evidence only, not a verified active MBC bank or executable entrypoint'});
      problem(pc,'ROMX_ACTIVE_BANK_UNKNOWN',to);
     }else problem(pc,'OUTSIDE_FIXED_ROM0',to);
     continue;
    }
-   if(!scheduled.has(to)){
-    queue.push(to);
-    scheduled.add(to);
-   }
+   enqueue(to,pc,edge.kind);
   }
  }
  // No branch/call is reported as executed. An exhausted queue only proves
@@ -116,6 +155,10 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   boundedIndirectCaseEdges,boundedIndirectFallbackEdges,
   boundedIndirectCandidateEdges:boundedIndirectCaseEdges+boundedIndirectFallbackEdges,
   indirectReturnTrampolines:indirectTrampolines,
+  indirectSiteDetails,
+  romxTransferSites,
+  romxPhysicalMappingsTotal:romxTransferSites.reduce((n,x)=>n+x.physicallyMappedBanks,0),
+  romxActiveBanksVerified:0,
   allIndirectRuntimeTargetsVerified:false,
   unresolvedCandidateCount:Object.values(byReason).reduce((n,x)=>n+x,0),
   unresolvedReasonCounts:{...byReason},problemSamples:problems,
