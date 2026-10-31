@@ -91,12 +91,22 @@ test('all three original ROMs: all 2560 positions accounted for, no invented sem
   assert.equal(buildCompleteEventBitmap(modified).verified,false);
  }
 });
-test('runtime includes the complete bit map from the repeated 320 bytes',()=>{
+test('runtime forwards the corroborated D747 flags to the advisor that builds 2560 bits',()=>{
  const fs=require('node:fs'),path=require('node:path');
  const client=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
- assert.match(client,/buildCompleteEventBitmap\(/);
- assert.match(client,/eventFlagsHex:eventFlagsRaw/);
- assert.match(client,/globalFlagReadback,/);
  const advisor=fs.readFileSync(path.join(__dirname,'../romWorldStateAdvisor.js'),'utf8');
+ // RetroArchClient is responsible for reading RAM and passing the bytes.
+ // The advisor, not RetroArchClient, owns the actual bitmap builder.
+ const adviceStart=client.indexOf('this.latestState.worldAdvisor=adviseWorld({');
+ const flags=client.indexOf('globalEventFlagsHex:eventFlagsRaw,',adviceStart);
+ const readback=client.indexOf('globalFlagReadback,',adviceStart);
+ assert.ok(adviceStart>0&&flags>adviceStart&&readback>adviceStart);
+ assert.ok(client.indexOf('buildCompleteEventBitmap(')<0,
+  'No duplicate full bit scan in the memory client');
+ const build=advisor.indexOf('const completeEventBitmap=buildCompleteEventBitmap({');
+ assert.ok(build>0);
+ const call=advisor.slice(build,build+390);
+ assert.match(call,/interactionAtlas:scriptAtlas,namedAtlas:namedWorldEventAtlas/);
+ assert.match(call,/eventFlagsHex:globalEventFlagsHex,globalFlagReadback/);
  assert.match(advisor,/romCompleteEventBitmap:completeEventBitmap/);
 });
