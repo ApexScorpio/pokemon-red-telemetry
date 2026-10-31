@@ -422,6 +422,26 @@ function main(){
   log(romLabel+'_ROMX_DECLARED_MAPPER_CANDIDATES_PER_SITE='+
    (closure.romxTransferSites[0].declaredMapperRomxCandidateCount??'UNKNOWN'));
   log(romLabel+'_ROMX_MBC5_BANK_ZERO_CANDIDATE_SITES='+closure.romxMbc5BankZeroCandidateSites);
+  assert(closure.mbc3DirectWriteSites.every(s=>
+   Number.isInteger(s.rom0Pc)&&s.rom0Pc>=0&&s.rom0Pc<0x4000-2&&
+   (rom[s.rom0Pc]===0xea||rom[s.rom0Pc]===0x08)&&
+   s.witnessPath.length>0&&s.witnessPath[0].pc===s.originRootCpu&&
+   s.runtimeValueKnown===false&&s.executed===false&&
+   s.literalTargets.every(t=>t.targetCpu>=0&&t.targetCpu<0x8000&&
+    t.valueKnown===false&&t.bankSelected===null))&&
+   closure.mbc3DirectWriteSiteCount===closure.mbc3DirectWriteSites.length&&
+   closure.mbc3LiteralRomBankWriteSites===
+    closure.mbc3DirectWriteSites.filter(s=>s.literalTargets.some(
+     t=>t.registerKind==='ROM_BANK_NUMBER')).length&&
+   closure.mbc3DirectWritesExecuted===0&&
+   closure.mbc3BankValuesRuntimeVerified===0&&
+   closure.mbc3IndirectWriteCoverageComplete===false,
+   'MBC3 literal register write evidence invalid: '+variant);
+  log(romLabel+'_MBC3_DIRECT_LITERAL_WRITE_SITES='+closure.mbc3DirectWriteSiteCount);
+  log(romLabel+'_MBC3_ROM_BANK_WRITE_SITES='+closure.mbc3LiteralRomBankWriteSites);
+  log(romLabel+'_MBC3_DIRECT_WRITES_EXECUTED='+closure.mbc3DirectWritesExecuted);
+  log(romLabel+'_MBC3_BANK_VALUES_RUNTIME_VERIFIED='+closure.mbc3BankValuesRuntimeVerified);
+  log(romLabel+'_MBC3_WRITE_EVIDENCE='+JSON.stringify(closure.mbc3DirectWriteSites));
   log(romLabel+'_ROMX_EVIDENCE_SCHEMA=ROM0_ROMX_WITNESS_V1');
   log('ROM_'+variant.toUpperCase()+'_ROMX_SITE_EVIDENCE='+
    JSON.stringify(closure.romxTransferSites.map(x=>({
@@ -754,6 +774,7 @@ function main(){
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',
+  'tests/romMbc3RegisterEvidence.test.js',
   'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romGlobalFlagReadback.test.js',

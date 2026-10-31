@@ -5,6 +5,7 @@
 const {decodeOpcode}=require('./romMapCodeAtlas');
 const {inspectRom0IndirectJump}=require('./rom0IndirectJumpEvidence');
 const {classifyRomxHeaderBankCandidates}=require('./romRomxBankAccess');
+const {classifyMbc3Rom0LiteralWrites}=require('./romMbc3RegisterEvidence');
 const ROM_SIZE=1048576,ROM0_END=0x4000;
 const MAX_ROOTS=512;
 const invalid=reason=>({verified:false,reason,source:'ROM0_CALL_CLOSURE_V1',
@@ -42,7 +43,7 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
  const owners=new Int32Array(ROM0_END),instructions=[];
  const problems=[],callTargets=new Set(),byReason=Object.create(null);
  const boundedTables=[],indirectTrampolines=[],indirectSiteDetails=[];
- const romxTransferSites=[];
+ const romxTransferSites=[],mbc3DirectWriteSites=[];
  let boundedIndirectCaseEdges=0,boundedIndirectFallbackEdges=0;
  let consumed=0,callEdges=0,restartEdges=0,branchEdges=0;
  let romxUnknown=0,indirectUnknown=0,valid=0;
@@ -65,6 +66,15 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   for(let i=0;i<d.size;i++)owners[pc+i]=pc+1;
   valid++;
   instructions.push({pc,opcode:d.opcode,size:d.size,kind:d.kind});
+  if(d.size===3&&(d.opcode===0xea||d.opcode===0x08)){
+   const write=classifyMbc3Rom0LiteralWrites({rom,pc});
+   if(write.verified&&write.candidates.length>0)
+    mbc3DirectWriteSites.push({rom0Pc:pc,opcode:d.opcode,
+     originRootCpu:witnesses.get(pc)?.rootPc??null,
+     witnessPath:witnessPath(pc),
+     literalTargets:write.candidates,
+     runtimeValueKnown:false,executed:false,activeBankKnown:false});
+  }
   if(d.kind==='indirect'){
    indirectUnknown++;
    const detail=inspectRom0IndirectJump({rom,jumpPc:pc});
@@ -165,6 +175,13 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   indirectReturnTrampolines:indirectTrampolines,
   indirectSiteDetails,
   romxTransferSites,
+  mbc3DirectWriteSites,
+  mbc3DirectWriteSiteCount:mbc3DirectWriteSites.length,
+  mbc3LiteralRomBankWriteSites:mbc3DirectWriteSites.filter(
+   s=>s.literalTargets.some(t=>t.registerKind==='ROM_BANK_NUMBER')).length,
+  mbc3DirectWritesExecuted:0,
+  mbc3BankValuesRuntimeVerified:0,
+  mbc3IndirectWriteCoverageComplete:false,
   romxPhysicalMappingsTotal:romxTransferSites.reduce((n,x)=>n+x.physicallyMappedBanks,0),
   romxStandardMbc1ConditionalSites:romxTransferSites.filter(x=>x.standardMbc1Conditional).length,
   romxHeaderConditionalExcludedMappingsTotal:romxTransferSites.reduce(

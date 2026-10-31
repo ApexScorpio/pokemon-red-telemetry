@@ -153,6 +153,37 @@ test('ROM0 jump to ROMX can include physical bank zero under MBC5 declaration',(
  assert.equal(r.romxTransferSites[0].declaredMapperRomxCandidateCount,64);
  assert.equal(r.romxActiveBanksVerified,0);
 });
+test('ROM0 candidate MBC3 literal writes preserve CALL-root witness and unknown A',()=>{
+ const rom=fake();rom[0x147]=0x13;rom[0x148]=5;
+ rom.set([0xcd,0x00,0x02,0xc9],0x100);
+ rom.set([0x3e,0x07,0xea,0x00,0x20,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x100]});
+ assert.equal(r.verified,true);
+ assert.equal(r.mbc3DirectWriteSiteCount,1);
+ assert.equal(r.mbc3LiteralRomBankWriteSites,1);
+ assert.equal(r.mbc3DirectWritesExecuted,0);
+ assert.equal(r.mbc3BankValuesRuntimeVerified,0);
+ assert.equal(r.mbc3IndirectWriteCoverageComplete,false);
+ const s=r.mbc3DirectWriteSites[0];
+ assert.equal(s.rom0Pc,0x202);
+ assert.deepEqual(s.witnessPath,[
+  {pc:0x100,via:'ROOT'}, {pc:0x200,via:'call'},
+  {pc:0x202,via:'fallthrough'}
+ ]);
+ assert.equal(s.literalTargets[0].targetCpu,0x2000);
+ assert.equal(s.literalTargets[0].bankSelected,null);
+ assert.equal(s.runtimeValueKnown,false);
+ assert.equal(s.executed,false);
+ assert.equal(r.semantic100PercentCertified,false);
+});
+test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
+ const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
+ rom.set([0xea,0x00,0x20,0xc9],0x100);
+ const r=traceRom0CallClosure({rom,roots:[0x100]});
+ assert.equal(r.verified,true);
+ assert.equal(r.mbc3DirectWriteSiteCount,0);
+ assert.equal(r.mbc3LiteralRomBankWriteSites,0);
+});
 test('all JP HL sites preserve witness and unknown runtime selection',()=>{
  const rom=fake();
  rom.set([0xcd,0x00,0x02,0xc9],0x100);
