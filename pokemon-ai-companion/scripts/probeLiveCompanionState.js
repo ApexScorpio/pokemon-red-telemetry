@@ -15,6 +15,8 @@ readRunningCompanion({port:PORT}).then(r=>{
   (r.matchedTotalFlagBytes??0));
  console.log('POKEGUIDE_LOCAL_MAP_POSITION_CORROBORATED='+
   (r.mapPositionVerified===true?'TRUE':'FALSE'));
+ console.log('POKEGUIDE_LOCAL_POSITION_RECHECK_AFTER_FLAGS='+
+  (r.mapPositionVerified===true?'TRUE':'FALSE'));
  console.log('POKEGUIDE_LOCAL_NAMED_EVENTS='+
   (r.namedEventsFlagBits??0));
  console.log('POKEGUIDE_LOCAL_OBJECT_TOGGLES='+

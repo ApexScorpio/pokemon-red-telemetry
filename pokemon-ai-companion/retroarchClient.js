@@ -1251,6 +1251,48 @@ class RetroArchClient extends EventEmitter {
     });
     this.latestState.memoryReadStatus.globalFlagReadback=globalFlagReadback;
 
+    // A player can move AFTER the first map/position repeat, while the
+    // 368 bytes of world flags are still being reread over UDP. Repeat
+    // D35E..D365 *after* that scan, including both coordinates, and reject
+    // the entire poll when the map or tile changed during that interval.
+    // This still cannot establish an atomic frame or action causality.
+    const lateMapAndPosition=await this.readMemoryBlock('D35E',8);
+    const latePositionWindow=verifyMapPositionWindow({
+      firstMapByte:blockPlayerParty[518],
+      firstYByte:blockPlayerParty[521],
+      firstXByte:blockPlayerParty[522],
+      secondMapAndLastMapBytes:lateMapAndPosition
+    });
+    this.latestState.memoryReadStatus.latePositionWindow=latePositionWindow;
+    if(latePositionWindow.verified!==true){
+      const why='Mapa/posicao RAM alterados durante a leitura global: '+
+        (latePositionWindow.reason||'RELEITURA_FINAL_INCOMPLETA');
+      this.latestState.memoryReadStatus.globalFlagReadback={
+        ...globalFlagReadback,verified:false,reason:why,domain:'POSITION',
+        readbackBytesMatched:0,toggleBytesMatched:0,allFlagBytesMatched:0,
+        toggleReadbackVerified:false,romAndMapCorroborated:false
+      };
+      this.latestState.memoryReadStatus.verified=false;
+      this.latestState.connected=false;
+      this.latestState.lastReadError=why;
+      this.invalidateWorldEvidence(why);
+      this.latestState.romStaticMapGuide={verified:false,reason:why};
+      this.latestState.romTerrainCurrentTile={verified:false,reason:why};
+      this.latestState.romTerrainWarpHints={verified:false,reason:why};
+      this.latestState.romMovementOptions={verified:false,reason:why};
+      this.latestState.romAreaEvidence={verified:false,reason:why,
+        items:[],trainers:[],npcs:[]};
+      this.latestState.romTrainerFlags={verified:false,entries:[],reason:why};
+      this.latestState.romHiddenItems={verified:false,items:[],reason:why};
+      this.latestState.romHiddenCoins={verified:false,coins:[],reason:why};
+      this.latestState.romItemAccess={verified:false,results:[],reason:why};
+      this.latestState.romWildEncounters=null;
+      this.latestState.romMap=null;
+      this.latestState.mapEntities=[];
+      this.emit('update',this.latestState);
+      return;
+    }
+
     // The original D700 byte came from a large sequential world-data block.
     // Re-read D700 just before predicting movement to reject Surf/bike state drift.
     const modeWindow=verifyMovementModeWindow({

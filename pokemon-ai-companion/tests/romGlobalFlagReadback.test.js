@@ -75,6 +75,8 @@ test('live RetroArch pipeline requires corroboration before global ledgers',()=>
  assert.match(src,/readMemoryBlock\('D5A6',32\)/);
  assert.match(src,/readMemoryBlock\('D6F0',407\)/);
  assert.match(src,/readMemoryBlock\('D35E',1\)/);
+ assert.match(src,/readMemoryBlock\('D35E',8\)/);
+ assert.match(src,/latePositionWindow=verifyMapPositionWindow\(/);
  assert.match(src,/globalFlagReadback=verifyGlobalFlagReadback\(/);
  const i=src.indexOf('this.latestState.globalCampaignLedger=buildCampaignLedger({');
  const j=src.indexOf('this.latestState.romWorldEventAtlas=buildWorldEventAtlas({');

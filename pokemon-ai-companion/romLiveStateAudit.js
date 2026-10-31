@@ -55,7 +55,12 @@ function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
  if(state.memoryReadStatus?.verified!==true||
     state.memoryReadStatus?.mapSnapshot?.verified!==true||
     state.memoryReadStatus?.positionWindow?.verified!==true||
-    !Number.isInteger(state.mapId)||state.mapId<0||state.mapId>=248)
+    state.memoryReadStatus?.latePositionWindow?.verified!==true||
+    !Number.isInteger(state.mapId)||state.mapId<0||state.mapId>=248||
+    state.memoryReadStatus.positionWindow.mapId!==state.mapId||
+    state.memoryReadStatus.latePositionWindow.mapId!==state.mapId||
+    state.memoryReadStatus.positionWindow.x!==state.memoryReadStatus.latePositionWindow.x||
+    state.memoryReadStatus.positionWindow.y!==state.memoryReadStatus.latePositionWindow.y)
   return result('LIVE_MAP_POSITION_NOT_CORROBORATED',
    {romProfileMatched:true,readbackVerified:true});
  const named=state.romWorldEventAtlas;

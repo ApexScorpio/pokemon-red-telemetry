@@ -36,3 +36,40 @@ test('map 248 outside indexed Gen I map IDs is refused',()=>{
   ['F8','00','00','12','04','00','00','01']});
  assert.equal(a.verified,false);assert.equal(a.reason,'ID_MAPA_FORA_DE_0_247');
 });
+test('late map and position verification rejects movement after flags were scanned',()=>{
+ const initial={...example};
+ const afterSameMapChangedX=[
+  '0C','00','00','12','05','00','00','01'
+ ];
+ const changed=verifyMapPositionWindow({
+  ...initial,secondMapAndLastMapBytes:afterSameMapChangedX
+ });
+ assert.equal(changed.verified,false);
+ assert.equal(changed.reason,'POSICAO_MUDOU_DURANTE_LEITURA');
+ const afterSameMapChangedY=[
+  '0C','00','00','13','04','00','00','01'
+ ];
+ assert.equal(verifyMapPositionWindow({
+  ...initial,secondMapAndLastMapBytes:afterSameMapChangedY
+ }).verified,false);
+ assert.equal(verifyMapPositionWindow({...initial,
+  secondMapAndLastMapBytes:initial.secondMapAndLastMapBytes
+ }).verified,true);
+});
+test('readback code rechecks both map and coordinates after the 368 flag bytes',()=>{
+ const fs=require('node:fs'),path=require('node:path');
+ const src=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
+ const flagGuard=src.indexOf('const globalFlagReadback=verifyGlobalFlagReadback({');
+ const lateRead=src.indexOf("const lateMapAndPosition=await this.readMemoryBlock('D35E',8);");
+ const lateCheck=src.indexOf('const latePositionWindow=verifyMapPositionWindow({');
+ const firstWorldAdvice=src.indexOf('this.latestState.globalCampaignLedger=buildCampaignLedger({');
+ assert.ok(flagGuard>0&&lateRead>flagGuard&&lateCheck>lateRead);
+ assert.ok(firstWorldAdvice>lateCheck);
+ const refusal=src.slice(lateCheck,firstWorldAdvice);
+ assert.match(refusal,/if\(latePositionWindow\.verified!==true\)/);
+ assert.match(refusal,/this\.invalidateWorldEvidence\(why\)/);
+ assert.match(refusal,/this\.latestState\.memoryReadStatus\.verified=false/);
+ assert.match(refusal,/this\.latestState\.connected=false/);
+ assert.match(refusal,/this\.emit\('update',this\.latestState\)/);
+ assert.match(refusal,/\n      return;/);
+});

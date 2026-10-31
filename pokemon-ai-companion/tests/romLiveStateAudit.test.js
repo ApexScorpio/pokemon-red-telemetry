@@ -10,7 +10,9 @@ const state=()=>({
  lastUpdate:new Date().toISOString(),
  romRuntimeIdentity:{matched:true,profileSha256:RED},
  memoryReadStatus:{verified:true,mapSnapshot:{verified:true},
-  positionWindow:{verified:true},globalFlagReadback:{
+  positionWindow:{verified:true,mapId:5,x:8,y:9},
+  latePositionWindow:{verified:true,mapId:5,x:8,y:9},
+  globalFlagReadback:{
   verified:true,romAndMapCorroborated:true,
   readbackBytesMatched:336,toggleBytesMatched:32,
   allFlagBytesMatched:368,toggleReadbackVerified:true,
@@ -91,6 +93,12 @@ test('no live location certification from absent or mismatched map and coordinat
   s=>{s.memoryReadStatus.verified=false;},
   s=>{s.memoryReadStatus.mapSnapshot.verified=false;},
   s=>{s.memoryReadStatus.positionWindow.verified=false;},
+  s=>{s.memoryReadStatus.latePositionWindow.verified=false;},
+  s=>{delete s.memoryReadStatus.latePositionWindow;},
+  s=>{s.memoryReadStatus.latePositionWindow.x=10;},
+  s=>{s.memoryReadStatus.latePositionWindow.y=10;},
+  s=>{s.memoryReadStatus.latePositionWindow.mapId=6;},
+  s=>{s.memoryReadStatus.positionWindow.x=10;},
   s=>{s.mapId=248;},
   s=>{s.mapId=-1;},
   s=>{delete s.mapId;}
