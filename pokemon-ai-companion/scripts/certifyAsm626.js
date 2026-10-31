@@ -1297,6 +1297,7 @@ function main(){
   'tests/romLiveActorIdentity.test.js',
   'tests/romAreaEvidenceIdentity.test.js',
   'tests/romTrainerSpriteTypeAuthority.test.js',
+  'tests/romMovingActorCandidate.test.js',
   'tests/romUnboundTrainerScripts.test.js',
   'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romUnboundTrainerTempBattleFlags.test.js',

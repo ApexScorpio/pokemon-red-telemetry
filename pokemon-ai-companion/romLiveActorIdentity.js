@@ -11,7 +11,7 @@ function matchLiveActorsToAuditedRom({
 }={}){
  const input=Array.isArray(entities)?entities:[];
  const deny=reason=>({
-  verified:false,mapId,identifiedItems:0,identifiedTrainers:0,
+  verified:false,mapId,identifiedItems:0,identifiedTrainers:0,movingCandidates:0,
   unidentifiedSprites:input.length,reason,
   entities:input.map(e=>({...e,romActorIdentityVerified:false,
    romActorIdentitySource:'NOT_VERIFIED'})),
@@ -55,8 +55,32 @@ function matchLiveActorsToAuditedRom({
      :o.kind==='trainer'&&e.isItem!==true)&&
    o.observedInRam===true&&
    o.removedFromMap!==true);
-  if(candidates.length!==1||used.has(candidates[0].objectOrdinal))
+  if(candidates.length!==1||used.has(candidates[0].objectOrdinal)){
+   // A WALK actor whose RAM tile differs from its ROM home coordinate
+   // is a candidate only. Never assign trainer name, team or victory.
+   const moving=objects.filter(o=>
+    o.kind==='trainer'&&o.objectOrdinal===e.spriteIndex&&
+    o.pictureId===e.pictureId&&e.isItem!==true&&
+    o.movementByte===0xfe&&o.observedInRam===null&&
+    o.removedFromMap!==true&&
+    o.movementCandidate?.possible===true&&
+    o.movementCandidate.verified===false&&
+    o.movementCandidate.ramX===e.x&&
+    o.movementCandidate.ramY===e.y&&
+    o.movementCandidate.romHomeX===o.x&&
+    o.movementCandidate.romHomeY===o.y&&
+    (e.x!==o.x||e.y!==o.y));
+   if(moving.length===1){
+    out.romActorMovementCandidate={
+     possible:true,verified:false,kind:'trainer',
+     mapId,objectOrdinal:moving[0].objectOrdinal,
+     romHomeX:moving[0].x,romHomeY:moving[0].y,
+     ramX:e.x,ramY:e.y,movementByteFromRom:0xfe,
+     source:'ROM_WALK_AND_SAME_RAM_SLOT_PICTURE;_NOT_IDENTITY_PROOF'
+    };
+   }
    return out;
+  }
   const match=candidates[0];
   const kind=match.kind;
   used.add(match.objectOrdinal);
@@ -106,6 +130,7 @@ function matchLiveActorsToAuditedRom({
  });
  return {verified:true,mapId,romSha256,
   identifiedItems,identifiedTrainers,
+  movingCandidates:enriched.filter(e=>e.romActorMovementCandidate?.possible===true).length,
   unidentifiedSprites:enriched.length-identifiedItems-identifiedTrainers,
   entities:enriched,identityMethod:'EXACT_OBJECT_ORDINAL_X_Y_PICTURE_RAM',
   manualProximityUsed:false,gameplayVictoryCertified:false,

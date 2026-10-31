@@ -661,3 +661,9 @@
 - **Bridge 082 certificada:** Red/Blue/Green, ASM 554/554 PASS, full 1191 PASS + 1 SKIP / 1192, zero falhas; identity T127 confirmada. Nenhum live gameplay/E2E.
 - **Novo defeito corrigido:** imagem do sprite era usada para classificar treinador; ROM armazena o tipo do objeto separadamente da imagem. Matching final confia apenas na categoria ROM auditada + slot RAM, X/Y, imagem e presença verificada; `boss`, `rival` ou `npc` visual podem corresponder a treinador ROM, sem criar combates fictícios; NPC ROM não vira treinador por sprite gráfico. Teste anterior atualizado, 12 casos novos `romTrainerSpriteTypeAuthority.test.js` integrados no certificador.
 - **Pendente executar Bridge 083:** ASM 566/566, suite 1203 PASS/1 SKIP de 1204 (expectativa). Scripts/economia/eventos e integração ao vivo ainda não 100% certificados. Sem tocar main/preview/ROM/saves/sessões; histórico append-only.
+
+
+### T129 — 2026-10-31: Bridge 083 certificada e primeiro modelo conservador de NPC móvel
+- Bridge 083: 40/40 regressões de sprites, ASM 566/566, full 1203 PASS / 1 SKIP de 1204, zero falhas, ROM Red/Blue/Green reconhecidas. Sem jogabilidade live.
+- Campo ROM `movement` já lido pelo descodificador; `WALK=0xfe`, `STAY=0xff` (referência `pret/pokered`). O valor X/Y ROM é posição inicial; os NPCs móveis podem ter X/Y RAM diferente, não devendo ser tratados como presença física exata nem como derrotados/desaparecidos.
+- T129 acrescenta `movementByte` aos objetos e `movementCandidate` apenas em WALK com ordinal e imagem correspondentes mas tile diferente; observado atual continua `null`, sem nome/equipa/vitória atribuídos. Exposição `movingCandidatesCertified=false` no estado live; 12 testes novos no certificador. Próxima Bridge 084 esperada 578/578 dirigidos e 1215 PASS/1 SKIP full de 1216 (ainda não executada). Não houve contacto com RetroArch, main, preview ou sessões protegidas; histórico append-only.

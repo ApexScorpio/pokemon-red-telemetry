@@ -2245,6 +2245,8 @@ class RetroArchClient extends EventEmitter {
       mapId:this.latestState.mapId,
       identifiedItems:identifiedActors.identifiedItems,
       identifiedTrainers:identifiedActors.identifiedTrainers,
+      movingCandidates:identifiedActors.movingCandidates||0,
+      movingCandidatesCertified:false,
       unidentifiedSprites:identifiedActors.unidentifiedSprites,
       method:identifiedActors.identityMethod||null,
       reason:identifiedActors.reason||null,

@@ -47,6 +47,9 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
     const entry={
       mapId:romMap.mapId,objectOrdinal:i+1,kind,
       x:asInt(obj.x),y:asInt(obj.y),pictureId:asInt(obj.spriteId),
+      // Binary ROM object header stores WALK=$fe / STAY=$ff separately
+      // from its initial X/Y. A walking actor can leave this home tile.
+      movementByte:asInt(obj.movement),movementCandidate:null,
       itemId:kind==='item'?id:null,
       itemName:kind==='item' && id!==null
         ? ((itemNames && itemNames[id]) || 'Item #'+id+' (nome não confirmado pela ROM)') : null,
@@ -82,15 +85,33 @@ function buildRomAreaEvidence(romMap, entities, itemNames, options={}) {
         entry.visibilitySource='RAM_SPRITE_ORDINAL_DUPLICADO_AMBIGUO';
       }else{
         const sprite=candidates[0];
-        const exact=!!sprite&&
+        const sameSlotPictureAndKind=!!sprite&&
           Number.isInteger(sprite.x)&&Number.isInteger(sprite.y)&&
-          sprite.x===entry.x&&sprite.y===entry.y&&
+          sprite.x>=0&&sprite.x<=255&&sprite.y>=0&&sprite.y<=255&&
           asInt(sprite.pictureId)===entry.pictureId&&
           sameKind(entry,sprite);
-        entry.observedInRam=exact;
-        entry.visibilitySource=exact
-          ?'RAM_SPRITE_ORDINAL_X_Y_PICTURE_KIND_EXATOS'
-          :'NÃO_OBSERVADO_NA_RAM_NÃO_PROVA_CONCLUSÃO';
+        const exact=sameSlotPictureAndKind&&
+          sprite.x===entry.x&&sprite.y===entry.y;
+        const walkingCandidate=!exact&&sameSlotPictureAndKind&&
+          (kind==='trainer'||kind==='npc')&&
+          entry.movementByte===0xfe&&entry.removedFromMap!==true;
+        entry.observedInRam=walkingCandidate?null:exact;
+        if(walkingCandidate){
+          // This is intentionally NOT verified identity, actual movement,
+          // collection or victory. No proximity/radius assumption.
+          entry.movementCandidate={
+            possible:true,verified:false,objectOrdinal:entry.objectOrdinal,
+            kind,romHomeX:entry.x,romHomeY:entry.y,
+            ramX:sprite.x,ramY:sprite.y,movementByteFromRom:0xfe,
+            evidence:'ROM_WALK_AND_SAME_RAM_ORDINAL_PICTURE_KIND',
+            limitation:'MOVEMENT_OR_SNAPSHOT_COHERENCE_NOT_PROVEN'
+          };
+          entry.visibilitySource='RAM_WALK_POSITION_DIFFERENCE_IDENTITY_NOT_CERTIFIED';
+        }else{
+          entry.visibilitySource=exact
+            ?'RAM_SPRITE_ORDINAL_X_Y_PICTURE_KIND_EXATOS'
+            :'NÃO_OBSERVADO_NA_RAM_NÃO_PROVA_CONCLUSÃO';
+        }
       }
     }
     if (kind==='trainer'){
