@@ -2,8 +2,9 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
 const http=require('node:http');
-const {classifyLiveWorldState,readRunningCompanion}
+const {classifyLiveWorldState,readRunningCompanion,auditCompleteEventRuntime}
  =require('../romLiveStateAudit');
+const pinned=require('../data/gen1EventNamesPret.json').eventNamesByBit;
 const RED='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
 const state=()=>({
  connected:true,isSimulation:false,mapId:5,
@@ -154,6 +155,79 @@ test('read-only localhost probe only performs GET /api/state, no mutation',async
  }finally{
   await new Promise(resolve=>server.close(resolve));
  }
+});
+test('all 2560 bits are audited from a corroborated live envelope without declaring gameplay completion',()=>{
+ const s=state();
+ s.memoryReadStatus.globalFlagReadback.worldEventBytesMatched=320;
+ s.worldAdvisor.romCompleteEventBitmap={
+  verified:true,romSha256:RED,allBitPositionsIndexed:true,
+  gameplayCompletionCertified:false,gameplaySemanticsCertified:false,
+  snapshotAtomicVerified:false,
+  bits:Array.from({length:2560},(_,bitIndex)=>({
+   bitIndex,flagSet:bitIndex===192||bitIndex===2559,
+   referenceName:pinned[bitIndex]??null,completed:null,availableNow:null,
+   semanticMeaningVerified:false,opcodeReferences:[],
+   actorHeaderReferences:[],candidateMapIds:[]
+  })),
+  summary:{bitPositionsIndexed:2560,ramBytesCorroborated:320,
+   namedReferenceBits:507,unnamedOrReservedBits:2053,
+   setBits:2,clearBits:2558,namedSetBits:1,namedClearBits:506,
+   unnamedSetBits:1,unnamedClearBits:2052}
+ };
+ s.worldRecentCompleteEventChanges={
+  verified:true,romSha256:RED,baselineEstablished:true,
+  playerActionConfirmed:false,gameplayCompleted:false,
+  events:[{bitIndex:192,flagSet:true,playerActionConfirmed:false,
+   eventCompleted:null}]
+ };
+ const result=classifyLiveWorldState(s);
+ assert.equal(result.status,'LIVE_WORLD_FLAGS_REPEAT_CORROBORATED');
+ assert.equal(result.completeEventBitsVerified,true);
+ assert.equal(result.totalEventBitPositions,2560);
+ assert.equal(result.activeEventBits,2);
+ assert.equal(result.activeUnnamedBits,1);
+ assert.equal(result.recentBitTransitions,1);
+ assert.equal(result.verifiedBitTransitionsObserved,true);
+ assert.equal(result.completeSnapshotAtomicVerified,false);
+ assert.equal(result.playerActionConfirmed,false);
+ assert.equal(result.liveGameCertified,false);
+ const mismatch=structuredClone(s);
+ mismatch.worldAdvisor.romCompleteEventBitmap.bits[2559].referenceName='FAKE';
+ assert.equal(classifyLiveWorldState(mismatch).completeEventBitsStatus,
+  'FULL_BITMAP_ROW_REJECTED');
+ const wrongCounts=structuredClone(s);
+ wrongCounts.worldAdvisor.romCompleteEventBitmap.summary.namedSetBits=2;
+ assert.equal(classifyLiveWorldState(wrongCounts).completeEventBitsStatus,
+  'FULL_BITMAP_COUNTS_REJECTED');
+ const noGuard=structuredClone(s);
+ delete noGuard.memoryReadStatus.globalFlagReadback.worldEventBytesMatched;
+ assert.equal(classifyLiveWorldState(noGuard).completeEventBitsStatus,
+  'FULL_BITMAP_CONTRACT_REJECTED');
+ const older=state();
+ assert.equal(classifyLiveWorldState(older).completeEventBitsStatus,
+  'FULL_BITMAP_NOT_AVAILABLE_IN_RUNNING_VERSION');
+ const badSession=structuredClone(s);
+ badSession.worldRecentCompleteEventChanges.events[0].eventCompleted=true;
+ const invalid=classifyLiveWorldState(badSession);
+ assert.equal(invalid.completeEventBitsVerified,true);
+ assert.equal(invalid.verifiedBitTransitionsObserved,false);
+ assert.equal(invalid.recentBitTransitions,null);
+});
+test('full bitmap audit refuses SHA mismatch and incorrect map provenance',()=>{
+ const sample=state();
+ const reason=auditCompleteEventRuntime(sample,RED);
+ assert.equal(reason.completeEventBitsVerified,false);
+ assert.equal(reason.completeEventBitsStatus,
+  'FULL_BITMAP_NOT_AVAILABLE_IN_RUNNING_VERSION');
+});
+test('public passive probe CLI uses only read-only localhost GET and sanitized summary',()=>{
+ const fs=require('node:fs'),path=require('node:path');
+ const script=fs.readFileSync(path.join(__dirname,
+  '../scripts/probeRunningCompanionReadOnly.js'),'utf8');
+ assert.match(script,/readRunningCompanion\(\{port:3001/);
+ assert.doesNotMatch(script,/(fetchGameState|sendRaw|readMemoryBlock|POST|process\.kill|execSync|spawnSync|saveState|triggerDebouncedSync)/);
+ assert.match(script,/LIVE_PROBE_STATUS=/);
+ assert.match(script,/FULL_2560_BIT_RAM_STATUS=/);
 });
 test('invalid probe settings do not send network traffic',async()=>{
  for(const opts of [{port:0},{port:65536},{timeoutMs:99},{maxBytes:100}]){

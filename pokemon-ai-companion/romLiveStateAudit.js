@@ -3,6 +3,78 @@
 // No emulator commands, no game inputs, no process launches, no save writes.
 // A validated RAM readback is not proof of atomicity or of actions executed.
 const http=require('node:http');
+const pinned=require('./data/gen1EventNamesPret.json');
+const completeUnavailable=(status)=>({
+ completeEventBitsVerified:false,completeEventBitsStatus:status,
+ totalEventBitPositions:null,namedReferenceBits:null,
+ unnamedOrReservedBits:null,activeEventBits:null,
+ activeUnnamedBits:null,verifiedBitTransitionsObserved:null,
+ recentBitTransitions:null,completeSnapshotAtomicVerified:false
+});
+function auditCompleteEventRuntime(state,sha){
+ const inventory=state?.worldAdvisor?.romCompleteEventBitmap;
+ if(inventory===undefined||inventory===null)
+  return completeUnavailable('FULL_BITMAP_NOT_AVAILABLE_IN_RUNNING_VERSION');
+ const summary=inventory.summary;
+ const guard=state.memoryReadStatus?.globalFlagReadback;
+ if(inventory.verified!==true||inventory.romSha256!==sha||
+    inventory.allBitPositionsIndexed!==true||
+    inventory.gameplayCompletionCertified!==false||
+    inventory.gameplaySemanticsCertified!==false||
+    inventory.snapshotAtomicVerified!==false||
+    summary?.bitPositionsIndexed!==2560||
+    summary?.ramBytesCorroborated!==320||
+    summary?.namedReferenceBits!==507||
+    summary?.unnamedOrReservedBits!==2053||
+    guard?.worldEventBytesMatched!==320||
+    !Array.isArray(inventory.bits)||inventory.bits.length!==2560||
+    pinned.namedBitCount!==507||
+    pinned.sourceCommit!=='171e2c204f9c1ff8e577ca387a4bbb009e130843')
+  return completeUnavailable('FULL_BITMAP_CONTRACT_REJECTED');
+ let count=0,named=0,namedSet=0;
+ for(let i=0;i<2560;i++){
+  const row=inventory.bits[i];
+  const canonical=pinned.eventNamesByBit[i]??null;
+  if(row?.bitIndex!==i||typeof row.flagSet!=='boolean'||
+     row.referenceName!==canonical||
+     row.completed!==null||row.availableNow!==null||
+     row.semanticMeaningVerified!==false||
+     !Array.isArray(row.opcodeReferences)||
+     !Array.isArray(row.actorHeaderReferences)||
+     !Array.isArray(row.candidateMapIds)||
+     row.candidateMapIds.some(id=>!Number.isInteger(id)||id<0||id>=248))
+   return completeUnavailable('FULL_BITMAP_ROW_REJECTED');
+  if(canonical!==null){named++;if(row.flagSet)namedSet++;}
+  if(row.flagSet)count++;
+ }
+ if(named!==507||summary.setBits!==count||
+    summary.clearBits!==2560-count||
+    summary.namedSetBits!==namedSet||
+    summary.namedClearBits!==507-namedSet||
+    summary.unnamedSetBits!==count-namedSet||
+    summary.unnamedClearBits!==2053-(count-namedSet))
+  return completeUnavailable('FULL_BITMAP_COUNTS_REJECTED');
+ const session=state.worldRecentCompleteEventChanges;
+ const validSession=session?.verified===true&&
+   session.romSha256===sha&&session.baselineEstablished===true&&
+   session.playerActionConfirmed===false&&
+   session.gameplayCompleted===false&&
+   Array.isArray(session.events)&&session.events.length<=80&&
+   session.events.every(e=>Number.isInteger(e.bitIndex)&&
+    e.bitIndex>=0&&e.bitIndex<2560&&typeof e.flagSet==='boolean'&&
+    e.eventCompleted===null&&e.playerActionConfirmed===false);
+ return {
+  completeEventBitsVerified:true,
+  completeEventBitsStatus:'FULL_2560_BIT_RAM_READBACK_CORROBORATED',
+  totalEventBitPositions:2560,namedReferenceBits:507,
+  unnamedOrReservedBits:2053,activeEventBits:count,
+  activeUnnamedBits:count-namedSet,
+  verifiedBitTransitionsObserved:validSession,
+  recentBitTransitions:validSession?session.events.length:null,
+  completeSnapshotAtomicVerified:false
+ };
+}
+
 const KNOWN=new Set([
  '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
  '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
@@ -89,6 +161,7 @@ function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
    {romProfileMatched:true,readbackVerified:true,
     ledgerVerified:true});
  return result('LIVE_WORLD_FLAGS_REPEAT_CORROBORATED',{
+  ...auditCompleteEventRuntime(state,sha),
   romProfileMatched:true,readbackVerified:true,
   ledgerVerified:true,worldAdvisorVerified:true,
   mapPositionVerified:true,publicationPositionVerified:true,
@@ -145,4 +218,5 @@ function readRunningCompanion({port=3001,timeoutMs=1500,maxBytes=8*1024*1024}={}
    'COMPANION_NOT_RESPONDING':'COMPANION_NOT_LISTENING')));
  });
 }
-module.exports={classifyLiveWorldState,readRunningCompanion};
+module.exports={classifyLiveWorldState,readRunningCompanion,
+ auditCompleteEventRuntime};
