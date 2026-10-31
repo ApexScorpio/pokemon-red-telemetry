@@ -233,3 +233,29 @@ for(const [variant,name] of [
   assert.equal(r.activeRomBankKnown,false);
  });
 }
+
+test('ROM0 ROMX transfer preserves exact mapper header and does not infer a runtime-selected bank',()=>{
+ for(const [type,size,family,reason,mbc1] of [
+  [0x03,0x05,'MBC1','HEADER_STANDARD_MBC1_1MIB_ONLY',true],
+  [0x13,0x05,'MBC3','HEADER_TYPE_NOT_STANDARD_MBC1',false],
+  [0x03,0x06,'MBC1','HEADER_SIZE_CODE_NOT_1MIB',false]
+ ]){
+  const rom=fake();rom[0x147]=type;rom[0x148]=size;
+  rom.set([0xcd,0x00,0x50,0xc9],0x100);
+  const result=traceRom0CallClosure({rom,roots:[0x100]});
+  assert.equal(result.verified,true);
+  assert.equal(result.romxTransferSites.length,1);
+  const site=result.romxTransferSites[0];
+  assert.equal(site.cartridgeTypeHex,'0x'+type.toString(16).toUpperCase().padStart(2,'0'));
+  assert.equal(site.romSizeCodeHex,'0x'+size.toString(16).toUpperCase().padStart(2,'0'));
+  assert.equal(site.controllerFamilyByHeader,family);
+  assert.equal(site.mbc1ConditionalReason,reason);
+  assert.equal(site.standardMbc1Conditional,mbc1);
+  assert.deepEqual(site.excludedIfStandardMbc1,mbc1?[32]:[]);
+  assert.equal(site.activeBankKnown,false);
+  assert.equal(site.selectedFileOffset,null);
+  assert.equal(site.transferExecuted,false);
+  assert.equal(site.gameEffectVerified,false);
+  assert.equal(result.romxActiveBanksVerified,0);
+ }
+});
