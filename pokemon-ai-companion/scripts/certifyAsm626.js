@@ -9,6 +9,7 @@ const {inspectRomBuffer}=require('../romVariantRegistry');
 const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
+const {buildWorldGapMatrix}=require('../romWorldGapMatrix');
 const {traceRom0CallClosure}=require('../rom0CallClosureEvidence');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
 const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
@@ -277,6 +278,25 @@ function main(){
     runtimeTargetKnown:x.runtimeTargetKnown,
     gameEffectVerified:x.gameEffectVerified}))));
   const gaps=buildMappingGapLedger({profile:p,index:i,scriptAtlas:a,tracker});
+  const worldGapMatrix=buildWorldGapMatrix({ledger:gaps});
+  assert(worldGapMatrix.verified===true&&
+   worldGapMatrix.romSha256===p.hash.sha256&&
+   worldGapMatrix.maps.length===248&&
+   worldGapMatrix.summary.mapIds===248&&
+   worldGapMatrix.summary.normalMapHeaders===226&&
+   worldGapMatrix.summary.noNormalHeader===22&&
+   worldGapMatrix.summary.staticallyIndexedActions===1992&&
+   worldGapMatrix.summary.scriptReferences===1126&&
+   worldGapMatrix.summary.asmReferences===626&&
+   worldGapMatrix.summary.unverifiedScriptEffects===1126&&
+   worldGapMatrix.summary.runtimeActionsUnproven===
+    gaps.summary.runtimeActionsUnproven&&
+   worldGapMatrix.summary.gameplayCompletionPercentage===null&&
+   worldGapMatrix.topUnresolvedMaps.length===15&&
+   worldGapMatrix.mapping100PercentCertified===false&&
+   worldGapMatrix.gameplayCompletionCertified===false,
+   'All 248 map IDs must have a reconciled, non-gameplay-certified gap matrix: '+
+    variant+' '+worldGapMatrix.reason);
   assert(gaps.verified===true&&
    gaps.summary.mapIds===248&&gaps.summary.normalMapHeaders===226&&
    gaps.summary.idsWithoutNormalHeader===22&&
@@ -1097,6 +1117,17 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_TEXT_DISPATCH_COMMAND_COUNTS='+JSON.stringify(a.summary.commandCounts));
 
   log('ROM_'+variant.toUpperCase()+'_RUNTIME_ACTIONS_UNPROVEN='+gaps.summary.runtimeActionsUnproven);
+  log('ROM_'+variant.toUpperCase()+'_WORLD_GAP_MATRIX_SUMMARY='+
+   JSON.stringify(worldGapMatrix.summary));
+  log('ROM_'+variant.toUpperCase()+'_WORLD_GAP_MATRIX_HOTSPOTS='+
+   JSON.stringify(worldGapMatrix.topUnresolvedMaps));
+  log('ROM_'+variant.toUpperCase()+'_WORLD_GAP_MATRIX_ALL_248='+
+   JSON.stringify(worldGapMatrix.maps.map(m=>[
+    m.mapId,m.hasNormalHeader?1:0,m.staticActionCount,
+    m.scriptReferences,m.asmReferences,
+    m.actionsWithoutRuntimeProof??null,m.nextEvidence
+   ])));
+  log('ROM_'+variant.toUpperCase()+'_WORLD_GAP_GAMEPLAY_COMPLETION_PERCENT=NULL');
   log('ROM_'+variant.toUpperCase()+'_GAP_HOTSPOTS='+JSON.stringify(gaps.priorities));
   log('ROM_'+variant.toUpperCase()+'_ASM_REFERENCES=626');
   log('ROM_'+variant.toUpperCase()+'_UNIQUE_ENTRYPOINTS='+a.summary.uniqueAsmEntrypoints);
@@ -1153,6 +1184,7 @@ function main(){
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
+  'tests/romWorldGapMatrix.test.js',
   'tests/romUnboundTrainerScripts.test.js',
   'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romUnboundTrainerTempBattleFlags.test.js',
