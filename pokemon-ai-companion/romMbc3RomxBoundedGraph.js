@@ -74,16 +74,26 @@ function auditMbc3RomxBoundedGraph({
   const pendingUnseen=[...new Set(pending.slice(cursor).filter(pc=>!seen.has(pc)))];
   const budgetExhausted=decoded>=maxInstructionsPerEntrypoint&&
    pendingUnseen.length>0;
-  const frontierTargets=budgetExhausted?pendingUnseen.slice(0,8).map(cpuPc=>{
+  const frontierTargets=budgetExhausted?pendingUnseen.map(cpuPc=>{
    const fileOffset=entry.bank*BANK_BYTES+cpuPc-0x4000;
    const window=rom.subarray(fileOffset,
     Math.min(fileOffset+16,(entry.bank+1)*BANK_BYTES));
    const bytes=Array.from(window);
    const firstNonNOP=bytes.findIndex(byte=>byte!==0);
    const decodedFirst=decodeOpcode(rom,entry.bank,cpuPc);
+   const bankEnd=(entry.bank+1)*BANK_BYTES;
+   let firstNonzeroOffset=fileOffset;
+   while(firstNonzeroOffset<bankEnd&&rom[firstNonzeroOffset]===0)
+    firstNonzeroOffset++;
+   const zeroRunLength=firstNonzeroOffset-fileOffset;
    return {cpuPc,fileOffset,firstByte:rom[fileOffset],
     rawWindowHex:bytes.map(byte=>byte.toString(16).padStart(2,'0')).join(''),
     leadingNopBytesInWindow:firstNonNOP<0?bytes.length:firstNonNOP,
+    zeroRunLengthToNonzeroOrBankEnd:zeroRunLength,
+    zeroRunEndCpuExclusive:cpuPc+zeroRunLength,
+    zeroRunReachesBankEnd:zeroRunLength>0&&firstNonzeroOffset===bankEnd,
+    firstNonzeroByteAfterRun:firstNonzeroOffset<bankEnd?
+     rom[firstNonzeroOffset]:null,
     firstOpcodeDecodable:decodedFirst.ok===true,
     firstDecodeReason:decodedFirst.ok?null:decodedFirst.reason};
   }):[];

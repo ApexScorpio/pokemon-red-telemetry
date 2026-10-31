@@ -502,6 +502,10 @@ function main(){
    frontier.entriesUncapped+frontier.cappedEntries===
     closure.mbc3RomxDepthSweep.uniquePhysicalEntrypoints&&
    frontier.sampledFrontierTargets>=frontier.cappedEntries&&
+   frontier.fullFrontierCoverage===true&&
+   frontier.sampledFrontierTargets===frontier.totalPendingUniqueFrontierTargets&&
+   frontier.longZeroRunsAtLeast16>=0&&
+   frontier.zeroRunsReachingBankEnd<=frontier.longZeroRunsAtLeast16&&
    frontier.zeroFirstByteSamples<=frontier.sampledFrontierTargets&&
    frontier.allZero16ByteWindows<=frontier.zeroFirstByteSamples&&
    frontier.executedInstructions===0&&frontier.activeBankVerified===false&&
@@ -517,6 +521,10 @@ function main(){
   log(romLabel+'_MBC3_ROMX_FRONTIER_UNIQUE_PENDING='+frontier.totalPendingUniqueFrontierTargets);
   log(romLabel+'_MBC3_ROMX_FRONTIER_FIRST_ZERO='+frontier.zeroFirstByteSamples);
   log(romLabel+'_MBC3_ROMX_FRONTIER_WINDOWS_ALL_ZERO='+frontier.allZero16ByteWindows);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_COMPLETE='+frontier.fullFrontierCoverage);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_ZERO_RUNS_AT_LEAST16='+frontier.longZeroRunsAtLeast16);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_ZERO_RUNS_TO_BANK_END='+frontier.zeroRunsReachingBankEnd);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_ZERO_PREFIX_TOTAL_BYTES='+frontier.totalZeroPrefixBytesAcrossSamples);
   log(romLabel+'_MBC3_ROMX_FRONTIER_DECODE_FAILURE_REASONS='+
    JSON.stringify(frontier.decodeFailureReasons));
   log(romLabel+'_MBC3_ROMX_FRONTIER_EVIDENCE='+JSON.stringify(frontier.frontierEvidence));

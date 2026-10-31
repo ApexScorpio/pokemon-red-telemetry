@@ -123,3 +123,27 @@ test('closed ROMX graph exposes no invented pending frontier',()=>{
  assert.equal(r.entryResults[0].frontierPendingUniqueCount,0);
  assert.deepEqual(r.entryResults[0].frontierTargets,[]);
 });
+
+test('frontier includes precise zero-run length until first nonzero byte',()=>{
+ const rom=make(),at=3*0x4000+0x1000;
+ rom.fill(0,at,at+1300);
+ const r=auditMbc3RomxBoundedGraph({rom,
+  scenarioAtlas:atlas([entry(rom)]),maxInstructionsPerEntrypoint:1024});
+ const row=r.entryResults[0].frontierTargets[0];
+ assert.equal(row.cpuPc,0x5400);
+ assert.equal(row.zeroRunLengthToNonzeroOrBankEnd,276);
+ assert.equal(row.zeroRunEndCpuExclusive,0x5400+276);
+ assert.equal(row.zeroRunReachesBankEnd,false);
+ assert.equal(row.firstNonzeroByteAfterRun,0xc9);
+});
+test('zero-run scan stops at ROMX bank physical boundary without reading another bank',()=>{
+ const rom=make(),at=3*0x4000+0x1000;
+ rom.fill(0,at,(3+1)*0x4000);
+ const r=auditMbc3RomxBoundedGraph({rom,
+  scenarioAtlas:atlas([entry(rom)]),maxInstructionsPerEntrypoint:1024});
+ const row=r.entryResults[0].frontierTargets[0];
+ assert.equal(row.zeroRunEndCpuExclusive,0x8000);
+ assert.equal(row.zeroRunReachesBankEnd,true);
+ assert.equal(row.firstNonzeroByteAfterRun,null);
+ assert.equal(row.zeroRunLengthToNonzeroOrBankEnd,0x8000-0x5400);
+});

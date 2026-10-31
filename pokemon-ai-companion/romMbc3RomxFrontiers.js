@@ -17,6 +17,7 @@ function auditMbc3RomxFrontiers({rom,depthSweep}={}){
   return bad('A verified 1024-instruction MBC3 depth sweep is required');
  const evidence=[],reasons=Object.create(null);
  let capped=0,sampled=0,totalUnique=0,zeroFirst=0,allZeroWindow=0,validFirst=0;
+ let longZero=0,zeroToBankEnd=0,totalZeroBytes=0;
  for(const record of depthSweep.comparisons){
   const bank=record?.bank,cpu=record?.entryCpu;
   if(!Number.isInteger(bank)||bank<1||bank>63||
@@ -30,8 +31,7 @@ function auditMbc3RomxFrontiers({rom,depthSweep}={}){
      record.frontierUniquePendingAt1024<0||
      record.frontierUniquePendingAt1024>4096||
      !Array.isArray(record.frontierTargetsAt1024)||
-     record.frontierTargetsAt1024.length>8||
-     record.frontierTargetsAt1024.length>
+     record.frontierTargetsAt1024.length!==
        record.frontierUniquePendingAt1024||
      record.executed!==false||record.activeBankVerified!==false||
      record.causalLinkVerified!==false)
@@ -65,11 +65,23 @@ function auditMbc3RomxFrontiers({rom,depthSweep}={}){
    const leading=Array.from(window).findIndex(x=>x!==0);
    const zeroRun=leading===-1?window.length:leading;
    const decoded=decodeOpcode(rom,bank,pos);
+   const bankEnd=(bank+1)*0x4000;
+   let end=offset;
+   while(end<bankEnd&&rom[end]===0)end++;
+   const zeroLen=end-offset;
    if(item.rawWindowHex!==hex||
       item.leadingNopBytesInWindow!==zeroRun||
       item.firstOpcodeDecodable!==(decoded.ok===true)||
-      item.firstDecodeReason!==(decoded.ok?null:decoded.reason))
-    return bad('Frontier sample does not match ROM bytes or decoder');
+      item.firstDecodeReason!==(decoded.ok?null:decoded.reason)||
+      item.zeroRunLengthToNonzeroOrBankEnd!==zeroLen||
+      item.zeroRunEndCpuExclusive!==pos+zeroLen||
+      item.zeroRunReachesBankEnd!==(zeroLen>0&&end===bankEnd)||
+      item.firstNonzeroByteAfterRun!==
+       (end<bankEnd?rom[end]:null))
+    return bad('Frontier sample does not match ROM bytes or zero run');
+   totalZeroBytes+=zeroLen;
+   if(zeroLen>=16)longZero++;
+   if(zeroLen>0&&end===bankEnd)zeroToBankEnd++;
    sampled++;
    if(item.firstByte===0)zeroFirst++;
    if(window.length===16&&zeroRun===16)allZeroWindow++;
@@ -90,13 +102,18 @@ function auditMbc3RomxFrontiers({rom,depthSweep}={}){
    samples,wasExecuted:false,activeBankVerified:false,
    causalityToSourceWriteVerified:false});
  }
- if(capped!==depthSweep.entriesStillBudgetExhausted)
-  return bad('Capped frontier count differs from the depth sweep');
- return {verified:true,source:'MBC3_ROMX_1024_FRONTIER_BYTE_EVIDENCE_V1',
+ if(capped!==depthSweep.entriesStillBudgetExhausted||
+    sampled!==totalUnique)
+  return bad('Capped frontier targets are missing or inconsistent');
+ return {verified:true,source:'MBC3_ROMX_1024_FRONTIER_BYTE_EVIDENCE_V2',
   cappedEntries:capped,entriesUncapped:depthSweep.comparisons.length-capped,
   sampledFrontierTargets:sampled,totalPendingUniqueFrontierTargets:totalUnique,
   zeroFirstByteSamples:zeroFirst,allZero16ByteWindows:allZeroWindow,
   decodableFirstOpcodeSamples:validFirst,decodeFailureReasons:{...reasons},
+  fullFrontierCoverage:true,
+  longZeroRunsAtLeast16:longZero,
+  zeroRunsReachingBankEnd:zeroToBankEnd,
+  totalZeroPrefixBytesAcrossSamples:totalZeroBytes,
   frontierEvidence:evidence,activeBankVerified:false,
   executedInstructions:0,causalBankWritesVerified:0,
   gameplay100PercentCertified:false,

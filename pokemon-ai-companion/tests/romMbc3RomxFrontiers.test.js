@@ -71,3 +71,30 @@ test('tampered physical samples, runtime claims and mismatched counts fail close
   assert.equal(result.verified,false);
  }
 });
+
+test('all pending frontier bytes and exact zero-prefix lengths are reconciled',()=>{
+ const r=make(),at=3*0x4000+0x1000;
+ r.fill(0,at,at+1300);
+ const x=auditMbc3RomxFrontiers(context(r,[source(r)]));
+ assert.equal(x.verified,true);
+ assert.equal(x.fullFrontierCoverage,true);
+ assert.equal(x.sampledFrontierTargets,x.totalPendingUniqueFrontierTargets);
+ assert.equal(x.longZeroRunsAtLeast16,1);
+ assert.equal(x.zeroRunsReachingBankEnd,0);
+ assert.equal(x.totalZeroPrefixBytesAcrossSamples,276);
+ assert.equal(x.frontierEvidence[0].samples[0].zeroRunLengthToNonzeroOrBankEnd,276);
+});
+test('tampered exact zero-run length fails closed even when first 16-byte window matches',()=>{
+ const r=make(),at=3*0x4000+0x1000;r.fill(0,at,at+1300);
+ const ctx=context(r,[source(r)]);
+ const p=JSON.parse(JSON.stringify(ctx.depthSweep));
+ p.comparisons[0].frontierTargetsAt1024[0].zeroRunLengthToNonzeroOrBankEnd=16;
+ assert.equal(auditMbc3RomxFrontiers({rom:r,depthSweep:p}).verified,false);
+});
+test('truncated pending targets cannot be accepted as complete coverage',()=>{
+ const r=make(),at=3*0x4000+0x1000;r.fill(0,at,at+1300);
+ const ctx=context(r,[source(r)]);
+ const p=JSON.parse(JSON.stringify(ctx.depthSweep));
+ p.comparisons[0].frontierTargetsAt1024=[];
+ assert.equal(auditMbc3RomxFrontiers({rom:r,depthSweep:p}).verified,false);
+});
