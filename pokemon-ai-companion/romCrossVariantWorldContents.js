@@ -161,4 +161,115 @@ function compareCrossVariantWorldContents({red,blue,green}={}){
   gameplayEquivalent:null,gameplayCompletionCertified:false,
   warning:'Decoded object record equality is not binary ROM identity, walkability, field-move eligibility, or gameplay equivalence.'};
 }
-module.exports={compareCrossVariantWorldContents};
+
+const FIELD_LAYOUT=Object.freeze({
+ geometry:['widthBlocks','heightBlocks'],
+ visibleItems:['ordinal','kind','x','y','spriteId','textId',
+  'itemOrTrainerId','trainerNumberOrLevel','wildSpeciesInternalId','wildLevel'],
+ hiddenItems:['hiddenIndex','x','y','itemId'],
+ trainers:['ordinal','kind','x','y','spriteId','textId',
+  'itemOrTrainerId','trainerNumberOrLevel','wildSpeciesInternalId','wildLevel'],
+ npcs:['ordinal','kind','x','y','spriteId','textId',
+  'itemOrTrainerId','trainerNumberOrLevel','wildSpeciesInternalId','wildLevel'],
+ stationaryPokemon:['ordinal','kind','x','y','spriteId','textId',
+  'itemOrTrainerId','trainerNumberOrLevel','wildSpeciesInternalId','wildLevel'],
+ signs:['ordinal','x','y','textId'],
+ warps:['ordinal','x','y','destinationMap','destinationWarp'],
+ unassignedHiddenItems:['hiddenIndex','x','y','itemId']
+});
+const VARIANTS=['RED','BLUE','GREEN'];
+const same=(values)=>Object.is(values.RED,values.BLUE)&&
+ Object.is(values.RED,values.GREEN);
+// Use the exact fully-audited projections and the previous 248-map result,
+// rather than trusting arbitrary caller-supplied lists of differences.
+function compareCrossVariantWorldFieldDifferences({red,blue,green}={}){
+ const input={red,blue,green};
+ const baseline=compareCrossVariantWorldContents(input);
+ const denied=reason=>({verified:false,reason,mapsCompared:0,
+  differingMapIds:[],fieldDifferenceCount:0,fieldDifferences:[],
+  gameplayEquivalent:null,gameplayCompletionCertified:false});
+ if(baseline.verified!==true||
+    baseline.mapsCompared!==IDS||
+    baseline.gameplayEquivalent!==null||
+    baseline.gameplayCompletionCertified!==false)
+  return denied(baseline.reason||'Base three-ROM decoded map proof missing');
+ const projections={RED:project(red,'RED'),BLUE:project(blue,'BLUE'),
+  GREEN:project(green,'GREEN')};
+ if(Object.values(projections).some(x=>x===null))
+  return denied('One original ROM projection lost verified evidence');
+ const differences=[],byMapCategory={};
+ for(const map of baseline.differingMaps){
+  const mapId=map.mapId;
+  if(!Number.isInteger(mapId)||mapId<0||mapId>=IDS||
+     !Array.isArray(map.categories)||map.categories.length===0)
+   return denied('Invalid original decoded map difference');
+  byMapCategory[mapId]={};
+  for(const category of map.categories){
+   if(category==='mapHeaderStatus'){
+    const values=Object.fromEntries(VARIANTS.map(v=>
+      [v,projections[v][mapId].normal]));
+    if(same(values))return denied('Inconsistent map header difference');
+    differences.push({mapId,category,recordIndex:null,field:'normalMapHeader',
+     values,decodedRecordOnly:true,gameEffectProven:false,
+     playerProgressProven:false});
+    byMapCategory[mapId][category]=1;
+    continue;
+   }
+   const layout=FIELD_LAYOUT[category];
+   if(!layout)return denied('Unknown static comparison category '+category);
+   const before=differences.length;
+   if(category==='geometry'){
+    for(let idx=0;idx<layout.length;idx++){
+     const values=Object.fromEntries(VARIANTS.map(v=>[v,
+      projections[v][mapId].geometry?.[idx]??null]));
+     if(!same(values))
+      differences.push({mapId,category,recordIndex:null,field:layout[idx],
+       values,decodedRecordOnly:true,gameEffectProven:false,
+       playerProgressProven:false});
+    }
+   }else{
+    const lists=Object.fromEntries(VARIANTS.map(v=>[
+      v,projections[v][mapId][category]??[]]));
+    const max=Math.max(...VARIANTS.map(v=>lists[v].length));
+    for(let idx=0;idx<max;idx++){
+     const present=Object.fromEntries(VARIANTS.map(v=>
+      [v,idx<lists[v].length]));
+     if(!same(present))
+      differences.push({mapId,category,recordIndex:idx,
+       field:'recordPresent',values:present,
+       decodedRecordOnly:true,gameEffectProven:false,
+       playerProgressProven:false});
+     for(let col=0;col<layout.length;col++){
+      const values=Object.fromEntries(VARIANTS.map(v=>[v,
+       lists[v][idx]?.[col]??null]));
+      if(!same(values))
+       differences.push({mapId,category,recordIndex:idx,
+        field:layout[col],values,decodedRecordOnly:true,
+        gameEffectProven:false,playerProgressProven:false});
+     }
+    }
+   }
+   const count=differences.length-before;
+   if(count<1)return denied('Map category changed but no differing field: '+
+    mapId+'/'+category);
+   byMapCategory[mapId][category]=count;
+  }
+ }
+ const unique=[...new Set(differences.map(d=>d.mapId))];
+ if(unique.length!==baseline.decodedMapDifferences||
+   unique.some((id,i)=>id!==baseline.differingMaps[i].mapId)||
+   differences.some(d=>d.gameEffectProven!==false||
+     d.playerProgressProven!==false))
+  return denied('Detailed differences do not reconcile to prior map comparison');
+ return {verified:true,source:'THREE_SHA_AUDITED_DECODED_OBJECT_FIELD_DIFF_V1',
+  romSha256:SHA,mapsCompared:IDS,
+  differingMapIds:unique,fieldDifferenceCount:differences.length,
+  fieldDifferences:differences,fieldCountsByMapCategory:byMapCategory,
+  recordAlignment:'POSITION_WITHIN_DECODED_TYPE_NOT_PROVEN_SAME_ACTOR',
+  idOrCoordinateDifferenceProvesReachability:false,
+  gameplayEquivalent:null,gameplayCompletionCertified:false,
+  warning:'These are raw decoded values, not named items or confirmed gameplay outcomes.'};
+}
+
+module.exports={compareCrossVariantWorldContents,
+ compareCrossVariantWorldFieldDifferences};

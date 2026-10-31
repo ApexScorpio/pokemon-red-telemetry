@@ -11,7 +11,8 @@ const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
 const {buildWorldGapMatrix,exportWorldGapRowsV2}=require('../romWorldGapMatrix');
 const {compareCrossVariantWorldGaps}=require('../romCrossVariantWorldGaps');
-const {compareCrossVariantWorldContents}=require('../romCrossVariantWorldContents');
+const {compareCrossVariantWorldContents,
+ compareCrossVariantWorldFieldDifferences}=require('../romCrossVariantWorldContents');
 const {traceRom0CallClosure}=require('../rom0CallClosureEvidence');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
 const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
@@ -1205,6 +1206,40 @@ function main(){
  log('CROSS_ROM_DECODED_MAP_DIFFERENCES='+
   JSON.stringify(contentsComparison.differingMaps));
  log('CROSS_ROM_DECODED_MAP_GAMEPLAY_EQUIVALENCE=UNKNOWN');
+ log('STEP=CROSS_ROM_DECODED_RECORD_FIELDS');
+ const detailedContents=compareCrossVariantWorldFieldDifferences(
+  crossWorldDecodedContents);
+ assert(detailedContents.verified===true&&
+  detailedContents.mapsCompared===248&&
+  detailedContents.fieldDifferenceCount===
+   detailedContents.fieldDifferences.length&&
+  detailedContents.differingMapIds.length===2&&
+  detailedContents.differingMapIds[0]===226&&
+  detailedContents.differingMapIds[1]===227&&
+  detailedContents.fieldDifferences.some(d=>
+   d.mapId===226&&d.category==='visibleItems')&&
+  detailedContents.fieldDifferences.some(d=>
+   d.mapId===227&&d.category==='visibleItems')&&
+  detailedContents.fieldDifferences.some(d=>
+   d.mapId===227&&d.category==='stationaryPokemon')&&
+  detailedContents.fieldDifferences.every(d=>
+   d.decodedRecordOnly===true&&
+   d.gameEffectProven===false&&d.playerProgressProven===false)&&
+  detailedContents.gameplayEquivalent===null&&
+  detailedContents.gameplayCompletionCertified===false,
+  'Decoded field-level cross-ROM proof must agree with Bridge 073 maps 226/227: '+
+   detailedContents.reason);
+ log('CROSS_ROM_DECODED_FIELD_MAPS_COMPARED='+
+  detailedContents.mapsCompared);
+ log('CROSS_ROM_DECODED_FIELD_DIFFERING_MAP_IDS='+
+  JSON.stringify(detailedContents.differingMapIds));
+ log('CROSS_ROM_DECODED_FIELD_DIFFERENCE_COUNT='+
+  detailedContents.fieldDifferenceCount);
+ log('CROSS_ROM_DECODED_FIELD_BY_MAP_CATEGORY='+
+  JSON.stringify(detailedContents.fieldCountsByMapCategory));
+ log('CROSS_ROM_DECODED_FIELD_DETAILS='+
+  JSON.stringify(detailedContents.fieldDifferences));
+ log('CROSS_ROM_DECODED_FIELD_GAMEPLAY_EQUIVALENCE=UNKNOWN');
  log('STEP=CROSS_ROM_FLAG_CONDITION_COMPARISON');
  const comparison=compareCrossVariantFlagSemantics({graphs:crossRomFlagGraphs});
  assert(comparison.verified===true&&

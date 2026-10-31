@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const {compareCrossVariantWorldContents}=require('../romCrossVariantWorldContents');
+const {compareCrossVariantWorldContents,
+ compareCrossVariantWorldFieldDifferences}=require('../romCrossVariantWorldContents');
 const {AUDITED_ROM_SHA256}=require('../romKnownSha256');
 const {readRom,KNOWN}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
@@ -143,3 +144,101 @@ test('signs and warps use the original ROM coordinate range minus four to 255',(
  assert.equal(x.decodedMapDifferences,1);
  assert.deepEqual(x.differingMaps[0].categories,['signs','warps']);
 });
+
+test('field-level comparison returns zero entries on matching decoded records',()=>{
+ const r=compareCrossVariantWorldFieldDifferences(trio());
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.mapsCompared,248);
+ assert.equal(r.fieldDifferenceCount,0);
+ assert.deepEqual(r.differingMapIds,[]);
+ assert.equal(r.gameplayEquivalent,null);
+ assert.equal(r.gameplayCompletionCertified,false);
+});
+test('item IDs exchanged between maps identify the exact ID and raw variants',()=>{
+ const x=trio();
+ [x.blue.maps[0].contents.visibleItems[0].itemOrTrainerId,
+  x.blue.maps[1].contents.visibleItems[0].itemOrTrainerId]=
+  [x.blue.maps[1].contents.visibleItems[0].itemOrTrainerId,
+   x.blue.maps[0].contents.visibleItems[0].itemOrTrainerId];
+ const r=compareCrossVariantWorldFieldDifferences(x);
+ assert.equal(r.verified,true,r.reason);
+ assert.deepEqual(r.differingMapIds,[0,1]);
+ assert.equal(r.fieldDifferenceCount,2);
+ const first=r.fieldDifferences[0];
+ assert.equal(first.mapId,0);
+ assert.equal(first.category,'visibleItems');
+ assert.equal(first.recordIndex,0);
+ assert.equal(first.field,'itemOrTrainerId');
+ assert.deepEqual(first.values,{RED:1,BLUE:2,GREEN:1});
+ assert.equal(first.decodedRecordOnly,true);
+ assert.equal(first.playerProgressProven,false);
+ assert.equal(first.gameEffectProven,false);
+ assert.equal(r.recordAlignment,
+  'POSITION_WITHIN_DECODED_TYPE_NOT_PROVEN_SAME_ACTOR');
+});
+test('warp, sign, and stationary Pokemon differences identify precise fields',()=>{
+ const x=trio();
+ x.blue.maps[0].contents.warps[0].destinationMap=44;
+ x.green.maps[0].contents.signs[0].textId=22;
+ x.green.maps[0].contents.stationaryPokemon.push({...blank(),
+  ordinal:1,kind:'wildPokemon',x:9,y:10,spriteId:2,textId:1,
+  itemOrTrainerId:null,trainerNumberOrLevel:null,
+  wildSpeciesInternalId:151,wildLevel:30,source:'ROM_MAP_OBJECT_BYTES'});
+ x.red.maps[0].contents.stationaryPokemon.push({...blank(),
+  ordinal:1,kind:'wildPokemon',x:9,y:10,spriteId:2,textId:1,
+  itemOrTrainerId:null,trainerNumberOrLevel:null,
+  wildSpeciesInternalId:150,wildLevel:30,source:'ROM_MAP_OBJECT_BYTES'});
+ x.blue.maps[0].contents.stationaryPokemon.push({...blank(),
+  ordinal:1,kind:'wildPokemon',x:9,y:10,spriteId:2,textId:1,
+  itemOrTrainerId:null,trainerNumberOrLevel:null,
+  wildSpeciesInternalId:150,wildLevel:30,source:'ROM_MAP_OBJECT_BYTES'});
+ x.red.totals.stationaryPokemon=1;
+ x.blue.totals.stationaryPokemon=1;
+ x.green.totals.stationaryPokemon=1;
+ const r=compareCrossVariantWorldFieldDifferences(x);
+ assert.equal(r.verified,true,r.reason);
+ assert.deepEqual(r.differingMapIds,[0]);
+ assert.deepEqual(r.fieldDifferences.map(d=>[d.category,d.field]),
+  [['stationaryPokemon','wildSpeciesInternalId'],
+   ['signs','textId'],['warps','destinationMap']]);
+ assert.deepEqual(r.fieldDifferences[0].values,{RED:150,BLUE:150,GREEN:151});
+ assert.deepEqual(r.fieldDifferences[2].values,{RED:20,BLUE:44,GREEN:20});
+});
+test('record count change produces presence evidence rather than an invented actor',()=>{
+ const x=trio();
+ x.green.maps[0].contents.visibleItems.push({...actor(3),ordinal:2,x:5,y:6});
+ x.green.totals.visibleItems++;
+ const r=compareCrossVariantWorldFieldDifferences(x);
+ assert.equal(r.verified,true,r.reason);
+ assert.deepEqual(r.differingMapIds,[0]);
+ assert.ok(r.fieldDifferences.some(d=>d.field==='recordPresent'&&
+  d.category==='visibleItems'&&d.recordIndex===1&&
+  d.values.RED===false&&d.values.GREEN===true));
+ assert.equal(r.gameplayCompletionCertified,false);
+});
+test('original three ROMs: 226/227 detailed item and stationary records',
+ {skip:!['POKEMON_RED_ROM','POKEMON_BLUE_ROM','POKEMON_GREEN_ROM']
+ .every(n=>process.env[n])?'Three original ROMs required':false},()=>{
+  const records={};
+  for(const [variant,env] of [
+   ['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM'],
+   ['green','POKEMON_GREEN_ROM']]){
+   const p=inspectRomBuffer(readRom(process.env[env]),variant+'.gb');
+   assert.equal(p.hash.sha256,KNOWN[variant]);
+   const index=buildWorldContentsIndex(p);
+   assert.equal(index.verified,true,index.reason);
+   records[variant]=index;
+  }
+  const result=compareCrossVariantWorldFieldDifferences(records);
+  assert.equal(result.verified,true,result.reason);
+  assert.equal(result.mapsCompared,248);
+  assert.deepEqual(result.differingMapIds,[226,227]);
+  assert.ok(result.fieldDifferenceCount>=3);
+  const at226=result.fieldDifferences.filter(d=>d.mapId===226);
+  const at227=result.fieldDifferences.filter(d=>d.mapId===227);
+  assert.ok(at226.some(d=>d.category==='visibleItems'));
+  assert.ok(at227.some(d=>d.category==='visibleItems'));
+  assert.ok(at227.some(d=>d.category==='stationaryPokemon'));
+  assert.equal(result.gameplayEquivalent,null);
+  assert.equal(result.gameplayCompletionCertified,false);
+ });
