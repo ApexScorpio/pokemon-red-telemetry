@@ -9,7 +9,26 @@ const {inspectTerrainCell}=require('./romTerrainAtlas');
 const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {inspectMovementOptions}=require('./romTerrainMovement');
 const {planItemAccess}=require('./romItemReachability');
+const {planEventActorApproaches}=require('./romMapEventActorApproach');
+const {planStrengthPushes}=require('./romStrengthPushPlanner');
+const {readStrengthFieldEvidence}=require('./romStrengthFieldEvidence');
 const {adviseWorld}=require('./romWorldStateAdvisor');
+const {buildCampaignLedger}=require('./romCampaignLedger');
+const {verifyGlobalFlagReadback}=require('./romGlobalFlagReadback');
+const {campaignObjectives}=require('./romCampaignObjectives');
+const {findCrossMapItemPaths}=require('./romCrossMapItemRoute');
+const {selectGlobalFlagTargets,planGlobalFlagItemRoutes}=require('./romGlobalFlagItemRoutes');
+const {localExitAccess}=require('./romLocalExitAccess');
+const {verifyTerrainVariant}=require('./romTerrainVariantGuard');
+const {verifyOutdoorConnectionVariant}=require('./romOutdoorReferenceGuard');
+const {validateOutdoorAlignment}=require('./romOutdoorAlignment');
+const {buildOutdoorOverlapIndex}=require('./romOutdoorOverlapIndex');
+const {suggestWorldDetours}=require('./romWorldDetourCycles');
+const {CampaignFlagSession}=require('./romCampaignSession');
+const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
+const {WorldReferenceFlagSession}=require('./romWorldReferenceSession');
+const {CompleteEventBitSession}=require('./romCompleteEventSession');
+const {elevatorOptionsForMap}=require('./romElevatorChoices');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
 const {makeAreaProgress}=require('./romAreaProgress');
@@ -313,6 +332,12 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romValidation = 'ROM não verificada nesta sessão';
     this.latestState.romHeader = { fullRomVerified: false };
     this.latestState.memoryReadStatus = { verified: false, completeness: 'selected-address-ranges-only' };
+    this._worldCampaignSession=new CampaignFlagSession();
+    this._worldReferenceSession=new WorldReferenceFlagSession();
+    this._completeEventBitSession=new CompleteEventBitSession();
+    this._currentSessionSha=null;
+    // Never inherit advice or progress deltas from persisted state.
+    this.invalidateWorldEvidence('Novo arranque: aguardar leituras RAM reais');
     if (cachedState) {
       this.latestState.actionHistory = this.loadPersistedActionHistory();
       this.latestState.dialogHistory = this.loadPersistedDialogHistory();
@@ -322,6 +347,39 @@ class RetroArchClient extends EventEmitter {
     this.lastVideoReadAt = 0;
     this.videoReadInProgress = false;
     this.pendingResolves = new Map();
+  }
+
+  invalidateWorldEvidence(reason='Leitura interrompida'){
+    if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
+    if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
+    if(this._completeEventBitSession)this._completeEventBitSession.reset(reason);
+    this._strengthPlanCacheScope=null;this._strengthPlanCache=new Map();
+    this._globalFlagItemKey=null;this._globalFlagItemRoutes=null;
+    this._crossMapRouteKey=null;this._crossMapRoute=null;
+    this.latestState.globalCampaignLedger={verified:false,mapProgress:[],reason};
+    this.latestState.globalCampaignObjectives={verified:false,objectives:[],reason};
+    this.latestState.globalFlagItemRoutes={verified:false,items:[],reason};
+    this.latestState.romWorldEventAtlas={verified:false,events:[],toggleFlags:[],reason};
+    this.latestState.romWorldReferenceDelta={verified:false,changes:[],reason};
+    this.latestState.romElevatorOptions={verified:false,options:[],reason};
+    this.latestState.worldRecentNamedChanges={verified:false,events:[],reason};
+    this.latestState.romCompleteEventDelta={verified:false,changes:[],reason};
+    this.latestState.worldRecentCompleteEventChanges={verified:false,events:[],reason};
+    this.latestState.globalCampaignDelta={verified:false,changes:[],reason};
+    this.latestState.worldRecentFlagChanges={
+      verified:false,events:[],reason,actionsProven:false};
+    this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
+    this.latestState.romCrossMapItemRoutes={verified:false,results:[],reason};
+    this.latestState.romStrengthFieldEvidence={verified:false,activeAtSample:null,reason};
+    this.latestState.romLocalExitAccess={verified:false,exits:[],reason};
+    this.latestState.romVariantTerrainEvidence={verified:false,reason};
+    this.latestState.romOutdoorReferenceEvidence={verified:false,reason};
+    this.latestState.romOutdoorAlignment={verified:false,reason};
+    this.latestState.romOutdoorOverlapIndex={verified:false,edges:[],reason};
+    this.latestState.romWarpGraph={verified:false,reason};
+    this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
+    this.latestState.romWorldDetourCycles={verified:false,candidates:[],reason};
+    this.latestState.worldAdvisor={verified:false,observations:[],reason};
   }
 
   loadPersistedState() {
@@ -345,10 +403,28 @@ class RetroArchClient extends EventEmitter {
     if (!state.areaInfo || !state.areaInfo.name || state.areaInfo.name === 'Desconhecido') return;
     if (state.mapId === 0 && (state.badges && state.badges.some(b => b.obtained))) return;
     try {
+      // This file is a convenience cache, never a source for live ROM/RAM
+      // flags. Do not write hundreds of per-map event rows and live advice
+      // on every polling cycle or reload those rows as fresh evidence.
+      const persisted={...state};
+      for(const transient of [
+        'globalCampaignLedger','globalCampaignObjectives','globalFlagItemRoutes',
+        'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
+        'romCrossMapItemRoute','romCrossMapItemRoutes','romStrengthFieldEvidence',
+        'romWorldEventAtlas',
+        'romWorldReferenceDelta','worldRecentNamedChanges',
+        'romCompleteEventDelta','worldRecentCompleteEventChanges',
+        'romElevatorOptions',
+        'romLocalExitAccess','romWorldDetourCycles',
+        'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
+        'romOutdoorAlignment','romOutdoorOverlapIndex',
+        'romWarpGraph'
+      ])delete persisted[transient];
+      const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
-      fs.writeFileSync(p, JSON.stringify(state, null, 2), 'utf8');
+      fs.writeFileSync(p, content, 'utf8');
       const rootP = require('path').join(__dirname, '..', 'data', 'last_known_state.json');
-      fs.writeFileSync(rootP, JSON.stringify(state, null, 2), 'utf8');
+      fs.writeFileSync(rootP, content, 'utf8');
     } catch (e) {}
   }
 
@@ -423,6 +499,7 @@ class RetroArchClient extends EventEmitter {
     this.socket.on('error', (err) => {
       console.error('[RetroArch UDP Error]:', err.message);
       this.latestState.connected = false;
+      this.invalidateWorldEvidence('Erro no socket do RetroArch');
       this.emit('update', this.latestState);
     });
 
@@ -523,6 +600,50 @@ class RetroArchClient extends EventEmitter {
     return allBytes;
   }
 
+  // A thrown fetch is NOT a harmless skipped poll. It breaks the
+  // continuity required for per-bit event transition histories.
+  // Fail closed before emitting any stale advice; never edit the emulator,
+  // its save state, the ROM profiles, or another process.
+  invalidateUnexpectedPoll(err){
+    const errorCode=typeof err?.code==='string'&&
+      /^[A-Z][A-Z0-9_]{0,39}$/.test(err.code)?
+      err.code:'UNKNOWN';
+    const reason='UNEXPECTED_RAM_POLL_EXCEPTION_'+errorCode;
+    const attempt=Number.isSafeInteger(this.pollExceptionCount)&&
+      this.pollExceptionCount>=0?this.pollExceptionCount+1:1;
+    this.pollExceptionCount=attempt;
+    this.latestState.connected=false;
+    this.latestState.lastUpdate=null;
+    this.latestState.lastReadError='Leitura RAM interrompida por erro inesperado: '+
+      errorCode+'. Estado mundial anterior recusado.';
+    this.latestState.memoryReadStatus={
+      verified:false,completeness:'selected-address-ranges-only',
+      checkedAt:new Date().toISOString(),
+      globalFlagReadback:{verified:false,reason,
+        readbackBytesMatched:0,toggleBytesMatched:0,
+        allFlagBytesMatched:0,romAndMapCorroborated:false,
+        snapshotAtomicVerified:false,playerActionConfirmed:false},
+      pollException:{count:attempt,errorCode,
+        worldEvidenceDiscarded:true}
+    };
+    this.invalidateWorldEvidence(reason);
+    this.latestState.romItemAccess={verified:false,results:[],reason};
+    this.latestState.romStaticMapGuide={verified:false,reason};
+    this.latestState.romTerrainCurrentTile={verified:false,reason};
+    this.latestState.romTerrainWarpHints={verified:false,reason};
+    this.latestState.romMovementOptions={verified:false,reason};
+    this.latestState.romAreaEvidence={
+      verified:false,reason,items:[],trainers:[],npcs:[]};
+    this.latestState.romTrainerFlags={verified:false,entries:[],reason};
+    this.latestState.romHiddenItems={verified:false,items:[],reason};
+    this.latestState.romHiddenCoins={verified:false,coins:[],reason};
+    this.latestState.romMap=null;
+    this.latestState.romWildEncounters=null;
+    this.latestState.mapEntities=[];
+    this.emit('update',this.latestState);
+    return reason;
+  }
+
   startPolling() {
     if (this.isPolling) return;
     this.isPolling = true;
@@ -531,6 +652,9 @@ class RetroArchClient extends EventEmitter {
       try {
         await this.fetchGameState();
       } catch (err) {
+        // An exception can occur anywhere in the asynchronous series of
+        // UDP reads. Reset all baselines before another sample is accepted.
+        this.invalidateUnexpectedPoll(err);
         const now = Date.now();
         if (!this.lastPollingErrorAt || now - this.lastPollingErrorAt >= 2000) {
           this.lastPollingErrorAt = now;
@@ -630,6 +754,11 @@ class RetroArchClient extends EventEmitter {
         this.latestState.romAutoDiscovery=this.romRegistry.discovery;
         match = getCurrentRom(status,this.romRegistry.profiles);
       }
+      const nextSha=match?.hash?.sha256||null;
+      if(this._currentSessionSha!==nextSha){
+        this.invalidateWorldEvidence('ROM ativa mudou ou deixou de estar identificada');
+        this._currentSessionSha=nextSha;
+      }
       this.activeRomProfile = match;
       const crcMatch = status && status.match(/crc32=([0-9a-f]{8})/i);
       this.latestState.romRuntimeIdentity = {
@@ -648,6 +777,7 @@ class RetroArchClient extends EventEmitter {
       if (status && /GET_STATUS\s+CONTENTLESS/i.test(status)) {
         this.latestState.connected=false;
         this.latestState.lastReadError='RetroArch sem ROM carregada.';
+        this.invalidateWorldEvidence('RetroArch sem conteúdo');
         this.emit('update',this.latestState);
         return;
       }
@@ -672,6 +802,7 @@ class RetroArchClient extends EventEmitter {
           socketBound: !!(this.socket && this.socket.address && this.socket.address().port)
         }));
       }
+      this.invalidateWorldEvidence('Bloco principal da RAM indisponível');
       if (this.latestState.connected) {
         this.latestState.connected = false;
         this.emit('update', this.latestState);
@@ -716,6 +847,7 @@ class RetroArchClient extends EventEmitter {
     if (!baseReadComplete) {
       this.latestState.connected = false;
       this.latestState.lastReadError = 'Leitura incompleta: os valores antigos não são telemetria atual.';
+      this.invalidateWorldEvidence('Blocos RAM incompletos');
       this.emit('update', this.latestState);
       return;
     }
@@ -740,6 +872,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.memoryReadStatus.positionWindow=positionWindow;
     this.latestState.romTerrainPositionWindow=positionWindow;
     if(!mapConfirmation.verified){
+      this.invalidateWorldEvidence('Mapa RAM alterado entre leituras');
       this.latestState.memoryReadStatus.verified=false;
       this.latestState.connected=false;
       this.latestState.lastReadError=mapConfirmation.reason+
@@ -762,6 +895,22 @@ class RetroArchClient extends EventEmitter {
         reason:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES'};
       this.latestState.romAreaProgress={verified:false,
         source:'AMOSTRA_RAM_DE_MAPAS_DIFERENTES'};
+      this.latestState.romItemAccess={verified:false,results:[],
+        reason:'Mapa RAM incoerente; todos os percursos antigos descartados'};
+      this.latestState.worldAdvisor={verified:false,observations:[],
+        reason:'Mapa RAM incoerente; conselhos do mapa anterior descartados'};
+      this.latestState.globalCampaignLedger={verified:false,mapProgress:[],
+        reason:'Mapa RAM incoerente; progresso global anterior descartado'};
+      this.latestState.globalCampaignObjectives={verified:false,objectives:[],
+        reason:'Mapa RAM incoerente; objetivos anteriores descartados'};
+      this._crossMapRouteKey=null;this._crossMapRoute=null;
+      this._strengthPlanCacheScope=null;this._strengthPlanCache=new Map();
+      this.latestState.romCrossMapItemRoute={verified:false,found:false,
+        reason:'Mapa RAM incoerente; desvios do mapa anterior descartados'};
+      this.latestState.romCrossMapItemRoutes={verified:false,results:[],
+        reason:'Mapa RAM incoerente; desvios anteriores descartados'};
+      this.latestState.globalCampaignDelta={verified:false,changes:[],
+        reason:'Mapa RAM incoerente; diferença de flags descartada'};
       this.latestState.romWildEncounters=null;
       this.latestState.romMap=null;
       this.latestState.mapEntities=[];
@@ -1068,7 +1217,10 @@ class RetroArchClient extends EventEmitter {
     };
     // Terrain geometry is derived from the actual SHA-audited ROM.
     // Never treat LAND tile passability as proof of free movement right now.
-    const terrain=this.latestState.romStaticMapGuide?.terrain;
+    this.latestState.romVariantTerrainEvidence=verifyTerrainVariant(
+      this.activeRomProfile);
+    const terrain=this.latestState.romVariantTerrainEvidence.verified===true?
+      this.latestState.romStaticMapGuide?.terrain:null;
     const pos=this.latestState.coords;
     const coordsAgree=terrain?.verified===true && positionWindow.verified===true &&
       terrain.width===this.latestState.mapDimensions.width &&
@@ -1140,6 +1292,62 @@ class RetroArchClient extends EventEmitter {
       enemyPartyRaw = blockWorldEvents.slice(764, 772);
     }
 
+    // Re-read toggle flags D5A6..D5C5 as well as D6F0..D886, then map ID.
+    // Mismatches reject world evidence. This does not prove an atomic snapshot.
+    const globalFlagReadback=verifyGlobalFlagReadback({
+      firstWorldBlockHex:blockWorldEvents,
+      repeatToggleWindowHex:await this.readMemoryBlock('D5A6',32),
+      repeatFlagWindowHex:await this.readMemoryBlock('D6F0',407),
+      repeatMapHex:await this.readMemoryBlock('D35E',1),
+      expectedMapId:this.latestState.mapId,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true,
+      positionWindowVerified:positionWindow.verified===true
+    });
+    this.latestState.memoryReadStatus.globalFlagReadback=globalFlagReadback;
+
+    // A player can move AFTER the first map/position repeat, while the
+    // 368 bytes of world flags are still being reread over UDP. Repeat
+    // D35E..D365 *after* that scan, including both coordinates, and reject
+    // the entire poll when the map or tile changed during that interval.
+    // This still cannot establish an atomic frame or action causality.
+    const lateMapAndPosition=await this.readMemoryBlock('D35E',8);
+    const latePositionWindow=verifyMapPositionWindow({
+      firstMapByte:blockPlayerParty[518],
+      firstYByte:blockPlayerParty[521],
+      firstXByte:blockPlayerParty[522],
+      secondMapAndLastMapBytes:lateMapAndPosition
+    });
+    this.latestState.memoryReadStatus.latePositionWindow=latePositionWindow;
+    if(latePositionWindow.verified!==true){
+      const why='Mapa/posicao RAM alterados durante a leitura global: '+
+        (latePositionWindow.reason||'RELEITURA_FINAL_INCOMPLETA');
+      this.latestState.memoryReadStatus.globalFlagReadback={
+        ...globalFlagReadback,verified:false,reason:why,domain:'POSITION',
+        readbackBytesMatched:0,toggleBytesMatched:0,allFlagBytesMatched:0,
+        toggleReadbackVerified:false,romAndMapCorroborated:false
+      };
+      this.latestState.memoryReadStatus.verified=false;
+      this.latestState.connected=false;
+      this.latestState.lastReadError=why;
+      this.invalidateWorldEvidence(why);
+      this.latestState.romStaticMapGuide={verified:false,reason:why};
+      this.latestState.romTerrainCurrentTile={verified:false,reason:why};
+      this.latestState.romTerrainWarpHints={verified:false,reason:why};
+      this.latestState.romMovementOptions={verified:false,reason:why};
+      this.latestState.romAreaEvidence={verified:false,reason:why,
+        items:[],trainers:[],npcs:[]};
+      this.latestState.romTrainerFlags={verified:false,entries:[],reason:why};
+      this.latestState.romHiddenItems={verified:false,items:[],reason:why};
+      this.latestState.romHiddenCoins={verified:false,coins:[],reason:why};
+      this.latestState.romItemAccess={verified:false,results:[],reason:why};
+      this.latestState.romWildEncounters=null;
+      this.latestState.romMap=null;
+      this.latestState.mapEntities=[];
+      this.emit('update',this.latestState);
+      return;
+    }
+
     // The original D700 byte came from a large sequential world-data block.
     // Re-read D700 just before predicting movement to reject Surf/bike state drift.
     const modeWindow=verifyMovementModeWindow({
@@ -1151,7 +1359,7 @@ class RetroArchClient extends EventEmitter {
       this.latestState.movementMode='❔ Modo de deslocação alterado ou não confirmado';
     this.latestState.romMovementOptions=
       inspectMovementOptions(
-        this.latestState.romStaticMapGuide?.terrain,
+        terrain,
         this.activeRomProfile?.world?.terrainAtlas,
         this.latestState.coords,
         modeWindow.verified?modeWindow.modeByte:null,
@@ -1714,8 +1922,22 @@ class RetroArchClient extends EventEmitter {
       (accessBadge.some(b=>b.obtained&&/cascade/i.test(b.name||''))&&knowsMove(15,'CUT')):null;
     const abilitySurf=badgeConfirmed?
       (accessBadge.some(b=>b.obtained&&/soul/i.test(b.name||''))&&knowsMove(57,'SURF')):null;
+    // The existing D5A0 block includes wStatusFlags1 at D728 (bit 0).
+    const strengthFlag=readStrengthFieldEvidence({
+      worldBlockHex:blockWorldEvents,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true,
+      positionWindowVerified:positionWindow.verified===true
+    });
+    this.latestState.romStrengthFieldEvidence=strengthFlag;
+    // pret/pokered: STRENGTH is move #46 and requires Rainbow Badge.
+    const abilityStrength=badgeConfirmed?
+      (accessBadge.some(b=>b.obtained&&/rainbow/i.test(b.name||''))&&
+       knowsMove(46,'STRENGTH')):null;
     const itemAccess=planItemAccess({
-      terrain:this.latestState.romStaticMapGuide?.terrain,
+      terrain:this.latestState.romVariantTerrainEvidence?.verified===true?
+        this.latestState.romStaticMapGuide?.terrain:null,
       romSha256:this.activeRomProfile?.hash?.sha256,
       position:this.latestState.coords,
       items:accessInput,
@@ -1726,12 +1948,75 @@ class RetroArchClient extends EventEmitter {
       mapEntities:this.latestState.mapEntities,
       canCut:abilityCut,canSurf:abilitySurf
     });
+    // Only inspect RAM-confirmed boulder positions for ROM-matched items
+    // that are already classified as POSSIBLE_STRENGTH_BARRIER.
+    const verifiedSprites=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true;
+    const strengthVariantVerified=
+      this.latestState.romVariantTerrainEvidence?.verified===true&&
+      this.latestState.romStaticMapGuide?.terrain?.verified===true&&
+      this.latestState.romVariantTerrainEvidence?.romSha256===
+        this.activeRomProfile?.hash?.sha256;
+    const strengthTerrain=strengthVariantVerified?
+      this.latestState.romStaticMapGuide.terrain:null;
+    const strengthScope=JSON.stringify([
+      this.activeRomProfile?.hash?.sha256,this.latestState.mapId,
+      this.latestState.coords,abilityStrength,
+      strengthVariantVerified,
+      strengthTerrain?.tileIdsSha256,strengthTerrain?.walkingBitsSha256,
+      verifiedSprites,positionWindow.verified===true,
+      (this.latestState.mapEntities||[]).map(a=>
+        [a.x,a.y,a.type,a.pictureId])
+    ]);
+    if(this._strengthPlanCacheScope!==strengthScope){
+      this._strengthPlanCacheScope=strengthScope;
+      this._strengthPlanCache=new Map();
+    }
+    if(strengthVariantVerified&&itemAccess.verified===true&&verifiedSprites)
+      for(const entry of itemAccess.results||[]){
+        if(entry.accessStatus!=='POSSIBLE_STRENGTH_BARRIER'||
+           accessInput[entry.index]?.romItemCoordinatesVerified!==true)continue;
+        const item=accessInput[entry.index];
+        const hidden=item.type==='hidden'||item.kind==='hidden'||
+          item.hiddenIndex!==undefined;
+        const strengthKey=JSON.stringify([item.x,item.y,hidden]);
+        let strength=this._strengthPlanCache.get(strengthKey);
+        if(!strength){
+          strength=planStrengthPushes({
+            terrain:strengthTerrain,
+            romSha256:this.activeRomProfile?.hash?.sha256,
+            position:this.latestState.coords,
+            target:{x:item.x,y:item.y,hidden},
+            positionVerified:positionWindow.verified===true,
+            spritesVerified:verifiedSprites,
+            actors:Array.isArray(this.latestState.mapEntities)?
+              this.latestState.mapEntities:[],
+            canStrength:abilityStrength,maxStates:1400,maxPushes:8
+          });
+          if(this._strengthPlanCache.size>=64)this._strengthPlanCache.clear();
+          this._strengthPlanCache.set(strengthKey,strength);
+        }
+        if(strength.verified===true&&strength.found===true){
+          entry.accessStatus=abilityStrength===true?
+            'STRENGTH_SEQUENCE_HYPOTHESIS':
+            abilityStrength===false?'NEEDS_STRENGTH':'STRENGTH_CAPABILITY_UNKNOWN';
+          entry.route={steps:strength.steps,nextStep:null,
+            firstPush:strength.pushes[0]||null,
+            usesStrength:true,pushCount:strength.pushCount,pushes:strength.pushes,
+            strengthFieldActiveAtSample:strengthFlag.verified===true?
+              strengthFlag.activeAtSample:null,
+            strengthFieldEvidenceAtomic:false,
+            withinCurrentMapOnly:true};
+          entry.reason='Sequência teórica de '+strength.pushCount+
+            ' empurrões de rocha. Strength ativado e empurrões reais NÃO comprovados.';
+        }
+      }
     this.latestState.romItemAccess=itemAccess;
     const accessSummary=itemAccess.results||[];
     const withPath=accessInput.map((entry,i)=>{
       const access=accessSummary[i]||null;
       const status=access?.accessStatus||'UNKNOWN';
-      const withinMapBlocked=['NEEDS_CUT','NEEDS_SURF','NEEDS_CUT_AND_SURF_POSSIBLY']
+      const withinMapBlocked=['NEEDS_CUT','NEEDS_SURF',
+        'NEEDS_CUT_AND_SURF_POSSIBLY','NEEDS_STRENGTH']
         .includes(status);
       return {...entry,
         // Um requisito manual não é prova de bloqueio físico.
@@ -2425,23 +2710,374 @@ class RetroArchClient extends EventEmitter {
         this._warpGraph=buildWarpGraph(this.activeRomProfile);
         this._warpGraphSha=sha;
       }
-      this.latestState.romWarpGraph=this._warpGraph;
+      this.latestState.romOutdoorReferenceEvidence=
+        verifyOutdoorConnectionVariant({
+          warpGraph:this._warpGraph,romSha256:sha
+        });
+      if(this._outdoorAlignmentSha!==sha||!this._outdoorAlignment){
+        this._outdoorAlignment=validateOutdoorAlignment({
+          profile:this.activeRomProfile,warpGraph:this._warpGraph
+        });
+        this._outdoorAlignmentSha=sha;
+      }
+      this.latestState.romOutdoorAlignment=
+        this.latestState.romOutdoorReferenceEvidence.verified===true?
+        this._outdoorAlignment:{verified:false,
+          reason:'Descritores exteriores não coincidem com esta ROM'};
+      if(this._outdoorOverlapSha!==sha||!this._outdoorOverlapIndex){
+        this._outdoorOverlapIndex=buildOutdoorOverlapIndex({
+          profile:this.activeRomProfile,alignment:this._outdoorAlignment
+        });
+        this._outdoorOverlapSha=sha;
+      }
+      this.latestState.romOutdoorOverlapIndex=
+        this.latestState.romOutdoorAlignment.verified===true?
+        this._outdoorOverlapIndex:{verified:false,edges:[],
+          reason:'Alinhamento exterior não confirmado'};
+      // Never let an unrecognized outdoor descriptor enter a world
+      // path search. Keep validated static warps independent.
+      this.latestState.romWarpGraph=
+        this.latestState.romOutdoorReferenceEvidence.verified===true?
+        this._warpGraph:{...this._warpGraph,outdoorConnections:null,
+          outdoorConnectionCount:0,outdoorHeaderConnectionsDecoded:false,
+          outdoorReferenceMismatch:true};
     } else {
       this._warpGraph=null;
       this._warpGraphSha=null;
+      this._outdoorAlignmentSha=null;this._outdoorAlignment=null;
+      this._outdoorOverlapSha=null;this._outdoorOverlapIndex=null;
+      this.latestState.romOutdoorAlignment={verified:false,
+        reason:'ROM não identificada'};
+      this.latestState.romOutdoorReferenceEvidence={verified:false,
+        reason:'ROM não identificada'};
       this.latestState.romWarpGraph={verified:false,reason:'ROM não identificada'};
     }
+
+    // One shared search, rather than analysing only the first blocked item.
+    // A local Cut/Surf/Strength barrier may have a separate global detour.
+    // Never treat a conditional local route as proof of map-wide lock.
+    const detourTriggerStatuses=new Set([
+      'NO_SAME_MAP_PATH','NEEDS_CUT','NEEDS_SURF',
+      'CUT_CAPABILITY_UNKNOWN','SURF_CAPABILITY_UNKNOWN',
+      'NEEDS_CUT_AND_SURF_POSSIBLY',
+      'POSSIBLE_STRENGTH_BARRIER','NEEDS_STRENGTH',
+      'STRENGTH_CAPABILITY_UNKNOWN','STRENGTH_SEQUENCE_HYPOTHESIS'
+    ]);
+    const detourTargets=withPath.filter(i=>i.romItemCoordinatesVerified===true&&
+      detourTriggerStatuses.has(i.accessStatus)&&i.isCollected!==true&&
+      Number.isInteger(i.x)&&Number.isInteger(i.y));
+    if(detourTargets.length&&
+      this.latestState.romVariantTerrainEvidence?.verified===true&&
+      this.activeRomProfile?.world?.terrainAtlas?.verified===true&&
+      this.latestState.romWarpGraph?.verified===true&&positionWindow.verified===true){
+      const targets=detourTargets.slice(0,64).map(i=>({
+        mapId:this.latestState.mapId,x:i.x,y:i.y,
+        hidden:i.hiddenIndex!==undefined||i.type==='hidden'
+      }));
+      const spritePositions=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
+        Array.isArray(this.latestState.mapEntities)?
+        this.latestState.mapEntities.map(o=>[o.x,o.y,o.type,o.pictureId]):null;
+      const key=JSON.stringify([this.activeRomProfile.hash?.sha256,
+        this.latestState.mapId,this.latestState.coords,targets,
+        modeWindow.verified?modeWindow.modeByte:null,
+        abilityCut===true,abilitySurf===true,spritePositions,
+        this.latestState.romOutdoorAlignment?.verified===true]);
+      if(this._crossMapRouteKey!==key){
+        this._crossMapRoute=findCrossMapItemPaths({
+          romSha256:this.activeRomProfile.hash?.sha256,
+          terrainAtlas:this.activeRomProfile.world.terrainAtlas,
+          warpGraph:this.latestState.romWarpGraph,
+          outdoorAlignment:this.latestState.romOutdoorAlignment,
+          sourceMapId:this.latestState.mapId,position:this.latestState.coords,
+          targets,positionVerified:positionWindow.verified===true,
+          currentModeByte:modeWindow.verified?modeWindow.modeByte:null,
+          canCut:abilityCut===true,canSurf:abilitySurf===true,
+          spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
+            Array.isArray(this.latestState.mapEntities),
+          currentMapEntities:Array.isArray(this.latestState.mapEntities)?
+            this.latestState.mapEntities:[],
+          maxTransitions:10,maxStates:250
+        });
+        this._crossMapRouteKey=key;
+      }
+      const r=this._crossMapRoute;
+      this.latestState.romCrossMapItemRoutes={...r,
+        totalEligible:detourTargets.length,
+        truncatedTargets:detourTargets.length>64};
+      const first=r?.verified===true?r.results?.find(x=>x.found===true):null;
+      this.latestState.romCrossMapItemRoute=first||{
+        verified:false,found:false,
+        reason:'Nenhum desvio por terreno ROM encontrado ou pesquisa incompleta'};
+    }else{
+      this._crossMapRouteKey=null;this._crossMapRoute=null;
+      const reason='Sem itens ROM bloqueados localmente ou provas RAM/ROM insuficientes';
+      this.latestState.romCrossMapItemRoute={verified:false,found:false,reason};
+      this.latestState.romCrossMapItemRoutes={verified:false,results:[],reason};
+    }
+    // The shared search produces one result per item. Cycle fallback must
+    // select an unresolved item explicitly; the old singular variable was
+    // removed by T26 and caused ReferenceError in live telemetry.
+    const detourTarget=detourTargets.find((item,index)=>
+      this.latestState.romCrossMapItemRoutes?.results?.[index]?.found!==true)||null;
+    this.latestState.globalCampaignLedger=buildCampaignLedger({
+      profile:this.activeRomProfile,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true&&globalFlagReadback.verified===true,
+      eventFlagsHex:eventFlagsRaw,
+      hiddenItemHex:hiddenRaw,
+      hiddenCoinHex:hiddenCoinsRaw
+    });
+    this.latestState.romWorldEventAtlas=buildWorldEventAtlas({
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true&&globalFlagReadback.verified===true,
+      eventFlagsHex:eventFlagsRaw,
+      toggleFlagsHex:toggleRaw
+    });
+    if(globalFlagReadback.verified!==true){
+      const why='Readback mundial recusado: '+globalFlagReadback.reason;
+      this.latestState.globalCampaignLedger={
+        ...this.latestState.globalCampaignLedger,verified:false,reason:why};
+      this.latestState.romWorldEventAtlas={
+        ...this.latestState.romWorldEventAtlas,verified:false,reason:why};
+    }
+    const namedChanges=this._worldReferenceSession.ingest({
+      atlas:this.latestState.romWorldEventAtlas,
+      observedAt:this.latestState.lastUpdate
+    });
+    this.latestState.romWorldReferenceDelta=namedChanges.delta;
+    this.latestState.worldRecentNamedChanges=namedChanges.recent;
+    this.latestState.romElevatorOptions=elevatorOptionsForMap({
+      profile:this.activeRomProfile,
+      mapId:this.latestState.mapId,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&positionWindow.verified===true
+    });
+    // All local exits are inspected against current ROM terrain and the
+    // corroborated RAM position. Outdoor borders/elevators remain conditional.
+    this.latestState.romLocalExitAccess=
+      this.latestState.romVariantTerrainEvidence?.verified===true?
+      localExitAccess({
+      profile:this.activeRomProfile,
+      warpGraph:this.latestState.romWarpGraph,
+      mapId:this.latestState.mapId,
+      position:this.latestState.coords,
+      mapSnapshotVerified:mapConfirmation.verified===true,
+      positionVerified:positionWindow.verified===true,
+      modeByte:modeWindow.verified?modeWindow.modeByte:null,
+      canCut:abilityCut,canSurf:abilitySurf,
+      spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
+        Array.isArray(this.latestState.mapEntities),
+      mapEntities:Array.isArray(this.latestState.mapEntities)?
+        this.latestState.mapEntities:[],
+      elevatorChoices:this.latestState.romElevatorOptions,
+      lastMapGuide:this.latestState.romStaticMapGuide,
+      outdoorAlignment:this.latestState.romOutdoorAlignment
+    }):{verified:false,exits:[],
+      reason:'Matrizes de terreno não correspondem à ROM desta variante'};
+    // If a local item cannot be approached, search map-level return loops.
+    // This NEVER proves that a loop lands on the other side of the ledge.
+    if(detourTarget&&this.latestState.romLocalExitAccess?.verified===true){
+      const key=JSON.stringify([
+        this.activeRomProfile?.hash?.sha256,
+        this.latestState.mapId,this.latestState.coords,
+        detourTarget.x,detourTarget.y,detourTarget.accessStatus,
+        this.latestState.romLocalExitAccess.exits.map(e=>[
+          e.kind,e.sourceWarpIndex,e.destinationMapId,e.terrainStatus])
+      ]);
+      if(this._worldDetourCyclesKey!==key){
+        this._worldDetourCycles=suggestWorldDetours({
+          warpGraph:this.latestState.romWarpGraph,
+          localExits:this.latestState.romLocalExitAccess,
+          romSha256:this.activeRomProfile.hash.sha256,
+          mapId:this.latestState.mapId,
+          target:{mapId:this.latestState.mapId,
+            x:detourTarget.x,y:detourTarget.y},
+          localPathAbsent:detourTarget.accessStatus==='NO_SAME_MAP_PATH',
+          localPathConditional:detourTarget.accessStatus!=='NO_SAME_MAP_PATH',
+          maxHops:9,maxStates:500,maxSuggestions:3
+        });
+        this._worldDetourCyclesKey=key;
+      }
+      this.latestState.romWorldDetourCycles=this._worldDetourCycles;
+    }else{
+      this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
+      this.latestState.romWorldDetourCycles={verified:false,candidates:[],
+        reason:'Sem item local isolado ou sem provas para procurar ciclo topológico'};
+    }
+    const campaignSession=this._worldCampaignSession.ingest({
+      ledger:this.latestState.globalCampaignLedger,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      mapWindowVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true,
+      observedAt:this.latestState.lastUpdate
+    });
+    this.latestState.globalCampaignDelta=campaignSession.delta;
+    this.latestState.worldRecentFlagChanges=campaignSession.recent;
+    this.latestState.globalCampaignObjectives=campaignObjectives({
+      ledger:this.latestState.globalCampaignLedger,
+      warpGraph:this.latestState.romWarpGraph,
+      sourceMapId:this.latestState.mapId,
+      firstMapTerrainHints:this.latestState.romTerrainWarpHints,
+      firstMapExitAccess:this.latestState.romLocalExitAccess,
+      outdoorOverlapIndex:this.latestState.romOutdoorOverlapIndex,
+      position:this.latestState.coords,
+      maxResults:12
+    });
+    // Remote hidden-item/coin targets are backed by global ROM/RAM flags.
+    // Search at most four concrete coordinates and cache only while the
+    // selected flags, position, actors, abilities and ROM terrain agree.
+    const remoteSelection=selectGlobalFlagTargets({
+      ledger:this.latestState.globalCampaignLedger,
+      objectives:this.latestState.globalCampaignObjectives,
+      sourceMapId:this.latestState.mapId,maxTargets:4
+    });
+    const remoteTerrainOK=this.latestState.romVariantTerrainEvidence?.verified===true&&
+      this.latestState.romVariantTerrainEvidence?.romSha256===
+      this.activeRomProfile?.hash?.sha256;
+    const remoteGraphOK=this.latestState.romWarpGraph?.verified===true&&
+      this.latestState.romWarpGraph?.romSha256===
+      this.activeRomProfile?.hash?.sha256;
+    const remoteSearchReady=remoteTerrainOK&&remoteGraphOK&&
+      mapConfirmation.verified===true&&positionWindow.verified===true;
+    const remoteSpriteSnapshot=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
+      Array.isArray(this.latestState.mapEntities)?
+      this.latestState.mapEntities.map(a=>[a.x,a.y,a.type,a.pictureId]):null;
+    const remoteKey=JSON.stringify([
+      this.activeRomProfile?.hash?.sha256,
+      this.latestState.mapId,this.latestState.coords,
+      remoteSelection.verified===true?
+        remoteSelection.items.map(t=>[t.kind,t.mapId,t.x,t.y,
+          t.bitIndex,t.mapHopCount,t.staticRouteKnown]):null,
+      remoteSelection.pendingSignature??null,
+      remoteSearchReady,remoteGraphOK,
+      this.latestState.romOutdoorReferenceEvidence?.verified===true,
+      abilityCut,abilitySurf,
+      modeWindow.verified?modeWindow.modeByte:null,
+      this.latestState.romOutdoorAlignment?.verified===true,
+      remoteSpriteSnapshot
+    ]);
+    if(this._globalFlagItemKey!==remoteKey){
+      this._globalFlagItemRoutes=remoteSearchReady?
+        planGlobalFlagItemRoutes({
+          ledger:this.latestState.globalCampaignLedger,
+          objectives:this.latestState.globalCampaignObjectives,
+          terrainAtlas:this.activeRomProfile?.world?.terrainAtlas,
+          warpGraph:this.latestState.romWarpGraph,
+          outdoorAlignment:this.latestState.romOutdoorAlignment,
+          sourceMapId:this.latestState.mapId,position:this.latestState.coords,
+          positionVerified:positionWindow.verified===true,
+          currentModeByte:modeWindow.verified?modeWindow.modeByte:null,
+          canCut:abilityCut===true,canSurf:abilitySurf===true,
+          spritesVerified:remoteSpriteSnapshot!==null,
+          currentMapEntities:Array.isArray(this.latestState.mapEntities)?
+            this.latestState.mapEntities:[],
+          maxTargets:4,maxStates:180,maxTransitions:10
+        }):
+        {verified:false,items:[],accessibleNow:null,
+          reason:'Terreno, grafo ROM ou janela de posição não corroborados para rotas mundiais'};
+      this._globalFlagItemKey=remoteKey;
+    }
+    this.latestState.globalFlagItemRoutes=this._globalFlagItemRoutes;
     this.latestState.worldAdvisor=adviseWorld({
       profile:this.activeRomProfile,
+      worldFlagLedger:this.latestState.globalCampaignLedger,
+      globalFlagReadback,
+      namedWorldEventAtlas:this.latestState.romWorldEventAtlas,
+      globalEventFlagsHex:eventFlagsRaw,
       mapId:this.latestState.mapId,
       position:this.latestState.coords,
       positionVerified:positionWindow.verified===true,
       areaEvidence:this.latestState.romAreaEvidence,
       hiddenItems:this.latestState.romHiddenItems?.items||[],
+      hiddenCoins:this.latestState.romHiddenCoins?.coins||[],
       trainers:[],
       warpGraph:this.latestState.romWarpGraph,
-      flagsVerified:this.latestState.romHiddenItems?.verified===true
+      itemAccess:this.latestState.romItemAccess,
+      itemAccessInputs:accessInput,
+      hiddenStartIndex:allVisItems.length+extraRomItems.length,
+      hiddenFlagsVerified:this.latestState.romHiddenItems?.verified===true,
+      coinFlagsVerified:this.latestState.romHiddenCoins?.verified===true,
+      trainerFlagsVerified:this.latestState.romTrainerFlags?.verified===true&&
+        this.latestState.romAreaEvidence?.trainerEventRamVerified===true
     });
+    // Conditional geometric approaches to ROM actor coordinates only.
+    // The new end-of-flags position check is mandatory for these hints.
+    this.latestState.worldAdvisor.romMapEventActorApproaches=
+      planEventActorApproaches({
+       namedEventMap:this.latestState.worldAdvisor.romMapNamedEventEvidence,
+       terrain:this.latestState.romVariantTerrainEvidence?.verified===true?
+         this.latestState.romStaticMapGuide?.terrain:null,
+       romSha256:this.activeRomProfile?.hash?.sha256,
+       mapId:this.latestState.mapId,position:this.latestState.coords,
+       mapSnapshotVerified:mapConfirmation.verified===true,
+       positionVerified:positionWindow.verified===true,
+       latePositionVerified:latePositionWindow.verified===true,
+       modeByte:modeWindow.verified?modeWindow.modeByte:null,
+       spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true,
+       mapEntities:Array.isArray(this.latestState.mapEntities)?
+         this.latestState.mapEntities:[],
+       canCut:abilityCut,canSurf:abilitySurf
+      });
+    // Last read-only publication gate: expensive world routing and named
+    // event joins run AFTER the first two position checks. A player may
+    // change tiles or maps while those calculations happen, so re-read
+    // D35E..D365 immediately before exposing any advice to the cockpit.
+    // This does not make the sequential RAM/ROM sample atomic.
+    const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);
+    const publicationPositionWindow=verifyMapPositionWindow({
+      firstMapByte:blockPlayerParty[518],
+      firstYByte:blockPlayerParty[521],
+      firstXByte:blockPlayerParty[522],
+      secondMapAndLastMapBytes:publicationMapAndPosition
+    });
+    this.latestState.memoryReadStatus.publicationPositionWindow=
+      publicationPositionWindow;
+    if(publicationPositionWindow.verified!==true||
+       publicationPositionWindow.mapId!==this.latestState.mapId||
+       publicationPositionWindow.mapId!==latePositionWindow.mapId||
+       publicationPositionWindow.x!==latePositionWindow.x||
+       publicationPositionWindow.y!==latePositionWindow.y){
+      const why='Amostra de posicao alterada antes da publicacao: '+
+        (publicationPositionWindow.reason||'MAPA_OU_POSICAO_FINAL_DIVERGENTE');
+      this.latestState.memoryReadStatus.verified=false;
+      this.latestState.memoryReadStatus.globalFlagReadback={
+        ...globalFlagReadback,verified:false,domain:'POSITION',
+        reason:why,romAndMapCorroborated:false,
+        readbackBytesMatched:0,toggleBytesMatched:0,allFlagBytesMatched:0,
+        toggleReadbackVerified:false
+      };
+      this.latestState.connected=false;
+      this.latestState.lastReadError=why;
+      this.invalidateWorldEvidence(why);
+      this.latestState.romStaticMapGuide={verified:false,reason:why};
+      this.latestState.romTerrainCurrentTile={verified:false,reason:why};
+      this.latestState.romTerrainWarpHints={verified:false,reason:why};
+      this.latestState.romMovementOptions={verified:false,reason:why};
+      this.latestState.romAreaEvidence={verified:false,reason:why,
+        items:[],trainers:[],npcs:[]};
+      this.latestState.romTrainerFlags={verified:false,entries:[],reason:why};
+      this.latestState.romHiddenItems={verified:false,items:[],reason:why};
+      this.latestState.romHiddenCoins={verified:false,coins:[],reason:why};
+      this.latestState.romItemAccess={verified:false,results:[],reason:why};
+      this.latestState.romMap=null;
+      this.latestState.romWildEncounters=null;
+      this.latestState.mapEntities=[];
+      this.emit('update',this.latestState);
+      return;
+    }
+    // Only accepted publication-window samples can become baselines or
+    // transitions. Do not compare cached files or aborted poll states.
+    const bitmapChanges=this._completeEventBitSession.ingest({
+      bitmap:this.latestState.worldAdvisor?.romCompleteEventBitmap,
+      publicationGuardVerified:true,
+      observedMapId:this.latestState.mapId,
+      observedAt:this.latestState.lastUpdate
+    });
+    this.latestState.romCompleteEventDelta=bitmapChanges.delta;
+    this.latestState.worldRecentCompleteEventChanges=bitmapChanges.recent;
     this.persistState(this.latestState);
     this.emit('update', this.latestState);
   }

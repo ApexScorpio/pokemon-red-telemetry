@@ -1,0 +1,37 @@
+{
+  "schema": "pokeguide-rom-all-interaction-text-pointers-v1",
+  "date": "2026-10-29",
+  "sha256": [
+    "5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b",
+    "2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d",
+    "aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db"
+  ],
+  "source": "Original 1 MiB user-supplied ROMs read by native Node.js v22.16.0 and independently verified in Python",
+  "perRom": {
+    "npc": 472,
+    "signs": 202,
+    "totalInteractions": 674,
+    "directPointersResolved": 674,
+    "rom0": 58,
+    "romx": 616,
+    "unresolved": 0,
+    "firstByteCounts": {
+      "17": 453,
+      "08": 177,
+      "f5": 3,
+      "f6": 12,
+      "f7": 3,
+      "fe": 14,
+      "ff": 12
+    },
+    "txFarSecondBankTargets": 453,
+    "txFarDestinationsStartWithTxStart": 453,
+    "txFarInvalid": 0
+  },
+  "reference": "https://github.com/pret/pokered/blob/master/macros/scripts/text.asm",
+  "nativeTestsPassed": 7,
+  "allThreeRomAuditPassed": true,
+  "meaningOfTextAndScriptsFullyDecoded": false,
+  "liveEmulatorVerified": false,
+  "notes": "T55 and T56 reports are historical and superseded for the ROM0 pointer resolution; they are retained to document the corrected assumption."
+}

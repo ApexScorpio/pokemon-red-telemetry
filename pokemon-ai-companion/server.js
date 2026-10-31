@@ -1,12 +1,16 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { createServerSafetyPolicy, denySideEffect, publicFile } = require('./serverSafetyPolicy');
 const { WebSocketServer } = require('ws');
 const RetroArchClient = require('./retroarchClient');
+const {buildLocalConnectionResponse}=require('./romRuntimeConnectionSnapshot');
 const { askAdvisor, getLiveAdvice } = require('./aiAdvisor');
 const { formatTelemetryMarkdown, syncToGitHub, triggerDebouncedSync, getLastSyncTimeString, GITHUB_FILE_URL, GITHUB_RAW_URL } = require('./githubSync');
 
 const PORT = 3001;
+const POLICY = createServerSafetyPolicy(process.env);
+const BIND_HOST = POLICY.bindHost;
 const IPHONE_IP = '192.168.1.145';
 const RETROARCH_PORT = 55355;
 
@@ -14,16 +18,19 @@ const client = new RetroArchClient(IPHONE_IP, RETROARCH_PORT);
 
 // Servidor HTTP
 const server = http.createServer(async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    res.writeHead(200);
-    return res.end();
+  res.setHeader('Cache-Control','no-store');
+  res.setHeader('X-Content-Type-Options','nosniff');
+  res.setHeader('Referrer-Policy','no-referrer');
+  if(req.method==='OPTIONS'){
+    res.writeHead(405);return res.end('CROSS_ORIGIN_NOT_ALLOWED');
   }
-
-  const url = new URL(req.url, `http://${req.headers.host}`);
+  let url;
+  try{url=new URL(req.url,'http://127.0.0.1');}
+  catch{res.writeHead(400);return res.end('INVALID_REQUEST');}
+  if(denySideEffect(POLICY,req.method,url.pathname)){
+    res.writeHead(403,{'Content-Type':'application/json'});
+    return res.end(JSON.stringify({success:false,error:'FEATURE_REQUIRES_EXPLICIT_OPT_IN'}));
+  }
 
   // Atualização manual: pull da versão mais recente e reinício pelo supervisor start.js
   if (url.pathname === '/api/update' && req.method === 'POST') {
@@ -36,6 +43,9 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify(data));
     };
     try{
+      const activeBranch=git(['symbolic-ref','--quiet','--short','HEAD']);
+      if(activeBranch!=='main')
+        return json(409,{success:false,error:'UPDATE_REJECTED_OUTSIDE_MAIN'});
       git(['fetch','origin','main']);
       const current=git(['rev-parse','HEAD']),target=git(['rev-parse','origin/main']);
       if(current===target)return json(200,{success:true,message:'Código já atualizado.'});
@@ -53,9 +63,21 @@ const server = http.createServer(async (req, res) => {
       json(200,{success:true,message:'Código atualizado sem apagar alterações locais. A reiniciar…'});
       setTimeout(()=>process.exit(0),700);
     }catch(err){
-      json(500,{success:false,error:err.stderr?.toString()?.trim()||err.message});
+      json(500,{success:false,error:'UPDATE_FAILED_WITHOUT_MODIFYING_UNCOMMITTED_WORK'});
     }
     return;
+  }
+
+  if (url.pathname === '/api/runtime-connection') {
+    if(req.method!=='GET'){
+      res.writeHead(405);return res.end('METHOD_NOT_ALLOWED');
+    }
+    const result=buildLocalConnectionResponse({
+      remoteAddress:req.socket?.remoteAddress,
+      client,startupHost:IPHONE_IP,startupPort:RETROARCH_PORT
+    });
+    res.writeHead(result.status,{'Content-Type':'application/json; charset=utf-8'});
+    return res.end(JSON.stringify(result.body));
   }
 
   if (url.pathname === '/api/state') {
@@ -70,8 +92,7 @@ const server = http.createServer(async (req, res) => {
       'Content-Type': 'text/markdown; charset=utf-8',
       'Cache-Control': 'no-cache, no-store, must-revalidate',
       'Pragma': 'no-cache',
-      'Expires': '0',
-      'Access-Control-Allow-Origin': '*'
+      'Expires': '0'
     });
     return res.end(markdown);
   }
@@ -79,14 +100,16 @@ const server = http.createServer(async (req, res) => {
   // Exportar dados completos em Markdown para o ChatGPT e sincronizar com o GitHub
   if (url.pathname === '/api/export-markdown') {
     const markdown = formatTelemetryMarkdown(client.latestState);
-    const syncRes = await syncToGitHub(client.latestState);
+    const syncRes = POLICY.allowGitHubSync
+      ? await syncToGitHub(client.latestState) : null;
+    const synchronized=syncRes?.success===true;
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({
-      success: true,
-      markdown,
-      timestamp: (syncRes && syncRes.timestamp) ? syncRes.timestamp : new Date().toLocaleTimeString('pt-PT'),
-      githubUrl: GITHUB_FILE_URL,
-      rawUrl: GITHUB_RAW_URL
+      success:true,markdown,githubSyncEnabled:POLICY.allowGitHubSync,
+      githubSynchronized:synchronized,
+      timestamp:synchronized?syncRes.timestamp:null,
+      githubUrl:synchronized?GITHUB_FILE_URL:null,
+      rawUrl:synchronized?GITHUB_RAW_URL:null
     }));
   }
 
@@ -204,24 +227,15 @@ const server = http.createServer(async (req, res) => {
     return res.end(JSON.stringify({ success: true, inBattle: client.latestState.inBattle }));
   }
 
-  // Ficheiros estáticos
-  let filePath = path.join(__dirname, 'public', url.pathname === '/' ? 'index.html' : url.pathname);
-  const ext = path.extname(filePath);
-  const contentTypes = {
-    '.html': 'text/html',
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.json': 'application/json',
-    '.png': 'image/png',
-    '.svg': 'image/svg+xml'
-  };
-
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      res.writeHead(404);
-      return res.end('Ficheiro não encontrado');
-    }
-    res.writeHead(200, { 'Content-Type': contentTypes[ext] || 'text/plain' });
+  // Serve only files under public/. Reject traversal and symlinks.
+  if(req.method!=='GET'){
+    res.writeHead(405);return res.end('METHOD_NOT_ALLOWED');
+  }
+  const asset=publicFile(path.join(__dirname,'public'),url.pathname);
+  if(!asset){res.writeHead(404);return res.end('FILE_NOT_FOUND');}
+  fs.readFile(asset.file,(err,content)=>{
+    if(err){res.writeHead(404);return res.end('FILE_NOT_FOUND');}
+    res.writeHead(200,{'Content-Type':asset.type});
     res.end(content);
   });
 });
@@ -246,15 +260,18 @@ wss.on('connection', (ws) => {
 
 client.on('update', (state) => {
   broadcast(state);
-  triggerDebouncedSync(state);
+  if(POLICY.allowGitHubSync)triggerDebouncedSync(state);
 });
 
 // Inicia servidor
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, BIND_HOST, () => {
   console.log(`\n======================================================`);
   console.log(`⚡ POKÉMON GEN I COMPANION — RED / BLUE / GREEN ⚡`);
-  console.log(`- Dashboard PC:      http://localhost:${PORT}`);
-  console.log(`- Dashboard iPhone:  http://192.168.1.50:${PORT}`);
+  console.log(`- Dashboard PC:      http://127.0.0.1:${PORT}`);
+  console.log(`- Server binding:    ${BIND_HOST}:${PORT}`);
+  console.log(`- GitHub upload:     ${POLICY.allowGitHubSync?'OPT_IN':'DISABLED'}`);
+  console.log(`- Mutating API:      ${POLICY.allowWriteApi?'OPT_IN':'DISABLED'}`);
+  if(POLICY.bindHost!=='127.0.0.1')console.log(`- Dashboard LAN: accessible only after explicit LAN opt-in`);
   console.log(`- Alvo RetroArch:    ${client.ip}:${client.port}`);
   console.log(`======================================================\n`);
   client.init();

@@ -1,0 +1,559 @@
+{
+  "schema": "pokeguide-outdoor-offsets-pret-pokered-headers-v1",
+  "source": "https://github.com/pret/pokered/tree/master/data/maps/headers",
+  "caveats": [
+    "Offsets are source-disassembly references, not extracted full ROM descriptors",
+    "Exact ROM strip pointer/formula must be corroborated per runtime ROM profile",
+    "Map transfer and active gates require emulator evidence"
+  ],
+  "edgeCount": 78,
+  "sourceMaps": 36,
+  "edges": [
+    {
+      "sourceMapId": 0,
+      "destinationMapId": 12,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "PalletTown"
+    },
+    {
+      "sourceMapId": 0,
+      "destinationMapId": 32,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "PalletTown"
+    },
+    {
+      "sourceMapId": 1,
+      "destinationMapId": 13,
+      "direction": "north",
+      "offsetBlocks": 5,
+      "sourceFile": "ViridianCity"
+    },
+    {
+      "sourceMapId": 1,
+      "destinationMapId": 12,
+      "direction": "south",
+      "offsetBlocks": 5,
+      "sourceFile": "ViridianCity"
+    },
+    {
+      "sourceMapId": 1,
+      "destinationMapId": 33,
+      "direction": "west",
+      "offsetBlocks": 4,
+      "sourceFile": "ViridianCity"
+    },
+    {
+      "sourceMapId": 2,
+      "destinationMapId": 13,
+      "direction": "south",
+      "offsetBlocks": 5,
+      "sourceFile": "PewterCity"
+    },
+    {
+      "sourceMapId": 2,
+      "destinationMapId": 14,
+      "direction": "east",
+      "offsetBlocks": 4,
+      "sourceFile": "PewterCity"
+    },
+    {
+      "sourceMapId": 3,
+      "destinationMapId": 35,
+      "direction": "north",
+      "offsetBlocks": 5,
+      "sourceFile": "CeruleanCity"
+    },
+    {
+      "sourceMapId": 3,
+      "destinationMapId": 16,
+      "direction": "south",
+      "offsetBlocks": 5,
+      "sourceFile": "CeruleanCity"
+    },
+    {
+      "sourceMapId": 3,
+      "destinationMapId": 15,
+      "direction": "west",
+      "offsetBlocks": 4,
+      "sourceFile": "CeruleanCity"
+    },
+    {
+      "sourceMapId": 3,
+      "destinationMapId": 20,
+      "direction": "east",
+      "offsetBlocks": 4,
+      "sourceFile": "CeruleanCity"
+    },
+    {
+      "sourceMapId": 4,
+      "destinationMapId": 21,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "LavenderTown"
+    },
+    {
+      "sourceMapId": 4,
+      "destinationMapId": 23,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "LavenderTown"
+    },
+    {
+      "sourceMapId": 4,
+      "destinationMapId": 19,
+      "direction": "west",
+      "offsetBlocks": 0,
+      "sourceFile": "LavenderTown"
+    },
+    {
+      "sourceMapId": 5,
+      "destinationMapId": 17,
+      "direction": "north",
+      "offsetBlocks": 5,
+      "sourceFile": "VermilionCity"
+    },
+    {
+      "sourceMapId": 5,
+      "destinationMapId": 22,
+      "direction": "east",
+      "offsetBlocks": 4,
+      "sourceFile": "VermilionCity"
+    },
+    {
+      "sourceMapId": 6,
+      "destinationMapId": 27,
+      "direction": "west",
+      "offsetBlocks": 4,
+      "sourceFile": "CeladonCity"
+    },
+    {
+      "sourceMapId": 6,
+      "destinationMapId": 18,
+      "direction": "east",
+      "offsetBlocks": 4,
+      "sourceFile": "CeladonCity"
+    },
+    {
+      "sourceMapId": 7,
+      "destinationMapId": 30,
+      "direction": "south",
+      "offsetBlocks": 5,
+      "sourceFile": "FuchsiaCity"
+    },
+    {
+      "sourceMapId": 7,
+      "destinationMapId": 29,
+      "direction": "west",
+      "offsetBlocks": 4,
+      "sourceFile": "FuchsiaCity"
+    },
+    {
+      "sourceMapId": 7,
+      "destinationMapId": 26,
+      "direction": "east",
+      "offsetBlocks": 4,
+      "sourceFile": "FuchsiaCity"
+    },
+    {
+      "sourceMapId": 8,
+      "destinationMapId": 32,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "CinnabarIsland"
+    },
+    {
+      "sourceMapId": 8,
+      "destinationMapId": 31,
+      "direction": "east",
+      "offsetBlocks": 0,
+      "sourceFile": "CinnabarIsland"
+    },
+    {
+      "sourceMapId": 9,
+      "destinationMapId": 34,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "IndigoPlateau"
+    },
+    {
+      "sourceMapId": 10,
+      "destinationMapId": 16,
+      "direction": "north",
+      "offsetBlocks": 5,
+      "sourceFile": "SaffronCity"
+    },
+    {
+      "sourceMapId": 10,
+      "destinationMapId": 17,
+      "direction": "south",
+      "offsetBlocks": 5,
+      "sourceFile": "SaffronCity"
+    },
+    {
+      "sourceMapId": 10,
+      "destinationMapId": 18,
+      "direction": "west",
+      "offsetBlocks": 4,
+      "sourceFile": "SaffronCity"
+    },
+    {
+      "sourceMapId": 10,
+      "destinationMapId": 19,
+      "direction": "east",
+      "offsetBlocks": 4,
+      "sourceFile": "SaffronCity"
+    },
+    {
+      "sourceMapId": 12,
+      "destinationMapId": 1,
+      "direction": "north",
+      "offsetBlocks": -5,
+      "sourceFile": "Route1"
+    },
+    {
+      "sourceMapId": 12,
+      "destinationMapId": 0,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "Route1"
+    },
+    {
+      "sourceMapId": 13,
+      "destinationMapId": 2,
+      "direction": "north",
+      "offsetBlocks": -5,
+      "sourceFile": "Route2"
+    },
+    {
+      "sourceMapId": 13,
+      "destinationMapId": 1,
+      "direction": "south",
+      "offsetBlocks": -5,
+      "sourceFile": "Route2"
+    },
+    {
+      "sourceMapId": 14,
+      "destinationMapId": 15,
+      "direction": "north",
+      "offsetBlocks": 25,
+      "sourceFile": "Route3"
+    },
+    {
+      "sourceMapId": 14,
+      "destinationMapId": 2,
+      "direction": "west",
+      "offsetBlocks": -4,
+      "sourceFile": "Route3"
+    },
+    {
+      "sourceMapId": 15,
+      "destinationMapId": 14,
+      "direction": "south",
+      "offsetBlocks": -25,
+      "sourceFile": "Route4"
+    },
+    {
+      "sourceMapId": 15,
+      "destinationMapId": 3,
+      "direction": "east",
+      "offsetBlocks": -4,
+      "sourceFile": "Route4"
+    },
+    {
+      "sourceMapId": 16,
+      "destinationMapId": 3,
+      "direction": "north",
+      "offsetBlocks": -5,
+      "sourceFile": "Route5"
+    },
+    {
+      "sourceMapId": 16,
+      "destinationMapId": 10,
+      "direction": "south",
+      "offsetBlocks": -5,
+      "sourceFile": "Route5"
+    },
+    {
+      "sourceMapId": 17,
+      "destinationMapId": 10,
+      "direction": "north",
+      "offsetBlocks": -5,
+      "sourceFile": "Route6"
+    },
+    {
+      "sourceMapId": 17,
+      "destinationMapId": 5,
+      "direction": "south",
+      "offsetBlocks": -5,
+      "sourceFile": "Route6"
+    },
+    {
+      "sourceMapId": 18,
+      "destinationMapId": 6,
+      "direction": "west",
+      "offsetBlocks": -4,
+      "sourceFile": "Route7"
+    },
+    {
+      "sourceMapId": 18,
+      "destinationMapId": 10,
+      "direction": "east",
+      "offsetBlocks": -4,
+      "sourceFile": "Route7"
+    },
+    {
+      "sourceMapId": 19,
+      "destinationMapId": 10,
+      "direction": "west",
+      "offsetBlocks": -4,
+      "sourceFile": "Route8"
+    },
+    {
+      "sourceMapId": 19,
+      "destinationMapId": 4,
+      "direction": "east",
+      "offsetBlocks": 0,
+      "sourceFile": "Route8"
+    },
+    {
+      "sourceMapId": 20,
+      "destinationMapId": 3,
+      "direction": "west",
+      "offsetBlocks": -4,
+      "sourceFile": "Route9"
+    },
+    {
+      "sourceMapId": 20,
+      "destinationMapId": 21,
+      "direction": "east",
+      "offsetBlocks": 0,
+      "sourceFile": "Route9"
+    },
+    {
+      "sourceMapId": 21,
+      "destinationMapId": 4,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "Route10"
+    },
+    {
+      "sourceMapId": 21,
+      "destinationMapId": 20,
+      "direction": "west",
+      "offsetBlocks": 0,
+      "sourceFile": "Route10"
+    },
+    {
+      "sourceMapId": 22,
+      "destinationMapId": 5,
+      "direction": "west",
+      "offsetBlocks": -4,
+      "sourceFile": "Route11"
+    },
+    {
+      "sourceMapId": 22,
+      "destinationMapId": 23,
+      "direction": "east",
+      "offsetBlocks": -27,
+      "sourceFile": "Route11"
+    },
+    {
+      "sourceMapId": 23,
+      "destinationMapId": 4,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "Route12"
+    },
+    {
+      "sourceMapId": 23,
+      "destinationMapId": 24,
+      "direction": "south",
+      "offsetBlocks": -20,
+      "sourceFile": "Route12"
+    },
+    {
+      "sourceMapId": 23,
+      "destinationMapId": 22,
+      "direction": "west",
+      "offsetBlocks": 27,
+      "sourceFile": "Route12"
+    },
+    {
+      "sourceMapId": 24,
+      "destinationMapId": 23,
+      "direction": "north",
+      "offsetBlocks": 20,
+      "sourceFile": "Route13"
+    },
+    {
+      "sourceMapId": 24,
+      "destinationMapId": 25,
+      "direction": "west",
+      "offsetBlocks": 0,
+      "sourceFile": "Route13"
+    },
+    {
+      "sourceMapId": 25,
+      "destinationMapId": 26,
+      "direction": "west",
+      "offsetBlocks": 18,
+      "sourceFile": "Route14"
+    },
+    {
+      "sourceMapId": 25,
+      "destinationMapId": 24,
+      "direction": "east",
+      "offsetBlocks": 0,
+      "sourceFile": "Route14"
+    },
+    {
+      "sourceMapId": 26,
+      "destinationMapId": 7,
+      "direction": "west",
+      "offsetBlocks": -4,
+      "sourceFile": "Route15"
+    },
+    {
+      "sourceMapId": 26,
+      "destinationMapId": 25,
+      "direction": "east",
+      "offsetBlocks": -18,
+      "sourceFile": "Route15"
+    },
+    {
+      "sourceMapId": 27,
+      "destinationMapId": 28,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "Route16"
+    },
+    {
+      "sourceMapId": 27,
+      "destinationMapId": 6,
+      "direction": "east",
+      "offsetBlocks": -4,
+      "sourceFile": "Route16"
+    },
+    {
+      "sourceMapId": 28,
+      "destinationMapId": 27,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "Route17"
+    },
+    {
+      "sourceMapId": 28,
+      "destinationMapId": 29,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "Route17"
+    },
+    {
+      "sourceMapId": 29,
+      "destinationMapId": 28,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "Route18"
+    },
+    {
+      "sourceMapId": 29,
+      "destinationMapId": 7,
+      "direction": "east",
+      "offsetBlocks": -4,
+      "sourceFile": "Route18"
+    },
+    {
+      "sourceMapId": 30,
+      "destinationMapId": 7,
+      "direction": "north",
+      "offsetBlocks": -5,
+      "sourceFile": "Route19"
+    },
+    {
+      "sourceMapId": 30,
+      "destinationMapId": 31,
+      "direction": "west",
+      "offsetBlocks": 18,
+      "sourceFile": "Route19"
+    },
+    {
+      "sourceMapId": 31,
+      "destinationMapId": 8,
+      "direction": "west",
+      "offsetBlocks": 0,
+      "sourceFile": "Route20"
+    },
+    {
+      "sourceMapId": 31,
+      "destinationMapId": 30,
+      "direction": "east",
+      "offsetBlocks": -18,
+      "sourceFile": "Route20"
+    },
+    {
+      "sourceMapId": 32,
+      "destinationMapId": 0,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "Route21"
+    },
+    {
+      "sourceMapId": 32,
+      "destinationMapId": 8,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "Route21"
+    },
+    {
+      "sourceMapId": 33,
+      "destinationMapId": 34,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "Route22"
+    },
+    {
+      "sourceMapId": 33,
+      "destinationMapId": 1,
+      "direction": "east",
+      "offsetBlocks": -4,
+      "sourceFile": "Route22"
+    },
+    {
+      "sourceMapId": 34,
+      "destinationMapId": 9,
+      "direction": "north",
+      "offsetBlocks": 0,
+      "sourceFile": "Route23"
+    },
+    {
+      "sourceMapId": 34,
+      "destinationMapId": 33,
+      "direction": "south",
+      "offsetBlocks": 0,
+      "sourceFile": "Route23"
+    },
+    {
+      "sourceMapId": 35,
+      "destinationMapId": 3,
+      "direction": "south",
+      "offsetBlocks": -5,
+      "sourceFile": "Route24"
+    },
+    {
+      "sourceMapId": 35,
+      "destinationMapId": 36,
+      "direction": "east",
+      "offsetBlocks": 0,
+      "sourceFile": "Route24"
+    },
+    {
+      "sourceMapId": 36,
+      "destinationMapId": 35,
+      "direction": "west",
+      "offsetBlocks": 0,
+      "sourceFile": "Route25"
+    }
+  ]
+}

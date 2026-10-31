@@ -29,6 +29,16 @@ for(const testCase of ROMS){
   assert.equal(p.maps.valid,true);
   assert.equal(p.maps.totalMapIds,248);
   assert.equal(p.maps.validMapHeaders,226);
+  const interactionRefs=p.maps.data.filter(m=>m.valid).flatMap(m=>[
+    ...m.objects.signs.map(s=>s.textPointerEvidence),
+    ...m.objects.objects.filter(o=>o.kind==='npc')
+      .map(o=>o.textPointerEvidence)
+  ]);
+  assert.equal(interactionRefs.length,674);
+  assert.equal(interactionRefs.filter(x=>x.verified===true).length,674);
+  assert.equal(interactionRefs.filter(x=>x.romBank===0).length,58);
+  assert.equal(interactionRefs.filter(x=>x.command==='TX_FAR').length,453);
+  assert.equal(interactionRefs.every(x=>x.dialogueExecuted===false),true);
   assert.equal(p.maps.trainerEventsVerified,310);
   assert.equal(p.maps.trainerEventMapsVerified,66);
   assert.equal(p.maps.staticEncountersVerified,12);

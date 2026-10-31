@@ -1,0 +1,244 @@
+'use strict';
+// Bounded multi-map ROUTE HYPOTHESIS for SHA-audited Gen I ROM maps.
+// Crosses static warps and ROM-aligned outdoor candidate borders. Neither a
+// candidate path nor failure to find one proves actual access or blockage.
+const {terrainBytes,computeReach,candidatePath}=require('./romItemReachability');
+const {isKnownAuditedRomSha}=require('./romKnownSha256');
+const {mapArrival}=require('./romOutdoorAlignment');
+const byte=x=>Number.isInteger(x)&&x>=0&&x<248;
+const pos=p=>Number.isInteger(p?.x)&&Number.isInteger(p?.y)&&p.x>=0&&p.y>=0;
+const reject=reason=>({verified:false,found:false,reason,
+  accessibleNow:null,routeNavigableNowProven:false});
+function exactTilePath(reach,p){
+ if(!reach||!pos(p)||p.x>=reach.width||p.y>=reach.height)return null;
+ const n=reach.width*reach.height,index=p.y*reach.width+p.x;
+ let best=null;
+ for(const mode of [0,1]){
+   let cursor=index+mode*n;
+   if(reach.prev[cursor]===-1)continue;
+   let steps=0,usesCut=false,usesSurf=false,usesLedge=false,first=null;
+   while(cursor!==reach.startIndex){
+     const parent=reach.prev[cursor];
+     if(parent===-1||parent===cursor||steps>=reach.length){steps=-1;break;}
+     usesCut=usesCut||reach.changes[cursor]===1;
+     usesSurf=usesSurf||reach.changes[cursor]===2;
+     usesLedge=usesLedge||reach.jump[cursor]===1;
+     if(parent===reach.startIndex){
+       const cell=cursor%n;
+       first={x:cell%reach.width,y:Math.floor(cell/reach.width)};
+     }
+     cursor=parent;steps++;
+   }
+   if(steps<0)continue;
+   const candidate={steps,nextStep:first,usesCut,usesSurf,usesLedge,
+     arrivalTile:{x:p.x,y:p.y}};
+   if(!best||steps<best.steps)best=candidate;
+ }
+ return best;
+}
+function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
+ sourceMapId,position,target=null,targets=null,outdoorAlignment=null,positionVerified=false,
+ currentModeByte=null,canCut=false,canSurf=false,
+ spritesVerified=false,currentMapEntities=[],maxTransitions=10,
+ maxStates=180}={}){
+ const sha=String(romSha256||'').toLowerCase();
+ const multi=targets!==null,requested=multi?targets:[target];
+ if(!Array.isArray(requested)||!requested.length||requested.length>64||
+    requested.some(t=>!byte(t?.mapId)||!pos(t))||
+    !isKnownAuditedRomSha(sha)||!positionVerified||!byte(sourceMapId)||!pos(position)||
+    ![0,1,2].includes(currentModeByte)||typeof canCut!=='boolean'||
+    typeof canSurf!=='boolean'||!Number.isInteger(maxTransitions)||
+    maxTransitions<0||maxTransitions>20||!Number.isInteger(maxStates)||
+    maxStates<1||maxStates>500)
+  return reject('ROM SHA, mapa, posição RAM, capacidades ou limites não comprovados');
+ if(terrainAtlas?.verified!==true||terrainAtlas.romSha256!==sha||
+    !Array.isArray(terrainAtlas.maps)||terrainAtlas.maps.length!==226||
+    warpGraph?.verified!==true||warpGraph.romSha256!==sha||
+    warpGraph.totalWarpEntries!==813||warpGraph.normalMapHeaders!==226||
+    !Array.isArray(warpGraph.edges)||warpGraph.edges.length!==813)
+  return reject('Índice de 226 mapas ou 813 warps da ROM não validado');
+ const maps=new Map();
+ for(const m of terrainAtlas.maps){
+   if(!byte(m.mapId)||maps.has(m.mapId))return reject('Terreno de mapa duplicado ou inválido');
+   maps.set(m.mapId,m);
+ }
+ if(!maps.has(sourceMapId)||requested.some(t=>!maps.has(t.mapId)))
+  return reject('Origem ou destino fora dos 226 mapas de terreno auditados');
+ const exits=new Map();
+ for(const e of warpGraph.edges){
+   if(e?.status!=='STATIC_DESTINATION_WARP_VALIDATED')continue;
+   if(!maps.has(e.sourceMapId)||!maps.has(e.destinationMapId)||
+      e.landing?.mapId!==e.destinationMapId||
+      !pos(e)||!pos(e.landing))continue;
+   if(!exits.has(e.sourceMapId))exits.set(e.sourceMapId,[]);
+   exits.get(e.sourceMapId).push(e);
+ }
+ const grids=new Map();
+ const gridFor=id=>{
+   if(grids.has(id))return grids.get(id);
+   const m=maps.get(id);
+   const verified=terrainBytes({...m,verified:true},sha);
+   grids.set(id,verified);return verified;
+ };
+
+ // Only trust edges independently aligned against the same audited ROM SHA.
+ const outdoor=warpGraph.outdoorConnections;
+ const alignmentOK=outdoorAlignment?.verified===true&&
+   outdoorAlignment.romSha256===sha&&
+   outdoorAlignment.verifiedConnections===78&&
+   outdoorAlignment.descriptorPointerFormulaVerified===true&&
+   outdoorAlignment.referenceOffsetCorroborated===true&&
+   Array.isArray(outdoorAlignment.connections)&&
+   outdoorAlignment.connections.length===78&&outdoor?.verified===true&&
+   outdoor.romSha256===sha&&outdoor.edgeCount===78&&
+   outdoor.reciprocalConnections===78&&Array.isArray(outdoor.edges)&&
+   outdoor.edges.length===78;
+ const borderLinks=new Map();
+ if(alignmentOK){
+   const keys=new Set(outdoor.edges.map(e=>
+     e.sourceMapId+':'+e.direction+':'+e.destinationMapId));
+   if(keys.size===78&&outdoorAlignment.connections.every(e=>
+     keys.has(e.sourceMapId+':'+e.direction+':'+e.destinationMapId)&&
+     e.descriptorPointerMatches===true&&
+     e.referenceOffsetCorroborated===true&&
+     Number.isInteger(e.offsetBlocks)&&Math.abs(e.offsetBlocks)<=100&&
+     ['north','south','east','west'].includes(e.direction)&&
+     maps.has(e.sourceMapId)&&maps.has(e.destinationMapId)&&
+     maps.get(e.sourceMapId).width===e.sourceWidthTiles&&
+     maps.get(e.sourceMapId).height===e.sourceHeightTiles&&
+     maps.get(e.destinationMapId).width===e.destinationWidthTiles&&
+     maps.get(e.destinationMapId).height===e.destinationHeightTiles)){
+     for(const e of outdoorAlignment.connections){
+       if(!borderLinks.has(e.sourceMapId))borderLinks.set(e.sourceMapId,[]);
+       borderLinks.get(e.sourceMapId).push(e);
+     }
+   }
+ }
+ const first=gridFor(sourceMapId);
+ if(!first||position.x>=first.width||position.y>=first.height)
+  return reject('Coordenadas RAM fora do terreno da ROM de origem');
+ const key=(id,x,y)=>id+':'+x+':'+y;
+ const seen=new Set([key(sourceMapId,position.x,position.y)]);
+ const queue=[{mapId:sourceMapId,x:position.x,y:position.y,
+   segments:[],steps:0}];
+ const results=new Array(requested.length).fill(null);
+ const pending=new Set(requested.map((_,i)=>i));
+ let explored=0,cursor=0;
+ for(;cursor<queue.length&&explored<maxStates;cursor++){
+   const state=queue[cursor],grid=gridFor(state.mapId);
+   explored++;
+   if(!grid||state.x>=grid.width||state.y>=grid.height)continue;
+   const reach=computeReach(grid,{x:state.x,y:state.y},{
+     canCut,canSurf,
+     currentSurf:state.segments.length===0&&currentModeByte===2,
+     actors:state.segments.length===0?currentMapEntities:[],
+     spritesVerified:state.segments.length===0&&spritesVerified
+   });
+   if(!reach)continue;
+
+   // Share one route graph search between distinct item coordinates.
+   for(const index of pending){
+     const t=requested[index];
+     if(state.mapId!==t.mapId||t.x>=grid.width||t.y>=grid.height)continue;
+     const last=candidatePath(reach,t,{hidden:t.hidden===true});
+     if(!last)continue;
+     const result={verified:true,found:true,sourceMapId,
+       target:{mapId:t.mapId,x:t.x,y:t.y,hidden:t.hidden===true},
+       romSha256:sha,transitionCount:state.segments.length,
+       warpTransitions:state.segments.filter(e=>e.kind!=='OUTDOOR_BORDER').length,
+       outdoorTransitions:state.segments.filter(e=>e.kind==='OUTDOOR_BORDER').length,
+       theoreticalSteps:state.steps+last.steps,
+       segments:state.segments,finalLocalRoute:last,
+       nextTerrainTile:state.segments[0]?.localRoute?.nextStep||
+         last.nextStep||null,
+       exploredStates:explored,routeNavigableNowProven:false,
+       accessibleNow:null,scriptsAndDynamicBarriersVerified:false,
+       snapshotAtomicVerified:false,
+       scope:state.segments.some(e=>e.kind==='OUTDOOR_BORDER')?
+         'STATIC_WARPS_AND_ALIGNED_OUTDOOR_BORDER_HYPOTHESES':
+         'STATIC_WARPS_ONLY_NO_OUTDOOR_CONNECTIONS',
+       note:'Hipótese geométrica ROM. Portas, NPC, flags e ações de campo não comprovados.'};
+     results[index]=result;pending.delete(index);
+     if(!multi)return result;
+   }
+   if(pending.size===0)break;
+   if(state.segments.length>=maxTransitions)continue;
+   for(const e of exits.get(state.mapId)||[]){
+     if(e.x>=grid.width||e.y>=grid.height)continue;
+     const approach=exactTilePath(reach,e);
+     if(!approach)continue;
+     const landing=e.landing,nextGrid=gridFor(landing.mapId);
+     if(!nextGrid||landing.x>=nextGrid.width||landing.y>=nextGrid.height)continue;
+     const nextKey=key(landing.mapId,landing.x,landing.y);
+     if(seen.has(nextKey))continue;
+     seen.add(nextKey);
+     queue.push({mapId:landing.mapId,x:landing.x,y:landing.y,
+       steps:state.steps+approach.steps,
+       segments:[...state.segments,{
+         sourceMapId:state.mapId,sourceWarpIndex:e.sourceWarpIndex,
+         sourceWarpTile:{x:e.x,y:e.y},
+         destinationMapId:landing.mapId,destinationWarpIndex:landing.warpIndex,
+         landing:{x:landing.x,y:landing.y},localRoute:approach,
+         kind:'WARP',transitionGuaranteed:false}]});
+   }
+   // No gameplay crossing is proven here. Destination must be static land:
+   // Cut trees and Surf water require separate transition-state evidence.
+   for(const edge of borderLinks.get(state.mapId)||[]){
+     const dest=gridFor(edge.destinationMapId);
+     if(!dest)continue;
+     const ns=edge.direction==='north'||edge.direction==='south';
+     const length=ns?grid.width:grid.height;
+     const options=[];
+     for(let axis=0;axis<length;axis++){
+       const from=ns?{x:axis,y:edge.direction==='north'?0:grid.height-1}:
+         {x:edge.direction==='west'?0:grid.width-1,y:axis};
+       const arrival=mapArrival(edge.direction,edge.offsetBlocks,from,
+         dest.width,dest.height);
+       if(!arrival)continue;
+       const i=arrival.y*dest.width+arrival.x,tile=dest.tiles[i];
+       if(!(dest.bits[i>>3]&(1<<(i&7)))||tile===0x14||
+          tile===0x48||(dest.tilesetId===0&&tile===0x3d))continue;
+       const localRoute=exactTilePath(reach,from);
+       if(!localRoute)continue;
+       options.push({from,arrival,localRoute});
+     }
+     // Prefer the nearest reachable source tile rather than map-edge order.
+     options.sort((a,b)=>a.localRoute.steps-b.localRoute.steps||
+       a.from.y-b.from.y||a.from.x-b.from.x);
+     for(const {from,arrival,localRoute} of options){
+       const destKey=key(edge.destinationMapId,arrival.x,arrival.y);
+       if(seen.has(destKey)||queue.length>=maxStates*4)continue;
+       seen.add(destKey);
+       queue.push({mapId:edge.destinationMapId,x:arrival.x,y:arrival.y,
+         segments:[...state.segments,{
+           kind:'OUTDOOR_BORDER',sourceMapId:state.mapId,
+           sourceBorderTile:from,destinationMapId:edge.destinationMapId,
+           destinationTile:arrival,direction:edge.direction,
+           localRoute,romAlignmentVerified:true,
+           transitionGuaranteed:false}],
+         steps:state.steps+localRoute.steps});
+     }
+   }
+ }
+
+ const incomplete=cursor<queue.length&&pending.size>0;
+ const reason=incomplete?
+   'Limite de pesquisa atingido antes de verificar todas as rotas. Não prova bloqueio.':
+   'Sem percurso no cenário geométrico ROM conhecido. Não prova bloqueio: faltam scripts e obstáculos dinâmicos.';
+ const unresolved=t=>({verified:true,found:false,romSha256:sha,sourceMapId,
+   target:{mapId:t.mapId,x:t.x,y:t.y,hidden:t.hidden===true},
+   exploredStates:explored,maxStatesExceeded:incomplete,
+   outdoorAlignmentUsed:borderLinks.size>0,
+   accessibleNow:null,routeNavigableNowProven:false,reason});
+ if(!multi)return unresolved(requested[0]);
+ return {verified:true,romSha256:sha,sourceMapId,
+   results:requested.map((t,i)=>results[i]||unresolved(t)),
+   requestedCount:requested.length,foundCount:requested.length-pending.size,
+   exploredStates:explored,maxStatesExceeded:incomplete,
+   routeNavigableNowProven:false,accessibleNow:null,
+   scope:'MULTIPLE_ROM_ITEM_TARGETS_SINGLE_SHARED_GRAPH_SEARCH'};
+}
+function findCrossMapItemPaths(args={}){
+ return findCrossMapItemPath({...args,target:null,targets:args.targets});
+}
+module.exports={findCrossMapItemPath,findCrossMapItemPaths,exactTilePath};
