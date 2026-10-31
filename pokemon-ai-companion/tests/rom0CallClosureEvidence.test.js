@@ -33,6 +33,51 @@ test('ROMX bank and JP HL remain explicit unknowns',()=>{
  assert.equal(r.activeRomBankKnown,false);
  assert.equal(r.staticCandidateQueueExhausted,true);
 });
+test('guarded literal JP HL adds finite ROM0 cases and conditional escape only',()=>{
+ const rom=fake(),at=0x200,jump=at+18;
+ rom.set([0xfe,0x03,0xd2,0x60,0x02,0x21,0x00,0x04,
+  0xc5,0x87,0x06,0x00,0x4f,0x09,0xc1,0x2a,0x66,0x6f,0xe9],at);
+ for(const [i,cpu] of [0x520,0x540,0x560].entries())
+  rom.writeUInt16LE(cpu,0x400+i*2);
+ const r=traceRom0CallClosure({rom,roots:[jump]});
+ assert.equal(r.verified,true);
+ assert.equal(r.candidateInstructions,5);
+ assert.equal(r.boundedIndirectTables.length,1);
+ assert.equal(r.boundedIndirectCaseEdges,3);
+ assert.equal(r.boundedIndirectFallbackEdges,1);
+ assert.equal(r.boundedIndirectCandidateEdges,4);
+ assert.deepEqual(r.boundedIndirectTables[0].caseTargetsCpu,[0x520,0x540,0x560]);
+ assert.equal(r.boundedIndirectTables[0].alternateNonTableBranchCpu,0x260);
+ assert.equal(r.indirectJumpsUnknown,1);
+ assert.equal(r.unresolvedReasonCounts.JP_HL_BOUNDED_TABLE_RUNTIME_INDEX_UNKNOWN,1);
+ assert.equal(r.allIndirectRuntimeTargetsVerified,false);
+ assert.equal(r.runtimeEffectsVerified,false);
+});
+test('malformed JP HL table is not treated as a bounded physical target',()=>{
+ const rom=fake(),at=0x200,jump=at+18;
+ rom.set([0xfe,0x03,0xd2,0x60,0x02,0x21,0x00,0x04,
+  0xc5,0x87,0x06,0x00,0x4f,0x09,0xc1,0x2a,0x66,0x6f,0xe9],at);
+ for(const [i,cpu] of [0x520,0x540,0x5000].entries())
+  rom.writeUInt16LE(cpu,0x400+i*2);
+ const r=traceRom0CallClosure({rom,roots:[jump]});
+ assert.equal(r.verified,true);
+ assert.equal(r.boundedIndirectTables.length,0);
+ assert.equal(r.boundedIndirectCandidateEdges,0);
+ assert.equal(r.candidateInstructions,1);
+ assert.equal(r.unresolvedReasonCounts.JP_HL_RUNTIME_TARGET_UNKNOWN,1);
+ assert.equal(r.runtimeEffectsVerified,false);
+});
+test('literal BC/DE HL return trampolines do not fabricate destination',()=>{
+ const rom=fake();
+ rom.set([0x01,0x22,0x03,0xc5,0xe9],0x31d);
+ const r=traceRom0CallClosure({rom,roots:[0x321]});
+ assert.equal(r.verified,true);
+ assert.equal(r.indirectReturnTrampolines.length,1);
+ assert.equal(r.indirectReturnTrampolines[0].stackRegister,'BC');
+ assert.equal(r.indirectReturnTrampolines[0].returnPc,0x322);
+ assert.equal(r.boundedIndirectCandidateEdges,0);
+ assert.equal(r.unresolvedReasonCounts.JP_HL_REGISTER_DESTINATION_UNKNOWN,1);
+});
 test('recursive CALL cycles terminate without inventing execution',()=>{
  const rom=fake();
  rom.set([0xcd,0x00,0x02,0xc9],0x100);
@@ -92,6 +137,16 @@ for(const [variant,name] of [
   assert.equal(r.verified,true,r.reason);
   assert.equal(r.uniqueSeedAddresses,59);
   assert.ok(r.candidateInstructions>0);
+  assert.ok(r.boundedIndirectTables.length>=1);
+  const expectedJump=variant==='green'?0x1b5e:0x1b77;
+  const knownTable=r.boundedIndirectTables.find(x=>x.jumpPc===expectedJump);
+  assert.ok(knownTable,'The 14-entry ROM0 table must be a static candidate');
+  assert.equal(knownTable.indexBoundExclusive,14);
+  assert.equal(knownTable.caseTargetsCpu.length,14);
+  assert.equal(knownTable.runtimeIndexKnown,false);
+  assert.equal(r.allIndirectRuntimeTargetsVerified,false);
+  assert.equal(r.boundedIndirectCandidateEdges,
+   r.boundedIndirectCaseEdges+r.boundedIndirectFallbackEdges);
   assert.equal(r.budgetExhausted,r.remainingQueue>0);
   assert.equal(r.staticCandidateQueueExhausted,!r.budgetExhausted);
   assert.equal(r.unresolvedCandidateCount,
