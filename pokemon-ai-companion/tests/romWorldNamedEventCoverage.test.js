@@ -30,6 +30,11 @@ test('248 map IDs and 507 exact names with no ROM bindings yield zero invented l
  assert.equal(r.verified,true,r.reason);
  assert.equal(r.maps.length,248);
  assert.equal(r.summary.normalHeaders,226);
+ assert.equal(r.maps[61].mapName,'MT_MOON_B2F');
+ assert.equal(r.maps[148].mapName,'POKEMON_TOWER_7F');
+ assert.equal(r.maps[149].mapName,'MR_FUJIS_HOUSE');
+ assert.equal(r.maps[61].mapNameOrigin,'pret/pokered');
+ assert.equal(r.maps[61].mapNameIntrinsicToRom,false);
  assert.equal(r.summary.namedBitsWithMapEvidence,0);
  assert.equal(r.unmappedEvents.length,507);
  assert.equal(r.maps.every(x=>x.namedCandidateBits===0),true);
@@ -116,6 +121,10 @@ for(const [variant,env] of [
   assert.equal(r.verified,true,r.reason);
   assert.equal(r.summary.mapIds,248);
   assert.equal(r.summary.normalHeaders,226);
+  assert.equal(r.maps[61].mapName,'MT_MOON_B2F');
+  assert.equal(r.maps[61].mapNameOrigin,'pret/pokered');
+  assert.equal(r.maps[61].mapNameIntrinsicToRom,false);
+  assert.equal(r.maps[148].mapName,'POKEMON_TOWER_7F');
   assert.equal(r.summary.namedBitsWithNoDirectMapEvidence,107);
   assert.equal(r.summary.namedBitsWithMapEvidence,400);
   assert.equal(r.unmappedEvents.length,107);

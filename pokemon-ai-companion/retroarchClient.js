@@ -9,6 +9,7 @@ const {inspectTerrainCell}=require('./romTerrainAtlas');
 const {terrainWarpHints}=require('./romTerrainRouteHints');
 const {inspectMovementOptions}=require('./romTerrainMovement');
 const {planItemAccess}=require('./romItemReachability');
+const {planEventActorApproaches}=require('./romMapEventActorApproach');
 const {planStrengthPushes}=require('./romStrengthPushPlanner');
 const {readStrengthFieldEvidence}=require('./romStrengthFieldEvidence');
 const {adviseWorld}=require('./romWorldStateAdvisor');
@@ -2947,6 +2948,24 @@ class RetroArchClient extends EventEmitter {
       trainerFlagsVerified:this.latestState.romTrainerFlags?.verified===true&&
         this.latestState.romAreaEvidence?.trainerEventRamVerified===true
     });
+    // Conditional geometric approaches to ROM actor coordinates only.
+    // The new end-of-flags position check is mandatory for these hints.
+    this.latestState.worldAdvisor.romMapEventActorApproaches=
+      planEventActorApproaches({
+       namedEventMap:this.latestState.worldAdvisor.romMapNamedEventEvidence,
+       terrain:this.latestState.romVariantTerrainEvidence?.verified===true?
+         this.latestState.romStaticMapGuide?.terrain:null,
+       romSha256:this.activeRomProfile?.hash?.sha256,
+       mapId:this.latestState.mapId,position:this.latestState.coords,
+       mapSnapshotVerified:mapConfirmation.verified===true,
+       positionVerified:positionWindow.verified===true,
+       latePositionVerified:latePositionWindow.verified===true,
+       modeByte:modeWindow.verified?modeWindow.modeByte:null,
+       spritesVerified:this.latestState.memoryReadStatus?.blocks?.overworldSprites===true,
+       mapEntities:Array.isArray(this.latestState.mapEntities)?
+         this.latestState.mapEntities:[],
+       canCut:abilityCut,canSurf:abilitySurf
+      });
     this.persistState(this.latestState);
     this.emit('update', this.latestState);
   }

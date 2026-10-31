@@ -903,8 +903,9 @@ function renderWorldAdvisor(state) {
       sort((a,b)=>b.flagClearBits-a.flagClearBits||a.mapId-b.mapId).
       slice(0,8);
     for(const m of hotspots){
-      const mapName=typeof m.mapName==='string'&&m.mapName?
-        ' ('+m.mapName+')':'';
+      const mapName=typeof m.mapName==='string'&&m.mapName&&
+        m.mapNameOrigin==='pret/pokered'&&m.mapNameIntrinsicToRom===false?
+        ' (ref. pret/pokered: '+m.mapName+')':'';
       all.push('• Mapa #'+m.mapId+mapName+
        ': '+m.flagClearBits+' referências com bit inativo; '+
        m.namedCandidateBits+' referências totais');
@@ -955,6 +956,39 @@ function renderWorldAdvisor(state) {
     local.push('⚠️ Referência de ROM não é uma ação comprovada nem garante acesso.','');
     const where=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(where>=0)lines.splice(where,0,...local);
+  }
+  // Approaching a ROM actor is not interacting with an NPC or completing
+  // a story event. Show only hypothetical local paths and explicit blockers.
+  const approaches=advice.romMapEventActorApproaches;
+  if(approaches?.verified===true&&approaches.mapId===advice.mapId&&
+     approaches.romSha256===advice.romSha256&&
+     approaches.accessibilityCertified===false&&
+     approaches.interactionExecuted===false&&
+     Array.isArray(approaches.entries)&&
+     approaches.entries.length===approaches.candidateActors){
+    const actorLines=[
+      '--- PERCURSOS CONDICIONAIS PARA ATORES DE EVENTOS ---',
+      approaches.candidateActors+
+        ' associações de atores com coordenadas ROM neste mapa.'
+    ];
+    for(const e of approaches.entries.slice(0,12)){
+      if(typeof e.name!=='string'||!Number.isInteger(e.x)||
+         !Number.isInteger(e.y)||typeof e.accessStatus!=='string')
+       continue;
+      const state=accessText[e.accessStatus]||'Acesso por confirmar';
+      const steps=Number.isInteger(e.conditionalRoute?.steps)?
+        ' ('+e.conditionalRoute.steps+' passos geométricos)':'';
+      actorLines.push('• '+e.name.replace(/^EVENT_/,'').replaceAll('_',' ')+
+        ' — X '+e.x+', Y '+e.y+': '+state+steps+
+        '; não confirma interação, visibilidade ou efeito');
+    }
+    if(approaches.entries.length>12)
+      actorLines.push('… '+(approaches.entries.length-12)+
+       ' outras associações de atores deste mapa.');
+    actorLines.push('⚠️ Um percurso local, mesmo com Cut/Surf, não prova '+
+     'passagem real, diálogo ou progresso de missão.','');
+    const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(slot>=0)lines.splice(slot,0,...actorLines);
   }
   // Include every physical candidate bit operation, not just bits shared
   // between two actors. This is ROM code evidence, never gameplay progress.

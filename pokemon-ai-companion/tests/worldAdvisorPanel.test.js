@@ -180,10 +180,35 @@ test('all physical BIT SET RES operations in current map are shown without gamep
  s.connected=false;
  assert.doesNotMatch(render(s).body.textContent,/BIT_TEST bit 1231/);
 });
+test('actor event approaches display Cut and Surf as hypotheses, not game actions',()=>{
+ const s=live();
+ s.worldAdvisor.romMapEventActorApproaches={
+  verified:true,mapId:15,romSha256:s.worldAdvisor.romSha256,
+  accessibilityCertified:false,interactionExecuted:false,
+  candidateActors:2,entries:[
+   {name:'EVENT_GOT_POKE_FLUTE',x:6,y:2,accessStatus:'NEEDS_CUT',
+    conditionalRoute:{steps:8}},
+   {name:'EVENT_GOT_POKEDEX',x:4,y:1,accessStatus:'NEEDS_SURF',
+    conditionalRoute:{steps:5}}
+  ]
+ };
+ const view=render(s);
+ assert.match(view.body.textContent,/PERCURSOS CONDICIONAIS PARA ATORES DE EVENTOS/);
+ assert.match(view.body.textContent,/Possível passagem dependente de Cut/);
+ assert.match(view.body.textContent,/Possível passagem dependente de Surf/);
+ assert.match(view.body.textContent,/não confirma interação/);
+ assert.equal(view.body.innerHTML,null);
+ s.worldAdvisor.romMapEventActorApproaches.mapId=19;
+ assert.doesNotMatch(render(s).body.textContent,/PERCURSOS CONDICIONAIS PARA ATORES/);
+ s.worldAdvisor.romMapEventActorApproaches.mapId=15;
+ s.memoryReadStatus.latePositionWindow.y=4;
+ assert.doesNotMatch(render(s).body.textContent,/PERCURSOS CONDICIONAIS PARA ATORES/);
+});
 test('worldwide 248-map index renders only as conditional ROM evidence',()=>{
  const s=live();
  const maps=Array.from({length:248},(_,mapId)=>({
-  mapId,mapName:'Map '+mapId,flagClearBits:0,
+  mapId,mapName:'Map '+mapId,mapNameOrigin:'pret/pokered',
+  mapNameIntrinsicToRom:false,flagClearBits:0,
   namedCandidateBits:0
  }));
  maps[21].flagClearBits=4;maps[21].namedCandidateBits=7;
@@ -200,6 +225,7 @@ test('worldwide 248-map index renders only as conditional ROM evidence',()=>{
  assert.match(view.body.textContent,/400 eventos nomeados/);
  assert.match(view.body.textContent,/107 sem associação direta/);
  assert.match(view.body.textContent,/Mapa #21/);
+ assert.match(view.body.textContent,/ref\. pret\/pokered: Map 21/);
  assert.match(view.body.textContent,/4 referências com bit inativo/);
  assert.match(view.body.textContent,/não são missões por concluir/);
  assert.equal(view.body.innerHTML,null);

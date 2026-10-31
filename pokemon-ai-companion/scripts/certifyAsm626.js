@@ -444,6 +444,9 @@ function main(){
   assert(worldwideNamed.verified===true&&
    worldwideNamed.summary.mapIds===248&&
    worldwideNamed.summary.normalHeaders===226&&
+   worldwideNamed.maps[61].mapName==='MT_MOON_B2F'&&
+   worldwideNamed.maps[61].mapNameOrigin==='pret/pokered'&&
+   worldwideNamed.maps[61].mapNameIntrinsicToRom===false&&
    worldwideNamed.summary.namedBitsWithMapEvidence===400&&
    worldwideNamed.summary.namedBitsWithNoDirectMapEvidence===107&&
    worldwideNamed.summary.namedReferenceEvents===507&&
@@ -453,6 +456,8 @@ function main(){
    worldwideNamed.reason);
   log('ROM_'+variant.toUpperCase()+'_WORLD_MAPS_INDEXED=248');
   log('ROM_'+variant.toUpperCase()+'_WORLD_NORMAL_HEADERS=226');
+  log('ROM_'+variant.toUpperCase()+'_WORLD_MAP_NAMES_REFERENCE_VERIFIED=248');
+  log('ROM_'+variant.toUpperCase()+'_WORLD_MAP_NAMES_FROM_ROM_BYTES=FALSE');
   log('ROM_'+variant.toUpperCase()+'_WORLD_NAMED_BITS_WITH_MAP_EVIDENCE='+
    worldwideNamed.summary.namedBitsWithMapEvidence);
   log('ROM_'+variant.toUpperCase()+'_WORLD_NAMED_BITS_WITHOUT_MAP_EVIDENCE='+

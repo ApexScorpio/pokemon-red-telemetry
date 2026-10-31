@@ -3,6 +3,7 @@
 // exact ROM actor/handler map references and corroborated RAM bit values.
 // A bit not set is NOT proof that a game objective remains actionable.
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
+const {lookupRomReference}=require('./romReferenceSemantics');
 const names=require('./data/gen1EventNamesPret.json');
 const fail=reason=>({verified:false,reason,maps:[],unmappedEvents:[],
  summary:null,actionsObserved:false,gameplayComplete:false});
@@ -22,12 +23,22 @@ function buildWorldwideNamedEventCoverage({
     !Array.isArray(worldEventAtlas.events)||worldEventAtlas.events.length!==507||
     !Array.isArray(mapReferences)||mapReferences.length!==248)
   return fail('ROM, 507 bits ou catálogo dos 248 mapas incompleto');
- const maps=mapReferences.map((m,mapId)=>({
-  mapId,mapName:m?.valid===true&&typeof m.name==='string'?m.name:null,
-  normalHeaderVerified:m?.valid===true,
-  events:[],namedCandidateBits:0,flagSetBits:0,flagClearBits:0,
-  actorBoundBits:0,handlerBoundBits:0
- }));
+ const maps=mapReferences.map((m,mapId)=>{
+  // Gen I location labels are external pinned pret/pokered references.
+  // ROM headers provide map IDs and objects but not these English names.
+  const reference=lookupRomReference({romSha256:sha,mapId});
+  return {
+   mapId,mapName:reference.verified?reference.referenceMapName:null,
+   mapNameOrigin:reference.verified?'pret/pokered':null,
+   mapNameIntrinsicToRom:false,
+   normalHeaderVerified:m?.valid===true,
+   events:[],namedCandidateBits:0,flagSetBits:0,flagClearBits:0,
+   actorBoundBits:0,handlerBoundBits:0
+  };
+ });
+ if(maps.some(m=>typeof m.mapName!=='string'||!m.mapName||
+   m.mapNameOrigin!=='pret/pokered'))
+  return fail('Mapa sem rótulo externo fixado à revisão pret/pokered');
  if(mapReferences.some((m,id)=>m?.mapId!==id||
     typeof m.valid!=='boolean'))
   return fail('IDs dos mapas não correspondem à ROM');
