@@ -699,3 +699,7 @@
 - Bridge 088 FAILED com 1 caso falhado (`romClientCampaignIntegration.test.js`, teste 307). Novos T133 12/12 e referência anterior 8/8 PASS; falha de teste estático por exigir `ingest(` pré-publicação em vez de `ingestPublished(` após gate final.
 - Caso 307 atualizado para exigir gate final antes de `ingestPublished` e persistência após, confirmar alvo/geração/pollSequence e proibir caminho inseguro antigo. Sem reduzir cobertura nem alterar runtime.
 - Bridge 089 a executar: espera-se ASM 614/614 e full 1251 PASS/1 SKIP de 1252; confirmar resultados reais. Certificação de gameplay E2E pendente. Main e recursos protegidos intocados. Histórico append-only.
+
+
+### T135 — 2026-10-31: falha operacional Bridge 089 sem testes
+- Bridge 089 terminou `FAILED` imediatamente no clone porque o wrapper usou `Start-Process -ArgumentList $Args`; `$args` é variável automática em PowerShell. Nenhum teste ASM/full executou, pelo que T133/T134 mantém certificação pendente. O runtime PokéGuide **não foi modificado**. Histórico acrescentado; próxima Bridge 090 corrige só o script autónomo para `$Arguments` com validação de entrada e repete T134 + ROM Red/Blue/Green.
