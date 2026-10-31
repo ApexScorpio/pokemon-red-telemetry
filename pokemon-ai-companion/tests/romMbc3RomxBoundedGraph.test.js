@@ -97,3 +97,29 @@ test('1024-instruction explicit cap is accepted without claiming execution',()=>
  assert.equal(r.entrypointsBudgetExhausted,1);
  assert.equal(r.entryResults[0].runtimeExecuted,false);
 });
+
+test('1024-depth capped frontier samples actual next CPU and 16 physical bytes',()=>{
+ const rom=make(),at=3*0x4000+0x1000;
+ rom.fill(0,at,at+1300);
+ const r=auditMbc3RomxBoundedGraph({
+  rom,scenarioAtlas:atlas([entry(rom)]),maxInstructionsPerEntrypoint:1024});
+ assert.equal(r.verified,true);assert.equal(r.entrypointsBudgetExhausted,1);
+ const e=r.entryResults[0];
+ assert.equal(e.frontierPendingUniqueCount,1);
+ assert.equal(e.frontierTargets.length,1);
+ assert.equal(e.frontierTargets[0].cpuPc,0x5400);
+ assert.equal(e.frontierTargets[0].fileOffset,at+1024);
+ assert.equal(e.frontierTargets[0].rawWindowHex,'00'.repeat(16));
+ assert.equal(e.frontierTargets[0].leadingNopBytesInWindow,16);
+ assert.equal(e.frontierTargets[0].firstOpcodeDecodable,true);
+ assert.equal(e.runtimeExecuted,false);
+});
+test('closed ROMX graph exposes no invented pending frontier',()=>{
+ const rom=make();
+ const r=auditMbc3RomxBoundedGraph({
+  rom,scenarioAtlas:atlas([entry(rom)]),maxInstructionsPerEntrypoint:1024});
+ assert.equal(r.verified,true);
+ assert.equal(r.entryResults[0].budgetExhausted,false);
+ assert.equal(r.entryResults[0].frontierPendingUniqueCount,0);
+ assert.deepEqual(r.entryResults[0].frontierTargets,[]);
+});

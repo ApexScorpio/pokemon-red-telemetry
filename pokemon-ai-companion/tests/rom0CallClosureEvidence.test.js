@@ -415,6 +415,21 @@ test('ROMX depth sweep does not infer execution from invalid first opcode',()=>{
  assert.deepEqual(sweep.comparisons[0].decodedByDepth,[0,0,0,0]);
  assert.equal(sweep.activeBankVerified,false);
 });
+test('ROMX 1024 capped frontiers expose exact physical next-byte evidence, not execution',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,0x03,0xea,0,0x20,0xcd,0,0x50,0xc9],0x200);
+ const at=3*0x4000+0x1000;rom.fill(0,at,at+1300);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ const frontier=r.mbc3RomxFrontiers;
+ assert.equal(frontier.verified,true);
+ assert.equal(frontier.cappedEntries,1);
+ assert.equal(frontier.sampledFrontierTargets,1);
+ assert.equal(frontier.frontierEvidence[0].samples[0].cpuPc,0x5400);
+ assert.equal(frontier.frontierEvidence[0].samples[0].firstByte,0);
+ assert.equal(frontier.frontierEvidence[0].samples[0].rawWindowHex,'00'.repeat(16));
+ assert.equal(frontier.activeBankVerified,false);
+ assert.equal(frontier.executedInstructions,0);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);

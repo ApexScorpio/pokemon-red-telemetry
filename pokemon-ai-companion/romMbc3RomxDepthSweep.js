@@ -80,6 +80,8 @@ function auditMbc3RomxDepthSweep({rom,scenarioAtlas,expansion}={}){
    budgetExhaustedByDepth:capped,decoderFailuresByDepth:errors,
    branchesToRom0NotFollowedAt1024:entries[3].branchesToROM0NotFollowed,
    pendingStaticEdgesAt1024:entries[3].pendingStaticEdges,
+   frontierUniquePendingAt1024:entries[3].frontierPendingUniqueCount,
+   frontierTargetsAt1024:entries[3].frontierTargets,
    deeperDecodeFailureSamples:entries[3].decodeFailureSamples,
    executed:false,activeBankVerified:false,causalLinkVerified:false
   });

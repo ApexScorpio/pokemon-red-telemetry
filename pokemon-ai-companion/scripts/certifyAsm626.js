@@ -495,6 +495,31 @@ function main(){
      s.registerInputProvenance?.conditionalByte!==null&&
      s.registerInputProvenance?.conditionalByte!==undefined).length,
    'MBC3 register lineage evidence mismatch: '+variant);
+  const frontier=closure.mbc3RomxFrontiers;
+  assert(frontier.verified===true&&
+   frontier.cappedEntries===closure.mbc3RomxDepthSweep.entriesStillBudgetExhausted&&
+   frontier.frontierEvidence.length===frontier.cappedEntries&&
+   frontier.entriesUncapped+frontier.cappedEntries===
+    closure.mbc3RomxDepthSweep.uniquePhysicalEntrypoints&&
+   frontier.sampledFrontierTargets>=frontier.cappedEntries&&
+   frontier.zeroFirstByteSamples<=frontier.sampledFrontierTargets&&
+   frontier.allZero16ByteWindows<=frontier.zeroFirstByteSamples&&
+   frontier.executedInstructions===0&&frontier.activeBankVerified===false&&
+   frontier.causalBankWritesVerified===0&&
+   frontier.frontierEvidence.every(x=>
+    x.wasExecuted===false&&x.activeBankVerified===false&&
+    x.samples.every(s=>s.targetRuntimeObserved===false&&
+     s.activeBankVerified===false&&
+     rom[s.fileOffset]===s.firstByte)),
+   'MBC3 ROMX static frontier evidence failed: '+variant);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_CAPPED_ENTRIES='+frontier.cappedEntries);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_SAMPLED_TARGETS='+frontier.sampledFrontierTargets);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_UNIQUE_PENDING='+frontier.totalPendingUniqueFrontierTargets);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_FIRST_ZERO='+frontier.zeroFirstByteSamples);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_WINDOWS_ALL_ZERO='+frontier.allZero16ByteWindows);
+  log(romLabel+'_MBC3_ROMX_FRONTIER_DECODE_FAILURE_REASONS='+
+   JSON.stringify(frontier.decodeFailureReasons));
+  log(romLabel+'_MBC3_ROMX_FRONTIER_EVIDENCE='+JSON.stringify(frontier.frontierEvidence));
   const sweep=closure.mbc3RomxDepthSweep;
   assert(sweep.verified===true&&
    sweep.uniquePhysicalEntrypoints===
@@ -1029,6 +1054,7 @@ function main(){
   'tests/romMbc3RomxBoundedGraph.test.js',
   'tests/romMbc3RomxGraphExpansion.test.js',
   'tests/romMbc3RomxDepthSweep.test.js',
+  'tests/romMbc3RomxFrontiers.test.js',
   'tests/romCertifierVariableShadow.test.js',
   'tests/romMbc3RamSourceReadback.test.js',
   'tests/rom0CallClosureEvidence.test.js',
