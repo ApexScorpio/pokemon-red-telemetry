@@ -2014,3 +2014,8 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 ### T67b — 2026-10-31: regressões dos destinos indiretos
 - Publicados três novos testes sintéticos: tabela JP HL com múltiplas saídas, tabela adulterada com destino ROMX recusada, trampolim BC de retorno sem destino HL inventado. Casos condicionais para as três ROMs exatas exigem prova de tabela literal de 14 entradas quando houver os binários.
 - Revisão de testes `2e74db4f4d18527a8f45b13d0f989387635a13e7`; **não executados nesta fase**. O scanner limita-se a endereços físicos e fluxo estático; nenhuma confirmação de evento de jogo ou seleção da tabela.
+
+
+### T67c — 2026-10-31: certificador das três ROMs ligado aos 14 alvos
+- `scripts/certifyAsm626.js` passa a exigir, em cada uma das três ROMs já reconhecidas, a presença estrutural da tabela JP HL de 14 destinos físicos esperados, sem afirmar que qualquer caso foi executado; regista o PC da tabela, todos os alvos candidatos, o salto alternativo, trampolins de retorno, riscos ROMX e limites restantes.
+- A nova suite `tests/rom0CallClosureEvidence.test.js` foi adicionada também à bateria dirigida de testes do certificador, antes da suite completa. Commit `4bc10a1781318bc60c4548a227e547bead9d2a63`. Verificação real da Bridge pendente.
