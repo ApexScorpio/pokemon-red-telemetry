@@ -97,7 +97,15 @@ test('connection and ROM changes invalidate cached world evidence before publish
 test('world reference and elevator adapters are imported, refreshed and invalidated',()=>{
  assert.match(source,/require\('\.\/romWorldReferenceSession'\)/);
  assert.match(source,/require\('\.\/romElevatorChoices'\)/);
- assert.match(source,/this\._worldReferenceSession\.ingest\(/);
+ const finalPositionGuard=source.indexOf('const targetScopeStable=matchesTargetScope(this,pollTargetScope)');
+ const namedEventIngest=source.indexOf('const namedChanges=this._worldReferenceSession.ingestPublished({');
+ const finalPersist=source.lastIndexOf('this.persistState(this.latestState);');
+ assert.ok(finalPositionGuard>0&&namedEventIngest>finalPositionGuard&&finalPersist>namedEventIngest);
+ assert.doesNotMatch(source,/this\._worldReferenceSession\.ingest\(/);
+ const namedPublish=source.slice(namedEventIngest,namedEventIngest+850);
+ assert.match(namedPublish,/publicationGuardVerified:matchesTargetScope\(this,pollTargetScope\)/);
+ assert.match(namedPublish,/targetGeneration:pollTargetScope\.generation/);
+ assert.match(namedPublish,/pollSequence:this\._scriptedBattlePollSequence/);
  assert.match(source,/this\.latestState\.romElevatorOptions=elevatorOptionsForMap\(/);
  assert.match(source,/this\.latestState\.worldRecentNamedChanges=namedChanges\.recent/);
  assert.match(source,/this\._worldReferenceSession\.reset\(reason\)/);

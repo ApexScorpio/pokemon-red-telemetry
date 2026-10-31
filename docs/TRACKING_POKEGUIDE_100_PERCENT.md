@@ -693,3 +693,9 @@
 - Bridge 087: 31/31 campanha, 9/9 posição, 12/12 troca alvo, ASM 602/602, full 1239 PASS + 1 SKIP em 1240, zero falhas; três ROMs confirmadas, sem gameplay E2E.
 - `romWorldReferenceSession.ingestPublished` exige identidade ROM, alvo/porta/geração estáveis, posição e última salvaguarda de publicação, além de `pollSequence` sem interrupções; resets entre escopos. `retroarchClient` só chama a sessão depois do gate final; mantém as diferenças dos 507 eventos e 228 toggles como flags RAM não-causais. 12 testes novos em `romPublishedNamedEvents.test.js` adicionados ao certifier, sem UDP adicional.
 - Bridge 088 ainda não executada: previsão ASM 614/614, full 1251 PASS/1 SKIP de 1252; falta validar runtime real e semântica dos scripts. Histórico apenas acrescentado, recursos protegidos intactos.
+
+
+### T134 — 2026-10-31: Bridge 088 detetou teste de integração obsoleto, reparado
+- Bridge 088 FAILED com 1 caso falhado (`romClientCampaignIntegration.test.js`, teste 307). Novos T133 12/12 e referência anterior 8/8 PASS; falha de teste estático por exigir `ingest(` pré-publicação em vez de `ingestPublished(` após gate final.
+- Caso 307 atualizado para exigir gate final antes de `ingestPublished` e persistência após, confirmar alvo/geração/pollSequence e proibir caminho inseguro antigo. Sem reduzir cobertura nem alterar runtime.
+- Bridge 089 a executar: espera-se ASM 614/614 e full 1251 PASS/1 SKIP de 1252; confirmar resultados reais. Certificação de gameplay E2E pendente. Main e recursos protegidos intocados. Histórico append-only.
