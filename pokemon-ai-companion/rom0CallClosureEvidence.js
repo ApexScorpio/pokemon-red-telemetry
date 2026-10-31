@@ -3,6 +3,7 @@
 // This is a static CALL/RST/JR/JP reachability inventory, not executed code,
 // a verified effect, bank-state evidence, or proof of ROM mapping completion.
 const {decodeOpcode}=require('./romMapCodeAtlas');
+const {inspectRom0IndirectJump}=require('./rom0IndirectJumpEvidence');
 const ROM_SIZE=1048576,ROM0_END=0x4000;
 const MAX_ROOTS=512;
 const invalid=reason=>({verified:false,reason,source:'ROM0_CALL_CLOSURE_V1',
@@ -21,6 +22,8 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
  const queue=uniqueRoots.slice(),scheduled=new Set(queue),visited=new Set();
  const owners=new Int32Array(ROM0_END),instructions=[];
  const problems=[],callTargets=new Set(),byReason=Object.create(null);
+ const boundedTables=[],indirectTrampolines=[];
+ let boundedIndirectCaseEdges=0,boundedIndirectFallbackEdges=0;
  let consumed=0,callEdges=0,restartEdges=0,branchEdges=0;
  let romxUnknown=0,indirectUnknown=0,valid=0;
  const problem=(pc,reason,targetCpu=null)=>{
@@ -44,7 +47,39 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   instructions.push({pc,opcode:d.opcode,size:d.size,kind:d.kind});
   if(d.kind==='indirect'){
    indirectUnknown++;
-   problem(pc,'JP_HL_RUNTIME_TARGET_UNKNOWN');
+   const detail=inspectRom0IndirectJump({rom,jumpPc:pc});
+   if(detail.verified===true&&
+      detail.kind==='GUARDED_ROM0_LITERAL_JUMP_TABLE'&&
+      detail.allEntriesPhysicallyInsideRom0===true&&
+      Number.isInteger(detail.nonTableBranchCpu)&&
+      detail.nonTableBranchCpu>=0&&detail.nonTableBranchCpu<ROM0_END&&
+      detail.candidateTargetsCpu.length===detail.indexBoundExclusive){
+    const tableTargets=[...new Set(detail.candidateTargetsCpu)];
+    boundedTables.push({
+     jumpPc:pc,tableCpu:detail.tableCpu,
+     indexBoundExclusive:detail.indexBoundExclusive,
+     caseTargetsCpu:[...detail.candidateTargetsCpu],
+     alternateNonTableBranchCpu:detail.nonTableBranchCpu,
+     runtimeIndexKnown:false,runtimeBranchExecuted:false
+    });
+    boundedIndirectCaseEdges+=detail.candidateTargetsCpu.length;
+    boundedIndirectFallbackEdges++;
+    problem(pc,'JP_HL_BOUNDED_TABLE_RUNTIME_INDEX_UNKNOWN');
+    // An index-limited ROM0 table gives physical *candidate* destinations.
+    // Include also the direct conditional escape before JP HL. No claim
+    // that any one branch runs, or that a byte sequence is executable.
+    for(const to of [...tableTargets,detail.nonTableBranchCpu])
+     if(!scheduled.has(to)){queue.push(to);scheduled.add(to);}
+   }else if(detail.verified===true&&
+      detail.kind==='PUSH_RETURN_AND_JUMP_RUNTIME_HL'){
+    indirectTrampolines.push({
+     jumpPc:pc,stackRegister:detail.stackRegister,
+     returnPc:detail.returnPc,hlDestinationKnown:false
+    });
+    problem(pc,'JP_HL_REGISTER_DESTINATION_UNKNOWN');
+   }else{
+    problem(pc,'JP_HL_RUNTIME_TARGET_UNKNOWN');
+   }
   }
   for(const edge of d.targets){
    const to=edge.pc;
@@ -77,6 +112,11 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   distinctRom0CallTargets:callTargets.size,
   rom0CallTargets:[...callTargets].sort((a,b)=>a-b),
   unresolvedRomxTransfers:romxUnknown,indirectJumpsUnknown:indirectUnknown,
+  boundedIndirectTables:boundedTables,
+  boundedIndirectCaseEdges,boundedIndirectFallbackEdges,
+  boundedIndirectCandidateEdges:boundedIndirectCaseEdges+boundedIndirectFallbackEdges,
+  indirectReturnTrampolines:indirectTrampolines,
+  allIndirectRuntimeTargetsVerified:false,
   unresolvedCandidateCount:Object.values(byReason).reduce((n,x)=>n+x,0),
   unresolvedReasonCounts:{...byReason},problemSamples:problems,
   problemSamplesTruncated:Object.values(byReason).reduce((n,x)=>n+x,0)>problems.length,
@@ -84,6 +124,6 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   staticCandidateQueueExhausted:remainingQueue===0,
   runtimeEffectsVerified:false,semantic100PercentCertified:false,
   activeRomBankKnown:false,executedBranchesVerified:false,
-  warning:'CALL and RST to ROM0 add statically reachable candidate instructions only. ROMX bank, indirect HL, event effects and actual execution remain unknown.'};
+  warning:'ROM0 CALL/RST and bounded literal jump-table cases are only statically reachable candidates. Table index, ROMX bank, dynamic HL destinations, event effects and actual execution remain unknown.'};
 }
 module.exports={traceRom0CallClosure};
