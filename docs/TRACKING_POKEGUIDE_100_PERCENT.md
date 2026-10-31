@@ -220,3 +220,10 @@
 - **PG-008 / PG-012 — Green conservadora:** novos `romGreenP1WorldProbe.js`, auditor CLI e testes de isolamento. O formato da Green p1 **não** foi adicionado às identidades admitidas pelo companion live, pois charmap, colisões, eventos, combate e RAM não estão ainda comprovados para essa variante.
 - **PG-009 — execução e provas:** 76/76 testes V8 isolados para código de leitor/painel; 4 casos unitários Green, um deles skipped por exigir caminho de ROM real no executor. A auditoria dos binários foi realizada por implementação Python independente; **não** foi reexecutado `npm test` nativo desde as alterações T65. O teste Node completo anterior T64 era de uma revisão anterior.
 - **Estado e evidência:** detalhes no histórico append-only e no novo `docs/POKEGUIDE_ROM_UPLOAD_AUDIT_T65.json`. Red/Blue significativamente corroboradas; Green p1 apenas estrutura estática parcial. **100% NÃO CERTIFICADO**; faltam interpretação própria dos textos/scripts da Green e E2E com RAM/emulador e 3 variantes.
+
+
+### T66 — 2026-10-31: extensão interprocedimental ROM0 CALL/RST
+- **PG-012 — CÓDIGO NOVO / CERTIFICAÇÃO BRIDGE PENDENTE:** `rom0CallClosureEvidence.js` segue candidatos ROM0 de `CALL`, `RST`, `JR` e `JP` a partir dos destinos que o atlas já corroborou, incluindo ciclos, colisões e fronteiras de banco. Saltos indiretos e ROMX ativo permanecem desconhecidos.
+- **PG-009 — TESTES PUBLICADOS, NÃO EXECUTADOS NESTA FASE:** nova suite `tests/rom0CallClosureEvidence.test.js` com seis testes sintéticos e três casos condicionais das ROMs originais; `scripts/certifyAsm626.js` publica métricas por variante quando executado pela Bridge. Não foi atribuído nenhum total de testes aprovados antecipadamente.
+- **PG-004 — EFEITOS E PROGRESSO:** nenhum script, flag ou evento foi declarado executado. Os 1 126 efeitos de interação continuam por certificar até haver semântica completa, ligações ROM/RAM reais e execução diferencial.
+- **Estado:** cobertura de 100% **NÃO CERTIFICADA**; PR #1 continua Draft; `main` e aplicação ativa não alteradas; histórico original mantido por acrescento.
