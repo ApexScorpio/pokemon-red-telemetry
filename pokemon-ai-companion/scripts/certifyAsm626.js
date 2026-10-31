@@ -886,6 +886,7 @@ function main(){
   'tests/romGlobalFlagReadback.test.js',
   'tests/romLiveStateAudit.test.js',
   'tests/romReadOnlyRetroArchProbe.test.js',
+  'tests/romRuntimeConnectionSnapshot.test.js',
   'tests/romCampaignUi.test.js',
   'tests/worldAdvisorPanel.test.js'
  ],env,40,0);

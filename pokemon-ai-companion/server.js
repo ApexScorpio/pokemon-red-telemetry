@@ -4,6 +4,7 @@ const path = require('path');
 const { createServerSafetyPolicy, denySideEffect, publicFile } = require('./serverSafetyPolicy');
 const { WebSocketServer } = require('ws');
 const RetroArchClient = require('./retroarchClient');
+const {buildLocalConnectionResponse}=require('./romRuntimeConnectionSnapshot');
 const { askAdvisor, getLiveAdvice } = require('./aiAdvisor');
 const { formatTelemetryMarkdown, syncToGitHub, triggerDebouncedSync, getLastSyncTimeString, GITHUB_FILE_URL, GITHUB_RAW_URL } = require('./githubSync');
 
@@ -65,6 +66,18 @@ const server = http.createServer(async (req, res) => {
       json(500,{success:false,error:'UPDATE_FAILED_WITHOUT_MODIFYING_UNCOMMITTED_WORK'});
     }
     return;
+  }
+
+  if (url.pathname === '/api/runtime-connection') {
+    if(req.method!=='GET'){
+      res.writeHead(405);return res.end('METHOD_NOT_ALLOWED');
+    }
+    const result=buildLocalConnectionResponse({
+      remoteAddress:req.socket?.remoteAddress,
+      client,startupHost:IPHONE_IP,startupPort:RETROARCH_PORT
+    });
+    res.writeHead(result.status,{'Content-Type':'application/json; charset=utf-8'});
+    return res.end(JSON.stringify(result.body));
   }
 
   if (url.pathname === '/api/state') {
