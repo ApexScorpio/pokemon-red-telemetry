@@ -727,3 +727,7 @@
 - Bridge 093 verificou ASM 650/650, 1287 PASS/1 SKIP em 1288, 0 FAIL; ROMs Red/Blue/Green sem gameplay live.
 - Novo `romUdpResponseSourceGuard`: em destino IPv4 literal exige origem IP+porta exatamente iguais; `localhost` exige loopback, nomes DNS usam apenas filtro de porta (limite conhecido). UDP `handleResponse` recebe `rinfo` e recusa fontes divergentes; callbacks pendentes escopados com geração e identidade contra timeouts antigos; `setTarget` cancela os pedidos sem fechar socket; `readMemoryBlock` interrompe chunks ao trocar destino e início do poll tem barreiras após primeiras leituras. 12 testes isolados adicionados ao certificador.
 - Risco residual de UDP sem transaction ID: resposta tardia do mesmo IP/porta após geração nova não pode ser provada por essa origem; continuar a testar fases assíncronas. Bridge 094 prevista ASM 662/662, full 1299 PASS/1 SKIP / 1300; não são resultados já executados. Histórico append-only; recursos protegidos intocados.
+
+
+### T140 — 2026-10-31: parser da Bridge 094 impediu os testes UDP
+- Bridge 094 FAILED em 629 ms, parser PowerShell linha 128 com `Where` isolado; NÃO houve clone nem execução dos testes, pelo que T139 permanece sem certificação. A causa da transformação textual da linha não é comprovada. Script 095 simplificado sem esse tipo de expressão; objetivo manter a validação do transporte UDP e ROMs sem tocar nos recursos protegidos. Histórico append-only.
