@@ -2003,3 +2003,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 ### 2026-10-31 — ROM0: condição de aceitação sem presumir o resultado das ROMs reais
 - A regressão com ROMs reais deixou de exigir que a fronteira de instruções candidatas termine sem limite antes de ter havido execução. Em vez disso, verifica a coerência entre `remainingQueue`, `budgetExhausted` e `staticCandidateQueueExhausted` e aguarda valores efetivamente medidos.
 - Commit `140e190ea1747202849e251faac3798c1d74ba4b`; nenhum teste apresentado como aprovado antecipadamente. Proteções, `main` e preview ativo inalterados.
+
+
+### T67a — 2026-10-31: tabela indireta ROM0 com destinos candidatos
+- Lido e confirmado o job real `PSB-20261031-0810-POKEGUIDE-ROM0CALL-027` (SUCCEEDED, exit 0). Red, Blue e Green International: 59 sementes ROM0, 2648 instruções candidatas, 5066 bytes, 183 CALL, 84 destinos ROM0, 336 ramificações, 12 transferências ROMX com banco desconhecido e 3 JP HL dinâmicos; fronteira estática vazia, efeitos de gameplay não provados.
+- Foi publicado o módulo atualizado `rom0CallClosureEvidence.js`, commit `ecbd30a8561bebfa396383eb7e28312fa612d2f8`: passa a acrescentar **candidatos** de uma tabela literal de saltos ROM0 estruturalmente limitada, incluindo escape condicional, e a classificar separadamente trampolins HL. Nunca converte endereços em execução comprovada nem resolve banco ROMX sem evidência.
+- Testes regressivos e execução native Bridge **pendentes após esta alteração**. `main`, servidor, sessões, saves e ROMs mantidos fora das alterações.
