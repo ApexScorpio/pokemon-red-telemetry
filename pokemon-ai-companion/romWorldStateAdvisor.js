@@ -9,6 +9,7 @@ const {candidateFlagLinksForMap}=require('./romStaticWorldFlagDependencies');
 const {getMapFlagOperationCandidates}=require('./romGlobalFlagOperationCatalogue');
 const {buildNamedEventEvidenceLedger}=require('./romNamedEventEvidenceLedger');
 const {buildMapNamedEventEvidence}=require('./romMapNamedEventEvidence');
+const {buildWorldwideNamedEventCoverage}=require('./romWorldNamedEventCoverage');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -170,6 +171,10 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  const currentMapNamedEventEvidence=buildMapNamedEventEvidence({
   ledger:namedEventEvidence,worldEventAtlas:namedWorldEventAtlas,mapId
  });
+ const worldwideNamedCoverage=buildWorldwideNamedEventCoverage({
+  ledger:namedEventEvidence,worldEventAtlas:namedWorldEventAtlas,
+  mapReferences:maps.data
+ });
  const mapStaticInventory=worldIndex.verified?
    getMapContents(worldIndex,mapId):null;
  const campaign=worldIndex.verified?buildCampaignWorldTracker({
@@ -190,6 +195,7 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    mapStaticInventory,mapChecklist,
    romNamedEventEvidenceVerified:namedEventEvidence.verified===true,
    romMapNamedEventEvidence:currentMapNamedEventEvidence,
+   romWorldwideNamedEventCoverage:worldwideNamedCoverage,
    romNamedEventEvidenceSummary:namedEventEvidence.verified===true?
     namedEventEvidence.summary:null,
    romNamedEventEffectsExecutedVerified:false,

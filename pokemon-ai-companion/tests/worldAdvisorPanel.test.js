@@ -180,6 +180,35 @@ test('all physical BIT SET RES operations in current map are shown without gamep
  s.connected=false;
  assert.doesNotMatch(render(s).body.textContent,/BIT_TEST bit 1231/);
 });
+test('worldwide 248-map index renders only as conditional ROM evidence',()=>{
+ const s=live();
+ const maps=Array.from({length:248},(_,mapId)=>({
+  mapId,mapName:'Map '+mapId,flagClearBits:0,
+  namedCandidateBits:0
+ }));
+ maps[21].flagClearBits=4;maps[21].namedCandidateBits=7;
+ maps[14].flagClearBits=2;maps[14].namedCandidateBits=2;
+ s.worldAdvisor.romWorldwideNamedEventCoverage={
+  verified:true,romSha256:s.worldAdvisor.romSha256,
+  actionsObserved:false,gameplayComplete:false,maps,unmappedEvents:[],
+  summary:{mapIds:248,namedReferenceEvents:507,
+   namedBitsWithMapEvidence:400,namedBitsWithNoDirectMapEvidence:107,
+   mapIdsWithCandidates:2}
+ };
+ const view=render(s);
+ assert.match(view.body.textContent,/MAPAS COM REFERÊNCIAS DE EVENTOS/);
+ assert.match(view.body.textContent,/400 eventos nomeados/);
+ assert.match(view.body.textContent,/107 sem associação direta/);
+ assert.match(view.body.textContent,/Mapa #21/);
+ assert.match(view.body.textContent,/4 referências com bit inativo/);
+ assert.match(view.body.textContent,/não são missões por concluir/);
+ assert.equal(view.body.innerHTML,null);
+ s.worldAdvisor.romWorldwideNamedEventCoverage.romSha256='WRONG';
+ assert.doesNotMatch(render(s).body.textContent,/MAPAS COM REFERÊNCIAS DE EVENTOS/);
+ s.worldAdvisor.romWorldwideNamedEventCoverage.romSha256=s.worldAdvisor.romSha256;
+ s.connected=false;
+ assert.doesNotMatch(render(s).body.textContent,/MAPAS COM REFERÊNCIAS DE EVENTOS/);
+});
 test('current map lists named ROM event candidates with independent RAM flag states',()=>{
  const s=live();
  s.worldAdvisor.romMapNamedEventEvidence={

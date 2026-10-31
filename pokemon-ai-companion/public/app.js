@@ -876,6 +876,44 @@ function renderWorldAdvisor(state) {
     const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(point>=0)lines.splice(point,0,...evidence);
   }
+  // All 248 map IDs: candidate event associations, never a quest checklist.
+  // A clear bit might be reset, transient, or part of a branch rather than
+  // an incomplete mission. Ranking is for investigation, not navigation.
+  const worldwide=advice.romWorldwideNamedEventCoverage;
+  if(worldwide?.verified===true&&
+     worldwide.romSha256===advice.romSha256&&
+     worldwide.summary?.mapIds===248&&
+     worldwide.summary?.namedReferenceEvents===507&&
+     Array.isArray(worldwide.maps)&&worldwide.maps.length===248&&
+     Array.isArray(worldwide.unmappedEvents)&&
+     worldwide.summary.namedBitsWithMapEvidence+
+      worldwide.summary.namedBitsWithNoDirectMapEvidence===507&&
+     worldwide.actionsObserved===false&&
+     worldwide.gameplayComplete===false){
+    const all=[
+      '--- MAPAS COM REFERÊNCIAS DE EVENTOS ---',
+      'Em 248 IDs: '+worldwide.summary.namedBitsWithMapEvidence+
+      ' eventos nomeados têm associação ROM a algum mapa; '+
+      worldwide.summary.namedBitsWithNoDirectMapEvidence+
+      ' sem associação direta conhecida.',
+      worldwide.summary.mapIdsWithCandidates+
+      ' mapas têm pelo menos uma referência ROM identificada.'
+    ];
+    const hotspots=worldwide.maps.filter(m=>m.flagClearBits>0).
+      sort((a,b)=>b.flagClearBits-a.flagClearBits||a.mapId-b.mapId).
+      slice(0,8);
+    for(const m of hotspots){
+      const mapName=typeof m.mapName==='string'&&m.mapName?
+        ' ('+m.mapName+')':'';
+      all.push('• Mapa #'+m.mapId+mapName+
+       ': '+m.flagClearBits+' referências com bit inativo; '+
+       m.namedCandidateBits+' referências totais');
+    }
+    all.push('⚠️ Bits inativos não são missões por concluir; '+
+     'a associação ROM não demonstra presença, acesso, execução ou recompensa.','');
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...all);
+  }
   // Show ROM-backed candidate event bindings for this map only, cross-checked
   // against the same 507 named bits in a corroborated RAM read.
   // Never present these links as confirmed script actions or rewards.
