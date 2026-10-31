@@ -1237,11 +1237,11 @@ class RetroArchClient extends EventEmitter {
       enemyPartyRaw = blockWorldEvents.slice(764, 772);
     }
 
-    // Re-read the entire global flag domains (D6F0..D886), then the map ID.
-    // A duplicate RAM read that differs cannot justify global completed/open
-    // flags in the world panel. This does not claim an atomic snapshot.
+    // Re-read toggle flags D5A6..D5C5 as well as D6F0..D886, then map ID.
+    // Mismatches reject world evidence. This does not prove an atomic snapshot.
     const globalFlagReadback=verifyGlobalFlagReadback({
       firstWorldBlockHex:blockWorldEvents,
+      repeatToggleWindowHex:await this.readMemoryBlock('D5A6',32),
       repeatFlagWindowHex:await this.readMemoryBlock('D6F0',407),
       repeatMapHex:await this.readMemoryBlock('D35E',1),
       expectedMapId:this.latestState.mapId,

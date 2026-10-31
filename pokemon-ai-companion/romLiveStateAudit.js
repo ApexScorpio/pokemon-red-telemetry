@@ -40,10 +40,12 @@ function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
     {romProfileMatched:true,readbackVerified:false});
   return result('RAM_READBACK_REJECTED',
    {romProfileMatched:true,readbackVerified:false,
-    rejectionDomain:['MAP','RAM','HIDDEN_ITEMS','HIDDEN_COINS','WORLD_EVENTS']
+    rejectionDomain:['MAP','RAM','HIDDEN_ITEMS','HIDDEN_COINS','WORLD_EVENTS','OBJECT_TOGGLES']
      .includes(guard.domain)?guard.domain:'OTHER'});
  }
  if(guard.readbackBytesMatched!==336||
+    guard.toggleBytesMatched!==32||guard.allFlagBytesMatched!==368||
+    guard.toggleReadbackVerified!==true||
     guard.snapshotAtomicVerified!==false||
     guard.playerActionConfirmed!==false)
   return result('READBACK_GUARD_CONTRACT_MISMATCH',
@@ -63,7 +65,8 @@ function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
  return result('LIVE_WORLD_FLAGS_REPEAT_CORROBORATED',{
   romProfileMatched:true,readbackVerified:true,
   ledgerVerified:true,worldAdvisorVerified:true,
-  matchedFlagBytes:336,normalMapHeaders:226,
+  matchedFlagBytes:336,matchedToggleBytes:32,matchedTotalFlagBytes:368,
+  normalMapHeaders:226,
   activeMapId:Number.isInteger(state.mapId)?state.mapId:null,
   observedAt:typeof state.lastUpdate==='string'?
    state.lastUpdate:null,

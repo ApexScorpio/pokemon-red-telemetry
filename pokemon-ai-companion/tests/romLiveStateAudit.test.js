@@ -10,7 +10,8 @@ const state=()=>({
  lastUpdate:new Date().toISOString(),
  romRuntimeIdentity:{matched:true,profileSha256:RED},
  memoryReadStatus:{globalFlagReadback:{
-  verified:true,readbackBytesMatched:336,
+  verified:true,readbackBytesMatched:336,toggleBytesMatched:32,
+  allFlagBytesMatched:368,toggleReadbackVerified:true,
   snapshotAtomicVerified:false,playerActionConfirmed:false
  }},
  globalCampaignLedger:{verified:true,romSha256:RED,mapCount:226,
@@ -24,6 +25,8 @@ test('live state requires same-ROM readback across 336 bytes but never proves ac
  const r=classifyLiveWorldState(state());
  assert.equal(r.status,'LIVE_WORLD_FLAGS_REPEAT_CORROBORATED');
  assert.equal(r.matchedFlagBytes,336);
+ assert.equal(r.matchedToggleBytes,32);
+ assert.equal(r.matchedTotalFlagBytes,368);
  assert.equal(r.normalMapHeaders,226);
  assert.equal(r.liveGameCertified,false);
  assert.equal(r.atomicMemorySnapshotCertified,false);
@@ -68,6 +71,10 @@ test('incorrect ledger and mismatched advisor do not produce false positives',()
  assert.equal(classifyLiveWorldState(a).status,'WORLD_LEDGER_NOT_CORROBORATED');
  const b=state();b.worldAdvisor.globalFlagReadbackVerified=false;
  assert.equal(classifyLiveWorldState(b).status,'WORLD_ADVISOR_NOT_CORROBORATED');
+ const absent=state();delete absent.memoryReadStatus.globalFlagReadback.toggleBytesMatched;
+ assert.equal(classifyLiveWorldState(absent).status,'READBACK_GUARD_CONTRACT_MISMATCH');
+ const falseToggle=state();falseToggle.memoryReadStatus.globalFlagReadback.toggleReadbackVerified=false;
+ assert.equal(classifyLiveWorldState(falseToggle).status,'READBACK_GUARD_CONTRACT_MISMATCH');
  const c=state();c.memoryReadStatus.globalFlagReadback.snapshotAtomicVerified=true;
  assert.equal(classifyLiveWorldState(c).status,'READBACK_GUARD_CONTRACT_MISMATCH');
 });

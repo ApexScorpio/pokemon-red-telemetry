@@ -13,7 +13,7 @@ const repeat=b=>{
  return x;
 };
 const matching=(b=world(),r=repeat(b))=>({
- firstWorldBlockHex:b,repeatFlagWindowHex:r,
+ firstWorldBlockHex:b,repeatToggleWindowHex:b.slice(6,38),repeatFlagWindowHex:r,
  repeatMapHex:['0a'],expectedMapId:10,
  romIdentityMatched:true,mapWindowVerified:true,
  positionWindowVerified:true
@@ -22,6 +22,9 @@ test('336 global flags are independently repeated without claiming an atomic fra
  const b=world();b[336]='01';b[350]='a0';b[423]='FE';b[742]='42';
  const a=matching(b),r=verifyGlobalFlagReadback(a);
  assert.equal(r.verified,true);assert.equal(r.readbackBytesMatched,336);
+ assert.equal(r.toggleBytesMatched,32);
+ assert.equal(r.allFlagBytesMatched,368);
+ assert.equal(r.toggleReadbackVerified,true);
  assert.equal(r.hiddenItemBytesMatched,14);
  assert.equal(r.hiddenCoinBytesMatched,2);
  assert.equal(r.worldEventBytesMatched,320);
@@ -43,6 +46,9 @@ test('a readback is case-insensitive hex but rejects any changed byte per domain
 });
 test('missing or partial second read never promotes synthetic RAM to live certainty',()=>{
  const options=[
+  {repeatToggleWindowHex:null},
+  {repeatToggleWindowHex:Array(31).fill('00')},
+  {repeatToggleWindowHex:Array(32).fill('gg')},
   {repeatFlagWindowHex:null},
   {repeatFlagWindowHex:Array(406).fill('00')},
   {repeatFlagWindowHex:Array(407).fill('gg')},
@@ -59,11 +65,14 @@ test('missing or partial second read never promotes synthetic RAM to live certai
   const x=verifyGlobalFlagReadback({...matching(),...changes});
   assert.equal(x.verified,false);
   assert.equal(x.readbackBytesMatched,0);
+  assert.equal(x.toggleBytesMatched,0);
+  assert.equal(x.toggleReadbackVerified,false);
   assert.equal(x.romAndMapCorroborated,false);
  }
 });
 test('live RetroArch pipeline requires corroboration before global ledgers',()=>{
  const src=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
+ assert.match(src,/readMemoryBlock\('D5A6',32\)/);
  assert.match(src,/readMemoryBlock\('D6F0',407\)/);
  assert.match(src,/readMemoryBlock\('D35E',1\)/);
  assert.match(src,/globalFlagReadback=verifyGlobalFlagReadback\(/);
@@ -79,4 +88,24 @@ test('live RetroArch pipeline requires corroboration before global ledgers',()=>
  const advisorSource=fs.readFileSync(path.join(__dirname,'../romWorldStateAdvisor.js'),'utf8');
  assert.match(advisorSource,/globalFlagReadbackVerified:globalFlagReadback\?\.verified===true/);
  assert.match(advisorSource,/globalFlagSnapshotAtomicVerified:false/);
+});
+test('each selected toggle byte changing between reads rejects all world flags',()=>{
+ for(const i of [0,1,13,31]){
+  const initial=world();initial[6+i]='7F';
+  assert.equal(verifyGlobalFlagReadback(matching(initial)).verified,true);
+  const mismatch=matching(initial);mismatch.repeatToggleWindowHex[i]='7E';
+  const result=verifyGlobalFlagReadback(mismatch);
+  assert.equal(result.verified,false);
+  assert.equal(result.domain,'OBJECT_TOGGLES');
+  assert.equal(result.readbackBytesMatched,0);
+  assert.equal(result.toggleBytesMatched,0);
+  assert.equal(result.allFlagBytesMatched,0);
+ }
+});
+test('wrong toggle window offset is rejected',()=>{
+ const initial=world();initial[5]='aa';initial[6]='03';initial[37]='4f';
+ assert.equal(verifyGlobalFlagReadback(matching(initial)).verified,true);
+ const mismatched=matching(initial);
+ mismatched.repeatToggleWindowHex=initial.slice(5,37);
+ assert.equal(verifyGlobalFlagReadback(mismatched).verified,false);
 });
