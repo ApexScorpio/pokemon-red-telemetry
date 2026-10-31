@@ -737,3 +737,7 @@
 - Bridge 095: UDP 12/12, alvo 12/12, poll failure 3/3, campanha 31/31, ASM 662/662, full 1299 PASS+1 SKIP/1300, zero falhas; 3 ROMs, sem gameplay live.
 - Corrigida VRAM background: `captureGuardedVideoMemory` verifica target scope, ROM, mapa, x/y e bytes antes/depois das leituras assíncronas; `invalidateWorldEvidence` elimina imagem anterior. Preservado canvas read-only e frequência original, sem novo pedido UDP nem ação sobre o emulador. 12 testes incluídos no certifier.
 - Bridge 096 ainda a executar: esperado ASM 674/674, full 1311 PASS+1 SKIP/1312. Validação VRAM live e gameplay continuam pendentes; histórico append-only.
+
+
+### T142 — 2026-10-31: mocks de VRAM assíncrona corrigidos antes da certificação
+- Corrigidos dois cenários no ficheiro de testes T141 onde só a última das quatro Promises de leitura de VRAM era libertada. Agora cada cenário espera quatro pedidos pendentes e liberta todos após a mudança de scope, verificando que nenhuma imagem antiga é publicada. Código de produção não alterado. Bridge 096 pendente; histórico append-only.

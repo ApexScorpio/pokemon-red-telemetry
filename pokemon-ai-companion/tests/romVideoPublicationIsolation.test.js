@@ -30,10 +30,14 @@ test('valid video frame emits one update only for corroborated scope',async()=>{
 });
 test('host switch while the VRAM read is pending rejects the old frame',async()=>{
  const {c,published}=fake(),p=proof(c);
- let release; c.readMemoryBlock=()=>new Promise(r=>{release=r;});
+ const release=[];
+ c.readMemoryBlock=(_addr,length)=>new Promise(resolve=>{
+  release.push(()=>resolve(validHex(length)));
+ });
  const read=c.captureGuardedVideoMemory(p);
+ assert.equal(release.length,4);
  c.ip='192.0.2.21';c._targetGeneration=1;
- release(validHex(160)); // remaining promises use the same delayed source
+ for(const fulfill of release)fulfill();
  assert.equal(await read,false);
  assert.equal(published.length,0);assert.equal(c.latestState.videoMemory,null);
 });
@@ -51,11 +55,14 @@ test('map change before read starts refuses VRAM',async()=>{
 });
 test('map change while VRAM waits refuses stale image publication',async()=>{
  const {c,published}=fake(),p=proof(c);
- let release;
- c.readMemoryBlock=(a,n)=>new Promise(r=>{release=()=>r(validHex(n));});
+ const releases=[];
+ c.readMemoryBlock=(_address,length)=>new Promise(resolve=>{
+  releases.push(()=>resolve(validHex(length)));
+ });
  const waiting=c.captureGuardedVideoMemory(p);
+ assert.equal(releases.length,4);
  c.latestState.mapId=16;
- release();
+ for(const fulfill of releases)fulfill();
  assert.equal(await waiting,false);
  assert.equal(published.length,0);
 });
