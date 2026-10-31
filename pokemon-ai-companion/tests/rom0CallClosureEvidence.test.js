@@ -103,8 +103,13 @@ test('ROMX call source keeps an auditable seed-to-call witness and 63 physical b
  assert.equal(site.physicallyMappedBanks,63);
  assert.equal(site.firstOpcodeDecodableBanks,1);
  assert.deepEqual(site.physicalMappings.filter(x=>x.firstOpcodeDecodable),[
-  {bank:7,fileOffset:offset,firstOpcodeDecodable:true}
+  {bank:7,fileOffset:offset,selectableIfStandardMbc1:null,
+   firstOpcodeDecodable:true}
  ]);
+ // Unsupported synthetic header must not cause invented ROMX exclusions.
+ assert.equal(site.standardMbc1Conditional,false);
+ assert.deepEqual(site.excludedIfStandardMbc1,[]);
+ assert.equal(site.conditionalCandidateCount,null);
  assert.equal(site.activeBankKnown,false);
  assert.equal(site.selectedFileOffset,null);
  assert.equal(site.transferExecuted,false);

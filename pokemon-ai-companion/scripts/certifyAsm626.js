@@ -730,6 +730,7 @@ function main(){
   'tests/romMappingGapLedger.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
+  'tests/romRomxBankAccess.test.js',
   'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romGlobalFlagReadback.test.js',
