@@ -393,9 +393,32 @@ function main(){
     x.conditionalCandidateCount===(x.standardMbc1Conditional?62:null)&&
     x.excludedIfStandardMbc1.length===(x.standardMbc1Conditional?1:0))&&
    closure.romxHeaderConditionalExcludedMappingsTotal===
-    closure.romxStandardMbc1ConditionalSites,
-   'ROM0 ROMX cross-bank physical-location integrity mismatch: '+variant);
+    closure.romxStandardMbc1ConditionalSites&&
+   closure.romxTransferSites.every(x=>
+    x.cartridgeType===rom[0x147]&&x.romSizeCode===rom[0x148]&&
+    x.cartridgeTypeHex==='0x'+rom[0x147].toString(16).toUpperCase().padStart(2,'0')&&
+    x.romSizeCodeHex==='0x'+rom[0x148].toString(16).toUpperCase().padStart(2,'0')&&
+    x.romSizeHeaderMatchesFile===(rom[0x148]===5)&&
+    x.standardMbc1Conditional===([1,2,3].includes(rom[0x147])&&rom[0x148]===5)&&
+    x.mbc1ConditionalReason===(
+     ![1,2,3].includes(rom[0x147])?'HEADER_TYPE_NOT_STANDARD_MBC1':
+      rom[0x148]!==5?'HEADER_SIZE_CODE_NOT_1MIB':
+       'HEADER_STANDARD_MBC1_1MIB_ONLY')),
+   'ROM0 ROMX cross-bank physical-location/header integrity mismatch: '+variant);
   const romLabel='ROM_'+variant.toUpperCase();
+  const headerSite=closure.romxTransferSites[0];
+  assert(Boolean(headerSite)&&
+   closure.romxTransferSites.every(x=>
+    x.cartridgeType===headerSite.cartridgeType&&
+    x.romSizeCode===headerSite.romSizeCode&&
+    x.mbc1ConditionalReason===headerSite.mbc1ConditionalReason),
+   'ROMX header evidence inconsistent between sites: '+variant);
+  log(romLabel+'_CARTRIDGE_TYPE_HEX='+headerSite.cartridgeTypeHex);
+  log(romLabel+'_ROM_SIZE_CODE_HEX='+headerSite.romSizeCodeHex);
+  log(romLabel+'_CONTROLLER_FAMILY_BY_HEADER='+headerSite.controllerFamilyByHeader);
+  log(romLabel+'_HEADER_SIZE_MATCHES_1MIB='+headerSite.romSizeHeaderMatchesFile);
+  log(romLabel+'_MBC1_CONDITION_REASON='+headerSite.mbc1ConditionalReason);
+  log(romLabel+'_CONTROLLER_RUNTIME_VERIFIED=FALSE');
   log(romLabel+'_ROMX_SITE_COUNT='+closure.romxTransferSites.length);
   log(romLabel+'_JPHL_SITE_COUNT='+closure.indirectSiteDetails.length);
   log(romLabel+'_ROMX_PHYSICAL_MAPPING_COUNT='+closure.romxPhysicalMappingsTotal);
@@ -409,6 +432,9 @@ function main(){
     transferKind:x.transferKind,targetCpu:x.targetCpu,
     originRootCpu:x.originRootCpu,witnessPath:x.witnessPath,
     physicallyMappedBanks:x.physicallyMappedBanks,
+    cartridgeTypeHex:x.cartridgeTypeHex,romSizeCodeHex:x.romSizeCodeHex,
+    controllerFamilyByHeader:x.controllerFamilyByHeader,
+    mbc1ConditionalReason:x.mbc1ConditionalReason,
     standardMbc1Conditional:x.standardMbc1Conditional,
     excludedIfStandardMbc1:x.excludedIfStandardMbc1,
     conditionalCandidateCount:x.conditionalCandidateCount,
