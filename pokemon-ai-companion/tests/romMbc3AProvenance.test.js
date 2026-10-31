@@ -42,8 +42,9 @@ test('CALL witness or false instruction boundary breaks provenance',()=>{
  const a=traceMbc3AProvenance({rom,
   witnessPath:[{pc:0x100,via:'ROOT'},{pc:0x102,via:'call'}],writePc:0x102});
  assert.equal(a.stopReason,'NON_LINEAR_WITNESS');
- const b=traceMbc3AProvenance({rom,
-  witnessPath:[{pc:0x101,via:'ROOT'},{pc:0x102,via:'fallthrough'}],writePc:0x102});
+ const rom2=fake();rom2.set([0x3e,7,0x00,0xea,0x00,0x20],0x100);
+ const b=traceMbc3AProvenance({rom:rom2,
+  witnessPath:[{pc:0x100,via:'ROOT'},{pc:0x103,via:'fallthrough'}],writePc:0x103});
  assert.equal(b.stopReason,'BAD_INSTRUCTION_BOUNDARY');
 });
 test('unsupported header, invalid witness and out-of-range budgets fail closed',()=>{
