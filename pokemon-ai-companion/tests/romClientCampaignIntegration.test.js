@@ -535,7 +535,8 @@ test('world invalidation clears battle byte history and session baseline',()=>{
 });
 test('battle transition ingest occurs only after final publication position guard',()=>{
  const final=source.indexOf("    const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);");
- const guard=source.indexOf("    if(publicationPositionWindow.verified!==true",final);
+ const scope=source.indexOf("    const targetScopeStable=matchesTargetScope(this,pollTargetScope);",final);
+ const guard=source.indexOf("    if(!targetScopeStable||publicationPositionWindow.verified!==true",scope);
  const ingester=source.indexOf("    const scriptedTransition=this._scriptedBattleStateSession.ingest({",final);
  const saving=source.indexOf("    this.persistState(this.latestState);",ingester);
  const emit=source.indexOf("    this.emit('update', this.latestState);",ingester);
@@ -543,7 +544,13 @@ test('battle transition ingest occurs only after final publication position guar
  const pollEntry=source.indexOf("    this._scriptedBattlePollSequence=(this._scriptedBattlePollSequence||0)+1;");
  assert.ok(sourceRead>=0&&sourceRead<final);
  assert.ok(pollEntry>=0&&pollEntry<sourceRead);
- assert.ok(final>0&&guard>final&&ingester>guard&&saving>ingester&&emit>saving);
+ assert.ok(final>0&&scope>final&&guard>scope&&ingester>guard&&saving>ingester&&emit>saving);
+ const safety=source.slice(guard,ingester);
+ assert.match(safety,/TARGET_SWITCH_DURING_POLL_REJECT_PUBLICATION/);
+ assert.match(safety,/publicationPositionWindow\.mapId!==this\.latestState\.mapId/);
+ assert.match(safety,/publicationPositionWindow\.x!==latePositionWindow\.x/);
+ assert.match(safety,/this\.invalidateWorldEvidence\(why\)/);
+ assert.match(safety,/\n      return;/);
  assert.match(source.slice(ingester,ingester+660),/publicationGuardVerified:scriptedTargetStillSame/);
  assert.match(source.slice(ingester,ingester+660),/pollSequence:this\._scriptedBattlePollSequence/);
 });

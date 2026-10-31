@@ -68,7 +68,9 @@ test('last read-only position gate is after actor route planning and before emit
  assert.ok(finalCheck>finalRead);
  assert.ok(persisted>finalCheck&&lastEmit>persisted);
  const safety=src.slice(finalCheck,persisted);
- assert.match(safety,/if\(publicationPositionWindow\.verified!==true\|\|/);
+ assert.match(safety,/const targetScopeStable=matchesTargetScope\(this,pollTargetScope\)/);
+ assert.match(safety,/if\(!targetScopeStable\|\|publicationPositionWindow\.verified!==true\|\|/);
+ assert.match(safety,/TARGET_SWITCH_DURING_POLL_REJECT_PUBLICATION/);
  assert.match(safety,/this\.latestState\.connected=false/);
  assert.match(safety,/this\.latestState\.memoryReadStatus\.verified=false/);
  assert.match(safety,/this\.invalidateWorldEvidence\(why\)/);

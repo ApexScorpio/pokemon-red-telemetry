@@ -681,3 +681,9 @@
 - Resultado Bridge 085 real: motion 12/12, regressões 52/52, ASM 590/590, full 1227 PASS / 1 SKIP de 1228, 0 falhas; Red/Blue/Green presentes. Não é certificação de gameplay 100%.
 - Falha concreta: `setTarget` alterava IP/porta sem invalidar o perfil CRC/ROM, apesar de GET_STATUS poder esperar até 4 s. T131 publica guard por destino + geração, invalida ROM, memória e mapa no momento da mudança, força nova verificação GET_STATUS, rejeita poll antigo tanto no status como no gate final, sem reiniciar socket/emulador, incluindo troca e retorno ao mesmo destino. 12 testes novos `romTargetSwitchInvalidation.test.js` no certificador.
 - Ponte 086 ainda por executar: estimativa 602/602 ASM, 1239 PASS / 1 SKIP de 1240 testes full, 0 falhas. A certificação ao vivo continua em falta. Histórico acrescentado; `main`, preview, ROMs/saves, Antigravity e outros processos protegidos inalterados.
+
+
+### T132 — 2026-10-31: diagnóstico e reparação dos testes da Bridge 086
+- Bridge 086: T131 12/12, movimento 12/12, ASM 602/602 sem falhas; full 1237 PASS / 2 FAIL / 1 SKIP (1240), logo **FAILED**. Falhas: dois testes estáticos esperavam `if(publicationPositionWindow.verified!==true` e ignoravam a nova condição `!targetScopeStable||`, sem evidência de erro de dados ROM.
+- Atualizadas duas asserções de regressão (não código runtime): agora obrigam a testar a segurança de alvo e a posição antes de publicar/integrar batalhas, com invalidação e retorno. Exigida a ordem cronológica dos gates. Não se eliminou qualquer teste, nem se reduziram critérios de segurança; os testes ficaram mais completos.
+- Próxima Bridge 087 por executar: 602/602 ASM e 1239 PASS/1 SKIP de 1240 full são expectativas; utilizar logs resumidos para impedir 400 kB de trechos JSON caso haja falha. Histórico append-only, sem tocar nos recursos protegidos.
