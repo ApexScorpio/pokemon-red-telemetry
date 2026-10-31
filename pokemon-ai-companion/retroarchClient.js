@@ -15,6 +15,7 @@ const {readStrengthFieldEvidence}=require('./romStrengthFieldEvidence');
 const {adviseWorld}=require('./romWorldStateAdvisor');
 const {reconcileVisibleItemCoordinates}=
  require('./romVisibleItemCoordinateGuard');
+const {matchLiveActorsToAuditedRom}=require('./romLiveActorIdentity');
 const {collectScriptedBattleLiveReadback}=
  require('./romScriptedBattleLiveReadback');
 const {ScriptedBattleStateSession}=
@@ -2222,50 +2223,35 @@ class RetroArchClient extends EventEmitter {
     };
 
     // =========================================================================
-    // ENRIQUECIMENTO DAS ENTIDADES DO MAPA (ITENS E TREINADORES IDENTIFICADOS)
+    // ROM-anchored identification of currently observed sprites. Do not
+    // assign item or trainer identities from manually listed nearby actors.
+    // A map can contain adjacent items and trainers (all 248 IDs supported).
+    // The RAM sprite object ordinal, position, and picture must all match.
     // =========================================================================
-    if (this.latestState.mapEntities && this.latestState.mapEntities.length > 0) {
-      const visItems = this.latestState.areaInfo.visibleItems || [];
-      const battles = (this.latestState.areaInfo.upcomingBoss && this.latestState.areaInfo.upcomingBoss.battles) ? this.latestState.areaInfo.upcomingBoss.battles : [];
-
-      this.latestState.mapEntities.forEach(ent => {
-        if (ent.isItem) {
-          // Procura correspondência nos itens de chão da área
-          const matchedItem = visItems.find(it => Math.abs(it.x - ent.x) <= 2 && Math.abs(it.y - ent.y) <= 2);
-          if (matchedItem) {
-            ent.name = `🎒 ${matchedItem.name}`;
-            ent.itemName = matchedItem.name;
-            ent.hint = matchedItem.hint;
-            ent.importance = matchedItem.importance;
-            ent.isCollected = matchedItem.isCollected;
-          } else {
-            ent.name = `🎒 Item no Chão (Poké Ball)`;
-          }
-          // Não marcar como recolhido apenas porque existe uma cópia na mochila/PC.
-        } else {
-          // Procura correspondência com treinadores conhecidos da área (tolerância até 4 tiles para NPCs em patrulha)
-          let matchedBt = null;
-          let bestDist = 999;
-          for (const bt of battles) {
-            const dist = Math.abs(bt.x - ent.x) + Math.abs(bt.y - ent.y);
-            if (dist <= 4 && dist < bestDist) {
-              bestDist = dist;
-              matchedBt = bt;
-            }
-          }
-          if (matchedBt) {
-            ent.isTrainer = true;
-            ent.trainerName = matchedBt.name;
-            ent.name = `⚔️ ${matchedBt.name}`;
-            ent.enemyRoster = matchedBt.enemyRoster;
-            ent.optimalLead = matchedBt.optimalLead;
-            ent.isDefeated = null; // não deduzir vitória pela lista manual
-            ent.statusLabel = 'BATALHA NÃO CONFIRMADA (FLAG AINDA SEM VÍNCULO ROM)';
-            ent.difficulty = matchedBt.difficulty;
-          }
-        }
-      });
-    }
+    const identifiedActors=matchLiveActorsToAuditedRom({
+      entities:this.latestState.mapEntities||[],
+      romAreaEvidence:this.latestState.romAreaEvidence,
+      mapId:this.latestState.mapId,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      romIdentityMatched:this.latestState.romRuntimeIdentity?.matched===true,
+      spritesVerified:
+        this.latestState.memoryReadStatus?.blocks?.overworldSprites===true,
+      positionVerified:mapConfirmation.verified===true&&
+        positionWindow.verified===true
+    });
+    this.latestState.mapEntities=identifiedActors.entities;
+    this.latestState.romLiveActorIdentification={
+      verified:identifiedActors.verified,
+      mapId:this.latestState.mapId,
+      identifiedItems:identifiedActors.identifiedItems,
+      identifiedTrainers:identifiedActors.identifiedTrainers,
+      unidentifiedSprites:identifiedActors.unidentifiedSprites,
+      method:identifiedActors.identityMethod||null,
+      reason:identifiedActors.reason||null,
+      manualProximityUsed:false,
+      gameplayVictoryCertified:false,
+      gameplayCollectionCertified:false
+    };
 
     // =========================================================================
     // 7. LEITURA EXAUSTIVA DE COMBATE E BATALHA (BLOCOS $CFE0 E $CC20)
