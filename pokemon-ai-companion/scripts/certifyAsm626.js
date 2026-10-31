@@ -1233,6 +1233,13 @@ function main(){
   detailedContents.mapsCompared);
  log('CROSS_ROM_DECODED_FIELD_DIFFERING_MAP_IDS='+
   JSON.stringify(detailedContents.differingMapIds));
+ // Scalar count and IDs: independent of PowerShell 5.1 array enumeration.
+ log('CROSS_ROM_DECODED_FIELD_DIFFERING_MAP_ID_COUNT='+
+  detailedContents.differingMapIds.length);
+ log('CROSS_ROM_DECODED_FIELD_DIFFERING_MAP_FIRST_ID='+
+  detailedContents.differingMapIds[0]);
+ log('CROSS_ROM_DECODED_FIELD_DIFFERING_MAP_SECOND_ID='+
+  detailedContents.differingMapIds[1]);
  log('CROSS_ROM_DECODED_FIELD_DIFFERENCE_COUNT='+
   detailedContents.fieldDifferenceCount);
  log('CROSS_ROM_DECODED_FIELD_BY_MAP_CATEGORY='+
