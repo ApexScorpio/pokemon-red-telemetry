@@ -384,8 +384,15 @@ class RetroArchClient extends EventEmitter {
     this.latestState.worldAdvisor={verified:false,observations:[],reason};
     this.latestState.romScriptedBattleReadbackStatus={
       verified:false,status:'WORLD_EVIDENCE_INVALIDATED',
-      reason,readOnlyRequests:0,gameProgressCertified:false
+      reason,readOnlyRequests:0,readOnlyReadCalls:0,
+      underlyingUdpPacketCount:null,gameProgressCertified:false
     };
+    // The public nested telemetry must not retain a verified result from
+    // the previous map, ROM, emulator target, or poll.
+    if(this.latestState.memoryReadStatus&&
+       typeof this.latestState.memoryReadStatus==='object')
+      this.latestState.memoryReadStatus.scriptedBattleReadback=
+        this.latestState.romScriptedBattleReadbackStatus;
   }
 
   loadPersistedState() {
@@ -394,6 +401,12 @@ class RetroArchClient extends EventEmitter {
       if (fs.existsSync(p)) {
         const saved = JSON.parse(fs.readFileSync(p, 'utf8'));
         if (saved && saved.party && saved.party.length > 0) {
+          // Legacy cache may contain an old successful script readback.
+          // It is not live evidence after process restart.
+          delete saved.romScriptedBattleReadbackStatus;
+          if(saved.memoryReadStatus&&
+             typeof saved.memoryReadStatus==='object')
+            delete saved.memoryReadStatus.scriptedBattleReadback;
           saved.connected = false;
           return saved;
         }
@@ -424,8 +437,15 @@ class RetroArchClient extends EventEmitter {
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
-        'romWarpGraph'
+        'romWarpGraph','romScriptedBattleReadbackStatus'
       ])delete persisted[transient];
+      // Retain the unrelated memory diagnostics, never a stale successful
+      // script readback. Clone the nested object to avoid mutating live state.
+      if(persisted.memoryReadStatus&&
+         typeof persisted.memoryReadStatus==='object'){
+        persisted.memoryReadStatus={...persisted.memoryReadStatus};
+        delete persisted.memoryReadStatus.scriptedBattleReadback;
+      }
       const content=JSON.stringify(persisted,null,2);
       const p = require('path').join(__dirname, 'data', 'last_known_state.json');
       fs.writeFileSync(p, content, 'utf8');

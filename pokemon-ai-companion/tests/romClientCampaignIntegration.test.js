@@ -412,3 +412,79 @@ test('remote-route VM fragment excludes async battle readback and includes memoi
  const vmFunction=vm.runInNewContext('(function(){'+block+'\n})');
  assert.equal(typeof vmFunction,'function');
 });
+
+test('scripted battle readback status is transient at both cache locations',()=>{
+ const writes=[];
+ const Agent=vm.runInNewContext('(class Agent {\n'+
+   method('persistState','loadPersistedActionHistory')+'\n})',{
+    fs:{writeFileSync:(p,s)=>writes.push({p,s})},
+    require:name=>({join:(...items)=>items.join('/')}),
+    __dirname:'/mock/app'
+   });
+ const client=new Agent();
+ const verified={verified:true,scriptValue:2,status:'SCRIPT_BYTE_REPEATED_REFERENCE_ONLY',
+   readOnlyReadCalls:2,gameProgressCertified:false};
+ const state={connected:true,isSimulation:false,trainerName:'RED',
+  areaInfo:{name:'S.S. Anne'},mapId:96,party:[{speciesId:1}],
+  romScriptedBattleReadbackStatus:verified,
+  memoryReadStatus:{blocks:{playerParty:true},scriptedBattleReadback:verified}};
+ client.persistState(state);
+ assert.equal(writes.length,2);
+ assert.equal(writes[0].s,writes[1].s);
+ for(const entry of writes){
+  const data=JSON.parse(entry.s);
+  assert.equal(Object.hasOwn(data,'romScriptedBattleReadbackStatus'),false);
+  assert.equal(Object.hasOwn(data.memoryReadStatus,'scriptedBattleReadback'),false);
+  assert.equal(data.memoryReadStatus.blocks.playerParty,true);
+ }
+ assert.equal(state.romScriptedBattleReadbackStatus.verified,true);
+ assert.equal(state.memoryReadStatus.scriptedBattleReadback.verified,true);
+});
+test('loading legacy cache strips old script readback but preserves party history',()=>{
+ const stale={verified:true,status:'SCRIPT_BYTE_REPEATED_REFERENCE_ONLY',
+  scriptValue:4,gameProgressCertified:false};
+ const original={connected:true,party:[{speciesId:25}],
+  actionHistory:[{text:'OLD ACTION'}],
+  romScriptedBattleReadbackStatus:stale,
+  memoryReadStatus:{blocks:{playerParty:true},scriptedBattleReadback:stale}};
+ const Agent=vm.runInNewContext('(class Agent {\n'+
+   method('loadPersistedState','persistState')+'\n})',{
+    fs:{existsSync:()=>true,readFileSync:()=>JSON.stringify(original)},
+    require:()=>({join:(...s)=>s.join('/')}),
+    __dirname:'/mock/app'
+   });
+ const loaded=new Agent().loadPersistedState();
+ assert.equal(loaded.connected,false);
+ assert.equal(loaded.party[0].speciesId,25);
+ assert.equal(loaded.actionHistory[0].text,'OLD ACTION');
+ assert.equal(Object.hasOwn(loaded,'romScriptedBattleReadbackStatus'),false);
+ assert.equal(Object.hasOwn(loaded.memoryReadStatus,'scriptedBattleReadback'),false);
+ assert.equal(loaded.memoryReadStatus.blocks.playerParty,true);
+});
+test('invalidating world evidence also invalidates nested script telemetry',()=>{
+ const Agent=vm.runInNewContext('(class Agent {\n'+
+   method('invalidateWorldEvidence','loadPersistedState')+'\n})');
+ const client=new Agent();
+ client.latestState={actionHistory:[{text:'PRESERVE'}],
+  memoryReadStatus:{blocks:{playerParty:true},
+   scriptedBattleReadback:{verified:true,scriptValue:2}}};
+ client.invalidateWorldEvidence('MAP_CHANGED');
+ const top=client.latestState.romScriptedBattleReadbackStatus;
+ const nested=client.latestState.memoryReadStatus.scriptedBattleReadback;
+ assert.equal(top.verified,false);
+ assert.equal(top.status,'WORLD_EVIDENCE_INVALIDATED');
+ assert.equal(top.reason,'MAP_CHANGED');
+ assert.equal(nested.verified,false);
+ assert.equal(nested.status,top.status);
+ assert.equal(nested.readOnlyReadCalls,0);
+ assert.equal(client.latestState.memoryReadStatus.blocks.playerParty,true);
+ assert.equal(client.latestState.actionHistory[0].text,'PRESERVE');
+});
+test('world invalidation still works when optional memory diagnostics are absent',()=>{
+ const Agent=vm.runInNewContext('(class Agent {\n'+
+   method('invalidateWorldEvidence','loadPersistedState')+'\n})');
+ const client=new Agent();client.latestState={};
+ client.invalidateWorldEvidence('ROM_CHANGED');
+ assert.equal(client.latestState.romScriptedBattleReadbackStatus.verified,false);
+ assert.equal(client.latestState.memoryReadStatus,undefined);
+});
