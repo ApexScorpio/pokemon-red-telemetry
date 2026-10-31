@@ -8,6 +8,20 @@ function method(from,to){
  assert.ok(start>=0&&end>start,'Method boundaries must exist');
  return source.slice(start,end);
 }
+
+// Extract only the synchronous cache computation. The later live scripted
+// battle readback is intentionally async and is tested independently.
+function remoteRouteCacheBlock(){
+ const first=source.indexOf('    const remoteSelection=selectGlobalFlagTargets({');
+ const last='    this.latestState.globalFlagItemRoutes=this._globalFlagItemRoutes;';
+ const end=source.indexOf(last,first);
+ assert.ok(first>=0&&end>first,'Route selection and cache assignment must exist');
+ const block=source.slice(first,end+last.length);
+ assert.match(block,/this\._globalFlagItemKey!==remoteKey/);
+ assert.match(block,/planGlobalFlagItemRoutes\(\{/);
+ assert.doesNotMatch(block,/\bawait\b/,'Async ROM readback must not enter synchronous route tests');
+ return block;
+}
 const transient=[
  'globalCampaignLedger','globalCampaignObjectives','globalCampaignDelta',
  'worldRecentFlagChanges','worldAdvisor','romCrossMapItemRoute',
@@ -287,10 +301,7 @@ test('remote pending flag items are routed once with verified ROM and RAM and ne
 });
 
 test('remote flags cache closes when warp graph or position window loses proof',()=>{
- const first=source.indexOf('    const remoteSelection=selectGlobalFlagTargets({');
- const end=source.indexOf('    this.latestState.worldAdvisor=adviseWorld({',first);
- assert.ok(first>=0&&end>first);
- const block=source.slice(first,end);
+ const block=remoteRouteCacheBlock();
  assert.match(block,/remoteGraphOK/);
  assert.match(block,/remoteSearchReady/);
  assert.match(block,/this\._globalFlagItemRoutes=remoteSearchReady\?/);
@@ -325,9 +336,7 @@ test('compact objective index covers 226 maps while detailed UI and BFS remain b
 });
 
 test('remote route cache must update when static connectivity changes for same hidden tile',()=>{
- const first=source.indexOf('    const remoteSelection=selectGlobalFlagTargets({');
- const end=source.indexOf('    this.latestState.worldAdvisor=adviseWorld({',first);
- const actual=source.slice(first,end);
+ const actual=remoteRouteCacheBlock();
  assert.match(actual,/t\.bitIndex,t\.mapHopCount,t\.staticRouteKnown/);
  const execute=vm.runInNewContext(
    '(function(mapConfirmation,positionWindow,modeWindow,abilityCut,abilitySurf,'+
@@ -369,9 +378,7 @@ test('world objectives use small UI payload but remote selector reads compact fu
 });
 
 test('all pending remote flags invalidate route cache, not only four selected tiles',()=>{
- const start=source.indexOf('    const remoteSelection=selectGlobalFlagTargets({');
- const end=source.indexOf('    this.latestState.worldAdvisor=adviseWorld({',start);
- const actual=source.slice(start,end);
+ const actual=remoteRouteCacheBlock();
  assert.match(actual,/remoteSelection\.pendingSignature\?\?null/);
  const execute=vm.runInNewContext('(function(mapConfirmation,positionWindow,modeWindow,'+
    'abilityCut,abilitySurf,selectGlobalFlagTargets,planGlobalFlagItemRoutes){'+
@@ -394,4 +401,14 @@ test('all pending remote flags invalidate route cache, not only four selected ti
  assert.equal(update().count,1);
  assert.equal(update().count,1);assert.equal(calls,1);
  signature='b';assert.equal(update().count,2);assert.equal(calls,2);
+});
+
+test('remote-route VM fragment excludes async battle readback and includes memoization',()=>{
+ const block=remoteRouteCacheBlock();
+ assert.match(block,/selectGlobalFlagTargets\(\{/);
+ assert.match(block,/this\.latestState\.globalFlagItemRoutes=this\._globalFlagItemRoutes/);
+ assert.doesNotMatch(block,/collectScriptedBattleLiveReadback/);
+ assert.doesNotMatch(block,/\bawait\b/);
+ const vmFunction=vm.runInNewContext('(function(){'+block+'\n})');
+ assert.equal(typeof vmFunction,'function');
 });
