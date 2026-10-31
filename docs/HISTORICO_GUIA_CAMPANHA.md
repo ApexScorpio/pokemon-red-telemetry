@@ -1998,3 +1998,8 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Novo relatório `ROM_<VARIANT>_ROM0_CALL_CLOSURE` inclui instruções candidatas, chamadas diretas, RST, saltos, destinos ROM0, operações com banco ROMX desconhecido, JP HL, causas de incerteza, fronteira restante e limites atingidos; nunca define efeitos de jogo como verificados.
 - Commit publicado: `0230906522e3806a8e01eb86d6e5d6a5d67ef850`. Certificação Bridge e testes com os três binários reais pendentes de execução; nenhuma contagem nova atribuída sem resultado.
 - `main`, instalação em execução, perfis, tokens, backups, ROMs e saves permanecem fora desta alteração de GitHub.
+
+
+### 2026-10-31 — ROM0: condição de aceitação sem presumir o resultado das ROMs reais
+- A regressão com ROMs reais deixou de exigir que a fronteira de instruções candidatas termine sem limite antes de ter havido execução. Em vez disso, verifica a coerência entre `remainingQueue`, `budgetExhausted` e `staticCandidateQueueExhausted` e aguarda valores efetivamente medidos.
+- Commit `140e190ea1747202849e251faac3798c1d74ba4b`; nenhum teste apresentado como aprovado antecipadamente. Proteções, `main` e preview ativo inalterados.
