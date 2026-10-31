@@ -477,6 +477,38 @@ function main(){
     closure.mbc3ABoundedRegisterOrMemorySites+
     closure.mbc3AUnresolvedSites<=closure.mbc3DirectWriteSiteCount,
    'MBC3 bounded A source evidence invalid: '+variant);
+  assert(closure.mbc3DirectWriteSites.every(s=>
+   s.registerInputProvenance===null||
+   (s.registerInputProvenance.verified===true&&
+    s.registerInputProvenance.sourcePc===s.aSourceProvenance?.sourcePc&&
+    s.registerInputProvenance.sourceRegister===s.aSourceProvenance?.sourceRegister&&
+    s.registerInputProvenance.executed===false&&
+    s.registerInputProvenance.runtimeValueKnown===false&&
+    s.registerInputProvenance.activeBankKnown===false&&
+    (s.registerInputProvenance.originPc===null||
+     (s.registerInputProvenance.originPc<s.registerInputProvenance.sourcePc&&
+      rom[s.registerInputProvenance.originPc]===s.registerInputProvenance.originOpcode))))&&
+   closure.mbc3RegisterInputTracedSites===
+    closure.mbc3DirectWriteSites.filter(s=>s.registerInputProvenance?.verified===true).length&&
+   closure.mbc3RegisterInputConditionalByteSites===
+    closure.mbc3DirectWriteSites.filter(s=>
+     s.registerInputProvenance?.conditionalByte!==null&&
+     s.registerInputProvenance?.conditionalByte!==undefined).length,
+   'MBC3 register lineage evidence mismatch: '+variant);
+  log(romLabel+'_MBC3_REGISTER_INPUT_TRACED_SITES='+closure.mbc3RegisterInputTracedSites);
+  log(romLabel+'_MBC3_REGISTER_INPUT_CONDITIONAL_BYTE_SITES='+closure.mbc3RegisterInputConditionalByteSites);
+  log(romLabel+'_MBC3_REGISTER_INPUT_UNRESOLVED_SITES='+closure.mbc3RegisterInputUnresolvedSites);
+  log(romLabel+'_MBC3_REGISTER_INPUT_EVIDENCE='+JSON.stringify(
+   closure.mbc3DirectWriteSites.filter(s=>s.registerInputProvenance!==null).map(s=>({
+    rom0Pc:s.rom0Pc,sourcePc:s.registerInputProvenance.sourcePc,
+    sourceRegister:s.registerInputProvenance.sourceRegister,
+    originPc:s.registerInputProvenance.originPc,
+    originKind:s.registerInputProvenance.originKind,
+    conditionalByte:s.registerInputProvenance.conditionalByte,
+    stopReason:s.registerInputProvenance.stopReason,
+    scannedInstructions:s.registerInputProvenance.scannedInstructions,
+    executed:false,runtimeValueKnown:false
+   }))));
   log(romLabel+'_MBC3_A_BOUNDED_IMMEDIATE_SITES='+closure.mbc3ABoundedImmediateSites);
   log(romLabel+'_MBC3_A_BOUNDED_REGISTER_MEMORY_SITES='+closure.mbc3ABoundedRegisterOrMemorySites);
   log(romLabel+'_MBC3_A_UNRESOLVED_SITES='+closure.mbc3AUnresolvedSites);
@@ -833,6 +865,7 @@ function main(){
   'tests/romRomxBankAccess.test.js',
   'tests/romMbc3RegisterEvidence.test.js',
   'tests/romMbc3AProvenance.test.js',
+  'tests/romMbc3RegisterInput.test.js',
   'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romGlobalFlagReadback.test.js',

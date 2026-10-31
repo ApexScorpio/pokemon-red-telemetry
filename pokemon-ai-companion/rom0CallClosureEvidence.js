@@ -8,6 +8,7 @@ const {classifyRomxHeaderBankCandidates}=require('./romRomxBankAccess');
 const {classifyMbc3Rom0LiteralWrites,classifyMbc3AdjacentImmediateA,
  classifyMbc3AdjacentIndirectWrite}=require('./romMbc3RegisterEvidence');
 const {traceMbc3AProvenance}=require('./romMbc3AProvenance');
+const {traceMbc3RegisterInput}=require('./romMbc3RegisterInput');
 const ROM_SIZE=1048576,ROM0_END=0x4000;
 const MAX_ROOTS=512;
 const invalid=reason=>({verified:false,reason,source:'ROM0_CALL_CLOSURE_V1',
@@ -87,7 +88,18 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
       executed:false}:null,
      aSourceProvenance:d.opcode===0xea?
       traceMbc3AProvenance({rom,witnessPath:candidatePath,writePc:pc}):null,
+     registerInputProvenance:null,
      runtimeValueKnown:false,executed:false,activeBankKnown:false});
+    const site=mbc3DirectWriteSites[mbc3DirectWriteSites.length-1];
+    const a=site.aSourceProvenance;
+    if(a?.sourceKind==='REGISTER_OR_HL_READ'&&
+       ['B','C','D','E','H','L'].includes(a.sourceRegister)){
+     const sourceIndex=candidatePath.findIndex(x=>x.pc===a.sourcePc);
+     const inputPath=sourceIndex>=0?candidatePath.slice(0,sourceIndex+1):[];
+     site.registerInputProvenance=traceMbc3RegisterInput({
+      rom,witnessPath:inputPath,sourcePc:a.sourcePc,
+      sourceRegister:a.sourceRegister});
+    }
    }
   }
   if([0x77,0x22,0x32,0x36,0x02,0x12].includes(d.opcode)){
@@ -210,6 +222,13 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
     .includes(s.aSourceProvenance?.sourceKind)).length,
   mbc3AUnresolvedSites:mbc3DirectWriteSites.filter(s=>
    s.aSourceProvenance?.sourceKind==='UNRESOLVED').length,
+  mbc3RegisterInputTracedSites:mbc3DirectWriteSites.filter(s=>
+   s.registerInputProvenance?.verified===true).length,
+  mbc3RegisterInputConditionalByteSites:mbc3DirectWriteSites.filter(s=>
+   s.registerInputProvenance?.conditionalByte!==null&&
+   s.registerInputProvenance?.conditionalByte!==undefined).length,
+  mbc3RegisterInputUnresolvedSites:mbc3DirectWriteSites.filter(s=>
+   s.registerInputProvenance?.originKind==='UNRESOLVED').length,
   mbc3AdjacentIndirectWriteSites,
   mbc3AdjacentIndirectWriteSiteCount:mbc3AdjacentIndirectWriteSites.length,
   mbc3AdjacentIndirectRomBankWriteSites:mbc3AdjacentIndirectWriteSites.filter(
