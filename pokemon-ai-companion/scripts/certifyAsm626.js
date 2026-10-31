@@ -625,6 +625,7 @@ function main(){
   'tests/romPollingFailureInvalidation.test.js',
   'tests/romSafeLauncherAutoUpdate.test.js',
   'tests/romLocalPreviewServer.test.js',
+  'tests/romLiveServerSafetyPolicy.test.js',
   'tests/romMapEventActorApproach.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
@@ -643,6 +644,7 @@ function main(){
  log('UNEXPECTED_POLL_FAILURE_INVALIDATION_TESTED_SYNTHETICALLY=TRUE');
  log('LAUNCHER_AUTOUPDATE_DEFAULT_OFF_AND_MAIN_ONLY_TESTED_STATICALLY=TRUE');
  log('READONLY_LOCAL_DASHBOARD_PREVIEW_TESTED_SYNTHETICALLY=TRUE');
+ log('LIVE_SERVER_SAFETY_DEFAULTS_TESTED_STATICALLY=TRUE');
  log('LIVE_BIT_TRANSITIONS_OBSERVED_DURING_CERTIFICATION=FALSE');
  log('GLOBAL_FLAG_RUNTIME_READBACK_OBSERVED=FALSE');
  log('LIVE_COMPANION_HTTP_PROBE_DURING_CERTIFICATION=NOT_RUN');

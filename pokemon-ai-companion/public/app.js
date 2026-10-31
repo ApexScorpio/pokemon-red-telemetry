@@ -4234,7 +4234,7 @@ const elExportBtnLabel = document.getElementById('export-btn-label');
 if (btnExportTelemetry) {
   btnExportTelemetry.addEventListener('click', async () => {
     btnExportTelemetry.disabled = true;
-    if (elExportBtnLabel) elExportBtnLabel.textContent = 'A sincronizar GitHub...';
+    if (elExportBtnLabel) elExportBtnLabel.textContent = 'A preparar exportação local...';
     try {
       const res = await fetch('/api/export-markdown');
       const data = await res.json();
@@ -4242,10 +4242,11 @@ if (btnExportTelemetry) {
         await navigator.clipboard.writeText(data.markdown);
         btnExportTelemetry.classList.add('copied');
         const ts = data.timestamp || new Date().toLocaleTimeString('pt-PT');
-        if (elExportBtnLabel) elExportBtnLabel.textContent = `✅ Copiado & GitHub (${ts})!`;
+        if (elExportBtnLabel) elExportBtnLabel.textContent = data.githubSynchronized === true
+          ? `✅ Copiado & GitHub (${ts})!` : '✅ Copiado localmente';
 
         const elGithubLink = document.getElementById('hud-github-link');
-        if (elGithubLink) {
+        if (elGithubLink && data.githubSynchronized === true) {
           elGithubLink.textContent = `🌐 GitHub (${ts})`;
           elGithubLink.title = `Última sincronização no GitHub: ${ts}`;
         }
