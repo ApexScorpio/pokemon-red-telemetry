@@ -585,6 +585,7 @@ function main(){
   'tests/romBitOpcodeSemantics.test.js',
   'tests/romNamedEventEvidenceLedger.test.js',
   'tests/romWorldNamedEventCoverage.test.js',
+  'tests/romMapEventActorApproach.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
