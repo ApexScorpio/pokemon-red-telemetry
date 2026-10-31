@@ -322,6 +322,19 @@ test('unrelated bank source and ROMX transfer remain a noncausal cross product',
  assert.equal(atlas.scenarios[0].causalLinkVerified,false);
  assert.equal(atlas.executedTransfers,0);
 });
+test('ROMX opcode audit isolates invalid first-byte candidate without asserting execution',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,0x03,0xea,0,0x20,0xcd,0,0x50,0xc9],0x200);
+ rom[3*0x4000+0x1000]=0xd3;
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ const audit=r.mbc3RomxOpcodeAudit;
+ assert.equal(audit.verified,true);
+ assert.equal(audit.scenariosAudited,1);
+ assert.equal(audit.notDecodableCount,1);
+ assert.equal(audit.notDecodable[0].reason,'undocumented opcode');
+ assert.equal(audit.activeBankVerified,false);
+ assert.equal(audit.notDecodable[0].transferExecuted,false);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);

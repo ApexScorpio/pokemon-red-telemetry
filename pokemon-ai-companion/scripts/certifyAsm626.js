@@ -495,6 +495,24 @@ function main(){
      s.registerInputProvenance?.conditionalByte!==null&&
      s.registerInputProvenance?.conditionalByte!==undefined).length,
    'MBC3 register lineage evidence mismatch: '+variant);
+  const firstOpcodeAudit=closure.mbc3RomxOpcodeAudit;
+  assert(firstOpcodeAudit.verified===true&&
+   firstOpcodeAudit.scenariosAudited===
+    closure.mbc3RomxPhysicalScenarios.scenarioCount&&
+   firstOpcodeAudit.firstOpcodeDecodableCount+
+    firstOpcodeAudit.notDecodableCount===firstOpcodeAudit.scenariosAudited&&
+   firstOpcodeAudit.activeBankVerified===false&&
+   firstOpcodeAudit.romxTransfersExecuted===0&&
+   firstOpcodeAudit.bankWriteExecutionsVerified===0&&
+   firstOpcodeAudit.notDecodableCount===(variant==='blue'?1:0),
+   'MBC3 ROMX first-opcode audit mismatch: '+variant);
+  log(romLabel+'_MBC3_ROMX_OPCODE_AUDIT_TOTAL='+firstOpcodeAudit.scenariosAudited);
+  log(romLabel+'_MBC3_ROMX_OPCODE_AUDIT_NOT_DECODABLE='+firstOpcodeAudit.notDecodableCount);
+  log(romLabel+'_MBC3_ROMX_OPCODE_AUDIT_REASONS='+JSON.stringify(firstOpcodeAudit.reasonCounts));
+  log(romLabel+'_MBC3_ROMX_OPCODE_AUDIT_DISTINCT_LOCATIONS='+
+   firstOpcodeAudit.distinctNonDecodablePhysicalLocationCount);
+  log(romLabel+'_MBC3_ROMX_OPCODE_AUDIT_EVIDENCE='+
+   JSON.stringify(firstOpcodeAudit.notDecodable));
   const romxScenarioAtlas=closure.mbc3RomxPhysicalScenarios;
   assert(romxScenarioAtlas.verified===true&&
    romxScenarioAtlas.transferSites===closure.romxTransferSites.length&&
@@ -931,6 +949,7 @@ function main(){
   'tests/romMbc3BankSourcePlan.test.js',
   'tests/romMbc3ConditionalBanks.test.js',
   'tests/romMbc3RomxPhysicalScenarios.test.js',
+  'tests/romMbc3RomxOpcodeAudit.test.js',
   'tests/romCertifierVariableShadow.test.js',
   'tests/romMbc3RamSourceReadback.test.js',
   'tests/rom0CallClosureEvidence.test.js',
