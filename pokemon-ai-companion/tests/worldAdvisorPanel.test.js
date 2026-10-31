@@ -210,6 +210,29 @@ test('actor event approaches display Cut and Surf as hypotheses, not game action
  s.memoryReadStatus.latePositionWindow.y=4;
  assert.doesNotMatch(render(s).body.textContent,/PERCURSOS CONDICIONAIS PARA ATORES/);
 });
+test('session bit transitions render without inventing completed events',()=>{
+ const s=live();
+ s.worldRecentCompleteEventChanges={
+  verified:true,romSha256:s.worldAdvisor.romSha256,
+  baselineEstablished:true,playerActionConfirmed:false,
+  gameplayCompleted:false,
+  events:[
+   {bitIndex:192,flagSet:true,referenceName:'EVENT_GOT_BICYCLE',
+    nameFromPinnedReference:true},
+   {bitIndex:2559,flagSet:false,referenceName:null,
+    nameFromPinnedReference:false}
+  ]
+ };
+ const shown=render(s).body.textContent;
+ assert.match(shown,/ALTERAÇÕES RAM ENTRE LEITURAS VERIFICADAS/);
+ assert.match(shown,/Bit #192/);
+ assert.match(shown,/EVENT_GOT_BICYCLE/);
+ assert.match(shown,/Bit #2559/);
+ assert.match(shown,/mudança de bit não comprova interação/);
+ assert.equal(render(s).body.innerHTML,null);
+ s.memoryReadStatus.publicationPositionWindow.x=99;
+ assert.doesNotMatch(render(s).body.textContent,/ALTERAÇÕES RAM ENTRE LEITURAS VERIFICADAS/);
+});
 test('all 2560 event RAM bits shown as states without inventing 2053 event meanings',()=>{
  const s=live();
  s.worldAdvisor.romCompleteEventBitmap={

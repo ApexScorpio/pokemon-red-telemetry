@@ -27,6 +27,7 @@ const {suggestWorldDetours}=require('./romWorldDetourCycles');
 const {CampaignFlagSession}=require('./romCampaignSession');
 const {buildWorldEventAtlas}=require('./romWorldEventAtlas');
 const {WorldReferenceFlagSession}=require('./romWorldReferenceSession');
+const {CompleteEventBitSession}=require('./romCompleteEventSession');
 const {elevatorOptionsForMap}=require('./romElevatorChoices');
 const {buildWarpGraph}=require('./romWarpGraph');
 const {decodeToggleables,decodeHiddenItems,decodeHiddenCoins}=require('./romEventState');
@@ -333,6 +334,7 @@ class RetroArchClient extends EventEmitter {
     this.latestState.memoryReadStatus = { verified: false, completeness: 'selected-address-ranges-only' };
     this._worldCampaignSession=new CampaignFlagSession();
     this._worldReferenceSession=new WorldReferenceFlagSession();
+    this._completeEventBitSession=new CompleteEventBitSession();
     this._currentSessionSha=null;
     // Never inherit advice or progress deltas from persisted state.
     this.invalidateWorldEvidence('Novo arranque: aguardar leituras RAM reais');
@@ -350,6 +352,7 @@ class RetroArchClient extends EventEmitter {
   invalidateWorldEvidence(reason='Leitura interrompida'){
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
     if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
+    if(this._completeEventBitSession)this._completeEventBitSession.reset(reason);
     this._strengthPlanCacheScope=null;this._strengthPlanCache=new Map();
     this._globalFlagItemKey=null;this._globalFlagItemRoutes=null;
     this._crossMapRouteKey=null;this._crossMapRoute=null;
@@ -360,6 +363,8 @@ class RetroArchClient extends EventEmitter {
     this.latestState.romWorldReferenceDelta={verified:false,changes:[],reason};
     this.latestState.romElevatorOptions={verified:false,options:[],reason};
     this.latestState.worldRecentNamedChanges={verified:false,events:[],reason};
+    this.latestState.romCompleteEventDelta={verified:false,changes:[],reason};
+    this.latestState.worldRecentCompleteEventChanges={verified:false,events:[],reason};
     this.latestState.globalCampaignDelta={verified:false,changes:[],reason};
     this.latestState.worldRecentFlagChanges={
       verified:false,events:[],reason,actionsProven:false};
@@ -407,7 +412,9 @@ class RetroArchClient extends EventEmitter {
         'globalCampaignDelta','worldRecentFlagChanges','worldAdvisor',
         'romCrossMapItemRoute','romCrossMapItemRoutes','romStrengthFieldEvidence',
         'romWorldEventAtlas',
-        'romWorldReferenceDelta','worldRecentNamedChanges','romElevatorOptions',
+        'romWorldReferenceDelta','worldRecentNamedChanges',
+        'romCompleteEventDelta','worldRecentCompleteEventChanges',
+        'romElevatorOptions',
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
@@ -3014,6 +3021,16 @@ class RetroArchClient extends EventEmitter {
       this.emit('update',this.latestState);
       return;
     }
+    // Only accepted publication-window samples can become baselines or
+    // transitions. Do not compare cached files or aborted poll states.
+    const bitmapChanges=this._completeEventBitSession.ingest({
+      bitmap:this.latestState.worldAdvisor?.romCompleteEventBitmap,
+      publicationGuardVerified:true,
+      observedMapId:this.latestState.mapId,
+      observedAt:this.latestState.lastUpdate
+    });
+    this.latestState.romCompleteEventDelta=bitmapChanges.delta;
+    this.latestState.worldRecentCompleteEventChanges=bitmapChanges.recent;
     this.persistState(this.latestState);
     this.emit('update', this.latestState);
   }

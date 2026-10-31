@@ -908,6 +908,34 @@ function renderWorldAdvisor(state) {
     const before=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(before>=0)lines.splice(before,0,...evidence);
   }
+  // Consecutive verified readings can reveal a bit flip, not its cause.
+  const completeHistory=state.worldRecentCompleteEventChanges;
+  if(completeHistory?.verified===true&&
+     completeHistory.romSha256===advice.romSha256&&
+     completeHistory.baselineEstablished===true&&
+     completeHistory.playerActionConfirmed===false&&
+     completeHistory.gameplayCompleted===false&&
+     Array.isArray(completeHistory.events)&&
+     completeHistory.events.length<=80){
+    const recent=[
+      '--- ALTERAÇÕES RAM ENTRE LEITURAS VERIFICADAS ---',
+      completeHistory.events.length+' transições de bits registadas '+
+       'nesta sessão (máximo histórico: 80).'
+    ];
+    for(const e of completeHistory.events.slice(-10).reverse()){
+      if(!Number.isInteger(e.bitIndex)||e.bitIndex<0||
+         e.bitIndex>=2560||typeof e.flagSet!=='boolean')continue;
+      const name=typeof e.referenceName==='string'&&
+        e.nameFromPinnedReference===true?' ('+e.referenceName+')':
+        ' (sem nome de referência)';
+      recent.push('• Bit #'+e.bitIndex+name+': '+
+       (e.flagSet?'passou a ativo':'passou a inativo'));
+    }
+    recent.push('⚠️ Uma mudança de bit não comprova interação, missão, '+
+      'prémio ou causa; a posição do jogador não identifica a origem.','');
+    const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(slot>=0)lines.splice(slot,0,...recent);
+  }
   // All 248 map IDs: candidate event associations, never a quest checklist.
   // A clear bit might be reset, transient, or part of a branch rather than
   // an incomplete mission. Ranking is for investigation, not navigation.
