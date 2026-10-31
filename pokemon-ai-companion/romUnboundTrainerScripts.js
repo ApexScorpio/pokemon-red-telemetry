@@ -10,13 +10,28 @@ function auditUnboundTrainerScripts({scriptAtlas}={}){
  const sha=String(scriptAtlas?.romSha256||'').toLowerCase();
  if(scriptAtlas?.verified!==true||!isKnownAuditedRomSha(sha)||
    !Array.isArray(scriptAtlas.maps)||scriptAtlas.maps.length!==248||
-   !Array.isArray(scriptAtlas.references)||
-   scriptAtlas.references.length!==1126||
    scriptAtlas.summary?.referencedInteractions!==1126||
    scriptAtlas.summary?.trainerEventFlagBindingsMissing!==2||
    !Array.isArray(scriptAtlas.summary.trainerEventFlagBindingsUnresolved)||
    scriptAtlas.summary.trainerEventFlagBindingsUnresolved.length!==2)
   return bad('Exact ROM script atlas with 1126 references required');
+ // inspectRomBuffer intentionally stores only the compact map-based view.
+ // Reconstruct actor identity from the SAME validated map interaction rows;
+ // do not require a redundant references array missing from real profiles.
+ if(scriptAtlas.maps.some((map,mapId)=>
+    map?.mapId!==mapId||!Array.isArray(map.interactions)||
+    (map.verified!==true&&map.interactions.length!==0)))
+  return bad('Unverified or inconsistent map interaction catalogue');
+ const references=scriptAtlas.maps.flatMap(map=>map.interactions);
+ if(references.length!==1126)
+  return bad('248-map interaction catalogue is not the expected 1126 rows');
+ const supplied=scriptAtlas.references;
+ if(supplied!==undefined&&(
+   !Array.isArray(supplied)||supplied.length!==1126||
+   supplied.some((row,index)=>row!==references[index])))
+  return bad('Optional full atlas references disagree with compact map rows');
+ const referenceSource=supplied===undefined?
+  'COMPACT_MAP_INTERACTIONS':'FULL_ATLAS_REFERENCES_MATCH_MAPS';
  const unresolved=scriptAtlas.summary.trainerEventFlagBindingsUnresolved;
  const entries=[],used=new Set();
  for(const expected of TARGETS){
@@ -25,15 +40,15 @@ function auditUnboundTrainerScripts({scriptAtlas}={}){
   const map=scriptAtlas.maps[expected.mapId];
   const actors=(map?.interactions||[]).filter(x=>
    x.kind==='TRAINER'&&x.ordinal===expected.ordinal);
-  const references=scriptAtlas.references.filter(x=>
+  const matchingReferences=references.filter(x=>
    x.kind==='TRAINER'&&x.mapId===expected.mapId&&
    x.ordinal===expected.ordinal);
   const label=lookupRomReference({romSha256:sha,mapId:expected.mapId});
-  if(rows.length!==1||actors.length!==1||references.length!==1||
+  if(rows.length!==1||actors.length!==1||matchingReferences.length!==1||
     map.mapId!==expected.mapId||map.verified!==true||
     label.verified!==true||typeof label.referenceMapName!=='string')
    return bad('Unbound trainer is not uniquely linked to a ROM map object');
-  const row=actors[0],stub=rows[0],ref=references[0];
+  const row=actors[0],stub=rows[0],ref=matchingReferences[0];
   if(ref!==row||
     row.mapId!==expected.mapId||
     row.eventBitBindingVerified!==false||row.eventBitIndex!==null||
@@ -91,11 +106,13 @@ function auditUnboundTrainerScripts({scriptAtlas}={}){
   });
  }
  if(unresolved.some(x=>!used.has(x.mapId+':'+x.ordinal))||
-   scriptAtlas.references.filter(x=>
+   references.filter(x=>
     x.kind==='TRAINER'&&x.eventBitBindingVerified!==true).length!==2)
   return bad('Additional or inconsistent unresolved trainer actors');
  return {verified:true,romSha256:sha,
   source:'SHA_VERIFIED_ROM_ACTOR_AND_SCRIPT_REFERENCE',
+  referenceSource,
+  mapInteractionRowsReconstructed:references.length,
   entries,unresolvedCount:entries.length,
   eventBitsRecovered:0,gameplayOutcomesProven:0,
   allNormalTrainerFlagsResolved:false,

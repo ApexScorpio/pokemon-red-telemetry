@@ -297,6 +297,8 @@ function main(){
    a.summary.trainerEventFlagBindingsMissing===2&&
    gaps.summary.trainerScriptEventBitsUnresolved===2&&
    gaps.summary.unresolvedTrainerActorScriptEvidenceVerified===true&&
+   gaps.summary.unresolvedTrainerReferenceSource==='COMPACT_MAP_INTERACTIONS'&&
+   gaps.summary.unresolvedTrainerReconstructedReferenceCount===1126&&
    gaps.summary.unresolvedTrainerActualEventBitsRecovered===0&&
    gaps.summary.unresolvedTrainerActorScriptEvidence.length===2&&
    JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence
@@ -769,6 +771,10 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_TRAINER_SCRIPT_BITS_MISSING='+a.summary.trainerEventFlagBindingsMissing);
   log('ROM_'+variant.toUpperCase()+'_TRAINER_SCRIPT_BITS_UNKNOWN_CONTEXT='+
    JSON.stringify(gaps.summary.trainerScriptUnresolvedReferences));
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_ATLAS_SOURCE='+
+   gaps.summary.unresolvedTrainerReferenceSource);
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_RECONSTRUCTED_REFERENCES='+
+   gaps.summary.unresolvedTrainerReconstructedReferenceCount);
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_SCRIPT_AUDIT='+
    JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_EVENT_BITS_RECOVERED='+

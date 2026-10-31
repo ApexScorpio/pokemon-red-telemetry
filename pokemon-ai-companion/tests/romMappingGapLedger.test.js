@@ -47,6 +47,9 @@ for(const [variant,name] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM
   assert.deepEqual(ledger.summary.trainerScriptUnresolvedReferences.map(x=>
    [x.mapId,x.ordinal,x.eventBitIndex]),[[96,2,null],[135,11,null]]);
   assert.equal(ledger.summary.unresolvedTrainerActorScriptEvidenceVerified,true);
+  assert.equal(ledger.summary.unresolvedTrainerReferenceSource,
+   'COMPACT_MAP_INTERACTIONS');
+  assert.equal(ledger.summary.unresolvedTrainerReconstructedReferenceCount,1126);
   assert.equal(ledger.summary.unresolvedTrainerActualEventBitsRecovered,0);
   assert.equal(ledger.summary.unresolvedTrainerActorScriptEvidence.length,2);
   assert.deepEqual(ledger.summary.unresolvedTrainerActorScriptEvidence.map(x=>[

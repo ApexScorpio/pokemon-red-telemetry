@@ -197,6 +197,9 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
     .map(x=>({...x})),
    unresolvedTrainerActorScriptEvidence:unresolvedTrainerAudit.entries,
    unresolvedTrainerActorScriptEvidenceVerified:true,
+   unresolvedTrainerReferenceSource:unresolvedTrainerAudit.referenceSource,
+   unresolvedTrainerReconstructedReferenceCount:
+    unresolvedTrainerAudit.mapInteractionRowsReconstructed,
    unresolvedTrainerActualEventBitsRecovered:0,
    verifiedTrainerScriptEventBitBindings:332,
    verifiedStaticEncounterScriptEventBitBindings:12,
