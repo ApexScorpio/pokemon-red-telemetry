@@ -13,12 +13,15 @@ const {buildWorldwideNamedEventCoverage}=require('./romWorldNamedEventCoverage')
 const {buildCompleteEventBitmap}=require('./romCompleteEventBitmap');
 const {scriptedBattleGuidanceForMap}=
  require('./romScriptedBattleReference');
+const {assessScriptedBattleRamReadback}=
+ require('./romScriptedBattleRam');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
  itemAccess=null,itemAccessInputs=[],hiddenStartIndex=0,
  positionVerified=false,worldFlagLedger=null,globalFlagReadback=null,
- namedWorldEventAtlas=null,globalEventFlagsHex=null}={}){
+ namedWorldEventAtlas=null,globalEventFlagsHex=null,
+ scriptedBattleRamReadback=null}={}){
 
  const hash=profile?.hash?.sha256;
  const maps=profile?.world?.maps;
@@ -109,7 +112,21 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  if(specialBattle.verified){
   for(const row of specialBattle.entries){
    const isRival=row.mapId===96;
-   add('SCRIPTED_BATTLE','SCRIPT_STATE_UNKNOWN',
+   const ram=assessScriptedBattleRamReadback({
+    layout:profile?.world?.interactionScriptAtlas?.scriptedBattleRamCandidates,
+    mapId,romSha256:hash,
+    firstWorldBlockHex:scriptedBattleRamReadback?.firstWorldBlockHex,
+    repeatScriptHex:scriptedBattleRamReadback?.repeatScriptHex,
+    repeatMapHex:scriptedBattleRamReadback?.repeatMapHex,
+    romIdentityMatched:scriptedBattleRamReadback?.romIdentityMatched,
+    mapPositionVerified:positionVerified===true&&
+     scriptedBattleRamReadback?.mapPositionVerified===true,
+    secondReadFromSameTargetVerified:
+     scriptedBattleRamReadback?.secondReadFromSameTargetVerified
+   });
+   add('SCRIPTED_BATTLE',
+    ram.verified?'SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY':
+     'SCRIPT_STATE_UNKNOWN',
     isRival?'Rival na S.S. Anne 2F':'Rocket junto ao cartaz no Game Corner',
     isRival?
      'Na referência, a vitória faz o rival sair e permite prosseguir para o capitão que ensina Cut. A situação desta partida exige leitura do script do mapa.':
@@ -122,7 +139,14 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      referenceCommit:row.referenceCommit,
      referenceStates:row.referenceScriptStates,
      battleWon:null,canBattleNow:null,
-     currentMapScriptValue:null,mapScriptStateVerified:false,
+     currentMapScriptValue:ram.verified?ram.scriptValue:null,
+     referenceStateName:ram.verified?ram.referenceStateName:null,
+     referenceWramAddress:
+      profile?.world?.interactionScriptAtlas?.scriptedBattleRamCandidates
+       ?.candidates?.find(x=>x.mapId===mapId)?.referenceWramAddress??null,
+     mapScriptByteRepeated:ram.verified===true,
+     mapScriptStateVerified:false,
+     currentMapScriptReadbackReason:ram.verified?null:ram.reason,
      nextActionConditional:true,
      actualRomScriptSemanticsVerified:false});
   }

@@ -241,3 +241,48 @@ test('unverified scripted battle reference cannot appear as real observed progre
  assert.equal(a.verified,true);
  assert.equal(a.observations.some(o=>o.kind==='SCRIPTED_BATTLE'),false);
 });
+
+test('two corroborated script-byte reads expose only reference state, never battle outcome',()=>{
+ const p=fakeProfile(),mapId=96,bytes=Array(784).fill('00');
+ bytes[197]='04';
+ p.world.maps.data[mapId]={mapId,valid:true,
+  objects:{warps:[],signs:[],objects:[]}};
+ const row={mapId:96,ordinal:2,x:36,y:4,battleWon:null,
+  mapScriptStateReadFromCurrentGame:false,
+  referenceScriptStates:['SCRIPT_SSANNE2F_DEFAULT']};
+ p.world.interactionScriptAtlas={
+  romSha256:hash,
+  scriptedBattleReferenceEvidence:{verified:true,romSha256:hash,
+   entries:[row,{mapId:135,ordinal:11,battleWon:null,
+    mapScriptStateReadFromCurrentGame:false}]},
+  scriptedBattleRamCandidates:{verified:true,romSha256:hash,count:2,
+   candidates:[
+    {mapId:96,ordinal:2,handlerBank:24,
+     referenceVariable:'wSSAnne2FCurScript',
+     referenceWramAddress:0xd665,worldBlockOffset:197,
+     addressProvenFromActualRomInstructions:false,referenceLayoutOnly:true},
+    {mapId:135,ordinal:11,handlerBank:18,
+     referenceVariable:'wGameCornerCurScript',
+     referenceWramAddress:0xd65f,worldBlockOffset:191,
+     addressProvenFromActualRomInstructions:false,referenceLayoutOnly:true}
+   ]}
+ };
+ const args={profile:p,mapId,positionVerified:true,
+  scriptedBattleRamReadback:{firstWorldBlockHex:bytes,
+   repeatScriptHex:'04',repeatMapHex:'60',
+   romIdentityMatched:true,mapPositionVerified:true,
+   secondReadFromSameTargetVerified:true}};
+ const a=adviseWorld(args);
+ assert.equal(a.verified,true);
+ const entry=a.observations.find(x=>x.kind==='SCRIPTED_BATTLE');
+ assert.equal(entry.status,'SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY');
+ assert.equal(entry.referenceStateName,'SCRIPT_SSANNE2F_NOOP');
+ assert.equal(entry.currentMapScriptValue,4);
+ assert.equal(entry.battleWon,null);
+ assert.equal(entry.mapScriptStateVerified,false);
+ assert.equal(entry.accessibleNow,null);
+ const b=adviseWorld({...args,scriptedBattleRamReadback:{
+  ...args.scriptedBattleRamReadback,repeatScriptHex:'03'}});
+ assert.equal(b.observations.find(x=>x.kind==='SCRIPTED_BATTLE').status,
+  'SCRIPT_STATE_UNKNOWN');
+});

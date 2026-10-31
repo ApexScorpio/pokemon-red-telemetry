@@ -303,6 +303,10 @@ function main(){
    gaps.summary.unresolvedTrainerHandlerContextVerified===true&&
    gaps.summary.unresolvedTrainerTemporaryBattleBitEvidenceVerified===true&&
    gaps.summary.unboundTrainerScriptedBattleReferenceVerified===true&&
+   gaps.summary.scriptedBattleRamCandidateScanVerified===true&&
+   gaps.summary.scriptedBattleRamReferenceAddresses.length===2&&
+   gaps.summary.scriptedBattleRamAddressBoundToRomExecution===false&&
+   gaps.summary.scriptedBattleRamLiveSnapshotVerified===false&&
    gaps.summary.unboundTrainerScriptedBattleReferenceCount===2&&
    gaps.summary.unboundTrainerNoOrdinaryFlagRequiredByReference===2&&
    gaps.summary.unboundTrainerScriptedBattleEventsCompletedVerified===0&&
@@ -824,6 +828,12 @@ function main(){
    gaps.summary.unboundTrainerScriptedBattleEventsCompletedVerified);
   log('ROM_'+variant.toUpperCase()+'_SCRIPTED_BATTLES_REFERENCE_EVIDENCE='+
    JSON.stringify(gaps.summary.unboundTrainerScriptedBattleReferenceEvidence));
+  log('ROM_'+variant.toUpperCase()+'_SCRIPTED_BATTLES_RAM_REFERENCE_LOAD_CANDIDATES='+
+   gaps.summary.scriptedBattleRamLiteralLoadTotal);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPTED_BATTLES_RAM_REFERENCE_STORE_CANDIDATES='+
+   gaps.summary.scriptedBattleRamLiteralStoreTotal);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPTED_BATTLES_RAM_CANDIDATE_EVIDENCE='+
+   JSON.stringify(gaps.summary.scriptedBattleRamReferenceAddresses));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_SCRIPT_AUDIT='+
    JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_EVENT_BITS_RECOVERED='+
@@ -1119,6 +1129,7 @@ function main(){
   'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romUnboundTrainerTempBattleFlags.test.js',
   'tests/romScriptedBattleReference.test.js',
+  'tests/romScriptedBattleRam.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',

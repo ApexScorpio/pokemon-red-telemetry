@@ -76,6 +76,18 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
      x.ordinaryTrainerEventBitIndex!==null||
      x.battleWon!==null||x.mapScriptStateReadFromCurrentGame!==false))
   return invalid('Scripted trainer battle external reference does not reconcile with physical handlers');
+ const scriptRam=scriptAtlas.scriptedBattleRamCandidates;
+ if(scriptRam?.verified!==true||scriptRam.romSha256!==sha||
+    scriptRam.count!==2||scriptRam.candidates?.length!==2||
+    scriptRam.scriptAddressPhysicallyProven!==false||
+    scriptRam.scriptStateReadbackVerified!==false||
+    JSON.stringify(scriptRam.candidates.map(x=>
+     [x.mapId,x.ordinal,x.referenceWramAddress,
+      x.worldBlockOffset,x.handlerBank,x.referenceLayoutOnly]))!==
+     JSON.stringify([
+      [96,2,0xd665,197,24,true],
+      [135,11,0xd65f,191,18,true]]))
+  return invalid('Reference RAM script candidate positions do not reconcile with physical ROM scan');
  const maps=[];const allScriptRows=[];
  let normalMaps=0,unresolvedMapIds=0,unassignedHidden=0,
   textPointersPending=0,unverifiedEffects=0,asmTextReferences=0,
@@ -272,6 +284,14 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
     scriptedBattleReference.entries,
    unboundTrainerScriptedBattleEventsCompletedVerified:0,
    unboundTrainerNoOrdinaryFlagRequiredByReference:2,
+   scriptedBattleRamCandidateScanVerified:true,
+   scriptedBattleRamReferenceAddresses:scriptRam.candidates,
+   scriptedBattleRamLiteralLoadTotal:scriptRam.candidates.reduce((n,x)=>
+    n+x.literalLoadACandidateCount,0),
+   scriptedBattleRamLiteralStoreTotal:scriptRam.candidates.reduce((n,x)=>
+    n+x.literalStoreACandidateCount,0),
+   scriptedBattleRamAddressBoundToRomExecution:false,
+   scriptedBattleRamLiveSnapshotVerified:false,
    verifiedTrainerScriptEventBitBindings:332,
    verifiedStaticEncounterScriptEventBitBindings:12,
    verifiedSpecialTrainerScriptEventBitBindings:22,
