@@ -165,7 +165,7 @@ test('audited Red Blue Green ROMs preserve their own 226/227 item tiles',
   blue:{226:pairs[226].red,227:pairs[227].red},
   green:{226:pairs[226].green,227:pairs[227].green}
  };
- const proven={};
+ const proven={},redManualByMap={};
  for(const [variant,env,sha] of variants){
   const p=inspectRomBuffer(readRom(process.env[env]),variant+'.gb');
   assert.equal(p.hash.sha256,KNOWN[variant]);
@@ -176,19 +176,41 @@ test('audited Red Blue Green ROMs preserve their own 226/227 item tiles',
    assert.equal(evidence.verified,true);
    assert.deepEqual(evidence.items.map(x=>[x.x,x.y]),
     positions[variant][mapId]);
+   // Manual reference coordinates and item IDs come from the real Red ROM.
+   // A coordinate may coincide in Green, so only exact active-ROM matches
+   // count; never assume every Green coordinate is unmatched.
+   if(variant==='red')redManualByMap[mapId]=evidence.items.map(o=>({
+    name:'Referência Red, ordinal '+o.objectOrdinal,
+    x:o.x,y:o.y,itemId:o.itemId
+   }));
+   const manualItems=redManualByMap[mapId];
+   assert.ok(Array.isArray(manualItems));
    const x=reconcileVisibleItemCoordinates({
     mapId,romSha256:sha,romIdentityMatched:true,
-    romAreaEvidence:evidence,
-    manualItems:manual(pairs[mapId].red)
+    romAreaEvidence:evidence,manualItems
    });
    assert.equal(x.verified,true,x.reason);
    assert.equal(x.romObjectCount,positions[variant][mapId].length);
-   if(variant==='green'){
-    assert.equal(x.matchedManualItems.length,0);
-    assert.equal(x.remainingRomItems.length,positions.green[mapId].length);
-   }else{
-    assert.equal(x.matchedManualItems.length,positions[variant][mapId].length);
+   assert.equal(x.matchedManualItems.length+x.remainingRomItems.length,
+    evidence.items.length);
+   assert.equal(x.matchedManualItems.length+
+    x.unmatchedManualReferences.length,manualItems.length);
+   for(const matched of x.matchedManualItems){
+    assert.ok(evidence.items.some(o=>o.x===matched.x&&o.y===matched.y&&
+     o.itemId===matched.itemId&&
+     o.objectOrdinal===matched.romObjectOrdinal));
+    assert.equal(matched.coordinateSource,'SHA_AUDITED_ACTIVE_ROM_ITEM_OBJECT');
+   }
+   for(const unknown of x.unmatchedManualReferences){
+    assert.equal(unknown.x,null);
+    assert.equal(unknown.y,null);
+    assert.equal(unknown.romItemCoordinatesVerified,false);
+   }
+   if(variant==='red'||variant==='blue'){
+    assert.equal(x.matchedManualItems.length,evidence.items.length);
     assert.equal(x.remainingRomItems.length,0);
+   }else{
+    assert.ok(x.unmatchedManualReferences.length>0);
    }
    proven[variant+mapId]=true;
   }
