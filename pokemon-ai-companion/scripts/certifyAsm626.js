@@ -1301,6 +1301,7 @@ function main(){
   'tests/romActorMotionSession.test.js',
   'tests/romTargetSwitchInvalidation.test.js',
   'tests/romPublishedNamedEvents.test.js',
+  'tests/romNamedEventBulkReset.test.js',
   'tests/romUnboundTrainerScripts.test.js',
   'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romUnboundTrainerTempBattleFlags.test.js',

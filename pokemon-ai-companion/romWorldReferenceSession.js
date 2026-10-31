@@ -3,6 +3,10 @@
 // A bit transition is not proof that a move, battle, pickup or script ran.
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const EMPTY_REASON='Aguardar duas leituras verificadas da mesma ROM';
+// Same conservative bulk-change threshold as romCompleteEventSession.js.
+// More than this many changed reference records may signal save/load/reset;
+// neither source proves causality or an atomic frame.
+const MAX_PUBLISHED_CHANGES=64;
 const unavailable=(reason)=>({verified:false,reason,changes:[],
   baselineEstablished:false,actionConfirmed:false});
 const validAtlas=a=>a?.verified===true&&isKnownAuditedRomSha(a.romSha256)&&
@@ -113,9 +117,28 @@ class WorldReferenceFlagSession{
      this.reset('NAMED_EVENT_PUBLICATION_SCOPE_CHANGED');
    if(!prior&&this.baseline)
      this.reset('UNGUARDED_BASELINE_NOT_REUSABLE');
+   if(this.baseline){
+     const batch=compareReferenceBits(this.baseline,atlas);
+     if(batch.verified===true&&batch.changedBits>MAX_PUBLISHED_CHANGES){
+       // Two individually valid readbacks can still bracket a save load,
+       // core reset or other discontinuity. Do not publish bulk events as
+       // campaign progress; keep only the new baseline and its scope.
+       const reason='NAMED_EVENTS_BULK_JUMP_POSSIBLE_SAVE_LOAD_OR_RESET';
+       this.reset(reason);
+       this.sha=atlas.romSha256;
+       this.baseline=atlas;
+       this.publishedScope=scope;
+       return {delta:{
+         ...unavailable(reason),changedBits:batch.changedBits,
+         resetSuspected:true,comparisonSuppressed:true,
+         publishedChangeLimit:MAX_PUBLISHED_CHANGES,
+         playerActionConfirmed:false,gameplayCompleted:false
+       },recent:this.status(true)};
+     }
+   }
    const report=this.ingest({atlas,observedAt});
    if(report.recent.verified===true)this.publishedScope=scope;
    return report;
  }
 }
-module.exports={compareReferenceBits,WorldReferenceFlagSession};
+module.exports={compareReferenceBits,WorldReferenceFlagSession,MAX_PUBLISHED_CHANGES};

@@ -703,3 +703,9 @@
 
 ### T135 — 2026-10-31: falha operacional Bridge 089 sem testes
 - Bridge 089 terminou `FAILED` imediatamente no clone porque o wrapper usou `Start-Process -ArgumentList $Args`; `$args` é variável automática em PowerShell. Nenhum teste ASM/full executou, pelo que T133/T134 mantém certificação pendente. O runtime PokéGuide **não foi modificado**. Histórico acrescentado; próxima Bridge 090 corrige só o script autónomo para `$Arguments` com validação de entrada e repete T134 + ROM Red/Blue/Green.
+
+
+### T136 — 2026-10-31: Bridge 090 certificada; salto em massa de eventos nomeados passa a ser suspeito
+- Bridge 090 PASS: 31/31 integração, 12/12 T133, 8/8 sessão, ASM 614/614, full 1251 PASS + 1 SKIP / 1252; zero falhas; 3 ROMs verificadas sem E2E live.
+- Inconsistência corrigida: o bitmap completo já tem limiar de 64 alterações simultâneas; o timeline de 507 nomes e 228 toggles não o tinha. T136 aplica `MAX_PUBLISHED_CHANGES=64` a `ingestPublished`, assinala `resetSuspected`, não emite eventos quando há 65+, limpa o histórico e fixa nova baseline; o método legado de comparação não é afetado. Não interpreta flag como ação.
+- `romNamedEventBulkReset.test.js` acrescenta 12 casos com limites e regressões, registado no certifier. Bridge 091 a executar, previsão ASM 626/626 e full 1263 PASS+1 SKIP / 1264; não comprova conclusão da campanha.
