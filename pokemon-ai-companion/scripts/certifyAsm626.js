@@ -9,6 +9,7 @@ const {inspectRomBuffer}=require('../romVariantRegistry');
 const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
+const {traceRom0CallClosure}=require('../rom0CallClosureEvidence');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
 const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
 const {buildGlobalFlagOperationCatalogue}=require('../romGlobalFlagOperationCatalogue');
@@ -322,6 +323,38 @@ function main(){
    gaps.summary.rom0EffectsProven===0&&
    gaps.mapping100PercentCertified===false,
    'Global ROM mapping gap ledger discrepancy: '+variant+': '+gaps.reason);
+  // Expand all audited ROM0 roots through ROM0-only CALL/RST targets.
+  // This is a structural, read-only candidate graph, not game execution.
+  const closure=traceRom0CallClosure({
+   rom,roots:rom0Details.map(x=>x.targetCpu)
+  });
+  assert(closure.verified===true&&closure.uniqueSeedAddresses===59&&
+   closure.candidateInstructions>0&&
+   closure.unresolvedCandidateCount===
+    Object.values(closure.unresolvedReasonCounts).reduce((n,v)=>n+v,0)&&
+   closure.runtimeEffectsVerified===false&&
+   closure.semantic100PercentCertified===false&&
+   closure.executedBranchesVerified===false&&
+   closure.activeRomBankKnown===false,
+   'ROM0 CALL closure structural evidence invalid: '+variant);
+  log('ROM_'+variant.toUpperCase()+'_ROM0_CALL_CLOSURE='+
+   JSON.stringify({
+    seedRoots:closure.uniqueSeedAddresses,
+    candidateInstructions:closure.candidateInstructions,
+    candidateBytes:closure.candidateInstructionBytes,
+    directCallEdges:closure.traversedDirectCallEdges,
+    rstEdges:closure.traversedRestartEdges,
+    directBranchEdges:closure.traversedBranchEdges,
+    uniqueRom0CallTargets:closure.distinctRom0CallTargets,
+    romxUnknown:closure.unresolvedRomxTransfers,
+    indirectJumpsUnknown:closure.indirectJumpsUnknown,
+    unresolvedCounts:closure.unresolvedReasonCounts,
+    remainingQueue:closure.remainingQueue,
+    budgetExhausted:closure.budgetExhausted,
+    semantic100PercentCertified:false,
+    runtimeEffectsVerified:false,
+    problemSamples:closure.problemSamples.slice(0,12)
+   }));
   const rows=a.maps.flatMap(m=>m.interactions)
    .filter(x=>x.scriptCommand==='TX_START_ASM');
   assert(rows.length===626&&rows.every(x=>x.asmCandidate?.verified===true&&
