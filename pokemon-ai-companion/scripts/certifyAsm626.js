@@ -296,6 +296,13 @@ function main(){
    a.summary.specialTrainerEventFlagBindings===22&&
    a.summary.trainerEventFlagBindingsMissing===2&&
    gaps.summary.trainerScriptEventBitsUnresolved===2&&
+   gaps.summary.unresolvedTrainerActorScriptEvidenceVerified===true&&
+   gaps.summary.unresolvedTrainerActualEventBitsRecovered===0&&
+   gaps.summary.unresolvedTrainerActorScriptEvidence.length===2&&
+   JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence
+    .map(x=>[x.mapId,x.ordinal,x.referenceMapName,x.eventBitIndex]))===
+     JSON.stringify([[96,2,'SS_ANNE_2F',null],
+      [135,11,'GAME_CORNER',null]])&&
    JSON.stringify(gaps.summary.trainerScriptUnresolvedReferences
     .map(x=>[x.mapId,x.ordinal,x.eventBitIndex]))===
     JSON.stringify([[96,2,null],[135,11,null]])&&
@@ -762,6 +769,10 @@ function main(){
   log('ROM_'+variant.toUpperCase()+'_TRAINER_SCRIPT_BITS_MISSING='+a.summary.trainerEventFlagBindingsMissing);
   log('ROM_'+variant.toUpperCase()+'_TRAINER_SCRIPT_BITS_UNKNOWN_CONTEXT='+
    JSON.stringify(gaps.summary.trainerScriptUnresolvedReferences));
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_SCRIPT_AUDIT='+
+   JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence));
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_EVENT_BITS_RECOVERED='+
+   gaps.summary.unresolvedTrainerActualEventBitsRecovered);
   log('ROM_'+variant.toUpperCase()+'_RUNTIME_EVENT_BITS_VERIFIED='+gaps.summary.liveEventBitValuesVerified);
   log('ROM_'+variant.toUpperCase()+'_ROM0_BRANCH_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0BranchReferences);
   log('ROM_'+variant.toUpperCase()+'_ROM0_CALL_PHYSICAL_REFERENCES='+gaps.summary.mappedRom0CallReferences);
@@ -1049,6 +1060,7 @@ function main(){
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
+  'tests/romUnboundTrainerScripts.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',

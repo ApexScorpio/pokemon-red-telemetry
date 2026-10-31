@@ -3,6 +3,7 @@
 // Exact ROM SHA is required. Read-only static references are never interpreted
 // as quests completed, reachable items, running scripts or understood ASM.
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
+const {auditUnboundTrainerScripts}=require('./romUnboundTrainerScripts');
 const MAP_IDS=248,NORMAL_MAPS=226,REFERENCES=1126,ASM_REFERENCES=626,ASM_UNIQUE=516;
 function invalid(reason){return {verified:false,reason,maps:[],summary:null,
   mapping100PercentCertified:false,runtimeEffectsCertified:false};}
@@ -20,6 +21,12 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
   scriptAtlas.summary?.uniqueAsmEntrypoints!==ASM_UNIQUE||
   tracker.summary?.scriptReferencesBound!==REFERENCES)
   return invalid('Identidade, catalogo de 248 IDs e atlas mundial sem validacao conjunta');
+ const unresolvedTrainerAudit=auditUnboundTrainerScripts({scriptAtlas});
+ if(unresolvedTrainerAudit.verified!==true||
+    unresolvedTrainerAudit.unresolvedCount!==2||
+    unresolvedTrainerAudit.eventBitsRecovered!==0||
+    unresolvedTrainerAudit.gameplayOutcomesProven!==0)
+  return invalid('Unbound trainer audit failed: '+unresolvedTrainerAudit.reason);
  const maps=[];const allScriptRows=[];
  let normalMaps=0,unresolvedMapIds=0,unassignedHidden=0,
   textPointersPending=0,unverifiedEffects=0,asmTextReferences=0,
@@ -188,6 +195,9 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    trainerScriptUnresolvedReferences:
     (scriptAtlas.summary.trainerEventFlagBindingsUnresolved||[])
     .map(x=>({...x})),
+   unresolvedTrainerActorScriptEvidence:unresolvedTrainerAudit.entries,
+   unresolvedTrainerActorScriptEvidenceVerified:true,
+   unresolvedTrainerActualEventBitsRecovered:0,
    verifiedTrainerScriptEventBitBindings:332,
    verifiedStaticEncounterScriptEventBitBindings:12,
    verifiedSpecialTrainerScriptEventBitBindings:22,

@@ -46,6 +46,16 @@ for(const [variant,name] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM
   assert.equal(ledger.summary.trainerScriptEventBitsUnresolved,2);
   assert.deepEqual(ledger.summary.trainerScriptUnresolvedReferences.map(x=>
    [x.mapId,x.ordinal,x.eventBitIndex]),[[96,2,null],[135,11,null]]);
+  assert.equal(ledger.summary.unresolvedTrainerActorScriptEvidenceVerified,true);
+  assert.equal(ledger.summary.unresolvedTrainerActualEventBitsRecovered,0);
+  assert.equal(ledger.summary.unresolvedTrainerActorScriptEvidence.length,2);
+  assert.deepEqual(ledger.summary.unresolvedTrainerActorScriptEvidence.map(x=>[
+   x.mapId,x.ordinal,x.referenceMapName,x.eventBitIndex]),[
+   [96,2,'SS_ANNE_2F',null],[135,11,'GAME_CORNER',null]]);
+  assert.ok(ledger.summary.unresolvedTrainerActorScriptEvidence.every(x=>
+   x.scriptFileOffset>=0&&x.scriptFileOffset<1048576&&
+   x.scriptEffectVerified===false&&
+   x.trainerVictoryRecorded===null&&x.mapNameFromRom===false));
   assert.equal(ledger.maps.filter(x=>x.staticHeaderVerified).reduce(
    (n,x)=>n+x.verifiedRomEventBitBindings,0),344);
   assert.equal(ledger.summary.mappedRom0BranchReferences,537);
