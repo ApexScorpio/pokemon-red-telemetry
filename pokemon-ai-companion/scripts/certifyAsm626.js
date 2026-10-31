@@ -391,7 +391,20 @@ function main(){
      p.fileOffset===p.bank*0x4000+x.targetCpu-0x4000&&
      p.selectableIfStandardMbc1===(x.standardMbc1Conditional?p.bank!==32:null))&&
     x.conditionalCandidateCount===(x.standardMbc1Conditional?62:null)&&
-    x.excludedIfStandardMbc1.length===(x.standardMbc1Conditional?1:0))&&
+    x.excludedIfStandardMbc1.length===(x.standardMbc1Conditional?1:0)&&
+    ['MBC1','MBC3','MBC5','UNKNOWN'].includes(x.mapperFamilyFromHeader)&&
+    x.declaredMapperRomxCandidateCount===(
+     x.mapperFamilyFromHeader==='MBC1'?62:
+     x.mapperFamilyFromHeader==='MBC3'?63:
+     x.mapperFamilyFromHeader==='MBC5'?64:null)&&
+    (x.mbc5BankZeroCandidate===null||
+     (x.mapperFamilyFromHeader==='MBC5'&&
+      x.mbc5BankZeroCandidate.bank===0&&
+      x.mbc5BankZeroCandidate.fileOffset===x.targetCpu-0x4000))&&
+    x.physicalMappings.every(p=>
+     p.selectableIfDeclaredMapper===(
+      x.mapperFamilyFromHeader==='UNKNOWN'?null:
+      (x.mapperFamilyFromHeader==='MBC1'?p.bank!==32:true))))&&
    closure.romxHeaderConditionalExcludedMappingsTotal===
     closure.romxStandardMbc1ConditionalSites,
    'ROM0 ROMX cross-bank physical-location integrity mismatch: '+variant);
@@ -402,6 +415,13 @@ function main(){
   log(romLabel+'_ROMX_ACTIVE_BANKS_VERIFIED='+closure.romxActiveBanksVerified);
   log(romLabel+'_ROMX_STANDARD_MBC1_CONDITIONAL_SITES='+closure.romxStandardMbc1ConditionalSites);
   log(romLabel+'_ROMX_HEADER_CONDITIONAL_EXCLUDED_MAPPINGS='+closure.romxHeaderConditionalExcludedMappingsTotal);
+  log(romLabel+'_CARTRIDGE_TYPE_HEADER_DEC='+rom[0x147]);
+  log(romLabel+'_ROM_SIZE_HEADER_DEC='+rom[0x148]);
+  log(romLabel+'_RAM_SIZE_HEADER_DEC='+rom[0x149]);
+  log(romLabel+'_ROMX_MAPPER_FAMILY_HEADER='+closure.romxTransferSites[0].mapperFamilyFromHeader);
+  log(romLabel+'_ROMX_DECLARED_MAPPER_CANDIDATES_PER_SITE='+
+   (closure.romxTransferSites[0].declaredMapperRomxCandidateCount??'UNKNOWN'));
+  log(romLabel+'_ROMX_MBC5_BANK_ZERO_CANDIDATE_SITES='+closure.romxMbc5BankZeroCandidateSites);
   log(romLabel+'_ROMX_EVIDENCE_SCHEMA=ROM0_ROMX_WITNESS_V1');
   log('ROM_'+variant.toUpperCase()+'_ROMX_SITE_EVIDENCE='+
    JSON.stringify(closure.romxTransferSites.map(x=>({
@@ -409,6 +429,9 @@ function main(){
     transferKind:x.transferKind,targetCpu:x.targetCpu,
     originRootCpu:x.originRootCpu,witnessPath:x.witnessPath,
     physicallyMappedBanks:x.physicallyMappedBanks,
+    mapperFamilyFromHeader:x.mapperFamilyFromHeader,
+    declaredMapperRomxCandidateCount:x.declaredMapperRomxCandidateCount,
+    mbc5BankZeroCandidate:x.mbc5BankZeroCandidate,
     standardMbc1Conditional:x.standardMbc1Conditional,
     excludedIfStandardMbc1:x.excludedIfStandardMbc1,
     conditionalCandidateCount:x.conditionalCandidateCount,

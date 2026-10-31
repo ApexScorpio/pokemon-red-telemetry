@@ -104,7 +104,7 @@ test('ROMX call source keeps an auditable seed-to-call witness and 63 physical b
  assert.equal(site.firstOpcodeDecodableBanks,1);
  assert.deepEqual(site.physicalMappings.filter(x=>x.firstOpcodeDecodable),[
   {bank:7,fileOffset:offset,selectableIfStandardMbc1:null,
-   firstOpcodeDecodable:true}
+   selectableIfDeclaredMapper:null,firstOpcodeDecodable:true}
  ]);
  // Unsupported synthetic header must not cause invented ROMX exclusions.
  assert.equal(site.standardMbc1Conditional,false);
@@ -130,6 +130,28 @@ test('ROMX branch classification never invents selected MBC bank',()=>{
  assert.equal(site.physicalMappings[31].selectableIfStandardMbc1,false);
  assert.equal(site.activeBankKnown,false);
  assert.equal(r.semantic100PercentCertified,false);
+});
+test('ROM0 jump to ROMX retains MBC3 header and all 63 static bank candidates',()=>{
+ const rom=fake();rom[0x147]=0x13;rom[0x148]=0x05;
+ rom.set([0xc3,0x00,0x50],0x100);
+ const r=traceRom0CallClosure({rom,roots:[0x100]});
+ assert.equal(r.verified,true);
+ assert.equal(r.romxMapperFamilySiteCounts.MBC3,1);
+ assert.equal(r.romxMbc5BankZeroCandidateSites,0);
+ assert.equal(r.romxTransferSites[0].declaredMapperRomxCandidateCount,63);
+ assert.equal(r.romxTransferSites[0].activeBankKnown,false);
+ assert.equal(r.runtimeEffectsVerified,false);
+});
+test('ROM0 jump to ROMX can include physical bank zero under MBC5 declaration',()=>{
+ const rom=fake();rom[0x147]=0x1b;rom[0x148]=0x05;
+ rom.set([0xc3,0x00,0x50],0x100);
+ const r=traceRom0CallClosure({rom,roots:[0x100]});
+ assert.equal(r.verified,true);
+ assert.equal(r.romxMapperFamilySiteCounts.MBC5,1);
+ assert.equal(r.romxMbc5BankZeroCandidateSites,1);
+ assert.equal(r.romxTransferSites[0].mbc5BankZeroCandidate.fileOffset,0x1000);
+ assert.equal(r.romxTransferSites[0].declaredMapperRomxCandidateCount,64);
+ assert.equal(r.romxActiveBanksVerified,0);
 });
 test('all JP HL sites preserve witness and unknown runtime selection',()=>{
  const rom=fake();

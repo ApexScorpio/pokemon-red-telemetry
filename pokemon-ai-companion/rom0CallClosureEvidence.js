@@ -127,6 +127,11 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
       physicalMappings,
       cartridgeType:headerEvidence.cartridgeType,
       romSizeCode:headerEvidence.romSizeCode,
+      ramSizeCode:headerEvidence.ramSizeCode,
+      mapperFamilyFromHeader:headerEvidence.mapperFamilyFromHeader,
+      headerSizeMatchesFile:headerEvidence.headerSizeMatchesFile,
+      declaredMapperRomxCandidateCount:headerEvidence.declaredMapperRomxCandidateCount,
+      mbc5BankZeroCandidate:headerEvidence.mbc5BankZeroCandidate,
       standardMbc1Conditional:headerEvidence.standardMbc1Conditional,
       excludedIfStandardMbc1:headerEvidence.excludedIfStandardMbc1,
       conditionalCandidateCount:headerEvidence.conditionalCandidateCount,
@@ -164,6 +169,12 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   romxStandardMbc1ConditionalSites:romxTransferSites.filter(x=>x.standardMbc1Conditional).length,
   romxHeaderConditionalExcludedMappingsTotal:romxTransferSites.reduce(
    (n,x)=>n+x.excludedIfStandardMbc1.length,0),
+  romxMapperFamilySiteCounts:Object.fromEntries(
+   ['MBC1','MBC3','MBC5','UNKNOWN'].map(k=>[
+    k,romxTransferSites.filter(x=>x.mapperFamilyFromHeader===k).length
+   ])),
+  romxMbc5BankZeroCandidateSites:romxTransferSites.filter(
+   x=>x.mbc5BankZeroCandidate!==null).length,
   romxActiveBanksVerified:0,
   allIndirectRuntimeTargetsVerified:false,
   unresolvedCandidateCount:Object.values(byReason).reduce((n,x)=>n+x,0),
