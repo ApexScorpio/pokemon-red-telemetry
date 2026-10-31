@@ -9,6 +9,9 @@ const SCRIPT_BYTES=Object.freeze({96:'D665',135:'D65F'});
 const hexByte=x=>typeof x==='string'&&/^[a-f\d]{2}$/i.test(x);
 const deny=(status,requests=0)=>({
  verified:false,status,readOnly:true,readOnlyRequests:requests,
+ // A readMemoryBlock invocation may retry individual UDP packets internally.
+ // Count API calls honestly and do not claim a measured datagram count.
+ readOnlyReadCalls:requests,underlyingUdpPacketCount:null,
  readback:null,scriptValue:null,referenceStateName:null,
  battleWon:null,snapshotAtomicVerified:false,gameProgressCertified:false
 });
@@ -39,6 +42,11 @@ async function collectScriptedBattleLiveReadback({
   if(!Array.isArray(repeatedScript)||repeatedScript.length!==1||
      !hexByte(repeatedScript[0]))
    return deny('SECOND_SCRIPT_BYTE_MISSING',attempted);
+  // Check the connection BETWEEN the two reads as well as afterwards.
+  // Otherwise a target change and later restoration could go unnoticed.
+  const during=getTarget();
+  if(during?.host!==before.host||during?.port!==before.port)
+   return deny('RETROARCH_TARGET_CHANGED_BETWEEN_READS',attempted);
   attempted++;
   const repeatedPosition=await readMemoryBlock('D35E',8);
   const after=getTarget();
@@ -64,7 +72,8 @@ async function collectScriptedBattleLiveReadback({
    return deny('SCRIPT_BYTE_CORROBORATION_REJECTED_'+
     (checked.reason||'UNKNOWN'),attempted);
   return {verified:true,status:'SCRIPT_BYTE_REPEATED_REFERENCE_ONLY',
-   readOnly:true,readOnlyRequests:attempted,mapId,
+   readOnly:true,readOnlyRequests:attempted,
+   readOnlyReadCalls:attempted,underlyingUdpPacketCount:null,mapId,
    readback,scriptValue:checked.scriptValue,
    referenceStateName:checked.referenceStateName,
    battleWon:null,snapshotAtomicVerified:false,

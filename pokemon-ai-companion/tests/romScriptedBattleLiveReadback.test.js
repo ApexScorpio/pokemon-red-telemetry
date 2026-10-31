@@ -43,6 +43,8 @@ test('read-only, two requests, repeat of map and position, only reference status
  assert.equal(a.snapshotAtomicVerified,false);
  assert.equal(a.gameProgressCertified,false);
  assert.equal(a.readback.secondReadFromSameTargetVerified,true);
+ assert.equal(a.readOnlyReadCalls,2);
+ assert.equal(a.underlyingUdpPacketCount,null);
 });
 test('Game Corner independently reads D65F and does not assert Rocket victory',async()=>{
  const {opts,requests}=setup(135,'01');
@@ -116,4 +118,35 @@ test('world block with altered script byte or malformed read fails closed',async
  const y=await collectScriptedBattleLiveReadback(bad.opts);
  assert.equal(y.verified,false);
  assert.equal(y.readOnlyRequests,1);
+});
+
+test('all 246 non-special maps refuse to send any memory command',async()=>{
+ for(let mapId=0;mapId<248;mapId++){
+  if(mapId===96||mapId===135)continue;
+  const {opts,requests}=setup(mapId);
+  const result=await collectScriptedBattleLiveReadback(opts);
+  assert.equal(result.verified,false,'map '+mapId);
+  assert.equal(result.status,'MAP_NOT_SCRIPTED_BATTLE','map '+mapId);
+  assert.equal(result.readOnlyReadCalls,0,'map '+mapId);
+  assert.equal(requests.length,0,'map '+mapId);
+ }
+});
+test('target changing during script read blocks the second read even if later restored',async()=>{
+ const {opts,target,requests}=setup();
+ const original=target.host;
+ opts.readMemoryBlock=async(address,length)=>{
+  requests.push([address,length]);
+  if(address==='D665'){
+   target.host='192.168.1.146';
+   return ['02'];
+  }
+  target.host=original;
+  return ['60','00','00','07','11','00','00','00'];
+ };
+ const r=await collectScriptedBattleLiveReadback(opts);
+ assert.equal(r.verified,false);
+ assert.equal(r.status,'RETROARCH_TARGET_CHANGED_BETWEEN_READS');
+ assert.equal(r.readOnlyReadCalls,1);
+ assert.equal(r.underlyingUdpPacketCount,null);
+ assert.deepEqual(requests,[['D665',1]]);
 });
