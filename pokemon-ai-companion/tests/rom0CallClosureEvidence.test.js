@@ -78,6 +78,52 @@ test('literal BC/DE HL return trampolines do not fabricate destination',()=>{
  assert.equal(r.boundedIndirectCandidateEdges,0);
  assert.equal(r.unresolvedReasonCounts.JP_HL_REGISTER_DESTINATION_UNKNOWN,1);
 });
+test('ROMX call source keeps an auditable seed-to-call witness and 63 physical banks',()=>{
+ const rom=fake(0xd3);
+ rom.set([0xcd,0x00,0x02,0xc9],0x100);
+ rom.set([0xc3,0x00,0x50],0x200);
+ // The isolated first opcode at bank 7 happens to decode. This says
+ // nothing about bank selection or whether its bytes represent code.
+ const bank=7,offset=bank*0x4000+0x1000;
+ rom[offset]=0xc9;
+ const r=traceRom0CallClosure({rom,roots:[0x100]});
+ assert.equal(r.verified,true);
+ assert.equal(r.unresolvedRomxTransfers,1);
+ assert.equal(r.romxTransferSites.length,1);
+ assert.equal(r.romxPhysicalMappingsTotal,63);
+ const site=r.romxTransferSites[0];
+ assert.equal(site.fromRom0Cpu,0x200);
+ assert.equal(site.opcode,0xc3);
+ assert.equal(site.transferKind,'absolute');
+ assert.equal(site.targetCpu,0x5000);
+ assert.equal(site.originRootCpu,0x100);
+ assert.deepEqual(site.witnessPath,[
+  {pc:0x100,via:'ROOT'}, {pc:0x200,via:'call'}
+ ]);
+ assert.equal(site.physicallyMappedBanks,63);
+ assert.equal(site.firstOpcodeDecodableBanks,1);
+ assert.deepEqual(site.physicalMappings.filter(x=>x.firstOpcodeDecodable),[
+  {bank:7,fileOffset:offset,firstOpcodeDecodable:true}
+ ]);
+ assert.equal(site.activeBankKnown,false);
+ assert.equal(site.selectedFileOffset,null);
+ assert.equal(site.transferExecuted,false);
+ assert.equal(site.gameEffectVerified,false);
+ assert.equal(r.romxActiveBanksVerified,0);
+});
+test('all JP HL sites preserve witness and unknown runtime selection',()=>{
+ const rom=fake();
+ rom.set([0xcd,0x00,0x02,0xc9],0x100);
+ rom[0x200]=0xe9;
+ const r=traceRom0CallClosure({rom,roots:[0x100]});
+ assert.equal(r.verified,true);
+ assert.equal(r.indirectSiteDetails.length,1);
+ assert.deepEqual(r.indirectSiteDetails[0].witnessPath,[
+  {pc:0x100,via:'ROOT'}, {pc:0x200,via:'call'}
+ ]);
+ assert.equal(r.indirectSiteDetails[0].kind,'UNCLASSIFIED_JP_HL');
+ assert.equal(r.indirectSiteDetails[0].runtimeTargetKnown,false);
+});
 test('recursive CALL cycles terminate without inventing execution',()=>{
  const rom=fake();
  rom.set([0xcd,0x00,0x02,0xc9],0x100);
@@ -147,6 +193,17 @@ for(const [variant,name] of [
   assert.equal(r.allIndirectRuntimeTargetsVerified,false);
   assert.equal(r.boundedIndirectCandidateEdges,
    r.boundedIndirectCaseEdges+r.boundedIndirectFallbackEdges);
+  assert.equal(r.unresolvedRomxTransfers,12);
+  assert.equal(r.romxTransferSites.length,12);
+  assert.equal(r.romxPhysicalMappingsTotal,12*63);
+  assert.equal(r.romxActiveBanksVerified,0);
+  assert.equal(r.indirectSiteDetails.length,r.indirectJumpsUnknown);
+  assert.ok(r.romxTransferSites.every(site=>
+   site.physicallyMappedBanks===63&&site.activeBankKnown===false&&
+   site.selectedFileOffset===null&&site.transferExecuted===false&&
+   site.gameEffectVerified===false&&
+   site.witnessPath.length>0&&
+   site.witnessPath[0].pc===site.originRootCpu));
   assert.equal(r.budgetExhausted,r.remainingQueue>0);
   assert.equal(r.staticCandidateQueueExhausted,!r.budgetExhausted);
   assert.equal(r.unresolvedCandidateCount,
