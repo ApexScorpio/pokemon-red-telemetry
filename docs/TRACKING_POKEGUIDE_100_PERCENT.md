@@ -752,3 +752,9 @@
 - Bridge 097: 12/12 epoch, 12/12 vídeo antigo, 12/12 UDP, 31/31 integração, ASM 686/686, suite 1323 PASS/1 SKIP de 1324; 3 ROMs, zero falhas. Sem E2E real.
 - `persistState` deixava `videoMemory` (6144 tiles+1024 mapa+160 OAM) entrar nos dois snapshots JSON, `loadPersistedState` podia recuperar VRAM antiga. T144 remove vídeo apenas da projeção persistida e ignora vídeo de cache anterior no carregamento. Não altera ou apaga ficheiros existentes, nem o vídeo vivo; menor volume de cache futuro. 10 testes novos e certifier atualizado.
 - Bridge 098 por executar: espera ASM 696/696 e full 1333 PASS + 1 SKIP/1334. Histórico append-only, ambientes protegidos intocados.
+
+
+### T145 — 2026-10-31: Bridge 098 certificada; caches de evidência mundial passam a descartar mapas/entidades antigos
+- Bridge 098 PASS: 10/10 vídeo-cache, 12/12 vídeo epoch, 12/12 vídeo anterior, 31/31 integração, 696/696 ASM, 1333 PASS+1 SKIP em 1334, 0 fail, 3 ROMs sem sessão ao vivo.
+- Falha: dados temporários do mundo como `romMap`, encontros, `mapEntities`, itens, atores e guias locais persistiam nas caches e parte podia sobreviver a `invalidateWorldEvidence`. Corrigida exclusão de 13 campos ao guardar, remoção em load legado e invalidação do estado RAM atual; mantém os metadados e a história da partida. Inclui 12 testes no certificador, sem gravações reais feitas pelos testes novos.
+- Bridge 099 pendente, expectativa ASM 708/708 e full 1345 PASS/1 SKIP de 1346, não é prova de gameplay 100%. Preservadas sessões e ROMs; histórico acrescentado.

@@ -369,8 +369,29 @@ class RetroArchClient extends EventEmitter {
     this._videoEvidenceEpoch=Number.isSafeInteger(this._videoEvidenceEpoch)&&
       this._videoEvidenceEpoch>=0&&this._videoEvidenceEpoch<Number.MAX_SAFE_INTEGER?
       this._videoEvidenceEpoch+1:1;
-    // Uma imagem anterior não é prova da RAM ou do mapa atual.
-    if(this.latestState)this.latestState.videoMemory=null;
+    // Remove all live-world UI observations from an invalid session.
+    // Preserve the last-known textual map, party, badges and history.
+    if(this.latestState){
+      this.latestState.videoMemory=null;
+      this.latestState.romMap=null;
+      this.latestState.romWildEncounters=null;
+      this.latestState.mapEntities=[];
+      this.latestState.romStaticMapGuide={verified:false,reason};
+      this.latestState.romItemAccess={verified:false,results:[],reason};
+      this.latestState.romTerrainCurrentTile={verified:false,reason};
+      this.latestState.romTerrainWarpHints={verified:false,reason};
+      this.latestState.romMovementOptions={verified:false,reason};
+      this.latestState.romAreaEvidence={
+        verified:false,reason,items:[],trainers:[],npcs:[]
+      };
+      this.latestState.romLiveActorIdentification={
+        verified:false,reason,identifiedItems:0,identifiedTrainers:0,
+        movingCandidates:0,movingCandidatesCertified:false
+      };
+      this.latestState.romTrainerFlags={verified:false,entries:[],reason};
+      this.latestState.romHiddenItems={verified:false,items:[],reason};
+      this.latestState.romHiddenCoins={verified:false,coins:[],reason};
+    }
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
     if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
     if(this._completeEventBitSession)this._completeEventBitSession.reset(reason);
@@ -437,6 +458,16 @@ class RetroArchClient extends EventEmitter {
           // A saved VRAM canvas is neither a live memory sample nor
           // required to recover the trainer/party after restart.
           delete saved.videoMemory;
+          // Cached terrain, visible actors, encounters and access advice
+          // are observations from another polling session, never live proof.
+          for(const key of [
+            'romMap','romWildEncounters','mapEntities',
+            'romStaticMapGuide','romItemAccess',
+            'romTerrainCurrentTile','romTerrainWarpHints',
+            'romMovementOptions','romAreaEvidence',
+            'romLiveActorIdentification','romTrainerFlags',
+            'romHiddenItems','romHiddenCoins'
+          ])delete saved[key];
           // Legacy cache may contain an old successful script readback.
           // It is not live evidence after process restart.
           delete saved.romScriptedBattleReadbackStatus;
@@ -476,7 +507,14 @@ class RetroArchClient extends EventEmitter {
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
-        'romWarpGraph','videoMemory','romScriptedBattleReadbackStatus',
+        'romWarpGraph','videoMemory',
+        'romMap','romWildEncounters','mapEntities',
+        'romStaticMapGuide','romItemAccess',
+        'romTerrainCurrentTile','romTerrainWarpHints',
+        'romMovementOptions','romAreaEvidence',
+        'romLiveActorIdentification','romTrainerFlags',
+        'romHiddenItems','romHiddenCoins',
+        'romScriptedBattleReadbackStatus',
         'romScriptedBattleStateDelta','romRecentScriptedBattleStateChanges'
       ])delete persisted[transient];
       // Retain the unrelated memory diagnostics, never a stale successful
