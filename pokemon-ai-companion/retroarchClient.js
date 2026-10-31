@@ -15,6 +15,8 @@ const {readStrengthFieldEvidence}=require('./romStrengthFieldEvidence');
 const {adviseWorld}=require('./romWorldStateAdvisor');
 const {collectScriptedBattleLiveReadback}=
  require('./romScriptedBattleLiveReadback');
+const {ScriptedBattleStateSession}=
+ require('./romScriptedBattleStateSession');
 const {buildCampaignLedger}=require('./romCampaignLedger');
 const {verifyGlobalFlagReadback}=require('./romGlobalFlagReadback');
 const {campaignObjectives}=require('./romCampaignObjectives');
@@ -337,6 +339,8 @@ class RetroArchClient extends EventEmitter {
     this._worldCampaignSession=new CampaignFlagSession();
     this._worldReferenceSession=new WorldReferenceFlagSession();
     this._completeEventBitSession=new CompleteEventBitSession();
+    this._scriptedBattleStateSession=new ScriptedBattleStateSession();
+    this._scriptedBattlePollSequence=0;
     this._currentSessionSha=null;
     // Never inherit advice or progress deltas from persisted state.
     this.invalidateWorldEvidence('Novo arranque: aguardar leituras RAM reais');
@@ -355,6 +359,7 @@ class RetroArchClient extends EventEmitter {
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
     if(this._worldReferenceSession)this._worldReferenceSession.reset(reason);
     if(this._completeEventBitSession)this._completeEventBitSession.reset(reason);
+    if(this._scriptedBattleStateSession)this._scriptedBattleStateSession.reset(reason);
     this._strengthPlanCacheScope=null;this._strengthPlanCache=new Map();
     this._globalFlagItemKey=null;this._globalFlagItemRoutes=null;
     this._crossMapRouteKey=null;this._crossMapRoute=null;
@@ -382,6 +387,12 @@ class RetroArchClient extends EventEmitter {
     this._worldDetourCyclesKey=null;this._worldDetourCycles=null;
     this.latestState.romWorldDetourCycles={verified:false,candidates:[],reason};
     this.latestState.worldAdvisor={verified:false,observations:[],reason};
+    this.latestState.romScriptedBattleStateDelta={
+      verified:false,reason,changes:[],changedBytes:0,
+      playerActionConfirmed:false,battleWon:null};
+    this.latestState.romRecentScriptedBattleStateChanges={
+      verified:false,reason,events:[],baselineEstablished:false,
+      battleWon:null,gameplayCompleted:false};
     this.latestState.romScriptedBattleReadbackStatus={
       verified:false,status:'WORLD_EVIDENCE_INVALIDATED',
       reason,readOnlyRequests:0,readOnlyReadCalls:0,
@@ -404,6 +415,8 @@ class RetroArchClient extends EventEmitter {
           // Legacy cache may contain an old successful script readback.
           // It is not live evidence after process restart.
           delete saved.romScriptedBattleReadbackStatus;
+          delete saved.romScriptedBattleStateDelta;
+          delete saved.romRecentScriptedBattleStateChanges;
           if(saved.memoryReadStatus&&
              typeof saved.memoryReadStatus==='object')
             delete saved.memoryReadStatus.scriptedBattleReadback;
@@ -437,7 +450,8 @@ class RetroArchClient extends EventEmitter {
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
-        'romWarpGraph','romScriptedBattleReadbackStatus'
+        'romWarpGraph','romScriptedBattleReadbackStatus',
+        'romScriptedBattleStateDelta','romRecentScriptedBattleStateChanges'
       ])delete persisted[transient];
       // Retain the unrelated memory diagnostics, never a stale successful
       // script readback. Clone the nested object to avoid mutating live state.
@@ -767,6 +781,9 @@ class RetroArchClient extends EventEmitter {
   }
 
   async fetchGameState() {
+    // Every invocation advances continuity, even when it aborts early.
+    // No artificial time delay is used to certify consecutive polls.
+    this._scriptedBattlePollSequence=(this._scriptedBattlePollSequence||0)+1;
     if (!this.lastRomStatusReadAt || Date.now()-this.lastRomStatusReadAt > 4000) {
       this.lastRomStatusReadAt = Date.now();
       const reply = await this.sendRaw('GET_STATUS');
@@ -3010,6 +3027,7 @@ class RetroArchClient extends EventEmitter {
     // Only maps 96/135 require this OPTIONAL extra read-only corroboration.
     // The helper refuses stale map/position, unknown ROM and simulation
     // before issuing any extra READ_CORE_MEMORY request. No emulator control.
+    const scriptedBattleTargetAtRead={host:this.ip,port:this.port};
     const scriptedBattleSample=await collectScriptedBattleLiveReadback({
       profile:this.activeRomProfile,
       mapId:this.latestState.mapId,
@@ -3120,8 +3138,32 @@ class RetroArchClient extends EventEmitter {
       this.emit('update',this.latestState);
       return;
     }
-    // Only accepted publication-window samples can become baselines or
-    // transitions. Do not compare cached files or aborted poll states.
+    // Only a successful final publication guard may establish a baseline
+    // or expose changes in scripted-battle bytes. No sample is an action.
+    // The target used for the read must still be the same at publication.
+    const scriptedTargetStillSame=
+      scriptedBattleTargetAtRead.host===this.ip&&
+      scriptedBattleTargetAtRead.port===this.port;
+    const scriptedTransition=this._scriptedBattleStateSession.ingest({
+      sample:scriptedBattleSample,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      mapId:this.latestState.mapId,
+      targetHost:scriptedBattleTargetAtRead.host,
+      targetPort:scriptedBattleTargetAtRead.port,
+      publicationGuardVerified:scriptedTargetStillSame,
+      pollSequence:this._scriptedBattlePollSequence,
+      observedAt:this.latestState.lastUpdate
+    });
+    this.latestState.romScriptedBattleStateDelta=scriptedTransition.delta;
+    this.latestState.romRecentScriptedBattleStateChanges=scriptedTransition.recent;
+    if(this.latestState.worldAdvisor&&
+       this.latestState.worldAdvisor.verified===true){
+      this.latestState.worldAdvisor.romScriptedBattleStateDelta=
+        scriptedTransition.delta;
+      this.latestState.worldAdvisor.romRecentScriptedBattleStateChanges=
+        scriptedTransition.recent;
+    }
+    // Do not compare cached files or aborted poll states.
     const bitmapChanges=this._completeEventBitSession.ingest({
       bitmap:this.latestState.worldAdvisor?.romCompleteEventBitmap,
       publicationGuardVerified:true,

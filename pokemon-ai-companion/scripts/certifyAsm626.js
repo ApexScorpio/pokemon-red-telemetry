@@ -1161,6 +1161,7 @@ function main(){
   'tests/romScriptedBattleWriteContexts.test.js',
   'tests/romScriptedBattleStateCandidates.test.js',
   'tests/romScriptedBattleLiveReadback.test.js',
+  'tests/romScriptedBattleStateSession.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',

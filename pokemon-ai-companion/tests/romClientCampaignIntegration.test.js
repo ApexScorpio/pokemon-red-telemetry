@@ -488,3 +488,62 @@ test('world invalidation still works when optional memory diagnostics are absent
  assert.equal(client.latestState.romScriptedBattleReadbackStatus.verified,false);
  assert.equal(client.latestState.memoryReadStatus,undefined);
 });
+
+test('scripted battle byte transitions never enter persisted cache or legacy recovery',()=>{
+ const writes=[];
+ const Agent=vm.runInNewContext('(class Agent {\n'+
+   method('persistState','loadPersistedActionHistory')+'\n})',{
+   fs:{writeFileSync:(p,s)=>writes.push(s)},
+   require:()=>({join:(...x)=>x.join('/')}),
+   __dirname:'/mock/app'});
+ const input={connected:true,isSimulation:false,trainerName:'RED',
+  areaInfo:{name:'S.S. Anne'},party:[{speciesId:1}],mapId:96,
+  romScriptedBattleStateDelta:{verified:true,changes:[{fromScriptByte:1,toScriptByte:2}]},
+  romRecentScriptedBattleStateChanges:{verified:true,events:[{mapId:96}]}};
+ new Agent().persistState(input);
+ assert.equal(writes.length,2);
+ for(const value of writes){
+  const r=JSON.parse(value);
+  assert.equal(Object.hasOwn(r,'romScriptedBattleStateDelta'),false);
+  assert.equal(Object.hasOwn(r,'romRecentScriptedBattleStateChanges'),false);
+ }
+ assert.equal(input.romScriptedBattleStateDelta.verified,true);
+ const Legacy=vm.runInNewContext('(class Agent {\n'+
+   method('loadPersistedState','persistState')+'\n})',{
+    fs:{existsSync:()=>true,readFileSync:()=>JSON.stringify(input)},
+    require:()=>({join:(...x)=>x.join('/')}),
+    __dirname:'/mock/app'});
+ const legacy=new Legacy().loadPersistedState();
+ assert.equal(Object.hasOwn(legacy,'romScriptedBattleStateDelta'),false);
+ assert.equal(Object.hasOwn(legacy,'romRecentScriptedBattleStateChanges'),false);
+});
+test('world invalidation clears battle byte history and session baseline',()=>{
+ const Agent=vm.runInNewContext('(class Agent {\n'+
+   method('invalidateWorldEvidence','loadPersistedState')+'\n})');
+ const a=new Agent(),called=[];
+ a.latestState={memoryReadStatus:{blocks:{playerParty:true}},
+  romScriptedBattleStateDelta:{verified:true,changes:[{mapId:96}]},
+  romRecentScriptedBattleStateChanges:{verified:true,events:[{mapId:96}]}};
+ a._scriptedBattleStateSession={reset:r=>called.push(r)};
+ a.invalidateWorldEvidence('MAP_CHANGED');
+ assert.deepEqual(called,['MAP_CHANGED']);
+ assert.equal(a.latestState.romScriptedBattleStateDelta.verified,false);
+ assert.equal(a.latestState.romScriptedBattleStateDelta.changes.length,0);
+ assert.equal(a.latestState.romRecentScriptedBattleStateChanges.verified,false);
+ assert.equal(a.latestState.romRecentScriptedBattleStateChanges.events.length,0);
+ assert.equal(a.latestState.memoryReadStatus.blocks.playerParty,true);
+});
+test('battle transition ingest occurs only after final publication position guard',()=>{
+ const final=source.indexOf("    const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);");
+ const guard=source.indexOf("    if(publicationPositionWindow.verified!==true",final);
+ const ingester=source.indexOf("    const scriptedTransition=this._scriptedBattleStateSession.ingest({",final);
+ const saving=source.indexOf("    this.persistState(this.latestState);",ingester);
+ const emit=source.indexOf("    this.emit('update', this.latestState);",ingester);
+ const sourceRead=source.indexOf("    const scriptedBattleTargetAtRead={host:this.ip,port:this.port};");
+ const pollEntry=source.indexOf("    this._scriptedBattlePollSequence=(this._scriptedBattlePollSequence||0)+1;");
+ assert.ok(sourceRead>=0&&sourceRead<final);
+ assert.ok(pollEntry>=0&&pollEntry<sourceRead);
+ assert.ok(final>0&&guard>final&&ingester>guard&&saving>ingester&&emit>saving);
+ assert.match(source.slice(ingester,ingester+660),/publicationGuardVerified:scriptedTargetStillSame/);
+ assert.match(source.slice(ingester,ingester+660),/pollSequence:this\._scriptedBattlePollSequence/);
+});
