@@ -2966,6 +2966,53 @@ class RetroArchClient extends EventEmitter {
          this.latestState.mapEntities:[],
        canCut:abilityCut,canSurf:abilitySurf
       });
+    // Last read-only publication gate: expensive world routing and named
+    // event joins run AFTER the first two position checks. A player may
+    // change tiles or maps while those calculations happen, so re-read
+    // D35E..D365 immediately before exposing any advice to the cockpit.
+    // This does not make the sequential RAM/ROM sample atomic.
+    const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);
+    const publicationPositionWindow=verifyMapPositionWindow({
+      firstMapByte:blockPlayerParty[518],
+      firstYByte:blockPlayerParty[521],
+      firstXByte:blockPlayerParty[522],
+      secondMapAndLastMapBytes:publicationMapAndPosition
+    });
+    this.latestState.memoryReadStatus.publicationPositionWindow=
+      publicationPositionWindow;
+    if(publicationPositionWindow.verified!==true||
+       publicationPositionWindow.mapId!==this.latestState.mapId||
+       publicationPositionWindow.mapId!==latePositionWindow.mapId||
+       publicationPositionWindow.x!==latePositionWindow.x||
+       publicationPositionWindow.y!==latePositionWindow.y){
+      const why='Amostra de posicao alterada antes da publicacao: '+
+        (publicationPositionWindow.reason||'MAPA_OU_POSICAO_FINAL_DIVERGENTE');
+      this.latestState.memoryReadStatus.verified=false;
+      this.latestState.memoryReadStatus.globalFlagReadback={
+        ...globalFlagReadback,verified:false,domain:'POSITION',
+        reason:why,romAndMapCorroborated:false,
+        readbackBytesMatched:0,toggleBytesMatched:0,allFlagBytesMatched:0,
+        toggleReadbackVerified:false
+      };
+      this.latestState.connected=false;
+      this.latestState.lastReadError=why;
+      this.invalidateWorldEvidence(why);
+      this.latestState.romStaticMapGuide={verified:false,reason:why};
+      this.latestState.romTerrainCurrentTile={verified:false,reason:why};
+      this.latestState.romTerrainWarpHints={verified:false,reason:why};
+      this.latestState.romMovementOptions={verified:false,reason:why};
+      this.latestState.romAreaEvidence={verified:false,reason:why,
+        items:[],trainers:[],npcs:[]};
+      this.latestState.romTrainerFlags={verified:false,entries:[],reason:why};
+      this.latestState.romHiddenItems={verified:false,items:[],reason:why};
+      this.latestState.romHiddenCoins={verified:false,coins:[],reason:why};
+      this.latestState.romItemAccess={verified:false,results:[],reason:why};
+      this.latestState.romMap=null;
+      this.latestState.romWildEncounters=null;
+      this.latestState.mapEntities=[];
+      this.emit('update',this.latestState);
+      return;
+    }
     this.persistState(this.latestState);
     this.emit('update', this.latestState);
   }

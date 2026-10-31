@@ -12,6 +12,7 @@ const state=()=>({
  memoryReadStatus:{verified:true,mapSnapshot:{verified:true},
   positionWindow:{verified:true,mapId:5,x:8,y:9},
   latePositionWindow:{verified:true,mapId:5,x:8,y:9},
+  publicationPositionWindow:{verified:true,mapId:5,x:8,y:9},
   globalFlagReadback:{
   verified:true,romAndMapCorroborated:true,
   readbackBytesMatched:336,toggleBytesMatched:32,
@@ -40,6 +41,7 @@ test('live state requires same-ROM readback across 336 bytes but never proves ac
  assert.equal(r.playerActionConfirmed,false);
  assert.equal(r.activeMapId,5);
  assert.equal(r.mapPositionVerified,true);
+ assert.equal(r.publicationPositionVerified,true);
  assert.equal(r.namedEventsFlagBits,507);
  assert.equal(r.removableObjectFlags,228);
 });
@@ -95,6 +97,11 @@ test('no live location certification from absent or mismatched map and coordinat
   s=>{s.memoryReadStatus.positionWindow.verified=false;},
   s=>{s.memoryReadStatus.latePositionWindow.verified=false;},
   s=>{delete s.memoryReadStatus.latePositionWindow;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.verified=false;},
+  s=>{delete s.memoryReadStatus.publicationPositionWindow;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.mapId=6;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.x=10;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.y=10;},
   s=>{s.memoryReadStatus.latePositionWindow.x=10;},
   s=>{s.memoryReadStatus.latePositionWindow.y=10;},
   s=>{s.memoryReadStatus.latePositionWindow.mapId=6;},

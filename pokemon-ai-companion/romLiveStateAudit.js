@@ -56,11 +56,15 @@ function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
     state.memoryReadStatus?.mapSnapshot?.verified!==true||
     state.memoryReadStatus?.positionWindow?.verified!==true||
     state.memoryReadStatus?.latePositionWindow?.verified!==true||
+    state.memoryReadStatus?.publicationPositionWindow?.verified!==true||
     !Number.isInteger(state.mapId)||state.mapId<0||state.mapId>=248||
     state.memoryReadStatus.positionWindow.mapId!==state.mapId||
     state.memoryReadStatus.latePositionWindow.mapId!==state.mapId||
+    state.memoryReadStatus.publicationPositionWindow.mapId!==state.mapId||
     state.memoryReadStatus.positionWindow.x!==state.memoryReadStatus.latePositionWindow.x||
-    state.memoryReadStatus.positionWindow.y!==state.memoryReadStatus.latePositionWindow.y)
+    state.memoryReadStatus.positionWindow.y!==state.memoryReadStatus.latePositionWindow.y||
+    state.memoryReadStatus.latePositionWindow.x!==state.memoryReadStatus.publicationPositionWindow.x||
+    state.memoryReadStatus.latePositionWindow.y!==state.memoryReadStatus.publicationPositionWindow.y)
   return result('LIVE_MAP_POSITION_NOT_CORROBORATED',
    {romProfileMatched:true,readbackVerified:true});
  const named=state.romWorldEventAtlas;
@@ -87,7 +91,8 @@ function classifyLiveWorldState(state,{nowMs=Date.now(),maxAgeMs=30000}={}){
  return result('LIVE_WORLD_FLAGS_REPEAT_CORROBORATED',{
   romProfileMatched:true,readbackVerified:true,
   ledgerVerified:true,worldAdvisorVerified:true,
-  mapPositionVerified:true,namedEventsFlagBits:507,removableObjectFlags:228,
+  mapPositionVerified:true,publicationPositionVerified:true,
+  namedEventsFlagBits:507,removableObjectFlags:228,
   matchedFlagBytes:336,matchedToggleBytes:32,matchedTotalFlagBytes:368,
   normalMapHeaders:226,
   activeMapId:Number.isInteger(state.mapId)?state.mapId:null,

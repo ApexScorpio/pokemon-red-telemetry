@@ -740,10 +740,14 @@ function renderWorldAdvisor(state) {
      !Number.isFinite(readAge)||readAge<0||readAge>15000||
      state.memoryReadStatus?.positionWindow?.verified!==true||
      state.memoryReadStatus?.latePositionWindow?.verified!==true||
+     state.memoryReadStatus?.publicationPositionWindow?.verified!==true||
      state.memoryReadStatus.positionWindow.mapId!==state.mapId||
      state.memoryReadStatus.latePositionWindow.mapId!==state.mapId||
+     state.memoryReadStatus.publicationPositionWindow.mapId!==state.mapId||
      state.memoryReadStatus.positionWindow.x!==state.memoryReadStatus.latePositionWindow.x||
-     state.memoryReadStatus.positionWindow.y!==state.memoryReadStatus.latePositionWindow.y){
+     state.memoryReadStatus.positionWindow.y!==state.memoryReadStatus.latePositionWindow.y||
+     state.memoryReadStatus.latePositionWindow.x!==state.memoryReadStatus.publicationPositionWindow.x||
+     state.memoryReadStatus.latePositionWindow.y!==state.memoryReadStatus.publicationPositionWindow.y){
     source.textContent='Sem RAM atual e coerente';
     body.textContent='Aguardar nova leitura confirmada do mapa e coordenadas; conselhos anteriores ocultados.';
     return;

@@ -56,6 +56,25 @@ test('late map and position verification rejects movement after flags were scann
   secondMapAndLastMapBytes:initial.secondMapAndLastMapBytes
  }).verified,true);
 });
+test('last read-only position gate is after actor route planning and before emitting',()=>{
+ const fs=require('node:fs'),path=require('node:path');
+ const src=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
+ const worldPlan=src.lastIndexOf('planEventActorApproaches({');
+ const finalRead=src.indexOf("const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);");
+ const finalCheck=src.indexOf('const publicationPositionWindow=verifyMapPositionWindow({');
+ const lastEmit=src.lastIndexOf("this.emit('update', this.latestState);");
+ const persisted=src.lastIndexOf('this.persistState(this.latestState);');
+ assert.ok(worldPlan>0&&finalRead>worldPlan);
+ assert.ok(finalCheck>finalRead);
+ assert.ok(persisted>finalCheck&&lastEmit>persisted);
+ const safety=src.slice(finalCheck,persisted);
+ assert.match(safety,/if\(publicationPositionWindow\.verified!==true\|\|/);
+ assert.match(safety,/this\.latestState\.connected=false/);
+ assert.match(safety,/this\.latestState\.memoryReadStatus\.verified=false/);
+ assert.match(safety,/this\.invalidateWorldEvidence\(why\)/);
+ assert.match(safety,/this\.emit\('update',this\.latestState\)/);
+ assert.match(safety,/\n      return;/);
+});
 test('readback code rechecks both map and coordinates after the 368 flag bytes',()=>{
  const fs=require('node:fs'),path=require('node:path');
  const src=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');

@@ -27,7 +27,8 @@ const live=()=>({
  connected:true,lastUpdate:new Date().toISOString(),mapId:15,
  memoryReadStatus:{verified:true,
   positionWindow:{verified:true,mapId:15,x:12,y:3},
-  latePositionWindow:{verified:true,mapId:15,x:12,y:3}},
+  latePositionWindow:{verified:true,mapId:15,x:12,y:3},
+  publicationPositionWindow:{verified:true,mapId:15,x:12,y:3}},
  romRuntimeIdentity:{matched:true},
  worldAdvisor:{verified:true,mapId:15,mapName:'Route 4',romSha256:'5ca7ba01',
   position:{x:12,y:3},trainerFlagsVerified:false,hiddenFlagsVerified:true,
@@ -55,7 +56,12 @@ test('world panel refuses a missing or moved late position window',()=>{
   s=>{s.memoryReadStatus.latePositionWindow.x=13;},
   s=>{s.memoryReadStatus.latePositionWindow.y=4;},
   s=>{s.memoryReadStatus.latePositionWindow.mapId=16;},
-  s=>{s.memoryReadStatus.positionWindow.mapId=16;}
+  s=>{s.memoryReadStatus.positionWindow.mapId=16;},
+  s=>{delete s.memoryReadStatus.publicationPositionWindow;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.verified=false;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.x=13;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.y=4;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.mapId=16;}
  ]){
   const s=live();mutate(s);
   const r=render(s);
