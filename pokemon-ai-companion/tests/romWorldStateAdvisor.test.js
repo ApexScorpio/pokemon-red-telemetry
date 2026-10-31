@@ -228,6 +228,8 @@ test('reference-guided scripted battle remains unknown on maps 96 and 135',()=>{
   assert.equal(battle[0].accessibleNow,null);
   assert.equal(battle[0].mapScriptStateVerified,false);
   assert.equal(battle[0].nextActionConditional,true);
+  assert.deepEqual(battle[0].candidateStateWritesFromRom,[]);
+  assert.equal(battle[0].staticWriteCandidatesVerified,false);
  }
 });
 test('unverified scripted battle reference cannot appear as real observed progress',()=>{

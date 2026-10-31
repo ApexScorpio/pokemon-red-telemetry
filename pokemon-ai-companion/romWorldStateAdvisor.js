@@ -15,6 +15,8 @@ const {scriptedBattleGuidanceForMap}=
  require('./romScriptedBattleReference');
 const {assessScriptedBattleRamReadback}=
  require('./romScriptedBattleRam');
+const {mapScriptedBattleStateCandidates}=
+ require('./romScriptedBattleStateCandidates');
 const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
 function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenCoins=[],trainers=[],
  warpGraph,hiddenFlagsVerified=false,coinFlagsVerified=false,trainerFlagsVerified=false,
@@ -109,6 +111,8 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  // or is currently accessible without a matched live map-script snapshot.
  const specialBattle=scriptedBattleGuidanceForMap({
   scriptAtlas:profile?.world?.interactionScriptAtlas,mapId});
+ const scriptStateAlternatives=mapScriptedBattleStateCandidates({
+  scriptAtlas:profile?.world?.interactionScriptAtlas,mapId});
  if(specialBattle.verified){
   for(const row of specialBattle.entries){
    const isRival=row.mapId===96;
@@ -148,7 +152,16 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      mapScriptStateVerified:false,
      currentMapScriptReadbackReason:ram.verified?null:ram.reason,
      nextActionConditional:true,
-     actualRomScriptSemanticsVerified:false});
+     actualRomScriptSemanticsVerified:false,
+     candidateStateWritesFromRom:
+      scriptStateAlternatives.verified?
+       scriptStateAlternatives.candidateWrites:[],
+     candidateStateWritesWithUnknownValue:
+      scriptStateAlternatives.verified?
+       scriptStateAlternatives.unresolvedWriteCount:null,
+     candidateStateValuesAreCurrentProgress:false,
+     staticWriteCandidatesVerified:
+      scriptStateAlternatives.verified===true});
   }
  }
  for(const npc of liveArea?.npcs||[]){

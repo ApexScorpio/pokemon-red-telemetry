@@ -305,6 +305,13 @@ function main(){
    gaps.summary.unboundTrainerScriptedBattleReferenceVerified===true&&
    gaps.summary.scriptedBattleRamCandidateScanVerified===true&&
    gaps.summary.scriptedBattleWriteContextsVerified===true&&
+   gaps.summary.scriptedBattleStateCandidateEvidenceVerified===true&&
+   gaps.summary.scriptedBattleStaticStateValueCandidates===7&&
+   gaps.summary.scriptedBattleUnknownSourceWriteCandidates===2&&
+   gaps.summary.scriptedBattleStaticWriteAlternativesClaimRuntimeProgress===false&&
+   JSON.stringify(gaps.summary.scriptedBattleStateCandidateEvidence.map(x=>
+    x.candidateWrites.map(w=>w.byteValueCandidate)))===
+     JSON.stringify([[null,1,2,3,4],[null,2,0,1]])&&
    gaps.summary.scriptedBattleDecodedReadWriteCandidates===11&&
    gaps.summary.scriptedBattleActualWritesVerified===0&&
    gaps.summary.scriptedBattleWriteContextEvidence.length===2&&
@@ -849,6 +856,12 @@ function main(){
    gaps.summary.scriptedBattleAdjacentValueCandidates);
   log('ROM_'+variant.toUpperCase()+'_SCRIPT_STATE_WRITE_CONTEXT_EVIDENCE='+
    JSON.stringify(gaps.summary.scriptedBattleWriteContextEvidence));
+  log('ROM_'+variant.toUpperCase()+'_SCRIPT_STATE_STATIC_KNOWN_VALUE_WRITES='+
+   gaps.summary.scriptedBattleStaticStateValueCandidates);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPT_STATE_STATIC_UNKNOWN_VALUE_WRITES='+
+   gaps.summary.scriptedBattleUnknownSourceWriteCandidates);
+  log('ROM_'+variant.toUpperCase()+'_SCRIPT_STATE_STATIC_ALTERNATIVES_EVIDENCE='+
+   JSON.stringify(gaps.summary.scriptedBattleStateCandidateEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_SCRIPT_AUDIT='+
    JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_EVENT_BITS_RECOVERED='+
@@ -1146,6 +1159,7 @@ function main(){
   'tests/romScriptedBattleReference.test.js',
   'tests/romScriptedBattleRam.test.js',
   'tests/romScriptedBattleWriteContexts.test.js',
+  'tests/romScriptedBattleStateCandidates.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',

@@ -26,6 +26,8 @@ const {locateScriptedBattleRamCandidates}=
  require('./romScriptedBattleRam');
 const {auditScriptedBattleStateWriteContexts}=
  require('./romScriptedBattleWriteContexts');
+const {buildScriptedBattleStateCandidates}=
+ require('./romScriptedBattleStateCandidates');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
 function crc32(buf){let x=0xFFFFFFFF;for(const b of buf)x=crcTable[(x^b)&255]^(x>>>8);return ((x^0xFFFFFFFF)>>>0).toString(16).toUpperCase().padStart(8,'0');}
@@ -255,6 +257,9 @@ function inspectRomBuffer(b,file='ROM_EM_MEMORIA.gb'){
   world.interactionScriptAtlas.scriptedBattleWriteContexts=
    auditScriptedBattleStateWriteContexts({
     rom:b,scriptAtlas:world.interactionScriptAtlas});
+  world.interactionScriptAtlas.scriptedBattleStateCandidates=
+   buildScriptedBattleStateCandidates({
+    scriptAtlas:world.interactionScriptAtlas});
  }
  const title=b.subarray(0x134,0x144).toString('latin1').split('\0')[0].trim();
  return {schema:'gen1-rom-profile-v1',source:'local-ROM-file',file:path.basename(file),

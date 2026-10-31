@@ -108,6 +108,22 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
       w.instructionBoundaryFromControlFlowVerified!==false||
       w.actualRamWriteVerified!==false)))
   return invalid('Physical scripted-battle load/store contexts are inconsistent');
+ const stateCandidates=scriptAtlas.scriptedBattleStateCandidates;
+ if(stateCandidates?.verified!==true||stateCandidates.romSha256!==sha||
+    stateCandidates.mapCount!==2||
+    stateCandidates.physicalWriteCandidates!==9||
+    stateCandidates.immediateValueCandidates!==7||
+    stateCandidates.unknownValueWrites!==2||
+    stateCandidates.executedWriteCount!==0||
+    stateCandidates.gameProgressVerified!==false||
+    stateCandidates.maps?.length!==2||
+    JSON.stringify(stateCandidates.maps.map(m=>[
+     m.mapId,m.ordinal,m.candidateWrites.map(x=>x.byteValueCandidate),
+     m.unknownValueWrites,m.currentBattleCompleted]))!==
+     JSON.stringify([
+      [96,2,[null,1,2,3,4],1,null],
+      [135,11,[null,2,0,1],1,null]]))
+  return invalid('Map-script static state alternatives contradict exact physical writes');
  const maps=[];const allScriptRows=[];
  let normalMaps=0,unresolvedMapIds=0,unassignedHidden=0,
   textPointersPending=0,unverifiedEffects=0,asmTextReferences=0,
@@ -317,6 +333,11 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    scriptedBattlePotentialStateAssignments:
     stateWrites.entries.flatMap(x=>x.referenceStateCandidateValues),
    scriptedBattleActualWritesVerified:0,
+   scriptedBattleStateCandidateEvidenceVerified:true,
+   scriptedBattleStateCandidateEvidence:stateCandidates.maps,
+   scriptedBattleStaticStateValueCandidates:7,
+   scriptedBattleUnknownSourceWriteCandidates:2,
+   scriptedBattleStaticWriteAlternativesClaimRuntimeProgress:false,
    scriptedBattleRamAddressBoundToRomExecution:false,
    scriptedBattleRamLiveSnapshotVerified:false,
    verifiedTrainerScriptEventBitBindings:332,

@@ -56,6 +56,13 @@ for(const [variant,name] of [['red','POKEMON_RED_ROM'],['blue','POKEMON_BLUE_ROM
   assert.equal(ledger.summary.unboundTrainerScriptedBattleReferenceVerified,true);
   assert.equal(ledger.summary.scriptedBattleRamCandidateScanVerified,true);
   assert.equal(ledger.summary.scriptedBattleWriteContextsVerified,true);
+  assert.equal(ledger.summary.scriptedBattleStateCandidateEvidenceVerified,true);
+  assert.equal(ledger.summary.scriptedBattleStaticStateValueCandidates,7);
+  assert.equal(ledger.summary.scriptedBattleUnknownSourceWriteCandidates,2);
+  assert.deepEqual(ledger.summary.scriptedBattleStateCandidateEvidence.map(x=>
+    x.candidateWrites.map(w=>w.byteValueCandidate)),[
+    [null,1,2,3,4],[null,2,0,1]]);
+  assert.equal(ledger.summary.scriptedBattleStaticWriteAlternativesClaimRuntimeProgress,false);
   assert.equal(ledger.summary.scriptedBattleDecodedReadWriteCandidates,11);
   assert.equal(ledger.summary.scriptedBattleActualWritesVerified,0);
   assert.deepEqual(ledger.summary.scriptedBattleWriteContextEvidence.map(x=>
