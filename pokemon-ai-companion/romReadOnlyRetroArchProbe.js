@@ -6,6 +6,8 @@
 const dgram=require('node:dgram');
 const net=require('node:net');
 const {verifyGlobalFlagReadback}=require('./romGlobalFlagReadback');
+const {SOURCE_CPU_ADDRESSES,verifyMbc3SourceRamReadback}=
+ require('./romMbc3RamSourceReadback');
 
 const AUDITED_CRC=Object.freeze({
  '9F7FDD53':'red',
@@ -70,12 +72,14 @@ function oneQuery(socket,host,port,command,timeoutMs){
  });
 }
 async function probeReadOnlyRetroArch({
- host='192.168.1.145',port=55355,timeoutMs=1200
+ host='192.168.1.145',port=55355,timeoutMs=1200,
+ mbc3SourceReadback=false
 }={}){
  // The default endpoint above comes from this project's actual server.js,
  // not from evidence that the device is currently reachable.
  if(!privateIpv4(host)||!Number.isInteger(port)||port<1||port>65535||
-    !Number.isInteger(timeoutMs)||timeoutMs<250||timeoutMs>5000)
+    !Number.isInteger(timeoutMs)||timeoutMs<250||timeoutMs>5000||
+    typeof mbc3SourceReadback!=='boolean')
   return fail('PROBE_TARGET_NOT_PRIVATE_OR_INVALID');
  const socket=dgram.createSocket('udp4');
  const sent=[];
@@ -111,6 +115,12 @@ async function probeReadOnlyRetroArch({
   // readback verifier rejects stale toggles even if all event bits match.
   const repeatedToggles=await read(0xD5A6,32);
   const repeated=await read(0xD6F0,407);
+  // Opt-in only, exactly the eight Bridge-038 WRAM/HRAM sources.
+  // Two sequential reads can be stable without being an atomic snapshot.
+  const sourceFirst=mbc3SourceReadback?
+   await Promise.all(SOURCE_CPU_ADDRESSES.map(async a=>(await read(a,1))[0])):[];
+  const sourceRepeat=mbc3SourceReadback?
+   await Promise.all(SOURCE_CPU_ADDRESSES.map(async a=>(await read(a,1))[0])):[];
   const lastMap=await read(0xD35E,1);
   const lastPosition=await read(0xD361,2);
   const final=parseStatus(await request('GET_STATUS'));
@@ -133,6 +143,19 @@ async function probeReadOnlyRetroArch({
     rejectedDomain:proof.domain,positionRepeated:positionVerified,
     mapRepeated:mapVerified
    });
+  const sourceProof=mbc3SourceReadback?verifyMbc3SourceRamReadback({
+   addresses:SOURCE_CPU_ADDRESSES,
+   firstHex:sourceFirst,repeatHex:sourceRepeat,
+   romCrcMatched:initial.crc32===final.crc32,
+   mapRepeated:mapVerified,positionRepeated:positionVerified,
+   statusRepeated:initial.mode===final.mode
+  }):null;
+  if(sourceProof&&sourceProof.verified!==true)
+   return fail('MBC3_SOURCE_RAM_READBACK_REJECTED',{
+    variant:initial.variant,reason:sourceProof.status,
+    changedAddresses:sourceProof.changedAddresses??[],
+    sourceReadbackPerformed:true,sourceBankVerified:false
+   });
   return {verified:true,status:'REMOTE_RAM_FLAGS_REPEAT_CORROBORATED',
    variant:initial.variant,activeRomCRC32:initial.crc32,
    romProfileCRC32Matched:true,activeRomSha256Verified:false,
@@ -142,6 +165,11 @@ async function probeReadOnlyRetroArch({
    matchedTotalFlagBytes:proof.allFlagBytesMatched,
    mapRepeated:true,positionRepeated:true,
    readOnlyRequests:sent.length,
+   mbc3SourceReadbackRequested:mbc3SourceReadback,
+   mbc3SourceReadbackVerified:sourceProof?.verified===true,
+   mbc3SourceStableBytes:sourceProof?.stableRamBytes??0,
+   mbc3SourceSamples:sourceProof?.samples??[],
+   mbc3ActiveBankVerified:false,
    playerActionConfirmed:false,snapshotAtomicVerified:false,
    gameEffectsCertified:false,
    source:'RETROARCH_UDP_READ_ONLY_DIRECT',

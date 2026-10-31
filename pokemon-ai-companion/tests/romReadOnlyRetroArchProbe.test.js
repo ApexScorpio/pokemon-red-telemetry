@@ -7,7 +7,8 @@ const {probeReadOnlyRetroArch,parseStatus,parseMemory,privateIpv4}
 const world=Buffer.alloc(784);
 world[336]=0x03;world[350]=0x40;world[423]=0xaa;world[742]=0x80;
 function mockServer({crc='9F7FDD53',mutation=false,changeMap=false,
- changePosition=false,mutationToggle=false,contentless=false,dropAll=false}={}){
+ changePosition=false,mutationToggle=false,mutationMbc3Source=false,
+ contentless=false,dropAll=false}={}){
  const socket=dgram.createSocket('udp4'),commands=[];
  let statusCount=0;
  socket.on('message',(packet,remote)=>{
@@ -29,6 +30,9 @@ function mockServer({crc='9F7FDD53',mutation=false,changeMap=false,
      const absolute=addr+i;
      if(absolute>=0xD5A0&&absolute<0xD5A0+784)
       arr[i]=world[absolute-0xD5A0];
+     if(absolute===0xC0EF)
+      arr[i]=mutationMbc3Source&&
+       commands.filter(x=>x==='READ_CORE_MEMORY C0EF 1').length>1?0x43:0x42;
      if(absolute===0xD35E)
       arr[i]=changeMap&&commands.filter(x=>x==='READ_CORE_MEMORY D35E 1').length>1?
        11:10;
@@ -169,5 +173,42 @@ test('invalid address or timeout is reported without claiming a live session',as
   assert.equal(noReply.verified,false);
   assert.equal(noReply.status,'RETROARCH_UDP_NO_REPLY');
   assert.deepEqual(m.commands,['GET_STATUS']);
+ });
+});
+
+test('opt-in MBC3 source readback sends only GET_STATUS and 1-byte READ_CORE_MEMORY',async()=>{
+ await withMock({},async m=>{
+  const r=await probeReadOnlyRetroArch({
+   host:'127.0.0.1',port:m.port,timeoutMs:900,mbc3SourceReadback:true
+  });
+  assert.equal(r.verified,true);
+  assert.equal(r.mbc3SourceReadbackRequested,true);
+  assert.equal(r.mbc3SourceReadbackVerified,true);
+  assert.equal(r.mbc3SourceStableBytes,8);
+  assert.equal(r.mbc3SourceSamples.length,8);
+  assert.equal(r.mbc3SourceSamples[0].addressCpu,0xc0ef);
+  assert.equal(r.mbc3SourceSamples[0].firstHex,'42');
+  assert.equal(r.mbc3ActiveBankVerified,false);
+  assert.equal(r.activeRomSha256Verified,false);
+  assert.equal(r.snapshotAtomicVerified,false);
+  assert.equal(r.playerActionConfirmed,false);
+  assert.equal(m.commands.length,31);
+  assert.equal(m.statusCount(),2);
+  assert.equal(m.commands.filter(x=>x==='READ_CORE_MEMORY C0EF 1').length,2);
+  assert.ok(m.commands.every(x=>x==='GET_STATUS'||
+   /^READ_CORE_MEMORY [A-F0-9]{4} [1-9]\d*$/.test(x)));
+ });
+});
+test('changed MBC3 RAM source rejects sample without bank inference or save writes',async()=>{
+ await withMock({mutationMbc3Source:true},async m=>{
+  const r=await probeReadOnlyRetroArch({
+   host:'127.0.0.1',port:m.port,timeoutMs:900,mbc3SourceReadback:true
+  });
+  assert.equal(r.verified,false);
+  assert.equal(r.status,'MBC3_SOURCE_RAM_READBACK_REJECTED');
+  assert.equal(r.reason,'RAM_SOURCE_READBACK_CHANGED');
+  assert.deepEqual(r.changedAddresses,[0xc0ef]);
+  assert.equal(r.sourceBankVerified,false);
+  assert.ok(m.commands.every(x=>x==='GET_STATUS'||x.startsWith('READ_CORE_MEMORY ')));
  });
 });

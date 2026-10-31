@@ -880,6 +880,7 @@ function main(){
   'tests/romMbc3AProvenance.test.js',
   'tests/romMbc3RegisterInput.test.js',
   'tests/romMbc3BankSourcePlan.test.js',
+  'tests/romMbc3RamSourceReadback.test.js',
   'tests/rom0CallClosureEvidence.test.js',
   'tests/romWorldScriptReferences.test.js',
   'tests/romGlobalFlagReadback.test.js',
