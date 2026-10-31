@@ -2726,6 +2726,71 @@ function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
   ctx.restore();
 }
 
+// Static map pins are hypotheses about the *ROM* layout, not proof of
+// current presence. Require fresh, coherent position + exact ROM identity.
+// Include planner-blocked items: a Cut/Surf barrier must not make an item
+// disappear from the full-map companion.
+function selectVerifiedMinimapItemMarkers(state) {
+  const area=state?.areaInfo;
+  const proof=area?.visibleItemCoordinateEvidence;
+  const mem=state?.memoryReadStatus;
+  const identity=state?.romRuntimeIdentity;
+  const stamp=Date.parse(state?.lastUpdate||'');
+  if(state?.connected!==true||
+     identity?.matched!==true||
+     typeof identity.profileSha256!=='string'||
+     !/^[a-f0-9]{64}$/i.test(identity.profileSha256)||
+     proof?.verified!==true||
+     proof.mapId!==state.mapId||
+     proof.romSha256!==identity.profileSha256||
+     proof.gameplayAccessCertified!==false||
+     mem?.verified!==true||
+     !Number.isFinite(stamp)||Date.now()-stamp>15000||
+     stamp>Date.now()){
+    return [];
+  }
+  const first=mem.positionWindow,late=mem.latePositionWindow,
+        last=mem.publicationPositionWindow;
+  if([first,late,last].some(p=>p?.verified!==true||
+      p.mapId!==state.mapId||!Number.isInteger(p.x)||
+      !Number.isInteger(p.y))||
+     first.x!==late.x||first.y!==late.y||
+     late.x!==last.x||late.y!==last.y||
+     state.coords?.x!==last.x||state.coords?.y!==last.y)
+    return [];
+  const lists=[area.visibleItems,area.hiddenItems,area.lockedItems];
+  if(lists.some(v=>v!==undefined&&!Array.isArray(v)))return [];
+  const byTile=new Map();
+  for(const [category,items] of [
+    ['visible',area.visibleItems||[]],
+    ['hidden',area.hiddenItems||[]],
+    ['blocked',area.lockedItems||[]]
+  ]){
+    for(const item of items){
+      if(item?.romItemCoordinatesVerified!==true||
+         !Number.isInteger(item.x)||item.x< -4||item.x>255||
+         !Number.isInteger(item.y)||item.y< -4||item.y>255||
+         item.isCollected===true||item.removedFromMap===true)
+        continue;
+      // A map tile can contain multiple static records. Display one
+      // evidence-only marker; a blocked record takes priority on that tile.
+      const key=item.x+','+item.y;
+      const blocked=item.isLocked===true||category==='blocked';
+      const candidate={
+        x:item.x,y:item.y,
+        blocked,
+        kind:category,
+        evidence:'STATIC_COORDINATE_FROM_AUDITED_ACTIVE_ROM',
+        presentNow:null,
+        accessibleNow:null
+      };
+      if(!byTile.has(key)||blocked&&!byTile.get(key).blocked)
+        byTile.set(key,candidate);
+    }
+  }
+  return [...byTile.values()];
+}
+
 // Renderizador do Mini-Mapa Tático com Tiles Reais do Game Boy
 function renderFogMinimap(state) {
   if (!canvasFog || !ctxFog) return;
@@ -2839,18 +2904,20 @@ function renderFogMinimap(state) {
     });
   }
 
-  // Itens conhecidos: apenas desenha se AINDA NÃO tiver sido recolhido!
-  const items = [
-    ...(state.areaInfo?.visibleItems || []),
-    ...(state.areaInfo?.hiddenItems || [])
-  ];
-  items.forEach(it => {
-    if (it.x === undefined || it.y === undefined) return;
-    if (it.isCollected === true) return; // Possuir outro exemplar NÃO prova que este foi recolhido
-    const ix = camX + it.x * tileSize + tileSize / 2;
-    const iy = camY + it.y * tileSize + tileSize / 2;
-    if (ix >= -16 && ix <= cw + 16 && iy >= -16 && iy <= ch + 16) {
-      drawMapEntity(ctxFog, { ...it, icon: it.icon || '🎒', isItem: true, isGhost: false }, ix, iy, 0.85, false);
+  // Static icons must be ROM-verified for THIS map/version; never draw
+  // unsupported hidden/manual positions or drop blocked Cut/Surf items.
+  const markers=selectVerifiedMinimapItemMarkers(state);
+  markers.forEach(it => {
+    const ix=camX+it.x*tileSize+tileSize/2;
+    const iy=camY+it.y*tileSize+tileSize/2;
+    if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16){
+      // A faded ball is a static ROM object, NOT an observed live sprite.
+      // A lock is a conditional planner result, NOT proven permanent inaccessibility.
+      drawMapEntity(ctxFog,{
+        x:it.x,y:it.y,icon:it.blocked?'🔒':'🎒',
+        isItem:!it.blocked,isGhost:true,
+        staticRomMarker:true,presentNow:null
+      },ix,iy,it.blocked?0.75:0.85,true);
     }
   });
 
@@ -3015,18 +3082,18 @@ function renderGtaFullMap(state) {
     });
   }
 
-  // 2. Itens conhecidos na área (apenas itens por apanhar)
-  const items = [
-    ...(state.areaInfo?.visibleItems || []),
-    ...(state.areaInfo?.hiddenItems || [])
-  ];
-  items.forEach(it => {
-    if (it.x === undefined || it.y === undefined) return;
-    if (it.isCollected === true) return; // Ocultar apenas quando recolha comprovada
-    const ix = originX + it.x * tilePx + tilePx / 2;
-    const iy = originY + it.y * tilePx + tilePx / 2;
-    if (ix >= -24 && ix <= cw + 24 && iy >= -24 && iy <= ch + 24) {
-      drawMapEntity(ctxGta, { ...it, spriteFile: 'poke_ball', icon: it.icon || '🎒', isItem: true, isGhost: false }, ix, iy, gtaZoom, false);
+  // Static ROM evidence in enlarged map: share the SAME guards as
+  // minimap. Never reintroduce unverified manual positions through zoom.
+  const markers=selectVerifiedMinimapItemMarkers(state);
+  markers.forEach(it=>{
+    const ix=originX+it.x*tilePx+tilePx/2;
+    const iy=originY+it.y*tilePx+tilePx/2;
+    if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24){
+      drawMapEntity(ctxGta,{
+        x:it.x,y:it.y,icon:it.blocked?'🔒':'🎒',
+        isItem:!it.blocked,isGhost:true,
+        staticRomMarker:true,presentNow:null
+      },ix,iy,gtaZoom,true);
     }
   });
 
