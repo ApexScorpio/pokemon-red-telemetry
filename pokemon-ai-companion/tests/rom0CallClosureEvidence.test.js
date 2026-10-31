@@ -361,6 +361,35 @@ test('MBC3 ROMX bounded graph preserves undocumented first byte as invalid entry
  assert.equal(g.entryResults[0].decodeFailureCounts['undocumented opcode'],1);
  assert.equal(g.executedInstructions,0);
 });
+test('ROMX graph expansion certifies deeper NOP path but no runtime execution',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,0x03,0xea,0,0x20,0xcd,0,0x50,0xc9],0x200);
+ const at=3*0x4000+0x1000;
+ rom.fill(0,at,at+90);rom[at+90]=0xc9;
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ const expanded=r.mbc3RomxGraphExpansion;
+ assert.equal(expanded.verified,true);
+ assert.equal(expanded.entriesCompared,1);
+ assert.equal(expanded.baselineInstructions,48);
+ assert.equal(expanded.extendedInstructions,91);
+ assert.equal(expanded.addedCandidateInstructions,43);
+ assert.equal(expanded.previouslyExhaustedNowTerminated,1);
+ assert.equal(expanded.extendedExhaustedEntries,0);
+ assert.equal(expanded.executedInstructions,0);
+ assert.equal(expanded.activeBankVerified,false);
+});
+test('ROMX graph expansion keeps unknown execution when first opcode is illegal',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,0x03,0xea,0,0x20,0xcd,0,0x50,0xc9],0x200);
+ rom[3*0x4000+0x1000]=0xe4;
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ const e=r.mbc3RomxGraphExpansion;
+ assert.equal(e.verified,true);
+ assert.equal(e.nonDecodableEntrypoints,1);
+ assert.equal(e.addedCandidateInstructions,0);
+ assert.equal(e.comparisons[0].firstOpcodeDecodable,false);
+ assert.equal(e.activeBankVerified,false);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);

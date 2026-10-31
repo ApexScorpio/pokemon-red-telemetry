@@ -495,6 +495,33 @@ function main(){
      s.registerInputProvenance?.conditionalByte!==null&&
      s.registerInputProvenance?.conditionalByte!==undefined).length,
    'MBC3 register lineage evidence mismatch: '+variant);
+  const expansion=closure.mbc3RomxGraphExpansion;
+  const baseline=closure.mbc3RomxBoundedGraph;
+  assert(expansion.verified===true&&
+   expansion.entriesCompared===baseline.uniquePhysicalEntrypoints&&
+   expansion.baselineInstructions===baseline.totalDecodedCandidateInstructions&&
+   expansion.extendedInstructions>=expansion.baselineInstructions&&
+   expansion.addedCandidateInstructions===
+    expansion.extendedInstructions-expansion.baselineInstructions&&
+   expansion.baselineExhaustedEntries===baseline.entrypointsBudgetExhausted&&
+   expansion.extendedExhaustedEntries<=expansion.baselineExhaustedEntries&&
+   expansion.nonDecodableEntrypoints===(variant==='blue'?1:0)&&
+   expansion.executedInstructions===0&&
+   expansion.activeBankVerified===false&&
+   expansion.causalLinksVerified===0&&
+   expansion.comparisons.length===expansion.entriesCompared&&
+   expansion.comparisons.every(x=>
+    x.runtimeExecuted===false&&x.activeBankVerified===false&&
+    x.causalLinkVerified===false&&x.decoded128>=x.decoded48&&
+    x.decoded128<=128&&x.decoded48<=48),
+   'MBC3 ROMX 128-depth audit contract failed: '+variant);
+  log(romLabel+'_MBC3_ROMX_DEPTH128_INSTRUCTIONS='+expansion.extendedInstructions);
+  log(romLabel+'_MBC3_ROMX_DEPTH128_ADDED_INSTRUCTIONS='+expansion.addedCandidateInstructions);
+  log(romLabel+'_MBC3_ROMX_DEPTH128_BUDGET_EXHAUSTED='+expansion.extendedExhaustedEntries);
+  log(romLabel+'_MBC3_ROMX_DEPTH128_RESOLVED_BUDGET='+expansion.previouslyExhaustedNowTerminated);
+  log(romLabel+'_MBC3_ROMX_DEPTH128_NEW_DECODE_FAIL_ENTRIES='+expansion.newDecodeFailureEntries);
+  log(romLabel+'_MBC3_ROMX_DEPTH128_EDGES_TO_ROM0='+expansion.extendedBranchesToRom0NotFollowed);
+  log(romLabel+'_MBC3_ROMX_DEPTH128_EVIDENCE='+JSON.stringify(expansion.comparisons));
   const graph=closure.mbc3RomxBoundedGraph;
   assert(graph.verified===true&&
    graph.inputScenarioCount===closure.mbc3RomxPhysicalScenarios.scenarioCount&&
@@ -974,6 +1001,7 @@ function main(){
   'tests/romMbc3RomxPhysicalScenarios.test.js',
   'tests/romMbc3RomxOpcodeAudit.test.js',
   'tests/romMbc3RomxBoundedGraph.test.js',
+  'tests/romMbc3RomxGraphExpansion.test.js',
   'tests/romCertifierVariableShadow.test.js',
   'tests/romMbc3RamSourceReadback.test.js',
   'tests/rom0CallClosureEvidence.test.js',
