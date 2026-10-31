@@ -5,7 +5,8 @@
 const {decodeOpcode}=require('./romMapCodeAtlas');
 const {inspectRom0IndirectJump}=require('./rom0IndirectJumpEvidence');
 const {classifyRomxHeaderBankCandidates}=require('./romRomxBankAccess');
-const {classifyMbc3Rom0LiteralWrites}=require('./romMbc3RegisterEvidence');
+const {classifyMbc3Rom0LiteralWrites,classifyMbc3AdjacentImmediateA,
+ classifyMbc3AdjacentIndirectWrite}=require('./romMbc3RegisterEvidence');
 const ROM_SIZE=1048576,ROM0_END=0x4000;
 const MAX_ROOTS=512;
 const invalid=reason=>({verified:false,reason,source:'ROM0_CALL_CLOSURE_V1',
@@ -43,7 +44,8 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
  const owners=new Int32Array(ROM0_END),instructions=[];
  const problems=[],callTargets=new Set(),byReason=Object.create(null);
  const boundedTables=[],indirectTrampolines=[],indirectSiteDetails=[];
- const romxTransferSites=[],mbc3DirectWriteSites=[];
+ const romxTransferSites=[],mbc3DirectWriteSites=[],
+  mbc3AdjacentIndirectWriteSites=[];
  let boundedIndirectCaseEdges=0,boundedIndirectFallbackEdges=0;
  let consumed=0,callEdges=0,restartEdges=0,branchEdges=0;
  let romxUnknown=0,indirectUnknown=0,valid=0;
@@ -66,14 +68,32 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   for(let i=0;i<d.size;i++)owners[pc+i]=pc+1;
   valid++;
   instructions.push({pc,opcode:d.opcode,size:d.size,kind:d.kind});
+  const candidatePath=witnessPath(pc);
+  const previousEntry=candidatePath.length>1&&
+   candidatePath[candidatePath.length-1].via==='fallthrough'?
+   candidatePath[candidatePath.length-2]:null;
+  const previousPc=previousEntry?.pc??null;
   if(d.size===3&&(d.opcode===0xea||d.opcode===0x08)){
    const write=classifyMbc3Rom0LiteralWrites({rom,pc});
-   if(write.verified&&write.candidates.length>0)
+   if(write.verified&&write.candidates.length>0){
+    const immediate=classifyMbc3AdjacentImmediateA({rom,previousPc,pc});
     mbc3DirectWriteSites.push({rom0Pc:pc,opcode:d.opcode,
      originRootCpu:witnesses.get(pc)?.rootPc??null,
-     witnessPath:witnessPath(pc),
+     witnessPath:candidatePath,
      literalTargets:write.candidates,
+     adjacentLiteralAProvenance:immediate.verified?{
+      previousPc,conditionalImmediateAValue:immediate.conditionalImmediateAValue,
+      executed:false}:null,
      runtimeValueKnown:false,executed:false,activeBankKnown:false});
+   }
+  }
+  if([0x77,0x22,0x32,0x36,0x02,0x12].includes(d.opcode)){
+   const indirect=classifyMbc3AdjacentIndirectWrite({rom,previousPc,pc});
+   if(indirect.verified&&indirect.size===d.size)
+    mbc3AdjacentIndirectWriteSites.push({
+     ...indirect,rom0Pc:pc,
+     originRootCpu:witnesses.get(pc)?.rootPc??null,
+     witnessPath:candidatePath});
   }
   if(d.kind==='indirect'){
    indirectUnknown++;
@@ -177,6 +197,12 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   romxTransferSites,
   mbc3DirectWriteSites,
   mbc3DirectWriteSiteCount:mbc3DirectWriteSites.length,
+  mbc3DirectLiteralAProvenanceSites:mbc3DirectWriteSites.filter(
+   s=>s.adjacentLiteralAProvenance!==null).length,
+  mbc3AdjacentIndirectWriteSites,
+  mbc3AdjacentIndirectWriteSiteCount:mbc3AdjacentIndirectWriteSites.length,
+  mbc3AdjacentIndirectRomBankWriteSites:mbc3AdjacentIndirectWriteSites.filter(
+   s=>s.registerKind==='ROM_BANK_NUMBER').length,
   mbc3LiteralRomBankWriteSites:mbc3DirectWriteSites.filter(
    s=>s.literalTargets.some(t=>t.registerKind==='ROM_BANK_NUMBER')).length,
   mbc3DirectWritesExecuted:0,

@@ -176,6 +176,30 @@ test('ROM0 candidate MBC3 literal writes preserve CALL-root witness and unknown 
  assert.equal(s.executed,false);
  assert.equal(r.semantic100PercentCertified,false);
 });
+test('adjacent HL literal + indirect write classified only along a fallthrough witness',()=>{
+ const rom=fake();rom[0x147]=0x13;rom[0x148]=5;
+ rom.set([0x21,0x00,0x20,0x77,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ assert.equal(r.verified,true);
+ assert.equal(r.mbc3DirectWriteSiteCount,0);
+ assert.equal(r.mbc3AdjacentIndirectWriteSiteCount,1);
+ assert.equal(r.mbc3AdjacentIndirectRomBankWriteSites,1);
+ assert.equal(r.mbc3AdjacentIndirectWriteSites[0].targetCpu,0x2000);
+ assert.equal(r.mbc3AdjacentIndirectWriteSites[0].executed,false);
+ assert.equal(r.mbc3BankValuesRuntimeVerified,0);
+ assert.equal(r.mbc3IndirectWriteCoverageComplete,false);
+});
+test('adjacent literal A before EA records possible byte but not selected bank',()=>{
+ const rom=fake();rom[0x147]=0x13;rom[0x148]=5;
+ rom.set([0x3e,0x07,0xea,0x00,0x20,0xc9],0x200);
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ assert.equal(r.verified,true);
+ assert.equal(r.mbc3DirectWriteSiteCount,1);
+ assert.equal(r.mbc3DirectLiteralAProvenanceSites,1);
+ assert.equal(r.mbc3DirectWriteSites[0].adjacentLiteralAProvenance.conditionalImmediateAValue,7);
+ assert.equal(r.mbc3DirectWriteSites[0].executed,false);
+ assert.equal(r.romxActiveBanksVerified,0);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);

@@ -441,6 +441,32 @@ function main(){
   log(romLabel+'_MBC3_ROM_BANK_WRITE_SITES='+closure.mbc3LiteralRomBankWriteSites);
   log(romLabel+'_MBC3_DIRECT_WRITES_EXECUTED='+closure.mbc3DirectWritesExecuted);
   log(romLabel+'_MBC3_BANK_VALUES_RUNTIME_VERIFIED='+closure.mbc3BankValuesRuntimeVerified);
+  assert(closure.mbc3AdjacentIndirectWriteSites.every(s=>
+   Number.isInteger(s.rom0Pc)&&s.rom0Pc>=3&&s.rom0Pc<0x4000&&
+   s.previousPc===s.rom0Pc-3&&s.witnessPath.length>1&&
+   s.witnessPath[s.witnessPath.length-2].pc===s.previousPc&&
+   s.witnessPath[s.witnessPath.length-1].pc===s.rom0Pc&&
+   s.witnessPath[s.witnessPath.length-1].via==='fallthrough'&&
+   s.targetCpu>=0&&s.targetCpu<0x8000&&
+   s.executed===false&&s.activeBankKnown===false)&&
+   closure.mbc3AdjacentIndirectWriteSiteCount===
+    closure.mbc3AdjacentIndirectWriteSites.length&&
+   closure.mbc3AdjacentIndirectRomBankWriteSites===
+    closure.mbc3AdjacentIndirectWriteSites.filter(s=>
+     s.registerKind==='ROM_BANK_NUMBER').length&&
+   closure.mbc3DirectLiteralAProvenanceSites===
+    closure.mbc3DirectWriteSites.filter(s=>s.adjacentLiteralAProvenance!==null).length&&
+   closure.mbc3DirectWriteSites.every(s=>
+    s.adjacentLiteralAProvenance===null||
+    (s.opcode===0xea&&
+     rom[s.rom0Pc-2]===0x3e&&
+     rom[s.rom0Pc-1]===s.adjacentLiteralAProvenance.conditionalImmediateAValue)),
+   'MBC3 conditional immediate or indirect write provenance invalid: '+variant);
+  log(romLabel+'_MBC3_DIRECT_LITERAL_A_SITES='+closure.mbc3DirectLiteralAProvenanceSites);
+  log(romLabel+'_MBC3_ADJACENT_INDIRECT_WRITE_SITES='+closure.mbc3AdjacentIndirectWriteSiteCount);
+  log(romLabel+'_MBC3_ADJACENT_INDIRECT_ROM_BANK_WRITE_SITES='+closure.mbc3AdjacentIndirectRomBankWriteSites);
+  log(romLabel+'_MBC3_ADJACENT_INDIRECT_WRITE_EVIDENCE='+
+   JSON.stringify(closure.mbc3AdjacentIndirectWriteSites));
   log(romLabel+'_MBC3_WRITE_EVIDENCE='+JSON.stringify(closure.mbc3DirectWriteSites));
   log(romLabel+'_ROMX_EVIDENCE_SCHEMA=ROM0_ROMX_WITNESS_V1');
   log('ROM_'+variant.toUpperCase()+'_ROMX_SITE_EVIDENCE='+
