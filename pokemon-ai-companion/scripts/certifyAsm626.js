@@ -11,6 +11,7 @@ const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
 const {buildWorldGapMatrix,exportWorldGapRowsV2}=require('../romWorldGapMatrix');
 const {compareCrossVariantWorldGaps}=require('../romCrossVariantWorldGaps');
+const {compareCrossVariantWorldContents}=require('../romCrossVariantWorldContents');
 const {traceRom0CallClosure}=require('../rom0CallClosureEvidence');
 const {buildStaticWorldFlagDependencies}=require('../romStaticWorldFlagDependencies');
 const {compareCrossVariantFlagSemantics}=require('../romCrossVariantFlagSemantics');
@@ -151,6 +152,7 @@ function main(){
  const originals={};
  const crossRomFlagGraphs={};
  const crossWorldGapRows={};
+ const crossWorldDecodedContents={};
  log('STEP=VERIFY_SHA_AND_WORLD_ROM');
  for(const variant of ['red','blue','green']){
   const rom=readRom(found[variant]),p=inspectRomBuffer(rom,OUTPUTS[variant]);
@@ -158,6 +160,7 @@ function main(){
   assert(atlas.variants?.[variant]?.identity?.sha256===KNOWN[variant],
    'Atlas identity: '+variant);
   const a=p.world?.interactionScriptAtlas,i=buildWorldContentsIndex(p);
+  crossWorldDecodedContents[variant]=i;
   const tracker=buildCampaignWorldTracker({index:i,scriptAtlas:a});
   assert(a?.verified===true&&a.summary.referencedInteractions===1126&&
    a.summary.asmTextReferences===626&&a.summary.asmEntrypointsLocated===626&&
@@ -1183,6 +1186,25 @@ function main(){
   JSON.stringify(crossWorld.differenceCountsByField));
  log('CROSS_ROM_WORLD_MAP_DIFFERENCES='+JSON.stringify(crossWorld.differences));
  log('CROSS_ROM_WORLD_GAMEPLAY_EQUIVALENCE=UNKNOWN');
+ log('STEP=CROSS_ROM_DECODED_MAP_CONTENTS_COMPARISON');
+ const contentsComparison=compareCrossVariantWorldContents(crossWorldDecodedContents);
+ assert(contentsComparison.verified===true&&
+  contentsComparison.mapsCompared===248&&
+  contentsComparison.equalDecodedMaps+
+   contentsComparison.decodedMapDifferences===248&&
+  contentsComparison.differingMaps.length===
+   contentsComparison.decodedMapDifferences&&
+  contentsComparison.gameplayEquivalent===null&&
+  contentsComparison.gameplayCompletionCertified===false,
+  'Cross-ROM decoded map contents invalid: '+contentsComparison.reason);
+ log('CROSS_ROM_DECODED_MAPS_COMPARED='+contentsComparison.mapsCompared);
+ log('CROSS_ROM_DECODED_MAPS_EQUAL='+contentsComparison.equalDecodedMaps);
+ log('CROSS_ROM_DECODED_MAPS_DIFFERENT='+contentsComparison.decodedMapDifferences);
+ log('CROSS_ROM_DECODED_MAP_CATEGORY_COUNTS='+
+  JSON.stringify(contentsComparison.perCategoryMapDifferences));
+ log('CROSS_ROM_DECODED_MAP_DIFFERENCES='+
+  JSON.stringify(contentsComparison.differingMaps));
+ log('CROSS_ROM_DECODED_MAP_GAMEPLAY_EQUIVALENCE=UNKNOWN');
  log('STEP=CROSS_ROM_FLAG_CONDITION_COMPARISON');
  const comparison=compareCrossVariantFlagSemantics({graphs:crossRomFlagGraphs});
  assert(comparison.verified===true&&
@@ -1227,6 +1249,7 @@ function main(){
   'tests/romMappingGapLedger.test.js',
   'tests/romWorldGapMatrix.test.js',
   'tests/romCrossVariantWorldGaps.test.js',
+  'tests/romCrossVariantWorldContents.test.js',
   'tests/romUnboundTrainerScripts.test.js',
   'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romUnboundTrainerTempBattleFlags.test.js',
