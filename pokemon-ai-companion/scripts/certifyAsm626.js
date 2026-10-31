@@ -495,6 +495,32 @@ function main(){
      s.registerInputProvenance?.conditionalByte!==null&&
      s.registerInputProvenance?.conditionalByte!==undefined).length,
    'MBC3 register lineage evidence mismatch: '+variant);
+  const sweep=closure.mbc3RomxDepthSweep;
+  assert(sweep.verified===true&&
+   sweep.uniquePhysicalEntrypoints===
+    closure.mbc3RomxPhysicalScenarios.distinctPhysicalOffsetCount&&
+   sweep.levels.length===4&&
+   sweep.levels.map(x=>x.instructionBudget).join(',')==='128,256,512,1024'&&
+   sweep.levels[0].candidateInstructions===
+    closure.mbc3RomxGraphExpansion.extendedInstructions&&
+   sweep.candidateInstructionsAtDeepest>=sweep.levels[0].candidateInstructions&&
+   sweep.candidateInstructionsAtDeepest<=sweep.uniquePhysicalEntrypoints*1024&&
+   sweep.entriesStillBudgetExhausted<=
+    closure.mbc3RomxGraphExpansion.extendedExhaustedEntries&&
+   sweep.nonDecodableEntrypoints===(variant==='blue'?1:0)&&
+   sweep.executedInstructions===0&&
+   sweep.activeBankVerified===false&&sweep.causalLinksVerified===0&&
+   sweep.comparisons.every(x=>
+    x.executed===false&&x.activeBankVerified===false&&
+    x.causalLinkVerified===false&&
+    x.decodedByDepth.length===4&&x.decodedByDepth[3]<=1024),
+   'MBC3 ROMX multidepth sweep contract invalid: '+variant);
+  log(romLabel+'_MBC3_ROMX_SWEEP_TOTAL_AT1024='+sweep.candidateInstructionsAtDeepest);
+  log(romLabel+'_MBC3_ROMX_SWEEP_ADDED_BEYOND128='+sweep.additionalCandidatesBeyond128);
+  log(romLabel+'_MBC3_ROMX_SWEEP_UNCAPPED_AT1024='+sweep.entriesUncappedAt1024);
+  log(romLabel+'_MBC3_ROMX_SWEEP_CAPPED_AT1024='+sweep.entriesStillBudgetExhausted);
+  log(romLabel+'_MBC3_ROMX_SWEEP_LEVELS='+JSON.stringify(sweep.levels));
+  log(romLabel+'_MBC3_ROMX_SWEEP_EVIDENCE='+JSON.stringify(sweep.comparisons));
   const expansion=closure.mbc3RomxGraphExpansion;
   const baseline=closure.mbc3RomxBoundedGraph;
   assert(expansion.verified===true&&
@@ -1002,6 +1028,7 @@ function main(){
   'tests/romMbc3RomxOpcodeAudit.test.js',
   'tests/romMbc3RomxBoundedGraph.test.js',
   'tests/romMbc3RomxGraphExpansion.test.js',
+  'tests/romMbc3RomxDepthSweep.test.js',
   'tests/romCertifierVariableShadow.test.js',
   'tests/romMbc3RamSourceReadback.test.js',
   'tests/rom0CallClosureEvidence.test.js',

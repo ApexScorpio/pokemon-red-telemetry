@@ -18,7 +18,7 @@ function auditMbc3RomxBoundedGraph({
     scenarioAtlas.activeBanksVerified!==0||
     scenarioAtlas.executedTransfers!==0||
     !Number.isInteger(maxInstructionsPerEntrypoint)||
-    maxInstructionsPerEntrypoint<1||maxInstructionsPerEntrypoint>128)
+    maxInstructionsPerEntrypoint<1||maxInstructionsPerEntrypoint>1024)
   return bad('Bounded ROMX static scenario inventory required');
  const unique=new Map(),result=[];
  for(const site of scenarioAtlas.scenarios){

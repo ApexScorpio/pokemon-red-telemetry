@@ -15,6 +15,7 @@ const {buildMbc3RomxPhysicalScenarios}=require('./romMbc3RomxPhysicalScenarios')
 const {auditMbc3RomxEntryOpcodes}=require('./romMbc3RomxOpcodeAudit');
 const {auditMbc3RomxBoundedGraph}=require('./romMbc3RomxBoundedGraph');
 const {auditMbc3RomxGraphExpansion}=require('./romMbc3RomxGraphExpansion');
+const {auditMbc3RomxDepthSweep}=require('./romMbc3RomxDepthSweep');
 const ROM_SIZE=1048576,ROM0_END=0x4000;
 const MAX_ROOTS=512;
 const invalid=reason=>({verified:false,reason,source:'ROM0_CALL_CLOSURE_V1',
@@ -213,6 +214,8 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   rom,scenarioAtlas:staticRomxScenarios,maxInstructionsPerEntrypoint:48});
  const romxExpandedGraph=auditMbc3RomxGraphExpansion({
   rom,scenarioAtlas:staticRomxScenarios,baselineGraph:romxBoundedGraph});
+ const romxDepthSweep=auditMbc3RomxDepthSweep({
+  rom,scenarioAtlas:staticRomxScenarios,expansion:romxExpandedGraph});
  return {verified:true,source:'ROM0_CALL_CLOSURE_V1',
   uniqueSeedAddresses:uniqueRoots.length,seedAddresses:uniqueRoots,
   candidateInstructions:valid,candidateInstructionBytes:owners.reduce(
@@ -235,6 +238,7 @@ function traceRom0CallClosure({rom,roots,maxInstructions=ROM0_END}={}){
   mbc3RomxOpcodeAudit:romxOpcodeAudit,
   mbc3RomxBoundedGraph:romxBoundedGraph,
   mbc3RomxGraphExpansion:romxExpandedGraph,
+  mbc3RomxDepthSweep:romxDepthSweep,
   mbc3DirectWriteSiteCount:mbc3DirectWriteSites.length,
   mbc3DirectLiteralAProvenanceSites:mbc3DirectWriteSites.filter(
    s=>s.adjacentLiteralAProvenance!==null).length,

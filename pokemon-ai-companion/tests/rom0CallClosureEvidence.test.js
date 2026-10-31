@@ -390,6 +390,31 @@ test('ROMX graph expansion keeps unknown execution when first opcode is illegal'
  assert.equal(e.comparisons[0].firstOpcodeDecodable,false);
  assert.equal(e.activeBankVerified,false);
 });
+test('ROMX depth sweep retains conditional evidence after 48, 128 and 256 limits',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,0x03,0xea,0,0x20,0xcd,0,0x50,0xc9],0x200);
+ const at=3*0x4000+0x1000;
+ rom.fill(0,at,at+400);rom[at+400]=0xc9;
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ const sweep=r.mbc3RomxDepthSweep;
+ assert.equal(sweep.verified,true);
+ assert.equal(sweep.uniquePhysicalEntrypoints,1);
+ assert.deepEqual(sweep.levels.map(x=>x.candidateInstructions),[128,256,401,401]);
+ assert.equal(sweep.entriesStillBudgetExhausted,0);
+ assert.equal(sweep.executedInstructions,0);
+ assert.equal(sweep.activeBankVerified,false);
+});
+test('ROMX depth sweep does not infer execution from invalid first opcode',()=>{
+ const rom=fake();rom[0x147]=19;rom[0x148]=5;
+ rom.set([0x3e,0x03,0xea,0,0x20,0xcd,0,0x50,0xc9],0x200);
+ rom[3*0x4000+0x1000]=0xe4;
+ const r=traceRom0CallClosure({rom,roots:[0x200]});
+ const sweep=r.mbc3RomxDepthSweep;
+ assert.equal(sweep.verified,true);
+ assert.equal(sweep.nonDecodableEntrypoints,1);
+ assert.deepEqual(sweep.comparisons[0].decodedByDepth,[0,0,0,0]);
+ assert.equal(sweep.activeBankVerified,false);
+});
 test('unsupported MBC header cannot generate fictitious literal register writes',()=>{
  const rom=fake();rom[0x147]=0x03;rom[0x148]=5;
  rom.set([0xea,0x00,0x20,0xc9],0x100);

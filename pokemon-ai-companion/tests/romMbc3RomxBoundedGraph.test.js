@@ -83,6 +83,17 @@ test('untrusted input and invented runtime execution fail closed',()=>{
   {rom,scenarioAtlas:{...atlas([entry(rom)]),executedTransfers:1}},
   {rom,scenarioAtlas:atlas([{...entry(rom),transferExecuted:true}])},
   {rom,scenarioAtlas:atlas([{...entry(rom),physicalFileOffset:4}])},
-  {rom,scenarioAtlas:atlas([entry(rom)]),maxInstructionsPerEntrypoint:129}
+  {rom,scenarioAtlas:atlas([entry(rom)]),maxInstructionsPerEntrypoint:1025}
  ])assert.equal(auditMbc3RomxBoundedGraph(props).verified,false);
+});
+
+test('1024-instruction explicit cap is accepted without claiming execution',()=>{
+ const rom=make(),at=3*0x4000+0x1000;
+ rom.fill(0,at,at+1300);
+ const r=auditMbc3RomxBoundedGraph({
+  rom,scenarioAtlas:atlas([entry(rom)]),maxInstructionsPerEntrypoint:1024});
+ assert.equal(r.verified,true);
+ assert.equal(r.totalDecodedCandidateInstructions,1024);
+ assert.equal(r.entrypointsBudgetExhausted,1);
+ assert.equal(r.entryResults[0].runtimeExecuted,false);
 });
