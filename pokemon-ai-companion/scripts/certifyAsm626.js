@@ -495,6 +495,29 @@ function main(){
      s.registerInputProvenance?.conditionalByte!==null&&
      s.registerInputProvenance?.conditionalByte!==undefined).length,
    'MBC3 register lineage evidence mismatch: '+variant);
+  const graph=closure.mbc3RomxBoundedGraph;
+  assert(graph.verified===true&&
+   graph.inputScenarioCount===closure.mbc3RomxPhysicalScenarios.scenarioCount&&
+   graph.uniquePhysicalEntrypoints===
+    closure.mbc3RomxPhysicalScenarios.distinctPhysicalOffsetCount&&
+   graph.totalDecodedCandidateInstructions>=0&&
+   graph.uniquePhysicalEntrypoints<=graph.inputScenarioCount&&
+   graph.nonDecodableEntrypoints===(variant==='blue'?1:0)&&
+   graph.executedInstructions===0&&graph.activeBankVerified===false&&
+   graph.runtimeControlFlowVerified===false&&
+   graph.entryResults.every(x=>x.runtimeExecuted===false&&
+    x.activeBankVerified===false&&
+    x.decodedCandidateInstructions<=graph.maxInstructionsPerEntrypoint),
+   'MBC3 bounded ROMX graph contract failed: '+variant);
+  log(romLabel+'_MBC3_ROMX_GRAPH_UNIQUE_ENTRIES='+graph.uniquePhysicalEntrypoints);
+  log(romLabel+'_MBC3_ROMX_GRAPH_INSTRUCTIONS='+graph.totalDecodedCandidateInstructions);
+  log(romLabel+'_MBC3_ROMX_GRAPH_INVALID_ENTRIES='+graph.nonDecodableEntrypoints);
+  log(romLabel+'_MBC3_ROMX_GRAPH_ENTRIES_WITH_DECODE_FAILURES='+
+   graph.entrypointsWithDecodeFailures);
+  log(romLabel+'_MBC3_ROMX_GRAPH_BUDGET_EXHAUSTED='+graph.entrypointsBudgetExhausted);
+  log(romLabel+'_MBC3_ROMX_GRAPH_ROM0_EDGES_NOT_FOLLOWED='+
+   graph.totalBranchesToRom0NotFollowed);
+  log(romLabel+'_MBC3_ROMX_GRAPH_EVIDENCE='+JSON.stringify(graph.entryResults));
   const firstOpcodeAudit=closure.mbc3RomxOpcodeAudit;
   assert(firstOpcodeAudit.verified===true&&
    firstOpcodeAudit.scenariosAudited===
@@ -950,6 +973,7 @@ function main(){
   'tests/romMbc3ConditionalBanks.test.js',
   'tests/romMbc3RomxPhysicalScenarios.test.js',
   'tests/romMbc3RomxOpcodeAudit.test.js',
+  'tests/romMbc3RomxBoundedGraph.test.js',
   'tests/romCertifierVariableShadow.test.js',
   'tests/romMbc3RamSourceReadback.test.js',
   'tests/rom0CallClosureEvidence.test.js',
