@@ -741,3 +741,8 @@
 
 ### T142 — 2026-10-31: mocks de VRAM assíncrona corrigidos antes da certificação
 - Corrigidos dois cenários no ficheiro de testes T141 onde só a última das quatro Promises de leitura de VRAM era libertada. Agora cada cenário espera quatro pedidos pendentes e liberta todos após a mudança de scope, verificando que nenhuma imagem antiga é publicada. Código de produção não alterado. Bridge 096 pendente; histórico append-only.
+
+
+### T143 — 2026-10-31: VRAM válida apenas no mesmo epoch de evidência, Bridge 096 certificada
+- Bridge 096 passou vídeo 12/12, UDP 12/12, integração 31/31, ASM 674/674, full 1311 PASS + 1 SKIP / 1312, três ROMs, zero falhas; não houve live RetroArch.
+- Proteção de vídeo reforçada: epoch de evidência incrementa em toda `invalidateWorldEvidence`; a captura assíncrona exige o mesmo valor antes/depois e só inicia após último gate posição+destino. Evita imagens obsoletas reaparecerem após reconexão ao mesmo mapa, ROM e coords. 12 novos testes, integração no certificador e atualização dos testes VRAM anteriores. Bridge 097 pendente, previsões ASM 686/686 e full 1323 PASS+1 SKIP/1324; não é gameplay certificado.

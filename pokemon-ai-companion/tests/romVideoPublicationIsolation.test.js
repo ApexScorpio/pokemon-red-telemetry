@@ -10,6 +10,7 @@ const validHex=(n,val='0A')=>Array(n).fill(val);
 function fake(){
  const c=Object.create(RetroArchClient.prototype);
  c.ip='192.0.2.20';c.port=55355;c._targetGeneration=0;
+ c._videoEvidenceEpoch=1;
  c.activeRomProfile={hash:{sha256:sha}};
  c.latestState={connected:true,mapId:15,coords:{x:8,y:5},
   romRuntimeIdentity:{matched:true},videoMemory:null};
@@ -19,7 +20,8 @@ function fake(){
 }
 const proof=c=>({targetScope:captureTargetScope(c),mapId:c.latestState.mapId,
  x:c.latestState.coords.x,y:c.latestState.coords.y,
- romSha256:c.activeRomProfile.hash.sha256});
+ romSha256:c.activeRomProfile.hash.sha256,
+ evidenceEpoch:c._videoEvidenceEpoch});
 test('valid video frame emits one update only for corroborated scope',async()=>{
  const {c,published}=fake();
  assert.equal(await c.captureGuardedVideoMemory(proof(c)),true);
@@ -109,5 +111,6 @@ test('world invalidation clears obsolete frame and app calls guarded helper',()=
  assert.match(source,/await this\.captureGuardedVideoMemory\(videoProof\)/);
  assert.match(source,/const videoProof=\{/);
  assert.match(source,/targetScope:captureTargetScope\(this\)/);
+ assert.match(source,/evidenceEpoch:this\._videoEvidenceEpoch/);
  assert.match(source,/this\.latestState\.videoMemory=null/);
 });

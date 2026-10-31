@@ -364,6 +364,11 @@ class RetroArchClient extends EventEmitter {
   }
 
   invalidateWorldEvidence(reason='Leitura interrompida'){
+    // Invalidate even an unfinished VRAM read that might finish after
+    // reconnecting to the SAME target, map, coordinates and ROM.
+    this._videoEvidenceEpoch=Number.isSafeInteger(this._videoEvidenceEpoch)&&
+      this._videoEvidenceEpoch>=0&&this._videoEvidenceEpoch<Number.MAX_SAFE_INTEGER?
+      this._videoEvidenceEpoch+1:1;
     // Uma imagem anterior não é prova da RAM ou do mapa atual.
     if(this.latestState)this.latestState.videoMemory=null;
     if(this._worldCampaignSession)this._worldCampaignSession.reset(reason);
@@ -639,8 +644,12 @@ class RetroArchClient extends EventEmitter {
 
   // Capture one video snapshot without publishing bytes collected for an
   // earlier target/ROM/map. Reads remain read-only and non-atomic.
-  async captureGuardedVideoMemory({targetScope,mapId,x,y,romSha256}={}){
-    const current=()=>matchesTargetScope(this,targetScope)&&
+  async captureGuardedVideoMemory({
+    targetScope,mapId,x,y,romSha256,evidenceEpoch
+  }={}){
+    const current=()=>Number.isSafeInteger(evidenceEpoch)&&
+      evidenceEpoch>=1&&evidenceEpoch===this._videoEvidenceEpoch&&
+      matchesTargetScope(this,targetScope)&&
       Number.isInteger(mapId)&&
       Number.isInteger(x)&&Number.isInteger(y)&&
       typeof romSha256==='string'&&romSha256.length>0&&
@@ -2844,30 +2853,6 @@ class RetroArchClient extends EventEmitter {
       }
     };
 
-    // A VRAM é recolhida em segundo plano; nunca publicar frame que
-    // pertença ao alvo, ROM ou mapa anterior.
-    const nowVideo = Date.now();
-    if (!this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 250) {
-      this.lastVideoReadAt = nowVideo;
-      this.videoReadInProgress = true;
-      const videoProof={
-        targetScope:captureTargetScope(this),
-        mapId:this.latestState.mapId,
-        x:this.latestState.coords?.x,
-        y:this.latestState.coords?.y,
-        romSha256:this.activeRomProfile?.hash?.sha256||null
-      };
-      (async () => {
-        try {
-          await this.captureGuardedVideoMemory(videoProof);
-        } catch (e) {
-          // Falha de VRAM não deve interromper a telemetria normal.
-        } finally {
-          this.videoReadInProgress = false;
-        }
-      })();
-    }
-
     // Síntese global para qualquer mapa normal da ROM, atualizada a cada leitura.
     // Só as flags comprovadas são conclusivas; não inferir scripts concluídos.
     if (this.activeRomProfile) {
@@ -3250,6 +3235,34 @@ class RetroArchClient extends EventEmitter {
       this.emit('update',this.latestState);
       return;
     }
+    // Start background video only after the FINAL RAM position/target
+    // publication gate. Invalidated in-flight captures remain rejected by
+    // their evidenceEpoch even if the same map comes back.
+    // A VRAM é recolhida em segundo plano; nunca publicar frame que
+    // pertença ao alvo, ROM ou mapa anterior.
+    const nowVideo = Date.now();
+    if (!this.videoReadInProgress && nowVideo - this.lastVideoReadAt >= 250) {
+      this.lastVideoReadAt = nowVideo;
+      this.videoReadInProgress = true;
+      const videoProof={
+        evidenceEpoch:this._videoEvidenceEpoch,
+        targetScope:captureTargetScope(this),
+        mapId:this.latestState.mapId,
+        x:this.latestState.coords?.x,
+        y:this.latestState.coords?.y,
+        romSha256:this.activeRomProfile?.hash?.sha256||null
+      };
+      (async () => {
+        try {
+          await this.captureGuardedVideoMemory(videoProof);
+        } catch (e) {
+          // Falha de VRAM não deve interromper a telemetria normal.
+        } finally {
+          this.videoReadInProgress = false;
+        }
+      })();
+    }
+
     // Campaign-wide flags and item/trainer progress belong to the final
     // target+position publication, not the earlier provisional RAM sample.
     const campaignSession=this._worldCampaignSession.ingestPublished({
