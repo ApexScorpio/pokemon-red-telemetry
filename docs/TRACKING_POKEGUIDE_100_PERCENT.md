@@ -227,3 +227,10 @@
 - **PG-009 — TESTES PUBLICADOS, NÃO EXECUTADOS NESTA FASE:** nova suite `tests/rom0CallClosureEvidence.test.js` com seis testes sintéticos e três casos condicionais das ROMs originais; `scripts/certifyAsm626.js` publica métricas por variante quando executado pela Bridge. Não foi atribuído nenhum total de testes aprovados antecipadamente.
 - **PG-004 — EFEITOS E PROGRESSO:** nenhum script, flag ou evento foi declarado executado. Os 1 126 efeitos de interação continuam por certificar até haver semântica completa, ligações ROM/RAM reais e execução diferencial.
 - **Estado:** cobertura de 100% **NÃO CERTIFICADA**; PR #1 continua Draft; `main` e aplicação ativa não alteradas; histórico original mantido por acrescento.
+
+
+### T67 — 2026-10-31: resultado Bridge 027 e expansão JP HL
+- **PG-009, certificação anterior confirmada:** job `PSB-20261031-0810-POKEGUIDE-ROM0CALL-027` SUCCEEDED/exit 0, Node v24.12.0. Na suite inicial sem variáveis dos binários: 9 casos, 6 PASS, 3 SKIP, 0 FAIL; o certificador com três ROMs terminou `RESULT=PASSED`, executou suites dirigida e completa sem falhas reportadas, mas o log público resumido não expôs os totais dessas duas suites.
+- **PG-012, métricas ROM0 comprovadas por variante (Red/Blue/Green International):** 59 raízes, 2648 instruções candidatas, 5066 bytes candidatos, 183 chamadas diretas, 84 destinos distintos de CALL, 336 ramificações, 12 transferências ROMX de banco desconhecido, 3 JP HL; fronteira vazia; efeitos de jogo **0 certificados**.
+- **PG-012, nova implementação pendente de execução:** `rom0CallClosureEvidence.js` segue entradas físicas de tabelas de salto `JP HL` com guarda literal e saída condicional comprovadas; `certifyAsm626.js` exige a tabela esperada de 14 alternativas para cada uma das três variantes. Os resultados T67 **não** foram ainda validados em ROMs reais. Saltos possíveis não implicam semântica, nem interação executada.
+- **Estado de aceitação:** percentagem 100% indeterminada, RAM/emulador não contactados; `main` intocada; próximo job deve executar testes sintéticos + ROMs reais e expor TAP total de testes dirigidos e completos.
