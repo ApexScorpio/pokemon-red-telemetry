@@ -371,6 +371,39 @@ function main(){
     runtimeEffectsVerified:false,
     problemSamples:closure.problemSamples.slice(0,12)
    }));
+  // Exact ROM0-to-ROMX transfer sites, with auditable candidate paths.
+  // A physical bank offset and a decodable first byte never prove that
+  // a bank was active, the destination is executable, or a script ran.
+  assert(closure.romxTransferSites.length===12&&
+   closure.romxPhysicalMappingsTotal===12*63&&
+   closure.romxActiveBanksVerified===0&&
+   closure.indirectSiteDetails.length===closure.indirectJumpsUnknown&&
+   closure.indirectSiteDetails.length===4&&
+   closure.romxTransferSites.every(x=>
+    x.physicallyMappedBanks===63&&x.activeBankKnown===false&&
+    x.selectedFileOffset===null&&x.transferExecuted===false&&
+    x.gameEffectVerified===false&&
+    x.witnessPath.length>0&&
+    x.witnessPath[0].pc===x.originRootCpu&&
+    x.physicalMappings.length===63&&
+    x.physicalMappings.every(p=>
+     p.bank>=1&&p.bank<64&&
+     p.fileOffset===p.bank*0x4000+x.targetCpu-0x4000)),
+   'ROM0 ROMX cross-bank physical-location integrity mismatch: '+variant);
+  log('ROM_'+variant.toUpperCase()+'_ROMX_SITE_EVIDENCE='+
+   JSON.stringify(closure.romxTransferSites.map(x=>({
+    fromRom0Cpu:x.fromRom0Cpu,opcode:x.opcode,
+    transferKind:x.transferKind,targetCpu:x.targetCpu,
+    originRootCpu:x.originRootCpu,witnessPath:x.witnessPath,
+    physicallyMappedBanks:x.physicallyMappedBanks,
+    firstOpcodeDecodableBanks:x.firstOpcodeDecodableBanks,
+    firstOpcodeDecodableBankIds:x.physicalMappings
+     .filter(b=>b.firstOpcodeDecodable).map(b=>b.bank),
+    activeBankKnown:false,transferExecuted:false,
+    physicalOffsetFormula:'bank*0x4000+targetCpu-0x4000'
+   }))));
+  log('ROM_'+variant.toUpperCase()+'_JPHL_SITE_EVIDENCE='+
+   JSON.stringify(closure.indirectSiteDetails));
   const rows=a.maps.flatMap(m=>m.interactions)
    .filter(x=>x.scriptCommand==='TX_START_ASM');
   assert(rows.length===626&&rows.every(x=>x.asmCandidate?.verified===true&&
