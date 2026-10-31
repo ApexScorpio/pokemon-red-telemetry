@@ -300,6 +300,16 @@ function main(){
    gaps.summary.unresolvedTrainerReferenceSource==='COMPACT_MAP_INTERACTIONS'&&
    gaps.summary.unresolvedTrainerReconstructedReferenceCount===1126&&
    gaps.summary.unresolvedTrainerActualEventBitsRecovered===0&&
+   gaps.summary.unresolvedTrainerHandlerContextVerified===true&&
+   gaps.summary.unresolvedTrainerHandlerContextEvidence.length===2&&
+   gaps.summary.unresolvedTrainerHandlerCandidateInstructionCount>=0&&
+   gaps.summary.unresolvedTrainerHandlerCallsNotFollowed>=0&&
+   gaps.summary.unresolvedTrainerHandlerContextEvidence.every(x=>
+    x.txAsmByte===0x08&&
+    x.handlerRuntimeExecuted===false&&
+    x.eventFlagBitIndex===null&&
+    x.handlerEffectsVerified===false&&
+    x.trainerVictoryObserved===null)&&
    gaps.summary.unresolvedTrainerActorScriptEvidence.length===2&&
    JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence
     .map(x=>[x.mapId,x.ordinal,x.referenceMapName,x.eventBitIndex]))===
@@ -775,6 +785,14 @@ function main(){
    gaps.summary.unresolvedTrainerReferenceSource);
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_RECONSTRUCTED_REFERENCES='+
    gaps.summary.unresolvedTrainerReconstructedReferenceCount);
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_HANDLER_CANDIDATE_INSTRUCTIONS='+
+   gaps.summary.unresolvedTrainerHandlerCandidateInstructionCount);
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_HANDLER_CALLS_UNFOLLOWED='+
+   gaps.summary.unresolvedTrainerHandlerCallsNotFollowed);
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_HANDLER_FLAG_MEMORY_CANDIDATES='+
+   gaps.summary.unresolvedTrainerHandlerEventRegionOperandCandidates);
+  log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_HANDLER_CONTEXT='+
+   JSON.stringify(gaps.summary.unresolvedTrainerHandlerContextEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_SCRIPT_AUDIT='+
    JSON.stringify(gaps.summary.unresolvedTrainerActorScriptEvidence));
   log('ROM_'+variant.toUpperCase()+'_UNBOUND_TRAINER_EVENT_BITS_RECOVERED='+
@@ -1067,6 +1085,7 @@ function main(){
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
   'tests/romUnboundTrainerScripts.test.js',
+  'tests/romUnboundTrainerHandlerContext.test.js',
   'tests/romFixedBankReferenceEvidence.test.js',
   'tests/rom0IndirectJumpEvidence.test.js',
   'tests/romRomxBankAccess.test.js',

@@ -27,6 +27,19 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
     unresolvedTrainerAudit.eventBitsRecovered!==0||
     unresolvedTrainerAudit.gameplayOutcomesProven!==0)
   return invalid('Unbound trainer audit failed: '+unresolvedTrainerAudit.reason);
+ const handlerContext=scriptAtlas.unboundTrainerHandlerContext;
+ if(handlerContext?.verified!==true||
+    handlerContext.romSha256!==sha||
+    handlerContext.handlerCount!==2||
+    handlerContext.handlers.length!==2||
+    handlerContext.eventBitsRecovered!==0||
+    handlerContext.victoriesObserved!==0||
+    handlerContext.handlerEffectsVerified!==false||
+    JSON.stringify(handlerContext.handlers.map(x=>[
+     x.mapId,x.ordinal,x.txAsmFileOffset,x.eventFlagBitIndex]))!==
+     JSON.stringify([[96,2,0x0614e6,null],[135,11,0x048e9d,null]]))
+  return invalid('Physical unbound TX_ASM handler context invalid: '+
+   handlerContext?.reason);
  const maps=[];const allScriptRows=[];
  let normalMaps=0,unresolvedMapIds=0,unassignedHidden=0,
   textPointersPending=0,unverifiedEffects=0,asmTextReferences=0,
@@ -201,6 +214,14 @@ function buildMappingGapLedger({profile,index,scriptAtlas,tracker}={}){
    unresolvedTrainerReconstructedReferenceCount:
     unresolvedTrainerAudit.mapInteractionRowsReconstructed,
    unresolvedTrainerActualEventBitsRecovered:0,
+   unresolvedTrainerHandlerContextEvidence:handlerContext.handlers,
+   unresolvedTrainerHandlerContextVerified:true,
+   unresolvedTrainerHandlerCandidateInstructionCount:
+    handlerContext.candidateInstructionsTotal,
+   unresolvedTrainerHandlerCallsNotFollowed:
+    handlerContext.callsNotFollowedTotal,
+   unresolvedTrainerHandlerEventRegionOperandCandidates:
+    handlerContext.eventRegionOperandCandidatesTotal,
    verifiedTrainerScriptEventBitBindings:332,
    verifiedStaticEncounterScriptEventBitBindings:12,
    verifiedSpecialTrainerScriptEventBitBindings:22,
