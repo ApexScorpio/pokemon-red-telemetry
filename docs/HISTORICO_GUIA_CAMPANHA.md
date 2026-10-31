@@ -2019,3 +2019,9 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 ### T67c — 2026-10-31: certificador das três ROMs ligado aos 14 alvos
 - `scripts/certifyAsm626.js` passa a exigir, em cada uma das três ROMs já reconhecidas, a presença estrutural da tabela JP HL de 14 destinos físicos esperados, sem afirmar que qualquer caso foi executado; regista o PC da tabela, todos os alvos candidatos, o salto alternativo, trampolins de retorno, riscos ROMX e limites restantes.
 - A nova suite `tests/rom0CallClosureEvidence.test.js` foi adicionada também à bateria dirigida de testes do certificador, antes da suite completa. Commit `4bc10a1781318bc60c4548a227e547bead9d2a63`. Verificação real da Bridge pendente.
+
+
+### T67d — 2026-10-31: tracking concluído; checkpoint para Bridge 028
+- Atualizado `docs/TRACKING_POKEGUIDE_100_PERCENT.md` na revisão `a683fd6cbcf547dd2a72c239122c05172d93d8ee` com contagens observadas no job 027 e critérios de aceitação T67.
+- Próxima prova: job Bridge 028, checkout Git isolado em D:, Node/npm cache temporário em D:, execução `scripts/certifyAsm626.js` com as três ROMs originais, métricas TAP dirigidas/completas e tabela JP HL de 14 destinos. A versão instalada, emulador, sessões e `main` ficam intocados.
+- Nenhuma execução de T67 reivindicada antes de receber `PSBRIDGE_RESULT_V2` comprovado; 100% continua não certificado.
