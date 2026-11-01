@@ -12,7 +12,9 @@ function buildScriptUnresolvedEvidence({atlas}={}){
  const summary=atlas?.summary;
  if(!isKnownAuditedRomSha(sha)||atlas?.verified!==true||
     !Array.isArray(atlas.maps)||atlas.maps.length!==MAPS||
-    !Array.isArray(atlas.references)||atlas.references.length!==REFERENCES||
+    (atlas.references!==undefined&&
+     (!Array.isArray(atlas.references)||
+      atlas.references.length!==REFERENCES))||
     summary?.mapIds!==MAPS||summary.normalMaps!==HEADERS||
     summary.unresolvedMapIDs!==MAPS-HEADERS||
     summary.referencedInteractions!==REFERENCES||
@@ -50,10 +52,19 @@ function buildScriptUnresolvedEvidence({atlas}={}){
  }
  if(mapCount!==HEADERS||noHeaders!==MAPS-HEADERS||mapRefs.size!==REFERENCES)
   return invalid('248-map atlas does not reconcile with 1126 references');
+ // romVariantRegistry publishes map-scoped interactions but intentionally
+ // omits the redundant top-level references array. Use the map-scoped
+ // records as the authoritative index; if a full raw audit supplies the
+ // optional flattened list, reject any disagreement or identity mismatch.
+ const records=atlas.references===undefined?
+  [...mapRefs.values()]:atlas.references;
+ if(records.length!==REFERENCES||
+    records.some(r=>mapRefs.get(key(r))!==r))
+  return invalid('Flattened references disagree with audited map interactions');
  const rows=[],seen=new Set(), kinds={SIGN:0,NPC:0,TRAINER:0,ITEM:0,STATIC_POKEMON:0};
  const asmEntrypoints=new Set();
  let asmRefs=0,boundEventBits=0;
- for(const r of atlas.references){
+ for(const r of records){
   const k=key(r);
   if(!Object.hasOwn(kinds,r.kind)||seen.has(k)||!mapRefs.has(k)||
      mapRefs.get(k)!==r||
