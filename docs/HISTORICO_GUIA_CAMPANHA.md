@@ -2702,3 +2702,20 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Efeitos fisicos Red/Blue/Green mantidos em 2/2/2.
 - Sem conclusao de interpretacao integral dos scripts.
 - Main, preview e sessoes de outras aplicacoes preservados.
+
+### PSB-20261101-1740-POKEGUIDE-T190-VALIDATE-001 - recuperacao T190 e scripts de mapa
+
+- Base publicada: 4c1fd9bb9305c3e715c316cdb3715382e18f3aee.
+- Corrigida verificacao erronea de entryKind em T190.
+- Reutilizados os cinco ficheiros locais previamente implementados.
+- Interface concluida por ponto estrutural do checklist.
+- Prova original T189 reutilizada sem inventario duplicado.
+- 226 entradas e 223 raizes fisicas distintas por ROM.
+- 59 candidatos condicionais por ROM, nao eventos executados.
+- 105 raizes com analise limitada completa por ROM.
+- 1145 caminhos sem resolucao por ROM.
+- Condicoes de invocacao e banco ainda desconhecidas.
+- Antigos dois efeitos TX_ASM por ROM preservados.
+- Testes dirigidos e certificacao real das tres ROMs aprovados.
+- Main, preview, Antigravity, ROMs e saves preservados.
+- Interpretacao semantica total ainda nao certificada.

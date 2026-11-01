@@ -260,9 +260,17 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
  }):null;
  const mapChecklist=worldIndex.verified?buildMapChecklist({
    index:worldIndex,mapId,scriptAtlas,worldFlagLedger,eventBitmap:completeEventBitmap,
+   mapScriptRootSemantics:profile?.world?.mapScriptRootSemantics??null,
    advisor:{verified:true,mapId,romSha256:hash,observations,
      hiddenFlagsVerified:hiddenFlagsVerified===true}
  }):null;
+ const rootEvidence=mapChecklist?.mapScriptRootEvidence;
+ if(rootEvidence?.verified===true)
+  add('MAP_SCRIPT','MAP_SCRIPT_ROOT_CONDITIONAL','Script geral do mapa',
+   rootEvidence.conditionalEffectCandidates+' efeitos condicionais ROM; execução e conclusão desconhecidas.',
+   'STATIC_ROM_ABSTRACT_EXECUTION',{
+    mapScriptRootEvidence:rootEvidence,
+    eventCompleted:null,accessibleNow:null});
  for(const action of mapChecklist?.actions||[]){
   if(action.scriptCoverage)
    add(action.kind,'SCRIPT_COVERAGE','Script #'+action.ordinal,

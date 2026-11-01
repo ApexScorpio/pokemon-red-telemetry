@@ -95,10 +95,10 @@ function resolveSemantics(world,row){
  if(!decodedWorlds.has(world))decodedWorlds.set(world,world.handlerData?unpackHandlers(world.handlerData):world.handlers||[]);
  return decodedWorlds.get(world).find(h=>h.handlerOffset===row.handlerOffset)||null;
 }
-function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128}={}){
- if(!Buffer.isBuffer(rom)||rom.length!==1048576||!Number.isInteger(fileOffset)||fileOffset<0||fileOffset>=rom.length||rom[fileOffset]!==8||!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>8192||!Number.isInteger(maxPaths)||maxPaths<1||maxPaths>256)
+function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128,entryKind='TX_ASM'}={}){
+ if(!Buffer.isBuffer(rom)||rom.length!==1048576||!Number.isInteger(fileOffset)||fileOffset<0||fileOffset>=rom.length||(entryKind==='TX_ASM'&&rom[fileOffset]!==8)||!['TX_ASM','MAP_SCRIPT_ROOT'].includes(entryKind)||!Number.isInteger(maxSteps)||maxSteps<1||maxSteps>8192||!Number.isInteger(maxPaths)||maxPaths<1||maxPaths>256)
   return {verified:false,effects:[],reason:'Authenticated TX_ASM byte required'};
- const bank=Math.floor(fileOffset/0x4000),pc=bank?0x4000+fileOffset%0x4000+1:fileOffset+1;
+ const bank=Math.floor(fileOffset/0x4000),pc=(bank?0x4000+fileOffset%0x4000:fileOffset)+(entryKind==='TX_ASM'?1:0);
  const mbc3=classifyRomxHeaderBankCandidates({rom,targetCpu:0x4000}).mapperFamilyFromHeader==='MBC3';
  const queue=[{pc,bank,r:{},mem:{},stack:[],seen:new Set(),conditions:[],trace:[],z:null,c:null,n:null,h:null}],effects=[],unresolved=[];
  let steps=0,paths=1,returns=0;
@@ -291,7 +291,7 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128}={}){
  // packHandlers shares expressions and branch conditions across requirements.
  const runtimeRequirements=[...new Map(unresolved.filter(u=>u.runtimeRequirement).map(u=>[JSON.stringify(u.runtimeRequirement),u.runtimeRequirement])).values()];
  for(const u of unresolved)delete u.runtimeRequirement;
- return {verified:true,handlerOffset:fileOffset,effects:unique,unresolved,runtimeRequirements,steps,paths,returns,complete:unresolved.length===0,preconditions:['HANDLER_INVOKED','VALID_NONALIASING_CALL_STACK','NO_EXTERNAL_MEMORY_MUTATION_DURING_PATH',...(mbc3?['HEADER_DECLARED_MBC3_BEHAVIOR']:[])],observedExecution:false,eventCompleted:null};
+ return {verified:true,handlerOffset:fileOffset,effects:unique,unresolved,runtimeRequirements,steps,paths,returns,complete:unresolved.length===0,preconditions:[entryKind==='MAP_SCRIPT_ROOT'?'MAP_SCRIPT_ROOT_INVOKED':'HANDLER_INVOKED',...(entryKind==='MAP_SCRIPT_ROOT'?['HEADER_BANK_CONTEXT_ASSUMED_NOT_OBSERVED']:[]),'VALID_NONALIASING_CALL_STACK','NO_EXTERNAL_MEMORY_MUTATION_DURING_PATH',...(mbc3?['HEADER_DECLARED_MBC3_BEHAVIOR']:[])],observedExecution:false,eventCompleted:null};
 }
 function interpretWorld({rom,atlas}={}){
  const handlers=new Map(),rows=[];

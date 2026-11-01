@@ -767,7 +767,52 @@ function formatCampaignChecklistSection(advice,state) {
       ' (portão de '+type+' '+(flag?'fechado':'aberto')+
       ' por flag; vitória, presença, acesso e resultado não comprovados)';
   };
-  for(const action of checklist.actions){
+    // Map script root: ROM evidence, not proof of observed gameplay.
+  const mapRootT190=canRenderScriptSemantics?
+    checklist.mapScriptRootEvidence:null;
+
+  if(mapRootT190?.verified===true&&
+     mapRootT190.romSha256===runtimeSha&&
+     mapRootT190.mapId===advice.mapId&&
+     mapRootT190.rootInvokedInCurrentPlay===false&&
+     mapRootT190.actualBankSelectionVerified===false&&
+     mapRootT190.gameplayCompleted===false){
+
+    lines.push(
+      'SCRIPT GERAL DO MAPA | ROM 0x'+
+      mapRootT190.physicalRootOffset.toString(16).toUpperCase()+
+      ' | candidatos condicionais: '+
+      mapRootT190.conditionalEffectCandidates+
+      ' | caminhos por resolver: '+
+      mapRootT190.unresolvedCount
+    );
+
+    for(const effect of mapRootT190.effects.slice(0,6)){
+      lines.push(
+        'Candidato ROM: instrucao 0x'+
+        effect.instructionOffset.toString(16).toUpperCase()+
+        ' | RAM 0x'+effect.address.toString(16).toUpperCase()+
+        ' | condicoes: '+JSON.stringify(effect.conditions)+
+        ' | execucao desconhecida | conclusao desconhecida'
+      );
+    }
+
+    if(mapRootT190.unresolvedCount>0){
+      lines.push(
+        'Bloqueios do script: '+
+        JSON.stringify(mapRootT190.unresolvedReasonCounts)+
+        (mapRootT190.unresolvedSamplesBounded?
+          ' | amostra limitada; total preservado':'')
+      );
+    }
+
+    lines.push(
+      'Precondicoes: script chamado e banco ROM atual '+
+      'nao comprovados. Nenhum evento concluido por esta analise.'
+    );
+  }
+
+for(const action of checklist.actions){
     if(!Object.hasOwn(labels,action.kind)||
        !Number.isInteger(action.x)||!Number.isInteger(action.y))continue;
     const type=labels[action.kind];

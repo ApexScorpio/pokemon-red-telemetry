@@ -6,13 +6,14 @@ const {getMapContents}=require('./romWorldContentsIndex');
 const {bindMapActorAttributes}=require('./romMapActorAttributeBinding');
 const {guidanceForSemantics,requirementsForSemantics,resolveSemantics}=require('./romScriptSemantics');
 const {projectScriptCoverage}=require('./romScriptBlockerCoverage');
+const {mapScriptRootEvidence}=require('./romMapScriptRootSemantics');
 const KINDS=Object.freeze({
  visibleItems:'ITEM',hiddenItems:'HIDDEN_ITEM',trainers:'TRAINER',
  npcs:'NPC',stationaryPokemon:'STATIC_POKEMON',signs:'SIGN',warps:'WARP'
 });
 const ACTIONS=Object.keys(KINDS);
 const validId=n=>Number.isInteger(n)&&n>=0&&n<=247;
-function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagLedger=null,eventBitmap=null}={}){
+function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagLedger=null,eventBitmap=null,mapScriptRootSemantics=null}={}){
  const entry=getMapContents(index,mapId);
  if(entry.verified!==true)
   return {verified:false,mapId,reason:entry.reason||'Mapa sem cabecalho normal confirmado',
@@ -179,6 +180,9 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
  return {verified:true,mapId,romSha256:hash,
   staticIndexVerified:true,advisorEvidenceMatched:advisorMatches,
   actions:rows,unresolvedHiddenReferences:[],
+  mapScriptRootEvidence:mapScriptRootEvidence({
+   catalogue:mapScriptRootSemantics,romSha256:hash,mapId
+  }),
   summary:{total:rows.length,
    confirmedCollected:rows.filter(r=>r.progress==='COLLECTED_CONFIRMED_FLAG').length,
    confirmedNotCollected:rows.filter(r=>r.progress==='NOT_COLLECTED_CONFIRMED_FLAG').length,

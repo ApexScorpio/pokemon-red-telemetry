@@ -18,6 +18,7 @@ const {auditElevatorDestinations}=require('./romElevatorDestinations');
 const {readRomTerrain}=require('./romTerrainAtlas');
 const {readLedgeRules}=require('./romLedgeRules');
 const {auditWorldScriptReferences}=require('./romWorldScriptReferences');
+const {buildMapScriptRootSemantics}=require('./romMapScriptRootSemantics');
 const {auditUnboundTrainerHandlerContext}=require('./romUnboundTrainerHandlerContext');
 const {auditUnboundTrainerTempBattleFlags}=require('./romUnboundTrainerTempBattleFlags');
 const {buildScriptedBattleReferenceEvidence}=
@@ -219,6 +220,13 @@ function inspectRomBuffer(b,file='ROM_EM_MEMORIA.gb'){
     evolutions:evos.rows?evos.rows[id-1].evolutions:null,
     learnset:evos.rows?evos.rows[id-1].learnset:null});
  }
+ // Physical map script roots are analyzed separately from TX_START_ASM.
+ // Their conditional effects are never presented as observed actions.
+ world.mapScriptRootSemantics=buildMapScriptRootSemantics({
+  rom:b,
+  maps:world.maps?.data,
+  romSha256:crypto.createHash('sha256').update(b).digest('hex')
+ });
  // Bound to the same exact ROM bytes, not a reference dump guessed from a title.
  // No script is marked semantically understood only because its pointer exists.
  const interactionAudit=auditWorldScriptReferences({
