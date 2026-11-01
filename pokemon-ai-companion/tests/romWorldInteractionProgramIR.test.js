@@ -3,7 +3,7 @@ const test=require('node:test');
 const assert=require('node:assert/strict');
 const {compileOne,compileWorldInteractionPrograms}=require('../romWorldInteractionProgramIR');
 const position=0x18020;
-const make=(bytes)=>{const rom=Buffer.alloc(1048576);rom.set(bytes,position);return rom;};
+const make=(bytes,dispatch=0x17)=>{const rom=Buffer.alloc(1048576);rom.set(bytes,position);rom[position-10]=dispatch;return rom;};
 const base=(command)=>({
  mapId:2,kind:'NPC',ordinal:1,x:3,y:5,
  scriptFileOffset:position-10,scriptCommand:command,
@@ -46,13 +46,14 @@ test('unresolved far pointer cannot fabricate semantics',()=>{
  assert.equal(p.gameplayEffectsFullyInterpreted,false);
 });
 test('special dispatch requires independently verified physical reference',()=>{
- const rom=make([0xff]);
+ const rom=make([0xff],0xff);
  const r=base('SCRIPT_POKECENTER_NURSE');
  const no=compileOne({rom,reference:r});
  assert.equal(no.programClass,'SPECIAL_SERVICE_HANDLER_UNRESOLVED');
  const ok=compileOne({rom,reference:{...r,
   specialDispatchReference:{verified:true,handlerReferenceVerified:true,
    scriptFileOffset:r.scriptFileOffset,scriptCommand:r.scriptCommand,
+   opcode:0xff,
    referenceHandler:'DisplayPokemonCenterDialogue',
    conditionalService:'POKEMON_CENTER_HEALING_DIALOGUE',
    staticItemIds:null}}});
@@ -61,7 +62,7 @@ test('special dispatch requires independently verified physical reference',()=>{
  assert.equal(ok.gameplayEffectsFullyInterpreted,false);
 });
 test('ASM entrypoint does not imply branching and memory writes are understood',()=>{
- const rom=make([0x08]);
+ const rom=make([0x08],0x08);
  const r=base('TX_START_ASM');
  const p=compileOne({rom,reference:{...r,asmCandidate:{
   verified:true,txAsmFileOffset:r.scriptFileOffset,opcodeCandidateCount:55}}});
