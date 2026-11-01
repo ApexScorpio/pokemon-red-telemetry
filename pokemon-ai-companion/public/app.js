@@ -2827,33 +2827,58 @@ const btnGtaZoomOut = document.getElementById('btn-gta-zoom-out');
 const btnGtaCenter = document.getElementById('btn-gta-center');
 const btnGtaToggleFog = document.getElementById('btn-gta-toggle-fog');
 
-// Memória de entidades por mapa: mantém ghosts quando sprites/items desaparecem da RAM.
+// A RAM sprite is a live claim, unlike the static ROM map pins.
+// Bound it to this exact ROM, map and three coherent position windows.
+// Keep history separated by ROM hash; discard it on any invalid snapshot.
 const mapEntityHistory = new Map();
 
 function getMapEntitySnapshot(state) {
-  const mapId = state.mapId !== undefined ? state.mapId : 0;
-  if (!mapEntityHistory.has(mapId)) mapEntityHistory.set(mapId, new Map());
-  const history = mapEntityHistory.get(mapId);
-  const active = state.mapEntities || [];
-
-  active.forEach(ent => {
-    const key = `${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`;
-    history.set(key, {
-      ...ent,
-      mapId,
-      lastX: ent.x,
-      lastY: ent.y,
-      seenAt: Date.now(),
-      isGhost: false
-    });
+  const sha=state?.romRuntimeIdentity?.profileSha256;
+  const known=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const mapId=state?.mapId,mem=state?.memoryReadStatus;
+  const stamp=Date.parse(state?.lastUpdate||'');
+  const valid=n=>Number.isInteger(n)&&n>=-4&&n<=255;
+  const windows=[mem?.positionWindow,mem?.latePositionWindow,
+    mem?.publicationPositionWindow];
+  const raw=state?.mapEntities;
+  const validSession=state?.connected===true&&
+    state.romRuntimeIdentity?.matched===true&&known.has(sha)&&
+    Number.isInteger(mapId)&&mapId>=0&&mapId<=247&&
+    mem?.verified===true&&mem.blocks?.overworldSprites===true&&
+    Number.isFinite(stamp)&&stamp<=Date.now()&&
+    Date.now()-stamp<=15000&&
+    windows.every(w=>w?.verified===true&&w.mapId===mapId&&
+      valid(w.x)&&valid(w.y))&&
+    windows[0].x===windows[1].x&&windows[0].y===windows[1].y&&
+    windows[1].x===windows[2].x&&windows[1].y===windows[2].y&&
+    state.coords?.x===windows[2].x&&state.coords?.y===windows[2].y&&
+    Array.isArray(raw)&&raw.every(e=>e&&valid(e.x)&&valid(e.y));
+  if(!validSession){
+    mapEntityHistory.clear();
+    return {active:[],ghosts:[]};
+  }
+  const historyKey=sha+':'+mapId;
+  if(!mapEntityHistory.has(historyKey))
+    mapEntityHistory.set(historyKey,new Map());
+  const history=mapEntityHistory.get(historyKey);
+  const active=raw;
+  active.forEach(ent=>{
+    const key=`${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`;
+    history.set(key,{...ent,mapId,lastX:ent.x,lastY:ent.y,
+      seenAt:Date.now(),isGhost:false});
   });
-
-  const currentKeys = new Set(active.map(ent => `${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`));
-  const ghosts = [];
-  history.forEach((ent, key) => {
-    if (!currentKeys.has(key)) ghosts.push({ ...ent, x: ent.lastX, y: ent.lastY, isGhost: true });
+  const currentKeys=new Set(active.map(ent=>
+    `${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`));
+  const ghosts=[];
+  history.forEach((ent,key)=>{
+    if(!currentKeys.has(key))
+      ghosts.push({...ent,x:ent.lastX,y:ent.lastY,isGhost:true});
   });
-  return { active, ghosts };
+  return {active,ghosts};
 }
 
 function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
@@ -3370,9 +3395,10 @@ function renderFogMinimap(state) {
     const iy=camY+t.y*tileSize+tileSize/2;
     if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16)
       drawMapEntity(ctxFog,{
-        x:t.x,y:t.y,icon:'⚔️',isGhost:true,isItem:false,
+        x:t.x,y:t.y,icon:t.gateFlagSet===true?'⚔️🔒':
+          t.gateFlagSet===false?'⚔️🔓':'⚔️',isGhost:true,isItem:false,
         staticRomMarker:true,trainerRomSite:true,
-        gateFlagSet:t.gateFlagSet,battleWon:null,
+        gateFlagSet:t.gateFlagSet,gateVerified:t.gateVerified,battleWon:null,
         presentNow:null,accessibleNow:null,completedNow:null
       },ix,iy,0.8,true);
   });
@@ -3590,9 +3616,10 @@ function renderGtaFullMap(state) {
     const iy=originY+t.y*tilePx+tilePx/2;
     if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24)
       drawMapEntity(ctxGta,{
-        x:t.x,y:t.y,icon:'⚔️',isGhost:true,isItem:false,
+        x:t.x,y:t.y,icon:t.gateFlagSet===true?'⚔️🔒':
+          t.gateFlagSet===false?'⚔️🔓':'⚔️',isGhost:true,isItem:false,
         staticRomMarker:true,trainerRomSite:true,
-        gateFlagSet:t.gateFlagSet,battleWon:null,
+        gateFlagSet:t.gateFlagSet,gateVerified:t.gateVerified,battleWon:null,
         presentNow:null,accessibleNow:null,completedNow:null
       },ix,iy,gtaZoom,true);
   });

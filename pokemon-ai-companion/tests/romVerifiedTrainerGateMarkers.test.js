@@ -161,7 +161,7 @@ test('minimap draws trainer site as a ghost distinct from live sprite RAM',()=>{
   drawMapEntity:(ctx,e,x,y,scale,ghost)=>calls.push({e,ghost})
  },{timeout:1500});
  assert.equal(calls.length,1);
- assert.equal(calls[0].e.icon,'⚔️');
+ assert.equal(calls[0].e.icon,'⚔️🔒');
  assert.equal(calls[0].e.trainerRomSite,true);
  assert.equal(calls[0].e.battleWon,null);
  assert.equal(calls[0].ghost,true);
@@ -179,7 +179,9 @@ test('enlarged map uses the same trainer-gate selection and faded marker',()=>{
  },{timeout:1500});
  assert.equal(calls.length,1);
  assert.equal(calls[0].e.trainerRomSite,true);
+ assert.equal(calls[0].e.icon,'⚔️🔓');
  assert.equal(calls[0].e.gateFlagSet,false);
+ assert.equal(calls[0].e.gateVerified,true);
  assert.equal(calls[0].ghost,true);
 });
 test('VRAM camera caption gives trainer tile without fabricated pixel alignment',()=>{
@@ -192,4 +194,49 @@ test('VRAM camera caption gives trainer tile without fabricated pixel alignment'
  assert.match(desc,/⚔️ X:9 Y:2/);
  assert.match(desc,/portão fechado por flag, vitória não comprovada/);
  assert.doesNotMatch(desc,/derrotado|vitória confirmada/i);
+});
+
+
+test('unknown D747 trainer gate gets no open/closed symbol in either map',()=>{
+ for(const full of [false,true]){
+  const start=app.indexOf(full?
+    '  // Same static trainer references in the enlarged map':
+    '  // Physical trainer reference, NOT an old/live sprite');
+  const end=app.indexOf(full?
+    '  // Enlarged map uses the same exact ROM/RAM guard':
+    '  // Only SHA-verified static encounter ghosts',start);
+  assert.ok(start>=0&&end>start);
+  const calls=[];
+  vm.runInNewContext(app.slice(start,end),{
+    state:sample(SHAS[2]),camX:0,camY:0,tileSize:24,
+    originX:0,originY:0,tilePx:24,gtaZoom:1,
+    cw:1500,ch:1500,ctxFog:{},ctxGta:{},
+    selectVerifiedMinimapTrainerGateMarkers:select,
+    drawMapEntity:(ctx,e)=>calls.push(e)
+  },{timeout:1500});
+  assert.equal(calls.length,1);
+  assert.equal(calls[0].icon,'⚔️');
+  assert.equal(calls[0].gateFlagSet,null);
+  assert.equal(calls[0].gateVerified,false);
+  assert.equal(calls[0].battleWon,null);
+ }
+});
+test('three ROMs use the same closed, open and unknown trainer gate legend',()=>{
+ for(const sha of SHAS){
+  for(const [bit,expected] of [[true,'⚔️🔒'],[false,'⚔️🔓'],[null,'⚔️']]){
+   const s=sample(sha,bit);
+   const a=app.indexOf('  // Physical trainer reference, NOT an old/live sprite');
+   const b=app.indexOf('  // Only SHA-verified static encounter ghosts',a);
+   const calls=[];
+   vm.runInNewContext(app.slice(a,b),{
+     state:s,camX:0,camY:0,tileSize:24,cw:1500,ch:1500,ctxFog:{},
+     selectVerifiedMinimapTrainerGateMarkers:select,
+     drawMapEntity:(ctx,e)=>calls.push(e)
+   },{timeout:1500});
+   assert.equal(calls.length,1);
+   assert.equal(calls[0].icon,expected);
+   assert.equal(calls[0].gateVerified,bit!==null);
+   assert.equal(calls[0].battleWon,null);
+  }
+ }
 });
