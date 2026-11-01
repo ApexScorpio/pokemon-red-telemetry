@@ -21,7 +21,8 @@ const {buildNamedEventEvidenceLedger}=require('../romNamedEventEvidenceLedger');
 const {buildWorldwideNamedEventCoverage}=require('../romWorldNamedEventCoverage');
 const {buildCompleteEventBitmap}=require('../romCompleteEventBitmap');
 const {buildWorldEventAtlas}=require('../romWorldEventAtlas');
-const {buildScriptUnresolvedEvidence,compareScriptUnresolvedEvidence}=
+const {buildScriptUnresolvedEvidence,compareScriptUnresolvedEvidence,
+ auditPositionActorCorrespondence}=
  require('../romScriptUnresolvedEvidence');
 const referenceEventNames=require('../data/gen1EventNamesPret.json');
 const referenceMapNames=require('../data/gen1MapNamesPret.json');
@@ -1230,6 +1231,18 @@ function main(){
  log('CROSS_ROM_SCRIPT_OFFSET_ONLY='+scriptComparison.offsetOnlyDifferences);
  log('CROSS_ROM_SCRIPT_POSITION_EVIDENCE_COMPLETE='+
   String(scriptComparison.positionEvidenceComplete).toUpperCase());
+ const actorIdentity=auditPositionActorCorrespondence(crossScriptInventories);
+ assert(actorIdentity.verified===true&&
+  actorIdentity.details.length===6&&
+  actorIdentity.summary.ordinalPositionDifferences===6&&
+  actorIdentity.summary.provenCrossRomActorIdentities===0&&
+  actorIdentity.actorIdentityCertified===false,
+  'Cross-ROM actor identity evidence invalid: '+actorIdentity.reason);
+ log('CROSS_ROM_ACTOR_ATTRIBUTE_DETAILS='+
+  JSON.stringify(actorIdentity.details));
+ log('CROSS_ROM_ACTOR_ATTRIBUTE_SUMMARY='+
+  JSON.stringify(actorIdentity.summary));
+ log('CROSS_ROM_ACTOR_IDENTITY_CERTIFIED=FALSE');
  log('CROSS_ROM_SCRIPT_EFFECTS_CERTIFIED=FALSE');
  log('STEP=CROSS_ROM_DECODED_MAP_CONTENTS_COMPARISON');
  const contentsComparison=compareCrossVariantWorldContents(crossWorldDecodedContents);

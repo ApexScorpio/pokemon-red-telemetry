@@ -102,11 +102,28 @@ function buildScriptUnresolvedEvidence({atlas}={}){
   }else if(r.eventBitIndex!==null){
     return invalid('Unproven event bit presented as known: '+k);
   }
+  // Keep the item/species identifiers from exact object bytes when present.
+  // These values classify possible cross-version correspondences; they do
+  // not prove the same physical actor, an obtained item, or a completed event.
+  const rawMeta=r.actorRomMetadata;
+  const byte=n=>Number.isInteger(n)&&n>=0&&n<=255;
+  let actorRomMetadata=null;
+  if(r.kind==='ITEM'&&byte(rawMeta?.itemId))
+   actorRomMetadata={type:'ITEM_ID',itemId:rawMeta.itemId};
+  if(r.kind==='STATIC_POKEMON'&&byte(rawMeta?.speciesInternalId)&&
+     byte(rawMeta?.level))
+   actorRomMetadata={type:'SPECIES_AND_LEVEL',
+    speciesInternalId:rawMeta.speciesInternalId,level:rawMeta.level};
+  if((r.kind==='ITEM'||r.kind==='STATIC_POKEMON')&&
+     rawMeta!==undefined&&rawMeta!==null&&actorRomMetadata===null)
+    return invalid('Malformed physical actor metadata: '+k);
   rows.push({
     mapId:r.mapId,kind:r.kind,ordinal:r.ordinal,x:r.x,y:r.y,
     rawTextId:r.rawTextId,textId:r.textId,
     scriptFileOffset:r.scriptFileOffset,scriptCommand:r.scriptCommand,
     scriptDispatchClass:r.scriptDispatchClass,
+    actorRomMetadata,actorMetadataFromRomVerified:actorRomMetadata!==null,
+    actorIdentityAcrossVariantsVerified:false,
     asmHandlerOffset:isAsm?r.scriptFileOffset:null,
     eventBitIndex,eventBitBindingVerified:r.eventBitBindingVerified===true,
     blockers:isAsm?['ASM_EFFECTS_NOT_SEMANTICALLY_CERTIFIED','LIVE_ACTION_NOT_PROVEN']:
@@ -240,4 +257,98 @@ function compareScriptUnresolvedEvidence({red,blue,green}={}){
   gameplayEquivalenceCertified:false,
   warning:'Coordinate differences compare map/type/ordinal references, not object identity or confirmed relocations. Physical offset differences alone do not imply different behavior.'};
 }
-module.exports={buildScriptUnresolvedEvidence,compareScriptUnresolvedEvidence};
+
+function auditPositionActorCorrespondence({red,blue,green}={}){
+ const compared=compareScriptUnresolvedEvidence({red,blue,green});
+ const fail=reason=>({verified:false,reason,details:[],summary:null,
+  actorIdentityCertified:false,accessibilityCertified:false});
+ if(compared.verified!==true||
+    !Array.isArray(compared.positionDifferences)||
+    compared.counts?.missingRecordKeys!==0)
+  return fail('Exact three-ROM position comparison required');
+ const datasets={red,blue,green};
+ const byVariant=Object.fromEntries(Object.entries(datasets).map(([v,d])=>
+  [v,new Map(d.rows.map(row=>[key(row),row]))]));
+ const sig=row=>{
+  if(row?.actorMetadataFromRomVerified!==true||
+     row.actorIdentityAcrossVariantsVerified!==false)
+   return null;
+  const m=row.actorRomMetadata;
+  if(row.kind==='ITEM'&&m?.type==='ITEM_ID'&&
+     Number.isInteger(m.itemId)&&m.itemId>=0&&m.itemId<=255)
+    return 'ITEM:'+m.itemId;
+  if(row.kind==='STATIC_POKEMON'&&m?.type==='SPECIES_AND_LEVEL'&&
+     Number.isInteger(m.speciesInternalId)&&m.speciesInternalId>=0&&
+     m.speciesInternalId<=255&&Number.isInteger(m.level)&&
+     m.level>=0&&m.level<=255)
+    return 'STATIC:'+m.speciesInternalId+':'+m.level;
+  return null;
+ };
+ const summaries={};
+ const details=[];
+ for(const d of compared.positionDifferences){
+  const current=Object.fromEntries(['red','blue','green'].map(v=>
+   [v,byVariant[v].get(d.key)]));
+  if(Object.values(current).some(r=>!r))
+   return fail('Missing position evidence row '+d.key);
+  const signatures=Object.fromEntries(Object.entries(current).map(([v,r])=>
+   [v,sig(r)]));
+  const candidates={};
+  for(const v of ['red','blue','green']){
+   const currentSig=signatures[v];
+   candidates[v]=currentSig?datasets[v].rows.filter(r=>
+    r.mapId===d.mapId&&r.kind===d.kind&&sig(r)===currentSig)
+    .map(r=>({ordinal:r.ordinal,x:r.x,y:r.y})): [];
+  }
+  const uniqueCurrent=Object.values(candidates).every(x=>x.length===1);
+  const hasMeta=Object.values(signatures).every(x=>x!==null);
+  const allSame=hasMeta&&signatures.red===signatures.blue&&
+   signatures.blue===signatures.green;
+  const redBlueSame=signatures.red!==null&&
+   signatures.red===signatures.blue;
+  const greenMatchesRedElsewhere=redBlueSame&&
+   datasets.green.rows.filter(r=>
+    r.mapId===d.mapId&&r.kind===d.kind&&
+    sig(r)===signatures.red&&r.ordinal!==d.ordinal)
+   .map(r=>({ordinal:r.ordinal,x:r.x,y:r.y}));
+  let classification='ATTRIBUTE_NOT_PROVEN';
+  if(hasMeta&&allSame&&uniqueCurrent)
+   classification='UNIQUE_ATTRIBUTE_AT_SAME_ORDINAL';
+  else if(hasMeta&&allSame)
+   classification='DUPLICATE_ATTRIBUTE_AMBIGUITY';
+  else if(redBlueSame&&greenMatchesRedElsewhere?.length===1)
+   classification='POSSIBLE_REORDER_BY_ROM_ATTRIBUTE';
+  else if(hasMeta)
+   classification='DIFFERENT_ATTRIBUTES_OR_UNMATCHED';
+  const evidence={
+   key:d.key,mapId:d.mapId,kind:d.kind,ordinal:d.ordinal,
+   positions:{red:{x:d.red.x,y:d.red.y},
+    blue:{x:d.blue.x,y:d.blue.y},green:{x:d.green.x,y:d.green.y}},
+   romAttributes:Object.fromEntries(Object.entries(current).map(([v,r])=>
+    [v,r.actorRomMetadata??null])),
+   signatures,candidateMatchesByVariant:candidates,
+   redIdentityAlternativeInGreen:greenMatchesRedElsewhere||[],
+   classification,
+   physicalActorIdentityProven:false,
+   actualObjectRelocationProven:false,
+   accessOrCompletionProven:false
+  };
+  summaries[classification]=(summaries[classification]||0)+1;
+  details.push(evidence);
+ }
+ if(details.length!==compared.counts.positionsDifferent||
+    Object.values(summaries).reduce((a,b)=>a+b,0)!==details.length)
+  return fail('Identity diagnostic cannot reconcile ordinal coordinate differences');
+ return {verified:true,source:'ROM_ACTOR_ATTRIBUTE_CORRESPONDENCE_V1',
+  romShas:Object.fromEntries(Object.entries(datasets).map(([v,d])=>
+   [v,d.romSha256])),
+  details,summary:{ordinalPositionDifferences:details.length,
+   classes:summaries,matchingAlgorithm:'MAP_KIND_AND_ROM_ACTOR_ATTRIBUTES',
+   provenCrossRomActorIdentities:0,
+   verifiedRuntimeRelocations:0},
+  actorIdentityCertified:false,accessibilityCertified:false,
+  warning:'Identical item ID/species/level may describe multiple map objects. It is not a proof that a specific actor moved or was obtainable in play.'};
+}
+
+module.exports={buildScriptUnresolvedEvidence,compareScriptUnresolvedEvidence,
+ auditPositionActorCorrespondence};

@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const {buildScriptUnresolvedEvidence,compareScriptUnresolvedEvidence}=
+const {buildScriptUnresolvedEvidence,compareScriptUnresolvedEvidence,
+ auditPositionActorCorrespondence}=
  require('../romScriptUnresolvedEvidence');
 const {readRom,KNOWN}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
@@ -225,4 +226,86 @@ test('physical ASM handler mismatch remains explicitly rejected',()=>{
  assert.equal(inventory.verified,false);
  assert.match(inventory.reason,/ASM handler is not anchored/);
  assert.equal(inventory.gameplayCompletionCertified,false);
+});
+
+function metadataTestAtlases(){
+ const a=Object.fromEntries(Object.entries(KNOWN).map(([v,sha])=>
+  [v,syntheticAtlas(sha)]));
+ for(const atlas of Object.values(a)){
+  const items=atlas.maps[0].interactions.filter(r=>r.kind==='ITEM');
+  items[0].actorRomMetadata={itemId:45};
+  items[1].actorRomMetadata={itemId:46};
+  items[2].actorRomMetadata={itemId:47};
+  const stationary=atlas.maps[0].interactions.find(r=>
+   r.kind==='STATIC_POKEMON');
+  stationary.actorRomMetadata={speciesInternalId:25,level:32};
+ }
+ a.green.maps[0].interactions.find(r=>
+  r.kind==='ITEM'&&r.ordinal===1).x=9;
+ return a;
+}
+const compareMetadataAtlases=a=>auditPositionActorCorrespondence(
+ Object.fromEntries(Object.entries(a).map(([v,atlas])=>
+  [v,buildScriptUnresolvedEvidence({atlas})]))
+);
+test('actor metadata comparison requires exact three-ROM proof',()=>{
+ const x=auditPositionActorCorrespondence();
+ assert.equal(x.verified,false);
+ assert.equal(x.actorIdentityCertified,false);
+});
+test('unique ROM item IDs flag candidate match without asserting same actor',()=>{
+ const x=compareMetadataAtlases(metadataTestAtlases());
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.details.length,1);
+ assert.equal(x.details[0].classification,'UNIQUE_ATTRIBUTE_AT_SAME_ORDINAL');
+ assert.deepEqual(x.details[0].romAttributes.green,{type:'ITEM_ID',itemId:45});
+ assert.equal(x.details[0].physicalActorIdentityProven,false);
+ assert.equal(x.summary.provenCrossRomActorIdentities,0);
+});
+test('missing physical item ID leaves positional correspondence unknown',()=>{
+ const a=metadataTestAtlases();
+ delete a.green.maps[0].interactions.find(r=>
+  r.kind==='ITEM'&&r.ordinal===1).actorRomMetadata;
+ const x=compareMetadataAtlases(a);
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.details[0].classification,'ATTRIBUTE_NOT_PROVEN');
+ assert.equal(x.actorIdentityCertified,false);
+});
+test('duplicate physical item IDs cannot establish a unique actor match',()=>{
+ const a=metadataTestAtlases();
+ for(const atlas of Object.values(a))
+  atlas.maps[0].interactions.find(r=>r.kind==='ITEM'&&r.ordinal===2)
+   .actorRomMetadata={itemId:45};
+ const x=compareMetadataAtlases(a);
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.details[0].classification,'DUPLICATE_ATTRIBUTE_AMBIGUITY');
+ assert.equal(x.details[0].candidateMatchesByVariant.green.length,2);
+});
+test('changed item ID with counterpart at another ordinal detects possible reordering',()=>{
+ const a=metadataTestAtlases();
+ const items=a.green.maps[0].interactions.filter(r=>r.kind==='ITEM');
+ items[0].actorRomMetadata={itemId:46};
+ items[1].actorRomMetadata={itemId:45};
+ const x=compareMetadataAtlases(a);
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.details[0].classification,'POSSIBLE_REORDER_BY_ROM_ATTRIBUTE');
+ assert.equal(x.details[0].redIdentityAlternativeInGreen[0].ordinal,items[1].ordinal);
+ assert.equal(x.details[0].actualObjectRelocationProven,false);
+});
+test('different item attributes with no unique counterpart do not imply relocation',()=>{
+ const a=metadataTestAtlases();
+ a.green.maps[0].interactions.find(r=>
+  r.kind==='ITEM'&&r.ordinal===1).actorRomMetadata={itemId:99};
+ const x=compareMetadataAtlases(a);
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.details[0].classification,'DIFFERENT_ATTRIBUTES_OR_UNMATCHED');
+ assert.equal(x.details[0].accessOrCompletionProven,false);
+});
+test('malformed physical actor metadata cannot be promoted to evidence',()=>{
+ const a=metadataTestAtlases();
+ a.green.maps[0].interactions.find(r=>
+  r.kind==='ITEM'&&r.ordinal===1).actorRomMetadata={itemId:999};
+ const inv=buildScriptUnresolvedEvidence({atlas:a.green});
+ assert.equal(inv.verified,false);
+ assert.match(inv.reason,/Malformed physical actor metadata/);
 });
