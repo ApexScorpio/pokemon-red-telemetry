@@ -955,6 +955,82 @@ function formatCampaignChecklistSection(advice,state) {
         }
       }
     }
+    const indexedJumpLiveT234=
+      state?.romIndexedJumpLiveSelection;
+
+    if(
+      indexedJumpLiveT234?.verified===true&&
+      indexedJumpLiveT234.source===
+        'RETROARCH_RAM_PLUS_ROM_INDEXED_TABLE_CONDITIONAL_V1'&&
+      indexedJumpLiveT234.romSha256===runtimeSha&&
+      indexedJumpLiveT234.mapId===advice.mapId&&
+      indexedJumpLiveT234.mapId===mapRootT190.mapId&&
+      indexedJumpLiveT234.observedAt===state.lastUpdate&&
+      state.connected===true&&
+      state.isSimulation!==true&&
+      state.memoryReadStatus?.verified===true&&
+      state.memoryReadStatus?.publicationPositionWindow
+        ?.verified===true&&
+      indexedJumpLiveT234.publicationPositionVerified===true&&
+      indexedJumpLiveT234.atomicSnapshotVerified===false&&
+      indexedJumpLiveT234.indirectJumpObserved===false&&
+      indexedJumpLiveT234.gameEventCompleted===false&&
+      indexedJumpLiveT234.additionalUdpRequests===0&&
+      Array.isArray(indexedJumpLiveT234.selections)
+    ){
+      const tables=
+        Array.isArray(mapRootT190.indexedRomTableWords)?
+        mapRootT190.indexedRomTableWords:[];
+
+      const selections=indexedJumpLiveT234.selections
+        .filter(row=>
+          row.sourceRamReadObserved===true&&
+          row.rawRomTableWordVerified===true&&
+          row.bankSelectionObserved===false&&
+          row.indirectJumpObserved===false&&
+          row.instructionBoundaryVerified===false&&
+          row.gameEventCompleted===false&&
+          Number.isInteger(row.sourceAddress)&&
+          Number.isInteger(row.sourceRamByte)&&
+          row.sourceRamByte>=0&&row.sourceRamByte<=255&&
+          Number.isInteger(row.pointerIndex)&&
+          row.pointerIndex===(row.sourceRamByte&127)&&
+          Number.isInteger(row.pointerCpu)&&
+          Number.isInteger(row.rawTargetCpu)&&
+          row.rawTargetCpu>=0&&row.rawTargetCpu<=65535&&
+          tables.some(t=>
+            t.sourceAddress===row.sourceAddress&&
+            t.instructionOffset===row.instructionOffset&&
+            t.assumedBank===row.assumedBank&&
+            t.baseCpuAddress+2*row.pointerIndex===
+              row.pointerCpu
+          )
+        ).slice(0,8);
+
+      if(selections.length){
+        lines.push(
+          'Indices de tabelas ROM condicionados por RAM: '+
+          selections.length+
+          ' | valores recolhidos no ciclo atual; '+
+          'nao representam saltos executados.'
+        );
+
+        for(const row of selections){
+          lines.push(
+            'Fonte RAM 0x'+
+            row.sourceAddress.toString(16).toUpperCase()+
+            ' = '+row.sourceRamByte+
+            ' | indice '+row.pointerIndex+
+            ' | palavra ROM 0x'+
+            row.rawTargetCpu.toString(16)
+              .toUpperCase().padStart(4,'0')+
+            ' | '+row.targetClass+
+            ' | banco presumido '+row.assumedBank+
+            ' | salto nao observado'
+          );
+        }
+      }
+    }
     const mapRootSymbolicT214=
       Array.isArray(mapRootT190.runtimeSymbolicWriteRequirements)?
       mapRootT190.runtimeSymbolicWriteRequirements:[];

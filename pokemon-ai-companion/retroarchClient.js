@@ -59,6 +59,8 @@ const {collectBudgetBranchLiveReadback}=
  require('./romBudgetBranchLiveReadback');
 const {collectWorldBudgetRamReadback}=
  require('./romWorldBudgetRamReadback');
+const {selectIndexedJumpLiveWords}=
+ require('./romIndexedJumpLiveSelection');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -431,6 +433,13 @@ class RetroArchClient extends EventEmitter {
         publicationPositionVerified:false,
         scriptExecutionObserved:false,
         gameEventCompleted:false
+      };      this.latestState.romIndexedJumpLiveSelection={
+        verified:false,
+        reason,
+        selections:[],
+        publicationPositionVerified:false,
+        indirectJumpObserved:false,
+        gameEventCompleted:false
       };      this.latestState.romBudgetBranchRamReadback={
         verified:false,reason,
         values:[],
@@ -582,7 +591,7 @@ class RetroArchClient extends EventEmitter {
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
-        'romWarpGraph','videoMemory','romBudgetBranchRamReadback','romWorldBudgetRamReadback',
+        'romWarpGraph','videoMemory','romBudgetBranchRamReadback','romWorldBudgetRamReadback','romIndexedJumpLiveSelection',
         'battle','battleReadStatus','battleFlagVerified',
         'inBattle','battleType','aiAdvice','currentDialog',
         'currentTextSource',
@@ -3479,6 +3488,38 @@ class RetroArchClient extends EventEmitter {
       readMemoryBlock:(address,length)=>
         this.readMemoryBlock(address,length)
     });
+    // T234: evaluate a ROM table entry using a source byte
+    // already present in the current RAM poll. No UDP call.
+    // The result is conditional, not an executed CPU jump.
+    const t234MapId=this.latestState.mapId;
+
+    const t234Evidence=
+      this.latestState.romRuntimeIdentity?.matched===true?
+      mapScriptRootEvidence({
+        catalogue:
+          this.activeRomProfile?.world?.mapScriptRootSemantics,
+        romSha256:this.activeRomProfile?.hash?.sha256,
+        mapId:t234MapId
+      }):null;
+
+    const t234Selection=selectIndexedJumpLiveWords({
+      evidence:t234Evidence,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      mapId:t234MapId,
+      blocks:{
+        player:blockPlayerParty,
+        world:blockWorldEvents,
+        sprites:blockSprites
+      },
+      eligible:
+        this.latestState.isSimulation!==true&&
+        this.latestState.connected===true&&
+        this.latestState.memoryReadStatus?.verified===true&&
+        this.latestState.romRuntimeIdentity?.matched===true&&
+        positionWindow.verified===true&&
+        latePositionWindow.verified===true&&
+        globalFlagReadback.verified===true
+    });
     if(!matchesTargetScope(this,pollTargetScope))return;
     const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);
     if(!matchesTargetScope(this,pollTargetScope))return;
@@ -3570,6 +3611,28 @@ class RetroArchClient extends EventEmitter {
         twoReadSamplesConfirmed:false,
         publicationPositionVerified:false,
         scriptExecutionObserved:false,
+        gameEventCompleted:false
+      };
+    this.latestState.romIndexedJumpLiveSelection=
+      t234Selection.verified===true&&
+      matchesTargetScope(this,pollTargetScope)&&
+      this.latestState.memoryReadStatus?.verified===true&&
+      this.latestState.romRuntimeIdentity?.matched===true&&
+      publicationPositionWindow.verified===true?
+      {
+        ...t234Selection,
+        publicationPositionVerified:true,
+        observedAt:this.latestState.lastUpdate,
+        atomicSnapshotVerified:false,
+        indirectJumpObserved:false,
+        gameEventCompleted:false
+      }:{
+        verified:false,
+        reason:t234Selection.reason||
+          'FINAL_PUBLICATION_GATES_MISSING',
+        selections:[],
+        publicationPositionVerified:false,
+        indirectJumpObserved:false,
         gameEventCompleted:false
       };
     // Start background video only after the FINAL RAM position/target

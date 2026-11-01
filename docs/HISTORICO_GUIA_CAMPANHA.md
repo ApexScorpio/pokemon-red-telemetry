@@ -2888,3 +2888,27 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Main, producao, RetroArch, sessoes e ROMs intocados.
 - Testes e certificacao obrigatorios antes de publicar.
 - Mapeamento de 100 por cento nao declarado.
+
+### PSB-20261101-2330-POKEGUIDE-T234-LIVE-TABLE-SELECT-001 — selecao condicional de tabela ROM por RAM ja recolhida
+
+- Base publicada: 6717fa25d560f6cf853426b83ee697d4c2d12e00.
+- T233 verificou os 128 valores de ponteiro das tabelas ROM.
+- Auditoria da ROM Red: 166 tabelas,
+  das quais 98 usam
+  enderecos presentes nos blocos RAM atuais.
+- Mapas com fontes cobertas: 98.
+- Nenhum novo pedido UDP necessario.
+- Para cada fonte elegivel, o byte RAM seleciona a entrada
+  (byte AND 0x7F) na tabela ROM autenticada por SHA256.
+- A palavra de destino e apresentada como condicional.
+- O banco ativo do emulador nao foi observado.
+- O salto de CPU nao foi observado.
+- O endereco nao foi comprovado como fronteira de instrucao.
+- O evento do jogo nao foi declarado concluido.
+- Validacoes de ROM, mapa, leitura completa, posicao final
+  e continuidade do alvo continuam obrigatorias.
+- A evidência RAM dinamica nao e usada como cache persistente.
+- Interpretador, T221, T231 e tabelas T233 preservados.
+- Testes e certificacao das tres ROMs executados.
+- Main, producao, sessoes, backups e jogo preservados.
+- Mapeamento 100 por cento nao comprovado.
