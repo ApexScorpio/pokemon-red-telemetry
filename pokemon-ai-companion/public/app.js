@@ -3059,17 +3059,95 @@ function describeVerifiedVramStaticLocationEvidence(state) {
   const items=selectVerifiedMinimapItemMarkers(state);
   const encounters=selectVerifiedMinimapStaticEncounterMarkers(state);
   const hiddenCoins=selectVerifiedMinimapHiddenCoinMarkers(state);
-  const total=items.length+encounters.length+hiddenCoins.length;
+  const trainers=selectVerifiedMinimapTrainerGateMarkers(state);
+  const total=items.length+encounters.length+hiddenCoins.length+trainers.length;
   if(!total)return 'Posições ROM não confirmadas nesta leitura (não significa que o mapa esteja vazio)';
   const rows=[
     ...items.map(i=>(i.blocked?'🔒':'🎒')+' X:'+i.x+' Y:'+i.y),
     ...encounters.map(p=>'✨ X:'+p.x+' Y:'+p.y+
       ' espécie interna '+p.speciesInternalId+' nível '+p.level),
-    ...hiddenCoins.map(c=>'🪙 X:'+c.x+' Y:'+c.y+' (moeda oculta)')
+    ...hiddenCoins.map(c=>'🪙 X:'+c.x+' Y:'+c.y+' (moeda oculta)'),
+    ...trainers.map(t=>'⚔️ X:'+t.x+' Y:'+t.y+
+      ' (treinador ROM; '+(t.gateFlagSet===true?
+        'portão fechado por flag, vitória não comprovada':
+        t.gateFlagSet===false?'portão aberto por flag':
+        'portão sem prova RAM')+')')
   ];
   const shown=rows.slice(0,3).join(' · ');
   return 'Coordenadas ROM, NÃO sobrepostas à VRAM ('+total+'): '+
     shown+(rows.length>3?' · +'+(rows.length-3)+' na checklist':'');
+}
+
+
+function selectVerifiedMinimapTrainerGateMarkers(state) {
+  // ROM script-bound trainer locations; a gate flag NEVER proves victory,
+  // a sprite currently present, or a battle reachable now.
+  const sha=state?.romRuntimeIdentity?.profileSha256;
+  const trusted=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const advisor=state?.worldAdvisor,check=advisor?.mapChecklist;
+  const mem=state?.memoryReadStatus;
+  const time=Date.parse(state?.lastUpdate||'');
+  const valid=n=>Number.isInteger(n)&&n>=-4&&n<=255;
+  if(state?.connected!==true||state?.romRuntimeIdentity?.matched!==true||
+     !trusted.has(sha)||!Number.isInteger(state.mapId)||
+     state.mapId<0||state.mapId>247||
+     advisor?.verified!==true||advisor.mapId!==state.mapId||
+     advisor.romSha256!==sha||advisor.fullWorldStaticIndexVerified!==true||
+     check?.verified!==true||check.mapId!==state.mapId||
+     check.romSha256!==sha||check.staticIndexVerified!==true||
+     check.scriptAtlasBound!==true||!Array.isArray(check.actions)||
+     mem?.verified!==true||!Number.isFinite(time)||
+     time>Date.now()||Date.now()-time>15000)return [];
+  const a=mem.positionWindow,b=mem.latePositionWindow,
+    c=mem.publicationPositionWindow;
+  if([a,b,c].some(p=>p?.verified!==true||
+       p.mapId!==state.mapId||!valid(p.x)||!valid(p.y))||
+     a.x!==b.x||a.y!==b.y||b.x!==c.x||b.y!==c.y||
+     state.coords?.x!==c.x||state.coords?.y!==c.y)return [];
+  const ordinals=new Set(),tiles=new Set(),results=[];
+  for(const row of check.actions.filter(x=>x?.kind==='TRAINER')){
+    // Some ROM trainer scripts still lack a proven text entry. Exclude
+    // those individually instead of assigning a guessed identity.
+    if(row.scriptReferenceBound!==true||
+       row.scriptTextPointerVerified!==true)continue;
+    const actor=row.staticObject;
+    if(actor?.source!=='ROM_MAP_OBJECT_BYTES'||
+       actor.kind!=='trainer'||row.group!=='trainers'||
+       !Number.isInteger(row.ordinal)||row.ordinal<1||
+       actor.ordinal!==row.ordinal||
+       !valid(row.x)||!valid(row.y)||
+       actor.x!==row.x||actor.y!==row.y||
+       !Number.isInteger(actor.spriteId)||
+       actor.spriteId<0||actor.spriteId>255||
+       !Number.isInteger(actor.textId)||
+       actor.textId<0||actor.textId>255)return [];
+    let gate=null;
+    if(row.scriptEventFlagSnapshotVerified===true){
+      if(typeof row.scriptEventFlagSet!=='boolean'||
+         row.scriptEventFlagEvidence!==
+           'ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747'||
+         row.scriptEventBitBindingVerified!==true||
+         !Number.isInteger(row.scriptEventBitIndex)||
+         row.scriptEventBitIndex<0||row.scriptEventBitIndex>=2560||
+         row.progress!==(row.scriptEventFlagSet?
+           'TRAINER_GATE_CLOSED_FLAG':'TRAINER_GATE_OPEN_FLAG'))return [];
+      gate=row.scriptEventFlagSet;
+    }else if(row.scriptEventFlagSet!==null||
+      row.progress!=='NOT_PROVEN')return [];
+    const tile=row.x+','+row.y;
+    if(ordinals.has(row.ordinal)||tiles.has(tile))return [];
+    ordinals.add(row.ordinal);tiles.add(tile);
+    results.push({kind:'TRAINER_ROM_SITE',x:row.x,y:row.y,
+      ordinal:row.ordinal,gateFlagSet:gate,
+      gateVerified:gate!==null,
+      evidence:'ROM_MAP_OBJECT_SCRIPT_AND_OPTIONAL_D747_GATE',
+      presentNow:null,accessibleNow:null,battleWon:null,completedNow:null});
+  }
+  return results;
 }
 
 // Renderizador do Mini-Mapa Tático com Tiles Reais do Game Boy
@@ -3206,6 +3284,20 @@ function renderFogMinimap(state) {
 
   // Só mostrar entidades lidas agora da RAM. Não desenhar treinadores previstos nem ghosts
   // de posições antigas: provocavam marcadores de treinadores que já não existem.
+  // Physical trainer reference, NOT an old/live sprite or proved victory.
+  const trainerSites=selectVerifiedMinimapTrainerGateMarkers(state);
+  trainerSites.forEach(t=>{
+    const ix=camX+t.x*tileSize+tileSize/2;
+    const iy=camY+t.y*tileSize+tileSize/2;
+    if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16)
+      drawMapEntity(ctxFog,{
+        x:t.x,y:t.y,icon:'⚔️',isGhost:true,isItem:false,
+        staticRomMarker:true,trainerRomSite:true,
+        gateFlagSet:t.gateFlagSet,battleWon:null,
+        presentNow:null,accessibleNow:null,completedNow:null
+      },ix,iy,0.8,true);
+  });
+
   // Only SHA-verified static encounter ghosts; live sprites are below.
   const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);
   fixedEncounters.forEach(mon=>{
@@ -3410,6 +3502,20 @@ function renderGtaFullMap(state) {
   });
 
   // 3. Apenas entidades reais presentes na RAM (sem treinadores previstos nem ghosts artificiais)
+  // Same static trainer references in the enlarged map, separate from RAM sprites.
+  const trainerSites=selectVerifiedMinimapTrainerGateMarkers(state);
+  trainerSites.forEach(t=>{
+    const ix=originX+t.x*tilePx+tilePx/2;
+    const iy=originY+t.y*tilePx+tilePx/2;
+    if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24)
+      drawMapEntity(ctxGta,{
+        x:t.x,y:t.y,icon:'⚔️',isGhost:true,isItem:false,
+        staticRomMarker:true,trainerRomSite:true,
+        gateFlagSet:t.gateFlagSet,battleWon:null,
+        presentNow:null,accessibleNow:null,completedNow:null
+      },ix,iy,gtaZoom,true);
+  });
+
   // Enlarged map uses the same exact ROM/RAM guard as minimap.
   const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);
   fixedEncounters.forEach(mon=>{
