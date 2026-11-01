@@ -1211,3 +1211,20 @@
 - Testes dirigidos e certificacao real das tres ROMs aprovados.
 - Main, preview, Antigravity, ROMs e saves preservados.
 - Interpretacao semantica total ainda nao certificada.
+
+### PSB-20261101-1830-POKEGUIDE-T198-RECOVER-001 - recuperacao T198 e requisitos RAM dos scripts gerais
+
+- Revisao anterior: 6c2561cf94dea06303e314e0ba03e2bf1c7f084f.
+- T198 original falhou antes de gravar codigo por ancora com espacos errados.
+- Corrigida a selecao da ancora sem depender da indentacao.
+- Corrigido tratamento de requisitos RAM nulos nos testes.
+- Reutilizada a prova T197: 30 requisitos de FFB8 por ROM, instrucao 0x3E90 em Red/Blue e 0x3E77 em Green.
+- Agrupamento por endereco RAM, instrucao, destino e candidatos fisicos.
+- Contagem dos caminhos condicionais preservada.
+- Checklist apresenta requisitos RAM sem inferir banco ativo.
+- Leitura FFB8 continua manual e exclusivamente de leitura.
+- Interpretador CPU e ligacao RetroArch nao foram modificados.
+- Testes dirigidos e certificacao completa executados antes da publicacao.
+- Main, preview, Antigravity, ROMs e saves preservados.
+- Progresso do jogo e eventos executados nao inferidos.
+- Mapeamento semantico a 100 por cento ainda nao demonstrado.

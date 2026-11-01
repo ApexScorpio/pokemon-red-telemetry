@@ -797,7 +797,62 @@ function formatCampaignChecklistSection(advice,state) {
       );
     }
 
-    if(mapRootT190.unresolvedCount>0){
+        const mapRootRamGroupsT198=
+      Array.isArray(mapRootT190.runtimeRamRequirements)?
+      mapRootT190.runtimeRamRequirements:[];
+
+    if(mapRootRamGroupsT198.length){
+      const totalRequirements=mapRootRamGroupsT198.reduce(
+        (n,r)=>n+r.conditionalPathRequirements,0
+      );
+
+      lines.push(
+        'Requisitos RAM do script geral do mapa: '+
+        mapRootRamGroupsT198.length+
+        ' grupos; '+totalRequirements+
+        ' caminhos condicionais. Banco ativo desconhecido.'
+      );
+
+      for(const r of mapRootRamGroupsT198.slice(0,8)){
+        if(!Number.isInteger(r.sourceAddress)||
+           !Number.isInteger(r.instructionOffset)||
+           !Number.isInteger(r.bankRegisterAddress)||
+           r.runtimeRamReadObserved!==false||
+           r.selectedBank!==null||
+           r.bankRegisterWriteObserved!==false)
+          continue;
+
+        lines.push(
+          'RAM 0x'+r.sourceAddress.toString(16).toUpperCase()+
+          ' | instrucao ROM 0x'+
+          r.instructionOffset.toString(16).toUpperCase()+
+          ' | registo 0x'+
+          r.bankRegisterAddress.toString(16).toUpperCase()+
+          ' | '+r.conditionalPathRequirements+
+          ' caminhos'+
+          (Number.isInteger(r.physicalCandidateCount)?
+            ' | '+r.physicalCandidateCount+
+            ' bancos fisicos candidatos':'')+
+          ' | escrita e execucao nao observadas'
+        );
+
+        if(r.sourceAddress===0xFFB8){
+          lines.push(
+            'Existe diagnostico manual FFB8, apenas de leitura. '+
+            'Nao confirma o banco ativo nem um evento concluido.'
+          );
+        }
+      }
+
+      if(mapRootRamGroupsT198.length>8){
+        lines.push(
+          'Outros grupos RAM omitidos nesta vista: '+
+          (mapRootRamGroupsT198.length-8)
+        );
+      }
+    }
+
+if(mapRootT190.unresolvedCount>0){
       lines.push(
         'Bloqueios do script: '+
         JSON.stringify(mapRootT190.unresolvedReasonCounts)+
