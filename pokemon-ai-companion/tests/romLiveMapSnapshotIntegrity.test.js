@@ -79,7 +79,7 @@ test('invalidated RAM clears stale ghosts and does not restore actors on reconne
  assert.equal(Array.from(live(empty).ghosts).length,1);
  const disconnected=state();disconnected.connected=false;
  assert.equal(rows(disconnected).length,0);
- assert.equal(Array.from(live(state())).length,0);
+ assert.equal(Array.from(live(state()).ghosts).length,0);
  assert.equal(Array.from(live(empty).ghosts).length,0);
 });
 test('history key separates Red and Green map actors even with same map ID',()=>{
