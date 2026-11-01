@@ -2752,3 +2752,24 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Banco ativo, leitura RAM e eventos de jogo nao observados.
 - Producao, sessoes, backups, ROMs e saves preservados.
 - Interpretacao integral das ROMs nao demonstrada.
+
+### PSB-20261101-2040-POKEGUIDE-T214-SYMBOLIC-WRAM-001 - requisitos condicionais WRAM
+
+- Base publicada: cd1c6ffa17b60252cadc7d0fa301f7ed5d305ebd.
+- Provas reutilizadas: T206 a T213.
+- T213 demonstrou 42/42 formulas para o mapa 210 e
+  39/39 formulas para o mapa 212 nas tres ROMs.
+- Enderecos candidatos distintos: 683 e 697, respetivamente.
+- Todos os candidatos demonstrados pertencem a WRAM.
+- Fonte simbolica RAM D369, sem leitura real observada.
+- Implementado reconhecimento restrito da sequencia ROM
+  demonstrada, sem assumir um mapa ou uma sessao em particular.
+- Requisitos agrupados e expostos no checklist.
+- O interpretador continua a interromper escritas cujo
+  endereco real nao esteja determinado.
+- Nao foram inventados eventos concluidos nem acessibilidade.
+- Sete testes novos, incluindo tres com ROMs autenticadas.
+- Certificacao integral obrigatoria antes da publicacao.
+- Limites globais e comportamento de execucao preservados.
+- Producao, ROMs, saves, sessoes e backups protegidos.
+- Mapeamento de 100 por cento nao demonstrado.

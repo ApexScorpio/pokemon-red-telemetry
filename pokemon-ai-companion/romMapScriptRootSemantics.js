@@ -77,6 +77,72 @@ function groupMapRootRuntimeRequirements(requirements){
  );
 }
 
+function groupMapRootSymbolicWriteRequirements(requirements){
+ const groups=new Map();
+
+ if(!Array.isArray(requirements))return [];
+
+ for(const r of requirements){
+  if(
+   !r||
+   r.reason!==
+    'LIVE_RAM_REQUIRED_FOR_SYMBOLIC_WRAM_WRITE_TARGET'||
+   r.sourceAddress!==0xd369||
+   !Number.isInteger(r.instructionOffset)||
+   r.sourceAddend!==6||
+   r.baseCpuAddress!==0xc6e8||
+   !Number.isInteger(r.symbolicMultiplier)||
+   !Number.isInteger(r.loopIterations)||
+   r.symbolicMultiplier!==3+r.loopIterations||
+   r.fixedAddend!==3||
+   !Number.isInteger(r.finalBC)||
+   r.finalBC<0||r.finalBC>255||
+   r.candidateCount!==256||
+   !Number.isInteger(r.candidateMin)||
+   !Number.isInteger(r.candidateMax)||
+   r.candidateMin<0xc000||
+   r.candidateMax>=0xe000||
+   r.candidateMin>r.candidateMax||
+   r.memoryRegion!=='WRAM'||
+   !(r.targetValue===null||
+     Number.isInteger(r.targetValue))||
+   r.runtimeRamReadObserved!==false||
+   r.targetAddressObserved!==false||
+   r.memoryWriteObserved!==false||
+   r.gameplayExecutionObserved!==false||
+   r.gameEventCompleted!==false
+  )continue;
+
+  const key=JSON.stringify([
+   r.instructionOffset,
+   r.sourceAddress,
+   r.loopIterations,
+   r.finalBC,
+   r.targetValue
+  ]);
+
+  if(!groups.has(key)){
+   groups.set(key,{
+    ...r,
+    conditionalPathRequirements:0,
+    runtimeRamReadObserved:false,
+    targetAddressObserved:false,
+    memoryWriteObserved:false,
+    gameplayExecutionObserved:false,
+    gameEventCompleted:false
+   });
+  }
+
+  groups.get(key).conditionalPathRequirements++;
+ }
+
+ return [...groups.values()].sort((a,b)=>
+  a.instructionOffset-b.instructionOffset||
+  a.loopIterations-b.loopIterations||
+  a.finalBC-b.finalBC
+ );
+}
+
 function groupMapRootIndexedJumpRequirements(requirements){
  const groups=new Map();
  if(!Array.isArray(requirements))return [];
@@ -228,7 +294,8 @@ function buildMapScriptRootSemantics({
      instructionOffset:u.offset??null
     })),
     unresolvedSamplesBounded:analysis.unresolved.length>3,
-    runtimeIndexedJumpRequirements:groupMapRootIndexedJumpRequirements(
+    runtimeSymbolicWriteRequirements:groupMapRootSymbolicWriteRequirements(analysis.symbolicWriteRequirements),
+     runtimeIndexedJumpRequirements:groupMapRootIndexedJumpRequirements(
      analysis.indexedJumpRequirements
     ),
     runtimeRamRequirements:groupMapRootRuntimeRequirements(
@@ -344,7 +411,9 @@ function mapScriptRootEvidence({
   unresolvedSamples:root.unresolvedSamples.map(x=>({...x})),
   unresolvedSamplesBounded:root.unresolvedSamplesBounded,
   completeBoundedAnalysis:root.completeBoundedAnalysis,
-  runtimeRamRequirements:Array.isArray(root.runtimeRamRequirements)?
+  runtimeSymbolicWriteRequirements:Array.isArray(root.runtimeSymbolicWriteRequirements)?
+    root.runtimeSymbolicWriteRequirements.map(r=>({...r})):[],
+   runtimeRamRequirements:Array.isArray(root.runtimeRamRequirements)?
    root.runtimeRamRequirements.map(r=>({...r})):[],
    runtimeIndexedJumpRequirements:Array.isArray(root.runtimeIndexedJumpRequirements)?
    root.runtimeIndexedJumpRequirements.map(r=>({...r})):[],
@@ -358,6 +427,7 @@ function mapScriptRootEvidence({
 }
 
 module.exports={
+ groupMapRootSymbolicWriteRequirements,
  groupMapRootIndexedJumpRequirements,
  groupMapRootRuntimeRequirements,
  buildMapScriptRootSemantics,

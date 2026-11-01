@@ -113,6 +113,118 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128,entryKind='
  const hl=s=>concrete(s.r.h)&&concrete(s.r.l)?s.r.h*256+s.r.l:null;
  const pair=(s,i)=>concrete(s.r[regs[i]])&&concrete(s.r[regs[i+1]])?s.r[regs[i]]*256+s.r[regs[i+1]]:null;
  const get=(s,i)=>i===6?(hl(s)!==null?read(s,hl(s)):null):s.r[regs[i]]??null;
+ const symbolicWramTarget=(s,d,value)=>{
+  // This is a verified ROM routine shape, not a generic
+  // inference from an unknown HL value.
+  const signature=Buffer.from(
+   '21e8c6fa69d3c6065f16001919191e03195f78a72804190520fc09fa9fd077',
+   'hex'
+  );
+
+  const start=d.at-signature.length+1;
+
+  if(
+   d.opcode!==0x77||
+   start<0||
+   !rom.subarray(start,d.at+1).equals(signature)||
+   s.r.h!==null||
+   s.r.l!==null||
+   s.r.b!==0||
+   s.r.d!==0||
+   !concrete(s.r.c)||
+   s.r.c<0||
+   s.r.c>255
+  )return null;
+
+  const e=s.r.e;
+
+  if(
+   e?.op!=='ADD_BYTE'||
+   e.left?.read!==0xd369||
+   e.left.volatile===true||
+   e.right!==6||
+   e.carry!==false
+  )return null;
+
+  const startIndex=s.trace.lastIndexOf(start);
+
+  if(startIndex<0)return null;
+
+  const suffix=s.trace.slice(startIndex);
+
+  const loops=suffix.filter(x=>
+   x===start+22
+  ).length;
+
+  if(loops>255)return null;
+
+  const prefix=[
+   0,3,6,8,9,11,12,13,14,16,17,18,19,20
+  ];
+
+  const repeated=[];
+
+  for(let i=0;i<loops;i++)
+   repeated.push(22,23,24);
+
+  const expected=[
+   ...prefix,...repeated,26,27,30
+  ].map(delta=>start+delta);
+
+  if(
+   suffix.length!==expected.length||
+   !suffix.every((at,i)=>at===expected[i])
+  )return null;
+
+  const candidateSet=new Set();
+
+  for(let sourceByte=0;sourceByte<256;sourceByte++){
+   const eByte=(sourceByte+6)&255;
+
+   const address=(
+    0xc6e8+
+    (3+loops)*eByte+
+    3+
+    s.r.c
+   )&65535;
+
+   candidateSet.add(address);
+  }
+
+  const addresses=[...candidateSet].sort(
+   (a,b)=>a-b
+  );
+
+  if(
+   addresses.length!==256||
+   !addresses.every(address=>
+    address>=0xc000&&address<0xe000
+   )
+  )return null;
+
+  return {
+   reason:'LIVE_RAM_REQUIRED_FOR_SYMBOLIC_WRAM_WRITE_TARGET',
+   instructionOffset:d.at,
+   sourceAddress:0xd369,
+   sourceAddend:6,
+   baseCpuAddress:0xc6e8,
+   symbolicMultiplier:3+loops,
+   fixedAddend:3,
+   loopIterations:loops,
+   finalBC:s.r.c,
+   candidateCount:addresses.length,
+   candidateMin:addresses[0],
+   candidateMax:addresses.at(-1),
+   memoryRegion:'WRAM',
+   targetValue:concrete(value)?value:null,
+   runtimeRamReadObserved:false,
+   targetAddressObserved:false,
+   memoryWriteObserved:false,
+   gameplayExecutionObserved:false,
+   gameEventCompleted:false
+  };
+ };
+
  const write=(s,a,value,d)=>{
   if(mbc3&&concrete(a)&&a>=0x2000&&a<0x4000){
    const proof=concrete(value)?null:constrainedBank(value,s.conditions);
@@ -132,7 +244,19 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128,entryKind='
   }
   // HRAM is ordinary memory. I/O, IE and unresolved MBC writes still stop:
   // in particular the HRAM bank mirror does not itself switch the ROM bank.
-  if(!concrete(a)||!((a>=0xc000&&a<0xe000)||(a>=0xff80&&a<0xffff))){stop(s,'UNRESOLVED_MEMORY_OR_BANK_WRITE',d.at,{address:a,value});return false;}
+  if(!concrete(a)||!((a>=0xc000&&a<0xe000)||(a>=0xff80&&a<0xffff))){
+   const symbolicWriteRequirement=
+    !concrete(a)?symbolicWramTarget(s,d,value):null;
+
+   stop(s,'UNRESOLVED_MEMORY_OR_BANK_WRITE',d.at,{
+    address:a,value,
+    ...(symbolicWriteRequirement?{
+     symbolicWriteRequirement
+    }:{})
+   });
+
+   return false;
+  }
   const before=read(s,a);s.mem[a]=value;
   if(value!==null&&JSON.stringify(value)!==JSON.stringify(before))effects.push({handlerOffset:fileOffset,instructionOffset:d.at,type:'RAM_WRITE',address:a,domain:domain(a)?.kind??category(a),gameplayStateTransitionProven:domain(a)!==null||category(a)==='CURRENT_MAP_D35E',before,value,conditions:s.conditions.slice(),trace:s.trace.slice(),observedExecution:false});
   return true;
@@ -384,11 +508,15 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128,entryKind='
   .filter(u=>u.indexedJumpRequirement)
   .map(u=>u.indexedJumpRequirement);
 
+ const symbolicWriteRequirements=unresolved
+  .filter(u=>u.symbolicWriteRequirement)
+  .map(u=>u.symbolicWriteRequirement);
  for(const u of unresolved){
+  delete u.symbolicWriteRequirement;
   delete u.indexedJumpRequirement;
   delete u.runtimeRequirement;
  }
- return {verified:true,handlerOffset:fileOffset,effects:unique,unresolved,runtimeRequirements,indexedJumpRequirements,steps,paths,returns,complete:unresolved.length===0,preconditions:[entryKind==='MAP_SCRIPT_ROOT'?'MAP_SCRIPT_ROOT_INVOKED':'HANDLER_INVOKED',...(entryKind==='MAP_SCRIPT_ROOT'?['HEADER_BANK_CONTEXT_ASSUMED_NOT_OBSERVED']:[]),'VALID_NONALIASING_CALL_STACK','NO_EXTERNAL_MEMORY_MUTATION_DURING_PATH',...(mbc3?['HEADER_DECLARED_MBC3_BEHAVIOR']:[])],observedExecution:false,eventCompleted:null};
+ return {verified:true,handlerOffset:fileOffset,effects:unique,unresolved,runtimeRequirements,indexedJumpRequirements,symbolicWriteRequirements,steps,paths,returns,complete:unresolved.length===0,preconditions:[entryKind==='MAP_SCRIPT_ROOT'?'MAP_SCRIPT_ROOT_INVOKED':'HANDLER_INVOKED',...(entryKind==='MAP_SCRIPT_ROOT'?['HEADER_BANK_CONTEXT_ASSUMED_NOT_OBSERVED']:[]),'VALID_NONALIASING_CALL_STACK','NO_EXTERNAL_MEMORY_MUTATION_DURING_PATH',...(mbc3?['HEADER_DECLARED_MBC3_BEHAVIOR']:[])],observedExecution:false,eventCompleted:null};
 }
 function interpretWorld({rom,atlas}={}){
  const handlers=new Map(),rows=[];

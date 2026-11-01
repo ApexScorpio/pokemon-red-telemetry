@@ -894,6 +894,61 @@ function formatCampaignChecklistSection(advice,state) {
       }
     }
 
+    const mapRootSymbolicT214=
+      Array.isArray(mapRootT190.runtimeSymbolicWriteRequirements)?
+      mapRootT190.runtimeSymbolicWriteRequirements:[];
+
+    if(mapRootSymbolicT214.length){
+      const valid=mapRootSymbolicT214.filter(r=>
+        r.reason===
+          'LIVE_RAM_REQUIRED_FOR_SYMBOLIC_WRAM_WRITE_TARGET'&&
+        r.memoryRegion==='WRAM'&&
+        r.candidateCount===256&&
+        Number.isInteger(r.sourceAddress)&&
+        Number.isInteger(r.instructionOffset)&&
+        Number.isInteger(r.candidateMin)&&
+        Number.isInteger(r.candidateMax)&&
+        r.runtimeRamReadObserved===false&&
+        r.targetAddressObserved===false&&
+        r.memoryWriteObserved===false&&
+        r.gameplayExecutionObserved===false&&
+        r.gameEventCompleted===false
+      );
+
+      if(valid.length){
+        lines.push(
+          'Escritas condicionais WRAM: '+
+          valid.reduce(
+            (total,r)=>total+r.conditionalPathRequirements,0
+          )+
+          ' caminhos, '+valid.length+
+          ' grupos. Endereco real e execucao desconhecidos.'
+        );
+
+        for(const r of valid.slice(0,8)){
+          lines.push(
+            'RAM 0x'+
+            r.sourceAddress.toString(16).toUpperCase()+
+            ' | instrucao ROM 0x'+
+            r.instructionOffset.toString(16).toUpperCase()+
+            ' | '+r.candidateCount+
+            ' enderecos WRAM candidatos entre 0x'+
+            r.candidateMin.toString(16).toUpperCase()+
+            ' e 0x'+r.candidateMax.toString(16).toUpperCase()+
+            ' | '+r.conditionalPathRequirements+
+            ' caminhos | escrita e evento nao observados'
+          );
+        }
+
+        if(valid.length>8){
+          lines.push(
+            'Outros grupos de escrita WRAM omitidos nesta vista: '+
+            (valid.length-8)
+          );
+        }
+      }
+    }
+
 if(mapRootT190.unresolvedCount>0){
       lines.push(
         'Bloqueios do script: '+
