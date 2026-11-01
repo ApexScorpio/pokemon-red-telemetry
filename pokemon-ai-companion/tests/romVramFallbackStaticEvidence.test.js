@@ -8,6 +8,7 @@ assert.ok(first>=0&&end>first);
 const selectors=vm.runInNewContext(app.slice(first,end)+
  '\n({selectVerifiedMinimapItemMarkers,'+
  'selectVerifiedMinimapStaticEncounterMarkers,'+
+ 'selectVerifiedMinimapHiddenCoinMarkers,'+
  'describeVerifiedVramStaticLocationEvidence});',{},{timeout:1500});
 const RED='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
 const GREEN='aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db';

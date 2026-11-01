@@ -114,7 +114,8 @@ function decodeHiddenCoins(profile,mapId,coinHex){
  if(coins.some((v,i)=>v.hiddenIndex!==i||!Number.isInteger(v.coinAmount)||
      ![10,20,40,100].includes(v.coinAmount)))return {
    verified:false,coins:[],reason:'Estrutura inválida de moedas escondidas'};
- return {verified:true,source:source+' + RAM_D6FE',mapId,
+ return {verified:true,source:source+' + RAM_D6FE',
+   romSha256:sha,mapId,
    coins:coins.filter(c=>c.mapId===mapId).map(c=>({
      ...c,
      actualAwardIfClaimed:Number.isInteger(c.actualAwardIfClaimed)?

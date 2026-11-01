@@ -2940,18 +2940,75 @@ function selectVerifiedMinimapStaticEncounterMarkers(state) {
 }
 
 
+
+function selectVerifiedMinimapHiddenCoinMarkers(state) {
+  // Hidden coins are a separate ROM event table + wObtainedHiddenCoinsFlags
+  // (D6FE). They are neither item balls nor proof of reachability.
+  const identity=state?.romRuntimeIdentity;
+  const sha=identity?.profileSha256;
+  const evidence=state?.romHiddenCoins;
+  const mem=state?.memoryReadStatus;
+  const known=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const validCoord=n=>Number.isInteger(n)&&n>=0&&n<=255;
+  const age=Date.now()-Date.parse(state?.lastUpdate||'');
+  if(state?.connected!==true||identity?.matched!==true||
+     !known.has(sha)||!Number.isInteger(state.mapId)||
+     state.mapId<0||state.mapId>247||
+     evidence?.verified!==true||evidence.romSha256!==sha||
+     evidence.mapId!==state.mapId||
+     ![
+       'ROM_HIDDEN_COIN_EVENTS_EXTRACTED + RAM_D6FE',
+       'ROM_HIDDEN_COINS_AUDITED_THREE_BUILDS + RAM_D6FE'
+     ].includes(evidence.source)||
+     !Array.isArray(evidence.coins)||evidence.coins.length>12||
+     mem?.verified!==true||!Number.isFinite(age)||age<0||age>15000)
+    return [];
+  const a=mem.positionWindow,b=mem.latePositionWindow,
+        c=mem.publicationPositionWindow;
+  if([a,b,c].some(p=>p?.verified!==true||
+       p.mapId!==state.mapId||!validCoord(p.x)||!validCoord(p.y))||
+     a.x!==b.x||a.y!==b.y||b.x!==c.x||b.y!==c.y||
+     state.coords?.x!==c.x||state.coords?.y!==c.y)return [];
+  const ids=new Set(),tiles=new Set(),markers=[];
+  for(const coin of evidence.coins){
+    if(coin?.mapId!==state.mapId||
+       !Number.isInteger(coin.hiddenIndex)||
+       coin.hiddenIndex<0||coin.hiddenIndex>=12||
+       !validCoord(coin.x)||!validCoord(coin.y)||
+       ![10,20,40,100].includes(coin.coinAmount)||
+       coin.collectionEvidence!=='ID_EVENTO_ROM + FLAG_RAM_D6FE'||
+       typeof coin.isCollected!=='boolean'||
+       ids.has(coin.hiddenIndex)||tiles.has(coin.x+','+coin.y))
+      return []; // never accept an inconsistent coin table/bitmap join
+    ids.add(coin.hiddenIndex);
+    tiles.add(coin.x+','+coin.y);
+    if(coin.isCollected===true)continue; // specific RAM bit says obtained
+    markers.push({kind:'HIDDEN_COIN',x:coin.x,y:coin.y,
+      hiddenIndex:coin.hiddenIndex,
+      evidence:'SHA_AUDITED_ROM_HIDDEN_COIN_AND_D6FE_FLAG',
+      collectedFlag:false,presentNow:null,accessibleNow:null});
+  }
+  return markers;
+}
+
 function describeVerifiedVramStaticLocationEvidence(state) {
   // VRAM is a CAMERA VIEW; ROM map coordinates do not have a proven
   // screen-space transform here. List certified coordinates instead of
   // painting ghosts at fabricated pixels.
   const items=selectVerifiedMinimapItemMarkers(state);
   const encounters=selectVerifiedMinimapStaticEncounterMarkers(state);
-  const total=items.length+encounters.length;
+  const hiddenCoins=selectVerifiedMinimapHiddenCoinMarkers(state);
+  const total=items.length+encounters.length+hiddenCoins.length;
   if(!total)return 'Posições ROM não confirmadas nesta leitura (não significa que o mapa esteja vazio)';
   const rows=[
     ...items.map(i=>(i.blocked?'🔒':'🎒')+' X:'+i.x+' Y:'+i.y),
     ...encounters.map(p=>'✨ X:'+p.x+' Y:'+p.y+
-      ' espécie interna '+p.speciesInternalId+' nível '+p.level)
+      ' espécie interna '+p.speciesInternalId+' nível '+p.level),
+    ...hiddenCoins.map(c=>'🪙 X:'+c.x+' Y:'+c.y+' (moeda oculta)')
   ];
   const shown=rows.slice(0,3).join(' · ');
   return 'Coordenadas ROM, NÃO sobrepostas à VRAM ('+total+'): '+
@@ -3105,6 +3162,21 @@ function renderFogMinimap(state) {
         speciesInternalId:mon.speciesInternalId,level:mon.level
       },ix,iy,0.8,true);
   });
+
+  // Separate hidden coin table (ROM) and D6FE flags (RAM), never a live sprite.
+  if(state?.romHiddenCoins?.verified===true){
+    const hiddenCoinMarkers=selectVerifiedMinimapHiddenCoinMarkers(state);
+    hiddenCoinMarkers.forEach(coin=>{
+      const ix=camX+coin.x*tileSize+tileSize/2;
+      const iy=camY+coin.y*tileSize+tileSize/2;
+      if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16)
+        drawMapEntity(ctxFog,{
+          x:coin.x,y:coin.y,icon:'🪙',isGhost:true,isItem:false,
+          staticRomMarker:true,hiddenCoin:true,presentNow:null,
+          accessibleNow:null
+        },ix,iy,0.8,true);
+    });
+  }
 
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
@@ -3294,6 +3366,21 @@ function renderGtaFullMap(state) {
         speciesInternalId:mon.speciesInternalId,level:mon.level
       },ix,iy,gtaZoom,true);
   });
+
+  // Enlarged map uses the identical SHA/ROM/D6FE/position coin selector.
+  if(state?.romHiddenCoins?.verified===true){
+    const hiddenCoinMarkers=selectVerifiedMinimapHiddenCoinMarkers(state);
+    hiddenCoinMarkers.forEach(coin=>{
+      const ix=originX+coin.x*tilePx+tilePx/2;
+      const iy=originY+coin.y*tilePx+tilePx/2;
+      if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24)
+        drawMapEntity(ctxGta,{
+          x:coin.x,y:coin.y,icon:'🪙',isGhost:true,isItem:false,
+          staticRomMarker:true,hiddenCoin:true,presentNow:null,
+          accessibleNow:null
+        },ix,iy,gtaZoom,true);
+    });
+  }
 
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {

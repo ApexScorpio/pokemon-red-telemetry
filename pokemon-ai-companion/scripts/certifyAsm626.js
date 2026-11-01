@@ -1371,6 +1371,7 @@ function main(){
   'tests/romVisibleItemCoordinateGuard.test.js',
   'tests/romVerifiedMinimapMarkers.test.js',
   'tests/romVramFallbackStaticEvidence.test.js',
+  'tests/romVerifiedHiddenCoinMarkers.test.js',
   'tests/romVerifiedStaticEncounterMarkers.test.js',
   'tests/romLiveActorIdentity.test.js',
   'tests/romAreaEvidenceIdentity.test.js',
