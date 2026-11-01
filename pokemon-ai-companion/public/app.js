@@ -1089,6 +1089,78 @@ function formatCampaignChecklistSection(advice,state) {
       }
     }
 
+    const symbolicWramT236=
+      state?.romSymbolicWramTargetSelection;
+
+    if(
+      symbolicWramT236?.verified===true&&
+      symbolicWramT236.source===
+       'ROM_SYMBOLIC_WRAM_TARGET_BY_EXISTING_D369_SAMPLE_V1'&&
+      symbolicWramT236.romSha256===runtimeSha&&
+      symbolicWramT236.mapId===advice.mapId&&
+      symbolicWramT236.mapId===mapRootT190.mapId&&
+      symbolicWramT236.observedAt===state.lastUpdate&&
+      symbolicWramT236.sourceAddress===0xd369&&
+      symbolicWramT236.sourceReadObserved===true&&
+      symbolicWramT236.publicationPositionVerified===true&&
+      symbolicWramT236.atomicSnapshotVerified===false&&
+      symbolicWramT236.memoryWriteObserved===false&&
+      symbolicWramT236.gameEventCompleted===false&&
+      symbolicWramT236.additionalUdpRequests===0&&
+      state.connected===true&&
+      state.isSimulation!==true&&
+      state.memoryReadStatus?.verified===true&&
+      state.memoryReadStatus?.publicationPositionWindow
+       ?.verified===true&&
+      Array.isArray(symbolicWramT236.candidateTargets)
+    ){
+      const requirements=
+       mapRootT190.runtimeSymbolicWriteRequirements||[];
+
+      const candidates=symbolicWramT236.candidateTargets
+       .filter(row=>
+        row.sourceAddress===0xd369&&
+        row.sourceByte===symbolicWramT236.sourceByte&&
+        row.sourceReadObserved===true&&
+        row.candidateFormulaVerified===true&&
+        row.targetAddressObserved===false&&
+        row.memoryWriteObserved===false&&
+        row.gameplayExecutionObserved===false&&
+        row.gameEventCompleted===false&&
+        Number.isInteger(row.candidateAddress)&&
+        row.candidateAddress>=0xc000&&
+        row.candidateAddress<0xe000&&
+        requirements.some(r=>
+         r.instructionOffset===row.instructionOffset&&
+         r.loopIterations===row.loopIterations&&
+         r.symbolicMultiplier===row.multiplier&&
+         r.finalBC===row.finalBC&&
+         r.candidateMin<=row.candidateAddress&&
+         r.candidateMax>=row.candidateAddress
+        )
+       ).slice(0,8);
+
+      if(candidates.length){
+        lines.push(
+         'Destinos WRAM condicionais: '+
+         candidates.length+
+         ' | calculados pela ROM com RAM D369 atual; '+
+         'nenhuma escrita ou execucao comprovada.'
+        );
+
+        for(const row of candidates){
+          lines.push(
+           'D369='+row.sourceByte+
+           ' | instrucao ROM 0x'+
+           row.instructionOffset.toString(16).toUpperCase()+
+           ' | alvo potencial WRAM 0x'+
+           row.candidateAddress.toString(16).toUpperCase()+
+           ' | '+row.conditionalPathRequirements+
+           ' caminhos condicionais | escrita nao observada'
+          );
+        }
+      }
+    }
     const mapRootBudgetRamT220=
       mapRootT190.runtimeBudgetConditionRamSources;
 

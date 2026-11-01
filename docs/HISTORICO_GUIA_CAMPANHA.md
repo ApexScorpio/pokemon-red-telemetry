@@ -2937,3 +2937,22 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Certificacao integral exigida antes da publicacao.
 - Main, producao, RetroArch e sessoes preservados.
 - Mapeamento integral a 100 por cento nao comprovado.
+
+### PSB-20261101-2350-POKEGUIDE-T237-WRAM-ASSERT-FIX-001 — correcao da assercao T236 e certificacao
+
+- Base: 13b057337e0968e4405e791274353fe6dd3721b6.
+- T236 verificou 226 mapas da ROM Red autenticada.
+- Foram identificados 48 grupos simbolicos em 26 mapas.
+- Mapas 207 e 209: dois grupos em cada.
+- O teste T236 falhou por esperar C6FB.
+- O valor calculado foi C6FE (50942).
+- Formula ROM: C6E8 + 3*((FF+6) mod 256) + 3 + 4.
+- A assercao do teste foi corrigida para C6FE.
+- Interpretador, helper, integracao e UI nao foram alterados
+  por este job; as modificacoes T236 foram reutilizadas.
+- Testes direcionados e certificacao integral obrigatorios.
+- Destinos WRAM continuam condicionais, nao observados
+  como escritas executadas.
+- Nenhum salto ou evento foi declarado concluido.
+- Main, producao, RetroArch, ROMs, saves e sessoes preservados.
+- Mapeamento a 100 por cento nao demonstrado.

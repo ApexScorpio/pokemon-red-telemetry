@@ -61,6 +61,8 @@ const {collectWorldBudgetRamReadback}=
  require('./romWorldBudgetRamReadback');
 const {selectIndexedJumpLiveWords}=
  require('./romIndexedJumpLiveSelection');
+const {selectSymbolicWramTargets}=
+ require('./romSymbolicWramLiveTargets');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -432,6 +434,13 @@ class RetroArchClient extends EventEmitter {
         twoReadSamplesConfirmed:false,
         publicationPositionVerified:false,
         scriptExecutionObserved:false,
+        gameEventCompleted:false
+      };      this.latestState.romSymbolicWramTargetSelection={
+        verified:false,
+        reason,
+        candidateTargets:[],
+        publicationPositionVerified:false,
+        memoryWriteObserved:false,
         gameEventCompleted:false
       };      this.latestState.romIndexedJumpLiveSelection={
         verified:false,
@@ -3550,6 +3559,23 @@ class RetroArchClient extends EventEmitter {
         latePositionWindow.verified===true&&
         globalFlagReadback.verified===true
     });
+    // T236: potential WRAM target derived from the ROM
+    // formula and the D369 byte already in blockPlayerParty.
+    // No new UDP request or evidence of an executed write.
+    const t236Selection=selectSymbolicWramTargets({
+      evidence:t234Evidence,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      mapId:this.latestState.mapId,
+      playerBlock:blockPlayerParty,
+      eligible:
+        this.latestState.isSimulation!==true&&
+        this.latestState.connected===true&&
+        this.latestState.memoryReadStatus?.verified===true&&
+        this.latestState.romRuntimeIdentity?.matched===true&&
+        positionWindow.verified===true&&
+        latePositionWindow.verified===true&&
+        globalFlagReadback.verified===true
+    });
     if(!matchesTargetScope(this,pollTargetScope))return;
     const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);
     if(!matchesTargetScope(this,pollTargetScope))return;
@@ -3663,6 +3689,30 @@ class RetroArchClient extends EventEmitter {
         selections:[],
         publicationPositionVerified:false,
         indirectJumpObserved:false,
+        gameEventCompleted:false
+      };
+    this.latestState.romSymbolicWramTargetSelection=
+      t236Selection.verified===true&&
+      matchesTargetScope(this,pollTargetScope)&&
+      this.latestState.memoryReadStatus?.verified===true&&
+      this.latestState.romRuntimeIdentity?.matched===true&&
+      publicationPositionWindow.verified===true?
+      {
+        ...t236Selection,
+        publicationPositionVerified:true,
+        observedAt:this.latestState.lastUpdate,
+        atomicSnapshotVerified:false,
+        targetAddressObserved:false,
+        memoryWriteObserved:false,
+        gameplayExecutionObserved:false,
+        gameEventCompleted:false
+      }:{
+        verified:false,
+        reason:t236Selection.reason||
+          'FINAL_PUBLICATION_GATES_MISSING',
+        candidateTargets:[],
+        publicationPositionVerified:false,
+        memoryWriteObserved:false,
         gameEventCompleted:false
       };
     // Start background video only after the FINAL RAM position/target
