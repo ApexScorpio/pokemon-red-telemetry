@@ -176,3 +176,76 @@ test('flags outside first four remote slots change the full backlog signature',(
  assert.equal(second.totalPendingRemote,5);
  assert.notEqual(second.pendingSignature,signature);
 });
+
+
+function currentLastMapRouteFixture(){
+ const f=fixture(),crypto=require('node:crypto');
+ const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+ f.ledger.mapProgress[22].flagRecords.hiddenItems.push(
+   {bitIndex:15,flagSet:false,x:2,y:2,recordId:'unknown-hop-item'});
+ f.objectives.objectives=[{mapId:22,mapHopCount:null}];
+ const maps=Array.from({length:226},(_,mapId)=>{
+   const n=35,tiles=Buffer.alloc(n,0x2c),bits=Buffer.alloc(Math.ceil(n/8),0xff);
+   return {mapId,width:7,height:5,tilesetId:0,
+     tileIdsBase64:tiles.toString('base64'),
+     walkingBitsBase64:bits.toString('base64'),
+     tileIdsSha256:hash(tiles),walkingBitsSha256:hash(bits),
+     landBlockedTilePairs:[]};
+ });
+ const edges=Array.from({length:813},()=>({status:'LAST_MAP_RAM_REQUIRED'}));
+ edges[0]={status:'LAST_MAP_RAM_REQUIRED',sourceMapId:0,
+   sourceWarpIndex:0,x:1,y:1,destinationMapId:255,destinationWarpIndex:0};
+ edges[1]={status:'LAST_MAP_RAM_REQUIRED',sourceMapId:22,
+   sourceWarpIndex:0,x:1,y:1,destinationMapId:255,destinationWarpIndex:0};
+ const lastMapGuide={verified:true,romSha256:sha,mapId:0,
+   lastMapEvidence:{sequentiallyConsistent:true,romSha256:sha,
+     atomicSnapshotVerified:false},
+   warps:[{map:255,warp:0,x:1,y:1,ramResolvedDestinationVerified:true,
+     resolvedMapId:22,resolvedWarpIndex:0,landingX:1,landingY:1,
+     resolutionSource:'D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE'}]};
+ return {...f,terrainAtlas:{verified:true,romSha256:sha,maps},
+   warpGraph:{verified:true,romSha256:sha,totalWarpEntries:813,
+     normalMapHeaders:226,edges},
+   lastMapGuide,position:{x:0,y:0},positionVerified:true,
+   currentModeByte:0,canCut:false,canSurf:false,maxStates:20,
+   maxTargets:4};
+}
+test('D365 allows a conditional search for remote hidden item with unknown static map hops',()=>{
+ const f=currentLastMapRouteFixture();
+ const r=planGlobalFlagItemRoutes(f);
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.items.length,1);
+ assert.equal(r.items[0].mapId,22);
+ assert.equal(r.items[0].staticRouteKnown,false);
+ assert.equal(r.items[0].mapHopCount,null);
+ assert.equal(r.items[0].currentLastMapCandidateUsed,true);
+ assert.equal(r.items[0].route.found,true,r.items[0].route.reason);
+ assert.equal(r.items[0].route.segments[0].kind,'LAST_MAP_RAM_HYPOTHESIS');
+ assert.equal(r.items[0].accessibleNow,null);
+ assert.equal(r.items[0].route.routeNavigableNowProven,false);
+});
+test('unknown static map hops remain unsearched without verified current D365',()=>{
+ for(const mutate of [
+   f=>{f.lastMapGuide=null},
+   f=>{f.lastMapGuide.lastMapEvidence.sequentiallyConsistent=false},
+   f=>{f.lastMapGuide.romSha256='0'.repeat(64)}
+ ]){
+   const f=currentLastMapRouteFixture();mutate(f);
+   const r=planGlobalFlagItemRoutes(f);
+   assert.equal(r.verified,true,r.reason);
+   assert.equal(r.items[0].staticRouteKnown,false);
+   assert.equal(r.items[0].route,null);
+   assert.equal(r.items[0].routeNotAttemptedReason,'NO_STATIC_MAP_ROUTE');
+   assert.equal(r.items[0].accessibleNow,null);
+ }
+});
+test('D365 cannot manufacture a remote route from a forged in-map landing tile',()=>{
+ const f=currentLastMapRouteFixture();
+ f.lastMapGuide.warps[0].landingX=2;
+ const r=planGlobalFlagItemRoutes(f);
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.items[0].staticRouteKnown,false);
+ assert.equal(r.items[0].route.found,false);
+ assert.equal(r.items[0].accessibleNow,null);
+ assert.equal(r.items[0].route.routeNavigableNowProven,false);
+});

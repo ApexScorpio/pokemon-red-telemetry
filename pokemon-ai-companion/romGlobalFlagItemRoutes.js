@@ -105,7 +105,23 @@ function planGlobalFlagItemRoutes({ledger,objectives,terrainAtlas,warpGraph,
     typeof canCut!=='boolean'||typeof canSurf!=='boolean')
    return fail('Posição ou capacidade RAM não corroborada para pesquisa remota');
 
- const routable=selected.items.filter(item=>item.staticRouteKnown===true);
+ // The world objective index is static-only. A verified current-map D365
+ // LAST_MAP hint can justify trying an item whose static map-hop count
+ // is unknown, but must never change that item's staticRouteKnown flag.
+ // The cross-map engine independently validates the destination ROM
+ // warp, the source map and the land arrival before returning a route.
+ const currentLastMapCandidate=lastMapGuide?.verified===true&&
+   lastMapGuide.romSha256===selected.romSha256&&
+   lastMapGuide.mapId===sourceMapId&&
+   lastMapGuide.lastMapEvidence?.sequentiallyConsistent===true&&
+   lastMapGuide.lastMapEvidence.romSha256===selected.romSha256&&
+   Array.isArray(lastMapGuide.warps)&&
+   lastMapGuide.warps.some(w=>w?.map===255&&
+     w.ramResolvedDestinationVerified===true&&
+     w.resolutionSource==='D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE');
+ const shouldSearch=item=>item.staticRouteKnown===true||
+   currentLastMapCandidate;
+ const routable=selected.items.filter(shouldSearch);
  if(!routable.length)return {...selected,foundCount:0,exploredStates:0,
    maxStatesExceeded:false,
    items:selected.items.map(item=>({...item,route:null,
@@ -136,8 +152,9 @@ function planGlobalFlagItemRoutes({ledger,objectives,terrainAtlas,warpGraph,
  let routeIndex=0;
  return {...selected,foundCount:paths.foundCount,
    exploredStates:paths.exploredStates,maxStatesExceeded:paths.maxStatesExceeded,
-   items:selected.items.map(item=>item.staticRouteKnown===true?
+   items:selected.items.map(item=>shouldSearch(item)?
      {...item,route:paths.results[routeIndex++],
+       currentLastMapCandidateUsed:item.staticRouteKnown===false,
        accessibleNow:null,routeNavigableNowProven:false}:
      {...item,route:null,routeNotAttemptedReason:'NO_STATIC_MAP_ROUTE',
        accessibleNow:null,routeNavigableNowProven:false}),

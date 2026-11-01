@@ -141,6 +141,16 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
           !pos({x:w.landingX,y:w.landingY})||
           w.resolutionSource!=='D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE')
          continue;
+       // The dynamic D365 guide is not independent proof of the destination
+       // tile. Corroborate the alleged landing against the warp entry read
+       // from the destination map in the same SHA-audited ROM graph.
+       // Ambiguous or missing destination indices cannot create a route.
+       const landingEntries=warpGraph.edges.filter(d=>
+         d?.sourceMapId===w.resolvedMapId&&
+         d.sourceWarpIndex===w.resolvedWarpIndex);
+       if(landingEntries.length!==1||
+          landingEntries[0].x!==w.landingX||
+          landingEntries[0].y!==w.landingY)continue;
        liveLastMapExits.push({
          ...e,kind:'LAST_MAP_RAM_HYPOTHESIS',
          landing:{mapId:w.resolvedMapId,warpIndex:w.resolvedWarpIndex,

@@ -345,3 +345,32 @@ test('LAST_MAP batch shares source proof but never claims pickup',()=>{
  assert.ok(r.results.every(p=>p.accessibleNow===null&&
    p.routeNavigableNowProven===false));
 });
+
+
+test('D365 landing coordinates must match the independent audited destination warp',()=>{
+ for(const mutate of [
+   f=>{f.lastMapGuide.warps[0].landingX=2},
+   f=>{f.lastMapGuide.warps[0].landingY=2},
+   f=>{f.warpGraph.edges[1].x=2},
+   f=>{f.warpGraph.edges[1].y=2}
+ ]){
+   const f=lastMapFixture();mutate(f);
+   const r=findCrossMapItemPath(f);
+   assert.equal(r.verified,true,r.reason);
+   assert.equal(r.found,false,'in-map but uncorroborated arrival cannot seed a route');
+   assert.equal(r.accessibleNow,null);
+ }
+});
+test('missing or duplicate destination ROM warp index cannot authorize D365 crossing',()=>{
+ for(const mutate of [
+   f=>{f.warpGraph.edges[1].sourceWarpIndex=7},
+   f=>{f.warpGraph.edges[2]={sourceMapId:1,sourceWarpIndex:0,
+     x:1,y:1,status:'LAST_MAP_RAM_REQUIRED'}}
+ ]){
+   const f=lastMapFixture();mutate(f);
+   const r=findCrossMapItemPath(f);
+   assert.equal(r.verified,true,r.reason);
+   assert.equal(r.found,false,'unproven destination index cannot be followed');
+   assert.equal(r.routeNavigableNowProven,false);
+ }
+});
