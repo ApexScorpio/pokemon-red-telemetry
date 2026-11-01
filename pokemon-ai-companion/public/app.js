@@ -2787,10 +2787,15 @@ function selectVerifiedMinimapItemMarkers(state) {
   const mem=state?.memoryReadStatus;
   const identity=state?.romRuntimeIdentity;
   const stamp=Date.parse(state?.lastUpdate||'');
+  const knownRomShas=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
   if(state?.connected!==true||
      identity?.matched!==true||
      typeof identity.profileSha256!=='string'||
-     !/^[a-f0-9]{64}$/i.test(identity.profileSha256)||
+     !knownRomShas.has(identity.profileSha256)||
      proof?.verified!==true||
      proof.mapId!==state.mapId||
      proof.romSha256!==identity.profileSha256||
@@ -2811,6 +2816,29 @@ function selectVerifiedMinimapItemMarkers(state) {
     return [];
   const lists=[area.visibleItems,area.hiddenItems,area.lockedItems];
   if(lists.some(v=>v!==undefined&&!Array.isArray(v)))return [];
+  // When the complete world checklist is available, the visible object
+  // must also match the independently decoded ordinal, item ID and tile.
+  // A stale Red tile must never be endorsed in a Green session.
+  const checklist=state?.worldAdvisor?.mapChecklist;
+  if(checklist&&(checklist.verified!==true||
+      checklist.mapId!==state.mapId||
+      checklist.romSha256!==identity.profileSha256||
+      checklist.actorAttributeAtlasBound!==true||
+      !Array.isArray(checklist.actions)))return [];
+  const itemActions=checklist?.actions.filter(a=>a?.kind==='ITEM')||[];
+  const matchingPhysicalItem=item=>{
+    if(!Number.isInteger(item?.romObjectOrdinal)||item.romObjectOrdinal<1||
+       !Number.isInteger(item.itemId)||item.itemId<0||item.itemId>255)
+      return false;
+    const hits=itemActions.filter(a=>
+      a.ordinal===item.romObjectOrdinal&&a.x===item.x&&a.y===item.y&&
+      a.romActorItemId===item.itemId&&
+      a.romActorCoordinateAndAttributeVerified===true&&
+      a.romActorVariantEvidence===
+        'SAME_SHA_ROM_MAP_OBJECT_AND_SCRIPT_REFERENCE'&&
+      a.scriptReferenceBound===true&&a.scriptTextPointerVerified===true);
+    return hits.length===1;
+  };
   const byTile=new Map();
   for(const [category,items] of [
     ['visible',area.visibleItems||[]],
@@ -2823,6 +2851,12 @@ function selectVerifiedMinimapItemMarkers(state) {
          !Number.isInteger(item.y)||item.y< -4||item.y>255||
          item.isCollected===true||item.removedFromMap===true)
         continue;
+      const visibleActor=category==='visible'||
+        category==='blocked'&&
+        (item.coordinateSource==='SHA_AUDITED_ACTIVE_ROM_ITEM_OBJECT'||
+         Number.isInteger(item.romObjectOrdinal));
+      if(checklist&&visibleActor&&!matchingPhysicalItem(item))
+        return []; // contradictory atlas and live-snapshot metadata
       // A map tile can contain multiple static records. Display one
       // evidence-only marker; a blocked record takes priority on that tile.
       const key=item.x+','+item.y;
@@ -2905,6 +2939,25 @@ function selectVerifiedMinimapStaticEncounterMarkers(state) {
   return markers;
 }
 
+
+function describeVerifiedVramStaticLocationEvidence(state) {
+  // VRAM is a CAMERA VIEW; ROM map coordinates do not have a proven
+  // screen-space transform here. List certified coordinates instead of
+  // painting ghosts at fabricated pixels.
+  const items=selectVerifiedMinimapItemMarkers(state);
+  const encounters=selectVerifiedMinimapStaticEncounterMarkers(state);
+  const total=items.length+encounters.length;
+  if(!total)return 'Posições ROM não confirmadas nesta leitura (não significa que o mapa esteja vazio)';
+  const rows=[
+    ...items.map(i=>(i.blocked?'🔒':'🎒')+' X:'+i.x+' Y:'+i.y),
+    ...encounters.map(p=>'✨ X:'+p.x+' Y:'+p.y+
+      ' espécie interna '+p.speciesInternalId+' nível '+p.level)
+  ];
+  const shown=rows.slice(0,3).join(' · ');
+  return 'Coordenadas ROM, NÃO sobrepostas à VRAM ('+total+'): '+
+    shown+(rows.length>3?' · +'+(rows.length-3)+' na checklist':'');
+}
+
 // Renderizador do Mini-Mapa Tático com Tiles Reais do Game Boy
 function renderFogMinimap(state) {
   if (!canvasFog || !ctxFog) return;
@@ -2923,7 +2976,9 @@ function renderFogMinimap(state) {
     ctxFog.fillRect(0, 0, canvasFog.width, canvasFog.height);
     if (drawLiveVramMap(ctxFog, state, 0, 0, canvasFog.width, canvasFog.height)) {
       if (elMinimapTitle) elMinimapTitle.textContent = `${mapName.toUpperCase()} • VISTA RAM`;
-      if (elMinimapStats) elMinimapStats.textContent = 'Ecrã real do jogo • cores da paleta RAM';
+      if (elMinimapStats) elMinimapStats.textContent =
+        'Ecrã real do jogo • cores da paleta RAM • '+
+        describeVerifiedVramStaticLocationEvidence(state);
       if (elMinimapCoordsOverlay) elMinimapCoordsOverlay.textContent = `X:${coords.x} Y:${coords.y}`;
       if (isGtaMapOpen) renderGtaFullMap(state);
       return;

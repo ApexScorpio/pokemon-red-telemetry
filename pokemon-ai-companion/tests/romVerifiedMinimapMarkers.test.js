@@ -152,3 +152,43 @@ test('enlarged map uses exactly the same ROM guard, blocked pins, and faded mark
  assert.ok(!calls.some(c=>c.ent.x===9));
  assert.ok(calls.every(c=>c.ent.isGhost===true&&c.ent.presentNow===null));
 });
+
+test('unknown 64-hex ROM SHA does not promote visible or hidden map pins',()=>{
+ const s=state(),unknown='0'.repeat(64);
+ s.romRuntimeIdentity.profileSha256=unknown;
+ s.areaInfo.visibleItemCoordinateEvidence.romSha256=unknown;
+ assert.equal(list(s).length,0);
+});
+test('world checklist rejects Red-only visible tile in active Green ROM',()=>{
+ const s=state();
+ const GREEN='aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db';
+ s.mapId=226;s.romRuntimeIdentity.profileSha256=GREEN;
+ s.areaInfo.visibleItemCoordinateEvidence.romSha256=GREEN;
+ s.areaInfo.visibleItemCoordinateEvidence.mapId=226;
+ for(const name of ['positionWindow','latePositionWindow','publicationPositionWindow'])
+  s.memoryReadStatus[name].mapId=226;
+ s.areaInfo.visibleItems=[{x:29,y:9,romItemCoordinatesVerified:true,
+  itemId:79,romObjectOrdinal:1,
+  coordinateSource:'SHA_AUDITED_ACTIVE_ROM_ITEM_OBJECT'}];
+ s.worldAdvisor={mapChecklist:{verified:true,mapId:226,romSha256:GREEN,
+  actorAttributeAtlasBound:true,actions:[{
+   kind:'ITEM',ordinal:1,x:5,y:15,romActorItemId:79,
+   romActorCoordinateAndAttributeVerified:true,
+   romActorVariantEvidence:'SAME_SHA_ROM_MAP_OBJECT_AND_SCRIPT_REFERENCE',
+   scriptReferenceBound:true,scriptTextPointerVerified:true}]}};
+ assert.equal(list(s).length,0);
+ s.areaInfo.visibleItems[0].x=5;s.areaInfo.visibleItems[0].y=15;
+ assert.deepEqual(list(s).map(x=>[x.x,x.y]),[[5,15]]);
+ s.areaInfo.visibleItems[0].itemId=2;
+ assert.equal(list(s).length,0);
+});
+test('visible map pin atlas contradiction fails closed, hidden evidence remains separate',()=>{
+ const s=state(),sha=s.romRuntimeIdentity.profileSha256;
+ s.worldAdvisor={mapChecklist:{verified:true,mapId:15,romSha256:sha,
+  actorAttributeAtlasBound:true,actions:[]}};
+ s.areaInfo.visibleItems[0].romObjectOrdinal=1;
+ s.areaInfo.visibleItems[0].itemId=42;
+ assert.equal(list(s).length,0);
+ s.worldAdvisor.mapChecklist.romSha256='0'.repeat(64);
+ assert.equal(list(s).length,0);
+});

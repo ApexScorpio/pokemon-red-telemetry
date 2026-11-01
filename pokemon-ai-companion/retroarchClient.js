@@ -2169,6 +2169,8 @@ class RetroArchClient extends EventEmitter {
         name:o.itemName||'Item no mapa (ID não identificado)',
         nameSource:o.itemName?'ITEM_ID_ROM + NOMES_LOCAIS_NÃO_COMPROVADOS_NO_BINÁRIO':'NÃO_IDENTIFICADO',
         itemId:o.itemId,x:o.x,y:o.y,
+        romObjectOrdinal:o.objectOrdinal,
+        coordinateSource:'SHA_AUDITED_ACTIVE_ROM_ITEM_OBJECT',
         isCollected:null,removedFromMap:o.removedFromMap,
         romItemCoordinatesVerified:this.latestState.romAreaEvidence?.verified===true,
         toggleableFlagIndex:o.toggleableFlagIndex,
