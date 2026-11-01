@@ -1207,13 +1207,29 @@ function main(){
  log('STEP=CROSS_ROM_SCRIPT_EVIDENCE_COMPARISON');
  const scriptComparison=compareScriptUnresolvedEvidence(crossScriptInventories);
  assert(scriptComparison.verified===true&&
-  scriptComparison.counts.recordKeys>=1126&&
+  scriptComparison.counts.recordKeys===1126&&
+  scriptComparison.counts.missingRecordKeys===0&&
+  scriptComparison.counts.positionsDifferent===6&&
+  scriptComparison.counts.physicalOffsetsDifferent===238&&
+  scriptComparison.counts.commandsDifferent===0&&
+  scriptComparison.counts.textIdsDifferent===0&&
+  scriptComparison.positionDifferences.length===6&&
+  scriptComparison.positionEvidenceComplete===true&&
   scriptComparison.gameplayEquivalenceCertified===false,
   'Cross-ROM script comparison failed: '+scriptComparison.reason);
  log('CROSS_ROM_SCRIPT_DIFFERENCE_COUNTS='+
   JSON.stringify(scriptComparison.counts));
  log('CROSS_ROM_SCRIPT_DIFFERENCE_SAMPLES='+
   JSON.stringify(scriptComparison.changes.slice(0,25)));
+ log('CROSS_ROM_SCRIPT_POSITION_DETAILS='+
+  JSON.stringify(scriptComparison.positionDifferences));
+ log('CROSS_ROM_SCRIPT_POSITION_MAPS='+
+  JSON.stringify(scriptComparison.positionsByMap));
+ log('CROSS_ROM_SCRIPT_PAIRWISE='+
+  JSON.stringify(scriptComparison.pairwise));
+ log('CROSS_ROM_SCRIPT_OFFSET_ONLY='+scriptComparison.offsetOnlyDifferences);
+ log('CROSS_ROM_SCRIPT_POSITION_EVIDENCE_COMPLETE='+
+  String(scriptComparison.positionEvidenceComplete).toUpperCase());
  log('CROSS_ROM_SCRIPT_EFFECTS_CERTIFIED=FALSE');
  log('STEP=CROSS_ROM_DECODED_MAP_CONTENTS_COMPARISON');
  const contentsComparison=compareCrossVariantWorldContents(crossWorldDecodedContents);

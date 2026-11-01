@@ -140,6 +140,8 @@ function compareScriptUnresolvedEvidence({red,blue,green}={}){
  const required={red:AUDITED_ROM_SHA256.RED,blue:AUDITED_ROM_SHA256.BLUE,
   green:AUDITED_ROM_SHA256.GREEN_INTERNATIONAL_1_2_1};
  const datasets={red,blue,green};
+ const deny=reason=>({verified:false,reason,positionDifferences:[],
+  gameplayEquivalenceCertified:false});
  for(const [variant,sha] of Object.entries(required)){
   const d=datasets[variant];
   if(d?.verified!==true||d.romSha256!==sha||
@@ -147,19 +149,36 @@ function compareScriptUnresolvedEvidence({red,blue,green}={}){
      !Array.isArray(d.rows)||d.rows.length!==REFERENCES||
      d.summary?.references!==REFERENCES||
      d.summary?.scriptEffectsUnverified!==REFERENCES||
-     d.semantic100PercentCertified!==false)
-   return {verified:false,reason:'Incompatible '+variant+' ROM interaction inventory',
-    gameplayEquivalenceCertified:false};
+     d.semantic100PercentCertified!==false||
+     d.gameplayCompletionCertified!==false)
+   return deny('Incompatible '+variant+' ROM interaction inventory');
+  if(d.rows.some(r=>!Number.isInteger(r.mapId)||r.mapId<0||r.mapId>=MAPS||
+     !Object.hasOwn(BY_KIND,r.kind)||!Number.isInteger(r.ordinal)||r.ordinal<1||
+     !Number.isInteger(r.x)||!Number.isInteger(r.y)||
+     !Number.isInteger(r.scriptFileOffset)||r.scriptFileOffset<0||
+     r.scriptFileOffset>=1048576||
+     !Number.isInteger(r.rawTextId)||r.rawTextId<0||r.rawTextId>255||
+     (r.eventBitIndex!==null&&
+       (!Number.isInteger(r.eventBitIndex)||r.eventBitIndex<0||
+        r.eventBitIndex>=2560))||
+     typeof r.scriptCommand!=='string'||!r.scriptCommand||
+     r.effectsVerified!==false||r.completedNow!==null||r.accessibleNow!==null))
+   return deny('Missing or implausible physical evidence: '+variant);
  }
  const indexes=Object.fromEntries(Object.entries(datasets).map(([v,d])=>
   [v,new Map(d.rows.map(r=>[key(r),r]))]));
  if(Object.values(indexes).some(i=>i.size!==REFERENCES))
-  return {verified:false,reason:'Duplicate interaction identifiers',
-   gameplayEquivalenceCertified:false};
+  return deny('Duplicate interaction identifiers');
  const allKeys=new Set(Object.values(indexes).flatMap(x=>[...x.keys()]));
- const changes=[],counts={recordKeys:allKeys.size,
-  missingRecordKeys:0,physicalOffsetsDifferent:0,commandsDifferent:0,
-  textIdsDifferent:0,positionsDifferent:0,eventBitsDifferent:0};
+ const changes=[],positionDifferences=[],positionByMap=new Map(),
+  counts={recordKeys:allKeys.size,
+   missingRecordKeys:0,physicalOffsetsDifferent:0,commandsDifferent:0,
+   textIdsDifferent:0,positionsDifferent:0,eventBitsDifferent:0};
+ const pairs=[['red','blue'],['red','green'],['blue','green']];
+ const pairwise=Object.fromEntries(pairs.map(([a,b])=>[a+'_'+b,{
+  recordsCompared:0,offsetsDifferent:0,positionsDifferent:0,
+  commandsDifferent:0,textIdsDifferent:0,eventBitsDifferent:0}]));
+ const samePosition=(a,b)=>a.x===b.x&&a.y===b.y;
  for(const k of [...allKeys].sort()){
   const triplet=['red','blue','green'].map(v=>indexes[v].get(k)||null);
   const [a,b,c]=triplet;
@@ -167,6 +186,16 @@ function compareScriptUnresolvedEvidence({red,blue,green}={}){
    counts.missingRecordKeys++;
    changes.push({key:k,difference:['ABSENT_REFERENCE_IN_VARIANT']});
    continue;
+  }
+  for(const [v1,v2] of pairs){
+   const x=indexes[v1].get(k),y=indexes[v2].get(k);
+   const row=pairwise[v1+'_'+v2];
+   row.recordsCompared++;
+   if(x.scriptFileOffset!==y.scriptFileOffset)row.offsetsDifferent++;
+   if(!samePosition(x,y))row.positionsDifferent++;
+   if(x.scriptCommand!==y.scriptCommand)row.commandsDifferent++;
+   if(x.rawTextId!==y.rawTextId)row.textIdsDifferent++;
+   if(x.eventBitIndex!==y.eventBitIndex)row.eventBitsDifferent++;
   }
   const fields=[
    ['physicalOffsetsDifferent','scriptFileOffset'],
@@ -179,16 +208,36 @@ function compareScriptUnresolvedEvidence({red,blue,green}={}){
    if(a[field]!==b[field]||b[field]!==c[field]){
     counts[countName]++;difference.push(countName);
    }
-  if(a.x!==b.x||b.x!==c.x||a.y!==b.y||b.y!==c.y){
+  if(!samePosition(a,b)||!samePosition(b,c)){
    counts.positionsDifferent++;difference.push('positionsDifferent');
+   const detail={
+    key:k,mapId:a.mapId,kind:a.kind,ordinal:a.ordinal,
+    coordinateMatchIsOrdinalBased:true,
+    red:{x:a.x,y:a.y,scriptFileOffset:a.scriptFileOffset},
+    blue:{x:b.x,y:b.y,scriptFileOffset:b.scriptFileOffset},
+    green:{x:c.x,y:c.y,scriptFileOffset:c.scriptFileOffset},
+    redBlueDifferent:!samePosition(a,b),
+    redGreenDifferent:!samePosition(a,c),
+    blueGreenDifferent:!samePosition(b,c),
+    outcomeOrAccessibilityVerified:false
+   };
+   positionDifferences.push(detail);
+   positionByMap.set(a.mapId,(positionByMap.get(a.mapId)||0)+1);
   }
   if(difference.length)changes.push({key:k,difference,
    redOffset:a.scriptFileOffset,blueOffset:b.scriptFileOffset,
    greenOffset:c.scriptFileOffset});
  }
- return {verified:true,source:'TRIPLE_EXACT_ROM_SCRIPT_EVIDENCE_COMPARISON_V1',
-  counts,changes,allMapScriptEffectsCertified:false,
+ const positionsByMap=[...positionByMap].map(([mapId,references])=>({
+  mapId,references})).sort((a,b)=>b.references-a.references||a.mapId-b.mapId);
+ const offsetOnlyDifferences=changes.filter(r=>
+  r.difference.length===1&&r.difference[0]==='physicalOffsetsDifferent').length;
+ return {verified:true,source:'TRIPLE_EXACT_ROM_SCRIPT_EVIDENCE_COMPARISON_V2',
+  counts,changes,positionDifferences,positionsByMap,
+  offsetOnlyDifferences,pairwise,
+  positionEvidenceComplete:counts.missingRecordKeys===0,
+  allMapScriptEffectsCertified:false,
   gameplayEquivalenceCertified:false,
-  warning:'Equal ROM text entries do not prove equal game effects; differing offsets do not alone prove different outcomes.'};
+  warning:'Coordinate differences compare map/type/ordinal references, not object identity or confirmed relocations. Physical offset differences alone do not imply different behavior.'};
 }
 module.exports={buildScriptUnresolvedEvidence,compareScriptUnresolvedEvidence};

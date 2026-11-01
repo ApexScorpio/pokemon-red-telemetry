@@ -142,3 +142,72 @@ test('synthetic three-ROM comparison tracks offsets without claiming effects',()
  assert.equal(diff.counts.recordKeys,1126);
  assert.equal(diff.gameplayEquivalenceCertified,false);
 });
+
+test('all-equal reference keys report no coordinate or offset differences',()=>{
+ const variants={};
+ for(const [variant,sha] of Object.entries(KNOWN)){
+  variants[variant]=buildScriptUnresolvedEvidence({atlas:syntheticAtlas(sha)});
+ }
+ const x=compareScriptUnresolvedEvidence(variants);
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.positionDifferences.length,0);
+ assert.equal(x.offsetOnlyDifferences,0);
+ assert.equal(x.positionEvidenceComplete,true);
+ assert.equal(x.pairwise.red_blue.positionsDifferent,0);
+ assert.equal(x.pairwise.red_green.offsetsDifferent,0);
+});
+test('one coordinate difference identifies exact map and coordinates for all ROMs',()=>{
+ const atlases=Object.fromEntries(Object.entries(KNOWN).map(([v,sha])=>
+  [v,syntheticAtlas(sha)]));
+ const moved=atlases.blue.maps[0].interactions.find(r=>
+  r.kind==='SIGN'&&r.ordinal===1);
+ moved.x=9;moved.y=8;
+ const inv=Object.fromEntries(Object.entries(atlases).map(([v,a])=>
+  [v,buildScriptUnresolvedEvidence({atlas:a})]));
+ const x=compareScriptUnresolvedEvidence(inv);
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.counts.positionsDifferent,1);
+ assert.equal(x.positionDifferences.length,1);
+ assert.deepEqual(
+  [x.positionDifferences[0].mapId,x.positionDifferences[0].kind,
+   x.positionDifferences[0].ordinal],[0,'SIGN',1]);
+ assert.equal(x.positionDifferences[0].blue.x,9);
+ assert.equal(x.positionDifferences[0].redBlueDifferent,true);
+ assert.equal(x.positionDifferences[0].blueGreenDifferent,true);
+ assert.equal(x.positionDifferences[0].redGreenDifferent,false);
+ assert.equal(x.pairwise.red_blue.positionsDifferent,1);
+ assert.equal(x.pairwise.red_green.positionsDifferent,0);
+ assert.equal(x.pairwise.blue_green.positionsDifferent,1);
+ assert.deepEqual(x.positionsByMap,[{mapId:0,references:1}]);
+ assert.equal(x.positionDifferences[0].outcomeOrAccessibilityVerified,false);
+});
+test('one offset difference is not misreported as a position difference',()=>{
+ const atlases=Object.fromEntries(Object.entries(KNOWN).map(([v,sha])=>
+  [v,syntheticAtlas(sha)]));
+ const moved=atlases.green.maps[0].interactions.find(r=>
+  r.kind==='NPC'&&r.ordinal===1);
+ moved.scriptFileOffset=987654;
+ const inv=Object.fromEntries(Object.entries(atlases).map(([v,a])=>
+  [v,buildScriptUnresolvedEvidence({atlas:a})]));
+ const x=compareScriptUnresolvedEvidence(inv);
+ assert.equal(x.verified,true,x.reason);
+ assert.equal(x.counts.physicalOffsetsDifferent,1);
+ assert.equal(x.counts.positionsDifferent,0);
+ assert.equal(x.offsetOnlyDifferences,1);
+ assert.equal(x.positionDifferences.length,0);
+ assert.equal(x.pairwise.red_green.offsetsDifferent,1);
+ assert.equal(x.pairwise.red_blue.offsetsDifferent,0);
+});
+test('cross-ROM comparator refuses invented live completion and malformed coordinates',()=>{
+ const inv=Object.fromEntries(Object.entries(KNOWN).map(([v,sha])=>
+  [v,buildScriptUnresolvedEvidence({atlas:syntheticAtlas(sha)})]));
+ inv.blue.rows[0].completedNow=true;
+ const x=compareScriptUnresolvedEvidence(inv);
+ assert.equal(x.verified,false);
+ assert.equal(x.gameplayEquivalenceCertified,false);
+ inv.blue.rows[0].completedNow=null;
+ inv.green.rows[0].x=null;
+ const y=compareScriptUnresolvedEvidence(inv);
+ assert.equal(y.verified,false);
+ assert.equal(y.positionDifferences.length,0);
+});
