@@ -151,7 +151,7 @@ test('live Strength planner and its cache both include the same RAM mode window'
  const source=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
  const cacheStart=source.indexOf('const strengthScope=JSON.stringify([');
  const cacheEnd=source.indexOf('if(this._strengthPlanCacheScope!==strengthScope)',cacheStart);
- const invocationStart=source.indexOf('let strength=planStrengthPushes({',cacheEnd);
+ const invocationStart=source.indexOf('strength=planStrengthPushes({',cacheEnd);
  const invocationEnd=source.indexOf('});',invocationStart);
  assert.ok(cacheStart>=0&&cacheEnd>cacheStart);
  assert.ok(invocationStart>cacheEnd&&invocationEnd>invocationStart);
