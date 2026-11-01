@@ -57,6 +57,8 @@ const {mapScriptRootEvidence}=
  require('./romMapScriptRootSemantics');
 const {collectBudgetBranchLiveReadback}=
  require('./romBudgetBranchLiveReadback');
+const {collectWorldBudgetRamReadback}=
+ require('./romWorldBudgetRamReadback');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -422,7 +424,14 @@ class RetroArchClient extends EventEmitter {
       this.latestState.currentDialog=null;
       this.latestState.currentTextSource=null;
       this.latestState.aiAdvice='A sincronizar com a memória do Game Boy...';
-      this.latestState.romBudgetBranchRamReadback={
+      this.latestState.romWorldBudgetRamReadback={
+        verified:false,reason,
+        values:[],
+        twoReadSamplesConfirmed:false,
+        publicationPositionVerified:false,
+        scriptExecutionObserved:false,
+        gameEventCompleted:false
+      };      this.latestState.romBudgetBranchRamReadback={
         verified:false,reason,
         values:[],
         twoReadSamplesConfirmed:false,
@@ -573,7 +582,7 @@ class RetroArchClient extends EventEmitter {
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
-        'romWarpGraph','videoMemory','romBudgetBranchRamReadback',
+        'romWarpGraph','videoMemory','romBudgetBranchRamReadback','romWorldBudgetRamReadback',
         'battle','battleReadStatus','battleFlagVerified',
         'inBattle','battleType','aiAdvice','currentDialog',
         'currentTextSource',
@@ -3437,6 +3446,39 @@ class RetroArchClient extends EventEmitter {
         this.readMemoryBlock(address,length)
     });
 
+    // T231: additional maps only. Existing T221 maps are
+    // unchanged. The helper sends no request without
+    // validated ROM-derived candidate addresses.
+    const t231MapId=this.latestState.mapId;
+
+    const t231Evidence=
+      Number.isInteger(t231MapId)&&
+      ![31,34,36].includes(t231MapId)&&
+      this.latestState.romRuntimeIdentity?.matched===true?
+      mapScriptRootEvidence({
+        catalogue:
+          this.activeRomProfile?.world?.mapScriptRootSemantics,
+        romSha256:this.activeRomProfile?.hash?.sha256,
+        mapId:t231MapId
+      }):null;
+
+    const t231Readback=await collectWorldBudgetRamReadback({
+      evidence:t231Evidence,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      mapId:t231MapId,
+      firstSpriteBlock:blockSprites,
+      eligible:
+        this.latestState.isSimulation!==true&&
+        this.latestState.connected===true&&
+        this.latestState.memoryReadStatus?.verified===true&&
+        this.latestState.romRuntimeIdentity?.matched===true&&
+        positionWindow.verified===true&&
+        latePositionWindow.verified===true&&
+        globalFlagReadback.verified===true,
+      getTargetScope:()=>captureTargetScope(this),
+      readMemoryBlock:(address,length)=>
+        this.readMemoryBlock(address,length)
+    });
     if(!matchesTargetScope(this,pollTargetScope))return;
     const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);
     if(!matchesTargetScope(this,pollTargetScope))return;
@@ -3501,6 +3543,28 @@ class RetroArchClient extends EventEmitter {
       }:{
         verified:false,
         reason:t221Readback.reason||
+          'FINAL_PUBLICATION_EVIDENCE_MISSING',
+        values:[],
+        twoReadSamplesConfirmed:false,
+        publicationPositionVerified:false,
+        scriptExecutionObserved:false,
+        gameEventCompleted:false
+      };
+    this.latestState.romWorldBudgetRamReadback=
+      t231Readback.verified===true&&
+      this.latestState.memoryReadStatus?.verified===true&&
+      this.latestState.romRuntimeIdentity?.matched===true&&
+      publicationPositionWindow.verified===true?
+      {
+        ...t231Readback,
+        publicationPositionVerified:true,
+        observedAt:this.latestState.lastUpdate,
+        atomicSnapshotVerified:false,
+        scriptExecutionObserved:false,
+        gameEventCompleted:false
+      }:{
+        verified:false,
+        reason:t231Readback.reason||
           'FINAL_PUBLICATION_EVIDENCE_MISSING',
         values:[],
         twoReadSamplesConfirmed:false,

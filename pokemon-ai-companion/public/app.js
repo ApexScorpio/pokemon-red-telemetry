@@ -1058,6 +1058,75 @@ function formatCampaignChecklistSection(advice,state) {
         }
       }
     }
+    const worldBudgetRamT231=
+      state?.romWorldBudgetRamReadback;
+
+    if(
+      worldBudgetRamT231?.verified===true&&
+      worldBudgetRamT231.source===
+        'RETROARCH_DOUBLE_READ_WORLD_BUDGET_WINDOW'&&
+      worldBudgetRamT231.romSha256===runtimeSha&&
+      worldBudgetRamT231.mapId===advice.mapId&&
+      worldBudgetRamT231.mapId===mapRootT190.mapId&&
+      worldBudgetRamT231.observedAt===state.lastUpdate&&
+      state.connected===true&&
+      state.isSimulation!==true&&
+      state.memoryReadStatus?.verified===true&&
+      state.memoryReadStatus?.publicationPositionWindow
+        ?.verified===true&&
+      worldBudgetRamT231.twoReadSamplesConfirmed===true&&
+      worldBudgetRamT231.publicationPositionVerified===true&&
+      worldBudgetRamT231.atomicSnapshotVerified===false&&
+      worldBudgetRamT231.scriptExecutionObserved===false&&
+      worldBudgetRamT231.gameEventCompleted===false&&
+      Number.isInteger(worldBudgetRamT231.extraReadBytes)&&
+      worldBudgetRamT231.extraReadBytes>=1&&
+      worldBudgetRamT231.extraReadBytes<=128&&
+      Array.isArray(worldBudgetRamT231.values)
+    ){
+      const permitted=new Set(
+        mapRootT190.runtimeBudgetConditionRamSources
+          ?.candidateSources?.map(r=>r.address)||[]
+      );
+
+      const matches=worldBudgetRamT231.values.filter(r=>
+        permitted.has(r.address)&&
+        Number.isInteger(r.address)&&
+        r.address>=0xc100&&r.address<0xc300&&
+        Number.isInteger(r.value)&&
+        r.value>=0&&r.value<=255&&
+        r.repeatedReadMatched===true&&
+        r.firstValue===r.value&&
+        r.secondValue===r.value
+      ).slice(0,8);
+
+      if(matches.length){
+        lines.push(
+          'RAM do script deste mapa: '+
+          matches.length+
+          ' fontes ROM verificadas com duas leituras '+
+          'coincidentes; amostra nao atomica.'
+        );
+
+        for(const r of matches){
+          lines.push(
+            'RAM 0x'+r.address.toString(16).toUpperCase()+
+            ' = '+r.value+
+            ' (0x'+r.value.toString(16)
+              .toUpperCase().padStart(2,'0')+')'+
+            ' | dependência simbolica | '+
+            'nao prova execucao ou conclusao de evento'
+          );
+        }
+
+        if(worldBudgetRamT231.sourcesNotSelected>0){
+          lines.push(
+            'Outras fontes RAM deste mapa nao foram '+
+            'reconfirmadas nesta leitura.'
+          );
+        }
+      }
+    }
 if(mapRootT190.unresolvedCount>0){
       lines.push(
         'Bloqueios do script: '+

@@ -2843,3 +2843,28 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
   da publicacao na branch de desenvolvimento.
 - Nao foi feita qualquer publicacao na producao.
 - Mapeamento completo da ROM ainda nao demonstrado.
+
+### PSB-20261101-2250-POKEGUIDE-T231-WORLD-RAM-001 — leitura contextual RAM nos mapas adicionais
+
+- Base: b0f1d49a74f1aea0bb2497f636f8dfa8d502254c.
+- T230 confirmou 9/9 casos elegiveis nos mapas 31,34,36.
+- T229 nao confirmou ainda o endereco atual do dispositivo.
+- Auditoria da ROM Red verificou 226 mapas e 223 scripts fisicos.
+- Mapas com dependencias elegiveis no bloco C100-C2FF:
+  4.
+- Mapas elegiveis fora de 31/34/36:
+  1.
+- Implementada leitura dupla contextual nesses outros mapas.
+- Reutilizada a primeira leitura de RAM do ciclo normal.
+- Adicionada no maximo uma leitura UDP de 128 bytes,
+  apenas se o mapa atual tiver dependencias ROM verificadas.
+- T221 preservado integralmente nos tres mapas originais.
+- Identidade da ROM, mapa, alvo e janela de posicao
+  continuam sujeitos as verificacoes existentes.
+- A leitura e sequencial, nao atomica.
+- Valor RAM observado nao comprova execucao do script
+  nem conclusao de qualquer evento.
+- A nova telemetria nao e persistida como evidencia live.
+- Testes unitarios e certificacao das tres ROMs obrigatorios.
+- Main, producao, sessoes, backups e ROMs preservados.
+- Mapeamento a 100 por cento nao foi demonstrado.
