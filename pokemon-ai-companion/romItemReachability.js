@@ -156,8 +156,17 @@ function planItemAccess({terrain,romSha256,position,items=[],
     !valid(position?.x,0,grid.width-1)||!valid(position?.y,0,grid.height-1)||
     ![0,1,2].includes(modeByte))
    return unavailable('ROM/terreno/posição/modo de deslocação não corroborados');
+ // When the RAM sprite block is declared verified, every actor must
+ // have a plausible signed-overworld tile position. One corrupt actor
+ // must not be silently skipped, turning a possible blocker into a path.
+ // Offscreen actors can legitimately be at -4..255 and are ignored by
+ // the same-map terrain occupancy calculation only after validation.
+ if(spritesVerified===true&&
+    (!Array.isArray(mapEntities)||mapEntities.some(actor=>
+      !actor||!valid(actor.x,-4,255)||!valid(actor.y,-4,255))))
+   return unavailable('Sprites RAM incoerentes; percurso local não classificável');
  const options={currentSurf:modeByte===2,
-   actors:mapEntities,spritesVerified};
+   actors:Array.isArray(mapEntities)?mapEntities:[],spritesVerified};
  // Executar BFS uma vez por cenário, não uma vez por item.
  const normal=computeReach(grid,position,{...options,
    canCut:canCut===true,canSurf:canSurf===true});

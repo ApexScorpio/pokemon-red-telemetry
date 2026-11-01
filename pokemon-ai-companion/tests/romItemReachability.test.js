@@ -132,3 +132,59 @@ test('um item com coordenadas apenas manuais não recebe caminho certificado',()
  assert.equal(result.results[0].accessStatus,'UNVERIFIED_ROM_ITEM');
  assert.equal(result.results[0].route,null);
 });
+
+
+test('confirmed sprite RAM rejects malformed actor arrays instead of inventing routes',()=>{
+ const g=makeGrid('boulder'),terrain=toTerrain(g);
+ for(const mapEntities of [null,undefined,{},'actors']){
+  const result=planItemAccess({terrain,romSha256:sha[0],
+   position:{x:1,y:2},items:[{x:6,y:2,romItemCoordinatesVerified:true}],
+   positionVerified:true,mapSnapshotVerified:true,modeByte:0,
+   spritesVerified:true,mapEntities,canCut:false,canSurf:false});
+  assert.equal(result.verified,false);
+  assert.equal(result.results[0].accessStatus,'UNKNOWN');
+  assert.equal(result.results[0].accessibleNow,null);
+  assert.match(result.reason,/Sprites RAM incoerentes/);
+ }
+});
+test('confirmed sprite RAM rejects even one invalid actor coordinate',()=>{
+ const invalid=[
+  {x:null,y:1},{x:1,y:undefined},{x:NaN,y:2},
+  {x:-5,y:2},{x:256,y:2},{x:1.5,y:2},
+  {x:4,y:Infinity},null
+ ];
+ for(const actor of invalid){
+  const r=check(makeGrid('boulder'),{actors:[
+   {x:3,y:2,type:'boulder',pictureId:63},actor]});
+  assert.equal(r.verified,false);
+  assert.equal(r.results[0].accessStatus,'UNKNOWN');
+  assert.equal(r.results[0].route,undefined);
+ }
+});
+test('valid offscreen RAM actors do not contaminate same-map occupancy',()=>{
+ const g=makeGrid('boulder');
+ for(const actors of [
+  [{x:-4,y:2,type:'npc'}],
+  [{x:255,y:255,type:'npc'}],
+  []
+ ]){
+  const r=check(g,{actors,spritesVerified:true});
+  assert.equal(r.verified,true);
+  assert.equal(r.results[0].accessStatus,'CONDITIONAL_PATH');
+  assert.equal(r.results[0].accessibleNow,null);
+ }
+});
+test('unverified RAM sprite block never asserts obstacle-free live access',()=>{
+ const g=makeGrid('boulder');
+ const r=planItemAccess({terrain:toTerrain(g),romSha256:sha[0],
+   position:{x:1,y:2},
+   items:[{x:6,y:2,romItemCoordinatesVerified:true}],
+   positionVerified:true,mapSnapshotVerified:true,modeByte:0,
+   spritesVerified:false,mapEntities:null});
+ assert.equal(r.verified,true);
+ assert.equal(r.results[0].accessStatus,'CONDITIONAL_PATH');
+ assert.equal(r.results[0].accessibleNow,null);
+ assert.equal(r.currentMapRouteVerified,false);
+ assert.equal(r.accessibleNowGuaranteed,false);
+ assert.match(r.results[0].reason,/sprites sem confirmação RAM/i);
+});
