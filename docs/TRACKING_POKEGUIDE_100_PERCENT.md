@@ -1120,3 +1120,16 @@
 - Os efeitos sao provas estaticas, nao eventos observados em jogo.
 - Interpretacao semantica integral e conclusao da campanha ainda nao certificadas.
 - Sem alteracoes na branch main, preview ativo, ROMs ou saves.
+
+### PSB-20261101-1525-POKEGUIDE-T183-SEMANTICA-001 - verificacao de portabilidade e semantica
+
+- Base publicada: 9025605f1d38e9722ccb81a43ddb5604b3de2868.
+- Corrigida dependencia de teste sobre ficheiro JSON nao versionado.
+- Preservado o teste real de arquivo de perfil Red.
+- Motor semantico avaliado com as tres ROMs originais.
+- Efeitos estaticos anteriores: Red 2, Blue 2, Green 2.
+- Efeitos agora apurados: Red 2, Blue 2, Green 2.
+- Aumento comprovado nas tres ROMs: False.
+- Suite ASM, arquivo de perfis e suite integral verificados.
+- Nenhuma inferencia de execucao real ou conclusao da campanha.
+- Repositorio main, preview, ROMs e saves preservados.

@@ -67,9 +67,25 @@ test('real Red profile fits unchanged archive limits and preserves all physical 
   assert.equal(restored.complete,original.complete);
   assert.equal(restored.unresolvedCount,original.unresolved.length);
  }
- const prior=require('../../semantic-proof-t181.json').red;
+ // Published T181.4 physical proofs, docs/HISTORICO_GUIA_CAMPANHA.md.
+ // Keep the baseline in tracked source: certification logs are disposable.
+ const prior={sha:'5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',effects:2,examples:[
+  {handlerOffset:0x1cab8,instructionOffset:0x1cabe,address:0xd7bf,value:{op:'SET_BIT',value:{read:0xd7bf},bit:0},trace:[0x1cab9,0x1cabc,0x1cabe],bytes:'0821bfd7cb46cbc6',mapId:12,kind:'NPC'},
+  {handlerOffset:0x514a4,instructionOffset:0x514a8,address:0xd7f0,value:{op:'RESET_BIT',value:{read:0xd7f0},bit:1},trace:[0x514a5,0x514a8],bytes:'0821f0d7cb8e',mapId:35,kind:'TRAINER'}
+ ]};
  assert.equal(profile.hash.sha256,prior.sha);
- for(const effect of prior.examples)assert.ok(world.examples.some(e=>e.instructionOffset===effect.instructionOffset&&e.address===effect.address&&JSON.stringify(e.value)===JSON.stringify(effect.value)));
+ // Actual dispatcher prefix reused by the symbolic bank regression fixture.
+ assert.equal(rom.subarray(0x35d9,0x35df).toString('hex'),'78e0b8ea0020');
+ for(const effect of prior.examples){
+  assert.equal(rom.subarray(effect.handlerOffset,effect.handlerOffset+effect.bytes.length/2).toString('hex'),effect.bytes);
+  const row=world.rows.find(r=>r.mapId===effect.mapId&&r.kind===effect.kind&&r.ordinal===1&&r.handlerOffset===effect.handlerOffset);
+  assert.ok(row);
+  const actual=resolveSemantics(loaded,row).effects.find(e=>e.instructionOffset===effect.instructionOffset&&e.address===effect.address);
+  assert.ok(actual);assert.deepEqual(actual.value,effect.value);
+  assert.deepEqual(actual.trace,effect.trace);assert.deepEqual(actual.conditions,[]);
+  assert.equal(actual.gameplayStateTransitionProven,true);assert.equal(actual.observedExecution,false);
+  assert.ok(world.examples.some(e=>e.instructionOffset===effect.instructionOffset&&e.address===effect.address&&JSON.stringify(e.value)===JSON.stringify(effect.value)));
+ }
  assert.ok(world.formallyProvenScriptEffects>=prior.effects);
  const archived={...profile,capabilities:{...profile.capabilities,tmHmReadForSpecies:150}};
  const bytes=Buffer.byteLength(JSON.stringify(archived));

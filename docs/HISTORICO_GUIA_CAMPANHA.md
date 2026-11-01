@@ -2572,3 +2572,28 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Os efeitos sao provas estaticas, nao eventos observados em jogo.
 - Interpretacao semantica integral e conclusao da campanha ainda nao certificadas.
 - Sem alteracoes na branch main, preview ativo, ROMs ou saves.
+
+### T183 - 2026-11-01 - Reproducibility and constrained MBC3 semantics
+- Read published HEAD 9025605, T181.4/T182 history, untracked diagnostic evidence, interpreter, mapper modules and world integration before editing. No prior investigation repeated.
+- Removed test import of untracked semantic-proof-t181.json. Embedded published Red SHA and both physical proof baselines; strengthened byte, trace, map-reference, condition and non-observation assertions. Archive limits unchanged.
+- Consulted official gbdev/pandocs source MBC3.md and CPU_Instruction_Set.md (direct site returned access errors). Added bounded single-RAM-byte constraint evaluation at symbolic MBC3 writes. Only a unique bank justified by path predicates continues; unknown/multiple banks stop with bounded candidate diagnostics. No bank path enumeration or domain widening.
+- Tests pending. No active UI opened: data/interpreter changes are inspectable by code and runtime assertions; no screenshots of protected applications taken. Existing original ROM ZIP will only be read, never copied or modified.
+- Read original authenticated Red ZIP without copying/modifying it. ROM0 0x35D9..0x35DE is 78 E0 B8 EA 00 20 (register bank input, HRAM mirror, MBC write); added real-ROM assertion for the prefix used in synthetic regression scenarios. No synthetic target is claimed as real gameplay evidence.
+- Initial focused run: 25 PASS, 2 FAIL in new fixtures. Their synthetic dispatcher switched banks without restoring the caller bank before RET. Corrected the fixture to CALL ROMX, restore bank 6 in ROM0, then RET; production control flow was correct.
+- Directed interpreter/world integration run: 71 tests, 69 PASS, 0 FAIL, 2 SKIP (Blue/Green ROM environment inputs absent). Included actual Red compact profile and actual Red 1126-reference audit, previous CPU semantics, IR, checklist, advisor and script references.
+- Added direct checklist/advisor regressions for the new constrained-bank behavior on maps 15, 96, 227, serialized handler evidence, SHA mismatch refusal and unknown HRAM snapshot conditions. Final changed-test run: 11 tests, 11 PASS, 0 FAIL, 0 SKIP; original Red SHA, dispatcher bytes, both physical effects and unchanged archive limits verified. profileBytes=11230218, zipBytes=937831, handlers=516, effects=2.
+- New symbolic exploration stays inside existing maxSteps/maxPaths. Only one stable WRAM/HRAM byte (256 possibilities) is evaluated; supported equal/zero/bit-clear predicates constrain it, unsupported predicates remain unknown. Multiple banks do not fork execution; diagnostics retain at most 8 candidates with total count. In-file bank checks preserved; prior effects survive a later unresolved bank write.
+- Real Red proven effects remain 2. Blue/Green changes and three-ROM validation remain unknown pending the outer certification; no increase claimed. No full certifier, installations, archive-limit changes, active application changes, screenshots, commits or pushes. Existing world propagation reused without map exceptions or proof-domain widening. Historical Markdown only appended.
+
+### PSB-20261101-1525-POKEGUIDE-T183-SEMANTICA-001 - verificacao de portabilidade e semantica
+
+- Base publicada: 9025605f1d38e9722ccb81a43ddb5604b3de2868.
+- Corrigida dependencia de teste sobre ficheiro JSON nao versionado.
+- Preservado o teste real de arquivo de perfil Red.
+- Motor semantico avaliado com as tres ROMs originais.
+- Efeitos estaticos anteriores: Red 2, Blue 2, Green 2.
+- Efeitos agora apurados: Red 2, Blue 2, Green 2.
+- Aumento comprovado nas tres ROMs: False.
+- Suite ASM, arquivo de perfis e suite integral verificados.
+- Nenhuma inferencia de execucao real ou conclusao da campanha.
+- Repositorio main, preview, ROMs e saves preservados.

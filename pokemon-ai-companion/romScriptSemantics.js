@@ -8,6 +8,40 @@ const {category}=require('./romAsmAbsoluteMemoryEvidence');
 const {classifyRomxHeaderBankCandidates}=require('./romRomxBankAccess');
 const regs=['b','c','d','e','h','l',null,'a'];
 const concrete=x=>Number.isInteger(x);
+// Substitute one stable RAM read only. Unsupported predicates are not
+// constraints. This finite byte domain never enumerates ROM execution paths.
+function constrainedBank(value,conditions){
+ const reads=new Set();
+ function collect(v){if(!v||typeof v!=='object')return;if(Object.hasOwn(v,'read')){if(!v.volatile)reads.add(v.read);return;}for(const x of Object.values(v))collect(x);}
+ collect(value);
+ if(reads.size!==1)return null;
+ const address=[...reads][0];
+ if(!((address>=0xc000&&address<0xe000)||(address>=0xff80&&address<0xffff)))return null;
+ function evaluate(v,byte){
+  if(concrete(v))return v;
+  if(v?.read===address&&!v.volatile)return byte;
+  if(['AND','OR','XOR'].includes(v?.op)){
+   const a=evaluate(v.value,byte),b=evaluate(v.mask,byte);
+   if(a!==null&&b!==null)return v.op==='AND'?a&b:v.op==='OR'?a|b:a^b;
+  }
+  return null;
+ }
+ function predicate(p,byte){
+  if(typeof p==='boolean')return p;
+  if(p?.not!==undefined){const v=predicate(p.not,byte);return v===null?null:!v;}
+  if(p?.equals){const a=evaluate(p.equals[0],byte),b=evaluate(p.equals[1],byte);return a===null||b===null?null:a===b;}
+  if(p?.zero!==undefined){const v=evaluate(p.zero,byte);return v===null?null:v===0;}
+  if(p?.bitClear){const v=evaluate(p.bitClear.value,byte);return v===null?null:(v&(1<<p.bitClear.bit))===0;}
+  return null;
+ }
+ const banks=new Set();let feasibleByteCount=0;
+ for(let byte=0;byte<256;byte++){
+  if(conditions.some(c=>{const p=predicate(c.predicate,byte);return p!==null&&p!==c.taken;}))continue;
+  const v=evaluate(value,byte);if(v===null)return null;
+  feasibleByteCount++;banks.add((v&127)||1);
+ }
+ return {sourceAddress:address,feasibleByteCount,selectedBanks:[...banks].sort((a,b)=>a-b)};
+}
 function logic(op,a,b){
  if(op==='AND'&&b===255||op==='OR'&&b===0||op==='XOR'&&b===0)return a;
  if(op==='AND'&&b===0)return 0;
@@ -76,8 +110,12 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128}={}){
  const pair=(s,i)=>concrete(s.r[regs[i]])&&concrete(s.r[regs[i+1]])?s.r[regs[i]]*256+s.r[regs[i+1]]:null;
  const get=(s,i)=>i===6?(hl(s)!==null?read(s,hl(s)):null):s.r[regs[i]]??null;
  const write=(s,a,value,d)=>{
-  if(mbc3&&concrete(a)&&a>=0x2000&&a<0x4000&&concrete(value)){
-   const selected=(value&0x7f)||1;
+  if(mbc3&&concrete(a)&&a>=0x2000&&a<0x4000){
+   const proof=concrete(value)?null:constrainedBank(value,s.conditions);
+   if(!concrete(value)&&proof?.selectedBanks.length!==1){
+    stop(s,'UNRESOLVED_MEMORY_OR_BANK_WRITE',d.at,{address:a,value,bankSelection:proof?{...proof,selectedBanks:proof.selectedBanks.slice(0,8),candidateBankCount:proof.selectedBanks.length,candidatesBounded:proof.selectedBanks.length>8}:null});return false;
+   }
+   const selected=concrete(value)?(value&0x7f)||1:proof.selectedBanks[0];
    if(selected>=rom.length/0x4000){stop(s,'ROM_BANK_OR_TARGET_UNKNOWN',d.at);return false;}
    s.bank=selected;return true;
   }
