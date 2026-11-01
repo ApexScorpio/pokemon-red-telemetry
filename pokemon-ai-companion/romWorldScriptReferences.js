@@ -6,6 +6,7 @@
 const crypto=require('node:crypto');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
+const {inspectSpecialTextDispatch}=require('./romSpecialTextDispatchSemantics');
 const {buildStaticWorldFlagDependencies}=require('./romStaticWorldFlagDependencies');
 const {inspectTxAsmHandlerAdaptive}=require('./romTxAsmHandlerAtlas');
 const {inspectFixedRom0TargetAdaptive}=require('./romFixedBankReferenceEvidence');
@@ -69,6 +70,11 @@ function auditWorldScriptReferences({rom,profile}={}){
     asmEntrypoints.set(offset,inspectTxAsmHandlerAdaptive({rom,fileOffset:offset}));
    asmCandidate=asmEntrypoints.get(offset);
   }
+  // A pinned dispatcher reference identifies a conditional service only;
+  // it cannot prove the menu appeared or an action succeeded.
+  const specialDispatch=command.startsWith('SCRIPT_')?
+    inspectSpecialTextDispatch({rom,scriptFileOffset:evidence.textFileOffset,
+      scriptCommand:command,mart:evidence.mart}):null;
   const trainer=kind==='TRAINER'?(map.trainerEvents||[]).find(
    row=>row.objectOrdinal===ordinal):null;
   const stationary=kind==='STATIC_POKEMON'?(map.staticEncounterEvents||[]).find(
@@ -108,6 +114,8 @@ function auditWorldScriptReferences({rom,profile}={}){
    scriptDispatchOpcodeVerified:evidence.dispatchOpcodePhysicallyVerified===true,
    scriptDispatchCodeSemanticsVerified:false,
    scriptDispatchOutcomeVerified:false,
+   specialDispatchReference:specialDispatch?.verified===true?
+     specialDispatch:null,
    asmCandidate,
    asmDirectWramReadCandidates:asmCandidate?.directWramReadCandidateCount??0,
    asmDirectWramWriteCandidates:asmCandidate?.directWramWriteCandidateCount??0,
@@ -265,6 +273,10 @@ function auditWorldScriptReferences({rom,profile}={}){
    mapScriptPointers,referencedInteractions:all.length,byKind,
    resolvedTextPointers,unresolvedTextPointers:all.length-resolvedTextPointers,
    linearTextPrograms,nonLinearOrUnknown,martInventoryLists,
+   specialDispatchReferences:all.filter(x=>x.scriptCommand.startsWith('SCRIPT_')).length,
+   specialDispatchHandlersIdentified:all.filter(x=>
+     x.specialDispatchReference?.handlerReferenceVerified===true).length,
+   specialDispatchRuntimeActionsObserved:0,
    commandCounts,dispatchClassCounts,unresolvedReasons,
    trainerEventFlagBindings:all.filter(x=>
     x.kind==='TRAINER'&&x.eventBitBindingVerified).length,
