@@ -1362,6 +1362,7 @@ function main(){
   'tests/romMapEventActorApproach.test.js',
   'tests/romStaticWorldFlagDependencies.test.js',
   'tests/romTextDispatchClassification.test.js',
+  'tests/romSpecialTextDispatchSemantics.test.js',
   'tests/romMappingGapLedger.test.js',
   'tests/romWorldGapMatrix.test.js',
   'tests/romScriptUnresolvedEvidence.test.js',
