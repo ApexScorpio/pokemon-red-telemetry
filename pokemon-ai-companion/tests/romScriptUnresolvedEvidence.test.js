@@ -184,8 +184,11 @@ test('one coordinate difference identifies exact map and coordinates for all ROM
 test('one offset difference is not misreported as a position difference',()=>{
  const atlases=Object.fromEntries(Object.entries(KNOWN).map(([v,sha])=>
   [v,syntheticAtlas(sha)]));
+ // An offset-only comparison must use a non-ASM interaction:
+ // changing TX_START_ASM without moving its handler is contradictory.
  const moved=atlases.green.maps[0].interactions.find(r=>
-  r.kind==='NPC'&&r.ordinal===1);
+  r.kind==='ITEM'&&r.ordinal===1&&r.asmCandidate===null);
+ assert.ok(moved,'Expected one literal non-ASM script entry');
  moved.scriptFileOffset=987654;
  const inv=Object.fromEntries(Object.entries(atlases).map(([v,a])=>
   [v,buildScriptUnresolvedEvidence({atlas:a})]));
@@ -210,4 +213,16 @@ test('cross-ROM comparator refuses invented live completion and malformed coordi
  const y=compareScriptUnresolvedEvidence(inv);
  assert.equal(y.verified,false);
  assert.equal(y.positionDifferences.length,0);
+});
+
+test('physical ASM handler mismatch remains explicitly rejected',()=>{
+ const atlas=syntheticAtlas();
+ const asm=atlas.maps[0].interactions.find(r=>
+  r.scriptCommand==='TX_START_ASM');
+ assert.ok(asm);
+ asm.scriptFileOffset=987654;
+ const inventory=buildScriptUnresolvedEvidence({atlas});
+ assert.equal(inventory.verified,false);
+ assert.match(inventory.reason,/ASM handler is not anchored/);
+ assert.equal(inventory.gameplayCompletionCertified,false);
 });
