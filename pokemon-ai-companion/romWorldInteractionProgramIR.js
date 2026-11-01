@@ -50,6 +50,8 @@ function compileOne({rom,reference}={}){
   limitations:['MAP_SCRIPT_CONTROL_FLOW_UNVERIFIED','LIVE_EXECUTION_UNOBSERVED']
  };
  if(r.scriptCommand==='TX_FAR'){
+  if(rom[r.scriptFileOffset]!==0x17)
+   return {...out,programClass:'FAR_DISPATCH_BYTE_MISMATCH'};
   const target=r.indirectTextTarget;
   if(!Number.isInteger(target?.fileOffset)||
       target.fileOffset<0||target.fileOffset>=rom.length)
@@ -77,6 +79,7 @@ function compileOne({rom,reference}={}){
  if(r.scriptCommand.startsWith('SCRIPT_')){
   const d=r.specialDispatchReference;
   if(d?.verified!==true||d.scriptFileOffset!==r.scriptFileOffset||
+      d.opcode!==rom[r.scriptFileOffset]||
       d.scriptCommand!==r.scriptCommand||
       d.handlerReferenceVerified!==true)
    return {...out,programClass:'SPECIAL_SERVICE_HANDLER_UNRESOLVED'};
@@ -89,7 +92,7 @@ function compileOne({rom,reference}={}){
       'LIVE_EXECUTION_UNOBSERVED']};
  }
  if(r.scriptCommand==='TX_START_ASM'){
-  if(r.asmCandidate?.verified!==true||
+  if(rom[r.scriptFileOffset]!==0x08||r.asmCandidate?.verified!==true||
      r.asmCandidate.txAsmFileOffset!==r.scriptFileOffset)
    return {...out,programClass:'ASM_HANDLER_UNRESOLVED'};
   return {...out,programClass:'ASM_CONTROL_FLOW_PENDING',
