@@ -2868,3 +2868,23 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Testes unitarios e certificacao das tres ROMs obrigatorios.
 - Main, producao, sessoes, backups e ROMs preservados.
 - Mapeamento a 100 por cento nao foi demonstrado.
+
+### PSB-20261101-2315-POKEGUIDE-T233-INDEXED-TARGETS-001 — palavras ROM em tabelas de saltos indexados
+
+- Base publicada: a553d125ec1c37be9cfc65317318ce07c384766c.
+- T232 identificou 118 scripts fisicos por resolver.
+- Mapas 209 e 207 priorizados por acessos indiretos
+  e escritas cujo destino ainda e desconhecido.
+- Adicionada extracao dos 128 valores de ponteiro brutos
+  de cada tabela ROM indexada ja reconhecida.
+- Sao guardadas as 256 palavras em bytes, sob
+  pressuposto explicito do banco assumido pelo modelo.
+- Enderecos fixos, com banco e fora de ROM diferenciados.
+- O destino executado nao foi observado.
+- O banco efetivamente selecionado nao foi observado.
+- Os valores nao sao prova de instrucoes validas
+  nem de um evento de jogo concluido.
+- Interpretador, limites, regras e efeitos preservados.
+- Main, producao, RetroArch, sessoes e ROMs intocados.
+- Testes e certificacao obrigatorios antes de publicar.
+- Mapeamento de 100 por cento nao declarado.

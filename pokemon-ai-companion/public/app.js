@@ -894,6 +894,67 @@ function formatCampaignChecklistSection(advice,state) {
       }
     }
 
+    const indexedRomTableWordsT233=
+      Array.isArray(mapRootT190.indexedRomTableWords)?
+      mapRootT190.indexedRomTableWords:[];
+
+    if(indexedRomTableWordsT233.length){
+      lines.push(
+        'Tabelas de saltos ROM: '+
+        indexedRomTableWordsT233.length+
+        ' tabelas com 128 palavras fisicas por tabela. '+
+        'Banco de ROM presumido, nao observado.'
+      );
+
+      for(const table of indexedRomTableWordsT233.slice(0,4)){
+        if(
+          table.source!==
+           'VERIFIED_ROM_INDEXED_TABLE_WORDS_128_V1'||
+          table.pointerPositions!==128||
+          table.inputBytePossibilities!==256||
+          table.pointerIndexFormula!==
+           'SOURCE_BYTE_AND_0X7F'||
+          typeof table.targetWordsLittleEndianHex!=='string'||
+          !/^[0-9a-f]{512}$/.test(
+           table.targetWordsLittleEndianHex
+          )||
+          table.runtimeSourceByteObserved!==false||
+          table.bankSelectionObserved!==false||
+          table.indirectJumpObserved!==false||
+          table.instructionTargetsProven!==false||
+          table.gameEventCompleted!==false
+        )continue;
+
+        lines.push(
+          'RAM fonte 0x'+
+          table.sourceAddress.toString(16).toUpperCase()+
+          ' | tabela ROM 0x'+
+          table.firstPhysicalOffset.toString(16).toUpperCase()+
+          ' | '+table.uniqueRawTargetWords+
+          ' palavras de destino distintas; '+
+          table.nonRomWordCount+
+          ' fora do espaco de ROM.'
+        );
+
+        for(const e of table.exampleWords.slice(0,5)){
+          if(
+            !Number.isInteger(e.index)||
+            !Number.isInteger(e.targetCpu)||
+            !Number.isInteger(e.pointerCpu)
+          )continue;
+
+          lines.push(
+            'Indice '+e.index+
+            ' | ponteiro 0x'+
+            e.pointerCpu.toString(16).toUpperCase()+
+            ' -> palavra 0x'+
+            e.targetCpu.toString(16).toUpperCase()+
+            ' | '+e.class+
+            ' | destino real nao observado'
+          );
+        }
+      }
+    }
     const mapRootSymbolicT214=
       Array.isArray(mapRootT190.runtimeSymbolicWriteRequirements)?
       mapRootT190.runtimeSymbolicWriteRequirements:[];

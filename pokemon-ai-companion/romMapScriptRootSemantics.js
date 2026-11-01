@@ -8,6 +8,8 @@ const {mapScriptAndTextReferences,cpuToOffset}=
  require('./romMapCodeAtlas');
 const {interpretHandler}=require('./romScriptSemantics');
 
+const {buildIndexedJumpTargetWords}=
+ require('./romIndexedJumpTargetWords');
 const MAP_COUNT=248;
 const NORMAL_MAPS=226;
 const ROM_BYTES=1048576;
@@ -448,6 +450,14 @@ function buildMapScriptRootSemantics({
    rootIndex=roots.length;
    unique.set(key,rootIndex);
 
+   const indexedRomTableWords=
+    buildIndexedJumpTargetWords({
+     rom,
+     romSha256,
+     requirements:groupMapRootIndexedJumpRequirements(
+      analysis.indexedJumpRequirements
+     )
+    });
    roots.push({
     rootIndex,
     bank:seed.bank,
@@ -461,6 +471,7 @@ function buildMapScriptRootSemantics({
      instructionOffset:u.offset??null
     })),
     unresolvedSamplesBounded:analysis.unresolved.length>3,
+    indexedRomTableWords,
     runtimeBudgetConditionRamSources,
     runtimeSymbolicWriteRequirements:symbolicWriteGroups,
     symbolicWriteEnrichment,
@@ -580,7 +591,11 @@ function mapScriptRootEvidence({
   unresolvedSamples:root.unresolvedSamples.map(x=>({...x})),
   unresolvedSamplesBounded:root.unresolvedSamplesBounded,
   completeBoundedAnalysis:root.completeBoundedAnalysis,
-  runtimeBudgetConditionRamSources:
+  indexedRomTableWords:Array.isArray(root.indexedRomTableWords)?
+   root.indexedRomTableWords.map(t=>({
+    ...t,
+    exampleWords:t.exampleWords.map(x=>({...x}))
+   })):[],  runtimeBudgetConditionRamSources:
    root.runtimeBudgetConditionRamSources?{
     ...root.runtimeBudgetConditionRamSources,
     candidateSources:
