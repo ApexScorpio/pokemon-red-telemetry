@@ -149,3 +149,46 @@ test('real three-ROM map 226/227 preserve six same-ID ordinal coordinate variant
   assert.equal(r.collectedNow,null);assert.equal(g.accessibleNow,null);
  }
 });
+
+test('map checklist exposes only actor attributes verified in the selected ROM',()=>{
+ const {buildMapChecklist}=require('../romWorldChecklist');
+ const input=sample();
+ const r=buildMapChecklist({...input,mapId:226});
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.actorAttributeAtlasBound,true);
+ assert.equal(r.summary.boundStaticActorAttributes,2);
+ const item=r.actions.find(x=>x.kind==='ITEM');
+ const mon=r.actions.find(x=>x.kind==='STATIC_POKEMON');
+ assert.equal(item.romActorCoordinateAndAttributeVerified,true);
+ assert.equal(item.romActorItemId,79);
+ assert.deepEqual([item.x,item.y],[29,9]);
+ assert.equal(mon.romActorSpeciesInternalId,131);
+ assert.equal(mon.romActorLevel,70);
+ assert.equal(mon.romActorCoordinateAndAttributeVerified,true);
+ assert.equal(mon.accessibleNow,null);
+ assert.equal(item.completedNow,null);
+});
+test('map checklist cannot attribute an item from contradictory script coordinates',()=>{
+ const {buildMapChecklist}=require('../romWorldChecklist');
+ const input=sample();
+ input.scriptAtlas.maps[226].interactions[0].x=5;
+ const r=buildMapChecklist({...input,mapId:226});
+ assert.equal(r.verified,true);
+ assert.equal(r.actorAttributeAtlasBound,false);
+ assert.equal(r.summary.boundStaticActorAttributes,0);
+ assert.equal(r.actions.find(x=>x.kind==='ITEM').romActorItemId,null);
+ assert.equal(r.actions.find(x=>x.kind==='ITEM')
+  .romActorCoordinateAndAttributeVerified,false);
+ assert.equal(r.actions.every(x=>x.completedNow===null),true);
+});
+test('map checklist refuses actor attributes from a different ROM SHA',()=>{
+ const {buildMapChecklist}=require('../romWorldChecklist');
+ const input=sample();
+ input.scriptAtlas.romSha256=KNOWN.green;
+ const r=buildMapChecklist({...input,mapId:226});
+ assert.equal(r.verified,true);
+ assert.equal(r.actorAttributeAtlasBound,false);
+ assert.equal(r.summary.boundStaticActorAttributes,0);
+ assert.equal(r.actions.every(x=>x.romActorCoordinateAndAttributeVerified===false),
+  true);
+});
