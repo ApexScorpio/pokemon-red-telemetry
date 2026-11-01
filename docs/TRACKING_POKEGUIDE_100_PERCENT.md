@@ -1404,3 +1404,28 @@
 - Testes e certificacao das tres ROMs executados.
 - Main, producao, sessoes, backups e jogo preservados.
 - Mapeamento 100 por cento nao comprovado.
+
+### PSB-20261101-2320-POKEGUIDE-T235-DA39-COVERAGE-001 — fonte RAM DA39 para tabelas ROM
+
+- Base anterior: c90eb4113c210500c60dbaaa6f694c84d989f589.
+- T234 identificou 166 tabelas indexadas, 98 fontes
+  cobertas e 68 fontes ainda fora dos blocos recolhidos.
+- Esta auditoria confirmou que as 68 fontes nao cobertas
+  correspondem ao endereco DA39 na ROM Red autenticada.
+- Preservado o bloco DA40 original com todos os indices.
+- Adicionada uma leitura de um byte no endereco DA39,
+  apenas para mapas cuja tabela ROM verifica essa fonte.
+- Leitura de memoria opcional; o cliente pode repetir
+  o pedido UDP se receber uma resposta incompleta.
+- O resultado so e apresentado com identidade ROM/mapa,
+  alvo, leitura base e posicao final validas.
+- Fontes RAM ja abrangidas mantem zero pedidos adicionais.
+- Valores observados calculam apenas palavras de
+  destino condicionais da tabela ROM.
+- Banco realmente selecionado nao comprovado.
+- Salto de CPU e instrucao realmente executados nao comprovados.
+- Nenhum evento do jogo declarado concluido.
+- Interpretador, T221, T231, T233 e restante T234 preservados.
+- Certificacao integral exigida antes da publicacao.
+- Main, producao, RetroArch e sessoes preservados.
+- Mapeamento integral a 100 por cento nao comprovado.

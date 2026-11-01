@@ -975,7 +975,9 @@ function formatCampaignChecklistSection(advice,state) {
       indexedJumpLiveT234.atomicSnapshotVerified===false&&
       indexedJumpLiveT234.indirectJumpObserved===false&&
       indexedJumpLiveT234.gameEventCompleted===false&&
-      indexedJumpLiveT234.additionalUdpRequests===0&&
+      Number.isInteger(indexedJumpLiveT234.additionalUdpRequests)&&
+      indexedJumpLiveT234.additionalUdpRequests>=0&&
+      indexedJumpLiveT234.additionalUdpRequests<=1&&
       Array.isArray(indexedJumpLiveT234.selections)
     ){
       const tables=
@@ -1026,6 +1028,7 @@ function formatCampaignChecklistSection(advice,state) {
               .toUpperCase().padStart(4,'0')+
             ' | '+row.targetClass+
             ' | banco presumido '+row.assumedBank+
+            ' | '+row.sourceReadBlock+
             ' | salto nao observado'
           );
         }

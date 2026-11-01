@@ -41,6 +41,23 @@ function readExistingSource(blocks,address){
  if(!Number.isInteger(address))
   return null;
 
+ // T235: one optional byte just before the existing
+ // DA40 box/time block. Never shift existing block indexes.
+ if(address===0xda39){
+  const extra=blocks?.nearBoxDA39;
+
+  if(
+   !Array.isArray(extra)||
+   extra.length!==1||
+   typeof extra[0]!=='string'||
+   !/^[0-9a-f]{2}$/i.test(extra[0])
+  )return null;
+
+  return {
+   value:parseInt(extra[0],16),
+   block:'EXTRA_DA39'
+  };
+ }
  const locations=[
   {
    name:'PLAYER_D158',
@@ -210,7 +227,10 @@ function selectIndexedJumpLiveWords({
   mapId,
   selections,
   sourceReadCount:selections.length,
-  additionalUdpRequests:0,
+  additionalUdpRequests:
+   selections.some(s=>
+    s.sourceReadBlock==='EXTRA_DA39'
+   )?1:0,
   publicationPositionVerified:false,
   atomicSnapshotVerified:false,
   indirectJumpObserved:false,

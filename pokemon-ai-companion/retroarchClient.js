@@ -3502,6 +3502,35 @@ class RetroArchClient extends EventEmitter {
         mapId:t234MapId
       }):null;
 
+    // T235: only a ROM-verified map with a physically
+    // indexed DA39 source is eligible for this optional read.
+    // The original DA40 block and its offsets are untouched.
+    const t235NeedsDA39=
+      t234Evidence?.verified===true&&
+      t234Evidence.romSha256===
+        this.activeRomProfile?.hash?.sha256&&
+      t234Evidence.mapId===this.latestState.mapId&&
+      Array.isArray(t234Evidence.indexedRomTableWords)&&
+      t234Evidence.indexedRomTableWords.some(t=>
+        t.source===
+         'VERIFIED_ROM_INDEXED_TABLE_WORDS_128_V1'&&
+        t.sourceAddress===0xda39&&
+        t.runtimeSourceByteObserved===false&&
+        t.indirectJumpObserved===false&&
+        t.gameEventCompleted===false
+      )&&
+      this.latestState.connected===true&&
+      this.latestState.isSimulation!==true&&
+      this.latestState.romRuntimeIdentity?.matched===true&&
+      this.latestState.memoryReadStatus?.verified===true&&
+      positionWindow.verified===true&&
+      latePositionWindow.verified===true&&
+      globalFlagReadback.verified===true;
+
+    const t235NearBoxDA39=t235NeedsDA39?
+      await this.readMemoryBlock('DA39',1):null;
+
+    if(!matchesTargetScope(this,pollTargetScope))return;
     const t234Selection=selectIndexedJumpLiveWords({
       evidence:t234Evidence,
       romSha256:this.activeRomProfile?.hash?.sha256,
@@ -3509,7 +3538,8 @@ class RetroArchClient extends EventEmitter {
       blocks:{
         player:blockPlayerParty,
         world:blockWorldEvents,
-        sprites:blockSprites
+        sprites:blockSprites,
+        nearBoxDA39:t235NearBoxDA39
       },
       eligible:
         this.latestState.isSimulation!==true&&
