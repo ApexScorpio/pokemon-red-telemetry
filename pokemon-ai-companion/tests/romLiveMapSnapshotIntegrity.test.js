@@ -73,14 +73,18 @@ test('non-array and malformed sprite coordinates cannot be rendered',()=>{
   const s=state();change(s);assert.equal(rows(s).length,0);
  }
 });
-test('invalidated RAM clears stale ghosts and does not restore actors on reconnect',()=>{
+test('invalidated RAM clears old ghosts; reconnection starts a fresh history',()=>{
  const before=state();assert.equal(rows(before).length,1);
  const empty=state();empty.mapEntities=[];
  assert.equal(Array.from(live(empty).ghosts).length,1);
  const disconnected=state();disconnected.connected=false;
  assert.equal(rows(disconnected).length,0);
- assert.equal(Array.from(live(state()).ghosts).length,0);
- assert.equal(Array.from(live(empty).ghosts).length,0);
+ // A valid reconnect with no actors must NOT resurrect old RAM history.
+ const afterDisconnect=state();afterDisconnect.mapEntities=[];
+ assert.equal(Array.from(live(afterDisconnect).ghosts).length,0);
+ // A later, fresh observed actor legitimately creates a new history entry.
+ assert.equal(rows(state()).length,1);
+ assert.equal(Array.from(live(empty).ghosts).length,1);
 });
 test('history key separates Red and Green map actors even with same map ID',()=>{
  let a=state(RED);rows(a);
