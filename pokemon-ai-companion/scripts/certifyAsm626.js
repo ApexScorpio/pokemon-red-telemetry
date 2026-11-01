@@ -21,6 +21,8 @@ const {buildNamedEventEvidenceLedger}=require('../romNamedEventEvidenceLedger');
 const {buildWorldwideNamedEventCoverage}=require('../romWorldNamedEventCoverage');
 const {buildCompleteEventBitmap}=require('../romCompleteEventBitmap');
 const {buildWorldEventAtlas}=require('../romWorldEventAtlas');
+const {buildScriptUnresolvedEvidence,compareScriptUnresolvedEvidence}=
+ require('../romScriptUnresolvedEvidence');
 const referenceEventNames=require('../data/gen1EventNamesPret.json');
 const referenceMapNames=require('../data/gen1MapNamesPret.json');
 const {saveVerifiedProfileArchive}=require('../romProfileArchive');
@@ -154,6 +156,7 @@ function main(){
  const crossRomFlagGraphs={};
  const crossWorldGapRows={};
  const crossWorldDecodedContents={};
+ const crossScriptInventories={};
  log('STEP=VERIFY_SHA_AND_WORLD_ROM');
  for(const variant of ['red','blue','green']){
   const rom=readRom(found[variant]),p=inspectRomBuffer(rom,OUTPUTS[variant]);
@@ -161,6 +164,20 @@ function main(){
   assert(atlas.variants?.[variant]?.identity?.sha256===KNOWN[variant],
    'Atlas identity: '+variant);
   const a=p.world?.interactionScriptAtlas,i=buildWorldContentsIndex(p);
+  const scripts=buildScriptUnresolvedEvidence({atlas:a});
+  assert(scripts.verified===true&&
+   scripts.summary.references===1126&&
+   scripts.summary.asmReferences===626&&
+   scripts.summary.eventBitBindings===344&&
+   scripts.summary.scriptEffectsUnverified===1126&&
+   scripts.gameplayCompletionCertified===false,
+   'Script evidence inventory invalid: '+variant+' '+scripts.reason);
+  crossScriptInventories[variant]=scripts;
+  log('ROM_'+variant.toUpperCase()+'_SCRIPT_EVIDENCE='+
+    JSON.stringify(scripts.summary));
+  log('ROM_'+variant.toUpperCase()+'_UNRESOLVED_HOTSPOTS='+
+    JSON.stringify(scripts.hotspots));
+
   crossWorldDecodedContents[variant]=i;
   const tracker=buildCampaignWorldTracker({index:i,scriptAtlas:a});
   assert(a?.verified===true&&a.summary.referencedInteractions===1126&&
@@ -1187,6 +1204,17 @@ function main(){
   JSON.stringify(crossWorld.differenceCountsByField));
  log('CROSS_ROM_WORLD_MAP_DIFFERENCES='+JSON.stringify(crossWorld.differences));
  log('CROSS_ROM_WORLD_GAMEPLAY_EQUIVALENCE=UNKNOWN');
+ log('STEP=CROSS_ROM_SCRIPT_EVIDENCE_COMPARISON');
+ const scriptComparison=compareScriptUnresolvedEvidence(crossScriptInventories);
+ assert(scriptComparison.verified===true&&
+  scriptComparison.counts.recordKeys>=1126&&
+  scriptComparison.gameplayEquivalenceCertified===false,
+  'Cross-ROM script comparison failed: '+scriptComparison.reason);
+ log('CROSS_ROM_SCRIPT_DIFFERENCE_COUNTS='+
+  JSON.stringify(scriptComparison.counts));
+ log('CROSS_ROM_SCRIPT_DIFFERENCE_SAMPLES='+
+  JSON.stringify(scriptComparison.changes.slice(0,25)));
+ log('CROSS_ROM_SCRIPT_EFFECTS_CERTIFIED=FALSE');
  log('STEP=CROSS_ROM_DECODED_MAP_CONTENTS_COMPARISON');
  const contentsComparison=compareCrossVariantWorldContents(crossWorldDecodedContents);
  assert(contentsComparison.verified===true&&
@@ -1292,6 +1320,7 @@ function main(){
   'tests/romTextDispatchClassification.test.js',
   'tests/romMappingGapLedger.test.js',
   'tests/romWorldGapMatrix.test.js',
+  'tests/romScriptUnresolvedEvidence.test.js',
   'tests/romCrossVariantWorldGaps.test.js',
   'tests/romCrossVariantWorldContents.test.js',
   'tests/romVisibleItemCoordinateGuard.test.js',
