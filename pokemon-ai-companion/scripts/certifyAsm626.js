@@ -7,6 +7,7 @@ const {spawnSync}=require('node:child_process');
 const {readRom,KNOWN}=require('../romComprehensiveAudit');
 const {inspectRomBuffer}=require('../romVariantRegistry');
 const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
+const {auditWorldActorAttributeBindings}=require('../romMapActorAttributeBinding');
 const {buildCampaignWorldTracker}=require('../romCampaignWorldTracker');
 const {buildMappingGapLedger}=require('../romMappingGapLedger');
 const {buildWorldGapMatrix,exportWorldGapRowsV2}=require('../romWorldGapMatrix');
@@ -165,6 +166,20 @@ function main(){
   assert(atlas.variants?.[variant]?.identity?.sha256===KNOWN[variant],
    'Atlas identity: '+variant);
   const a=p.world?.interactionScriptAtlas,i=buildWorldContentsIndex(p);
+  const actorBindings=auditWorldActorAttributeBindings({index:i,scriptAtlas:a});
+  assert(actorBindings.verified===true&&
+   actorBindings.summary.mapIds===248&&
+   actorBindings.summary.normalHeaders===226&&
+   actorBindings.summary.visibleItems===106&&
+   actorBindings.summary.stationaryPokemon===12&&
+   actorBindings.summary.actorBindings===118&&
+   actorBindings.gameplayCollectionCertified===false,
+   'Exact-ROM world actor binding failed: '+variant+' '+actorBindings.reason);
+  log('ROM_'+variant.toUpperCase()+'_WORLD_ACTOR_BINDINGS='+
+   JSON.stringify(actorBindings.summary));
+  for(const mapId of [226,227])
+   log('ROM_'+variant.toUpperCase()+'_MAP_'+mapId+'_ACTOR_OBJECTS='+
+    JSON.stringify(actorBindings.byMap[mapId].bindings));
   const scripts=buildScriptUnresolvedEvidence({atlas:a});
   assert(scripts.verified===true&&
    scripts.summary.references===1126&&
@@ -1350,6 +1365,7 @@ function main(){
   'tests/romMappingGapLedger.test.js',
   'tests/romWorldGapMatrix.test.js',
   'tests/romScriptUnresolvedEvidence.test.js',
+  'tests/romMapActorAttributeBinding.test.js',
   'tests/romCrossVariantWorldGaps.test.js',
   'tests/romCrossVariantWorldContents.test.js',
   'tests/romVisibleItemCoordinateGuard.test.js',

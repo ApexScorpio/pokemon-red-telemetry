@@ -3,6 +3,7 @@
 // Never turns a geometric route into proof that the item is available now.
 // The same (kind,x,y,id) must identify one object on both sides before joining.
 const {getMapContents}=require('./romWorldContentsIndex');
+const {bindMapActorAttributes}=require('./romMapActorAttributeBinding');
 const KINDS=Object.freeze({
  visibleItems:'ITEM',hiddenItems:'HIDDEN_ITEM',trainers:'TRAINER',
  npcs:'NPC',stationaryPokemon:'STATIC_POKEMON',signs:'SIGN',warps:'WARP'
@@ -15,6 +16,9 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
   return {verified:false,mapId,reason:entry.reason||'Mapa sem cabecalho normal confirmado',
    unresolvedHiddenReferences:entry.unassignedHiddenItems||[],actions:[]};
  const hash=index.romSha256;
+ const actorBindings=bindMapActorAttributes({index,scriptAtlas,mapId});
+ const actorByKey=new Map(actorBindings.verified===true?
+  actorBindings.bindings.map(x=>[x.kind+':'+x.ordinal,x]):[]);
  const scriptMap=scriptAtlas?.verified===true&&
   scriptAtlas.romSha256===hash&&
   Array.isArray(scriptAtlas.maps)&&scriptAtlas.maps.length===248&&
@@ -100,6 +104,8 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
        'NO_SAME_MAP_PATH'].includes(proof.accessStatus))
     routeCondition=proof.accessStatus;
    const romScript=matchingScript(kind,obj);
+   const actorProof=(kind==='ITEM'||kind==='STATIC_POKEMON')&&
+    romScript!==null?actorByKey.get(kind+':'+obj.ordinal)||null:null;
    let gateFlag=null,gateSource=null;
    if((kind==='TRAINER'||kind==='STATIC_POKEMON')&&
       romScript?.eventBitBindingVerified===true&&
@@ -125,6 +131,12 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
    rows.push({group,kind,ordinal:obj.ordinal??obj.hiddenIndex??null,
     x:obj.x,y:obj.y,staticObject:obj,progress,evidence,
     routeCondition,accessibleNow:null,completedNow:null,
+    romActorCoordinateAndAttributeVerified:actorProof?.romCoordinateAndAttributeVerified===true,
+    romActorItemId:kind==='ITEM'?actorProof?.itemId??null:null,
+    romActorSpeciesInternalId:kind==='STATIC_POKEMON'?
+     actorProof?.speciesInternalId??null:null,
+    romActorLevel:kind==='STATIC_POKEMON'?actorProof?.level??null:null,
+    romActorVariantEvidence:actorProof?.source??null,
     scriptReferenceBound:!!romScript,
     scriptCommand:romScript?.scriptCommand??null,
     scriptTextPointerVerified:romScript?.textPointerVerified===true,
@@ -165,8 +177,10 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
     r.progress==='ENCOUNTER_GATE_OPEN_FLAG').length,
    verifiedScriptEventFlagStates:rows.filter(r=>
     r.scriptEventFlagSnapshotVerified===true).length,
-   scriptReferencesBound:rows.filter(r=>r.scriptReferenceBound).length},
+   scriptReferencesBound:rows.filter(r=>r.scriptReferenceBound).length,
+   boundStaticActorAttributes:rows.filter(r=>r.romActorCoordinateAndAttributeVerified).length},
   scriptAtlasBound:scriptMap!==null,
+  actorAttributeAtlasBound:actorBindings.verified===true,
   routeCertainty:'LOCAL_GEOMETRY_ONLY',
   globalStateCertified:false};
 }
