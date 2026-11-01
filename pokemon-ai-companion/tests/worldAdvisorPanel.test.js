@@ -1102,3 +1102,89 @@ test('isolated world panel renders live ROM checklist only under corroborated RA
  assert.doesNotMatch(stale,/CHECKLIST COMPLETA/);
  assert.match(stale,/Aguardar nova leitura/);
 });
+
+
+// T156: this is a real source slice of the public renderer under a virtual
+// DOM, without contacting RetroArch or touching an authenticated session.
+const SHA_RED_FULL='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+const SHA_GREEN_FULL='aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db';
+function versionedActorState(sha,mapId,x,y,kind='ITEM'){
+ const state=live();
+ state.mapId=mapId;
+ state.romRuntimeIdentity={matched:true,profileSha256:sha};
+ for(const name of ['positionWindow','latePositionWindow','publicationPositionWindow'])
+  state.memoryReadStatus[name].mapId=mapId;
+ const obj=kind==='ITEM'?
+  {kind:'item',ordinal:1,x,y,itemOrTrainerId:79}:
+  {kind:'wildPokemon',ordinal:1,x,y,wildSpeciesInternalId:131,wildLevel:70};
+ const action={kind,ordinal:1,x,y,staticObject:obj,
+  progress:'NOT_PROVEN',scriptReferenceBound:true,
+  scriptTextPointerVerified:true,scriptCommand:'TX_START_ASM',
+  romActorCoordinateAndAttributeVerified:true,
+  romActorVariantEvidence:'SAME_SHA_ROM_MAP_OBJECT_AND_SCRIPT_REFERENCE',
+  romActorItemId:kind==='ITEM'?79:null,
+  romActorSpeciesInternalId:kind==='STATIC_POKEMON'?131:null,
+  romActorLevel:kind==='STATIC_POKEMON'?70:null,
+  accessibleNow:null,completedNow:null};
+ state.worldAdvisor={
+  ...state.worldAdvisor,mapId,romSha256:sha,mapName:'Mapa comprovado',
+  fullWorldStaticIndexVerified:true,
+  campaignSummary:{normalMaps:226,unresolvedMapIds:22,
+   allStaticActions:1992,observedMapCount:1,scriptReferencesBound:1126},
+  mapChecklist:{verified:true,mapId,romSha256:sha,
+   actorAttributeAtlasBound:true,
+   summary:{total:1,confirmedCollected:0,confirmedNotCollected:0,
+    progressUnverified:1,needsCutCandidates:0,needsSurfCandidates:0,
+    boundStaticActorAttributes:1},
+   actions:[action]}
+ };
+ return state;
+}
+test('ROM-selected item marker description uses Red and Green own physical tiles',()=>{
+ const red=render(versionedActorState(SHA_RED_FULL,226,29,9));
+ const green=render(versionedActorState(SHA_GREEN_FULL,226,5,15));
+ assert.match(red.body.textContent,/ROM ativa confirmada: item ID 79, X:29 Y:9/);
+ assert.match(green.body.textContent,/ROM ativa confirmada: item ID 79, X:5 Y:15/);
+ assert.doesNotMatch(green.body.textContent,/ROM ativa confirmada: item ID 79, X:29 Y:9/);
+ assert.equal(red.body.innerHTML,null);
+ assert.equal(green.body.innerHTML,null);
+ assert.match(green.body.textContent,/acesso por confirmar/);
+});
+test('Green stationary Pokemon identity shows species internal and level without capture claim',()=>{
+ const s=versionedActorState(SHA_GREEN_FULL,227,5,10,'STATIC_POKEMON');
+ const content=render(s).body.textContent;
+ assert.match(content,/ROM ativa confirmada: espécie interna 131, nível 70, X:5 Y:10/);
+ assert.match(content,/encontro por confirmar/);
+ assert.doesNotMatch(content,/capturado com sucesso/i);
+});
+test('ROM actor detail rejects mismatched SHA, missing proof and contradictory ID',()=>{
+ const mutations=[
+  s=>{s.romRuntimeIdentity.profileSha256=SHA_RED_FULL;},
+  s=>{s.worldAdvisor.mapChecklist.romSha256=SHA_RED_FULL;},
+  s=>{s.worldAdvisor.mapChecklist.actorAttributeAtlasBound=false;},
+  s=>{s.worldAdvisor.mapChecklist.actions[0].romActorItemId=2;},
+  s=>{s.worldAdvisor.mapChecklist.actions[0].staticObject.x=29;},
+  s=>{s.worldAdvisor.mapChecklist.actions[0].scriptTextPointerVerified=false;},
+  s=>{s.worldAdvisor.mapChecklist.actions[0].romActorVariantEvidence='MANUAL';},
+  s=>{delete s.romRuntimeIdentity.profileSha256;}
+ ];
+ for(const mutate of mutations){
+  const state=versionedActorState(SHA_GREEN_FULL,226,5,15);
+  mutate(state);
+  const content=render(state).body.textContent;
+  assert.doesNotMatch(content,/ROM ativa confirmada: item ID 79/);
+ }
+});
+test('stale RAM or map transition hides version-specific actor proof',()=>{
+ const mutations=[
+  s=>{s.connected=false;},
+  s=>{s.memoryReadStatus.publicationPositionWindow.mapId=15;},
+  s=>{s.lastUpdate='2020-01-01T00:00:00Z';}
+ ];
+ for(const mutate of mutations){
+  const state=versionedActorState(SHA_GREEN_FULL,226,5,15);
+  mutate(state);
+  const content=render(state).body.textContent;
+  assert.doesNotMatch(content,/ROM ativa confirmada/);
+ }
+});

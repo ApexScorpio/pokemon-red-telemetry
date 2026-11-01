@@ -661,7 +661,7 @@ function renderRomAreaEvidence(state) {
  * na ROM. Não usa HTML dinâmico: a ROM e a RAM são dados não fiáveis para UI.
  * Nenhum percurso estático é anunciado como disponibilidade garantida.
  */
-function formatCampaignChecklistSection(advice) {
+function formatCampaignChecklistSection(advice,state) {
   const campaign=advice?.campaignSummary;
   const checklist=advice?.mapChecklist;
   if(advice?.verified!==true||advice.fullWorldStaticIndexVerified!==true||
@@ -670,6 +670,22 @@ function formatCampaignChecklistSection(advice) {
      checklist.romSha256!==advice.romSha256||
      !Array.isArray(checklist.actions))return [];
   const s=checklist.summary||{};
+  // The current emulator ROM SHA, not a cached manual catalogue, selects
+  // version-specific actor coordinates.  Exact known identities only.
+  const trustedHashes=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const runtimeSha=state?.romRuntimeIdentity?.profileSha256;
+  const canRenderActorProof=state?.romRuntimeIdentity?.matched===true&&
+    typeof runtimeSha==='string'&&trustedHashes.has(runtimeSha)&&
+    runtimeSha===advice.romSha256&&
+    runtimeSha===checklist.romSha256&&
+    checklist.actorAttributeAtlasBound===true&&
+    Number.isInteger(s.boundStaticActorAttributes)&&
+    s.boundStaticActorAttributes>=0&&
+    s.boundStaticActorAttributes<=118;
   const lines=[
     '--- CHECKLIST COMPLETA DESTE MAPA (ROM + PROVAS) ---',
     '🌍 KANTO: '+campaign.allStaticActions+' objetos/ações estáticos em '+
@@ -703,6 +719,40 @@ function formatCampaignChecklistSection(advice) {
       (action.kind==='HIDDEN_ITEM'?' · índice evento #':' · ID objeto #')+id:'';
     const condition=typeof action.routeCondition==='string'?
       ' · hipótese de caminho: '+action.routeCondition:'';
+    const staticActor=action.staticObject;
+    const staticActorMatched=canRenderActorProof&&
+      action.romActorCoordinateAndAttributeVerified===true&&
+      action.romActorVariantEvidence===
+        'SAME_SHA_ROM_MAP_OBJECT_AND_SCRIPT_REFERENCE'&&
+      action.scriptReferenceBound===true&&
+      action.scriptTextPointerVerified===true&&
+      Number.isInteger(action.ordinal)&&action.ordinal>=1&&
+      action.ordinal===staticActor?.ordinal&&
+      action.x===staticActor?.x&&action.y===staticActor?.y;
+    const itemMatched=staticActorMatched&&action.kind==='ITEM'&&
+      staticActor?.kind==='item'&&
+      Number.isInteger(action.romActorItemId)&&
+      action.romActorItemId>=0&&action.romActorItemId<=255&&
+      action.romActorItemId===staticActor.itemOrTrainerId;
+    const monMatched=staticActorMatched&&
+      action.kind==='STATIC_POKEMON'&&
+      staticActor?.kind==='wildPokemon'&&
+      Number.isInteger(action.romActorSpeciesInternalId)&&
+      action.romActorSpeciesInternalId>=1&&
+      action.romActorSpeciesInternalId<=190&&
+      action.romActorSpeciesInternalId===staticActor.wildSpeciesInternalId&&
+      Number.isInteger(action.romActorLevel)&&
+      action.romActorLevel>=1&&action.romActorLevel<=100&&
+      action.romActorLevel===staticActor.wildLevel;
+    const variantProof=itemMatched?
+      ' · ROM ativa confirmada: item ID '+action.romActorItemId+
+        ', X:'+action.x+' Y:'+action.y+
+        ' (estático, acesso por confirmar)':
+      monMatched?
+      ' · ROM ativa confirmada: espécie interna '+
+        action.romActorSpeciesInternalId+', nível '+action.romActorLevel+
+        ', X:'+action.x+' Y:'+action.y+
+        ' (estático, encontro por confirmar)':'';
     const entry=action.scriptReferenceBound===true?
       ' · entrada script ROM: '+(action.scriptCommand||'não classificada')+
         (action.scriptTextPointerVerified===true?' (ponteiro válido)':
@@ -720,7 +770,8 @@ function formatCampaignChecklistSection(advice) {
 
 
     lines.push('• '+type+' ('+position+')'+identity+' — '+
-      (progress[action.progress]||'progresso por confirmar')+condition+entry+asm);
+      (progress[action.progress]||'progresso por confirmar')+
+      variantProof+condition+entry+asm);
   }
   if(campaign.scriptReferencesBound>0)
     lines.push('🧩 Referências de scripts ROM ligadas a objetos do mundo: '+
@@ -1026,7 +1077,7 @@ function renderWorldAdvisor(state) {
     const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(slot>=0)lines.splice(slot,0,...rows);
   }
-  const campaignLines=formatCampaignChecklistSection(advice);
+  const campaignLines=formatCampaignChecklistSection(advice,state);
   if(campaignLines.length){
     const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
     if(insertion>=0)lines.splice(insertion,0,...campaignLines,'');
