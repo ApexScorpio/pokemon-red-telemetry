@@ -77,6 +77,82 @@ function groupMapRootRuntimeRequirements(requirements){
  );
 }
 
+function groupMapRootBudgetConditionRamSources(unresolved){
+ if(!Array.isArray(unresolved))return null;
+
+ const stopped=unresolved.filter(u=>
+  u?.reason==='PATH_BUDGET'&&
+  Array.isArray(u.conditions)
+ );
+
+ if(!stopped.length)return null;
+
+ const counts=new Map();
+ let pathsWithCandidateSources=0;
+
+ function collect(value,out,depth=0){
+  if(depth>16||!value||typeof value!=='object')
+   return;
+
+  if(
+   Number.isInteger(value.read)&&
+   value.volatile!==true&&
+   (
+    (value.read>=0xc000&&value.read<0xe000)||
+    (value.read>=0xff80&&value.read<0xffff)
+   )
+  ){
+   out.add(value.read);
+  }
+
+  if(Array.isArray(value)){
+   for(const item of value)
+    collect(item,out,depth+1);
+  }else{
+   for(const item of Object.values(value))
+    collect(item,out,depth+1);
+  }
+ }
+
+ for(const stop of stopped){
+  const addresses=new Set();
+
+  for(const condition of stop.conditions)
+   collect(condition?.predicate,addresses);
+
+  if(addresses.size>0)pathsWithCandidateSources++;
+
+  for(const address of addresses){
+   counts.set(address,(counts.get(address)||0)+1);
+  }
+ }
+
+ const all=[...counts].sort((a,b)=>
+  b[1]-a[1]||a[0]-b[0]
+ );
+
+ return {
+  reason:'PATH_BUDGET_CONDITION_RAM_DEPENDENCIES',
+  source:'ROM_ABSTRACT_CONDITION_HISTORY',
+  pathBudgetStops:stopped.length,
+  pathsWithCandidateSources,
+  distinctCandidateRamSources:all.length,
+  sourcesBounded:all.length>12,
+  candidateSources:all.slice(0,12).map(
+   ([address,conditionalStoppedPaths])=>({
+    address,
+    conditionalStoppedPaths,
+    runtimeRamReadObserved:false,
+    liveValueKnown:false
+   })
+  ),
+  runtimeRamReadObserved:false,
+  gameplayExecutionObserved:false,
+  gameEventCompleted:false,
+  pathsResolved:false
+ };
+}
+
 function groupMapRootSymbolicWriteRequirements(requirements){
  const groups=new Map();
 
@@ -271,6 +347,7 @@ function buildMapScriptRootSemantics({
     firstPassIndexedJumpGroups.length>0&&
     firstPassSymbolicWriteGroups.length===0;
 
+   let deepBudgetConditionRamSources=null;
    let deepSymbolicWriteGroups=[];
    let symbolicWriteEnrichment=null;
 
@@ -300,6 +377,9 @@ function buildMapScriptRootSemantics({
      );
     }
 
+    deepBudgetConditionRamSources=
+     groupMapRootBudgetConditionRamSources(deep.unresolved);
+
     deepSymbolicWriteGroups=
      groupMapRootSymbolicWriteRequirements(
       deep.symbolicWriteRequirements
@@ -327,6 +407,10 @@ function buildMapScriptRootSemantics({
      gameEventCompleted:false
     };
    }
+
+   const runtimeBudgetConditionRamSources=
+    deepBudgetConditionRamSources||
+    groupMapRootBudgetConditionRamSources(analysis.unresolved);
 
    const symbolicWriteGroups=
     deepSymbolicWriteGroups.length?
@@ -377,6 +461,7 @@ function buildMapScriptRootSemantics({
      instructionOffset:u.offset??null
     })),
     unresolvedSamplesBounded:analysis.unresolved.length>3,
+    runtimeBudgetConditionRamSources,
     runtimeSymbolicWriteRequirements:symbolicWriteGroups,
     symbolicWriteEnrichment,
      runtimeIndexedJumpRequirements:groupMapRootIndexedJumpRequirements(
@@ -495,6 +580,14 @@ function mapScriptRootEvidence({
   unresolvedSamples:root.unresolvedSamples.map(x=>({...x})),
   unresolvedSamplesBounded:root.unresolvedSamplesBounded,
   completeBoundedAnalysis:root.completeBoundedAnalysis,
+  runtimeBudgetConditionRamSources:
+   root.runtimeBudgetConditionRamSources?{
+    ...root.runtimeBudgetConditionRamSources,
+    candidateSources:
+     root.runtimeBudgetConditionRamSources.candidateSources.map(
+      source=>({...source})
+     )
+   }:null,
   symbolicWriteEnrichment:root.symbolicWriteEnrichment?
     {...root.symbolicWriteEnrichment}:null,
    runtimeSymbolicWriteRequirements:Array.isArray(root.runtimeSymbolicWriteRequirements)?
@@ -513,6 +606,7 @@ function mapScriptRootEvidence({
 }
 
 module.exports={
+ groupMapRootBudgetConditionRamSources,
  groupMapRootSymbolicWriteRequirements,
  groupMapRootIndexedJumpRequirements,
  groupMapRootRuntimeRequirements,

@@ -949,6 +949,58 @@ function formatCampaignChecklistSection(advice,state) {
       }
     }
 
+    const mapRootBudgetRamT220=
+      mapRootT190.runtimeBudgetConditionRamSources;
+
+    if(
+      mapRootBudgetRamT220?.reason===
+        'PATH_BUDGET_CONDITION_RAM_DEPENDENCIES'&&
+      mapRootBudgetRamT220.source===
+        'ROM_ABSTRACT_CONDITION_HISTORY'&&
+      Number.isInteger(
+        mapRootBudgetRamT220.pathBudgetStops
+      )&&
+      mapRootBudgetRamT220.pathBudgetStops>0&&
+      mapRootBudgetRamT220.runtimeRamReadObserved===false&&
+      mapRootBudgetRamT220.gameplayExecutionObserved===false&&
+      mapRootBudgetRamT220.gameEventCompleted===false&&
+      mapRootBudgetRamT220.pathsResolved===false&&
+      Array.isArray(mapRootBudgetRamT220.candidateSources)
+    ){
+      lines.push(
+        'Analise do script limitada por ramificacoes: '+
+        mapRootBudgetRamT220.pathBudgetStops+
+        ' caminhos interrompidos. Fontes RAM abaixo sao '+
+        'dependencias simbolicas, nao valores lidos ao vivo.'
+      );
+
+      for(const r of mapRootBudgetRamT220.candidateSources.slice(0,8)){
+        if(
+          !Number.isInteger(r.address)||
+          !Number.isInteger(r.conditionalStoppedPaths)||
+          r.conditionalStoppedPaths<1||
+          r.runtimeRamReadObserved!==false||
+          r.liveValueKnown!==false
+        )continue;
+
+        lines.push(
+          'RAM candidata 0x'+
+          r.address.toString(16).toUpperCase()+
+          ' | presente nas condicoes de '+
+          r.conditionalStoppedPaths+
+          ' caminhos interrompidos'+
+          ' | valor e progresso reais desconhecidos'
+        );
+      }
+
+      if(mapRootBudgetRamT220.sourcesBounded){
+        lines.push(
+          'Outros enderecos RAM candidatos existem, '+
+          'mas foram omitidos desta vista.'
+        );
+      }
+    }
+
 if(mapRootT190.unresolvedCount>0){
       lines.push(
         'Bloqueios do script: '+

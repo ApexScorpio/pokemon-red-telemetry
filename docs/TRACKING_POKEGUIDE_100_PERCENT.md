@@ -1289,3 +1289,25 @@
 - Testes de regressao e certificacao integral obrigatorios.
 - Producao, sessoes, backups, ROMs e saves protegidos.
 - O mapeamento integral da ROM continua por demonstrar.
+
+### PSB-20261101-2105-POKEGUIDE-T220-BRANCH-RAM-001 — fontes RAM em caminhos interrompidos
+
+- Base publicada: 104affcfe084cb69a86fa5b6b4283002d6756dbe.
+- T217 confirmou PATH_BUDGET nos mapas 31, 34 e 36.
+- T218 identificou fontes RAM recorrentes nas condicoes.
+- T219 demonstrou que eliminar 4/5/4 comparacoes
+  redundantes nao melhorou a cobertura; alteracao rejeitada.
+- Integrada agregacao limitada de enderecos RAM presentes
+  nas condicoes de caminhos interrompidos por PATH_BUDGET.
+- Reutilizada a segunda passagem do T216, sem novos scans.
+- A contagem por endereco representa caminhos interrompidos
+  que referem esse endereco, nao leituras reais.
+- Fontes RAM nao volateis sao candidatas, nao valores
+  provados de uma sessao ou requisitos suficientes.
+- A interface apresenta enderecos e advertencia explicita.
+- Mantidas as contagens da primeira passagem.
+- Mantidos os requisitos WRAM dos mapas 210 e 212.
+- Nenhuma ramificacao foi eliminada do interpretador.
+- Testes com as tres ROMs e certificacao integral obrigatorios.
+- Main, producao, sessoes e ROMs foram preservados.
+- O mapeamento global a 100 por cento nao esta demonstrado.
