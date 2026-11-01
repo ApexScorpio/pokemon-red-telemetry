@@ -3031,17 +3031,40 @@ class RetroArchClient extends EventEmitter {
       const spritePositions=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
         Array.isArray(this.latestState.mapEntities)?
         this.latestState.mapEntities.map(o=>[o.x,o.y,o.type,o.pictureId]):null;
+      // An unchanged player tile is not proof that outdoor connections
+      // remain valid. Recompute cross-map routes whenever the actual ROM
+      // outdoor graph/reference/alignment evidence changes.
+      const outdoorGraph=this.latestState.romWarpGraph?.outdoorConnections;
+      const outdoorAlignment=this.latestState.romOutdoorAlignment;
+      const outdoorRouteProof=
+        this.latestState.romOutdoorReferenceEvidence?.verified===true&&
+        outdoorGraph?.verified===true&&
+        outdoorGraph.romSha256===this.activeRomProfile.hash?.sha256&&
+        outdoorGraph.edgeCount===78&&
+        outdoorGraph.reciprocalConnections===78&&
+        outdoorAlignment?.verified===true&&
+        outdoorAlignment.romSha256===this.activeRomProfile.hash?.sha256&&
+        outdoorAlignment.verifiedConnections===78&&
+        outdoorAlignment.descriptorPointerFormulaVerified===true&&
+        outdoorAlignment.referenceOffsetCorroborated===true;
+      const outdoorFingerprint=outdoorRouteProof?
+        [outdoorGraph.edges?.map(e=>[e.sourceMapId,e.destinationMapId,
+          e.direction]),
+         outdoorAlignment.connections?.map(e=>[e.sourceMapId,
+           e.destinationMapId,e.direction,e.offsetBlocks,
+           e.descriptorPointerMatches,e.referenceOffsetCorroborated])]:null;
       const key=JSON.stringify([this.activeRomProfile.hash?.sha256,
         this.latestState.mapId,this.latestState.coords,targets,
         modeWindow.verified?modeWindow.modeByte:null,
         abilityCut===true,abilitySurf===true,spritePositions,
-        this.latestState.romOutdoorAlignment?.verified===true]);
+        outdoorRouteProof,outdoorFingerprint]);
       if(this._crossMapRouteKey!==key){
         this._crossMapRoute=findCrossMapItemPaths({
           romSha256:this.activeRomProfile.hash?.sha256,
           terrainAtlas:this.activeRomProfile.world.terrainAtlas,
           warpGraph:this.latestState.romWarpGraph,
-          outdoorAlignment:this.latestState.romOutdoorAlignment,
+          outdoorAlignment:outdoorRouteProof?
+            this.latestState.romOutdoorAlignment:null,
           sourceMapId:this.latestState.mapId,position:this.latestState.coords,
           targets,positionVerified:positionWindow.verified===true,
           currentModeByte:modeWindow.verified?modeWindow.modeByte:null,

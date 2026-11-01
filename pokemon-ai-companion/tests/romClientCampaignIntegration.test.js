@@ -596,3 +596,57 @@ test('battle transition ingest occurs only after final publication position guar
  assert.match(source.slice(ingester,ingester+660),/publicationGuardVerified:scriptedTargetStillSame/);
  assert.match(source.slice(ingester,ingester+660),/pollSequence:this\._scriptedBattlePollSequence/);
 });
+
+
+test('cross-map cache rejects stale outdoor routes when ROM reference or alignment changes',()=>{
+ const begin=source.indexOf('      const targets=detourTargets.slice(0,64).map(');
+ const end=source.indexOf('      this.latestState.romCrossMapItemRoutes={...r,',begin);
+ assert.ok(begin>=0&&end>begin,'Real cross-map cache block must be present');
+ const live=source.slice(begin,end);
+ assert.match(live,/outdoorRouteProof/);
+ assert.match(live,/outdoorFingerprint/);
+ assert.match(live,/outdoorAlignment:outdoorRouteProof\?/);
+ const invoke=vm.runInNewContext(
+  '(function(detourTargets,modeWindow,abilityCut,abilitySurf,positionWindow,findCrossMapItemPaths){'+
+    live+'\nreturn this._crossMapRoute;})'
+ );
+ const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+ const edges=Array.from({length:78},(_,i)=>({
+   sourceMapId:i,destinationMapId:i+1,direction:'east'}));
+ const connections=edges.map(e=>({...e,offsetBlocks:0,
+   descriptorPointerMatches:true,referenceOffsetCorroborated:true}));
+ const graph={verified:true,romSha256:sha,totalWarpEntries:813,
+   outdoorConnections:{verified:true,romSha256:sha,edgeCount:78,
+     reciprocalConnections:78,edges}};
+ const alignment={verified:true,romSha256:sha,verifiedConnections:78,
+   descriptorPointerFormulaVerified:true,referenceOffsetCorroborated:true,
+   connections};
+ const context={activeRomProfile:{hash:{sha256:sha},
+   world:{terrainAtlas:{verified:true,romSha256:sha}}},
+   latestState:{mapId:15,coords:{x:1,y:2},mapEntities:[],
+     memoryReadStatus:{blocks:{overworldSprites:true}},
+     romWarpGraph:graph,romOutdoorAlignment:alignment,
+     romOutdoorReferenceEvidence:{verified:true}}};
+ let calls=0;const allowed=[];
+ const route=arg=>{calls++;allowed.push(arg.outdoorAlignment===alignment);
+   return {verified:true,romSha256:sha,results:[]};};
+ const run=()=>invoke.call(context,[{x:6,y:2}],{verified:true,modeByte:0},
+   false,false,{verified:true},route);
+ run();run();assert.equal(calls,1);
+ assert.deepEqual(allowed,[true]);
+ context.latestState.romOutdoorReferenceEvidence.verified=false;
+ run();run();assert.equal(calls,2);
+ assert.deepEqual(allowed,[true,false]);
+ context.latestState.romOutdoorReferenceEvidence.verified=true;
+ run();assert.equal(calls,3);
+ assert.deepEqual(allowed,[true,false,true]);
+ // An edge can change while 'verified' stays true: stale cache is forbidden.
+ connections[0].offsetBlocks=1;
+ run();assert.equal(calls,4);
+ // A graph can lose its outdoor connections while ROM/map stay unchanged.
+ context.latestState.romWarpGraph.outdoorConnections=null;
+ run();assert.equal(calls,5);
+ assert.deepEqual(allowed,[true,false,true,true,false]);
+ // An unchanged invalid graph should not trigger repeated computation.
+ run();assert.equal(calls,5);
+});
