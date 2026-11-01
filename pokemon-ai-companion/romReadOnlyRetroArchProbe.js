@@ -76,13 +76,14 @@ function oneQuery(socket,host,port,command,timeoutMs){
 }
 async function probeReadOnlyRetroArch({
  host='192.168.1.145',port=55355,timeoutMs=1200,
- mbc3SourceReadback=false
+ mbc3SourceReadback=false,ffb8Readback=false
 }={}){
  // The default endpoint above comes from this project's actual server.js,
  // not from evidence that the device is currently reachable.
  if(!privateIpv4(host)||!Number.isInteger(port)||port<1||port>65535||
     !Number.isInteger(timeoutMs)||timeoutMs<250||timeoutMs>5000||
-    typeof mbc3SourceReadback!=='boolean')
+    typeof mbc3SourceReadback!=='boolean'||
+    typeof ffb8Readback!=='boolean')
   return fail('PROBE_TARGET_NOT_PRIVATE_OR_INVALID');
  const socket=dgram.createSocket('udp4');
  const sent=[];
@@ -95,6 +96,8 @@ async function probeReadOnlyRetroArch({
   probeTargetHost:host,probeTargetPort:port,
   mbc3SourceReadbackRequested:mbc3SourceReadback,
   mbc3SourceReadbackVerified:false,
+  ffb8ReadbackRequested:ffb8Readback,
+  ffb8ReadbackVerified:false,
   ...extra
  });
  const request=async command=>{
@@ -135,6 +138,8 @@ async function probeReadOnlyRetroArch({
    await Promise.all(SOURCE_CPU_ADDRESSES.map(async a=>(await read(a,1))[0])):[];
   const sourceRepeat=mbc3SourceReadback?
    await Promise.all(SOURCE_CPU_ADDRESSES.map(async a=>(await read(a,1))[0])):[];
+  const ffb8First=ffb8Readback?(await read(0xFFB8,1))[0]:null;
+  const ffb8Repeat=ffb8Readback?(await read(0xFFB8,1))[0]:null;
   const lastMap=await read(0xD35E,1);
   const lastPosition=await read(0xD361,2);
   const final=parseStatus(await request('GET_STATUS'));
@@ -170,6 +175,20 @@ async function probeReadOnlyRetroArch({
     changedAddresses:sourceProof.changedAddresses??[],
     sourceReadbackPerformed:true,sourceBankVerified:false
    });
+  if(ffb8Readback&&initial.mode!==final.mode)
+   return tracedFail('FFB8_SOURCE_STATUS_CHANGED',{variant:initial.variant});
+  if(ffb8Readback&&ffb8First!==ffb8Repeat)
+   return tracedFail('FFB8_SOURCE_RAM_READBACK_CHANGED',{
+    variant:initial.variant,sourceAddressCpu:0xffb8
+   });
+  const ffb8SourceEvidence=ffb8Readback?{
+   verified:true,addressCpu:0xffb8,
+   firstHex:ffb8First,repeatHex:ffb8Repeat,
+   repeatedStable:true,readOnly:true,
+   activeRomSha256Verified:false,selectedBank:null,
+   bankRegisterWriteObserved:false,gameplayEventObserved:false,
+   snapshotAtomicVerified:false
+  }:null;
   return {verified:true,status:'REMOTE_RAM_FLAGS_REPEAT_CORROBORATED',
    variant:initial.variant,activeRomCRC32:initial.crc32,
    romProfileCRC32Matched:true,activeRomSha256Verified:false,
@@ -188,6 +207,9 @@ async function probeReadOnlyRetroArch({
    mbc3SourceReadbackVerified:sourceProof?.verified===true,
    mbc3SourceStableBytes:sourceProof?.stableRamBytes??0,
    mbc3SourceSamples:sourceProof?.samples??[],
+   ffb8ReadbackRequested:ffb8Readback,
+   ffb8ReadbackVerified:ffb8SourceEvidence?.verified===true,
+   ffb8SourceEvidence,
    mbc3ActiveBankVerified:false,
    playerActionConfirmed:false,snapshotAtomicVerified:false,
    gameEffectsCertified:false,

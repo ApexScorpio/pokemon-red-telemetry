@@ -1161,3 +1161,19 @@
 - Nao se afirma execucao observada nem conclusao de eventos.
 - Analise integral da campanha continua pendente.
 - Main, preview, ROMs, saves e sessoes preservados.
+
+### PSB-20261101-1638-POKEGUIDE-T187-DIRECTFIX-001 - leitura FFB8 opcional
+
+- Base publicada: 1eb6b9913dff9fac3dbdb690245af6190685fd4a.
+- Aplicacao direta ao codigo existente, sem executar Codex.
+- Preservado o motor semantico T185 e o diagnostico T186.
+- Contrato original das oito fontes de memoria mantido.
+- FFB8 lido apenas por opcao explicita, duas vezes, sem escrita.
+- Testes realizados exclusivamente com servidor UDP simulado em loopback.
+- CRC, modo, mapa, posicao e estabilidade sujeitos a verificacao.
+- CRC nao comprova SHA256; duas leituras nao comprovam atomicidade.
+- FFB8 observado nao equivale a banco ativo nem execucao de script.
+- Certificacao integral das tres ROMs aprovada nesta execucao.
+- Efeitos fisicos comprovados: Red 2, Blue 2, Green 2.
+- Cobertura semantica integral ainda nao certificada.
+- Main, preview, autenticacao, ROMs e saves preservados.
