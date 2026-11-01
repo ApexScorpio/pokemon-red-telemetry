@@ -38,7 +38,8 @@ function exactTilePath(reach,p){
  return best;
 }
 function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
- sourceMapId,position,target=null,targets=null,outdoorAlignment=null,positionVerified=false,
+ sourceMapId,position,target=null,targets=null,outdoorAlignment=null,
+ lastMapGuide=null,positionVerified=false,
  currentModeByte=null,canCut=false,canSurf=false,
  spritesVerified=false,currentMapEntities=null,maxTransitions=10,
  maxStates=180}={}){
@@ -115,6 +116,40 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
      }
    }
  }
+ // D365 LAST_MAP is valid only on the currently observed map.
+ // Never carry current RAM destinations into hypothetical later maps.
+ const liveLastMapExits=[];
+ const lastMapOK=lastMapGuide?.verified===true&&
+   lastMapGuide.romSha256===sha&&lastMapGuide.mapId===sourceMapId&&
+   lastMapGuide.lastMapEvidence?.sequentiallyConsistent===true&&
+   lastMapGuide.lastMapEvidence.romSha256===sha&&
+   Array.isArray(lastMapGuide.warps);
+ if(lastMapOK){
+   const sourceEdges=warpGraph.edges.filter(e=>e?.sourceMapId===sourceMapId);
+   const resolvedIds=new Set(lastMapGuide.warps.filter(w=>
+     w?.map===255&&w.ramResolvedDestinationVerified===true)
+     .map(w=>w.resolvedMapId));
+   if(lastMapGuide.warps.length===sourceEdges.length&&resolvedIds.size===1){
+     for(const e of sourceEdges){
+       if(e.status!=='LAST_MAP_RAM_REQUIRED')continue;
+       const w=lastMapGuide.warps[e.sourceWarpIndex];
+       if(!w||w.map!==255||w.warp!==e.destinationWarpIndex||
+          w.x!==e.x||w.y!==e.y||
+          w.ramResolvedDestinationVerified!==true||
+          w.resolvedWarpIndex!==e.destinationWarpIndex||
+          !byte(w.resolvedMapId)||!maps.has(w.resolvedMapId)||
+          !pos({x:w.landingX,y:w.landingY})||
+          w.resolutionSource!=='D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE')
+         continue;
+       liveLastMapExits.push({
+         ...e,kind:'LAST_MAP_RAM_HYPOTHESIS',
+         landing:{mapId:w.resolvedMapId,warpIndex:w.resolvedWarpIndex,
+           x:w.landingX,y:w.landingY},
+         destinationMapId:w.resolvedMapId
+       });
+     }
+   }
+ }
  const first=gridFor(sourceMapId);
  if(!first||position.x>=first.width||position.y>=first.height)
   return reject('Coordenadas RAM fora do terreno da ROM de origem');
@@ -174,14 +209,19 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
        snapshotAtomicVerified:false,
        scope:state.segments.some(e=>e.kind==='OUTDOOR_BORDER')?
          'STATIC_WARPS_AND_ALIGNED_OUTDOOR_BORDER_HYPOTHESES':
-         'STATIC_WARPS_ONLY_NO_OUTDOOR_CONNECTIONS',
+         state.segments.some(e=>e.kind==='LAST_MAP_RAM_HYPOTHESIS')?
+           'STATIC_WARPS_AND_CURRENT_D365_LAST_MAP_HYPOTHESIS':
+           'STATIC_WARPS_ONLY_NO_OUTDOOR_CONNECTIONS',
        note:'Hipótese geométrica ROM. Portas, NPC, flags e ações de campo não comprovados.'};
      results[index]=result;pending.delete(index);
      if(!multi)return result;
    }
    if(pending.size===0)break;
    if(state.segments.length>=maxTransitions)continue;
-   for(const e of exits.get(state.mapId)||[]){
+   const outgoing=state.segments.length===0?
+     [...(exits.get(state.mapId)||[]),...liveLastMapExits]:
+     (exits.get(state.mapId)||[]);
+   for(const e of outgoing){
      if(e.x>=grid.width||e.y>=grid.height)continue;
      const approach=exactTilePath(reach,e);
      if(!approach)continue;
@@ -197,7 +237,11 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
          sourceWarpTile:{x:e.x,y:e.y},
          destinationMapId:landing.mapId,destinationWarpIndex:landing.warpIndex,
          landing:{x:landing.x,y:landing.y},localRoute:approach,
-         kind:'WARP',transitionGuaranteed:false}]});
+         kind:e.kind==='LAST_MAP_RAM_HYPOTHESIS'?
+           'LAST_MAP_RAM_HYPOTHESIS':'WARP',
+         lastMapSourceReadSequentiallyConsistent:
+           e.kind==='LAST_MAP_RAM_HYPOTHESIS',
+         transitionGuaranteed:false}]});
    }
    // No gameplay crossing is proven here. Destination must be static land:
    // Cut trees and Surf water require separate transition-state evidence.
@@ -247,6 +291,7 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
    target:{mapId:t.mapId,x:t.x,y:t.y,hidden:t.hidden===true},
    exploredStates:explored,maxStatesExceeded:incomplete,
    outdoorAlignmentUsed:borderLinks.size>0,
+   currentLastMapHypotheses:liveLastMapExits.length,
    accessibleNow:null,routeNavigableNowProven:false,reason});
  if(!multi)return unresolved(requested[0]);
  return {verified:true,romSha256:sha,sourceMapId,

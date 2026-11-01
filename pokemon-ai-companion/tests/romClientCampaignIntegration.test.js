@@ -745,3 +745,68 @@ test('remote flag cache invalidates for changed static warps and withdraws stale
  assert.deepEqual(alignedUsed,[true,true,false,true,true,false]);
  run();assert.equal(calls,6);
 });
+
+
+test('cross-map cached LAST_MAP changes cause recomputation without ROM or position change',()=>{
+ const begin=source.indexOf('      const targets=detourTargets.slice(0,64).map(');
+ const end=source.indexOf('      this.latestState.romCrossMapItemRoutes={...r,',begin);
+ const live=source.slice(begin,end);
+ assert.match(live,/currentLastMapFingerprint/);
+ assert.match(live,/lastMapGuide:currentLastMapGuide/);
+ const execute=vm.runInNewContext(
+  '(function(detourTargets,modeWindow,abilityCut,abilitySurf,positionWindow,findCrossMapItemPaths){'+
+  live+'\nreturn this._crossMapRoute;})');
+ const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+ const guide={verified:true,romSha256:sha,mapId:0,
+   lastMapEvidence:{sequentiallyConsistent:true,romSha256:sha},
+   warps:[{map:255,warp:0,x:1,y:1,ramResolvedDestinationVerified:true,
+     resolvedMapId:1,resolvedWarpIndex:0,landingX:1,landingY:1,
+     resolutionSource:'D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE'}]};
+ const ctx={activeRomProfile:{hash:{sha256:sha},world:{terrainAtlas:{verified:true}}},
+   latestState:{mapId:0,coords:{x:0,y:2},mapEntities:[],
+    memoryReadStatus:{blocks:{overworldSprites:true}},
+    romWarpGraph:{verified:true,romSha256:sha,edges:[]},
+    romStaticMapGuide:guide,romOutdoorReferenceEvidence:{verified:false}}};
+ let calls=0;const destinations=[];
+ const search=args=>{calls++;destinations.push(args.lastMapGuide?.warps[0]?.resolvedMapId);
+   return {verified:true,results:[]};};
+ const run=()=>execute.call(ctx,[{x:3,y:2}],
+   {verified:true,modeByte:0},false,false,{verified:true},search);
+ run();run();assert.equal(calls,1);
+ guide.warps[0].resolvedMapId=2;run();assert.equal(calls,2);
+ guide.lastMapEvidence.sequentiallyConsistent=false;run();assert.equal(calls,3);
+ assert.deepEqual(destinations,[1,2,2]);
+});
+test('remote flag route cache passes D365 current guide and invalidates changed resolution',()=>{
+ const block=remoteRouteCacheBlock();
+ assert.match(block,/remoteLastMapFingerprint/);
+ assert.match(block,/lastMapGuide:remoteLastMapGuide/);
+ const execute=vm.runInNewContext(
+  '(function(mapConfirmation,positionWindow,modeWindow,abilityCut,abilitySurf,'+
+  'selectGlobalFlagTargets,planGlobalFlagItemRoutes){'+block+
+  '\nreturn this.latestState.globalFlagItemRoutes;})');
+ const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+ const guide={verified:true,romSha256:sha,mapId:15,
+   lastMapEvidence:{sequentiallyConsistent:true,romSha256:sha},
+   warps:[{map:255,warp:0,x:1,y:1,ramResolvedDestinationVerified:true,
+     resolvedMapId:4,resolvedWarpIndex:0,landingX:1,landingY:1,
+     resolutionSource:'D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE'}]};
+ const ctx={activeRomProfile:{hash:{sha256:sha},world:{terrainAtlas:{verified:true}}},
+   latestState:{mapId:15,coords:{x:1,y:2},
+    romStaticMapGuide:guide,romVariantTerrainEvidence:{verified:true,romSha256:sha},
+    romWarpGraph:{verified:true,romSha256:sha,edges:[]},
+    romOutdoorReferenceEvidence:{verified:false},
+    memoryReadStatus:{blocks:{overworldSprites:true}},mapEntities:[],
+    globalCampaignLedger:{verified:true},globalCampaignObjectives:{verified:true}}};
+ let calls=0;const forwarded=[];
+ const select=()=>({verified:true,pendingSignature:'stable',items:[
+   {kind:'HIDDEN_ITEM',mapId:4,x:2,y:2,bitIndex:2,mapHopCount:1,staticRouteKnown:true}]});
+ const calc=args=>{calls++;forwarded.push(args.lastMapGuide===guide);
+   return {verified:true,items:[],foundCount:0};};
+ const run=()=>execute.call(ctx,{verified:true},{verified:true},
+  {verified:true,modeByte:0},false,false,select,calc);
+ run();run();assert.equal(calls,1);
+ guide.warps[0].resolvedMapId=5;run();assert.equal(calls,2);
+ guide.verified=false;run();assert.equal(calls,3);
+ assert.deepEqual(forwarded,[true,true,true]);
+});

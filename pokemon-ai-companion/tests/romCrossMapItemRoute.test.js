@@ -258,3 +258,90 @@ test('offscreen RAM actor remains legal and does not block certified geometric d
   assert.equal(r.accessibleNow,null);
  }
 });
+
+
+function lastMapFixture(){
+ const f=fixture(),edge=f.warpGraph.edges[0];
+ Object.assign(edge,{status:'LAST_MAP_RAM_REQUIRED',
+   destinationMapId:255,destinationWarpIndex:0});
+ f.warpGraph.edges[1].status='LAST_MAP_RAM_REQUIRED';
+ f.target={mapId:1,x:3,y:2,hidden:false};
+ f.lastMapGuide={verified:true,romSha256:sha,mapId:0,
+   lastMapEvidence:{sequentiallyConsistent:true,romSha256:sha,
+     atomicSnapshotVerified:false},
+   warps:[{map:255,warp:0,x:1,y:1,
+     ramResolvedDestinationVerified:true,resolvedMapId:1,
+     resolvedWarpIndex:0,landingX:1,landingY:1,
+     resolutionSource:'D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE'}]};
+ return f;
+}
+test('current D365 LAST_MAP candidate remains strictly conditional',()=>{
+ const r=findCrossMapItemPath(lastMapFixture());
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.found,true,r.reason);
+ assert.equal(r.transitionCount,1);
+ assert.equal(r.segments[0].kind,'LAST_MAP_RAM_HYPOTHESIS');
+ assert.equal(r.segments[0].lastMapSourceReadSequentiallyConsistent,true);
+ assert.match(r.scope,/CURRENT_D365_LAST_MAP/);
+ assert.equal(r.routeNavigableNowProven,false);
+ assert.equal(r.accessibleNow,null);
+});
+test('LAST_MAP requires matching ROM map warp signature and D365 evidence',()=>{
+ for(const change of [
+   g=>{g.verified=false},
+   g=>{g.romSha256='0'.repeat(64)},
+   g=>{g.mapId=1},
+   g=>{g.lastMapEvidence.sequentiallyConsistent=false},
+   g=>{g.lastMapEvidence.romSha256='0'.repeat(64)},
+   g=>{g.warps[0].resolutionSource='GUESS'},
+   g=>{g.warps[0].ramResolvedDestinationVerified=false},
+   g=>{g.warps[0].resolvedMapId=255},
+   g=>{g.warps[0].warp=5},
+   g=>{g.warps[0].landingX=255}
+ ]){
+   const f=lastMapFixture();change(f.lastMapGuide);
+   const r=findCrossMapItemPath(f);
+   assert.equal(r.verified,true,r.reason);
+   assert.equal(r.found,false,r.reason);
+   assert.equal(r.accessibleNow,null);
+ }
+});
+test('D365 from another map cannot create a live-origin exit',()=>{
+ const f=lastMapFixture();
+ f.warpGraph.edges[0].sourceMapId=1;
+ f.lastMapGuide.mapId=1;
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,true);
+ assert.equal(r.found,false);
+});
+test('LAST_MAP target tile blocked or requiring Surf is not a land arrival',()=>{
+ for(const value of ['WALL','WATER']){
+   const f=lastMapFixture(),m=f.terrainAtlas.maps[1];
+   const bits=Buffer.from(m.walkingBitsBase64,'base64');
+   const tiles=Buffer.from(m.tileIdsBase64,'base64');
+   const i=1*m.width+1;
+   bits[i>>3]&=~(1<<(i&7));
+   if(value==='WATER')tiles[i]=0x14;
+   m.walkingBitsBase64=bits.toString('base64');
+   m.walkingBitsSha256=hash(bits);
+   m.tileIdsBase64=tiles.toString('base64');
+   m.tileIdsSha256=hash(tiles);
+   const r=findCrossMapItemPath(f);
+   assert.equal(r.verified,true);
+   assert.equal(r.found,false);
+   assert.equal(r.accessibleNow,null);
+ }
+});
+test('LAST_MAP batch shares source proof but never claims pickup',()=>{
+ const f=lastMapFixture();
+ const r=findCrossMapItemPaths({...f,targets:[
+   {mapId:1,x:3,y:2,hidden:false},
+   {mapId:1,x:2,y:3,hidden:true}
+ ]});
+ assert.equal(r.verified,true);
+ assert.equal(r.foundCount,2);
+ assert.equal(r.results.length,2);
+ assert.ok(r.results.every(p=>p.segments?.[0]?.kind==='LAST_MAP_RAM_HYPOTHESIS'));
+ assert.ok(r.results.every(p=>p.accessibleNow===null&&
+   p.routeNavigableNowProven===false));
+});

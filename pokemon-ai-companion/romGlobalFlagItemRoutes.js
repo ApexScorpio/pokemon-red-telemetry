@@ -92,7 +92,8 @@ function selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets=4}={}
    accessibleNow:null,routeNavigableNowProven:false};
 }
 function planGlobalFlagItemRoutes({ledger,objectives,terrainAtlas,warpGraph,
- outdoorAlignment=null,sourceMapId,position,positionVerified=false,
+ outdoorAlignment=null,lastMapGuide=null,sourceMapId,position,
+ positionVerified=false,
  currentModeByte=null,canCut=false,canSurf=false,spritesVerified=false,
  currentMapEntities=[],maxTargets=4,maxStates=180,maxTransitions=10}={}){
  const selected=selectGlobalFlagTargets({ledger,objectives,sourceMapId,maxTargets});
@@ -113,7 +114,7 @@ function planGlobalFlagItemRoutes({ledger,objectives,terrainAtlas,warpGraph,
    scriptsVerified:false,itemsCollectedNowProven:false};
  const paths=findCrossMapItemPaths({
    romSha256:selected.romSha256,terrainAtlas,warpGraph,outdoorAlignment,
-   sourceMapId,position,positionVerified,currentModeByte,
+   lastMapGuide,sourceMapId,position,positionVerified,currentModeByte,
    canCut,canSurf,spritesVerified,currentMapEntities,
    targets:routable.map(x=>({mapId:x.mapId,x:x.x,y:x.y,hidden:true})),
    maxStates,maxTransitions

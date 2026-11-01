@@ -3033,6 +3033,19 @@ class RetroArchClient extends EventEmitter {
         this.latestState.mapEntities.map(o=>[o.x,o.y,o.type,o.pictureId]):null;
       // Cache every static-warp input actually consumed by the multi-map
       // graph search. A validated edge can change while ROM/map/RAM do not.
+      const currentLastMapGuide=this.latestState.romStaticMapGuide;
+      const currentLastMapFingerprint=[
+        currentLastMapGuide?.verified===true,
+        currentLastMapGuide?.romSha256??null,
+        currentLastMapGuide?.mapId??null,
+        currentLastMapGuide?.lastMapEvidence?.sequentiallyConsistent===true,
+        currentLastMapGuide?.lastMapEvidence?.romSha256??null,
+        Array.isArray(currentLastMapGuide?.warps)?
+          currentLastMapGuide.warps.filter(w=>w?.map===255).map(w=>
+            [w.x,w.y,w.warp,w.ramResolvedDestinationVerified,
+              w.resolvedMapId,w.resolvedWarpIndex,
+              w.landingX,w.landingY,w.resolutionSource]):null
+      ];
       const staticWarpGraph=this.latestState.romWarpGraph;
       const staticWarpFingerprint=[
         staticWarpGraph?.verified===true,staticWarpGraph?.romSha256??null,
@@ -3072,7 +3085,8 @@ class RetroArchClient extends EventEmitter {
         this.latestState.mapId,this.latestState.coords,targets,
         modeWindow.verified?modeWindow.modeByte:null,
         abilityCut===true,abilitySurf===true,spritePositions,
-        staticWarpFingerprint,outdoorRouteProof,outdoorFingerprint]);
+        staticWarpFingerprint,outdoorRouteProof,outdoorFingerprint,
+        currentLastMapFingerprint]);
       if(this._crossMapRouteKey!==key){
         this._crossMapRoute=findCrossMapItemPaths({
           romSha256:this.activeRomProfile.hash?.sha256,
@@ -3080,6 +3094,7 @@ class RetroArchClient extends EventEmitter {
           warpGraph:this.latestState.romWarpGraph,
           outdoorAlignment:outdoorRouteProof?
             this.latestState.romOutdoorAlignment:null,
+          lastMapGuide:currentLastMapGuide,
           sourceMapId:this.latestState.mapId,position:this.latestState.coords,
           targets,positionVerified:positionWindow.verified===true,
           currentModeByte:modeWindow.verified?modeWindow.modeByte:null,
@@ -3224,6 +3239,19 @@ class RetroArchClient extends EventEmitter {
       this.latestState.mapEntities.map(a=>[a.x,a.y,a.type,a.pictureId]):null;
     // These are separately cached plans: they must also invalidate when
     // any static warp or outdoor landing/offset evidence changes.
+    const remoteLastMapGuide=this.latestState.romStaticMapGuide;
+    const remoteLastMapFingerprint=[
+      remoteLastMapGuide?.verified===true,
+      remoteLastMapGuide?.romSha256??null,
+      remoteLastMapGuide?.mapId??null,
+      remoteLastMapGuide?.lastMapEvidence?.sequentiallyConsistent===true,
+      remoteLastMapGuide?.lastMapEvidence?.romSha256??null,
+      Array.isArray(remoteLastMapGuide?.warps)?
+        remoteLastMapGuide.warps.filter(w=>w?.map===255).map(w=>
+          [w.x,w.y,w.warp,w.ramResolvedDestinationVerified,
+            w.resolvedMapId,w.resolvedWarpIndex,
+            w.landingX,w.landingY,w.resolutionSource]):null
+    ];
     const remoteWarpGraph=this.latestState.romWarpGraph;
     const remoteStaticWarpFingerprint=[
       remoteWarpGraph?.verified===true,remoteWarpGraph?.romSha256??null,
@@ -3269,7 +3297,8 @@ class RetroArchClient extends EventEmitter {
       modeWindow.verified?modeWindow.modeByte:null,
       this.latestState.romOutdoorAlignment?.verified===true,
       remoteSpriteSnapshot,remoteStaticWarpFingerprint,
-      remoteOutdoorProof,remoteOutdoorFingerprint
+      remoteOutdoorProof,remoteOutdoorFingerprint,
+      remoteLastMapFingerprint
     ]);
     if(this._globalFlagItemKey!==remoteKey){
       this._globalFlagItemRoutes=remoteSearchReady?
@@ -3280,6 +3309,7 @@ class RetroArchClient extends EventEmitter {
           warpGraph:this.latestState.romWarpGraph,
           outdoorAlignment:remoteOutdoorProof?
             this.latestState.romOutdoorAlignment:null,
+          lastMapGuide:remoteLastMapGuide,
           sourceMapId:this.latestState.mapId,position:this.latestState.coords,
           positionVerified:positionWindow.verified===true,
           currentModeByte:modeWindow.verified?modeWindow.modeByte:null,
