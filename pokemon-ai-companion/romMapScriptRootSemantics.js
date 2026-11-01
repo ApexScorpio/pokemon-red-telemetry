@@ -77,6 +77,59 @@ function groupMapRootRuntimeRequirements(requirements){
  );
 }
 
+function groupMapRootIndexedJumpRequirements(requirements){
+ const groups=new Map();
+ if(!Array.isArray(requirements))return [];
+
+ for(const r of requirements){
+  if(!r||typeof r!=='object'||
+     r.reason!=='LIVE_RAM_REQUIRED_FOR_INDEXED_ROM_JUMP_TABLE'||
+     !Number.isInteger(r.sourceAddress)||
+     !Number.isInteger(r.instructionOffset)||
+     !Number.isInteger(r.baseCpuAddress)||
+     !Number.isInteger(r.assumedBank)||
+     r.assumedBank<1||r.assumedBank>=64||
+     !Number.isInteger(r.pointerCandidateCount)||
+     !Number.isInteger(r.targetCandidateCount)||
+     !Number.isInteger(r.fixedRomCandidates)||
+     !Number.isInteger(r.switchableRomCandidates)||
+     !Number.isInteger(r.outsideRomCandidates)||
+     r.pointerCandidateCount!==128||
+     r.targetCandidateCount<1||r.targetCandidateCount>128||
+     r.fixedRomCandidates+r.switchableRomCandidates+
+       r.outsideRomCandidates!==128||
+     r.runtimeRamReadObserved!==false||
+     r.actualBankSelectionVerified!==false||
+     r.indirectJumpObserved!==false||
+     r.gameplayExecutionObserved!==false||
+     r.gameEventCompleted!==false)
+   continue;
+
+  const key=JSON.stringify([
+   r.sourceAddress,r.instructionOffset,
+   r.baseCpuAddress,r.assumedBank,r.targetCandidateCount
+  ]);
+
+  if(!groups.has(key)){
+   groups.set(key,{
+    ...r,
+    conditionalPathRequirements:0,
+    runtimeRamReadObserved:false,
+    actualBankSelectionVerified:false,
+    indirectJumpObserved:false,
+    gameplayExecutionObserved:false,
+    gameEventCompleted:false
+   });
+  }
+  groups.get(key).conditionalPathRequirements++;
+ }
+
+ return [...groups.values()].sort((a,b)=>
+  a.instructionOffset-b.instructionOffset||
+  a.sourceAddress-b.sourceAddress
+ );
+}
+
 function buildMapScriptRootSemantics({
  rom,maps,romSha256
 }={}){
@@ -175,6 +228,9 @@ function buildMapScriptRootSemantics({
      instructionOffset:u.offset??null
     })),
     unresolvedSamplesBounded:analysis.unresolved.length>3,
+    runtimeIndexedJumpRequirements:groupMapRootIndexedJumpRequirements(
+     analysis.indexedJumpRequirements
+    ),
     runtimeRamRequirements:groupMapRootRuntimeRequirements(
      analysis.runtimeRequirements
     ),
@@ -290,6 +346,8 @@ function mapScriptRootEvidence({
   completeBoundedAnalysis:root.completeBoundedAnalysis,
   runtimeRamRequirements:Array.isArray(root.runtimeRamRequirements)?
    root.runtimeRamRequirements.map(r=>({...r})):[],
+   runtimeIndexedJumpRequirements:Array.isArray(root.runtimeIndexedJumpRequirements)?
+   root.runtimeIndexedJumpRequirements.map(r=>({...r})):[],
   preconditions:[...root.preconditions],
   rootInvokedInCurrentPlay:false,
   actualBankSelectionVerified:false,
@@ -300,6 +358,7 @@ function mapScriptRootEvidence({
 }
 
 module.exports={
+ groupMapRootIndexedJumpRequirements,
  groupMapRootRuntimeRequirements,
  buildMapScriptRootSemantics,
  mapScriptRootEvidence

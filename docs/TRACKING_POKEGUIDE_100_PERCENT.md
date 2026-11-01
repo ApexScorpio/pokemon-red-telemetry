@@ -1228,3 +1228,19 @@
 - Main, preview, Antigravity, ROMs e saves preservados.
 - Progresso do jogo e eventos executados nao inferidos.
 - Mapeamento semantico a 100 por cento ainda nao demonstrado.
+
+### PSB-20261101-2000-POKEGUIDE-T206-FIXTEST-001 - recuperacao e certificacao T206
+
+- Base do trabalho: 635126fdb9c09a464984c574cd408d87808d0973.
+- T206 anterior falhou num teste sintetico que criou 226 mapas
+  mas omitiu o mapa 233.
+- A correcao alterou apenas o catalogo sintetico desse teste.
+- A implementacao dos requisitos de saltos indiretos foi preservada.
+- Reutilizadas as provas T192 a T205.
+- Testes dirigidos, tres ROMs reais e certificacao integral
+  exigidos antes de publicar.
+- Requisitos RAM D64A e DA39 representam dependencias condicionais.
+- Os 128 enderecos e 97 destinos sao candidatos, nao execucao real.
+- Banco ativo, leitura RAM e eventos de jogo nao observados.
+- Producao, sessoes, backups, ROMs e saves preservados.
+- Interpretacao integral das ROMs nao demonstrada.

@@ -852,6 +852,48 @@ function formatCampaignChecklistSection(advice,state) {
       }
     }
 
+    const mapRootIndexedT206=
+      Array.isArray(mapRootT190.runtimeIndexedJumpRequirements)?
+      mapRootT190.runtimeIndexedJumpRequirements:[];
+
+    if(mapRootIndexedT206.length){
+      lines.push(
+        'Saltos indiretos do script: '+
+        mapRootIndexedT206.length+
+        ' grupos condicionais. Nenhum salto observado.'
+      );
+
+      for(const r of mapRootIndexedT206.slice(0,8)){
+        if(r.reason!==
+             'LIVE_RAM_REQUIRED_FOR_INDEXED_ROM_JUMP_TABLE'||
+           !Number.isInteger(r.sourceAddress)||
+           !Number.isInteger(r.instructionOffset)||
+           r.runtimeRamReadObserved!==false||
+           r.actualBankSelectionVerified!==false||
+           r.indirectJumpObserved!==false||
+           r.gameplayExecutionObserved!==false||
+           r.gameEventCompleted!==false)
+          continue;
+
+        lines.push(
+          'Tabela ROM: RAM 0x'+
+          r.sourceAddress.toString(16).toUpperCase()+
+          ' | instrucao 0x'+
+          r.instructionOffset.toString(16).toUpperCase()+
+          ' | '+r.pointerCandidateCount+
+          ' enderecos candidatos | '+
+          r.targetCandidateCount+
+          ' destinos distintos candidatos | '+
+          r.outsideRomCandidates+
+          ' enderecos fora da ROM | '+
+          r.conditionalPathRequirements+
+          ' caminhos condicionais | banco '+
+          r.assumedBank+
+          ' assumido pelo modelo, nunca observado.'
+        );
+      }
+    }
+
 if(mapRootT190.unresolvedCount>0){
       lines.push(
         'Bloqueios do script: '+

@@ -49,7 +49,7 @@ function logic(op,a,b){
  if(a!==null&&JSON.stringify(a)===JSON.stringify(b))return op==='XOR'?0:a;
  return concrete(a)&&concrete(b)?op==='AND'?a&b:op==='OR'?a|b:a^b:{op,value:a,mask:b};
 }
-const clone=s=>({...s,r:{...s.r},mem:{...s.mem},stack:s.stack.slice(),seen:new Set(s.seen),conditions:s.conditions.slice(),trace:s.trace.slice()});
+const clone=s=>({...s,r:{...s.r},mem:{...s.mem},stack:s.stack.slice(),seen:new Set(s.seen),conditions:s.conditions.slice(),trace:s.trace.slice(),indexedPointer:s.indexedPointer?{...s.indexedPointer}:null});
 // Lossless effect data in a ROM-local DAG. Array chunks (traces and conditions)
 // and symbolic expressions are shared, rather than expanded for every path.
 function packHandlers(handlers){
@@ -172,6 +172,22 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128,entryKind='
   else if([1,0x11,0x21].includes(op)){const i=(op>>4)*2;s.r[regs[i]]=nn>>8;s.r[regs[i+1]]=nn&255;}
   else if([0x09,0x19,0x29].includes(op)){
    const a=hl(s),b=pair(s,((op>>4)&3)*2),sum=concrete(a)&&concrete(b)?a+b:null;
+   const e=s.r.e;
+   const source=e?.op==='ADD_BYTE'&&e.carry===false&&
+    Number.isInteger(e.left?.read)&&
+    e.left.read===e.right?.read&&
+    e.left.volatile!==true&&e.right.volatile!==true?
+    e.left.read:null;
+
+   s.indexedPointer=op===0x19&&
+    concrete(a)&&concrete(s.r.d)&&s.r.d===0&&
+    Number.isInteger(source)&&
+    ((source>=0xc000&&source<0xe000)||
+     (source>=0xff80&&source<0xffff))?
+    {instructionOffset:d.at+1,
+     sourceAddress:source,
+     baseCpuAddress:a,
+     assumedBank:s.bank}:null;
    s.r.h=sum===null?null:(sum&65535)>>8;s.r.l=sum===null?null:sum&255;
    s.c=sum===null?null:sum>65535;s.n=false;s.h=sum===null?null:(a&0xfff)+(b&0xfff)>0xfff; // Z preserved.
   }
@@ -202,7 +218,81 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128,entryKind='
   else if(op===0xfa)s.r.a=read(s,nn);
   else if(op===0xea)ok=write(s,nn,s.r.a??null,d);
   else if([0x22,0x32,0x2a,0x3a].includes(op)){
-   const a=hl(s);if(a===null){stop(s,'INDIRECT_MEMORY_UNKNOWN',d.at);continue;}
+   const a=hl(s);if(a===null){
+    const p=s.indexedPointer;
+
+    const shapeOk=op===0x2a&&p&&
+     p.instructionOffset===d.at&&
+     rom[d.at]===0x2a&&
+     rom[d.at+1]===0x66&&
+     rom[d.at+2]===0x6f&&
+     rom[d.at+3]===0x11&&
+     rom[d.at+6]===0xd5&&
+     rom[d.at+7]===0xe9&&
+     p.baseCpuAddress>=0x4000&&
+     p.baseCpuAddress+254<0x8000&&
+     Number.isInteger(p.assumedBank)&&
+     p.assumedBank>0;
+
+    let requirement=null;
+
+    if(shapeOk){
+     const addressSet=new Set();
+     const targetSet=new Set();
+     let fixed=0,switchable=0,outside=0;
+     let valid=true;
+
+     for(let byte=0;byte<256;byte++){
+      const addr=p.baseCpuAddress+((byte*2)&255);
+
+      if(addressSet.has(addr))continue;
+      addressSet.add(addr);
+
+      const physical=cpuToOffset(
+       p.assumedBank,addr,rom.length
+      );
+
+      if(physical===null||
+         physical+1>=rom.length){
+       valid=false;
+       break;
+      }
+
+      const target=rom[physical]|
+       (rom[physical+1]<<8);
+
+      targetSet.add(target);
+
+      if(target<0x4000)fixed++;
+      else if(target<0x8000)switchable++;
+      else outside++;
+     }
+
+     if(valid&&addressSet.size===128){
+      requirement={
+       reason:'LIVE_RAM_REQUIRED_FOR_INDEXED_ROM_JUMP_TABLE',
+       sourceAddress:p.sourceAddress,
+       instructionOffset:d.at,
+       baseCpuAddress:p.baseCpuAddress,
+       assumedBank:p.assumedBank,
+       pointerCandidateCount:addressSet.size,
+       targetCandidateCount:targetSet.size,
+       fixedRomCandidates:fixed,
+       switchableRomCandidates:switchable,
+       outsideRomCandidates:outside,
+       runtimeRamReadObserved:false,
+       actualBankSelectionVerified:false,
+       indirectJumpObserved:false,
+       gameplayExecutionObserved:false,
+       gameEventCompleted:false
+      };
+     }
+    }
+
+    stop(s,'INDIRECT_MEMORY_UNKNOWN',d.at,
+     requirement?{indexedJumpRequirement:requirement}:{});
+    continue;
+   }
    if(op===0x22||op===0x32)ok=write(s,a,s.r.a??null,d);else s.r.a=read(s,a);
    const v=(a+(op===0x22||op===0x2a?1:-1))&65535;s.r.h=v>>8;s.r.l=v&255;
   }
@@ -290,8 +380,15 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128,entryKind='
  // compact serialization. Existing maxPaths/maxSteps bound their total size;
  // packHandlers shares expressions and branch conditions across requirements.
  const runtimeRequirements=[...new Map(unresolved.filter(u=>u.runtimeRequirement).map(u=>[JSON.stringify(u.runtimeRequirement),u.runtimeRequirement])).values()];
- for(const u of unresolved)delete u.runtimeRequirement;
- return {verified:true,handlerOffset:fileOffset,effects:unique,unresolved,runtimeRequirements,steps,paths,returns,complete:unresolved.length===0,preconditions:[entryKind==='MAP_SCRIPT_ROOT'?'MAP_SCRIPT_ROOT_INVOKED':'HANDLER_INVOKED',...(entryKind==='MAP_SCRIPT_ROOT'?['HEADER_BANK_CONTEXT_ASSUMED_NOT_OBSERVED']:[]),'VALID_NONALIASING_CALL_STACK','NO_EXTERNAL_MEMORY_MUTATION_DURING_PATH',...(mbc3?['HEADER_DECLARED_MBC3_BEHAVIOR']:[])],observedExecution:false,eventCompleted:null};
+  const indexedJumpRequirements=unresolved
+  .filter(u=>u.indexedJumpRequirement)
+  .map(u=>u.indexedJumpRequirement);
+
+ for(const u of unresolved){
+  delete u.indexedJumpRequirement;
+  delete u.runtimeRequirement;
+ }
+ return {verified:true,handlerOffset:fileOffset,effects:unique,unresolved,runtimeRequirements,indexedJumpRequirements,steps,paths,returns,complete:unresolved.length===0,preconditions:[entryKind==='MAP_SCRIPT_ROOT'?'MAP_SCRIPT_ROOT_INVOKED':'HANDLER_INVOKED',...(entryKind==='MAP_SCRIPT_ROOT'?['HEADER_BANK_CONTEXT_ASSUMED_NOT_OBSERVED']:[]),'VALID_NONALIASING_CALL_STACK','NO_EXTERNAL_MEMORY_MUTATION_DURING_PATH',...(mbc3?['HEADER_DECLARED_MBC3_BEHAVIOR']:[])],observedExecution:false,eventCompleted:null};
 }
 function interpretWorld({rom,atlas}={}){
  const handlers=new Map(),rows=[];
