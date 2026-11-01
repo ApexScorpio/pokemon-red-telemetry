@@ -3041,6 +3041,23 @@ function selectVerifiedMinimapStaticEncounterMarkers(state) {
        !Number.isInteger(a.romActorLevel)||a.romActorLevel<1||
        a.romActorLevel>100||object.wildLevel!==a.romActorLevel||
        a.accessibleNow!==null||a.completedNow!==null)return [];
+    // A checklist progress string is NOT independent D747 evidence.
+    // A proven bit only certifies the ROM-script event gate, never a capture.
+    let gate=null;
+    if(a.scriptEventFlagSnapshotVerified===true){
+      if(typeof a.scriptEventFlagSet!=='boolean'||
+         a.scriptEventFlagEvidence!==
+           'ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747'||
+         a.scriptEventBitBindingVerified!==true||
+         !Number.isInteger(a.scriptEventBitIndex)||
+         a.scriptEventBitIndex<0||a.scriptEventBitIndex>=2560||
+         a.progress!==(a.scriptEventFlagSet?
+           'ENCOUNTER_GATE_CLOSED_FLAG':'ENCOUNTER_GATE_OPEN_FLAG'))
+        return [];
+      gate=a.scriptEventFlagSet;
+    }else if((a.scriptEventFlagSet!==null&&
+              a.scriptEventFlagSet!==undefined)||
+             a.progress!=='NOT_PROVEN')return [];
     const tile=a.x+','+a.y;
     if(ordinals.has(a.ordinal)||tiles.has(tile))return [];
     ordinals.add(a.ordinal);tiles.add(tile);
@@ -3048,7 +3065,7 @@ function selectVerifiedMinimapStaticEncounterMarkers(state) {
       speciesInternalId:a.romActorSpeciesInternalId,level:a.romActorLevel,
       evidence:'STATIC_ENCOUNTER_FROM_SHA_AUDITED_ACTIVE_ROM',
       presentNow:null,accessibleNow:null,completedNow:null,
-      eventGateClosedCandidate:a.progress==='ENCOUNTER_GATE_CLOSED_FLAG'});
+      gateFlagSet:gate,gateVerified:gate!==null});
   }
   return markers;
 }
@@ -3122,7 +3139,12 @@ function describeVerifiedVramStaticLocationEvidence(state) {
   const rows=[
     ...items.map(i=>(i.blocked?'🔒':'🎒')+' X:'+i.x+' Y:'+i.y),
     ...encounters.map(p=>'✨ X:'+p.x+' Y:'+p.y+
-      ' espécie interna '+p.speciesInternalId+' nível '+p.level),
+      ' espécie interna '+p.speciesInternalId+' nível '+p.level+
+      ' (D747 '+(p.gateFlagSet===true?
+        'assinalado: portão do encontro fechado':
+        p.gateFlagSet===false?'não assinalado: portão do encontro aberto':
+        'sem prova: estado do portão desconhecido')+
+      '; presença, acesso e captura não comprovados)'),
     ...hiddenCoins.map(c=>'🪙 X:'+c.x+' Y:'+c.y+' (moeda oculta)'),
     ...trainers.map(t=>'⚔️ X:'+t.x+' Y:'+t.y+
       ' (treinador ROM; '+(t.gateFlagSet===true?
@@ -3362,9 +3384,11 @@ function renderFogMinimap(state) {
     const iy=camY+mon.y*tileSize+tileSize/2;
     if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16)
       drawMapEntity(ctxFog,{
-        x:mon.x,y:mon.y,icon:'✨',isItem:false,isGhost:true,
+        x:mon.x,y:mon.y,icon:mon.gateFlagSet===true?'✨🔒':
+          mon.gateFlagSet===false?'✨🔓':'✨',isItem:false,isGhost:true,
         staticRomMarker:true,staticEncounter:true,presentNow:null,
         accessibleNow:null,completedNow:null,
+        gateFlagSet:mon.gateFlagSet,gateVerified:mon.gateVerified,
         speciesInternalId:mon.speciesInternalId,level:mon.level
       },ix,iy,0.8,true);
   });
@@ -3580,9 +3604,11 @@ function renderGtaFullMap(state) {
     const iy=originY+mon.y*tilePx+tilePx/2;
     if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24)
       drawMapEntity(ctxGta,{
-        x:mon.x,y:mon.y,icon:'✨',isItem:false,isGhost:true,
+        x:mon.x,y:mon.y,icon:mon.gateFlagSet===true?'✨🔒':
+          mon.gateFlagSet===false?'✨🔓':'✨',isItem:false,isGhost:true,
         staticRomMarker:true,staticEncounter:true,presentNow:null,
         accessibleNow:null,completedNow:null,
+        gateFlagSet:mon.gateFlagSet,gateVerified:mon.gateVerified,
         speciesInternalId:mon.speciesInternalId,level:mon.level
       },ix,iy,gtaZoom,true);
   });

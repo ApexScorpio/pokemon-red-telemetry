@@ -48,13 +48,21 @@ test('Blue exact ROM can show a static site without live presence claims',()=>{
  assert.equal(b[0].completedNow,null);
  assert.equal(b[0].evidence,'STATIC_ENCOUNTER_FROM_SHA_AUDITED_ACTIVE_ROM');
 });
-test('a closed encounter event flag remains only a static gate hint',()=>{
- const s=state();
- s.worldAdvisor.mapChecklist.actions[0].progress='ENCOUNTER_GATE_CLOSED_FLAG';
- const a=list(s);
- assert.equal(a.length,1);
- assert.equal(a[0].eventGateClosedCandidate,true);
- assert.equal(a[0].presentNow,null);
+test('closed D747 gate requires independent ROM-script plus RAM bit proof',()=>{
+ const s=state(),a=s.worldAdvisor.mapChecklist.actions[0];
+ a.progress='ENCOUNTER_GATE_CLOSED_FLAG';
+ assert.equal(list(s).length,0,'progress text alone cannot assert gate');
+ a.scriptEventFlagSnapshotVerified=true;
+ a.scriptEventBitBindingVerified=true;
+ a.scriptEventBitIndex=155;
+ a.scriptEventFlagSet=true;
+ a.scriptEventFlagEvidence='ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747';
+ const got=list(s);
+ assert.equal(got.length,1);
+ assert.equal(got[0].gateFlagSet,true);
+ assert.equal(got[0].gateVerified,true);
+ assert.equal(got[0].presentNow,null);
+ assert.equal(got[0].completedNow,null);
 });
 test('disconnect, stale RAM or switched map and ROM all fail closed',()=>{
  const bad=[
@@ -143,3 +151,130 @@ test('existing pickup marker renderer slices remain isolated from new encounter 
  assert.doesNotMatch(app.slice(first,firstEnd),/fixedEncounters/);
  assert.doesNotMatch(app.slice(second,secondEnd),/fixedEncounters/);
 });
+
+function setEncounterGate(s,flag) {
+ const a=s.worldAdvisor.mapChecklist.actions[0];
+ a.progress=flag?'ENCOUNTER_GATE_CLOSED_FLAG':'ENCOUNTER_GATE_OPEN_FLAG';
+ a.scriptEventFlagSnapshotVerified=true;
+ a.scriptEventBitBindingVerified=true;
+ a.scriptEventBitIndex=155;
+ a.scriptEventFlagSet=flag;
+ a.scriptEventFlagEvidence='ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747';
+ return s;
+}
+test('three ROMs closed D747 flag is gate evidence, never a captured encounter',()=>{
+ for(const sha of [RED,BLUE,GREEN]){
+  const r=list(setEncounterGate(state(sha),true));
+  assert.equal(r.length,1);
+  assert.equal(r[0].gateFlagSet,true);
+  assert.equal(r[0].gateVerified,true);
+  assert.equal(r[0].presentNow,null);
+  assert.equal(r[0].accessibleNow,null);
+  assert.equal(r[0].completedNow,null);
+ }
+});
+test('three ROMs open D747 flag is not proof of available or uncaught Pokemon',()=>{
+ for(const sha of [RED,BLUE,GREEN]){
+  const r=list(setEncounterGate(state(sha),false));
+  assert.equal(r.length,1);
+  assert.equal(r[0].gateFlagSet,false);
+  assert.equal(r[0].gateVerified,true);
+  assert.equal(r[0].presentNow,null);
+  assert.equal(r[0].accessibleNow,null);
+ }
+});
+test('missing D747 observation yields explicit unknown state not an invented open flag',()=>{
+ for(const sha of [RED,BLUE,GREEN]){
+  const r=list(state(sha));
+  assert.equal(r.length,1);
+  assert.equal(r[0].gateFlagSet,null);
+  assert.equal(r[0].gateVerified,false);
+ }
+});
+test('forged ROM bit binding, RAM source, index or conflicting progress fail closed',()=>{
+ const edits=[
+  a=>a.scriptEventBitBindingVerified=false,
+  a=>a.scriptEventBitIndex=-1,
+  a=>a.scriptEventBitIndex=2560,
+  a=>a.scriptEventFlagEvidence='MANUAL',
+  a=>a.scriptEventFlagSet='true',
+  a=>a.progress='ENCOUNTER_GATE_OPEN_FLAG',
+  a=>a.progress='NOT_PROVEN',
+  a=>a.scriptEventFlagSnapshotVerified=false
+ ];
+ for(const edit of edits){
+  const s=setEncounterGate(state(),true);
+  edit(s.worldAdvisor.mapChecklist.actions[0]);
+  assert.equal(list(s).length,0);
+ }
+});
+test('unverified gate cannot inherit a stale D747 bit or stale progress string',()=>{
+ for(const edit of [
+  a=>{a.scriptEventFlagSet=true;},
+  a=>{a.progress='ENCOUNTER_GATE_CLOSED_FLAG';},
+  a=>{a.progress='ENCOUNTER_GATE_OPEN_FLAG';}
+ ]){
+  const s=state();edit(s.worldAdvisor.mapChecklist.actions[0]);
+  assert.equal(list(s).length,0);
+ }
+});
+function captureStaticMarker(s,full=false){
+ const needle='  const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);';
+ const first=app.indexOf(needle),start=full?app.indexOf(needle,first+1):first;
+ const end=app.indexOf(full?'  // Enlarged map uses the identical SHA/ROM/D6FE/position coin selector.':
+   '  // Separate hidden coin table (ROM) and D6FE flags (RAM)',start);
+ assert.ok(start>=0&&end>start);
+ const calls=[];
+ const vars=full?{originX:0,originY:0,tilePx:24,gtaZoom:1,ctxGta:{}}:
+   {camX:0,camY:0,tileSize:24,ctxFog:{}};
+ vm.runInNewContext(app.slice(start,end),{
+  state:s,cw:1500,ch:1500,...vars,
+  selectVerifiedMinimapStaticEncounterMarkers:select,
+  drawMapEntity:(ctx,e)=>calls.push(e)
+ },{timeout:1500});
+ assert.equal(calls.length,1);
+ return calls[0];
+}
+test('both maps draw a faded locked marker only with closed D747 gate proof',()=>{
+ for(const full of [false,true]){
+  const marker=captureStaticMarker(setEncounterGate(state(RED),true),full);
+  assert.equal(marker.icon,'✨🔒');
+  assert.equal(marker.staticEncounter,true);
+  assert.equal(marker.isGhost,true);
+  assert.equal(marker.gateFlagSet,true);
+  assert.equal(marker.gateVerified,true);
+  assert.equal(marker.presentNow,null);
+ }
+});
+test('both maps show open gate separately from unknown, without claiming capture',()=>{
+ for(const full of [false,true]){
+  const open=captureStaticMarker(setEncounterGate(state(GREEN),false),full);
+  const unknown=captureStaticMarker(state(BLUE),full);
+  assert.equal(open.icon,'✨🔓');
+  assert.equal(open.gateFlagSet,false);
+  assert.equal(open.gateVerified,true);
+  assert.equal(unknown.icon,'✨');
+  assert.equal(unknown.gateFlagSet,null);
+  assert.equal(unknown.gateVerified,false);
+  assert.equal(open.completedNow,null);
+ }
+});
+test('VRAM coordinates distinguish closed, open and unknown gates without pixel claims',()=>{
+ const from=app.indexOf('function selectVerifiedMinimapItemMarkers(state) {');
+ const until=app.indexOf('// Renderizador do Mini-Mapa Tático',from);
+ assert.ok(from>=0&&until>from);
+ const describe=vm.runInNewContext(app.slice(from,until)+
+  '\ndescribeVerifiedVramStaticLocationEvidence;',{}, {timeout:1500});
+ const closed=describe(setEncounterGate(state(RED),true));
+ const open=describe(setEncounterGate(state(BLUE),false));
+ const unknown=describe(state(GREEN));
+ assert.match(closed,/D747 assinalado: portão do encontro fechado/);
+ assert.match(open,/D747 não assinalado: portão do encontro aberto/);
+ assert.match(unknown,/D747 sem prova: estado do portão desconhecido/);
+ for(const out of [closed,open,unknown]){
+  assert.match(out,/NÃO sobrepostas à VRAM/);
+  assert.match(out,/presença, acesso e captura não comprovados/);
+  assert.doesNotMatch(out,/capturado|vitória confirmada|acesso garantido/i);
+ }
+});
+
