@@ -2685,3 +2685,20 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Efeitos fisicos comprovados: Red 2, Blue 2, Green 2.
 - Cobertura semantica integral ainda nao certificada.
 - Main, preview, autenticacao, ROMs e saves preservados.
+
+### PSB-20261101-1650-POKEGUIDE-T188-MANUAL-001 — interface para diagnostico FFB8
+
+- Base publicada: 5026de93ff5bdd3bba25f3868e1f947b560708f4.
+- Criada rota manual de diagnostico limitada a pedidos locais e opt-in explicito.
+- Mantida a leitura de FFB8 implementada em T187, sem a modificar.
+- Integrado botao manual nas definicoes existentes do companion.
+- Nenhuma leitura automatica ou ao iniciar a aplicacao.
+- Testes executados com leitor injetado; RetroArch real nao contactado.
+- Resultados identificam byte RAM estavel, nunca banco ROM ativo ou evento executado.
+- Condicoes de CRC, mapa, posicao e estado da sessao sujeitas a validacao.
+- Identidade SHA256 e atomicidade nao certificadas.
+- Motor semantico, provas T186, ROMs, saves e oito fontes antigas preservados.
+- Certificacao integral das tres ROMs aprovada.
+- Efeitos fisicos Red/Blue/Green mantidos em 2/2/2.
+- Sem conclusao de interpretacao integral dos scripts.
+- Main, preview e sessoes de outras aplicacoes preservados.

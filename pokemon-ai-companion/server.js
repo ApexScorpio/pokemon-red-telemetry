@@ -5,6 +5,7 @@ const { createServerSafetyPolicy, denySideEffect, publicFile } = require('./serv
 const { WebSocketServer } = require('ws');
 const RetroArchClient = require('./retroarchClient');
 const {buildLocalConnectionResponse}=require('./romRuntimeConnectionSnapshot');
+const {buildManualFfb8Response}=require('./romFfb8ManualDiagnostic');
 const { askAdvisor, getLiveAdvice } = require('./aiAdvisor');
 const { requestGuardedManualAdvice } = require('./romManualAdviceGuard');
 const { formatTelemetryMarkdown, syncToGitHub, triggerDebouncedSync, getLastSyncTimeString, GITHUB_FILE_URL, GITHUB_RAW_URL } = require('./githubSync');
@@ -69,6 +70,20 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Explicit, loopback-only diagnostic. No automatic probe.
+  if(url.pathname==='/api/diagnostics/ffb8'){
+    const reply=await buildManualFfb8Response({
+      remoteAddress:req.socket?.remoteAddress,
+      method:req.method,
+      headers:req.headers,
+      client
+    });
+    res.writeHead(reply.status,{
+      'Content-Type':'application/json; charset=utf-8',
+      'Cache-Control':'no-store'
+    });
+    return res.end(JSON.stringify(reply.body));
+  }
   if (url.pathname === '/api/runtime-connection') {
     if(req.method!=='GET'){
       res.writeHead(405);return res.end('METHOD_NOT_ALLOWED');

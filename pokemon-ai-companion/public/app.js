@@ -5074,6 +5074,41 @@ btnToggleTest.addEventListener('click', async () => {
   }
 });
 
+// FFB8: somente por clique explícito; não altera o estado do jogo.
+const btnFfb8Manual=document.getElementById('btn-ffb8-manual');
+const elFfb8ManualResult=document.getElementById('ffb8-manual-result');
+
+if(btnFfb8Manual&&elFfb8ManualResult){
+  btnFfb8Manual.addEventListener('click',async()=>{
+    btnFfb8Manual.disabled=true;
+    elFfb8ManualResult.textContent='A consultar apenas RAM...';
+
+    try{
+      const response=await fetch('/api/diagnostics/ffb8',{
+        method:'GET',
+        cache:'no-store',
+        headers:{'X-Pokeguide-FFB8-Opt-In':'READ_ONLY_FFB8'}
+      });
+
+      const result=await response.json();
+
+      if(response.ok&&result.verified===true){
+        elFfb8ManualResult.textContent=
+          'FFB8 = 0x'+result.firstHex+
+          ' (duas leituras estáveis). Banco ROM e execução de eventos NÃO comprovados.';
+      }else{
+        elFfb8ManualResult.textContent=
+          'Diagnóstico indisponível: '+
+          String(result.error||'sem prova válida');
+      }
+    }catch{
+      elFfb8ManualResult.textContent=
+        'Não foi possível obter uma leitura verificada.';
+    }finally{
+      btnFfb8Manual.disabled=false;
+    }
+  });
+}
 // Exportar Dados para Clipboard (ChatGPT) & Atualização no GitHub
 const btnExportTelemetry = document.getElementById('btn-export-telemetry');
 const elExportBtnLabel = document.getElementById('export-btn-label');
