@@ -2298,9 +2298,25 @@ class RetroArchClient extends EventEmitter {
         }
       }
     this.latestState.romItemAccess=itemAccess;
-    const accessSummary=itemAccess.results||[];
+    // Project a planner result only onto its verified ROM item and tile.
+    // Reordered, truncated and stale results must not move a route or lock.
+    const accessSummary=Array.isArray(itemAccess?.results)?
+      itemAccess.results:[];
+    const accessScopeVerified=itemAccess?.verified===true&&
+      itemAccess.mapId===this.latestState.mapId&&
+      itemAccess.romSha256===this.activeRomProfile?.hash?.sha256&&
+      this.latestState.romRuntimeIdentity?.matched===true&&
+      this.latestState.memoryReadStatus?.verified===true&&
+      accessSummary.length===accessInput.length;
     const withPath=accessInput.map((entry,i)=>{
-      const access=accessSummary[i]||null;
+      const candidate=accessSummary[i];
+      const access=accessScopeVerified&&
+        entry?.romItemCoordinatesVerified===true&&
+        Number.isInteger(entry.x)&&Number.isInteger(entry.y)&&
+        candidate?.index===i&&candidate.x===entry.x&&
+        candidate.y===entry.y&&
+        typeof candidate.accessStatus==='string'?
+          candidate:null;
       const status=access?.accessStatus||'UNKNOWN';
       const withinMapBlocked=['NEEDS_CUT','NEEDS_SURF',
         'NEEDS_CUT_AND_SURF_POSSIBLY','NEEDS_STRENGTH']

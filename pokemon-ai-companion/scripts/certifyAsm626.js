@@ -1369,6 +1369,7 @@ function main(){
   'tests/romCrossVariantWorldGaps.test.js',
   'tests/romCrossVariantWorldContents.test.js',
   'tests/romVisibleItemCoordinateGuard.test.js',
+  'tests/romItemAccessProjectionIntegrity.test.js',
   'tests/romVerifiedMinimapMarkers.test.js',
   'tests/romVramFallbackStaticEvidence.test.js',
   'tests/romVerifiedHiddenCoinMarkers.test.js',
