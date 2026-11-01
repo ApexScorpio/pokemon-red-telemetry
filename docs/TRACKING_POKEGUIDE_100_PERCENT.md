@@ -1265,3 +1265,27 @@
 - Limites globais e comportamento de execucao preservados.
 - Producao, ROMs, saves, sessoes e backups protegidos.
 - Mapeamento de 100 por cento nao demonstrado.
+
+### PSB-20261101-2100-POKEGUIDE-T216-ADAPTIVE-PROFILE-001 - integracao adaptativa dos requisitos WRAM
+
+- Base: 15ff15728caba472399b6c32563f072ad63e0f8c.
+- Falha comprovada no T215: requisitos T214 ausentes dos
+  perfis normais dos mapas 210 e 212.
+- O T215 identificou seis scripts fisicos elegiveis por ROM:
+  mapas 31, 34, 36, 210, 212 e 233.
+- A primeira passagem de 2048 instrucoes permanece inalterada.
+- A segunda passagem de 8192 instrucoes aplica-se apenas quando
+  coexistem STEP_BUDGET, evidencias de saltos indiretos
+  e ausencia de requisitos WRAM ja recolhidos.
+- Da segunda passagem sao aproveitados exclusivamente metadados
+  condicionais de enderecos de escrita WRAM.
+- Contagens de efeitos, interrupcoes e conclusao continuam a
+  corresponder a primeira passagem.
+- Cobertura esperada: 42 caminhos do mapa 210 e 39 do 212,
+  em Red, Blue e Green.
+- Nenhuma escrita real ou evento concluido e inferido.
+- A interface existente de T214 e reutilizada.
+- Nao se alteram os limites globais do interpretador.
+- Testes de regressao e certificacao integral obrigatorios.
+- Producao, sessoes, backups, ROMs e saves protegidos.
+- O mapeamento integral da ROM continua por demonstrar.

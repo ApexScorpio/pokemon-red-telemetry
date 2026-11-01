@@ -250,6 +250,89 @@ function buildMapScriptRootSemantics({
       !Array.isArray(analysis.unresolved))
     return invalid('Abstract map script analysis rejected');
 
+   // A bounded first pass is always authoritative for
+   // effects, unresolved paths, completeness and summaries.
+   const firstPassIndexedJumpGroups=
+    groupMapRootIndexedJumpRequirements(
+     analysis.indexedJumpRequirements
+    );
+
+   const firstPassSymbolicWriteGroups=
+    groupMapRootSymbolicWriteRequirements(
+     analysis.symbolicWriteRequirements
+    );
+
+   // Existing ROM evidence controls eligibility.
+   // There is no map-ID whitelist or global budget increase.
+   const needsDeepSymbolicWriteScan=
+    analysis.unresolved.some(u=>
+     u.reason==='STEP_BUDGET'
+    )&&
+    firstPassIndexedJumpGroups.length>0&&
+    firstPassSymbolicWriteGroups.length===0;
+
+   let deepSymbolicWriteGroups=[];
+   let symbolicWriteEnrichment=null;
+
+   if(needsDeepSymbolicWriteScan){
+    const deep=interpretHandler({
+     rom,
+     fileOffset:offset,
+     entryKind:'MAP_SCRIPT_ROOT',
+     maxSteps:8192,
+     maxPaths:128
+    });
+
+    if(
+     deep.verified!==true||
+     deep.handlerOffset!==offset||
+     deep.observedExecution!==false||
+     deep.eventCompleted!==null||
+     !Array.isArray(deep.symbolicWriteRequirements)||
+     !Number.isInteger(deep.steps)||
+     deep.steps<1||
+     deep.steps>8192||
+     !Number.isInteger(deep.paths)||
+     deep.paths>128
+    ){
+     return invalid(
+      'Adaptive symbolic WRAM analysis rejected'
+     );
+    }
+
+    deepSymbolicWriteGroups=
+     groupMapRootSymbolicWriteRequirements(
+      deep.symbolicWriteRequirements
+     );
+
+    symbolicWriteEnrichment={
+     source:'BOUNDED_ROM_SECOND_PASS',
+     eligibility:
+      'STEP_BUDGET_WITH_INDEXED_JUMP_EVIDENCE',
+     firstPassMaxSteps:2048,
+     secondPassMaxSteps:8192,
+     secondPassMaxPaths:128,
+     secondPassStepsUsed:deep.steps,
+     additionalConditionalPaths:
+      deepSymbolicWriteGroups.reduce(
+       (total,r)=>
+        total+r.conditionalPathRequirements,
+       0
+      ),
+     firstPassEffectsPreserved:true,
+     firstPassUnresolvedPreserved:true,
+     runtimeRamReadObserved:false,
+     memoryWriteObserved:false,
+     gameplayExecutionObserved:false,
+     gameEventCompleted:false
+    };
+   }
+
+   const symbolicWriteGroups=
+    deepSymbolicWriteGroups.length?
+     deepSymbolicWriteGroups:
+     firstPassSymbolicWriteGroups;
+
    const reasons={};
 
    for(const u of analysis.unresolved){
@@ -294,7 +377,8 @@ function buildMapScriptRootSemantics({
      instructionOffset:u.offset??null
     })),
     unresolvedSamplesBounded:analysis.unresolved.length>3,
-    runtimeSymbolicWriteRequirements:groupMapRootSymbolicWriteRequirements(analysis.symbolicWriteRequirements),
+    runtimeSymbolicWriteRequirements:symbolicWriteGroups,
+    symbolicWriteEnrichment,
      runtimeIndexedJumpRequirements:groupMapRootIndexedJumpRequirements(
      analysis.indexedJumpRequirements
     ),
@@ -411,7 +495,9 @@ function mapScriptRootEvidence({
   unresolvedSamples:root.unresolvedSamples.map(x=>({...x})),
   unresolvedSamplesBounded:root.unresolvedSamplesBounded,
   completeBoundedAnalysis:root.completeBoundedAnalysis,
-  runtimeSymbolicWriteRequirements:Array.isArray(root.runtimeSymbolicWriteRequirements)?
+  symbolicWriteEnrichment:root.symbolicWriteEnrichment?
+    {...root.symbolicWriteEnrichment}:null,
+   runtimeSymbolicWriteRequirements:Array.isArray(root.runtimeSymbolicWriteRequirements)?
     root.runtimeSymbolicWriteRequirements.map(r=>({...r})):[],
    runtimeRamRequirements:Array.isArray(root.runtimeRamRequirements)?
    root.runtimeRamRequirements.map(r=>({...r})):[],
