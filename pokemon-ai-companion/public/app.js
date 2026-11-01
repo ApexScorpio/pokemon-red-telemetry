@@ -2842,6 +2842,69 @@ function selectVerifiedMinimapItemMarkers(state) {
   return [...byTile.values()];
 }
 
+
+function selectVerifiedMinimapStaticEncounterMarkers(state) {
+  // ROM coordinates only; never assert a present, reachable, uncaught actor.
+  const sha=state?.romRuntimeIdentity?.profileSha256;
+  const known=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const advice=state?.worldAdvisor,checklist=advice?.mapChecklist;
+  const mem=state?.memoryReadStatus,stamp=Date.parse(state?.lastUpdate||'');
+  const coord=n=>Number.isInteger(n)&&n>=-4&&n<=255;
+  if(state?.connected!==true||state?.romRuntimeIdentity?.matched!==true||
+     !known.has(sha)||!Number.isInteger(state.mapId)||
+     state.mapId<0||state.mapId>247||
+     advice?.verified!==true||advice.mapId!==state.mapId||
+     advice.romSha256!==sha||advice.fullWorldStaticIndexVerified!==true||
+     checklist?.verified!==true||checklist.mapId!==state.mapId||
+     checklist.romSha256!==sha||checklist.actorAttributeAtlasBound!==true||
+     checklist.scriptAtlasBound!==true||
+     !Number.isInteger(checklist.summary?.boundStaticActorAttributes)||
+     checklist.summary.boundStaticActorAttributes<1||
+     !Array.isArray(checklist.actions)||mem?.verified!==true||
+     !Number.isFinite(stamp)||stamp>Date.now()||
+     Date.now()-stamp>15000)return [];
+  const first=mem.positionWindow,late=mem.latePositionWindow,
+        published=mem.publicationPositionWindow;
+  if([first,late,published].some(p=>p?.verified!==true||
+     p.mapId!==state.mapId||!coord(p.x)||!coord(p.y))||
+     first.x!==late.x||first.y!==late.y||
+     late.x!==published.x||late.y!==published.y||
+     state.coords?.x!==published.x||state.coords?.y!==published.y)return [];
+  const candidates=checklist.actions.filter(a=>a?.kind==='STATIC_POKEMON');
+  const markers=[],ordinals=new Set(),tiles=new Set();
+  for(const a of candidates){
+    const object=a.staticObject;
+    if(a.romActorCoordinateAndAttributeVerified!==true||
+       a.romActorVariantEvidence!==
+        'SAME_SHA_ROM_MAP_OBJECT_AND_SCRIPT_REFERENCE'||
+       a.scriptReferenceBound!==true||a.scriptTextPointerVerified!==true||
+       !Number.isInteger(a.ordinal)||a.ordinal<1||
+       !coord(a.x)||!coord(a.y)||
+       object?.source!=='ROM_MAP_OBJECT_BYTES'||
+       object.kind!=='wildPokemon'||object.ordinal!==a.ordinal||
+       object.x!==a.x||object.y!==a.y||
+       !Number.isInteger(a.romActorSpeciesInternalId)||
+       a.romActorSpeciesInternalId<1||a.romActorSpeciesInternalId>190||
+       object.wildSpeciesInternalId!==a.romActorSpeciesInternalId||
+       !Number.isInteger(a.romActorLevel)||a.romActorLevel<1||
+       a.romActorLevel>100||object.wildLevel!==a.romActorLevel||
+       a.accessibleNow!==null||a.completedNow!==null)return [];
+    const tile=a.x+','+a.y;
+    if(ordinals.has(a.ordinal)||tiles.has(tile))return [];
+    ordinals.add(a.ordinal);tiles.add(tile);
+    markers.push({x:a.x,y:a.y,kind:'STATIC_POKEMON',
+      speciesInternalId:a.romActorSpeciesInternalId,level:a.romActorLevel,
+      evidence:'STATIC_ENCOUNTER_FROM_SHA_AUDITED_ACTIVE_ROM',
+      presentNow:null,accessibleNow:null,completedNow:null,
+      eventGateClosedCandidate:a.progress==='ENCOUNTER_GATE_CLOSED_FLAG'});
+  }
+  return markers;
+}
+
 // Renderizador do Mini-Mapa Tático com Tiles Reais do Game Boy
 function renderFogMinimap(state) {
   if (!canvasFog || !ctxFog) return;
@@ -2970,6 +3033,20 @@ function renderFogMinimap(state) {
         staticRomMarker:true,presentNow:null
       },ix,iy,it.blocked?0.75:0.85,true);
     }
+  });
+
+  // Only SHA-verified static encounter ghosts; live sprites are below.
+  const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);
+  fixedEncounters.forEach(mon=>{
+    const ix=camX+mon.x*tileSize+tileSize/2;
+    const iy=camY+mon.y*tileSize+tileSize/2;
+    if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16)
+      drawMapEntity(ctxFog,{
+        x:mon.x,y:mon.y,icon:'✨',isItem:false,isGhost:true,
+        staticRomMarker:true,staticEncounter:true,presentNow:null,
+        accessibleNow:null,completedNow:null,
+        speciesInternalId:mon.speciesInternalId,level:mon.level
+      },ix,iy,0.8,true);
   });
 
   // Só mostrar entidades lidas agora da RAM. Não desenhar treinadores previstos nem ghosts
@@ -3146,6 +3223,20 @@ function renderGtaFullMap(state) {
         staticRomMarker:true,presentNow:null
       },ix,iy,gtaZoom,true);
     }
+  });
+
+  // Enlarged map uses the same exact ROM/RAM guard as minimap.
+  const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);
+  fixedEncounters.forEach(mon=>{
+    const ix=originX+mon.x*tilePx+tilePx/2;
+    const iy=originY+mon.y*tilePx+tilePx/2;
+    if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24)
+      drawMapEntity(ctxGta,{
+        x:mon.x,y:mon.y,icon:'✨',isItem:false,isGhost:true,
+        staticRomMarker:true,staticEncounter:true,presentNow:null,
+        accessibleNow:null,completedNow:null,
+        speciesInternalId:mon.speciesInternalId,level:mon.level
+      },ix,iy,gtaZoom,true);
   });
 
   // 3. Apenas entidades reais presentes na RAM (sem treinadores previstos nem ghosts artificiais)

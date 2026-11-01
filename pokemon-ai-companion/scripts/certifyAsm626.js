@@ -1370,6 +1370,7 @@ function main(){
   'tests/romCrossVariantWorldContents.test.js',
   'tests/romVisibleItemCoordinateGuard.test.js',
   'tests/romVerifiedMinimapMarkers.test.js',
+  'tests/romVerifiedStaticEncounterMarkers.test.js',
   'tests/romLiveActorIdentity.test.js',
   'tests/romAreaEvidenceIdentity.test.js',
   'tests/romTrainerSpriteTypeAuthority.test.js',
