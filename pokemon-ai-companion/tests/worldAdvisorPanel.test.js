@@ -10,7 +10,10 @@ const script=fs.readFileSync(path.join(__dirname,'../public/app.js'),'utf8');
 // The real renderer depends on the immediately preceding checklist formatter.
 // Include both production functions in this isolated VM; never mock away the
 // formatter or silently suppress ReferenceError from integration.
-const start=script.indexOf('function formatCampaignChecklistSection(advice) {');
+// Locate the actual formatter declaration without freezing its parameter list.
+// T156 added the state argument; a test harness must not break when the
+// formatter's signature evolves while its name and renderer contract remain.
+const start=script.search(/\bfunction\s+formatCampaignChecklistSection\s*\(/);
 const renderStart=script.indexOf('function renderWorldAdvisor(state) {',start);
 const end=script.indexOf('// Renderização Principal do Cockpit',renderStart);
 if(start<0||renderStart<=start||end<=renderStart)
