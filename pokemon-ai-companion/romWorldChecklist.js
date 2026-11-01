@@ -4,13 +4,14 @@
 // The same (kind,x,y,id) must identify one object on both sides before joining.
 const {getMapContents}=require('./romWorldContentsIndex');
 const {bindMapActorAttributes}=require('./romMapActorAttributeBinding');
+const {guidanceForSemantics}=require('./romScriptSemantics');
 const KINDS=Object.freeze({
  visibleItems:'ITEM',hiddenItems:'HIDDEN_ITEM',trainers:'TRAINER',
  npcs:'NPC',stationaryPokemon:'STATIC_POKEMON',signs:'SIGN',warps:'WARP'
 });
 const ACTIONS=Object.keys(KINDS);
 const validId=n=>Number.isInteger(n)&&n>=0&&n<=247;
-function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagLedger=null}={}){
+function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagLedger=null,eventBitmap=null}={}){
  const entry=getMapContents(index,mapId);
  if(entry.verified!==true)
   return {verified:false,mapId,reason:entry.reason||'Mapa sem cabecalho normal confirmado',
@@ -104,6 +105,14 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
        'NO_SAME_MAP_PATH'].includes(proof.accessStatus))
     routeCondition=proof.accessStatus;
    const romScript=matchingScript(kind,obj);
+   const semanticRows=scriptAtlas?.scriptSemantics?.verified===true&&
+    scriptAtlas.scriptSemantics.romSha256===hash&&romScript?
+    scriptAtlas.scriptSemantics.rows.filter(r=>r.mapId===mapId&&r.kind===kind&&
+     r.ordinal===obj.ordinal&&r.x===obj.x&&r.y===obj.y&&
+     r.scriptFileOffset===romScript.scriptFileOffset):[];
+   const scriptPredictedEffects=guidanceForSemantics(
+    semanticRows.length===1?semanticRows[0].semantics:null,
+    eventBitmap?.romSha256===hash?eventBitmap:null);
    const actorProof=(kind==='ITEM'||kind==='STATIC_POKEMON')&&
     romScript!==null?actorByKey.get(kind+':'+obj.ordinal)||null:null;
    let gateFlag=null,gateSource=null;
@@ -152,7 +161,11 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
     scriptEventFlagSet:gateFlag,
     scriptEventFlagSnapshotVerified:gateFlag!==null,
     scriptEventFlagEvidence:gateSource,
+    scriptPredictedEffects,
+    // A bounded prefix is useful advice, not verification of the whole script.
     scriptEffectSemanticsVerified:false,
+    scriptConditionalTransitionsProven:scriptPredictedEffects.some(e=>
+     e.gameplayStateTransitionProven===true),
     predictedOutcomeVerified:false,
     joinProven:!!proof,
     requiresLiveScripts:true});

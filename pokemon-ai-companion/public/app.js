@@ -678,6 +678,9 @@ function formatCampaignChecklistSection(advice,state) {
     'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
   ]);
   const runtimeSha=state?.romRuntimeIdentity?.profileSha256;
+  const canRenderScriptSemantics=state?.romRuntimeIdentity?.matched===true&&
+    trustedHashes.has(runtimeSha)&&runtimeSha===advice.romSha256&&
+    runtimeSha===checklist.romSha256;
   const canRenderActorProof=state?.romRuntimeIdentity?.matched===true&&
     typeof runtimeSha==='string'&&trustedHashes.has(runtimeSha)&&
     runtimeSha===advice.romSha256&&
@@ -814,7 +817,14 @@ function formatCampaignChecklistSection(advice,state) {
       ' · entrada script ROM: '+(action.scriptCommand||'não classificada')+
         (action.scriptTextPointerVerified===true?' (ponteiro válido)':
          ' (ponteiro por resolver)')+
-        ' · efeito não certificado':'';
+        (canRenderScriptSemantics&&action.scriptPredictedEffects?.length?
+         ' · ROM: '+action.scriptPredictedEffects.length+' transições condicionais RAM '+
+         action.scriptPredictedEffects.map(e=>'0x'+e.address.toString(16)+
+          (e.value?.bit!==undefined?' bit '+e.value.bit:'')+
+          (typeof e.observedCurrentBit==='boolean'?' (bit RAM atual '+(e.observedCurrentBit?'1':'0')+')':'')+
+          (e.conditionsInCurrentSnapshot?.includes('DOES_NOT_MATCH')?' (condição não corresponde à RAM atual)':'')).join(', ')+
+         ' · execução/conclusão por confirmar':
+         ' · efeito não certificado'):'';
     const asm=action.scriptAsmCandidate?.verified===true?
       ' · ASM candidato: '+action.scriptAsmCandidate.opcodeCandidateCount+
         ' instruções; '+action.scriptAsmCandidate.callsNotFollowed+

@@ -259,10 +259,17 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
    currentMapVerified:positionVerified===true
  }):null;
  const mapChecklist=worldIndex.verified?buildMapChecklist({
-   index:worldIndex,mapId,scriptAtlas,worldFlagLedger,
+   index:worldIndex,mapId,scriptAtlas,worldFlagLedger,eventBitmap:completeEventBitmap,
    advisor:{verified:true,mapId,romSha256:hash,observations,
      hiddenFlagsVerified:hiddenFlagsVerified===true}
  }):null;
+ for(const action of mapChecklist?.actions||[]){
+  if(!action.scriptPredictedEffects?.length)continue;
+  add(action.kind,'PREDICTED_CONDITIONAL_EFFECT','Script #'+action.ordinal,
+   'ROM: '+action.scriptPredictedEffects.length+' transições condicionais RAM; execução e conclusão por confirmar.',
+   'ROM_ABSTRACT_SCRIPT_EXECUTION',{x:action.x,y:action.y,
+    predictedEffects:action.scriptPredictedEffects,eventCompleted:null,accessibleNow:null});
+ }
  return {verified:true,mapId,mapName:map.name||null,romSha256:hash,
    mapStaticInventory,mapChecklist,
    romNamedEventEvidenceVerified:namedEventEvidence.verified===true,

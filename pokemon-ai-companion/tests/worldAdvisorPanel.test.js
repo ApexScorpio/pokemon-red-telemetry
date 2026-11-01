@@ -1108,6 +1108,25 @@ test('isolated world panel renders live ROM checklist only under corroborated RA
 
 
 // T156: this is a real source slice of the public renderer under a virtual
+test('derived ROM transitions appear in real checklist renderer without completion claims',()=>{
+ const s=live(),sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+ s.worldAdvisor.romSha256=sha;
+ s.romRuntimeIdentity={matched:true,profileSha256:sha};
+ s.worldAdvisor.fullWorldStaticIndexVerified=true;
+ s.worldAdvisor.campaignSummary={allStaticActions:1992,normalMaps:226,unresolvedMapIds:22};
+ s.worldAdvisor.mapChecklist={verified:true,mapId:15,romSha256:sha,actions:[{
+  kind:'NPC',ordinal:1,x:2,y:3,staticObject:{},progress:'NOT_PROVEN',scriptReferenceBound:true,
+  scriptCommand:'TX_START_ASM',scriptTextPointerVerified:true,
+  scriptPredictedEffects:[{address:0xd747,value:{op:'SET_BIT',bit:2},observedCurrentBit:true}]
+ }]};
+ const content=render(s).body.textContent;
+ assert.match(content,/transições condicionais RAM 0xd747 bit 2/);
+ assert.match(content,/bit RAM atual 1/);
+ assert.match(content,/execução\/conclusão por confirmar/);
+ s.romRuntimeIdentity.profileSha256='wrong';
+ assert.doesNotMatch(render(s).body.textContent,/transições condicionais RAM/);
+});
+
 // DOM, without contacting RetroArch or touching an authenticated session.
 const SHA_RED_FULL='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
 const SHA_GREEN_FULL='aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db';

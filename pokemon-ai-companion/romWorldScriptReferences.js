@@ -4,6 +4,7 @@
 // Pokemon and sign), without treating an entrypoint as understood behavior.
 // Every script outcome, RAM requirement and effect is explicitly unverified.
 const crypto=require('node:crypto');
+const {interpretWorld}=require('./romScriptSemantics');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
 const {inspectSpecialTextDispatch}=require('./romSpecialTextDispatchSemantics');
@@ -397,6 +398,7 @@ function auditWorldScriptReferences({rom,profile}={}){
  output.summary.staticFlagCandidateCrossMapLinks=links.summary.crossMapPotentialLinks;
  output.summary.staticFlagKeysReferenced=links.summary.bitKeysReferenced;
  output.summary.staticFlagCausalLinksVerified=0;
+ output.scriptSemantics=interpretWorld({rom,atlas:output});
  return output;
 }
 module.exports={auditWorldScriptReferences};

@@ -31,9 +31,9 @@ const {saveVerifiedProfileArchive}=require('../romProfileArchive');
 
 const JOB=/^PSB-\d{8}-\d{4}-POKEGUIDE-[A-Z0-9-]+-\d{3}$/.test(process.env.POKEGUIDE_CERT_JOB_ID||'')?process.env.POKEGUIDE_CERT_JOB_ID:'PSB-20261030-1054-POKEGUIDE-ASM626-004';
 const BASE='D:\\Pokeguide';
-const ROOT=path.join(BASE,'_qa');
-const HISTORY=path.join(BASE,'HISTORICO_BRIDGE_VALIDACOES.md');
-const ATLAS=path.join(ROOT,'PSB-20261029-2138-POKEGUIDE-ROMS-001','atlas.json');
+const ROOT=process.env.POKEGUIDE_CERT_TEMP_ROOT||path.join(BASE,'_qa');
+const HISTORY=process.env.POKEGUIDE_CERT_HISTORY||path.join(BASE,'HISTORICO_BRIDGE_VALIDACOES.md');
+const ATLAS=path.join(BASE,'_qa','PSB-20261029-2138-POKEGUIDE-ROMS-001','atlas.json');
 const FILENAMES=Object.freeze({
  red:'Pokemon - Red Version (USA, Europe) (SGB Enhanced) (1).zip',
  blue:'Pokemon - Blue Version (USA, Europe) (SGB Enhanced).zip',
@@ -166,6 +166,17 @@ function main(){
   assert(atlas.variants?.[variant]?.identity?.sha256===KNOWN[variant],
    'Atlas identity: '+variant);
   const a=p.world?.interactionScriptAtlas,i=buildWorldContentsIndex(p);
+  assert(a?.scriptSemantics?.verified===true,'ROM semantics missing: '+variant);
+  assert(a.scriptSemantics.romSha256===p.hash.sha256&&
+   a.scriptSemantics.formallyProvenScriptEffects>0&&
+   a.scriptSemantics.examples.length>0&&
+   a.scriptSemantics.examples.every(e=>e.gameplayStateTransitionProven===true&&
+    e.observedExecution===false&&e.trace.at(-1)===e.instructionOffset),
+   'ROM-grounded gameplay transitions missing: '+variant);
+  log('ROM_'+variant.toUpperCase()+'_FORMALLY_PROVEN_SCRIPT_EFFECTS='+
+   a.scriptSemantics.formallyProvenScriptEffects);
+  log('ROM_'+variant.toUpperCase()+'_FORMALLY_PROVEN_SCRIPT_EFFECT_EXAMPLES='+
+   JSON.stringify(a.scriptSemantics.examples));
   const actorBindings=auditWorldActorAttributeBindings({index:i,scriptAtlas:a});
   assert(actorBindings.verified===true&&
    actorBindings.summary.mapIds===248&&
@@ -1341,6 +1352,7 @@ function main(){
  env.POKEGUIDE_INVENTORY_JSON=ATLAS;
  log('STEP=TARGETED_ASM_AND_UI_TESTS');
  runTests('ASM_TARGETED',[
+  'tests/romScriptSemantics.test.js',
   'tests/romTxAsmHandlerAtlas.test.js',
   'tests/romAsmAbsoluteMemoryEvidence.test.js',
   'tests/romAsmEventBitEvidence.test.js',

@@ -119,6 +119,16 @@ function compileWorldInteractionPrograms({rom,atlas}={}){
   if(keys.has(k))return fail('Duplicate map interaction: '+k);
   keys.add(k);
   const p=compileOne({rom,reference:r});
+  const semanticRow=atlas.scriptSemantics?.verified===true&&
+   atlas.scriptSemantics.romSha256===atlas.romSha256?
+   atlas.scriptSemantics.rows.find(s=>s.mapId===r.mapId&&s.kind===r.kind&&
+    s.ordinal===r.ordinal&&s.scriptFileOffset===r.scriptFileOffset):null;
+  if(semanticRow?.semantics?.verified===true){
+   p.abstractTransitions=semanticRow.semantics.effects;
+   p.abstractExecutionLimitations=semanticRow.semantics.unresolved;
+   p.handlerControlFlowFullyInterpreted=semanticRow.semantics.complete;
+   if(p.abstractTransitions.length){p.programClass='ASM_PARTIALLY_INTERPRETED';p.semanticScope='ROM_ABSTRACT_CONTROL_FLOW_TRANSITIONS';}
+  }
   if(p.verified!==true)return fail('Invalid interaction: '+k+': '+p.reason);
   rows.push(p);
   classCounts[p.programClass]=(classCounts[p.programClass]||0)+1;
@@ -155,14 +165,15 @@ function compileWorldInteractionPrograms({rom,atlas}={}){
    conditionalServiceDispatchesLocated:services,
    unresolvedCommandStreams:uncertain,
    worldScriptEffectsCompletelyCertified:0,
+   formallyProvenScriptEffects:atlas.scriptSemantics?.formallyProvenScriptEffects??0,
    runtimeEventsObserved:0,
    byProgramClass:classCounts,
    groupsByProgramClass:Object.fromEntries(
     [...new Set(programs.map(g=>g.programClass))].map(c=>
       [c,programs.filter(g=>g.programClass===c).length]))
   },
-  semanticScope:'ROM_STATIC_DISPATCH_AND_LINEAR_TEXT_COMMAND_PROCESSOR',
+  semanticScope:'ROM_PARTIAL_ABSTRACT_CONTROL_FLOW_AND_TEXT_COMMAND_PROCESSOR',
   fullScriptSemanticsCertified:false,liveGameplayObserved:false,
-  note:'Text opcode semantics and service dispatch identity are not the surrounding map scripts, their branching decisions or runtime outcomes.'};
+  note:'Partial abstract RAM transitions carry path conditions and unresolved frontiers. They do not prove surrounding map-script eligibility, runtime execution or completion.'};
 }
 module.exports={compileOne,compileWorldInteractionPrograms};

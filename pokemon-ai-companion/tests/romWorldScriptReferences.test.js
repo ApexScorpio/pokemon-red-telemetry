@@ -32,6 +32,13 @@ for(const [name,env,sha] of cases){
   assert.equal(atlas.verified,true,atlas.reason);
   assert.equal(atlas.romSha256,sha);
   assert.equal(profile.world.interactionScriptAtlas?.verified,true);
+  const published=profile.world.interactionScriptAtlas.scriptSemantics;
+  assert.deepEqual(published,atlas.scriptSemantics,
+   'Profile projection must preserve the ROM-derived semantics and limitations');
+  assert.equal(published.romSha256,sha);
+  assert.ok(published.formallyProvenScriptEffects>0);
+  assert.ok(published.examples.every(e=>e.gameplayStateTransitionProven===true&&
+   e.observedExecution===false&&e.trace.at(-1)===e.instructionOffset));
   assert.equal(profile.world.interactionScriptAtlas.summary.referencedInteractions,1126);
   assert.equal(profile.world.interactionScriptAtlas.maps.length,248);
   const mapIndex=buildWorldContentsIndex(profile);
