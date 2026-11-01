@@ -1133,3 +1133,17 @@
 - Suite ASM, arquivo de perfis e suite integral verificados.
 - Nenhuma inferencia de execucao real ou conclusao da campanha.
 - Repositorio main, preview, ROMs e saves preservados.
+
+### PSB-20261101-1540-POKEGUIDE-RAMGATES-001 - requisitos RAM para scripts e bancos dinamicos
+
+- Base publicada: 301aa467fda8bb4ba209f64a2d014447f450f503.
+- Implementacao orientada aos bancos MBC3 dependentes de RAM.
+- Novos requisitos de leitura representados com proveniencia ROM.
+- Estado UNKNOWN preservado onde nao existe memoria atual comprovada.
+- Efeitos anteriores: Red=2, Blue=2, Green=2.
+- Efeitos agora certificados: Red=2, Blue=2, Green=2.
+- Aumento de efeitos estaticos nas tres ROMs: False.
+- Testes dirigidos e certificacao integral executados.
+- Nenhuma leitura de RAM, interacao ou conclusao de evento pode ser inventada.
+- Interpretacao integral da ROM permanece por concluir.
+- Main, preview ativo, sessoes, ROMs e saves nao alterados.

@@ -264,6 +264,11 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      hiddenFlagsVerified:hiddenFlagsVerified===true}
  }):null;
  for(const action of mapChecklist?.actions||[]){
+  if(action.scriptRuntimeRequirements?.length)
+   add(action.kind,'SCRIPT_RUNTIME_RAM_REQUIRED','Script #'+action.ordinal,
+    'Banco ROM UNKNOWN: falta leitura RAM autenticada; candidatos físicos não são execução.',
+    'ROM_ABSTRACT_SCRIPT_EXECUTION',{x:action.x,y:action.y,
+     runtimeRequirements:action.scriptRuntimeRequirements,eventCompleted:null,accessibleNow:null});
   if(!action.scriptPredictedEffects?.length)continue;
   add(action.kind,'PREDICTED_CONDITIONAL_EFFECT','Script #'+action.ordinal,
    'ROM: '+action.scriptPredictedEffects.length+' transições condicionais RAM; execução e conclusão por confirmar.',

@@ -2597,3 +2597,27 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Suite ASM, arquivo de perfis e suite integral verificados.
 - Nenhuma inferencia de execucao real ou conclusao da campanha.
 - Repositorio main, preview, ROMs e saves preservados.
+
+### T184 - 2026-11-01 - ROM grounded runtime bank requirements
+- Read T181-T183 histories, published HEAD 301aa467, interpreter compact DAG, checklist, advisor, renderer, telemetry reads and manual snapshot epoch guard before changes. No investigation of finished physical effects repeated.
+- Added per-handler bounded requirements derived from proven single-byte symbolic MBC3 frontiers, independent of four diagnostic samples. Preserve physical instruction/handler offsets, source address/width, controller register, expression, branch predicates, bounded in-file candidates and preconditions. Shared DAG serialization reused; archive limits unchanged.
+- Current telemetry does not read HRAM FFB8 and has no generic authenticated bank-source snapshot contract. Requirements remain UNKNOWN; no reader, snapshot parameter, emulator operation or inferred observed byte introduced. Existing identity/epoch publication guards unchanged.
+- Requirements propagate through universal SHA-bound checklist and advisor and render exact missing RAM/instruction/handler evidence. No completion or observed execution inferred. Consulted official gbdev pandocs MBC3 source for seven-bit bank selection and zero-to-one mapping.
+- Focused verification pending. No protected application opened or screenshot taken: code/runtime assertions provide the data feedback; no active GUI changed. Historical entries retained, original ROMs read-only, no commit/push or full certification.
+- First focused run: 74 tests, 70 PASS, 0 FAIL, 4 SKIP (ROM environment inputs absent). Then supplied existing original Red/Blue ZIP and Green International GB paths read-only for seven focused files: 115 tests, 115 PASS, 0 FAIL, 0 SKIP. Real-ROM static effects exactly Red=2, Blue=2, Green=2. Red unchanged archive-limit regression PASS: profileBytes=11490529, zipBytes=955731, handlers=516. Renderer VM confirms precise missing byte and physical instruction/handler offsets behind existing identity guard. No GUI/visual screenshot proof claimed.
+- Additional regression covers explicit invalid SHA, map/provenance/validation claims and another proven WRAM source with original branch predicate. First run exposed an incorrect new fixture expectation that excluding byte 2 excluded bank 2; byte 130 also selects bank 2 under the verified seven-bit MBC3 rule. Corrected the fixture expectation; production semantics unchanged. Final mandatory test rerun with all three original ROM inputs pending.
+- Final mandatory romVerifiedBankRequirements.test.js execution with all three original ROM inputs: 8 tests, 8 PASS, 0 FAIL, 0 SKIP, exit 0. Confirms exact SHA and both physical effects in each ROM; final static count Red=2, Blue=2, Green=2. git diff --check passed (line-ending warnings only). Full certification left to outer job. Existing untracked semantic-proof-t181.json untouched and unused.
+
+### PSB-20261101-1540-POKEGUIDE-RAMGATES-001 - requisitos RAM para scripts e bancos dinamicos
+
+- Base publicada: 301aa467fda8bb4ba209f64a2d014447f450f503.
+- Implementacao orientada aos bancos MBC3 dependentes de RAM.
+- Novos requisitos de leitura representados com proveniencia ROM.
+- Estado UNKNOWN preservado onde nao existe memoria atual comprovada.
+- Efeitos anteriores: Red=2, Blue=2, Green=2.
+- Efeitos agora certificados: Red=2, Blue=2, Green=2.
+- Aumento de efeitos estaticos nas tres ROMs: False.
+- Testes dirigidos e certificacao integral executados.
+- Nenhuma leitura de RAM, interacao ou conclusao de evento pode ser inventada.
+- Interpretacao integral da ROM permanece por concluir.
+- Main, preview ativo, sessoes, ROMs e saves nao alterados.

@@ -113,7 +113,14 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128}={}){
   if(mbc3&&concrete(a)&&a>=0x2000&&a<0x4000){
    const proof=concrete(value)?null:constrainedBank(value,s.conditions);
    if(!concrete(value)&&proof?.selectedBanks.length!==1){
-    stop(s,'UNRESOLVED_MEMORY_OR_BANK_WRITE',d.at,{address:a,value,bankSelection:proof?{...proof,selectedBanks:proof.selectedBanks.slice(0,8),candidateBankCount:proof.selectedBanks.length,candidatesBounded:proof.selectedBanks.length>8}:null});return false;
+    stop(s,'UNRESOLVED_MEMORY_OR_BANK_WRITE',d.at,{address:a,value,bankSelection:proof?{...proof,selectedBanks:proof.selectedBanks.slice(0,8),candidateBankCount:proof.selectedBanks.length,candidatesBounded:proof.selectedBanks.length>8}:null,
+     runtimeRequirement:proof?{instructionOffset:d.at,handlerOffset:fileOffset,
+      sourceAddress:proof.sourceAddress,width:1,controller:'MBC3',bankRegisterAddress:a,
+      reason:'LIVE_RAM_BYTE_REQUIRED_FOR_SYMBOLIC_BANK_WRITE',bankExpression:value,
+      possibleBanks:proof.selectedBanks.filter(b=>b<rom.length/0x4000).slice(0,8),
+      physicalCandidateCount:proof.selectedBanks.filter(b=>b<rom.length/0x4000).length,
+      candidatesBounded:proof.selectedBanks.filter(b=>b<rom.length/0x4000).length>8,
+      conditions:s.conditions.slice()}:null});return false;
    }
    const selected=concrete(value)?(value&0x7f)||1:proof.selectedBanks[0];
    if(selected>=rom.length/0x4000){stop(s,'ROM_BANK_OR_TARGET_UNKNOWN',d.at);return false;}
@@ -275,7 +282,12 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128}={}){
  }
  for(const s of queue)stop(s,'STEP_BUDGET',null);
  const unique=[...new Map(effects.map(e=>[JSON.stringify([e.instructionOffset,e.conditions,e.value]),e])).values()];
- return {verified:true,handlerOffset:fileOffset,effects:unique,unresolved,steps,paths,returns,complete:unresolved.length===0,preconditions:['HANDLER_INVOKED','VALID_NONALIASING_CALL_STACK','NO_EXTERNAL_MEMORY_MUTATION_DURING_PATH',...(mbc3?['HEADER_DECLARED_MBC3_BEHAVIOR']:[])],observedExecution:false,eventCompleted:null};
+ // Separate requirements from diagnostic samples: a fifth frontier must survive
+ // compact serialization. Existing maxPaths/maxSteps bound their total size;
+ // packHandlers shares expressions and branch conditions across requirements.
+ const runtimeRequirements=[...new Map(unresolved.filter(u=>u.runtimeRequirement).map(u=>[JSON.stringify(u.runtimeRequirement),u.runtimeRequirement])).values()];
+ for(const u of unresolved)delete u.runtimeRequirement;
+ return {verified:true,handlerOffset:fileOffset,effects:unique,unresolved,runtimeRequirements,steps,paths,returns,complete:unresolved.length===0,preconditions:['HANDLER_INVOKED','VALID_NONALIASING_CALL_STACK','NO_EXTERNAL_MEMORY_MUTATION_DURING_PATH',...(mbc3?['HEADER_DECLARED_MBC3_BEHAVIOR']:[])],observedExecution:false,eventCompleted:null};
 }
 function interpretWorld({rom,atlas}={}){
  const handlers=new Map(),rows=[];
@@ -314,4 +326,13 @@ function guidanceForSemantics(semantics,bitmap){
   conditionsInCurrentSnapshot:e.conditions.map(c=>{const v=predicate(c.predicate);return v===null?'UNKNOWN':v===c.taken?'MATCHES':'DOES_NOT_MATCH';}),
   observedCurrentBit:bitmap?.verified===true&&e.value?.bit!==undefined&&e.address>=0xd747&&e.address<=0xd886?bitmap.bits?.find(b=>b.bitIndex===(e.address-0xd747)*8+e.value.bit)?.flagSet??null:null}));
 }
-module.exports={interpretHandler,interpretWorld,guidanceForSemantics,resolveSemantics,packHandlers,unpackHandlers};
+function requirementsForSemantics(semantics){
+ if(semantics?.verified!==true)return [];
+ // Current telemetry has no authenticated HRAM bank-mirror snapshot. Do not
+ // consume arbitrary bytes/bitmaps or introduce a second snapshot identity.
+ return (semantics.runtimeRequirements||[]).map(r=>({...r,status:'UNKNOWN',
+  missingEvidence:'NO_AUTHENTICATED_SOURCE_BYTE_IN_CURRENT_TELEMETRY',
+  observedRam:null,selectedBank:null,observedExecution:false,eventCompleted:null,
+  limitations:semantics.preconditions,conditionalPredictionOnly:true}));
+}
+module.exports={interpretHandler,interpretWorld,guidanceForSemantics,requirementsForSemantics,resolveSemantics,packHandlers,unpackHandlers};

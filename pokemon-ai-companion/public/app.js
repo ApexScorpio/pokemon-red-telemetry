@@ -838,7 +838,17 @@ function formatCampaignChecklistSection(advice,state) {
 
     lines.push('• '+type+' ('+position+')'+identity+' — '+
       (verifiedGateLabel(action)||progress[action.progress]||'progresso por confirmar')+
-      variantProof+condition+entry+asm);
+      variantProof+condition+entry+asm+
+      (canRenderScriptSemantics&&action.scriptRuntimeRequirements?.length?
+       ' · '+action.scriptRuntimeRequirements.map(r=>
+        'Banco UNKNOWN: falta RAM 0x'+r.sourceAddress.toString(16).toUpperCase()+
+        ' ('+r.width+' byte), '+r.controller+' registo 0x'+r.bankRegisterAddress.toString(16)+
+        ', instrução ROM 0x'+r.instructionOffset.toString(16)+
+        ', handler 0x'+r.handlerOffset.toString(16)+
+        '; '+r.reason+'; '+r.physicalCandidateCount+' candidatos físicos (não executados)'+
+        '; condições '+JSON.stringify(r.conditions)+
+        '; limitações '+(r.limitations||[]).join(', ')+
+        '; execução/conclusão por confirmar').join(' · '):''));
   }
 
   // The twelve hidden coin events are not among the 1992 map objects.

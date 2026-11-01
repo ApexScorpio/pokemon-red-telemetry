@@ -1128,6 +1128,20 @@ test('derived ROM transitions appear in real checklist renderer without completi
 });
 
 // DOM, without contacting RetroArch or touching an authenticated session.
+test('runtime bank requirements show exact missing evidence behind existing SHA and map guards',()=>{
+ const s=versionedActorState(SHA_RED_FULL,15,2,3,'NPC');
+ const action=s.worldAdvisor.mapChecklist.actions[0];
+ action.scriptRuntimeRequirements=[{sourceAddress:0xffb8,width:1,controller:'MBC3',
+  bankRegisterAddress:0x2000,instructionOffset:0x35dc,handlerOffset:0x18020,
+  reason:'LIVE_RAM_BYTE_REQUIRED_FOR_SYMBOLIC_BANK_WRITE',physicalCandidateCount:63,
+  conditions:[],limitations:['HANDLER_INVOKED']}];
+ const text=render(s).body.textContent;
+ assert.match(text,/Banco UNKNOWN: falta RAM 0xFFB8/);
+ assert.match(text,/instrução ROM 0x35dc, handler 0x18020/);
+ assert.match(text,/63 candidatos físicos \(não executados\)/);
+ s.romRuntimeIdentity.profileSha256='wrong';
+ assert.doesNotMatch(render(s).body.textContent,/falta RAM 0xFFB8/);
+});
 const SHA_RED_FULL='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
 const SHA_GREEN_FULL='aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db';
 function versionedActorState(sha,mapId,x,y,kind='ITEM'){

@@ -4,7 +4,7 @@
 // The same (kind,x,y,id) must identify one object on both sides before joining.
 const {getMapContents}=require('./romWorldContentsIndex');
 const {bindMapActorAttributes}=require('./romMapActorAttributeBinding');
-const {guidanceForSemantics,resolveSemantics}=require('./romScriptSemantics');
+const {guidanceForSemantics,requirementsForSemantics,resolveSemantics}=require('./romScriptSemantics');
 const KINDS=Object.freeze({
  visibleItems:'ITEM',hiddenItems:'HIDDEN_ITEM',trainers:'TRAINER',
  npcs:'NPC',stationaryPokemon:'STATIC_POKEMON',signs:'SIGN',warps:'WARP'
@@ -113,6 +113,8 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
    const scriptPredictedEffects=guidanceForSemantics(
     semanticRows.length===1?resolveSemantics(scriptAtlas.scriptSemantics,semanticRows[0]):null,
     eventBitmap?.romSha256===hash?eventBitmap:null);
+   const scriptRuntimeRequirements=requirementsForSemantics(
+    semanticRows.length===1?resolveSemantics(scriptAtlas.scriptSemantics,semanticRows[0]):null);
    const actorProof=(kind==='ITEM'||kind==='STATIC_POKEMON')&&
     romScript!==null?actorByKey.get(kind+':'+obj.ordinal)||null:null;
    let gateFlag=null,gateSource=null;
@@ -162,6 +164,7 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
     scriptEventFlagSnapshotVerified:gateFlag!==null,
     scriptEventFlagEvidence:gateSource,
     scriptPredictedEffects,
+    scriptRuntimeRequirements,
     // A bounded prefix is useful advice, not verification of the whole script.
     scriptEffectSemanticsVerified:false,
     scriptConditionalTransitionsProven:scriptPredictedEffects.some(e=>
