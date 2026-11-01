@@ -5,7 +5,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
 const source=fs.readFileSync(path.join(__dirname,'../public/app.js'),'utf8');
-const start=source.indexOf('function formatCampaignChecklistSection(advice) {');
+const start=source.search(/\bfunction\s+formatCampaignChecklistSection\s*\(/);
 const end=source.indexOf('\nfunction renderWorldAdvisor(state)',start);
 assert.ok(start>=0&&end>start,'Campanha nao integrada no painel');
 const format=vm.runInNewContext(
@@ -69,6 +69,6 @@ test('UI formats text without HTML injection or claiming actions finished',()=>{
  assert.ok(lines.some(l=>l.includes('NPC')&&l.includes('progresso por confirmar')));
  assert.ok(!lines.some(l=>l.includes('campanha concluída')));
  assert.ok(source.includes('body.textContent=lines.join'));
- assert.ok(source.includes('formatCampaignChecklistSection(advice)'));
+ assert.match(source,/\bformatCampaignChecklistSection\s*\(\s*advice\s*,\s*state\s*\)/);
  assert.ok(source.includes('state.memoryReadStatus?.positionWindow?.verified!==true'));
 });
