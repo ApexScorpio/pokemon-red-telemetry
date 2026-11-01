@@ -301,7 +301,7 @@ test('Strength route requires matching variant SHA; changes to terrain fingerpri
  assert.match(live,/strengthTerrain\?\.tileIdsSha256/);
  assert.match(live,/strengthTerrain\?\.walkingBitsSha256/);
  assert.match(live,/if\(strengthVariantVerified&&itemAccess\.verified===true&&verifiedSprites\)/);
- const execute=vm.runInNewContext('(function(itemAccess,accessInput,abilityStrength,positionWindow,planStrengthPushes,strengthFlag){'+live+'\nreturn itemAccess;})');
+ const execute=vm.runInNewContext('(function(itemAccess,accessInput,abilityStrength,positionWindow,modeWindow,planStrengthPushes,strengthFlag){'+live+'\nreturn itemAccess;})');
  const terrain={verified:true,tileIdsSha256:'A',walkingBitsSha256:'B'};
  const context={activeRomProfile:{hash:{sha256:'a'.repeat(64)}},latestState:{
    mapId:21,coords:{x:1,y:1},memoryReadStatus:{blocks:{overworldSprites:true}},
@@ -309,17 +309,23 @@ test('Strength route requires matching variant SHA; changes to terrain fingerpri
    romStaticMapGuide:{terrain},mapEntities:[{x:2,y:1,type:'boulder',pictureId:63}]
  }};
  const input=[{x:5,y:1,romItemCoordinatesVerified:true}];
- let calls=0;
- const compute=()=>{calls++;return {verified:true,found:true,pushCount:1,
+ let calls=0,currentModeByte=0;
+ const sampledModes=[];
+ const compute=({modeByte})=>{calls++;sampledModes.push(modeByte);return {
+   verified:true,found:true,pushCount:1,
    steps:2,pushes:[{direction:'east',from:{x:2,y:1},to:{x:3,y:1}}]}};
  const invoke=()=>execute.call(context,{verified:true,results:[{index:0,
    accessStatus:'POSSIBLE_STRENGTH_BARRIER'}]},input,true,
-   {verified:true},compute,{verified:true,activeAtSample:true});
+   {verified:true},{verified:true,modeByte:currentModeByte},
+   compute,{verified:true,activeAtSample:true});
  invoke();invoke();assert.equal(calls,1);
  terrain.tileIdsSha256='C';invoke();assert.equal(calls,2);
+ // A change from walking to bicycle must invalidate the memoized plan.
+ currentModeByte=1;invoke();assert.equal(calls,3);
+ assert.deepEqual(sampledModes,[0,0,1]);
  context.latestState.romVariantTerrainEvidence.verified=false;
  const refused=invoke();
- assert.equal(calls,2);
+ assert.equal(calls,3);
  assert.equal(refused.results[0].accessStatus,'POSSIBLE_STRENGTH_BARRIER');
 });
 
