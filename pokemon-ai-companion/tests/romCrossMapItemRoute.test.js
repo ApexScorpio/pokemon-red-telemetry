@@ -159,3 +159,102 @@ test('budget exhaustion remains unknown rather than blocked',()=>{
  assert.equal(r.results[0].accessibleNow,null);
  assert.match(r.results[0].reason,/Limite de pesquisa/);
 });
+
+
+test('cross-map source rejects a blocked ROM start tile instead of finding a detour',()=>{
+ const f=fixture(),m=f.terrainAtlas.maps[0];
+ const bits=Buffer.from(m.walkingBitsBase64,'base64');
+ const i=f.position.y*m.width+f.position.x;
+ bits[i>>3]&=~(1<<(i&7));
+ m.walkingBitsBase64=bits.toString('base64');
+ m.walkingBitsSha256=hash(bits);
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,false);
+ assert.equal(r.found,false);
+ assert.equal(r.accessibleNow,null);
+ assert.match(r.reason,/terreno e o modo de movimento/);
+});
+test('cross-map source rejects impossible land-water movement modes',()=>{
+ for(const type of ['LAND_IN_WATER','SURF_ON_LAND']){
+  const f=fixture(),m=f.terrainAtlas.maps[0];
+  if(type==='LAND_IN_WATER'){
+   const tiles=Buffer.from(m.tileIdsBase64,'base64');
+   const bits=Buffer.from(m.walkingBitsBase64,'base64');
+   const i=f.position.y*m.width+f.position.x;
+   tiles[i]=0x14;bits[i>>3]&=~(1<<(i&7));
+   m.tileIdsBase64=tiles.toString('base64');
+   m.walkingBitsBase64=bits.toString('base64');
+   m.tileIdsSha256=hash(tiles);
+   m.walkingBitsSha256=hash(bits);
+  }else{f.currentModeByte=2;f.canSurf=true;}
+  const r=findCrossMapItemPath(f);
+  assert.equal(r.verified,false);
+  assert.match(r.reason,/terreno e o modo de movimento/);
+ }
+});
+test('a real ROM water tile in Surf mode permits only conditional multi-map search',()=>{
+ const f=fixture(),m=f.terrainAtlas.maps[0];
+ const tiles=Buffer.from(m.tileIdsBase64,'base64');
+ const bits=Buffer.from(m.walkingBitsBase64,'base64');
+ const i=f.position.y*m.width+f.position.x;
+ tiles[i]=0x14;bits[i>>3]&=~(1<<(i&7));
+ m.tileIdsBase64=tiles.toString('base64');
+ m.walkingBitsBase64=bits.toString('base64');
+ m.tileIdsSha256=hash(tiles);
+ m.walkingBitsSha256=hash(bits);
+ f.currentModeByte=2;f.canSurf=true;
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,true);
+ assert.equal(r.routeNavigableNowProven,false);
+ assert.equal(r.accessibleNow,null);
+});
+test('cross-map routes fail closed when even one verified RAM sprite is corrupt',()=>{
+ for(const bad of [null,{x:1,y:null},{x:256,y:1},{x:1.4,y:1}]){
+  const f=fixture();f.spritesVerified=true;
+  f.currentMapEntities=[{x:1,y:1,pictureId:17},bad];
+  const r=findCrossMapItemPath(f);
+  assert.equal(r.verified,false);
+  assert.equal(r.found,false);
+  assert.match(r.reason,/Sprites RAM incoerentes/);
+ }
+});
+test('missing verified RAM entity list is not an empty map for multi-map routing',()=>{
+ for(const entities of [null,undefined,{},'']){
+  const f=fixture();f.spritesVerified=true;f.currentMapEntities=entities;
+  const result=findCrossMapItemPaths({...f,targets:[f.target]});
+  assert.equal(result.verified,false);
+  assert.equal(result.found,false);
+  assert.match(result.reason,/Sprites RAM incoerentes/);
+ }
+});
+test('blocked or water warp destination cannot seed hypothetical land path',()=>{
+ for(const blocked of ['COLLISION','WATER']){
+  const f=fixture(),m=f.terrainAtlas.maps[1];
+  const bits=Buffer.from(m.walkingBitsBase64,'base64');
+  const tiles=Buffer.from(m.tileIdsBase64,'base64');
+  const i=1*m.width+1;
+  bits[i>>3]&=~(1<<(i&7));
+  if(blocked==='WATER')tiles[i]=0x14;
+  m.walkingBitsBase64=bits.toString('base64');
+  m.walkingBitsSha256=hash(bits);
+  m.tileIdsBase64=tiles.toString('base64');
+  m.tileIdsSha256=hash(tiles);
+  const r=findCrossMapItemPath(f);
+  assert.equal(r.verified,true);
+  assert.equal(r.found,false);
+  assert.equal(r.accessibleNow,null);
+  assert.equal(r.routeNavigableNowProven,false);
+ }
+});
+test('offscreen RAM actor remains legal and does not block certified geometric detour',()=>{
+ for(const entities of [
+   [{x:-4,y:1,type:'npc',pictureId:14}],
+   [{x:255,y:255,type:'npc',pictureId:14}]]){
+  const f=fixture();f.spritesVerified=true;f.currentMapEntities=entities;
+  const r=findCrossMapItemPath(f);
+  assert.equal(r.verified,true);
+  assert.equal(r.found,true);
+  assert.equal(r.warpTransitions,2);
+  assert.equal(r.accessibleNow,null);
+ }
+});

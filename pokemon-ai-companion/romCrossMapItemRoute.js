@@ -2,7 +2,8 @@
 // Bounded multi-map ROUTE HYPOTHESIS for SHA-audited Gen I ROM maps.
 // Crosses static warps and ROM-aligned outdoor candidate borders. Neither a
 // candidate path nor failure to find one proves actual access or blockage.
-const {terrainBytes,computeReach,candidatePath}=require('./romItemReachability');
+const {terrainBytes,computeReach,candidatePath,checkLocalPathSnapshot}=
+  require('./romItemReachability');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {mapArrival}=require('./romOutdoorAlignment');
 const byte=x=>Number.isInteger(x)&&x>=0&&x<248;
@@ -39,7 +40,7 @@ function exactTilePath(reach,p){
 function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
  sourceMapId,position,target=null,targets=null,outdoorAlignment=null,positionVerified=false,
  currentModeByte=null,canCut=false,canSurf=false,
- spritesVerified=false,currentMapEntities=[],maxTransitions=10,
+ spritesVerified=false,currentMapEntities=null,maxTransitions=10,
  maxStates=180}={}){
  const sha=String(romSha256||'').toLowerCase();
  const multi=targets!==null,requested=multi?targets:[target];
@@ -117,6 +118,13 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
  const first=gridFor(sourceMapId);
  if(!first||position.x>=first.width||position.y>=first.height)
   return reject('Coordenadas RAM fora do terreno da ROM de origem');
+ // Cross-map searches share the exact ROM/RAM prerequisites used for
+ // same-map item routes and exits. Never manufacture a detour starting
+ // from a blocked ROM tile, mismatched Surf mode or corrupt RAM actors.
+ const sourceIssue=checkLocalPathSnapshot(first,position,{
+   modeByte:currentModeByte,spritesVerified,
+   mapEntities:currentMapEntities});
+ if(sourceIssue)return reject(sourceIssue);
  const key=(id,x,y)=>id+':'+x+':'+y;
  const seen=new Set([key(sourceMapId,position.x,position.y)]);
  const queue=[{mapId:sourceMapId,x:position.x,y:position.y,
@@ -128,6 +136,16 @@ function findCrossMapItemPath({romSha256,terrainAtlas,warpGraph,
    const state=queue[cursor],grid=gridFor(state.mapId);
    explored++;
    if(!grid||state.x>=grid.width||state.y>=grid.height)continue;
+   // Beyond the first verified RAM map, a warp/border arrival is only
+   // hypothetical. We model an ordinary land landing, never invent
+   // Surf activation or a walkable tile at an obstructed arrival.
+   const isSource=state.segments.length===0;
+   const landingIssue=checkLocalPathSnapshot(grid,
+     {x:state.x,y:state.y},{
+       modeByte:isSource?currentModeByte:0,
+       spritesVerified:isSource&&spritesVerified,
+       mapEntities:isSource?currentMapEntities:[]});
+   if(landingIssue)continue;
    const reach=computeReach(grid,{x:state.x,y:state.y},{
      canCut,canSurf,
      currentSurf:state.segments.length===0&&currentModeByte===2,

@@ -1372,6 +1372,7 @@ function main(){
   'tests/romItemAccessProjectionIntegrity.test.js',
   'tests/romItemReachability.test.js',
   'tests/romLocalExitAccess.test.js',
+  'tests/romCrossMapItemRoute.test.js',
   'tests/romVerifiedMinimapMarkers.test.js',
   'tests/romVramFallbackStaticEvidence.test.js',
   'tests/romVerifiedHiddenCoinMarkers.test.js',
