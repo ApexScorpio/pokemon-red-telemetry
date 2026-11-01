@@ -2248,6 +2248,7 @@ class RetroArchClient extends EventEmitter {
     const strengthScope=JSON.stringify([
       this.activeRomProfile?.hash?.sha256,this.latestState.mapId,
       this.latestState.coords,abilityStrength,
+      modeWindow.verified?modeWindow.modeByte:null,
       strengthVariantVerified,
       strengthTerrain?.tileIdsSha256,strengthTerrain?.walkingBitsSha256,
       verifiedSprites,positionWindow.verified===true,
@@ -2275,6 +2276,7 @@ class RetroArchClient extends EventEmitter {
             target:{x:item.x,y:item.y,hidden},
             positionVerified:positionWindow.verified===true,
             spritesVerified:verifiedSprites,
+            modeByte:modeWindow.verified?modeWindow.modeByte:null,
             actors:Array.isArray(this.latestState.mapEntities)?
               this.latestState.mapEntities:[],
             canStrength:abilityStrength,maxStates:1400,maxPushes:8

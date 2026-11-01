@@ -14,7 +14,7 @@ function fixture(){
    tileIdsSha256:hash(tiles),walkingBitsSha256:hash(bits),
    landBlockedTilePairs:[]},
    position:{x:1,y:1},target:{x:5,y:1,hidden:false},
-   positionVerified:true,spritesVerified:true,
+   positionVerified:true,spritesVerified:true,modeByte:0,
    actors:[{x:2,y:1,type:'boulder',pictureId:63}],canStrength:true,
    maxStates:400,maxPushes:6};
 }
@@ -96,4 +96,67 @@ test('hidden item behind occupied sprite cannot claim a legal interaction',()=>{
  const r=planStrengthPushes(f);
  assert.equal(r.verified,true);
  assert.equal(r.found,false);
+});
+
+
+test('Strength refuses unknown movement mode instead of treating RAM as walking',()=>{
+ for(const modeByte of [null,undefined,-1,3,'0']){
+  const f=fixture();f.modeByte=modeByte;
+  const r=planStrengthPushes(f);
+  assert.equal(r.verified,false);
+  assert.equal(r.found,false);
+  assert.equal(r.accessibleNow,null);
+ }
+});
+test('Strength rejects Surf mode even when land origin and boulder appear valid',()=>{
+ const r=planStrengthPushes({...fixture(),modeByte:2});
+ assert.equal(r.verified,false);
+ assert.equal(r.found,false);
+ assert.match(r.reason,/modo de movimento|Surf/i);
+});
+test('bike mode remains only a conditional Strength hypothesis, not a live action',()=>{
+ const r=planStrengthPushes({...fixture(),modeByte:1});
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.found,true,r.reason);
+ assert.equal(r.pushExecutionVerified,false);
+ assert.equal(r.strengthActivationVerified,false);
+ assert.equal(r.accessibleNow,null);
+});
+test('offscreen ROM-overworld sprite slots do not erase a legal local push hypothesis',()=>{
+ for(const actor of [
+   {x:-4,y:1,type:'npc',pictureId:2},
+   {x:255,y:255,type:'npc',pictureId:2}]){
+  const f=fixture();f.actors.push(actor);
+  const r=planStrengthPushes(f);
+  assert.equal(r.verified,true,r.reason);
+  assert.equal(r.found,true,r.reason);
+  assert.equal(r.pushExecutionVerified,false);
+ }
+});
+test('malformed and out-of-ROM-range RAM actor tiles reject all Strength plans',()=>{
+ for(const actor of [
+   {x:-5,y:1,type:'npc'},
+   {x:256,y:1,type:'npc'},
+   {x:null,y:1,type:'npc'},
+   {x:2.5,y:1,type:'npc'}]){
+  const f=fixture();f.actors.push(actor);
+  const r=planStrengthPushes(f);
+  assert.equal(r.verified,false);
+  assert.equal(r.found,false);
+  assert.equal(r.accessibleNow,null);
+ }
+});
+test('live Strength planner and its cache both include the same RAM mode window',()=>{
+ const fs=require('node:fs'),path=require('node:path');
+ const source=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
+ const cacheStart=source.indexOf('const strengthScope=JSON.stringify([');
+ const cacheEnd=source.indexOf('if(this._strengthPlanCacheScope!==strengthScope)',cacheStart);
+ const invocationStart=source.indexOf('let strength=planStrengthPushes({',cacheEnd);
+ const invocationEnd=source.indexOf('});',invocationStart);
+ assert.ok(cacheStart>=0&&cacheEnd>cacheStart);
+ assert.ok(invocationStart>cacheEnd&&invocationEnd>invocationStart);
+ assert.match(source.slice(cacheStart,cacheEnd),
+   /modeWindow\.verified\?modeWindow\.modeByte:null/);
+ assert.match(source.slice(invocationStart,invocationEnd),
+   /modeByte:modeWindow\.verified\?modeWindow\.modeByte:null/);
 });

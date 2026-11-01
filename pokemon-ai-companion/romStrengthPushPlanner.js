@@ -4,12 +4,12 @@
 // two attempts to initiate pushing, ROM collision and sprites to cooperate.
 // Sources: pret/pokered engine/overworld/push_boulder.asm,
 // engine/overworld/player_state.asm, engine/menus/start_sub_menus.asm.
-const {terrainBytes}=require('./romItemReachability');
+const {terrainBytes,checkLocalPathSnapshot}=require('./romItemReachability');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const directions=[['north',0,-1],['east',1,0],['south',0,1],['west',-1,0]];
 const validPos=p=>Number.isInteger(p?.x)&&Number.isInteger(p?.y)&&p.x>=0&&p.y>=0;
 function planStrengthPushes({terrain,romSha256,position,target,
- positionVerified=false,spritesVerified=false,actors=[],
+ positionVerified=false,spritesVerified=false,actors=null,modeByte=null,
  canStrength=null,maxStates=1600,maxPushes=8}={}){
  const sha=String(romSha256||'').toLowerCase();
  const fail=reason=>({verified:false,found:false,reason,accessibleNow:null,
@@ -25,11 +25,18 @@ function planStrengthPushes({terrain,romSha256,position,target,
  const {width,height,tiles,bits,pairs,tilesetId}=grid;
  const inside=p=>p.x>=0&&p.y>=0&&p.x<width&&p.y<height;
  if(!inside(position)||!inside(target))return fail('Coordenadas fora do mapa ROM');
+ // Strength requires a coherent land-mode RAM snapshot. An unknown
+ // or Surf mode cannot be silently treated as walking.
+ const snapshotIssue=checkLocalPathSnapshot(grid,position,{
+   modeByte,spritesVerified,mapEntities:actors});
+ if(snapshotIssue)return fail(snapshotIssue);
+ if(modeByte===2)return fail('Strength não pode ser planeado a partir de Surf');
  const id=p=>p.y*width+p.x,xy=n=>({x:n%width,y:Math.floor(n/width)});
  const boulders=[],occupied=new Set(),itemSprites=new Set(),all=new Set();
  for(const actor of actors){
-   if(!validPos(actor)||!inside(actor))
-     return fail('Sprite RAM com coordenadas inválidas');
+   // Valid RAM overworld slots outside the current ROM grid are not
+   // local blockers; corrupt coordinates were rejected above.
+   if(!inside(actor))continue;
    const i=id(actor);
    if(all.has(i))return fail('Sprites sobrepostos na mesma célula RAM');
    all.add(i);

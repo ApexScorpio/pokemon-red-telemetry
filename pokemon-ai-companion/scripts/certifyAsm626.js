@@ -1373,6 +1373,7 @@ function main(){
   'tests/romItemReachability.test.js',
   'tests/romLocalExitAccess.test.js',
   'tests/romCrossMapItemRoute.test.js',
+  'tests/romStrengthPushPlanner.test.js',
   'tests/romVerifiedMinimapMarkers.test.js',
   'tests/romVramFallbackStaticEvidence.test.js',
   'tests/romVerifiedHiddenCoinMarkers.test.js',
