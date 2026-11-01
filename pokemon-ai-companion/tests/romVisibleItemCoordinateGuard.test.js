@@ -217,3 +217,16 @@ test('audited Red Blue Green ROMs preserve their own 226/227 item tiles',
  }
  assert.equal(Object.keys(proven).length,6);
 });
+
+
+test('remaining ROM items preserve exact physical object ordinal in client publication',()=>{
+ const fs=require('node:fs'),path=require('node:path');
+ const client=fs.readFileSync(path.join(__dirname,'../retroarchClient.js'),'utf8');
+ const begin=client.indexOf('const extraRomItems=visibleCoordinateGuard.remainingRomItems');
+ const end=client.indexOf('const allHiddenItems = hiddenList.map',begin);
+ assert.ok(begin>=0&&end>begin);
+ const block=client.slice(begin,end);
+ assert.match(block,/romObjectOrdinal:o\.objectOrdinal/);
+ assert.match(block,/coordinateSource:'SHA_AUDITED_ACTIVE_ROM_ITEM_OBJECT'/);
+ assert.match(block,/itemId:o\.itemId,x:o\.x,y:o\.y/);
+});
