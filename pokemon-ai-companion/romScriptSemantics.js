@@ -69,6 +69,10 @@ function packHandlers(handlers){
  const roots=handlers.map(h=>encode({...h,
   unresolvedCount:h.unresolvedCount??h.unresolved.length,
   unresolvedReasonCounts:h.unresolvedReasonCounts??h.unresolved.reduce((out,u)=>(out[u.reason]=(out[u.reason]||0)+1,out),{}),
+  unresolvedWriteCategoryCounts:h.unresolvedWriteCategoryCounts??h.unresolved.filter(u=>u.reason==='UNRESOLVED_MEMORY_OR_BANK_WRITE').reduce((out,u)=>{
+   const key=Number.isInteger(u.address)&&u.address>=0x2000&&u.address<0x4000?'UNKNOWN_BANK':'UNKNOWN_MEMORY';
+   out[key]=(out[key]||0)+1;return out;
+  },{}),
   unresolvedSamplesBounded:h.unresolved.length>4||h.unresolvedSamplesBounded===true,
   unresolved:h.unresolved.slice(0,4)}));
  return {encoding:'rom-handler-dag-v1',keys,nodes,roots};
@@ -280,7 +284,7 @@ function interpretHandler({rom,fileOffset,maxSteps=2048,maxPaths=128}={}){
   else {stop(s,'UNSUPPORTED_OPCODE_'+op.toString(16),d.at);continue;}
   if(ok){if(cpuToOffset(s.bank,s.pc,rom.length)===null)stop(s,'ROM_BANK_OR_TARGET_UNKNOWN',d.at);else queue.push(s);}
  }
- for(const s of queue)stop(s,'STEP_BUDGET',null);
+ for(const s of queue)stop(s,'STEP_BUDGET',cpuToOffset(s.bank,s.pc,rom.length),{pendingCpu:s.pc});
  const unique=[...new Map(effects.map(e=>[JSON.stringify([e.instructionOffset,e.conditions,e.value]),e])).values()];
  // Separate requirements from diagnostic samples: a fifth frontier must survive
  // compact serialization. Existing maxPaths/maxSteps bound their total size;

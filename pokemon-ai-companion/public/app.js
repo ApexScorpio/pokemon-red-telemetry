@@ -836,9 +836,33 @@ function formatCampaignChecklistSection(advice,state) {
         ' (sem prova de efeito)':'';
 
 
+    const coverage=canRenderScriptSemantics&&action.scriptCoverage?.romSha256===runtimeSha?
+      action.scriptCoverage:null;
+    const blockerExplanations={
+      STEP_BUDGET:'limite de instruções atingido; requer análise adicional do caminho',
+      PATH_BUDGET:'limite de ramificações atingido; restam alternativas por analisar',
+      UNKNOWN_BANK:'banco ROM não determinado; consultar requisitos RAM quando disponíveis',
+      INDIRECT_TARGET:'destino indireto não determinado; falta provar o endereço de controlo',
+      UNKNOWN_MEMORY:'endereço ou operação de memória não resolvidos; não pressupor valores RAM',
+      UNSUPPORTED_OPCODE:'instrução sem semântica suportada; requer implementação CPU validada',
+      LOOP_REQUIRES_FIXPOINT:'ciclo sem ponto fixo demonstrado; não se assume terminação',
+      OTHER:'diagnóstico original preservado; causa específica não classificada'
+    };
+    const coverageText=coverage?(coverage.executableAsm?
+      ' · STATIC_ROM_EVIDENCE: handler ROM 0x'+coverage.handlerOffset.toString(16)+
+      '; '+coverage.unresolvedCount+' caminhos não resolvidos; motivos exatos '+JSON.stringify(coverage.unresolvedReasonCounts)+
+      '; categorias '+JSON.stringify(coverage.unresolvedCategoryCounts)+
+      '; '+Object.keys(coverage.unresolvedCategoryCounts).map(c=>blockerExplanations[c]||blockerExplanations.OTHER).join('; ')+
+      '; '+coverage.unresolvedSamples.length+' exemplos'+(coverage.unresolvedSamplesBounded?' (amostra limitada; não é cobertura total)':'')+
+      ': '+coverage.unresolvedSamples.map(u=>u.reason+' ['+u.category+'] @ '+
+        (Number.isInteger(u.instructionOffset)?'ROM 0x'+u.instructionOffset.toString(16):'offset desconhecido')).join(', ')+
+      '; CONDITIONAL_PREDICTION: '+coverage.conditionalEffectCandidates+' candidatos, '+coverage.provenEffects+' efeitos de gameplay provados sob precondições'+
+      '; script integral '+(coverage.fullScriptCertified?'certificado':'não certificado')+
+      '; VERIFIED_LIVE_RAM / OBSERVED_PLAYER_ACTION: sem prova por esta análise':
+      ' · comando de apresentação de texto; não é script ASM executável; script integral não certificado'):'';
     lines.push('• '+type+' ('+position+')'+identity+' — '+
       (verifiedGateLabel(action)||progress[action.progress]||'progresso por confirmar')+
-      variantProof+condition+entry+asm+
+      variantProof+condition+entry+asm+coverageText+
       (canRenderScriptSemantics&&action.scriptRuntimeRequirements?.length?
        ' · '+action.scriptRuntimeRequirements.map(r=>
         'Banco UNKNOWN: falta RAM 0x'+r.sourceAddress.toString(16).toUpperCase()+

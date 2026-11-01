@@ -2621,3 +2621,27 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - Nenhuma leitura de RAM, interacao ou conclusao de evento pode ser inventada.
 - Interpretacao integral da ROM permanece por concluir.
 - Main, preview ativo, sessoes, ROMs e saves nao alterados.
+
+### T185 - 2026-11-01 - Worldwide script blocker coverage
+- Confirmed HEAD 39cb31eeef4141393706379f71cb6a82c368afba; read T181-T184 history, compact interpreter, checklist, advisor and renderer. Existing untracked semantic-proof-t181.json preserved. Implementing SHA-bound per-interaction projection from existing atlas/DAG; focused tests only. No protected app or preview started.
+- Added coverage projection, checklist/advisor integration and current UI formatter: exact reasons, category counts, bounded examples, conditional effects and explicit evidence classes. STEP_BUDGET now records pending physical PC as diagnostic metadata; scheduling, CPU semantics and budgets unchanged. Focused real-ROM and renderer assertions in progress.
+- First new real-ROM test run exposed a new test assumption: an arbitrary map need not have truncated samples (map 0 has only two frontiers). Changed test selection to locate an actual bounded interaction and require its UI label, while retaining four-map rendering checks. Rerun: 4 PASS, 0 FAIL, 0 SKIP across real Red/Blue/Green. Each ROM: 1126 references, 626 ASM references, 516 physical handlers, 3396 unresolved physical paths; exact reasons 1634 memory/bank writes, 1599 STEP_BUDGET, 148 PATH_BUDGET, 13 indirect memory, 2 HALT interrupt state. Static gameplay effects remain 2 per ROM.
+- Inspected actual Red physical budget sites: handler 0x198B1 reaches ROM0 0x1950 LD [HL+],A / 0x1951 DEC D / 0x1952 JR NZ; PATH_BUDGET includes handler 0x24F4 at 0x4DEF and 0xCE2E with ROM/WRAM comparisons. Green fill loop is at 0x1937-0x1939. Conditions include live WRAM reads. No single execution optimization formally established in this investigation; CPU execution, scheduling and limits retained. Only pending-PC diagnostic offset changed. Existing focused CPU/checklist/advisor/UI tests: 104 total, 103 PASS, 0 FAIL, 1 SKIP (real archive input absent in that run); real archive test will run with explicit original input.
+- Added lossless per-handler aggregate counts separating bank-write and other memory-write blockers before four-sample truncation. This is compact diagnostic metadata in the shared DAG, not duplicated interaction traces. Older profiles without complete provenance conservatively retain OTHER. UI now explains each category and the missing analysis/evidence in Portuguese. Strengthened real-ROM tests to reconcile category counts with every original frontier and verify every physical offset.
+- Final focused eight-file run with explicit original Red/Blue/Green inputs: 116 tests, 116 PASS, 0 FAIL, 0 SKIP, exit 0. Includes CPU, bank constraints, compact DAG, checklist, advisor and production UI VM. Real Red archive regression: profileBytes=11495417, zipBytes=956328, unchanged 4 MiB entry / 3-part limits passed. Added new blocker test to explicit certifier list; node --test full-suite discovery also includes it. Full certification not launched.
+- Strengthened final blocker tests additionally check checklist identity and unknown accessibility/completion on all 248 map IDs (1126 bound interactions per ROM), plus four-map production renderer checks. Rerun: 4 PASS, 0 FAIL, 0 SKIP. Physical category totals per real ROM: UNKNOWN_BANK=1629, STEP_BUDGET=1599, UNKNOWN_MEMORY=18, PATH_BUDGET=148, OTHER=2 (actual HALT_REQUIRES_INTERRUPT_STATE); no INDIRECT_TARGET, UNSUPPORTED_OPCODE or LOOP_REQUIRES_FIXPOINT encountered in current bounded execution. Exactly two prior static effects remain per ROM; zero new effects and no live player-action proof.
+- Consulted official gbdev Pan Docs CPU encoding source: https://raw.githubusercontent.com/gbdev/pandocs/master/src/CPU_Instruction_Set.md (website frontend returned HTTP 403, upstream source available). node --check and git diff --check passed. UI validated through actual production formatter in VM; no screenshot or interactive GUI execution claimed, no protected preview/app touched. No packages, global changes, commits, pushes or historical removals. Existing untracked semantic-proof-t181.json retained.
+
+### PSB-20261101-1554-POKEGUIDE-T185-WORLD-SCRIPTS-001 — cobertura universal dos caminhos de script
+
+- Revisao inicial: 39cb31eeef4141393706379f71cb6a82c368afba.
+- Reutilizadas as referencias e handlers ROM ja existentes.
+- Adicionada projecao de bloqueios fisicos ao checklist, advisor e interface.
+- As contagens de caminhos nao resolvidos mantem a sua origem real.
+- Os exemplos fisicos truncados sao explicitamente identificados.
+- Certificacao das tres ROMs e suite completa executadas.
+- Efeitos estaticos certificados: Red=2, Blue=2, Green=2.
+- Aumento de efeitos estaticos nas tres ROMs: False.
+- Nao se afirma execucao observada nem conclusao de eventos.
+- Analise integral da campanha continua pendente.
+- Main, preview, ROMs, saves e sessoes preservados.

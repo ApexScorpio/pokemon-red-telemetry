@@ -1378,6 +1378,7 @@ function main(){
   'tests/romMappingGapLedger.test.js',
   'tests/romWorldGapMatrix.test.js',
   'tests/romScriptUnresolvedEvidence.test.js',
+  'tests/romScriptBlockerCoverage.test.js',
   'tests/romMapActorAttributeBinding.test.js',
   'tests/romCrossVariantWorldGaps.test.js',
   'tests/romCrossVariantWorldContents.test.js',

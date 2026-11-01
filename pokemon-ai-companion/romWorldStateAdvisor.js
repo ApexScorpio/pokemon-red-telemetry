@@ -264,6 +264,13 @@ function adviseWorld({profile,mapId,position,areaEvidence,hiddenItems=[],hiddenC
      hiddenFlagsVerified:hiddenFlagsVerified===true}
  }):null;
  for(const action of mapChecklist?.actions||[]){
+  if(action.scriptCoverage)
+   add(action.kind,'SCRIPT_COVERAGE','Script #'+action.ordinal,
+    action.scriptCoverage.executableAsm?
+     action.scriptCoverage.unresolvedCount+' caminhos não resolvidos; script integral não certificado.':
+     'Comando de apresentação de texto; não é script ASM executável.',
+    'STATIC_ROM_EVIDENCE',{x:action.x,y:action.y,ordinal:action.ordinal,
+     scriptCoverage:action.scriptCoverage,eventCompleted:null,accessibleNow:null});
   if(action.scriptRuntimeRequirements?.length)
    add(action.kind,'SCRIPT_RUNTIME_RAM_REQUIRED','Script #'+action.ordinal,
     'Banco ROM UNKNOWN: falta leitura RAM autenticada; candidatos físicos não são execução.',

@@ -1147,3 +1147,17 @@
 - Nenhuma leitura de RAM, interacao ou conclusao de evento pode ser inventada.
 - Interpretacao integral da ROM permanece por concluir.
 - Main, preview ativo, sessoes, ROMs e saves nao alterados.
+
+### PSB-20261101-1554-POKEGUIDE-T185-WORLD-SCRIPTS-001 — cobertura universal dos caminhos de script
+
+- Revisao inicial: 39cb31eeef4141393706379f71cb6a82c368afba.
+- Reutilizadas as referencias e handlers ROM ja existentes.
+- Adicionada projecao de bloqueios fisicos ao checklist, advisor e interface.
+- As contagens de caminhos nao resolvidos mantem a sua origem real.
+- Os exemplos fisicos truncados sao explicitamente identificados.
+- Certificacao das tres ROMs e suite completa executadas.
+- Efeitos estaticos certificados: Red=2, Blue=2, Green=2.
+- Aumento de efeitos estaticos nas tres ROMs: False.
+- Nao se afirma execucao observada nem conclusao de eventos.
+- Analise integral da campanha continua pendente.
+- Main, preview, ROMs, saves e sessoes preservados.

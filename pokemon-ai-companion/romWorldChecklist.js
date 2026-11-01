@@ -5,6 +5,7 @@
 const {getMapContents}=require('./romWorldContentsIndex');
 const {bindMapActorAttributes}=require('./romMapActorAttributeBinding');
 const {guidanceForSemantics,requirementsForSemantics,resolveSemantics}=require('./romScriptSemantics');
+const {projectScriptCoverage}=require('./romScriptBlockerCoverage');
 const KINDS=Object.freeze({
  visibleItems:'ITEM',hiddenItems:'HIDDEN_ITEM',trainers:'TRAINER',
  npcs:'NPC',stationaryPokemon:'STATIC_POKEMON',signs:'SIGN',warps:'WARP'
@@ -164,6 +165,7 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
     scriptEventFlagSnapshotVerified:gateFlag!==null,
     scriptEventFlagEvidence:gateSource,
     scriptPredictedEffects,
+    scriptCoverage:projectScriptCoverage({atlas:scriptAtlas,romSha256:hash,reference:romScript}),
     scriptRuntimeRequirements,
     // A bounded prefix is useful advice, not verification of the whole script.
     scriptEffectSemanticsVerified:false,
