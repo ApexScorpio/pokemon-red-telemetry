@@ -202,20 +202,40 @@ test('Strength planner uses badge+move, confirmed sprites and never claims activ
 });
 
 test('Strength missing capacity is classified blocked, theoretical push is conditional',()=>{
- const a=source.indexOf('    const withPath=accessInput.map(');
+ // Execute the real consumer guard and projection together: never evaluate
+ // withPath in isolation after its ROM/map/RAM scope was introduced.
+ const a=source.indexOf('    const accessSummary=Array.isArray(itemAccess?.results)?');
  const b=source.indexOf('    const visibleWithPath=',a);
- assert.ok(a>=0&&b>a);
+ assert.ok(a>=0&&b>a,'ROM-verified projection scope must be included');
  const block=source.slice(a,b);
- const generate=vm.runInNewContext('(function(accessInput,accessSummary){'+block+
+ const generate=vm.runInNewContext('(function(itemAccess,accessInput){'+block+
    '\nreturn withPath;})');
  const kinds=['NEEDS_STRENGTH','STRENGTH_SEQUENCE_HYPOTHESIS',
    'STRENGTH_CAPABILITY_UNKNOWN','NEEDS_SURF','NO_SAME_MAP_PATH'];
- const items=kinds.map((name,index)=>({name,x:index,y:1}));
- const rows=kinds.map(accessStatus=>({accessStatus,reason:'Unverified ability'}));
- const out=generate(items,rows);
+ const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+ const items=kinds.map((name,index)=>({
+   name,x:index,y:1,romItemCoordinatesVerified:true
+ }));
+ const rows=kinds.map((accessStatus,index)=>({
+   index,x:index,y:1,accessStatus,reason:'Unverified ability'
+ }));
+ const client={activeRomProfile:{hash:{sha256:sha}},
+   latestState:{mapId:15,romRuntimeIdentity:{matched:true},
+     memoryReadStatus:{verified:true}}};
+ const planner={verified:true,mapId:15,romSha256:sha,results:rows};
+ const out=generate.call(client,planner,items);
  assert.deepEqual(Array.from(out,x=>x.isLocked),[true,false,false,true,false]);
+ assert.equal(out[0].accessStatus,'NEEDS_STRENGTH');
+ assert.equal(out[1].accessStatus,'STRENGTH_SEQUENCE_HYPOTHESIS');
  assert.equal(out[0].accessibleNow,null);
  assert.equal(out[1].accessibleNow,null);
+ // An index disagreement must never transfer a strength blockade.
+ const swapped={...planner,results:rows.map(r=>({...r}))};
+ swapped.results[0].index=1;
+ const stale=generate.call(client,swapped,items);
+ assert.equal(stale[0].accessStatus,'UNKNOWN');
+ assert.equal(stale[0].isLocked,false);
+ assert.equal(stale[0].accessRoute,null);
 });
 
 test('global detours also inspect ROM items blocked by Cut Surf and Strength',()=>{
