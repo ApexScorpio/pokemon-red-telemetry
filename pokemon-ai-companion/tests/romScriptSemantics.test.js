@@ -57,15 +57,21 @@ test('checklist and advisor consume actual derived transitions for any matching 
   // Keep exactly 226 normal headers regardless of the chosen map.
   if(mapId<225)data[225].valid=true;
   data[mapId].objects.objects=[actor];
-  const rom=Buffer.alloc(1048576);rom.set([8,0x21,0x47,0xd7,0xcb,0xc6,0xc9],at);
+  // Exercise the newly supported HRAM/ALU prefix through the actual advisor.
+  const rom=Buffer.alloc(1048576);rom.set([8,0x3e,1,0xe0,0x8c,0xf0,0x8c,0xc6,1,0xea,0x47,0xd7,0xc9],at);
   const ref={mapId,kind:'NPC',ordinal:1,x:2,y:3,rawTextId:1,scriptFileOffset:at,textPointerVerified:true,scriptCommand:'TX_START_ASM'};
   const atlas={verified:true,romSha256:sha,references:[ref],maps:Array.from({length:248},(_,id)=>({mapId:id,verified:data[id].valid,interactions:id===mapId?[ref]:[]}))};
   atlas.scriptSemantics=interpretWorld({rom,atlas});
+  // Exercise the same compact representation returned by profile ZIP loading.
+  atlas.scriptSemantics=JSON.parse(JSON.stringify(atlas.scriptSemantics));
   const profile={hash:{sha256:sha},world:{maps:{valid:true,validMapHeaders:226,data},interactionScriptAtlas:atlas}};
   const {buildWorldContentsIndex}=require('../romWorldContentsIndex');
   const index=buildWorldContentsIndex(profile);
   const list=buildMapChecklist({index,mapId,scriptAtlas:atlas});
-  assert.equal(list.actions[0].scriptPredictedEffects.length,1);
+  assert.deepEqual(list.actions[0].scriptPredictedEffects.map(e=>e.address),[0xff8c,0xd747]);
+  assert.equal(list.actions[0].scriptPredictedEffects[0].gameplayStateTransitionProven,false);
+  assert.equal(list.actions[0].scriptPredictedEffects[1].value,2);
+  assert.equal(list.actions[0].scriptPredictedEffects[1].gameplayStateTransitionProven,true);
   assert.equal(list.actions[0].completedNow,null);
   const advice=adviseWorld({profile,mapId,position:{x:1,y:1},positionVerified:true});
   assert.ok(advice.observations.some(o=>o.status==='PREDICTED_CONDITIONAL_EFFECT'));

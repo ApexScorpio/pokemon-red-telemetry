@@ -1107,3 +1107,16 @@
 - A interpretacao integral dos 1126 scripts continua por concluir.
 - A execucao efetiva dos efeitos no emulador nao esta demonstrada.
 - Este registo e acrescentado ao historico anterior, sem remover entradas.
+
+### PSB-20261101-1515-POKEGUIDE-T182-SKIPFIX-001 — Recuperacao T182 e validacao do arquivo compacto
+
+- Base publicada: 479ef2851b3647b63e1e1996741282d82e31dbc3.
+- Reutilizadas as implementacoes dos jobs 1448 e 1501.
+- Causa da falha anterior: suite com 1588 PASS, 0 FAIL e 2 SKIP, apesar de o certificador exigir 1.
+- A causa do SKIP adicional foi investigada contra o codigo e os dados reais do teste.
+- Os limites do arquivo de perfis mantiveram-se inalterados.
+- Certificacao ASM, arquivo de tres ROMs e suite completa aprovados nesta execucao.
+- Efeitos semanticos contabilizados: Red=2, Blue=2, Green=2.
+- Os efeitos sao provas estaticas, nao eventos observados em jogo.
+- Interpretacao semantica integral e conclusao da campanha ainda nao certificadas.
+- Sem alteracoes na branch main, preview ativo, ROMs ou saves.

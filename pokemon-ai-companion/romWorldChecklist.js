@@ -4,7 +4,7 @@
 // The same (kind,x,y,id) must identify one object on both sides before joining.
 const {getMapContents}=require('./romWorldContentsIndex');
 const {bindMapActorAttributes}=require('./romMapActorAttributeBinding');
-const {guidanceForSemantics}=require('./romScriptSemantics');
+const {guidanceForSemantics,resolveSemantics}=require('./romScriptSemantics');
 const KINDS=Object.freeze({
  visibleItems:'ITEM',hiddenItems:'HIDDEN_ITEM',trainers:'TRAINER',
  npcs:'NPC',stationaryPokemon:'STATIC_POKEMON',signs:'SIGN',warps:'WARP'
@@ -111,7 +111,7 @@ function buildMapChecklist({index,mapId,advisor=null,scriptAtlas=null,worldFlagL
      r.ordinal===obj.ordinal&&r.x===obj.x&&r.y===obj.y&&
      r.scriptFileOffset===romScript.scriptFileOffset):[];
    const scriptPredictedEffects=guidanceForSemantics(
-    semanticRows.length===1?semanticRows[0].semantics:null,
+    semanticRows.length===1?resolveSemantics(scriptAtlas.scriptSemantics,semanticRows[0]):null,
     eventBitmap?.romSha256===hash?eventBitmap:null);
    const actorProof=(kind==='ITEM'||kind==='STATIC_POKEMON')&&
     romScript!==null?actorByKey.get(kind+':'+obj.ordinal)||null:null;

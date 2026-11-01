@@ -5,6 +5,7 @@
 // pret/pokered@171e2c204f9c1ff8e577ca387a4bbb009e130843,
 // home/text.asm, home/text_script.asm and macros/scripts/text.asm.
 const crypto=require('node:crypto');
+const {resolveSemantics}=require('./romScriptSemantics');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
 const {decodeRomTextProgram}=require('./romTextScriptDecoder');
 const EXPECTED_REFS=1126;
@@ -123,10 +124,15 @@ function compileWorldInteractionPrograms({rom,atlas}={}){
    atlas.scriptSemantics.romSha256===atlas.romSha256?
    atlas.scriptSemantics.rows.find(s=>s.mapId===r.mapId&&s.kind===r.kind&&
     s.ordinal===r.ordinal&&s.scriptFileOffset===r.scriptFileOffset):null;
-  if(semanticRow?.semantics?.verified===true){
-   p.abstractTransitions=semanticRow.semantics.effects;
-   p.abstractExecutionLimitations=semanticRow.semantics.unresolved;
-   p.handlerControlFlowFullyInterpreted=semanticRow.semantics.complete;
+  const semantics=resolveSemantics(atlas.scriptSemantics,semanticRow);
+  if(semantics?.verified===true){
+   p.abstractTransitions=semantics.effects;
+   p.abstractExecutionLimitations=semantics.unresolved;
+   p.abstractExecutionUnresolvedCount=semantics.unresolvedCount??semantics.unresolved.length;
+   p.abstractExecutionUnresolvedReasonCounts=semantics.unresolvedReasonCounts??
+    semantics.unresolved.reduce((out,u)=>(out[u.reason]=(out[u.reason]||0)+1,out),{});
+   p.abstractExecutionLimitationSamplesBounded=semantics.unresolvedSamplesBounded===true;
+   p.handlerControlFlowFullyInterpreted=semantics.complete;
    if(p.abstractTransitions.length){p.programClass='ASM_PARTIALLY_INTERPRETED';p.semanticScope='ROM_ABSTRACT_CONTROL_FLOW_TRANSITIONS';}
   }
   if(p.verified!==true)return fail('Invalid interaction: '+k+': '+p.reason);

@@ -2550,3 +2550,25 @@ Pendência que bloqueia a certificação: obter acesso ao binário exato .gb/.gb
 - A interpretacao integral dos 1126 scripts continua por concluir.
 - A execucao efetiva dos efeitos no emulador nao esta demonstrada.
 - Este registo e acrescentado ao historico anterior, sem remover entradas.
+
+### T182 skip input investigation - 2026-11-01
+- Read existing T181 history, T182 compact semantics test, Green p1 test and certifyAsm626.js before editing. Prior certification stdout confirms 1588 PASS, 0 FAIL, 2 SKIP: Green p1 and real Red compact archive regression.
+- Demonstrated input mismatch: certifier sets POKEMON_RED_ROM, POKEMON_BLUE_ROM and POKEMON_GREEN_ROM; compact archive regression only read POKEGUIDE_T182_RED_ROM. Green p1 intentionally requires POKEGUIDE_GREEN_P1_ROM for a distinct SHA, so Green International is not a valid substitute.
+- Only test input resolution changed: preserve explicit POKEGUIDE_T182_RED_ROM priority, otherwise use certifier POKEMON_RED_ROM for both skip condition and readRom. Assertions, archive limits, certifier coverage and all T182 implementation changes preserved. Focused execution pending; no new gameplay effects claimed.
+- Additional root cause detail: certifier constructs env from process.env then deletes every POKEMON_* and POKEGUIDE_* key before assigning its standard ROM variables. An inherited POKEGUIDE_T182_RED_ROM therefore cannot reach the full-suite child through that setup.
+- Focused execution completed exit 0: node --test pokemon-ai-companion/tests/romScriptCompactSemantics.test.js pokemon-ai-companion/tests/romGreenP1WorldProbe.test.js. Only POKEMON_RED_ROM supplied; POKEGUIDE_T182_RED_ROM absent. Original Red ZIP read-only: S:\Users\lopes\Downloads\Pokemon - Red Version (USA, Europe) (SGB Enhanced) (1).zip. Existing SHA assertion matched semantic-proof-t181.json.
+- Actual results: 10 tests, 9 PASS, 0 FAIL, 1 SKIP (only Green p1). Real Red archive regression executed PASS: profileBytes=11228146, zipBytes=937226, handlers=516, effects=2. Existing physical-effect roundtrip and prior-ROM proof assertions all executed. No complete certification run; outer PowerShell job retains that step.
+- Verification used readable source and executed runtime assertions; no GUI opened or screenshot created. No production, archive limits, ROMs, saves, authentication, sessions, dependencies, global settings, commits or pushes changed. Previous Markdown entries retained.
+
+### PSB-20261101-1515-POKEGUIDE-T182-SKIPFIX-001 — Recuperacao T182 e validacao do arquivo compacto
+
+- Base publicada: 479ef2851b3647b63e1e1996741282d82e31dbc3.
+- Reutilizadas as implementacoes dos jobs 1448 e 1501.
+- Causa da falha anterior: suite com 1588 PASS, 0 FAIL e 2 SKIP, apesar de o certificador exigir 1.
+- A causa do SKIP adicional foi investigada contra o codigo e os dados reais do teste.
+- Os limites do arquivo de perfis mantiveram-se inalterados.
+- Certificacao ASM, arquivo de tres ROMs e suite completa aprovados nesta execucao.
+- Efeitos semanticos contabilizados: Red=2, Blue=2, Green=2.
+- Os efeitos sao provas estaticas, nao eventos observados em jogo.
+- Interpretacao semantica integral e conclusao da campanha ainda nao certificadas.
+- Sem alteracoes na branch main, preview ativo, ROMs ou saves.
