@@ -2,7 +2,8 @@
 // Conditional exits of ANY of the 226 normal Gen I ROM maps. Only the first
 // map has verified tile geometry; outer borders and elevator choices are
 // topological possibilities, not actions confirmed in live gameplay.
-const {terrainBytes,computeReach}=require('./romItemReachability');
+const {terrainBytes,computeReach,checkLocalPathSnapshot}=
+ require('./romItemReachability');
 const {exactTilePath}=require('./romCrossMapItemRoute');
 const {outdoorBoundaryCandidates}=require('./romOutdoorBoundaryCandidates');
 const {isKnownAuditedRomSha}=require('./romKnownSha256');
@@ -35,6 +36,11 @@ function localExitAccess({profile,warpGraph,mapId,position,
  const grid=terrainBytes({...local,verified:local?.mapId===mapId},sha);
  if(!grid||position.x>=grid.width||position.y>=grid.height)
    return reject('Matriz ROM do mapa atual ou coordenadas RAM não confirmadas');
+ // Apply the identical ROM terrain/movement/sprite-RAM checks used by
+ // item paths BEFORE producing routes for warps or outdoor borders.
+ const snapshotIssue=checkLocalPathSnapshot(grid,position,{
+   modeByte,spritesVerified,mapEntities});
+ if(snapshotIssue)return reject(snapshotIssue);
  const opts={currentSurf:modeByte===2,actors:mapEntities,spritesVerified};
  const base=computeReach(grid,position,{...opts,
    canCut:canCut===true,canSurf:canSurf===true});

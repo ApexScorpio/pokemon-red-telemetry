@@ -190,3 +190,64 @@ test('border edge candidates distinguish not-owned Cut from terrain passability'
  assert.ok(enabled.borderEvidence.borderTiles.some(c=>c.usesCut));
  assert.equal(enabled.neighborAlignmentVerified,false);
 });
+
+
+test('local exits reject a land position on a blocked ROM collision tile',()=>{
+ const cfg=fixture(),m=cfg.profile.world.terrainAtlas.maps[0];
+ const bits=Buffer.from(m.walkingBitsBase64,'base64');
+ const index=cfg.position.y*m.width+cfg.position.x;
+ bits[index>>3]&=~(1<<(index&7));
+ m.walkingBitsBase64=bits.toString('base64');
+ m.walkingBitsSha256=hash(bits);
+ const r=localExitAccess(cfg);
+ assert.equal(r.verified,false);
+ assert.equal(r.exits.length,0);
+ assert.equal(r.accessNowProven,false);
+ assert.match(r.reason,/terreno e o modo de movimento/);
+});
+test('local exits reject Surf mode when player stands on dry terrain',()=>{
+ const cfg=fixture();
+ cfg.modeByte=2;cfg.canSurf=true;
+ const r=localExitAccess(cfg);
+ assert.equal(r.verified,false);
+ assert.equal(r.exits.length,0);
+ assert.match(r.reason,/terreno e o modo de movimento/);
+});
+test('local exit Surf start on a true water tile remains hypothetical',()=>{
+ const cfg=fixture({barrier:'WATER'});
+ const m=cfg.profile.world.terrainAtlas.maps[0];
+ const tiles=Buffer.from(m.tileIdsBase64,'base64');
+ const bits=Buffer.from(m.walkingBitsBase64,'base64');
+ const index=cfg.position.y*m.width+cfg.position.x;
+ tiles[index]=0x14;bits[index>>3]&=~(1<<(index&7));
+ m.tileIdsBase64=tiles.toString('base64');
+ m.tileIdsSha256=hash(tiles);
+ m.walkingBitsBase64=bits.toString('base64');
+ m.walkingBitsSha256=hash(bits);
+ cfg.modeByte=2;cfg.canSurf=true;
+ const r=localExitAccess(cfg);
+ assert.equal(r.verified,true);
+ assert.equal(r.accessNowProven,false);
+ assert.ok(r.exits.every(x=>x.accessibleNow===null));
+});
+test('local exits reject corrupted verified RAM sprites rather than omit blocker',()=>{
+ for(const mapEntities of [[{x:null,y:1}],[{x:256,y:2}],
+   [{x:2.5,y:1}],[null]]){
+  const cfg=fixture();cfg.mapEntities=mapEntities;
+  const r=localExitAccess(cfg);
+  assert.equal(r.verified,false);
+  assert.equal(r.exits.length,0);
+  assert.match(r.reason,/Sprites RAM incoerentes/);
+ }
+});
+test('valid offscreen actors do not suppress otherwise valid exit previews',()=>{
+ for(const mapEntities of [
+   [{x:-4,y:2,type:'npc'}],
+   [{x:255,y:255,type:'npc'}]]){
+  const cfg=fixture();cfg.mapEntities=mapEntities;
+  const r=localExitAccess(cfg);
+  assert.equal(r.verified,true);
+  assert.equal(r.counts.WARP,3);
+  assert.equal(r.accessNowProven,false);
+ }
+});
