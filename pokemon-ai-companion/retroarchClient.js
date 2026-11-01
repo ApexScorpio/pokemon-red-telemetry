@@ -53,6 +53,10 @@ const {captureOpportunities}=require('./romCaptureOpportunities');
 const {parseRomBattleEvidence}=require('./romBattleEvidence');
 const {verifyBattleWindow}=require('./romBattleSnapshotConsistency');
 const {buildLiveBattlePreview}=require('./gen1LiveBattlePreview');
+const {mapScriptRootEvidence}=
+ require('./romMapScriptRootSemantics');
+const {collectBudgetBranchLiveReadback}=
+ require('./romBudgetBranchLiveReadback');
 const dgram = require('dgram');
 const { EventEmitter } = require('events');
 const {
@@ -418,7 +422,14 @@ class RetroArchClient extends EventEmitter {
       this.latestState.currentDialog=null;
       this.latestState.currentTextSource=null;
       this.latestState.aiAdvice='A sincronizar com a memória do Game Boy...';
-      this.latestState.videoMemory=null;
+      this.latestState.romBudgetBranchRamReadback={
+        verified:false,reason,
+        values:[],
+        twoReadSamplesConfirmed:false,
+        publicationPositionVerified:false,
+        scriptExecutionObserved:false,
+        gameEventCompleted:false
+      };      this.latestState.videoMemory=null;
       this.latestState.romMap=null;
       this.latestState.romWildEncounters=null;
       this.latestState.mapEntities=[];
@@ -562,7 +573,7 @@ class RetroArchClient extends EventEmitter {
         'romLocalExitAccess','romWorldDetourCycles',
         'romVariantTerrainEvidence','romOutdoorReferenceEvidence',
         'romOutdoorAlignment','romOutdoorOverlapIndex',
-        'romWarpGraph','videoMemory',
+        'romWarpGraph','videoMemory','romBudgetBranchRamReadback',
         'battle','battleReadStatus','battleFlagVerified',
         'inBattle','battleType','aiAdvice','currentDialog',
         'currentTextSource',
@@ -3396,6 +3407,37 @@ class RetroArchClient extends EventEmitter {
     // change tiles or maps while those calculations happen, so re-read
     // D35E..D365 immediately before exposing any advice to the cockpit.
     // This does not make the sequential RAM/ROM sample atomic.
+    // T221: use the existing C100..C2FF poll sample.
+    // Only maps proven relevant by T218-T220 receive one
+    // optional read-only 33-byte corroboration request.
+    const t221Evidence=
+      [31,34,36].includes(this.latestState.mapId)&&
+      this.latestState.romRuntimeIdentity?.matched===true?
+      mapScriptRootEvidence({
+        catalogue:this.activeRomProfile?.world?.mapScriptRootSemantics,
+        romSha256:this.activeRomProfile?.hash?.sha256,
+        mapId:this.latestState.mapId
+      }):null;
+
+    const t221Readback=await collectBudgetBranchLiveReadback({
+      evidence:t221Evidence,
+      romSha256:this.activeRomProfile?.hash?.sha256,
+      mapId:this.latestState.mapId,
+      firstSpriteBlock:blockSprites,
+      eligible:
+        this.latestState.isSimulation!==true&&
+        this.latestState.connected===true&&
+        this.latestState.memoryReadStatus?.verified===true&&
+        this.latestState.romRuntimeIdentity?.matched===true&&
+        positionWindow.verified===true&&
+        latePositionWindow.verified===true&&
+        globalFlagReadback.verified===true,
+      getTargetScope:()=>captureTargetScope(this),
+      readMemoryBlock:(address,length)=>
+        this.readMemoryBlock(address,length)
+    });
+
+    if(!matchesTargetScope(this,pollTargetScope))return;
     const publicationMapAndPosition=await this.readMemoryBlock('D35E',8);
     if(!matchesTargetScope(this,pollTargetScope))return;
     const publicationPositionWindow=verifyMapPositionWindow({
@@ -3442,6 +3484,30 @@ class RetroArchClient extends EventEmitter {
       this.emit('update',this.latestState);
       return;
     }
+    // Publish only after the final target/map/position guard.
+    // These are observed bytes, NOT executed script branches.
+    this.latestState.romBudgetBranchRamReadback=
+      t221Readback.verified===true&&
+      this.latestState.memoryReadStatus?.verified===true&&
+      this.latestState.romRuntimeIdentity?.matched===true&&
+      publicationPositionWindow.verified===true?
+      {
+        ...t221Readback,
+        publicationPositionVerified:true,
+        observedAt:this.latestState.lastUpdate,
+        atomicSnapshotVerified:false,
+        scriptExecutionObserved:false,
+        gameEventCompleted:false
+      }:{
+        verified:false,
+        reason:t221Readback.reason||
+          'FINAL_PUBLICATION_EVIDENCE_MISSING',
+        values:[],
+        twoReadSamplesConfirmed:false,
+        publicationPositionVerified:false,
+        scriptExecutionObserved:false,
+        gameEventCompleted:false
+      };
     // Start background video only after the FINAL RAM position/target
     // publication gate. Invalidated in-flight captures remain rejected by
     // their evidenceEpoch even if the same map comes back.

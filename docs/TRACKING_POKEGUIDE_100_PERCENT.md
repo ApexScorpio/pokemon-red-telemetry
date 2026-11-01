@@ -1311,3 +1311,27 @@
 - Testes com as tres ROMs e certificacao integral obrigatorios.
 - Main, producao, sessoes e ROMs foram preservados.
 - O mapeamento global a 100 por cento nao esta demonstrado.
+
+### PSB-20261101-2120-POKEGUIDE-T221-LIVE-BRANCH-RAM-001 — observacao real das fontes RAM dos mapas
+
+- Base: 041170d3ce2b8124a49bdf179c325bad5000e93d.
+- Resultado T220 reutilizado sem repetir a investigacao.
+- A leitura normal do RetroArch ja inclui C100-C2FF.
+- Fontes demonstradas nos mapas 31, 34 e 36:
+  C21E, C22E e C23E quando presentes no catalogo.
+- Implementado verificador opcional de segunda leitura
+  READ_CORE_MEMORY C21E 33, apenas para mapas elegiveis.
+- Valores so sao publicados se as duas leituras coincidirem.
+- A identidade da ROM, mapa, alvo, geracao e posicao
+  continuam protegidas pelas verificacoes existentes.
+- As amostras nao sao atomicas.
+- Nenhuma ramificacao de script passa a ser declarada
+  executada ou resolvida por esta prova.
+- O campo de leitura e transitorio e nao e restaurado
+  de telemetria persistida.
+- Nenhuma escrita UDP, save state, controlo do emulador
+  ou reinicio do servidor foi introduzido.
+- Suite integral e certificacao ROM obrigatorias antes
+  da publicacao na branch de desenvolvimento.
+- Nao foi feita qualquer publicacao na producao.
+- Mapeamento completo da ROM ainda nao demonstrado.

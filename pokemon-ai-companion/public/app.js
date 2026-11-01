@@ -1001,6 +1001,63 @@ function formatCampaignChecklistSection(advice,state) {
       }
     }
 
+    const mapBudgetRamLiveT221=
+      state?.romBudgetBranchRamReadback;
+
+    if(
+      mapBudgetRamLiveT221?.verified===true&&
+      mapBudgetRamLiveT221.source===
+        'RETROARCH_DOUBLE_READ_C100_C21E'&&
+      mapBudgetRamLiveT221.romSha256===runtimeSha&&
+      mapBudgetRamLiveT221.mapId===advice.mapId&&
+      mapBudgetRamLiveT221.mapId===mapRootT190.mapId&&
+      mapBudgetRamLiveT221.observedAt===state.lastUpdate&&
+      state.connected===true&&
+      state.isSimulation!==true&&
+      state.memoryReadStatus?.verified===true&&
+      state.memoryReadStatus?.publicationPositionWindow
+        ?.verified===true&&
+      mapBudgetRamLiveT221.twoReadSamplesConfirmed===true&&
+      mapBudgetRamLiveT221.publicationPositionVerified===true&&
+      mapBudgetRamLiveT221.atomicSnapshotVerified===false&&
+      mapBudgetRamLiveT221.scriptExecutionObserved===false&&
+      mapBudgetRamLiveT221.gameEventCompleted===false&&
+      Array.isArray(mapBudgetRamLiveT221.values)
+    ){
+      const permitted=new Set(
+        mapRootT190.runtimeBudgetConditionRamSources
+          ?.candidateSources?.map(r=>r.address)||[]
+      );
+
+      const matches=mapBudgetRamLiveT221.values.filter(r=>
+        permitted.has(r.address)&&
+        [0xc21e,0xc22e,0xc23e].includes(r.address)&&
+        Number.isInteger(r.value)&&
+        r.value>=0&&r.value<=255&&
+        r.repeatedReadMatched===true&&
+        r.firstValue===r.value&&
+        r.secondValue===r.value
+      );
+
+      if(matches.length){
+        lines.push(
+          'RAM real do RetroArch: '+matches.length+
+          ' fontes repetidas com valores coincidentes; '+
+          'amostra nao atomica, script nao executado por esta prova.'
+        );
+
+        for(const r of matches){
+          lines.push(
+            'RAM 0x'+r.address.toString(16).toUpperCase()+
+            ' = '+r.value+
+            ' (0x'+r.value.toString(16)
+              .toUpperCase().padStart(2,'0')+')'+
+            ' | duas leituras coincidentes'+
+            ' | nao demonstra acao nem progresso'
+          );
+        }
+      }
+    }
 if(mapRootT190.unresolvedCount>0){
       lines.push(
         'Bloqueios do script: '+
