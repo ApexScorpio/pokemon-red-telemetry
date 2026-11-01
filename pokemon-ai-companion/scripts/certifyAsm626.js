@@ -1309,6 +1309,7 @@ function main(){
   'tests/romWorldUiStaleCache.test.js',
   'tests/romGuardedAdvicePublication.test.js',
   'tests/romAdvisorContextCache.test.js',
+  'tests/romManualAdviceGuard.test.js',
   'tests/romPublishedNamedEvents.test.js',
   'tests/romNamedEventBulkReset.test.js',
   'tests/romUnboundTrainerScripts.test.js',

@@ -47,6 +47,10 @@ function getLiveAdviceContextKey(state){
     trainer:state.trainerName||null,mapId:state.mapId,
     mapName:state.mapName,coords:state.coords||null,
     inBattle:state.inBattle===true,money:state.money||0,
+    // A manual battle request must not reuse an answer after the opponent,
+    // turn state, statuses, or exact calculation evidence changes.
+    battle:state.inBattle===true?(state.battle||null):null,
+    battleType:state.inBattle===true?(state.battleType||null):null,
     badges:(state.badges||[]).map(x=>[x.name,x.obtained]),
     inventory:(state.inventory||[]).map(x=>[x.id,x.name,x.qty]),
     pcItems:(state.pcItems||[]).map(x=>[x.id,x.name,x.qty]),

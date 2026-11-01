@@ -764,3 +764,10 @@
 - Certificados: stale world 12/12, vídeo cache 10/10, vídeo epoch 12/12, integração 31/31, ASM 708/708, full 1345 PASS/1 SKIP/1346, 3 ROMs. Sem RetroArch vivo.
 - A função `getLiveAdviceContextKey` evita reuso da cache da IA entre ROM/mapa/equipa/itens; resposta assíncrona só é publicada no mesmo contexto de RAM e destino, após último gate. Dados de combate/diálogo/IA são eliminados das projeções persistidas e invalidados no estado RAM, mantendo party e histórico. 16 novos testes.
 - Bridge 100 pendente (esperado 724 ASM e 1362 suite), não é certificação de gameplay. Histórico append-only, ambientes protegidos preservados.
+
+
+### T147 — 2026-11-01: caminhos HTTP manuais de IA protegidos por ROM, posição e epoch
+- Leitura de código na revisão e707493: os endpoints POST /api/ask-ai e /api/advice-now chamavam askAdvisor/getLiveAdvice sem o guard de publicação final do T146; uma resposta tardia podia sobreviver a mudança de ROM/mapa/alvo durante o pedido, e /api/advice-now escrevia a resposta diretamente no estado.
+- Implementado romManualAdviceGuard: exige identidade SHA da ROM ativa, RAM recente verificada, posição final validada, target host/porta/geração e epoch, verifica novamente depois do provider e descarta resposta atrasada. Recusa combate sem exactTurnMathReady; fingerprint de cache acrescenta batalha apenas quando ativa. URLs HTTP mantidas, porém respostas inválidas agora incluem status e HTTP 400/409, sem publicação.
+- Acrescentados 12 testes de regressão para contexto estável, ROM trocada, ausência de RAM, relógio, geração, epoch, host/porta, mapa, equipa/inventário, combate, provider e pedido inválido. Certificador ASM atualizado. **Por certificar na Bridge 100:** nunca interpretar código escrito como testes executados; estimativa 736/736 ASM e 1373 PASS + 1 SKIP de 1374, a confirmar por execução.
+- Nenhum contacto com RetroArch, UDP, browser, Antigravity, TIMI/MAESTRO/BonChat/Codex, ROMs ou saves; main/preview intocados. Histórico append-only. Jogabilidade de 100% ainda não certificada.

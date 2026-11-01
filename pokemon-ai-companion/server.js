@@ -6,6 +6,7 @@ const { WebSocketServer } = require('ws');
 const RetroArchClient = require('./retroarchClient');
 const {buildLocalConnectionResponse}=require('./romRuntimeConnectionSnapshot');
 const { askAdvisor, getLiveAdvice } = require('./aiAdvisor');
+const { requestGuardedManualAdvice } = require('./romManualAdviceGuard');
 const { formatTelemetryMarkdown, syncToGitHub, triggerDebouncedSync, getLastSyncTimeString, GITHUB_FILE_URL, GITHUB_RAW_URL } = require('./githubSync');
 
 const PORT = 3001;
@@ -120,9 +121,11 @@ const server = http.createServer(async (req, res) => {
     req.on('end', async () => {
       try {
         const { question } = JSON.parse(body);
-        const reply = await askAdvisor(question, client.latestState);
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ reply }));
+        const outcome = await requestGuardedManualAdvice(client,question,askAdvisor);
+        res.writeHead(outcome.status==='ok'?200:
+          outcome.status==='invalid'?400:409,
+          { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ reply:outcome.reply,status:outcome.status }));
       } catch (err) {
         res.writeHead(500);
         res.end(JSON.stringify({ error: err.message }));
@@ -133,13 +136,19 @@ const server = http.createServer(async (req, res) => {
 
   // Pedir conselho estratégico em direto da IA
   if (url.pathname === '/api/advice-now' && req.method === 'POST') {
-    const advice = await getLiveAdvice(client.latestState);
-    if (advice) {
-      client.latestState.aiAdvice = advice;
+    const outcome = await requestGuardedManualAdvice(
+      client,'Dá um conselho fundamentado para o estado atual.',
+      (_question,state)=>getLiveAdvice(state,true));
+    if(outcome.status==='ok'){
+      client.latestState.aiAdvice=outcome.reply;
       broadcast(client.latestState);
     }
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    return res.end(JSON.stringify({ advice }));
+    res.writeHead(outcome.status==='ok'?200:409,
+      { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({
+      advice:outcome.status==='ok'?outcome.reply:null,
+      status:outcome.status
+    }));
   }
 
   if (url.pathname === '/api/config' && req.method === 'POST') {
