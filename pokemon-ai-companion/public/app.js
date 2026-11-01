@@ -3035,6 +3035,8 @@ function renderFogMinimap(state) {
     }
   });
 
+  // Só mostrar entidades lidas agora da RAM. Não desenhar treinadores previstos nem ghosts
+  // de posições antigas: provocavam marcadores de treinadores que já não existem.
   // Only SHA-verified static encounter ghosts; live sprites are below.
   const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);
   fixedEncounters.forEach(mon=>{
@@ -3049,8 +3051,6 @@ function renderFogMinimap(state) {
       },ix,iy,0.8,true);
   });
 
-  // Só mostrar entidades lidas agora da RAM. Não desenhar treinadores previstos nem ghosts
-  // de posições antigas: provocavam marcadores de treinadores que já não existem.
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
@@ -3225,6 +3225,7 @@ function renderGtaFullMap(state) {
     }
   });
 
+  // 3. Apenas entidades reais presentes na RAM (sem treinadores previstos nem ghosts artificiais)
   // Enlarged map uses the same exact ROM/RAM guard as minimap.
   const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);
   fixedEncounters.forEach(mon=>{
@@ -3239,7 +3240,6 @@ function renderGtaFullMap(state) {
       },ix,iy,gtaZoom,true);
   });
 
-  // 3. Apenas entidades reais presentes na RAM (sem treinadores previstos nem ghosts artificiais)
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;

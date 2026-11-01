@@ -98,7 +98,7 @@ test('maps without stationary encounters do not invent markers',()=>{
 });
 test('small minimap draws a faded static ghost, never a present sprite',()=>{
  const a=app.indexOf('  const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);');
- const b=app.indexOf('  // Só mostrar entidades lidas agora da RAM.',a);
+ const b=app.indexOf('  const entitySnapshot = getMapEntitySnapshot(state);',a);
  assert.ok(a>=0&&b>a);
  const calls=[];
  vm.runInNewContext(app.slice(a,b),{
@@ -116,7 +116,7 @@ test('small minimap draws a faded static ghost, never a present sprite',()=>{
 test('enlarged map uses the same exact site and faded ghost evidence',()=>{
  const first=app.indexOf('  const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);');
  const second=app.indexOf('  const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);',first+20);
- const end=app.indexOf('  // 3. Apenas entidades reais presentes na RAM',second);
+ const end=app.indexOf('  const entitySnapshot = getMapEntitySnapshot(state);',second);
  assert.ok(first>=0&&second>first&&end>second);
  const calls=[];
  vm.runInNewContext(app.slice(second,end),{
@@ -132,4 +132,14 @@ test('enlarged map uses the same exact site and faded ghost evidence',()=>{
 test('both map views share the same static encounter selector',()=>{
  assert.equal((app.match(/const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers\(state\)/g)||[]).length,2);
  assert.equal((app.match(/staticEncounter:true,presentNow:null/g)||[]).length,2);
+});
+
+test('existing pickup marker renderer slices remain isolated from new encounter drawing',()=>{
+ const first=app.indexOf('  const markers=selectVerifiedMinimapItemMarkers(state);');
+ const firstEnd=app.indexOf('  // Só mostrar entidades lidas agora da RAM.',first);
+ const second=app.indexOf('  const markers=selectVerifiedMinimapItemMarkers(state);',first+20);
+ const secondEnd=app.indexOf('  // 3. Apenas entidades reais presentes na RAM',second);
+ assert.ok(first>=0&&firstEnd>first&&second>first&&secondEnd>second);
+ assert.doesNotMatch(app.slice(first,firstEnd),/fixedEncounters/);
+ assert.doesNotMatch(app.slice(second,secondEnd),/fixedEncounters/);
 });
