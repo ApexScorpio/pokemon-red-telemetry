@@ -76,7 +76,7 @@ test('VRAM caption limits entries but counts every corroborated candidate',()=>{
   {x:3,y:4,romItemCoordinatesVerified:true,isCollected:null},
   {x:6,y:8,romItemCoordinatesVerified:true,isCollected:null}];
  const line=selectors.describeVerifiedVramStaticLocationEvidence(s);
- assert.match(line,/não sobrepostas à VRAM \(4\)/);
+ assert.match(line,/NÃO sobrepostas à VRAM \(4\)/);
  assert.match(line,/\+1 na checklist/);
 });
 test('real VRAM-only rendering branch publishes coordinates as text without fake pins',()=>{
@@ -89,7 +89,7 @@ test('real VRAM-only rendering branch publishes coordinates as text without fake
  const ctx={state:s,hasValidMapImg:false,ctxFog:{fillRect(){}},
   canvasFog:{width:160,height:144},drawLiveVramMap:()=>{drew++;return true;},
   elMinimapTitle:title,elMinimapStats:stats,elMinimapCoordsOverlay:coords,
-  mapName:s.mapName,isGtaMapOpen:false,
+  mapName:s.mapName,coords:s.coords,isGtaMapOpen:false,
   renderGtaFullMap:()=>{throw Error('Unexpected full-map render');},
   describeVerifiedVramStaticLocationEvidence:
    selectors.describeVerifiedVramStaticLocationEvidence,
