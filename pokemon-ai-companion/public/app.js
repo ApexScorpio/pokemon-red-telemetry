@@ -773,6 +773,63 @@ function formatCampaignChecklistSection(advice,state) {
       (progress[action.progress]||'progresso por confirmar')+
       variantProof+condition+entry+asm);
   }
+
+  // The twelve hidden coin events are not among the 1992 map objects.
+  // Show their separate D6FE bitmap only with exact ROM and fresh RAM proof.
+  const coinData=state?.romHiddenCoins;
+  const m=state?.memoryReadStatus;
+  const windows=[m?.positionWindow,m?.latePositionWindow,m?.publicationPositionWindow];
+  const updatedAt=Date.parse(state?.lastUpdate||'');
+  const xy=n=>Number.isInteger(n)&&n>=0&&n<=255;
+  const coinScope=state?.connected===true&&
+    state?.romRuntimeIdentity?.matched===true&&
+    trustedHashes.has(runtimeSha)&&runtimeSha===advice.romSha256&&
+    state.mapId===135&&advice.mapId===135&&
+    m?.verified===true&&Number.isFinite(updatedAt)&&
+    updatedAt<=Date.now()&&Date.now()-updatedAt<=15000&&
+    windows.every(w=>w?.verified===true&&w.mapId===135&&xy(w.x)&&xy(w.y))&&
+    windows[0].x===windows[1].x&&windows[0].y===windows[1].y&&
+    windows[1].x===windows[2].x&&windows[1].y===windows[2].y&&
+    state.coords?.x===windows[2].x&&state.coords?.y===windows[2].y&&
+    coinData?.verified===true&&coinData.romSha256===runtimeSha&&
+    coinData.mapId===135&&
+    ['ROM_HIDDEN_COIN_EVENTS_EXTRACTED + RAM_D6FE',
+     'ROM_HIDDEN_COINS_AUDITED_THREE_BUILDS + RAM_D6FE'].includes(coinData.source)&&
+    Array.isArray(coinData.coins)&&coinData.coins.length===12&&
+    Array.isArray(advice.observations);
+  if(coinScope){
+    const seenIndex=new Set(),seenTile=new Set();
+    const observations=advice.observations.filter(o=>o?.kind==='HIDDEN_COIN');
+    const trustworthy=observations.length===12&&coinData.coins.every(c=>{
+      const tile=c.x+','+c.y;
+      if(c.mapId!==135||!xy(c.x)||!xy(c.y)||
+         !Number.isInteger(c.hiddenIndex)||c.hiddenIndex<0||c.hiddenIndex>11||
+         seenIndex.has(c.hiddenIndex)||seenTile.has(tile)||
+         ![10,20,40,100].includes(c.coinAmount)||
+         typeof c.isCollected!=='boolean'||
+         c.collectionEvidence!=='ID_EVENTO_ROM + FLAG_RAM_D6FE')
+        return false;
+      seenIndex.add(c.hiddenIndex);seenTile.add(tile);
+      const amount=Number.isInteger(c.actualAwardIfClaimed)&&
+        c.actualAwardIfClaimed>=0?c.actualAwardIfClaimed:null;
+      return observations.filter(o=>o.x===c.x&&o.y===c.y&&
+        o.coinAmount===amount&&
+        o.status===(c.isCollected?'COIN_COLLECTED_FLAG':
+          'COIN_NOT_COLLECTED_FLAG')).length===1;
+    });
+    if(trustworthy&&seenIndex.size===12){
+      lines.push('--- 12 EVENTOS DE MOEDAS OCULTAS: ROM + RAM D6FE ---');
+      lines.push('🪙 Bits assinalados: '+
+        coinData.coins.filter(c=>c.isCollected).length+
+        '/12. Não comprova a atribuição de fichas.');
+      for(const c of [...coinData.coins].sort((a,b)=>a.hiddenIndex-b.hiddenIndex))
+        lines.push('• Moeda oculta #'+c.hiddenIndex+
+          ' X:'+c.x+' Y:'+c.y+' — bit D6FE '+
+          (c.isCollected?'assinalado':'não assinalado')+
+          '; acessibilidade e recompensa por confirmar.');
+      lines.push('Moedas ocultas não incluídas no contador de objetos acima.');
+    }
+  }
   if(campaign.scriptReferencesBound>0)
     lines.push('🧩 Referências de scripts ROM ligadas a objetos do mundo: '+
       campaign.scriptReferencesBound+

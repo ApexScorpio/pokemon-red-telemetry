@@ -1372,6 +1372,7 @@ function main(){
   'tests/romVerifiedMinimapMarkers.test.js',
   'tests/romVramFallbackStaticEvidence.test.js',
   'tests/romVerifiedHiddenCoinMarkers.test.js',
+  'tests/romCampaignHiddenCoinsUi.test.js',
   'tests/romVerifiedStaticEncounterMarkers.test.js',
   'tests/romLiveActorIdentity.test.js',
   'tests/romAreaEvidenceIdentity.test.js',
