@@ -650,3 +650,98 @@ test('cross-map cache rejects stale outdoor routes when ROM reference or alignme
  // An unchanged invalid graph should not trigger repeated computation.
  run();assert.equal(calls,5);
 });
+
+
+test('cross-map cache invalidates when an unchanged ROM switches validated static warp landing',()=>{
+ const begin=source.indexOf('      const targets=detourTargets.slice(0,64).map(');
+ const end=source.indexOf('      this.latestState.romCrossMapItemRoutes={...r,',begin);
+ assert.ok(begin>=0&&end>begin);
+ const live=source.slice(begin,end);
+ assert.match(live,/staticWarpFingerprint/);
+ const execute=vm.runInNewContext(
+   '(function(detourTargets,modeWindow,abilityCut,abilitySurf,positionWindow,findCrossMapItemPaths){'+
+   live+'\nreturn this._crossMapRoute;})');
+ const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+ const warp={status:'STATIC_DESTINATION_WARP_VALIDATED',
+   sourceMapId:15,sourceWarpIndex:0,x:1,y:1,destinationMapId:20,
+   landing:{mapId:20,warpIndex:1,x:2,y:3}};
+ const graph={verified:true,romSha256:sha,totalWarpEntries:813,
+   normalMapHeaders:226,edges:[warp]};
+ const client={activeRomProfile:{hash:{sha256:sha},
+   world:{terrainAtlas:{verified:true,romSha256:sha}}},
+   latestState:{mapId:15,coords:{x:1,y:2},mapEntities:[],
+     memoryReadStatus:{blocks:{overworldSprites:true}},
+     romWarpGraph:graph,
+     romOutdoorReferenceEvidence:{verified:false},
+     romOutdoorAlignment:{verified:false}}};
+ let calls=0;
+ const search=()=>{calls++;return {verified:true,results:[]};};
+ const run=()=>execute.call(client,[{x:4,y:4}],
+   {verified:true,modeByte:0},false,false,{verified:true},search);
+ run();run();assert.equal(calls,1);
+ warp.landing.x=3;
+ run();assert.equal(calls,2);
+ warp.status='LAST_MAP_RAM_REQUIRED';
+ run();assert.equal(calls,3);
+ warp.status='STATIC_DESTINATION_WARP_VALIDATED';
+ run();assert.equal(calls,4);
+ run();assert.equal(calls,4);
+});
+
+test('remote flag cache invalidates for changed static warps and withdraws stale outdoor proof',()=>{
+ const block=remoteRouteCacheBlock();
+ assert.match(block,/remoteStaticWarpFingerprint/);
+ assert.match(block,/remoteOutdoorFingerprint/);
+ assert.match(block,/outdoorAlignment:remoteOutdoorProof\?/);
+ const execute=vm.runInNewContext(
+   '(function(mapConfirmation,positionWindow,modeWindow,abilityCut,abilitySurf,'+
+   'selectGlobalFlagTargets,planGlobalFlagItemRoutes){'+block+
+   '\nreturn this.latestState.globalFlagItemRoutes;})'
+ );
+ const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+ const warp={status:'STATIC_DESTINATION_WARP_VALIDATED',
+   sourceMapId:15,sourceWarpIndex:2,x:1,y:1,destinationMapId:19,
+   landing:{mapId:19,warpIndex:0,x:2,y:2}};
+ const outdoorEdges=Array.from({length:78},(_,i)=>({
+   sourceMapId:i,destinationMapId:i+1,direction:'east'}));
+ const aligned=outdoorEdges.map(e=>({...e,offsetBlocks:0,
+   descriptorPointerMatches:true,referenceOffsetCorroborated:true}));
+ const graph={verified:true,romSha256:sha,totalWarpEntries:813,
+   normalMapHeaders:226,edges:[warp],
+   outdoorConnections:{verified:true,romSha256:sha,edgeCount:78,
+     reciprocalConnections:78,edges:outdoorEdges}};
+ const alignment={verified:true,romSha256:sha,verifiedConnections:78,
+   descriptorPointerFormulaVerified:true,referenceOffsetCorroborated:true,
+   connections:aligned};
+ const state={mapId:15,coords:{x:1,y:2},
+   romVariantTerrainEvidence:{verified:true,romSha256:sha},
+   romWarpGraph:graph,romOutdoorAlignment:alignment,
+   romOutdoorReferenceEvidence:{verified:true},
+   memoryReadStatus:{blocks:{overworldSprites:true}},mapEntities:[],
+   globalCampaignLedger:{verified:true},globalCampaignObjectives:{verified:true}};
+ const client={activeRomProfile:{hash:{sha256:sha},
+   world:{terrainAtlas:{verified:true}}},latestState:state};
+ let calls=0;const alignedUsed=[];
+ const select=()=>({verified:true,pendingSignature:'stable',
+   items:[{kind:'HIDDEN_ITEM',mapId:19,x:2,y:2,bitIndex:1,
+     mapHopCount:1,staticRouteKnown:true}]});
+ const route=args=>{calls++;alignedUsed.push(args.outdoorAlignment===alignment);
+   return {verified:true,items:[],foundCount:0};};
+ const run=()=>execute.call(client,{verified:true},{verified:true},
+   {verified:true,modeByte:0},false,false,select,route);
+ run();run();assert.equal(calls,1);
+ assert.deepEqual(alignedUsed,[true]);
+ warp.landing.y=3;
+ run();assert.equal(calls,2);
+ state.romOutdoorReferenceEvidence.verified=false;
+ run();assert.equal(calls,3);
+ assert.deepEqual(alignedUsed,[true,true,false]);
+ state.romOutdoorReferenceEvidence.verified=true;
+ run();assert.equal(calls,4);
+ aligned[0].offsetBlocks=1;
+ run();assert.equal(calls,5);
+ graph.outdoorConnections=null;
+ run();assert.equal(calls,6);
+ assert.deepEqual(alignedUsed,[true,true,false,true,true,false]);
+ run();assert.equal(calls,6);
+});

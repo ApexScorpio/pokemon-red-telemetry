@@ -3031,6 +3031,21 @@ class RetroArchClient extends EventEmitter {
       const spritePositions=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
         Array.isArray(this.latestState.mapEntities)?
         this.latestState.mapEntities.map(o=>[o.x,o.y,o.type,o.pictureId]):null;
+      // Cache every static-warp input actually consumed by the multi-map
+      // graph search. A validated edge can change while ROM/map/RAM do not.
+      const staticWarpGraph=this.latestState.romWarpGraph;
+      const staticWarpFingerprint=[
+        staticWarpGraph?.verified===true,staticWarpGraph?.romSha256??null,
+        staticWarpGraph?.totalWarpEntries??null,
+        staticWarpGraph?.normalMapHeaders??null,
+        Array.isArray(staticWarpGraph?.edges)?
+          staticWarpGraph.edges.map(e=>
+            e?.status==='STATIC_DESTINATION_WARP_VALIDATED'?
+              [e.status,e.sourceMapId,e.sourceWarpIndex,e.x,e.y,
+                e.destinationMapId,e.landing?.mapId,
+                e.landing?.warpIndex,e.landing?.x,e.landing?.y]:
+              [e?.status,e?.sourceMapId,e?.sourceWarpIndex]):null
+      ];
       // An unchanged player tile is not proof that outdoor connections
       // remain valid. Recompute cross-map routes whenever the actual ROM
       // outdoor graph/reference/alignment evidence changes.
@@ -3057,7 +3072,7 @@ class RetroArchClient extends EventEmitter {
         this.latestState.mapId,this.latestState.coords,targets,
         modeWindow.verified?modeWindow.modeByte:null,
         abilityCut===true,abilitySurf===true,spritePositions,
-        outdoorRouteProof,outdoorFingerprint]);
+        staticWarpFingerprint,outdoorRouteProof,outdoorFingerprint]);
       if(this._crossMapRouteKey!==key){
         this._crossMapRoute=findCrossMapItemPaths({
           romSha256:this.activeRomProfile.hash?.sha256,
@@ -3207,6 +3222,40 @@ class RetroArchClient extends EventEmitter {
     const remoteSpriteSnapshot=this.latestState.memoryReadStatus?.blocks?.overworldSprites===true&&
       Array.isArray(this.latestState.mapEntities)?
       this.latestState.mapEntities.map(a=>[a.x,a.y,a.type,a.pictureId]):null;
+    // These are separately cached plans: they must also invalidate when
+    // any static warp or outdoor landing/offset evidence changes.
+    const remoteWarpGraph=this.latestState.romWarpGraph;
+    const remoteStaticWarpFingerprint=[
+      remoteWarpGraph?.verified===true,remoteWarpGraph?.romSha256??null,
+      remoteWarpGraph?.totalWarpEntries??null,
+      remoteWarpGraph?.normalMapHeaders??null,
+      Array.isArray(remoteWarpGraph?.edges)?
+        remoteWarpGraph.edges.map(e=>
+          e?.status==='STATIC_DESTINATION_WARP_VALIDATED'?
+            [e.status,e.sourceMapId,e.sourceWarpIndex,e.x,e.y,
+              e.destinationMapId,e.landing?.mapId,
+              e.landing?.warpIndex,e.landing?.x,e.landing?.y]:
+            [e?.status,e?.sourceMapId,e?.sourceWarpIndex]):null
+    ];
+    const remoteOutdoorGraph=remoteWarpGraph?.outdoorConnections;
+    const remoteOutdoorAlignment=this.latestState.romOutdoorAlignment;
+    const remoteOutdoorProof=
+      this.latestState.romOutdoorReferenceEvidence?.verified===true&&
+      remoteOutdoorGraph?.verified===true&&
+      remoteOutdoorGraph.romSha256===this.activeRomProfile?.hash?.sha256&&
+      remoteOutdoorGraph.edgeCount===78&&
+      remoteOutdoorGraph.reciprocalConnections===78&&
+      remoteOutdoorAlignment?.verified===true&&
+      remoteOutdoorAlignment.romSha256===this.activeRomProfile?.hash?.sha256&&
+      remoteOutdoorAlignment.verifiedConnections===78&&
+      remoteOutdoorAlignment.descriptorPointerFormulaVerified===true&&
+      remoteOutdoorAlignment.referenceOffsetCorroborated===true;
+    const remoteOutdoorFingerprint=remoteOutdoorProof?
+      [remoteOutdoorGraph.edges?.map(e=>
+        [e.sourceMapId,e.destinationMapId,e.direction]),
+       remoteOutdoorAlignment.connections?.map(e=>
+        [e.sourceMapId,e.destinationMapId,e.direction,e.offsetBlocks,
+          e.descriptorPointerMatches,e.referenceOffsetCorroborated])]:null;
     const remoteKey=JSON.stringify([
       this.activeRomProfile?.hash?.sha256,
       this.latestState.mapId,this.latestState.coords,
@@ -3219,7 +3268,8 @@ class RetroArchClient extends EventEmitter {
       abilityCut,abilitySurf,
       modeWindow.verified?modeWindow.modeByte:null,
       this.latestState.romOutdoorAlignment?.verified===true,
-      remoteSpriteSnapshot
+      remoteSpriteSnapshot,remoteStaticWarpFingerprint,
+      remoteOutdoorProof,remoteOutdoorFingerprint
     ]);
     if(this._globalFlagItemKey!==remoteKey){
       this._globalFlagItemRoutes=remoteSearchReady?
@@ -3228,7 +3278,8 @@ class RetroArchClient extends EventEmitter {
           objectives:this.latestState.globalCampaignObjectives,
           terrainAtlas:this.activeRomProfile?.world?.terrainAtlas,
           warpGraph:this.latestState.romWarpGraph,
-          outdoorAlignment:this.latestState.romOutdoorAlignment,
+          outdoorAlignment:remoteOutdoorProof?
+            this.latestState.romOutdoorAlignment:null,
           sourceMapId:this.latestState.mapId,position:this.latestState.coords,
           positionVerified:positionWindow.verified===true,
           currentModeByte:modeWindow.verified?modeWindow.modeByte:null,
