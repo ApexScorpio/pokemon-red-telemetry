@@ -146,7 +146,7 @@ function candidatePath(reach,item,{hidden=false}={}){
 }
 function planItemAccess({terrain,romSha256,position,items=[],
  mapSnapshotVerified=false,positionVerified=false,modeByte=null,
- spritesVerified=false,mapEntities=[],canCut=null,canSurf=null}={}){
+ spritesVerified=false,mapEntities=null,canCut=null,canSurf=null}={}){
  const rows=Array.isArray(items)?items:[];
  const unavailable=(reason)=>({verified:false,reason,
    results:rows.map((item,index)=>({index,itemName:item.name??null,
