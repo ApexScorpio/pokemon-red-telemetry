@@ -707,6 +707,63 @@ function formatCampaignChecklistSection(advice,state) {
   const progress={COLLECTED_CONFIRMED_FLAG:'flag de recolha confirmada',
     NOT_COLLECTED_CONFIRMED_FLAG:'flag indica não recolhido',
     NOT_PROVEN:'progresso por confirmar'};
+
+  // Uma flag D747 apenas descreve o portão do script. Não prova vitória,
+  // acessibilidade, presença do sprite ou resultado do encontro.
+  // Nunca publicar um estado RAM com uma leitura antiga ou outra ROM/mapa.
+  const gateRam=state?.memoryReadStatus;
+  const gatePositions=[gateRam?.positionWindow,
+    gateRam?.latePositionWindow,gateRam?.publicationPositionWindow];
+  const gateStamp=Date.parse(state?.lastUpdate||'');
+  const gateValidPosition=p=>p?.verified===true&&p.mapId===advice.mapId&&
+    Number.isInteger(p.x)&&p.x>=-4&&p.x<=255&&
+    Number.isInteger(p.y)&&p.y>=-4&&p.y<=255;
+  const gateScope=state?.connected===true&&
+    state?.romRuntimeIdentity?.matched===true&&
+    trustedHashes.has(runtimeSha)&&
+    runtimeSha===advice.romSha256&&
+    state.mapId===advice.mapId&&
+    checklist.scriptAtlasBound===true&&
+    gateRam?.verified===true&&Number.isFinite(gateStamp)&&
+    gateStamp<=Date.now()&&Date.now()-gateStamp<=15000&&
+    gatePositions.every(gateValidPosition)&&
+    gatePositions[0].x===gatePositions[1].x&&
+    gatePositions[0].y===gatePositions[1].y&&
+    gatePositions[1].x===gatePositions[2].x&&
+    gatePositions[1].y===gatePositions[2].y&&
+    state.coords?.x===gatePositions[2].x&&
+    state.coords?.y===gatePositions[2].y;
+  const verifiedGateLabel=action=>{
+    const kind=action.kind;
+    if(!gateScope||!['TRAINER','STATIC_POKEMON'].includes(kind)||
+       action.scriptReferenceBound!==true||
+       action.scriptTextPointerVerified!==true||
+       action.scriptEventBitBindingVerified!==true||
+       action.scriptEventFlagSnapshotVerified!==true||
+       action.scriptEventFlagEvidence!==
+         'ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747'||
+       typeof action.scriptEventFlagSet!=='boolean'||
+       !Number.isInteger(action.scriptEventBitIndex)||
+       action.scriptEventBitIndex<0||
+       action.scriptEventBitIndex>=2560||
+       action.staticObject?.source!=='ROM_MAP_OBJECT_BYTES'||
+       action.staticObject.kind!==(kind==='TRAINER'?'trainer':'wildPokemon')||
+       !Number.isInteger(action.ordinal)||action.ordinal<1||
+       action.staticObject.ordinal!==action.ordinal||
+       action.staticObject.x!==action.x||
+       action.staticObject.y!==action.y||
+       action.accessibleNow!==null||action.completedNow!==null)
+      return null;
+    const flag=action.scriptEventFlagSet;
+    const required=kind==='TRAINER'?
+      flag?'TRAINER_GATE_CLOSED_FLAG':'TRAINER_GATE_OPEN_FLAG':
+      flag?'ENCOUNTER_GATE_CLOSED_FLAG':'ENCOUNTER_GATE_OPEN_FLAG';
+    if(action.progress!==required)return null;
+    const type=kind==='TRAINER'?'combate':'encontro';
+    return 'bit D747 '+(flag?'assinalado':'não assinalado')+
+      ' (portão de '+type+' '+(flag?'fechado':'aberto')+
+      ' por flag; vitória, presença, acesso e resultado não comprovados)';
+  };
   for(const action of checklist.actions){
     if(!Object.hasOwn(labels,action.kind)||
        !Number.isInteger(action.x)||!Number.isInteger(action.y))continue;
@@ -770,7 +827,7 @@ function formatCampaignChecklistSection(advice,state) {
 
 
     lines.push('• '+type+' ('+position+')'+identity+' — '+
-      (progress[action.progress]||'progresso por confirmar')+
+      (verifiedGateLabel(action)||progress[action.progress]||'progresso por confirmar')+
       variantProof+condition+entry+asm);
   }
 

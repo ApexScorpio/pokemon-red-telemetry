@@ -1374,6 +1374,7 @@ function main(){
   'tests/romVerifiedHiddenCoinMarkers.test.js',
   'tests/romVerifiedTrainerGateMarkers.test.js',
   'tests/romCampaignHiddenCoinsUi.test.js',
+  'tests/romCampaignVerifiedGateLabels.test.js',
   'tests/romVerifiedStaticEncounterMarkers.test.js',
   'tests/romLiveActorIdentity.test.js',
   'tests/romAreaEvidenceIdentity.test.js',
