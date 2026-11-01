@@ -188,3 +188,47 @@ test('unverified RAM sprite block never asserts obstacle-free live access',()=>{
  assert.equal(r.accessibleNowGuaranteed,false);
  assert.match(r.results[0].reason,/sprites sem confirmação RAM/i);
 });
+
+
+test('player on blocked ROM land tile cannot seed a claimed local path',()=>{
+ const g=makeGrid('boulder');
+ const i=2*g.width+1;
+ g.bits[i>>3]&=~(1<<(i&7));
+ const result=check(g);
+ assert.equal(result.verified,false);
+ assert.equal(result.results[0].accessStatus,'UNKNOWN');
+ assert.equal(result.results[0].accessibleNow,null);
+ assert.match(result.reason,/terreno e o modo de movimento/);
+});
+test('player on water without Surf mode cannot seed a land route',()=>{
+ const g=makeGrid('boulder');
+ const i=2*g.width+1;
+ g.tiles[i]=0x14;
+ g.bits[i>>3]&=~(1<<(i&7));
+ const r=check(g);
+ assert.equal(r.verified,false);
+ assert.equal(r.results[0].accessStatus,'UNKNOWN');
+});
+test('Surf mode on dry terrain is not accepted as verified departure',()=>{
+ const g=makeGrid('boulder');
+ const r=planItemAccess({terrain:toTerrain(g),romSha256:sha[0],
+   position:{x:1,y:2},items:[{x:6,y:2,romItemCoordinatesVerified:true}],
+   positionVerified:true,mapSnapshotVerified:true,modeByte:2,
+   spritesVerified:true,mapEntities:[],canSurf:true});
+ assert.equal(r.verified,false);
+ assert.equal(r.results[0].accessStatus,'UNKNOWN');
+});
+test('water starting cell with Surf mode is accepted but remains conditional',()=>{
+ const g=makeGrid('boulder');
+ const origin=2*g.width+1;
+ g.tiles[origin]=0x14;
+ g.bits[origin>>3]&=~(1<<(origin&7));
+ const r=planItemAccess({terrain:toTerrain(g),romSha256:sha[0],
+   position:{x:1,y:2},items:[{x:6,y:2,romItemCoordinatesVerified:true}],
+   positionVerified:true,mapSnapshotVerified:true,modeByte:2,
+   spritesVerified:true,mapEntities:[],canSurf:true});
+ assert.equal(r.verified,true);
+ assert.equal(r.results[0].accessibleNow,null);
+ assert.equal(r.currentMapRouteVerified,false);
+ assert.equal(r.accessibleNowGuaranteed,false);
+});

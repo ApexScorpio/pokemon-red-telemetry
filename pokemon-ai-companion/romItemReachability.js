@@ -165,6 +165,17 @@ function planItemAccess({terrain,romSha256,position,items=[],
     (!Array.isArray(mapEntities)||mapEntities.some(actor=>
       !actor||!valid(actor.x,-4,255)||!valid(actor.y,-4,255))))
    return unavailable('Sprites RAM incoerentes; percurso local não classificável');
+ // Coordinates alone do not prove a physically coherent departure tile.
+ // A live land-mode player on water/non-walkable terrain (or Surf mode
+ // on a land tile) must never seed a route through an impossible state.
+ const originIndex=position.y*grid.width+position.x;
+ const originTile=grid.tiles[originIndex];
+ const originWater=originTile===0x14||originTile===0x48;
+ const originLand=(grid.bits[originIndex>>3]&
+   (1<<(originIndex&7)))!==0&&!originWater&&
+   !(grid.tilesetId===0&&originTile===0x3d);
+ if(modeByte===2?!originWater:!originLand)
+   return unavailable('Posição RAM incompatível com o terreno e o modo de movimento da ROM');
  const options={currentSurf:modeByte===2,
    actors:Array.isArray(mapEntities)?mapEntities:[],spritesVerified};
  // Executar BFS uma vez por cenário, não uma vez por item.
