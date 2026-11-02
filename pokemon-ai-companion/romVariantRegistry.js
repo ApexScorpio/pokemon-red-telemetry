@@ -17,6 +17,18 @@ const {extractOutdoorConnections}=require('./romOutdoorConnections');
 const {auditElevatorDestinations}=require('./romElevatorDestinations');
 const {readRomTerrain}=require('./romTerrainAtlas');
 const {readLedgeRules}=require('./romLedgeRules');
+const {auditWorldScriptReferences}=require('./romWorldScriptReferences');
+const {buildMapScriptRootSemantics}=require('./romMapScriptRootSemantics');
+const {auditUnboundTrainerHandlerContext}=require('./romUnboundTrainerHandlerContext');
+const {auditUnboundTrainerTempBattleFlags}=require('./romUnboundTrainerTempBattleFlags');
+const {buildScriptedBattleReferenceEvidence}=
+ require('./romScriptedBattleReference');
+const {locateScriptedBattleRamCandidates}=
+ require('./romScriptedBattleRam');
+const {auditScriptedBattleStateWriteContexts}=
+ require('./romScriptedBattleWriteContexts');
+const {buildScriptedBattleStateCandidates}=
+ require('./romScriptedBattleStateCandidates');
 const BANK=0x4000, INTERNAL=190;
 const crcTable=Array.from({length:256},(_,n)=>{let v=n;for(let i=0;i<8;i++)v=(v&1)?(0xEDB88320^(v>>>1)):(v>>>1);return v>>>0;});
 function crc32(buf){let x=0xFFFFFFFF;for(const b of buf)x=crcTable[(x^b)&255]^(x>>>8);return ((x^0xFFFFFFFF)>>>0).toString(16).toUpperCase().padStart(8,'0');}
@@ -207,6 +219,57 @@ function inspectRomBuffer(b,file='ROM_EM_MEMORIA.gb'){
   species.push({internalId:id,name,dex,stats,sprite,
     evolutions:evos.rows?evos.rows[id-1].evolutions:null,
     learnset:evos.rows?evos.rows[id-1].learnset:null});
+ }
+ // Physical map script roots are analyzed separately from TX_START_ASM.
+ // Their conditional effects are never presented as observed actions.
+ world.mapScriptRootSemantics=buildMapScriptRootSemantics({
+  rom:b,
+  maps:world.maps?.data,
+  romSha256:crypto.createHash('sha256').update(b).digest('hex')
+ });
+ // Bound to the same exact ROM bytes, not a reference dump guessed from a title.
+ // No script is marked semantically understood only because its pointer exists.
+ const interactionAudit=auditWorldScriptReferences({
+  rom:b,profile:{hash:{sha256:crypto.createHash('sha256').update(b).digest('hex')},
+   unknownLayout:!hasCore,world}
+ });
+ world.interactionScriptAtlas=interactionAudit.verified===true?{
+  verified:true,romSha256:interactionAudit.romSha256,
+  summary:interactionAudit.summary,maps:interactionAudit.maps,
+  // Preserve the ROM-derived abstract execution, including its SHA and limits.
+  scriptSemantics:interactionAudit.scriptSemantics,
+  // Keep the exact ROM0 proof fields from the independent static audit.
+  // Omission here previously turned proven physical address coverage into
+  // undefined; never promote address coverage to proven game semantics.
+  fixedRom0BranchEvidence:interactionAudit.fixedRom0BranchEvidence,
+  distinctRom0IndirectJumpEvidence:interactionAudit.distinctRom0IndirectJumpEvidence,
+  rom0PhysicalAddressMappingCertified:
+   interactionAudit.rom0PhysicalAddressMappingCertified,
+  scriptEffectsSemanticallyComplete:false,
+  runtimeFlagsVerified:false,
+  source:interactionAudit.source
+ }:{verified:false,reason:interactionAudit.reason,
+  scriptEffectsSemanticallyComplete:false,runtimeFlagsVerified:false};
+ if(world.interactionScriptAtlas.verified===true){
+  world.interactionScriptAtlas.unboundTrainerHandlerContext=
+   auditUnboundTrainerHandlerContext({
+    rom:b,scriptAtlas:world.interactionScriptAtlas});
+  world.interactionScriptAtlas.unboundTrainerTempBattleFlags=
+   auditUnboundTrainerTempBattleFlags({
+    rom:b,
+    handlerContext:world.interactionScriptAtlas.unboundTrainerHandlerContext});
+  world.interactionScriptAtlas.scriptedBattleReferenceEvidence=
+   buildScriptedBattleReferenceEvidence({
+    scriptAtlas:world.interactionScriptAtlas});
+  world.interactionScriptAtlas.scriptedBattleRamCandidates=
+   locateScriptedBattleRamCandidates({
+    rom:b,scriptAtlas:world.interactionScriptAtlas});
+  world.interactionScriptAtlas.scriptedBattleWriteContexts=
+   auditScriptedBattleStateWriteContexts({
+    rom:b,scriptAtlas:world.interactionScriptAtlas});
+  world.interactionScriptAtlas.scriptedBattleStateCandidates=
+   buildScriptedBattleStateCandidates({
+    scriptAtlas:world.interactionScriptAtlas});
  }
  const title=b.subarray(0x134,0x144).toString('latin1').split('\0')[0].trim();
  return {schema:'gen1-rom-profile-v1',source:'local-ROM-file',file:path.basename(file),

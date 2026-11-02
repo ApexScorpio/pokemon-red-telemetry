@@ -21,7 +21,7 @@ function getGitHubToken() {
   return '';
 }
 
-const GITHUB_TOKEN = getGitHubToken();
+// Never read credential files during server startup or offline-only operation.
 const REPO_OWNER = 'ApexScorpio';
 const REPO_NAME = 'pokemon-red-telemetry';
 const FILE_PATH = 'README.md';
@@ -561,6 +561,7 @@ async function syncToGitHub(state) {
       Date.now() - lastRead >= 15000) {
     return { success: false, error: 'Telemetria não confirmada, incompleta, desatualizada ou simulada' };
   }
+  const GITHUB_TOKEN = getGitHubToken();
   if (!GITHUB_TOKEN) return false;
   try {
     const markdown = formatTelemetryMarkdown(state);

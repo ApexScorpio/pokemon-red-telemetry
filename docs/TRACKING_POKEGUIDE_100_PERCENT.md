@@ -1,0 +1,1450 @@
+# PokéGuide — Tracking de cobertura, execução e provas
+
+**Iniciado:** 2026-10-28  
+**Branch de trabalho:** `feature/pokeguide-world-action-tracker-20261028`  
+**Regra:** esta página é um painel de acompanhamento; o histórico cronológico e imutável está em [HISTORICO_GUIA_CAMPANHA.md](HISTORICO_GUIA_CAMPANHA.md). Todas as alterações ao histórico são só por acrescento.  
+**Critério para CONCLUÍDO:** código no repositório, testes reproduzíveis e evidência funcional exigida pelo requisito. Um teste isolado nunca vale como validação end-to-end.
+
+## Estado dos trabalhos
+
+| ID | Âmbito | Estado | Evidência atual | Próxima condição de aceitação |
+|---|---|---|---|---|
+| PG-001 | Identidade das 3 ROMs Red/Blue/Green Intl 1.2.1 | PARCIAL | SHA-256 conhecidos em `romKnownSha256.js`; ROMs locais auditadas em relatórios | Confirmar SHA do cartucho *efetivamente carregado* no emulador/iPhone |
+| PG-002 | Atlas mundial e ligações | PARCIAL | 248 IDs, 226 cabeçalhos normais, 813 warps e 78 fronteiras por ROM; `romWarpGraph.js` | Resolver LAST_MAP/elevadores/portas e testar transições reais |
+| PG-003 | Terreno e movimento | PARCIAL | T31: Cut/Surf/ledge, fronteiras ROM e planeador conservador de empurrões Strength com sprites RAM | Testar empurrões reais, buracos/interruptores, colisões dinâmicas, scripts e transições em emulador |
+| PG-004 | Flags e eventos da campanha | PARCIAL | T60: 14 lojas extraídas das ROMs e nomes/preços-base cruzados com auditoria económica por SHA+mapa+IDs; preços atuais, acesso e compras continuam desconhecidos | Interpretar todos os scripts, presentes, diálogos, ramificações e consequências |
+| PG-005 | Radar de itens e acessibilidade | PARCIAL | T51: catálogo compacto dos 226 mapas, flags dos 54 itens e 12 fichas ocultas; índice de objetos visíveis de recolha desconhecida, coordenadas remotas e rotas condicionais | Validar caminhos e itens reais em emulador, scripts, NPCs, Cut/Surf/Strength e orçamento |
+| PG-006 | Conselheiro universal de ações | EM EXECUÇÃO | T51: conselhos locais + 226 mapas indexados, saída de Cut/Surf/Strength condicional, desvios multimapa e inventário visível de recolha desconhecida | Distinguir provas independentes, testar telemetria real e consequências na UI sem garantias falsas |
+| PG-007 | Combate e probabilidades | PARCIAL | `gen1LiveBattlePreview.js` e testes do pipeline com RAM sintética | Todos os handlers, RNG, golpes especiais e confronto diferencial ao vivo |
+| PG-008 | Coerência telemetria RAM | PARCIAL | Releituras de mapa, coordenadas e modo; rejeição de divergências | Snapshots atómicos ou barreira equivalente confirmada e expiração de conselhos |
+| PG-009 | Testes integrados / visuais | PARCIAL | T54: três ROMs GB originais analisadas em Node.js v22 e Python, SHA-256 e 226 mapas/813 warps/202 sinais/472 NPCs/106 itens por variante verificados; T53: 93/93 regressões isoladas V8 | Executar suite completa com as três ROMs e E2E com RetroArch/SameBoy/iPhone, screenshots por etapa |
+| PG-010 | Tracking persistente e histórico | EM EXECUÇÃO | Esta tabela e histórico append-only | Atualizar estado e provas após cada trabalho; nunca apagar entradas anteriores |
+| PG-011 | Renderização de conselhos globais | EM EXECUÇÃO | T51: painel mundial já renderiza objetivos por mapa, flags de itens ocultos, coordenadas de objetos visíveis e limites de acesso, com 56/56 testes UI/integração V8 | Painel visível, robusto a offline, stale, dados contraditórios e HTML hostil |
+| PG-012 | Cobertura integral da ROM e variantes | PARCIAL | Catálogo de 64 bancos e comparações de binários publicados | Classificação semântica e diferencial dos ramos relevantes, sem declarar 100% só por ler bytes |
+
+## Critérios de prova e restrições
+
+- **Estático ROM:** uma saída, item ou NPC existe no mapa auditado. Não implica que esteja acessível.
+- **Estado RAM confirmado:** item oculto recolhido, posição atual, flag de treinador ou sprite presente requer leitura e correspondência ao objeto específico.
+- **Percurso condicional:** geometria permite uma hipótese, mas o estado pode mudar por diálogo, animação, porta, NPC, obstáculo ou script.
+- **Consequência provada:** exige extração semântica do script e, se relevante, confirmação na execução.
+- **Desconhecido é resultado legítimo:** nenhuma conclusão de vitória/recolha se pode basear só na ausência de sprite ou numa flag de outro domínio.
+- **Testes dependentes de ROM:** se o ficheiro real não estiver presente devem reportar bloqueio/skip, não ser convertidos em aprovação.
+- **Segurança:** não publicar ROMs nem saves; não tocar em sessões Antigravity/TIMI/MAESTRO/BonChat; não escrever no disco C: do utilizador.
+- **Capturas:** em testes de interface, guardar e examinar screenshot após cada passo quando houver acesso ao browser, com indicação do ambiente. Sem acesso ao emulador/iPhone, não alegar screenshots reais.
+
+## Registo de entregas
+
+- **2026-10-28 — T0:** branch criada a partir de `main` no ponto de retoma; tracking inicial instituído, lacunas e critérios definidos. **A execução funcional ainda não foi validada.**
+
+## Indicadores que NÃO podem ser inventados
+
+- Percentagem geral de conclusão: **indeterminada** enquanto os critérios não estiverem todos auditados.
+- Estado end-to-end iPhone/emulador: **não demonstrado nesta fase**.
+- Cobertura total dos scripts e efeitos: **não demonstrada**.
+
+
+### T1 — 2026-10-28: associação global de acessibilidade e flags
+
+- **PG-006 EM EXECUÇÃO:** `romWorldStateAdvisor.js` passou a diferenciar flags ocultas e de treinadores e a anexar percurso condicional apenas por chave ROM/mapa/índice/posição validada. Commit `6d1682b`.
+- **PG-005 EM EXECUÇÃO:** `retroarchClient.js` envia o resultado de `planItemAccess` ao conselheiro global; mapa divergente apaga a projeção antiga. Commit `30283d4`.
+- **Falta:** testes positivos/negativos, UI de ações, visual real, scripts completos, percurso multimapa.
+
+
+### T2/T3 — 2026-10-28: painel, expiração e fichas ocultas
+
+- **PG-011 — CÓDIGO IMPLEMENTADO / E2E PENDENTE:** novo painel por mapa. Estados textuais separados, sem `innerHTML`, expiração RAM, corte imediato no WebSocket; necessita screenshot da aplicação real e testes integrados.
+- **PG-006 — CÓDIGO PARCIAL VALIDADO:** flags de itens/treinadores/fichas independentes, percurso condicional associado, UI mostra resultados sem assumir final de script. 6 testes de lógica isolados aprovados com dependências substituídas; suíte do projeto não executada.
+- **PG-004 — PARCIAL:** inseridas 12 fichas ocultas, mantendo D6FE independente de D6F0; continua a faltar descodificar todos os NPC scripts e resultados de eventos.
+- **PG-009 — PARCIAL:** novos 13 testes de regressão publicados, **por executar no checkout completo**; pré-visualização sintética em Chromium analisada, não é screenshot do jogo.
+- **Bloqueios remanescentes:** acesso às ROMs reais e emulador ativo para E2E, integridade atómica da RAM, scripts e regras dinâmicas, navegação multimapa.
+
+
+### T4 — 2026-10-28: síntese de Kanto em vez de apenas o mapa atual
+
+- **PG-004 PARCIAL:** `romCampaignLedger.js` reúne flags dos 226 mapas normais para 54 itens ocultos, 12 fichas, treinadores com evento associado e encontros fixos; distingue evento encerrado de vitória/captura. Falta a semântica completa de scripts e presentes/itens visíveis.
+- **PG-006 PARCIAL:** painel já cruza conselho local, percursos condicionais e progresso global, sem deduzir acessibilidade imediata nem consequências garantidas.
+- **PG-008 PARCIAL:** livro global falha fechado em ROM/RAM não comprovadas, mas a leitura sequencial não certifica instantâneo atómico nem SHA da ROM ativa no emulador.
+- **PG-009 PARCIAL:** **18 novos casos de teste publicados no repositório, ainda por executar com dependências reais**; num ambiente isolado com dependências simuladas correram **12/12 testes**. Screenshot sintético analisado; falta prova de interface verdadeira e três ROMs originais nesta execução.
+- **PG-011 CÓDIGO IMPLEMENTADO / E2E PENDENTE:** síntese de 226 mapas apresentada apenas com identidade SHA coincidente; `textContent` protege texto não fiável; expiração/offline invalida informação.
+- **Meta 100%:** mantém-se **NÃO CERTIFICADA**. Sem percentagem inventada. Próximas entregas: correr testes reais, concluir scripts e efeitos, navegação dinâmica multimapa e E2E do Companion com RetroArch/SameBoy/iPhone.
+
+
+### T5 — 2026-10-28: PR de integração e proteção da versão principal
+
+- **PR de trabalho:** <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>, estado **Draft**, porque falta execução do checkout real, testes das três ROMs e prova visual em RetroArch/SameBoy/iPhone.
+- **Branch:** `feature/pokeguide-world-action-tracker-20261028`; `main` permanece inalterada até integração validada. Alterações não substituíram a versão principal.
+- **Critérios de desbloqueio:** 18 regressões novas + suite anterior a passar no checkout completo, testes ROM SHA reais com falha explícita se faltar binário, confirmação de ausência de falsos conselhos sob deslocação/fecho da ligação, screenshots reais e correção dos casos encontrados.
+- **Pendências depois da integração do PR:** scripts de todos os NPCs, efeitos especiais de movimentos, navegação multimapa com portas dinâmicas, coerência temporal RAM e paridade de resultados de eventos ao vivo.
+
+
+### T6/T7/T8 — 2026-10-29: teste dos módulos, reconexão, prioridades de todo o Kanto
+
+- **PG-006 — CÓDIGO AMPLIADO / E2E PENDENTE:** o conselheiro separa flags e percursos condicionais; o novo `romCampaignObjectives.js` usa as 226 fichas mundiais para sugerir mapas com flags pendentes e eventos por esclarecer. Cada distância é número de transições estáticas, nunca acesso comprovado.
+- **PG-002 — PARCIAL:** o planeador de objetivos usa BFS de warps e fronteiras estáticas sobre índices validados. LAST_MAP, elevadores, Cut/Surf/Strength, scripts e portas dinâmicas continuam por certificar.
+- **PG-009 — PARCIAL (provas):** 26/26 testes das quatro suites executados diretamente do código publicado no GitHub em **V8 isolado com APIs Node simuladas**; 0 falhas. Isto não substitui `npm test` nem ROMs reais; `git clone` falhou devido a DNS. O teste de reconexão impede reaparecimento de conselhos antigos.
+- **PG-011 — CÓDIGO IMPLEMENTADO / E2E PENDENTE:** novo painel de objetivos mundiais e respetivos estados; corrigida flexão singular/plural; imagem sintética antes/depois capturada e analisada (NÃO é o Companion no emulador).
+- **PG-008 — PARCIAL:** ao desligar o WebSocket, `lastState.connected=false` é persistido para impedir que verificações periódicas reapresentem dados antigos. Atomicidade RAM não demonstrada.
+- **Próximo critério de integração:** testes Node reais com dependências originais, 3 ROMs auditadas, screenshots em RetroArch/SameBoy e comparação de flags/rotas reais. Enquanto faltarem, manter o PR como Draft e `main` protegida.
+
+
+### T9 — 2026-10-29: checkpoint verificável para retoma
+
+- **Branch/PR:** `feature/pokeguide-world-action-tracker-20261028` / <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>. Via API: 42 commits à frente de `main`, 0 atrás, 12 ficheiros alterados; PR aberto **Draft**, não fundido. `main` preservada em `d52d6dad`.
+- **Testes desta fase:** 26/26 publicados aprovados no executor **V8 isolado com simulação das APIs Node**; seis módulos com parsing válido e nove verificações de integração de strings/ordem. **Pendente**: suite integral `npm test`, ROMs reais, E2E de cliente e screenshots do jogo.
+- **Tracking visual:** imagem sintética final capturada e inspecionada; HTML/imagem de teste provisórios apagados. Imagem não corresponde a partida real.
+- **Ponto de retoma seguinte:** obter checkout/test runner Node real sem depender de GitHub Actions esgotadas; validar a suite toda e os três ficheiros ROM contra o SHA esperado; corrigir falhas; depois testar o Companion no emulador real e atacar scripts/handlers/rotas dinâmicas por cobertura e evidência, nunca por alegação.
+
+
+### T10–T14 — 2026-10-29: navegação física, eventos ROM e progresso entre leituras
+
+| Entrega | Estado atualizado | Evidência de código | Ainda falta para fechar |
+|---|---|---|---|
+| PG-002/003 | PARCIAL | `romCampaignObjectives.js` prioriza primeiro warp por percurso terrestre da ROM corroborado com posição RAM; rejeita hints fora do mapa/SHA | Interior dos outros mapas, Cut/Surf/Strength dinâmico, portas, scripts, elevadores e saída exterior |
+| PG-004 | PARCIAL | `romCampaignDelta.js` distingue aumentos de flags em seis domínios e anula a inferência se houver regressão de contagens; `SIGN` expõe eventos textuais | Semântica completa de cada script, vínculo ação→evento, histórico exato por bit individual e snapshot atómico |
+| PG-005 | PARCIAL | `romCrossMapItemRoute.js` pesquisa itinerários hipotéticos de terreno e warps para itens sem caminho local; cache e invalidação na telemetria | Validar passagem real/warps dinâmicos e atualizações frame a frame |
+| PG-006 | PARCIAL | `romWorldStateAdvisor.js` inclui sinais e tabelas de encontros condicionais por espécie+nível, para quaisquer mapas normais auditados | Consequências dos NPCs, encontros realmente elegíveis no frame e efeitos de escolhas |
+| PG-008 | PARCIAL | `activeRomSha256Verified:false` explícito; a UI distingue SHA do perfil local de CRC32 do RetroArch | Provar SHA256 da ROM executada; confirmar estado RAM atómico/coerente |
+| PG-009 | PARCIAL | **45/45 testes das 6 suites novas passaram no V8 isolado** com APIs Node/digest simulados; sintaxe e ligações verificadas | `npm test` nativo, três binários reais, testes E2E e screenshots do jogo |
+| PG-011 | CÓDIGO IMPLEMENTADO / E2E PENDENTE | UI apresenta primeiro warp condicional, fauna por pesos ROM, sinais e mudanças de flags na sessão | Verificar interface real com emulador em movimento e testes visuais por etapa |
+| PG-012 | PARCIAL | 226 mapas normais e 813 warps catalogados anteriormente | Todos os scripts, comportamentos, handlers e condições reais de gameplay interpretados e comparados |
+ 
+**Checkpoint técnico:** <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>, **Draft** não fundido; `main` preservada. A conclusão global continua **NÃO CERTIFICADA / percentagem indeterminada**. Nenhum resultado de teste sintético equivale a uma validação com ROMs originais/emulador ou a 100% de jogabilidade.
+
+**Retoma objetiva:** suite Node completa no checkout real, SHA das três ROMs fornecidas, screenshots de execução, diferenciais de combate e scripts, multi-rota com portas/warps exteriores, e ligação causal entre eventos do jogo e flags verificadas. O histórico `HISTORICO_GUIA_CAMPANHA.md` é exclusivamente append-only.
+
+
+### T15–T18 — 2026-10-29: precisão das flags, isolamento de sessão e 61 testes
+
+| Área | Resultado real desta etapa | Limite atual |
+|---|---|---|
+| PG-004 — Progresso factual | `romCampaignLedger.js` publica `flagRecords` de itens, fichas, treinadores e Pokémon fixos; `romCampaignDelta.js` compara bits individuais, distingue vitória de script e rejeita trocas 1→0 ocultadas por totais iguais | Só flags com correspondência ROM auditada; scripts e eventos sem bit continuam desconhecidos |
+| PG-008 — Segurança da telemetria | `CampaignFlagSession` cria baseline apenas com leitura RAM desta sessão, limpa após desconexão/ROM nova/falha e não reutiliza JSON guardado | Leituras RAM continuam sequenciais, não snapshot atómico; mudanças não são prova causal de ação do jogador |
+| PG-009 — Testes | **61/61 testes em 8 suites novas passaram com código da branch, em V8 isolado e APIs Node simuladas**; **20 ficheiros JS com parsing válido**; um teste de integração real entre saídas do ledger e detector de bits | `npm test` real, 3 ROMs originais, emulador ativo, screenshots e prova de SHA256 ativa ainda pendentes |
+| PG-011 — Interface e cache | `persistState` deixa de escrever a telemetria mundial transitória nas duas caches existentes; os históricos de ação e diálogo permanecem | Testes no cliente e visualização real em RetroArch/SameBoy ainda pendentes |
+ 
+**Ponto de retoma verificável:** PR #1 <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1> permanece **Draft**, sem integração na `main`. No último compare verificado: **81 commits à frente, 0 atrás, 19 ficheiros alterados** antes deste registo. Nenhuma percentagem de conclusão global deve ser atribuída sem auditoria dos sistemas de combate, scripts, itens, evolução, mapas dinâmicos e RAM com as ROMs originais.
+
+**Critérios seguintes:** executar as suites na stack Node verdadeira e corrigir discrepâncias; confirmar ROM exata da partida ativa, comparar flags após ação real (incluindo save reload), instrumentar scripts sem estado conhecido e ligar restrições dinâmicas a cada movimento/mudança de mapa. Preservar histórico append-only.
+
+
+### T19/T20 — 2026-10-29: 507 flags, 228 toggles, transições e 19 escolhas de elevadores
+
+- **PG-004 — PARCIAL (mais cobertura observável):** `romWorldEventAtlas.js` utiliza as 507 constantes de eventos e os 228 toggles referenciados nos dados do próprio projeto, cruzando-os com RAM quando verificada. `romWorldReferenceSession.js` deteta diferenças nomeadas entre leituras, incluindo desativações; mantém até 80 alterações e reinicia ao mudar ROM/desligar. Nenhuma mudança recebe causalidade ou resultado de história sem prova dos scripts.
+- **PG-002/PG-003 — PARCIAL:** `romElevatorChoices.js` expõe, nas três ROMs conhecidas, **3 elevadores e 19 destinos opcionais dos menus** validados contra cabeçalhos/warps ROM. Os destinos são teóricos: `selectedNow:null`, `accessibleNow:null`, `routeNavigableNowProven:false`. Falta observar seleção real de piso, portas/script, Cut/Surf/Strength e movimentos dinâmicos.
+- **PG-008 — PARCIAL:** invalidação de `romWorldReferenceDelta`, `worldRecentNamedChanges`, `romElevatorOptions` em leituras inseguras e exclusão destas informações transitórias da cache persistente. Continua sem snapshot RAM totalmente atómico nem prova de SHA da ROM efetivamente executada.
+- **PG-009 — TESTES PARCIAIS:** **52/52** testes de cinco grupos executados separadamente a partir dos ficheiros publicados na branch: 8 sessão de flags nomeadas, 13 painel, 21 delta/sessão mundial, 4 cliente/cache, 6 elevadores com JSON das três variantes. Executor V8 isolado com substitutos de APIs Node; 7 módulos com parsing válido. NÃO é `npm test` e NÃO houve E2E.
+- **PG-011 — CÓDIGO NOVO / E2E PENDENTE:** painel mostra mudanças nos eventos nomeados e os destinos de elevadores como possibilidades condicionais; não afirma conclusão de objetivo ou percurso desbloqueado.
+- **Critério próximo:** Node nativo + checkout completo; validação de CRC/SHA e amostras RAM originais; seguir os scripts de cada evento e verificar efeitos, navegar com menus de elevador e bordas condicionais, depois cobrir combate/captura/evolução/itens/trocas em jogo ativo. Não atribuir percentagem 100% sem essas provas.
+
+
+### T21–T22 — 2026-10-29: navegação condicionada por Cut/Surf + variantes ROM
+
+| Área | Implementação real publicada | Testes/provas | Ainda não concluído |
+|---|---|---|---|
+| PG-002 / PG-003 | `romLocalExitAccess.js`: todos os warps do mapa atual avaliados por terreno e capacidades Cut/Surf com posição RAM corroborada; fronteiras exteriores e elevadores rotulados sem coordenadas/acesso provados | Módulo e UI com regressões de Cut, Surf, sprites, destinos dinâmicos e RAM antiga | Geometria exata nas 78 fronteiras, scripts/portas, Strength, atravessar o ecrã e validar cada transição no emulador |
+| PG-005 | `romWorldDetourCycles.js`: ciclos multimapa por 560 warps ROM de destino estático + fronteiras exteriores verificadas, com limite de estados e exclusão de voltas recíprocas triviais; associado a item de mapa/coordenadas corretos | Testes de ciclos, recíprocos, limites, identidade e UI | Provar que o regresso atinge a região acessível do item; diferenciar caminhos verdadeiros de hipóteses topológicas |
+| PG-008 | `romTerrainVariantGuard.js`: 226 matrizes/95 132 células vinculadas ao SHA local exato Red/Blue/Green; mapas Green 226–228 diferem e não podem ser substituídos por matrizes Red | Os 3 arquivos JSON auditados passam; amostra Green contaminada por Red é rejeitada; mapa identificado por ID, não índice | SHA do binário carregado no emulador, snapshot RAM atómico e revalidação temporal contra movimentos reais |
+| PG-003 | `LAST_MAP`: mapa de destino dinâmico incluído na lista de saídas quando **D365 foi relido com valor igual** e o destino ROM foi conferido | Testes para destino corroborado e para dados D365 desatualizados/incoerentes; UI apresenta prova sequencial | Provar passagem executada e destino no mesmo frame, bem como elevadores e todos os scripts dinâmicos |
+| PG-009 | **56/56 testes relevantes aprovados**, em seis suites de regressão publicadas, todas reexecutadas sobre o código atual da branch, parsing sem erros | Executor V8 isolado, APIs Node simuladas, arquivos reais de terreno Red/Blue/Green, fixtures de geometria separadas | `npm test` nativo, ROMs binárias e emulador E2E, screenshots, simulação de jogo completo |
+| PG-011 | A interface mostra condições por warp, capacidade Cut/Surf, fronteira, elevador, LAST_MAP relido e voltas para investigar sem prometer acessibilidade | Testes UI e de cliente/cache aprovados no mesmo executor | Observação visual e interativa ao vivo, ações e consequências em todos os mapas |
+ 
+**Checkpoint:** PR #1 <https://github.com/ApexScorpio/pokemon-red-telemetry/pull/1>, branch `feature/pokeguide-world-action-tracker-20261028` ainda Draft, `main` não alterada. Projeto **PARCIAL, não 100%**. Retoma por validar a suite Node/ROM/emulador e, depois, os scripts, colisões dinâmicas e mecânicas de combate/captura restantes. Todas as alterações a este tracking e a `HISTORICO_GUIA_CAMPANHA.md` são append-only.
+
+
+### T23 — 2026-10-29: fronteiras físicas na ROM e propostas de primeira saída
+
+| Componente | Estado implementado | Prova disponível | O que ainda falta |
+|---|---|---|---|
+| PG-002/PG-003 — Bordas de todos os mapas | `romOutdoorBoundaryCandidates.js`: inspeciona os tiles na borda do mapa atual, calcula passos geométricos e Cut/Surf condicional; `romLocalExitAccess.js` expõe origem, número de candidatos e classificação | 41/41 testes das suites locais, ciclos e interface após atualização; Route4 conferida nos três arquivos | Alinhamento do destino entre mapas, scripts que impedem travessia, observação da RAM/posição no mesmo frame |
+| PG-005 — Voltas para itens isolados | `romWorldDetourCycles.js` identifica primeiro passo e tile de borda candidato associado à volta, sem afirmar que a volta chega do lado necessário do item | Casos com e sem Cut, fronteiras sem prova de chegada e validação de item/mapa/ROM | Navegação efetiva em todos os segmentos; comprovar a região de chegada ao mapa do item |
+| PG-008 — Integridade das fronteiras | `romOutdoorReferenceGuard.js`: verifica os **78 descritores** contra o arquivo específico de Red, Blue ou Green e suspende o subgrafo exterior se houver divergência | 13/13 testes com cliente, incluindo casos de adulteração, mistura de ROM e invalidação de cache | Provar SHA256 da ROM realmente em execução; voltar a ler os bytes completos de cada descritor e sincronizar leitura ROM/RAM |
+| PG-012 — Route 4 | Bordas ROM: mapa 15, 90×18; 10 células estáticas caminháveis a sul para mapa 14 (Route3) e 8 a este para mapa 3 (Cerulean). Exemplos só estáticos: (6,17) e (89,4) | 3/3 testes com dados dos três arquivos de terreno e 78 ligações, usando V8 e digest de teste pré-mapeado | Não interpretar exemplos como posição do jogador nem passagem confirmada; Cut/desníveis/itens específicos ainda precisam de prova contextual |
+| PG-009 — Execução de testes | **57/57 casos de teste distintos passaram** nos três grupos mencionados, com o código publicado no GitHub | Executor V8 isolado, Node fs/crypto/Buffer/vm simulados, dados JSON reais das três variantes | `npm test` nativo, SHA256 criptográfico no teste, três binários ROM originais e E2E com emulador |
+ 
+**Estado:** PROGRESSO REAL / **NÃO 100%**. O PR #1 continua em Draft; `main` intacta. O arquivo de referência das ligações não basta para inventar coordenadas de chegada à zona seguinte. A próxima etapa de navegação precisa dos bytes da ROM original e testes de transição real; continuamos a não afirmar acessibilidade sem essa evidência.
+
+
+### T24 — 2026-10-29: 78 fronteiras ROM alinhadas com destino e compatibilidade terrestre global
+
+| Área | Implementado e publicado | Prova disponível | Pendente |
+|---|---|---|---|
+| PG-002/PG-003 — Fronteiras Kanto | `data/gen1OutdoorConnectionOffsetsReference.json` com 78 offsets retirados de 36 cabeçalhos da desmontagem; `romOutdoorAlignment.js` confere offsets com ponteiros de blocos ROM | 78 descritores recíprocos × 3 perfis; 34/36 mapas de destino com múltiplos ponteiros independentes consistentes; 6/6 testes | ROM binário ativo, frame RAM atómico, NPCs e scripts que impedem saída |
+| PG-003 — Percurso tile→tile exterior | `romOutdoorBoundaryCandidates.js` elimina pontos fora da sobreposição ou sem destino estático compatível; apresenta tile de destino e classe Cut/Surf/terra, sem afirmar execução | 5/5 testes com Route4, Route3 e Cerulean das três variantes, incluindo `(7,17)→(57,0)` e `(89,4)→(0,12)`; `(6,17)` excluído por destino estático bloqueado | Jogo real, ponto de entrada pós-transição, flags dinâmicas e empurrões Strength |
+| PG-004 — Atlas mundial de transições | `romOutdoorOverlapIndex.js` calcula 78 ligações, 1484 pares de tiles alinhados, 400 pares terrestres estáticos, 70 fronteiras com par terrestre, 8 sem par e 24 com candidatos de água | 6/6 testes usando as matrizes arquivadas Red/Blue/Green; em memória por variante SHA, sem persistir como prova RAM | Interpretar as 8 zonas sem terra e atravessar cada zona no jogo, scripts/portas |
+| PG-005 — Objetivos e desvios | Rotas globais recebem contagem de sobreposição terrestre/água; primeiro salto do desvio entre mapas mostra tile de destino quando o offset está corroborado | 54/54 testes das suites de objetivos, ciclos, painel e cache | Confirmar cada salto e lado exato de regresso ao item |
+| PG-009 — Regressão desta etapa | **85/85 casos distintos aprovados** em grupos V8 usando código da branch + arquivos JSON auditados e SHA simulado/mapeado de teste | Parsing JS e asserts de testes relevantes | `npm test` nativo, hashes executados por Node real, ROMs binários e emulador ativo |
+ 
+**Situação:** PR #1 continua Draft, `main` não fundida. O avanço T24 é geométrico e de auditoria ROM, não afirma jogabilidade já provada ou finalização a 100%. A utilização de `pret/pokered` é referência independente: <https://github.com/pret/pokered/blob/master/macros/scripts/maps.asm>. Ações futuras exigem execução nativa e amostras ROM/RAM originais.
+
+
+### T24 — 2026-10-29: capacidades exigidas no tile de destino
+
+- O cálculo de pares de coordenadas de fronteira já existente na branch é complementado com classificação de **Cut/Surf na zona de chegada**, independente de poder alcançar a borda na zona de origem. Novos campos: `destinationRequiresCut`, `destinationRequiresSurf`, `destinationCapabilityStatus`, `destinationEntryUsableNow:null`.
+- A interface apresenta estes estados sem declarar transição executada. Novo ensaio de regressão `romOutdoorDestinationCapability.test.js`: **3/3**, V8 isolado com dependências simuladas, não `npm test` real.
+- Limites: atravessamento real, scripts, capacidades temporárias, colisões com atores, SHA do binário efetivamente carregado e navegação E2E ainda por provar. **NÃO 100%.**
+
+ 
+### T61 — 2026-10-29: texto literal ROM dos NPCs/sinais no conselheiro mundial
+
+- **PG-004 / PG-012 — PARCIAL:** `romStaticDialogue.js` reconhece apenas a primeira cadeia `TX_START` de um ponteiro `TX_FAR` comprovado, com limites físicos dos bancos e charmap inglesa Gen I. Mostra variáveis `<PLAYER>`/`<RIVAL>` como marcadores; não decifra os restantes comandos, scripts nem escolhas.
+- **PG-006 / PG-011 — PARCIAL:** prévia tipada integrada no índice mundial e no painel de NPCs/sinais. Nunca afirma diálogo executado, evento concluído ou acesso disponível; a interface mostra texto via `textContent`. Plural de transições corrigido.
+- **PG-009 — VALIDAÇÃO LIMITADA:** sete testes equivalentes de descodificador passaram em Node 22.16.0 com ROMs sintéticas; oito ficheiros publicados passaram o parsing em JavaScript V8 e quatro verificações de integração `TX_FAR → ledger → UI` foram aprovadas no mesmo ambiente isolado; após a correção de plural, seis verificações dirigidas adicionais do painel passaram. As regressões novas estão publicadas, mas **não** houve `npm test` integral sobre checkout real, três ROMs originais nesta execução, nem screenshot E2E. Tentativa de screenshot sintético em Chromium falhou por timeout.
+- **Integridade:** histórico detalhado append-only em `docs/HISTORICO_GUIA_CAMPANHA.md` nas entradas T61a/T61b. `main` não foi alterada; PR #1 mantém-se sem autorização para integração enquanto faltam provas reais. **100% NÃO CERTIFICADO**.
+
+
+### T62 — 2026-10-29: frases múltiplas de `TX_FAR` e auditoria global dos destinos ROM
+- **PG-004 / PG-006 / PG-011 — código publicado:** leitura tipada de `TX_START` múltiplos e dos comandos de texto Gen I num único fluxo linear, limitada ao banco físico da ROM; rejeição explícita de `TX_START_ASM`, chamadas `TX_FAR` aninhadas, controlos desconhecidos e sequências incompletas. A interface apresenta apenas os segmentos literais, marcando variáveis RAM, sem execução nem causalidade.
+- **PG-012 — cobertura medida por código, não por estimativa:** o auditor existente dos 674 pontos de interação junta os **453** destinos `TX_FAR` previamente corroborados e executa `summarizeStaticTextTargets` em cada ROM fornecida. O relatório por variante distingue programas lineares estruturalmente completos, parciais/não lineares, múltiplos segmentos, dependências RAM, destino repetido e razões de rejeição. **Ainda não há resultados reais por ROM neste ciclo**, pois os três binários não estavam acessíveis.
+- **PG-009 — validação limitada:** **62/62 testes** de quatro grupos em executor V8 isolado e com dados sintéticos: 10 de leitor de programas, 10 de ponteiros, 39 de UI e 3 de relatório. Integração dirigida adicional no ledger confirmou propagação dos dados e rejeição de metadados contraditórios. São testes de código real da branch com APIs simuladas; **não equivalem a `npm test` nativo nem a E2E**.
+- **Pendências prioritárias:** obter e verificar os três binários originais, correr `npm test` completo e o auditor com SHA-256 reais, interpretar ASM/ramificações e escolhas NPC, cruzar flags e possibilidades de acesso com RAM atómica e capturas do emulador, testar Cut/Surf/Strength e navegação/combate/captura no mapa inteiro. A cobertura global permanece **NÃO CERTIFICADA / percentagem indeterminada**.
+- **Rastreabilidade:** commits T62 e resultados detalhados no histórico append-only `docs/HISTORICO_GUIA_CAMPANHA.md`; PR #1 continua Draft; `main` intocada.
+
+ 
+### T63 — 2026-10-29: distinguir terminador de cadeia de fim de diálogo
+- **PG-006 / PG-009 — corrigido em código:** `<DONE>` e `<PROMPT>` terminam o fluxo real do texto; `@` permite continuar a ler comandos, enquanto `<DEXEND>` é recusado sem prova de controlo de execução. O conselheiro mundial exibe o fecho verdadeiro (`TX_END`, `TEXT_DONE` ou `TEXT_PROMPT`), conservando efeitos/flags/desfechos desconhecidos.
+- **Regressões dirigidas:** 25/25 testes do leitor/ponteiros/auditoria em V8 com Buffer substituto após correção; 39/39 testes do painel em V8 isolado com DOM simulado e condição de fecho atualizada. **Não foi executado `npm test` nativo** nem validação das três ROMs originais. A percentagem global permanece indeterminada.
+- **Próximo checkpoint local:** LPX Bridge poderá localizar a árvore Node em D:/S:, validar versão/branch/arquivos e executar as suites dirigidas com ROMs presentes, sem tocar em Antigravity, Maestro, TIMI, BonChat, Codex, saves ou perfis.
+
+
+### T64 — 2026-10-29: validação Node real confirmada pela LPX Bridge
+- **PG-009 — TESTADO NATIVAMENTE:** em Windows Node `v24.12.0` foi clonado o projeto na pasta isolada `D:\Pokeguide\_qa\PSB-20261029-2048-POKEGUIDE-NATIVE-005`; o checkout da revisão `80763bbc1a67a96fc8721ec6a3333d13bc469759` passou **testes dirigidos**, **suite Node `--test` completa** e **`npm ci`** (todos exit code `0`). Evidência: saída pública da LPX Bridge `PSB-20261029-2048-POKEGUIDE-NATIVE-005`. Contagem de testes não exposta no resumo, pelo que não se atribui um total não observado.
+- **PG-012 — VALIDAÇÃO ROM AINDA PARCIAL:** Green International v1.2.1 localizada e validada por SHA. Red e Blue não foram localizadas pelo scanner daquele job (apesar de referências a Red e ZIP Blue em diagnóstico anterior); a auditoria das **três ROMs** e o teste E2E em emulador continuam pendentes. Próxima ação: auditar Green individualmente e localizar Red/Blue nos diretórios reais, sem alterações aos originais.
+- **Estado global:** teste de software Node aprovado ≠ comprovação integral do mapa, scripts, acessibilidade, combate, capturas ou navegação real. **Não certificado a 100%**.
+
+
+### T65 — 2026-10-29: ROMs reais fornecidas; Red e Blue corroboradas, Green U p1 com esquema próprio
+- **PG-001 / PG-012 — identificações com bytes reais:** os ZIP Red e Blue contêm cada um uma ROM de 1 MiB, com SHA-256 idêntico às duas variantes anteriormente auditadas; a terceira ROM entregue tem SHA `5f31568f93c9d238b25e8f0f21e0f70dd1e20279065ff4d359d6147b8b692eeb` e identifica-se como `GREEN_U_P1`, **não** como Green International v1.2.1. Nenhum binário foi publicado.
+- **PG-012 — resultados estruturais por ROM:** Red e Blue conservaram 226 mapas, 813 warps, 674 interações e 453 destinos `TX_FAR`. Green p1 tem tabelas próprias em `0x1BCB` (ponteiros) e `0xC883` (bancos), 226 mapas estruturais, 813 warps e 676 interações; dois sinais adicionais concentram-se no mapa ID 192. Nessa Green, 431 primeiros bytes de entradas textuais são `0xED` — **não** é prova de comandos `TX_FAR` `0x17`.
+- **PG-006 — falhas ROM reais corrigidas:** na Red/Blue havia uma cadeia `DONE` vazia e uma fala Hall of Fame de 299 bytes após o opcode `TX_START`. Foi implementada leitura textual estendida apenas por opt-in com limites, descodificação de zero segmentos para a cadeia vazia e contagem explícita de vazios. A reanálise independente dos binários reconheceu **453/453** sequências lineares em cada ROM, com 452 segmentos literais e 1 script vazio, 438 terminações `DONE`, 15 `TX_END` e 4 dependências RAM. **Isto não significa 453 eventos executados nem interpreta os 177 `TX_START_ASM`.**
+- **PG-008 / PG-012 — Green conservadora:** novos `romGreenP1WorldProbe.js`, auditor CLI e testes de isolamento. O formato da Green p1 **não** foi adicionado às identidades admitidas pelo companion live, pois charmap, colisões, eventos, combate e RAM não estão ainda comprovados para essa variante.
+- **PG-009 — execução e provas:** 76/76 testes V8 isolados para código de leitor/painel; 4 casos unitários Green, um deles skipped por exigir caminho de ROM real no executor. A auditoria dos binários foi realizada por implementação Python independente; **não** foi reexecutado `npm test` nativo desde as alterações T65. O teste Node completo anterior T64 era de uma revisão anterior.
+- **Estado e evidência:** detalhes no histórico append-only e no novo `docs/POKEGUIDE_ROM_UPLOAD_AUDIT_T65.json`. Red/Blue significativamente corroboradas; Green p1 apenas estrutura estática parcial. **100% NÃO CERTIFICADO**; faltam interpretação própria dos textos/scripts da Green e E2E com RAM/emulador e 3 variantes.
+
+
+### T66 — 2026-10-31: extensão interprocedimental ROM0 CALL/RST
+- **PG-012 — CÓDIGO NOVO / CERTIFICAÇÃO BRIDGE PENDENTE:** `rom0CallClosureEvidence.js` segue candidatos ROM0 de `CALL`, `RST`, `JR` e `JP` a partir dos destinos que o atlas já corroborou, incluindo ciclos, colisões e fronteiras de banco. Saltos indiretos e ROMX ativo permanecem desconhecidos.
+- **PG-009 — TESTES PUBLICADOS, NÃO EXECUTADOS NESTA FASE:** nova suite `tests/rom0CallClosureEvidence.test.js` com seis testes sintéticos e três casos condicionais das ROMs originais; `scripts/certifyAsm626.js` publica métricas por variante quando executado pela Bridge. Não foi atribuído nenhum total de testes aprovados antecipadamente.
+- **PG-004 — EFEITOS E PROGRESSO:** nenhum script, flag ou evento foi declarado executado. Os 1 126 efeitos de interação continuam por certificar até haver semântica completa, ligações ROM/RAM reais e execução diferencial.
+- **Estado:** cobertura de 100% **NÃO CERTIFICADA**; PR #1 continua Draft; `main` e aplicação ativa não alteradas; histórico original mantido por acrescento.
+
+
+### T67 — 2026-10-31: resultado Bridge 027 e expansão JP HL
+- **PG-009, certificação anterior confirmada:** job `PSB-20261031-0810-POKEGUIDE-ROM0CALL-027` SUCCEEDED/exit 0, Node v24.12.0. Na suite inicial sem variáveis dos binários: 9 casos, 6 PASS, 3 SKIP, 0 FAIL; o certificador com três ROMs terminou `RESULT=PASSED`, executou suites dirigida e completa sem falhas reportadas, mas o log público resumido não expôs os totais dessas duas suites.
+- **PG-012, métricas ROM0 comprovadas por variante (Red/Blue/Green International):** 59 raízes, 2648 instruções candidatas, 5066 bytes candidatos, 183 chamadas diretas, 84 destinos distintos de CALL, 336 ramificações, 12 transferências ROMX de banco desconhecido, 3 JP HL; fronteira vazia; efeitos de jogo **0 certificados**.
+- **PG-012, nova implementação pendente de execução:** `rom0CallClosureEvidence.js` segue entradas físicas de tabelas de salto `JP HL` com guarda literal e saída condicional comprovadas; `certifyAsm626.js` exige a tabela esperada de 14 alternativas para cada uma das três variantes. Os resultados T67 **não** foram ainda validados em ROMs reais. Saltos possíveis não implicam semântica, nem interação executada.
+- **Estado de aceitação:** percentagem 100% indeterminada, RAM/emulador não contactados; `main` intocada; próximo job deve executar testes sintéticos + ROMs reais e expor TAP total de testes dirigidos e completos.
+
+
+### T68 — 2026-10-31: 12 ROMX locais auditáveis, execução por validar
+- **PG-009 — verificação anterior:** `PSB-20261031-0930-POKEGUIDE-JPHL14-028` SUCCEEDED/exit 0; 258 testes dirigidos sem falhas; 885 testes de suite completa, 884 aprovados, um ignorado, zero falhas. As 3 ROMs originais conhecidas passaram o certificador. O emulador não foi contactado.
+- **PG-012 — resultados reais:** por ROM, 2792 instruções candidatas ROM0 (+144), 196 chamadas diretas (+13), 14 destinos literais de tabela JP HL e 1 saída condicional; 12 transferências ROMX sem banco conhecido; 4 saltos indiretos totais. Não equivalem a 100% de descodificação.
+- **PG-012 — código novo publicado, execução pendente:** módulo `rom0CallClosureEvidence.js` anota o testemunho estático raiz→instrução, todos os offsets físicos de 63 bancos para cada uma das 12 transferências ROMX, compatibilidade do primeiro opcode com o descodificador e quatro locais JP HL. `certifyAsm626.js` apresenta diagnósticos e valida contagens físicas, e a suite inclui testes sintéticos/ROM original. Sem estado MBC na execução, o banco selecionado é **DESCONHECIDO**; os offsets alternativos não são «caminhos executados».
+- **Próxima prova:** job Bridge 029 com os ficheiros exatos, testes completos, contagem por local, percursos testemunho, classificação do quarto JP HL e validação dos 63 offsets por transferência. Depois, descodificar seleção de banco e ações reais em emulador, sem inferências gratuitas.
+- **Estado final:** 100% de semântica e jogabilidade **NÃO CERTIFICADO**; `main` e sessões protegidas.
+
+
+### T69 — 2026-10-31: job 029 validou código, falhou na contagem JSON PowerShell
+- **PG-009:** job 029 `FAILED` pela verificação do invólucro PowerShell, não por testes Node. Registos completos: 260/260 testes dirigidos, 886/887 testes da suite global aprovados com 1 SKIP, zero falhas; o certificador `ASM626` retornou exit 0 e `RESULT=PASSED`. O PowerShell emitiu `ROMX_COUNT_MISMATCH=RED;1` após a certificação. O JSON não foi validado corretamente pela pipeline.
+- **PG-012:** os 12 locais ROMX por variante continuam no código sob asserção do certificador, mas a listagem e a contagem externa do job 029 ficaram **não certificadas**. Não afirmar que só há um local ROMX; é uma contagem PowerShell da estrutura convertida, não uma contagem real dos elementos.
+- **Correção implementada / Bridge pendente:** `certifyAsm626.js` emite contagens escalares, independentes do comportamento de enumeração de `ConvertFrom-Json`. Próximo job deverá primeiro exigir `ROMX_SITE_COUNT=12`, `JPHL_SITE_COUNT=4`, `ROMX_PHYSICAL_MAPPING_COUNT=756` e `ROMX_ACTIVE_BANKS_VERIFIED=0` para cada ROM. Só depois enumerar os elementos JSON com `foreach` sobre a variável convertida, e verificar concordância elemento a elemento.
+- **Meta 100%:** não certificada; as provas são de geometria/ASM estático e não de gameplay executado. `main`, sessões, saves e preview protegidos.
+
+
+### T70 — 2026-10-31: elegibilidade ROMX condicional ao controlador MBC1
+- **PG-012 — código novo:** `romRomxBankAccess.js` inventaria os 63 offsets físicos por alvo ROMX e distingue a elegibilidade de bancos **sob o controlador MBC1 padrão**, exclusivamente quando os bytes do cabeçalho declaram MBC1 (`01/02/03`) e ROM de 1 MiB (`05`). Sob essa condição o banco `0x20` (32) não pode ser selecionado em `0x4000..0x7FFF`: restam 62 bancos candidatos estáticos. Cabeçalhos desconhecidos mantêm todos os 63 sem excluir nenhum.
+- **Integração implementada:** `rom0CallClosureEvidence.js` agrega a condição MBC1 a todos os 12 locais ROM0→ROMX; `scripts/certifyAsm626.js` verifica compatibilidade banco/offset e publica duas contagens escalares condicionais por variante, sem alterar o total físico anterior de 756 offsets.
+- **Validação observada:** três testes sintéticos executados com Node v22.16.0 em executor isolado (3 PASS/0 FAIL) para a função de classificação prototipada; testes publicados de módulo e integração. **Ainda não executado** `npm test` integral nem certificação após esta alteração com as três ROMs reais; exige Bridge.
+- **Fontes de hardware:** `https://gbdev.io/pandocs/MBC1` e `https://gbdk.org/docs/api/docs_rombanking_mbcs.html`. Cabeçalho não é prova de hardware, MBC1M/multicart, registo MBC atual, salto executado ou efeito ASM.
+- **Segurança:** branch de trabalho apenas; `main`/ROMs/saves/emulador/preview/sessões Antigravity/TIMI/Maestro/BonChat/Codex intocados. Histórico append-only. Cobertura 100% **NÃO CERTIFICADA**.
+
+
+### T71 — 2026-10-31: Bridge 030 bloqueada por aviso npm em stderr sob PowerShell 5.1
+- **Resultado público auditado:** `PSB-20261031-1000-POKEGUIDE-MBC1-030`, `FAILED` exit 1, 2026-10-31 10:20:31–10:20:38 UTC. Clone isolado confirmou checkout `877396959f428856003bee27a90e5d018af6cb34`. Na etapa `NPM_CI`, `npm warn Unknown env config "devdir". This will stop working in the next major version of npm.` foi elevado a `NativeCommandError` pelo PowerShell na chamada `$Install = @(& npm.cmd ci ... 2>&1)` sob `$ErrorActionPreference='Stop'`. A execução parou **antes** de recolher o exit code real do npm.
+- **Limite de evidência:** não há prova de `npm ci` concluído nem de qualquer teste MBC1/ASM626 ou das três ROMs nesta execução. O log confirma `EXCLUSIVE_TEMP_CLEANED=TRUE`. Falha do invólucro PowerShell, não é evidência de falha do código de mapeamento.
+- **Correção de execução prevista:** a certificação 031 irá usar `Start-Process` com `-RedirectStandardOutput` e `-RedirectStandardError` em temporários exclusivos de `D:\Pokeguide\_qa`, consultar `ExitCode`, registar avisos separadamente e só marcar PASS quando o código de saída e todas as métricas escalares dos três binários corresponderem ao esperado. Nunca modificar globalmente `npm_config_devdir` nem limpar perfis ou sessões; não alterar `main`.
+- **Referência Microsoft PowerShell 5.1:** `https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_preference_variables?view=powershell-5.1`; `https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-5.1`.
+- **Próximo checkpoint:** `PSB-20261031-1030-POKEGUIDE-MBC1-031`. Mapeamento global de 100% permanece **NÃO CERTIFICADO**.
+
+
+### T72 — 2026-10-31: job 031 chegou ao teste ROMX e detetou comparação antiga
+- **Job auditado:** `PSB-20261031-1030-POKEGUIDE-MBC1-031` terminou `FAILED` exit 1 às 10:24:19 UTC. `GIT_CLONE=0`, checkout `94e18d50f06aa729ee07afb42f3ec7af468d78d5`; `NPM_CI=0` com apenas avisos `npm devdir`. MBC1_UNIT_TESTS: 18 testes, 14 PASS, 1 FAIL, 3 SKIP (três ROMs não fornecidas ao teste unitário). A saída resumida do job regista apenas as 80 últimas linhas do TAP e **não mostra a asserção `not ok`**. Os testes reais e a suite ASM626 não foram executados pelo wrapper 031. Limpeza exclusiva `D:` confirmada.
+- **Causa identificada por inspeção de código:** teste `ROMX call source keeps an auditable seed-to-call witness and 63 physical banks` exige uma lista de objetos com chaves `bank`, `fileOffset`, `firstOpcodeDecodable`; após T70 o módulo introduziu `selectableIfStandardMbc1` em cada elemento. O teste `deepStrictEqual` passa a exigir explicitamente `selectableIfStandardMbc1:null` quando o cabeçalho sintético não corresponde a MBC1. Este é um candidato **concreto e coerente com exatamente um FAIL**, mas o `not ok` do log 031 não foi recolhido e só a execução do job seguinte pode confirmar a causa única.
+- **Correção implementada:** atualizar a expectativa do teste e acrescentar asserções `standardMbc1Conditional=false`, exclusões vazias e `conditionalCandidateCount=null`. Integrar também `tests/romRomxBankAccess.test.js` na lista dirigida do certificador de ROMs. **Sem alterações ao comportamento de produção**.
+- **Próximo passo:** job 032 deve recolher o TAP integral de qualquer teste falhado (não só `Select-Object -Last 80`), exigir `fail=0` e `skipped=3` na unidade, depois três ROMs com `ASM_TARGETED_SKIPPED=0` e `FULL_SUITE_SKIPPED=1`, e verificar as contagens ROMX/MBC1. Ainda **NÃO CERTIFICADO a 100%**. `main`, sessões Antigravity/TIMI/BonChat/MAESTRO, perfis e saves protegidos.
+
+
+### T73 — 2026-10-31: job 032 aprovado e classificação por controlador declarado expandida
+- **Certificação 032 comprovada via log público:** `PSB-20261031-1031-POKEGUIDE-MBC1-032` SUCCEEDED, exit 0; checkout `957df1c4aa8a5345013d59ae69c8481854f273fa`. `npm ci` PASS; testes ROMX 18 total, 15 PASS, 3 SKIP sintéticos para ROMs não fornecidas neste passo, zero falhas. Certificação ASM626 real 264/264 testes dirigidos PASS; suite completa 890 PASS de 891, 1 SKIP, zero falhas. Para Red, Blue e Green International individualmente: 12 sítios ROM0→ROMX, 756 offsets físicos bancos 1..63, 4 JP HL e zero bancos ativos verificados. MBC1 condicional aplicou-se a ZERO locais nas três ROMs; **não inferir o controlador real desta contagem**.
+- **PG-012 — código novo pendente de Bridge:** `romRomxBankAccess.js` agora classifica MBC1, MBC3 ou MBC5 segundo os bytes exatos `0x147` (tipo), `0x148` (tamanho) e `0x149` (RAM), mantendo UNKNOWN se o par tipo/tamanho não corresponder a 1 MiB e tipo documentado. Banco zero em ROMX é **candidato condicional adicional apenas se MBC5**; mantém os 63 offsets anteriores para bancos 1..63. MBC1: 62 candidatos (banco 32 inacessível); MBC3: 63; MBC5: 64 (inclui banco 0). Nenhuma hipótese significa banco ativo, execução, efeitos ou emulação.
+- **Integração implementada:** closure ROM0→ROMX passa a guardar `mapperFamilyFromHeader`, contagens candidatas e localização física de banco zero MBC5; o certificador ASM626 valida as relações e publica `CARTRIDGE_TYPE_HEADER_DEC`, `ROM_SIZE_HEADER_DEC`, `RAM_SIZE_HEADER_DEC`, `ROMX_MAPPER_FAMILY_HEADER`, `ROMX_DECLARED_MAPPER_CANDIDATES_PER_SITE` e `ROMX_MBC5_BANK_ZERO_CANDIDATE_SITES` por variante, além do inventário físico original.
+- **Testes locais antes de publicação:** cinco verificações sintéticas da função pura de classificação passaram num executor V8 com `Buffer` simulado; testes Node publicados para MBC3, MBC5, desconhecido e ligação ROM0. Estes **não** substituem `npm test` e a execução com ROMs reais pela Bridge.
+- **Referências técnicas:** `https://github.com/gbdev/pandocs/blob/master/src/The_Cartridge_Header.md`, `https://gbdev.io/pandocs/MBC1`, `https://gbdev.io/pandocs/MBC3`, `https://gbdev.io/pandocs/MBC5`. `main`, sessões e perfis protegidos, ROMs/saves originais e preview não alterados; histórico apenas acrescentado. Meta 100% **NÃO CERTIFICADA**.
+
+
+### T74 — 2026-10-31: resultado Bridge 033 e inventário dos registos físicos MBC3 em ROM0
+- **Job 033 oficialmente aprovado:** `PSB-20261031-1045-POKEGUIDE-MAPPER-033` SUCCEEDED, exit code 0, checkout `90ca57a34b73a37d91e2f95686c6a2b1f975c15d`, 20/23 testes sintéticos PASS (3 SKIP de ROM original), 269/269 ASM dirigidos PASS, suite integral 895/896 PASS (1 SKIP), zero FAIL. Cabeçalho verificado para Red, Blue e Green International v1.2.1: tipo `0x13` (MBC3 declarado), tamanho ROM `0x05` (1MiB), tamanho RAM `0x03`; para cada um 12 ROM0→ROMX locais, 756 offsets físicos, quatro JP HL, zero bancos selecionados observados.
+- **PG-012 — novo código implementado, Bridge pendente:** `romMbc3RegisterEvidence.js` classifica as escritas **com endereço literal** de instruções candidatas ROM0 `EA nn nn` (LD (a16),A) e `08 nn nn` (LD (a16),SP), nas quatro janelas MBC3: `0000..1FFF` RAM/RTC enable, `2000..3FFF` ROM bank select, `4000..5FFF` RAM bank/RTC select e `6000..7FFF` RTC latch. Só aceita cabeçalho MBC3 e ROM de 1MiB. Nunca adivinha o conteúdo de A/SP, a seleção do banco, execução de código ou efeitos de jogo. Escritas por endereço indireto continuam pendentes.
+- **Integração nova:** o rastreio ROM0 CALL/RST/JR/JP anota os locais de escritas literais com testemunho `root→PC`, contagem de locais que podem selecionar bancos ROMX e sinalização `mbc3IndirectWriteCoverageComplete=false`. `certifyAsm626.js` verifica offset real, consistência das contagens e publica `MBC3_DIRECT_LITERAL_WRITE_SITES`, `MBC3_ROM_BANK_WRITE_SITES`, `MBC3_DIRECT_WRITES_EXECUTED=0`, `MBC3_BANK_VALUES_RUNTIME_VERIFIED=0` e evidência tipada por ROM.
+- **Validação:** testes sintéticos novos publicados para as quatro regiões, escritas SP consecutivas, falsos positivos, testemunho CALL e isolamento de cabeçalhos. Node nativo e as três ROMs **ainda não testados depois desta alteração**.
+- **Referências:** `https://gbdev.io/pandocs/MBC3` e `https://gbdev.io/pandocs/CPU_Instruction_Set`; também manual Nintendo Game Boy, secção de MBC3. Sem tocar em `main`, saves, sessões Antigravity/TIMI/Maestro/BonChat/Codex, emulador ou preview. Histórico apenas acrescentado; meta 100% **NÃO CERTIFICADA**.
+
+
+### T75 — 2026-10-31: 38 escritas diretas MBC3 por ROM certificadas; proveniência literal e endereços indiretos adjacentes
+- **Job 034 certificado:** `PSB-20261031-1042-POKEGUIDE-MBC3-034` SUCCEEDED exit 0; 26/29 testes unitários PASS (3 SKIP de ROM original); ASM dirigido 275/275 PASS; suite completa 901/902 PASS (1 SKIP), zero falhas. Em Red, Blue e Green: **38 locais** ROM0 com `EA nn nn` e alvo `0x2000` (registo MBC3 de banco ROM) cada; 38 de 38 são candidatos de mudança ROM, mas **ZERO escritas executadas e ZERO valores de registo observados**. Green apresenta deslocamentos em vários sítios face a Red/Blue. Os 38 locais são evidência de rastreio estático desde as 59 raízes auditadas, não desassemblagem comprovadamente completa.
+- **Código novo para Bridge 035:** classifica `LD A,d8` imediatamente antes de `LD (a16),A`, registando o byte literal como `adjacentLiteralAProvenance` **condicional à execução** (não banco ativo). Reconhece também escritas indiretas quando a instrução anterior no caminho de testemunho é exatamente adjacente `LD HL,d16` seguido por `LD (HL),A`, `LD (HL+),A`, `LD (HL-),A`, `LD (HL),d8`; ou `LD BC,d16` + `LD (BC),A`; ou `LD DE,d16` + `LD (DE),A`. Guarda endereço de registo, byte literal se existir, prova da adjacência e sinalização `executed=false`, `activeBankKnown=false`.
+- **Certificador:** apresenta `MBC3_DIRECT_LITERAL_A_SITES`, `MBC3_ADJACENT_INDIRECT_WRITE_SITES`, `MBC3_ADJACENT_INDIRECT_ROM_BANK_WRITE_SITES` e `MBC3_ADJACENT_INDIRECT_WRITE_EVIDENCE` por ROM, exige consistência entre offsets/opcodes e testemunhos. As 4 novas unidades e 2 integrações foram publicadas; execução Node com ROMs reais ainda pendente.
+- **Limites de prova:** nenhum dado sobre A/SP ou HL obtido durante jogo; os casos de HL alterado por instruções intermédias, fluxos condicionais, chamadas, ROMX e escritas sem provenance de registo **continuam desconhecidos**, não contados como concluídos. Meta 100% não certificada. Fontes: `https://gbdev.io/pandocs/MBC3.html` e `https://gbdev.io/pandocs/CPU_Instruction_Set.html`. Sem modificar branch `main`, tokens, sessões, saves, ROMs, emulador ou preview; histórico append-only.
+
+
+### T76 — 2026-10-31: job 035 certificado, escritas MBC3 exigem proveniência mais extensa
+- **Bridge 035:** SUCCEEDED exit 0; checkout `f43cdf3438192f4be0d479faf50f6d34b39ea5e0`, 32 PASS de 35 testes unitários (3 SKIP), 281/281 testes ASM dirigidos PASS, 907/908 completos PASS (1 SKIP), zero falhas. Red/Blue/Green: 38 escritas diretas `EA nn nn` para `0x2000` por ROM; 0 `LD A,d8` imediatamente adjacentes; 0 escritas indiretas HL/BC/DE com origem adjacente; 0 bancos ativos e 0 escritas executadas comprovados.
+- **Problema no wrapper 035:** `ConvertFrom-Json` e `@(...)` mostraram falsos indicadores `*_INDIRECT_SAMPLES_SHOWN=1` com amostra vazia e `*_LITERAL_A_SAMPLE` contendo o JSON da lista inteira apesar de ambos os contadores de evidência serem zero. O próximo wrapper não irá usar esta enumeração para alegar amostras.
+- **Implementação T76:** módulo `romMbc3AProvenance.js` rastreia A retrospetivamente até 32 instruções ao longo de UM percurso ROM0 estático, exigindo arestas `fallthrough` e contiguidade por descodificação de opcode. Identifica `LD A,d8`, `XOR A`, `SUB A`, cargas de A por registo/memória ou `POP AF`; pára em saltos, chamadas, aritmética não modelada, fronteira ou orçamento esgotado, sem inventar valor. `traceRom0CallClosure` anota origem, enumera os candidatos literais vs memória/registo vs desconhecidos. `certifyAsm626.js` publica as três contagens `MBC3_A_BOUNDED_IMMEDIATE_SITES`, `MBC3_A_BOUNDED_REGISTER_MEMORY_SITES`, `MBC3_A_UNRESOLVED_SITES` e `MBC3_A_SOURCE_EVIDENCE` compacto por ROM, mantendo `runtimeValueKnown=false`, `executed=false`.
+- **Validação feita nesta publicação:** 5 ficheiros JS validaram sintaxe via parser V8; sete testes sintéticos e dois testes de integração adicionados. **Não afirmar execução Node ou ROMs reais até Bridge 036**.
+- **Fontes técnicas:** `https://gbdev.gg8.se/wiki/articles/CPU_Instruction_Set`, `https://gbdev.io/pandocs/MBC3`. `main`, ROMs, saves, emulador, preview, perfis e sessões protegidas não alterados; histórico só acrescentado. Mapeamento 100% **NÃO CERTIFICADO**.
+
+
+### T77 — 2026-10-31: correção preventiva de caso negativo e revisão da execução local
+- **Validação antes da Bridge 036:** a tentativa de executar Node através de checkout local isolado do ambiente do assistente falhou em `git clone` com `Could not resolve host: github.com` (exit 128); não houve `node --test` local nem alteração à máquina do utilizador. A Bridge Windows continua a ser a fonte de certificação executada sobre as ROMs reais.
+- **Correção num teste sintético T76:** a prova de fronteira inválida usava `0x101→0x102`; o byte `0x07` em `0x101` é por si só um opcode de 1 byte válido (RLCA), pelo que esse caminho de bytes não demonstrava fronteira errada. O teste agora introduz `LD A,d8` seguido por `NOP` e força a aresta inválida `0x100→0x103` até `EA`; `decodeOpcode` mede 2 bytes em `0x100` e o limite esperado `0x102`, logo `BAD_INSTRUCTION_BOUNDARY`. Sem alteração ao algoritmo produtivo.
+- **Estado:** novo parser de origem de A publicado, sem execução real após T76; `main`, ROMs, saves, sessões e emulador não tocados. Histórico append-only.
+
+
+### T78 — 2026-10-31: Bridge 036 validou origens A; nova proveniência de B/C/D/E/H/L
+- **Verificação real 036:** `PSB-20261031-1100-POKEGUIDE-ASOURCE-036` SUCCEEDED exit 0; checkout `19bd4e7ac64320030e0b9406fa0a32edb9419d4b`; 41 PASS/44 dirigidos (3 SKIP quando executados isoladamente), ASM 290/290 PASS, suite completa 916/917 PASS (1 SKIP), zero falhas. Red, Blue e Green Internacional: das 38 escritas candidatas em `0x2000`, 8 `A` de origem imediata/zero, 29 via registo/memória/stack, 1 sem origem; nenhum banco selecionado em execução verificado.
+- **Novo T78 / código ainda sem testes Node nativos:** `romMbc3RegisterInput.js` segue retrospetivamente apenas percursos ROM0 `fallthrough` contíguos com opcode descodificável e proveniência `LD A,B/C/D/E/H/L`, até 32 instruções. Identifica bytes literais condicionais de `LD r,d8` e `LD BC/DE/HL,d16`; rejeita alterações `LD r,r2`, `INC/DEC r`, `INC/DEC/POP rr`, mutações HL, `CB` modificador, arestas não lineares ou orçamento esgotado. Nenhuma origem significa que o banco foi realmente selecionado.
+- **Integração:** `traceRom0CallClosure` anota `registerInputProvenance` apenas quando `aSourceProvenance.sourceKind=REGISTER_OR_HL_READ` e o registo provém de B/C/D/E/H/L. O certificador regista `MBC3_REGISTER_INPUT_TRACED_SITES`, `MBC3_REGISTER_INPUT_CONDITIONAL_BYTE_SITES`, `MBC3_REGISTER_INPUT_UNRESOLVED_SITES`, `MBC3_REGISTER_INPUT_EVIDENCE` e valida consistência estática com o ROM. Sete testes do módulo e dois de integração acrescentados, execução Node real pendente.
+- **Limitações assumidas:** não resolve `(HL)`, memória, stack, ROMX, execução ou bancos ativos; mesmo um candidato literal depende do caminho e condições reais. Fontes técnicas: `https://gbdev.gg8.se/wiki/articles/CPU_Instruction_Set` e `https://gbdev.io/pandocs/MBC3`. `main`, preview, ROMs, saves, sessões, tokens e emulador intocados. Histórico só acrescentado; cobertura global 100% não certificada.
+
+
+### T79 — 2026-10-31: Bridge 037 validada e plano estático de fontes de RAM MBC3
+- **Bridge 037 aprovada:** `PSB-20261031-1105-POKEGUIDE-REGSRC-037` SUCCEEDED exit 0, checkout `4534493c374de15284552e57e56a548c30fcc676`; 50/53 testes unitários PASS (3 SKIP), 299/299 ASM dirigidos PASS, 925/926 completos PASS (1 SKIP), zero falhas. Cada ROM Red/Blue/Green: 38 escritas diretas candidatas de `A→MBC3(0x2000)`; origens de A 8 literais/zero, 29 provenientes de registos/memória/pilha e 1 desconhecida. Seis origens via B rastreadas, mas 0 novos bytes concretos: 3 modificações BC, 2 mudanças de percurso e 1 fronteira.
+- **Código T79:** módulo `romMbc3BankSourcePlan.js` classifica sem ler RAM ou contactar RetroArch as origens de `A`, incluindo endereços literais de `LD A,(a16)` e `LDH A,(a8)`, registo/ponteiro dinâmico, stack, valor imediato e UNKNOWN. Organiza áreas CPU ROM0/ROMX/VRAM/RAM de cartucho/WRAM/ECHO/OAM/IO/HRAM/IE; só WRAM `C000..DFFF` e HRAM `FF80..FFFE` podem constar da lista de **futuras** leituras RAM apenas de leitura. Nenhum acesso real foi feito. Output por ROM `MBC3_SOURCE_PLAN_KIND_COUNTS`, `MBC3_SOURCE_PLAN_RAM_ADDRESSES`, `MBC3_SOURCE_PLAN_RAM_ADDRESS_COUNT`, `MBC3_SOURCE_PLAN_RUNTIME_READS=0` e evidência por local.
+- **Testes:** quatro sintéticos + dois de integração acrescentados; sintaxe JS verificada, execução Node com as três ROMs pendente de Bridge 038. Nenhum valor estático tratado como banco ativo nem efeito de jogo comprovado. Main, preview, perfis de sessão, ROMs, saves e emulador não alterados. Histórico apenas acrescentado. Cobertura global 100% ainda **não certificada**.
+- **Fontes:** `https://gbdev.io/pandocs/Memory_Map` e `https://gbdev.gg8.se/wiki/articles/MBC3`.
+
+
+### T80 — 2026-10-31: Bridge 038 validada; integração opt-in das 8 leituras MBC3 só de consulta
+- **Job 038 validado:** `PSB-20261031-1110-POKEGUIDE-RAMSRC-038` SUCCEEDED exit 0, checkout `ceb492d6af2b388dffec025837b3f9636882ef08`; 56/59 unitários PASS (3 SKIP), ASM 305/305 PASS; suite completa 931/932 PASS (1 SKIP), zero falhas. Red/Blue/Green: fontes MBC3 por ROM 8 literais, 6 registos, 13 memória, 10 pilha, 1 desconhecida; 8 endereços candidatos idênticos: decimal `49391,53000,53001,53431,54571,65419,65465,65512`, hexadecimal `C0EF,CF08,CF09,D0B7,D52B,FF8B,FFB9,FFE8`. Zero leituras reais, banco ativo não verificado.
+- **T80 — implementação nova, aguardando teste nativo:** `romMbc3RamSourceReadback.js` afixa exatamente esses oito endereços RAM e valida duas listas de 8 bytes hex com a identidade CRC, posição, mapa e estado repetidos. Rejeita endereços fora do inventário, duplicações, pares instáveis e respostas truncadas. A estabilidade é memória observada, **não** banco ROMX selecionado, causa de escrita, ação concluída ou snapshot atómico.
+- **Integração UDP RetroArch controlada:** `probeReadOnlyRetroArch` agora aceita `mbc3SourceReadback=true`, desativado por omissão. Quando explicitamente ativado lê os 8 bytes duas vezes através de `READ_CORE_MEMORY` após `GET_STATUS` e confirmação de CRC conhecida e antes da segunda verificação de mapa/posição/estado. Não envia comandos WRITE/RESET/LOAD/SAVE/PAUSE/INPUT, não inicia nem fecha processo do emulador e não toca nas sessões. Se qualquer byte divergir, recusa a observação. A CLI só ativa mediante variável `POKEGUIDE_MBC3_SOURCE_READBACK=1`.
+- **Testes T80:** seis casos puros novos e dois de integração UDP com servidor local simulado publicados; a certificação dirigida inclui o módulo puro. Verificações Node e ROMs reais da nova revisão **PENDENTES de Bridge 039**. A presença da interface UDP num endereço privado NÃO está garantida; uma ausência de resposta não comprova erro nas ROMs nem autoriza modificar configuração ou reiniciar aplicações.
+- **Referência:** `https://docs.libretro.com/development/retroarch/network-control-interface/` e `https://gbdev.io/pandocs/Memory_Map`. `main`, Antigravity, tokens/backups, TIMI/BonChat/Maestro/Codex, ROMs, saves, preview e emulador intocados; histórico append-only. Meta 100% **NÃO CERTIFICADA**.
+
+
+### T81 — 2026-10-31: incidente Bridge 039, certificação verde e erro na comparação PowerShell
+- **Job auditado:** `PSB-20261031-1120-POKEGUIDE-MBC3READ-039` `FAILED` exit 1, porém checkout `b4d0cea60b1c7b04d0c1016a786c57b8a5e1a8f5` correto, `npm ci` exit 0, **21/21 testes de read-only PASS**, ASM dirigido **313/313 PASS**, suite completa **939/940 PASS**, **1 SKIP, 0 FAIL**. Falhou em `FASE_5` com `ENDERECOS_ROM_INCORRETOS=RED`; **não iniciou a fase de leitura real do RetroArch**. O log público está íntegro e não truncado. O único aviso npm `devdir` não afetou o código de saída.
+- **Dados confirmados na Bridge 038:** as três ROMs tinham exatamente oito candidatos decimais `49391,53000,53001,53431,54571,65419,65465,65512`; correspondem a `C0EF,CF08,CF09,D0B7,D52B,FF8B,FFB9,FFE8`. O valor de `65465` é **FFB9**, não FFD9. A implementação T80 utiliza FF B9 corretamente.
+- **Diagnóstico do wrapper 039:** `$Enderecos = @(ConvertFrom-Json -InputObject $Json)` e a condição `$Enderecos.Count -ne 8 -or (Compare-Object ...).Count -ne 0` podem comportar-se diferentemente na enumeração de JSON arrays em Windows PowerShell 5.1; **o log 039 não incluiu contagens ou valores efetivamente descodificados**, logo a causa exata não está provada. Um problema conhecido de enumeração de arrays pelo `ConvertFrom-Json` é documentado em `https://github.com/PowerShell/PowerShell/issues/3424`. A variante 5.1 de `ConvertFrom-Json` não tem os mesmos parâmetros das versões atuais: `https://github.com/MicrosoftDocs/PowerShell-Docs/blob/main/reference/5.1/Microsoft.PowerShell.Utility/ConvertFrom-Json.md`.
+- **Próximo job 040:** deixar o código repositório T80 intacto; no PowerShell, fazer `foreach` explícito dos valores convertidos para uma `List[int]`, registar contagens/tipos e comparar por índice ordenado (não `Compare-Object`). Guardar a evidência crua por ROM no histórico append-only e testar o parser com o JSON conhecido antes de aceder ao clone. Só após esta validação tentar uma leitura RetroArch opt-in read-only. Se a rede não responder, reportar estado sem reiniciar nem interferir com a sessão. **Sem certificados de execução ou 100% gameplay.**
+
+
+### T82 — 2026-10-31: Bridge 040 aprovada, sem resposta UDP; corrigir contagens de pedidos e origem do alvo
+- **Bridge 040 executada e certificada:** `PSB-20261031-1130-POKEGUIDE-MBC3-040` SUCCEEDED exit 0, checkout `9b72a22d2a2f8b78500b49e37821936a0efdad6a`. PowerShell 5.1.26100.9711 confirmou JSON com 8 posições para Red/Blue/Green, 21/21 testes read-only PASS, 313/313 ASM dirigidos PASS, 939/940 suite completa PASS (1 SKIP), zero FAIL. A leitura UDP devolveu `RETROARCH_UDP_NO_REPLY`, `POKEGUIDE_MBC3_SOURCE_READBACK_VERIFIED=FALSE`, zero amostras, sem alterar jogo ou RetroArch. O estado `SUCCEEDED` refere-se à certificação e ao diagnóstico, **não** à leitura em execução.
+- **Causa observada no projeto:** `pokemon-ai-companion/server.js` declara por omissão `IPHONE_IP='192.168.1.145'` e `RETROARCH_PORT=55355`, mas também permite alterar o destino por `POST /api/config` ao correr. `scripts/probeReadOnlyRetroArch.js` usava sempre o IP inicial quando não havia variável `POKEGUIDE_PROBE_HOST` e não sabia se era o alvo atual; o erro UDP não prova dispositivo offline, porta fechada ou jogo parado.
+- **Falha adicional corrigida em T82:** `romReadOnlyRetroArchProbe.js` devolvia `readOnlyRequests=0` em falhas, mesmo depois de enviar `GET_STATUS`. Agora regista pedidos **tentados** (não respostas recebidas), quantidade GET_STATUS, quantidade READ_CORE_MEMORY, último tipo de comando, IP/porta pretendidos e se foi pedido readback MBC3; não inventa resposta, endereço atual, banco ativo ou RAM estável. A CLI imprime `POKEGUIDE_RETROARCH_TARGET_ORIGIN=LEGACY_IPHONE_IP_FROM_SERVER_JS_NOT_CURRENTLY_VERIFIED` salvo override explícito, e `POKEGUIDE_RETROARCH_TARGET_RUNTIME_CONFIRMED=FALSE`.
+- **Testes T82:** 2 novos testes UDP sintéticos (CRC desconhecido e RAM instável com contagens) mais asserções reforçadas do caso sem resposta. Implementação publicada, execução Node real desta revisão pendente de Bridge 041. Segurança: só `GET_STATUS` e `READ_CORE_MEMORY`; nenhum processo reiniciado, alvo alterado, login/sessão/ROM/save tocado. Histórico append-only. Fonte oficial: `https://docs.libretro.com/development/retroarch/network-control-interface/` documenta `network_cmd_enable`, porta UDP 55355, `GET_STATUS` e `READ_CORE_MEMORY`. Meta 100% não certificada.
+
+
+### T83 — 2026-10-31: Bridge 041 passou; expor alvo RetroArch da instância em execução com segurança loopback
+- **Bridge 041 comprovada:** `PSB-20261031-1128-POKEGUIDE-UDP-041` SUCCEEDED exit 0, revisão `999c107f7f538d71f746e566fd5a57493c4a1253`, 23/23 testes UDP PASS, ASM 315/315 PASS, suite completa 941/942 PASS (1 SKIP), zero falhas. IPv4 Windows Ethernet `192.168.1.50/24`, rota local para `192.168.1.145` via Ethernet, `Get-NetNeighbor.State=Incomplete`. Companhia local `http://127.0.0.1:3001/api/state` respondeu, `connected=False`, `romRuntimeIdentity.matched=False`, sem última atualização. Não houve sondagem UDP neste job, uma vez que `POKEGUIDE_PROBE_HOST` não foi explicitamente definido. A API antiga não revela `RetroArchClient.ip/.port` vivos.
+- **Alteração T83 real:** `romRuntimeConnectionSnapshot.js` cria vista **apenas de consulta** do `RetroArchClient` que já existe em memória: `selectedTargetHost/Port`, se coincide com valores de arranque, polling, campo connected, identidade ROM e timestamp existente, sem abrir sockets nem atribuir prova de rede, ROM SHA256 ou banco ativo. `server.js` expõe `GET /api/runtime-connection` apenas quando `req.socket.remoteAddress` é loopback IPv4/IPv6; rejeita pedidos LAN, Tailscale e outras origens com 403, e não abre vias de escrita nem altera o cliente. Não confundir coincidência com defaults com prova de que nunca houve configuração dinâmica.
+- **Testes T83:** cinco testes unitários para reflexo de mudança em memória, salvaguarda loopback, ausência de alvo e distinção entre estado cacheado e alcance real. `certifyAsm626.js` passa a incluir o teste dirigido. Sintaxe JavaScript validada; **ainda falta execução Node real na Bridge 042**.
+- **Importante:** alterar a branch GitHub NÃO atualiza nem reinicia o servidor PokéGuide atualmente em execução. Na Bridge 042 a resposta 404 desta rota terá de ser registada como `NOVA_ROTA_NAO_INSTALADA_NA_INSTANCIA_ATUAL`, nunca como falha do ROM ou como autorização de reinício automático. Proibido tocar em main/Antigravity/sessões/tokens/ROMs/saves/RetroArch ou remover histórico anterior. Meta 100% não certificada.
+
+
+### T84 — 2026-10-31: Bridge 042 válida; HTTP 403 no diagnóstico vivo e bancos MBC3 condicionais
+- **Job 042 completo:** `PSB-20261031-1133-POKEGUIDE-RUNTARGET-042` SUCCEEDED exit 0, checkout `440fe8f680c2632ebefad57ef35ff7920f83d296`, testes focados 28/28, ASM 320/320, suite completa 946 PASS de 947 (1 SKIP), zero falhas. O servidor local `127.0.0.1:3001` está ativo com `node` PID 29624, a API `/api/state` responde `connected=False`, `isSimulation=False` e `romRuntimeIdentity.matched=False`. A nova consulta `/api/runtime-connection` devolveu **HTTP 403**, mas o wrapper não guardou cabeçalhos/corpo, pelo que não se sabe se o código novo está instalado, se o bloqueio é de proxy, ou se existe outra política local. O job não executou qualquer novo pedido UDP.
+- **Implementação T84:** `romMbc3ConditionalBanks.js` traduz **apenas bytes estáticos condicionais** anteriores a escritas `EA` em ROM0 para números MBC3 de 7 bits (`byte & 0x7F`), incluindo `0→banco 1`, sem aplicar restrições de alias MBC1. Em ROM de 1MiB, calcula offsets físicos apenas para bancos **1..63**; banco 64..127 não é associado a offsets inventados ou wraparound. Mantém `executed=false`, `activeBankVerified=false` e `linkedRomxTransferSites=0`. Origens desconhecidas continuam desconhecidas.
+- **Integração T84:** `traceRom0CallClosure` produz `mbc3ConditionalRomBankCandidates` a partir do plano de fontes já validado; `certifyAsm626.js` verifica integridade e regista por ROM: `MBC3_CONDITIONAL_BANK_BYTE_SITES`, `...UNKNOWN_SITES`, `...IN_FILE_SITES`, `...OUTSIDE_FILE_SITES`, `...DISTINCT_VALUES`, `...EVIDENCE`, `...EXECUTED=0`. Sete novos testes do módulo e dois de integração. **Node nativo e ROMs originais aguardam Bridge 043**. Sem inferir banco atual, escrita executada ou causalidade com transferências ROMX.
+- **Próxima Bridge 043:** na máquina Windows, diagnosticar 403 via cliente HTTP direto com proxy desativado, registar código e pequena amostra de corpo e verificar PID do listener sem parar processos. Se a rota não estiver instalada na instância corrente, registar como tal e não reiniciar. Após testes nativos, imprimir candidatos condicionais reais das três ROMs; sem nova tentativa UDP enquanto a identidade ROM continuar desconectada.
+- **Referências:** `https://gbdev.gg8.se/wiki/articles/MBC3`, `https://www.cs.columbia.edu/~sedwards/classes/2019/4840-spring/reports/GameBoy.pdf`. `main`, preview, perfis Antigravity, tokens, TIMI/BonChat/Maestro/Codex, ROMs, saves e emulador intocados; histórico só acrescentado. 100% gameplay NÃO CERTIFICADO.
+
+
+### T85 — 2026-10-31: Bridge 043 validada; atlas físico de cenários ROMX condicionais
+- **Bridge 043:** `PSB-20261031-1142-POKEGUIDE-BANK-043` SUCCEEDED exit 0, checkout `bc4ce4e9c44b3a76c2fdc8fe692e627a13006e08`; testes focados 33 PASS + 3 SKIP de 36, ASM dirigido 329/329 PASS, suite completa 955/956 PASS (1 SKIP), 0 falhas. Red, Blue, Green Internacional: 38 escritas diretas MBC3 por ROM, 8 origens de byte condicionais, 30 indeterminadas; 8 locais dentro do ficheiro 1 MiB; bancos distintos condicionais `[1,3,7,19,30]`. Em Red/Blue os 8 PC são `30EF,3A6F,2FA6,3E7A,2435,2BD7,01A1,3816`; em Green `30D6,3A56,2F8D,3E61,241C,2BBE,01A1,37FD`. Zero escritas executadas.
+- **Diagnóstico definitivo do HTTP 403:** consulta direta sem proxy para `http://127.0.0.1:3001/api/runtime-connection` devolveu `403`, `Content-Type: text/plain`, corpo literal `PREVIEW_ENDPOINT_DISABLED`. Servidor existente PID `29624` foi iniciado às `03:52:22` de 31/10 e o processo não tinha `server.js` nem `start.js` explícitos na linha de comando tal como observada. Não contornar o endpoint, nem reiniciar processo. `/api/state` responde `connected=False` e ROM não identificada, logo não há prova de jogo ao vivo.
+- **T85 implementado:** `romMbc3RomxPhysicalScenarios.js` calcula cenário físico para cada combinação de uma escrita ROM0 com banco condicional **presente no ficheiro** e um destino de transferência ROM0→ROMX já mapeado. Verifica offsets contra `physicalMappings` existentes, lê o primeiro byte físico do buffer ROM e transporta `firstOpcodeDecodable`. Identifica opcionalmente quando PC da escrita consta **do mesmo testemunho estático** anterior à transferência, sem tratar essa coincidência como execução, valor de registo confirmado ou nexo causal. Nunca converte os 30 bancos desconhecidos em bancos conhecidos; mantém `causalLinksVerified=0`, `activeBanksVerified=0`. Não faz I/O ao emulador.
+- **Certificador:** fornece `MBC3_ROMX_STATIC_SCENARIO_COUNT`, `...SAME_WITNESS_PAIRS`, `...DISTINCT_OFFSETS`, `...FIRST_OPCODE_DECODABLE`, `...SCENARIO_EVIDENCE` para cada variante. Seis testes puros + dois de integração acrescentados. Sintaxe verificada; testes Node em ROMs reais pendentes de Bridge 044. Fonte técnica: `https://gbdev.io/pandocs/MBC3.html` (consulta alternativa `https://gbdev.gg8.se/wiki/articles/MBC3`). Histórico append-only; `main`, ROMs, saves, emulador, preview, tokens e sessões protegidos. Meta global 100% não certificada.
+
+
+### T86 — 2026-10-31: Bridge 044 falhou na guarda PowerShell, código ROMX aprovado nos testes focados
+- **Job `PSB-20261031-1150-POKEGUIDE-ROMX-044`:** `FAILED` exit 1; checkout exato `728afea1015e3e1bf588d3594dc3708210acb732`; `npm ci` exit 0. `node --test tests/romMbc3RomxPhysicalScenarios.test.js tests/rom0CallClosureEvidence.test.js` devolveu **37 total, 34 PASS, 3 SKIP, 0 FAIL** (três testes de ROM real ignorados quando executados isoladamente); o PowerShell impôs **44 total, 41 PASS, 3 SKIP** sem corresponder à lista de testes pedida, abortando com `TESTES_ROMX_MBC3_FALHARAM`. **Não foi executado** `scripts/certifyAsm626.js` nem recolhida evidência real das três ROMs nesta Bridge. Falha no invólucro de validação, não falha de testes de produto.
+- **Outro defeito identificado antes da repetição:** Bridge 044 solicitava `ROM_<VAR>_ROM0_ROMX_TRANSFER_SITES`, mas `certifyAsm626.js` efetivamente publica `ROM_<VAR>_ROMX_SITE_COUNT`. A Bridge 045 deverá corrigir ambos os nomes/contadores, usar o valor da branch atualizado somente para este registo do histórico e manter exatos os restantes invariantes 12×8=96 cenários físicos condicionais por ROM, sem inferir execução.
+- **Estado:** implementação T85 permanece inalterada; a próxima certificação completa será o primeiro teste com ROMs reais do novo cruzamento físico. Histórico somente acrescentado, `main`, pré-visualização, sessões protegidas, ROMs, saves e emulador intocados. 100% de gameplay **não certificado**.
+
+
+### T87 — 2026-10-31: Bridge 045 expôs TDZ lexical ASM626; correção concreta
+- **Bridge 045:** `PSB-20261031-1155-POKEGUIDE-ROMX-045` FAILED, exit 1; checkout `f0461e8b457ce12e7871b81732d11771814583d5`; npm ci aprovado; testes ROMX dirigidos `37` total, `34` PASS, `3` SKIP, `0` FAIL. Certificador ASM626 encontrou as três ROMs, mas falhou antes de certificar qualquer uma em `scripts/certifyAsm626.js:155`: `ReferenceError: Cannot access 'atlas' before initialization`.
+- **Causa comprovada:** no mesmo bloco da iteração `for(const variant of ...)`, `const atlas=closure.mbc3RomxPhysicalScenarios` (linha original 498) sombreava lexicalmente `const atlas=JSON.parse(fs.readFileSync(ATLAS,'utf8'))` exterior (linha original 148). O acesso `atlas.variants` na linha 155 entrava na zona temporal morta da declaração interna. Não relacionado com conteúdo das ROMs.
+- **Correção T87:** variável local do cruzamento ROMX agora `romxScenarioAtlas` e todas as suas referências são renomeadas no bloco, deixando o manifesto original inalterado. Teste de regressão `tests/romCertifierVariableShadow.test.js` exige só um binding `atlas` no certificador, confirma a leitura do manifesto e a sequência da verificação SHA antes do cruzamento ROMX. Dois novos testes integrados nos testes ASM dirigidos e na suite geral; sintaxe verificada, execução Node nas ROMs reais por validar na Bridge 046.
+- **Segurança:** apenas branch de desenvolvimento; `main`, ROMs/saves originais, sessões/tokens Antigravity, TIMI/Maestro/BonChat/Codex, preview e RetroArch intocados. Histórico append-only. Nenhum banco ativo, execução de escrita ou 100% gameplay certificado.
+
+
+### T88 — 2026-10-31: Bridge 046 aprovou o atlas ROMX; auditoria da exceção Blue
+- **Resultado real da Bridge 046** `PSB-20261031-1200-POKEGUIDE-ROMX-046`: SUCCEEDED exit 0, checkout `1c8db21cc5e129225322a476bc62f3223a34b3e1`; testes focados 39 total/36 PASS/3 SKIP/0 FAIL; ASM dirigido 339/339 PASS; suite completa 965/966 PASS, 1 SKIP, zero falhas. Em Red, Blue e Green Internacional, **12 ROMX transfer sites × 8 byte-bank candidate sites = 96 cenários físicos**, **60 offsets diferentes**, **7 pares no mesmo testemunho estático**; Red 96/96 primeiros opcodes descodificáveis, Blue **95/96**, Green 96/96. Bancos estáticos condicionais `[1,3,7,19,30]`, 30 fontes de banco ainda indeterminadas por ROM. A correção lexical TDZ passou e as 3 ROMs originais foram certificadas com leitura apenas.
+- **T88 implementado:** módulo `romMbc3RomxOpcodeAudit.js` descodifica novamente, usando `decodeOpcode` real, os primeiros opcodes de cada cenário físico, verifica bytes, endereços, banco, resultados do atlas e rejeita incoerências. Expõe `MBC3_ROMX_OPCODE_AUDIT_TOTAL`, `...NOT_DECODABLE`, `...REASONS`, `...DISTINCT_LOCATIONS` e `...EVIDENCE` contendo `transferPc`, `writePc`, `targetCpu`, `fileOffset`, `bank`, `firstByte` e `reason`; `certifyAsm626.js` confirma Red 0, Blue 1, Green 0 não descodificáveis como regressão conhecida, sem concluir que o destino seja código executado. Cinco testes unitários + um de integração, execução nativa ainda pendente.
+- **Interpretação:** um cenário físico não descodificável **não demonstra ROM Blue estragada**, pois os 96 cenários são combinação de hipóteses sem causalidade de escrita de banco/comportamento do jogo demonstrada. Nenhuma escrita foi comprovadamente executada e nenhum banco atual verificado. Fonte técnica CPU LR35902: `https://gbdev.io/pandocs/CPU_Instruction_Set.html`.
+- **Proteções:** `main`, preview, ROMs, saves, RetroArch e todos os perfis, tokens e backups de sessão preservados. Histórico append-only; jogo global ainda não mapeado/certificado a 100%.
+
+
+### T89 — 2026-10-31: correção imediatamente após T88 — variável não definida no retorno da auditoria
+- O teste **funcional sintético** em V8, realizado após publicação T88 e antes de enviar a próxima Bridge, encontrou `ReferenceError: notDecodable is not defined` ao produzir a lista de anomalias. O módulo construía corretamente `const nonDecodable=[]`, mas o objeto retornado utilizava `notDecodable` como variável shorthand inexistente. A verificação anterior fora apenas do parser de sintaxe e não detetava este defeito; T88 **não foi certificado em Node nas ROMs reais**.
+- **Correção T89 publicada:** o objeto de resposta usa explicitamente `notDecodable:nonDecodable`. Sem modificações às regras de descodificação, à fonte física das ROMs, aos testes anteriores ou às proteções de sessão. Nova verificação de execução sintética obrigatória antes da Bridge 047.
+- **Histórico:** esta nota foi acrescentada sem alterar T88 nem registos anteriores. Não foi feita qualquer leitura do RetroArch nem acesso a saves. Meta 100% não certificada.
+
+
+### T90 — 2026-10-31: Bridge 047 confirmou opcode E4 em Blue; grafos ROMX limitados
+- **Bridge 047 aprovada:** `PSB-20261031-1205-POKEGUIDE-ROMXOP-047` SUCCEEDED exit 0, checkout `546dba43bd6d9433a09f838c43c3da8f554c5cd7`; testes focados 43 total/40 PASS/3 SKIP/0 FAIL; ASM dirigido 345/345 PASS; suite completa 971/972 PASS (1 SKIP). Em todas Red/Blue/Green: 96 cenários físicos auditados; Red 0, Green 0 e Blue 1 primeiro opcode não descodificável. Exceção de Blue: banco condicional `30`, transferência ROM0 `0x2438`, escrita candidata ROM0 `0x3816`, alvo CPU `0x4C34`, ficheiro `0x078C34`, byte `0xE4`, motivo `undocumented opcode`. Nenhuma escrita executada, ROM corrupta ou banco ativo comprovados.
+- **T90 código efetivo:** `romMbc3RomxBoundedGraph.js` alarga a análise para **várias instruções por entrada ROMX**, em vez de só o primeiro byte. Analisa no máximo 48 instruções por entrada estática distinta (`max` aceito 128), percorre ramificações da mesma janela ROMX sob hipótese de banco constante, deteta ciclos, razões de descodificação, limites excedidos e regista saltos a ROM0 sem os seguir. Entradas repetidas de diferentes escritas de banco são deduplicadas por par `bank:targetCpu`; nenhum dado em memória ou no RetroArch é lido.
+- **Certificador T90:** produz por ROM `MBC3_ROMX_GRAPH_UNIQUE_ENTRIES`, `...INSTRUCTIONS`, `...INVALID_ENTRIES`, `...ENTRIES_WITH_DECODE_FAILURES`, `...BUDGET_EXHAUSTED`, `...ROM0_EDGES_NOT_FOLLOWED`, `...EVIDENCE` por entrada com motivos e resumo dos 48 primeiros candidatos. Verificações fail-closed impedem assumir banco ativo ou instruções executadas. Oito testes unitários e dois de integração novos; os 8 testes do módulo passaram em execução sintética V8, mas a **certificação Node e ROMs originais aguarda Bridge 048**.
+- **Referências:** `https://gbdev.io/pandocs/CPU_Instruction_Set.html`; `https://gbdev.io/pandocs/Memory_Map.html`. Todos os históricos append-only; branch `main`, ROMs, saves, emulador, preview, processos protegidos e sessões Antigravity intactos. 100% gameplay ainda não certificado.
+
+
+### T91 — 2026-10-31: Bridge 048 confirmada; ampliar grafos ROMX de 48 para 128 instruções por entrada
+- **Bridge 048 completa:** `PSB-20261031-1214-POKEGUIDE-ROMXGRAPH-048` SUCCEEDED, exit 0; revisão `8f75775c18f526cd55ce45944778f7ec241c7a30`, 53 testes dirigidos (50 PASS, 3 SKIP, 0 FAIL), ASM 355/355 PASS, suite completa 981/982 PASS (1 SKIP). Red/Blue/Green Internacional: 60 entradas ROMX físicas por ROM; **2122/2121/2146 instruções candidatas** descodificadas com limite 48; **29/29/28** entradas com orçamento esgotado; **14/14/13** entradas com erros de descodificação; **112/112/125** ramos para ROM0 não seguidos. Blue mantém byte não documentado E4 no banco condicional 30, CPU 4C34, offset 078C34. Nenhuma instrução observada em execução nem banco ativo validado.
+- **T91 implementação concreta:** novo `romMbc3RomxGraphExpansion.js` refaz independentemente a exploração limitada a 48 para confirmar que coincide com a prova entregue pelo invocador e executa o analisador já existente com teto **128 instruções por entrada**. Compara cada par banco/CPU estável; falha fechado caso haja regressão nas contagens, flags de execução inventadas, bytes de ROM incompatíveis ou introdução de falso banco ativo. Regista ganho total de instruções candidatas, orçamento ainda esgotado após 128, entradas que deixaram de atingir o limite, novos erros de descodificação detetados, ramos externos não seguidos e 60 registos de comparação por ROM, conservando as fontes desconhecidas.
+- **Integração/certificação:** `traceRom0CallClosure` expõe `mbc3RomxGraphExpansion`; o `certifyAsm626.js` imprime `MBC3_ROMX_DEPTH128_INSTRUCTIONS`, `...ADDED_INSTRUCTIONS`, `...BUDGET_EXHAUSTED`, `...RESOLVED_BUDGET`, `...NEW_DECODE_FAIL_ENTRIES`, `...EDGES_TO_ROM0` e `...EVIDENCE` por Red/Blue/Green. Oito testes unitários e dois de integração novos. Os oito testes puros passaram na execução sintética V8, mas a certificação Node das ROMs originais **aguarda Bridge 049**.
+- **Segurança:** análise estritamente estática, não contacta RetroArch; sessões, tokens/backups Antigravity, ROMs, saves, processos e `main` intocados. Histórico apenas acrescentado. 100% do gameplay ainda não certificado.
+
+
+### T92 — 2026-10-31: Bridge 049 certificada; exploração ROMX em níveis 128/256/512/1024
+- **Bridge 049** `PSB-20261031-1224-POKEGUIDE-ROMX128-049` SUCCEEDED, exit 0; commit validado `e8f32f8f73e89cfbb961ef4366062a9e8554d9a1`. Testes focados 63 total/60 PASS/3 SKIP/0 FAIL, ASM 365/365 PASS, suite completa 991/992 PASS (1 SKIP). Resultados reais a 48→128: Red **2122→4131** (+2009), Blue **2121→4130** (+2009), Green **2146→4133** (+1987). Entradas ainda limitadas após 128: **19 em cada ROM**. Entradas que saíram do orçamento inicial: 10/10/9; novo erro de descodificação em Green (uma entrada), sem erro novo em Red/Blue. Ramos para ROM0 não seguidos a 128: 196/196/198. O diagnóstico continua estritamente estático; o byte E4 de Blue permanece hipótese condicional.
+- **T92 implementado:** `romMbc3RomxBoundedGraph.js` passa a aceitar orçamento máximo **1024** (antes 128) com parada explícita e sem I/O. Novo `romMbc3RomxDepthSweep.js` percorre os mesmos 60 pares físicos ROMX por ROM nos níveis `128,256,512,1024`, reconcilia o nível 128 com T91, exige contagens monotónicas, identidade do par banco/CPU e invariantes de evidência. Regista instruções candidatas adicionais, limites de orçamento remanescentes, razões de descodificação, ramos para ROM0 e evidência por entrada. Os 8 testes sintéticos V8 do novo módulo passaram; foi acrescentado teste de guarda 1024 e dois de integração.
+- **Certificador atualizado:** emite `MBC3_ROMX_SWEEP_TOTAL_AT1024`, `...ADDED_BEYOND128`, `...UNCAPPED_AT1024`, `...CAPPED_AT1024`, `...LEVELS` e `...EVIDENCE`. Inclui testes adicionais na suite dirigida. **Certificação Node/ROMs originais desta revisão ainda pendente de Bridge 050.** Nenhuma entrada sem orçamento esgotado é considerada execução comprovada, nem os bancos presentes deixam de ser condicionais. Meta 100% gameplay continua não certificada; 30 escritas MBC3 por ROM continuam com fonte indeterminada, com limites de RAM/UDP conhecidos.
+- **Proteções:** histórico append-only, sem alterações em `main`, ROMs originais, saves, RetroArch, servidor PokéGuide ativo, Antigravity, backups/tokens, TIMI/Maestro/BonChat/Codex.
+
+
+### T93 — 2026-10-31: Bridge 050 aprovada; inspecionar as fronteiras estáticas das cinco entradas ROMX restantes
+- **Job 050:** `PSB-20261031-1233-POKEGUIDE-SWEEP1024-050` SUCCEEDED exit 0, checkout `e2778e9f47d58c6c53a15fc696e396da6174ddfd`, 74 testes focados (71 PASS, 3 SKIP), ASM 376/376 PASS, suite completa 1002/1003 PASS (1 SKIP), zero falhas. Profundidade 1024 em 60 entradas por variante: Red **11322**, Blue **11321**, Green Internacional **11313** instruções candidatas. Em todas as três ROMs **5 entradas ainda atingem o orçamento de 1024**, as outras 55 não o atingem. Red/Blue: banco 7 CPU `72EA`, banco 7 `751E`, banco 1 `56C6`, banco 1 `5876`, banco 1 `58EA`; Green: banco 7 CPU `72FC`, restantes iguais. Ramos pendentes informados na Bridge por essas cinco entradas: `1,1,12,15,14`. Entradas não limitadas NÃO são code coverage comprovada.
+- **T93 implementação:** `romMbc3RomxBoundedGraph.js` agora identifica os endereços CPU de até **8 ramificações ainda não exploradas**, não repetidas e não visitadas no instante do teto; guarda primeiros bytes reais, offset físico, janela de até 16 bytes em hexadecimal, quantidade inicial de `0x00` (potenciais NOP) e êxito/razão da descodificação. Não qualifica janelas de zeros como padding nem código executado. `romMbc3RomxDepthSweep.js` preserva estes campos no nível 1024. Novo módulo `romMbc3RomxFrontiers.js` audita rigorosamente cada byte contra o buffer ROM, reconcilia os 5 limites e recusa evidência contraditória ou alegações de execução. `traceRom0CallClosure` e `certifyAsm626.js` integram contadores e evidência integral por Red/Blue/Green.
+- **Testes T93:** cinco testes puros do auditor, dois de fronteira do grafo e um de integração; sintaxe validada, execução Node com ROMs reais pendente de Bridge 051. `main`, ROMs, saves, RetroArch, preview e sessões/tokens Antigravity, TIMI/Maestro/BonChat/Codex intocados. Histórico exclusivamente append-only. A meta 100% continua não certificada.
+
+
+### T94 — 2026-10-31: Bridge 051 confirmou 43 destinos por ROM; diagnóstico completo de todas as fronteiras
+- **Bridge 051:** `PSB-20261031-1245-POKEGUIDE-FRONTIER-051` SUCCEEDED, exit 0, revisão `db0c2a162dae3a1ecbd28a4f2470c5a6930d84c3`, 82 testes focados (79 PASS, 3 SKIP); ASM 384/384 PASS, suite completa 1010/1011 PASS com 1 SKIP e 0 FAIL. Red/Blue/Green: exatamente **5 entradas limitadas por ROM, 43 destinos pendentes únicos, apenas 26 amostras guardadas** devido ao corte artificial `slice(0,8)` por entrada. Banco 7 tem dois destinos próximos de zonas 0x00 (Red/Blue 0x76EA e 0x791E; Green 0x76FC e 0x791E), 16 primeiros bytes a zero em cada, sem prova de padding. Banco 1 tem 41 destinos pendentes por ROM, apenas 24 amostrados na Bridge 051, todos com primeiro opcode descodificável. Zero RAM/UDP/prova de banco ativo.
+- **T94 código:** `romMbc3RomxBoundedGraph.js` passou a preservar **todos** os alvos pendentes sem o limite de oito, mantendo contagem única; para cada alvo percorre a ROM física **apenas dentro do mesmo banco de 16 KiB** desde o byte inicial até ao primeiro byte não zero ou fronteira de banco. Regista `zeroRunLengthToNonzeroOrBankEnd`, `zeroRunEndCpuExclusive`, `zeroRunReachesBankEnd`, `firstNonzeroByteAfterRun`, além da janela original de 16 bytes. `romMbc3RomxFrontiers.js` exige que `frontierTargetsAt1024.length===frontierUniquePendingAt1024`, revalida os comprimentos contra a ROM e recusa amostras truncadas/adulteradas. Emite `fullFrontierCoverage`, `longZeroRunsAtLeast16`, `zeroRunsReachingBankEnd` e `totalZeroPrefixBytesAcrossSamples`; `certifyAsm626.js` publica estas métricas e evidencia todos os 43 destinos por ROM.
+- **Testes T94:** mais 2 testes unitários do grafo e 3 do auditor, incluindo guarda de limite de banco e rejeição de truncamento. `main`, ROMs/saves, preview, RetroArch, processos/sessões e backup Antigravity intocados. Histórico append-only. Certificação nativa destas alterações **pendente de Bridge 052**. Não declarar padding, execução, banco ativo ou 100% global com base nos 0x00.
+
+
+### T95 — 2026-10-31: Bridge 052 aprova produto; falha de embrulho PowerShell 5.1 ao contar JSON
+- **Bridge 052** `PSB-20261031-1248-POKEGUIDE-FRONTIERFULL-052` devolveu FAILED exit 1, mas checkout exato `485b9f2947a7439e01bbf931b64f524415083763`, `npm ci` e verificações de sintaxe passaram, testes dirigidos **87 total / 84 PASS / 3 SKIP / 0 FAIL**, certificador das três ROMs **389/389 ASM PASS; 1015/1016 na suite completa (1 SKIP), zero falhas, `RESULT=PASSED`**. A revisão do produto T94 está tecnicamente aprovada pelos testes.
+- **A primeira validação adicional no PowerShell para Red** obteve `CAPPED_ENTRIES=5`, `SAMPLES=43`, `PENDING_TARGETS=43`, `FULL_COVERAGE=true`, `FIRST_BYTE_ZERO=2`, `ZERO_RUNS_AT_LEAST16=2`, `ZERO_RUNS_TO_BANK_END=2`, `TOTAL_ZERO_RUN_BYTES=4088`. O script foi interrompido por `FRONTIER_SUMMARY_INVALID=RED` antes de visitar as 5 entradas. Todas as métricas escalares publicadas respeitavam a guarda; o único valor não registado era `$Entries.Count`, obtido por `$Entries=@(ConvertFrom-Json -InputObject $EvidenceJson)`. Windows PowerShell 5.1 tem semântica de emissão de arrays como um único objeto no pipeline; a causa consistente é a contagem do array JSON como um elemento. Referências oficiais: `https://github.com/MicrosoftDocs/PowerShell-Docs/blob/main/reference/5.1/Microsoft.PowerShell.Core/About/about_Operators.md` e `https://github.com/PowerShell/PowerShell/issues/3424`.
+- **Próxima ação (Bridge 053):** conservar o produto inalterado, mostrar `LEGACY_WRAPPED_JSON_COUNT` para confirmar o mecanismo, normalizar explicitamente com `foreach` os 5 objetos da evidência e os arrays de `samples`, reconciliar cada banco/CPU/offset/zero run/banco-fim e certificar também Blue e Green. Registrar resultados reais, sem atribuir a zeros semântica de código, padding ou execução. Nenhum ficheiro de código de produção necessita de alteração.
+- **Proteções e lacunas:** sem alteração à branch `main`, ROMs, saves, RetroArch, preview, sessões/token/backups Antigravity ou processos TIMI/Maestro/BonChat/Codex; histórico append-only. Prova de bancos ativos e cobertura gameplay 100% continua em falta.
+
+
+### T96 — 2026-10-31: Bridge 053 aprovada; diagnosticar duas identidades de treinadores não associadas a bits
+- Bridge 053 `PSB-20261031-1253-POKEGUIDE-FRONTIERJSON-053`: SUCCEEDED, exit 0, checkout `8fef47c69492e4f8dbd12b74734dbe6c7fd9a9bf`, PowerShell 5.1.26100.9711. Testes focados 87 total/84 PASS/3 SKIP/0 FAIL; ASM 389/389 PASS, suite completa 1015/1016 PASS (1 SKIP). Contagem JSON anterior 1 versus normalizada 5. Cada ROM validou 43/43 destinos ROMX; banco 7 com duas corridas de zeros até ao limite: Red/Blue CPU 76EA 2326 bytes e 791E 1762 bytes (4088 no total); Green CPU 76FC 2308 bytes e 791E 1762 (4070). 41 outros destinos começam por valor não zero. Nada prova execução nem banco ativo.
+- T96 muda o foco para a **cobertura mundial**: exatamente duas interações do tipo TRAINER têm `eventBitIndex=null`, identidades ROM mapa 96 ordinal 2 (`SS_ANNE_2F`) e mapa 135 ordinal 11 (`GAME_CORNER`); os nomes são de referência externa pret/pokered, não texto intrínseco ao ficheiro ROM. Não atribuir por analogia outro bit de história ou vitória.
+- Código `romUnboundTrainerScripts.js`: auditoria SHA exata, 248 mapas e 1126 referências, associação unívoca dos dois atores a coordenadas, classe, número, text ID, ponteiro físico de script e eventual candidato ASM, mantendo `eventBitIndex=null`, vitória e execução desconhecidas; `romMappingGapLedger.js` expõe esses dois casos na saída mundial e `certifyAsm626.js` certifica identidades e emite `UNBOUND_TRAINER_SCRIPT_AUDIT` e `UNBOUND_TRAINER_EVENT_BITS_RECOVERED=0` por ROM. Três novos testes unitários sintéticos passaram; testes Node nas ROMs originais pendentes da Bridge 054.
+- Segurança: apenas branch de desenvolvimento; main, ROMs/saves, emulador, servidor, sessão Antigravity e backup/token, TIMI/Maestro/BonChat/Codex intocados. Histórico append-only. Mapeamento e efeitos de gameplay não certificados a 100%.
+
+
+### T97 — 2026-10-31: Bridge 054 expôs incompatibilidade do atlas compacto; reconstrução corrigida
+- Bridge 054 `PSB-20261031-1320-POKEGUIDE-WORLDBITS-054` FAILED exit 1, checkout `e913fdcdbefa5d3b063eec9978510897487288d7`. Sintaxe, clone, npm ci e testes focados 7 total/4 PASS/3 SKIP/0 FAIL passaram. A certificação real abortou imediatamente em Red com `Global ROM mapping gap ledger discrepancy: red: Unbound trainer audit failed: Exact ROM script atlas with 1126 references required`. A causa está no módulo T96 e não no PowerShell nem na ROM: `romVariantRegistry.js` guarda `profile.world.interactionScriptAtlas` com `maps[]` e `summary`, omitindo intencionalmente o redundante `interactionAudit.references`. A T96 exigia indevidamente `scriptAtlas.references`, presente apenas no fixture.
+- **Implementação T97:** `romUnboundTrainerScripts.js` reconstrói e valida **1126 referências** a partir de `scriptAtlas.maps.flatMap(map=>map.interactions)`, exige 248 IDs coerentes, listas de interações válidas e ausência de atores em mapas não verificados. Se o catálogo redundante completo for fornecido, exige a mesma identidade e ordem de objetos. Continua a recusar bits inventados, scripts executados não provados e listas adulteradas. Expõe `referenceSource` e `mapInteractionRowsReconstructed`. `romMappingGapLedger.js` e `certifyAsm626.js` exigem e publicam o caminho real `COMPACT_MAP_INTERACTIONS`, a contagem 1126 e a evidência dos dois treinadores.
+- **Regressão:** o fixture foi corrigido para guardar 1124 NPC e 2 TRAINER dentro de `maps[].interactions`, sem `references` obrigatório. Dois testes novos comparam o perfil compacto e o completo/rejeitam truncamentos; três novos testes só correm com as ROMs Red, Blue e Green reais, através de `readRom` e `inspectRomBuffer`. Validação sintética: **5 PASS, 3 SKIP** (ROMs indisponíveis no executor sintético). Sintaxe validada; certificação nativa aguarda Bridge 055.
+- Segurança: main, ROMs e saves, RetroArch, servidor PokéGuide ativo, sessões e backup/tokens Antigravity, TIMI/Maestro/BonChat/Codex intocados. Histórico append-only. As duas identidades de evento continuam desconhecidas; nenhuma vitória nem conclusão total é inferida.
+
+
+### T98 — 2026-10-31: Bridge 055 certificada; analisar bytes e handlers reais dos dois treinadores sem flags
+- **Bridge 055** `PSB-20261031-1328-POKEGUIDE-COMPACT-055` SUCCEEDED exit 0, revisão `9df76e0f04950c9d6157d8e0492f5c8e5995ae97`, testes focados 12 total/6 PASS/6 SKIP/0 FAIL, ASM dirigido **397/397 PASS**, suite completa **1023/1024 PASS** (1 SKIP). Nas três ROMs, atlas real `COMPACT_MAP_INTERACTIONS`, 1126 referências reconstruídas, dois TRAINER sem bit de evento: (mapa 96, ordinal 2, S.S. Anne 2F) posição (36,4), classe 225/número 1, `TX_START_ASM` offset `0x0614E6` CPU `0x54E6`; (mapa 135, ordinal 11, Game Corner) posição (9,5), classe 230/número 7, `TX_START_ASM` offset `0x048E9D` CPU `0x4E9D`. Ambos possuem candidato de handler ASM. Event bits recuperados=0, vitórias desconhecidas; estes dados não demonstram sequer que os scripts sejam usados por um jogador.
+- **T98 implementação:** `romUnboundTrainerHandlerContext.js` exige SHA físico da ROM, atlas de 248 mapas/1126 interações, os dois treinadores e offsets exatos; lê a janela de **até 32 bytes por handler**, verificando byte de comando `0x08` (TX_START_ASM) e limite do banco físico. Reexecuta `inspectTxAsmHandlerAdaptive` e confronta entrada CPU/offset, número de instruções candidatas com o atlas. Produz por treinador bytes físicos, resumo de instruções e ramificações, CALLs não seguidos, candidatos a operandos de memória `0xD747..0xD886`, padrões de BIT/SET/RES do auditor existente. Todos os campos de execução real, evento concluído, bit desconhecido e vitória permanecem explicitamente não verificados. `romVariantRegistry.js` acrescenta o contexto auditado ao perfil; `romMappingGapLedger.js` inclui no inventário mundial e falha fechado com qualquer contradição; `certifyAsm626.js` imprime métricas físicas e JSON integral.
+- **Testes:** três testes sintéticos puros para janelas e bancos passaram; três testes adicionais usam as ROMs originais (Red/Blue/Green) e só são executáveis quando presentes no QA Node. Fontes: `https://github.com/pret/pokered/blob/master/home/text.asm` confirma o despacho ASM e `https://gbdev.io/pandocs/Memory_Map.html` a janela ROMX. Certificação da revisão T98 **pendente Bridge 056**.
+- **Proteções:** branch `main`, saves/ROMs, RetroArch, servidor ativo, perfis e backups/tokens Antigravity, TIMI/Maestro/BonChat/Codex intocados. Histórico append-only. Ainda falta provar quais os bits de evento, efeitos e cobertura 100% do jogo.
+
+
+### T99 — 2026-10-31: Bridge 056 certificada; distinguir bits temporários de combate em D72D de flags persistentes do mundo
+- **Bridge 056:** `PSB-20261031-1340-POKEGUIDE-HANDLER-056` SUCCEEDED exit 0, checkout `fc68b6f1eef76d962a5a6ebe5e5deac01bd787ff`. Testes focados 18 total/9 PASS/9 SKIP/0 FAIL; ASM 403/403 PASS; suite completa 1029/1030 PASS (1 SKIP). Nas três ROMs os dois TX_START_ASM estão nos offsets 0x0614E6 (banco 24/CPU 54E6; 9 instruções candidatas e 2 CALL não seguidos) e 0x048E9D (banco 18/CPU 4E9D; 19 instruções e 4 CALL não seguidos), 28 instruções/6 CALL no total por ROM. Nenhum dos dois tem operandos diretos candidatos em 0xD747..0xD886; continuam 2 bits de evento não identificados.
+- **Pista ROM real e fonte:** os dois handlers nas três versões contêm a sequência física `21 2D D7 CB F6 CB FE`, equivalente a `LD HL,$D72D; SET 6,[HL]; SET 7,[HL]` como código candidato. A desmontagem de referência `pret/pokered` identifica `wd72d` como flags **temporárias de combate/script**, não o bitmap `wGameProgressFlags` iniciado em D747. Fonte consultada: `https://git.poke.blue/pokered/tree/wram.asm?id=f3dbec09a89d1ef816da83228e67a27c8df0be89`. Os bits 6/7 são associados ao início de certos combates da história; os comentários do projeto de referência não demonstram por si só efeitos runtime nas ROMs personalizadas.
+- **T99 implementação:** novo `romUnboundTrainerTempBattleFlags.js` verifica a sequência física com o descodificador LR35902 na fronteira do banco e distingue `temporaryWramAddress=0xD72D` de flags persistentes do mundo. Recusa alterações de opcode/endereço, provenance de handler incompatível, alegações falsas de execução/bit atribuído ou SHA não conhecido. Cada handler apresenta 2 candidatos estáticos SET (bit 6 e 7), 4 por ROM, e mantém `eventBitIndex=null`, `worldEventBitsRecovered=0`, `trainerVictoryObserved=null`. `romVariantRegistry.js` integra no perfil; `romMappingGapLedger.js` exige e expõe a evidência ao inventário mundial; `certifyAsm626.js` emite métricas `UNBOUND_TRAINER_D72D_*` por ROM.
+- **Testes:** quatro testes sintéticos unitários passaram e três testes adicionais só correm quando os ficheiros Red/Blue/Green estão acessíveis em ambiente de QA. **Certificação nativa desta alteração pendente Bridge 057.** Nada modificado em `main`, ROMs/saves, RetroArch, servidor ativo, sessão/tokens/backups Antigravity ou TIMI/Maestro/BonChat/Codex. Histórico append-only. Gameplay 100% não certificado.
+
+
+### T100 — 2026-10-31: Bridge 057 passou; reconhecer dois combates especiais sem inventar flags normais de treinador
+- **Bridge 057** `PSB-20261031-1350-POKEGUIDE-D72D-057` SUCCEEDED exit 0, HEAD `db96d06a9dda3a179bcb35526565d01c4c0d143f`, 25 testes focados (13 PASS/12 SKIP), ASM 410/410 PASS, suite 1036/1037 PASS (1 SKIP), zero falhas. Red, Blue e Green confirmam `LD HL,D72D; SET 6,[HL]; SET 7,[HL]` nos dois handlers especiais: S.S. Anne (offset 0614E6, bits em 0614F0 e 0614F2), Game Corner (offset 048E9D, bits em 048EA7 e 048EA9). Quatro opcodes candidatos por ROM e zero flags persistentes recuperadas. Não se observou execução, vitória ou alteração da RAM.
+- **Nova prova de referência independente:** `pret/pokered` commit **`c9181e91388686b6e8618cf6bef58506d93214f8`** contém `scripts/SSAnne2F.asm` e `scripts/GameCorner.asm`. O primeiro apresenta `SSAnne2FRivalStartBattleScript`, `SSAnne2FRivalAfterBattleScript`, `SSAnne2FRivalExitScript` e progresso em `wSSAnne2FCurScript`; o segundo `GameCornerRocketBattleScript`, `GameCornerRocketExitScript` e `wGameCornerCurScript`. São **batalhas especiais com controlo pelo script do mapa na referência**, não entradas normais do sistema `TalkToTrainer/TrainerFlagAction`; ver também `home/trainers.asm`. Após o Rocket, interagir com o cartaz é evento **separado** que pode disparar `EVENT_FOUND_ROCKET_HIDEOUT`. Os nomes/efeitos da desmontagem não são, por si, provas dos valores RAM nem da execução nas três ROMs locais (sobretudo Green International).
+- **T100 código:** novo `romScriptedBattleReference.js` associa exatamente os objetos (96,2) e (135,11) aos handlers SHA-auditados, às operações físicas temporárias `D72D` e à referência pret fixada. Produz `referenceClassification=SCRIPTED_BATTLE_WITH_MAP_SCRIPT_STATE` e os nomes dos estados simbólicos com `referenceSemanticsVerifiedInThisRom=false`, `mapScriptStateReadFromCurrentGame=false`, `ordinaryTrainerEventBitIndex=null`, `battleWon=null`, `actorAvailableNow=null`. `romVariantRegistry.js` guarda no perfil, `romMappingGapLedger.js` mantém as 2 flags desconhecidas mas separa os 2 casos especiais de referência; `romWorldStateAdvisor.js` mostra uma observação condicional `SCRIPTED_BATTLE/SCRIPT_STATE_UNKNOWN` nos mapas 96/135, incluindo o próximo passo **apenas como condicional na referência**. `certifyAsm626.js` emite evidência integral e exige que nenhuma vitória ou flag seja fabricada.
+- **Testes T100:** quatro testes sintéticos do classificador aprovados; três testes nativos por Red/Blue/Green a executar pela Bridge 058; dois testes adicionais do conselheiro garantem que não há apresentação de combate concluído nem disponibilidade imediata sem leitura do script do mapa. Qualquer divergência nas associações físicas faz falhar fechado. **Certificação nativa da revisão T100 pendente**.
+- **Segurança:** nenhuma alteração à branch `main`, ficheiros ROM ou saves, RetroArch, preview ativo, Antigravity/token/backups, TIMI/Maestro/BonChat/Codex. Histórico append-only. 100% da semântica e gameplay continua por certificar.
+
+
+### T101 — 2026-10-31: Bridge 058 passou; pesquisa de endereços RAM candidatos e dupla leitura dos scripts especiais
+- **Bridge 058:** `PSB-20261031-1407-POKEGUIDE-SCRIPTBATTLE-058` SUCCEEDED, exit 0, checkout `4f476410b9d7057d02411a18095c350a7bfc321f`; 27 testes focados, 21 PASS/6 SKIP/0 FAIL; ASM dirigido 417/417 PASS; suite completa 1045/1046 PASS (1 SKIP). Em Red, Blue e Green foram confirmadas as duas classificações **de referência**: rival S.S. Anne 2F (mapa 96, ordinal 2, TX_ASM `0x0614E6`, `wSSAnne2FCurScript`, 5 estados simbólicos) e Rocket Game Corner (mapa 135, ordinal 11, `0x048E9D`, `wGameCornerCurScript`, 3 estados); nenhuma vitória ou disponibilidade atual comprovada.
+- **Derivação independente T101:** a desmontagem de referência `pret/pokered` fixa `wObtainedHiddenItemsFlags` em `D6F0` (base já auditada no projeto); em `ram/wram.asm` commit `c9181e91388686b6e8618cf6bef58506d93214f8`, `wGameProgressFlagsEnd` antecede `ds 56`, logo `D6B8`. Contando 78 bytes finais e 5 declarações `db`, resulta `wSSAnne2FCurScript` **candidato de referência D665**; contando os seis bytes anteriores resulta `wGameCornerCurScript` **candidato de referência D65F**. Estes endereços **não estão ainda ligados inequivocamente aos scripts físicos das três ROMs**, pelo que são referências candidatas e não valores RAM de execução comprovados.
+- **T101 código:** novo `romScriptedBattleRam.js` percorre só os bancos físicos 24 e 18 das ROMs SHA-conhecidas em busca de tripletos literais `FA/EA/21` com D665 e D65F. Guarda todos os offsets e contagens, sem considerar um triplo de bytes uma instrução alcançável. Implementa `assessScriptedBattleRamReadback` como função **pura, sem I/O**, que aceita a janela já existente de RAM `D5A0..D8AF` (784 bytes), segunda leitura do byte do script, segunda leitura do mapa, identidade ROM verificada, posição verificada e origem coincidente. Falha fechado com leitura diferente, mapa diferente ou fonte não verificada. Mesmo quando o byte é igual nas duas leituras, mostra apenas o **índice e nome simbólico da referência**, com `battleWon=null`, `canBattleNow=null` e `actualScriptSemanticsVerifiedInRom=false`.
+- **Integração:** `romVariantRegistry.js` adiciona `scriptedBattleRamCandidates` ao perfil; `romMappingGapLedger.js` inclui o scan no inventário mundial; `romWorldStateAdvisor.js` aceita opcionalmente `scriptedBattleRamReadback` já obtido por uma fonte legítima, e mostra `SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY` somente após dois valores consistentes. Na ausência do segundo valor permanece `SCRIPT_STATE_UNKNOWN`. Nenhuma chamada adicional ao RetroArch, nem tentativa de usar endpoint preview desativado.
+- **Testes:** cinco sintéticos do novo módulo (incluindo rejeição de inventário RAM incompleto ou alterado), três nativos por ROM, um novo teste do conselheiro. Próxima certificação Bridge 059. Main, perfis/sessões/token/backups Antigravity, TIMI/Maestro/BonChat/Codex, emulador, ROMs/saves e servidor ativo intocados. Histórico append-only; 100% dos efeitos e eventos ainda não certificado.
+
+
+### T102 — 2026-10-31: Bridge 059 falhou por script PowerShell truncado antes de começar, sem resultado de certificação ROM
+- **Job `PSB-20261031-1440-POKEGUIDE-SCRIPTRAM-059`:** o JSON público confirmou `FAILED` / `exitCode=1`; `elapsedMs=478`, `outputLength=762`, sem truncamento do **output do Bridge**. O log textual mostra `ParserError` no próprio comando gerado localmente: linha 44 do `powershell-bridge-command-PSB-20261031-1440-POKEGUIDE-SCRIPTRAM-059.ps1`, expressão cortada literalmente em `[void]$Output.Add($`, seguida de `MissingEndParenthesisInMethodCall` e falta de fecho da função `Log`. Não há registo de `npm ci`, testes Node, checkout da revisão ou inspeção das ROMs; portanto **não se pode imputar a falha ao código T101 nem declarar os testes de ROM aprovados**. O nome do ficheiro de comando Bridge era `D:\Temporarios\Lopes\...`, não um ficheiro que deva ser movido ou apagado por este diagnóstico.
+- **Próxima ação:** enviar PowerShell v3 **curto, completo e inline**, com início `Clear-History`, histórico local append-only, checkout isolado D:, variáveis temporárias redirecionadas a D:, logs completos de STDERR e último STDOUT em falha, validação de sintaxe JS, `npm ci`, testes dirigidos, `certifyAsm626.js` das 3 ROMs, reconciliar endereços candidatos `D665` e `D65F` e contagens ROM físicas; limpeza apenas da pasta exclusiva do job, output copiado para clipboard com beep, cabeçalho e rodapé. Não criar scripts de download/anexos. Código fonte T101 mantém-se intacto até haver teste nativo.
+- **Segurança:** sem qualquer ação em Antigravity, perfis, tokens/sessões/backups, RetroArch, TIMI/Maestro/BonChat/Codex, ROMs ou saves originais, preview, main; histórico de desenvolvimento exclusivamente acrescentado. Eventos e resultados de gameplay mantêm-se por comprovar.
+
+
+### T103 — 2026-10-31: Bridge 060 certifica T101; descodificação física dos 11 acessos candidatos ao script de mapa
+- **Bridge 060** `PSB-20261031-1451-POKEGUIDE-SCRIPTRAM-060` SUCCEEDED exit 0, checkout exato `9c6690d42440a2ccbb9685e91eff08191db9e254`; testes focados **36 total, 27 PASS, 9 SKIP**, ASM dirigido **425/425 PASS**, suite completa **1054/1055 PASS** (1 SKIP), zero falhas. Três ROMs Red/Blue/Green coincidem: mapa 96, banco 24, RAM D665 tem **1 leitura em offset 398245**, **5 escritas em 398255, 398344, 398441, 398515, 398551**; mapa 135, banco 18, RAM D65F tem **1 leitura em offset 297929** e **4 escritas em 297995, 298070, 298118, 298696**. Não há `LD HL,imm` literal para estes endereços nos bancos específicos. Sem leitura RAM live, sem vitórias ou branches executados.
+- **T103 implementação:** `romScriptedBattleWriteContexts.js` revalida SHA original, endereços, bancos, 11 offsets físicos já certificados, bytes reais de `FA/EA` e descodificação em cada offset com `romMapCodeAtlas.decodeOpcode`. Guarda janelas físicas delimitadas pelo banco e os dois bytes anteriores. Só apresenta um **valor A atribuído candidato** se `LD A,imm` (`3E xx`) ou `XOR A` (`AF`) estiverem imediatamente adjacentes à instrução de escrita, com campos explícitos `instructionBoundaryFromControlFlowVerified=false`, `runtimeExecuted=false`, `actualRamWriteVerified=false`; estados simbólicos são apenas da desmontagem pret fixada. Não inventa uma transição se a origem de A é desconhecida. `romVariantRegistry.js` integra a análise no perfil; `romMappingGapLedger.js` exige 2 leituras/9 escritas candidatas por ROM e expõe evidência e sugestões condicionais para os dois mapas; `certifyAsm626.js` publica o JSON integral por ROM.
+- **Testes T103:** cinco sintéticos unitários aprovados (EA com valor imediato, `XOR A` zero candidato, FA leitura, bytes alterados ou cruzamento de banco recusados, ROM fictícia recusada). Três testes reais aguardam Bridge 061. Certificador e inventário terão invariantes adicionais: 11 opcodes descodificáveis, 0 efeitos de escrita comprovados e 0 vitórias. Histórico adicionado, nada anterior apagado.
+- **Segurança:** nenhuma alteração à branch `main`, ROMs/saves, RetroArch, servidor ativo, sessão/tokens/backups Antigravity, TIMI/Maestro/BonChat/Codex; histórico append-only. Mapeamento 100% e estados de gameplay continuam não certificados.
+
+
+### T104 — 2026-10-31: Bridge 061 falhou em PowerShell antes do checkout: parâmetro $Args é automático
+- O resultado público `PSB-20261031-1514-POKEGUIDE-STATEWRITES-061` foi FAILED, exitCode 1, `elapsedMs=1308`, output completo, `CLONE` foi iniciado mas não chegou a executar `git`. A mensagem original é `Start-Process : Cannot validate argument on parameter 'ArgumentList'. The argument is null or empty`, apontando à expressão `-ArgumentList $Args` na função `Run`, na linha 39 do script gerado pelo Bridge. A assinatura utilizava `param([string]$Nome,[string]$Exe,[string]$Args,[string]$Dir)`. A PowerShell 5.1 já define `$args` como variável automática para argumentos de função não declarados; nomes de variável são insensíveis a maiúsculas, pelo que a colisão com `$Args` explica a perda do texto dos argumentos. Referência Microsoft: `https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-5.1`.
+- A execução **não atingiu clone, sintaxe Node, npm ci, testes nem certificação das ROMs**. Não prova qualquer regressão do código PokéGuide T103 (`e1b46866e417f2e982a3a8dc65a10b72f9ecae96`), e não prova que tenha passado nas ROMs reais.
+- **Ação Bridge 062:** script completo PSB_JOB_V3 inline, `Clear-History`, substituir nome do parâmetro por `$ArgumentosProcesso` e validar string antes de `Start-Process`; confirmar checkout exato da revisão corrente; executar `node --check`, `npm ci`, testes dirigidos e `scripts/certifyAsm626.js`; verificar por ROM os 11 offsets `FA/EA`, contextos `LD A,imm` ou `XOR A` quando houver, sem inferir execução, estados do mapa, ou vitórias; histórico local D: por acrescento; limpar apenas temporários exclusivos; restaurar variáveis de ambiente, copiar output e beep.
+- Nenhuma alteração ao código fonte de produção; branch `main`, ROMs/saves, RetroArch, servidor ativo, sessão e backup de token Antigravity, TIMI/Maestro/BonChat/Codex intocados.
+
+
+### T105 — 2026-10-31: Bridge 062 aprovada; publicar estados alternativos estáticos no conselheiro do mundo
+- Bridge 062 `PSB-20261031-1532-POKEGUIDE-STATEWRITES-062` SUCCEEDED exit 0, revisão `d395e826ba52bd1af73b0dd70b9a9b975f6e5428`; testes dirigidos 20 total (11 PASS/9 SKIP/0 FAIL), ASM 433/433 PASS, suite completa 1062/1063 PASS (1 SKIP), zero falhas. Todas as ROMs Red, Blue e Green apresentam 11 operandos físicos de estado por ROM, 2 leituras e 9 escritas, com **sete valores A adjacentes candidatos**: mapa 96, S.S. Anne 2F, 4 escritas (valores 1,2,3,4 nos offsets 398344, 398441, 398515, 398551) e 1 sem origem conhecida (398255); mapa 135, Game Corner, valores 2,0,1 nos offsets 298070, 298118, 298696 e 1 sem origem conhecida (297995). Nenhum valor de RAM live, vitória ou execução de instruções comprovado.
+- **T105 implementação:** novo `romScriptedBattleStateCandidates.js` transforma estas nove escritas numa evidência tipada por mapa, exige SHA conhecido, atlas com 11 opcodes descodificados e a posição e valor exatos de cada candidato, etiquetas simbólicas derivadas apenas de `pret/pokered`, flags fail-closed `executed=false`, `completedBattle=null`, `currentScriptValue=null` e `gameProgressVerified=false`. O valor da primeira escrita de cada mapa fica `null`, explicitamente desconhecido. A projeção por mapa é independente e recusa falsos offsets/execuções. `romVariantRegistry.js` guarda os candidatos; `romMappingGapLedger.js` certifica e expõe 7 valores candidatos e 2 escritas sem origem; `romWorldStateAdvisor.js` acrescenta `candidateStateWritesFromRom` e `candidateStateWritesWithUnknownValue` às observações especiais nos mapas 96/135, **sem alterar** o status de progresso até existir snapshot RAM legítimo e repetido. `certifyAsm626.js` emite `SCRIPT_STATE_STATIC_*_WRITES` e JSON completo por ROM, exigindo nenhum progresso inferido.
+- **Validação preliminar:** 5 testes sintéticos do novo módulo aprovados (4 originais + regressão da projeção adulterada), 3 testes nativos com as ROMs apenas na Bridge 063; sem execução de ROM neste passo. No modelo de eventos do mundo inteiro, os outros 246 IDs de mapa continuam cobertos pelo conselheiro existente, mas não se afirma que estes dois casos resolvam toda a semântica mundial.
+- Segurança: nenhuma alteração à `main`, ROMs, saves, RetroArch, preview ativo, sessões/tokens/backups Antigravity ou TIMI/Maestro/BonChat/Codex; histórico append-only. A cobertura 100% de execução/gameplay permanece não certificada.
+
+
+### T106 — 2026-10-31: Bridge 063 passou; ligar os dois scripts especiais à leitura RAM repetida sem alterar o jogo
+- **Bridge 063:** `PSB-20261031-1602-POKEGUIDE-STATEALTS-063` SUCCEEDED (exit 0), checkout `5a0616c7186c860de8b549139d289ce907d46283`, testes focados 28 total/16 PASS/12 SKIP, ASM dirigido **441/441 PASS**, suite completa **1070/1071 PASS** (1 SKIP), 0 falhas. Red/Blue/Green International: S.S. Anne 2F (`wSSAnne2FCurScript` candidato D665) com escritas candidatas aos valores 1/2/3/4 nos offsets físicos 398344/398441/398515/398551 e valor desconhecido em 398255; Game Corner (`wGameCornerCurScript` candidato D65F) com 2/0/1 em 298070/298118/298696 e valor desconhecido em 297995. Em todos os casos opcodes físicos, sem prova de execução ou vitória.
+- **Implementação T106:** novo módulo `romScriptedBattleLiveReadback.js` oferece recolha **assíncrona opcional** exclusivamente nos mapas 96 e 135, usando o leitor RAM já existente do `RetroArchClient`. Só permite a recolha com perfil ROM SHA conhecido, associação física de endereços, bloco inicial D5A0..D8AF de 784 bytes, mapa inicial coerente, coordenadas válidas, identidade da ROM confirmada, snapshot inicial de posição validado, repetição global de flags confirmada, última repetição de posição validada e ausência de simulação. Nessas condições envia **somente duas leituras READ_CORE_MEMORY**, primeiro 1 byte em D665 ou D65F, depois 8 bytes de D35E..D365. Compara alvo de comunicação antes/depois, mapa e posição inicial/final, byte inicial/final, e só então disponibiliza o resultado ao `assessScriptedBattleRamReadback`, ainda com `battleWon=null`, `gameProgressCertified=false` e `snapshotAtomicVerified=false`. Erros opcionais nunca se convertem em comandos de escrita, reinícios ou simulação de ações; todas as falhas ficam como evidência recusada.
+- **Ligação real ao cliente:** `retroarchClient.js` passa `scriptedBattleRamReadback` ao `adviseWorld`, já capaz de mostrar `SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY` nos mapas 96/135 quando as duas amostras estão coerentes. Publica na telemetria apenas `romScriptedBattleReadbackStatus` e `memoryReadStatus.scriptedBattleReadback`, sem copiar o bloco RAM inteiro no estado persistido. Invalidação do estado mundial limpa o sinal anterior; fora dos dois mapas nenhuma leitura adicional é desencadeada.
+- **Testes offline:** 8/8 PASS em execução sintética do módulo e verificações de sintaxe: leitura bem-sucedida em ambos os mapas, zero pedidos fora dos dois mapas, rejeição de identidade/posição ausentes, discrepância de byte, mudança de mapa/posição/alvo, erro do leitor não fatal e rejeição de respostas incompletas. `certifyAsm626.js` passa a incluir os 8 testes na suite ASM dirigida e completa. Certificação nativa com Node e ROMs originais **pendente Bridge 064**; não se enviou qualquer pedido UDP aos dispositivos reais durante esta implementação. A documentação oficial distingue `READ_CORE_MEMORY` de `WRITE_CORE_MEMORY`: `https://docs.libretro.com/development/retroarch/network-control-interface/`.
+- **Proteções:** branch `main`, execução ativa/preview, emulador, ROMs/saves, sessões e backups/token Antigravity, TIMI/Maestro/BonChat/Codex intocados. Registo append-only sem apagar linhas anteriores. Ainda não existe leitura RAM da partida comprovada pela Bridge, nem se afirma 100% do jogo.
+
+
+### T107 — 2026-10-31: Endurecer leitura RAM opcional dos combates especiais antes da Bridge 064
+- O registo da Bridge 063 `PSB-20261031-1602-POKEGUIDE-STATEALTS-063` confirma saída `SUCCEEDED`, 28 testes dirigidos (16 PASS, 12 SKIP), certificação ASM 441/441 PASS, suite geral 1070/1071 PASS (1 SKIP). Os sete valores estáticos e duas origens desconhecidas dos scripts S.S. Anne/Game Corner são idênticos nas três ROMs. **Nenhum destes resultados prova que uma leitura RAM live tenha sido feita.**
+- Antes desta intervenção, a branch de desenvolvimento já continha o commit T106 `49c76b3572f8ccaaf1cbb1a876005155e755f9e6`, adicionando a leitura opcional dos dois scripts por `READ_CORE_MEMORY` usando o leitor RetroArch já existente, sem input, escrita, fecho ou reinício de emulador. Os testes sintéticos T106 eram 8 PASS e a certificação nativa ainda não tinha sido executada.
+- **Melhoria real T107:** `romScriptedBattleLiveReadback.js` passa a verificar a identidade do alvo **entre** a primeira leitura (`D665`/`D65F`) e a leitura de posição (`D35E`), além de verificar o alvo antes do primeiro pedido e depois do segundo. Uma mudança intercalar devolve `RETROARCH_TARGET_CHANGED_BETWEEN_READS` sem efetuar a segunda leitura. O relatório distingue `readOnlyReadCalls` (invocações ao leitor de blocos) de `underlyingUdpPacketCount=null`, porque `readMemoryBlock` pode repetir pacotes UDP em caso de resposta inválida e este módulo não conta os datagramas reais. Conserva `readOnlyRequests` por compatibilidade, sem o usar para alegar o número de pacotes.
+- **Testes T107:** dois novos testes sintéticos verificam exaustivamente que **246 outros mapas** não desencadeiam leituras e que uma mudança de alvo após a primeira amostra é recusada com **só uma** chamada ao leitor. O teste positivo foi reforçado para validar telemetria honesta. Os outros oito testes T106 continuam. Sintaxe verificada localmente, certificação nativa da integração T106+T107 pendente da Bridge 064; nenhuma ligação ao RetroArch executada durante a edição.
+- Proteções: histórico apenas por acrescento, branch main/servidor ativo/ROMs/saves/RetroArch/sessões e tokens e backups Antigravity/TIMI/Maestro/BonChat/Codex intocados. Nenhuma inferência de vitórias, flags normais de treinador ou 100% gameplay.
+
+
+### T108 — 2026-10-31: corrigir testes de cache de rotas após a leitura assíncrona T106/T107
+- **Bridge 064** `PSB-20261031-1800-POKEGUIDE-LIVEREAD-064`: FAILED exit 1, mas checkout `cd9e77ad6582deeb82b256340f1d827874ee7ed4`, sintaxe dos sete módulos, `npm ci` e **10/10 testes isolados da leitura RAM passaram**; ASM dirigido **451/451 PASS** e as três ROMs auditadas. Suite global: **1081 testes, 1077 PASS, 3 FAIL, 1 SKIP**. Falhas 298, 300 e 302 em `tests/romClientCampaignIntegration.test.js`, todos `SyntaxError: await is only valid in async functions and the top level bodies of modules`. `vm.runInNewContext` construía funções **síncronas** a partir do código de rotas que terminava só antes de `this.latestState.worldAdvisor=adviseWorld`; depois da T106, esse fragmento passou a incluir a nova expressão legítima `await collectScriptedBattleLiveReadback(...)`. A causa é a **delimitação obsoleta do fragmento do teste**, não uma falha de compilação de `retroarchClient.js`, não uma falha do emulador e não uma regressão comprovada da navegação.
+- **Correção T108 só nos testes:** criar `remoteRouteCacheBlock()` que delimita desde `const remoteSelection=selectGlobalFlagTargets(...)` até **exatamente** `this.latestState.globalFlagItemRoutes=this._globalFlagItemRoutes;`. Confirma a presença do cálculo e da chave de memoização e recusa qualquer `await`. Os três testes mantêm **as suas asserções funcionais anteriores** (perda de prova do grafo/posição, mudança de conectividade e mudança de assinatura completa) e voltam a executar apenas o bloco síncrono cuja semântica medem. Teste de regressão adicional garante que o bloco contém as operações de seleção/cache, exclui a leitura assíncrona e compila como função síncrona. Nenhuma asserção desativada nem alterações ao código de produção.
+- **Certificação pendente Bridge 065:** executar os 10 testes de leitura RAM, os testes de integração e a suite ASM de três ROMs, confirmar `ASM_TARGETED=451`, `FULL_SUITE` com **1082 testes** após o novo teste (1081 PASS/1 SKIP esperados). Emitir métricas e, em caso de falha, preservar na saída o detalhe da asserção. Nenhum probe UDP real, input, escrita de memória, restart ou contacto com sessões Antigravity.
+- Histórico apenas acrescentado, sem alterar `main`, ROMs/saves, RetroArch, preview ativo, perfis/tokens/backups Antigravity, TIMI/Maestro/BonChat/Codex. Ainda não há prova de leitura live de uma partida.
+
+
+### T109 — 2026-10-31: Bridge 065 certifica T108; eliminar telemetria RAM obsoleta das caches e da invalidação de mundo
+- **Bridge 065** `PSB-20261031-1922-POKEGUIDE-ROUTECACHE-065` SUCCEEDED exit 0, checkout `eecaf9d2a837af4038d0ae765b4804d8c430964e`, 34/34 testes dirigidos PASS, ASM 451/451 PASS, suite 1081/1082 PASS (1 SKIP), zero falhas. Três ROMs Red, Blue, Green coincidem nos sete valores candidatos e nas duas escritas de origem desconhecida dos combates especiais; probes UDP/HTTP reais NOT_RUN e leitura de progresso live não certificada.
+- **Problema adicional confirmado no código:** `retroarchClient.js` gravava `romScriptedBattleReadbackStatus` em `last_known_state.json` porque o campo não figurava na exclusão de transientes. Também gravava a cópia `memoryReadStatus.scriptedBattleReadback`; `loadPersistedState` aceitava os dois campos em caches antigos. `invalidateWorldEvidence` limpava o campo de topo mas deixava a cópia aninhada com `verified=true`, podendo apresentar prova de script da partida anterior após mudança de ROM/mapa ou quebra da ligação.
+- **Correção T109 no código de produção:** `persistState` passa a excluir o campo de topo e a retirar a cópia aninhada de uma cópia superficial de `memoryReadStatus`, **sem mutar o objeto live** e sem apagar outros diagnósticos. `loadPersistedState` remove ambos os campos em caches legados carregados, mantendo a festa, histórico e outros diagnósticos. `invalidateWorldEvidence` redefine a cópia aninhada para o mesmo resultado fechado de topo com `verified=false` e `readOnlyReadCalls=0`, sem necessidade de a construir se a estrutura não existir.
+- **Testes T109:** quatro novos testes em `tests/romClientCampaignIntegration.test.js`: duas cópias de cache sem leitura RAM e sem alteração do estado live, carregamento legado sem evidência obsoleta, invalidação dupla preservando histórico e testes quando não existe `memoryReadStatus`. A suite sobe de 1082 para **1086 testes**, esperando **1085 PASS/1 SKIP** se não surgirem outras regressões. O mesmo conjunto dirigido cresce de 34 para 38. Testes sintéticos isolados e certificação nativa pendentes Bridge 066.
+- **Segurança:** nenhuma alteração à `main`, ROMs/saves, RetroArch, servidor ativo, sessões/tokens/backups Antigravity, TIMI/Maestro/BonChat/Codex. Histórico append-only; sem novos ficheiros em C: durante a edição remota. Eventos reais de combate continuam sem prova de execução.
+
+
+### T110 — 2026-10-31: Bridge 066 certificada; registar apenas transições de script entre publicações consecutivas
+- Bridge 066 `PSB-20261031-1927-POKEGUIDE-CACHE-066` SUCCEEDED exitCode 0, checkout exato `e5739deaa92cc1b0cd89212552e87d20031fa7fe`. 38/38 testes de cache e leitura RAM PASS, ASM 451/451 PASS, suite completa 1085/1086 PASS com 1 SKIP, zero falhas; Red, Blue e Green International auditadas; probes UDP/HTTP reais NOT_RUN. A correção de cache T109 fica certificada.
+- **Lacuna real:** o readback T106/T107 podia mostrar apenas o byte atual dos scripts especiais e não guardava transições entre amostras publicadas. Para o companion responder `o que mudou desde há pouco`, é preciso uma sessão observacional independente, que não confunda um valor como `AFTER_BATTLE` com uma vitória comprovada.
+- **Implementação T110:** novo `romScriptedBattleStateSession.js` gere uma base exclusivamente em RAM do processo, para apenas os mapas 96 (S.S. Anne 2F) e 135 (Game Corner). Exige amostra de leitura dupla válida com ROM SHA conhecida, status `SCRIPT_BYTE_REPEATED_REFERENCE_ONLY`, mapa correspondente, fonte e nomes simbólicos coerentes, leitura sem controlo do emulador, publicação final confirmada, identidade de alvo host/porta estável, sequência de polls exatamente consecutiva e tempo crescente. A primeira amostra estabelece apenas baseline; valores repetidos não geram eventos; valor alterado gera `SCRIPT_BYTE_CHANGED_BETWEEN_VERIFIED_POLLS` sem inferir combate, vitória, ação do jogador, transição causal nem atomicidade de frame. Mudança de ROM/mapa/alvo, poll saltado ou leitura inválida elimina a base e eventos anteriores. Histórico limitado a 40 eventos, sem endereço da ligação nos objetos publicados.
+- **Integração no cliente:** o início de cada `fetchGameState` incrementa contador monotónico de polls; guarda o alvo antes do helper; depois da **última** leitura de posição antes da publicação, a sessão observa os valores e publica `romScriptedBattleStateDelta` e `romRecentScriptedBattleStateChanges`, também no `worldAdvisor` apenas quando verificado. `invalidateWorldEvidence` limpa tudo e reinicia a sessão. `persistState` não guarda estes campos e `loadPersistedState` remove-os de caches antigos. Nenhuma operação de escrita RAM, input ou controlo de RetroArch.
+- **Testes:** 10 testes puros do novo módulo PASS em avaliação isolada (primeira base, avanço de byte, leitura igual, falta de poll, mudança ROM/mapa/alvo, invalidação, falsificação de vitória/fonte, Game Corner, timestamp não crescente, limite 40). Três testes de integração de persistência/invalidação/ordem de publicação adicionados. Certificador ASM passa a incluir teste de sessão. **Bridge 067 deverá verificar 51 testes dirigidos (38 anteriores + 10 módulo + 3 integração); ASM 461/461; suite completa 1098/1099 PASS (1 SKIP), sem falhas.** Estes valores são expectativas, não resultados de execução. A leitura real de uma partida e 100% gameplay permanecem sem prova.
+- Branch `main`, ROM/saves, RetroArch, preview ativo, Antigravity sessões/tokens/backups, TIMI/Maestro/BonChat/Codex não tocados. Histórico append-only.
+
+
+### T111 — 2026-10-31: Bridge 067 certificada; apresentar os combates especiais no cockpit do mapa com evidência de ROM e transições RAM
+- A Bridge 067 `PSB-20261031-1934-POKEGUIDE-STATEDELTA-067` reportou `SUCCEEDED` exit 0 no checkout `82e5e56579b1358e9112aabd52a318502ca369dc`: **51/51** testes dirigidos PASS, ASM **461/461 PASS**, suite completa **1098/1099 PASS** (1 SKIP), zero falhas; Red, Blue e Green International auditadas. Nenhum probe UDP/HTTP real executado. O mecanismo T110 foi certificado como software em testes, não numa partida real.
+- **Lacuna UX observada:** o cliente já emitia `romScriptedBattleStateDelta` e `romRecentScriptedBattleStateChanges` após a última verificação de publicação, e `worldAdvisor.observations` incluía as alternativas estáticas T105. Contudo, o painel `public/app.js` não apresentava explicitamente a leitura nem o histórico; não distinguia os estados `SCRIPT_STATE_UNKNOWN` e `SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY` e classificava o tipo `SCRIPTED_BATTLE` como um evento genérico. A informação estava nos objetos JSON, não na experiência do jogador.
+- **Correção T111 no painel real:** `formatScriptedBattleEvidenceSection(state,advice)` passa a mostrar **apenas** nos mapas especiais 96 (rival, referência RAM D665) e 135 (Rocket Game Corner, referência RAM D65F) uma secção dedicada com 5/4 offsets de escrita candidatos e valores `[null,1,2,3,4]` / `[null,2,0,1]`, conforme evidência física SHA-auditada e rótulos da referência pret/pokered. Uma escrita sem origem conhecida fica `valor por determinar`. Uma leitura RAM dupla válida mostra **o byte observado**, sem converter o nome da referência em semântica ROM certificada. Até cinco transições de bytes aparecem como `de -> para` **apenas** quando histórico e byte atual correspondem à ROM SHA, mapa, publicação e flags de não causalidade; quaisquer campos alterados ou incoerentes suprimem o histórico. Desligado, RAM antiga, posição final divergente, identidade ROM/mapa incompatível ou observação especial forjada: secção omitida. Integração no `renderWorldAdvisor` existente, antes da lista geral de ações, usando `body.textContent` (sem injeção HTML), com novo rótulo para `SCRIPTED_BATTLE` e os dois estados especiais. Não requer contacto ao RetroArch nem reinício.
+- **Testes T111:** novo `tests/romScriptedBattleUi.test.js` com 11 testes: 9 verificações do formatador/segurança, 2 integrações ponta-a-ponta com DOM simulado do próprio `renderWorldAdvisor`. Todos os 11 passaram em avaliação sintética independente; `node --check` do JavaScript completo da UI foi equivalente à verificação sintática V8. `scripts/certifyAsm626.js` passa a incluir o teste na certificação ASM. Esperado na Bridge 068: ASM **472/472**, suite **1109/1110 PASS**, 1 SKIP; valores sujeitos a execução no Windows, não pré-certificados. Outro teste `romCampaignUi.test.js` deve continuar a passar apesar do novo formatador.
+- **Proteção:** branch de desenvolvimento somente, sem alteração à `main`, servidor/preview ativo, RetroArch, ROMs/saves, Antigravity sessão/tokens/backups, TIMI/Maestro/BonChat/Codex. Histórico append-only, nenhuma limpeza do ficheiro preexistente. A cobertura de comportamento runtime de 100% de Kanto permanece não demonstrada.
+
+
+### T112 — 2026-10-31: Bridge 068 certifica painel T111; matriz verificável de lacunas para TODOS os 248 IDs de mapa
+- **Bridge 068** `PSB-20261031-1942-POKEGUIDE-UISTATE-068` SUCCEEDED exit 0, revisão exata `bb557a7587ce3d3c755607e39c67cf72eac97157`; novos testes de UI 11/11 PASS, regressão de UI + telemetria 117/117 PASS, ASM 472/472 PASS, suite total 1109/1110 PASS (1 SKIP), zero falhas. Red/Blue/Green International coincidiram na evidência física estática; probes UDP/HTTP `NOT_RUN`, sem prova de jogo real. A apresentação T111 fica certificada em DOM simulado, não no browser ativo.
+- **Problema de cobertura global:** o `romMappingGapLedger.js` já auditava os 248 IDs, incluindo 226 com cabeçalho normal, 22 sem cabeçalho normal, 1992 ações estáticas, 1126 referências de script e 626 referências ASM, mas o certificado imprimia apenas 15 hotspots agregados. Sem uma matriz por ID fica difícil demonstrar precisamente o que está catalogado, qual o obstáculo verificável e o que falta comprovar em cada zona. Uma percentagem de 100% gameplay a partir de IDs ou de ações estáticas seria falsa.
+- **Implementação T112:** módulo `romWorldGapMatrix.js` constrói **248 linhas, uma por ID**, exigindo identidade SHA de ROM conhecida, ledger verificado, cabeçalho normal coerente, IDs únicos e ordenados, contagens não negativas, concordância de ações, scripts, ASM, referências sem efeitos e prova runtime, e reconciliação independente com todos os totais e 15 prioridades do inventário existente. IDs 226..247 no teste sintético são exemplos de reservados; no relatório real, a classe `NO_NORMAL_MAP_HEADER` decorre da auditoria e não se infere que um ID seja jogável ou reservado por simples ausência de cabeçalho. Cada linha contém classe, ações catalogadas, referências de script, ASM e razão técnica prioritária: resolver control flow/efeitos ASM, efeitos de scripts, confirmar progresso live ou classificar o ID não normal. `completionPercent=null` e `gameplayVerified=false` são obrigatórios, mesmo quando não há ações listadas. Função `mapWorldGapDetail` permite consultar qualquer ID validado, sem inventar missões ou acesso.
+- **Integração:** `scripts/certifyAsm626.js` falha se matriz/TOTAlS não reconciliam, emite métricas `ROM_{VARIANT}_WORLD_GAP_MATRIX_SUMMARY`, `_HOTSPOTS`, e o inventário compacto `_ALL_248`, além de `_GAMEPLAY_COMPLETION_PERCENT=NULL` para cada ROM. O código não cria ficheiros persistentes novos nem consulta o emulador. Novo teste `tests/romWorldGapMatrix.test.js`: 6 casos sintéticos aprovados (248 IDs, lookup por mapa, distinção IDs sem cabeçalho, rejeição de duplicados, totais, vitórias falsificadas e classes incongruentes), 3 testes nativos Red/Blue/Green aguardam a Bridge 069. Esperado ASM **481/481 PASS**, suite completa **1118/1119 PASS** com 1 SKIP se nada mais regressar. Estas são expectativas, não execução já efetuada.
+- **Proteções:** somente branch de desenvolvimento; sem alterações à `main`, servidor/preview, RetroArch, ROMs/saves, dados de perfil/session/tokens/backups Antigravity, TIMI/Maestro/BonChat/Codex. Histórico exclusivamente acrescentado. Mapeamento 100% do comportamento runtime continua por certificar.
+
+
+### T113 — 2026-10-31: Bridge 069 certificou Node/ROM, mas falhou a verificação PowerShell do JSON de 248 mapas
+- **Bridge 069** `PSB-20261031-1949-POKEGUIDE-WORLDGAPS-069` FAILED exit 1. Logs completos consultados na fonte pública da Bridge. Foram aprovados **7 testes dirigidos (6 SKIP), ASM 481/481 PASS, suite completa 1118/1119 PASS (1 SKIP)**; `scripts/certifyAsm626.js` emitiu `RESULT=PASSED` e `RUN_VALIDATED=TRUE` após auditar Red/Blue/Green International. A falha ocorreu só na validação PowerShell `WORLD_MATRIX_SUMMARY_INVALID=RED`, um teste conjunto de múltiplas condições antes de imprimir os valores e contagens individuais. **Logo, não há prova de regressão no atlas; também ainda não há confirmação independente de todas as 248 linhas na Bridge.**
+- **Causa sob investigação, não declarada como confirmada:** `@(ConvertFrom-Json -InputObject $MapasJson)` pode originar uma camada de array extra ou comportamento de enumeração diferente em Windows PowerShell. Isto é reconhecido na documentação do PowerShell 5.1 e no issue público `https://github.com/PowerShell/PowerShell/issues/3424`; outros campos do mesmo `if` também podem ter causado a falha. A Bridge 070 passa a imprimir cada campo antes de decidir, e a enumerar explicitamente as linhas para evitar depender da projeção de `@(...)`.
+- **Alteração real T113:** sem tocar nos dados ROM ou no código da aplicação ativa, `romWorldGapMatrix.js` exporta também `exportWorldGapRowsV2`: **248 objetos JSON com propriedades nomeadas** por ID, cabeçalho normal sim/não, contadores, próxima evidência, classes de lacunas, `gameplayVerified=false` e `completionPercent=null`; o exportador valida SHA original, fonte, integridade das 248 linhas e reconcilia contagens 226/22, 1992 ações, 1126 referências e 626 ASM, recusa falsificações. Mantém-se o formato `ALL_248` anterior para compatibilidade; `certifyAsm626.js` emite novas métricas `WORLD_GAP_MATRIX_FLAT_V2_VERIFIED`, `_COUNTS`, `_ROWS` por ROM. A validação PowerShell 070 usa `foreach` + lista tipada, diagnóstico por campo, verificações independentes de todas as linhas e compara variantes sem inventar percentagem de gameplay.
+- **Testes T113:** quatro testes sintéticos novos e três testes nativos anteriores reforçados; 10/10 sintéticos aprovados por execução isolada, 3 nativos aguardam Bridge 070. Esperado ASM **485/485 PASS** e suite global **1122/1123 PASS** (1 SKIP) se não houver regressões; estes são valores de controlo, não resultados ainda executados.
+- **Proteções:** histórico sempre por acrescento, branch `main` intocada, perfis/sessões/tokens/backups Antigravity intocados, RetroArch e jogo não contactados, ROMs/saves de origem só leitura, sem alterações a TIMI/Maestro/BonChat/Codex ou preview ativo, temporários exclusivamente em D: durante a execução no Windows.
+
+
+### T114 — 2026-10-31: Bridge 070 certificada; comparar as lacunas dos 248 mapas por ID entre Red, Blue e Green International
+- A Bridge 070 `PSB-20261031-1955-POKEGUIDE-WORLDROWS-070` SUCCEEDED exit 0, HEAD `dfc60f561020fd97b343ef20829f8f754d1fd94e`, testes dirigidos 11 PASS/6 SKIP/0 FAIL, ASM 485/485 PASS, suite completa 1122/1123 PASS (1 SKIP), todos os 744 registos (248 por ROM) e as contagens 226 mapas com cabeçalho, 22 IDs sem cabeçalho, 1992 ações, 1126 referências de script, 626 referências ASM reconciliados; `WORLD_MAP_ROWS_VERIFIED=744`, `CERTIFICATION_T113=PASS`. O JSON de linhas em PowerShell produziu `System.Object[]` diretamente e `JSON_EXTRA_LEVELS=0`. **O diagnóstico original da Bridge 069 não isolou o campo exato que falhou; a correção T113 contornou essa incerteza com formato nomeado e validações por campo.** Sem contactos UDP/HTTP reais nem vitórias runtime certificadas.
+- **Lacuna técnica:** os totais agregados entre três ROMs coincidem, mas isso não significa que os mesmos IDs tenham sempre a mesma cobertura estática. Era necessário comparar cada linha individual para encontrar redistribuições entre mapas que conservassem os totais globais.
+- **Implementação T114:** novo `romCrossVariantWorldGaps.js` valida separadamente as três identidades SHA auditadas, `exportWorldGapRowsV2` e os 248 IDs ordenados com contagens coerentes e `gameplayVerified=false`. Faz comparação exaustiva dos campos `hasNormalHeader`, `staticActionCount`, `scriptReferences`, `asmReferences`, `actionsWithoutRuntimeProof`, `nextEvidence` e `gapClasses`, e devolve só os IDs cujos dados estáticos diferem, com os valores Red/Blue/Green em cada campo e totais `mapsWithEqualStaticCoverage` / `mapsWithDifferentStaticCoverage`. Nunca conclui que o gameplay é equivalente, mesmo que a lista seja vazia: `gameplayEquivalent=null`, `gameplayCompletionCertified=false`.
+- **Certificação reforçada:** `scripts/certifyAsm626.js` recolhe os três exports dentro do seu loop original, audita o comparador após as três ROMs e emite `CROSS_ROM_WORLD_MAPS_COMPARED`, `_EQUAL_STATIC_COVERAGE`, `_DIFFERENT_STATIC_COVERAGE`, `_GAP_FIELD_COUNTS`, `_MAP_DIFFERENCES`, `_GAMEPLAY_EQUIVALENCE=UNKNOWN`, sem exigir artificialmente que as linhas coincidam. Novo teste `romCrossVariantWorldGaps.test.js`: seis testes sintéticos passaram, incluindo diferenças com totais agregados iguais, IDs trocados, falsificação de progresso e SHA trocado; um teste das três ROMs reais fica pendente da Bridge 071. Expectativas: ASM 492/492 e suite 1129/1130 PASS (1 SKIP), se não houver outras regressões; não assumir antes da Bridge.
+- Sem alterar `main`, RetroArch, ROMs/saves, sessão/tokens/backups Antigravity, servidor/preview ativo ou TIMI/Maestro/BonChat/Codex. Histórico exclusivamente append-only; sem nova percentagem fictícia de conclusão de jogo.
+
+
+### T115 — 2026-10-31: Bridge 071 interrompida no PowerShell antes da certificação T114
+- Fonte pública da Bridge `PSB-20261031-2002-POKEGUIDE-WORLDDIFF-071`, `status=FAILED` / `exitCode=1`, duração 765 ms: `Join-Path : A positional parameter cannot be found that accepts argument 'PSB-20261031-2002-POKEGUIDE-WORLDDIFF-071-...'`, na linha 11 da script da Bridge, antes de `JOB_BEGIN`, checkout, Node, qualquer teste ASM ou comparação das ROMs. A forma `Join-Path $Base '_qa' ($Job + ...)` é inválida em Windows PowerShell 5.1 para estes três argumentos posicionais; a forma de compatibilidade usada nas Bridges 069/070 é `Join-Path (Join-Path $Base '_qa') ($Job + ...)`.
+- Não houve evidência de falha na implementação T114, mas tampouco foi executado o teste real de diferenças de mapa. Os resultados da Bridge 070 (485 ASM PASS, 1122 FULL PASS/1 SKIP, 744 linhas verificadas) continuam a referir-se à T113, não podem ser atribuídos à revisão T114. A próxima Bridge 072 usará checkout isolado em D:, validará o commit T114 + este registo T115, executará o teste comparativo das ROMs reais e só então indicará os IDs efetivamente diferentes.
+- Diagnóstico reforçado para Bridge 072: contar `tests/pass/fail/skipped` separadamente; emitir `CROSS_ROM_WORLD_MAPS_*`, comparar os campos de cada um dos 248 IDs de cada variante sem assumir que diferenças estão ausentes, e emitir discrepâncias campo a campo. Usar `ConvertFrom-Json` com enumeração explícita de objetos, não `Join-Path` com mais de dois argumentos posicionais; qualquer contador divergente deve falhar com nome e valores. Não há alteração de código de produção nesta etapa: apenas o histórico append-only foi atualizado.
+- Segurança: nenhuma alteração à main, ROMs, saves, RetroArch, preview ativo, sessões/tokens/backups Antigravity, TIMI/Maestro/BonChat/Codex; sem limpeza de histórico anterior. A Bridge 071 não executou testes no Windows nem leitura de RAM live.
+
+
+### T116 — 2026-10-31: Bridge 072 aprovada; comparar OBJETOS, warp destinos e conteúdo descodificado dos 248 mapas
+- **Bridge 072** `PSB-20261031-2005-POKEGUIDE-WORLDDIFF-072`: SUCCEEDED exit 0, checkout `9126e4f813981da50bc277d548acaf76c52126fe`; 16 PASS / 4 SKIP / 0 FAIL nos testes dirigidos; ASM 492/492 PASS; suite 1129/1130 PASS (1 SKIP). Diferenças nos **sete CAMPOS DE COBERTURA de lacunas T114**: zero entre os 248 IDs de mapa de Red, Blue e Green International. Contagens reavaliadas por PowerShell sobre os 248 objetos de cada ROM: todas coincidem com os contadores Node, sem falhas. `GAMEPLAY_EQUIVALENCE=UNKNOWN`, probes UDP e HTTP não executados. **Isto NÃO comprova identidade de objetos/warps, nem gameplay equivalente.**
+- **Nova lacuna real:** os sete campos de `romCrossVariantWorldGaps.js` resumem contagens e classes de lacuna e não inspecionam, por exemplo, os IDs efetivos dos itens, treinadores, coordenadas de NPCs, espécies estacionárias, texto dos sinais, destinos dos warps e registos de itens ocultos. Duas ROMs podem trocar os itens de dois mapas mantendo todos os totais e campos T114 iguais.
+- **Implementação T116:** módulo `romCrossVariantWorldContents.js` valida o `romWorldContentsIndex` de cada uma das três identidades SHA auditadas (226 cabeçalhos normais, 22 IDs sem cabeçalho, 54 itens ocultos bem associados, 248 IDs ordenados, posições/identificadores/tipos e campos de incerteza da runtime). Compara **por ID** os campos descodificados de geometria, itens visíveis, itens ocultos, treinadores, NPCs, Pokémon estacionários, sinais, warps e itens ocultos órfãos de IDs sem cabeçalho. Compara **IDs e coordenadas**, não apenas quantidades. Guarda os IDs e categorias que diferirem, mais contagem de registos por categoria/versão para análise. Mantém `gameplayEquivalent=null` e `gameplayCompletionCertified=false` mesmo sem diferenças; o parser não demonstra bytes executados, script/efeitos ou alcançabilidade.
+- **Certificação:** `certifyAsm626.js` guarda os três índices `buildWorldContentsIndex` já existentes e, após a comparação de lacunas T114, executa o comparador T116 e emite `CROSS_ROM_DECODED_MAPS_COMPARED`, `_EQUAL`, `_DIFFERENT`, `CROSS_ROM_DECODED_MAP_CATEGORY_COUNTS`, `_DIFFERENCES` e `_GAMEPLAY_EQUIVALENCE=UNKNOWN`. Adiciona `romCrossVariantWorldContents.test.js` à suite dirigida. Sete testes sintéticos aprovados e um nativo aguardando execução com as três ROMs. Esperado ASM 500/500, suite 1137/1138 PASS com 1 SKIP, sujeito a validação real na Bridge 073 (492+8; 1130+8).
+- **Proteções:** só branch de desenvolvimento; nenhum toque à main, ROMs originais, saves, RetroArch, servidor/preview, tokens/sessões/backups Antigravity ou TIMI/Maestro/BonChat/Codex. Histórico append-only e nenhuma limpeza de logs anteriores.
+
+
+### T117 — 2026-10-31: compatibilizar limites de coordenadas nos sinais e warps do novo comparador
+- Revisão estática do módulo T116, antes da certificação real: `romWorldContentsIndex.js` valida coordenadas de objetos/warps/sinais no intervalo inteiro **[-4,255]**, enquanto a primeira versão do comparador T116 aceitava apenas bytes **[0,255]** para as coordenadas dos sinais e warps. Isto podia rejeitar mapas cuja descodificação estivesse correta e não constituiria uma diferença efetiva entre ROMs. O parser continua a exigir bytes de 0..255 para referências/itens ocultos e os seus identificadores.
+- **Correção de produção:** nova validação `coord` de [-4,255] especificamente para sinais e warps, mantendo `byte` para destinations e identificadores. Novo teste sintético compara um sinal com x=-4 e um warp com y=-2, verificando que não são rejeitados e aparecem nas categorias corretas. Inclui todos os 248 IDs; nenhuma inferência de jogabilidade, vitória ou acesso.
+- A certificação nativa agora deve contar **9 testes** no módulo T116 (8 sintéticos PASS, 1 nativo condicionado), ASM **501/501** e suite completa **1138/1139 PASS** (1 SKIP) se a comparação das ROMs originais for aprovada. Os números são expectativas, não resultados de ROMs reais. `main`, ROMs/saves, RetroArch, servidores ativos, perfis/tokens/backups Antigravity e restantes apps protegidas não foram alterados.
+
+
+### T118 — 2026-10-31: Bridge 073 certificada; resolver os CAMPOS EXATOS diferentes nos objetos dos mapas 226/227
+- **Bridge 073 `PSB-20261031-2015-POKEGUIDE-DECODEDIFF-073`**: SUCCEEDED exit 0, commit `778a00a0052f8544fbf9c62e0da4101a8e7065b5`. Testes dirigidos 8 PASS, 1 SKIP, 0 FAIL; ASM 501/501 PASS; suite completa 1138/1139 PASS, 1 SKIP, zero falhas. Red, Blue e Green International: **246/248 mapas com registos de objetos descodificados iguais e dois diferentes**. **Mapa 226:** itens visíveis (3 registos em cada ROM). **Mapa 227:** itens visíveis (2 por ROM) e Pokémon estacionário (1 por ROM). As diferenças abrangem os conteúdos/atributos dos registos, não o número de objetos. Zero diferenças registadas de geometria, itens ocultos, treinadores, NPCs, sinais e warps. Também zero diferenças nos sete campos de lacunas T114. Leituras de jogo real UDP/HTTP NOT_RUN. As diferenças em si não provam alterações de acesso, combates ou efeitos.
+- **Lacuna real:** o relatório T116 identifica categorias e contagens por ID, mas ainda não revela **o atributo concreto** (e.g. itemOrTrainerId, wildSpeciesInternalId, posição, nível ou sprite) nem o valor observado por ROM. Não seria rigoroso adivinhar IDs ou nomes de Pokémon a partir de diferenças de categoria.
+- **Implementação T118:** ampliar `romCrossVariantWorldContents.js` com `compareCrossVariantWorldFieldDifferences`. Utiliza a mesma validação por SHA, 248 mapas e objectos ROM auditados que T116. Compara, para cada categoria divergente, cada registo físico por **índice dentro do seu tipo** e cada campo nomeado. Para listas de comprimento desigual usa `recordPresent` explícito antes de comparar atributos; a correspondência por índice não prova ser a mesma entidade lógica. Valores diferenciados são `{RED,BLUE,GREEN}` e indicadores `decodedRecordOnly=true`, `gameEffectProven=false`, `playerProgressProven=false`. O módulo recusa resultados impossíveis e confirma os mapas e categorias contra T116; `gameplayEquivalent=null` e `gameplayCompletionCertified=false`.
+- **Certificador:** `scripts/certifyAsm626.js` executa a nova comparação após T116, exige os IDs 226/227 e as categorias provadas pela Bridge 073, emite `CROSS_ROM_DECODED_FIELD_MAPS_COMPARED`, `_DIFFERING_MAP_IDS`, `_DIFFERENCE_COUNT`, `_BY_MAP_CATEGORY`, `_DETAILS` e `_GAMEPLAY_EQUIVALENCE=UNKNOWN`. `_DETAILS` contém campo/índice/valor real de cada ROM. O histórico mantém-se append-only. Sem ligação ao emulador, sem modificação de ficheiros do jogo, sem tocar em sessões/token/backups Antigravity e outros processos protegidos.
+- **Testes:** quatro novos testes sintéticos passaram em V8 para casos sem diferenças, troca de IDs de itens mantendo contagens iguais, alterações de warp/sinal/espécie estacionária e alteração de número de registos; um teste nativo adicional para os mapas 226/227 aguarda a Bridge 074. Total do ficheiro: 14 testes (12 PASS e 2 SKIP sem ROM; os dois testes nativos só são executados pelo certificador nas três ROMs). Previsão, **não certificação ainda**, de ASM **506/506** e suite total **1143 PASS/1 SKIP** de 1144 casos, se não houver outras regressões.
+
+
+### T119 — 2026-10-31: Bridge 074 confirma 11 diferenças de COORDENADAS; bloquear itens manuais errados para a ROM ativa
+- **Bridge 074** `PSB-20261031-2019-POKEGUIDE-FIELDVALUES-074` SUCCEEDED exit 0, checkout `87e9367af27db307cca3a68b34f7976b257916a2`. Testes dirigidos 12 PASS/2 SKIP/0 FAIL; ASM 506/506 PASS; suite completa 1143 PASS/1 SKIP/0 FAIL. Red/Blue/Green International verificadas. Exatamente **11 atributos de coordenada** diferentes em dois mapas: 226: 3 itens visíveis, `Red=Blue: (29,9),(4,15),(13,6)`, `Green: (5,15),(25,13),(29,9)`. 227: 2 itens visíveis, `Red=Blue: (16,9),(18,9)`, `Green: (24,7),(24,9)`; e 1 Pokémon estacionário, `Red=Blue: (27,13)`, `Green: (5,10)`. Todos os restantes atributos dos objetos descodificados coincidem; nenhuma prova de recolha/acesso ou identidade lógica além do índice físico.
+- **Fragilidade real no cliente:** `retroarchClient.js` produzia `allVisItems` a partir do catálogo manual `areaData.visibleItems`, mesmo quando a posição não correspondia à ROM ativa; acrescentava `extraRomItems` encontrados no perfil ROM mas não coincidentes pelas coordenadas. Isto podia inventar destinos manuais e duplicar itens em Green 226/227.
+- **Correção T119 geral:** novo `romVisibleItemCoordinateGuard.js` exige SHA auditada, identidade de ROM ativa, mapa, evidência de objeto completa, coordenadas [-4,255], IDs e `objectOrdinal` únicos. Faz correspondência unívoca entre referências manuais e objetos da ROM por (x,y, itemId opcional), sem associar nomes manualmente a um registo diferente ou a múltiplos objetos. No cliente, só `matchedManualItems` entra em `allVisItems` (itens de navegação, pins e `planItemAccess`); `remainingRomItems` fornece os restantes objetos com posições exatas da ROM; referências sem correspondência sobrevivem como `manualVisibleItemReferences` com `x=y=null`, nunca como alvos reais. Falta de identidade ou prova da ROM elimina a promoção de posições manuais, sem provar inexistência de itens. A `areaInfo` expõe métricas e avisos `visibleItemCoordinateEvidence`. A UI `renderWorldAdvisor` apresenta a contagem das referências incertas após os guards de identidade RAM/mapa e usa `textContent` sem HTML dinâmico. Nenhum evento de recolha, vitória ou acesso é inferido.
+- **Testes:** novo `tests/romVisibleItemCoordinateGuard.test.js`, **12 testes**: 10 verificações puras PASS em V8, mais 1 verificação de integração de strings no cliente/UI e 1 teste condicionado às três ROMs originais (mapas 226 e 227) ainda por executar em Node Windows. O certificador ASM foi modificado para executar este ficheiro. Esperado: ASM **518/518**, suite completa **1155 PASS/1 SKIP** de 1156 casos, se todas as integrações passarem, na Bridge 075. Estes são valores de controlo, não resultados já certificados.
+- **Proteções:** só branch feature, `main` e preview ativo intocados; nenhum contacto com RetroArch, ROMs ou saves modificados; sessões/tokens/backups Antigravity e TIMI/Maestro/BonChat/Codex intocados. Histórico exclusivamente append-only e temporários D: nos testes Windows. Não foram tirados screenshots porque os testes sintéticos não abriram GUI.
+
+
+### T120 — 2026-10-31: corrigir o teste de ROMs originais de coordenadas antes da Bridge 075
+- Revisão final do teste nativo adicionado na T119 identificou **uma suposição de fixture inadequada**: `manual(pairs[mapId].red)` fabricava IDs de item de teste `25+i`, que não são os IDs confirmados dos objetos nas ROMs originais. Isso podia reprovar falsamente os casos Red/Blue e afirmar que nenhuma posição manual coincide com Green mesmo se a mesma posição e o mesmo `itemId` existirem no perfil Green.
+- **Correção apenas no teste:** construir a lista de referência manual a partir dos `itemId`, `objectOrdinal`, `x` e `y` extraídos da **ROM Red original SHA-auditada**; reutilizá-la ao testar Blue e Green. Validar todas as posições certificadas na Bridge 074 e confirmar que **cada** item manual promovido corresponde de facto a um objeto único da ROM ativa pelo ID, ordinal e coordenadas. Confirmar que objetos restantes não desaparecem e que referências incompatíveis continuam sem coordenadas navegáveis. Não assumir que Green tem exatamente zero correspondências coincidindo por acaso; exigir apenas que haja pelo menos uma referência Red sem prova em Green. Nenhuma modificação à lógica de produção ou a testes anteriores.
+- A Bridge 075 deve executar os 12 testes dirigidos do módulo (11 PASS/1 SKIP fora do certificador) e ASM 518/518, full 1155/1156 PASS com 1 SKIP como **expectativa**, não certificação. Nenhum toque em main, ROMs, saves, RetroArch, sessões Antigravity e histórico anterior; alterações append-only.
+
+
+### T121 — 2026-10-31: Bridge 075 identifica fixture errada no item 2 do mapa 227; reparar expectativa, não o código de produção
+- Resultado real da Bridge `PSB-20261031-2030-POKEGUIDE-ROMITEMS-075`: `FAILED`/exit 1. A revisão HEAD foi `96393dbe4519c4588b5a822d7e6453b67bcd3038`. Sintaxe completa `PASS`; testes isolados da proteção `11 PASS / 1 SKIP / 0 FAIL`; `npm ci` passou. O certificador terminou durante os testes ASM: **518 testados, 517 PASS, 1 FAIL**, caso `audited Red Blue Green ROMs preserve their own 226/227 item tiles` (teste 441), em `romVisibleItemCoordinateGuard.test.js:177`. A suite total nem chegou a executar; não declarar 1155 PASS.
+- **Causa confirmada no log público:** a fixture T119 continha incorretamente `map 227, item 2, Red/Blue (18,9)`, mas o objeto **extraído da ROM Red original** revelou `(18,1)`. A Bridge 074 apenas enumerara a diferença de **X**, porque os Y de Red/Blue e Green coincidem; fora indevidamente extrapolado `y=9` a partir do primeiro item. Assim, o valor correto é **Red/Blue (18,1), Green International (24,1)**. A discrepância decorre do teste, não de falha demonstrada na proteção `reconcileVisibleItemCoordinates`.
+- **Correção exclusiva de testes:** substituir os dois registos da fixture do mapa 227 por `Red/Blue [[16,9],[18,1]]` e `Green [[24,7],[24,1]]`, mantendo os valores do mapa 226, a extração SHA-auditada dos IDs reais dos itens Red e o teste nativo de três ROMs. Renomear o caso sintético para não alegar coordenadas coincidentes inexistentes. Nenhuma alteração ao código de produção nem à `main`; histórico apenas por acrescento. Repetir ASM 518/518 e suite global 1155 PASS/1 SKIP **como expectativas**, só declarar certificação após a Bridge 076.
+- Preservações: perfis/logins/sessões/tokens/backups Antigravity, RetroArch, saves, ROMs, preview, TIMI/Maestro/BonChat/Codex intocados; sem probes live. Os temporários exclusivos da Bridge 075 foram limpos.
+
+
+### T122 — 2026-10-31: Bridge 076 confirma Node/ROM e isola falha de enumeração JSON no Windows PowerShell
+- **Bridge 076** `PSB-20261031-2035-POKEGUIDE-ROMITEMS-076`: `status=FAILED` / exit 1 pelo verificador PowerShell posterior à certificação. Checkout `411c8d70e922d4e1315c95d385b86ccfd7731974` exato, sintaxe de todos os JS verificada, dependências `npm ci` PASS, testes isolados `11 PASS / 1 SKIP / 0 FAIL`, certificador de **Red/Blue/Green International** `ASM_TARGETED_TESTS=518` / `ASM_TARGETED_PASS=518` / `FAIL=0` e **suite 1156 testes / 1155 PASS / 1 SKIP / 0 FAIL**, `RUN_VALIDATED=TRUE`, `RESULT=PASSED`. A correção da fixture T121 resolveu o teste nativo que falhara na Bridge 075.
+- **Causa da falha restante:** `$Mapas = @(ConvertFrom-Json -InputObject $MapasJson)` e `$Mapas.Count` produziram `DIFFERENT_MAP_COUNT=1`, embora o certificado Node tenha verificado explicitamente `differingMapIds.length===2`, `differingMapIds[0]===226` e `[1]===227`. O array JSON resultante foi tratado como um único elemento da pipeline PowerShell. A Bridge 076 terminou antes da verificação local da integração, mas o teste de integração JavaScript passou na suite certificada. Não há evidência de regressão no algoritmo da proteção das coordenadas.
+- **Alteração T122 à instrumentação:** `scripts/certifyAsm626.js` mantém o array JSON `CROSS_ROM_DECODED_FIELD_DIFFERING_MAP_IDS` e acrescenta métricas **escalares** `_DIFFERING_MAP_ID_COUNT=2`, `_DIFFERING_MAP_FIRST_ID=226` e `_DIFFERING_MAP_SECOND_ID=227` para validação independente segura no PowerShell 5.1. Nenhuma alteração à produção, aos dados ROM, aos testes ou às contagens da suite. A Bridge 077 fará conversão JSON explicitamente numa `List[int]` e confrontará a sequência dos dois IDs com as três métricas escalares, os 11 campos e `RESULT=PASSED`. Fará também inspeção estática do percurso `visibleCoordinateGuard` no cliente e da mensagem na UI.
+- Proteções: branch de desenvolvimento apenas; `main`, preview ativo, RetroArch, ROM/saves originais, sessão/login/tokens/backups Antigravity e TIMI/Maestro/BonChat/Codex intocados; histórico exclusivamente append-only; temporários exclusivos em D: limpos.
+
+
+### T123 — 2026-10-31: Bridge 077 PASS; corrigir pinagem sem prova ROM nos DOIS mapas visuais e mostrar itens Cut/Surf bloqueados
+- **Bridge 077** `PSB-20261031-2042-POKEGUIDE-CERTFIX-077` `SUCCEEDED` exit 0 no commit `58b0b629708ec32d217d1d7ee632bd84561367d0`. Certificação Node nas ROMs Red/Blue/Green: ASM **518/518 PASS**, suite completa **1155/1156 PASS**, 1 SKIP, zero falhas. JSON reconciliado com métricas escalares: IDs **226 e 227**, 11 campos de coordenadas, 6 no mapa 226 e 5 no 227, todos Red=Blue e Green com posições diferentes. O PowerShell confirmou que `visibleCoordinateGuard` está no caminho do planeador e que as referências manuais sem ROM verificada não entram em alvos de navegação. Nenhum probe UDP/HTTP real, `LIVE_GAMEPLAY=NOT_CERTIFIED`; temporários exclusivos limpos.
+- **Lacuna concreta encontrada na UI:** a versão anterior do `public/app.js` usava `areaInfo.visibleItems` e `areaInfo.hiddenItems` diretamente para desenhar os ícones 🎒 no **minimapa `renderFogMinimap`** e no **mapa ampliado `ctxGta`**, sem exigir `romItemCoordinatesVerified` naquele ponto nem verificar SHA da ROM e mapa da leitura atual. Também excluía `areaInfo.lockedItems`: um item dependente de Cut/Surf/Strength permanecia na lista textual de requisitos, mas **desaparecia dos mapas visuais**. Ambos os desenhos estavam assim vulneráveis a pins estáticos desatualizados ou sem prova e a ausência de itens bloqueados.
+- **Correção T123 de produção:** `selectVerifiedMinimapItemMarkers(state)`, em `public/app.js`, recebe a telemetria publicada e só fornece marcadores se `connected`, identidade local SHA auditada, `visibleItemCoordinateEvidence` da ROM exata/mapa atual, `memoryReadStatus.verified`, três janelas (posição, tardia e publicação) concordantes, coordenadas atuais idênticas e timestamp recente (<=15 s). Cada item individual exige `romItemCoordinatesVerified=true`, X/Y inteiros [-4,255], sem prova positiva de recolha nem sinal `removedFromMap=true`. Reúne itens visíveis, ocultos e bloqueados; deduplica por tile dando prioridade ao estado bloqueado, devolvendo `presentNow=null` e `accessibleNow=null`. Os dois desenhadores partilham **a mesma função**: pin 🎒 estático esbatido e 🔒 para barreira condicional, sem confundir com sprite RAM confirmado; nenhuma posição manual sem prova é desenhada. O painel de radar mantém as listas textuais de itens bloqueados. Esta seleção não reclassifica itens como recolhidos nem garante acesso.
+- **Testes T123:** novo `tests/romVerifiedMinimapMarkers.test.js` com **12 testes sintéticos PASS em V8** incluindo casos de mapas com itens bloqueados Cut/Surf, posição sobreposta, item oculto sem ROM, Red/Green/SHA errada, janelas RAM incongruentes, estado antigo, coordenadas inválidas, objetos removidos/recolhidos, marcação esbatida em `renderFogMinimap` e desenhador GTA ampliado. `scripts/certifyAsm626.js` passa a incluí-los nos testes ASM dirigidos. Previsão para a Bridge 078: **530/530 ASM**, suite **1167 PASS / 1 SKIP** de 1168, sujeita a execução real; nenhum dos números novos é certificado ainda no Windows.
+- **Proteções:** branch de desenvolvimento apenas; main, preview ativo, Antigravity login/sessão/tokens/backups, RetroArch, ROMs/saves, TIMI/Maestro/BonChat/Codex intocados. Histórico append-only; sem screenshots porque teste V8 headless não abriu interface real. A cobertura de 100% do gameplay ainda não foi demonstrada.
+
+
+### T124 — 2026-10-31: Bridge 078 aprova dois mapas; eliminar identificação de sprites por proximidade manual em toda a ROM
+- **Bridge 078** `PSB-20261031-2045-POKEGUIDE-MAPPINS-078`: `SUCCEEDED` exit 0, revisão `f6236f6f73ef13b026c7c86b232212423527c2f3` verificada. 12/12 PASS nos testes dos dois mapas visuais, ASM 530/530 PASS, suite completa 1167 PASS / 1 SKIP / 0 FAIL, `RESULT=PASSED`; identidade de ROM/estado antigo/mapa e bloqueados Cut/Surf/Strength comprovados em testes. Os IDs 226/227 e as 11 diferenças de coordenada permanecem reconciliados. Sem probes UDP/HTTP nem screenshots da UI ativa (`ACTIVE_BROWSER_VISUAL_TEST=NOT_RUN`, `GAMEPLAY_100_PERCENT=NOT_CERTIFIED`), temporários exclusivos limpos.
+- **Fragilidade funcional encontrada:** depois de calcular `romAreaEvidence` de todos os mapas, o cliente enriquecia os sprites `mapEntities` com `areaInfo.visibleItems.find(abs(xdiff)<=2 && abs(ydiff)<=2)`, e os NPCs com o treinador manual mais próximo até Manhattan <=4. Assim, um item próximo mas diferente podia receber nome/descrição e um NPC normal podia receber nome/equipa de treinador que não correspondia ao seu objeto ROM. A proximidade não é evidência de identidade em qualquer dos 248 mapas e pode mostrar informação errada durante a partida real.
+- **Implementação T124:** novo `romLiveActorIdentity.js` faz correspondência um-para-um somente quando há ROM SHA auditada, CRC32 de runtime correspondido a perfil local, mapa e posição verificados, bloco de sprites RAM verificado, `romAreaEvidence.verified`, `observedInRam=true`, objeto ROM e RAM com ordinal de sprite idêntico, coordenadas X/Y exatas, `pictureId` idêntico e tipo item/treinador compatível. Recusa provas contraditórias ou duplicadas. Usa o ID de item/treinador da ROM e nome local rotulado como referência, quando existe; não usa nome manual nem supõe vitória/recolha. Entidades sem prova mantêm designação genérica da RAM e `romActorIdentityVerified=false`, nunca são promovidas por distância. O cliente `retroarchClient.js` substituiu integralmente a heurística e expõe sumário `romLiveActorIdentification` (contadores, razão, `manualProximityUsed=false`). Não impede visualizar sprites reais desconhecidos.
+- **Testes:** novo `tests/romLiveActorIdentity.test.js` com **12 testes sintéticos PASS em V8**, incluindo o produtor real `buildRomAreaEvidence` para validar o contrato de consumo, itens e treinadores adjacentes, distância falsamente próxima, IDs, picId, ordinal, sprite não observado, remoção, identidade/mapa/posição inválidos, duplicações e regressão do código do cliente. O certificador ASM passa a incluí-los: valores esperados Bridge 079, **542/542 ASM** e **1179 PASS/1 SKIP** na suite completa de 1180. São expectativas, não a certificação nativa ainda.
+- Não tocar em main, preview ativo, RetroArch, ROMs e saves originais, Antigravity login/sessão/tokens/backups, TIMI/Maestro/BonChat/Codex; checkout e npm temporários somente em D:, histórico append-only.
+
+
+### T127 — 2026-10-31: Bridge 081 PASS; eliminar proximidade de sprites também no produtor
+- Estado certificado da T124 pela Bridge 081: 542/542 ASM e 1179 PASS/1 SKIP full (1180 total), zero falhas; ROM Red/Blue/Green reconhecidas, sem gameplay E2E.
+- Defeito de origem em `romAreaEvidence.js`: observação de treinadores por distância <=1 tile, sem exigir ordinal de sprite RAM; agora só observação exata por ordinal, X/Y, imagem e tipo. Duplicados são desconhecidos, não presentes. `romAreaEvidence.test.js` adaptado e 12 testes novos `romAreaEvidenceIdentity.test.js` integrados no certificador.
+- Publicação não equivale a aprovação: próxima Bridge 082 deve executar 554/554 dirigidos e suite esperada 1191 PASS / 1 SKIP de 1192. Scripts/eventos e prova real de jogabilidade ainda não certificadas. `main`, preview, ROMs/saves e sessões protegidos; sem screenshots por teste headless. Histórico append-only.
+
+
+### T128 — 2026-10-31: Bridge 082 passou; identificação de treinadores não pode depender de aparência
+- **Bridge 082 certificada:** Red/Blue/Green, ASM 554/554 PASS, full 1191 PASS + 1 SKIP / 1192, zero falhas; identity T127 confirmada. Nenhum live gameplay/E2E.
+- **Novo defeito corrigido:** imagem do sprite era usada para classificar treinador; ROM armazena o tipo do objeto separadamente da imagem. Matching final confia apenas na categoria ROM auditada + slot RAM, X/Y, imagem e presença verificada; `boss`, `rival` ou `npc` visual podem corresponder a treinador ROM, sem criar combates fictícios; NPC ROM não vira treinador por sprite gráfico. Teste anterior atualizado, 12 casos novos `romTrainerSpriteTypeAuthority.test.js` integrados no certificador.
+- **Pendente executar Bridge 083:** ASM 566/566, suite 1203 PASS/1 SKIP de 1204 (expectativa). Scripts/economia/eventos e integração ao vivo ainda não 100% certificados. Sem tocar main/preview/ROM/saves/sessões; histórico append-only.
+
+
+### T129 — 2026-10-31: Bridge 083 certificada e primeiro modelo conservador de NPC móvel
+- Bridge 083: 40/40 regressões de sprites, ASM 566/566, full 1203 PASS / 1 SKIP de 1204, zero falhas, ROM Red/Blue/Green reconhecidas. Sem jogabilidade live.
+- Campo ROM `movement` já lido pelo descodificador; `WALK=0xfe`, `STAY=0xff` (referência `pret/pokered`). O valor X/Y ROM é posição inicial; os NPCs móveis podem ter X/Y RAM diferente, não devendo ser tratados como presença física exata nem como derrotados/desaparecidos.
+- T129 acrescenta `movementByte` aos objetos e `movementCandidate` apenas em WALK com ordinal e imagem correspondentes mas tile diferente; observado atual continua `null`, sem nome/equipa/vitória atribuídos. Exposição `movingCandidatesCertified=false` no estado live; 12 testes novos no certificador. Próxima Bridge 084 esperada 578/578 dirigidos e 1215 PASS/1 SKIP full de 1216 (ainda não executada). Não houve contacto com RetroArch, main, preview ou sessões protegidas; histórico append-only.
+
+
+### T130 — 2026-10-31: Bridge 084 certificada; delta temporal RAM sem alegar identidade
+- Bridge 084: WALK 12/12 PASS; ASM 578/578 PASS; full 1215 PASS + 1 SKIP de 1216, zero falhas, 3 ROMs originais reconhecidas. Sem teste live, sem prova de conclusão 100%.
+- Nova `romActorMotionSession.js` compara slots de NPC/treinadores WALK entre duas amostras consecutivas após o gate final de publicação. Exige SHA auditada, mapa, RAM e coordenadas coerentes, alvo Host/Port inalterado, ordinal + picture + ROM home idênticos; descarta gaps, duplicados, mudança de mapa/ROM/alvo e simulação. Diferenças são `observedPositionChanges` de slot, sem identidade nem movimento do ator certificados, e nunca são tratadas como progresso. Integração em `retroarchClient.js` sem novos UDP; 12 testes em `tests/romActorMotionSession.test.js`.
+- Bridge 085 ainda por executar: 590/590 ASM e suite 1227 PASS/1 SKIP de 1228 esperados. Não tocar na main/preview/ROM/saves/Antigravity; histórico só acrescentado, headless sem screenshots.
+
+- **T130a (ajuste antes da Bridge 085):** `romActorMotionSession` agora diferencia `baselineEstablished` de `comparisonVerified`: amostra inicial e gap não contam como comparação, apenas duas consecutivas coerentes. Acrescentadas assertivas em testes existentes; sem certificar live.
+
+
+### T131 — 2026-10-31: Bridge 085 PASS e invalidação imediata em mudança de RetroArch
+- Resultado Bridge 085 real: motion 12/12, regressões 52/52, ASM 590/590, full 1227 PASS / 1 SKIP de 1228, 0 falhas; Red/Blue/Green presentes. Não é certificação de gameplay 100%.
+- Falha concreta: `setTarget` alterava IP/porta sem invalidar o perfil CRC/ROM, apesar de GET_STATUS poder esperar até 4 s. T131 publica guard por destino + geração, invalida ROM, memória e mapa no momento da mudança, força nova verificação GET_STATUS, rejeita poll antigo tanto no status como no gate final, sem reiniciar socket/emulador, incluindo troca e retorno ao mesmo destino. 12 testes novos `romTargetSwitchInvalidation.test.js` no certificador.
+- Ponte 086 ainda por executar: estimativa 602/602 ASM, 1239 PASS / 1 SKIP de 1240 testes full, 0 falhas. A certificação ao vivo continua em falta. Histórico acrescentado; `main`, preview, ROMs/saves, Antigravity e outros processos protegidos inalterados.
+
+
+### T132 — 2026-10-31: diagnóstico e reparação dos testes da Bridge 086
+- Bridge 086: T131 12/12, movimento 12/12, ASM 602/602 sem falhas; full 1237 PASS / 2 FAIL / 1 SKIP (1240), logo **FAILED**. Falhas: dois testes estáticos esperavam `if(publicationPositionWindow.verified!==true` e ignoravam a nova condição `!targetScopeStable||`, sem evidência de erro de dados ROM.
+- Atualizadas duas asserções de regressão (não código runtime): agora obrigam a testar a segurança de alvo e a posição antes de publicar/integrar batalhas, com invalidação e retorno. Exigida a ordem cronológica dos gates. Não se eliminou qualquer teste, nem se reduziram critérios de segurança; os testes ficaram mais completos.
+- Próxima Bridge 087 por executar: 602/602 ASM e 1239 PASS/1 SKIP de 1240 full são expectativas; utilizar logs resumidos para impedir 400 kB de trechos JSON caso haja falha. Histórico append-only, sem tocar nos recursos protegidos.
+
+
+### T133 — 2026-10-31: confirmação Bridge 087 e gate final dos 507 eventos nomeados
+- Bridge 087: 31/31 campanha, 9/9 posição, 12/12 troca alvo, ASM 602/602, full 1239 PASS + 1 SKIP em 1240, zero falhas; três ROMs confirmadas, sem gameplay E2E.
+- `romWorldReferenceSession.ingestPublished` exige identidade ROM, alvo/porta/geração estáveis, posição e última salvaguarda de publicação, além de `pollSequence` sem interrupções; resets entre escopos. `retroarchClient` só chama a sessão depois do gate final; mantém as diferenças dos 507 eventos e 228 toggles como flags RAM não-causais. 12 testes novos em `romPublishedNamedEvents.test.js` adicionados ao certifier, sem UDP adicional.
+- Bridge 088 ainda não executada: previsão ASM 614/614, full 1251 PASS/1 SKIP de 1252; falta validar runtime real e semântica dos scripts. Histórico apenas acrescentado, recursos protegidos intactos.
+
+
+### T134 — 2026-10-31: Bridge 088 detetou teste de integração obsoleto, reparado
+- Bridge 088 FAILED com 1 caso falhado (`romClientCampaignIntegration.test.js`, teste 307). Novos T133 12/12 e referência anterior 8/8 PASS; falha de teste estático por exigir `ingest(` pré-publicação em vez de `ingestPublished(` após gate final.
+- Caso 307 atualizado para exigir gate final antes de `ingestPublished` e persistência após, confirmar alvo/geração/pollSequence e proibir caminho inseguro antigo. Sem reduzir cobertura nem alterar runtime.
+- Bridge 089 a executar: espera-se ASM 614/614 e full 1251 PASS/1 SKIP de 1252; confirmar resultados reais. Certificação de gameplay E2E pendente. Main e recursos protegidos intocados. Histórico append-only.
+
+
+### T135 — 2026-10-31: falha operacional Bridge 089 sem testes
+- Bridge 089 terminou `FAILED` imediatamente no clone porque o wrapper usou `Start-Process -ArgumentList $Args`; `$args` é variável automática em PowerShell. Nenhum teste ASM/full executou, pelo que T133/T134 mantém certificação pendente. O runtime PokéGuide **não foi modificado**. Histórico acrescentado; próxima Bridge 090 corrige só o script autónomo para `$Arguments` com validação de entrada e repete T134 + ROM Red/Blue/Green.
+
+
+### T136 — 2026-10-31: Bridge 090 certificada; salto em massa de eventos nomeados passa a ser suspeito
+- Bridge 090 PASS: 31/31 integração, 12/12 T133, 8/8 sessão, ASM 614/614, full 1251 PASS + 1 SKIP / 1252; zero falhas; 3 ROMs verificadas sem E2E live.
+- Inconsistência corrigida: o bitmap completo já tem limiar de 64 alterações simultâneas; o timeline de 507 nomes e 228 toggles não o tinha. T136 aplica `MAX_PUBLISHED_CHANGES=64` a `ingestPublished`, assinala `resetSuspected`, não emite eventos quando há 65+, limpa o histórico e fixa nova baseline; o método legado de comparação não é afetado. Não interpreta flag como ação.
+- `romNamedEventBulkReset.test.js` acrescenta 12 casos com limites e regressões, registado no certifier. Bridge 091 a executar, previsão ASM 626/626 e full 1263 PASS+1 SKIP / 1264; não comprova conclusão da campanha.
+
+
+### T137 — 2026-10-31: Bridge 091 PASS, 2560-bit polling scope seguro
+- Bridge 091 verificou T136 bulk 12/12, T133 12/12, antigo 8/8, ASM 626/626, full 1263 PASS/1 SKIP em 1264, zero falhas; três ROMs. Não certifica gameplay live.
+- `romCompleteEventSession.ingestPublished()` adiciona identidade de ROM, mapa/posição, gate final, destino host/porta/geração e `pollSequence` consecutivo ao histórico dos 2560 bits. Falha de scope ou poll gap apaga transições antigas e cria nova baseline; `ingest()` legado mantém testes existentes mas não pode fornecer baseline à API publicada. Integração `retroarchClient.js` usa campos já validados, sem mais UDP.
+- 12 novos testes e teste de integração antigo atualizado, com certifier. Bridge 092 por executar: expectativa ASM 638/638, full 1275 PASS/1 SKIP de 1276. Main/Antigravity/saves protegidos; histórico apenas por acréscimo.
+
+
+### T138 — 2026-10-31: Bridge 092 certificada, timeline mundial por mapa só após gate final
+- Bridge 092: ASM 638/638, suite 1275 PASS/1 SKIP em 1276, Red/Blue/Green, 0 falhas; integração bitmap 12/12 e antigos 9/9, sem E2E.
+- `CampaignFlagSession.ingestPublished` fecha a lacuna da timeline de flags de campanha: exige ROM, 226 mapas, posição final, alvo/porta/geração e polls consecutivos; não reutiliza baseline legado. O cliente atualiza `globalCampaignDelta` e `worldRecentFlagChanges` só após gate final. Os objetivos/rotas estáticos continuam independentes.
+- 12 testes adicionados com `romPublishedCampaignFlagSession.test.js`, teste de integração anterior revisto e certifier atualizado. Bridge 093 por executar: esperados 650/650 ASM, full 1287 PASS + 1 SKIP de 1288; sem afirmação de 100% gameplay. Histórico acrescentado.
+
+
+### T139 — 2026-10-31: Bridge 093 PASS; respostas UDP associadas ao destino
+- Bridge 093 verificou ASM 650/650, 1287 PASS/1 SKIP em 1288, 0 FAIL; ROMs Red/Blue/Green sem gameplay live.
+- Novo `romUdpResponseSourceGuard`: em destino IPv4 literal exige origem IP+porta exatamente iguais; `localhost` exige loopback, nomes DNS usam apenas filtro de porta (limite conhecido). UDP `handleResponse` recebe `rinfo` e recusa fontes divergentes; callbacks pendentes escopados com geração e identidade contra timeouts antigos; `setTarget` cancela os pedidos sem fechar socket; `readMemoryBlock` interrompe chunks ao trocar destino e início do poll tem barreiras após primeiras leituras. 12 testes isolados adicionados ao certificador.
+- Risco residual de UDP sem transaction ID: resposta tardia do mesmo IP/porta após geração nova não pode ser provada por essa origem; continuar a testar fases assíncronas. Bridge 094 prevista ASM 662/662, full 1299 PASS/1 SKIP / 1300; não são resultados já executados. Histórico append-only; recursos protegidos intocados.
+
+
+### T140 — 2026-10-31: parser da Bridge 094 impediu os testes UDP
+- Bridge 094 FAILED em 629 ms, parser PowerShell linha 128 com `Where` isolado; NÃO houve clone nem execução dos testes, pelo que T139 permanece sem certificação. A causa da transformação textual da linha não é comprovada. Script 095 simplificado sem esse tipo de expressão; objetivo manter a validação do transporte UDP e ROMs sem tocar nos recursos protegidos. Histórico append-only.
+
+
+### T141 — 2026-10-31: Bridge 095 certificou T139; captura de VRAM passa a recusar dados antigos
+- Bridge 095: UDP 12/12, alvo 12/12, poll failure 3/3, campanha 31/31, ASM 662/662, full 1299 PASS+1 SKIP/1300, zero falhas; 3 ROMs, sem gameplay live.
+- Corrigida VRAM background: `captureGuardedVideoMemory` verifica target scope, ROM, mapa, x/y e bytes antes/depois das leituras assíncronas; `invalidateWorldEvidence` elimina imagem anterior. Preservado canvas read-only e frequência original, sem novo pedido UDP nem ação sobre o emulador. 12 testes incluídos no certifier.
+- Bridge 096 ainda a executar: esperado ASM 674/674, full 1311 PASS+1 SKIP/1312. Validação VRAM live e gameplay continuam pendentes; histórico append-only.
+
+
+### T142 — 2026-10-31: mocks de VRAM assíncrona corrigidos antes da certificação
+- Corrigidos dois cenários no ficheiro de testes T141 onde só a última das quatro Promises de leitura de VRAM era libertada. Agora cada cenário espera quatro pedidos pendentes e liberta todos após a mudança de scope, verificando que nenhuma imagem antiga é publicada. Código de produção não alterado. Bridge 096 pendente; histórico append-only.
+
+
+### T143 — 2026-10-31: VRAM válida apenas no mesmo epoch de evidência, Bridge 096 certificada
+- Bridge 096 passou vídeo 12/12, UDP 12/12, integração 31/31, ASM 674/674, full 1311 PASS + 1 SKIP / 1312, três ROMs, zero falhas; não houve live RetroArch.
+- Proteção de vídeo reforçada: epoch de evidência incrementa em toda `invalidateWorldEvidence`; a captura assíncrona exige o mesmo valor antes/depois e só inicia após último gate posição+destino. Evita imagens obsoletas reaparecerem após reconexão ao mesmo mapa, ROM e coords. 12 novos testes, integração no certificador e atualização dos testes VRAM anteriores. Bridge 097 pendente, previsões ASM 686/686 e full 1323 PASS+1 SKIP/1324; não é gameplay certificado.
+
+
+### T144 — 2026-10-31: Bridge 097 certificada, VRAM excluída da cache persistida
+- Bridge 097: 12/12 epoch, 12/12 vídeo antigo, 12/12 UDP, 31/31 integração, ASM 686/686, suite 1323 PASS/1 SKIP de 1324; 3 ROMs, zero falhas. Sem E2E real.
+- `persistState` deixava `videoMemory` (6144 tiles+1024 mapa+160 OAM) entrar nos dois snapshots JSON, `loadPersistedState` podia recuperar VRAM antiga. T144 remove vídeo apenas da projeção persistida e ignora vídeo de cache anterior no carregamento. Não altera ou apaga ficheiros existentes, nem o vídeo vivo; menor volume de cache futuro. 10 testes novos e certifier atualizado.
+- Bridge 098 por executar: espera ASM 696/696 e full 1333 PASS + 1 SKIP/1334. Histórico append-only, ambientes protegidos intocados.
+
+
+### T145 — 2026-10-31: Bridge 098 certificada; caches de evidência mundial passam a descartar mapas/entidades antigos
+- Bridge 098 PASS: 10/10 vídeo-cache, 12/12 vídeo epoch, 12/12 vídeo anterior, 31/31 integração, 696/696 ASM, 1333 PASS+1 SKIP em 1334, 0 fail, 3 ROMs sem sessão ao vivo.
+- Falha: dados temporários do mundo como `romMap`, encontros, `mapEntities`, itens, atores e guias locais persistiam nas caches e parte podia sobreviver a `invalidateWorldEvidence`. Corrigida exclusão de 13 campos ao guardar, remoção em load legado e invalidação do estado RAM atual; mantém os metadados e a história da partida. Inclui 12 testes no certificador, sem gravações reais feitas pelos testes novos.
+- Bridge 099 pendente, expectativa ASM 708/708 e full 1345 PASS/1 SKIP de 1346, não é prova de gameplay 100%. Preservadas sessões e ROMs; histórico acrescentado.
+
+
+### T146 — 2026-10-31: Bridge 099 PASS, IA escopada e combat UI transient
+- Certificados: stale world 12/12, vídeo cache 10/10, vídeo epoch 12/12, integração 31/31, ASM 708/708, full 1345 PASS/1 SKIP/1346, 3 ROMs. Sem RetroArch vivo.
+- A função `getLiveAdviceContextKey` evita reuso da cache da IA entre ROM/mapa/equipa/itens; resposta assíncrona só é publicada no mesmo contexto de RAM e destino, após último gate. Dados de combate/diálogo/IA são eliminados das projeções persistidas e invalidados no estado RAM, mantendo party e histórico. 16 novos testes.
+- Bridge 100 pendente (esperado 724 ASM e 1362 suite), não é certificação de gameplay. Histórico append-only, ambientes protegidos preservados.
+
+
+### T147 — 2026-11-01: caminhos HTTP manuais de IA protegidos por ROM, posição e epoch
+- Leitura de código na revisão e707493: os endpoints POST /api/ask-ai e /api/advice-now chamavam askAdvisor/getLiveAdvice sem o guard de publicação final do T146; uma resposta tardia podia sobreviver a mudança de ROM/mapa/alvo durante o pedido, e /api/advice-now escrevia a resposta diretamente no estado.
+- Implementado romManualAdviceGuard: exige identidade SHA da ROM ativa, RAM recente verificada, posição final validada, target host/porta/geração e epoch, verifica novamente depois do provider e descarta resposta atrasada. Recusa combate sem exactTurnMathReady; fingerprint de cache acrescenta batalha apenas quando ativa. URLs HTTP mantidas, porém respostas inválidas agora incluem status e HTTP 400/409, sem publicação.
+- Acrescentados 12 testes de regressão para contexto estável, ROM trocada, ausência de RAM, relógio, geração, epoch, host/porta, mapa, equipa/inventário, combate, provider e pedido inválido. Certificador ASM atualizado. **Por certificar na Bridge 100:** nunca interpretar código escrito como testes executados; estimativa 736/736 ASM e 1373 PASS + 1 SKIP de 1374, a confirmar por execução.
+- Nenhum contacto com RetroArch, UDP, browser, Antigravity, TIMI/MAESTRO/BonChat/Codex, ROMs ou saves; main/preview intocados. Histórico append-only. Jogabilidade de 100% ainda não certificada.
+
+
+### T148 — 2026-11-01: Bridge 100 interrompida por mistura de Write-Output no pipeline PowerShell
+- Fonte pública: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0040-POKEGUIDE-MANUALAI-100.txt ; status FAILED, exitCode 1, elapsed 7262 ms, output não truncado.
+- Fase observada: PHASE_1=CHECKOUT_ISOLADO; a exceção exata foi "Cannot find path 'STEP_BEGIN=GIT_HEAD' because it does not exist.". O wrapper de shell emitia Write-Output dentro de Write-Log, que era invocado por Invoke-Checked; na atribuição do caminho devolvido, mensagens STEP_BEGIN/STEP_EXIT eram capturadas juntamente com o caminho. Get-Content tentou interpretar STEP_BEGIN como caminho de ficheiro.
+- Não se executaram testes Node/ASM/full, nem leitura das três ROMs nesta Bridge. Temp exclusivo limpo: EXCLUSIVE_TEMP_CLEANED=TRUE. T147 permanece não certificado.
+- Próxima Bridge 101: modificar apenas script do chat para enviar logs por Write-Host e manter return do caminho limpo, com revisão Git fixa; sem edições em runtime da ROM, saves, main/preview, Antigravity ou RetroArch. Valores ASM 736/736 e full 1373 PASS + 1 SKIP de 1374 são previsões, não resultados verificados.
+
+
+### T149 — 2026-11-01: Bridge 101 PASS e inventário físico de 1126 referências de script para cada ROM
+- Bridge 101 `PSB-20261101-0055-POKEGUIDE-MANUALAI-101`: SUCCEEDED 0, SHA `b6847a27f17332696c6689c167ed021c1a9a078e`, 12/12 T147, 16/16 T146, ASM 736/736, full 1373 PASS + 1 SKIP em 1374, 0 falhas; Red/Blue/Green lidas e temporários exclusivos limpos. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0055-POKEGUIDE-MANUALAI-101.txt
+- Nova implementação `romScriptUnresolvedEvidence.js`: inventário por objeto, mapa ID, tipo, ordinal, coordenadas, Text ID, comando e endereço físico ROM das 1126 interações por variante (202 placas, 472 NPCs, 334 treinadores, 106 itens, 12 Pokémon fixos). Falha perante SHA não reconhecido, 248 IDs incoerentes, offsets inválidos, ASM sem prova física, objetos repetidos ou falsas conclusões de gameplay. Distingue 626 referências TX_START_ASM/516 entradas físicas únicas e 344 bindings de flags. Conserva os 2 treinadores sem bit certificado (mapas 96:2 e 135:11), sem inferir vitória.
+- Comparação Red/Blue/Green das 1126 entradas por chave mapa+tipo+ordinal: conta diferenças de offsets físicos, comando, Text ID, posição e binding de flag; não interpreta igualdade dos ficheiros como equivalência da jogabilidade. Resumo e hotspots de script por ROM passam a sair no log do certificador, com amostras de diferenças cruzadas. O objetivo é identificar os próximos blocos para descodificação semântica, NÃO alegar que 1126 efeitos foram resolvidos.
+- Acrescentados 8 testes dedicados no `romScriptUnresolvedEvidence.test.js` e inclusão no certifier. **Bridge 102 pendente**: expectativa ASM 744/744 e suite 1381 PASS + 1 SKIP de 1382; previsões não testadas. Sem acesso ao RetroArch real, ROMs e saves apenas lidos no próximo certificado; main, preview e sessões protegidas preservados. Históricos append-only.
+
+
+### T150 — 2026-11-01: Bridge 102 falhou no adaptador de referência achatada; corrigida a interface de perfil
+- Bridge 102 `PSB-20261101-0110-POKEGUIDE-SCRIPTGAPS-102`: FAILED exitCode 1, revisão `41bd5a53629052d9041296c358802c7cf6afadd9`, Node syntax 6/6, npm ci PASS, testes sem ROM 4 PASS + 4 SKIP de 8. Certificador reconheceu Red/Blue/Green, mas falhou antes do processamento com `Script evidence inventory invalid: red Exact audited ROM and full unresolved script atlas required`. Limpeza exclusiva confirmada. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0110-POKEGUIDE-SCRIPTGAPS-102.txt
+- Causa verificada por código: `romVariantRegistry.inspectRomBuffer` preserva `interactionAudit.maps` (com `interactions` por ID), mas não `interactionAudit.references` na estrutura `world.interactionScriptAtlas`. O novo leitor T149 exigia `atlas.references` de forma incondicional, rejeitando falsamente perfis válidos. Não é prova de ROM corrompida nem de erro nas 1126 posições.
+- **T150 corrigida:** `romScriptUnresolvedEvidence` usa as 1126 entradas de `atlas.maps[].interactions` por ordem/identidade de mapa como fonte autoritativa; se o array achatado opcional existir, exige igualdade referencial com os objetos de cada mapa, sem esconder inconsistências. Todos os outros gates (SHA, offsets, ASM, 344 flags, faltas, 248 IDs e conclusão não provada) continuam em vigor. 4 regressões sintéticas novas para esquema de perfil real, discordância de lista achatada, chaves duplicadas e comparação trio, para que a mesma falha seja detetada sem ROMs físicas.
+- **Bridge 103 pendente:** previsão de 12 testes no ficheiro novo (8 sem ROM, 4 dependentes das ROMs), ASM 748/748, full 1385 PASS + 1 SKIP de 1386, apenas após execução. RetroArch/saves, sessões do Antigravity, TIMI/MAESTRO/BonChat/Codex, main/preview intocados; históricos append-only. Sem certificação de gameplay 100%.
+
+
+### T151 — 2026-11-01: Bridge 103 certificada; seis divergências de posições rastreadas por ROM
+- Fonte Bridge 103: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0125-POKEGUIDE-SCRIPTFIX-103.txt ; SUCCEEDED, revisão `7c210c65669482e433ac792bc57f81a17ee88bb3`; T150 8 PASS + 4 SKIP isolados; ASM 748/748; full 1385 PASS + 1 SKIP / 1386; as 3 ROMs SHA exato reconhecidas; 1126 referências, 626 ASM, 516 entradas ASM únicas, 344 flags e 1126 efeitos pendentes por ROM.
+- Comparação integrada real: 1126 chaves correspondentes, 0 chaves em falta, **238 referências com offsets físicos diferentes, 6 com coordenadas diferentes, 0 comandos diferentes, 0 Text IDs diferentes, 0 bits de evento diferentes**. As seis posições ainda não tinham os detalhes no log; relatório anterior de hotspots PowerShell mostrou indevidamente um array inteiro como uma linha (20 valores concatenados), não um único mapa.
+- Implementação T151: versão V2 do comparador em `romScriptUnresolvedEvidence.js`, que exporta coordenadas e offsets individuais Red/Blue/Green das seis referências, mapa/objeto/ordinal, divergências pareadas Red-Blue/Red-Green/Blue-Green, contagem por mapa e diferenças apenas de endereço. Uma chave mapa+tipo+ordinal é apenas correspondência candidata, NÃO prova identidade do objeto ou deslocação real, nem acessibilidade, eventos ou script executado. Rejeita métricas com prova de execução inventada ou coordenadas/offsets inválidos.
+- Certificador `scripts/certifyAsm626.js` verifica as seis diferenças e 238 offsets em todas as ROMs SHA conhecidas, sem baixar thresholds, e emite `CROSS_ROM_SCRIPT_POSITION_DETAILS`, `CROSS_ROM_SCRIPT_POSITION_MAPS`, `CROSS_ROM_SCRIPT_PAIRWISE`, `CROSS_ROM_SCRIPT_OFFSET_ONLY` para observação concreta. Acrescentados 4 testes sintéticos ao conjunto existente; **Bridge 104 pendente**: expectativa ASM 752/752 e full 1389 PASS + 1 SKIP /1390. Nenhum teste T151 executado ainda, nenhuma certificação de gameplay 100%. Nenhuma ROM/save/sessão modificada; histórico append-only.
+
+
+### T152 — 2026-11-01: Bridge 104, corrigir fixture que adulterava ASM e acrescentar teste negativo
+- Bridge 104 `PSB-20261101-0140-POKEGUIDE-POSITIONDIFF-104`: FAILED exitCode 1, revisão `3b07cb952f08d507bc80d6b062e222e456dbc5ab`, sintaxe 3/3 e npm ci PASS. Testes T151: 11 PASS, 1 FAIL, 4 SKIP, 16 no total. Falha exata `one offset difference is not misreported as a position difference` -> `Incompatible green ROM interaction inventory`; certificador ROM não executado. Limpeza exclusiva e reposição das variáveis do processo confirmadas. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0140-POKEGUIDE-POSITIONDIFF-104.txt
+- Causa verificada por código: fixture sintética T151 mudava `scriptFileOffset` de `NPC ordinal 1`, que pertence à classe `TX_START_ASM`, sem atualizar `asmCandidate.txAsmFileOffset`, violando a invariante de endereços físicos. A rejeição por `buildScriptUnresolvedEvidence` está correta. Não afrouxar o validador nem fazer alegações sobre o ROM Green.
+- **T152:** teste offset-only muda agora `ITEM ordinal 1` com `asmCandidate===null`, mantendo a coerência dos handlers, e há 1 teste negativo específico exigindo que deslocar endereço ASM sem o handler continue proibido. Nenhuma alteração à lógica do produto ou ao certificador; nenhum ROM/save/RetroArch/processo/sessão tocado. Históricos append-only. **Bridge 105 pendente**; expectativas ASM 753/753, full 1390 PASS + 1 SKIP em 1391, apenas estimativas até execução.
+
+
+### T153 — 2026-11-01: Bridge 105 certificada, correlacionar seis divergências com IDs ROM de ator
+- Bridge 105 `PSB-20261101-0155-POKEGUIDE-POSITIONFIX-105`: SUCCEEDED exitCode 0, revisão `9f96f7587f1193cb72d4d1cb2bbf88a2ed0747f8`, ASM 753/753, full 1390 PASS + 1 SKIP/1391, Red/Blue/Green confirmadas, limpeza exclusiva e ambiente restaurado. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0155-POKEGUIDE-POSITIONFIX-105.txt
+- Seis divergências de posição por ordinal (todas Green vs Red/Blue): mapa 226 ITEM 1 (29,9) vs (5,15); ITEM 2 (4,15) vs (25,13); ITEM 3 (13,6) vs (29,9); mapa 227 ITEM 2 (16,9) vs (24,7); ITEM 3 (18,1) vs (24,1); STATIC_POKEMON 1 (27,13) vs (5,10). 1126 chaves, 0 em falta, 238 offsets distintos, 233 apenas de offset, 0 comandos/text IDs/event bits distintos. **Ordinal não prova identidade do objeto**.
+- Implementação T153: preserva no inventário por interação metadados de objeto tal como lidos dos bytes físicos ROM (ITEM ID; espécie interna+nível do Pokémon fixo) com validação estrita de 8 bits quando presentes. Novo `auditPositionActorCorrespondence` classifica cada uma das seis diferenças por igualdade de atributo único, atributos duplicados, falta de prova, divergência entre variantes ou possível reordenação por outro ordinal; não converte qualquer classe em prova de identidade física/movimento/itens obtidos/acessibilidade. Certificador emite `CROSS_ROM_ACTOR_ATTRIBUTE_DETAILS`, `CROSS_ROM_ACTOR_ATTRIBUTE_SUMMARY` e `CROSS_ROM_ACTOR_IDENTITY_CERTIFIED=FALSE`. Sete testes de regressão sintéticos adicionais. **Bridge 106 pendente**: estimados ASM 760/760 e full 1397 PASS + 1 SKIP de 1398, valores não executados nesta publicação. Não tocar ROM/saves/RetroArch, main, previews ou sessões protegidas; históricos append-only.
+
+
+### T154 — 2026-11-01: Bridge 106 — certificador aprovado, falha na contagem de JSON em PowerShell
+- Bridge PSB-20261101-0215-POKEGUIDE-ACTORID-106: resultado público FAILED exitCode=1 em https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0215-POKEGUIDE-ACTORID-106.txt ; revisão c79de0a8c8b6cb7dc804aa67ae369bf3bc60fd73 confirmada, 3 verificações de sintaxe PASS, npm ci PASS, novos testes 20 PASS e 4 SKIP de 24, ASM alvo 760 PASS/760, suite geral 1397 PASS + 1 SKIP/1398, 0 falhas, Red/Blue/Green encontradas, certificador ROM STEP_EXIT=ROM_CERTIFIER;0.
+- Falha exclusiva da apresentação de dados após o certificador: ACTOR_DIFFERENCE_COUNT=1 e ACTOR_DIFFERENCES_INCOMPLETE. O código anterior fazia uma expressão PowerShell @() sobre ConvertFrom-Json -InputObject $DetailsJson; em Windows PowerShell 5.1 o array JSON emitido como um único objeto pode voltar a ficar embrulhado pelo @(), passando a ter contagem externa de 1. O certificador JavaScript já verificou actorIdentity.details.length===6; os detalhes reais não ficaram visíveis na Bridge 106 por erro de PowerShell, não por falha dos mapas ou testes. Referências: MicrosoftDocs/PowerShell-Docs/reference/5.1/Microsoft.PowerShell.Utility/ConvertFrom-Json.md e PowerShell/PowerShell#3424.
+- Próxima Bridge 107: usar revisão isolada com consumidor JSON corrigido no comando PowerShell, identificar e apresentar os seis objetos e classes de correspondência sem alterar código funcional. Nunca inferir flags de conclusão; prova real do emulador por obter. Main, preview, Antigravity (sessão, perfil, tokens e backups), TIMI, MAESTRO, BonChat, Codex, RetroArch, ROMs e saves intocados. Sem anexos PowerShell. Históricos preservados e apenas acrescentados.
+
+
+### T155 — 2026-11-01: Bridge 107 certificada; ligação genérica ao guia por 248 mapas
+- Bridge 107 PSB-20261101-0230-POKEGUIDE-ACTORJSON-107 SUCCEEDED exitCode 0, 760/760 ASM PASS e 1397 PASS +1 SKIP da suite completa, três ROMs exatas, seis atores JSON recuperados, limpeza exclusiva e variáveis restauradas. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0230-POKEGUIDE-ACTORJSON-107.txt
+- Mapa 226: itens ord 1 ID79 Red/Blue (29,9) Green (5,15); ord 2 ID2 Red/Blue (4,15) Green (25,13); ord 3 ID16 Red/Blue (13,6) Green (29,9). Mapa 227: item ord2 ID2 Red/Blue (16,9) Green (24,7); item ord3 ID54 Red/Blue (18,1) Green (24,1); Pokémon fixo ord1 espécie interna 131 nível70 Red/Blue (27,13) Green (5,10). Todas seis classes UNIQUE_ATTRIBUTE_AT_SAME_ORDINAL; identidade física em runtime e acessibilidade ainda não certificadas.
+- T155 IMPLEMENTADO: novo módulo romMapActorAttributeBinding.js liga por SHA exato, ID de mapa, ordinal, posição, textId e ID físico de item ou espécie/nível os dois descodificadores independentes (objetos do mapa e scripts) em todos os 248 IDs; valida 226 cabeçalhos normais, 106 itens visíveis e 12 Pokémon fixos nas ROMs exatas. Não reutiliza coordenadas Red/Blue ao apresentar Green. Incompatibilidades falham fechadas; mapas sem cabeçalho têm zero atores inventados. A checklist romWorldChecklist.js passa a expor romActorCoordinateAndAttributeVerified, romActorItemId, romActorSpeciesInternalId, romActorLevel, romActorVariantEvidence e contadores, sem inferir recolha/acesso. Certificador certifica todas as 3 ROMs e emite detalhes físicos dos mapas 226/227. Novo ficheiro de testes com 12 testes (8 independentes, 4 condicionados às ROMs). Estimativas pendentes: ASM 772/772, suite completa 1409 PASS +1 SKIP de 1410; **não afirmar PASS até Bridge 108**.
+- Trabalho apenas na branch feature/pokeguide-world-action-tracker-20261028; sem alterações main, preview ativo, Antigravity, TIMI, MAESTRO, BonChat, Codex, RetroArch, ROMs ou saves; sem ficheiros para download; históricos append-only.
+
+
+### T155.1 — 2026-11-01: regressões para a utilização da ligação de atributos pela checklist
+- Acrescentados 3 testes diretos ao consumidor romWorldChecklist: (1) atributos ITEM 79 e Pokémon interno 131 nível70 expostos no objeto próprio e com coordenadas do mapa exato, com acessibilidade e conclusão desconhecidas; (2) incompatibilidade de coordenadas entre descodificadores suprime a prova e os atributos na checklist; (3) SHA diferente suprime a prova. Não se altera código de produção. Previsão total do novo módulo de testes: 15 casos executados por certificação com 3 ROMs (11 sem ROM +4 com ROM), de que 3 foram acrescentados nesta revisão. ASM prevista 775, suite completa 1413 testes (1412 PASS +1 SKIP), por verificar.
+
+
+### T156 — 2026-11-01: Bridge 108 certificada; prova dos objetos ligada à UI de mundo com SHA da sessão
+- Resultado Bridge 108 PSB-20261101-0250-POKEGUIDE-MAPACTORS-108 SUCCEEDED exitCode 0, revisão 73be73699808bd82f53ed31ee40a6a44a9e72a36, ASM 775/775 PASS, full 1412 PASS +1 SKIP/1413, Red/Blue/Green 248 IDs, 226 cabeçalhos normais, 106 itens visíveis, 12 Pokémon fixos, 118 atributos ligados por ROM, 0 contradições, mapas 226/227 e seis objetos analisados e reportados individualmente, limpeza exclusiva e ambiente restaurado. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0250-POKEGUIDE-MAPACTORS-108.txt
+- Falha de integração encontrada: romWorldChecklist expunha romActorCoordinateAndAttributeVerified e ID de item/espécie/nível, mas public/app.js (formatCampaignChecklistSection) ignorava-os na apresentação ao utilizador. Nova T156 apresenta prova estática de ID e coordenadas para item ou Pokémon fixo apenas quando o SHA-256 do perfil do emulador coincide com o conselho, com a checklist, está entre as 3 ROMs pinadas, o mapa/ordinal/posição correspondem ao ator, o item ID ou espécie+nível concilia com o objeto físico, e o script/ponteiro estão verificados. Não afirma presença atual, acessibilidade, recolha ou captura.
+- Quatro regressões no renderer real isolado em VM: item 79 no mapa 226 Red (29,9) vs Green (5,15); Pokémon fixo interno 131 nível70 no mapa 227 Green (5,10); falha fechada para SHA divergente, prova ausente, ID/posição contraditórios; prova oculta quando telemetria velha ou mapa mudou. DOM textContent, sem HTML inseguro. **Bridge 109 pendente**, estimativas ASM 779/779 e suite full 1416 PASS +1 SKIP em 1417, nunca assumidas PASS até certificação.
+- Main/preview inalterados, sem UI ao vivo; nenhuma screenshot real exigível para teste headless de formatação, nem sessão Antigravity, TIMI, MAESTRO, BonChat, Codex, RetroArch, ROMs ou saves afetados. Históricos apenas acrescidos.
+
+
+### T157 — 2026-11-01: Bridge 109 falhou por seletor obsoleto no teste do painel
+- Bridge PSB-20261101-0315-POKEGUIDE-WORLDUI-109 FAILED exitCode=1 na revisão 0099e33ce166c41eadaad10a6501d53f6fe23c83. Git checkout, sintaxe 5/5 e npm ci PASS. Ao lançar tests/worldAdvisorPanel.test.js ocorreu erro de inicialização antes dos subtestes: "World checklist formatter or renderer section unavailable" na linha 17; certificação Red/Blue/Green não executada. Limpeza e ambiente restaurados. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0315-POKEGUIDE-WORLDUI-109.txt
+- Causa factual: o teste procurava literalmente "function formatCampaignChecklistSection(advice) {" (a assinatura anterior), mas T156 alterou o formatter real para "(advice,state)", necessário para verificar o SHA da ROM ativa na UI. O teste não chegou a executar os seus cenários. Corrigido apenas o localizador em testes/worldAdvisorPanel.test.js com a regex ancorada ao nome da declaração, independente da lista de argumentos. O teste continua a executar o código real do painel, sem simular o formatter. Nenhuma linha de produção modificada.
+- A Bridge 110 deve validar renderização Red/Green e condições de RAM/SHA, depois ASM alvo 779/779 e suite completa 1416 PASS + 1 SKIP /1417; ESTIMATIVAS, NÃO certificadas. Sem tocar em main, preview, Antigravity (login, perfil, token e backups), TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs ou saves; históricos append-only e temporários só D:.
+
+
+### T158 — 2026-11-01: Bridge 110 — regressão do teste romCampaignUi após assinatura T156
+- Bridge PSB-20261101-0330-POKEGUIDE-RENDERFIX-110: FAILED exitCode=1, commit f27d8cd04ef62f2371f0fde204efd2c00ef84789; clone, 5 verificações de sintaxe, npm ci e testes reais de painel PASS, inclusive os quatro testes T156. Certificador encontrou ROMs e reconciliou os 248 mapas, os 118 objetos por ROM e as seis divergências. Etapa ASM_TARGETED terminou com 777 testes, 776 PASS, 1 FAIL; o único processo a falhar foi tests/romCampaignUi.test.js, tratado como um único subteste de ficheiro. O FULL_SUITE não executou. Fonte verificada: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0330-POKEGUIDE-RENDERFIX-110.txt
+- Causa no source: romCampaignUi.test.js também fixava a string antiga "function formatCampaignChecklistSection(advice) {" para extrair o renderer real, e verificava o call antigo "formatCampaignChecklistSection(advice)". T156 acrescentou o argumento obrigatório state. A falha era do localizador/teste, não prova de defeito nas ROMs. O próprio teste de painel passou.
+- T158 altera APENAS tests/romCampaignUi.test.js: localiza a declaração do formatter por nome e parêntesis de abertura, sem congelar os argumentos, e verifica com regex que o consumidor passa explicitamente advice,state para assegurar a guarda de SHA da ROM ativa. Os 3 testes existentes continuam a verificar o formatter real em VM, sem mudar lógica funcional nem baixar expectativas. Históricos .md preservados por acréscimo. Próximo passo Bridge 111: testar primeiro romCampaignUi e worldAdvisorPanel, depois ASM alvo esperado 779/779 e FULL esperado 1416 PASS + 1 SKIP /1417, dependentes da execução real. RetroArch, ROMs e saves read-only, main/preview e sessão Antigravity intocados.
+
+
+### T159 — 2026-11-01: Bridge 111 certificada e marcadores de Pokémon fixos no mapa visual
+- Bridge PSB-20261101-0345-POKEGUIDE-CAMPAIGNUI-111 SUCCEEDED exitCode 0, revisão cea96731bebf30d85d2ff02726bbfb5026922cf8. UI campanha 3 PASS, painel 56 PASS, ASM alvo 779/779, full 1416 PASS+1 SKIP de 1417, três ROMs confirmadas e 118 ligações por ROM, seis diferenças de coordenadas; temporários D: limpos. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0345-POKEGUIDE-CAMPAIGNUI-111.txt
+- T159 IMPLEMENTADO: public/app.js tem seleção de localizações de Pokémon fixos em qualquer mapa via worldAdvisor.mapChecklist, SHA exato da ROM Red/Blue/Green, mapa, objeto, espécie interna, nível, ordinal, script e leitura recente/corroborada de 3 posições RAM. Mostra ícones fantasmas no minimapa e mapa ampliado, nunca presença ou acessibilidade atual. Duplicações ou identidade e provas contraditórias suprimem os ícones. Isto estende a cobertura visual aos 12 Pokémon fixos catalogados no mundo de 248 IDs sem presumir que um encontro está disponível.
+- Novo arquivo tests/romVerifiedStaticEncounterMarkers.test.js com 10 testes de regressão VM (3 ROMs, condições de falha fechada e ambos mapas); certifier inclui-o no ASM alvo. Bridge 112 PENDENTE: esperados ASM 789/789 e FULL 1426 PASS +1 SKIP em 1427, números não certificados sem execução.
+- Sem alterações à main, preview, RetroArch, ROMs, saves, Antigravity, TIMI, MAESTRO, BonChat ou Codex. Históricos somente acréscimos.
+
+
+### T159.1 — 2026-11-01: preservados os testes e renderizadores existentes de itens estáticos
+- Revisão corretiva antes da Bridge 112: a implementação T159 foi publicada sem execução; a inserção original dos ícones de Pokémon fixos ficava dentro das secções de código usadas pelos testes VM existentes de marcadores de itens, que delimitam a extração por comentários específicos. Para não alterar testes anteriores nem misturar os renderizadores, movemos ambos os blocos de ícones para DEPOIS dos comentários delimitadores de itens e ANTES da leitura de sprites RAM, mantendo a mesma ordem visual. Ajustados os dois testes de apresentação T159 para terminarem na declaração entitySnapshot, e acrescentado teste que verifica a separação de ambas as secções existentes. Código de seleção e guardas de SHA/RAM permanecem iguais.
+- Bridge 112 pendente; T159.1 adicionou um teste, expectativas ASM 790/790 e suite completa 1427 PASS+1 SKIP de 1428, não executadas ainda. Históricos append-only, nenhum processo ou sessão tocado.
+
+
+### T160 — 2026-11-01: Bridge 112 certificada; segurança dos marcadores dos itens e vista de VRAM
+- Bridge PSB-20261101-0400-POKEGUIDE-STATICMON-112 SUCCEEDED exitCode 0 na revisão 92aebc38815e8fd5d034aa468a31fc956b4ada99. 82 testes UI PASS, incluindo 11 de encontros fixos, ASM 790/790 PASS, full 1427 PASS +1 SKIP de 1428, Red/Blue/Green reconhecidas, 118 ligações de ator por ROM e 6 posições diferentes, limpeza D: e ambiente restaurado. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0400-POKEGUIDE-STATICMON-112.txt
+- Auditoria identificou dois problemas: (A) selectVerifiedMinimapItemMarkers confiava em qualquer SHA com 64 caracteres hex e paridade com evidence, mesmo que não fosse uma das três ROMs auditadas; (B) a renderização de minimapa em modo VRAM sem arte estática regressa antes do desenho de pinos, pelo que as localizações ROM não eram expostas nessa vista (e projetar diretamente uma coordenada de mapa numa captura de ecrã de câmara é inseguro sem transformação comprovada).
+- T160 IMPLEMENTADO: pins de itens exigem SHA Red/Blue/Green exato; quando há checklist do mundo, item visível vincula obrigatoriamente ordinal, ID e coordenadas a um registo ROM + script da mesma ROM, recusando posições Red num mapa Green. retroarchClient passa a incluir ordinal físico e fonte nas referências restantes da ROM. Em modo VRAM, uma legenda textual apresenta até três posições estáticas certificadas (itens visíveis/ocultos e Pokémon fixos) com contagem completa, sem desenhar fantasmas em pixéis não alinhados; sem provas válidas, mensagem de incerteza explícita.
+- Novos testes sintéticos VM de SHA desconhecido, troca de coordenadas entre ROMs, desfasamento de catálogo, alinhamento VRAM, câmara sem prova e ausência de afirmações de captura/acesso. Bridge 113 ainda PENDENTE; totais de testes estimados ASM 799/799 e full 1436 PASS+1 SKIP/1437; confirmar com saída real antes de registar PASS. Main, preview, RetroArch, ROMs e saves, Antigravity login e backups e outros sistemas protegidos intocados.
+
+
+### T160.1 — 2026-11-01: regressão explícita do ordinal físico no cliente
+- Acrescentado teste de regressão em romVisibleItemCoordinateGuard.test.js para garantir que a publicação dos objetos da ROM ainda sem correspondência manual transporta romObjectOrdinal, itemId e as coordenadas, com fonte SHA_AUDITED_ACTIVE_ROM_ITEM_OBJECT. Sem mudança de produção após T160. As expectativas de certificação da próxima Bridge 113 passam a ASM 800/800 e suite 1437 PASS+1 SKIP de 1438, pendentes de execução.
+
+
+### T161 — 2026-11-01: Bridge 113 falhou em dois casos do teste de VRAM
+- Resultado público da Bridge PSB-20261101-0145-POKEGUIDE-VRAMSAFE-113: FAILED exitCode=1 em https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0145-POKEGUIDE-VRAMSAFE-113.txt ; checkout SHA 95a9b3e3de13e8c2c609c22f05e716f552e93c49 confirmado, sete testes de sintaxe e npm ci PASS. MAP_TESTS: 104, 101 PASS, 2 FAIL, 1 SKIP; o ROM_CERTIFIER e os testes completos NAO foram executados. Falhas: "VRAM caption limits entries but counts every corroborated candidate" e "real VRAM-only rendering branch publishes coordinates as text without fake pins". Limpeza exclusiva TRUE, ambiente restaurado.
+- Diagnostico no fonte da revisao: no primeiro caso, o teste exigia expressao sensivel a maiusculas "/não sobrepostas à VRAM (4)/" quando a implementacao e os outros testes declaram "NÃO sobrepostas à VRAM (4)". No segundo, o teste extrai o ramo que pertence a renderFogMinimap(state) e executa-o numa VM isolada, mas nao disponibilizava coords, variavel local que a funcao real declarou acima do segmento; o ramo usa coords.x e coords.y para a legenda. Sao causas apontadas pelo codigo; nao ha stack completo da assercao no log publico, pelo que a confirmacao final depende da proxima execucao.
+- T161 CORRIGE APENAS tests/romVramFallbackStaticEvidence.test.js: expressao de caixa consistente com a UI real e coords:s.coords no contexto VM. Preserva as verificacoes de nao sobrepor pins em VRAM, 3 ROMs, rejeitar estado obsoleto e texto da interface. Nao modifica producao nem reduz a verificacao dos resultados.
+- Bridge 114: executar primeiro testes VRAM isolados, depois seis modulos de mapa/UI e finalmente certifyAsm626.js com os tres ficheiros ROM originais read-only, esperando ASM 800/800 e full 1437 PASS+1 SKIP de 1438. Numeros pendentes, nunca afirmar PASS antes da confirmacao. Nenhum ficheiro em C:, scripts anexados, GitHub Actions, alteracoes a main/preview, sessoes Antigravity, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs ou saves. Historicos append-only.
+
+
+### T162 — 2026-11-01: Bridge 114 certificada; suporte visual separado para moedas ocultas
+- Bridge 114 PSB-20261101-0205-POKEGUIDE-VRAMREG-114 SUCCEEDED exitCode 0; revisao 399ab176366889be5b9a7dc4d20c81e5dd8e5f17, 6/6 VRAM, mapa 103 PASS+1 SKIP, ASM 800/800, suite completa 1437 PASS+1 SKIP/1438, tres ROMs exatas, 118 ligacoes por ROM, 1126 scripts, 6 coordenadas diferentes, temporarios D: removidos. Relatorio: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0205-POKEGUIDE-VRAMREG-114.txt
+- Nova lacuna documentada: romEventState.decodeHiddenCoins ja interpretava 12 moedas ocultas no map ID 135 a partir de ROM + bits wObtainedHiddenCoinsFlags D6FE, mas a selecao de marcadores do minimapa/mundo e legenda VRAM ignorava romHiddenCoins.
+- T162 implementa retorno de romSha256 no resultado verificado decodeHiddenCoins; so expõe moedas de IDs e coordenadas ROM auditados e flags RAM D6FE confirmados para SHA e mapId exatos, 3 janelas de posicao RAM iguais, timestamp atualizado, tabela/indice sem duplicados, bit booleano e intervalo de valores. Moeda com flag de recolha true nao tem marcador, false mostra simbolo de moeda fantasma; sem prova nao desenha nada. O mesmo seletor e aplicado ao minimapa, mapa ampliado e legenda textual da VRAM; nenhuma conversao pixel VRAM foi presumida e quantidade fisica atribuida nao e anunciada.
+- Adicionados 11 testes de frontend VM sem RetroArch (ROMs red/blue/green, flags, recolha, SHAs, stale, duplicados, inconsistencia, ambos renderizadores e legenda), incluido teste no descodificador da associacao da identidade ROM no output. Certificador ASM inclui modulo novo. Previsto ASM 811/811 e full 1448 PASS+1 SKIP/1449, pendente de Bridge 115. Nada no main, preview, Antigravity, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs ou saves; historicos append-only e sem downloads.
+
+
+### T163 — 2026-11-01: Bridge 115 certificada; moedas ocultas integradas na checklist textual Game Corner
+- Bridge PSB-20261101-0215-POKEGUIDE-HIDDENCOINS-115: SUCCEEDED exitCode 0, commit 7b50169c4a100bbb05cf695a54cf26ccfa1df55d, 11/11 testes novos, 120 PASS + 1 SKIP de integração, ASM 811/811, suite completa 1448 PASS + 1 SKIP /1449, Red/Blue/Green auditadas, 118 ligações por ROM e 6 diferenças de coordenadas. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0215-POKEGUIDE-HIDDENCOINS-115.txt
+- Verificou-se uma lacuna de integração: as 12 moedas ocultas do Game Corner já surgiam em ambas as vistas do mapa e na descrição da VRAM, mas a checklist textual ainda as excluía e não discriminava o bit de recolha de cada evento. Implementação T163 no formatter verdadeiro da campanha: secção separada para os 12 eventos (mapa 135), com índice ROM, coordenadas e estado bit D6FE assinalado/não assinalado. Contagem existente de 1992 objetos/ações estáticos preservada, sem misturar moedas nem declarar recompensa, acessibilidade ou script concluído.
+- Prova de publicação: SHA exato das 3 ROMs, identidade sessão, mapa 135, 3 janelas de posição RAM, timestamp até 15 s, tabela ROM+RAM verificada, 12 índices e coordenadas únicos, valores ROM nominais esperados e correspondência 1:1 de coordenadas, quantia verificada e status com as 12 observações do advisor. Em inconsistência, não publicar secção.
+- Novo tests/romCampaignHiddenCoinsUi.test.js: 5 testes com dados efetivos do descodificador ROM para Red/Blue/Green, flags 0 e 11, coordenadas, stale/mismatch, duplicações/alterações e hash desconhecido. Incluído no ASM alvo. Bridge 116 **PENDENTE**; previsões ASM 816/816, suite completa 1453 PASS+1 SKIP em 1454. Nenhum teste novo executado ainda. Históricos apenas acrescidos; nenhuma alteração main, preview, Antigravity, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves ou ficheiros C:.
+
+
+### T164 — 2026-11-01: Bridge 116 certificada e marcadores ROM dos treinadores com estado do portão de combate
+- Bridge PSB-20261101-0210-POKEGUIDE-COINCHECK-116 SUCCEEDED exitCode 0 na revisao f73aec192b2a57e9a342f5587d32d592f8d2470f; cinco testes da checklist de moedas PASS, 104 de integracao PASS, ASM 816/816 PASS, full 1453 PASS+1 SKIP/1454, Red/Blue/Green: 248 IDs, 226 mapas normais, 118 associacoes de item/Pokemon fixo por ROM, zero contradicoes. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/0e53a1c18a95edfd/PSB-20261101-0210-POKEGUIDE-COINCHECK-116.txt
+- Lacuna verificada: os 334 treinadores fisicos catalogados por ROM aparecem na checklist, mas o minimapa e a carta ampliada desenham apenas sprites RAM observados, sem pontos de referencia do catalogo ROM, e nao distinguem os bits de portao do combate na representacao do mapa. T164 introduz selectVerifiedMinimapTrainerGateMarkers(state) em public/app.js para todos os mapas 0..247 com cabecalho normal e linha de script ROM verificada. Exige SHA exato Red/Blue/Green, identidade, mapa e checklist ROM/script consistentes, 3 janelas de posicao RAM atuais e coerentes, objeto treinador proveniente de ROM_MAP_OBJECT_BYTES com ordinal/posicao/sprite/textId. Se houver prova independente de bit wEventFlags D747, associa gateFlagSet true/false exclusivamente ao portao do combate. Sem bit, gateFlagSet=null; nenhuma variante infere vitoria, NPC presente, acesso ou conclusao.
+- Pontos fantasmas de treinador ⚔️ adicionados ao minimapa e ao mapa ampliado, antes dos sprites RAM reais, e lista de coordenadas ROM na legenda VRAM sem sobreposicao espacial inventada. Codigo de itens, Pokemon fixos, moedas e renderizadores existentes mantido; na ausencia de ponteiro script verificado cada treinador e omitido individualmente, sem adivinhar identidade. Nao se alega que 334 estejam visiveis simultaneamente; numero de locais realmente selecionados e dinamico.
+- Novo tests/romVerifiedTrainerGateMarkers.test.js com 14 testes VM: 3 SHAs, bits closed/open/unknown, ROM desconhecida, transicao de mapa, stale, ponteiros de script, ordinal, identidade, snapshot D747 contraditorio, duplicados, os dois mapas e VRAM. Incluido no certifier ASM. Bridge 117 ainda PENDENTE, previsao ASM 830/830 e full 1467 PASS+1 SKIP de 1468, nao certificados sem execucao.
+- Históricos exclusivamente append-only, sem alterações em main, preview ativo, Antigravity login/perfis/tokens/backups, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves ou C:. Testes headless sem GUI, não ha printscreens a produzir nesta fase.
+
+
+### T165 — 2026-11-01: Bridge 117 certificada; estado D747 exposto na checklist com guardas de RAM atual
+- Fonte certificação: PSB-20261101-0418-POKEGUIDE-TRAINERGATE-117 (SUCCEEDED, exit 0) da revisão c52a0b72b23652c45e290c72b68b8c9bf88936d8; treino 14/14, integração 99/99, ASM 830/830, suite 1467 PASS + 1 SKIP de 1468, nenhuma falha; testes de GUI/emulador real não executados. Log: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0418-POKEGUIDE-TRAINERGATE-117.txt
+- Lacuna: o checklist textual formatCampaignChecklistSection mostrava estados TRAINER_GATE_OPEN/CLOSED e ENCOUNTER_GATE_OPEN/CLOSED como progresso por confirmar devido à tabela de rótulos sem esses códigos, apesar de romWorldChecklist preservar as flags ROM+RAM verificadas.
+- T165: novo verificador verifiedGateLabel com exigência de SHA Red/Blue/Green exato, mapa e script ROM ligados, D747 bit e proveniência coerentes, ator estático ordinal/coordenadas, 3 janelas de posição RAM iguais, leitura <=15 segundos, sessão ligada e guardas de ausência de provas de acesso/conclusão; publica portão aberto/fechado apenas como flag, nunca vitória, presença, acessibilidade, captura ou efeito do script. Sem prova válida mantém progresso por confirmar, sem inventar estado.
+- Novo tests/romCampaignVerifiedGateLabels.test.js com 8 testes: três variantes, flags abertas/fechadas, encontro fixo, leitura antiga, identidade, ponteiros, ator, progressos contraditórios e mapas errados. Incluído no certificador ASM. Bridge 118 PENDENTE; apenas previsão ASM 838/838, suite 1475 PASS + 1 SKIP em 1476 se sem regressões [rever contagem abaixo]. Nenhum teste executado nesta alteração.
+- Correção da previsão: base de Bridge 117 = 830 ASM e 1468 full (1467 PASS, 1 SKIP). Mais 8 casos implicam ASM 838 e full 1476 (1475 PASS + 1 SKIP), não 1477. Mantém-se por certificar.
+- Publicação exclusiva na branch feature/pokeguide-world-action-tracker-20261028; main/preview/Antigravity/TIMI/MAESTRO/BonChat/Codex/RetroArch/ROMs/saves/C: intocados. Sem screenshot de GUI porque testes desta fase são headless. Histórico apenas acrescentado, entradas anteriores preservadas.
+
+
+### T166 — 2026-11-01: Bridge 118 certificada; corrigida a prova D747 dos encontros fixos nas duas vistas do mapa
+- Resultado público PSB-20261101-0430-POKEGUIDE-D747CHECK-118: SUCCEEDED exitCode 0, revisão 3f9d5abde7ea281da61a8fc1f1347214338c1954, 8/8 T165, integração 30/30, ASM 838/838, suite 1475 PASS + 1 SKIP /1476, Red/Blue/Green 118 associações estáticas por ROM, sem contradicões, limpeza exclusiva confirmada; sem GUI nem captura do jogo. Log: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0430-POKEGUIDE-D747CHECK-118.txt
+- Diagnóstico localizado em public/app.js: selectVerifiedMinimapStaticEncounterMarkers produzia eventGateClosedCandidate com base apenas em progress==='ENCOUNTER_GATE_CLOSED_FLAG', sem validar os campos de bit ROM+RAM D747. O estado desconhecido confundia-se com falso. A checklist textual T165 já distinguia a prova, mas o seletor do mapa não.
+- T166 implementada: associação trivalente gateFlagSet true/false/null, gateVerified estrito mediante snapshot RAM verificado, origem ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747, bit válido, progresso coerente e ponteiro ROM; recusa estado incoerente. Preserva SHA exacto Red/Blue/Green, coordenadas e identidade do ator ROM, 3 janelas RAM consistentes, leitura <=15 s. Marcadores ✨🔒 (flag fechada), ✨🔓 (flag aberta) e ✨ (sem prova) nos dois mapas, sem alegar captura ou acesso, e legenda VRAM textual explícita sem sobreposição espacial inventada.
+- Tests/romVerifiedStaticEncounterMarkers.test.js: corrigido caso antigo que inferia gate pelo progresso isolado; acrescentados 8 testes de gate trivalente nas três ROMs, provas inválidas, contradições, dois renderizadores e legenda VRAM. Ficheiro já incluído no certifier ASM. Bridge 119 PENDENTE: previsão apenas, ASM 846/846, suite 1483 PASS + 1 SKIP /1484, não certificada sem execução.
+- Branch isolada feature/pokeguide-world-action-tracker-20261028; main, preview, sessões Antigravity e seus tokens/backups, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves e C: não alterados. Históricos append-only; sem screenshot de GUI por testes headless.
+
+
+### T167 — 2026-11-01: Bridge 119 certificada; projeção robusta da acessibilidade dos itens
+- Bridge PSB-20261101-0435-POKEGUIDE-ENCOUNTER-119 SUCCEEDED exitCode 0 na revisão 4a0a37a9ba1d3e98ec457ade8823ec7d1260b767. 19 testes T166 e 55 integração PASS, ASM 846/846, full 1483 PASS + 1 SKIP /1484, três ROMs auditadas, nenhuma falha. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0435-POKEGUIDE-ENCOUNTER-119.txt
+- Lacuna: retroarchClient.js transferia resultados de acesso por posição na lista sem verificar novamente que índice, X/Y, mapa e ROM correspondiam ao item, podendo apresentar uma rota ou bloqueio do objeto vizinho quando resultados diferissem.
+- T167 reforça a projeção final exigindo itemAccess verified, mapId e SHA idênticos, identidade ROM e memória verificadas, arrays de tamanho coincidente e prova de coordenadas ROM, índice i e X/Y exatos por linha. Dados insuficientes tornam status UNKNOWN, rota null e bloqueio não inferido. AccessibleNow continua sempre null; requisitos manuais não se tornam prova de acesso.
+- Novo tests/romItemAccessProjectionIntegrity.test.js (8 testes) no consumidor de produção com casos positivos, linhas trocadas, coordenadas, SHA, mapas, RAM, listas incompletas e ordinal. Adicionado ao certificador ASM. Bridge 120 PENDENTE; previsão ASM 854/854 e full 1491 PASS + 1 SKIP /1492, não certificado até execução real.
+- Históricos só acrescentados, sem alterar main, preview, Antigravity sessões/tokens/backups, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves ou C:. Testes headless sem GUI nem screenshots.
+
+
+### T168 — 2026-11-01: reparação de teste legado de Strength após falha real da Bridge 120
+- Fonte: PSB-20261101-0442-POKEGUIDE-ITEMPATH-120 (FAILED exit 1), revisão d2457424c25f3ac3f08d8e03ce97ff6fa730d80a, T167 específico 8/8 PASS, integração inicial 45 PASS + 4 SKIP, ASM 854/854 PASS; suite completa 1490 PASS + 1 FAIL + 1 SKIP, 1492 total; temporários exclusivos apagados. Log: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0442-POKEGUIDE-ITEMPATH-120.txt
+- Falha concreta: em tests/romClientCampaignIntegration.test.js o teste 'Strength missing capacity is classified blocked, theoretical push is conditional' executava por vm apenas o bloco a partir de 'const withPath', deixando de fora 'const accessScopeVerified' acrescentado na T167. Resultado ReferenceError, não uma falha demonstrada na execução do Companion.
+- Correção T168: teste agora executa o bloco de produção completo desde a seleção de accessSummary, com fixture verificada de planner, ROM SHA Red, mapId 15, RAM, índices e coordenadas coincidentes. Continua a exigir classificação correta NEEDS_STRENGTH / STRENGTH_SEQUENCE_HYPOTHESIS / NEEDS_SURF e acessibilidade desconhecida; acrescenta verificação de índice trocado para garantir estado UNKNOWN e ausência de bloqueio/rota herdados.
+- Não foram alteradas a lógica de produção nem as expectativas de certificação: ASM 854, full 1492 (1491 PASS + 1 SKIP esperados; ainda não validados). Bridge 121 PENDENTE. Main, preview ativo, Antigravity e sessões/backups, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves, C: intocados. Históricos exclusivamente append-only. Nenhum screenshot real por testes headless.
+
+
+### T169 — 2026-11-01: Bridge 121 certificada; integridade dos sprites observados em RAM e legendas dos treinadores
+- Resultado público PSB-20261101-0448-POKEGUIDE-STRENGTH-121: SUCCEEDED exitCode 0, revisão eb2f4f892a0e1c567ba360418ea2c4fe42029058, testes Strength 31/31, T167 8/8, integração 76 PASS + 4 SKIP, ASM 854/854, full 1491 PASS + 1 SKIP /1492; Red/Blue/Green auditadas; limpos temporários. https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0448-POKEGUIDE-STRENGTH-121.txt
+- Lacuna localizada em public/app.js: getMapEntitySnapshot aceitava state.mapEntities sem exigir ROM SHA/identidade, timestamp atual, prova das janelas repetidas e leitura de sprites RAM; ghosts guardados só por mapId misturavam diferentes variantes de ROM no mesmo mapa. Ambas as vistas chamam esta função para apresentar sprites ativos.
+- Implementação T169: seleção de sprites exigindo sessão conectada, um dos três SHA conhecidos, mapId 0..247, memoryReadStatus verified e overworldSprites true, timestamp >=0 <=15s, 3 janelas RAM coerentes e coordenadas de sprites inteiras; sem prova devolve active/ghosts vazios e limpa histórico. Ghosts passam a ser guardados por ROM SHA + mapId, sem reutilizar dados entre ROMs. Nenhum sprite é fabricado; pins estáticos continuam separados e sujeitos a provas distintas.
+- Renderizadores de treinador passaram a expor gate D747 verdadeiro como ⚔️🔒, falso como ⚔️🔓 e desconhecido como ⚔️ nos dois mapas; vitória, presença e alcance continuam null. Adaptados 2 testes existentes, acrescentados 2 novos testes em romVerifiedTrainerGateMarkers; criada nova suite romLiveMapSnapshotIntegrity.test.js com 9 testes (três ROMs, sessões inválidas, tempo, janelas, sprites inválidos, limpeza de ghosts, isolamento da ROM e dois mapas). Registo novo no ASM certifier.
+- Bridge 122 PENDENTE; previsão ASM 865/865 e suite 1503 total (1502 PASS + 1 SKIP), ainda não executada. Branch isolada feature/pokeguide-world-action-tracker-20261028; históricos append-only, main/preview/Antigravity e sessão/tokens/backups/TIMI/MAESTRO/BonChat/Codex/RetroArch/ROMs/saves/C: intocados. Testes headless sem screenshot visual.
+
+- Revisão preventiva T169.1 antes da Bridge 122: corrigida uma asserção do novo teste de invalidação do histórico, que chamava Array.from ao objeto de retorno em vez de a sua propriedade ghosts. Código de produção T169 mantido. Nenhum teste executado antes da certificação; histórico apenas acrescentado.
+
+ 
+### T169.2 — 2026-11-01: Bridge 122 falhou no teste de histórico após reconexão; corrigida fixture temporal
+- Resultado público PSB-20261101-0455-POKEGUIDE-LIVEMAP-122, estado FAILED exitCode 1, revisão testada 075bd8d24047d174a51940fc5b89b1b143b0e6ca. Sintaxe 4/4, npm ci PASS, T169 específico 8 PASS e 1 FAIL /9, falha Expected 0, actual 1 no teste de invalidação de ghosts; certificação ASM e suite completa não iniciadas, temporários limpos. Log: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0455-POKEGUIDE-LIVEMAP-122.txt
+- Diagnóstico: o teste registava um sprite válido, validava ghost, desconectava, e depois chamava novamente live(state()) com o MESMO sprite válido; esta leitura legítima repovoava o histórico. A asserção seguinte esperava erradamente zero ghosts sem invalidar a nova leitura. Não demonstra erro de produção.
+- Correção estritamente em tests/romLiveMapSnapshotIntegrity.test.js: após desligar, testar primeiro a reconexão válida com zero sprites e exigir zero ghosts antigos; só depois introduzir uma observação RAM nova e confirmar que esta passa legitimamente a criar um ghost quando o sprite desaparece. O código de produção, número de testes e certificador ficam iguais. Nova execução Bridge 123 PENDENTE; previsto ASM 865/865, suite 1502 PASS + 1 SKIP /1503, sem confirmação até execução real.
+- Todos os registos .md apenas por acrescento; main, preview, sessão/tokens/backups Antigravity, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves, C: intocados; sem screenshots em teste headless.
+
+ 
+### T170 — 2026-11-01: Bridge 123 certificada; rejeição de sprites RAM incoerentes no planeador local
+- Bridge PSB-20261101-0505-POKEGUIDE-LIVEMAP-123 SUCCEEDED exitCode 0, revisão 5c1de1268cecb5a6cefdebb32cbcb9574318452d, T169 9/9 e trainer 16/16, integração 104/104, ASM 865/865, full 1502 PASS + 1 SKIP /1503, 0 falhas, temporários limpos. Fonte: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0505-POKEGUIDE-LIVEMAP-123.txt
+- Lacuna detetada em romItemReachability.js: computeReach ignorava silenciosamente atores RAM com coordenadas fora de intervalo; planItemAccess também não validava que mapEntities era array quando spritesVerified true. Isto podia classificar percurso como geometricamente livre apesar de um snapshot de obstáculos corrupto e até lançar exceção com tipos inesperados.
+- Implementação T170: quando spritesVerified é true, exige array e cada sprite com coordenadas inteiras no intervalo -4..255; qualquer erro invalida o planeamento completo com verified false, accessStatus UNKNOWN e accessibleNow null, sem percurso fabricado. Coordenadas offscreen -4..255 são admitidas e só ignoradas para ocupação se efetivamente fora da grelha; quando spritesVerified é false, a lista inválida não é iterada e resultados continuam explicitamente condicionais e sem acesso ao vivo garantido. Não infere execução de Cut/Surf/Strength nem scripts.
+- Adicionados 4 testes a tests/romItemReachability.test.js: listas malformadas, atores inválidos, offscreen válidos e blocos não verificados. Já incluído em certifier ASM. Bridge 124 PENDENTE: previsão ASM 869/869, full 1506 PASS + 1 SKIP /1507, sem execução ainda.
+- Branch feature/pokeguide-world-action-tracker-20261028 apenas; históricos append-only, main/preview/sessões Antigravity/tokens/backups/TIMI/MAESTRO/BonChat/Codex/RetroArch/ROMs/saves/C: não alterados; testes headless sem GUI screenshots.
+
+- Revisão preventiva T170.1 anterior à Bridge 124: o argumento predefinido mapEntities de planItemAccess passa de [] para null, evitando que um parâmetro omitido/undefined com spritesVerified=true seja confundido com uma leitura RAM explicitamente vazia. A guarda T170 rejeita null/undefined. Quando spritesVerified=false mantém-se o fallback interno para [] com estado condicional. Quatro testes anteriores abrangem esta situação; previsão de contagens inalterada, execução pendente.
+
+- Revisão preventiva T170.2: constatado que romItemReachability.test.js não estava listado nos testes ASM dirigidos em scripts/certifyAsm626.js. Adicionado explicitamente esse ficheiro, sem duplicação. Os 4 testes T170 passam agora a integrar a certificação específica além da suite global. A contagem ASM antes incluía outros testes do mesmo ficheiro apenas na suite global: expectativa ASM deve refletir TODOS os testes de romItemReachability.test.js, não só +4. A contagem exata só será aceite após Bridge 124; qualquer previsão anterior de ASM 869/869 fica revogada. Histórico append-only, sem execução ainda.
+
+ 
+### T171 — 2026-11-01: Bridge 124 certificada; validação do tile inicial e modo de deslocação
+- Bridge PSB-20261101-0510-POKEGUIDE-SPRITEGUARD-124 SUCCEEDED (0) na revisão 3e3f0518b19a6ef6134072bf87757a20cff8c7cc: 13/13 testes específicos, integração 73 PASS + 4 SKIP, ASM 878/878, full 1506 PASS + 1 SKIP /1507, Red/Blue/Green certificados pela suite, 0 falhas e limpeza exclusiva confirmada. https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0510-POKEGUIDE-SPRITEGUARD-124.txt
+- Lacuna: planItemAccess verificava posição RAM nos limites, mas não validava se o tile inicial é transitável em terra nem se o modeByte=2 (Surf) corresponde a água (0x14 ou 0x48). Um início incoerente podia produzir hipótese de rota a partir de tile inválido.
+- Implementação T171 em romItemReachability.js: após provas de ROM/RAM/sprites, exige para modo normal/bicicleta tile de terreno passável, não aquático e não árvore Cut ($3D no tileset 0); para Surf exige tile aquático reconhecido. Caso contrário planItemAccess retorna verified=false e status UNKNOWN com accessibleNow null; não certifica movimento real.
+- Acrescentados 4 testes a romItemReachability.test.js: origem de terra bloqueada, origem água sem Surf, Surf em terra e origem aquática coerente em Surf, mantendo todas as rotas condicionais. Ficheiro já registado na certificação ASM. Bridge 125 PENDENTE, previsão ASM 882/882 e suite 1510 PASS + 1 SKIP /1511. Contagens não certificadas antes da execução.
+- Branch de desenvolvimento apenas; históricos Markdown exclusivamente por acrescento, main/preview/Antigravity sessões/tokens/backups/TIMI/MAESTRO/BonChat/Codex/RetroArch/ROMs/saves/C: intocados. Testes headless, sem screenshots da aplicação.
+
+ 
+### T172 — 2026-11-01: Bridge 125 certificada; mesma validação ROM/RAM nos itens e em todas as saídas de mapa
+- PSB-20261101-0520-POKEGUIDE-STARTTILE-125 SUCCEEDED exitCode 0, revisão 169fd45d699d391b73406c46d96f3f6f75e5f8c7, T171 17/17, integração 83 PASS + 4 SKIP, ASM 882/882, full 1510 PASS + 1 SKIP /1511, 0 falhas, temporários exclusivos limpos. https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0520-POKEGUIDE-STARTTILE-125.txt
+- Lacuna objetiva: romLocalExitAccess.js usava diretamente computeReach() para saídas warp e ligações outdoor, sem aplicar os novos controlos de origem RAM/terreno Surf e de sprites incoerentes do planeador de itens, podendo devolver um percurso geométrico a partir de um estado contraditório. Estas saídas suportam os 813 warps e as ligações exteriores nas três ROMs.
+- T172: a função checkLocalPathSnapshot() é partilhada por planItemAccess() e localExitAccess(). Exige ponto de partida coerente com tipo de tile ROM e modo 0/1/2, rejeita atores RAM malformados quando spritesVerified true, permite offscreen -4..255 após validação e responde verified=false/exits=[] em incoerências. Rotas permanecem hipóteses e accessibleNow null. Não afirma travessia real, Cut/Surf/Strength acionados ou scripts resolvidos.
+- Acrescentados cinco testes a romLocalExitAccess.test.js (origem terra bloqueada, Surf em terra, início em água Surf condicional, sprites inválidos, offscreen válidos). Registado esse ficheiro inteiro na certificação ASM. Bridge 126 PENDENTE: estimativa ASM 901/901 (882 + 19) e suite 1515 PASS + 1 SKIP /1516; só execução real comprovará resultados.
+- Históricos apenas por acrescento; branch isolada, main/preview/sessão/tokens/backups Antigravity/TIMI/MAESTRO/BonChat/Codex/RetroArch/ROMs/saves/C: intocados; testes headless sem GUI nem screenshots.
+
+ 
+### T173 — 2026-11-01: Bridge 126 certificada; origem ROM/RAM e tile de chegada do planeamento multimapa
+- PSB-20261101-0530-POKEGUIDE-EXITGUARD-126 SUCCEEDED (0), revisão 1bf0ef8f318e57346c98194590ca1677c00f7604. Itens 17/17, saídas 19/19, integração 99 PASS/3 SKIP, ASM 901/901, full 1515 PASS/1 SKIP de 1516, 0 falhas, limpeza exclusiva. Log: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0530-POKEGUIDE-EXITGUARD-126.txt
+- Diagnóstico: romCrossMapItemRoute.js calculava desvios via múltiplos mapas com computeReach diretamente, sem chamar a guarda compartilhada T172 na origem nem nos pontos de entrada após um warp. Podia imaginar caminhos desde um tile RAM bloqueado, modo Surf incoerente, sprites inválidos ou landing remoto de água/terreno bloqueado.
+- T173 aplica checkLocalPathSnapshot ao mapa inicial, recusando imediatamente estados contraditórios; revalida a geometria de cada estado de entrada entre mapas antes de nova BFS. As chegadas após warp/borda são hipóteses de início em terra, sem fabricar Surf/ativação de HM no mapa remoto. Se não satisfizerem prova terrestre, são ignoradas (não confundidas com prova de bloqueio). Sem prova, accessibleNow null.
+- Adicionados 7 testes à suite romCrossMapItemRoute.test.js (origem bloqueada, modo água/terra, origem Surf coerente, sprites corruptos, lista ausente, chegada bloqueada/água e offscreen válido). Incluída suite inteira no ASM. Bridge 127 PENDENTE; estimativa ASM 921/921 (=901+20 testes do ficheiro), full 1522 PASS + 1 SKIP de 1523. Nenhuma execução ou 100% de gameplay afirmados.
+- Os dois históricos permanecem append-only; branch feature/pokeguide-world-action-tracker-20261028 isolada; main, preview, Antigravity login/sessões/tokens/backups, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves e C: intocados. Testes headless, sem interações GUI.
+
+ 
+### T174 — 2026-11-01: Bridge 127 certificada; Strength condicionado ao modo RAM e sprites offscreen
+- Bridge PSB-20261101-0540-POKEGUIDE-MULTIMAP-127 SUCCEEDED exitCode 0, revisão c9ff8f6f51ebe29d135c5d8430f4de512832bb05. Multimapa 20/20, itens 17/17, saídas 19/19, integração 121/121, ASM 921/921, total 1522 PASS + 1 SKIP /1523, 0 falhas e limpeza isolada confirmada. Log: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0540-POKEGUIDE-MULTIMAP-127.txt
+- Falha detetada: romStrengthPushPlanner planeava empurrões sem receber o modeByte validado em RAM, podendo reportar uma sequência terrestre teórica com o jogador em Surf ou sem modo confirmado. Além disso rejeitava sprites offscreen válidos na faixa -4..255, perdendo hipóteses legítimas. Cache no retroarchClient.js não incluía o modo.
+- Implementação: partilha checkLocalPathSnapshot para validar origem terrestre, sprites RAM e modo 0/1/2; recusa modo desconhecido ou Surf e mantém modo 0/1 apenas como hipóteses, nunca execução provada. Sprites válidos offscreen são ignorados no cálculo de ocupação local e coordenadas malformadas rejeitadas. O cliente passa modeWindow verificado ao planner e inclui modeByte na chave de cache, evitando reutilizar planos depois de mudar modo.
+- Acrescentados 6 testes em romStrengthPushPlanner.test.js (modo desconhecido, Surf, modo bicicleta condicional, offscreen válido, sprite inválido e contrato cliente+cache). Suite com 14 testes registada pela primeira vez no certificador ASM. Bridge 128 PENDENTE: previsão ASM 935/935, total 1528 PASS + 1 SKIP /1529; valores por confirmar na execução real.
+- Históricos append-only. Branch apenas feature/pokeguide-world-action-tracker-20261028; main/preview/Antigravity sessão-tokens-backups/TIMI-MAESTRO-BonChat-Codex/RetroArch/ROMs/saves/C: não modificados. Testes headless sem screenshots.
+
+ 
+### T174.1 — 2026-11-01: Bridge 128 falhou devido a procura incorreta do teste, não ao cálculo Strength
+- PSB-20261101-0600-POKEGUIDE-STRENGTHMODE-128 FAILED exitCode 1 na revisão 39504200ea5a53ce311cab979f098fe1b6221ec2. Checkout exato, 7 testes de sintaxe e npm ci PASS; testes Strength 13 PASS e 1 FAIL /14, exclusivamente no teste do contrato client/cache; integração e certificação ASM/full não executadas. Log público: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0600-POKEGUIDE-STRENGTHMODE-128.txt
+- Causa provada por comparação do fonte: o teste procurava a cadeia "let strength=planStrengthPushes({" mas retroarchClient.js declara primeiro "let strength=this._strengthPlanCache.get(strengthKey);" e depois invoca "strength=planStrengthPushes({". Por isso indexOf devolvia -1 e assert.ok falhava, embora o modo RAM esteja presente na cache e na chamada do planeador.
+- Correção T174.1 somente em tests/romStrengthPushPlanner.test.js: procurar a chamada real "strength=planStrengthPushes({" sem a palavra de declaração inexistente; todas as asserções de escopo e modeByte mantidas. Nenhum ficheiro de produção alterado. Bridge 129 PENDENTE: contagens previstas ASM 935/935, full 1528 PASS + 1 SKIP /1529, sem comprovação até nova execução.
+- Históricos anteriores preservados integralmente (append-only); branch feature/pokeguide-world-action-tracker-20261028, sem alterações em main/preview/Antigravity login-sessões-tokens-backups/TIMI/MAESTRO/BonChat/Codex/RetroArch/ROMs/saves/C:. Teste headless sem screenshot UI.
+
+ 
+### T174.2 — 2026-11-01: Bridge 129 falhou na integração; preservar erro completo antes de corrigir
+- PSB-20261101-0610-POKEGUIDE-STRENGTHFIX-129 FAILED exitCode 1 na revisão exata 1bef657759b2d6b13eddbdaa4a298d4f43d65ce1. Checkout, 7 verificações de sintaxe, npm ci e testes Strength 14/14 PASS.
+- Em NAVIGATION_INTEGRATION (7 ficheiros): # tests 115, # pass 114, # fail 1, # skipped 0. O script só captou a cauda de 160 linhas de TAP e NÃO publicou o bloco 'not ok', a mensagem nem a stack da falha; todos os testes exibidos na cauda (#91–#115) passaram. Não há ainda evidência suficiente para atribuir o erro à aplicação ou a teste específico. Certificador ASM e full suite NÃO executados. Temporários exclusivos limpos.
+- Evidência: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0610-POKEGUIDE-STRENGTHFIX-129.txt
+- Próxima Bridge 130: executar integração com captura integral temporária isolada em D:, extrair explicitamente todos os blocos TAP 'not ok' com os respetivos detalhes e resumo, sem alterar código nem afirmar sucesso. Caso a integração passe, prosseguir certificador da revisão. Código T174.1 mantido; não fazer correções às cegas. Históricos preservados integralmente (append-only).
+- Branch main/preview/sessões/tokens/backups Antigravity/TIMI/MAESTRO/BonChat/Codex/RetroArch/ROMs/saves/C: intocados; sem GUI ou screenshots.
+
+ 
+### T174.3 — 2026-11-01: causa da falha da Bridge 130 identificada e teste de VM atualizado
+- Bridge PSB-20261101-0620-POKEGUIDE-TAPDIAG-130 FAILED exitCode 1 na revisão d8b0a1055813b6802c3b4608a42796542dbef5a1: 14/14 Strength PASS, integração 114 PASS e 1 FAIL /115, sem ASM ou suite completa. Ficheiro e linha: tests/romClientCampaignIntegration.test.js:294, teste 'Strength route requires matching variant SHA; changes to terrain fingerprints invalidate memoization'. Error: ReferenceError: modeWindow is not defined (evalmachine:12:7). Bloco TAP completo e stack publicados: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0620-POKEGUIDE-TAPDIAG-130.txt
+- Causa provada: o teste extrai e executa uma secção real de retroarchClient.js com vm.runInNewContext e, após T174, essa secção lê modeWindow. A assinatura antiga da função de teste não recebia modeWindow, produzindo ReferenceError apenas no harness isolado, não numa execução real da aplicação.
+- T174.3: atualização apenas de tests/romClientCampaignIntegration.test.js: adicionar modeWindow à assinatura do VM e à chamada com estado RAM {verified:true,modeByte:currentModeByte}. Ampliada a asserção do mesmo teste, sem aumentar o número de casos: mudar 0->1 invalida cache e força recomputação, verificando a sequência [0,0,1]; invalidar variante ROM continua a impedir execução adicional. Código do companion/planner/produção mantido intacto.
+- Próxima Bridge 131 PENDENTE: expected revision a determinar após publicação, 14 testes Strength, 31 de integração cliente (sem outras alterações), integração 115/115, certificação ASM 935/935 e full 1528 PASS + 1 SKIP /1529 previstas; números só válidos após execução.
+- Ambos os históricos append-only. Branch isolada; main, preview, Antigravity login/sessões/tokens/backups, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves, C: intocados. Nenhuma manipulação de UI/headless screenshots.
+
+ 
+### T175 — 2026-11-01: Bridge 131 certificada; cache de desvios multimapa vinculada às provas exteriores da ROM
+- PSB-20261101-0630-POKEGUIDE-STRENGTH-131 SUCCEEDED exitCode 0 na revisão 3fcb9821b0856e5a974a9125525ebbd573142ae9. Strength 14/14, cliente 31/31, integração 115/115, ASM 935/935, total 1528 PASS + 1 SKIP /1529, Red/Blue/Green auditadas, zero falhas; exclusivos temporários limpos. https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0630-POKEGUIDE-STRENGTH-131.txt
+- Lacuna comprovada no fonte retroarchClient.js: a chave _crossMapRouteKey incluía apenas o booleano romOutdoorAlignment.verified, mas não a prova adicional romOutdoorReferenceEvidence, o conjunto real de ligações do romWarpGraph.outdoorConnections nem os offsets e descritores do alinhamento. Assim, se mudassem as provas ou os dados enquanto ROM/mapa/posição/sprites se mantinham, um desvio geométrico multimapa anterior podia ser reutilizado.
+- T175 em retroarchClient.js: construir outdoorRouteProof exigindo ROM SHA idêntico, 78 ligações recíprocas, índice de referência validado, alinhamento de ponteiros e 78 conexões validadas. Chave inclui booleano e fingerprint do conjunto de arestas e ligações/offsets. Sem todas estas provas, chamar findCrossMapItemPaths com outdoorAlignment:null, conservando apenas candidatos estáticos pelos warps da ROM. Não declarar atravessamento real.
+- Novo teste de contrato executa via VM o bloco de cache do cliente e comprova que remover/restaurar a prova ROM, alterar um offset e invalidar outdoorConnections forçam recomputação; idêntica prova não recalcula. Suite cliente passa de 31 para 32 testes. Bridge 132 PENDENTE; previsão ASM permanece 935, full 1530 /1529 PASS + 1 SKIP (suite cliente não consta do subconjunto ASM, já consta da completa). A verificação real corrigirá qualquer divergência de contagem.
+- Históricos integralmente preservados por acrescento. Branch feature apenas; main, preview, Antigravity login/sessões/tokens/backups, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves e C: intocados; testes headless, não screenshots GUI.
+
+ 
+### T176 — 2026-11-01: Bridge 132 aprovada; evitar reutilização de rotas remotas quando mudam warps ROM
+- PSB-20261101-0640-POKEGUIDE-OUTDOORCACHE-132 SUCCEEDED exitCode 0, revisão 71fd6e970ff9cc66722fb741d543fcc8e04ab816. Cliente 32/32, multimapa 20/20, integração 0 falhas, ASM 935/935, suite 1529 PASS + 1 SKIP /1530, três perfis ROM validados, limpeza exclusiva confirmada. Log: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0640-POKEGUIDE-OUTDOORCACHE-132.txt
+- Lacuna: as duas chaves de cache (desvio de itens locais por outros mapas e itens/coins com flags globais) não distinguiam mudanças nos warps estáticos verificados quando ROM, mapa, posição, capacidades e sprites permaneciam iguais. No cache de flags remotas, outdoorAlignment seguia para a pesquisa mesmo quando romOutdoorReferenceEvidence.verified ficava false.
+- T176: ambas as chaves incluem agora um fingerprint conservador dos campos de cada warp estático usados pela pesquisa (estado, mapas, índices, tiles de origem/chegada) e os metadados do grafo ROM. Cache remoto inclui também prova e fingerprint de arestas exteriores e offsets/alinhamentos. Sem prova completa de 78 ligações e respetiva referência, o planeador remoto recebe outdoorAlignment:null, ainda podendo estudar warps estáticos. O estado accessibleNow continua null e nenhuma passagem em jogo é afirmada.
+- Dois testes novos em romClientCampaignIntegration.test.js usam execução VM do bloco real de cache: o primeiro muda landing/status de um warp e exige recomputação; o segundo muda landing, prova exterior, offset e grafo exterior do planeador remoto e exige nova pesquisa/fallback. Suite cliente passa de 32 a 34 casos. Bridge 133 PENDENTE: previsão ASM 935/935, full 1531 PASS + 1 SKIP /1532. Contagens por confirmar em execução real.
+- Históricos preservados append-only; main/preview/Antigravity login-sessões-tokens-backups/TIMI/MAESTRO/BonChat/Codex/RetroArch/ROMs/saves/C: intocados. Branch feature apenas; testes headless sem interação GUI/screenshot.
+
+ 
+### T177 — 2026-11-01: Bridge 133 certificada; rotas multimapa com LAST_MAP do mapa RAM atual
+- PSB-20261101-0525-POKEGUIDE-WARPCACHE-133 SUCCEEDED exitCode 0 na revisão 275336588e0593d5323d1cc1cf9a17b60b947895: cliente 34/34, navegação 0 falhas, ASM 935/935, suite 1531 PASS + 1 SKIP /1532. Log: https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0525-POKEGUIDE-WARPCACHE-133.txt
+- Lacuna: 251 entradas ROM LAST_MAP=255 excluídas de rotas multimapa, mesmo na zona inicial, apesar de annotateLastMap já confirmar o destino por duas leituras D365 e tabela ROM.
+- T177: romCrossMapItemRoute aceita lastMapGuide opcional e considera SOMENTE no primeiro estado/origem vivo as saídas LAST_MAP_RAM_HYPOTHESIS, exigindo SHA/mapa, D365 sequencial, índices e coordenadas de warp ROM coerentes. Não herda D365 após visitar outros mapas hipotéticos. A chegada tem de ser tile terrestre ROM válido. NUNCA prova travessia real nem recolha: accessibleNow é null.
+- romGlobalFlagItemRoutes encaminha a evidência, e retroarchClient inclui fingerprint de D365 em ambas as caches (itens locais e flags globais) para invalidar pesquisas quando o último mapa muda. Sem leituras adicionais ou interação com o emulador.
+- Adicionados 5 testes multimapa e 2 testes client/VM; previstos 25 testes multimapa, 36 cliente, ASM 940, full 1539 (1538 PASS + 1 SKIP). Bridge 134 PENDENTE, números não certificados.
+- Históricos append-only; branch feature isolada; main, preview, Antigravity login/sessões/tokens/backups, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves e C: intocados. Testes headless, sem screenshots GUI.
+
+ 
+### T178 — 2026-11-01: Bridge 134 PASS; corroborar pouso LAST_MAP com o grafo ROM e pesquisar flags remotas sem hops estáticos
+- PSB-20261101-0540-POKEGUIDE-LASTMAP-134 SUCCEEDED exitCode 0 na revisão 0a3f1369f6b2d30d89d74f2c3f61bbf0854814f9. D365 3/3, multimapa 25/25, cliente 36/36, integração 0 falhas, ASM 940/940, full 1538 PASS + 1 SKIP /1539, três variantes ROM auditadas, temporários exclusivos limpos. Log https://raw.githubusercontent.com/ApexScorpio/lpx-powershell-runtime/runtime/runtime/3810d4cf51967fa1/PSB-20261101-0540-POKEGUIDE-LASTMAP-134.txt
+- Lacuna 1: a T177 corroborava origem D365 e existência do mapa destino mas não voltava a confirmar que as coordenadas e o índice de pouso reportados no guia de LAST_MAP coincidiam com a entrada do warp no mapa de destino auditado. Uma coordenada adulterada, embora caminhável e dentro da grelha, poderia originar um desvio hipotético sem correspondência ROM.
+- Correção: romCrossMapItemRoute exige agora exatamente uma entrada no grafo das 813 warps para o par (mapId de destino, warpIndex), e igualdade exata de x/y. Índice ausente, duplicado ou coordenadas inconsistentes são recusados; sem conferir pouso não há hipótese de rota. Não reivindica travessia/colheita comprovadas.
+- Lacuna 2: romGlobalFlagItemRoutes excluía do motor itens remotos com mapHopCount:null, mesmo havendo LAST_MAP do mapa atual resolvido e coerente em D365, apesar de a seleção de objetivos preservar esses itens. Agora só na presença de prova do guia para a ROM/mapa atuais permite pesquisa multimapa adicional, sem alterar staticRouteKnown=false nem mapHopCount=null. O motor confirma independentemente o pouso ROM. Sem D365, mantém NO_STATIC_MAP_ROUTE; eventuais caminhos são geométricos condicionais com accessibleNow=null.
+- Novos 2 testes multimapa e 3 testes de flags remotas com cenários adulterados e D365 válido/inválido. Esperado: multimapa 27, flags remotas 14, ASM 942, full 1544 (1543 PASS + 1 SKIP), dependente de Bridge 135. Históricos append-only, sem eliminar registos.
+- Apenas branch feature/pokeguide-world-action-tracker-20261028; main, preview, perfis e backups Antigravity, TIMI/MAESTRO/BonChat/Codex, RetroArch, ROMs/saves e C: intocados. Testes headless sem screenshots GUI.
+
+### T179 — 2026-11-01: interpretação condicionada dos oito despachos especiais de texto
+- Verificadas contra o codigo fonte fixado de pret/pokered (commit 171e2c204f9c1ff8e577ca387a4bbb009e130843) as oito rotinas do despachante em home/text_script.asm: enfermeira, mart, PC Bill, PC itens, PC centro, prémios, clube cabo e maquina de venda.
+- Implementado romSpecialTextDispatchSemantics.js com vinculacao exata do opcode fisico na ROM, comando ja auditado e handler simbolico do desmontado; para mart, os bytes da lista, comprimento, limite do banco e terminador sao comparados com o inventario fisico independente antes de divulgar IDs.
+- Integracao no auditWorldScriptReferences: cada objeto com comando SCRIPT_* pode passar a apresentar specialDispatchReference e o resumo calcula specialDispatchReferences / specialDispatchHandlersIdentified por ROM. Nao certifica que o servico esteja disponivel, compras, curas, interacoes ou consequencias.
+- Novo tests/romSpecialTextDispatchSemantics.test.js: 9/9 testes sinteticos executados localmente em Node.js 22.16.0, abrangendo oito comandos (mart testado com inventario) e entradas adulteradas. Teste adicionado a scripts/certifyAsm626.js, mas a certificacao com as tres ROMs reais ainda NAO foi executada nesta entrega.
+- Limites rigorosos: sem alteracao de main/preview, ROMs, saves, RetroArch, Antigravity, TIMI, MAESTRO, BonChat ou Codex. Nenhum acesso ao Windows ou C: do utilizador. Historicos exclusivamente por acrescento. A cobertura semantica de efeitos de 1126 referencias mantem-se NAO CERTIFICADA. Proxima prova: Bridge 135 com ROMs reais, comparacao de contagens por variante, regressao e screenshot GUI apenas com acesso real a interface.
+
+
+### T181 - 2026-11-01 - Motor de semantica de scripts, implementacao nesta copia isolada
+- Leitura dos dois historicos e dos modulos existentes de ASM, eventos, bancos, advisor e checklist. T178/T179 presentes; pesquisa literal T180 nos docs nao encontrou entrada nesta copia, embora romWorldInteractionProgramIR.js exista. Nao se repetiram investigacoes de catalogacao.
+- Implementado romScriptSemantics.js: execucao abstrata desde TX_ASM real, registos, memoria simbolica, BIT/SET/RES, comparacoes e ramos, CALL/RET com pilha e bancos pelo decoder existente; interrupcao em opcodes/bancos/indirecoes desconhecidos. Condicoes e offsets fisicos acompanham cada escrita de flags. Cada handler fisico analisado uma vez por ROM, propagado a todas as referencias.
+- Integrado no atlas, IR, advisor, checklist e renderer existente. Previsao condicional nunca e conclusao observada; snapshot de bits permanece prova separada. Certificador ganhou as chaves ROM_RED/BLUE/GREEN_FORMALLY_PROVEN_SCRIPT_EFFECTS e exemplos com offsets/condicoes/endereco/valor.
+- Primeira verificacao executada: node --test tests/romScriptSemantics.test.js tests/romWorldInteractionProgramIR.test.js tests/romWorldChecklist.test.js tests/romWorldStateAdvisor.test.js tests/romWorldScriptReferences.test.js tests/worldAdvisorPanel.test.js: 102 testes, 99 PASS, 3 SKIP por ROM original ausente, 0 falhas. node --check motor e app.js: exit 0.
+- Nao existem ficheiros .gb/.zip nesta copia. Certificador original escreve fora do workspace e procura ROMs externas: nao executado pelas restricoes explicitas. Nenhuma contagem real das tres ROMs afirmada. Proxima etapa: regressao completa e registo de resultados. Sem acesso a preview/sessoes/ROMs/saves nem screenshots de aplicativos protegidos.
+
+### T181.1 - Verificacao final e limites efetivos
+- Ampliado o motor com loads de registos, INC/DEC de bytes/pares, logica AND/OR/XOR/CP, PUSH/POP e preservacao de Z/C em AF, CALL/RET condicionais, escritas WRAM e deduplicacao global de transicoes fisicas partilhadas. Mascaras identidade com writeback nao contam. WRAM generica e interpretada sem lhe inventar significado; so dominios de flags existentes e CURRENT_MAP_D35E entram no contador de gameplay. Pilha valida nao aliasante e ausencia de mutacao externa durante o caminho sao precondicoes explicitas.
+- Integracao efetiva testada em mapas 15, 96 e 227 com bytes sinteticos: mesmo handler partilhado, atlas->checklist->advisor, SHA divergente recusado; renderer real executado em VM, mostra endereco/bit e separa RAM atual de previsao. Condicoes podem corresponder/nao corresponder/ser desconhecidas na snapshot. Guarda UI exige SHA conhecido igual ao da sessao, conselho e checklist.
+- Comando dirigido final: node --test --test-reporter=tap tests/romScriptSemantics.test.js tests/romWorldInteractionProgramIR.test.js tests/romWorldChecklist.test.js tests/romWorldStateAdvisor.test.js tests/romWorldScriptReferences.test.js tests/worldAdvisorPanel.test.js. Resultado real: 109 total, 106 PASS, 3 SKIP (ROM original ausente), 0 FAIL, exit 0.
+- Suite completa: node --test --test-reporter=tap, executada com TEMP/TMP/TMPDIR/NODE_COMPILE_CACHE exclusivos dentro do repositorio e removidos ao terminar. Ultima execucao completa: 1569 total, 1378 PASS, 190 SKIP, 1 FAIL, exit 1. Causa reproduzida isoladamente com node --test tests/romLocalPreviewServer.test.js: Cannot find module ws, tests/romLocalPreviewServer.test.js:5. Dependencia existente em package.json, nao instalada nesta copia. Nao se alteraram testes anteriores para esconder esta falha nem se instalaram dependencias. A guarda final de SHA foi depois revalidada pelo comando dirigido acima.
+- node --check nos sete ficheiros de producao alterados e git diff --check passaram; avisos apenas de conversao LF/CRLF nos historicos. Temporarios exclusivos removidos.
+- INCOMPLETO: nao ha execucao das ROMs reais Red/Blue/Green nem exemplos reais certificados nesta copia; valores dos tres contadores continuam por medir. O certificador existente escreve historico e temporarios fora do workspace, pelo que nao foi lancado. Nao foram procuradas ROMs externas. Os exemplos dos testes sao explicitamente sinteticos. A analise continua parcial: opcodes nao suportados, saltos indiretos, bank switching, ciclos, condicoes envolventes dos scripts dos mapas, interacoes de servicos e eventos do emulador continuam desconhecidos. Nenhuma conclusao de gameplay/acessibilidade ou 100% afirmada.
+- Sem screenshot/UI real: nao se iniciou nem alterou preview ou aplicativos protegidos; renderer validado somente por VM. Nenhuma alteracao a sessoes, autenticacao, ROMs, saves, main, configuracao global ou instalacoes. Historicos exclusivamente acrescentados.
+
+### T181.2 - 2026-11-01 - Recuperacao: causa reproduzida nas tres ROMs
+- Inspecao real via readRom/inspectRomBuffer e auditWorldScriptReferences: nas tres variantes, atlas bruto tem verified=true, 516 handlers e 2 efeitos de gameplay; perfil publicado omite scriptSemantics. Causa: projecao explicita de campos em romVariantRegistry.js descartava o resultado calculado em romWorldScriptReferences.js. Assercao do certificador preservada.
+- Corrigida a projecao do perfil para preservar scriptSemantics e sua proveniencia SHA. Certificador aceita caminhos opcionais de historico/temporarios para executar dentro da copia isolada; valores predefinidos preservados. Nenhuma ROM original escrita.
+
+### T181.3 - Regressao real detetada e corrigida
+- Primeira certificacao apos corrigir perfil: Red/Blue/Green passaram as validacoes ROM, cada uma com 2 efeitos. Testes dirigidos: 3 falhas reais em romWorldScriptReferences.test.js:75, uma por ROM. Causa: checklist promovia qualquer escrita parcial WRAM a scriptEffectSemanticsVerified=true, contrariando o contrato existente de semantica integral nao certificada. Mantido esse campo false e acrescentado scriptConditionalTransitionsProven separado, restrito a efeitos de gameplay demonstrados. Expectativas anteriores intactas.
+- Adicionada regressao nas tres ROMs comparando modelo publicado com auditoria independente e SHA, efeitos positivos e trace. Assercao original de certificacao mantida e reforcada para exigir efeitos substantivos derivados da ROM.
+- Primeira tentativa de redirecionar temporarios alterou tambem a resolucao do atlas historico, que dependia de ROOT. Corrigida separacao: atlas original apenas lido do caminho preexistente, temporarios e logs nesta copia. Nenhum ficheiro historico externo escrito.
+
+### T181.4 - 2026-11-01 - Certificacao REAL concluida: PASSED
+- Execucao PSB-20261101-1424-POKEGUIDE-SEMANTICA-RECOVERY-001 nesta mesma copia preservada. scripts/certifyAsm626.js terminou exit 0, RUN_VALIDATED=TRUE, RESULT=PASSED; temporarios exclusivos limpos. Log append-only local: certification-t181.log; inclui tentativas falhadas anteriores, sem as apagar.
+- Red SHA 5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b; Blue SHA 2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d; Green SHA aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db. Cada ROM: 516 handlers fisicos interpretados parcialmente, 2 transicoes de gameplay distintas comprovadas sob precondicoes. Nenhum contador fixo inserido. 516 nao significa execucoes nem handlers integralmente entendidos.
+- Prova 1 em cada ROM: handler TX_ASM 0x1CAB8 (banco 7 CPU 0x4AB8), bytes 08 21 BF D7 CB 46 CB C6. Caminho 0x1CAB9 LD HL,D7BF -> 0x1CABC BIT 0,[HL] -> 0x1CABE SET 0,[HL]. Consequencia D7BF := D7BF OR 1, bit fisico de evento 960; outros bits preservados. Referencia real mapa 12 NPC ordinal 1. Nao depende de valor inicial; se bit ja estava set, nao demonstra nova mudanca observada.
+- Prova 2 em cada ROM: handler TX_ASM 0x514A4 (banco 20 CPU 0x54A4), bytes 08 21 F0 D7 CB 8E. Caminho 0x514A5 LD HL,D7F0 -> 0x514A8 RES 1,[HL]. Consequencia D7F0 := D7F0 AND FD, bit fisico de evento 1353; outros bits preservados. Referencia real mapa 35 TRAINER ordinal 1. Se ja estava clear, nao demonstra nova mudanca observada.
+- Condicoes de ambas as provas: handler efetivamente invocado desde o TX_ASM autenticado, pilha valida sem alias e ausencia de mutacao externa durante o prefixo. Invocacao real, condicoes envolventes do mapa e conclusao continuam UNKNOWN. Condicoes internas destes dois prefixos: nenhuma ramificacao. Restantes caminhos preservam predicados desconhecidos e param em opcodes/indirecoes/bancos nao resolvidos; nao se afirmou cobertura 100%.
+- semantic-proof-t181.json guarda SHA, offsets, bytes, traces, precondicoes, referencias e propagacao real. Nas tres ROMs, mapas 12 e 35: checklist tem 1 efeito de gameplay cada, advisor apresenta 1 efeito condicional cada, completedNow=null e scriptEffectSemanticsVerified=false. Integracao generica por referencia/SHA existente, sem excecoes por mapa. Primeiro calculo diagnostico do contador do advisor procurava gameplayStateTransitionProven no envelope em vez de predictedEffects; corrigida a leitura e confirmada com assert positivo, sem alteracao da producao.
+- Certificacao dirigida ASM/UI: 966 testes, 966 PASS, 0 FAIL, 0 SKIP. Suite completa com ROMs reais: 1575 testes, 1574 PASS, 0 FAIL, 1 SKIP (Green p1 opcional distinta, nao fornecida). Arquivo de tres perfis validado. git diff --check exit 0; avisos apenas LF/CRLF nos historicos.
+- Sem interface/emulador iniciado, screenshots ou prova visual; verificacao desta correcao de dados feita por valores runtime, bytes ROM e testes. Nao houve prova de execucao de gameplay ou de transicoes RAM ao vivo. Originais apenas lidos; nenhum acesso a Antigravity, autenticacao, producao, RetroArch ou saves. Sem instalacoes ou escritas C:. Historicos exclusivamente acrescentados.
+
+### PSB-20261101-1437-POKEGUIDE-T181-PUBLISH-FIX-001 — publicacao da implementacao T181
+
+- Codigo de producao recuperado do job PSB-20261101-1413-POKEGUIDE-SEMANTICA-GLOBAL-001.
+- Certificacao real concluida no job PSB-20261101-1424-POKEGUIDE-SEMANTICA-RECOVERY-001.
+- Red: 2 efeitos semanticos estaticos formalmente contabilizados.
+- Blue: 2 efeitos semanticos estaticos formalmente contabilizados.
+- Green International: 2 efeitos semanticos estaticos formalmente contabilizados.
+- Testes ASM: 966 aprovados, 0 falhados.
+- Suite completa: 1574 aprovados, 0 falhados, 1 omitido.
+- Os logs residuais da certificacao nao fazem parte da implementacao.
+- Publicacao limitada a branch feature/pokeguide-world-action-tracker-20261028.
+- A interpretacao integral dos 1126 scripts continua por concluir.
+- A execucao efetiva dos efeitos no emulador nao esta demonstrada.
+- Este registo e acrescentado ao historico anterior, sem remover entradas.
+
+### PSB-20261101-1515-POKEGUIDE-T182-SKIPFIX-001 — Recuperacao T182 e validacao do arquivo compacto
+
+- Base publicada: 479ef2851b3647b63e1e1996741282d82e31dbc3.
+- Reutilizadas as implementacoes dos jobs 1448 e 1501.
+- Causa da falha anterior: suite com 1588 PASS, 0 FAIL e 2 SKIP, apesar de o certificador exigir 1.
+- A causa do SKIP adicional foi investigada contra o codigo e os dados reais do teste.
+- Os limites do arquivo de perfis mantiveram-se inalterados.
+- Certificacao ASM, arquivo de tres ROMs e suite completa aprovados nesta execucao.
+- Efeitos semanticos contabilizados: Red=2, Blue=2, Green=2.
+- Os efeitos sao provas estaticas, nao eventos observados em jogo.
+- Interpretacao semantica integral e conclusao da campanha ainda nao certificadas.
+- Sem alteracoes na branch main, preview ativo, ROMs ou saves.
+
+### PSB-20261101-1525-POKEGUIDE-T183-SEMANTICA-001 - verificacao de portabilidade e semantica
+
+- Base publicada: 9025605f1d38e9722ccb81a43ddb5604b3de2868.
+- Corrigida dependencia de teste sobre ficheiro JSON nao versionado.
+- Preservado o teste real de arquivo de perfil Red.
+- Motor semantico avaliado com as tres ROMs originais.
+- Efeitos estaticos anteriores: Red 2, Blue 2, Green 2.
+- Efeitos agora apurados: Red 2, Blue 2, Green 2.
+- Aumento comprovado nas tres ROMs: False.
+- Suite ASM, arquivo de perfis e suite integral verificados.
+- Nenhuma inferencia de execucao real ou conclusao da campanha.
+- Repositorio main, preview, ROMs e saves preservados.
+
+### PSB-20261101-1540-POKEGUIDE-RAMGATES-001 - requisitos RAM para scripts e bancos dinamicos
+
+- Base publicada: 301aa467fda8bb4ba209f64a2d014447f450f503.
+- Implementacao orientada aos bancos MBC3 dependentes de RAM.
+- Novos requisitos de leitura representados com proveniencia ROM.
+- Estado UNKNOWN preservado onde nao existe memoria atual comprovada.
+- Efeitos anteriores: Red=2, Blue=2, Green=2.
+- Efeitos agora certificados: Red=2, Blue=2, Green=2.
+- Aumento de efeitos estaticos nas tres ROMs: False.
+- Testes dirigidos e certificacao integral executados.
+- Nenhuma leitura de RAM, interacao ou conclusao de evento pode ser inventada.
+- Interpretacao integral da ROM permanece por concluir.
+- Main, preview ativo, sessoes, ROMs e saves nao alterados.
+
+### PSB-20261101-1554-POKEGUIDE-T185-WORLD-SCRIPTS-001 — cobertura universal dos caminhos de script
+
+- Revisao inicial: 39cb31eeef4141393706379f71cb6a82c368afba.
+- Reutilizadas as referencias e handlers ROM ja existentes.
+- Adicionada projecao de bloqueios fisicos ao checklist, advisor e interface.
+- As contagens de caminhos nao resolvidos mantem a sua origem real.
+- Os exemplos fisicos truncados sao explicitamente identificados.
+- Certificacao das tres ROMs e suite completa executadas.
+- Efeitos estaticos certificados: Red=2, Blue=2, Green=2.
+- Aumento de efeitos estaticos nas tres ROMs: False.
+- Nao se afirma execucao observada nem conclusao de eventos.
+- Analise integral da campanha continua pendente.
+- Main, preview, ROMs, saves e sessoes preservados.
+
+### PSB-20261101-1638-POKEGUIDE-T187-DIRECTFIX-001 - leitura FFB8 opcional
+
+- Base publicada: 1eb6b9913dff9fac3dbdb690245af6190685fd4a.
+- Aplicacao direta ao codigo existente, sem executar Codex.
+- Preservado o motor semantico T185 e o diagnostico T186.
+- Contrato original das oito fontes de memoria mantido.
+- FFB8 lido apenas por opcao explicita, duas vezes, sem escrita.
+- Testes realizados exclusivamente com servidor UDP simulado em loopback.
+- CRC, modo, mapa, posicao e estabilidade sujeitos a verificacao.
+- CRC nao comprova SHA256; duas leituras nao comprovam atomicidade.
+- FFB8 observado nao equivale a banco ativo nem execucao de script.
+- Certificacao integral das tres ROMs aprovada nesta execucao.
+- Efeitos fisicos comprovados: Red 2, Blue 2, Green 2.
+- Cobertura semantica integral ainda nao certificada.
+- Main, preview, autenticacao, ROMs e saves preservados.
+
+### PSB-20261101-1650-POKEGUIDE-T188-MANUAL-001 — interface para diagnostico FFB8
+
+- Base publicada: 5026de93ff5bdd3bba25f3868e1f947b560708f4.
+- Criada rota manual de diagnostico limitada a pedidos locais e opt-in explicito.
+- Mantida a leitura de FFB8 implementada em T187, sem a modificar.
+- Integrado botao manual nas definicoes existentes do companion.
+- Nenhuma leitura automatica ou ao iniciar a aplicacao.
+- Testes executados com leitor injetado; RetroArch real nao contactado.
+- Resultados identificam byte RAM estavel, nunca banco ROM ativo ou evento executado.
+- Condicoes de CRC, mapa, posicao e estado da sessao sujeitas a validacao.
+- Identidade SHA256 e atomicidade nao certificadas.
+- Motor semantico, provas T186, ROMs, saves e oito fontes antigas preservados.
+- Certificacao integral das tres ROMs aprovada.
+- Efeitos fisicos Red/Blue/Green mantidos em 2/2/2.
+- Sem conclusao de interpretacao integral dos scripts.
+- Main, preview e sessoes de outras aplicacoes preservados.
+
+### PSB-20261101-1740-POKEGUIDE-T190-VALIDATE-001 - recuperacao T190 e scripts de mapa
+
+- Base publicada: 4c1fd9bb9305c3e715c316cdb3715382e18f3aee.
+- Corrigida verificacao erronea de entryKind em T190.
+- Reutilizados os cinco ficheiros locais previamente implementados.
+- Interface concluida por ponto estrutural do checklist.
+- Prova original T189 reutilizada sem inventario duplicado.
+- 226 entradas e 223 raizes fisicas distintas por ROM.
+- 59 candidatos condicionais por ROM, nao eventos executados.
+- 105 raizes com analise limitada completa por ROM.
+- 1145 caminhos sem resolucao por ROM.
+- Condicoes de invocacao e banco ainda desconhecidas.
+- Antigos dois efeitos TX_ASM por ROM preservados.
+- Testes dirigidos e certificacao real das tres ROMs aprovados.
+- Main, preview, Antigravity, ROMs e saves preservados.
+- Interpretacao semantica total ainda nao certificada.
+
+### PSB-20261101-1830-POKEGUIDE-T198-RECOVER-001 - recuperacao T198 e requisitos RAM dos scripts gerais
+
+- Revisao anterior: 6c2561cf94dea06303e314e0ba03e2bf1c7f084f.
+- T198 original falhou antes de gravar codigo por ancora com espacos errados.
+- Corrigida a selecao da ancora sem depender da indentacao.
+- Corrigido tratamento de requisitos RAM nulos nos testes.
+- Reutilizada a prova T197: 30 requisitos de FFB8 por ROM, instrucao 0x3E90 em Red/Blue e 0x3E77 em Green.
+- Agrupamento por endereco RAM, instrucao, destino e candidatos fisicos.
+- Contagem dos caminhos condicionais preservada.
+- Checklist apresenta requisitos RAM sem inferir banco ativo.
+- Leitura FFB8 continua manual e exclusivamente de leitura.
+- Interpretador CPU e ligacao RetroArch nao foram modificados.
+- Testes dirigidos e certificacao completa executados antes da publicacao.
+- Main, preview, Antigravity, ROMs e saves preservados.
+- Progresso do jogo e eventos executados nao inferidos.
+- Mapeamento semantico a 100 por cento ainda nao demonstrado.
+
+### PSB-20261101-2000-POKEGUIDE-T206-FIXTEST-001 - recuperacao e certificacao T206
+
+- Base do trabalho: 635126fdb9c09a464984c574cd408d87808d0973.
+- T206 anterior falhou num teste sintetico que criou 226 mapas
+  mas omitiu o mapa 233.
+- A correcao alterou apenas o catalogo sintetico desse teste.
+- A implementacao dos requisitos de saltos indiretos foi preservada.
+- Reutilizadas as provas T192 a T205.
+- Testes dirigidos, tres ROMs reais e certificacao integral
+  exigidos antes de publicar.
+- Requisitos RAM D64A e DA39 representam dependencias condicionais.
+- Os 128 enderecos e 97 destinos sao candidatos, nao execucao real.
+- Banco ativo, leitura RAM e eventos de jogo nao observados.
+- Producao, sessoes, backups, ROMs e saves preservados.
+- Interpretacao integral das ROMs nao demonstrada.
+
+### PSB-20261101-2040-POKEGUIDE-T214-SYMBOLIC-WRAM-001 - requisitos condicionais WRAM
+
+- Base publicada: cd1c6ffa17b60252cadc7d0fa301f7ed5d305ebd.
+- Provas reutilizadas: T206 a T213.
+- T213 demonstrou 42/42 formulas para o mapa 210 e
+  39/39 formulas para o mapa 212 nas tres ROMs.
+- Enderecos candidatos distintos: 683 e 697, respetivamente.
+- Todos os candidatos demonstrados pertencem a WRAM.
+- Fonte simbolica RAM D369, sem leitura real observada.
+- Implementado reconhecimento restrito da sequencia ROM
+  demonstrada, sem assumir um mapa ou uma sessao em particular.
+- Requisitos agrupados e expostos no checklist.
+- O interpretador continua a interromper escritas cujo
+  endereco real nao esteja determinado.
+- Nao foram inventados eventos concluidos nem acessibilidade.
+- Sete testes novos, incluindo tres com ROMs autenticadas.
+- Certificacao integral obrigatoria antes da publicacao.
+- Limites globais e comportamento de execucao preservados.
+- Producao, ROMs, saves, sessoes e backups protegidos.
+- Mapeamento de 100 por cento nao demonstrado.
+
+### PSB-20261101-2100-POKEGUIDE-T216-ADAPTIVE-PROFILE-001 - integracao adaptativa dos requisitos WRAM
+
+- Base: 15ff15728caba472399b6c32563f072ad63e0f8c.
+- Falha comprovada no T215: requisitos T214 ausentes dos
+  perfis normais dos mapas 210 e 212.
+- O T215 identificou seis scripts fisicos elegiveis por ROM:
+  mapas 31, 34, 36, 210, 212 e 233.
+- A primeira passagem de 2048 instrucoes permanece inalterada.
+- A segunda passagem de 8192 instrucoes aplica-se apenas quando
+  coexistem STEP_BUDGET, evidencias de saltos indiretos
+  e ausencia de requisitos WRAM ja recolhidos.
+- Da segunda passagem sao aproveitados exclusivamente metadados
+  condicionais de enderecos de escrita WRAM.
+- Contagens de efeitos, interrupcoes e conclusao continuam a
+  corresponder a primeira passagem.
+- Cobertura esperada: 42 caminhos do mapa 210 e 39 do 212,
+  em Red, Blue e Green.
+- Nenhuma escrita real ou evento concluido e inferido.
+- A interface existente de T214 e reutilizada.
+- Nao se alteram os limites globais do interpretador.
+- Testes de regressao e certificacao integral obrigatorios.
+- Producao, sessoes, backups, ROMs e saves protegidos.
+- O mapeamento integral da ROM continua por demonstrar.
+
+### PSB-20261101-2105-POKEGUIDE-T220-BRANCH-RAM-001 — fontes RAM em caminhos interrompidos
+
+- Base publicada: 104affcfe084cb69a86fa5b6b4283002d6756dbe.
+- T217 confirmou PATH_BUDGET nos mapas 31, 34 e 36.
+- T218 identificou fontes RAM recorrentes nas condicoes.
+- T219 demonstrou que eliminar 4/5/4 comparacoes
+  redundantes nao melhorou a cobertura; alteracao rejeitada.
+- Integrada agregacao limitada de enderecos RAM presentes
+  nas condicoes de caminhos interrompidos por PATH_BUDGET.
+- Reutilizada a segunda passagem do T216, sem novos scans.
+- A contagem por endereco representa caminhos interrompidos
+  que referem esse endereco, nao leituras reais.
+- Fontes RAM nao volateis sao candidatas, nao valores
+  provados de uma sessao ou requisitos suficientes.
+- A interface apresenta enderecos e advertencia explicita.
+- Mantidas as contagens da primeira passagem.
+- Mantidos os requisitos WRAM dos mapas 210 e 212.
+- Nenhuma ramificacao foi eliminada do interpretador.
+- Testes com as tres ROMs e certificacao integral obrigatorios.
+- Main, producao, sessoes e ROMs foram preservados.
+- O mapeamento global a 100 por cento nao esta demonstrado.
+
+### PSB-20261101-2120-POKEGUIDE-T221-LIVE-BRANCH-RAM-001 — observacao real das fontes RAM dos mapas
+
+- Base: 041170d3ce2b8124a49bdf179c325bad5000e93d.
+- Resultado T220 reutilizado sem repetir a investigacao.
+- A leitura normal do RetroArch ja inclui C100-C2FF.
+- Fontes demonstradas nos mapas 31, 34 e 36:
+  C21E, C22E e C23E quando presentes no catalogo.
+- Implementado verificador opcional de segunda leitura
+  READ_CORE_MEMORY C21E 33, apenas para mapas elegiveis.
+- Valores so sao publicados se as duas leituras coincidirem.
+- A identidade da ROM, mapa, alvo, geracao e posicao
+  continuam protegidas pelas verificacoes existentes.
+- As amostras nao sao atomicas.
+- Nenhuma ramificacao de script passa a ser declarada
+  executada ou resolvida por esta prova.
+- O campo de leitura e transitorio e nao e restaurado
+  de telemetria persistida.
+- Nenhuma escrita UDP, save state, controlo do emulador
+  ou reinicio do servidor foi introduzido.
+- Suite integral e certificacao ROM obrigatorias antes
+  da publicacao na branch de desenvolvimento.
+- Nao foi feita qualquer publicacao na producao.
+- Mapeamento completo da ROM ainda nao demonstrado.
+
+### PSB-20261101-2250-POKEGUIDE-T231-WORLD-RAM-001 — leitura contextual RAM nos mapas adicionais
+
+- Base: b0f1d49a74f1aea0bb2497f636f8dfa8d502254c.
+- T230 confirmou 9/9 casos elegiveis nos mapas 31,34,36.
+- T229 nao confirmou ainda o endereco atual do dispositivo.
+- Auditoria da ROM Red verificou 226 mapas e 223 scripts fisicos.
+- Mapas com dependencias elegiveis no bloco C100-C2FF:
+  4.
+- Mapas elegiveis fora de 31/34/36:
+  1.
+- Implementada leitura dupla contextual nesses outros mapas.
+- Reutilizada a primeira leitura de RAM do ciclo normal.
+- Adicionada no maximo uma leitura UDP de 128 bytes,
+  apenas se o mapa atual tiver dependencias ROM verificadas.
+- T221 preservado integralmente nos tres mapas originais.
+- Identidade da ROM, mapa, alvo e janela de posicao
+  continuam sujeitos as verificacoes existentes.
+- A leitura e sequencial, nao atomica.
+- Valor RAM observado nao comprova execucao do script
+  nem conclusao de qualquer evento.
+- A nova telemetria nao e persistida como evidencia live.
+- Testes unitarios e certificacao das tres ROMs obrigatorios.
+- Main, producao, sessoes, backups e ROMs preservados.
+- Mapeamento a 100 por cento nao foi demonstrado.
+
+### PSB-20261101-2315-POKEGUIDE-T233-INDEXED-TARGETS-001 — palavras ROM em tabelas de saltos indexados
+
+- Base publicada: a553d125ec1c37be9cfc65317318ce07c384766c.
+- T232 identificou 118 scripts fisicos por resolver.
+- Mapas 209 e 207 priorizados por acessos indiretos
+  e escritas cujo destino ainda e desconhecido.
+- Adicionada extracao dos 128 valores de ponteiro brutos
+  de cada tabela ROM indexada ja reconhecida.
+- Sao guardadas as 256 palavras em bytes, sob
+  pressuposto explicito do banco assumido pelo modelo.
+- Enderecos fixos, com banco e fora de ROM diferenciados.
+- O destino executado nao foi observado.
+- O banco efetivamente selecionado nao foi observado.
+- Os valores nao sao prova de instrucoes validas
+  nem de um evento de jogo concluido.
+- Interpretador, limites, regras e efeitos preservados.
+- Main, producao, RetroArch, sessoes e ROMs intocados.
+- Testes e certificacao obrigatorios antes de publicar.
+- Mapeamento de 100 por cento nao declarado.
+
+### PSB-20261101-2330-POKEGUIDE-T234-LIVE-TABLE-SELECT-001 — selecao condicional de tabela ROM por RAM ja recolhida
+
+- Base publicada: 6717fa25d560f6cf853426b83ee697d4c2d12e00.
+- T233 verificou os 128 valores de ponteiro das tabelas ROM.
+- Auditoria da ROM Red: 166 tabelas,
+  das quais 98 usam
+  enderecos presentes nos blocos RAM atuais.
+- Mapas com fontes cobertas: 98.
+- Nenhum novo pedido UDP necessario.
+- Para cada fonte elegivel, o byte RAM seleciona a entrada
+  (byte AND 0x7F) na tabela ROM autenticada por SHA256.
+- A palavra de destino e apresentada como condicional.
+- O banco ativo do emulador nao foi observado.
+- O salto de CPU nao foi observado.
+- O endereco nao foi comprovado como fronteira de instrucao.
+- O evento do jogo nao foi declarado concluido.
+- Validacoes de ROM, mapa, leitura completa, posicao final
+  e continuidade do alvo continuam obrigatorias.
+- A evidência RAM dinamica nao e usada como cache persistente.
+- Interpretador, T221, T231 e tabelas T233 preservados.
+- Testes e certificacao das tres ROMs executados.
+- Main, producao, sessoes, backups e jogo preservados.
+- Mapeamento 100 por cento nao comprovado.
+
+### PSB-20261101-2320-POKEGUIDE-T235-DA39-COVERAGE-001 — fonte RAM DA39 para tabelas ROM
+
+- Base anterior: c90eb4113c210500c60dbaaa6f694c84d989f589.
+- T234 identificou 166 tabelas indexadas, 98 fontes
+  cobertas e 68 fontes ainda fora dos blocos recolhidos.
+- Esta auditoria confirmou que as 68 fontes nao cobertas
+  correspondem ao endereco DA39 na ROM Red autenticada.
+- Preservado o bloco DA40 original com todos os indices.
+- Adicionada uma leitura de um byte no endereco DA39,
+  apenas para mapas cuja tabela ROM verifica essa fonte.
+- Leitura de memoria opcional; o cliente pode repetir
+  o pedido UDP se receber uma resposta incompleta.
+- O resultado so e apresentado com identidade ROM/mapa,
+  alvo, leitura base e posicao final validas.
+- Fontes RAM ja abrangidas mantem zero pedidos adicionais.
+- Valores observados calculam apenas palavras de
+  destino condicionais da tabela ROM.
+- Banco realmente selecionado nao comprovado.
+- Salto de CPU e instrucao realmente executados nao comprovados.
+- Nenhum evento do jogo declarado concluido.
+- Interpretador, T221, T231, T233 e restante T234 preservados.
+- Certificacao integral exigida antes da publicacao.
+- Main, producao, RetroArch e sessoes preservados.
+- Mapeamento integral a 100 por cento nao comprovado.
+
+### PSB-20261101-2350-POKEGUIDE-T237-WRAM-ASSERT-FIX-001 — correcao da assercao T236 e certificacao
+
+- Base: 13b057337e0968e4405e791274353fe6dd3721b6.
+- T236 verificou 226 mapas da ROM Red autenticada.
+- Foram identificados 48 grupos simbolicos em 26 mapas.
+- Mapas 207 e 209: dois grupos em cada.
+- O teste T236 falhou por esperar C6FB.
+- O valor calculado foi C6FE (50942).
+- Formula ROM: C6E8 + 3*((FF+6) mod 256) + 3 + 4.
+- A assercao do teste foi corrigida para C6FE.
+- Interpretador, helper, integracao e UI nao foram alterados
+  por este job; as modificacoes T236 foram reutilizadas.
+- Testes direcionados e certificacao integral obrigatorios.
+- Destinos WRAM continuam condicionais, nao observados
+  como escritas executadas.
+- Nenhum salto ou evento foi declarado concluido.
+- Main, producao, RetroArch, ROMs, saves e sessoes preservados.
+- Mapeamento a 100 por cento nao demonstrado.

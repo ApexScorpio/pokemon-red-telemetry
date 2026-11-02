@@ -3,6 +3,7 @@
 // Motor Gen I: WildDataPointers, MapHeaderPointers, MapHeaderBanks, object events.
 const crypto=require('node:crypto');
 const {findGen1EncounterWeights}=require('./romEncounterWeights');
+const {resolveStaticTextPointer}=require('./romTextPointerEvidence');
 const BANK_SIZE=16384, MAPS=248;
 function u16(b,p){return b[p]|(b[p+1]<<8);}
 function romAddress(bank,cpu,bytes){return bank>0&&cpu>=0x4000&&cpu<0x8000
@@ -174,6 +175,17 @@ function getMapHeader(b,bank,cpu){
  if(blockAt===null||blockAt+height*width>(bank+1)*BANK_SIZE)return null;
  const objects=readMapObject(b,bank,objPtr,height,width);
  if(!objects)return null;
+ // Each NPC/sign receives the exact first text-command reference read from
+ // these ROM bytes. Classification is static; no dialogue was executed.
+ for(const sign of objects.signs){
+   sign.textPointerEvidence=resolveStaticTextPointer({
+     rom:b,mapBank:bank,textPointerCpu:textPtr,textId:sign.textId});
+ }
+ for(const actor of objects.objects){
+   if(actor.kind!=='npc')continue;
+   actor.textPointerEvidence=resolveStaticTextPointer({
+     rom:b,mapBank:bank,textPointerCpu:textPtr,textId:actor.textId&0x3f});
+ }
  const blocks=b.subarray(blockAt,blockAt+width*height);
  return {valid:true,tilesetId,heightBlocks:height,widthBlocks:width,
    heightTiles:height*2,widthTiles:width*2,

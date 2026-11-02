@@ -144,9 +144,33 @@ function candidatePath(reach,item,{hidden=false}={}){
  }
  return best;
 }
+// Shared prerequisite for item routes AND local exits. Both consumers
+// must refuse internally contradictory RAM snapshots, not silently
+// simulate missing dynamic blockers or an impossible starting tile.
+function checkLocalPathSnapshot(grid,position,{
+ modeByte=null,spritesVerified=false,mapEntities=null}={}){
+ if(!grid||!valid(position?.x,0,grid.width-1)||
+    !valid(position?.y,0,grid.height-1)||![0,1,2].includes(modeByte))
+  return 'ROM, posição ou modo de deslocação não corroborados';
+ // RAM overworld slots can report offscreen tiles in the -4..255 range.
+ // Out-of-grid positions are only ignored by occupancy AFTER validation.
+ if(spritesVerified===true&&
+    (!Array.isArray(mapEntities)||mapEntities.some(actor=>
+      !actor||!valid(actor.x,-4,255)||!valid(actor.y,-4,255))))
+  return 'Sprites RAM incoerentes; percurso local não classificável';
+ const originIndex=position.y*grid.width+position.x;
+ const originTile=grid.tiles[originIndex];
+ const originWater=originTile===0x14||originTile===0x48;
+ const originLand=(grid.bits[originIndex>>3]&
+   (1<<(originIndex&7)))!==0&&!originWater&&
+   !(grid.tilesetId===0&&originTile===0x3d);
+ if(modeByte===2?!originWater:!originLand)
+  return 'Posição RAM incompatível com o terreno e o modo de movimento da ROM';
+ return null;
+}
 function planItemAccess({terrain,romSha256,position,items=[],
  mapSnapshotVerified=false,positionVerified=false,modeByte=null,
- spritesVerified=false,mapEntities=[],canCut=null,canSurf=null}={}){
+ spritesVerified=false,mapEntities=null,canCut=null,canSurf=null}={}){
  const rows=Array.isArray(items)?items:[];
  const unavailable=(reason)=>({verified:false,reason,
    results:rows.map((item,index)=>({index,itemName:item.name??null,
@@ -156,8 +180,11 @@ function planItemAccess({terrain,romSha256,position,items=[],
     !valid(position?.x,0,grid.width-1)||!valid(position?.y,0,grid.height-1)||
     ![0,1,2].includes(modeByte))
    return unavailable('ROM/terreno/posição/modo de deslocação não corroborados');
+ const snapshotIssue=checkLocalPathSnapshot(grid,position,{
+   modeByte,spritesVerified,mapEntities});
+ if(snapshotIssue)return unavailable(snapshotIssue);
  const options={currentSurf:modeByte===2,
-   actors:mapEntities,spritesVerified};
+   actors:Array.isArray(mapEntities)?mapEntities:[],spritesVerified};
  // Executar BFS uma vez por cenário, não uma vez por item.
  const normal=computeReach(grid,position,{...options,
    canCut:canCut===true,canSurf:canSurf===true});
@@ -243,4 +270,5 @@ function planItemAccess({terrain,romSha256,position,items=[],
      'Strength não é considerado como passagem livre',
      'Nenhum estado condicional autoriza afirmar disponível agora']};
 }
-module.exports={terrainBytes,computeReach,candidatePath,planItemAccess};
+module.exports={terrainBytes,computeReach,candidatePath,planItemAccess,
+ checkLocalPathSnapshot};

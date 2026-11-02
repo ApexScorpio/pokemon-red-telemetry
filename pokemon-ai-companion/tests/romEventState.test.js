@@ -78,6 +78,7 @@ test('12 moedas ocultas do Game Corner: quantidade ROM e bitmap RAM independente
   flags[1]='08'; // bit 11, última moeda
   const result=decodeHiddenCoins({hash:{sha256}},135,flags);
   assert.equal(result.verified,true);
+  assert.equal(result.romSha256,sha256);
   assert.equal(result.coins.length,12);
   assert.equal(result.coins[9].coinAmount,40);
   assert.equal(result.coins[9].actualAwardIfClaimed,20);

@@ -1,0 +1,31 @@
+{
+  "schema": "pokeguide-rom-world-object-audit-v1",
+  "date": "2026-10-29",
+  "runtime": "Node.js v22.16.0",
+  "source": "Three original 1,048,576-byte ROM binaries materialized from user's existing Library; raw ROM files not committed",
+  "method": "SHA-256 of full file plus map-header-bank table and object binary structure, separate direct native Node and Python audits",
+  "audited": {
+    "RED": "5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b",
+    "BLUE": "2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d",
+    "GREEN_INTERNATIONAL_1_2_1": "aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db"
+  },
+  "perRom": {
+    "maps": 226,
+    "warps": 813,
+    "signs": 202,
+    "npc": 472,
+    "trainer": 334,
+    "item": 106,
+    "wildPokemon": 12,
+    "invalidCoordinates": 0,
+    "bankTableOffset": 49725
+  },
+  "allThreePassed": true,
+  "activeEmulatorRomSha256Verified": false,
+  "scriptsSemanticsComplete": false,
+  "command": "npm run audit:world-objects:real -- \"PATH/TO/Red.gb\" \"PATH/TO/Blue.gb\" \"PATH/TO/Green.gb\"",
+  "limitations": [
+    "Requires the user-provided ROM binaries at execution; never downloads or uploads ROMs.",
+    "Completeness applies only to static object-table decoding, not dialogue effects, conditional NPC state or gameplay."
+  ]
+}

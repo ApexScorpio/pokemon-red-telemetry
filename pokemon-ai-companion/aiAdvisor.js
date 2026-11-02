@@ -33,6 +33,42 @@ async function queryGroq(messages, temperature = 0.6) {
 
 let lastAdviceTime = 0;
 let cachedAdvice = null;
+let cachedAdviceScope = null;
+
+// Advice cache is valid for the same gameplay context only. The lastUpdate
+// timestamp is deliberately excluded: an identical verified poll can reuse.
+function getLiveAdviceContextKey(state){
+  const rom=state?.romRuntimeIdentity;
+  if(rom?.matched!==true||typeof rom.profileSha256!=='string'||
+     !rom.profileSha256)return null;
+  return JSON.stringify({
+    runtime:state.adviceRuntimeScope||null,
+    rom:rom.profileSha256,crc:rom.reportedCRC32||null,
+    trainer:state.trainerName||null,mapId:state.mapId,
+    mapName:state.mapName,coords:state.coords||null,
+    inBattle:state.inBattle===true,money:state.money||0,
+    // A manual battle request must not reuse an answer after the opponent,
+    // turn state, statuses, or exact calculation evidence changes.
+    battle:state.inBattle===true?(state.battle||null):null,
+    battleType:state.inBattle===true?(state.battleType||null):null,
+    badges:(state.badges||[]).map(x=>[x.name,x.obtained]),
+    inventory:(state.inventory||[]).map(x=>[x.id,x.name,x.qty]),
+    pcItems:(state.pcItems||[]).map(x=>[x.id,x.name,x.qty]),
+    pcPokemon:(state.pcBox?.pokemon||[]).map(x=>[x.name,x.level,x.dex]),
+    party:(state.party||[]).map(x=>[
+      x.name,x.level,x.hp,x.maxHp,
+      (x.moves||[]).map(m=>[m.id,m.name,m.pp])
+    ]),
+    pokedexOwned:state.pokedexOwned||[],
+    eventFlags:state.eventFlagTelemetry?.verifiedRamCoverage===true?
+      state.eventFlagTelemetry.completeNamedStates||null:null,
+    daycare:state.daycare||null,
+    area:state.areaInfo?[
+      state.areaInfo.wildSource,state.areaInfo.canonicalWildReference,
+      state.areaInfo.canonicalNpcTrades
+    ]:null
+  });
+}
 
 async function getLiveAdvice(state, force = false) {
   if (!state || !state.connected || !state.memoryReadStatus?.verified || state.isSimulation ||
@@ -45,10 +81,10 @@ async function getLiveAdvice(state, force = false) {
     return 'Combate detetado, mas probabilidades e recomendações exatas estão suspensas até verificar os dados deste turno e as fórmulas desta ROM.';
   }
   const now = Date.now();
-  if (!force && now - lastAdviceTime < 15000) {
+  const scope=getLiveAdviceContextKey(state);
+  if(!force&&cachedAdvice&&scope!==null&&
+     cachedAdviceScope===scope&&now-lastAdviceTime<15000)
     return cachedAdvice;
-  }
-  lastAdviceTime = now;
 
   const context = {
     trainer: state.trainerName || null,
@@ -100,7 +136,11 @@ Fala em português de Portugal. Responde de forma concisa e fundamentada nos cam
     { role: 'user', content: userPrompt }
   ]);
 
-  if (reply) cachedAdvice = reply;
+  if(reply){
+    cachedAdvice=reply;
+    cachedAdviceScope=scope;
+    lastAdviceTime=Date.now();
+  }
   return reply;
 }
 
@@ -157,5 +197,6 @@ Fala em português de Portugal, explica a condição relevante e evita certezas 
 
 module.exports = {
   getLiveAdvice,
+  getLiveAdviceContextKey,
   askAdvisor
 };

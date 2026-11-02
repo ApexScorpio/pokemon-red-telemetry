@@ -1,0 +1,376 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const crypto=require('node:crypto');
+const {findCrossMapItemPath,findCrossMapItemPaths}=require('../romCrossMapItemRoute');
+const sha='5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b';
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+function terrain(mapId,{wall=false}={}){
+ const width=5,height=5,n=width*height;
+ const tiles=Buffer.alloc(n,0x2c),bits=Buffer.alloc(Math.ceil(n/8),0);
+ for(let i=0;i<n;i++)bits[i>>3]|=1<<(i&7);
+ if(wall)for(let y=0;y<height;y++){
+   const i=y*width+2;tiles[i]=0x10;
+   bits[i>>3]&=~(1<<(i&7));
+ }
+ return {mapId,width,height,tilesetId:0,
+   tileIdsBase64:tiles.toString('base64'),walkingBitsBase64:bits.toString('base64'),
+   tileIdsSha256:hash(tiles),walkingBitsSha256:hash(bits),
+   landBlockedTilePairs:[]};
+}
+function fixture(){
+ const maps=Array.from({length:226},(_,mapId)=>terrain(mapId,{wall:mapId===0}));
+ const graph={
+   verified:true,romSha256:sha,totalWarpEntries:813,normalMapHeaders:226,
+   edges:Array.from({length:813},()=>({status:'LAST_MAP_RAM_REQUIRED'}))
+ };
+ graph.edges[0]={sourceMapId:0,sourceWarpIndex:0,x:1,y:1,
+  destinationMapId:1,status:'STATIC_DESTINATION_WARP_VALIDATED',
+  landing:{mapId:1,warpIndex:0,x:1,y:1}};
+ graph.edges[1]={sourceMapId:1,sourceWarpIndex:0,x:1,y:1,
+  destinationMapId:0,status:'STATIC_DESTINATION_WARP_VALIDATED',
+  landing:{mapId:0,warpIndex:1,x:4,y:3}};
+ return {romSha256:sha,terrainAtlas:{verified:true,romSha256:sha,maps},
+   warpGraph:graph,sourceMapId:0,position:{x:0,y:2},
+   target:{mapId:0,x:4,y:2,hidden:false},
+   positionVerified:true,currentModeByte:0,canCut:false,canSurf:false};
+}
+test('item behind one-way barrier can have a conditional two-warp detour',()=>{
+ const r=findCrossMapItemPath(fixture());
+ assert.equal(r.verified,true);
+ assert.equal(r.found,true);
+ assert.equal(r.warpTransitions,2);
+ assert.deepEqual(r.segments.map(x=>x.destinationMapId),[1,0]);
+ assert.equal(r.routeNavigableNowProven,false);
+ assert.equal(r.accessibleNow,null);
+ assert.ok(r.theoreticalSteps>=0);
+});
+test('disabled or missing second warp never implies permanent inaccessibility',()=>{
+ const f=fixture();f.warpGraph.edges[1].status='LAST_MAP_RAM_REQUIRED';
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,true);assert.equal(r.found,false);
+ assert.equal(r.accessibleNow,null);
+ assert.match(r.reason,/não prova bloqueio/i);
+});
+test('one transition limit cannot invent return trip',()=>{
+ const r=findCrossMapItemPath({...fixture(),maxTransitions:1});
+ assert.equal(r.found,false);
+});
+test('wrong SHA, stale RAM or partial warps reject all routing',()=>{
+ const f=fixture();
+ assert.equal(findCrossMapItemPath({...f,romSha256:'0'.repeat(64)}).verified,false);
+ assert.equal(findCrossMapItemPath({...f,positionVerified:false}).verified,false);
+ assert.equal(findCrossMapItemPath({...f,terrainAtlas:{...f.terrainAtlas,
+   romSha256:'0'.repeat(64)}}).verified,false);
+ const corrupt=fixture();corrupt.warpGraph.edges.pop();
+ assert.equal(findCrossMapItemPath(corrupt).verified,false);
+});
+test('observed actor blocking source warp prevents this static route',()=>{
+ const f=fixture();
+ f.spritesVerified=true;
+ f.currentMapEntities=[{x:1,y:1,type:'npc',pictureId:17}];
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.found,false);
+});
+test('route is not confused with a local unreachable item',()=>{
+ const f=fixture();f.warpGraph.edges[0].status='LAST_MAP_RAM_REQUIRED';
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.found,false);
+});
+
+function outdoorCase(){
+ const f=fixture();f.warpGraph.edges[0].status='LAST_MAP_RAM_REQUIRED';
+ f.warpGraph.edges[1].status='LAST_MAP_RAM_REQUIRED';
+ const edges=[{sourceMapId:0,destinationMapId:1,direction:'west'},
+              {sourceMapId:1,destinationMapId:0,direction:'south'}];
+ for(let i=0;i<76;i++)edges.push({
+   sourceMapId:10+i,destinationMapId:11+i,direction:'east'});
+ f.warpGraph.outdoorConnections={verified:true,romSha256:sha,
+   edgeCount:78,reciprocalConnections:78,edges};
+ f.outdoorAlignment={verified:true,romSha256:sha,
+   verifiedConnections:78,descriptorPointerFormulaVerified:true,
+   referenceOffsetCorroborated:true,
+   connections:edges.map(e=>({...e,offsetBlocks:0,
+     sourceWidthTiles:5,sourceHeightTiles:5,destinationWidthTiles:5,
+     destinationHeightTiles:5,descriptorPointerMatches:true,
+     referenceOffsetCorroborated:true}))};
+ return f;
+}
+test('aligned outdoor borders form a conditional two-border detour',()=>{
+ const r=findCrossMapItemPath(outdoorCase());
+ assert.equal(r.verified,true);
+ assert.equal(r.found,true,r.reason);
+ assert.equal(r.transitionCount,2);
+ assert.equal(r.warpTransitions,0);
+ assert.equal(r.outdoorTransitions,2);
+ assert.deepEqual(r.segments.map(s=>s.kind),['OUTDOOR_BORDER','OUTDOOR_BORDER']);
+ assert.deepEqual(r.segments[0].destinationTile,{x:4,y:2});
+ assert.equal(r.accessibleNow,null);
+ assert.equal(r.routeNavigableNowProven,false);
+});
+test('wrong outdoor alignment SHA cannot propose a crossing',()=>{
+ const f=outdoorCase();f.outdoorAlignment.romSha256='0'.repeat(64);
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,true);assert.equal(r.found,false);
+ assert.equal(r.outdoorAlignmentUsed,false);
+});
+test('destination water without a proven landing never becomes free access',()=>{
+ const f=outdoorCase(),m=f.terrainAtlas.maps[0];
+ const tiles=Buffer.from(m.tileIdsBase64,'base64');
+ const bits=Buffer.from(m.walkingBitsBase64,'base64');
+ for(const x of [3,4]){tiles[x]=0x14;bits[x>>3]&=~(1<<(x&7));}
+ m.tileIdsBase64=tiles.toString('base64');
+ m.walkingBitsBase64=bits.toString('base64');
+ m.tileIdsSha256=hash(tiles);m.walkingBitsSha256=hash(bits);
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.found,false);assert.equal(r.accessibleNow,null);
+});
+
+test('batch finds distinct items with one shared search',()=>{
+ const f=fixture(),r=findCrossMapItemPaths({...f,target:null,targets:[
+   {mapId:0,x:4,y:2},{mapId:0,x:4,y:3},
+   {mapId:0,x:0,y:2,hidden:true}]});
+ assert.equal(r.verified,true);
+ assert.equal(r.requestedCount,3);assert.equal(r.foundCount,3);
+ assert.deepEqual(r.results.map(x=>x.warpTransitions),[2,2,0]);
+ assert.equal(r.routeNavigableNowProven,false);
+ assert.equal(r.accessibleNow,null);
+});
+test('batch never attributes the only reachable path to a blocked item',()=>{
+ const f=fixture();f.warpGraph.edges[1].status='LAST_MAP_RAM_REQUIRED';
+ const r=findCrossMapItemPaths({...f,targets:[
+   {mapId:0,x:4,y:2},{mapId:0,x:0,y:2}]});
+ assert.equal(r.verified,true);
+ assert.deepEqual(r.results.map(x=>x.found),[false,true]);
+ assert.equal(r.foundCount,1);
+});
+test('invalid batch targets and unknown SHA do not create routes',()=>{
+ const f=fixture();
+ assert.equal(findCrossMapItemPaths({...f,targets:[]}).verified,false);
+ assert.equal(findCrossMapItemPaths({...f,targets:[{mapId:0,x:-1,y:0}]}).verified,false);
+ assert.equal(findCrossMapItemPaths({...f,romSha256:'0'.repeat(64),
+   targets:[{mapId:0,x:4,y:2}]}).verified,false);
+});
+test('budget exhaustion remains unknown rather than blocked',()=>{
+ const f=fixture(),r=findCrossMapItemPaths({...f,maxStates:1,
+   targets:[{mapId:0,x:4,y:2}]});
+ assert.equal(r.verified,true);
+ assert.equal(r.results[0].found,false);
+ assert.equal(r.results[0].maxStatesExceeded,true);
+ assert.equal(r.results[0].accessibleNow,null);
+ assert.match(r.results[0].reason,/Limite de pesquisa/);
+});
+
+
+test('cross-map source rejects a blocked ROM start tile instead of finding a detour',()=>{
+ const f=fixture(),m=f.terrainAtlas.maps[0];
+ const bits=Buffer.from(m.walkingBitsBase64,'base64');
+ const i=f.position.y*m.width+f.position.x;
+ bits[i>>3]&=~(1<<(i&7));
+ m.walkingBitsBase64=bits.toString('base64');
+ m.walkingBitsSha256=hash(bits);
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,false);
+ assert.equal(r.found,false);
+ assert.equal(r.accessibleNow,null);
+ assert.match(r.reason,/terreno e o modo de movimento/);
+});
+test('cross-map source rejects impossible land-water movement modes',()=>{
+ for(const type of ['LAND_IN_WATER','SURF_ON_LAND']){
+  const f=fixture(),m=f.terrainAtlas.maps[0];
+  if(type==='LAND_IN_WATER'){
+   const tiles=Buffer.from(m.tileIdsBase64,'base64');
+   const bits=Buffer.from(m.walkingBitsBase64,'base64');
+   const i=f.position.y*m.width+f.position.x;
+   tiles[i]=0x14;bits[i>>3]&=~(1<<(i&7));
+   m.tileIdsBase64=tiles.toString('base64');
+   m.walkingBitsBase64=bits.toString('base64');
+   m.tileIdsSha256=hash(tiles);
+   m.walkingBitsSha256=hash(bits);
+  }else{f.currentModeByte=2;f.canSurf=true;}
+  const r=findCrossMapItemPath(f);
+  assert.equal(r.verified,false);
+  assert.match(r.reason,/terreno e o modo de movimento/);
+ }
+});
+test('a real ROM water tile in Surf mode permits only conditional multi-map search',()=>{
+ const f=fixture(),m=f.terrainAtlas.maps[0];
+ const tiles=Buffer.from(m.tileIdsBase64,'base64');
+ const bits=Buffer.from(m.walkingBitsBase64,'base64');
+ const i=f.position.y*m.width+f.position.x;
+ tiles[i]=0x14;bits[i>>3]&=~(1<<(i&7));
+ m.tileIdsBase64=tiles.toString('base64');
+ m.walkingBitsBase64=bits.toString('base64');
+ m.tileIdsSha256=hash(tiles);
+ m.walkingBitsSha256=hash(bits);
+ f.currentModeByte=2;f.canSurf=true;
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,true);
+ assert.equal(r.routeNavigableNowProven,false);
+ assert.equal(r.accessibleNow,null);
+});
+test('cross-map routes fail closed when even one verified RAM sprite is corrupt',()=>{
+ for(const bad of [null,{x:1,y:null},{x:256,y:1},{x:1.4,y:1}]){
+  const f=fixture();f.spritesVerified=true;
+  f.currentMapEntities=[{x:1,y:1,pictureId:17},bad];
+  const r=findCrossMapItemPath(f);
+  assert.equal(r.verified,false);
+  assert.equal(r.found,false);
+  assert.match(r.reason,/Sprites RAM incoerentes/);
+ }
+});
+test('missing verified RAM entity list is not an empty map for multi-map routing',()=>{
+ for(const entities of [null,undefined,{},'']){
+  const f=fixture();f.spritesVerified=true;f.currentMapEntities=entities;
+  const result=findCrossMapItemPaths({...f,targets:[f.target]});
+  assert.equal(result.verified,false);
+  assert.equal(result.found,false);
+  assert.match(result.reason,/Sprites RAM incoerentes/);
+ }
+});
+test('blocked or water warp destination cannot seed hypothetical land path',()=>{
+ for(const blocked of ['COLLISION','WATER']){
+  const f=fixture(),m=f.terrainAtlas.maps[1];
+  const bits=Buffer.from(m.walkingBitsBase64,'base64');
+  const tiles=Buffer.from(m.tileIdsBase64,'base64');
+  const i=1*m.width+1;
+  bits[i>>3]&=~(1<<(i&7));
+  if(blocked==='WATER')tiles[i]=0x14;
+  m.walkingBitsBase64=bits.toString('base64');
+  m.walkingBitsSha256=hash(bits);
+  m.tileIdsBase64=tiles.toString('base64');
+  m.tileIdsSha256=hash(tiles);
+  const r=findCrossMapItemPath(f);
+  assert.equal(r.verified,true);
+  assert.equal(r.found,false);
+  assert.equal(r.accessibleNow,null);
+  assert.equal(r.routeNavigableNowProven,false);
+ }
+});
+test('offscreen RAM actor remains legal and does not block certified geometric detour',()=>{
+ for(const entities of [
+   [{x:-4,y:1,type:'npc',pictureId:14}],
+   [{x:255,y:255,type:'npc',pictureId:14}]]){
+  const f=fixture();f.spritesVerified=true;f.currentMapEntities=entities;
+  const r=findCrossMapItemPath(f);
+  assert.equal(r.verified,true);
+  assert.equal(r.found,true);
+  assert.equal(r.warpTransitions,2);
+  assert.equal(r.accessibleNow,null);
+ }
+});
+
+
+function lastMapFixture(){
+ const f=fixture(),edge=f.warpGraph.edges[0];
+ Object.assign(edge,{status:'LAST_MAP_RAM_REQUIRED',
+   destinationMapId:255,destinationWarpIndex:0});
+ f.warpGraph.edges[1].status='LAST_MAP_RAM_REQUIRED';
+ f.target={mapId:1,x:3,y:2,hidden:false};
+ f.lastMapGuide={verified:true,romSha256:sha,mapId:0,
+   lastMapEvidence:{sequentiallyConsistent:true,romSha256:sha,
+     atomicSnapshotVerified:false},
+   warps:[{map:255,warp:0,x:1,y:1,
+     ramResolvedDestinationVerified:true,resolvedMapId:1,
+     resolvedWarpIndex:0,landingX:1,landingY:1,
+     resolutionSource:'D365_START_END_MATCH_AND_EXACT_ROM_WARP_TABLE'}]};
+ return f;
+}
+test('current D365 LAST_MAP candidate remains strictly conditional',()=>{
+ const r=findCrossMapItemPath(lastMapFixture());
+ assert.equal(r.verified,true,r.reason);
+ assert.equal(r.found,true,r.reason);
+ assert.equal(r.transitionCount,1);
+ assert.equal(r.segments[0].kind,'LAST_MAP_RAM_HYPOTHESIS');
+ assert.equal(r.segments[0].lastMapSourceReadSequentiallyConsistent,true);
+ assert.match(r.scope,/CURRENT_D365_LAST_MAP/);
+ assert.equal(r.routeNavigableNowProven,false);
+ assert.equal(r.accessibleNow,null);
+});
+test('LAST_MAP requires matching ROM map warp signature and D365 evidence',()=>{
+ for(const change of [
+   g=>{g.verified=false},
+   g=>{g.romSha256='0'.repeat(64)},
+   g=>{g.mapId=1},
+   g=>{g.lastMapEvidence.sequentiallyConsistent=false},
+   g=>{g.lastMapEvidence.romSha256='0'.repeat(64)},
+   g=>{g.warps[0].resolutionSource='GUESS'},
+   g=>{g.warps[0].ramResolvedDestinationVerified=false},
+   g=>{g.warps[0].resolvedMapId=255},
+   g=>{g.warps[0].warp=5},
+   g=>{g.warps[0].landingX=255}
+ ]){
+   const f=lastMapFixture();change(f.lastMapGuide);
+   const r=findCrossMapItemPath(f);
+   assert.equal(r.verified,true,r.reason);
+   assert.equal(r.found,false,r.reason);
+   assert.equal(r.accessibleNow,null);
+ }
+});
+test('D365 from another map cannot create a live-origin exit',()=>{
+ const f=lastMapFixture();
+ f.warpGraph.edges[0].sourceMapId=1;
+ f.lastMapGuide.mapId=1;
+ const r=findCrossMapItemPath(f);
+ assert.equal(r.verified,true);
+ assert.equal(r.found,false);
+});
+test('LAST_MAP target tile blocked or requiring Surf is not a land arrival',()=>{
+ for(const value of ['WALL','WATER']){
+   const f=lastMapFixture(),m=f.terrainAtlas.maps[1];
+   const bits=Buffer.from(m.walkingBitsBase64,'base64');
+   const tiles=Buffer.from(m.tileIdsBase64,'base64');
+   const i=1*m.width+1;
+   bits[i>>3]&=~(1<<(i&7));
+   if(value==='WATER')tiles[i]=0x14;
+   m.walkingBitsBase64=bits.toString('base64');
+   m.walkingBitsSha256=hash(bits);
+   m.tileIdsBase64=tiles.toString('base64');
+   m.tileIdsSha256=hash(tiles);
+   const r=findCrossMapItemPath(f);
+   assert.equal(r.verified,true);
+   assert.equal(r.found,false);
+   assert.equal(r.accessibleNow,null);
+ }
+});
+test('LAST_MAP batch shares source proof but never claims pickup',()=>{
+ const f=lastMapFixture();
+ const r=findCrossMapItemPaths({...f,targets:[
+   {mapId:1,x:3,y:2,hidden:false},
+   {mapId:1,x:2,y:3,hidden:true}
+ ]});
+ assert.equal(r.verified,true);
+ assert.equal(r.foundCount,2);
+ assert.equal(r.results.length,2);
+ assert.ok(r.results.every(p=>p.segments?.[0]?.kind==='LAST_MAP_RAM_HYPOTHESIS'));
+ assert.ok(r.results.every(p=>p.accessibleNow===null&&
+   p.routeNavigableNowProven===false));
+});
+
+
+test('D365 landing coordinates must match the independent audited destination warp',()=>{
+ for(const mutate of [
+   f=>{f.lastMapGuide.warps[0].landingX=2},
+   f=>{f.lastMapGuide.warps[0].landingY=2},
+   f=>{f.warpGraph.edges[1].x=2},
+   f=>{f.warpGraph.edges[1].y=2}
+ ]){
+   const f=lastMapFixture();mutate(f);
+   const r=findCrossMapItemPath(f);
+   assert.equal(r.verified,true,r.reason);
+   assert.equal(r.found,false,'in-map but uncorroborated arrival cannot seed a route');
+   assert.equal(r.accessibleNow,null);
+ }
+});
+test('missing or duplicate destination ROM warp index cannot authorize D365 crossing',()=>{
+ for(const mutate of [
+   f=>{f.warpGraph.edges[1].sourceWarpIndex=7},
+   f=>{f.warpGraph.edges[2]={sourceMapId:1,sourceWarpIndex:0,
+     x:1,y:1,status:'LAST_MAP_RAM_REQUIRED'}}
+ ]){
+   const f=lastMapFixture();mutate(f);
+   const r=findCrossMapItemPath(f);
+   assert.equal(r.verified,true,r.reason);
+   assert.equal(r.found,false,'unproven destination index cannot be followed');
+   assert.equal(r.routeNavigableNowProven,false);
+ }
+});

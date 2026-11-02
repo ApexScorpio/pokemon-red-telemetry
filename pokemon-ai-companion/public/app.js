@@ -247,9 +247,20 @@ function connectWebSocket() {
   socket.onclose = () => {
     elConnectionStatus.textContent = 'DESLIGADO';
     elConnectionPulse.classList.remove('active');
+    // A telemetria antiga não pode continuar a aconselhar enquanto o socket
+    // tenta religar; a recolha real ainda não foi restabelecida.
+    if(lastState){
+      // Persist the disconnected state as well. Otherwise the periodic
+      // freshness checker could resurrect cached advice on the next tick.
+      lastState={...lastState,connected:false};
+      renderWorldAdvisor(lastState);
+    }
     setTimeout(connectWebSocket, 2000);
   };
 }
+// Mesmo sem um evento WebSocket de fecho, uma fonte silenciosa pode ficar
+// desatualizada. Revalidar apenas o painel (sem reenviar pedidos ao jogo).
+setInterval(()=>{if(lastState)renderWorldAdvisor(lastState);},5000);
 
 // Painel Daycare: nível estimado exclusivamente a partir da EXP lida e da curva canónica.
 function renderDaycareTracker(state) {
@@ -644,6 +655,2103 @@ function renderRomAreaEvidence(state) {
   body.textContent=rows.join('\n');
 }
 
+
+/**
+ * Conselhos universais: um registo para cada objeto/evento local catalogado
+ * na ROM. Não usa HTML dinâmico: a ROM e a RAM são dados não fiáveis para UI.
+ * Nenhum percurso estático é anunciado como disponibilidade garantida.
+ */
+function formatCampaignChecklistSection(advice,state) {
+  const campaign=advice?.campaignSummary;
+  const checklist=advice?.mapChecklist;
+  if(advice?.verified!==true||advice.fullWorldStaticIndexVerified!==true||
+     campaign?.normalMaps!==226||checklist?.verified!==true||
+     checklist.mapId!==advice.mapId||
+     checklist.romSha256!==advice.romSha256||
+     !Array.isArray(checklist.actions))return [];
+  const s=checklist.summary||{};
+  // The current emulator ROM SHA, not a cached manual catalogue, selects
+  // version-specific actor coordinates.  Exact known identities only.
+  const trustedHashes=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const runtimeSha=state?.romRuntimeIdentity?.profileSha256;
+  const canRenderScriptSemantics=state?.romRuntimeIdentity?.matched===true&&
+    trustedHashes.has(runtimeSha)&&runtimeSha===advice.romSha256&&
+    runtimeSha===checklist.romSha256;
+  const canRenderActorProof=state?.romRuntimeIdentity?.matched===true&&
+    typeof runtimeSha==='string'&&trustedHashes.has(runtimeSha)&&
+    runtimeSha===advice.romSha256&&
+    runtimeSha===checklist.romSha256&&
+    checklist.actorAttributeAtlasBound===true&&
+    Number.isInteger(s.boundStaticActorAttributes)&&
+    s.boundStaticActorAttributes>=0&&
+    s.boundStaticActorAttributes<=118;
+  const lines=[
+    '--- CHECKLIST COMPLETA DESTE MAPA (ROM + PROVAS) ---',
+    '🌍 KANTO: '+campaign.allStaticActions+' objetos/ações estáticos em '+
+      campaign.normalMaps+' mapas descodificados; '+
+      campaign.unresolvedMapIds+' IDs sem cabeçalho normal.',
+    '📋 Esta zona: '+s.total+' ações/objetos · '+
+      s.confirmedCollected+' itens ocultos recolhidos por flag · '+
+      s.confirmedNotCollected+' itens ocultos por recolher por flag · '+
+      s.progressUnverified+' sem prova de conclusão.',
+    '🧭 Cut: '+s.needsCutCandidates+' percursos condicionais · Surf: '+
+      s.needsSurfCandidates+' percursos condicionais (não garantem acesso).',
+    '📍 Mapas com observação RAM corroborada nesta leitura: '+
+      campaign.observedMapCount+'/'+campaign.normalMaps+'. '+
+      'Não representa o progresso total da campanha.'
+  ];
+  const labels={ITEM:'Item visível',HIDDEN_ITEM:'Item oculto',
+    TRAINER:'Treinador',NPC:'NPC',STATIC_POKEMON:'Pokémon fixo',
+    SIGN:'Sinal',WARP:'Saída'};
+  const progress={COLLECTED_CONFIRMED_FLAG:'flag de recolha confirmada',
+    NOT_COLLECTED_CONFIRMED_FLAG:'flag indica não recolhido',
+    NOT_PROVEN:'progresso por confirmar'};
+
+  // Uma flag D747 apenas descreve o portão do script. Não prova vitória,
+  // acessibilidade, presença do sprite ou resultado do encontro.
+  // Nunca publicar um estado RAM com uma leitura antiga ou outra ROM/mapa.
+  const gateRam=state?.memoryReadStatus;
+  const gatePositions=[gateRam?.positionWindow,
+    gateRam?.latePositionWindow,gateRam?.publicationPositionWindow];
+  const gateStamp=Date.parse(state?.lastUpdate||'');
+  const gateValidPosition=p=>p?.verified===true&&p.mapId===advice.mapId&&
+    Number.isInteger(p.x)&&p.x>=-4&&p.x<=255&&
+    Number.isInteger(p.y)&&p.y>=-4&&p.y<=255;
+  const gateScope=state?.connected===true&&
+    state?.romRuntimeIdentity?.matched===true&&
+    trustedHashes.has(runtimeSha)&&
+    runtimeSha===advice.romSha256&&
+    state.mapId===advice.mapId&&
+    checklist.scriptAtlasBound===true&&
+    gateRam?.verified===true&&Number.isFinite(gateStamp)&&
+    gateStamp<=Date.now()&&Date.now()-gateStamp<=15000&&
+    gatePositions.every(gateValidPosition)&&
+    gatePositions[0].x===gatePositions[1].x&&
+    gatePositions[0].y===gatePositions[1].y&&
+    gatePositions[1].x===gatePositions[2].x&&
+    gatePositions[1].y===gatePositions[2].y&&
+    state.coords?.x===gatePositions[2].x&&
+    state.coords?.y===gatePositions[2].y;
+  const verifiedGateLabel=action=>{
+    const kind=action.kind;
+    if(!gateScope||!['TRAINER','STATIC_POKEMON'].includes(kind)||
+       action.scriptReferenceBound!==true||
+       action.scriptTextPointerVerified!==true||
+       action.scriptEventBitBindingVerified!==true||
+       action.scriptEventFlagSnapshotVerified!==true||
+       action.scriptEventFlagEvidence!==
+         'ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747'||
+       typeof action.scriptEventFlagSet!=='boolean'||
+       !Number.isInteger(action.scriptEventBitIndex)||
+       action.scriptEventBitIndex<0||
+       action.scriptEventBitIndex>=2560||
+       action.staticObject?.source!=='ROM_MAP_OBJECT_BYTES'||
+       action.staticObject.kind!==(kind==='TRAINER'?'trainer':'wildPokemon')||
+       !Number.isInteger(action.ordinal)||action.ordinal<1||
+       action.staticObject.ordinal!==action.ordinal||
+       action.staticObject.x!==action.x||
+       action.staticObject.y!==action.y||
+       action.accessibleNow!==null||action.completedNow!==null)
+      return null;
+    const flag=action.scriptEventFlagSet;
+    const required=kind==='TRAINER'?
+      flag?'TRAINER_GATE_CLOSED_FLAG':'TRAINER_GATE_OPEN_FLAG':
+      flag?'ENCOUNTER_GATE_CLOSED_FLAG':'ENCOUNTER_GATE_OPEN_FLAG';
+    if(action.progress!==required)return null;
+    const type=kind==='TRAINER'?'combate':'encontro';
+    return 'bit D747 '+(flag?'assinalado':'não assinalado')+
+      ' (portão de '+type+' '+(flag?'fechado':'aberto')+
+      ' por flag; vitória, presença, acesso e resultado não comprovados)';
+  };
+    // Map script root: ROM evidence, not proof of observed gameplay.
+  const mapRootT190=canRenderScriptSemantics?
+    checklist.mapScriptRootEvidence:null;
+
+  if(mapRootT190?.verified===true&&
+     mapRootT190.romSha256===runtimeSha&&
+     mapRootT190.mapId===advice.mapId&&
+     mapRootT190.rootInvokedInCurrentPlay===false&&
+     mapRootT190.actualBankSelectionVerified===false&&
+     mapRootT190.gameplayCompleted===false){
+
+    lines.push(
+      'SCRIPT GERAL DO MAPA | ROM 0x'+
+      mapRootT190.physicalRootOffset.toString(16).toUpperCase()+
+      ' | candidatos condicionais: '+
+      mapRootT190.conditionalEffectCandidates+
+      ' | caminhos por resolver: '+
+      mapRootT190.unresolvedCount
+    );
+
+    for(const effect of mapRootT190.effects.slice(0,6)){
+      lines.push(
+        'Candidato ROM: instrucao 0x'+
+        effect.instructionOffset.toString(16).toUpperCase()+
+        ' | RAM 0x'+effect.address.toString(16).toUpperCase()+
+        ' | condicoes: '+JSON.stringify(effect.conditions)+
+        ' | execucao desconhecida | conclusao desconhecida'
+      );
+    }
+
+        const mapRootRamGroupsT198=
+      Array.isArray(mapRootT190.runtimeRamRequirements)?
+      mapRootT190.runtimeRamRequirements:[];
+
+    if(mapRootRamGroupsT198.length){
+      const totalRequirements=mapRootRamGroupsT198.reduce(
+        (n,r)=>n+r.conditionalPathRequirements,0
+      );
+
+      lines.push(
+        'Requisitos RAM do script geral do mapa: '+
+        mapRootRamGroupsT198.length+
+        ' grupos; '+totalRequirements+
+        ' caminhos condicionais. Banco ativo desconhecido.'
+      );
+
+      for(const r of mapRootRamGroupsT198.slice(0,8)){
+        if(!Number.isInteger(r.sourceAddress)||
+           !Number.isInteger(r.instructionOffset)||
+           !Number.isInteger(r.bankRegisterAddress)||
+           r.runtimeRamReadObserved!==false||
+           r.selectedBank!==null||
+           r.bankRegisterWriteObserved!==false)
+          continue;
+
+        lines.push(
+          'RAM 0x'+r.sourceAddress.toString(16).toUpperCase()+
+          ' | instrucao ROM 0x'+
+          r.instructionOffset.toString(16).toUpperCase()+
+          ' | registo 0x'+
+          r.bankRegisterAddress.toString(16).toUpperCase()+
+          ' | '+r.conditionalPathRequirements+
+          ' caminhos'+
+          (Number.isInteger(r.physicalCandidateCount)?
+            ' | '+r.physicalCandidateCount+
+            ' bancos fisicos candidatos':'')+
+          ' | escrita e execucao nao observadas'
+        );
+
+        if(r.sourceAddress===0xFFB8){
+          lines.push(
+            'Existe diagnostico manual FFB8, apenas de leitura. '+
+            'Nao confirma o banco ativo nem um evento concluido.'
+          );
+        }
+      }
+
+      if(mapRootRamGroupsT198.length>8){
+        lines.push(
+          'Outros grupos RAM omitidos nesta vista: '+
+          (mapRootRamGroupsT198.length-8)
+        );
+      }
+    }
+
+    const mapRootIndexedT206=
+      Array.isArray(mapRootT190.runtimeIndexedJumpRequirements)?
+      mapRootT190.runtimeIndexedJumpRequirements:[];
+
+    if(mapRootIndexedT206.length){
+      lines.push(
+        'Saltos indiretos do script: '+
+        mapRootIndexedT206.length+
+        ' grupos condicionais. Nenhum salto observado.'
+      );
+
+      for(const r of mapRootIndexedT206.slice(0,8)){
+        if(r.reason!==
+             'LIVE_RAM_REQUIRED_FOR_INDEXED_ROM_JUMP_TABLE'||
+           !Number.isInteger(r.sourceAddress)||
+           !Number.isInteger(r.instructionOffset)||
+           r.runtimeRamReadObserved!==false||
+           r.actualBankSelectionVerified!==false||
+           r.indirectJumpObserved!==false||
+           r.gameplayExecutionObserved!==false||
+           r.gameEventCompleted!==false)
+          continue;
+
+        lines.push(
+          'Tabela ROM: RAM 0x'+
+          r.sourceAddress.toString(16).toUpperCase()+
+          ' | instrucao 0x'+
+          r.instructionOffset.toString(16).toUpperCase()+
+          ' | '+r.pointerCandidateCount+
+          ' enderecos candidatos | '+
+          r.targetCandidateCount+
+          ' destinos distintos candidatos | '+
+          r.outsideRomCandidates+
+          ' enderecos fora da ROM | '+
+          r.conditionalPathRequirements+
+          ' caminhos condicionais | banco '+
+          r.assumedBank+
+          ' assumido pelo modelo, nunca observado.'
+        );
+      }
+    }
+
+    const indexedRomTableWordsT233=
+      Array.isArray(mapRootT190.indexedRomTableWords)?
+      mapRootT190.indexedRomTableWords:[];
+
+    if(indexedRomTableWordsT233.length){
+      lines.push(
+        'Tabelas de saltos ROM: '+
+        indexedRomTableWordsT233.length+
+        ' tabelas com 128 palavras fisicas por tabela. '+
+        'Banco de ROM presumido, nao observado.'
+      );
+
+      for(const table of indexedRomTableWordsT233.slice(0,4)){
+        if(
+          table.source!==
+           'VERIFIED_ROM_INDEXED_TABLE_WORDS_128_V1'||
+          table.pointerPositions!==128||
+          table.inputBytePossibilities!==256||
+          table.pointerIndexFormula!==
+           'SOURCE_BYTE_AND_0X7F'||
+          typeof table.targetWordsLittleEndianHex!=='string'||
+          !/^[0-9a-f]{512}$/.test(
+           table.targetWordsLittleEndianHex
+          )||
+          table.runtimeSourceByteObserved!==false||
+          table.bankSelectionObserved!==false||
+          table.indirectJumpObserved!==false||
+          table.instructionTargetsProven!==false||
+          table.gameEventCompleted!==false
+        )continue;
+
+        lines.push(
+          'RAM fonte 0x'+
+          table.sourceAddress.toString(16).toUpperCase()+
+          ' | tabela ROM 0x'+
+          table.firstPhysicalOffset.toString(16).toUpperCase()+
+          ' | '+table.uniqueRawTargetWords+
+          ' palavras de destino distintas; '+
+          table.nonRomWordCount+
+          ' fora do espaco de ROM.'
+        );
+
+        for(const e of table.exampleWords.slice(0,5)){
+          if(
+            !Number.isInteger(e.index)||
+            !Number.isInteger(e.targetCpu)||
+            !Number.isInteger(e.pointerCpu)
+          )continue;
+
+          lines.push(
+            'Indice '+e.index+
+            ' | ponteiro 0x'+
+            e.pointerCpu.toString(16).toUpperCase()+
+            ' -> palavra 0x'+
+            e.targetCpu.toString(16).toUpperCase()+
+            ' | '+e.class+
+            ' | destino real nao observado'
+          );
+        }
+      }
+    }
+    const indexedJumpLiveT234=
+      state?.romIndexedJumpLiveSelection;
+
+    if(
+      indexedJumpLiveT234?.verified===true&&
+      indexedJumpLiveT234.source===
+        'RETROARCH_RAM_PLUS_ROM_INDEXED_TABLE_CONDITIONAL_V1'&&
+      indexedJumpLiveT234.romSha256===runtimeSha&&
+      indexedJumpLiveT234.mapId===advice.mapId&&
+      indexedJumpLiveT234.mapId===mapRootT190.mapId&&
+      indexedJumpLiveT234.observedAt===state.lastUpdate&&
+      state.connected===true&&
+      state.isSimulation!==true&&
+      state.memoryReadStatus?.verified===true&&
+      state.memoryReadStatus?.publicationPositionWindow
+        ?.verified===true&&
+      indexedJumpLiveT234.publicationPositionVerified===true&&
+      indexedJumpLiveT234.atomicSnapshotVerified===false&&
+      indexedJumpLiveT234.indirectJumpObserved===false&&
+      indexedJumpLiveT234.gameEventCompleted===false&&
+      Number.isInteger(indexedJumpLiveT234.additionalUdpRequests)&&
+      indexedJumpLiveT234.additionalUdpRequests>=0&&
+      indexedJumpLiveT234.additionalUdpRequests<=1&&
+      Array.isArray(indexedJumpLiveT234.selections)
+    ){
+      const tables=
+        Array.isArray(mapRootT190.indexedRomTableWords)?
+        mapRootT190.indexedRomTableWords:[];
+
+      const selections=indexedJumpLiveT234.selections
+        .filter(row=>
+          row.sourceRamReadObserved===true&&
+          row.rawRomTableWordVerified===true&&
+          row.bankSelectionObserved===false&&
+          row.indirectJumpObserved===false&&
+          row.instructionBoundaryVerified===false&&
+          row.gameEventCompleted===false&&
+          Number.isInteger(row.sourceAddress)&&
+          Number.isInteger(row.sourceRamByte)&&
+          row.sourceRamByte>=0&&row.sourceRamByte<=255&&
+          Number.isInteger(row.pointerIndex)&&
+          row.pointerIndex===(row.sourceRamByte&127)&&
+          Number.isInteger(row.pointerCpu)&&
+          Number.isInteger(row.rawTargetCpu)&&
+          row.rawTargetCpu>=0&&row.rawTargetCpu<=65535&&
+          tables.some(t=>
+            t.sourceAddress===row.sourceAddress&&
+            t.instructionOffset===row.instructionOffset&&
+            t.assumedBank===row.assumedBank&&
+            t.baseCpuAddress+2*row.pointerIndex===
+              row.pointerCpu
+          )
+        ).slice(0,8);
+
+      if(selections.length){
+        lines.push(
+          'Indices de tabelas ROM condicionados por RAM: '+
+          selections.length+
+          ' | valores recolhidos no ciclo atual; '+
+          'nao representam saltos executados.'
+        );
+
+        for(const row of selections){
+          lines.push(
+            'Fonte RAM 0x'+
+            row.sourceAddress.toString(16).toUpperCase()+
+            ' = '+row.sourceRamByte+
+            ' | indice '+row.pointerIndex+
+            ' | palavra ROM 0x'+
+            row.rawTargetCpu.toString(16)
+              .toUpperCase().padStart(4,'0')+
+            ' | '+row.targetClass+
+            ' | banco presumido '+row.assumedBank+
+            ' | '+row.sourceReadBlock+
+            ' | salto nao observado'
+          );
+        }
+      }
+    }
+    const mapRootSymbolicT214=
+      Array.isArray(mapRootT190.runtimeSymbolicWriteRequirements)?
+      mapRootT190.runtimeSymbolicWriteRequirements:[];
+
+    if(mapRootSymbolicT214.length){
+      const valid=mapRootSymbolicT214.filter(r=>
+        r.reason===
+          'LIVE_RAM_REQUIRED_FOR_SYMBOLIC_WRAM_WRITE_TARGET'&&
+        r.memoryRegion==='WRAM'&&
+        r.candidateCount===256&&
+        Number.isInteger(r.sourceAddress)&&
+        Number.isInteger(r.instructionOffset)&&
+        Number.isInteger(r.candidateMin)&&
+        Number.isInteger(r.candidateMax)&&
+        r.runtimeRamReadObserved===false&&
+        r.targetAddressObserved===false&&
+        r.memoryWriteObserved===false&&
+        r.gameplayExecutionObserved===false&&
+        r.gameEventCompleted===false
+      );
+
+      if(valid.length){
+        lines.push(
+          'Escritas condicionais WRAM: '+
+          valid.reduce(
+            (total,r)=>total+r.conditionalPathRequirements,0
+          )+
+          ' caminhos, '+valid.length+
+          ' grupos. Endereco real e execucao desconhecidos.'
+        );
+
+        for(const r of valid.slice(0,8)){
+          lines.push(
+            'RAM 0x'+
+            r.sourceAddress.toString(16).toUpperCase()+
+            ' | instrucao ROM 0x'+
+            r.instructionOffset.toString(16).toUpperCase()+
+            ' | '+r.candidateCount+
+            ' enderecos WRAM candidatos entre 0x'+
+            r.candidateMin.toString(16).toUpperCase()+
+            ' e 0x'+r.candidateMax.toString(16).toUpperCase()+
+            ' | '+r.conditionalPathRequirements+
+            ' caminhos | escrita e evento nao observados'
+          );
+        }
+
+        if(valid.length>8){
+          lines.push(
+            'Outros grupos de escrita WRAM omitidos nesta vista: '+
+            (valid.length-8)
+          );
+        }
+      }
+    }
+
+    const symbolicWramT236=
+      state?.romSymbolicWramTargetSelection;
+
+    if(
+      symbolicWramT236?.verified===true&&
+      symbolicWramT236.source===
+       'ROM_SYMBOLIC_WRAM_TARGET_BY_EXISTING_D369_SAMPLE_V1'&&
+      symbolicWramT236.romSha256===runtimeSha&&
+      symbolicWramT236.mapId===advice.mapId&&
+      symbolicWramT236.mapId===mapRootT190.mapId&&
+      symbolicWramT236.observedAt===state.lastUpdate&&
+      symbolicWramT236.sourceAddress===0xd369&&
+      symbolicWramT236.sourceReadObserved===true&&
+      symbolicWramT236.publicationPositionVerified===true&&
+      symbolicWramT236.atomicSnapshotVerified===false&&
+      symbolicWramT236.memoryWriteObserved===false&&
+      symbolicWramT236.gameEventCompleted===false&&
+      symbolicWramT236.additionalUdpRequests===0&&
+      state.connected===true&&
+      state.isSimulation!==true&&
+      state.memoryReadStatus?.verified===true&&
+      state.memoryReadStatus?.publicationPositionWindow
+       ?.verified===true&&
+      Array.isArray(symbolicWramT236.candidateTargets)
+    ){
+      const requirements=
+       mapRootT190.runtimeSymbolicWriteRequirements||[];
+
+      const candidates=symbolicWramT236.candidateTargets
+       .filter(row=>
+        row.sourceAddress===0xd369&&
+        row.sourceByte===symbolicWramT236.sourceByte&&
+        row.sourceReadObserved===true&&
+        row.candidateFormulaVerified===true&&
+        row.targetAddressObserved===false&&
+        row.memoryWriteObserved===false&&
+        row.gameplayExecutionObserved===false&&
+        row.gameEventCompleted===false&&
+        Number.isInteger(row.candidateAddress)&&
+        row.candidateAddress>=0xc000&&
+        row.candidateAddress<0xe000&&
+        requirements.some(r=>
+         r.instructionOffset===row.instructionOffset&&
+         r.loopIterations===row.loopIterations&&
+         r.symbolicMultiplier===row.multiplier&&
+         r.finalBC===row.finalBC&&
+         r.candidateMin<=row.candidateAddress&&
+         r.candidateMax>=row.candidateAddress
+        )
+       ).slice(0,8);
+
+      if(candidates.length){
+        lines.push(
+         'Destinos WRAM condicionais: '+
+         candidates.length+
+         ' | calculados pela ROM com RAM D369 atual; '+
+         'nenhuma escrita ou execucao comprovada.'
+        );
+
+        for(const row of candidates){
+          lines.push(
+           'D369='+row.sourceByte+
+           ' | instrucao ROM 0x'+
+           row.instructionOffset.toString(16).toUpperCase()+
+           ' | alvo potencial WRAM 0x'+
+           row.candidateAddress.toString(16).toUpperCase()+
+           ' | '+row.conditionalPathRequirements+
+           ' caminhos condicionais | escrita nao observada'
+          );
+        }
+      }
+    }
+    const mapRootBudgetRamT220=
+      mapRootT190.runtimeBudgetConditionRamSources;
+
+    if(
+      mapRootBudgetRamT220?.reason===
+        'PATH_BUDGET_CONDITION_RAM_DEPENDENCIES'&&
+      mapRootBudgetRamT220.source===
+        'ROM_ABSTRACT_CONDITION_HISTORY'&&
+      Number.isInteger(
+        mapRootBudgetRamT220.pathBudgetStops
+      )&&
+      mapRootBudgetRamT220.pathBudgetStops>0&&
+      mapRootBudgetRamT220.runtimeRamReadObserved===false&&
+      mapRootBudgetRamT220.gameplayExecutionObserved===false&&
+      mapRootBudgetRamT220.gameEventCompleted===false&&
+      mapRootBudgetRamT220.pathsResolved===false&&
+      Array.isArray(mapRootBudgetRamT220.candidateSources)
+    ){
+      lines.push(
+        'Analise do script limitada por ramificacoes: '+
+        mapRootBudgetRamT220.pathBudgetStops+
+        ' caminhos interrompidos. Fontes RAM abaixo sao '+
+        'dependencias simbolicas, nao valores lidos ao vivo.'
+      );
+
+      for(const r of mapRootBudgetRamT220.candidateSources.slice(0,8)){
+        if(
+          !Number.isInteger(r.address)||
+          !Number.isInteger(r.conditionalStoppedPaths)||
+          r.conditionalStoppedPaths<1||
+          r.runtimeRamReadObserved!==false||
+          r.liveValueKnown!==false
+        )continue;
+
+        lines.push(
+          'RAM candidata 0x'+
+          r.address.toString(16).toUpperCase()+
+          ' | presente nas condicoes de '+
+          r.conditionalStoppedPaths+
+          ' caminhos interrompidos'+
+          ' | valor e progresso reais desconhecidos'
+        );
+      }
+
+      if(mapRootBudgetRamT220.sourcesBounded){
+        lines.push(
+          'Outros enderecos RAM candidatos existem, '+
+          'mas foram omitidos desta vista.'
+        );
+      }
+    }
+
+    const mapBudgetRamLiveT221=
+      state?.romBudgetBranchRamReadback;
+
+    if(
+      mapBudgetRamLiveT221?.verified===true&&
+      mapBudgetRamLiveT221.source===
+        'RETROARCH_DOUBLE_READ_C100_C21E'&&
+      mapBudgetRamLiveT221.romSha256===runtimeSha&&
+      mapBudgetRamLiveT221.mapId===advice.mapId&&
+      mapBudgetRamLiveT221.mapId===mapRootT190.mapId&&
+      mapBudgetRamLiveT221.observedAt===state.lastUpdate&&
+      state.connected===true&&
+      state.isSimulation!==true&&
+      state.memoryReadStatus?.verified===true&&
+      state.memoryReadStatus?.publicationPositionWindow
+        ?.verified===true&&
+      mapBudgetRamLiveT221.twoReadSamplesConfirmed===true&&
+      mapBudgetRamLiveT221.publicationPositionVerified===true&&
+      mapBudgetRamLiveT221.atomicSnapshotVerified===false&&
+      mapBudgetRamLiveT221.scriptExecutionObserved===false&&
+      mapBudgetRamLiveT221.gameEventCompleted===false&&
+      Array.isArray(mapBudgetRamLiveT221.values)
+    ){
+      const permitted=new Set(
+        mapRootT190.runtimeBudgetConditionRamSources
+          ?.candidateSources?.map(r=>r.address)||[]
+      );
+
+      const matches=mapBudgetRamLiveT221.values.filter(r=>
+        permitted.has(r.address)&&
+        [0xc21e,0xc22e,0xc23e].includes(r.address)&&
+        Number.isInteger(r.value)&&
+        r.value>=0&&r.value<=255&&
+        r.repeatedReadMatched===true&&
+        r.firstValue===r.value&&
+        r.secondValue===r.value
+      );
+
+      if(matches.length){
+        lines.push(
+          'RAM real do RetroArch: '+matches.length+
+          ' fontes repetidas com valores coincidentes; '+
+          'amostra nao atomica, script nao executado por esta prova.'
+        );
+
+        for(const r of matches){
+          lines.push(
+            'RAM 0x'+r.address.toString(16).toUpperCase()+
+            ' = '+r.value+
+            ' (0x'+r.value.toString(16)
+              .toUpperCase().padStart(2,'0')+')'+
+            ' | duas leituras coincidentes'+
+            ' | nao demonstra acao nem progresso'
+          );
+        }
+      }
+    }
+    const worldBudgetRamT231=
+      state?.romWorldBudgetRamReadback;
+
+    if(
+      worldBudgetRamT231?.verified===true&&
+      worldBudgetRamT231.source===
+        'RETROARCH_DOUBLE_READ_WORLD_BUDGET_WINDOW'&&
+      worldBudgetRamT231.romSha256===runtimeSha&&
+      worldBudgetRamT231.mapId===advice.mapId&&
+      worldBudgetRamT231.mapId===mapRootT190.mapId&&
+      worldBudgetRamT231.observedAt===state.lastUpdate&&
+      state.connected===true&&
+      state.isSimulation!==true&&
+      state.memoryReadStatus?.verified===true&&
+      state.memoryReadStatus?.publicationPositionWindow
+        ?.verified===true&&
+      worldBudgetRamT231.twoReadSamplesConfirmed===true&&
+      worldBudgetRamT231.publicationPositionVerified===true&&
+      worldBudgetRamT231.atomicSnapshotVerified===false&&
+      worldBudgetRamT231.scriptExecutionObserved===false&&
+      worldBudgetRamT231.gameEventCompleted===false&&
+      Number.isInteger(worldBudgetRamT231.extraReadBytes)&&
+      worldBudgetRamT231.extraReadBytes>=1&&
+      worldBudgetRamT231.extraReadBytes<=128&&
+      Array.isArray(worldBudgetRamT231.values)
+    ){
+      const permitted=new Set(
+        mapRootT190.runtimeBudgetConditionRamSources
+          ?.candidateSources?.map(r=>r.address)||[]
+      );
+
+      const matches=worldBudgetRamT231.values.filter(r=>
+        permitted.has(r.address)&&
+        Number.isInteger(r.address)&&
+        r.address>=0xc100&&r.address<0xc300&&
+        Number.isInteger(r.value)&&
+        r.value>=0&&r.value<=255&&
+        r.repeatedReadMatched===true&&
+        r.firstValue===r.value&&
+        r.secondValue===r.value
+      ).slice(0,8);
+
+      if(matches.length){
+        lines.push(
+          'RAM do script deste mapa: '+
+          matches.length+
+          ' fontes ROM verificadas com duas leituras '+
+          'coincidentes; amostra nao atomica.'
+        );
+
+        for(const r of matches){
+          lines.push(
+            'RAM 0x'+r.address.toString(16).toUpperCase()+
+            ' = '+r.value+
+            ' (0x'+r.value.toString(16)
+              .toUpperCase().padStart(2,'0')+')'+
+            ' | dependência simbolica | '+
+            'nao prova execucao ou conclusao de evento'
+          );
+        }
+
+        if(worldBudgetRamT231.sourcesNotSelected>0){
+          lines.push(
+            'Outras fontes RAM deste mapa nao foram '+
+            'reconfirmadas nesta leitura.'
+          );
+        }
+      }
+    }
+if(mapRootT190.unresolvedCount>0){
+      lines.push(
+        'Bloqueios do script: '+
+        JSON.stringify(mapRootT190.unresolvedReasonCounts)+
+        (mapRootT190.unresolvedSamplesBounded?
+          ' | amostra limitada; total preservado':'')
+      );
+    }
+
+    lines.push(
+      'Precondicoes: script chamado e banco ROM atual '+
+      'nao comprovados. Nenhum evento concluido por esta analise.'
+    );
+  }
+
+for(const action of checklist.actions){
+    if(!Object.hasOwn(labels,action.kind)||
+       !Number.isInteger(action.x)||!Number.isInteger(action.y))continue;
+    const type=labels[action.kind];
+    const position='X:'+action.x+' Y:'+action.y;
+    const id=action.kind==='HIDDEN_ITEM'?
+      action.staticObject?.hiddenIndex:
+      action.kind==='ITEM'?action.staticObject?.itemOrTrainerId:null;
+    const identity=Number.isInteger(id)?
+      (action.kind==='HIDDEN_ITEM'?' · índice evento #':' · ID objeto #')+id:'';
+    const condition=typeof action.routeCondition==='string'?
+      ' · hipótese de caminho: '+action.routeCondition:'';
+    const staticActor=action.staticObject;
+    const staticActorMatched=canRenderActorProof&&
+      action.romActorCoordinateAndAttributeVerified===true&&
+      action.romActorVariantEvidence===
+        'SAME_SHA_ROM_MAP_OBJECT_AND_SCRIPT_REFERENCE'&&
+      action.scriptReferenceBound===true&&
+      action.scriptTextPointerVerified===true&&
+      Number.isInteger(action.ordinal)&&action.ordinal>=1&&
+      action.ordinal===staticActor?.ordinal&&
+      action.x===staticActor?.x&&action.y===staticActor?.y;
+    const itemMatched=staticActorMatched&&action.kind==='ITEM'&&
+      staticActor?.kind==='item'&&
+      Number.isInteger(action.romActorItemId)&&
+      action.romActorItemId>=0&&action.romActorItemId<=255&&
+      action.romActorItemId===staticActor.itemOrTrainerId;
+    const monMatched=staticActorMatched&&
+      action.kind==='STATIC_POKEMON'&&
+      staticActor?.kind==='wildPokemon'&&
+      Number.isInteger(action.romActorSpeciesInternalId)&&
+      action.romActorSpeciesInternalId>=1&&
+      action.romActorSpeciesInternalId<=190&&
+      action.romActorSpeciesInternalId===staticActor.wildSpeciesInternalId&&
+      Number.isInteger(action.romActorLevel)&&
+      action.romActorLevel>=1&&action.romActorLevel<=100&&
+      action.romActorLevel===staticActor.wildLevel;
+    const variantProof=itemMatched?
+      ' · ROM ativa confirmada: item ID '+action.romActorItemId+
+        ', X:'+action.x+' Y:'+action.y+
+        ' (estático, acesso por confirmar)':
+      monMatched?
+      ' · ROM ativa confirmada: espécie interna '+
+        action.romActorSpeciesInternalId+', nível '+action.romActorLevel+
+        ', X:'+action.x+' Y:'+action.y+
+        ' (estático, encontro por confirmar)':'';
+    const entry=action.scriptReferenceBound===true?
+      ' · entrada script ROM: '+(action.scriptCommand||'não classificada')+
+        (action.scriptTextPointerVerified===true?' (ponteiro válido)':
+         ' (ponteiro por resolver)')+
+        (canRenderScriptSemantics&&action.scriptPredictedEffects?.length?
+         ' · ROM: '+action.scriptPredictedEffects.length+' transições condicionais RAM '+
+         action.scriptPredictedEffects.map(e=>'0x'+e.address.toString(16)+
+          (e.value?.bit!==undefined?' bit '+e.value.bit:'')+
+          (typeof e.observedCurrentBit==='boolean'?' (bit RAM atual '+(e.observedCurrentBit?'1':'0')+')':'')+
+          (e.conditionsInCurrentSnapshot?.includes('DOES_NOT_MATCH')?' (condição não corresponde à RAM atual)':'')).join(', ')+
+         ' · execução/conclusão por confirmar':
+         ' · efeito não certificado'):'';
+    const asm=action.scriptAsmCandidate?.verified===true?
+      ' · ASM candidato: '+action.scriptAsmCandidate.opcodeCandidateCount+
+        ' instruções; '+action.scriptAsmCandidate.callsNotFollowed+
+        ' chamadas não percorridas; '+action.scriptAsmCandidate.unresolvedBranchTargets+
+        ' destinos não resolvidos'+
+        (action.scriptAsmCandidate.candidateExpansionApplied?
+         ', análise alargada 64→256 (candidatos, não execução)':'')+
+        (action.scriptAsmCandidate.limitReached?', limite de análise atingido':'')+
+        ' (sem prova de efeito)':'';
+
+
+    const coverage=canRenderScriptSemantics&&action.scriptCoverage?.romSha256===runtimeSha?
+      action.scriptCoverage:null;
+    const blockerExplanations={
+      STEP_BUDGET:'limite de instruções atingido; requer análise adicional do caminho',
+      PATH_BUDGET:'limite de ramificações atingido; restam alternativas por analisar',
+      UNKNOWN_BANK:'banco ROM não determinado; consultar requisitos RAM quando disponíveis',
+      INDIRECT_TARGET:'destino indireto não determinado; falta provar o endereço de controlo',
+      UNKNOWN_MEMORY:'endereço ou operação de memória não resolvidos; não pressupor valores RAM',
+      UNSUPPORTED_OPCODE:'instrução sem semântica suportada; requer implementação CPU validada',
+      LOOP_REQUIRES_FIXPOINT:'ciclo sem ponto fixo demonstrado; não se assume terminação',
+      OTHER:'diagnóstico original preservado; causa específica não classificada'
+    };
+    const coverageText=coverage?(coverage.executableAsm?
+      ' · STATIC_ROM_EVIDENCE: handler ROM 0x'+coverage.handlerOffset.toString(16)+
+      '; '+coverage.unresolvedCount+' caminhos não resolvidos; motivos exatos '+JSON.stringify(coverage.unresolvedReasonCounts)+
+      '; categorias '+JSON.stringify(coverage.unresolvedCategoryCounts)+
+      '; '+Object.keys(coverage.unresolvedCategoryCounts).map(c=>blockerExplanations[c]||blockerExplanations.OTHER).join('; ')+
+      '; '+coverage.unresolvedSamples.length+' exemplos'+(coverage.unresolvedSamplesBounded?' (amostra limitada; não é cobertura total)':'')+
+      ': '+coverage.unresolvedSamples.map(u=>u.reason+' ['+u.category+'] @ '+
+        (Number.isInteger(u.instructionOffset)?'ROM 0x'+u.instructionOffset.toString(16):'offset desconhecido')).join(', ')+
+      '; CONDITIONAL_PREDICTION: '+coverage.conditionalEffectCandidates+' candidatos, '+coverage.provenEffects+' efeitos de gameplay provados sob precondições'+
+      '; script integral '+(coverage.fullScriptCertified?'certificado':'não certificado')+
+      '; VERIFIED_LIVE_RAM / OBSERVED_PLAYER_ACTION: sem prova por esta análise':
+      ' · comando de apresentação de texto; não é script ASM executável; script integral não certificado'):'';
+    lines.push('• '+type+' ('+position+')'+identity+' — '+
+      (verifiedGateLabel(action)||progress[action.progress]||'progresso por confirmar')+
+      variantProof+condition+entry+asm+coverageText+
+      (canRenderScriptSemantics&&action.scriptRuntimeRequirements?.length?
+       ' · '+action.scriptRuntimeRequirements.map(r=>
+        'Banco UNKNOWN: falta RAM 0x'+r.sourceAddress.toString(16).toUpperCase()+
+        ' ('+r.width+' byte), '+r.controller+' registo 0x'+r.bankRegisterAddress.toString(16)+
+        ', instrução ROM 0x'+r.instructionOffset.toString(16)+
+        ', handler 0x'+r.handlerOffset.toString(16)+
+        '; '+r.reason+'; '+r.physicalCandidateCount+' candidatos físicos (não executados)'+
+        '; condições '+JSON.stringify(r.conditions)+
+        '; limitações '+(r.limitations||[]).join(', ')+
+        '; execução/conclusão por confirmar').join(' · '):''));
+  }
+
+  // The twelve hidden coin events are not among the 1992 map objects.
+  // Show their separate D6FE bitmap only with exact ROM and fresh RAM proof.
+  const coinData=state?.romHiddenCoins;
+  const m=state?.memoryReadStatus;
+  const windows=[m?.positionWindow,m?.latePositionWindow,m?.publicationPositionWindow];
+  const updatedAt=Date.parse(state?.lastUpdate||'');
+  const xy=n=>Number.isInteger(n)&&n>=0&&n<=255;
+  const coinScope=state?.connected===true&&
+    state?.romRuntimeIdentity?.matched===true&&
+    trustedHashes.has(runtimeSha)&&runtimeSha===advice.romSha256&&
+    state.mapId===135&&advice.mapId===135&&
+    m?.verified===true&&Number.isFinite(updatedAt)&&
+    updatedAt<=Date.now()&&Date.now()-updatedAt<=15000&&
+    windows.every(w=>w?.verified===true&&w.mapId===135&&xy(w.x)&&xy(w.y))&&
+    windows[0].x===windows[1].x&&windows[0].y===windows[1].y&&
+    windows[1].x===windows[2].x&&windows[1].y===windows[2].y&&
+    state.coords?.x===windows[2].x&&state.coords?.y===windows[2].y&&
+    coinData?.verified===true&&coinData.romSha256===runtimeSha&&
+    coinData.mapId===135&&
+    ['ROM_HIDDEN_COIN_EVENTS_EXTRACTED + RAM_D6FE',
+     'ROM_HIDDEN_COINS_AUDITED_THREE_BUILDS + RAM_D6FE'].includes(coinData.source)&&
+    Array.isArray(coinData.coins)&&coinData.coins.length===12&&
+    Array.isArray(advice.observations);
+  if(coinScope){
+    const seenIndex=new Set(),seenTile=new Set();
+    const observations=advice.observations.filter(o=>o?.kind==='HIDDEN_COIN');
+    const trustworthy=observations.length===12&&coinData.coins.every(c=>{
+      const tile=c.x+','+c.y;
+      if(c.mapId!==135||!xy(c.x)||!xy(c.y)||
+         !Number.isInteger(c.hiddenIndex)||c.hiddenIndex<0||c.hiddenIndex>11||
+         seenIndex.has(c.hiddenIndex)||seenTile.has(tile)||
+         ![10,20,40,100].includes(c.coinAmount)||
+         typeof c.isCollected!=='boolean'||
+         c.collectionEvidence!=='ID_EVENTO_ROM + FLAG_RAM_D6FE')
+        return false;
+      seenIndex.add(c.hiddenIndex);seenTile.add(tile);
+      const amount=Number.isInteger(c.actualAwardIfClaimed)&&
+        c.actualAwardIfClaimed>=0?c.actualAwardIfClaimed:null;
+      return observations.filter(o=>o.x===c.x&&o.y===c.y&&
+        o.coinAmount===amount&&
+        o.status===(c.isCollected?'COIN_COLLECTED_FLAG':
+          'COIN_NOT_COLLECTED_FLAG')).length===1;
+    });
+    if(trustworthy&&seenIndex.size===12){
+      lines.push('--- 12 EVENTOS DE MOEDAS OCULTAS: ROM + RAM D6FE ---');
+      lines.push('🪙 Bits assinalados: '+
+        coinData.coins.filter(c=>c.isCollected).length+
+        '/12. Não comprova a atribuição de fichas.');
+      for(const c of [...coinData.coins].sort((a,b)=>a.hiddenIndex-b.hiddenIndex))
+        lines.push('• Moeda oculta #'+c.hiddenIndex+
+          ' X:'+c.x+' Y:'+c.y+' — bit D6FE '+
+          (c.isCollected?'assinalado':'não assinalado')+
+          '; acessibilidade e recompensa por confirmar.');
+      lines.push('Moedas ocultas não incluídas no contador de objetos acima.');
+    }
+  }
+  if(campaign.scriptReferencesBound>0)
+    lines.push('🧩 Referências de scripts ROM ligadas a objetos do mundo: '+
+      campaign.scriptReferencesBound+
+      ' (o efeito/ramificações NÃO estão integralmente descodificados).');
+  lines.push('⚠️ Objetos ROM não provam presença atual. Cut/Surf não provam acesso; '+
+    'NPCs, treinadores e scripts requerem evidência independente.');
+  return lines;
+}
+
+
+// Read-only presentation of the two special map-script battles.
+// The data is observable ROM bytes / RAM changes, NOT a verified victory.
+function formatScriptedBattleEvidenceSection(state,advice) {
+  const cases={
+    96:{name:'Rival — S.S. Anne 2F',address:0xd665,ordinal:2,
+      values:[null,1,2,3,4],
+      offsets:[398255,398344,398441,398515,398551],
+      labels:['SCRIPT_SSANNE2F_DEFAULT',
+       'SCRIPT_SSANNE2F_RIVAL_START_BATTLE',
+       'SCRIPT_SSANNE2F_RIVAL_AFTER_BATTLE',
+       'SCRIPT_SSANNE2F_RIVAL_EXIT',
+       'SCRIPT_SSANNE2F_NOOP']},
+    135:{name:'Rocket — Game Corner',address:0xd65f,ordinal:11,
+      values:[null,2,0,1],
+      offsets:[297995,298070,298118,298696],
+      labels:['SCRIPT_GAMECORNER_DEFAULT',
+       'SCRIPT_GAMECORNER_ROCKET_BATTLE',
+       'SCRIPT_GAMECORNER_ROCKET_EXIT']}
+  };
+  const config=cases[advice?.mapId];
+  if(!config||state?.connected!==true||
+     state.romRuntimeIdentity?.matched!==true||
+     state.mapId!==advice.mapId||
+     typeof advice.romSha256!=='string'||
+     !/^[a-f\d]{64}$/i.test(advice.romSha256)||
+     advice.verified!==true||!Array.isArray(advice.observations)||
+     !Number.isFinite(Date.parse(state.lastUpdate||''))||
+     Date.now()-Date.parse(state.lastUpdate)>15000||
+     Date.now()<Date.parse(state.lastUpdate))
+    return [];
+  const memory=state.memoryReadStatus;
+  const p=memory?.positionWindow,l=memory?.latePositionWindow,
+   f=memory?.publicationPositionWindow;
+  if(memory?.verified!==true||
+     [p,l,f].some(w=>w?.verified!==true||w.mapId!==advice.mapId||
+       !Number.isInteger(w.x)||!Number.isInteger(w.y))||
+     p.x!==l.x||p.y!==l.y||l.x!==f.x||l.y!==f.y)
+    return [];
+  const candidates=advice.observations.filter(o=>o?.kind==='SCRIPTED_BATTLE'&&
+    o.mapId===advice.mapId&&o.ordinal===config.ordinal);
+  if(candidates.length!==1)return [];
+  const o=candidates[0];
+  if(o.referenceOnly!==true||o.referenceWramAddress!==config.address||
+     o.battleWon!==null||o.canBattleNow!==null||
+     o.mapScriptStateVerified!==false||
+     o.actualRomScriptSemanticsVerified!==false||
+     o.candidateStateValuesAreCurrentProgress!==false||
+     o.nextActionConditional!==true||
+     !['SCRIPT_STATE_UNKNOWN','SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY']
+       .includes(o.status))
+    return [];
+  const lines=['--- COMBATE ESPECIAL: '+config.name+' ---',
+    'RAM candidata '+config.address.toString(16).toUpperCase()+
+     ' (referência pret/pokered; não prova o efeito executado).'];
+  const writes=o.candidateStateWritesFromRom;
+  const writeProof=o.staticWriteCandidatesVerified===true&&
+    Array.isArray(writes)&&writes.length===config.offsets.length&&
+    o.candidateStateWritesWithUnknownValue===1&&
+    writes.every((w,i)=>w?.mapId===advice.mapId&&
+      w.writeFileOffset===config.offsets[i]&&
+      w.referenceWramAddress===config.address&&
+      w.byteValueCandidate===config.values[i]&&
+      w.referenceLabelCandidate===(config.values[i]===null?
+        null:config.labels[config.values[i]])&&
+      w.executed===false&&w.completedBattle===null&&
+      w.valueProvenOnExecutedPath===false&&
+      w.memoryChangeObserved===false&&
+      w.opcodeCandidatePhysicallyDecoded===true);
+  if(writeProof){
+    lines.push('Possíveis escritas do código ROM (ordem física, NÃO cronológica):');
+    for(let i=0;i<writes.length;i++){
+      const v=config.values[i];
+      lines.push('• Offset '+config.offsets[i]+': '+
+        (v===null?'valor por determinar':
+         'valor candidato '+v+' ('+config.labels[v]+')'));
+    }
+  }else{
+    lines.push('Escritas e estados alternativos: prova física insuficiente.');
+  }
+  const readValid=o.status==='SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY'&&
+    o.mapScriptByteRepeated===true&&
+    Number.isInteger(o.currentMapScriptValue)&&
+    o.currentMapScriptValue>=0&&o.currentMapScriptValue<=255&&
+    o.referenceStateName===
+      (config.labels[o.currentMapScriptValue]??null);
+  if(readValid){
+    lines.push('Byte RAM observado em leitura dupla: '+
+      o.currentMapScriptValue+
+      (o.referenceStateName?' ('+o.referenceStateName+
+        ', nome apenas da referência)':
+       ' (sem nome na referência)')+'.');
+  }else{
+    lines.push('Byte RAM atual: NÃO CONFIRMADO nesta leitura.');
+  }
+  // Accept only scoped, currently published history with consistent evidence.
+  const recent=state.romRecentScriptedBattleStateChanges;
+  const events=recent?.events;
+  const historyOk=readValid&&recent?.verified===true&&
+    recent.baselineEstablished===true&&
+    recent.romSha256===advice.romSha256&&
+    recent.mapId===advice.mapId&&
+    recent.currentScriptByte===o.currentMapScriptValue&&
+    recent.referenceStateName===o.referenceStateName&&
+    recent.playerActionConfirmed===false&&
+    recent.battleWon===null&&recent.gameplayCompleted===false&&
+    recent.snapshotAtomicVerified===false&&
+    Array.isArray(events)&&events.length<=40&&
+    events.every(e=>e?.kind==='SCRIPT_BYTE_CHANGED_BETWEEN_VERIFIED_POLLS'&&
+      e.romSha256===advice.romSha256&&e.mapId===advice.mapId&&
+      Number.isInteger(e.fromScriptByte)&&e.fromScriptByte>=0&&
+      e.fromScriptByte<=255&&
+      Number.isInteger(e.toScriptByte)&&e.toScriptByte>=0&&
+      e.toScriptByte<=255&&
+      e.fromReferenceState===(config.labels[e.fromScriptByte]??null)&&
+      e.toReferenceState===(config.labels[e.toScriptByte]??null)&&
+      e.referenceStateNamesOnly===true&&
+      e.snapshotAtomicVerified===false&&
+      e.controlFlowVerified===false&&
+      e.playerActionConfirmed===false&&
+      e.battleWon===null&&e.gameplayCompleted===false&&
+      e.wasCausedByPlayer===null);
+  if(historyOk){
+    lines.push('Transições RAM verificadas nesta sessão: '+events.length+'.');
+    for(const e of events.slice(-5).reverse())
+      lines.push('• '+e.fromScriptByte+' → '+e.toScriptByte+
+        (e.toReferenceState?' ('+e.toReferenceState+
+         ' — nome da referência)':'')+
+        '; causa e ação do jogador desconhecidas.');
+  }else{
+    lines.push('Histórico de transições: não comprovado para esta publicação.');
+  }
+  lines.push('⚠️ Estado de script e alterações RAM NÃO comprovam '+
+    'vitória, NPC removido, recompensa ou acesso imediato.','');
+  return lines;
+}
+
+function renderWorldAdvisor(state) {
+  const body=document.getElementById('world-advisor-content');
+  const source=document.getElementById('world-advisor-source');
+  if(!body||!source)return;
+  const readAge=Date.now()-Date.parse(state?.lastUpdate||'');
+  if(!state?.connected||state.memoryReadStatus?.verified!==true||
+     !Number.isFinite(readAge)||readAge<0||readAge>15000||
+     state.memoryReadStatus?.positionWindow?.verified!==true||
+     state.memoryReadStatus?.latePositionWindow?.verified!==true||
+     state.memoryReadStatus?.publicationPositionWindow?.verified!==true||
+     state.memoryReadStatus.positionWindow.mapId!==state.mapId||
+     state.memoryReadStatus.latePositionWindow.mapId!==state.mapId||
+     state.memoryReadStatus.publicationPositionWindow.mapId!==state.mapId||
+     state.memoryReadStatus.positionWindow.x!==state.memoryReadStatus.latePositionWindow.x||
+     state.memoryReadStatus.positionWindow.y!==state.memoryReadStatus.latePositionWindow.y||
+     state.memoryReadStatus.latePositionWindow.x!==state.memoryReadStatus.publicationPositionWindow.x||
+     state.memoryReadStatus.latePositionWindow.y!==state.memoryReadStatus.publicationPositionWindow.y){
+    source.textContent='Sem RAM atual e coerente';
+    body.textContent='Aguardar nova leitura confirmada do mapa e coordenadas; conselhos anteriores ocultados.';
+    return;
+  }
+  const advice=state.worldAdvisor;
+  if(state.romRuntimeIdentity?.matched!==true||advice?.verified!==true||
+     advice.mapId!==state.mapId||!Array.isArray(advice.observations)){
+    source.textContent='ROM/mapa sem prova suficiente';
+    body.textContent='Não é seguro mostrar ações com a identidade ou o mapa atuais. '+
+      (advice?.reason||'A aguardar confirmação.');
+    return;
+  }
+  const statusText={
+    STATIC_ROM_ONLY:'Definido na ROM; presença por confirmar',
+    NOT_REMOVED_FLAG:'Não removido pela flag RAM; visibilidade por confirmar',
+    REMOVED_NOT_PROOF_OF_COLLECTION:'Removido do mapa; recolha NÃO comprovada',
+    COLLECTED_FLAG:'Item oculto recolhido (flag específica)',
+    COIN_COLLECTED_FLAG:'Fichas ocultas recolhidas (flag específica)',
+    COIN_NOT_COLLECTED_FLAG:'Fichas ocultas por recolher (flag específica)',
+    NOT_COLLECTED_FLAG:'Item oculto por recolher (flag específica)',
+    VICTORY_SCRIPT_FLAG:'Vitória registada no script/flag específica',
+    BATTLE_PLAYED_SCRIPT_FLAG:'Batalha realizada; vitória não comprovada',
+    TRAINER_GATE_CLOSED:'Evento de treinador fechado; vitória não comprovada',
+    TRAINER_GATE_OPEN:'Flag do evento de treinador aberta; acesso condicional',
+    INTERACTION_UNRESOLVED:'NPC: resultado do diálogo por interpretar',
+    SCRIPT_UNRESOLVED:'Evento de texto: script por interpretar',
+    ROM_ENCOUNTER_TABLE:'Distribuição de encontros da ROM (condicional)',
+    ENCOUNTER_GATE_CLOSED:'Encontro fixo encerrado; captura não comprovada',
+    EVENT_CONDITIONAL:'Encontro dependente de evento',
+    STATIC_TRANSITION:'Ligação do mapa; travessia por confirmar',
+    UNKNOWN:'Estado não comprovado',
+    SCRIPT_STATE_UNKNOWN:'Combate especial: script RAM desconhecido',
+    SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY:
+      'Byte de script repetido na RAM; significado apenas de referência'
+  };
+  const accessText={
+    CONDITIONAL_PATH:'Percurso local geométrico condicional',
+    NEEDS_CUT:'Possível passagem dependente de Cut',
+    NEEDS_SURF:'Possível passagem dependente de Surf',
+    NEEDS_CUT_AND_SURF_POSSIBLY:'Possível dependência de Cut e Surf',
+    CUT_CAPABILITY_UNKNOWN:'Cut: capacidade ainda não confirmada',
+    SURF_CAPABILITY_UNKNOWN:'Surf: capacidade ainda não confirmada',
+    POSSIBLE_STRENGTH_BARRIER:'Rocha: Strength/empurrão não comprovados',
+    STRENGTH_SEQUENCE_HYPOTHESIS:'Possível sequência de empurrões com Strength',
+    NEEDS_STRENGTH:'Percurso teórico: requer Strength e Rainbow Badge',
+    STRENGTH_CAPABILITY_UNKNOWN:'Strength: capacidade de utilização não confirmada',
+    NO_SAME_MAP_PATH:'Sem percurso local: verificar outro mapa/warp/desnível',
+    UNVERIFIED_ROM_ITEM:'Coordenadas do item não associadas à ROM',
+    COLLECTED_FLAG:'Já recolhido segundo flag específica',
+    REMOVED_FLAG:'Sprite removido; não prova recolha',
+    UNKNOWN:'Acesso desconhecido'
+  };
+  const typeText={
+    ITEM:'📦 Item visível',HIDDEN_ITEM:'🔎 Item oculto',
+    HIDDEN_COIN:'🪙 Fichas ocultas',
+    TRAINER:'⚔️ Treinador',NPC:'💬 NPC',
+    SIGN:'🪧 Sinal/evento',WILD_ENCOUNTER:'🌿 Encontros selvagens',
+    STATIC_POKEMON:'✨ Encontro fixo',WARP:'🚪 Saída',
+    BORDER:'🧭 Fronteira',
+    SCRIPTED_BATTLE:'⚔️ Combate especial de história'
+  };
+  const priority={
+    NOT_COLLECTED_FLAG:0,COIN_NOT_COLLECTED_FLAG:0,TRAINER_GATE_OPEN:1,NOT_REMOVED_FLAG:2,
+    EVENT_CONDITIONAL:3,STATIC_TRANSITION:4,
+    STATIC_ROM_ONLY:5,INTERACTION_UNRESOLVED:6,
+    SCRIPT_UNRESOLVED:6,ROM_ENCOUNTER_TABLE:6,UNKNOWN:7,
+    REMOVED_NOT_PROOF_OF_COLLECTION:8,TRAINER_GATE_CLOSED:9,
+    ENCOUNTER_GATE_CLOSED:10,BATTLE_PLAYED_SCRIPT_FLAG:11,
+    VICTORY_SCRIPT_FLAG:12,COLLECTED_FLAG:13,COIN_COLLECTED_FLAG:13,
+    SCRIPT_STATE_UNKNOWN:6,
+    SCRIPT_BYTE_REPEAT_VERIFIED_REFERENCE_ONLY:6
+  };
+  const obs=advice.observations;
+  const ordered=obs.map((o,i)=>({o,i})).sort((a,b)=>
+    (priority[a.o.status]??7)-(priority[b.o.status]??7)||a.i-b.i);
+  const n=kind=>obs.filter(o=>o.kind===kind).length;
+  const countLabels={ITEM:'Itens',HIDDEN_ITEM:'Ocultos',
+    HIDDEN_COIN:'Fichas',TRAINER:'Treinadores',NPC:'NPCs',
+    STATIC_POKEMON:'Encontros fixos',SIGN:'Sinais',
+    WILD_ENCOUNTER:'Fauna',WARP:'Saídas',BORDER:'Fronteiras',
+    SCRIPTED_BATTLE:'Combates especiais'};
+  const counts=Object.entries(countLabels).filter(([kind])=>n(kind)>0)
+    .map(([kind,label])=>label+': '+n(kind)).join(' · ');
+  const lines=[
+    '🗺️ '+(advice.mapName||'Mapa #'+advice.mapId)+
+      ' (#'+advice.mapId+') — '+obs.length+' referências nesta zona',
+    counts,
+    '📍 '+(advice.position?
+      'Posição RAM corroborada X:'+advice.position.x+' Y:'+advice.position.y:
+      'Posição não comprovada'),
+    '🔒 Estado: parcial. Script, animações e acesso imediato não certificados.',
+    'Flags de treinadores: '+(advice.trainerFlagsVerified?'confirmadas na fonte específica':'por confirmar')+
+      ' · Itens ocultos: '+(advice.hiddenFlagsVerified?'confirmados':'por confirmar')+
+      ' · Fichas: '+(advice.coinFlagsVerified?'confirmadas':'por confirmar'),
+    '--- AÇÕES E CONDIÇÕES (ordem orientativa, não rota garantida) ---'
+  ];
+  // Resumo mundial é uma leitura das flags auditadas dos 226 mapas, NÃO
+  // uma afirmação de 100% de história, de acessibilidade ou de capturas.
+  const global=state.globalCampaignLedger;
+  if(global?.verified===true&&global.romSha256===advice.romSha256&&
+     global.mapCount===226&&global.totals){
+    const t=global.totals;
+    lines.splice(2,0,
+      '🌍 KANTO (226 mapas): itens ocultos '+t.hiddenItemsCollected+'/'+t.hiddenItems+
+        ' · fichas '+t.hiddenCoinsCollected+'/'+t.hiddenCoins,
+      '📜 Eventos de treinador: '+t.trainerGatesClosed+' portões fechados'+
+        ' · '+t.trainersUnknown+' treinadores sem flag mapeada'+
+        ' · '+t.scriptedVictories+' vitórias de script comprovadas',
+      '✨ Encontros fixos: '+t.stationaryGatesClosed+
+        ' eventos encerrados (não prova captura)');
+  }else lines.splice(2,0,'🌍 Progresso de Kanto: sem prova global RAM/ROM nesta leitura.');
+  // Manual coordinates that differ from this audited ROM are not pins.
+  // Only the counted reference-only entries may appear in this warning.
+  const visibleProof=state.areaInfo?.visibleItemCoordinateEvidence;
+  const manualRefs=state.areaInfo?.manualVisibleItemReferences;
+  if(visibleProof?.mapId===advice.mapId&&
+     visibleProof.gameplayAccessCertified===false&&
+     Number.isInteger(visibleProof.unmatchedManualCount)&&
+     visibleProof.unmatchedManualCount>=0&&
+     Array.isArray(manualRefs)&&
+     manualRefs.length===visibleProof.unmatchedManualCount&&
+     manualRefs.every(r=>r?.romItemCoordinatesVerified===false&&
+       r.x===null&&r.y===null)){
+    const rows=['--- COORDENADAS DOS ITENS DA VERSÃO ATIVA ---'];
+    if(visibleProof.verified===true&&
+       visibleProof.romSha256===advice.romSha256){
+      rows.push('Objetos de item da ROM desta versão: '+
+        visibleProof.romObjectCount+
+        ' · referências manuais confirmadas: '+
+        visibleProof.matchedManualCount+
+        ' · referências com coordenadas não confirmadas: '+
+        visibleProof.unmatchedManualCount+'.');
+    }else{
+      rows.push('ROM/itens sem prova suficiente: as coordenadas manuais '+
+        'não são pontos de navegação.');
+    }
+    rows.push('⚠️ As referências sem posição ROM comprovada '+
+      'não aparecem como itens para recolher nem como destinos de percurso.','');
+    const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(slot>=0)lines.splice(slot,0,...rows);
+  }
+  const campaignLines=formatCampaignChecklistSection(advice,state);
+  if(campaignLines.length){
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion>=0)lines.splice(insertion,0,...campaignLines,'');
+  }
+  const scriptedBattleLines=formatScriptedBattleEvidenceSection(state,advice);
+  if(scriptedBattleLines.length){
+    const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(slot>=0)lines.splice(slot,0,...scriptedBattleLines);
+  }
+  // Static evidence coverage of 507 externally named event bits.
+  // This number NEVER represents campaign completion percentage.
+  const named=advice.romNamedEventEvidenceSummary;
+  if(advice.romNamedEventEvidenceVerified===true&&
+     advice.romNamedEventEffectsExecutedVerified===false&&
+     named?.namedReferenceEvents===507&&
+     named?.fullyExplainedNamedEvents===0&&
+     named?.eventCompletionsObserved===0){
+    const evidence=[
+      '--- COBERTURA DAS 507 FLAGS COM NOME ---',
+      'Nomes externos pret/pokered: 507 de 2560 bits. '+
+        named.namedBitsWithRomOpcode+
+        ' nomes com operacoes ROM diretas; '+
+        named.namedBitsWithActorHeaderBinding+
+        ' com associacao a objeto/cabecalho; '+
+        named.namedBitsWithoutAnyDirectEvidence+
+        ' sem referencia direta neste atlas.',
+      '⚠️ Os grupos podem sobrepor-se. '+
+        'NENHUM evento e considerado concluido apenas por este catalogo.',''
+    ];
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...evidence);
+  }
+  // The RAM holds 2,560 bit positions. Only 507 are pinned to labels;
+  // the remaining 2,053 can be reserved or have unknown gameplay meaning.
+  const complete=advice.romCompleteEventBitmap;
+  if(complete?.verified===true&&
+     complete.romSha256===advice.romSha256&&
+     complete.summary?.bitPositionsIndexed===2560&&
+     complete.summary?.namedReferenceBits===507&&
+     complete.summary?.unnamedOrReservedBits===2053&&
+     complete.summary?.ramBytesCorroborated===320&&
+     Array.isArray(complete.bits)&&complete.bits.length===2560&&
+     complete.allBitPositionsIndexed===true&&
+     complete.gameplaySemanticsCertified===false&&
+     complete.gameplayCompletionCertified===false){
+    const c=complete.summary;
+    const evidence=[
+      '--- TODOS OS 2560 BITS DE EVENTOS RAM ---',
+      '320 bytes D747..D886 corroborados: '+c.setBits+
+       ' bits ativos e '+c.clearBits+' inativos.',
+      '507 têm nome externo pret/pokered ('+c.namedSetBits+
+       ' ativos); 2053 sem nome ou reservados ('+c.unnamedSetBits+' ativos).',
+      'Bits sem nome com referência direta em opcode/cabeçalho ROM: '+
+       c.unnamedBitPositionsWithDirectRomEvidence+'.',
+      '⚠️ Leitura dos 2560 estados não significa 2560 missões. '+
+       'Significado, execução e conclusão da jogabilidade continuam por comprovar.',''
+    ];
+    const before=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(before>=0)lines.splice(before,0,...evidence);
+  }
+  // Consecutive verified readings can reveal a bit flip, not its cause.
+  const completeHistory=state.worldRecentCompleteEventChanges;
+  if(completeHistory?.verified===true&&
+     completeHistory.romSha256===advice.romSha256&&
+     completeHistory.baselineEstablished===true&&
+     completeHistory.playerActionConfirmed===false&&
+     completeHistory.gameplayCompleted===false&&
+     Array.isArray(completeHistory.events)&&
+     completeHistory.events.length<=80){
+    const recent=[
+      '--- ALTERAÇÕES RAM ENTRE LEITURAS VERIFICADAS ---',
+      completeHistory.events.length+' transições de bits registadas '+
+       'nesta sessão (máximo histórico: 80).'
+    ];
+    for(const e of completeHistory.events.slice(-10).reverse()){
+      if(!Number.isInteger(e.bitIndex)||e.bitIndex<0||
+         e.bitIndex>=2560||typeof e.flagSet!=='boolean')continue;
+      const name=typeof e.referenceName==='string'&&
+        e.nameFromPinnedReference===true?' ('+e.referenceName+')':
+        ' (sem nome de referência)';
+      recent.push('• Bit #'+e.bitIndex+name+': '+
+       (e.flagSet?'passou a ativo':'passou a inativo'));
+    }
+    recent.push('⚠️ Uma mudança de bit não comprova interação, missão, '+
+      'prémio ou causa; a posição do jogador não identifica a origem.','');
+    const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(slot>=0)lines.splice(slot,0,...recent);
+  }
+  // All 248 map IDs: candidate event associations, never a quest checklist.
+  // A clear bit might be reset, transient, or part of a branch rather than
+  // an incomplete mission. Ranking is for investigation, not navigation.
+  const worldwide=advice.romWorldwideNamedEventCoverage;
+  if(worldwide?.verified===true&&
+     worldwide.romSha256===advice.romSha256&&
+     worldwide.summary?.mapIds===248&&
+     worldwide.summary?.namedReferenceEvents===507&&
+     Array.isArray(worldwide.maps)&&worldwide.maps.length===248&&
+     Array.isArray(worldwide.unmappedEvents)&&
+     worldwide.summary.namedBitsWithMapEvidence+
+      worldwide.summary.namedBitsWithNoDirectMapEvidence===507&&
+     worldwide.actionsObserved===false&&
+     worldwide.gameplayComplete===false){
+    const all=[
+      '--- MAPAS COM REFERÊNCIAS DE EVENTOS ---',
+      'Em 248 IDs: '+worldwide.summary.namedBitsWithMapEvidence+
+      ' eventos nomeados têm associação ROM a algum mapa; '+
+      worldwide.summary.namedBitsWithNoDirectMapEvidence+
+      ' sem associação direta conhecida.',
+      worldwide.summary.mapIdsWithCandidates+
+      ' mapas têm pelo menos uma referência ROM identificada.'
+    ];
+    const hotspots=worldwide.maps.filter(m=>m.flagClearBits>0).
+      sort((a,b)=>b.flagClearBits-a.flagClearBits||a.mapId-b.mapId).
+      slice(0,8);
+    for(const m of hotspots){
+      const mapName=typeof m.mapName==='string'&&m.mapName&&
+        m.mapNameOrigin==='pret/pokered'&&m.mapNameIntrinsicToRom===false?
+        ' (ref. pret/pokered: '+m.mapName+')':'';
+      all.push('• Mapa #'+m.mapId+mapName+
+       ': '+m.flagClearBits+' referências com bit inativo; '+
+       m.namedCandidateBits+' referências totais');
+    }
+    all.push('⚠️ Bits inativos não são missões por concluir; '+
+     'a associação ROM não demonstra presença, acesso, execução ou recompensa.','');
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...all);
+  }
+  // Show ROM-backed candidate event bindings for this map only, cross-checked
+  // against the same 507 named bits in a corroborated RAM read.
+  // Never present these links as confirmed script actions or rewards.
+  const namedMap=advice.romMapNamedEventEvidence;
+  if(namedMap?.verified===true&&namedMap.mapId===advice.mapId&&
+     namedMap.romSha256===advice.romSha256&&
+     namedMap.summary?.namedReferenceEvents===507&&
+     Array.isArray(namedMap.events)&&
+     namedMap.events.length===namedMap.summary.mapEventBitCandidates&&
+     namedMap.actionsObserved===false&&
+     namedMap.gameplayCompletionCertified===false){
+    const local=[
+      '--- EVENTOS COM REFERÊNCIA ROM NESTE MAPA ---',
+      namedMap.summary.mapEventBitCandidates+
+        ' eventos nomeados com ator/handler da ROM associado a este mapa; '+
+        namedMap.summary.flagsSet+' bits ativos e '+
+        namedMap.summary.flagsClear+' inativos na RAM.'
+    ];
+    for(const e of namedMap.events.slice(0,16)){
+      if(typeof e.name!=='string'||!Number.isInteger(e.eventBitIndex)||
+         typeof e.flagSet!=='boolean')continue;
+      const origin=e.localEvidence==='ACTOR_AND_OPCODE'?
+        'ator e opcode':e.localEvidence==='ACTOR_HEADER_ONLY'?
+        'objeto/cabeçalho':e.localEvidence==='OPCODE_HANDLER_ONLY'?
+        'handler ASM':'associação insuficiente';
+      const actor=Array.isArray(e.actorReferences)?
+        e.actorReferences.find(a=>a.coordinatesFromRomHeader===true&&
+          Number.isInteger(a.x)&&Number.isInteger(a.y)):null;
+      const where=actor?' — objeto ROM em X '+actor.x+', Y '+actor.y:
+        ' — coordenadas de objeto desconhecidas';
+      local.push('• '+e.name.replace(/^EVENT_/,'').replaceAll('_',' ')+
+        ' (#'+e.eventBitIndex+', '+origin+')'+where+': bit '+
+        (e.flagSet?'ativo':'inativo')+
+        '; acesso, execução e consequência por confirmar');
+    }
+    if(namedMap.events.length>16)
+      local.push('… '+(namedMap.events.length-16)+
+        ' outras referências ROM deste mapa (lista limitada no painel).');
+    local.push('⚠️ Referência de ROM não é uma ação comprovada nem garante acesso.','');
+    const where=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(where>=0)lines.splice(where,0,...local);
+  }
+  // Approaching a ROM actor is not interacting with an NPC or completing
+  // a story event. Show only hypothetical local paths and explicit blockers.
+  const approaches=advice.romMapEventActorApproaches;
+  if(approaches?.verified===true&&approaches.mapId===advice.mapId&&
+     approaches.romSha256===advice.romSha256&&
+     approaches.accessibilityCertified===false&&
+     approaches.interactionExecuted===false&&
+     Array.isArray(approaches.entries)&&
+     approaches.entries.length===approaches.candidateActors){
+    const actorLines=[
+      '--- PERCURSOS CONDICIONAIS PARA ATORES DE EVENTOS ---',
+      approaches.candidateActors+
+        ' associações de atores com coordenadas ROM neste mapa.'
+    ];
+    for(const e of approaches.entries.slice(0,12)){
+      if(typeof e.name!=='string'||!Number.isInteger(e.x)||
+         !Number.isInteger(e.y)||typeof e.accessStatus!=='string')
+       continue;
+      const state=accessText[e.accessStatus]||'Acesso por confirmar';
+      const steps=Number.isInteger(e.conditionalRoute?.steps)?
+        ' ('+e.conditionalRoute.steps+' passos geométricos)':'';
+      actorLines.push('• '+e.name.replace(/^EVENT_/,'').replaceAll('_',' ')+
+        ' — X '+e.x+', Y '+e.y+': '+state+steps+
+        '; não confirma interação, visibilidade ou efeito');
+    }
+    if(approaches.entries.length>12)
+      actorLines.push('… '+(approaches.entries.length-12)+
+       ' outras associações de atores deste mapa.');
+    actorLines.push('⚠️ Um percurso local, mesmo com Cut/Surf, não prova '+
+     'passagem real, diálogo ou progresso de missão.','');
+    const slot=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(slot>=0)lines.splice(slot,0,...actorLines);
+  }
+  // Include every physical candidate bit operation, not just bits shared
+  // between two actors. This is ROM code evidence, never gameplay progress.
+  if(advice.romAllFlagOperationsVerified===true&&
+     advice.romAllFlagOperationsRuntimeEffectsVerified===false&&
+     Array.isArray(advice.romAllFlagOperations)&&
+     advice.romAllFlagOperations.length<=150){
+    const ops=[
+      '--- BIT TEST / SET / RES: TODOS OS SCRIPTS DESTE MAPA ---',
+      advice.romAllFlagOperations.length+' referencias locais a operandos ROM; '+
+       (advice.romAllFlagOperationsHandlerScoped??'?')+
+       ' operacoes identificadas nos handlers mundiais. '+
+       'Estas contagens NAO provam execucao.'
+    ];
+    for(const r of advice.romAllFlagOperations){
+      if(!Number.isInteger(r.bitIndex)||r.bitIndex<0||
+         !['BIT_TEST','SET_BIT','RESET_BIT'].includes(r.operation)||
+         !['WORLD_EVENT_BIT','HIDDEN_ITEM_BIT','HIDDEN_COIN_BIT'].includes(r.domain)||
+         !Number.isInteger(r.actorOrdinal)||r.actorOrdinal<1||
+         r.instructionExecuted!==false||
+         r.causalEffectVerified!==false||
+         r.bitValueInCurrentSave!==null)continue;
+      const title=r.externalLabelSource==='pret/pokered'&&
+        r.labelIntrinsicToRom===false&&
+        typeof r.externalEventLabel==='string'?
+         ' · '+r.externalEventLabel+' (nome externo)':'';
+      ops.push('• '+r.operation+' bit '+r.bitIndex+' ['+r.domain+']'+
+        title+' · '+r.actorKind+' #'+r.actorOrdinal+
+        ' · opcode ROM '+r.opcodeFileOffset+'.');
+      const effect=r.ifExecuted;
+      if(effect?.verified===true&&effect.instructionActuallyExecuted===false&&
+         effect.scriptRewardVerified===false){
+        const action=effect.effectIfInstructionExecuted==='SET_BIT_TO_ONE'?
+         'se esta instrucao executar, o bit passa a 1':
+         effect.effectIfInstructionExecuted==='RESET_BIT_TO_ZERO'?
+         'se esta instrucao executar, o bit passa a 0':
+         effect.effectIfInstructionExecuted==='TEST_BIT_WITHOUT_MEMORY_WRITE'?
+         'se executar, apenas testa o bit, sem o alterar':null;
+        if(action)ops.push('  ↳ Semantica CPU: '+action+
+          '; execucao e resultado de historia DESCONHECIDOS.');
+      }
+      const cond=r.conditionalBranch;
+      if(cond?.verified===true&&cond.branchActuallyTaken===null&&
+         (cond.condition==='NZ'||cond.condition==='Z'))
+        ops.push('  ↳ Condicao de codigo: '+cond.condition+
+          ', ramo se bit '+(cond.jumpTakenIfBitSet?'ativo':'inativo')+
+          '; nenhuma execucao comprovada.');
+    }
+    ops.push('⚠️ Ler/setar bit em codigo ROM nao prova que o NPC foi ativado, '+ 
+      'que a recompensa foi recebida nem que a acao esteja acessivel.','');
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...ops);
+  }
+  // Shared ROM opcode bits are a lead for research, NOT evidence that an
+  // action will unlock another map. Never attach a completion/access status.
+  if(advice.romStaticFlagCandidatesVerified===true&&
+     Array.isArray(advice.romStaticFlagCandidates)&&
+     advice.romStaticFlagCausalEffectsVerified===false&&
+     advice.romStaticFlagCandidates.length>0&&
+     advice.romStaticFlagCandidates.length<=100){
+    const hints=[
+      '--- RELAÇÕES ENTRE MAPAS: PISTAS ESTÁTICAS DA ROM ---',
+      advice.romStaticFlagCandidates.length+
+        ' candidatos neste mapa ('+
+        (advice.romStaticFlagCandidatesWorldTotal??'?')+
+        ' na ROM); NENHUMA dependência causal certificada.'
+    ];
+    for(const c of advice.romStaticFlagCandidates){
+      if(!Number.isInteger(c.bitIndex)||c.bitIndex<0||c.bitIndex>=2560||
+         !Number.isInteger(c.possibleWriterMapId)||
+         !Number.isInteger(c.possibleReaderMapId)||
+         c.verifiedActionDependency!==false||
+         c.causalLinkObserved!==false)continue;
+      hints.push('• Flag candidata #'+c.bitIndex+
+        ': mapa #'+c.possibleWriterMapId+
+        ' (interação '+c.possibleWriterKind+' #'+c.possibleWriterOrdinal+
+        ', '+c.possibleWriteOpcode+') ⇢ mapa #'+c.possibleReaderMapId+
+        ' (interação '+c.possibleReaderKind+' #'+c.possibleReaderOrdinal+
+        ', teste de bit).');
+      if(c.referenceNameSource==='pret/pokered'&&
+         c.referenceNameIsRomIntrinsic===false&&
+         typeof c.referenceEventName==='string'&&
+         typeof c.writerReferenceMapName==='string'&&
+         typeof c.readerReferenceMapName==='string'){
+        hints.push('  ↳ Rótulos de referência pret/pokered: '+
+          c.referenceEventName+' · '+c.writerReferenceMapName+
+          ' ⇢ '+c.readerReferenceMapName+
+          '. Nomes EXTERNOS à ROM, não prova de evento realizado.');
+      }
+      const gate=c.readerBranchCondition;
+      if(c.readerConditionalDirectionVerified===true&&
+         gate?.verified===true&&
+         (gate.condition==='Z'||gate.condition==='NZ')&&
+         Number.isInteger(gate.takenTargetCpu)&&
+         gate.branchActuallyTaken===null){
+        hints.push('  ↳ Condição ROM: ramo '+gate.condition+
+          ' se bit '+(gate.jumpTakenIfBitSet?'ativo':'inativo')+
+          ' (destino CPU '+gate.takenTargetCpu+
+          '; execução no jogo NÃO observada).');
+      }
+      const dual=c.readerDualTextChoice;
+      if(c.readerTwoAlternativeTextScriptsVerified===true&&
+         dual?.alternativeTextScriptsStaticallyProven===true&&
+         Number.isInteger(dual.textOnBitClearPointerCpu)&&
+         Number.isInteger(dual.textOnBitSetPointerCpu)){
+        hints.push('  ↳ Dois textos TX_FAR confirmados na ROM: bit 0 → CPU '+
+          dual.textOnBitClearPointerCpu+'; bit 1 → CPU '+
+          dual.textOnBitSetPointerCpu+
+          '. Qual apareceu no jogo NÃO está comprovado.');
+      }
+    }
+    hints.push('⚠️ Mesma flag na ROM NÃO comprova sequência, condição, recompensa ou desbloqueio.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion>=0)lines.splice(insertion,0,...hints);
+  }
+  const globalOverlap=state.romOutdoorOverlapIndex;
+  if(globalOverlap?.verified===true&&
+     globalOverlap.romSha256===advice.romSha256&&
+     globalOverlap.edgeCount===78){
+    const info=['--- FRONTEIRAS DE KANTO — MATRIZ ROM MUNDIAL ---',
+      '78 ligações alinhadas; '+globalOverlap.overlappingTilePairs+
+        ' pares de tiles sobrepostos; '+
+        globalOverlap.staticLandCompatiblePairs+
+        ' pares caminháveis dos dois lados no terreno estático.',
+      globalOverlap.bordersWithoutLandPairs+
+        ' fronteiras sem par terrestre estático: Surf, Cut ou scripts por confirmar.',
+      '⚠️ Estes são dados ROM: 0 travessias executadas comprovadas por este índice.',''];
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...info);
+  }
+  const localExits=state.romLocalExitAccess;
+  if(localExits?.verified===true&&
+     localExits.romSha256===advice.romSha256&&
+     localExits.mapId===advice.mapId&&
+     localExits.positionFromRam?.x===advice.position?.x&&
+     localExits.positionFromRam?.y===advice.position?.y&&
+     Array.isArray(localExits.exits)){
+    const out=['--- SAÍDAS DESTA ZONA: TERRENO / CUT / SURF ---'];
+    const labels={
+      THEORETICAL_TERRAIN_PATH:'percurso estático possível; passagem por confirmar',
+      TERRAIN_PATH_REQUIRES_CUT_ACTION:'percurso com Cut; ação por confirmar',
+      TERRAIN_PATH_REQUIRES_SURF_ACTION:'percurso com Surf; ação por confirmar',
+      CUT_NOT_USABLE_IN_CURRENT_PARTY:'requer Cut (capacidade atual não confirmada como utilizável)',
+      SURF_NOT_USABLE_IN_CURRENT_PARTY:'requer Surf (capacidade atual não confirmada como utilizável)',
+      CUT_CAPABILITY_NOT_VERIFIED:'talvez Cut; capacidade por confirmar',
+      SURF_CAPABILITY_NOT_VERIFIED:'talvez Surf; capacidade por confirmar',
+      CUT_AND_SURF_HYPOTHETICAL:'hipótese apenas com Cut + Surf',
+      NO_LOCAL_TERRAIN_PATH_NOT_PROOF_OF_LOCK:'sem caminho local demonstrado; pode haver desvio',
+      ROM_EXIT_TILE_OUTSIDE_MAP:'coordenadas de saída incoerentes com o terreno',
+      BORDER_CROSSING_TILE_NOT_VERIFIED:'fronteira ROM; ponto de travessia por confirmar',
+      BORDER_SOURCE_TERRAIN_CANDIDATES_ALIGNMENT_UNKNOWN:'tiles de borda alcançáveis na ROM; alinhamento com mapa seguinte desconhecido',
+      BORDER_ALIGNED_TERRAIN_CANDIDATES_TRANSFER_UNVERIFIED:'tiles de origem e destino alinhados pelos ponteiros ROM; travessia no jogo por confirmar',
+      BORDER_ALIGNED_REQUIRES_CAPABILITY_TRANSFER_UNVERIFIED:'alinhamento ROM calculado, mas requer Cut/Surf hipotético e travessia por confirmar',
+      BORDER_SOURCE_NEEDS_CAPABILITY_ALIGNMENT_UNKNOWN:'borda apenas com hipótese Cut/Surf; alinhamento desconhecido',
+      NO_REACHABLE_BORDER_TILE_NOT_PROOF_OF_LOCK:'sem tile de borda alcançável neste cenário; não prova bloqueio',
+      FLOOR_SELECTION_AND_SCRIPT_NOT_VERIFIED:'opção de piso ROM; menu e condições por confirmar'
+    };
+    out.push('Warps: '+(localExits.counts?.WARP||0)+
+      ' · Fronteiras: '+(localExits.counts?.OUTDOOR_BORDER||0)+
+      ' · Opções de elevador: '+(localExits.counts?.ELEVATOR_MENU_CHOICE||0));
+    for(const e of localExits.exits){
+      if(!labels[e.terrainStatus])continue;
+      const label=e.kind==='WARP'?'Warp #'+e.sourceWarpIndex+
+        ' (X:'+e.sourceTile?.x+' Y:'+e.sourceTile?.y+')':
+        e.kind==='OUTDOOR_BORDER'?'Fronteira '+e.direction:
+        'Elevador — opção '+(e.floorMenuIndex+1);
+      const dest=Number.isInteger(e.destinationMapId)?
+        ' → mapa #'+e.destinationMapId:' → destino dependente de script/RAM';
+      out.push('• '+label+dest+': '+labels[e.terrainStatus]+
+        (e.destinationEvidence==='RAM_SEQUENTIAL_LAST_MAP'?
+          ' (destino D365 relido; passagem não comprovada)':''));
+      if(e.kind==='WARP'&&e.approach?.nextStep)
+        out.push('   Primeiro tile teórico: X:'+e.approach.nextStep.x+
+          ' Y:'+e.approach.nextStep.y);
+      if(e.kind==='OUTDOOR_BORDER'&&e.borderEvidence?.verified===true){
+        const b=e.borderEvidence;
+        out.push('   Borda de origem: '+b.terrainCandidateCount+
+          ' tiles candidatos no terreno; '+(b.neighborAlignmentVerified?
+           'alinhamento ROM conferido, travessia NÃO confirmada':
+           'travessia e destino NÃO confirmados'));
+        for(const candidate of b.borderTiles.slice(0,2)){
+          out.push('   Tile de borda possível: X:'+candidate.tile.x+
+            ' Y:'+candidate.tile.y+' ('+candidate.steps+
+            ' passos teóricos; '+candidate.terrainStatus+')');
+          if(candidate.destinationTile)
+            out.push('   Tile DESTINO de referência: X:'+
+              candidate.destinationTile.x+' Y:'+candidate.destinationTile.y+
+              ' ('+candidate.destinationTerrainStatus+
+              '; '+(candidate.destinationCapabilityStatus||
+                'capacidade de chegada não verificada')+
+              '; transferência no jogo NÃO comprovada)');
+        }
+      }
+    }
+    if(localExits.truncated)
+      out.push('⚠️ Lista truncada; '+localExits.totalExits+' saídas no total.');
+    out.push('⚠️ Geometria estática não comprova acesso no jogo, sprites móveis, scripts ou travessia.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion>=0)lines.splice(insertion,0,...out);
+  }
+  const elevator=state.romElevatorOptions;
+  if(elevator?.verified===true&&elevator.hasElevator===true&&
+     elevator.romSha256===advice.romSha256&&
+     elevator.mapId===advice.mapId&&Array.isArray(elevator.options)){
+    const choices=['--- ELEVADOR — PISOS POSSÍVEIS DA ROM ---',
+      elevator.elevatorName||'Elevador'];
+    for(const option of elevator.options){
+      if(!Number.isInteger(option.floorMenuIndex)||
+         !Number.isInteger(option.destinationMapId)||
+         !Number.isInteger(option.destinationWarpIndex))continue;
+      choices.push('• Piso/opção '+(option.floorMenuIndex+1)+
+        ': mapa #'+option.destinationMapId+
+        ', entrada #'+option.destinationWarpIndex+
+        ' — disponível agora: por confirmar');
+    }
+    choices.push('⚠️ Escolha de piso, portas e condições do script não observadas.','');
+    const i=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(i>=0)lines.splice(i,0,...choices);
+  }
+  const worldFlags=state.romWorldEventAtlas;
+  if(worldFlags?.verified===true&&
+     worldFlags.romSha256===advice.romSha256&&
+     worldFlags.summary?.namedEventBits===507&&
+     worldFlags.summary?.referenceToggleBits===228){
+    const g=worldFlags.summary;
+    const title=['--- EVENTOS DO JOGO: BITS DE REFERÊNCIA + RAM ---',
+      'Eventos nomeados com bit ativo: '+g.namedEventBitsSet+'/507',
+      'Flags de remoção de objetos ativas: '+
+        g.toggleRemovedFlagBitsSet+'/228'];
+    const milestoneNames={
+      EVENT_GOT_STARTER:'Pokémon inicial',
+      EVENT_GOT_POKEDEX:'Pokédex',
+      EVENT_BEAT_BROCK:'Brock',
+      EVENT_BEAT_MISTY:'Misty',
+      EVENT_GOT_BICYCLE:'Bicicleta',
+      EVENT_GOT_HM01:'HM01 Cut',
+      EVENT_GOT_HM02:'HM02 Fly',
+      EVENT_GOT_HM03:'HM03 Surf',
+      EVENT_GOT_HM04:'HM04 Strength',
+      EVENT_GOT_HM05:'HM05 Flash',
+      EVENT_GOT_POKE_FLUTE:'Poké Flute',
+      EVENT_BEAT_SABRINA:'Sabrina'
+    };
+    for(const e of worldFlags.milestones||[]){
+      if(!Object.hasOwn(milestoneNames,e.name))continue;
+      title.push('• '+milestoneNames[e.name]+
+        ': bit '+(e.flagSet===true?'ativo':'inativo')+
+        ' (não prova utilização nem acesso)');
+    }
+    const here=(worldFlags.toggleFlags||[]).filter(x=>
+      x.mapId===advice.mapId).slice(0,10);
+    if(here.length){
+      title.push('Referências de objetos deste mapa:');
+      for(const t of here)title.push('• '+
+        String(t.name).replace(/^TOGGLE_/,'').replaceAll('_',' ')+
+        ': remoção '+(t.removedFlagSet===true?'marcada na RAM':'não marcada na RAM'));
+    }
+    title.push('⚠️ Flags de referência não certificam conclusão de história, posição do objeto ou acesso.','');
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...title);
+  }
+  const namedChanges=state.worldRecentNamedChanges;
+  if(namedChanges?.verified===true&&
+     namedChanges.romSha256===advice.romSha256&&
+     Array.isArray(namedChanges.events)&&namedChanges.events.length){
+    const changes=['--- MUDANÇAS EM EVENTOS E OBJETOS NOMEADOS ---'];
+    for(const e of namedChanges.events.slice(-6).reverse()){
+      if(e.kind==='NAMED_EVENT_BIT_CHANGED'){
+        changes.push('• '+e.name.replace(/^EVENT_/,'').replaceAll('_',' ')+
+          ': bit '+(e.flagSet?'ativado':'desativado')+
+          ' (localização e efeito por confirmar)');
+      }else if(e.kind==='OBJECT_TOGGLE_BIT_CHANGED'){
+        changes.push('• '+e.name.replace(/^TOGGLE_/,'').replaceAll('_',' ')+
+          ' (#'+e.mapId+'): flag de remoção '+
+          (e.flagSet?'ativada':'desativada')+
+          ' (não comprova item recolhido)');
+      }
+    }
+    changes.push('⚠️ Alterações entre duas leituras RAM; não provam quem agiu, missão terminada ou passagem aberta.','');
+    const point=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(point>=0)lines.splice(point,0,...changes);
+  }
+  const recent=state.worldRecentFlagChanges;
+  if(recent?.verified===true&&recent.romSha256===advice.romSha256&&
+     Array.isArray(recent.events)&&recent.events.length){
+    const labels={
+      HIDDEN_ITEM_FLAG_RAISED:'item oculto assinalado como obtido',
+      HIDDEN_COIN_FLAG_RAISED:'evento de fichas ocultas assinalado como obtido',
+      TRAINER_GATE_FLAG_RAISED:'portão/evento de treinador fechado',
+      SCRIPT_VICTORY_FLAG_RAISED:'flag específica de vitória ativada',
+      BATTLE_PLAYED_FLAG_RAISED:'flag específica de batalha realizada ativada',
+      STATIONARY_GATE_FLAG_RAISED:'evento de Pokémon fixo encerrado'
+    };
+    const summary=['--- MUDANÇAS DE FLAGS OBSERVADAS NESTA SESSÃO ---'];
+    for(const e of recent.events.slice(-6).reverse()){
+      if(!labels[e.kind]||!Number.isInteger(e.amount)||e.amount<1)continue;
+      summary.push('• '+e.mapName+' (#'+e.mapId+'): +'+e.amount+
+        ' '+labels[e.kind]);
+    }
+    summary.push('⚠️ Diferenças entre leituras RAM, não prova de ação, captura ou vitória.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion!==-1)lines.splice(insertion,0,...summary);
+  }
+  const objectives=state.globalCampaignObjectives;
+  if(objectives?.verified===true&&objectives.romSha256===advice.romSha256&&
+     objectives.sourceMapId===advice.mapId&&
+     objectives.mapCount===226&&Array.isArray(objectives.objectives)){
+    const agenda=['--- OBJETIVOS DE KANTO (FLAGS / ROTAS ESTÁTICAS) ---',
+      'Mapas com flags pendentes: '+objectives.mapsWithPending+
+      ' · com eventos desconhecidos: '+objectives.mapsWithUnknown];
+    for(const goal of objectives.objectives.slice(0,8)){
+      const p=goal.pending||{},u=goal.unknown||{};
+      const plural=(n,one,many)=>n+' '+(n===1?one:many);
+      const todo=[
+        p.hiddenItems>0?plural(p.hiddenItems,'item oculto','itens ocultos'):'',
+        p.hiddenCoins>0?plural(p.hiddenCoins,'ficha oculta','fichas ocultas'):'',
+        p.trainerGatesOpen>0?plural(p.trainerGatesOpen,
+          'portão de treino aberto','portões de treino abertos'):'',
+        p.stationaryGatesOpen>0?plural(p.stationaryGatesOpen,
+          'encontro fixo aberto por flag','encontros fixos abertos por flag'):''
+      ].filter(Boolean);
+      const uncertain=(u.trainers||0)+(u.stationaryPokemon||0);
+      if(uncertain)todo.push(plural(uncertain,
+        'evento por esclarecer','eventos por esclarecer'));
+      if(Number.isInteger(u.visibleItems)&&u.visibleItems>0)
+        todo.push(plural(u.visibleItems,
+          'item visível na ROM (recolha por confirmar)',
+          'itens visíveis na ROM (recolha por confirmar)'));
+      if(Number.isInteger(u.npcInteractions)&&u.npcInteractions>0)
+        todo.push(plural(u.npcInteractions,
+          'NPC (diálogo por interpretar)',
+          'NPCs (diálogos por interpretar)'));
+      if(Number.isInteger(u.signInteractions)&&u.signInteractions>0)
+        todo.push(plural(u.signInteractions,
+          'sinal (texto por interpretar)',
+          'sinais (textos por interpretar)'));
+      const hops=goal.mapHopCount===0?'mapa atual':
+        Number.isInteger(goal.mapHopCount)?
+        goal.mapHopCount+' transições estáticas (acesso por confirmar)':
+        'rota estática não determinada';
+      const first=goal.firstTransitionTerrainEvidence==='LOCAL_TERRAIN_PATH_CANDIDATE'?
+        ' • 1.ª saída: percurso terrestre teórico':
+        goal.firstTransitionTerrainEvidence==='NO_LOCAL_LAND_PATH_FOUND_NOT_PROOF_OF_BLOCK'?
+        ' • 1.ª saída: sem caminho terrestre demonstrado (não prova bloqueio)':
+        ' • 1.ª saída: terreno por confirmar';
+      const conditional=goal.firstTransitionConditionalAccess;
+      const requiredAction=conditional==='TERRAIN_PATH_REQUIRES_CUT_ACTION'?
+        ' • Cut: ação em campo ainda por confirmar':
+        conditional==='TERRAIN_PATH_REQUIRES_SURF_ACTION'?
+        ' • Surf: ação em campo ainda por confirmar':
+        conditional==='CUT_NOT_USABLE_IN_CURRENT_PARTY'?
+        ' • Cut indisponível no estado de capacidades conhecido':
+        conditional==='SURF_NOT_USABLE_IN_CURRENT_PARTY'?
+        ' • Surf indisponível no estado de capacidades conhecido':
+        conditional==='CUT_CAPABILITY_NOT_VERIFIED'?
+        ' • Cut: capacidade desconhecida':
+        conditional==='SURF_CAPABILITY_NOT_VERIFIED'?
+        ' • Surf: capacidade desconhecida':'';
+      const unconfirmedTerrainBorders=Array.isArray(goal.route)?
+        goal.route.filter(e=>e.kind==='OUTDOOR_BOUNDARY'&&
+          e.romAlignedBorder===true&&e.staticLandCompatiblePairs===0).length:0;
+      const borderWarning=unconfirmedTerrainBorders?
+        ' • '+unconfirmedTerrainBorders+
+        ' fronteira(s) da rota sem par terrestre ROM; Surf/script por confirmar':'';
+      agenda.push('• '+goal.mapName+' (#'+goal.mapId+'): '+
+        todo.join(', ')+' — '+hops+
+        (goal.mapHopCount===0?'':first+requiredAction+borderWarning));
+    }
+    agenda.push('⚠️ Nem um percurso curto nem uma flag por concluir provam acesso imediato.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion!==-1)lines.splice(insertion,0,...agenda);
+  }
+  const remote=state.globalFlagItemRoutes;
+  if(remote?.verified===true&&remote.romSha256===advice.romSha256&&
+     remote.sourceMapId===advice.mapId&&Array.isArray(remote.items)&&
+     remote.items.length>0){
+    const summary=['--- ITENS OCULTOS NOUTROS MAPAS (FLAGS ROM/RAM) ---'];
+    if(Number.isInteger(remote.totalPendingRemote))
+      summary.push('A mostrar '+remote.items.length+' de '+
+        remote.totalPendingRemote+' objetivos ocultos pendentes fora deste mapa'+
+        (Number.isInteger(remote.mapsWithPendingRemote)?
+          ' em '+remote.mapsWithPendingRemote+' mapas':'')+'.');
+    if(Number.isInteger(remote.totalWithoutStaticRoute)&&
+       remote.totalWithoutStaticRoute>0)
+      summary.push('Rotas estáticas por determinar: '+
+        remote.totalWithoutStaticRoute+' objetivos; NÃO significa bloqueados.');
+    for(const item of remote.items.slice(0,4)){
+      const label=item.kind==='HIDDEN_COIN'?'Fichas ocultas':'Item oculto';
+      const prefix='• '+label+' — '+item.mapName+' (#'+item.mapId+
+        ') X:'+item.x+' Y:'+item.y+': ';
+      const route=item.route;
+      if(route?.verified===true&&route.found===true){
+        summary.push(prefix+route.transitionCount+
+          ' transições teóricas ('+route.warpTransitions+' warps, '+
+          route.outdoorTransitions+' fronteiras); acesso NÃO garantido');
+        const first=route.segments?.[0];
+        const depart=first?.kind==='OUTDOOR_BORDER'?
+          first.sourceBorderTile:first?.sourceWarpTile;
+        if(depart)summary.push('  ↳ Primeira saída: mapa #'+advice.mapId+
+          ' X:'+depart.x+' Y:'+depart.y+
+          ' → mapa #'+first.destinationMapId+' (não observada)');
+      }else if(item.routeNotAttemptedReason==='NO_STATIC_MAP_ROUTE'){
+        summary.push(prefix+
+          'ligação estática entre mapas por determinar; procura não executada — NÃO prova bloqueio');
+      }else{
+        summary.push(prefix+(route?.maxStatesExceeded===true?
+          'pesquisa limitada por estados':'sem caminho geométrico demonstrado')+
+          ' — NÃO prova bloqueio');
+      }
+    }
+    summary.push('⚠️ Flags por concluir, não são prova de acesso, recolha ou script executado.','');
+    const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+    if(insertion!==-1)lines.splice(insertion,0,...summary);
+  }
+  // Visible pickups throughout Kanto are ROM-static objects, not flags.
+  // Their collection state in other maps has NOT been read from live RAM.
+  const worldLedger=state.globalCampaignLedger;
+  const visibleIndex=objectives?.remoteObjectiveIndex;
+  if(worldLedger?.verified===true&&
+     worldLedger.romSha256===advice.romSha256&&
+     worldLedger.mapCount===226&&Array.isArray(worldLedger.mapProgress)&&
+     worldLedger.mapProgress.length===226&&
+     objectives?.verified===true&&objectives.romSha256===advice.romSha256&&
+     objectives.sourceMapId===advice.mapId&&
+     Array.isArray(visibleIndex)&&
+     visibleIndex.length===objectives.objectiveIndexCount){
+    const maps=new Map(worldLedger.mapProgress.map(m=>[m.mapId,m]));
+    const buckets=[],sourceMapId=advice.mapId;
+    let totalRemoteVisible=0;
+    for(const m of worldLedger.mapProgress)
+      if(m.mapId!==sourceMapId)
+        totalRemoteVisible+=Number.isInteger(m.visibleItems?.unresolved)?
+          m.visibleItems.unresolved:0;
+    for(const goal of visibleIndex){
+      if(goal?.mapId===sourceMapId)continue;
+      const m=maps.get(goal?.mapId),rows=m?.flagRecords?.visibleItems;
+      if(!Array.isArray(rows)||!rows.length)continue;
+      const valid=rows.filter(r=>Number.isInteger(r?.x)&&
+        Number.isInteger(r?.y)&&r.collected===null);
+      if(valid.length)buckets.push({mapId:m.mapId,mapName:m.name,
+        mapHopCount:goal.mapHopCount,items:valid});
+    }
+    if(buckets.length){
+      const summary=['--- ITENS VISÍVEIS NOUTROS MAPAS (INVENTÁRIO ROM) ---'];
+      const shown=[];
+      while(shown.length<4&&buckets.some(b=>b.items.length))
+        for(const b of buckets){
+          if(b.items.length)shown.push({...b,item:b.items.shift()});
+          if(shown.length===4)break;
+        }
+      summary.push('A mostrar '+shown.length+' de '+totalRemoteVisible+
+        ' objetos visíveis ROM remotos; recolha individual DESCONHECIDA.');
+      for(const row of shown){
+        const item=row.item;
+        summary.push('• '+row.mapName+' (#'+row.mapId+
+          ') X:'+item.x+' Y:'+item.y+
+          (Number.isInteger(item.itemId)?' • ID item ROM #'+item.itemId:'')+
+          ' — recolha por confirmar; '+(
+            Number.isInteger(row.mapHopCount)?
+              row.mapHopCount+(row.mapHopCount===1? ' transição estática hipotética':' transições estáticas hipotéticas'):
+              'rota estática por determinar'));
+      }
+      summary.push('⚠️ Presença estática na ROM não significa item ainda disponível.','');
+      const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+      if(insertion!==-1)lines.splice(insertion,0,...summary);
+    }
+    // Compact ROM-only coordinates of dialogues and sign text across all
+    // known maps. No completion status, script outcome or current access.
+    const interactionBuckets=[];
+    let interactionsTotal=0;
+    for(const m of worldLedger.mapProgress)
+      if(m.mapId!==advice.mapId&&Number.isInteger(m.interactions?.unresolved))
+        interactionsTotal+=m.interactions.unresolved;
+    for(const goal of visibleIndex){
+      if(goal?.mapId===advice.mapId)continue;
+      const m=maps.get(goal?.mapId);
+      if(!m||!m.interactionRecords)continue;
+      const rows=[
+        ...(Array.isArray(m.interactionRecords.npcs)?
+          m.interactionRecords.npcs.map(t=>({kind:'NPC',tuple:t})):[]),
+        ...(Array.isArray(m.interactionRecords.signs)?
+          m.interactionRecords.signs.map(t=>({kind:'SINAL',tuple:t})):[])
+      ].filter(r=>Array.isArray(r.tuple)&&r.tuple.length>=4&&
+        Number.isInteger(r.tuple[1])&&Number.isInteger(r.tuple[2]));
+      if(rows.length)interactionBuckets.push({
+        mapId:m.mapId,mapName:m.name,mapHopCount:goal.mapHopCount,rows});
+    }
+    if(interactionBuckets.length){
+      const shown=[];
+      while(shown.length<4&&interactionBuckets.some(b=>b.rows.length)){
+        for(const b of interactionBuckets){
+          if(b.rows.length)shown.push({...b,item:b.rows.shift()});
+          if(shown.length===4)break;
+        }
+      }
+      const summary=['--- NPCS E SINAIS NOUTROS MAPAS (ROM) ---',
+        'A mostrar '+shown.length+' de '+interactionsTotal+
+        ' pontos de interação ROM remotos; efeito e execução DESCONHECIDOS.'];
+      for(const row of shown){
+        const [ordinal,x,y,textId,textCommand,textBank,textCpu]=row.item.tuple;
+        const p=row.item.tuple[7];
+        // Only static FIRST TX_FAR string, never an NPC's current dialogue.
+        // Summary output is inserted with textContent, not innerHTML.
+        const hasPreview=textCommand==='TX_FAR'&&p?.verified===true&&
+          p.firstStringOnly===true&&p.dialogueExecuted===false&&
+          p.textOutcomeVerified===false&&
+          typeof p.text==='string'&&p.text.length>0&&p.text.length<=720&&
+          typeof p.containsRuntimeVariables==='boolean';
+        const program=p?.program;
+        const hasProgram=hasPreview&&program?.verified===true&&
+          program.scriptComplete===true&&
+          ['TX_END','TEXT_DONE','TEXT_PROMPT'].includes(program.termination)&&
+          program.dialogueExecuted===false&&
+          program.textOutcomeVerified===false&&
+          program.scriptEffectsVerified===false&&
+          typeof program.text==='string'&&program.text.length>0&&
+          program.text.length<=760&&Number.isInteger(program.segmentCount)&&
+          program.segmentCount>=1&&program.segmentCount<=12&&
+          typeof program.containsRuntimeText==='boolean'&&
+          typeof program.containsRuntimeCommands==='boolean';
+        const preview=hasProgram?
+          ' • Segmentos literais ROM ('+program.segmentCount+
+          ', fecho '+program.termination+' corroborado): «'+
+          program.text.replace(/\s+/g,' ').slice(0,210)+'»'+
+          (program.containsRuntimeText||program.containsRuntimeCommands?
+            ' (há conteúdo dependente da RAM)':''):
+          hasPreview?
+            ' • Início literal ROM: «'+p.text.replace(/\s+/g,' ').slice(0,120)+
+            '»'+(p.containsRuntimeVariables?' (contém variáveis RAM)':''):'';
+        summary.push('• '+row.item.kind+' — '+row.mapName+' (#'+row.mapId+
+          ') X:'+x+' Y:'+y+' • índice ROM '+ordinal+
+          (Number.isInteger(textId)?' • Text ID #'+textId:'')+
+          (typeof textCommand==='string'&&Number.isInteger(textBank)&&
+            Number.isInteger(textCpu)?
+            ' • Entrada ROM '+textCommand+' [banco '+textBank+
+            ' / CPU 0x'+textCpu.toString(16).toUpperCase()+']':'')+
+          preview+(hasProgram?
+            ' — sequência textual linear analisada; condições e efeitos por interpretar; ':
+            ' — diálogo/texto restante e efeitos por interpretar; ')+
+          (Number.isInteger(row.mapHopCount)?
+            row.mapHopCount+(row.mapHopCount===1? ' transição estática hipotética':' transições estáticas hipotéticas'):
+            'rota estática por determinar'));
+      }
+      summary.push('⚠️ Coordenada ROM não demonstra que a interação esteja disponível agora.','');
+      const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+      if(insertion!==-1)lines.splice(insertion,0,...summary);
+    }
+    // The ROM list is static. No proof of price, stock or access now.
+    const martRows=[];
+    for(const goal of visibleIndex){
+      const m=maps.get(goal?.mapId);
+      if(!m||m.mapId===advice.mapId)continue;
+      const npcRows=m.interactionRecords?.npcs;
+      if(!Array.isArray(npcRows))continue;
+      for(const row of npcRows){
+        const items=row?.[7];
+        if(row?.[4]!=='SCRIPT_MART'||!Array.isArray(items)||
+           items.length===0||items.length>32||
+           !items.every(id=>Number.isInteger(id)&&id>0&&id<255)||
+           !Number.isInteger(row[1])||!Number.isInteger(row[2]))
+          continue;
+        const prices=Array.isArray(row[8])&&row[8].length===items.length&&
+          row[8].every((offer,i)=>offer?.id===items[i]&&
+            typeof offer.name==='string'&&offer.name.length>0&&
+            (offer.baseRomPricePokedollars===null||
+             (Number.isInteger(offer.baseRomPricePokedollars)&&
+              offer.baseRomPricePokedollars>0))&&offer.priceIsLive===false)?
+          row[8]:null;
+        martRows.push({mapId:m.mapId,name:m.name,x:row[1],y:row[2],
+          ordinal:row[0],items:[...items],prices,mapHopCount:goal.mapHopCount});
+      }
+    }
+    if(martRows.length){
+      const summary=['--- LOJAS IDENTIFICADAS NA ROM (CATÁLOGO ESTÁTICO) ---',
+        'A mostrar '+Math.min(4,martRows.length)+' de '+martRows.length+
+        ' balcões de loja remotos; preços e acesso atual DESCONHECIDOS.'];
+      for(const shop of martRows.slice(0,4)){
+        summary.push('• '+shop.name+' (#'+shop.mapId+
+          ') X:'+shop.x+' Y:'+shop.y+
+          ' • Artigos ROM ('+shop.items.length+'): '+(
+            shop.prices?
+              shop.prices.map(offer=>offer.name+' #'+offer.id+
+                (offer.baseRomPricePokedollars!==null?
+                  ' — '+offer.baseRomPricePokedollars+
+                  ' Poké$ (preço-base ROM)':' — preço-base ROM não confirmado'))
+                .join(', '):shop.items.join(', '))+
+          ' — sem prova de compra, preço ou stock atual; '+
+          (Number.isInteger(shop.mapHopCount)?
+            shop.mapHopCount+' transições estáticas hipotéticas':
+            'rota estática por determinar'));
+      }
+      summary.push('⚠️ IDs ROM não demonstram que a loja esteja acessível nesta partida.','');
+      const insertion=lines.findIndex(x=>x.startsWith('--- AÇÕES E CONDIÇÕES'));
+      if(insertion!==-1)lines.splice(insertion,0,...summary);
+    }
+  }
+  for(const {o} of ordered){
+    const place=Number.isInteger(o.x)&&Number.isInteger(o.y)?
+      ' X:'+o.x+' Y:'+o.y:'';
+    const label=typeText[o.kind]||'Evento';
+    lines.push(label+': '+String(o.what||'Sem nome')+place+
+      ' — '+(statusText[o.status]||'Por confirmar'));
+    if(o.accessStatus){
+      const route=o.accessRoute;
+      const steps=Number.isInteger(route?.steps)?' ('+route.steps+' passos teóricos)':'';
+      lines.push('  ↳ Acesso: '+(accessText[o.accessStatus]||o.accessStatus)+steps);
+      if(route?.usesStrength===true){
+        lines.push('  ↳ Rochas: '+route.pushCount+
+          ' empurrões teóricos; execução por confirmar.');
+        const field=route.strengthFieldActiveAtSample;
+        lines.push(field===true?
+          '  ↳ Strength: bit RAM $D728 ativo nesta leitura (não prova empurrão).':
+          field===false?
+          '  ↳ Strength: bit RAM $D728 inativo nesta leitura; é preciso ativar o golpe.':
+          '  ↳ Strength: ativação na RAM ainda por confirmar.');
+        if(route.firstPush)lines.push('  ↳ Primeiro empurrão TEÓRICO: '+
+          route.firstPush.direction+' da posição X:'+
+          route.firstPush.from.x+' Y:'+route.firstPush.from.y+
+          ' para X:'+route.firstPush.to.x+' Y:'+route.firstPush.to.y);
+      }
+      if(o.accessReason)lines.push('  ↳ Motivo: '+o.accessReason);
+    }
+    const batch=state.romCrossMapItemRoutes;
+    const matchedRoute=batch?.verified===true&&
+      batch.romSha256===advice.romSha256&&
+      batch.sourceMapId===advice.mapId&&Array.isArray(batch.results)?
+      batch.results.find(r=>r.target?.mapId===advice.mapId&&
+        r.target?.x===o.x&&r.target?.y===o.y&&
+        r.target?.hidden===(o.kind==='HIDDEN_ITEM')):null;
+    const detour=batch?.verified===true?matchedRoute:state.romCrossMapItemRoute;
+    const exactDetourForThisItem=detour?.verified===true&&
+       detour.found===true&&detour.romSha256===advice.romSha256&&
+       detour.sourceMapId===advice.mapId&&
+       detour.target?.mapId===advice.mapId&&
+       detour.target.x===o.x&&detour.target.y===o.y&&
+       (batch?.verified===true?
+         detour.target.hidden===(o.kind==='HIDDEN_ITEM'):true);
+    if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
+       !exactDetourForThisItem&&o.accessStatus==='NO_SAME_MAP_PATH'&&
+       matchedRoute?.verified===true&&matchedRoute.found===false){
+      lines.push(matchedRoute.maxStatesExceeded===true?
+        '  ↳ Desvio multimapa: pesquisa interrompida pelo limite de estados; acesso por confirmar.':
+        '  ↳ Desvio multimapa: nenhum caminho demonstrado no modelo ROM; não prova bloqueio.');
+    }
+    if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
+       exactDetourForThisItem){
+      const first=detour.segments?.[0];
+      if(first){
+        lines.push('  ↳ Desvio multimapa TEÓRICO: '+
+          (detour.transitionCount??detour.warpTransitions)+' transições ('+
+          detour.warpTransitions+' warps, '+(detour.outdoorTransitions||0)+
+          ' fronteiras) e '+detour.theoreticalSteps+
+          ' passos geométricos (acesso NÃO garantido)');
+        const departure=first.kind==='OUTDOOR_BORDER'?
+          first.sourceBorderTile:first.sourceWarpTile;
+        if(departure)lines.push('  ↳ Primeira saída '+(
+          first.kind==='OUTDOOR_BORDER'?'pela fronteira '+first.direction:
+          'por warp')+': X:'+departure.x+' Y:'+departure.y+
+          ' para mapa #'+first.destinationMapId);
+        if(first.kind==='OUTDOOR_BORDER'&&first.destinationTile)
+          lines.push('  ↳ Chegada ROM candidata: X:'+
+            first.destinationTile.x+' Y:'+first.destinationTile.y+
+            ' (passagem NÃO observada)');
+        if(detour.nextTerrainTile)lines.push('  ↳ Primeiro tile candidato: X:'+
+          detour.nextTerrainTile.x+' Y:'+detour.nextTerrainTile.y);
+      }
+    }
+    const cycles=state.romWorldDetourCycles;
+    if((o.kind==='ITEM'||o.kind==='HIDDEN_ITEM')&&
+       !exactDetourForThisItem&&cycles?.verified===true&&
+       cycles.romSha256===advice.romSha256&&
+       cycles.mapId===advice.mapId&&
+       cycles.target?.mapId===advice.mapId&&
+       cycles.target.x===o.x&&cycles.target.y===o.y&&
+       Array.isArray(cycles.candidates)&&cycles.candidates.length){
+      lines.push('  ↳ Voltas ENTRE MAPAS para investigar (NÃO são percursos até ao item):');
+      for(const suggestion of cycles.candidates.slice(0,2)){
+        if(!Array.isArray(suggestion.mapIds)||suggestion.mapIds.length<3)
+          continue;
+        lines.push('     • Mapas #'+suggestion.mapIds.join(' → #')+
+          ' ('+suggestion.transitions+' transições estáticas hipotéticas)');
+        if(suggestion.includesOutdoorBorder)
+          lines.push('       Contém fronteira sem coordenadas de travessia verificadas.');
+        const firstExit=suggestion.firstExitEvidence;
+        if(firstExit?.known===true){
+          lines.push('       Primeira saída candidata: mapa #'+firstExit.fromMapId+
+            ' → #'+firstExit.toMapId+' ('+firstExit.terrainStatus+')');
+          if(firstExit.firstTerrainStep)
+            lines.push('       Primeiro passo TEÓRICO: X:'+
+              firstExit.firstTerrainStep.x+' Y:'+firstExit.firstTerrainStep.y);
+          if(firstExit.candidateBorderTile)
+            lines.push('       Tile de borda CANDIDATO: X:'+
+              firstExit.candidateBorderTile.x+' Y:'+
+              firstExit.candidateBorderTile.y+
+              (firstExit.crossingAlignmentVerified?
+               ' — alinhamento confirmado por ponteiros ROM':
+               ' — alinhamento com destino NÃO verificado'));
+          if(firstExit.candidateDestinationTile)
+            lines.push('       Tile DESTINO de referência: X:'+
+              firstExit.candidateDestinationTile.x+
+              ' Y:'+firstExit.candidateDestinationTile.y+
+              ' — passagem efetiva NÃO observada');
+        }
+      }
+      lines.push('  ⚠️ NÃO comprovado que a volta regresse do lado acessível do item.');
+    }
+    if(o.kind==='WILD_ENCOUNTER'&&Array.isArray(o.slots)){
+      // Probabilidades condicionais, NÃO probabilidades reais por passo.
+      const groups=new Map();
+      for(const slot of o.slots){
+        const label='Espécie interna #'+slot.internalId+' Nv.'+slot.level;
+        groups.set(label,(groups.get(label)||0)+slot.weight);
+      }
+      for(const [label,weight] of groups){
+        lines.push('  ↳ '+label+': '+(weight*100/256).toFixed(2)+
+          '% dos encontros deste terreno (se ocorrer um encontro)');
+      }
+    }
+    if(o.consequence)lines.push('  ↳ Consequência: '+o.consequence);
+    lines.push('');
+  }
+  if(!obs.length)lines.push('Nenhum objeto confirmado para listar; isto não prova zona vazia.');
+  lines.push('⚠️ Grafo de saídas e caminhos são hipóteses; o estado da partida pode alterar acessos.');
+  source.textContent='Perfil ROM local SHA '+String(advice.romSha256||'').slice(0,8)+
+    '… (ativo associado por CRC32) · leitura RAM recente · progresso parcial';
+  body.textContent=lines.join('\n');
+}
+
 // Renderização Principal do Cockpit
 function renderState(state) {
   if (state.connected) {
@@ -746,6 +2854,7 @@ function renderState(state) {
   renderDaycareTracker(state);
   renderRomProgress(state);
   renderRomAreaEvidence(state);
+  renderWorldAdvisor(state);
 
   // Radar da Área (Fauna e Itens com RAM bit flags reais)
   renderAreaRadar(state.areaInfo);
@@ -1349,33 +3458,58 @@ const btnGtaZoomOut = document.getElementById('btn-gta-zoom-out');
 const btnGtaCenter = document.getElementById('btn-gta-center');
 const btnGtaToggleFog = document.getElementById('btn-gta-toggle-fog');
 
-// Memória de entidades por mapa: mantém ghosts quando sprites/items desaparecem da RAM.
+// A RAM sprite is a live claim, unlike the static ROM map pins.
+// Bound it to this exact ROM, map and three coherent position windows.
+// Keep history separated by ROM hash; discard it on any invalid snapshot.
 const mapEntityHistory = new Map();
 
 function getMapEntitySnapshot(state) {
-  const mapId = state.mapId !== undefined ? state.mapId : 0;
-  if (!mapEntityHistory.has(mapId)) mapEntityHistory.set(mapId, new Map());
-  const history = mapEntityHistory.get(mapId);
-  const active = state.mapEntities || [];
-
-  active.forEach(ent => {
-    const key = `${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`;
-    history.set(key, {
-      ...ent,
-      mapId,
-      lastX: ent.x,
-      lastY: ent.y,
-      seenAt: Date.now(),
-      isGhost: false
-    });
+  const sha=state?.romRuntimeIdentity?.profileSha256;
+  const known=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const mapId=state?.mapId,mem=state?.memoryReadStatus;
+  const stamp=Date.parse(state?.lastUpdate||'');
+  const valid=n=>Number.isInteger(n)&&n>=-4&&n<=255;
+  const windows=[mem?.positionWindow,mem?.latePositionWindow,
+    mem?.publicationPositionWindow];
+  const raw=state?.mapEntities;
+  const validSession=state?.connected===true&&
+    state.romRuntimeIdentity?.matched===true&&known.has(sha)&&
+    Number.isInteger(mapId)&&mapId>=0&&mapId<=247&&
+    mem?.verified===true&&mem.blocks?.overworldSprites===true&&
+    Number.isFinite(stamp)&&stamp<=Date.now()&&
+    Date.now()-stamp<=15000&&
+    windows.every(w=>w?.verified===true&&w.mapId===mapId&&
+      valid(w.x)&&valid(w.y))&&
+    windows[0].x===windows[1].x&&windows[0].y===windows[1].y&&
+    windows[1].x===windows[2].x&&windows[1].y===windows[2].y&&
+    state.coords?.x===windows[2].x&&state.coords?.y===windows[2].y&&
+    Array.isArray(raw)&&raw.every(e=>e&&valid(e.x)&&valid(e.y));
+  if(!validSession){
+    mapEntityHistory.clear();
+    return {active:[],ghosts:[]};
+  }
+  const historyKey=sha+':'+mapId;
+  if(!mapEntityHistory.has(historyKey))
+    mapEntityHistory.set(historyKey,new Map());
+  const history=mapEntityHistory.get(historyKey);
+  const active=raw;
+  active.forEach(ent=>{
+    const key=`${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`;
+    history.set(key,{...ent,mapId,lastX:ent.x,lastY:ent.y,
+      seenAt:Date.now(),isGhost:false});
   });
-
-  const currentKeys = new Set(active.map(ent => `${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`));
-  const ghosts = [];
-  history.forEach((ent, key) => {
-    if (!currentKeys.has(key)) ghosts.push({ ...ent, x: ent.lastX, y: ent.lastY, isGhost: true });
+  const currentKeys=new Set(active.map(ent=>
+    `${ent.spriteIndex ?? 'x'}:${ent.pictureId ?? ent.name ?? ent.type}`));
+  const ghosts=[];
+  history.forEach((ent,key)=>{
+    if(!currentKeys.has(key))
+      ghosts.push({...ent,x:ent.lastX,y:ent.lastY,isGhost:true});
   });
-  return { active, ghosts };
+  return {active,ghosts};
 }
 
 function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
@@ -1413,6 +3547,344 @@ function drawMapEntity(ctx, ent, x, y, scale, forceGhost = false) {
   ctx.restore();
 }
 
+// Static map pins are hypotheses about the *ROM* layout, not proof of
+// current presence. Require fresh, coherent position + exact ROM identity.
+// Include planner-blocked items: a Cut/Surf barrier must not make an item
+// disappear from the full-map companion.
+function selectVerifiedMinimapItemMarkers(state) {
+  const area=state?.areaInfo;
+  const proof=area?.visibleItemCoordinateEvidence;
+  const mem=state?.memoryReadStatus;
+  const identity=state?.romRuntimeIdentity;
+  const stamp=Date.parse(state?.lastUpdate||'');
+  const knownRomShas=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  if(state?.connected!==true||
+     identity?.matched!==true||
+     typeof identity.profileSha256!=='string'||
+     !knownRomShas.has(identity.profileSha256)||
+     proof?.verified!==true||
+     proof.mapId!==state.mapId||
+     proof.romSha256!==identity.profileSha256||
+     proof.gameplayAccessCertified!==false||
+     mem?.verified!==true||
+     !Number.isFinite(stamp)||Date.now()-stamp>15000||
+     stamp>Date.now()){
+    return [];
+  }
+  const first=mem.positionWindow,late=mem.latePositionWindow,
+        last=mem.publicationPositionWindow;
+  if([first,late,last].some(p=>p?.verified!==true||
+      p.mapId!==state.mapId||!Number.isInteger(p.x)||
+      !Number.isInteger(p.y))||
+     first.x!==late.x||first.y!==late.y||
+     late.x!==last.x||late.y!==last.y||
+     state.coords?.x!==last.x||state.coords?.y!==last.y)
+    return [];
+  const lists=[area.visibleItems,area.hiddenItems,area.lockedItems];
+  if(lists.some(v=>v!==undefined&&!Array.isArray(v)))return [];
+  // When the complete world checklist is available, the visible object
+  // must also match the independently decoded ordinal, item ID and tile.
+  // A stale Red tile must never be endorsed in a Green session.
+  const checklist=state?.worldAdvisor?.mapChecklist;
+  if(checklist&&(checklist.verified!==true||
+      checklist.mapId!==state.mapId||
+      checklist.romSha256!==identity.profileSha256||
+      checklist.actorAttributeAtlasBound!==true||
+      !Array.isArray(checklist.actions)))return [];
+  const itemActions=checklist?.actions.filter(a=>a?.kind==='ITEM')||[];
+  const matchingPhysicalItem=item=>{
+    if(!Number.isInteger(item?.romObjectOrdinal)||item.romObjectOrdinal<1||
+       !Number.isInteger(item.itemId)||item.itemId<0||item.itemId>255)
+      return false;
+    const hits=itemActions.filter(a=>
+      a.ordinal===item.romObjectOrdinal&&a.x===item.x&&a.y===item.y&&
+      a.romActorItemId===item.itemId&&
+      a.romActorCoordinateAndAttributeVerified===true&&
+      a.romActorVariantEvidence===
+        'SAME_SHA_ROM_MAP_OBJECT_AND_SCRIPT_REFERENCE'&&
+      a.scriptReferenceBound===true&&a.scriptTextPointerVerified===true);
+    return hits.length===1;
+  };
+  const byTile=new Map();
+  for(const [category,items] of [
+    ['visible',area.visibleItems||[]],
+    ['hidden',area.hiddenItems||[]],
+    ['blocked',area.lockedItems||[]]
+  ]){
+    for(const item of items){
+      if(item?.romItemCoordinatesVerified!==true||
+         !Number.isInteger(item.x)||item.x< -4||item.x>255||
+         !Number.isInteger(item.y)||item.y< -4||item.y>255||
+         item.isCollected===true||item.removedFromMap===true)
+        continue;
+      const visibleActor=category==='visible'||
+        category==='blocked'&&
+        (item.coordinateSource==='SHA_AUDITED_ACTIVE_ROM_ITEM_OBJECT'||
+         Number.isInteger(item.romObjectOrdinal));
+      if(checklist&&visibleActor&&!matchingPhysicalItem(item))
+        return []; // contradictory atlas and live-snapshot metadata
+      // A map tile can contain multiple static records. Display one
+      // evidence-only marker; a blocked record takes priority on that tile.
+      const key=item.x+','+item.y;
+      const blocked=item.isLocked===true||category==='blocked';
+      const candidate={
+        x:item.x,y:item.y,
+        blocked,
+        kind:category,
+        evidence:'STATIC_COORDINATE_FROM_AUDITED_ACTIVE_ROM',
+        presentNow:null,
+        accessibleNow:null
+      };
+      if(!byTile.has(key)||blocked&&!byTile.get(key).blocked)
+        byTile.set(key,candidate);
+    }
+  }
+  return [...byTile.values()];
+}
+
+
+function selectVerifiedMinimapStaticEncounterMarkers(state) {
+  // ROM coordinates only; never assert a present, reachable, uncaught actor.
+  const sha=state?.romRuntimeIdentity?.profileSha256;
+  const known=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const advice=state?.worldAdvisor,checklist=advice?.mapChecklist;
+  const mem=state?.memoryReadStatus,stamp=Date.parse(state?.lastUpdate||'');
+  const coord=n=>Number.isInteger(n)&&n>=-4&&n<=255;
+  if(state?.connected!==true||state?.romRuntimeIdentity?.matched!==true||
+     !known.has(sha)||!Number.isInteger(state.mapId)||
+     state.mapId<0||state.mapId>247||
+     advice?.verified!==true||advice.mapId!==state.mapId||
+     advice.romSha256!==sha||advice.fullWorldStaticIndexVerified!==true||
+     checklist?.verified!==true||checklist.mapId!==state.mapId||
+     checklist.romSha256!==sha||checklist.actorAttributeAtlasBound!==true||
+     checklist.scriptAtlasBound!==true||
+     !Number.isInteger(checklist.summary?.boundStaticActorAttributes)||
+     checklist.summary.boundStaticActorAttributes<1||
+     !Array.isArray(checklist.actions)||mem?.verified!==true||
+     !Number.isFinite(stamp)||stamp>Date.now()||
+     Date.now()-stamp>15000)return [];
+  const first=mem.positionWindow,late=mem.latePositionWindow,
+        published=mem.publicationPositionWindow;
+  if([first,late,published].some(p=>p?.verified!==true||
+     p.mapId!==state.mapId||!coord(p.x)||!coord(p.y))||
+     first.x!==late.x||first.y!==late.y||
+     late.x!==published.x||late.y!==published.y||
+     state.coords?.x!==published.x||state.coords?.y!==published.y)return [];
+  const candidates=checklist.actions.filter(a=>a?.kind==='STATIC_POKEMON');
+  const markers=[],ordinals=new Set(),tiles=new Set();
+  for(const a of candidates){
+    const object=a.staticObject;
+    if(a.romActorCoordinateAndAttributeVerified!==true||
+       a.romActorVariantEvidence!==
+        'SAME_SHA_ROM_MAP_OBJECT_AND_SCRIPT_REFERENCE'||
+       a.scriptReferenceBound!==true||a.scriptTextPointerVerified!==true||
+       !Number.isInteger(a.ordinal)||a.ordinal<1||
+       !coord(a.x)||!coord(a.y)||
+       object?.source!=='ROM_MAP_OBJECT_BYTES'||
+       object.kind!=='wildPokemon'||object.ordinal!==a.ordinal||
+       object.x!==a.x||object.y!==a.y||
+       !Number.isInteger(a.romActorSpeciesInternalId)||
+       a.romActorSpeciesInternalId<1||a.romActorSpeciesInternalId>190||
+       object.wildSpeciesInternalId!==a.romActorSpeciesInternalId||
+       !Number.isInteger(a.romActorLevel)||a.romActorLevel<1||
+       a.romActorLevel>100||object.wildLevel!==a.romActorLevel||
+       a.accessibleNow!==null||a.completedNow!==null)return [];
+    // A checklist progress string is NOT independent D747 evidence.
+    // A proven bit only certifies the ROM-script event gate, never a capture.
+    let gate=null;
+    if(a.scriptEventFlagSnapshotVerified===true){
+      if(typeof a.scriptEventFlagSet!=='boolean'||
+         a.scriptEventFlagEvidence!==
+           'ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747'||
+         a.scriptEventBitBindingVerified!==true||
+         !Number.isInteger(a.scriptEventBitIndex)||
+         a.scriptEventBitIndex<0||a.scriptEventBitIndex>=2560||
+         a.progress!==(a.scriptEventFlagSet?
+           'ENCOUNTER_GATE_CLOSED_FLAG':'ENCOUNTER_GATE_OPEN_FLAG'))
+        return [];
+      gate=a.scriptEventFlagSet;
+    }else if((a.scriptEventFlagSet!==null&&
+              a.scriptEventFlagSet!==undefined)||
+             a.progress!=='NOT_PROVEN')return [];
+    const tile=a.x+','+a.y;
+    if(ordinals.has(a.ordinal)||tiles.has(tile))return [];
+    ordinals.add(a.ordinal);tiles.add(tile);
+    markers.push({x:a.x,y:a.y,kind:'STATIC_POKEMON',
+      speciesInternalId:a.romActorSpeciesInternalId,level:a.romActorLevel,
+      evidence:'STATIC_ENCOUNTER_FROM_SHA_AUDITED_ACTIVE_ROM',
+      presentNow:null,accessibleNow:null,completedNow:null,
+      gateFlagSet:gate,gateVerified:gate!==null});
+  }
+  return markers;
+}
+
+
+
+function selectVerifiedMinimapHiddenCoinMarkers(state) {
+  // Hidden coins are a separate ROM event table + wObtainedHiddenCoinsFlags
+  // (D6FE). They are neither item balls nor proof of reachability.
+  const identity=state?.romRuntimeIdentity;
+  const sha=identity?.profileSha256;
+  const evidence=state?.romHiddenCoins;
+  const mem=state?.memoryReadStatus;
+  const known=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const validCoord=n=>Number.isInteger(n)&&n>=0&&n<=255;
+  const age=Date.now()-Date.parse(state?.lastUpdate||'');
+  if(state?.connected!==true||identity?.matched!==true||
+     !known.has(sha)||!Number.isInteger(state.mapId)||
+     state.mapId<0||state.mapId>247||
+     evidence?.verified!==true||evidence.romSha256!==sha||
+     evidence.mapId!==state.mapId||
+     ![
+       'ROM_HIDDEN_COIN_EVENTS_EXTRACTED + RAM_D6FE',
+       'ROM_HIDDEN_COINS_AUDITED_THREE_BUILDS + RAM_D6FE'
+     ].includes(evidence.source)||
+     !Array.isArray(evidence.coins)||evidence.coins.length>12||
+     mem?.verified!==true||!Number.isFinite(age)||age<0||age>15000)
+    return [];
+  const a=mem.positionWindow,b=mem.latePositionWindow,
+        c=mem.publicationPositionWindow;
+  if([a,b,c].some(p=>p?.verified!==true||
+       p.mapId!==state.mapId||!validCoord(p.x)||!validCoord(p.y))||
+     a.x!==b.x||a.y!==b.y||b.x!==c.x||b.y!==c.y||
+     state.coords?.x!==c.x||state.coords?.y!==c.y)return [];
+  const ids=new Set(),tiles=new Set(),markers=[];
+  for(const coin of evidence.coins){
+    if(coin?.mapId!==state.mapId||
+       !Number.isInteger(coin.hiddenIndex)||
+       coin.hiddenIndex<0||coin.hiddenIndex>=12||
+       !validCoord(coin.x)||!validCoord(coin.y)||
+       ![10,20,40,100].includes(coin.coinAmount)||
+       coin.collectionEvidence!=='ID_EVENTO_ROM + FLAG_RAM_D6FE'||
+       typeof coin.isCollected!=='boolean'||
+       ids.has(coin.hiddenIndex)||tiles.has(coin.x+','+coin.y))
+      return []; // never accept an inconsistent coin table/bitmap join
+    ids.add(coin.hiddenIndex);
+    tiles.add(coin.x+','+coin.y);
+    if(coin.isCollected===true)continue; // specific RAM bit says obtained
+    markers.push({kind:'HIDDEN_COIN',x:coin.x,y:coin.y,
+      hiddenIndex:coin.hiddenIndex,
+      evidence:'SHA_AUDITED_ROM_HIDDEN_COIN_AND_D6FE_FLAG',
+      collectedFlag:false,presentNow:null,accessibleNow:null});
+  }
+  return markers;
+}
+
+function describeVerifiedVramStaticLocationEvidence(state) {
+  // VRAM is a CAMERA VIEW; ROM map coordinates do not have a proven
+  // screen-space transform here. List certified coordinates instead of
+  // painting ghosts at fabricated pixels.
+  const items=selectVerifiedMinimapItemMarkers(state);
+  const encounters=selectVerifiedMinimapStaticEncounterMarkers(state);
+  const hiddenCoins=selectVerifiedMinimapHiddenCoinMarkers(state);
+  const trainers=selectVerifiedMinimapTrainerGateMarkers(state);
+  const total=items.length+encounters.length+hiddenCoins.length+trainers.length;
+  if(!total)return 'Posições ROM não confirmadas nesta leitura (não significa que o mapa esteja vazio)';
+  const rows=[
+    ...items.map(i=>(i.blocked?'🔒':'🎒')+' X:'+i.x+' Y:'+i.y),
+    ...encounters.map(p=>'✨ X:'+p.x+' Y:'+p.y+
+      ' espécie interna '+p.speciesInternalId+' nível '+p.level+
+      ' (D747 '+(p.gateFlagSet===true?
+        'assinalado: portão do encontro fechado':
+        p.gateFlagSet===false?'não assinalado: portão do encontro aberto':
+        'sem prova: estado do portão desconhecido')+
+      '; presença, acesso e captura não comprovados)'),
+    ...hiddenCoins.map(c=>'🪙 X:'+c.x+' Y:'+c.y+' (moeda oculta)'),
+    ...trainers.map(t=>'⚔️ X:'+t.x+' Y:'+t.y+
+      ' (treinador ROM; '+(t.gateFlagSet===true?
+        'portão fechado por flag, vitória não comprovada':
+        t.gateFlagSet===false?'portão aberto por flag':
+        'portão sem prova RAM')+')')
+  ];
+  const shown=rows.slice(0,3).join(' · ');
+  return 'Coordenadas ROM, NÃO sobrepostas à VRAM ('+total+'): '+
+    shown+(rows.length>3?' · +'+(rows.length-3)+' na checklist':'');
+}
+
+
+function selectVerifiedMinimapTrainerGateMarkers(state) {
+  // ROM script-bound trainer locations; a gate flag NEVER proves victory,
+  // a sprite currently present, or a battle reachable now.
+  const sha=state?.romRuntimeIdentity?.profileSha256;
+  const trusted=new Set([
+    '5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b',
+    '2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d',
+    'aafa14e96651b077a9de7a336ab98ac0b0db3148e750671092631ea9dc1eb7db'
+  ]);
+  const advisor=state?.worldAdvisor,check=advisor?.mapChecklist;
+  const mem=state?.memoryReadStatus;
+  const time=Date.parse(state?.lastUpdate||'');
+  const valid=n=>Number.isInteger(n)&&n>=-4&&n<=255;
+  if(state?.connected!==true||state?.romRuntimeIdentity?.matched!==true||
+     !trusted.has(sha)||!Number.isInteger(state.mapId)||
+     state.mapId<0||state.mapId>247||
+     advisor?.verified!==true||advisor.mapId!==state.mapId||
+     advisor.romSha256!==sha||advisor.fullWorldStaticIndexVerified!==true||
+     check?.verified!==true||check.mapId!==state.mapId||
+     check.romSha256!==sha||check.staticIndexVerified!==true||
+     check.scriptAtlasBound!==true||!Array.isArray(check.actions)||
+     mem?.verified!==true||!Number.isFinite(time)||
+     time>Date.now()||Date.now()-time>15000)return [];
+  const a=mem.positionWindow,b=mem.latePositionWindow,
+    c=mem.publicationPositionWindow;
+  if([a,b,c].some(p=>p?.verified!==true||
+       p.mapId!==state.mapId||!valid(p.x)||!valid(p.y))||
+     a.x!==b.x||a.y!==b.y||b.x!==c.x||b.y!==c.y||
+     state.coords?.x!==c.x||state.coords?.y!==c.y)return [];
+  const ordinals=new Set(),tiles=new Set(),results=[];
+  for(const row of check.actions.filter(x=>x?.kind==='TRAINER')){
+    // Some ROM trainer scripts still lack a proven text entry. Exclude
+    // those individually instead of assigning a guessed identity.
+    if(row.scriptReferenceBound!==true||
+       row.scriptTextPointerVerified!==true)continue;
+    const actor=row.staticObject;
+    if(actor?.source!=='ROM_MAP_OBJECT_BYTES'||
+       actor.kind!=='trainer'||row.group!=='trainers'||
+       !Number.isInteger(row.ordinal)||row.ordinal<1||
+       actor.ordinal!==row.ordinal||
+       !valid(row.x)||!valid(row.y)||
+       actor.x!==row.x||actor.y!==row.y||
+       !Number.isInteger(actor.spriteId)||
+       actor.spriteId<0||actor.spriteId>255||
+       !Number.isInteger(actor.textId)||
+       actor.textId<0||actor.textId>255)return [];
+    let gate=null;
+    if(row.scriptEventFlagSnapshotVerified===true){
+      if(typeof row.scriptEventFlagSet!=='boolean'||
+         row.scriptEventFlagEvidence!==
+           'ROM_SCRIPT_EVENT_BIT + VERIFIED_GLOBAL_RAM_D747'||
+         row.scriptEventBitBindingVerified!==true||
+         !Number.isInteger(row.scriptEventBitIndex)||
+         row.scriptEventBitIndex<0||row.scriptEventBitIndex>=2560||
+         row.progress!==(row.scriptEventFlagSet?
+           'TRAINER_GATE_CLOSED_FLAG':'TRAINER_GATE_OPEN_FLAG'))return [];
+      gate=row.scriptEventFlagSet;
+    }else if(row.scriptEventFlagSet!==null||
+      row.progress!=='NOT_PROVEN')return [];
+    const tile=row.x+','+row.y;
+    if(ordinals.has(row.ordinal)||tiles.has(tile))return [];
+    ordinals.add(row.ordinal);tiles.add(tile);
+    results.push({kind:'TRAINER_ROM_SITE',x:row.x,y:row.y,
+      ordinal:row.ordinal,gateFlagSet:gate,
+      gateVerified:gate!==null,
+      evidence:'ROM_MAP_OBJECT_SCRIPT_AND_OPTIONAL_D747_GATE',
+      presentNow:null,accessibleNow:null,battleWon:null,completedNow:null});
+  }
+  return results;
+}
+
 // Renderizador do Mini-Mapa Tático com Tiles Reais do Game Boy
 function renderFogMinimap(state) {
   if (!canvasFog || !ctxFog) return;
@@ -1431,7 +3903,9 @@ function renderFogMinimap(state) {
     ctxFog.fillRect(0, 0, canvasFog.width, canvasFog.height);
     if (drawLiveVramMap(ctxFog, state, 0, 0, canvasFog.width, canvasFog.height)) {
       if (elMinimapTitle) elMinimapTitle.textContent = `${mapName.toUpperCase()} • VISTA RAM`;
-      if (elMinimapStats) elMinimapStats.textContent = 'Ecrã real do jogo • cores da paleta RAM';
+      if (elMinimapStats) elMinimapStats.textContent =
+        'Ecrã real do jogo • cores da paleta RAM • '+
+        describeVerifiedVramStaticLocationEvidence(state);
       if (elMinimapCoordsOverlay) elMinimapCoordsOverlay.textContent = `X:${coords.x} Y:${coords.y}`;
       if (isGtaMapOpen) renderGtaFullMap(state);
       return;
@@ -1526,23 +4000,71 @@ function renderFogMinimap(state) {
     });
   }
 
-  // Itens conhecidos: apenas desenha se AINDA NÃO tiver sido recolhido!
-  const items = [
-    ...(state.areaInfo?.visibleItems || []),
-    ...(state.areaInfo?.hiddenItems || [])
-  ];
-  items.forEach(it => {
-    if (it.x === undefined || it.y === undefined) return;
-    if (it.isCollected === true) return; // Possuir outro exemplar NÃO prova que este foi recolhido
-    const ix = camX + it.x * tileSize + tileSize / 2;
-    const iy = camY + it.y * tileSize + tileSize / 2;
-    if (ix >= -16 && ix <= cw + 16 && iy >= -16 && iy <= ch + 16) {
-      drawMapEntity(ctxFog, { ...it, icon: it.icon || '🎒', isItem: true, isGhost: false }, ix, iy, 0.85, false);
+  // Static icons must be ROM-verified for THIS map/version; never draw
+  // unsupported hidden/manual positions or drop blocked Cut/Surf items.
+  const markers=selectVerifiedMinimapItemMarkers(state);
+  markers.forEach(it => {
+    const ix=camX+it.x*tileSize+tileSize/2;
+    const iy=camY+it.y*tileSize+tileSize/2;
+    if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16){
+      // A faded ball is a static ROM object, NOT an observed live sprite.
+      // A lock is a conditional planner result, NOT proven permanent inaccessibility.
+      drawMapEntity(ctxFog,{
+        x:it.x,y:it.y,icon:it.blocked?'🔒':'🎒',
+        isItem:!it.blocked,isGhost:true,
+        staticRomMarker:true,presentNow:null
+      },ix,iy,it.blocked?0.75:0.85,true);
     }
   });
 
   // Só mostrar entidades lidas agora da RAM. Não desenhar treinadores previstos nem ghosts
   // de posições antigas: provocavam marcadores de treinadores que já não existem.
+  // Physical trainer reference, NOT an old/live sprite or proved victory.
+  const trainerSites=selectVerifiedMinimapTrainerGateMarkers(state);
+  trainerSites.forEach(t=>{
+    const ix=camX+t.x*tileSize+tileSize/2;
+    const iy=camY+t.y*tileSize+tileSize/2;
+    if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16)
+      drawMapEntity(ctxFog,{
+        x:t.x,y:t.y,icon:t.gateFlagSet===true?'⚔️🔒':
+          t.gateFlagSet===false?'⚔️🔓':'⚔️',isGhost:true,isItem:false,
+        staticRomMarker:true,trainerRomSite:true,
+        gateFlagSet:t.gateFlagSet,gateVerified:t.gateVerified,battleWon:null,
+        presentNow:null,accessibleNow:null,completedNow:null
+      },ix,iy,0.8,true);
+  });
+
+  // Only SHA-verified static encounter ghosts; live sprites are below.
+  const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);
+  fixedEncounters.forEach(mon=>{
+    const ix=camX+mon.x*tileSize+tileSize/2;
+    const iy=camY+mon.y*tileSize+tileSize/2;
+    if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16)
+      drawMapEntity(ctxFog,{
+        x:mon.x,y:mon.y,icon:mon.gateFlagSet===true?'✨🔒':
+          mon.gateFlagSet===false?'✨🔓':'✨',isItem:false,isGhost:true,
+        staticRomMarker:true,staticEncounter:true,presentNow:null,
+        accessibleNow:null,completedNow:null,
+        gateFlagSet:mon.gateFlagSet,gateVerified:mon.gateVerified,
+        speciesInternalId:mon.speciesInternalId,level:mon.level
+      },ix,iy,0.8,true);
+  });
+
+  // Separate hidden coin table (ROM) and D6FE flags (RAM), never a live sprite.
+  if(state?.romHiddenCoins?.verified===true){
+    const hiddenCoinMarkers=selectVerifiedMinimapHiddenCoinMarkers(state);
+    hiddenCoinMarkers.forEach(coin=>{
+      const ix=camX+coin.x*tileSize+tileSize/2;
+      const iy=camY+coin.y*tileSize+tileSize/2;
+      if(ix>=-16&&ix<=cw+16&&iy>=-16&&iy<=ch+16)
+        drawMapEntity(ctxFog,{
+          x:coin.x,y:coin.y,icon:'🪙',isGhost:true,isItem:false,
+          staticRomMarker:true,hiddenCoin:true,presentNow:null,
+          accessibleNow:null
+        },ix,iy,0.8,true);
+    });
+  }
+
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
@@ -1702,22 +4224,68 @@ function renderGtaFullMap(state) {
     });
   }
 
-  // 2. Itens conhecidos na área (apenas itens por apanhar)
-  const items = [
-    ...(state.areaInfo?.visibleItems || []),
-    ...(state.areaInfo?.hiddenItems || [])
-  ];
-  items.forEach(it => {
-    if (it.x === undefined || it.y === undefined) return;
-    if (it.isCollected === true) return; // Ocultar apenas quando recolha comprovada
-    const ix = originX + it.x * tilePx + tilePx / 2;
-    const iy = originY + it.y * tilePx + tilePx / 2;
-    if (ix >= -24 && ix <= cw + 24 && iy >= -24 && iy <= ch + 24) {
-      drawMapEntity(ctxGta, { ...it, spriteFile: 'poke_ball', icon: it.icon || '🎒', isItem: true, isGhost: false }, ix, iy, gtaZoom, false);
+  // Static ROM evidence in enlarged map: share the SAME guards as
+  // minimap. Never reintroduce unverified manual positions through zoom.
+  const markers=selectVerifiedMinimapItemMarkers(state);
+  markers.forEach(it=>{
+    const ix=originX+it.x*tilePx+tilePx/2;
+    const iy=originY+it.y*tilePx+tilePx/2;
+    if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24){
+      drawMapEntity(ctxGta,{
+        x:it.x,y:it.y,icon:it.blocked?'🔒':'🎒',
+        isItem:!it.blocked,isGhost:true,
+        staticRomMarker:true,presentNow:null
+      },ix,iy,gtaZoom,true);
     }
   });
 
   // 3. Apenas entidades reais presentes na RAM (sem treinadores previstos nem ghosts artificiais)
+  // Same static trainer references in the enlarged map, separate from RAM sprites.
+  const trainerSites=selectVerifiedMinimapTrainerGateMarkers(state);
+  trainerSites.forEach(t=>{
+    const ix=originX+t.x*tilePx+tilePx/2;
+    const iy=originY+t.y*tilePx+tilePx/2;
+    if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24)
+      drawMapEntity(ctxGta,{
+        x:t.x,y:t.y,icon:t.gateFlagSet===true?'⚔️🔒':
+          t.gateFlagSet===false?'⚔️🔓':'⚔️',isGhost:true,isItem:false,
+        staticRomMarker:true,trainerRomSite:true,
+        gateFlagSet:t.gateFlagSet,gateVerified:t.gateVerified,battleWon:null,
+        presentNow:null,accessibleNow:null,completedNow:null
+      },ix,iy,gtaZoom,true);
+  });
+
+  // Enlarged map uses the same exact ROM/RAM guard as minimap.
+  const fixedEncounters=selectVerifiedMinimapStaticEncounterMarkers(state);
+  fixedEncounters.forEach(mon=>{
+    const ix=originX+mon.x*tilePx+tilePx/2;
+    const iy=originY+mon.y*tilePx+tilePx/2;
+    if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24)
+      drawMapEntity(ctxGta,{
+        x:mon.x,y:mon.y,icon:mon.gateFlagSet===true?'✨🔒':
+          mon.gateFlagSet===false?'✨🔓':'✨',isItem:false,isGhost:true,
+        staticRomMarker:true,staticEncounter:true,presentNow:null,
+        accessibleNow:null,completedNow:null,
+        gateFlagSet:mon.gateFlagSet,gateVerified:mon.gateVerified,
+        speciesInternalId:mon.speciesInternalId,level:mon.level
+      },ix,iy,gtaZoom,true);
+  });
+
+  // Enlarged map uses the identical SHA/ROM/D6FE/position coin selector.
+  if(state?.romHiddenCoins?.verified===true){
+    const hiddenCoinMarkers=selectVerifiedMinimapHiddenCoinMarkers(state);
+    hiddenCoinMarkers.forEach(coin=>{
+      const ix=originX+coin.x*tilePx+tilePx/2;
+      const iy=originY+coin.y*tilePx+tilePx/2;
+      if(ix>=-24&&ix<=cw+24&&iy>=-24&&iy<=ch+24)
+        drawMapEntity(ctxGta,{
+          x:coin.x,y:coin.y,icon:'🪙',isGhost:true,isItem:false,
+          staticRomMarker:true,hiddenCoin:true,presentNow:null,
+          accessibleNow:null
+        },ix,iy,gtaZoom,true);
+    });
+  }
+
   const entitySnapshot = getMapEntitySnapshot(state);
   entitySnapshot.active.forEach(ent => {
     if (ent.x === undefined || ent.y === undefined) return;
@@ -3093,6 +5661,41 @@ btnToggleTest.addEventListener('click', async () => {
   }
 });
 
+// FFB8: somente por clique explícito; não altera o estado do jogo.
+const btnFfb8Manual=document.getElementById('btn-ffb8-manual');
+const elFfb8ManualResult=document.getElementById('ffb8-manual-result');
+
+if(btnFfb8Manual&&elFfb8ManualResult){
+  btnFfb8Manual.addEventListener('click',async()=>{
+    btnFfb8Manual.disabled=true;
+    elFfb8ManualResult.textContent='A consultar apenas RAM...';
+
+    try{
+      const response=await fetch('/api/diagnostics/ffb8',{
+        method:'GET',
+        cache:'no-store',
+        headers:{'X-Pokeguide-FFB8-Opt-In':'READ_ONLY_FFB8'}
+      });
+
+      const result=await response.json();
+
+      if(response.ok&&result.verified===true){
+        elFfb8ManualResult.textContent=
+          'FFB8 = 0x'+result.firstHex+
+          ' (duas leituras estáveis). Banco ROM e execução de eventos NÃO comprovados.';
+      }else{
+        elFfb8ManualResult.textContent=
+          'Diagnóstico indisponível: '+
+          String(result.error||'sem prova válida');
+      }
+    }catch{
+      elFfb8ManualResult.textContent=
+        'Não foi possível obter uma leitura verificada.';
+    }finally{
+      btnFfb8Manual.disabled=false;
+    }
+  });
+}
 // Exportar Dados para Clipboard (ChatGPT) & Atualização no GitHub
 const btnExportTelemetry = document.getElementById('btn-export-telemetry');
 const elExportBtnLabel = document.getElementById('export-btn-label');
@@ -3100,7 +5703,7 @@ const elExportBtnLabel = document.getElementById('export-btn-label');
 if (btnExportTelemetry) {
   btnExportTelemetry.addEventListener('click', async () => {
     btnExportTelemetry.disabled = true;
-    if (elExportBtnLabel) elExportBtnLabel.textContent = 'A sincronizar GitHub...';
+    if (elExportBtnLabel) elExportBtnLabel.textContent = 'A preparar exportação local...';
     try {
       const res = await fetch('/api/export-markdown');
       const data = await res.json();
@@ -3108,10 +5711,11 @@ if (btnExportTelemetry) {
         await navigator.clipboard.writeText(data.markdown);
         btnExportTelemetry.classList.add('copied');
         const ts = data.timestamp || new Date().toLocaleTimeString('pt-PT');
-        if (elExportBtnLabel) elExportBtnLabel.textContent = `✅ Copiado & GitHub (${ts})!`;
+        if (elExportBtnLabel) elExportBtnLabel.textContent = data.githubSynchronized === true
+          ? `✅ Copiado & GitHub (${ts})!` : '✅ Copiado localmente';
 
         const elGithubLink = document.getElementById('hud-github-link');
-        if (elGithubLink) {
+        if (elGithubLink && data.githubSynchronized === true) {
           elGithubLink.textContent = `🌐 GitHub (${ts})`;
           elGithubLink.title = `Última sincronização no GitHub: ${ts}`;
         }

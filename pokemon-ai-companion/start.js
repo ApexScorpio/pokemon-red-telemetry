@@ -2,6 +2,9 @@ const { execFileSync, spawn } = require('child_process');
 
 const ROOT = __dirname;
 const CHECK_INTERVAL_MS = 60 * 1000;
+// Safe default: neither network Git access nor code replacement without
+// the operator's explicit opt-in, and never update a feature branch.
+const AUTOUPDATE_OPT_IN = process.env.POKEGUIDE_AUTOUPDATE_OPT_IN === '1';
 let serverProcess = null;
 let checkingForUpdates = false;
 let shuttingDown = false;
@@ -32,10 +35,16 @@ function launchServer() {
 }
 
 function checkForUpdates() {
-  if (checkingForUpdates || shuttingDown) return;
+  if (!AUTOUPDATE_OPT_IN || checkingForUpdates || shuttingDown) return;
   checkingForUpdates = true;
 
   try {
+    // Never merge main into the working feature branch or a detached HEAD.
+    const branch=git(['symbolic-ref','--quiet','--short','HEAD']);
+    if(branch!=='main'){
+      console.warn('[Updater] Branch não é main; atualização automática ignorada.');
+      return;
+    }
     git(['fetch', 'origin', 'main']);
     const local = git(['rev-parse', 'HEAD']);
     const remote = git(['rev-parse', 'origin/main']);
@@ -78,32 +87,40 @@ function checkForUpdates() {
   }
 }
 
-console.log('[Updater] A verificar atualizações no GitHub...');
-try {
-  git(['fetch', 'origin', 'main']);
-  const local = git(['rev-parse', 'HEAD']);
-  const remote = git(['rev-parse', 'origin/main']);
-  if (local !== remote) {
-    const diff = git(['diff', '--name-only', local, remote]).split('\n').map(s => s.trim()).filter(Boolean);
-    const hasCode = diff.some(f => !f.endsWith('.md') && !f.endsWith('.txt') && !f.includes('last_known_state'));
-    if (hasCode) {
-      const dirty=git(['status','--porcelain','--untracked-files=no']);
-      if(dirty){
-        console.warn('[Updater] Há alterações locais: atualização inicial ignorada por segurança; o servidor arranca normalmente.');
-      }else{
-        git(['merge','--ff-only','origin/main']);
-        console.log('[Updater] Código atualizado sem descartar ficheiros locais.');
+if (AUTOUPDATE_OPT_IN) {
+  console.log('[Updater] Opt-in explícito: verificar atualizações em main.');
+  try {
+    const branch=git(['symbolic-ref','--quiet','--short','HEAD']);
+    if(branch!=='main'){
+      console.warn('[Updater] Checkout fora de main: sem fetch, merge ou reinício.');
+    }else{
+      git(['fetch', 'origin', 'main']);
+      const local = git(['rev-parse', 'HEAD']);
+      const remote = git(['rev-parse', 'origin/main']);
+      if (local !== remote) {
+        const diff = git(['diff', '--name-only', local, remote]).split('\n').map(s => s.trim()).filter(Boolean);
+        const hasCode = diff.some(f => !f.endsWith('.md') && !f.endsWith('.txt') && !f.includes('last_known_state'));
+        if (hasCode) {
+          const dirty=git(['status','--porcelain','--untracked-files=no']);
+          if(dirty){
+            console.warn('[Updater] Há alterações locais: atualização inicial ignorada por segurança; o servidor arranca normalmente.');
+          }else{
+            git(['merge','--ff-only','origin/main']);
+            console.log('[Updater] Código atualizado sem descartar ficheiros locais.');
+          }
+        } else {
+          console.log('[Updater] Código local atualizado (commits remotos são apenas telemetria).');
+        }
+      } else {
+        console.log('[Updater] Verificação inicial concluída.');
       }
-    } else {
-      console.log('[Updater] Código local atualizado (commits remotos são apenas telemetria).');
-    }
-  } else {
-    console.log('[Updater] Verificação inicial concluída.');
+        }
+  } catch(err){
+    console.warn('[Updater] Verificação opcional de atualização não concluída.');
   }
-} catch (err) {
-  console.warn('[Updater] Aviso no arranque (a usar versão local):', err.message);
+}else{
+  console.log('[Updater] Atualizações automáticas desativadas; instalação local preservada.');
 }
-
 launchServer();
 setInterval(checkForUpdates, CHECK_INTERVAL_MS);
 
